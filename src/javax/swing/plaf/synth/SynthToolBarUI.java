@@ -28,8 +28,7 @@ import sun.swing.plaf.synth.SynthIcon;
  *
  * @since 1.7
  */
-public class SynthToolBarUI extends BasicToolBarUI implements
-        PropertyChangeListener, SynthUI {
+public class SynthToolBarUI extends BasicToolBarUI implements PropertyChangeListener, SynthUI {
     private Icon handleIcon = null;
     private Rectangle contentRect = new Rectangle();
 
@@ -41,7 +40,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
      * Creates a new UI object for the given component.
      *
      * @param c
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent c) {
@@ -76,8 +75,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
     }
 
     private void updateStyle(JToolBar c) {
-        SynthContext context = getContext(c, Region.TOOL_BAR_CONTENT, null,
-                ENABLED);
+        SynthContext context = getContext(c, Region.TOOL_BAR_CONTENT, null, ENABLED);
         contentStyle = SynthLookAndFeel.updateStyle(context, this);
         context.dispose();
 
@@ -112,14 +110,12 @@ public class SynthToolBarUI extends BasicToolBarUI implements
 
         handleIcon = null;
 
-        context = getContext(toolBar, Region.TOOL_BAR_CONTENT, contentStyle,
-                ENABLED);
+        context = getContext(toolBar, Region.TOOL_BAR_CONTENT, contentStyle, ENABLED);
         contentStyle.uninstallDefaults(context);
         context.dispose();
         contentStyle = null;
 
-        context = getContext(toolBar, Region.TOOL_BAR_DRAG_WINDOW,
-                dragWindowStyle, ENABLED);
+        context = getContext(toolBar, Region.TOOL_BAR_DRAG_WINDOW, dragWindowStyle, ENABLED);
         dragWindowStyle.uninstallDefaults(context);
         context.dispose();
         dragWindowStyle = null;
@@ -160,14 +156,11 @@ public class SynthToolBarUI extends BasicToolBarUI implements
         return SynthContext.getContext(c, style, state);
     }
 
-    private SynthContext getContext(JComponent c, Region region,
-            SynthStyle style) {
-        return SynthContext.getContext(c, region, style, getComponentState(c,
-                region));
+    private SynthContext getContext(JComponent c, Region region, SynthStyle style) {
+        return SynthContext.getContext(c, region, style, getComponentState(c, region));
     }
 
-    private SynthContext getContext(JComponent c, Region region,
-            SynthStyle style, int state) {
+    private SynthContext getContext(JComponent c, Region region, SynthStyle style, int state) {
         return SynthContext.getContext(c, region, style, state);
     }
 
@@ -179,15 +172,14 @@ public class SynthToolBarUI extends BasicToolBarUI implements
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -195,8 +187,8 @@ public class SynthToolBarUI extends BasicToolBarUI implements
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintToolBarBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight(), toolBar.getOrientation());
+        context.getPainter().paintToolBarBackground(context, g, 0, 0, c.getWidth(), c.getHeight(), toolBar
+                .getOrientation());
         paint(context, g);
         context.dispose();
     }
@@ -208,9 +200,9 @@ public class SynthToolBarUI extends BasicToolBarUI implements
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -225,10 +217,8 @@ public class SynthToolBarUI extends BasicToolBarUI implements
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
-        context.getPainter().paintToolBarBorder(context, g, x, y, w, h, toolBar
-                .getOrientation());
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+        context.getPainter().paintToolBarBorder(context, g, x, y, w, h, toolBar.getOrientation());
     }
 
     /**
@@ -256,23 +246,20 @@ public class SynthToolBarUI extends BasicToolBarUI implements
      * Paints the toolbar.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
         if (handleIcon != null && toolBar.isFloatable()) {
             int startX = toolBar.getComponentOrientation().isLeftToRight() ? 0
-                    : toolBar.getWidth() - SynthIcon.getIconWidth(handleIcon,
-                            context);
-            SynthIcon.paintIcon(handleIcon, context, g, startX, 0, SynthIcon
-                    .getIconWidth(handleIcon, context), SynthIcon.getIconHeight(
-                            handleIcon, context));
+                    : toolBar.getWidth() - SynthIcon.getIconWidth(handleIcon, context);
+            SynthIcon.paintIcon(handleIcon, context, g, startX, 0, SynthIcon.getIconWidth(handleIcon,
+                    context), SynthIcon.getIconHeight(handleIcon, context));
         }
 
-        SynthContext subcontext = getContext(toolBar, Region.TOOL_BAR_CONTENT,
-                contentStyle);
+        SynthContext subcontext = getContext(toolBar, Region.TOOL_BAR_CONTENT, contentStyle);
         paintContent(subcontext, g, contentRect);
         subcontext.dispose();
     }
@@ -281,21 +268,18 @@ public class SynthToolBarUI extends BasicToolBarUI implements
      * Paints the toolbar content.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                {@code Graphics} object used for painting
+     *        {@code Graphics} object used for painting
      * @param bounds
-     *                bounding box for the toolbar
+     *        bounding box for the toolbar
      */
-    protected void paintContent(SynthContext context, Graphics g,
-            Rectangle bounds) {
+    protected void paintContent(SynthContext context, Graphics g, Rectangle bounds) {
         SynthLookAndFeel.updateSubregion(context, g, bounds);
-        context.getPainter().paintToolBarContentBackground(context, g, bounds.x,
-                bounds.y, bounds.width, bounds.height, toolBar
-                        .getOrientation());
-        context.getPainter().paintToolBarContentBorder(context, g, bounds.x,
-                bounds.y, bounds.width, bounds.height, toolBar
-                        .getOrientation());
+        context.getPainter().paintToolBarContentBackground(context, g, bounds.x, bounds.y, bounds.width,
+                bounds.height, toolBar.getOrientation());
+        context.getPainter().paintToolBarContentBorder(context, g, bounds.x, bounds.y, bounds.width,
+                bounds.height, toolBar.getOrientation());
     }
 
     /**
@@ -305,13 +289,12 @@ public class SynthToolBarUI extends BasicToolBarUI implements
     protected void paintDragWindow(Graphics g) {
         int w = dragWindow.getWidth();
         int h = dragWindow.getHeight();
-        SynthContext context = getContext(toolBar, Region.TOOL_BAR_DRAG_WINDOW,
-                dragWindowStyle);
+        SynthContext context = getContext(toolBar, Region.TOOL_BAR_DRAG_WINDOW, dragWindowStyle);
         SynthLookAndFeel.updateSubregion(context, g, new Rectangle(0, 0, w, h));
-        context.getPainter().paintToolBarDragWindowBackground(context, g, 0, 0,
-                w, h, dragWindow.getOrientation());
-        context.getPainter().paintToolBarDragWindowBorder(context, g, 0, 0, w,
-                h, dragWindow.getOrientation());
+        context.getPainter().paintToolBarDragWindowBackground(context, g, 0, 0, w, h, dragWindow
+                .getOrientation());
+        context.getPainter().paintToolBarDragWindowBorder(context, g, 0, 0, w, h, dragWindow
+                .getOrientation());
         context.dispose();
     }
 
@@ -341,8 +324,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
             SynthContext context = getContext(tb);
 
             if (tb.getOrientation() == JToolBar.HORIZONTAL) {
-                dim.width = tb.isFloatable() ? SynthIcon.getIconWidth(
-                        handleIcon, context) : 0;
+                dim.width = tb.isFloatable() ? SynthIcon.getIconWidth(handleIcon, context) : 0;
                 Dimension compDim;
                 for (int i = 0; i < tb.getComponentCount(); i++) {
                     Component component = tb.getComponent(i);
@@ -353,8 +335,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
                     }
                 }
             } else {
-                dim.height = tb.isFloatable() ? SynthIcon.getIconHeight(
-                        handleIcon, context) : 0;
+                dim.height = tb.isFloatable() ? SynthIcon.getIconHeight(handleIcon, context) : 0;
                 Dimension compDim;
                 for (int i = 0; i < tb.getComponentCount(); i++) {
                     Component component = tb.getComponent(i);
@@ -379,8 +360,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
             SynthContext context = getContext(tb);
 
             if (tb.getOrientation() == JToolBar.HORIZONTAL) {
-                dim.width = tb.isFloatable() ? SynthIcon.getIconWidth(
-                        handleIcon, context) : 0;
+                dim.width = tb.isFloatable() ? SynthIcon.getIconWidth(handleIcon, context) : 0;
                 Dimension compDim;
                 for (int i = 0; i < tb.getComponentCount(); i++) {
                     Component component = tb.getComponent(i);
@@ -391,8 +371,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
                     }
                 }
             } else {
-                dim.height = tb.isFloatable() ? SynthIcon.getIconHeight(
-                        handleIcon, context) : 0;
+                dim.height = tb.isFloatable() ? SynthIcon.getIconHeight(handleIcon, context) : 0;
                 Dimension compDim;
                 for (int i = 0; i < tb.getComponentCount(); i++) {
                     Component component = tb.getComponent(i);
@@ -433,8 +412,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
             }
 
             if (tb.getOrientation() == JToolBar.HORIZONTAL) {
-                int handleWidth = tb.isFloatable() ? SynthIcon.getIconWidth(
-                        handleIcon, context) : 0;
+                int handleWidth = tb.isFloatable() ? SynthIcon.getIconWidth(handleIcon, context) : 0;
 
                 // Note: contentRect does not take insets into account
                 // since it is used for determining the bounds that are
@@ -446,8 +424,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
 
                 // However, we do take the insets into account here for
                 // the purposes of laying out the toolbar child components.
-                int x = ltr ? handleWidth + insets.left
-                        : tb.getWidth() - handleWidth - insets.right;
+                int x = ltr ? handleWidth + insets.left : tb.getWidth() - handleWidth - insets.right;
                 int baseY = insets.top;
                 int baseH = tb.getHeight() - insets.top - insets.bottom;
 
@@ -487,8 +464,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
                     }
                 }
             } else {
-                int handleHeight = tb.isFloatable() ? SynthIcon.getIconHeight(
-                        handleIcon, context) : 0;
+                int handleHeight = tb.isFloatable() ? SynthIcon.getIconHeight(handleIcon, context) : 0;
 
                 // See notes above regarding the use of insets
                 contentRect.x = 0;
@@ -506,8 +482,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
                 int extraSpacePerGlue = 0;
                 if (glueCount > 0) {
                     int minHeight = minimumLayoutSize(parent).height;
-                    extraSpacePerGlue = (tb.getHeight() - minHeight)
-                            / glueCount;
+                    extraSpacePerGlue = (tb.getHeight() - minHeight) / glueCount;
                     if (extraSpacePerGlue < 0)
                         extraSpacePerGlue = 0;
                 }
@@ -545,8 +520,7 @@ public class SynthToolBarUI extends BasicToolBarUI implements
                 Box.Filler f = (Box.Filler) c;
                 Dimension min = f.getMinimumSize();
                 Dimension pref = f.getPreferredSize();
-                return min.width == 0 && min.height == 0 && pref.width == 0
-                        && pref.height == 0;
+                return min.width == 0 && min.height == 0 && pref.width == 0 && pref.height == 0;
             }
             return false;
         }

@@ -36,51 +36,50 @@ public interface SnmpUsmKeyHandler {
      * description.
      * 
      * @param algoName
-     *                 The authentication algorithm to use.
+     *        The authentication algorithm to use.
      * @param password
-     *                 Password to convert.
+     *        Password to convert.
      * @return The key.
      * @exception IllegalArgumentException
-     *                                     If the algorithm is unknown.
+     *            If the algorithm is unknown.
      */
-    public byte[] password_to_key(String algoName, String password)
-            throws IllegalArgumentException;
+    public byte[] password_to_key(String algoName, String password) throws IllegalArgumentException;
 
     /**
      * Localize the passed key using the passed <CODE>SnmpEngineId</CODE>. It
      * MUST be compliant to RFC 2574 description.
      * 
      * @param algoName
-     *                 The authentication algorithm to use.
+     *        The authentication algorithm to use.
      * @param key
-     *                 The key to localize;
+     *        The key to localize;
      * @param engineId
-     *                 The Id used to localize the key.
+     *        The Id used to localize the key.
      * @return The localized key.
      * @exception IllegalArgumentException
-     *                                     If the algorithm is unknown.
+     *            If the algorithm is unknown.
      */
-    public byte[] localizeAuthKey(String algoName, byte[] key,
-            SnmpEngineId engineId) throws IllegalArgumentException;
+    public byte[] localizeAuthKey(String algoName, byte[] key, SnmpEngineId engineId)
+            throws IllegalArgumentException;
 
     /**
      * Localize the passed privacy key using the passed
      * <CODE>SnmpEngineId</CODE>. It MUST be compliant to RFC 2574 description.
      * 
      * @param algoName
-     *                 The authentication algorithm to use.
+     *        The authentication algorithm to use.
      * @param key
-     *                 The key to localize;
+     *        The key to localize;
      * @param engineId
-     *                 The Id used to localize the key.
+     *        The Id used to localize the key.
      * @param keysize
-     *                 The privacy algorithm key size.
+     *        The privacy algorithm key size.
      * @return The localized key.
      * @exception IllegalArgumentException
-     *                                     If the algorithm is unknown.
+     *            If the algorithm is unknown.
      */
-    public byte[] localizePrivKey(String algoName, byte[] key,
-            SnmpEngineId engineId, int keysize) throws IllegalArgumentException;
+    public byte[] localizePrivKey(String algoName, byte[] key, SnmpEngineId engineId, int keysize)
+            throws IllegalArgumentException;
 
     /**
      * Calculate the delta parameter needed when processing key change. This
@@ -88,19 +87,19 @@ public interface SnmpUsmKeyHandler {
      * RFC 2574 description.
      * 
      * @param algoName
-     *                 The authentication algorithm to use.
+     *        The authentication algorithm to use.
      * @param oldKey
-     *                 The old key.
+     *        The old key.
      * @param newKey
-     *                 The new key.
+     *        The new key.
      * @param random
-     *                 The random value.
+     *        The random value.
      * @return The delta.
      * @exception IllegalArgumentException
-     *                                     If the algorithm is unknown.
+     *            If the algorithm is unknown.
      */
-    public byte[] calculateAuthDelta(String algoName, byte[] oldKey,
-            byte[] newKey, byte[] random) throws IllegalArgumentException;
+    public byte[] calculateAuthDelta(String algoName, byte[] oldKey, byte[] newKey, byte[] random)
+            throws IllegalArgumentException;
 
     /**
      * Calculate the delta parameter needed when processing key change for a
@@ -108,21 +107,20 @@ public interface SnmpUsmKeyHandler {
      * It MUST be compliant to RFC 2574 description.
      * 
      * @param algoName
-     *                  The authentication algorithm to use.
+     *        The authentication algorithm to use.
      * @param oldKey
-     *                  The old key.
+     *        The old key.
      * @param newKey
-     *                  The new key.
+     *        The new key.
      * @param random
-     *                  The random value.
+     *        The random value.
      * @param deltaSize
-     *                  The algo delta size.
+     *        The algo delta size.
      * @return The delta.
      * @exception IllegalArgumentException
-     *                                     If the algorithm is unknown.
+     *            If the algorithm is unknown.
      */
-    public byte[] calculatePrivDelta(String algoName, byte[] oldKey,
-            byte[] newKey, byte[] random, int deltaSize)
-            throws IllegalArgumentException;
+    public byte[] calculatePrivDelta(String algoName, byte[] oldKey, byte[] newKey, byte[] random,
+            int deltaSize) throws IllegalArgumentException;
 
 }

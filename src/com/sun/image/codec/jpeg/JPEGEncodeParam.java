@@ -4,13 +4,9 @@
  */
 
 /**********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
+ ********************************************************************** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
  *** As an unpublished work pursuant to Title 17 of the United ***
  *** States Code. All rights reserved. ***
- **********************************************************************
- **********************************************************************
  **********************************************************************/
 
 package com.sun.image.codec.jpeg;
@@ -20,7 +16,6 @@ package com.sun.image.codec.jpeg;
  * of JPEG data streams. Parameters are either set explicitly by the application
  * for encoding, or read from another JPEG header.
  * <p>
- * 
  * When working with BufferedImages, the codec will attempt to match the encoded
  * JPEG COLOR_ID with the ColorModel in the BufferedImage. This is not always
  * possible (the default mappings are listed below). In cases where unsupported
@@ -28,25 +23,21 @@ package com.sun.image.codec.jpeg;
  * either convert the image data to a known ColorSpace or encode the data from a
  * raster. When encoding rasters no colorspace adjustments are made, so the user
  * must do any conversions required to get to the encoded COLOR_ID.
- * 
  * The COLOR_ID for the encoded images is used to control the JPEG codec's
  * inital values for Huffman and Quantization Tables as well as subsampling
  * factors. It is also used to determine what color conversion should be
  * performed to obtain the best encoding.
  * <p>
- * 
  * Note: The color ids described herein are simply enumerated values that
  * influence data processing by the JPEG codec. JPEG compression is, by
  * definition, color blind. These values are used as hints when compressing JPEG
  * data. Through these values the JPEG codec can perform some default rotation
  * of data into spaces that will aid in getting better compression ratios.
  * <P>
- * 
  * Example behaviour is described below. Since these mappings are likely to
  * change in the future it is strongly recommended that you make use of the @see
  * JPEGImageEncoder.getDefaultParamBlock calls and check the encodedColorID for
  * your particular BufferedImage.
- * 
  * In extreme cases is may be necessary for the user to convert the image to the
  * desired colorspace, and encode it from a Raster. In this case the API
  * programmer must specify the colorID of the data in the Raster and no color
@@ -73,13 +64,11 @@ package com.sun.image.codec.jpeg;
  * no color conversion at all. It is the user's responsiblity to perform the
  * desired conversions.
  * <P>
- * 
  * If you intend to write a JFIF image (by including the APP0_MARKER) the
  * encoded COLOR_ID must be one of: COLOR_ID_UNKNOWN, COLOR_ID_GRAYSCALE,
  * COLOR_ID_YCbCr, or COLOR_ID_CMYK. In all other instances an
  * ImageformatException will be thrown.
  * <P>
- * 
  * <B>IMPORTANT:</B> an Alpha RGB BufferedImage will not map to a valid JFIF
  * stream, you must strip off the alpha prior to encoding if you want a JFIF
  * file. If the APP0 marker is set and you do not strip off the Alpha, an
@@ -103,9 +92,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * each output pixel (ussually 2 for YCC).
      * 
      * @param component
-     *                  The component being specified.
+     *        The component being specified.
      * @param subsample
-     *                  The subsampling factor being specified.
+     *        The subsampling factor being specified.
      */
     public void setHorizontalSubsampling(int component, int subsample);
 
@@ -115,9 +104,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * output pixel (ussually 2 for YCC).
      * 
      * @param component
-     *                  The component being specified.
+     *        The component being specified.
      * @param subsample
-     *                  The subsampling factor being specified.
+     *        The subsampling factor being specified.
      */
     public void setVerticalSubsampling(int component, int subsample);
 
@@ -126,9 +115,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * range in value from 0 - 3.
      * 
      * @param qtable
-     *                 that will be used.
+     *        that will be used.
      * @param tableNum
-     *                 the index of the table to be set.
+     *        the index of the table to be set.
      */
     public void setQTable(int tableNum, JPEGQTable qTable);
 
@@ -136,14 +125,14 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * Sets the DC Huffman coding table at index to the table provided.
      * 
      * @param huffTable
-     *                  JPEGHuffmanTable that will be assigned to index
-     *                  tableNum.
+     *        JPEGHuffmanTable that will be assigned to index
+     *        tableNum.
      * @param tableNum
-     *                  - the index of the table to be set.
+     *        - the index of the table to be set.
      * @exception IllegalArgumentException
-     *                                     - thrown if the tableNum is out of
-     *                                     range. Index must range
-     *                                     in value from 0 - 3.
+     *            - thrown if the tableNum is out of
+     *            range. Index must range
+     *            in value from 0 - 3.
      */
     public void setDCHuffmanTable(int tableNum, JPEGHuffmanTable huffTable);
 
@@ -151,14 +140,14 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * Sets the AC Huffman coding table at index to the table provided.
      * 
      * @param huffTable
-     *                  JPEGHuffmanTable that will be assigned to index
-     *                  tableNum.
+     *        JPEGHuffmanTable that will be assigned to index
+     *        tableNum.
      * @param tableNum
-     *                  - the index of the table to be set.
+     *        - the index of the table to be set.
      * @exception IllegalArgumentException
-     *                                     - thrown if the tableNum is out of
-     *                                     range. Index must range
-     *                                     in value from 0 - 3.
+     *            - thrown if the tableNum is out of
+     *            range. Index must range
+     *            in value from 0 - 3.
      */
     public void setACHuffmanTable(int tableNum, JPEGHuffmanTable huffTable);
 
@@ -166,9 +155,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * Sets the mapping between a component and it's DC Huffman Table.
      * 
      * @param component
-     *                  The component to set the mapping for
+     *        The component to set the mapping for
      * @param table
-     *                  The DC Huffman table to use for component
+     *        The DC Huffman table to use for component
      */
     public void setDCHuffmanComponentMapping(int component, int table);
 
@@ -176,9 +165,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * Sets the mapping between a component and it's AC Huffman Table.
      * 
      * @param component
-     *                  The component to set the mapping for
+     *        The component to set the mapping for
      * @param table
-     *                  The AC Huffman table to use for component
+     *        The AC Huffman table to use for component
      */
     public void setACHuffmanComponentMapping(int component, int table);
 
@@ -186,9 +175,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * Sets the mapping between a component and it's Quantization Table.
      * 
      * @param component
-     *                  The component to set the mapping for
+     *        The component to set the mapping for
      * @param table
-     *                  The Quantization Table to use for component
+     *        The Quantization Table to use for component
      */
     public void setQTableComponentMapping(int component, int table);
 
@@ -212,9 +201,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * to remove the default APP0 marker by calling it with data set to null.
      * 
      * @param marker
-     *               The marker to set the data for.
+     *        The marker to set the data for.
      * @param data
-     *               the new set of data to be written.
+     *        the new set of data to be written.
      */
     public void setMarkerData(int marker, byte[][] data);
 
@@ -224,9 +213,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * byte[] in the array.).
      * 
      * @param marker
-     *               The marker to add and instance of.
+     *        The marker to add and instance of.
      * @param data
-     *               the data to be written.
+     *        the data to be written.
      */
     public void addMarkerData(int marker, byte[] data);
 
@@ -234,7 +223,7 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * Set the MCUs per restart, or 0 for no restart markers.
      * 
      * @param restartInterval
-     *                        number MCUs per restart marker.
+     *        number MCUs per restart marker.
      */
     public void setRestartInterval(int restartInterval);
 
@@ -243,7 +232,7 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * that marker is written). This value isn't used by the JPEG code.
      * 
      * @param unit
-     *             One of the DENSITY_UNIT_* values.
+     *        One of the DENSITY_UNIT_* values.
      */
     public void setDensityUnit(int unit);
 
@@ -252,8 +241,8 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * marker. It isn't used by the JPEG code.
      * 
      * @param density
-     *                the horizontal pixel density, in units described by @see
-     *                JPEGParam.getDensityUnit.
+     *        the horizontal pixel density, in units described by @see
+     *        JPEGParam.getDensityUnit.
      */
     public void setXDensity(int density);
 
@@ -262,8 +251,8 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * marker. It isn't used by the JPEG code.
      * 
      * @param density
-     *                The verticle pixel density, in units described by @see
-     *                JPEGParam.getDensityUnit.
+     *        The verticle pixel density, in units described by @see
+     *        JPEGParam.getDensityUnit.
      */
     public void setYDensity(int density);
 
@@ -271,18 +260,15 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * This creates new Quantization tables that replace the currently installed
      * Quantization tables. It also updates the Component QTable mapping to the
      * default for the current encoded COLOR_ID.
-     * 
      * The Created Quantization table varies from very high compression, very
      * low quality, (0.0) to low compression, very high quality (1.0) based on
      * the quality parameter.
      * <P>
-     * 
      * At a quality level of 1.0 the table will be all 1's which will lead to no
      * loss of data due to quantization (however chrominace subsampling, if
      * used, and roundoff error in the DCT will still degrade the image some
      * what).
      * <P>
-     * 
      * This is a linear manipulation of the standard Chrominance Q-Table.
      * <P>
      * 
@@ -293,9 +279,9 @@ public interface JPEGEncodeParam extends Cloneable, JPEGDecodeParam {
      * </pre>
      * 
      * @param quality
-     *                      0.0-1.0 setting of desired quality level.
+     *        0.0-1.0 setting of desired quality level.
      * @param forceBaseline
-     *                      force baseline quantization table
+     *        force baseline quantization table
      */
     public void setQuality(float quality, boolean forceBaseline);
 }

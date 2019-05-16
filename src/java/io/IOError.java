@@ -19,9 +19,9 @@ public class IOError extends Error {
      * contains the class and detail message of cause).
      *
      * @param cause
-     *              The cause of this error, or <tt>null</tt> if the cause is
-     *              not
-     *              known
+     *        The cause of this error, or <tt>null</tt> if the cause is
+     *        not
+     *        known
      */
     public IOError(Throwable cause) {
         super(cause);

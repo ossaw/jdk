@@ -19,7 +19,6 @@ package javax.accessibility;
  * @see Accessible#getAccessibleContext
  * @see AccessibleContext
  * @see AccessibleContext#getAccessibleValue
- *
  * @author Peter Korn
  * @author Hans Muller
  * @author Willie Walker
@@ -39,7 +38,7 @@ public interface AccessibleValue {
      * Set the value of this object as a Number.
      *
      * @param n
-     *          the number to use for the value
+     *        the number to use for the value
      * @return True if the value was set; else False
      * @see #getCurrentAccessibleValue
      */

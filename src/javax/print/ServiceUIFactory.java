@@ -26,8 +26,8 @@ package javax.print;
  * <pre>
  * ServiceUIFactory factory = printService.getServiceUIFactory();
  * if (factory != null) {
- *     JComponent swingui = (JComponent) factory.getUI(
- *             ServiceUIFactory.MAIN_UIROLE, ServiceUIFactory.JCOMPONENT_UI);
+ *     JComponent swingui = (JComponent) factory.getUI(ServiceUIFactory.MAIN_UIROLE,
+ *             ServiceUIFactory.JCOMPONENT_UI);
  *     if (swingui != null) {
  *         tabbedpane.add("Custom UI", swingui);
  *     }
@@ -89,17 +89,17 @@ public abstract class ServiceUIFactory {
      * <P>
      * 
      * @param role
-     *             requested. Must be one of the standard roles or a private
-     *             role
-     *             supported by this factory.
+     *        requested. Must be one of the standard roles or a private
+     *        role
+     *        supported by this factory.
      * @param ui
-     *             type in which the role is requested.
+     *        type in which the role is requested.
      * @return the UI role or null if the requested UI role is not available
      *         from this factory
      * @throws IllegalArgumentException
-     *                                  if the role or ui is neither one of the
-     *                                  standard ones, nor a
-     *                                  private one supported by the factory.
+     *         if the role or ui is neither one of the
+     *         standard ones, nor a
+     *         private one supported by the factory.
      */
     public abstract Object getUI(int role, String ui);
 
@@ -110,13 +110,13 @@ public abstract class ServiceUIFactory {
      * can use equality of reference ("==").
      * 
      * @param role
-     *             to be looked up.
+     *        to be looked up.
      * @return the UI types supported by this class for the specified role, null
      *         if no UIs are available for the role.
      * @throws IllegalArgumentException
-     *                                  is the role is a non-standard role not
-     *                                  supported by this
-     *                                  factory.
+     *         is the role is a non-standard role not
+     *         supported by this
+     *         factory.
      */
     public abstract String[] getUIClassNamesForRole(int role);
 

@@ -35,10 +35,9 @@ public final class ClassDefinition {
      * captures a reference to it.
      *
      * @param theClass
-     *                     the <code>Class</code> that needs redefining
+     *        the <code>Class</code> that needs redefining
      * @param theClassFile
-     *                     the new class file bytes
-     *
+     *        the new class file bytes
      * @throws java.lang.NullPointerException
      *         if the supplied class or array is <code>null</code>.
      */

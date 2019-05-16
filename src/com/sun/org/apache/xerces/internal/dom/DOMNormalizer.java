@@ -81,14 +81,12 @@ import org.w3c.dom.Text;
  * generated to reflect the changes occuring on the document. See Namespace
  * normalization for details on how namespace declaration attributes and
  * prefixes are normalized.
- *
  * NOTE: There is an initial support for DOM revalidation with XML Schema as a
  * grammar. The tree might not be validated correctly if entityReferences, CDATA
  * sections are present in the tree. The PSVI information is not exposed,
  * normalized data (including element default content is not available).
  *
  * @xerces.experimental
- *
  * @author Elena Litani, IBM
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @version $Id: DOMNormalizer.java,v 1.9 2010-11-01 04:39:38 joehw Exp $
@@ -177,42 +175,35 @@ public class DOMNormalizer implements XMLDocumentHandler {
     /**
      * Normalizes document. Note: reset() must be called before this method.
      */
-    protected void normalizeDocument(CoreDocumentImpl document,
-            DOMConfigurationImpl config) {
+    protected void normalizeDocument(CoreDocumentImpl document, DOMConfigurationImpl config) {
 
         fDocument = document;
         fConfiguration = config;
 
         // intialize and reset DOMNormalizer component
         //
-        fSymbolTable = (SymbolTable) fConfiguration.getProperty(
-                DOMConfigurationImpl.SYMBOL_TABLE);
+        fSymbolTable = (SymbolTable) fConfiguration.getProperty(DOMConfigurationImpl.SYMBOL_TABLE);
         // reset namespace context
         fNamespaceContext.reset();
-        fNamespaceContext.declarePrefix(XMLSymbols.EMPTY_STRING,
-                XMLSymbols.EMPTY_STRING);
+        fNamespaceContext.declarePrefix(XMLSymbols.EMPTY_STRING, XMLSymbols.EMPTY_STRING);
 
         if ((fConfiguration.features & DOMConfigurationImpl.VALIDATE) != 0) {
             String schemaLang = (String) fConfiguration.getProperty(
                     DOMConfigurationImpl.JAXP_SCHEMA_LANGUAGE);
 
-            if (schemaLang != null && schemaLang.equals(
-                    Constants.NS_XMLSCHEMA)) {
-                fValidationHandler = CoreDOMImplementationImpl.singleton
-                        .getValidator(XMLGrammarDescription.XML_SCHEMA);
+            if (schemaLang != null && schemaLang.equals(Constants.NS_XMLSCHEMA)) {
+                fValidationHandler = CoreDOMImplementationImpl.singleton.getValidator(
+                        XMLGrammarDescription.XML_SCHEMA);
                 fConfiguration.setFeature(DOMConfigurationImpl.SCHEMA, true);
-                fConfiguration.setFeature(
-                        DOMConfigurationImpl.SCHEMA_FULL_CHECKING, true);
+                fConfiguration.setFeature(DOMConfigurationImpl.SCHEMA_FULL_CHECKING, true);
                 // report fatal error on DOM Level 1 nodes
                 fNamespaceValidation = true;
 
                 // check if we need to fill in PSVI
-                fPSVI = ((fConfiguration.features
-                        & DOMConfigurationImpl.PSVI) != 0) ? true : false;
+                fPSVI = ((fConfiguration.features & DOMConfigurationImpl.PSVI) != 0) ? true : false;
             }
 
-            fConfiguration.setFeature(DOMConfigurationImpl.XERCES_VALIDATION,
-                    true);
+            fConfiguration.setFeature(DOMConfigurationImpl.XERCES_VALIDATION, true);
 
             // reset ID table
             fDocument.clearIdentifiers();
@@ -223,13 +214,11 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
         }
 
-        fErrorHandler = (DOMErrorHandler) fConfiguration.getParameter(
-                Constants.DOM_ERROR_HANDLER);
+        fErrorHandler = (DOMErrorHandler) fConfiguration.getParameter(Constants.DOM_ERROR_HANDLER);
         if (fValidationHandler != null) {
             fValidationHandler.setDocumentHandler(this);
-            fValidationHandler.startDocument(new SimpleLocator(
-                    fDocument.fDocumentURI, fDocument.fDocumentURI, -1, -1),
-                    fDocument.encoding, fNamespaceContext, null);
+            fValidationHandler.startDocument(new SimpleLocator(fDocument.fDocumentURI, fDocument.fDocumentURI,
+                    -1, -1), fDocument.encoding, fNamespaceContext, null);
 
         }
         try {
@@ -245,8 +234,8 @@ public class DOMNormalizer implements XMLDocumentHandler {
             // release resources
             if (fValidationHandler != null) {
                 fValidationHandler.endDocument(null);
-                CoreDOMImplementationImpl.singleton.releaseValidator(
-                        XMLGrammarDescription.XML_SCHEMA, fValidationHandler);
+                CoreDOMImplementationImpl.singleton.releaseValidator(XMLGrammarDescription.XML_SCHEMA,
+                        fValidationHandler);
                 fValidationHandler = null;
             }
         } catch (RuntimeException e) {
@@ -258,7 +247,6 @@ public class DOMNormalizer implements XMLDocumentHandler {
     }
 
     /**
-     *
      * This method acts as if the document was going through a save and load
      * cycle, putting the document in a "normal" form. The actual result depends
      * on the features being set and governing what operations actually take
@@ -270,8 +258,8 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * nodes,normalizes attribute values, etc.
      *
      * @param node
-     *             Modified node or null. If node is returned, we need to
-     *             normalize again starting on the node returned.
+     *        Modified node or null. If node is returned, we need to
+     *        normalize again starting on the node returned.
      * @return the normalized Node
      */
     protected Node normalizeNode(Node node) {
@@ -286,50 +274,42 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     System.out.println("==>normalizeNode:{doctype}");
                 }
                 DocumentTypeImpl docType = (DocumentTypeImpl) node;
-                fDTDValidator = (XMLDTDValidator) CoreDOMImplementationImpl.singleton
-                        .getValidator(XMLGrammarDescription.XML_DTD);
+                fDTDValidator = (XMLDTDValidator) CoreDOMImplementationImpl.singleton.getValidator(
+                        XMLGrammarDescription.XML_DTD);
                 fDTDValidator.setDocumentHandler(this);
                 fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX
-                        + Constants.XMLGRAMMAR_POOL_PROPERTY, createGrammarPool(
-                                docType));
+                        + Constants.XMLGRAMMAR_POOL_PROPERTY, createGrammarPool(docType));
                 fDTDValidator.reset(fConfiguration);
-                fDTDValidator.startDocument(new SimpleLocator(
-                        fDocument.fDocumentURI, fDocument.fDocumentURI, -1, -1),
-                        fDocument.encoding, fNamespaceContext, null);
-                fDTDValidator.doctypeDecl(docType.getName(), docType
-                        .getPublicId(), docType.getSystemId(), null);
+                fDTDValidator.startDocument(new SimpleLocator(fDocument.fDocumentURI, fDocument.fDocumentURI,
+                        -1, -1), fDocument.encoding, fNamespaceContext, null);
+                fDTDValidator.doctypeDecl(docType.getName(), docType.getPublicId(), docType.getSystemId(),
+                        null);
                 // REVISIT: well-formness encoding info
                 break;
             }
 
             case Node.ELEMENT_NODE: {
                 if (DEBUG_ND) {
-                    System.out.println("==>normalizeNode:{element} " + node
-                            .getNodeName());
+                    System.out.println("==>normalizeNode:{element} " + node.getNodeName());
                 }
 
                 // do the name check only when version of the document was changed &
                 // application has set the value of well-formed features to true
                 if (fDocument.errorChecking) {
-                    if (((fConfiguration.features
-                            & DOMConfigurationImpl.WELLFORMED) != 0)
-                            && fDocument.isXMLVersionChanged()) {
+                    if (((fConfiguration.features & DOMConfigurationImpl.WELLFORMED) != 0) && fDocument
+                            .isXMLVersionChanged()) {
                         if (fNamespaceValidation) {
-                            wellformed = CoreDocumentImpl.isValidQName(node
-                                    .getPrefix(), node.getLocalName(), fDocument
-                                            .isXML11Version());
+                            wellformed = CoreDocumentImpl.isValidQName(node.getPrefix(), node.getLocalName(),
+                                    fDocument.isXML11Version());
                         } else {
-                            wellformed = CoreDocumentImpl.isXMLName(node
-                                    .getNodeName(), fDocument.isXML11Version());
+                            wellformed = CoreDocumentImpl.isXMLName(node.getNodeName(), fDocument
+                                    .isXML11Version());
                         }
                         if (!wellformed) {
-                            String msg = DOMMessageFormatter.formatMessage(
-                                    DOMMessageFormatter.DOM_DOMAIN,
-                                    "wf-invalid-character-in-node-name",
-                                    new Object[] { "Element", node
+                            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                                    "wf-invalid-character-in-node-name", new Object[] { "Element", node
                                             .getNodeName() });
-                            reportDOMError(fErrorHandler, fError, fLocator, msg,
-                                    DOMError.SEVERITY_ERROR,
+                            reportDOMError(fErrorHandler, fError, fLocator, msg, DOMError.SEVERITY_ERROR,
                                     "wf-invalid-character-in-node-name");
                         }
                     }
@@ -342,26 +322,20 @@ public class DOMNormalizer implements XMLDocumentHandler {
                 if (elem.needsSyncChildren()) {
                     elem.synchronizeChildren();
                 }
-                AttributeMap attributes = (elem.hasAttributes())
-                        ? (AttributeMap) elem.getAttributes()
-                        : null;
+                AttributeMap attributes = (elem.hasAttributes()) ? (AttributeMap) elem.getAttributes() : null;
 
                 // fix namespaces and remove default attributes
-                if ((fConfiguration.features
-                        & DOMConfigurationImpl.NAMESPACES) != 0) {
+                if ((fConfiguration.features & DOMConfigurationImpl.NAMESPACES) != 0) {
                     // fix namespaces
                     // normalize attribute values
                     // remove default attributes
                     namespaceFixUp(elem, attributes);
 
-                    if ((fConfiguration.features
-                            & DOMConfigurationImpl.NSDECL) == 0
-                            && attributes != null) {
+                    if ((fConfiguration.features & DOMConfigurationImpl.NSDECL) == 0 && attributes != null) {
                         for (int i = 0; i < attributes.getLength(); ++i) {
                             Attr att = (Attr) attributes.getItem(i);
-                            if (XMLSymbols.PREFIX_XMLNS.equals(att.getPrefix())
-                                    || XMLSymbols.PREFIX_XMLNS.equals(att
-                                            .getName())) {
+                            if (XMLSymbols.PREFIX_XMLNS.equals(att.getPrefix()) || XMLSymbols.PREFIX_XMLNS
+                                    .equals(att.getName())) {
                                 elem.removeAttributeNode(att);
                                 --i;
                             }
@@ -374,28 +348,20 @@ public class DOMNormalizer implements XMLDocumentHandler {
                             Attr attr = (Attr) attributes.item(i);
                             // removeDefault(attr, attributes);
                             attr.normalize();
-                            if (fDocument.errorChecking
-                                    && ((fConfiguration.features
-                                            & DOMConfigurationImpl.WELLFORMED) != 0)) {
-                                isAttrValueWF(fErrorHandler, fError, fLocator,
-                                        attributes, (AttrImpl) attr, attr
-                                                .getValue(), fDocument
-                                                        .isXML11Version());
+                            if (fDocument.errorChecking && ((fConfiguration.features
+                                    & DOMConfigurationImpl.WELLFORMED) != 0)) {
+                                isAttrValueWF(fErrorHandler, fError, fLocator, attributes, (AttrImpl) attr,
+                                        attr.getValue(), fDocument.isXML11Version());
                                 if (fDocument.isXMLVersionChanged()) {
-                                    wellformed = CoreDocumentImpl.isXMLName(node
-                                            .getNodeName(), fDocument
-                                                    .isXML11Version());
+                                    wellformed = CoreDocumentImpl.isXMLName(node.getNodeName(), fDocument
+                                            .isXML11Version());
                                     if (!wellformed) {
-                                        String msg = DOMMessageFormatter
-                                                .formatMessage(
-                                                        DOMMessageFormatter.DOM_DOMAIN,
-                                                        "wf-invalid-character-in-node-name",
-                                                        new Object[] { "Attr",
-                                                                node.getNodeName() });
-                                        reportDOMError(fErrorHandler, fError,
-                                                fLocator, msg,
-                                                DOMError.SEVERITY_ERROR,
-                                                "wf-invalid-character-in-node-name");
+                                        String msg = DOMMessageFormatter.formatMessage(
+                                                DOMMessageFormatter.DOM_DOMAIN,
+                                                "wf-invalid-character-in-node-name", new Object[] { "Attr",
+                                                        node.getNodeName() });
+                                        reportDOMError(fErrorHandler, fError, fLocator, msg,
+                                                DOMError.SEVERITY_ERROR, "wf-invalid-character-in-node-name");
                                     }
                                 }
                             }
@@ -442,12 +408,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
                 }
                 if (DEBUG_ND) {
                     // normalized subtree
-                    System.out.println("***The children of {" + node
-                            .getNodeName() + "} are normalized");
+                    System.out.println("***The children of {" + node.getNodeName() + "} are normalized");
                     for (kid = elem.getFirstChild(); kid != null; kid = next) {
                         next = kid.getNextSibling();
-                        System.out.println(kid.getNodeName() + "[" + kid
-                                .getNodeValue() + "]");
+                        System.out.println(kid.getNodeName() + "[" + kid.getNodeValue() + "]");
                     }
 
                 }
@@ -483,19 +447,15 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     System.out.println("==>normalizeNode:{comments}");
                 }
 
-                if ((fConfiguration.features
-                        & DOMConfigurationImpl.COMMENTS) == 0) {
+                if ((fConfiguration.features & DOMConfigurationImpl.COMMENTS) == 0) {
                     Node prevSibling = node.getPreviousSibling();
                     Node parent = node.getParentNode();
                     // remove the comment node
                     parent.removeChild(node);
-                    if (prevSibling != null && prevSibling
-                            .getNodeType() == Node.TEXT_NODE) {
+                    if (prevSibling != null && prevSibling.getNodeType() == Node.TEXT_NODE) {
                         Node nextSibling = prevSibling.getNextSibling();
-                        if (nextSibling != null && nextSibling
-                                .getNodeType() == Node.TEXT_NODE) {
-                            ((TextImpl) nextSibling).insertData(0, prevSibling
-                                    .getNodeValue());
+                        if (nextSibling != null && nextSibling.getNodeType() == Node.TEXT_NODE) {
+                            ((TextImpl) nextSibling).insertData(0, prevSibling.getNodeValue());
                             parent.removeChild(prevSibling);
                             return nextSibling;
                         }
@@ -508,42 +468,35 @@ public class DOMNormalizer implements XMLDocumentHandler {
                         // check comments for invalid xml chracter as per the
                         // version
                         // of the document
-                        isCommentWF(fErrorHandler, fError, fLocator,
-                                commentdata, fDocument.isXML11Version());
+                        isCommentWF(fErrorHandler, fError, fLocator, commentdata, fDocument.isXML11Version());
                     }
                 } // end-else if comment node is not to be removed.
                 break;
             }
             case Node.ENTITY_REFERENCE_NODE: {
                 if (DEBUG_ND) {
-                    System.out.println("==>normalizeNode:{entityRef} " + node
-                            .getNodeName());
+                    System.out.println("==>normalizeNode:{entityRef} " + node.getNodeName());
                 }
 
-                if ((fConfiguration.features
-                        & DOMConfigurationImpl.ENTITIES) == 0) {
+                if ((fConfiguration.features & DOMConfigurationImpl.ENTITIES) == 0) {
                     Node prevSibling = node.getPreviousSibling();
                     Node parent = node.getParentNode();
                     ((EntityReferenceImpl) node).setReadOnly(false, true);
                     expandEntityRef(parent, node);
                     parent.removeChild(node);
-                    Node next = (prevSibling != null) ? prevSibling
-                            .getNextSibling() : parent.getFirstChild();
+                    Node next = (prevSibling != null) ? prevSibling.getNextSibling() : parent.getFirstChild();
                     // The list of children #text -> &ent;
                     // and entity has a first child as a text
                     // we should not advance
-                    if (prevSibling != null && next != null && prevSibling
-                            .getNodeType() == Node.TEXT_NODE && next
-                                    .getNodeType() == Node.TEXT_NODE) {
+                    if (prevSibling != null && next != null && prevSibling.getNodeType() == Node.TEXT_NODE
+                            && next.getNodeType() == Node.TEXT_NODE) {
                         return prevSibling; // Don't advance
                     }
                     return next;
                 } else {
                     if (fDocument.errorChecking && ((fConfiguration.features
-                            & DOMConfigurationImpl.WELLFORMED) != 0)
-                            && fDocument.isXMLVersionChanged()) {
-                        CoreDocumentImpl.isXMLName(node.getNodeName(), fDocument
-                                .isXML11Version());
+                            & DOMConfigurationImpl.WELLFORMED) != 0) && fDocument.isXMLVersionChanged()) {
+                        CoreDocumentImpl.isXMLName(node.getNodeName(), fDocument.isXML11Version());
                     }
                     // REVISIT: traverse entity reference and send appropriate calls
                     // to the validator
@@ -557,18 +510,15 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     System.out.println("==>normalizeNode:{cdata}");
                 }
 
-                if ((fConfiguration.features
-                        & DOMConfigurationImpl.CDATA) == 0) {
+                if ((fConfiguration.features & DOMConfigurationImpl.CDATA) == 0) {
                     // convert CDATA to TEXT nodes
                     Node prevSibling = node.getPreviousSibling();
-                    if (prevSibling != null && prevSibling
-                            .getNodeType() == Node.TEXT_NODE) {
+                    if (prevSibling != null && prevSibling.getNodeType() == Node.TEXT_NODE) {
                         ((Text) prevSibling).appendData(node.getNodeValue());
                         node.getParentNode().removeChild(node);
                         return prevSibling; // don't advance
                     } else {
-                        Text text = fDocument.createTextNode(node
-                                .getNodeValue());
+                        Text text = fDocument.createTextNode(node.getNodeValue());
                         Node parent = node.getParentNode();
                         node = parent.replaceChild(text, node);
                         return text; // don't advance
@@ -598,13 +548,12 @@ public class DOMNormalizer implements XMLDocumentHandler {
                 }
                 String value = node.getNodeValue();
 
-                if ((fConfiguration.features
-                        & DOMConfigurationImpl.SPLITCDATA) != 0) {
+                if ((fConfiguration.features & DOMConfigurationImpl.SPLITCDATA) != 0) {
                     int index;
                     Node parent = node.getParentNode();
                     if (fDocument.errorChecking) {
-                        isXMLCharWF(fErrorHandler, fError, fLocator, node
-                                .getNodeValue(), fDocument.isXML11Version());
+                        isXMLCharWF(fErrorHandler, fError, fLocator, node.getNodeValue(), fDocument
+                                .isXML11Version());
                     }
                     while ((index = value.indexOf("]]>")) >= 0) {
                         node.setNodeValue(value.substring(0, index + 2));
@@ -616,26 +565,22 @@ public class DOMNormalizer implements XMLDocumentHandler {
                         node = newChild;
                         // issue warning
                         fLocator.fRelatedNode = firstSplitNode;
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                                 "cdata-sections-splitted", null);
-                        reportDOMError(fErrorHandler, fError, fLocator, msg,
-                                DOMError.SEVERITY_WARNING,
+                        reportDOMError(fErrorHandler, fError, fLocator, msg, DOMError.SEVERITY_WARNING,
                                 "cdata-sections-splitted");
                     }
 
                 } else if (fDocument.errorChecking) {
                     // check well-formedness
-                    isCDataWF(fErrorHandler, fError, fLocator, value, fDocument
-                            .isXML11Version());
+                    isCDataWF(fErrorHandler, fError, fLocator, value, fDocument.isXML11Version());
                 }
                 break;
             }
 
             case Node.TEXT_NODE: {
                 if (DEBUG_ND) {
-                    System.out.println("==>normalizeNode(text):{" + node
-                            .getNodeValue() + "}");
+                    System.out.println("==>normalizeNode(text):{" + node.getNodeValue() + "}");
                 }
                 // If node is a text node, we need to check for one of two
                 // conditions:
@@ -665,40 +610,31 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // 3. cdata is false, and next child is cdata
 
                     short nextType = (next != null) ? next.getNodeType() : -1;
-                    if (nextType == -1 || !(((fConfiguration.features
-                            & DOMConfigurationImpl.ENTITIES) == 0
-                            && nextType == Node.ENTITY_NODE)
-                            || ((fConfiguration.features
-                                    & DOMConfigurationImpl.COMMENTS) == 0
-                                    && nextType == Node.COMMENT_NODE)
-                            || ((fConfiguration.features
-                                    & DOMConfigurationImpl.CDATA) == 0)
+                    if (nextType == -1 || !(((fConfiguration.features & DOMConfigurationImpl.ENTITIES) == 0
+                            && nextType == Node.ENTITY_NODE) || ((fConfiguration.features
+                                    & DOMConfigurationImpl.COMMENTS) == 0 && nextType == Node.COMMENT_NODE)
+                            || ((fConfiguration.features & DOMConfigurationImpl.CDATA) == 0)
                                     && nextType == Node.CDATA_SECTION_NODE)) {
                         if (fDocument.errorChecking && ((fConfiguration.features
                                 & DOMConfigurationImpl.WELLFORMED) != 0)) {
-                            isXMLCharWF(fErrorHandler, fError, fLocator, node
-                                    .getNodeValue(), fDocument
-                                            .isXML11Version());
+                            isXMLCharWF(fErrorHandler, fError, fLocator, node.getNodeValue(), fDocument
+                                    .isXML11Version());
                         }
                         if (fValidationHandler != null) {
                             fConfiguration.fErrorHandlerWrapper.fCurrentNode = node;
                             fCurrentNode = node;
-                            fValidationHandler.characterData(node
-                                    .getNodeValue(), null);
+                            fValidationHandler.characterData(node.getNodeValue(), null);
                             if (DEBUG_ND) {
-                                System.out.println("=====>characterData(),"
-                                        + nextType);
+                                System.out.println("=====>characterData()," + nextType);
 
                             }
                         }
                         if (fDTDValidator != null) {
                             fConfiguration.fErrorHandlerWrapper.fCurrentNode = node;
                             fCurrentNode = node;
-                            fDTDValidator.characterData(node.getNodeValue(),
-                                    null);
+                            fDTDValidator.characterData(node.getNodeValue(), null);
                             if (DEBUG_ND) {
-                                System.out.println("=====>characterData(),"
-                                        + nextType);
+                                System.out.println("=====>characterData()," + nextType);
 
                             }
                             if (allWhitespace) {
@@ -708,8 +644,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
                         }
                     } else {
                         if (DEBUG_ND) {
-                            System.out.println("=====>don't send characters(),"
-                                    + nextType);
+                            System.out.println("=====>don't send characters()," + nextType);
 
                         }
                     }
@@ -733,20 +668,18 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     }
 
                     if (!wellformed) {
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
-                                "wf-invalid-character-in-node-name",
-                                new Object[] { "Element", node.getNodeName() });
-                        reportDOMError(fErrorHandler, fError, fLocator, msg,
-                                DOMError.SEVERITY_ERROR,
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                                "wf-invalid-character-in-node-name", new Object[] { "Element", node
+                                        .getNodeName() });
+                        reportDOMError(fErrorHandler, fError, fLocator, msg, DOMError.SEVERITY_ERROR,
                                 "wf-invalid-character-in-node-name");
                     }
 
                     // 2. check PI data
                     // processing isntruction data may have certain characters
                     // which may not be valid XML character
-                    isXMLCharWF(fErrorHandler, fError, fLocator, pinode
-                            .getData(), fDocument.isXML11Version());
+                    isXMLCharWF(fErrorHandler, fError, fLocator, pinode.getData(), fDocument
+                            .isXML11Version());
                 }
             } // end case Node.PROCESSING_INSTRUCTION_NODE
 
@@ -760,33 +693,23 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
         XMLGrammarPreparser preParser = new XMLGrammarPreparser(fSymbolTable);
         preParser.registerPreparser(XMLGrammarDescription.XML_DTD, null);
-        preParser.setFeature(Constants.XERCES_FEATURE_PREFIX
-                + Constants.NAMESPACES_FEATURE, true);
-        preParser.setFeature(Constants.XERCES_FEATURE_PREFIX
-                + Constants.VALIDATION_FEATURE, true);
-        preParser.setProperty(Constants.XERCES_PROPERTY_PREFIX
-                + Constants.XMLGRAMMAR_POOL_PROPERTY, pool);
+        preParser.setFeature(Constants.XERCES_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE, true);
+        preParser.setFeature(Constants.XERCES_FEATURE_PREFIX + Constants.VALIDATION_FEATURE, true);
+        preParser.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.XMLGRAMMAR_POOL_PROPERTY, pool);
 
         String internalSubset = docType.getInternalSubset();
-        XMLInputSource is = new XMLInputSource(docType.getPublicId(), docType
-                .getSystemId(), null);
+        XMLInputSource is = new XMLInputSource(docType.getPublicId(), docType.getSystemId(), null);
 
         if (internalSubset != null)
             is.setCharacterStream(new StringReader(internalSubset));
         try {
-            DTDGrammar g = (DTDGrammar) preParser.preparseGrammar(
-                    XMLGrammarDescription.XML_DTD, is);
-            ((XMLDTDDescription) g.getGrammarDescription()).setRootName(docType
-                    .getName());
+            DTDGrammar g = (DTDGrammar) preParser.preparseGrammar(XMLGrammarDescription.XML_DTD, is);
+            ((XMLDTDDescription) g.getGrammarDescription()).setRootName(docType.getName());
             is.setCharacterStream(null);
-            g = (DTDGrammar) preParser.preparseGrammar(
-                    XMLGrammarDescription.XML_DTD, is);
-            ((XMLDTDDescription) g.getGrammarDescription()).setRootName(docType
-                    .getName());
+            g = (DTDGrammar) preParser.preparseGrammar(XMLGrammarDescription.XML_DTD, is);
+            ((XMLDTDDescription) g.getGrammarDescription()).setRootName(docType.getName());
 
-        } catch (XNIException e) {
-        } catch (IOException e) {
-        }
+        } catch (XNIException e) {} catch (IOException e) {}
 
         return pool;
     }
@@ -804,11 +727,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
     // remove default attributes
     // check attribute names if the version of the document changed.
 
-    protected final void namespaceFixUp(ElementImpl element,
-            AttributeMap attributes) {
+    protected final void namespaceFixUp(ElementImpl element, AttributeMap attributes) {
         if (DEBUG) {
-            System.out.println("[ns-fixup] element:" + element.getNodeName()
-                    + " uri: " + element.getNamespaceURI());
+            System.out.println("[ns-fixup] element:" + element.getNodeName() + " uri: " + element
+                    .getNamespaceURI());
         }
 
         // ------------------------------------
@@ -832,8 +754,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
                 // changed &
                 // application has set the value of well-formed features to true
                 if (fDocument.errorChecking && ((fConfiguration.features
-                        & DOMConfigurationImpl.WELLFORMED) != 0) && fDocument
-                                .isXMLVersionChanged()) {
+                        & DOMConfigurationImpl.WELLFORMED) != 0) && fDocument.isXMLVersionChanged()) {
                     // checkQName does checking based on the version of the
                     // document
                     fDocument.checkQName(attr.getPrefix(), attr.getLocalName());
@@ -845,8 +766,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
                     // "namespace-declarations" == false; Discard all namespace
                     // declaration attributes
-                    if ((fConfiguration.features
-                            & DOMConfigurationImpl.NSDECL) == 0) {
+                    if ((fConfiguration.features & DOMConfigurationImpl.NSDECL) == 0) {
                         continue;
                     }
 
@@ -856,31 +776,26 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     }
 
                     // Check for invalid namespace declaration:
-                    if (fDocument.errorChecking && value.equals(
-                            NamespaceContext.XMLNS_URI)) {
+                    if (fDocument.errorChecking && value.equals(NamespaceContext.XMLNS_URI)) {
                         // A null value for locale is passed to formatMessage,
                         // which means that the default locale will be used
                         fLocator.fRelatedNode = attr;
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.XML_DOMAIN, "CantBindXMLNS",
-                                null);
-                        reportDOMError(fErrorHandler, fError, fLocator, msg,
-                                DOMError.SEVERITY_ERROR, "CantBindXMLNS");
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
+                                "CantBindXMLNS", null);
+                        reportDOMError(fErrorHandler, fError, fLocator, msg, DOMError.SEVERITY_ERROR,
+                                "CantBindXMLNS");
                     } else {
                         // XML 1.0 Attribute value normalization
                         // value = normalizeAttributeValue(value, attr);
                         prefix = attr.getPrefix();
-                        prefix = (prefix == null || prefix.length() == 0)
-                                ? XMLSymbols.EMPTY_STRING
+                        prefix = (prefix == null || prefix.length() == 0) ? XMLSymbols.EMPTY_STRING
                                 : fSymbolTable.addSymbol(prefix);
-                        String localpart = fSymbolTable.addSymbol(attr
-                                .getLocalName());
+                        String localpart = fSymbolTable.addSymbol(attr.getLocalName());
                         if (prefix == XMLSymbols.PREFIX_XMLNS) { // xmlns:prefix
 
                             value = fSymbolTable.addSymbol(value);
                             if (value.length() != 0) {
-                                fNamespaceContext.declarePrefix(localpart,
-                                        value);
+                                fNamespaceContext.declarePrefix(localpart, value);
                             } else {
                                 // REVISIT: issue error on invalid declarations
                                 // xmlns:foo = ""
@@ -892,8 +807,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
                                  // fEmptySymbol) -- xmlns
                                  // empty prefix is always bound ("" or some string)
                             value = fSymbolTable.addSymbol(value);
-                            fNamespaceContext.declarePrefix(
-                                    XMLSymbols.EMPTY_STRING, value);
+                            fNamespaceContext.declarePrefix(XMLSymbols.EMPTY_STRING, value);
                             // removeDefault (attr, attributes);
                             continue;
                         }
@@ -928,8 +842,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
             uri = null;
         } else if (uri != null) { // Element has a namespace
             uri = fSymbolTable.addSymbol(uri);
-            prefix = (prefix == null || prefix.length() == 0)
-                    ? XMLSymbols.EMPTY_STRING
+            prefix = (prefix == null || prefix.length() == 0) ? XMLSymbols.EMPTY_STRING
                     : fSymbolTable.addSymbol(prefix);
             if (fNamespaceContext.getURI(prefix) == uri) {
                 // The xmlns:prefix=namespace or xmlns="default" was declared at
@@ -948,20 +861,15 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
                 // Error: DOM Level 1 node!
                 if (fNamespaceValidation) {
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
-                            "NullLocalElementName", new Object[] { element
-                                    .getNodeName() });
-                    reportDOMError(fErrorHandler, fError, fLocator, msg,
-                            DOMError.SEVERITY_FATAL_ERROR,
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "NullLocalElementName", new Object[] { element.getNodeName() });
+                    reportDOMError(fErrorHandler, fError, fLocator, msg, DOMError.SEVERITY_FATAL_ERROR,
                             "NullLocalElementName");
                 } else {
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
-                            "NullLocalElementName", new Object[] { element
-                                    .getNodeName() });
-                    reportDOMError(fErrorHandler, fError, fLocator, msg,
-                            DOMError.SEVERITY_ERROR, "NullLocalElementName");
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "NullLocalElementName", new Object[] { element.getNodeName() });
+                    reportDOMError(fErrorHandler, fError, fLocator, msg, DOMError.SEVERITY_ERROR,
+                            "NullLocalElementName");
                 }
 
             } else { // uri=null and no colon (DOM L2 node)
@@ -970,12 +878,9 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // undeclare default namespace declaration (before that
                     // element
                     // bound to non-zero length uir), but adding xmlns="" decl
-                    addNamespaceDecl(XMLSymbols.EMPTY_STRING,
-                            XMLSymbols.EMPTY_STRING, element);
-                    fLocalNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING,
-                            XMLSymbols.EMPTY_STRING);
-                    fNamespaceContext.declarePrefix(XMLSymbols.EMPTY_STRING,
-                            XMLSymbols.EMPTY_STRING);
+                    addNamespaceDecl(XMLSymbols.EMPTY_STRING, XMLSymbols.EMPTY_STRING, element);
+                    fLocalNSBinder.declarePrefix(XMLSymbols.EMPTY_STRING, XMLSymbols.EMPTY_STRING);
+                    fNamespaceContext.declarePrefix(XMLSymbols.EMPTY_STRING, XMLSymbols.EMPTY_STRING);
                 }
             }
         }
@@ -993,8 +898,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
                 fLocator.fRelatedNode = attr;
 
                 if (DEBUG) {
-                    System.out.println("==>[ns-fixup] process attribute: "
-                            + attr.getNodeName());
+                    System.out.println("==>[ns-fixup] process attribute: " + attr.getNodeName());
                 }
                 // normalize attribute value
                 attr.normalize();
@@ -1009,11 +913,9 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
                 if (uri != null) { // attribute has namespace !=null
                     prefix = attr.getPrefix();
-                    prefix = (prefix == null || prefix.length() == 0)
-                            ? XMLSymbols.EMPTY_STRING
+                    prefix = (prefix == null || prefix.length() == 0) ? XMLSymbols.EMPTY_STRING
                             : fSymbolTable.addSymbol(prefix);
-                    /* String localpart = */ fSymbolTable.addSymbol(attr
-                            .getLocalName());
+                    /* String localpart = */ fSymbolTable.addSymbol(attr.getLocalName());
 
                     // ---------------------------------------
                     // skip namespace declarations
@@ -1028,20 +930,16 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // ---------------------------------------
                     if (fDocument.errorChecking && ((fConfiguration.features
                             & DOMConfigurationImpl.WELLFORMED) != 0)) {
-                        isAttrValueWF(fErrorHandler, fError, fLocator,
-                                attributes, (AttrImpl) attr, attr.getValue(),
-                                fDocument.isXML11Version());
+                        isAttrValueWF(fErrorHandler, fError, fLocator, attributes, (AttrImpl) attr, attr
+                                .getValue(), fDocument.isXML11Version());
                         if (fDocument.isXMLVersionChanged()) {
-                            boolean wellformed = CoreDocumentImpl.isXMLName(attr
-                                    .getNodeName(), fDocument.isXML11Version());
+                            boolean wellformed = CoreDocumentImpl.isXMLName(attr.getNodeName(), fDocument
+                                    .isXML11Version());
                             if (!wellformed) {
-                                String msg = DOMMessageFormatter.formatMessage(
-                                        DOMMessageFormatter.DOM_DOMAIN,
-                                        "wf-invalid-character-in-node-name",
-                                        new Object[] { "Attribute", attr
+                                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                                        "wf-invalid-character-in-node-name", new Object[] { "Attribute", attr
                                                 .getNodeName() });
-                                reportDOMError(fErrorHandler, fError, fLocator,
-                                        msg, DOMError.SEVERITY_ERROR,
+                                reportDOMError(fErrorHandler, fError, fLocator, msg, DOMError.SEVERITY_ERROR,
                                         "wf-invalid-character-in-node-name");
                             }
                         }
@@ -1064,8 +962,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // find if for this prefix a URI was already declared
                     String declaredURI = fNamespaceContext.getURI(prefix);
 
-                    if (prefix == XMLSymbols.EMPTY_STRING
-                            || declaredURI != uri) {
+                    if (prefix == XMLSymbols.EMPTY_STRING || declaredURI != uri) {
                         // attribute has no prefix (default namespace decl does
                         // not apply to attributes)
                         // OR
@@ -1079,17 +976,14 @@ public class DOMNormalizer implements XMLDocumentHandler {
                         // Find if any prefix for attributes namespace URI is
                         // available
                         // in the scope
-                        String declaredPrefix = fNamespaceContext.getPrefix(
-                                uri);
-                        if (declaredPrefix != null
-                                && declaredPrefix != XMLSymbols.EMPTY_STRING) {
+                        String declaredPrefix = fNamespaceContext.getPrefix(uri);
+                        if (declaredPrefix != null && declaredPrefix != XMLSymbols.EMPTY_STRING) {
 
                             // use the prefix that was found (declared
                             // previously for this URI
                             prefix = declaredPrefix;
                         } else {
-                            if (prefix != XMLSymbols.EMPTY_STRING
-                                    && fLocalNSBinder.getURI(prefix) == null) {
+                            if (prefix != XMLSymbols.EMPTY_STRING && fLocalNSBinder.getURI(prefix) == null) {
                                 // the current prefix is not null and it has no
                                 // in scope declaration
 
@@ -1101,11 +995,9 @@ public class DOMNormalizer implements XMLDocumentHandler {
                                 // make sure this prefix is not declared in the
                                 // current scope.
                                 int counter = 1;
-                                prefix = fSymbolTable.addSymbol(PREFIX
-                                        + counter++);
+                                prefix = fSymbolTable.addSymbol(PREFIX + counter++);
                                 while (fLocalNSBinder.getURI(prefix) != null) {
-                                    prefix = fSymbolTable.addSymbol(PREFIX
-                                            + counter++);
+                                    prefix = fSymbolTable.addSymbol(PREFIX + counter++);
                                 }
 
                             }
@@ -1130,20 +1022,14 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     if (attr.getLocalName() == null) {
                         // It is an error if document has DOM L1 nodes.
                         if (fNamespaceValidation) {
-                            String msg = DOMMessageFormatter.formatMessage(
-                                    DOMMessageFormatter.DOM_DOMAIN,
-                                    "NullLocalAttrName", new Object[] { attr
-                                            .getNodeName() });
+                            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                                    "NullLocalAttrName", new Object[] { attr.getNodeName() });
                             reportDOMError(fErrorHandler, fError, fLocator, msg,
-                                    DOMError.SEVERITY_FATAL_ERROR,
-                                    "NullLocalAttrName");
+                                    DOMError.SEVERITY_FATAL_ERROR, "NullLocalAttrName");
                         } else {
-                            String msg = DOMMessageFormatter.formatMessage(
-                                    DOMMessageFormatter.DOM_DOMAIN,
-                                    "NullLocalAttrName", new Object[] { attr
-                                            .getNodeName() });
-                            reportDOMError(fErrorHandler, fError, fLocator, msg,
-                                    DOMError.SEVERITY_ERROR,
+                            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                                    "NullLocalAttrName", new Object[] { attr.getNodeName() });
+                            reportDOMError(fErrorHandler, fError, fLocator, msg, DOMError.SEVERITY_ERROR,
                                     "NullLocalAttrName");
                         }
                     } else {
@@ -1170,8 +1056,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * @exception IOException
      */
 
-    protected final void addNamespaceDecl(String prefix, String uri,
-            ElementImpl element) {
+    protected final void addNamespaceDecl(String prefix, String uri, ElementImpl element) {
         if (DEBUG) {
             System.out.println("[ns-fixup] addNamespaceDecl [" + prefix + "]");
         }
@@ -1179,15 +1064,12 @@ public class DOMNormalizer implements XMLDocumentHandler {
             if (DEBUG) {
                 System.out.println("=>add xmlns=\"" + uri + "\" declaration");
             }
-            element.setAttributeNS(NamespaceContext.XMLNS_URI,
-                    XMLSymbols.PREFIX_XMLNS, uri);
+            element.setAttributeNS(NamespaceContext.XMLNS_URI, XMLSymbols.PREFIX_XMLNS, uri);
         } else {
             if (DEBUG) {
-                System.out.println("=>add xmlns:" + prefix + "=\"" + uri
-                        + "\" declaration");
+                System.out.println("=>add xmlns:" + prefix + "=\"" + uri + "\" declaration");
             }
-            element.setAttributeNS(NamespaceContext.XMLNS_URI, "xmlns:"
-                    + prefix, uri);
+            element.setAttributeNS(NamespaceContext.XMLNS_URI, "xmlns:" + prefix, uri);
         }
     }
 
@@ -1200,11 +1082,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * 
      * @param datavalue
      * @param isXML11Version
-     *                       = true if XML 1.1
+     *        = true if XML 1.1
      */
-    public static final void isCDataWF(DOMErrorHandler errorHandler,
-            DOMErrorImpl error, DOMLocatorImpl locator, String datavalue,
-            boolean isXML11Version) {
+    public static final void isCDataWF(DOMErrorHandler errorHandler, DOMErrorImpl error,
+            DOMLocatorImpl locator, String datavalue, boolean isXML11Version) {
         if (datavalue == null || (datavalue.length() == 0)) {
             return;
         }
@@ -1222,31 +1103,26 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // check if this is a supplemental character
                     if (XMLChar.isHighSurrogate(c) && i < datalength) {
                         char c2 = dataarray[i++];
-                        if (XMLChar.isLowSurrogate(c2) && XMLChar
-                                .isSupplemental(XMLChar.supplemental(c, c2))) {
+                        if (XMLChar.isLowSurrogate(c2) && XMLChar.isSupplemental(XMLChar.supplemental(c,
+                                c2))) {
                             continue;
                         }
                     }
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.XML_DOMAIN,
-                            "InvalidCharInCDSect", new Object[] { Integer
-                                    .toString(c, 16) });
-                    reportDOMError(errorHandler, error, locator, msg,
-                            DOMError.SEVERITY_ERROR, "wf-invalid-character");
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
+                            "InvalidCharInCDSect", new Object[] { Integer.toString(c, 16) });
+                    reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
+                            "wf-invalid-character");
                 } else if (c == ']') {
                     int count = i;
                     if (count < datalength && dataarray[count] == ']') {
-                        while (++count < datalength
-                                && dataarray[count] == ']') {
+                        while (++count < datalength && dataarray[count] == ']') {
                             // do nothing
                         }
                         if (count < datalength && dataarray[count] == '>') {
                             // CDEndInContent
-                            String msg = DOMMessageFormatter.formatMessage(
-                                    DOMMessageFormatter.XML_DOMAIN,
+                            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
                                     "CDEndInContent", null);
-                            reportDOMError(errorHandler, error, locator, msg,
-                                    DOMError.SEVERITY_ERROR,
+                            reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
                                     "wf-invalid-character");
                         }
                     }
@@ -1263,8 +1139,8 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // check if this is a supplemental character
                     if (XMLChar.isHighSurrogate(c) && i < datalength) {
                         char c2 = dataarray[i++];
-                        if (XMLChar.isLowSurrogate(c2) && XMLChar
-                                .isSupplemental(XMLChar.supplemental(c, c2))) {
+                        if (XMLChar.isLowSurrogate(c2) && XMLChar.isSupplemental(XMLChar.supplemental(c,
+                                c2))) {
                             continue;
                         }
                     }
@@ -1274,25 +1150,20 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // "wf-invalid-character" is used. Also per DOM it is error
                     // but
                     // as per XML spec. it is fatal error
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.XML_DOMAIN,
-                            "InvalidCharInCDSect", new Object[] { Integer
-                                    .toString(c, 16) });
-                    reportDOMError(errorHandler, error, locator, msg,
-                            DOMError.SEVERITY_ERROR, "wf-invalid-character");
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
+                            "InvalidCharInCDSect", new Object[] { Integer.toString(c, 16) });
+                    reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
+                            "wf-invalid-character");
                 } else if (c == ']') {
                     int count = i;
                     if (count < datalength && dataarray[count] == ']') {
-                        while (++count < datalength
-                                && dataarray[count] == ']') {
+                        while (++count < datalength && dataarray[count] == ']') {
                             // do nothing
                         }
                         if (count < datalength && dataarray[count] == '>') {
-                            String msg = DOMMessageFormatter.formatMessage(
-                                    DOMMessageFormatter.XML_DOMAIN,
+                            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
                                     "CDEndInContent", null);
-                            reportDOMError(errorHandler, error, locator, msg,
-                                    DOMError.SEVERITY_ERROR,
+                            reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
                                     "wf-invalid-character");
                         }
                     }
@@ -1308,11 +1179,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * 
      * @param datavalue
      * @param isXML11Version
-     *                       = true if XML 1.1
+     *        = true if XML 1.1
      */
-    public static final void isXMLCharWF(DOMErrorHandler errorHandler,
-            DOMErrorImpl error, DOMLocatorImpl locator, String datavalue,
-            boolean isXML11Version) {
+    public static final void isXMLCharWF(DOMErrorHandler errorHandler, DOMErrorImpl error,
+            DOMLocatorImpl locator, String datavalue, boolean isXML11Version) {
         if (datavalue == null || (datavalue.length() == 0)) {
             return;
         }
@@ -1330,18 +1200,15 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     char ch = dataarray[i - 1];
                     if (XMLChar.isHighSurrogate(ch) && i < datalength) {
                         char ch2 = dataarray[i++];
-                        if (XMLChar.isLowSurrogate(ch2) && XMLChar
-                                .isSupplemental(XMLChar.supplemental(ch,
-                                        ch2))) {
+                        if (XMLChar.isLowSurrogate(ch2) && XMLChar.isSupplemental(XMLChar.supplemental(ch,
+                                ch2))) {
                             continue;
                         }
                     }
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
-                            "InvalidXMLCharInDOM", new Object[] { Integer
-                                    .toString(dataarray[i - 1], 16) });
-                    reportDOMError(errorHandler, error, locator, msg,
-                            DOMError.SEVERITY_ERROR, "wf-invalid-character");
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "InvalidXMLCharInDOM", new Object[] { Integer.toString(dataarray[i - 1], 16) });
+                    reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
+                            "wf-invalid-character");
                 }
             }
         } // version of the document is XML 1.0
@@ -1355,18 +1222,15 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     char ch = dataarray[i - 1];
                     if (XMLChar.isHighSurrogate(ch) && i < datalength) {
                         char ch2 = dataarray[i++];
-                        if (XMLChar.isLowSurrogate(ch2) && XMLChar
-                                .isSupplemental(XMLChar.supplemental(ch,
-                                        ch2))) {
+                        if (XMLChar.isLowSurrogate(ch2) && XMLChar.isSupplemental(XMLChar.supplemental(ch,
+                                ch2))) {
                             continue;
                         }
                     }
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
-                            "InvalidXMLCharInDOM", new Object[] { Integer
-                                    .toString(dataarray[i - 1], 16) });
-                    reportDOMError(errorHandler, error, locator, msg,
-                            DOMError.SEVERITY_ERROR, "wf-invalid-character");
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "InvalidXMLCharInDOM", new Object[] { Integer.toString(dataarray[i - 1], 16) });
+                    reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
+                            "wf-invalid-character");
                 }
             }
         } // end-else fDocument.isXMLVersion()
@@ -1378,11 +1242,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * 
      * @param datavalue
      * @param isXML11Version
-     *                       = true if XML 1.1
+     *        = true if XML 1.1
      */
-    public static final void isCommentWF(DOMErrorHandler errorHandler,
-            DOMErrorImpl error, DOMLocatorImpl locator, String datavalue,
-            boolean isXML11Version) {
+    public static final void isCommentWF(DOMErrorHandler errorHandler, DOMErrorImpl error,
+            DOMLocatorImpl locator, String datavalue, boolean isXML11Version) {
         if (datavalue == null || (datavalue.length() == 0)) {
             return;
         }
@@ -1400,24 +1263,21 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // check if this is a supplemental character
                     if (XMLChar.isHighSurrogate(c) && i < datalength) {
                         char c2 = dataarray[i++];
-                        if (XMLChar.isLowSurrogate(c2) && XMLChar
-                                .isSupplemental(XMLChar.supplemental(c, c2))) {
+                        if (XMLChar.isLowSurrogate(c2) && XMLChar.isSupplemental(XMLChar.supplemental(c,
+                                c2))) {
                             continue;
                         }
                     }
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.XML_DOMAIN,
-                            "InvalidCharInComment", new Object[] { Integer
-                                    .toString(dataarray[i - 1], 16) });
-                    reportDOMError(errorHandler, error, locator, msg,
-                            DOMError.SEVERITY_ERROR, "wf-invalid-character");
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
+                            "InvalidCharInComment", new Object[] { Integer.toString(dataarray[i - 1], 16) });
+                    reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
+                            "wf-invalid-character");
                 } else if (c == '-' && i < datalength && dataarray[i] == '-') {
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.XML_DOMAIN, "DashDashInComment",
-                            null);
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
+                            "DashDashInComment", null);
                     // invalid: '--' in comment
-                    reportDOMError(errorHandler, error, locator, msg,
-                            DOMError.SEVERITY_ERROR, "wf-invalid-character");
+                    reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
+                            "wf-invalid-character");
                 }
             }
         } // version of the document is XML 1.0
@@ -1430,24 +1290,21 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     // check if this is a supplemental character
                     if (XMLChar.isHighSurrogate(c) && i < datalength) {
                         char c2 = dataarray[i++];
-                        if (XMLChar.isLowSurrogate(c2) && XMLChar
-                                .isSupplemental(XMLChar.supplemental(c, c2))) {
+                        if (XMLChar.isLowSurrogate(c2) && XMLChar.isSupplemental(XMLChar.supplemental(c,
+                                c2))) {
                             continue;
                         }
                     }
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.XML_DOMAIN,
-                            "InvalidCharInComment", new Object[] { Integer
-                                    .toString(dataarray[i - 1], 16) });
-                    reportDOMError(errorHandler, error, locator, msg,
-                            DOMError.SEVERITY_ERROR, "wf-invalid-character");
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
+                            "InvalidCharInComment", new Object[] { Integer.toString(dataarray[i - 1], 16) });
+                    reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
+                            "wf-invalid-character");
                 } else if (c == '-' && i < datalength && dataarray[i] == '-') {
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.XML_DOMAIN, "DashDashInComment",
-                            null);
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.XML_DOMAIN,
+                            "DashDashInComment", null);
                     // invalid: '--' in comment
-                    reportDOMError(errorHandler, error, locator, msg,
-                            DOMError.SEVERITY_ERROR, "wf-invalid-character");
+                    reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
+                            "wf-invalid-character");
                 }
             }
 
@@ -1462,9 +1319,8 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * @param a
      * @param value
      */
-    public static final void isAttrValueWF(DOMErrorHandler errorHandler,
-            DOMErrorImpl error, DOMLocatorImpl locator, NamedNodeMap attributes,
-            Attr a, String value, boolean xml11Version) {
+    public static final void isAttrValueWF(DOMErrorHandler errorHandler, DOMErrorImpl error,
+            DOMLocatorImpl locator, NamedNodeMap attributes, Attr a, String value, boolean xml11Version) {
         if (a instanceof AttrImpl && ((AttrImpl) a).hasStringValue()) {
             isXMLCharWF(errorHandler, error, locator, value, xml11Version);
         } else {
@@ -1482,24 +1338,19 @@ public class DOMNormalizer implements XMLDocumentHandler {
                         DocumentType docType = owner.getDoctype();
                         if (docType != null) {
                             NamedNodeMap entities = docType.getEntities();
-                            ent = (Entity) entities.getNamedItemNS("*", child
-                                    .getNodeName());
+                            ent = (Entity) entities.getNamedItemNS("*", child.getNodeName());
                         }
                     }
                     // If the entity was not found issue a fatal error
                     if (ent == null) {
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
-                                "UndeclaredEntRefInAttrValue", new Object[] { a
-                                        .getNodeName() });
-                        reportDOMError(errorHandler, error, locator, msg,
-                                DOMError.SEVERITY_ERROR,
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                                "UndeclaredEntRefInAttrValue", new Object[] { a.getNodeName() });
+                        reportDOMError(errorHandler, error, locator, msg, DOMError.SEVERITY_ERROR,
                                 "UndeclaredEntRefInAttrValue");
                     }
                 } else {
                     // Text node
-                    isXMLCharWF(errorHandler, error, locator, child
-                            .getNodeValue(), xml11Version);
+                    isXMLCharWF(errorHandler, error, locator, child.getNodeValue(), xml11Version);
                 }
             }
         }
@@ -1507,12 +1358,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
     /**
      * Reports a DOM error to the user handler.
-     *
      * If the error is fatal, the processing will be always aborted.
      */
-    public static final void reportDOMError(DOMErrorHandler errorHandler,
-            DOMErrorImpl error, DOMLocatorImpl locator, String message,
-            short severity, String type) {
+    public static final void reportDOMError(DOMErrorHandler errorHandler, DOMErrorImpl error,
+            DOMLocatorImpl locator, String message, short severity, String type) {
         if (errorHandler != null) {
             error.reset();
             error.fMessage = message;
@@ -1536,13 +1385,10 @@ public class DOMNormalizer implements XMLDocumentHandler {
         // REVISIT: the symbols are added too often: start/endElement
         // and in the namespaceFixup. Should reduce number of calls to symbol
         // table.
-        qname.prefix = (prefix != null && prefix.length() != 0) ? fSymbolTable
-                .addSymbol(prefix) : null;
-        qname.localpart = (localName != null) ? fSymbolTable.addSymbol(
-                localName) : null;
+        qname.prefix = (prefix != null && prefix.length() != 0) ? fSymbolTable.addSymbol(prefix) : null;
+        qname.localpart = (localName != null) ? fSymbolTable.addSymbol(localName) : null;
         qname.rawname = fSymbolTable.addSymbol(node.getNodeName());
-        qname.uri = (namespace != null) ? fSymbolTable.addSymbol(namespace)
-                : null;
+        qname.uri = (namespace != null) ? fSymbolTable.addSymbol(namespace) : null;
     }
 
     /*
@@ -1606,8 +1452,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
 
         protected final Vector fAugmentations = new Vector(5);
 
-        public void setAttributes(AttributeMap attributes, CoreDocumentImpl doc,
-                ElementImpl elem) {
+        public void setAttributes(AttributeMap attributes, CoreDocumentImpl doc, ElementImpl elem) {
             fDocument = doc;
             fAttributes = attributes;
             fElement = elem;
@@ -1633,16 +1478,14 @@ public class DOMNormalizer implements XMLDocumentHandler {
          * @see com.sun.org.apache.xerces.internal.xni.XMLAttributes#addAttribute(QName,
          *      String, String)
          */
-        public int addAttribute(QName qname, String attrType,
-                String attrValue) {
+        public int addAttribute(QName qname, String attrType, String attrValue) {
             int index = fElement.getXercesAttribute(qname.uri, qname.localpart);
             // add defaults to the tree
             if (index < 0) {
                 // the default attribute was removed by a user and needed to
                 // be added back
-                AttrImpl attr = (AttrImpl) ((CoreDocumentImpl) fElement
-                        .getOwnerDocument()).createAttributeNS(qname.uri,
-                                qname.rawname, qname.localpart);
+                AttrImpl attr = (AttrImpl) ((CoreDocumentImpl) fElement.getOwnerDocument()).createAttributeNS(
+                        qname.uri, qname.rawname, qname.localpart);
                 // REVISIT: the following should also update ID table
                 attr.setNodeValue(attrValue);
                 index = fElement.setXercesAttributeNode(attr);
@@ -1755,8 +1598,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
         }
 
         public String getValue(int index) {
-            return (fAttributes != null) ? fAttributes.item(index)
-                    .getNodeValue() : "";
+            return (fAttributes != null) ? fAttributes.item(index).getNodeValue() : "";
 
         }
 
@@ -1810,9 +1652,9 @@ public class DOMNormalizer implements XMLDocumentHandler {
          * Sets the augmentations of the attribute at the specified index.
          *
          * @param attrIndex
-         *                  The attribute index.
+         *        The attribute index.
          * @param augs
-         *                  The augmentations.
+         *        The augmentations.
          */
         public void setAugmentations(int attrIndex, Augmentations augs) {
             fAugmentations.setElementAt(augs, attrIndex);
@@ -1827,101 +1669,95 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * The start of the document.
      *
      * @param locator
-     *                         The document locator, or null if the document
-     *                         location cannot
-     *                         be reported during the parsing of this document.
-     *                         However, it
-     *                         is <em>strongly</em> recommended that a locator
-     *                         be supplied
-     *                         that can at least report the system identifier of
-     *                         the
-     *                         document.
+     *        The document locator, or null if the document
+     *        location cannot
+     *        be reported during the parsing of this document.
+     *        However, it
+     *        is <em>strongly</em> recommended that a locator
+     *        be supplied
+     *        that can at least report the system identifier of
+     *        the
+     *        document.
      * @param encoding
-     *                         The auto-detected IANA encoding name of the
-     *                         entity stream.
-     *                         This value will be null in those situations where
-     *                         the entity
-     *                         encoding is not auto-detected (e.g. internal
-     *                         entities or a
-     *                         document entity that is parsed from a
-     *                         java.io.Reader).
+     *        The auto-detected IANA encoding name of the
+     *        entity stream.
+     *        This value will be null in those situations where
+     *        the entity
+     *        encoding is not auto-detected (e.g. internal
+     *        entities or a
+     *        document entity that is parsed from a
+     *        java.io.Reader).
      * @param namespaceContext
-     *                         The namespace context in effect at the start of
-     *                         this document.
-     *                         This object represents the current context.
-     *                         Implementors of
-     *                         this class are responsible for copying the
-     *                         namespace bindings
-     *                         from the the current context (and its parent
-     *                         contexts) if that
-     *                         information is important.
-     *
+     *        The namespace context in effect at the start of
+     *        this document.
+     *        This object represents the current context.
+     *        Implementors of
+     *        this class are responsible for copying the
+     *        namespace bindings
+     *        from the the current context (and its parent
+     *        contexts) if that
+     *        information is important.
      * @param augs
-     *                         Additional information that may include infoset
-     *                         augmentations
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void startDocument(XMLLocator locator, String encoding,
-            NamespaceContext namespaceContext, Augmentations augs)
-            throws XNIException {}
+    public void startDocument(XMLLocator locator, String encoding, NamespaceContext namespaceContext,
+            Augmentations augs) throws XNIException {}
 
     /**
      * Notifies of the presence of an XMLDecl line in the document. If present,
      * this method will be called immediately following the startDocument call.
      *
      * @param version
-     *                   The XML version.
+     *        The XML version.
      * @param encoding
-     *                   The IANA encoding name of the document, or null if not
-     *                   specified.
+     *        The IANA encoding name of the document, or null if not
+     *        specified.
      * @param standalone
-     *                   The standalone value, or null if not specified.
+     *        The standalone value, or null if not specified.
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void xmlDecl(String version, String encoding, String standalone,
-            Augmentations augs) throws XNIException {}
+    public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
+            throws XNIException {}
 
     /**
      * Notifies of the presence of the DOCTYPE line in the document.
      *
      * @param rootElement
-     *                    The name of the root element.
+     *        The name of the root element.
      * @param publicId
-     *                    The public identifier if an external DTD or null if
-     *                    the
-     *                    external DTD is specified using SYSTEM.
+     *        The public identifier if an external DTD or null if
+     *        the
+     *        external DTD is specified using SYSTEM.
      * @param systemId
-     *                    The system identifier if an external DTD, null
-     *                    otherwise.
+     *        The system identifier if an external DTD, null
+     *        otherwise.
      * @param augs
-     *                    Additional information that may include infoset
-     *                    augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void doctypeDecl(String rootElement, String publicId,
-            String systemId, Augmentations augs) throws XNIException {}
+    public void doctypeDecl(String rootElement, String publicId, String systemId, Augmentations augs)
+            throws XNIException {}
 
     /**
      * A comment.
      *
      * @param text
-     *             The text in the comment.
+     *        The text in the comment.
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @exception XNIException
-     *                         Thrown by application to signal an error.
+     *            Thrown by application to signal an error.
      */
-    public void comment(XMLString text, Augmentations augs)
-            throws XNIException {}
+    public void comment(XMLString text, Augmentations augs) throws XNIException {}
 
     /**
      * A processing instruction. Processing instructions consist of a target
@@ -1935,50 +1771,46 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * for parsing the data.
      *
      * @param target
-     *               The target.
+     *        The target.
      * @param data
-     *               The data or null if none specified.
+     *        The data or null if none specified.
      * @param augs
-     *               Additional information that may include infoset
-     *               augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void processingInstruction(String target, XMLString data,
-            Augmentations augs) throws XNIException {}
+    public void processingInstruction(String target, XMLString data, Augmentations augs)
+            throws XNIException {}
 
     /**
      * The start of an element.
      *
      * @param element
-     *                   The name of the element.
+     *        The name of the element.
      * @param attributes
-     *                   The element attributes.
+     *        The element attributes.
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void startElement(QName element, XMLAttributes attributes,
-            Augmentations augs) throws XNIException {
+    public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
+            throws XNIException {
         Element currentElement = (Element) fCurrentNode;
         int attrCount = attributes.getLength();
         if (DEBUG_EVENTS) {
-            System.out.println("==>startElement: " + element + " attrs.length="
-                    + attrCount);
+            System.out.println("==>startElement: " + element + " attrs.length=" + attrCount);
         }
 
         for (int i = 0; i < attrCount; i++) {
             attributes.getName(i, fAttrQName);
             Attr attr = null;
 
-            attr = currentElement.getAttributeNodeNS(fAttrQName.uri,
-                    fAttrQName.localpart);
-            AttributePSVI attrPSVI = (AttributePSVI) attributes
-                    .getAugmentations(i).getItem(Constants.ATTRIBUTE_PSVI);
+            attr = currentElement.getAttributeNodeNS(fAttrQName.uri, fAttrQName.localpart);
+            AttributePSVI attrPSVI = (AttributePSVI) attributes.getAugmentations(i).getItem(
+                    Constants.ATTRIBUTE_PSVI);
 
             if (attrPSVI != null) {
                 // REVISIT: instead we should be using augmentations:
@@ -1994,15 +1826,13 @@ public class DOMNormalizer implements XMLDocumentHandler {
                     }
                 }
                 if (id) {
-                    ((ElementImpl) currentElement).setIdAttributeNode(attr,
-                            true);
+                    ((ElementImpl) currentElement).setIdAttributeNode(attr, true);
                 }
 
                 if (fPSVI) {
                     ((PSVIAttrNSImpl) attr).setPSVI(attrPSVI);
                 }
-                if ((fConfiguration.features
-                        & DOMConfigurationImpl.DTNORMALIZATION) != 0) {
+                if ((fConfiguration.features & DOMConfigurationImpl.DTNORMALIZATION) != 0) {
                     // datatype-normalization
                     // NOTE: The specified value MUST be set after we set
                     // the node value because that turns the "specified"
@@ -2022,18 +1852,17 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * An empty element.
      *
      * @param element
-     *                   The name of the element.
+     *        The name of the element.
      * @param attributes
-     *                   The element attributes.
+     *        The element attributes.
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void emptyElement(QName element, XMLAttributes attributes,
-            Augmentations augs) throws XNIException {
+    public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
+            throws XNIException {
         if (DEBUG_EVENTS) {
             System.out.println("==>emptyElement: " + element);
         }
@@ -2049,26 +1878,24 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * appearing as part of attribute values.
      *
      * @param name
-     *                   The name of the general entity.
+     *        The name of the general entity.
      * @param identifier
-     *                   The resource identifier.
+     *        The resource identifier.
      * @param encoding
-     *                   The auto-detected IANA encoding name of the entity
-     *                   stream.
-     *                   This value will be null in those situations where the
-     *                   entity
-     *                   encoding is not auto-detected (e.g. internal entities
-     *                   or a
-     *                   document entity that is parsed from a java.io.Reader).
+     *        The auto-detected IANA encoding name of the entity
+     *        stream.
+     *        This value will be null in those situations where the
+     *        entity
+     *        encoding is not auto-detected (e.g. internal entities
+     *        or a
+     *        document entity that is parsed from a java.io.Reader).
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void startGeneralEntity(String name,
-            XMLResourceIdentifier identifier, String encoding,
+    public void startGeneralEntity(String name, XMLResourceIdentifier identifier, String encoding,
             Augmentations augs) throws XNIException {}
 
     /**
@@ -2083,18 +1910,16 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * appearing as part of attribute values.
      *
      * @param version
-     *                 The XML version, or null if not specified.
+     *        The XML version, or null if not specified.
      * @param encoding
-     *                 The IANA encoding name of the entity.
+     *        The IANA encoding name of the entity.
      * @param augs
-     *                 Additional information that may include infoset
-     *                 augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void textDecl(String version, String encoding, Augmentations augs)
-            throws XNIException {}
+    public void textDecl(String version, String encoding, Augmentations augs) throws XNIException {}
 
     /**
      * This method notifies the end of a general entity.
@@ -2103,29 +1928,25 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * appearing as part of attribute values.
      *
      * @param name
-     *             The name of the entity.
+     *        The name of the entity.
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void endGeneralEntity(String name, Augmentations augs)
-            throws XNIException {}
+    public void endGeneralEntity(String name, Augmentations augs) throws XNIException {}
 
     /**
      * Character content.
      *
      * @param text
-     *             The content.
+     *        The content.
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void characters(XMLString text, Augmentations augs)
-            throws XNIException {}
+    public void characters(XMLString text, Augmentations augs) throws XNIException {}
 
     /**
      * Ignorable whitespace. For this method to be called, the document source
@@ -2135,15 +1956,13 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * document are ignorable based on the element content model.
      *
      * @param text
-     *             The ignorable whitespace.
+     *        The ignorable whitespace.
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void ignorableWhitespace(XMLString text, Augmentations augs)
-            throws XNIException {
+    public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
         allWhitespace = true;
     }
 
@@ -2151,23 +1970,20 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * The end of an element.
      *
      * @param element
-     *                The name of the element.
+     *        The name of the element.
      * @param augs
-     *                Additional information that may include infoset
-     *                augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
-    public void endElement(QName element, Augmentations augs)
-            throws XNIException {
+    public void endElement(QName element, Augmentations augs) throws XNIException {
         if (DEBUG_EVENTS) {
             System.out.println("==>endElement: " + element);
         }
 
         if (augs != null) {
-            ElementPSVI elementPSVI = (ElementPSVI) augs.getItem(
-                    Constants.ELEMENT_PSVI);
+            ElementPSVI elementPSVI = (ElementPSVI) augs.getItem(Constants.ELEMENT_PSVI);
             if (elementPSVI != null) {
                 ElementImpl elementNode = (ElementImpl) fCurrentNode;
                 if (fPSVI) {
@@ -2175,8 +1991,7 @@ public class DOMNormalizer implements XMLDocumentHandler {
                 }
                 // include element default content (if one is available)
                 String normalizedValue = elementPSVI.getSchemaNormalizedValue();
-                if ((fConfiguration.features
-                        & DOMConfigurationImpl.DTNORMALIZATION) != 0) {
+                if ((fConfiguration.features & DOMConfigurationImpl.DTNORMALIZATION) != 0) {
                     if (normalizedValue != null)
                         elementNode.setTextContent(normalizedValue);
                 } else {
@@ -2201,10 +2016,9 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * The start of a CDATA section.
      *
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
     public void startCDATA(Augmentations augs) throws XNIException {}
 
@@ -2212,10 +2026,9 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * The end of a CDATA section.
      *
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
     public void endCDATA(Augmentations augs) throws XNIException {}
 
@@ -2223,10 +2036,9 @@ public class DOMNormalizer implements XMLDocumentHandler {
      * The end of the document.
      *
      * @param augs
-     *             Additional information that may include infoset augmentations
-     *
+     *        Additional information that may include infoset augmentations
      * @exception XNIException
-     *                         Thrown by handler to signal an error.
+     *            Thrown by handler to signal an error.
      */
     public void endDocument(Augmentations augs) throws XNIException {}
 

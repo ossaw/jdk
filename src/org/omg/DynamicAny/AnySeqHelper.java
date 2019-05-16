@@ -26,12 +26,10 @@ abstract public class AnySeqHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
-                    org.omg.CORBA.TCKind.tk_any);
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.DynamicAny.AnySeqHelper.id(), "AnySeq", __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_any);
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.DynamicAny.AnySeqHelper.id(),
+                    "AnySeq", __typeCode);
         }
         return __typeCode;
     }
@@ -40,8 +38,7 @@ abstract public class AnySeqHelper {
         return _id;
     }
 
-    public static org.omg.CORBA.Any[] read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CORBA.Any[] read(org.omg.CORBA.portable.InputStream istream) {
         org.omg.CORBA.Any value[] = null;
         int _len0 = istream.read_long();
         value = new org.omg.CORBA.Any[_len0];
@@ -50,8 +47,7 @@ abstract public class AnySeqHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.CORBA.Any[] value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.CORBA.Any[] value) {
         ostream.write_long(value.length);
         for (int _i0 = 0; _i0 < value.length; ++_i0)
             ostream.write_any(value[_i0]);

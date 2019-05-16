@@ -32,7 +32,7 @@ public class BasicTextAreaUI extends BasicTextUI {
      * Creates a UI for a JTextArea.
      *
      * @param ta
-     *           a text area
+     *        a text area
      * @return the UI
      */
     public static ComponentUI createUI(JComponent ta) {
@@ -69,13 +69,12 @@ public class BasicTextAreaUI extends BasicTextUI {
      * <em>WrapLine</em> or the <em>WrapStyleWord</em> property changes.
      *
      * @param evt
-     *            the property change event
+     *        the property change event
      */
     protected void propertyChange(PropertyChangeEvent evt) {
         super.propertyChange(evt);
-        if (evt.getPropertyName().equals("lineWrap") || evt.getPropertyName()
-                .equals("wrapStyleWord") || evt.getPropertyName().equals(
-                        "tabSize")) {
+        if (evt.getPropertyName().equals("lineWrap") || evt.getPropertyName().equals("wrapStyleWord") || evt
+                .getPropertyName().equals("tabSize")) {
             // rebuild the view
             modelChanged();
         } else if ("editable".equals(evt.getPropertyName())) {
@@ -87,11 +86,10 @@ public class BasicTextAreaUI extends BasicTextUI {
      * The method is overridden to take into account caret width.
      *
      * @param c
-     *          the editor component
+     *        the editor component
      * @return the preferred size
      * @throws IllegalArgumentException
-     *                                  if invalid value is passed
-     *
+     *         if invalid value is passed
      * @since 1.5
      */
     public Dimension getPreferredSize(JComponent c) {
@@ -103,11 +101,10 @@ public class BasicTextAreaUI extends BasicTextUI {
      * The method is overridden to take into account caret width.
      *
      * @param c
-     *          the editor component
+     *        the editor component
      * @return the minimum size
      * @throws IllegalArgumentException
-     *                                  if invalid value is passed
-     *
+     *         if invalid value is passed
      * @since 1.5
      */
     public Dimension getMinimumSize(JComponent c) {
@@ -119,7 +116,7 @@ public class BasicTextAreaUI extends BasicTextUI {
      * Creates the view for an element. Returns a WrappedPlainView or PlainView.
      *
      * @param elem
-     *             the element
+     *        the element
      * @return the view
      */
     public View create(Element elem) {
@@ -162,24 +159,23 @@ public class BasicTextAreaUI extends BasicTextUI {
      * Returns the baseline.
      *
      * @throws NullPointerException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     public int getBaseline(JComponent c, int width, int height) {
         super.getBaseline(c, width, height);
-        Object i18nFlag = ((JTextComponent) c).getDocument().getProperty(
-                "i18n");
+        Object i18nFlag = ((JTextComponent) c).getDocument().getProperty("i18n");
         Insets insets = c.getInsets();
         if (Boolean.TRUE.equals(i18nFlag)) {
             View rootView = getRootView((JTextComponent) c);
             if (rootView.getViewCount() > 0) {
                 height = height - insets.top - insets.bottom;
                 int baseline = insets.top;
-                int fieldBaseline = BasicHTML.getBaseline(rootView.getView(0),
-                        width - insets.left - insets.right, height);
+                int fieldBaseline = BasicHTML.getBaseline(rootView.getView(0), width - insets.left
+                        - insets.right, height);
                 if (fieldBaseline < 0) {
                     return -1;
                 }
@@ -196,12 +192,11 @@ public class BasicTextAreaUI extends BasicTextUI {
      * the size changes.
      *
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
-    public Component.BaselineResizeBehavior getBaselineResizeBehavior(
-            JComponent c) {
+    public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
         super.getBaselineResizeBehavior(c);
         return Component.BaselineResizeBehavior.CONSTANT_ASCENT;
     }
@@ -250,10 +245,8 @@ public class BasicTextAreaUI extends BasicTextUI {
             return super.getFlowSpan(index);
         }
 
-        protected SizeRequirements calculateMinorAxisRequirements(int axis,
-                SizeRequirements r) {
-            SizeRequirements req = super.calculateMinorAxisRequirements(axis,
-                    r);
+        protected SizeRequirements calculateMinorAxisRequirements(int axis, SizeRequirements r) {
+            SizeRequirements req = super.calculateMinorAxisRequirements(axis, r);
             Component c = getContainer();
             if (c instanceof JTextArea) {
                 JTextArea area = (JTextArea) c;
@@ -278,9 +271,9 @@ public class BasicTextAreaUI extends BasicTextUI {
          * The size is the full size of the view including the inset areas.
          *
          * @param width
-         *               the width >= 0
+         *        the width >= 0
          * @param height
-         *               the height >= 0
+         *        the height >= 0
          */
         public void setSize(float width, float height) {
             if ((int) width != getWidth()) {
@@ -310,8 +303,7 @@ public class BasicTextAreaUI extends BasicTextUI {
                 return 0;
             }
 
-            protected boolean updateChildren(DocumentEvent.ElementChange ec,
-                    DocumentEvent e, ViewFactory f) {
+            protected boolean updateChildren(DocumentEvent.ElementChange ec, DocumentEvent e, ViewFactory f) {
                 return false;
             }
 
@@ -340,18 +332,17 @@ public class BasicTextAreaUI extends BasicTextUI {
              * without breaking) and then execute the superclass behavior.
              *
              * @param v
-             *          the child view to forward the event to.
+             *        the child view to forward the event to.
              * @param e
-             *          the change information from the associated document
+             *        the change information from the associated document
              * @param a
-             *          the current allocation of the view
+             *        the current allocation of the view
              * @param f
-             *          the factory to use to rebuild if the view has children
+             *        the factory to use to rebuild if the view has children
              * @see #forwardUpdate
              * @since 1.3
              */
-            protected void forwardUpdateToView(View v, DocumentEvent e, Shape a,
-                    ViewFactory f) {
+            protected void forwardUpdateToView(View v, DocumentEvent e, Shape a, ViewFactory f) {
                 v.setParent(this);
                 super.forwardUpdateToView(v, e, a, f);
             }

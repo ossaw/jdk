@@ -22,7 +22,6 @@ import sun.rmi.server.WeakClassHashMap;
  * with Java Remote Method Invocation (Java RMI). This invocation handler can be
  * used in conjunction with a dynamic proxy instance as a replacement for a
  * pregenerated stub class.
- *
  * <p>
  * Applications are not expected to use this class directly. A remote object
  * exported to use a dynamic proxy with {@link UnicastRemoteObject} or
@@ -32,8 +31,7 @@ import sun.rmi.server.WeakClassHashMap;
  * @author Ann Wollrath
  * @since 1.5
  **/
-public class RemoteObjectInvocationHandler extends RemoteObject implements
-        InvocationHandler {
+public class RemoteObjectInvocationHandler extends RemoteObject implements InvocationHandler {
     private static final long serialVersionUID = 2L;
 
     // set to true if invocation handler allows finalize method (legacy
@@ -42,13 +40,12 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
 
     static {
         String propName = "sun.rmi.server.invocationhandler.allowFinalizeInvocation";
-        String allowProp = java.security.AccessController.doPrivileged(
-                new PrivilegedAction<String>() {
-                    @Override
-                    public String run() {
-                        return System.getProperty(propName);
-                    }
-                });
+        String allowProp = java.security.AccessController.doPrivileged(new PrivilegedAction<String>() {
+            @Override
+            public String run() {
+                return System.getProperty(propName);
+            }
+        });
         if ("".equals(allowProp)) {
             allowFinalizeInvocation = true;
         } else {
@@ -67,10 +64,9 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
      * the specified <code>RemoteRef</code>.
      *
      * @param ref
-     *            the remote ref
-     *
+     *        the remote ref
      * @throws NullPointerException
-     *                              if <code>ref</code> is <code>null</code>
+     *         if <code>ref</code> is <code>null</code>
      **/
     public RemoteObjectInvocationHandler(RemoteRef ref) {
         super(ref);
@@ -82,43 +78,33 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
     /**
      * Processes a method invocation made on the encapsulating proxy instance,
      * <code>proxy</code>, and returns the result.
-     *
      * <p>
      * <code>RemoteObjectInvocationHandler</code> implements this method as
      * follows:
-     *
      * <p>
      * If <code>method</code> is one of the following methods, it is processed
      * as described below:
-     *
      * <ul>
-     *
      * <li>{@link Object#hashCode Object.hashCode}: Returns the hash code value
      * for the proxy.
-     *
      * <li>{@link Object#equals Object.equals}: Returns <code>true</code> if the
      * argument (<code>args[0]</code>) is an instance of a dynamic proxy class
      * and this invocation handler is equal to the invocation handler of that
      * argument, and returns <code>false</code> otherwise.
-     *
      * <li>{@link Object#toString Object.toString}: Returns a string
      * representation of the proxy.
      * </ul>
-     *
      * <p>
      * Otherwise, a remote call is made as follows:
-     *
      * <ul>
      * <li>If <code>proxy</code> is not an instance of the interface
      * {@link Remote}, then an {@link IllegalArgumentException} is thrown.
-     *
      * <li>Otherwise, the {@link RemoteRef#invoke invoke} method is invoked on
      * this invocation handler's <code>RemoteRef</code>, passing
      * <code>proxy</code>, <code>method</code>, <code>args</code>, and the
      * method hash (defined in section 8.3 of the "Java Remote Method Invocation
      * (RMI) Specification") for <code>method</code>, and the result is
      * returned.
-     *
      * <li>If an exception is thrown by <code>RemoteRef.invoke</code> and that
      * exception is a checked exception that is not assignable to any exception
      * in the <code>throws</code> clause of the method implemented by the
@@ -127,30 +113,28 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
      * Otherwise, the exception thrown by <code>invoke</code> is thrown by this
      * method.
      * </ul>
-     *
      * <p>
      * The semantics of this method are unspecified if the arguments could not
      * have been produced by an instance of some valid dynamic proxy class
      * containing this invocation handler.
      *
      * @param proxy
-     *               the proxy instance that the method was invoked on
+     *        the proxy instance that the method was invoked on
      * @param method
-     *               the <code>Method</code> instance corresponding to the
-     *               interface method invoked on the proxy instance
+     *        the <code>Method</code> instance corresponding to the
+     *        interface method invoked on the proxy instance
      * @param args
-     *               an array of objects containing the values of the arguments
-     *               passed in the method invocation on the proxy instance, or
-     *               <code>null</code> if the method takes no arguments
+     *        an array of objects containing the values of the arguments
+     *        passed in the method invocation on the proxy instance, or
+     *        <code>null</code> if the method takes no arguments
      * @return the value to return from the method invocation on the proxy
      *         instance
      * @throws Throwable
-     *                   the exception to throw from the method invocation on
-     *                   the
-     *                   proxy instance
+     *         the exception to throw from the method invocation on
+     *         the
+     *         proxy instance
      **/
-    public Object invoke(Object proxy, Method method, Object[] args)
-            throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (!Proxy.isProxyClass(proxy.getClass())) {
             throw new IllegalArgumentException("not a proxy");
         }
@@ -161,8 +145,8 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
 
         if (method.getDeclaringClass() == Object.class) {
             return invokeObjectMethod(proxy, method, args);
-        } else if ("finalize".equals(method.getName()) && method
-                .getParameterCount() == 0 && !allowFinalizeInvocation) {
+        } else if ("finalize".equals(method.getName()) && method.getParameterCount() == 0
+                && !allowFinalizeInvocation) {
             return null; // ignore
         } else {
             return invokeRemoteMethod(proxy, method, args);
@@ -172,8 +156,7 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
     /**
      * Handles java.lang.Object methods.
      **/
-    private Object invokeObjectMethod(Object proxy, Method method,
-            Object[] args) {
+    private Object invokeObjectMethod(Object proxy, Method method, Object[] args) {
         String name = method.getName();
 
         if (name.equals("hashCode")) {
@@ -182,40 +165,34 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
         } else if (name.equals("equals")) {
             Object obj = args[0];
             InvocationHandler hdlr;
-            return proxy == obj || (obj != null && Proxy.isProxyClass(obj
-                    .getClass()) && (hdlr = Proxy.getInvocationHandler(
-                            obj)) instanceof RemoteObjectInvocationHandler
-                    && this.equals(hdlr));
+            return proxy == obj || (obj != null && Proxy.isProxyClass(obj.getClass()) && (hdlr = Proxy
+                    .getInvocationHandler(obj)) instanceof RemoteObjectInvocationHandler && this.equals(
+                            hdlr));
 
         } else if (name.equals("toString")) {
             return proxyToString(proxy);
 
         } else {
-            throw new IllegalArgumentException("unexpected Object method: "
-                    + method);
+            throw new IllegalArgumentException("unexpected Object method: " + method);
         }
     }
 
     /**
      * Handles remote methods.
      **/
-    private Object invokeRemoteMethod(Object proxy, Method method,
-            Object[] args) throws Exception {
+    private Object invokeRemoteMethod(Object proxy, Method method, Object[] args) throws Exception {
         try {
             if (!(proxy instanceof Remote)) {
                 throw new IllegalArgumentException("proxy not Remote instance");
             }
-            return ref.invoke((Remote) proxy, method, args, getMethodHash(
-                    method));
+            return ref.invoke((Remote) proxy, method, args, getMethodHash(method));
         } catch (Exception e) {
             if (!(e instanceof RuntimeException)) {
                 Class<?> cl = proxy.getClass();
                 try {
-                    method = cl.getMethod(method.getName(), method
-                            .getParameterTypes());
+                    method = cl.getMethod(method.getName(), method.getParameterTypes());
                 } catch (NoSuchMethodException nsme) {
-                    throw (IllegalArgumentException) new IllegalArgumentException()
-                            .initCause(nsme);
+                    throw (IllegalArgumentException) new IllegalArgumentException().initCause(nsme);
                 }
                 Class<?> thrownType = e.getClass();
                 for (Class<?> declaredType : method.getExceptionTypes()) {
@@ -251,11 +228,10 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
 
     /**
      * @throws InvalidObjectException
-     *                                unconditionally
+     *         unconditionally
      **/
     private void readObjectNoData() throws InvalidObjectException {
-        throw new InvalidObjectException("no data in stream; class: " + this
-                .getClass().getName());
+        throw new InvalidObjectException("no data in stream; class: " + this.getClass().getName());
     }
 
     /**
@@ -266,7 +242,7 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
      * method.
      *
      * @param method
-     *               the remote method
+     *        the remote method
      * @return the method hash for the specified method
      */
     private static long getMethodHash(Method method) {
@@ -277,8 +253,7 @@ public class RemoteObjectInvocationHandler extends RemoteObject implements
      * A weak hash map, mapping classes to weak hash maps that map method
      * objects to method hashes.
      **/
-    private static class MethodToHash_Maps extends
-            WeakClassHashMap<Map<Method, Long>> {
+    private static class MethodToHash_Maps extends WeakClassHashMap<Map<Method, Long>> {
         MethodToHash_Maps() {}
 
         protected Map<Method, Long> computeValue(Class<?> remoteClass) {

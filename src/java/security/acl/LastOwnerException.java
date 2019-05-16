@@ -10,7 +10,6 @@ package java.security.acl;
  * last owner of an Access Control List.
  *
  * @see java.security.acl.Owner#deleteOwner
- *
  * @author Satish Dharmaraj
  */
 public class LastOwnerException extends Exception {

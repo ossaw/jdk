@@ -19,7 +19,6 @@ import java.lang.annotation.RetentionPolicy;
  * descriptors, depending on the platform in use.
  *
  * @since JAX-WS 2.0
- *
  **/
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

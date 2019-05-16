@@ -86,8 +86,7 @@ class SimpleNode implements Node {
     /**
      * Build the Inform entries from the syntactic tree.
      */
-    public void buildInformEntries(
-            Hashtable<InetAddress, Vector<String>> dest) {
+    public void buildInformEntries(Hashtable<InetAddress, Vector<String>> dest) {
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
                 SimpleNode n = (SimpleNode) children[i];

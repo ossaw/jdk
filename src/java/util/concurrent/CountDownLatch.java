@@ -15,7 +15,6 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 /**
  * A synchronization aid that allows one or more threads to wait until a set of
  * operations being performed in other threads completes.
- *
  * <p>
  * A {@code CountDownLatch} is initialized with a given <em>count</em>. The
  * {@link #await await} methods block until the current count reaches zero due
@@ -24,7 +23,6 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  * return immediately. This is a one-shot phenomenon -- the count cannot be
  * reset. If you need a version that resets the count, consider using a
  * {@link CyclicBarrier}.
- *
  * <p>
  * A {@code CountDownLatch} is a versatile synchronization tool and can be used
  * for a number of purposes. A {@code CountDownLatch} initialized with a count
@@ -33,13 +31,11 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  * {@link #countDown}. A {@code CountDownLatch} initialized to <em>N</em> can be
  * used to make one thread wait until <em>N</em> threads have completed some
  * action, or some action has been completed N times.
- *
  * <p>
  * A useful property of a {@code CountDownLatch} is that it doesn't require that
  * threads calling {@code countDown} wait for the count to reach zero before
  * proceeding, it simply prevents any thread from proceeding past an
  * {@link #await await} until all threads could pass.
- *
  * <p>
  * <b>Sample usage:</b> Here is a pair of classes in which a group of worker
  * threads use two countdown latches:
@@ -85,7 +81,6 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  *   void doWork() { ... }
  * }}
  * </pre>
- *
  * <p>
  * Another typical usage would be to divide a problem into N parts, describe
  * each part with a Runnable that executes that portion and counts down on the
@@ -125,7 +120,6 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  *   void doWork() { ... }
  * }}
  * </pre>
- *
  * <p>
  * Memory consistency effects: Until the count reaches zero, actions in a thread
  * prior to calling {@code countDown()}
@@ -175,11 +169,11 @@ public class CountDownLatch {
      * Constructs a {@code CountDownLatch} initialized with the given count.
      *
      * @param count
-     *              the number of times {@link #countDown} must be invoked
-     *              before
-     *              threads can pass through {@link #await}
+     *        the number of times {@link #countDown} must be invoked
+     *        before
+     *        threads can pass through {@link #await}
      * @throws IllegalArgumentException
-     *                                  if {@code count} is negative
+     *         if {@code count} is negative
      */
     public CountDownLatch(int count) {
         if (count < 0)
@@ -190,10 +184,8 @@ public class CountDownLatch {
     /**
      * Causes the current thread to wait until the latch has counted down to
      * zero, unless the thread is {@linkplain Thread#interrupt interrupted}.
-     *
      * <p>
      * If the current count is zero then this method returns immediately.
-     *
      * <p>
      * If the current count is greater than zero then the current thread becomes
      * disabled for thread scheduling purposes and lies dormant until one of two
@@ -204,7 +196,6 @@ public class CountDownLatch {
      * <li>Some other thread {@linkplain Thread#interrupt interrupts} the
      * current thread.
      * </ul>
-     *
      * <p>
      * If the current thread:
      * <ul>
@@ -215,8 +206,8 @@ public class CountDownLatch {
      * interrupted status is cleared.
      *
      * @throws InterruptedException
-     *                              if the current thread is interrupted while
-     *                              waiting
+     *         if the current thread is interrupted while
+     *         waiting
      */
     public void await() throws InterruptedException {
         sync.acquireSharedInterruptibly(1);
@@ -226,11 +217,9 @@ public class CountDownLatch {
      * Causes the current thread to wait until the latch has counted down to
      * zero, unless the thread is {@linkplain Thread#interrupt interrupted}, or
      * the specified waiting time elapses.
-     *
      * <p>
      * If the current count is zero then this method returns immediately with
      * the value {@code true}.
-     *
      * <p>
      * If the current count is greater than zero then the current thread becomes
      * disabled for thread scheduling purposes and lies dormant until one of
@@ -242,11 +231,9 @@ public class CountDownLatch {
      * current thread; or
      * <li>The specified waiting time elapses.
      * </ul>
-     *
      * <p>
      * If the count reaches zero then the method returns with the value
      * {@code true}.
-     *
      * <p>
      * If the current thread:
      * <ul>
@@ -255,36 +242,32 @@ public class CountDownLatch {
      * </ul>
      * then {@link InterruptedException} is thrown and the current thread's
      * interrupted status is cleared.
-     *
      * <p>
      * If the specified waiting time elapses then the value {@code false} is
      * returned. If the time is less than or equal to zero, the method will not
      * wait at all.
      *
      * @param timeout
-     *                the maximum time to wait
+     *        the maximum time to wait
      * @param unit
-     *                the time unit of the {@code timeout} argument
+     *        the time unit of the {@code timeout} argument
      * @return {@code true} if the count reached zero and {@code false} if the
      *         waiting time elapsed before the count reached zero
      * @throws InterruptedException
-     *                              if the current thread is interrupted while
-     *                              waiting
+     *         if the current thread is interrupted while
+     *         waiting
      */
-    public boolean await(long timeout, TimeUnit unit)
-            throws InterruptedException {
+    public boolean await(long timeout, TimeUnit unit) throws InterruptedException {
         return sync.tryAcquireSharedNanos(1, unit.toNanos(timeout));
     }
 
     /**
      * Decrements the count of the latch, releasing all waiting threads if the
      * count reaches zero.
-     *
      * <p>
      * If the current count is greater than zero then it is decremented. If the
      * new count is zero then all waiting threads are re-enabled for thread
      * scheduling purposes.
-     *
      * <p>
      * If the current count equals zero then nothing happens.
      */
@@ -294,7 +277,6 @@ public class CountDownLatch {
 
     /**
      * Returns the current count.
-     *
      * <p>
      * This method is typically used for debugging and testing purposes.
      *

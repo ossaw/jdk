@@ -22,8 +22,7 @@ package com.sun.org.apache.regexp.internal;
  *
  * @author <a href="mailto:ales.novak@netbeans.com">Ales Novak</a>
  */
-public final class CharacterArrayCharacterIterator implements
-        CharacterIterator {
+public final class CharacterArrayCharacterIterator implements CharacterIterator {
     /** encapsulated */
     private final char[] src;
     /** offset in the char array */
@@ -33,7 +32,7 @@ public final class CharacterArrayCharacterIterator implements
 
     /**
      * @param src
-     *            - encapsulated String
+     *        - encapsulated String
      */
     public CharacterArrayCharacterIterator(char[] src, int off, int len) {
         this.src = src;
@@ -44,12 +43,10 @@ public final class CharacterArrayCharacterIterator implements
     /** @return a substring */
     public String substring(int beginIndex, int endIndex) {
         if (endIndex > len) {
-            throw new IndexOutOfBoundsException("endIndex=" + endIndex
-                    + "; sequence size=" + len);
+            throw new IndexOutOfBoundsException("endIndex=" + endIndex + "; sequence size=" + len);
         }
         if (beginIndex < 0 || beginIndex > endIndex) {
-            throw new IndexOutOfBoundsException("beginIndex=" + beginIndex
-                    + "; endIndex=" + endIndex);
+            throw new IndexOutOfBoundsException("beginIndex=" + beginIndex + "; endIndex=" + endIndex);
         }
         return new String(src, off + beginIndex, endIndex - beginIndex);
     }

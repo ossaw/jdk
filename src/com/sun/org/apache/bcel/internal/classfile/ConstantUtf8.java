@@ -75,7 +75,7 @@ public final class ConstantUtf8 extends Constant {
      * Initialize instance from file data.
      *
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
     ConstantUtf8(DataInputStream file) throws IOException {
@@ -86,7 +86,7 @@ public final class ConstantUtf8 extends Constant {
 
     /**
      * @param bytes
-     *              Data
+     *        Data
      */
     public ConstantUtf8(String bytes) {
         super(Constants.CONSTANT_Utf8);
@@ -103,7 +103,7 @@ public final class ConstantUtf8 extends Constant {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantUtf8(this);
@@ -113,7 +113,7 @@ public final class ConstantUtf8 extends Constant {
      * Dump String in Utf8 format to file stream.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -139,7 +139,6 @@ public final class ConstantUtf8 extends Constant {
      * @return String representation
      */
     public final String toString() {
-        return super.toString() + "(\"" + Utility.replace(bytes, "\n", "\\n")
-                + "\")";
+        return super.toString() + "(\"" + Utility.replace(bytes, "\n", "\\n") + "\")";
     }
 }

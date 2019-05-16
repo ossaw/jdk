@@ -15,7 +15,6 @@ package com.sun.jmx.snmp;
  * The <CODE>SnmpPduTrap</CODE> extends {@link com.sun.jmx.snmp.SnmpPduPacket
  * SnmpPduPacket} and defines attributes specific to an SNMPv1 trap (see
  * RFC1157).
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>

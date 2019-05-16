@@ -40,7 +40,7 @@ public final class INV_OBJREF extends SystemException {
      * message, a minor code of 0, and a completion state of COMPLETED_NO.
      * 
      * @param s
-     *          the String containing a detail message
+     *        the String containing a detail message
      */
     public INV_OBJREF(String s) {
         this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -51,10 +51,10 @@ public final class INV_OBJREF extends SystemException {
      * code and completion status.
      * 
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  a <code>CompletionStatus</code> instance indicating the
-     *                  completion status
+     *        a <code>CompletionStatus</code> instance indicating the
+     *        completion status
      */
     public INV_OBJREF(int minor, CompletionStatus completed) {
         this("", minor, completed);
@@ -66,12 +66,12 @@ public final class INV_OBJREF extends SystemException {
      * that describes this particular exception.
      * 
      * @param s
-     *                  the String containing a detail message
+     *        the String containing a detail message
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  a <code>CompletionStatus</code> instance indicating the
-     *                  completion status
+     *        a <code>CompletionStatus</code> instance indicating the
+     *        completion status
      */
     public INV_OBJREF(String s, int minor, CompletionStatus completed) {
         super(s, minor, completed);

@@ -329,20 +329,16 @@ public class Keywords {
         Map<String, Integer> nodetypes = new HashMap<>();
 
         axisnames.put(FROM_ANCESTORS_STRING, OpCodes.FROM_ANCESTORS);
-        axisnames.put(FROM_ANCESTORS_OR_SELF_STRING,
-                OpCodes.FROM_ANCESTORS_OR_SELF);
+        axisnames.put(FROM_ANCESTORS_OR_SELF_STRING, OpCodes.FROM_ANCESTORS_OR_SELF);
         axisnames.put(FROM_ATTRIBUTES_STRING, OpCodes.FROM_ATTRIBUTES);
         axisnames.put(FROM_CHILDREN_STRING, OpCodes.FROM_CHILDREN);
         axisnames.put(FROM_DESCENDANTS_STRING, OpCodes.FROM_DESCENDANTS);
-        axisnames.put(FROM_DESCENDANTS_OR_SELF_STRING,
-                OpCodes.FROM_DESCENDANTS_OR_SELF);
+        axisnames.put(FROM_DESCENDANTS_OR_SELF_STRING, OpCodes.FROM_DESCENDANTS_OR_SELF);
         axisnames.put(FROM_FOLLOWING_STRING, OpCodes.FROM_FOLLOWING);
-        axisnames.put(FROM_FOLLOWING_SIBLINGS_STRING,
-                OpCodes.FROM_FOLLOWING_SIBLINGS);
+        axisnames.put(FROM_FOLLOWING_SIBLINGS_STRING, OpCodes.FROM_FOLLOWING_SIBLINGS);
         axisnames.put(FROM_PARENT_STRING, OpCodes.FROM_PARENT);
         axisnames.put(FROM_PRECEDING_STRING, OpCodes.FROM_PRECEDING);
-        axisnames.put(FROM_PRECEDING_SIBLINGS_STRING,
-                OpCodes.FROM_PRECEDING_SIBLINGS);
+        axisnames.put(FROM_PRECEDING_SIBLINGS_STRING, OpCodes.FROM_PRECEDING_SIBLINGS);
         axisnames.put(FROM_SELF_STRING, OpCodes.FROM_SELF);
         axisnames.put(FROM_NAMESPACE_STRING, OpCodes.FROM_NAMESPACE);
         m_axisnames = Collections.unmodifiableMap(axisnames);

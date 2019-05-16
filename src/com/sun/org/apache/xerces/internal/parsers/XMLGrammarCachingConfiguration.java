@@ -60,12 +60,10 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
  * </ul>
  *
  * @author Neil Graham, IBM
- *
  * @version $Id: XMLGrammarCachingConfiguration.java,v 1.6 2010-11-01 04:40:10
  *          joehw Exp $
  */
-public class XMLGrammarCachingConfiguration extends
-        XIncludeAwareParserConfiguration {
+public class XMLGrammarCachingConfiguration extends XIncludeAwareParserConfiguration {
 
     //
     // Constants
@@ -109,7 +107,7 @@ public class XMLGrammarCachingConfiguration extends
      * Constructs a parser configuration using the specified symbol table.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      */
     public XMLGrammarCachingConfiguration(SymbolTable symbolTable) {
         this(symbolTable, fStaticGrammarPool, null);
@@ -123,12 +121,11 @@ public class XMLGrammarCachingConfiguration extends
      * validation engine is implemented.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                    The grammar pool to use.
+     *        The grammar pool to use.
      */
-    public XMLGrammarCachingConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool) {
+    public XMLGrammarCachingConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this(symbolTable, grammarPool, null);
     } // <init>(SymbolTable,XMLGrammarPool)
 
@@ -140,14 +137,14 @@ public class XMLGrammarCachingConfiguration extends
      * validation engine is implemented.
      *
      * @param symbolTable
-     *                       The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                       The grammar pool to use.
+     *        The grammar pool to use.
      * @param parentSettings
-     *                       The parent settings.
+     *        The parent settings.
      */
-    public XMLGrammarCachingConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
+    public XMLGrammarCachingConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
+            XMLComponentManager parentSettings) {
         super(symbolTable, grammarPool, parentSettings);
 
         // REVISIT: may need to add some features/properties
@@ -197,20 +194,19 @@ public class XMLGrammarCachingConfiguration extends
      * adds this grammar to the XMLGrammarPool
      *
      * @param type
-     *             The type of the grammar to be constructed
+     *        The type of the grammar to be constructed
      * @param uri
-     *             The location of the grammar to be constructed. <strong>The
-     *             parser will not expand this URI or make it available to the
-     *             EntityResolver</strong>
+     *        The location of the grammar to be constructed. <strong>The
+     *        parser will not expand this URI or make it available to the
+     *        EntityResolver</strong>
      * @return The newly created <code>Grammar</code>.
      * @exception XNIException
-     *                         thrown on an error in grammar construction
+     *            thrown on an error in grammar construction
      * @exception IOException
-     *                         thrown if an error is encountered in reading the
-     *                         file
+     *            thrown if an error is encountered in reading the
+     *            file
      */
-    public Grammar parseGrammar(String type, String uri) throws XNIException,
-            IOException {
+    public Grammar parseGrammar(String type, String uri) throws XNIException, IOException {
         XMLInputSource source = new XMLInputSource(null, uri, null);
         return parseGrammar(type, source);
 
@@ -221,22 +217,21 @@ public class XMLGrammarCachingConfiguration extends
      * method also adds this grammar to the XMLGrammarPool
      *
      * @param type
-     *             The type of the grammar to be constructed
+     *        The type of the grammar to be constructed
      * @param is
-     *             The XMLInputSource containing this grammar's information
-     *             <strong>If a URI is included in the systemId field, the
-     *             parser
-     *             will not expand this URI or make it available to the
-     *             EntityResolver</strong>
+     *        The XMLInputSource containing this grammar's information
+     *        <strong>If a URI is included in the systemId field, the
+     *        parser
+     *        will not expand this URI or make it available to the
+     *        EntityResolver</strong>
      * @return The newly created <code>Grammar</code>.
      * @exception XNIException
-     *                         thrown on an error in grammar construction
+     *            thrown on an error in grammar construction
      * @exception IOException
-     *                         thrown if an error is encountered in reading the
-     *                         file
+     *            thrown if an error is encountered in reading the
+     *            file
      */
-    public Grammar parseGrammar(String type, XMLInputSource is)
-            throws XNIException, IOException {
+    public Grammar parseGrammar(String type, XMLInputSource is) throws XNIException, IOException {
         if (type.equals(XMLGrammarDescription.XML_SCHEMA)) {
             // by default, make all XMLGrammarPoolImpl's schema grammars
             // available to fSchemaHandler
@@ -264,10 +259,8 @@ public class XMLGrammarCachingConfiguration extends
         if (resolver != null) {
             fSchemaLoader.setEntityResolver(resolver);
         }
-        if (fErrorReporter.getMessageFormatter(
-                XSMessageFormatter.SCHEMA_DOMAIN) == null) {
-            fErrorReporter.putMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN,
-                    new XSMessageFormatter());
+        if (fErrorReporter.getMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN) == null) {
+            fErrorReporter.putMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN, new XSMessageFormatter());
         }
         fSchemaLoader.setProperty(ERROR_REPORTER, fErrorReporter);
 
@@ -278,8 +271,7 @@ public class XMLGrammarCachingConfiguration extends
         fSchemaLoader.setProperty(propName, getProperty(propName));
         propName = Constants.JAXP_PROPERTY_PREFIX + Constants.SCHEMA_SOURCE;
         fSchemaLoader.setProperty(propName, getProperty(propName));
-        fSchemaLoader.setFeature(SCHEMA_FULL_CHECKING, getFeature(
-                SCHEMA_FULL_CHECKING));
+        fSchemaLoader.setFeature(SCHEMA_FULL_CHECKING, getFeature(SCHEMA_FULL_CHECKING));
 
         // Should check whether the grammar with this namespace is already in
         // the grammar resolver. But since we don't know the target namespace
@@ -287,8 +279,7 @@ public class XMLGrammarCachingConfiguration extends
         SchemaGrammar grammar = (SchemaGrammar) fSchemaLoader.loadGrammar(is);
         // by default, hand it off to the grammar pool
         if (grammar != null) {
-            fGrammarPool.cacheGrammars(XMLGrammarDescription.XML_SCHEMA,
-                    new Grammar[] { grammar });
+            fGrammarPool.cacheGrammars(XMLGrammarDescription.XML_SCHEMA, new Grammar[] { grammar });
         }
 
         return grammar;
@@ -311,8 +302,7 @@ public class XMLGrammarCachingConfiguration extends
         DTDGrammar grammar = (DTDGrammar) fDTDLoader.loadGrammar(is);
         // by default, hand it off to the grammar pool
         if (grammar != null) {
-            fGrammarPool.cacheGrammars(XMLGrammarDescription.XML_DTD,
-                    new Grammar[] { grammar });
+            fGrammarPool.cacheGrammars(XMLGrammarDescription.XML_DTD, new Grammar[] { grammar });
         }
 
         return grammar;

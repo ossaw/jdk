@@ -49,11 +49,10 @@ import static javax.management.monitor.MonitorNotification.*;
  * gauge value (derived gauge) is derived from the values of the observed
  * attribute.
  *
- *
  * @since 1.5
  */
-public abstract class Monitor extends NotificationBroadcasterSupport implements
-        MonitorMBean, MBeanRegistration {
+public abstract class Monitor extends NotificationBroadcasterSupport implements MonitorMBean,
+        MBeanRegistration {
 
     /*
      * ------------------------------------------ PACKAGE CLASSES
@@ -90,8 +89,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
             return derivedGaugeTimeStamp;
         }
 
-        public final synchronized void setDerivedGaugeTimeStamp(
-                long derivedGaugeTimeStamp) {
+        public final synchronized void setDerivedGaugeTimeStamp(long derivedGaugeTimeStamp) {
             this.derivedGaugeTimeStamp = derivedGaugeTimeStamp;
         }
 
@@ -153,9 +151,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
     /**
      * Scheduler Service.
      */
-    private static final ScheduledExecutorService scheduler = Executors
-            .newSingleThreadScheduledExecutor(new DaemonThreadFactory(
-                    "Scheduler"));
+    private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(
+            new DaemonThreadFactory("Scheduler"));
 
     /**
      * Map containing the thread pool executor per thread group.
@@ -173,10 +170,9 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
     private static final int maximumPoolSize;
     static {
         final String maximumPoolSizeSysProp = "jmx.x.monitor.maximum.pool.size";
-        final String maximumPoolSizeStr = AccessController.doPrivileged(
-                new GetPropertyAction(maximumPoolSizeSysProp));
-        if (maximumPoolSizeStr == null || maximumPoolSizeStr.trim()
-                .length() == 0) {
+        final String maximumPoolSizeStr = AccessController.doPrivileged(new GetPropertyAction(
+                maximumPoolSizeSysProp));
+        if (maximumPoolSizeStr == null || maximumPoolSizeStr.trim().length() == 0) {
             maximumPoolSize = 10;
         } else {
             int maximumPoolSizeTmp = 10;
@@ -184,13 +180,10 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                 maximumPoolSizeTmp = Integer.parseInt(maximumPoolSizeStr);
             } catch (NumberFormatException e) {
                 if (MONITOR_LOGGER.isLoggable(Level.FINER)) {
-                    MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(),
-                            "<static initializer>", "Wrong value for "
-                                    + maximumPoolSizeSysProp
-                                    + " system property", e);
-                    MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(),
-                            "<static initializer>", maximumPoolSizeSysProp
-                                    + " defaults to 10");
+                    MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "<static initializer>",
+                            "Wrong value for " + maximumPoolSizeSysProp + " system property", e);
+                    MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "<static initializer>",
+                            maximumPoolSizeSysProp + " defaults to 10");
                 }
                 maximumPoolSizeTmp = 10;
             }
@@ -230,7 +223,6 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
 
     /**
      * The number of valid components in the vector of observed objects.
-     *
      */
     protected int elementCount = 0;
 
@@ -246,7 +238,6 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * <p>
      * Selected monitor errors that have already been notified.
      * </p>
-     *
      * <p>
      * Each element in this array corresponds to an observed object in the
      * vector. It contains a bit mask of the flags
@@ -254,7 +245,6 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * corresponding notification has already been sent for the MBean being
      * monitored.
      * </p>
-     *
      */
     protected int alreadyNotifieds[] = new int[capacityIncrement];
 
@@ -357,20 +347,16 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Initializes the reference to the MBean server.
      *
      * @param server
-     *               The MBean server in which the monitor MBean will be
-     *               registered.
+     *        The MBean server in which the monitor MBean will be
+     *        registered.
      * @param name
-     *               The object name of the monitor MBean.
-     *
+     *        The object name of the monitor MBean.
      * @return The name of the monitor MBean registered.
-     *
      * @exception Exception
      */
-    public ObjectName preRegister(MBeanServer server, ObjectName name)
-            throws Exception {
+    public ObjectName preRegister(MBeanServer server, ObjectName name) throws Exception {
 
-        MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(),
-                "preRegister(MBeanServer, ObjectName)",
+        MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "preRegister(MBeanServer, ObjectName)",
                 "initialize the reference on the MBean server");
 
         this.server = server;
@@ -395,8 +381,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      */
     public void preDeregister() throws Exception {
 
-        MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(),
-                "preDeregister()", "stop the monitor");
+        MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "preDeregister()", "stop the monitor");
 
         // Stop the Monitor.
         //
@@ -429,9 +414,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * MBeans, or <code>null</code> if there is no such object.
      *
      * @return The object being observed.
-     *
      * @see #setObservedObject(ObjectName)
-     *
      * @deprecated As of JMX 1.2, replaced by {@link #getObservedObjects}
      */
     @Deprecated
@@ -448,17 +431,14 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * specified object.
      *
      * @param object
-     *               The object to observe.
+     *        The object to observe.
      * @exception IllegalArgumentException
-     *                                     The specified object is null.
-     *
+     *            The specified object is null.
      * @see #getObservedObject()
-     *
      * @deprecated As of JMX 1.2, replaced by {@link #addObservedObject}
      */
     @Deprecated
-    public synchronized void setObservedObject(ObjectName object)
-            throws IllegalArgumentException {
+    public synchronized void setObservedObject(ObjectName object) throws IllegalArgumentException {
         if (object == null)
             throw new IllegalArgumentException("Null observed object");
         if (observedObjects.size() == 1 && containsObservedObject(object))
@@ -472,13 +452,11 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * is not already present.
      *
      * @param object
-     *               The object to observe.
+     *        The object to observe.
      * @exception IllegalArgumentException
-     *                                     The specified object is null.
-     *
+     *            The specified object is null.
      */
-    public synchronized void addObservedObject(ObjectName object)
-            throws IllegalArgumentException {
+    public synchronized void addObservedObject(ObjectName object) throws IllegalArgumentException {
 
         if (object == null) {
             throw new IllegalArgumentException("Null observed object");
@@ -506,8 +484,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Removes the specified object from the set of observed MBeans.
      *
      * @param object
-     *               The object to remove.
-     *
+     *        The object to remove.
      */
     public synchronized void removeObservedObject(ObjectName object) {
         // Check for null object.
@@ -530,10 +507,9 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Tests whether the specified object is in the set of observed MBeans.
      *
      * @param object
-     *               The object to check.
+     *        The object to check.
      * @return <CODE>true</CODE> if the specified object is present,
      *         <CODE>false</CODE> otherwise.
-     *
      */
     public synchronized boolean containsObservedObject(ObjectName object) {
         return getObservedObject(object) != null;
@@ -543,7 +519,6 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Returns an array containing the objects being observed.
      *
      * @return The objects being observed.
-     *
      */
     public synchronized ObjectName[] getObservedObjects() {
         ObjectName[] names = new ObjectName[observedObjects.size()];
@@ -557,7 +532,6 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * The observed attribute is not initialized by default (set to null).
      *
      * @return The attribute being observed.
-     *
      * @see #setObservedAttribute
      */
     public synchronized String getObservedAttribute() {
@@ -569,14 +543,12 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * The observed attribute is not initialized by default (set to null).
      *
      * @param attribute
-     *                  The attribute to observe.
+     *        The attribute to observe.
      * @exception IllegalArgumentException
-     *                                     The specified attribute is null.
-     *
+     *            The specified attribute is null.
      * @see #getObservedAttribute
      */
-    public void setObservedAttribute(String attribute)
-            throws IllegalArgumentException {
+    public void setObservedAttribute(String attribute) throws IllegalArgumentException {
 
         if (attribute == null) {
             throw new IllegalArgumentException("Null observed attribute");
@@ -585,8 +557,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         // Update alreadyNotified array.
         //
         synchronized (this) {
-            if (observedAttribute != null && observedAttribute.equals(
-                    attribute))
+            if (observedAttribute != null && observedAttribute.equals(attribute))
                 return;
             observedAttribute = attribute;
 
@@ -597,9 +568,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
 
             int index = 0;
             for (ObservedObject o : observedObjects) {
-                resetAlreadyNotified(o, index++,
-                        OBSERVED_ATTRIBUTE_ERROR_NOTIFIED
-                                | OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED);
+                resetAlreadyNotified(o, index++, OBSERVED_ATTRIBUTE_ERROR_NOTIFIED
+                        | OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED);
             }
         }
     }
@@ -609,7 +579,6 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * The default value of the granularity period is 10 seconds.
      *
      * @return The granularity period value.
-     *
      * @see #setGranularityPeriod
      */
     public synchronized long getGranularityPeriod() {
@@ -621,19 +590,16 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * The default value of the granularity period is 10 seconds.
      *
      * @param period
-     *               The granularity period value.
+     *        The granularity period value.
      * @exception IllegalArgumentException
-     *                                     The granularity period is less than
-     *                                     or equal to zero.
-     *
+     *            The granularity period is less than
+     *            or equal to zero.
      * @see #getGranularityPeriod
      */
-    public synchronized void setGranularityPeriod(long period)
-            throws IllegalArgumentException {
+    public synchronized void setGranularityPeriod(long period) throws IllegalArgumentException {
 
         if (period <= 0) {
-            throw new IllegalArgumentException("Nonpositive granularity "
-                    + "period");
+            throw new IllegalArgumentException("Nonpositive granularity " + "period");
         }
 
         if (granularityPeriod == period)
@@ -644,8 +610,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         //
         if (isActive()) {
             cleanupFutures();
-            schedulerFuture = scheduler.schedule(schedulerTask, period,
-                    TimeUnit.MILLISECONDS);
+            schedulerFuture = scheduler.schedule(schedulerTask, period, TimeUnit.MILLISECONDS);
         }
     }
 
@@ -675,13 +640,12 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Starts the monitor.
      */
     void doStart() {
-        MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "doStart()",
-                "start the monitor");
+        MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "doStart()", "start the monitor");
 
         synchronized (this) {
             if (isActive()) {
-                MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(),
-                        "doStart()", "the monitor is already active");
+                MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "doStart()",
+                        "the monitor is already active");
                 return;
             }
 
@@ -701,8 +665,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
             //
             cleanupFutures();
             schedulerTask.setMonitorTask(new MonitorTask());
-            schedulerFuture = scheduler.schedule(schedulerTask,
-                    getGranularityPeriod(), TimeUnit.MILLISECONDS);
+            schedulerFuture = scheduler.schedule(schedulerTask, getGranularityPeriod(),
+                    TimeUnit.MILLISECONDS);
         }
     }
 
@@ -710,13 +674,12 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Stops the monitor.
      */
     void doStop() {
-        MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "doStop()",
-                "stop the monitor");
+        MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "doStop()", "stop the monitor");
 
         synchronized (this) {
             if (!isActive()) {
-                MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(),
-                        "doStop()", "the monitor is not active");
+                MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "doStop()",
+                        "the monitor is not active");
                 return;
             }
 
@@ -743,11 +706,9 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * contained in the set of observed MBeans, or <code>null</code> otherwise.
      *
      * @param object
-     *               the name of the object whose derived gauge is to be
-     *               returned.
-     *
+     *        the name of the object whose derived gauge is to be
+     *        returned.
      * @return The derived gauge of the specified object.
-     *
      * @since 1.6
      */
     synchronized Object getDerivedGauge(ObjectName object) {
@@ -760,21 +721,18 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * is contained in the set of observed MBeans, or <code>0</code> otherwise.
      *
      * @param object
-     *               the name of the object whose derived gauge timestamp is to
-     *               be
-     *               returned.
-     *
+     *        the name of the object whose derived gauge timestamp is to
+     *        be
+     *        returned.
      * @return The derived gauge timestamp of the specified object.
-     *
      */
     synchronized long getDerivedGaugeTimeStamp(ObjectName object) {
         final ObservedObject o = getObservedObject(object);
         return o == null ? 0 : o.getDerivedGaugeTimeStamp();
     }
 
-    Object getAttribute(MBeanServerConnection mbsc, ObjectName object,
-            String attribute) throws AttributeNotFoundException,
-            InstanceNotFoundException, MBeanException, ReflectionException,
+    Object getAttribute(MBeanServerConnection mbsc, ObjectName object, String attribute)
+            throws AttributeNotFoundException, InstanceNotFoundException, MBeanException, ReflectionException,
             IOException {
         // Check for "ObservedAttribute" replacement.
         // This could happen if a thread A called setObservedAttribute()
@@ -784,13 +742,10 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         final boolean lookupMBeanInfo;
         synchronized (this) {
             if (!isActive())
-                throw new IllegalArgumentException(
-                        "The monitor has been stopped");
+                throw new IllegalArgumentException("The monitor has been stopped");
             if (!attribute.equals(getObservedAttribute()))
-                throw new IllegalArgumentException(
-                        "The observed attribute has been changed");
-            lookupMBeanInfo = (firstAttribute == null && attribute.indexOf(
-                    '.') != -1);
+                throw new IllegalArgumentException("The observed attribute has been changed");
+            lookupMBeanInfo = (firstAttribute == null && attribute.indexOf('.') != -1);
         }
 
         // Look up MBeanInfo if needed
@@ -811,11 +766,9 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         final String fa;
         synchronized (this) {
             if (!isActive())
-                throw new IllegalArgumentException(
-                        "The monitor has been stopped");
+                throw new IllegalArgumentException("The monitor has been stopped");
             if (!attribute.equals(getObservedAttribute()))
-                throw new IllegalArgumentException(
-                        "The observed attribute has been changed");
+                throw new IllegalArgumentException("The observed attribute has been changed");
             if (firstAttribute == null) {
                 if (attribute.indexOf('.') != -1) {
                     MBeanAttributeInfo mbaiArray[] = mbi.getAttributes();
@@ -841,8 +794,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         return mbsc.getAttribute(object, fa);
     }
 
-    Comparable<?> getComparableFromAttribute(ObjectName object,
-            String attribute, Object value) throws AttributeNotFoundException {
+    Comparable<?> getComparableFromAttribute(ObjectName object, String attribute, Object value)
+            throws AttributeNotFoundException {
         if (isComplexTypeAttribute) {
             Object v = value;
             for (String attr : remainingAttributes)
@@ -853,30 +806,25 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         }
     }
 
-    boolean isComparableTypeValid(ObjectName object, String attribute,
-            Comparable<?> value) {
+    boolean isComparableTypeValid(ObjectName object, String attribute, Comparable<?> value) {
         return true;
     }
 
-    String buildErrorNotification(ObjectName object, String attribute,
-            Comparable<?> value) {
+    String buildErrorNotification(ObjectName object, String attribute, Comparable<?> value) {
         return null;
     }
 
     void onErrorNotification(MonitorNotification notification) {}
 
-    Comparable<?> getDerivedGaugeFromComparable(ObjectName object,
-            String attribute, Comparable<?> value) {
+    Comparable<?> getDerivedGaugeFromComparable(ObjectName object, String attribute, Comparable<?> value) {
         return (Comparable<?>) value;
     }
 
-    MonitorNotification buildAlarmNotification(ObjectName object,
-            String attribute, Comparable<?> value) {
+    MonitorNotification buildAlarmNotification(ObjectName object, String attribute, Comparable<?> value) {
         return null;
     }
 
-    boolean isThresholdTypeValid(ObjectName object, String attribute,
-            Comparable<?> value) {
+    boolean isThresholdTypeValid(ObjectName object, String attribute, Comparable<?> value) {
         return true;
     }
 
@@ -895,8 +843,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
             case DOUBLE:
                 return Double.class;
             default:
-                throw new IllegalArgumentException(
-                        "Unsupported numerical type");
+                throw new IllegalArgumentException("Unsupported numerical type");
         }
     }
 
@@ -909,11 +856,9 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * the set of observed MBeans, or {@code null} otherwise.
      *
      * @param object
-     *               the name of the {@code ObservedObject} to retrieve.
-     *
+     *        the name of the {@code ObservedObject} to retrieve.
      * @return The {@code ObservedObject} associated to the supplied
      *         {@code ObjectName}.
-     *
      * @since 1.6
      */
     synchronized ObservedObject getObservedObject(ObjectName object) {
@@ -985,8 +930,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Ensure the deprecated {@link #alreadyNotified} field is updated if
      * appropriate.
      */
-    synchronized void setAlreadyNotified(ObservedObject o, int index, int mask,
-            int an[]) {
+    synchronized void setAlreadyNotified(ObservedObject o, int index, int mask, int an[]) {
         final int i = computeAlreadyNotifiedIndex(o, index, an);
         if (i == -1)
             return;
@@ -999,8 +943,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Ensure the deprecated {@link #alreadyNotified} field is updated if
      * appropriate.
      */
-    synchronized void resetAlreadyNotified(ObservedObject o, int index,
-            int mask) {
+    synchronized void resetAlreadyNotified(ObservedObject o, int index, int mask) {
         o.setAlreadyNotified(o.getAlreadyNotified() & ~mask);
         updateAlreadyNotified(o, index);
     }
@@ -1009,8 +952,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Reset all bits in the given element of {@link #alreadyNotifieds}. Ensure
      * the deprecated {@link #alreadyNotified} field is updated if appropriate.
      */
-    synchronized void resetAllAlreadyNotified(ObservedObject o, int index,
-            int an[]) {
+    synchronized void resetAllAlreadyNotified(ObservedObject o, int index, int an[]) {
         final int i = computeAlreadyNotifiedIndex(o, index, an);
         if (i == -1)
             return;
@@ -1022,8 +964,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * Check if the {@link #alreadyNotifieds} array has been modified. If true
      * recompute the index for the given observed object.
      */
-    synchronized int computeAlreadyNotifiedIndex(ObservedObject o, int index,
-            int an[]) {
+    synchronized int computeAlreadyNotifiedIndex(ObservedObject o, int index, int an[]) {
         if (an == alreadyNotifieds) {
             return index;
         } else {
@@ -1042,44 +983,41 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * notification.
      *
      * @param type
-     *                  The notification type.
+     *        The notification type.
      * @param timeStamp
-     *                  The notification emission date.
+     *        The notification emission date.
      * @param msg
-     *                  The notification message.
+     *        The notification message.
      * @param derGauge
-     *                  The derived gauge.
+     *        The derived gauge.
      * @param trigger
-     *                  The threshold/string (depending on the monitor type)
-     *                  that
-     *                  triggered off the notification.
+     *        The threshold/string (depending on the monitor type)
+     *        that
+     *        triggered off the notification.
      * @param object
-     *                  The ObjectName of the observed object that triggered off
-     *                  the
-     *                  notification.
+     *        The ObjectName of the observed object that triggered off
+     *        the
+     *        notification.
      * @param onError
-     *                  Flag indicating if this monitor notification is an error
-     *                  notification or an alarm notification.
+     *        Flag indicating if this monitor notification is an error
+     *        notification or an alarm notification.
      */
-    private void sendNotification(String type, long timeStamp, String msg,
-            Object derGauge, Object trigger, ObjectName object,
-            boolean onError) {
+    private void sendNotification(String type, long timeStamp, String msg, Object derGauge, Object trigger,
+            ObjectName object, boolean onError) {
         if (!isActive())
             return;
 
         if (MONITOR_LOGGER.isLoggable(Level.FINER)) {
-            MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(),
-                    "sendNotification", "send notification: "
-                            + "\n\tNotification observed object = " + object
-                            + "\n\tNotification observed attribute = "
-                            + observedAttribute
+            MONITOR_LOGGER.logp(Level.FINER, Monitor.class.getName(), "sendNotification",
+                    "send notification: " + "\n\tNotification observed object = " + object
+                            + "\n\tNotification observed attribute = " + observedAttribute
                             + "\n\tNotification derived gauge = " + derGauge);
         }
 
         long seqno = sequenceNumber.getAndIncrement();
 
-        MonitorNotification mn = new MonitorNotification(type, this, seqno,
-                timeStamp, msg, object, observedAttribute, derGauge, trigger);
+        MonitorNotification mn = new MonitorNotification(type, this, seqno, timeStamp, msg, object,
+                observedAttribute, derGauge, trigger);
         if (onError)
             onErrorNotification(mn);
         sendNotification(mn);
@@ -1090,7 +1028,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
      * been exceeded.
      * 
      * @param o
-     *          The observed object.
+     *        The observed object.
      */
     private void monitor(ObservedObject o, int index, int an[]) {
 
@@ -1128,16 +1066,13 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         try {
             attributeValue = getAttribute(server, object, attribute);
             if (attributeValue == null)
-                if (isAlreadyNotified(o,
-                        OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED))
+                if (isAlreadyNotified(o, OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED))
                     return;
                 else {
                     notifType = OBSERVED_ATTRIBUTE_TYPE_ERROR;
-                    setAlreadyNotified(o, index,
-                            OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED, an);
+                    setAlreadyNotified(o, index, OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED, an);
                     msg = "The observed attribute value is null.";
-                    MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                            "monitor", msg);
+                    MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
                 }
         } catch (NullPointerException np_ex) {
             if (isAlreadyNotified(o, RUNTIME_ERROR_NOTIFIED))
@@ -1146,40 +1081,29 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                 notifType = RUNTIME_ERROR;
                 setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED, an);
                 msg = "The monitor must be registered in the MBean "
-                        + "server or an MBeanServerConnection must be "
-                        + "explicitly supplied.";
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", msg);
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", np_ex.toString());
+                        + "server or an MBeanServerConnection must be " + "explicitly supplied.";
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", np_ex.toString());
             }
         } catch (InstanceNotFoundException inf_ex) {
             if (isAlreadyNotified(o, OBSERVED_OBJECT_ERROR_NOTIFIED))
                 return;
             else {
                 notifType = OBSERVED_OBJECT_ERROR;
-                setAlreadyNotified(o, index, OBSERVED_OBJECT_ERROR_NOTIFIED,
-                        an);
-                msg = "The observed object must be accessible in "
-                        + "the MBeanServerConnection.";
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", msg);
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", inf_ex.toString());
+                setAlreadyNotified(o, index, OBSERVED_OBJECT_ERROR_NOTIFIED, an);
+                msg = "The observed object must be accessible in " + "the MBeanServerConnection.";
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", inf_ex.toString());
             }
         } catch (AttributeNotFoundException anf_ex) {
             if (isAlreadyNotified(o, OBSERVED_ATTRIBUTE_ERROR_NOTIFIED))
                 return;
             else {
                 notifType = OBSERVED_ATTRIBUTE_ERROR;
-                setAlreadyNotified(o, index, OBSERVED_ATTRIBUTE_ERROR_NOTIFIED,
-                        an);
-                msg = "The observed attribute must be accessible in "
-                        + "the observed object.";
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", msg);
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", anf_ex.toString());
+                setAlreadyNotified(o, index, OBSERVED_ATTRIBUTE_ERROR_NOTIFIED, an);
+                msg = "The observed attribute must be accessible in " + "the observed object.";
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", anf_ex.toString());
             }
         } catch (MBeanException mb_ex) {
             if (isAlreadyNotified(o, RUNTIME_ERROR_NOTIFIED))
@@ -1188,10 +1112,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                 notifType = RUNTIME_ERROR;
                 setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED, an);
                 msg = mb_ex.getMessage() == null ? "" : mb_ex.getMessage();
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", msg);
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", mb_ex.toString());
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", mb_ex.toString());
             }
         } catch (ReflectionException ref_ex) {
             if (isAlreadyNotified(o, RUNTIME_ERROR_NOTIFIED)) {
@@ -1200,10 +1122,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                 notifType = RUNTIME_ERROR;
                 setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED, an);
                 msg = ref_ex.getMessage() == null ? "" : ref_ex.getMessage();
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", msg);
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", ref_ex.toString());
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", ref_ex.toString());
             }
         } catch (IOException io_ex) {
             if (isAlreadyNotified(o, RUNTIME_ERROR_NOTIFIED))
@@ -1212,10 +1132,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                 notifType = RUNTIME_ERROR;
                 setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED, an);
                 msg = io_ex.getMessage() == null ? "" : io_ex.getMessage();
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", msg);
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", io_ex.toString());
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", io_ex.toString());
             }
         } catch (RuntimeException rt_ex) {
             if (isAlreadyNotified(o, RUNTIME_ERROR_NOTIFIED))
@@ -1224,10 +1142,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                 notifType = RUNTIME_ERROR;
                 setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED, an);
                 msg = rt_ex.getMessage() == null ? "" : rt_ex.getMessage();
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", msg);
-                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(),
-                        "monitor", rt_ex.toString());
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", rt_ex.toString());
             }
         }
 
@@ -1253,49 +1169,37 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
             //
             if (msg == null) {
                 try {
-                    value = getComparableFromAttribute(object, attribute,
-                            attributeValue);
+                    value = getComparableFromAttribute(object, attribute, attributeValue);
                 } catch (ClassCastException e) {
-                    if (isAlreadyNotified(o,
-                            OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED))
+                    if (isAlreadyNotified(o, OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED))
                         return;
                     else {
                         notifType = OBSERVED_ATTRIBUTE_TYPE_ERROR;
-                        setAlreadyNotified(o, index,
-                                OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED, an);
+                        setAlreadyNotified(o, index, OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED, an);
                         msg = "The observed attribute value does not "
                                 + "implement the Comparable interface.";
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", msg);
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", e.toString());
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", e.toString());
                     }
                 } catch (AttributeNotFoundException e) {
                     if (isAlreadyNotified(o, OBSERVED_ATTRIBUTE_ERROR_NOTIFIED))
                         return;
                     else {
                         notifType = OBSERVED_ATTRIBUTE_ERROR;
-                        setAlreadyNotified(o, index,
-                                OBSERVED_ATTRIBUTE_ERROR_NOTIFIED, an);
-                        msg = "The observed attribute must be accessible in "
-                                + "the observed object.";
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", msg);
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", e.toString());
+                        setAlreadyNotified(o, index, OBSERVED_ATTRIBUTE_ERROR_NOTIFIED, an);
+                        msg = "The observed attribute must be accessible in " + "the observed object.";
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", e.toString());
                     }
                 } catch (RuntimeException e) {
                     if (isAlreadyNotified(o, RUNTIME_ERROR_NOTIFIED))
                         return;
                     else {
                         notifType = RUNTIME_ERROR;
-                        setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED,
-                                an);
+                        setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED, an);
                         msg = e.getMessage() == null ? "" : e.getMessage();
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", msg);
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", e.toString());
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", e.toString());
                     }
                 }
             }
@@ -1305,16 +1209,13 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
             //
             if (msg == null) {
                 if (!isComparableTypeValid(object, attribute, value)) {
-                    if (isAlreadyNotified(o,
-                            OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED))
+                    if (isAlreadyNotified(o, OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED))
                         return;
                     else {
                         notifType = OBSERVED_ATTRIBUTE_TYPE_ERROR;
-                        setAlreadyNotified(o, index,
-                                OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED, an);
+                        setAlreadyNotified(o, index, OBSERVED_ATTRIBUTE_TYPE_ERROR_NOTIFIED, an);
                         msg = "The observed attribute type is not valid.";
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", msg);
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
                     }
                 }
             }
@@ -1327,11 +1228,9 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                         return;
                     else {
                         notifType = THRESHOLD_ERROR;
-                        setAlreadyNotified(o, index, THRESHOLD_ERROR_NOTIFIED,
-                                an);
+                        setAlreadyNotified(o, index, THRESHOLD_ERROR_NOTIFIED, an);
                         msg = "The threshold type is not valid.";
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", msg);
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
                     }
                 }
             }
@@ -1346,10 +1245,8 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                         return;
                     else {
                         notifType = RUNTIME_ERROR;
-                        setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED,
-                                an);
-                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class
-                                .getName(), "monitor", msg);
+                        setAlreadyNotified(o, index, RUNTIME_ERROR_NOTIFIED, an);
+                        MONITOR_LOGGER.logp(Level.FINEST, Monitor.class.getName(), "monitor", msg);
                     }
                 }
             }
@@ -1364,16 +1261,14 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
 
                 // Get derived gauge from comparable value.
                 //
-                derGauge = getDerivedGaugeFromComparable(object, attribute,
-                        value);
+                derGauge = getDerivedGaugeFromComparable(object, attribute, value);
 
                 o.setDerivedGauge(derGauge);
                 o.setDerivedGaugeTimeStamp(System.currentTimeMillis());
 
                 // Check if an alarm must be fired.
                 //
-                alarm = buildAlarmNotification(object, attribute,
-                        (Comparable<?>) derGauge);
+                alarm = buildAlarmNotification(object, attribute, (Comparable<?>) derGauge);
             }
 
         }
@@ -1381,14 +1276,13 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         // Notify monitor errors
         //
         if (msg != null)
-            sendNotification(notifType, System.currentTimeMillis(), msg,
-                    derGauge, trigger, object, true);
+            sendNotification(notifType, System.currentTimeMillis(), msg, derGauge, trigger, object, true);
 
         // Notify monitor alarms
         //
         if (alarm != null && alarm.getType() != null)
-            sendNotification(alarm.getType(), System.currentTimeMillis(), alarm
-                    .getMessage(), derGauge, alarm.getTrigger(), object, false);
+            sendNotification(alarm.getType(), System.currentTimeMillis(), alarm.getMessage(), derGauge, alarm
+                    .getTrigger(), object, false);
     }
 
     /**
@@ -1416,7 +1310,6 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
 
     /**
      * SchedulerTask nested class: This class implements the Runnable interface.
-     *
      * The SchedulerTask is executed periodically with a given fixed delay by
      * the Scheduled Executor Service.
      */
@@ -1454,7 +1347,6 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
 
     /**
      * MonitorTask nested class: This class implements the Runnable interface.
-     *
      * The MonitorTask is executed periodically with a given fixed delay by the
      * Scheduled Executor Service.
      */
@@ -1475,12 +1367,10 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
             // instantiating this MonitorTask, i.e. the group of the thread that
             // calls "Monitor.start()".
             SecurityManager s = System.getSecurityManager();
-            ThreadGroup group = (s != null) ? s.getThreadGroup()
-                    : Thread.currentThread().getThreadGroup();
+            ThreadGroup group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
             synchronized (executorsLock) {
                 for (ThreadPoolExecutor e : executors.keySet()) {
-                    DaemonThreadFactory tf = (DaemonThreadFactory) e
-                            .getThreadFactory();
+                    DaemonThreadFactory tf = (DaemonThreadFactory) e.getThreadFactory();
                     ThreadGroup tg = tf.getThreadGroup();
                     if (tg == group) {
                         executor = e;
@@ -1488,11 +1378,9 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                     }
                 }
                 if (executor == null) {
-                    executor = new ThreadPoolExecutor(maximumPoolSize,
-                            maximumPoolSize, 60L, TimeUnit.SECONDS,
-                            new LinkedBlockingQueue<Runnable>(),
-                            new DaemonThreadFactory("ThreadGroup<" + group
-                                    .getName() + "> Executor", group));
+                    executor = new ThreadPoolExecutor(maximumPoolSize, maximumPoolSize, 60L, TimeUnit.SECONDS,
+                            new LinkedBlockingQueue<Runnable>(), new DaemonThreadFactory("ThreadGroup<"
+                                    + group.getName() + "> Executor", group));
                     executor.allowCoreThreadTimeOut(true);
                     executors.put(executor, null);
                 }
@@ -1530,18 +1418,14 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
                 }
             };
             if (ac == null) {
-                throw new SecurityException(
-                        "AccessControlContext cannot be null");
+                throw new SecurityException("AccessControlContext cannot be null");
             }
             AccessController.doPrivileged(action, ac);
             synchronized (Monitor.this) {
-                if (Monitor.this.isActive()
-                        && Monitor.this.schedulerFuture == sf) {
+                if (Monitor.this.isActive() && Monitor.this.schedulerFuture == sf) {
                     Monitor.this.monitorFuture = null;
-                    Monitor.this.schedulerFuture = scheduler.schedule(
-                            Monitor.this.schedulerTask, Monitor.this
-                                    .getGranularityPeriod(),
-                            TimeUnit.MILLISECONDS);
+                    Monitor.this.schedulerFuture = scheduler.schedule(Monitor.this.schedulerTask, Monitor.this
+                            .getGranularityPeriod(), TimeUnit.MILLISECONDS);
                 }
             }
         }
@@ -1566,8 +1450,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
 
         public DaemonThreadFactory(String poolName) {
             SecurityManager s = System.getSecurityManager();
-            group = (s != null) ? s.getThreadGroup()
-                    : Thread.currentThread().getThreadGroup();
+            group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
             namePrefix = "JMX Monitor " + poolName + " Pool [Thread-";
         }
 
@@ -1581,8 +1464,7 @@ public abstract class Monitor extends NotificationBroadcasterSupport implements
         }
 
         public Thread newThread(Runnable r) {
-            Thread t = new Thread(group, r, namePrefix + threadNumber
-                    .getAndIncrement() + nameSuffix, 0);
+            Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement() + nameSuffix, 0);
             t.setDaemon(true);
             if (t.getPriority() != Thread.NORM_PRIORITY)
                 t.setPriority(Thread.NORM_PRIORITY);

@@ -46,19 +46,17 @@ public class XSLMessages extends XPATHMessages {
      * localized to the given locale.
      *
      * @param msgKey
-     *               The key for the message text.
+     *        The key for the message text.
      * @param args
-     *               The arguments to be used as replacement text in the message
-     *               created.
-     *
+     *        The arguments to be used as replacement text in the message
+     *        created.
      * @return The formatted message string.
      */
     public static String createMessage(String msgKey, Object args[]) // throws
                                                                      // Exception
     {
         if (XSLTBundle == null) {
-            XSLTBundle = SecuritySupport.getResourceBundle(
-                    XSLT_ERROR_RESOURCES);
+            XSLTBundle = SecuritySupport.getResourceBundle(XSLT_ERROR_RESOURCES);
         }
 
         if (XSLTBundle != null) {
@@ -73,19 +71,17 @@ public class XSLMessages extends XPATHMessages {
      * localized to the given locale.
      *
      * @param msgKey
-     *               The key for the message text.
+     *        The key for the message text.
      * @param args
-     *               The arguments to be used as replacement text in the message
-     *               created.
-     *
+     *        The arguments to be used as replacement text in the message
+     *        created.
      * @return The formatted warning string.
      */
     public static String createWarning(String msgKey, Object args[]) // throws
                                                                      // Exception
     {
         if (XSLTBundle == null) {
-            XSLTBundle = SecuritySupport.getResourceBundle(
-                    XSLT_ERROR_RESOURCES);
+            XSLTBundle = SecuritySupport.getResourceBundle(XSLT_ERROR_RESOURCES);
         }
 
         if (XSLTBundle != null) {

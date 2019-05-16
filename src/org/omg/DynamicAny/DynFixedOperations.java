@@ -13,8 +13,7 @@ package org.omg.DynamicAny;
  * does not have a generic type that can represent fixed types with arbitrary
  * number of digits and arbitrary scale, the operations use the IDL string type.
  */
-public interface DynFixedOperations extends
-        org.omg.DynamicAny.DynAnyOperations {
+public interface DynFixedOperations extends org.omg.DynamicAny.DynAnyOperations {
 
     /**
      * Returns the value of a DynFixed.
@@ -30,17 +29,16 @@ public interface DynFixedOperations extends
      * fractional digits are truncated and the return value is false.
      *
      * @exception TypeMismatch
-     *                         If val does not contain a valid fixed-point
-     *                         literal or
-     *                         contains extraneous characters other than leading
-     *                         or
-     *                         trailing white space
+     *            If val does not contain a valid fixed-point
+     *            literal or
+     *            contains extraneous characters other than leading
+     *            or
+     *            trailing white space
      * @exception InvalidValue
-     *                         If val contains a value whose scale exceeds that
-     *                         of the
-     *                         DynFixed or is not initialized
+     *            If val contains a value whose scale exceeds that
+     *            of the
+     *            DynFixed or is not initialized
      */
-    boolean set_value(String val)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    boolean set_value(String val) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 } // interface DynFixedOperations

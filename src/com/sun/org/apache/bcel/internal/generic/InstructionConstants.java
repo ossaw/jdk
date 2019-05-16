@@ -54,14 +54,12 @@ import com.sun.org.apache.bcel.internal.Constants;
 
 /**
  * This interface contains shareable instruction objects.
- *
  * In order to save memory you can use some instructions multiply, since they
  * have an immutable state and are directly derived from Instruction. I.e. they
  * have no instance fields that could be changed. Since some of these
  * instructions like ICONST_0 occur very frequently this can save a lot of time
  * and space. This feature is an adaptation of the FlyWeight design pattern, we
  * just use an array instead of a factory.
- *
  * The Instructions can also accessed directly under their names, so it's
  * possible to write il.append(Instruction.ICONST_0);
  *

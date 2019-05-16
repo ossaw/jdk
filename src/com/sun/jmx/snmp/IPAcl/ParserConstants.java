@@ -45,15 +45,12 @@ interface ParserConstants {
 
     int DEFAULT = 0;
 
-    String[] tokenImage = { "<EOF>", "\" \"", "\"\\t\"", "\"\\n\"", "\"\\r\"",
-            "<token of kind 5>", "<token of kind 6>", "\"access\"", "\"acl\"",
-            "\"=\"", "\"communities\"", "\"enterprise\"", "\"hosts\"", "\"{\"",
-            "\"managers\"", "\"-\"", "\"}\"", "\"read-only\"", "\"read-write\"",
-            "\"trap\"", "\"inform\"", "\"trap-community\"",
-            "\"inform-community\"", "\"trap-num\"", "<INTEGER_LITERAL>",
-            "<DECIMAL_LITERAL>", "<HEX_LITERAL>", "<OCTAL_LITERAL>",
-            "<V6_ADDRESS>", "<H>", "<D>", "<IDENTIFIER>", "<LETTER>",
-            "<SEPARATOR>", "<DIGIT>", "<CSTRING>", "\",\"", "\".\"", "\"!\"",
-            "\"/\"", };
+    String[] tokenImage = { "<EOF>", "\" \"", "\"\\t\"", "\"\\n\"", "\"\\r\"", "<token of kind 5>",
+            "<token of kind 6>", "\"access\"", "\"acl\"", "\"=\"", "\"communities\"", "\"enterprise\"",
+            "\"hosts\"", "\"{\"", "\"managers\"", "\"-\"", "\"}\"", "\"read-only\"", "\"read-write\"",
+            "\"trap\"", "\"inform\"", "\"trap-community\"", "\"inform-community\"", "\"trap-num\"",
+            "<INTEGER_LITERAL>", "<DECIMAL_LITERAL>", "<HEX_LITERAL>", "<OCTAL_LITERAL>", "<V6_ADDRESS>",
+            "<H>", "<D>", "<IDENTIFIER>", "<LETTER>", "<SEPARATOR>", "<DIGIT>", "<CSTRING>", "\",\"", "\".\"",
+            "\"!\"", "\"/\"", };
 
 }

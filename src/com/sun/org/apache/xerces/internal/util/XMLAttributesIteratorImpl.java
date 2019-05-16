@@ -13,7 +13,6 @@ import java.util.NoSuchElementException;
 import com.sun.org.apache.xerces.internal.util.XMLAttributesImpl;
 
 /**
- *
  * @author Neeraj Bajaj, Sun Microsystems
  */
 
@@ -23,13 +22,11 @@ import com.sun.org.apache.xerces.internal.util.XMLAttributesImpl;
  * from StartElement event. We should also have Attribute object of type
  * javax.xml.stream.Attribute internally. It would avoid the need of creating
  * new javax.xml.stream.Attribute object at the later stage.
- *
  * Should we change XMLAttributes interface to implement Iteraotr ? I think its
  * better avoid touching XNI as much as possible. - NB.
  */
 
-public class XMLAttributesIteratorImpl extends XMLAttributesImpl implements
-        Iterator {
+public class XMLAttributesIteratorImpl extends XMLAttributesImpl implements Iterator {
 
     // pointer to current position.
     protected int fCurrent = 0;
@@ -73,7 +70,6 @@ public class XMLAttributesIteratorImpl extends XMLAttributesImpl implements
     /**
      * xxx: should we be doing this way ? Attribute event defines so many
      * functions which doesn't make any sense for Attribute.
-     *
      */
     /*
      * class AttributeImpl extends

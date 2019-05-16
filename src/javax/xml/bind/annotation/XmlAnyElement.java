@@ -20,7 +20,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * Maps a JavaBean property to XML infoset representation and/or JAXB element.
- *
  * <p>
  * This annotation serves as a "catch-all" property while unmarshalling xml
  * content into a instance of a JAXB annotated class. It typically annotates a
@@ -28,7 +27,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * property. During unmarshalling, each xml element that does not match a static
  * &#64;XmlElement or &#64;XmlElementRef annotation for the other JavaBean
  * properties on the class, is added to this "catch-all" property.
- *
  * <p>
  * <h2>Usages:</h2>
  * 
@@ -52,17 +50,14 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * This annotation is mutually exclusive with {@link XmlElement},
  * {@link XmlAttribute}, {@link XmlValue}, {@link XmlElements}, {@link XmlID},
  * and {@link XmlIDREF}.
- *
  * <p>
  * There can be only one {@link XmlAnyElement} annotated JavaBean property in a
  * class and its super classes.
- *
  * <h2>Relationship to other annotations</h2>
  * <p>
  * This annotation can be used with {@link XmlJavaTypeAdapter}, so that users
  * can map their own data structure to DOM, which in turn can be composed into
  * XML.
- *
  * <p>
  * This annotation can be used with {@link XmlMixed} like this:
  * 
@@ -73,9 +68,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * List&lt;Object> others;
  * </pre>
  *
- *
  * <h2>Schema To Java example</h2>
- *
  * The following schema would produce the following Java class:
  * 
  * <pre>
@@ -109,8 +102,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * &lt;/foo>
  * </pre>
  *
- *
- *
  * The following schema would produce the following Java class:
  * 
  * <pre>
@@ -132,7 +123,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * }
  * </pre>
  *
- *
  * It can unmarshal instances like
  *
  * <pre>
@@ -146,14 +136,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * &lt;/bar>
  * </pre>
  *
- *
- *
- *
  * <h2>Using {@link XmlAnyElement} with {@link XmlElementRef}</h2>
  * <p>
  * The {@link XmlAnyElement} annotation can be used with {@link XmlElementRef}s
  * to designate additional elements that can participate in the content tree.
- *
  * <p>
  * The following schema would produce the following Java class:
  * 
@@ -197,9 +183,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * &lt;/foo>
  * </pre>
  *
- *
- *
- *
  * <h2>W3C XML Schema "lax" wildcard emulation</h2> The lax element of the
  * annotation enables the emulation of the "lax" wildcard semantics. For
  * example, when the Java source code is annotated like this:
@@ -240,12 +223,10 @@ public @interface XmlAnyElement {
     /**
      * Controls the unmarshaller behavior when it sees elements known to the
      * current {@link JAXBContext}.
-     *
      * <h3>When false</h3>
      * <p>
      * If false, all the elements that match the property will be unmarshalled
      * to DOM, and the property will only contain DOM elements.
-     *
      * <h3>When true</h3>
      * <p>
      * If true, when an element matches a property marked with
@@ -258,12 +239,10 @@ public @interface XmlAnyElement {
      * the element to a {@link JAXBElement}, with the unknown element name and
      * the JAXBElement value is set to an instance of the JAXB mapping of the
      * known xsi:type.
-     *
      * <p>
      * As a result, after the unmarshalling, the property can become
      * heterogeneous; it can have both DOM nodes and some JAXB objects at the
      * same time.
-     *
      * <p>
      * This can be used to emulate the "lax" wildcard semantics of the W3C XML
      * Schema.

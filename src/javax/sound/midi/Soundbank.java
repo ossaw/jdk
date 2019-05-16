@@ -41,7 +41,6 @@ import java.net.URL;
  * @see Patch
  * @see Instrument
  * @see SoundbankResource
- *
  * @author David Rivas
  * @author Kara Kytle
  */
@@ -92,7 +91,6 @@ public interface Soundbank {
      * @return an array of the <code>Instruments</code> in this
      *         <code>SoundBank</code> If the sound bank contains no instruments,
      *         returns an array of length 0.
-     *
      * @see Synthesizer#getLoadedInstruments
      * @see #getInstrument(Patch)
      */
@@ -102,11 +100,10 @@ public interface Soundbank {
      * Obtains an <code>Instrument</code> from the given <code>Patch</code>.
      * 
      * @param patch
-     *              a <code>Patch</code> object specifying the bank index and
-     *              program change number
+     *        a <code>Patch</code> object specifying the bank index and
+     *        program change number
      * @return the requested instrument, or <code>null</code> if the sound bank
      *         doesn't contain that instrument
-     *
      * @see #getInstruments
      * @see Synthesizer#loadInstruments(Soundbank, Patch[])
      */

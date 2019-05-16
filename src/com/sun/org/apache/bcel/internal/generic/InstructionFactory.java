@@ -59,8 +59,7 @@ import com.sun.org.apache.bcel.internal.Constants;
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  * @see Constants
  */
-public class InstructionFactory implements InstructionConstants,
-        java.io.Serializable {
+public class InstructionFactory implements InstructionConstants, java.io.Serializable {
     protected ClassGen cg;
     protected ConstantPoolGen cp;
 
@@ -87,20 +86,20 @@ public class InstructionFactory implements InstructionConstants,
      * Create an invoke instruction.
      *
      * @param class_name
-     *                   name of the called class
+     *        name of the called class
      * @param name
-     *                   name of the called method
+     *        name of the called method
      * @param ret_type
-     *                   return type of method
+     *        return type of method
      * @param arg_types
-     *                   argument types of method
+     *        argument types of method
      * @param kind
-     *                   how to invoke, i.e., INVOKEINTERFACE, INVOKESTATIC,
-     *                   INVOKEVIRTUAL, or INVOKESPECIAL
+     *        how to invoke, i.e., INVOKEINTERFACE, INVOKESTATIC,
+     *        INVOKEVIRTUAL, or INVOKESPECIAL
      * @see Constants
      */
-    public InvokeInstruction createInvoke(String class_name, String name,
-            Type ret_type, Type[] arg_types, short kind) {
+    public InvokeInstruction createInvoke(String class_name, String name, Type ret_type, Type[] arg_types,
+            short kind) {
         int index;
         int nargs = 0;
         String signature = Type.getMethodSignature(ret_type, arg_types);
@@ -131,14 +130,12 @@ public class InstructionFactory implements InstructionConstants,
      * Create a call to the most popular System.out.println() method.
      *
      * @param s
-     *          the string to print
+     *        the string to print
      */
     public InstructionList createPrintln(String s) {
         InstructionList il = new InstructionList();
-        int out = cp.addFieldref("java.lang.System", "out",
-                "Ljava/io/PrintStream;");
-        int println = cp.addMethodref("java.io.PrintStream", "println",
-                "(Ljava/lang/String;)V");
+        int out = cp.addFieldref("java.lang.System", "out", "Ljava/io/PrintStream;");
+        int println = cp.addMethodref("java.io.PrintStream", "println", "(Ljava/lang/String;)V");
 
         il.append(new GETSTATIC(out));
         il.append(new PUSH(cp, s));
@@ -151,7 +148,7 @@ public class InstructionFactory implements InstructionConstants,
      * Uses PUSH to push a constant value onto the stack.
      * 
      * @param value
-     *              must be of type Number, Boolean, Character or String
+     *        must be of type Number, Boolean, Character or String
      */
     public Instruction createConstant(Object value) {
         PUSH push;
@@ -188,48 +185,33 @@ public class InstructionFactory implements InstructionConstants,
     }
 
     private InvokeInstruction createInvoke(MethodObject m, short kind) {
-        return createInvoke(m.class_name, m.name, m.result_type, m.arg_types,
-                kind);
+        return createInvoke(m.class_name, m.name, m.result_type, m.arg_types, kind);
     }
 
-    private static MethodObject[] append_mos = { new MethodObject(
-            "java.lang.StringBuffer", "append", Type.STRINGBUFFER, new Type[] {
-                    Type.STRING }, Constants.ACC_PUBLIC), new MethodObject(
-                            "java.lang.StringBuffer", "append",
-                            Type.STRINGBUFFER, new Type[] { Type.OBJECT },
-                            Constants.ACC_PUBLIC), null, null, // indices 2, 3
-            new MethodObject("java.lang.StringBuffer", "append",
-                    Type.STRINGBUFFER, new Type[] { Type.BOOLEAN },
-                    Constants.ACC_PUBLIC), new MethodObject(
-                            "java.lang.StringBuffer", "append",
-                            Type.STRINGBUFFER, new Type[] { Type.CHAR },
-                            Constants.ACC_PUBLIC), new MethodObject(
-                                    "java.lang.StringBuffer", "append",
-                                    Type.STRINGBUFFER, new Type[] {
-                                            Type.FLOAT }, Constants.ACC_PUBLIC),
-            new MethodObject("java.lang.StringBuffer", "append",
-                    Type.STRINGBUFFER, new Type[] { Type.DOUBLE },
-                    Constants.ACC_PUBLIC), new MethodObject(
-                            "java.lang.StringBuffer", "append",
-                            Type.STRINGBUFFER, new Type[] { Type.INT },
-                            Constants.ACC_PUBLIC), new MethodObject(
-                                    "java.lang.StringBuffer", "append",
-                                    Type.STRINGBUFFER, // No
-                                    // append(byte)
-                                    new Type[] { Type.INT },
-                                    Constants.ACC_PUBLIC), new MethodObject(
-                                            "java.lang.StringBuffer", "append",
-                                            Type.STRINGBUFFER, // No
-                                            // append(short)
-                                            new Type[] { Type.INT },
-                                            Constants.ACC_PUBLIC),
-            new MethodObject("java.lang.StringBuffer", "append",
-                    Type.STRINGBUFFER, new Type[] { Type.LONG },
-                    Constants.ACC_PUBLIC) };
+    private static MethodObject[] append_mos = { new MethodObject("java.lang.StringBuffer", "append",
+            Type.STRINGBUFFER, new Type[] { Type.STRING }, Constants.ACC_PUBLIC), new MethodObject(
+                    "java.lang.StringBuffer", "append", Type.STRINGBUFFER, new Type[] { Type.OBJECT },
+                    Constants.ACC_PUBLIC), null, null, // indices 2, 3
+            new MethodObject("java.lang.StringBuffer", "append", Type.STRINGBUFFER, new Type[] {
+                    Type.BOOLEAN }, Constants.ACC_PUBLIC), new MethodObject("java.lang.StringBuffer",
+                            "append", Type.STRINGBUFFER, new Type[] { Type.CHAR }, Constants.ACC_PUBLIC),
+            new MethodObject("java.lang.StringBuffer", "append", Type.STRINGBUFFER, new Type[] { Type.FLOAT },
+                    Constants.ACC_PUBLIC), new MethodObject("java.lang.StringBuffer", "append",
+                            Type.STRINGBUFFER, new Type[] { Type.DOUBLE }, Constants.ACC_PUBLIC),
+            new MethodObject("java.lang.StringBuffer", "append", Type.STRINGBUFFER, new Type[] { Type.INT },
+                    Constants.ACC_PUBLIC), new MethodObject("java.lang.StringBuffer", "append",
+                            Type.STRINGBUFFER, // No
+                            // append(byte)
+                            new Type[] { Type.INT }, Constants.ACC_PUBLIC), new MethodObject(
+                                    "java.lang.StringBuffer", "append", Type.STRINGBUFFER, // No
+                                    // append(short)
+                                    new Type[] { Type.INT }, Constants.ACC_PUBLIC), new MethodObject(
+                                            "java.lang.StringBuffer", "append", Type.STRINGBUFFER,
+                                            new Type[] { Type.LONG }, Constants.ACC_PUBLIC) };
 
     private static final boolean isString(Type type) {
-        return ((type instanceof ObjectType) && ((ObjectType) type)
-                .getClassName().equals("java.lang.String"));
+        return ((type instanceof ObjectType) && ((ObjectType) type).getClassName().equals(
+                "java.lang.String"));
     }
 
     public Instruction createAppend(Type type) {
@@ -252,8 +234,7 @@ public class InstructionFactory implements InstructionConstants,
             case Constants.T_OBJECT:
                 return createInvoke(append_mos[1], Constants.INVOKEVIRTUAL);
             default:
-                throw new RuntimeException("Oops: No append for this type? "
-                        + type);
+                throw new RuntimeException("Oops: No append for this type? " + type);
         }
     }
 
@@ -261,18 +242,17 @@ public class InstructionFactory implements InstructionConstants,
      * Create a field instruction.
      *
      * @param class_name
-     *                   name of the accessed class
+     *        name of the accessed class
      * @param name
-     *                   name of the referenced field
+     *        name of the referenced field
      * @param type
-     *                   type of field
+     *        type of field
      * @param kind
-     *                   how to access, i.e., GETFIELD, PUTFIELD, GETSTATIC,
-     *                   PUTSTATIC
+     *        how to access, i.e., GETFIELD, PUTFIELD, GETSTATIC,
+     *        PUTSTATIC
      * @see Constants
      */
-    public FieldInstruction createFieldAccess(String class_name, String name,
-            Type type, short kind) {
+    public FieldInstruction createFieldAccess(String class_name, String name, Type type, short kind) {
         int index;
         String signature = type.getSignature();
 
@@ -289,8 +269,7 @@ public class InstructionFactory implements InstructionConstants,
                 return new PUTSTATIC(index);
 
             default:
-                throw new RuntimeException("Oops: Unknown getfield kind:"
-                        + kind);
+                throw new RuntimeException("Oops: Unknown getfield kind:" + kind);
         }
     }
 
@@ -329,8 +308,7 @@ public class InstructionFactory implements InstructionConstants,
         }
     }
 
-    private static final ArithmeticInstruction createBinaryIntOp(char first,
-            String op) {
+    private static final ArithmeticInstruction createBinaryIntOp(char first, String op) {
         switch (first) {
             case '-':
                 return ISUB;
@@ -351,15 +329,13 @@ public class InstructionFactory implements InstructionConstants,
             case '<':
                 return ISHL;
             case '>':
-                return op.equals(">>>") ? (ArithmeticInstruction) IUSHR
-                        : (ArithmeticInstruction) ISHR;
+                return op.equals(">>>") ? (ArithmeticInstruction) IUSHR : (ArithmeticInstruction) ISHR;
             default:
                 throw new RuntimeException("Invalid operand " + op);
         }
     }
 
-    private static final ArithmeticInstruction createBinaryLongOp(char first,
-            String op) {
+    private static final ArithmeticInstruction createBinaryLongOp(char first, String op) {
         switch (first) {
             case '-':
                 return LSUB;
@@ -380,8 +356,7 @@ public class InstructionFactory implements InstructionConstants,
             case '<':
                 return LSHL;
             case '>':
-                return op.equals(">>>") ? (ArithmeticInstruction) LUSHR
-                        : (ArithmeticInstruction) LSHR;
+                return op.equals(">>>") ? (ArithmeticInstruction) LUSHR : (ArithmeticInstruction) LSHR;
             default:
                 throw new RuntimeException("Invalid operand " + op);
         }
@@ -421,10 +396,9 @@ public class InstructionFactory implements InstructionConstants,
      * Create binary operation for simple basic types, such as int and float.
      *
      * @param op
-     *           operation, such as "+", "*", "<<", etc.
+     *        operation, such as "+", "*", "<<", etc.
      */
-    public static ArithmeticInstruction createBinaryOperation(String op,
-            Type type) {
+    public static ArithmeticInstruction createBinaryOperation(String op, Type type) {
         char first = op.toCharArray()[0];
 
         switch (type.getType()) {
@@ -446,7 +420,7 @@ public class InstructionFactory implements InstructionConstants,
 
     /**
      * @param size
-     *             size of operand, either 1 (int, e.g.) or 2 (double)
+     *        size of operand, either 1 (int, e.g.) or 2 (double)
      */
     public static StackInstruction createPop(int size) {
         return (size == 2) ? (StackInstruction) POP2 : (StackInstruction) POP;
@@ -454,7 +428,7 @@ public class InstructionFactory implements InstructionConstants,
 
     /**
      * @param size
-     *             size of operand, either 1 (int, e.g.) or 2 (double)
+     *        size of operand, either 1 (int, e.g.) or 2 (double)
      */
     public static StackInstruction createDup(int size) {
         return (size == 2) ? (StackInstruction) DUP2 : (StackInstruction) DUP;
@@ -462,25 +436,23 @@ public class InstructionFactory implements InstructionConstants,
 
     /**
      * @param size
-     *             size of operand, either 1 (int, e.g.) or 2 (double)
+     *        size of operand, either 1 (int, e.g.) or 2 (double)
      */
     public static StackInstruction createDup_2(int size) {
-        return (size == 2) ? (StackInstruction) DUP2_X2
-                : (StackInstruction) DUP_X2;
+        return (size == 2) ? (StackInstruction) DUP2_X2 : (StackInstruction) DUP_X2;
     }
 
     /**
      * @param size
-     *             size of operand, either 1 (int, e.g.) or 2 (double)
+     *        size of operand, either 1 (int, e.g.) or 2 (double)
      */
     public static StackInstruction createDup_1(int size) {
-        return (size == 2) ? (StackInstruction) DUP2_X1
-                : (StackInstruction) DUP_X1;
+        return (size == 2) ? (StackInstruction) DUP2_X1 : (StackInstruction) DUP_X1;
     }
 
     /**
      * @param index
-     *              index of local variable
+     *        index of local variable
      */
     public static LocalVariableInstruction createStore(Type type, int index) {
         switch (type.getType()) {
@@ -506,7 +478,7 @@ public class InstructionFactory implements InstructionConstants,
 
     /**
      * @param index
-     *              index of local variable
+     *        index of local variable
      */
     public static LocalVariableInstruction createLoad(Type type, int index) {
         switch (type.getType()) {
@@ -532,7 +504,7 @@ public class InstructionFactory implements InstructionConstants,
 
     /**
      * @param type
-     *             type of elements of array, i.e., array.getElementType()
+     *        type of elements of array, i.e., array.getElementType()
      */
     public static ArrayInstruction createArrayLoad(Type type) {
         switch (type.getType()) {
@@ -561,7 +533,7 @@ public class InstructionFactory implements InstructionConstants,
 
     /**
      * @param type
-     *             type of elements of array, i.e., array.getElementType()
+     *        type of elements of array, i.e., array.getElementType()
      */
     public static ArrayInstruction createArrayStore(Type type) {
         switch (type.getType()) {
@@ -594,40 +566,34 @@ public class InstructionFactory implements InstructionConstants,
      * are reference types.
      */
     public Instruction createCast(Type src_type, Type dest_type) {
-        if ((src_type instanceof BasicType)
-                && (dest_type instanceof BasicType)) {
+        if ((src_type instanceof BasicType) && (dest_type instanceof BasicType)) {
             byte dest = dest_type.getType();
             byte src = src_type.getType();
 
-            if (dest == Constants.T_LONG && (src == Constants.T_CHAR
-                    || src == Constants.T_BYTE || src == Constants.T_SHORT))
+            if (dest == Constants.T_LONG && (src == Constants.T_CHAR || src == Constants.T_BYTE
+                    || src == Constants.T_SHORT))
                 src = Constants.T_INT;
 
             String[] short_names = { "C", "F", "D", "B", "S", "I", "L" };
 
-            String name = "com.sun.org.apache.bcel.internal.generic."
-                    + short_names[src - Constants.T_CHAR] + "2"
-                    + short_names[dest - Constants.T_CHAR];
+            String name = "com.sun.org.apache.bcel.internal.generic." + short_names[src - Constants.T_CHAR]
+                    + "2" + short_names[dest - Constants.T_CHAR];
 
             Instruction i = null;
             try {
                 i = (Instruction) java.lang.Class.forName(name).newInstance();
             } catch (Exception e) {
-                throw new RuntimeException("Could not find instruction: "
-                        + name);
+                throw new RuntimeException("Could not find instruction: " + name);
             }
 
             return i;
-        } else if ((src_type instanceof ReferenceType)
-                && (dest_type instanceof ReferenceType)) {
+        } else if ((src_type instanceof ReferenceType) && (dest_type instanceof ReferenceType)) {
             if (dest_type instanceof ArrayType)
                 return new CHECKCAST(cp.addArrayClass((ArrayType) dest_type));
             else
-                return new CHECKCAST(cp.addClass(((ObjectType) dest_type)
-                        .getClassName()));
+                return new CHECKCAST(cp.addClass(((ObjectType) dest_type).getClassName()));
         } else
-            throw new RuntimeException("Can not cast " + src_type + " to "
-                    + dest_type);
+            throw new RuntimeException("Can not cast " + src_type + " to " + dest_type);
     }
 
     public GETFIELD createGetField(String class_name, String name, Type t) {
@@ -635,8 +601,7 @@ public class InstructionFactory implements InstructionConstants,
     }
 
     public GETSTATIC createGetStatic(String class_name, String name, Type t) {
-        return new GETSTATIC(cp.addFieldref(class_name, name, t
-                .getSignature()));
+        return new GETSTATIC(cp.addFieldref(class_name, name, t.getSignature()));
     }
 
     public PUTFIELD createPutField(String class_name, String name, Type t) {
@@ -644,8 +609,7 @@ public class InstructionFactory implements InstructionConstants,
     }
 
     public PUTSTATIC createPutStatic(String class_name, String name, Type t) {
-        return new PUTSTATIC(cp.addFieldref(class_name, name, t
-                .getSignature()));
+        return new PUTSTATIC(cp.addFieldref(class_name, name, t.getSignature()));
     }
 
     public CHECKCAST createCheckCast(ReferenceType t) {
@@ -728,8 +692,7 @@ public class InstructionFactory implements InstructionConstants,
      * Create branch instruction by given opcode, except LOOKUPSWITCH and
      * TABLESWITCH. For those you should use the SWITCH compound instruction.
      */
-    public static BranchInstruction createBranchInstruction(short opcode,
-            InstructionHandle target) {
+    public static BranchInstruction createBranchInstruction(short opcode, InstructionHandle target) {
         switch (opcode) {
             case Constants.IFEQ:
                 return new IFEQ(target);

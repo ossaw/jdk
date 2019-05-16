@@ -36,7 +36,7 @@ public interface DocumentListener extends EventListener {
      * given by the DocumentEvent bounds the freshly inserted region.
      *
      * @param e
-     *          the document event
+     *        the document event
      */
     public void insertUpdate(DocumentEvent e);
 
@@ -46,7 +46,7 @@ public interface DocumentListener extends EventListener {
      * updating sticky positions).
      *
      * @param e
-     *          the document event
+     *        the document event
      */
     public void removeUpdate(DocumentEvent e);
 
@@ -54,7 +54,7 @@ public interface DocumentListener extends EventListener {
      * Gives notification that an attribute or set of attributes changed.
      *
      * @param e
-     *          the document event
+     *        the document event
      */
     public void changedUpdate(DocumentEvent e);
 }

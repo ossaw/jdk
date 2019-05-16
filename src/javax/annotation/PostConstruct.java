@@ -55,5 +55,4 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Documented
 @Retention(RUNTIME)
 @Target(METHOD)
-public @interface PostConstruct {
-}
+public @interface PostConstruct {}

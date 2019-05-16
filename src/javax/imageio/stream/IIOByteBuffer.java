@@ -11,13 +11,11 @@ package javax.imageio.stream;
  * <code>ImageInputStream</code> to supply a sequence of bytes to the caller,
  * possibly with fewer copies than using the conventional <code>read</code>
  * methods that take a user-supplied byte array.
- *
  * <p>
  * The byte array referenced by an <code>IIOByteBuffer</code> will generally be
  * part of an internal data structure belonging to an <code>ImageReader</code>
  * implementation; its contents should be considered read-only and must not be
  * modified.
- *
  */
 public class IIOByteBuffer {
 
@@ -32,12 +30,12 @@ public class IIOByteBuffer {
      * array, offset, and length.
      *
      * @param data
-     *               a byte array.
+     *        a byte array.
      * @param offset
-     *               an int offset within the array.
+     *        an int offset within the array.
      * @param length
-     *               an int specifying the length of the data of interest within
-     *               byte array, in bytes.
+     *        an int specifying the length of the data of interest within
+     *        byte array, in bytes.
      */
     public IIOByteBuffer(byte[] data, int offset, int length) {
         this.data = data;
@@ -51,7 +49,6 @@ public class IIOByteBuffer {
      * <code>getOffset</code> and <code>getLength</code> should be used.
      *
      * @return a byte array reference.
-     *
      * @see #getOffset
      * @see #getLength
      * @see #setData
@@ -65,8 +62,7 @@ public class IIOByteBuffer {
      * the <code>getData</code> method.
      *
      * @param data
-     *             a byte array reference containing the new data value.
-     *
+     *        a byte array reference containing the new data value.
      * @see #getData
      */
     public void setData(byte[] data) {
@@ -78,7 +74,6 @@ public class IIOByteBuffer {
      * at which the data of interest start.
      *
      * @return an int offset.
-     *
      * @see #getData
      * @see #getLength
      * @see #setOffset
@@ -92,8 +87,7 @@ public class IIOByteBuffer {
      * <code>getOffset</code> method.
      *
      * @param offset
-     *               an int containing the new offset value.
-     *
+     *        an int containing the new offset value.
      * @see #getOffset
      */
     public void setOffset(int offset) {
@@ -105,7 +99,6 @@ public class IIOByteBuffer {
      * by <code>getData</code>.
      *
      * @return an int length.
-     *
      * @see #getData
      * @see #getOffset
      * @see #setLength
@@ -119,8 +112,7 @@ public class IIOByteBuffer {
      * <code>getLength</code> method.
      *
      * @param length
-     *               an int containing the new length value.
-     *
+     *        an int containing the new length value.
      * @see #getLength
      */
     public void setLength(int length) {

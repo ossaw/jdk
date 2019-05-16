@@ -54,8 +54,7 @@ public class TrAXFilter extends XMLFilterImpl {
     private TransformerHandlerImpl _transformerHandler;
     private boolean _useServicesMechanism = true;
 
-    public TrAXFilter(Templates templates)
-            throws TransformerConfigurationException {
+    public TrAXFilter(Templates templates) throws TransformerConfigurationException {
         _templates = templates;
         _transformer = (TransformerImpl) templates.newTransformer();
         _transformerHandler = new TransformerHandlerImpl(_transformer);
@@ -74,10 +73,8 @@ public class TrAXFilter extends XMLFilterImpl {
 
             if (_transformer.isSecureProcessing()) {
                 try {
-                    pfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
-                            true);
-                } catch (SAXException e) {
-                }
+                    pfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+                } catch (SAXException e) {}
             }
 
             SAXParser saxparser = pfactory.newSAXParser();
@@ -102,8 +99,7 @@ public class TrAXFilter extends XMLFilterImpl {
         try {
             if (getParent() == null) {
                 try {
-                    managedReader = XMLReaderManager.getInstance(
-                            _useServicesMechanism).getXMLReader();
+                    managedReader = XMLReaderManager.getInstance(_useServicesMechanism).getXMLReader();
                     setParent(managedReader);
                 } catch (SAXException e) {
                     throw new SAXException(e.toString());
@@ -114,8 +110,7 @@ public class TrAXFilter extends XMLFilterImpl {
             getParent().parse(input);
         } finally {
             if (managedReader != null) {
-                XMLReaderManager.getInstance(_useServicesMechanism)
-                        .releaseXMLReader(managedReader);
+                XMLReaderManager.getInstance(_useServicesMechanism).releaseXMLReader(managedReader);
             }
         }
     }

@@ -14,8 +14,7 @@ public final class ServerLocation implements org.omg.CORBA.portable.IDLEntity {
 
     public ServerLocation() {} // ctor
 
-    public ServerLocation(String _hostname,
-            com.sun.corba.se.spi.activation.ORBPortInfo[] _ports) {
+    public ServerLocation(String _hostname, com.sun.corba.se.spi.activation.ORBPortInfo[] _ports) {
         hostname = _hostname;
         ports = _ports;
     } // ctor

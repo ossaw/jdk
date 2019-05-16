@@ -40,7 +40,6 @@ import sun.reflect.misc.ReflectUtil;
  * @param <M>
  *        the representation of methods for this kind of MBean: Method for
  *        Standard MBeans, ConvertingMethod for MXBeans.
- *
  * @since 1.6
  */
 /*
@@ -52,8 +51,7 @@ import sun.reflect.misc.ReflectUtil;
  * interface.
  */
 abstract class MBeanIntrospector<M> {
-    static final class PerInterfaceMap<M> extends
-            WeakHashMap<Class<?>, WeakReference<PerInterface<M>>> {}
+    static final class PerInterfaceMap<M> extends WeakHashMap<Class<?>, WeakReference<PerInterface<M>>> {}
 
     /** The map from interface to PerInterface for this type of MBean. */
     abstract PerInterfaceMap<M> getPerInterfaceMap();
@@ -65,8 +63,7 @@ abstract class MBeanIntrospector<M> {
     abstract MBeanInfoMap getMBeanInfoMap();
 
     /** Make an interface analyzer for this type of MBean. */
-    abstract MBeanAnalyzer<M> getAnalyzer(Class<?> mbeanInterface)
-            throws NotCompliantMBeanException;
+    abstract MBeanAnalyzer<M> getAnalyzer(Class<?> mbeanInterface) throws NotCompliantMBeanException;
 
     /** True if MBeans with this kind of introspector are MXBeans. */
     abstract boolean isMXBean();
@@ -108,9 +105,9 @@ abstract class MBeanIntrospector<M> {
      * Invoke the method with the given target and arguments.
      *
      * @param cookie
-     *               Additional information about the target. For an MXBean,
-     *               this
-     *               is the MXBeanLookup associated with the MXBean.
+     *        Additional information about the target. For an MXBean,
+     *        this
+     *        is the MXBeanLookup associated with the MXBean.
      */
     /*
      * It would be cleaner if the type of the cookie were a type parameter to
@@ -118,29 +115,25 @@ abstract class MBeanIntrospector<M> {
      * propagation just to avoid a couple of casts.
      */
     abstract Object invokeM2(M m, Object target, Object[] args, Object cookie)
-            throws InvocationTargetException, IllegalAccessException,
-            MBeanException;
+            throws InvocationTargetException, IllegalAccessException, MBeanException;
 
     /**
      * Test whether the given value is valid for the given parameter of this M.
      */
-    abstract boolean validParameter(M m, Object value, int paramNo,
-            Object cookie);
+    abstract boolean validParameter(M m, Object value, int paramNo, Object cookie);
 
     /**
      * Construct an MBeanAttributeInfo for the given attribute based on the
      * given getter and setter. One but not both of the getter and setter may be
      * null.
      */
-    abstract MBeanAttributeInfo getMBeanAttributeInfo(String attributeName,
-            M getter, M setter);
+    abstract MBeanAttributeInfo getMBeanAttributeInfo(String attributeName, M getter, M setter);
 
     /**
      * Construct an MBeanOperationInfo for the given operation based on the M it
      * was derived from.
      */
-    abstract MBeanOperationInfo getMBeanOperationInfo(String operationName,
-            M operation);
+    abstract MBeanOperationInfo getMBeanOperationInfo(String operationName, M operation);
 
     /**
      * Get a Descriptor containing fields that MBeans of this kind will always
@@ -163,8 +156,7 @@ abstract class MBeanIntrospector<M> {
         return Arrays.asList(mbeanType.getMethods());
     }
 
-    final PerInterface<M> getPerInterface(Class<?> mbeanInterface)
-            throws NotCompliantMBeanException {
+    final PerInterface<M> getPerInterface(Class<?> mbeanInterface) throws NotCompliantMBeanException {
         PerInterfaceMap<M> map = getPerInterfaceMap();
         synchronized (map) {
             WeakReference<PerInterface<M>> wr = map.get(mbeanInterface);
@@ -172,10 +164,8 @@ abstract class MBeanIntrospector<M> {
             if (pi == null) {
                 try {
                     MBeanAnalyzer<M> analyzer = getAnalyzer(mbeanInterface);
-                    MBeanInfo mbeanInfo = makeInterfaceMBeanInfo(mbeanInterface,
-                            analyzer);
-                    pi = new PerInterface<M>(mbeanInterface, this, analyzer,
-                            mbeanInfo);
+                    MBeanInfo mbeanInfo = makeInterfaceMBeanInfo(mbeanInterface, analyzer);
+                    pi = new PerInterface<M>(mbeanInterface, this, analyzer, mbeanInfo);
                     wr = new WeakReference<PerInterface<M>>(pi);
                     map.put(mbeanInterface, wr);
                 } catch (Exception x) {
@@ -193,8 +183,7 @@ abstract class MBeanIntrospector<M> {
      * and MBeanOperationInfo[] can be inserted into such an MBeanInfo, and its
      * Descriptor can be the basis for the MBeanInfo's Descriptor.
      */
-    private MBeanInfo makeInterfaceMBeanInfo(Class<?> mbeanInterface,
-            MBeanAnalyzer<M> analyzer) {
+    private MBeanInfo makeInterfaceMBeanInfo(Class<?> mbeanInterface, MBeanAnalyzer<M> analyzer) {
         final MBeanInfoMaker maker = new MBeanInfoMaker();
         analyzer.visit(maker);
         final String description = "Information on the management interface of the MBean";
@@ -203,16 +192,16 @@ abstract class MBeanIntrospector<M> {
 
     /** True if the given getter and setter are consistent. */
     final boolean consistent(M getter, M setter) {
-        return (getter == null || setter == null || getGenericReturnType(getter)
-                .equals(getGenericParameterTypes(setter)[0]));
+        return (getter == null || setter == null || getGenericReturnType(getter).equals(
+                getGenericParameterTypes(setter)[0]));
     }
 
     /**
      * Invoke the given M on the given target with the given args and cookie.
      * Wrap exceptions appropriately.
      */
-    final Object invokeM(M m, Object target, Object[] args, Object cookie)
-            throws MBeanException, ReflectionException {
+    final Object invokeM(M m, Object target, Object[] args, Object cookie) throws MBeanException,
+            ReflectionException {
         try {
             return invokeM2(m, target, args, cookie);
         } catch (InvocationTargetException e) {
@@ -240,9 +229,8 @@ abstract class MBeanIntrospector<M> {
      * before any user method is ever called (either in reflection or in
      * OpenConverter).
      */
-    final void invokeSetter(String name, M setter, Object target, Object arg,
-            Object cookie) throws MBeanException, ReflectionException,
-            InvalidAttributeValueException {
+    final void invokeSetter(String name, M setter, Object target, Object arg, Object cookie)
+            throws MBeanException, ReflectionException, InvalidAttributeValueException {
         try {
             invokeM2(setter, target, new Object[] { arg }, cookie);
         } catch (IllegalAccessException e) {
@@ -256,11 +244,10 @@ abstract class MBeanIntrospector<M> {
         }
     }
 
-    private void maybeInvalidParameter(String name, M setter, Object arg,
-            Object cookie) throws InvalidAttributeValueException {
+    private void maybeInvalidParameter(String name, M setter, Object arg, Object cookie)
+            throws InvalidAttributeValueException {
         if (!validParameter(setter, arg, 0, cookie)) {
-            final String msg = "Invalid value for attribute " + name + ": "
-                    + arg;
+            final String msg = "Invalid value for attribute " + name + ": " + arg;
             throw new InvalidAttributeValueException(msg);
         }
     }
@@ -279,31 +266,27 @@ abstract class MBeanIntrospector<M> {
         }
     }
 
-    private static void unwrapInvocationTargetException(
-            InvocationTargetException e) throws MBeanException {
+    private static void unwrapInvocationTargetException(InvocationTargetException e) throws MBeanException {
         Throwable t = e.getCause();
         if (t instanceof RuntimeException)
             throw (RuntimeException) t;
         else if (t instanceof Error)
             throw (Error) t;
         else
-            throw new MBeanException((Exception) t, (t == null ? null
-                    : t.toString()));
+            throw new MBeanException((Exception) t, (t == null ? null : t.toString()));
     }
 
     /** A visitor that constructs the per-interface MBeanInfo. */
     private class MBeanInfoMaker implements MBeanAnalyzer.MBeanVisitor<M> {
 
         public void visitAttribute(String attributeName, M getter, M setter) {
-            MBeanAttributeInfo mbai = getMBeanAttributeInfo(attributeName,
-                    getter, setter);
+            MBeanAttributeInfo mbai = getMBeanAttributeInfo(attributeName, getter, setter);
 
             attrs.add(mbai);
         }
 
         public void visitOperation(String operationName, M operation) {
-            MBeanOperationInfo mboi = getMBeanOperationInfo(operationName,
-                    operation);
+            MBeanOperationInfo mboi = getMBeanOperationInfo(operationName, operation);
 
             ops.add(mboi);
         }
@@ -313,22 +296,17 @@ abstract class MBeanIntrospector<M> {
          * interface.
          */
         MBeanInfo makeMBeanInfo(Class<?> mbeanInterface, String description) {
-            final MBeanAttributeInfo[] attrArray = attrs.toArray(
-                    new MBeanAttributeInfo[0]);
-            final MBeanOperationInfo[] opArray = ops.toArray(
-                    new MBeanOperationInfo[0]);
-            final String interfaceClassName = "interfaceClassName="
-                    + mbeanInterface.getName();
-            final Descriptor classNameDescriptor = new ImmutableDescriptor(
-                    interfaceClassName);
+            final MBeanAttributeInfo[] attrArray = attrs.toArray(new MBeanAttributeInfo[0]);
+            final MBeanOperationInfo[] opArray = ops.toArray(new MBeanOperationInfo[0]);
+            final String interfaceClassName = "interfaceClassName=" + mbeanInterface.getName();
+            final Descriptor classNameDescriptor = new ImmutableDescriptor(interfaceClassName);
             final Descriptor mbeanDescriptor = getBasicMBeanDescriptor();
-            final Descriptor annotatedDescriptor = Introspector
-                    .descriptorForElement(mbeanInterface);
-            final Descriptor descriptor = DescriptorCache.getInstance().union(
-                    classNameDescriptor, mbeanDescriptor, annotatedDescriptor);
+            final Descriptor annotatedDescriptor = Introspector.descriptorForElement(mbeanInterface);
+            final Descriptor descriptor = DescriptorCache.getInstance().union(classNameDescriptor,
+                    mbeanDescriptor, annotatedDescriptor);
 
-            return new MBeanInfo(mbeanInterface.getName(), description,
-                    attrArray, null, opArray, null, descriptor);
+            return new MBeanInfo(mbeanInterface.getName(), description, attrArray, null, opArray, null,
+                    descriptor);
         }
 
         private final List<MBeanAttributeInfo> attrs = newList();
@@ -346,23 +324,20 @@ abstract class MBeanIntrospector<M> {
      * for each interface that base class might specify giving the MBeanInfo
      * constructed for that base class and interface.
      */
-    static class MBeanInfoMap extends
-            WeakHashMap<Class<?>, WeakHashMap<Class<?>, MBeanInfo>> {}
+    static class MBeanInfoMap extends WeakHashMap<Class<?>, WeakHashMap<Class<?>, MBeanInfo>> {}
 
     /**
      * Return the MBeanInfo for the given resource, based on the given
      * per-interface data.
      */
-    final MBeanInfo getMBeanInfo(Object resource,
-            PerInterface<M> perInterface) {
+    final MBeanInfo getMBeanInfo(Object resource, PerInterface<M> perInterface) {
         MBeanInfo mbi = getClassMBeanInfo(resource.getClass(), perInterface);
         MBeanNotificationInfo[] notifs = findNotifications(resource);
         if (notifs == null || notifs.length == 0)
             return mbi;
         else {
-            return new MBeanInfo(mbi.getClassName(), mbi.getDescription(), mbi
-                    .getAttributes(), mbi.getConstructors(), mbi
-                            .getOperations(), notifs, mbi.getDescriptor());
+            return new MBeanInfo(mbi.getClassName(), mbi.getDescription(), mbi.getAttributes(), mbi
+                    .getConstructors(), mbi.getOperations(), notifs, mbi.getDescriptor());
         }
     }
 
@@ -373,8 +348,7 @@ abstract class MBeanIntrospector<M> {
      * then each instance gets to decide what MBeanNotificationInfo[] to put in
      * its own MBeanInfo.
      */
-    final MBeanInfo getClassMBeanInfo(Class<?> resourceClass,
-            PerInterface<M> perInterface) {
+    final MBeanInfo getClassMBeanInfo(Class<?> resourceClass, PerInterface<M> perInterface) {
         MBeanInfoMap map = getMBeanInfoMap();
         synchronized (map) {
             WeakHashMap<Class<?>, MBeanInfo> intfMap = map.get(resourceClass);
@@ -386,12 +360,11 @@ abstract class MBeanIntrospector<M> {
             MBeanInfo mbi = intfMap.get(intfClass);
             if (mbi == null) {
                 MBeanInfo imbi = perInterface.getMBeanInfo();
-                Descriptor descriptor = ImmutableDescriptor.union(imbi
-                        .getDescriptor(), getMBeanDescriptor(resourceClass));
-                mbi = new MBeanInfo(resourceClass.getName(), imbi
-                        .getDescription(), imbi.getAttributes(),
-                        findConstructors(resourceClass), imbi.getOperations(),
-                        (MBeanNotificationInfo[]) null, descriptor);
+                Descriptor descriptor = ImmutableDescriptor.union(imbi.getDescriptor(), getMBeanDescriptor(
+                        resourceClass));
+                mbi = new MBeanInfo(resourceClass.getName(), imbi.getDescription(), imbi.getAttributes(),
+                        findConstructors(resourceClass), imbi.getOperations(), (MBeanNotificationInfo[]) null,
+                        descriptor);
                 intfMap.put(intfClass, mbi);
             }
             return mbi;
@@ -401,8 +374,7 @@ abstract class MBeanIntrospector<M> {
     static MBeanNotificationInfo[] findNotifications(Object moi) {
         if (!(moi instanceof NotificationBroadcaster))
             return null;
-        MBeanNotificationInfo[] mbn = ((NotificationBroadcaster) moi)
-                .getNotificationInfo();
+        MBeanNotificationInfo[] mbn = ((NotificationBroadcaster) moi).getNotificationInfo();
         if (mbn == null)
             return null;
         MBeanNotificationInfo[] result = new MBeanNotificationInfo[mbn.length];

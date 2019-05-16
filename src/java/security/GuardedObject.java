@@ -8,7 +8,6 @@ package java.security;
 /**
  * A GuardedObject is an object that is used to protect access to another
  * object.
- *
  * <p>
  * A GuardedObject encapsulates a target object and a Guard object, such that
  * access to the target object is possible only if the Guard object allows it.
@@ -19,7 +18,6 @@ package java.security;
  *
  * @see Guard
  * @see Permission
- *
  * @author Roland Schemers
  * @author Li Gong
  */
@@ -37,10 +35,9 @@ public class GuardedObject implements java.io.Serializable {
      * access the object.
      *
      * @param object
-     *               the object to be guarded.
-     *
+     *        the object to be guarded.
      * @param guard
-     *               the Guard object that guards access to the object.
+     *        the Guard object that guards access to the object.
      */
 
     public GuardedObject(Object object, Guard guard) {
@@ -53,9 +50,8 @@ public class GuardedObject implements java.io.Serializable {
      * guarded object is denied by the guard.
      *
      * @return the guarded object.
-     *
      * @exception SecurityException
-     *                              if access to the guarded object is denied.
+     *            if access to the guarded object is denied.
      */
     public Object getObject() throws SecurityException {
         if (guard != null)
@@ -68,8 +64,7 @@ public class GuardedObject implements java.io.Serializable {
      * Writes this object out to a stream (i.e., serializes it). We check the
      * guard if there is one.
      */
-    private void writeObject(java.io.ObjectOutputStream oos)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream oos) throws java.io.IOException {
         if (guard != null)
             guard.checkGuard(object);
 

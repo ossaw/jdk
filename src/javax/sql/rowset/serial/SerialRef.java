@@ -16,13 +16,10 @@ import java.util.*;
  * The <code>SerialRef</code> class provides a constructor for creating a
  * <code>SerialRef</code> instance from a <code>Ref</code> object and provides
  * methods for getting and setting the <code>Ref</code> object.
- *
  * <h3>Thread safety</h3>
- *
  * A SerialRef is not safe for use by multiple concurrent threads. If a
  * SerialRef is to be used by more than one thread then access to the SerialRef
  * should be controlled by appropriate synchronization.
- *
  */
 public class SerialRef implements Ref, Serializable, Cloneable {
 
@@ -48,21 +45,20 @@ public class SerialRef implements Ref, Serializable, Cloneable {
      * <code>Ref</code> object.
      *
      * @param ref
-     *            a Ref object; cannot be <code>null</code>
+     *        a Ref object; cannot be <code>null</code>
      * @throws SQLException
-     *                         if a database access occurs; if <code>ref</code>
-     *                         is
-     *                         <code>null</code>; or if the <code>Ref</code>
-     *                         object returns
-     *                         a <code>null</code> value base type name.
+     *         if a database access occurs; if <code>ref</code>
+     *         is
+     *         <code>null</code>; or if the <code>Ref</code>
+     *         object returns
+     *         a <code>null</code> value base type name.
      * @throws SerialException
-     *                         if an error occurs serializing the
-     *                         <code>Ref</code> object
+     *         if an error occurs serializing the
+     *         <code>Ref</code> object
      */
     public SerialRef(Ref ref) throws SerialException, SQLException {
         if (ref == null) {
-            throw new SQLException("Cannot instantiate a SerialRef object "
-                    + "with a null Ref object");
+            throw new SQLException("Cannot instantiate a SerialRef object " + "with a null Ref object");
         }
         reference = ref;
         object = ref;
@@ -79,7 +75,7 @@ public class SerialRef implements Ref, Serializable, Cloneable {
      *
      * @return a string of the base type name of the Ref
      * @throws SerialException
-     *                         in no Ref object has been set
+     *         in no Ref object has been set
      */
     public String getBaseTypeName() throws SerialException {
         return baseTypeName;
@@ -91,20 +87,19 @@ public class SerialRef implements Ref, Serializable, Cloneable {
      * structured type are mapped according to the given type map.
      *
      * @param map
-     *            a <code>java.util.Map</code> object containing zero or more
-     *            entries, with each entry consisting of 1) a
-     *            <code>String</code> giving the fully qualified name of a UDT
-     *            and 2) the <code>Class</code> object for the
-     *            <code>SQLData</code> implementation that defines how the UDT
-     *            is to be mapped
+     *        a <code>java.util.Map</code> object containing zero or more
+     *        entries, with each entry consisting of 1) a
+     *        <code>String</code> giving the fully qualified name of a UDT
+     *        and 2) the <code>Class</code> object for the
+     *        <code>SQLData</code> implementation that defines how the UDT
+     *        is to be mapped
      * @return an object instance resolved from the Ref reference and mapped
      *         according to the supplied type map
      * @throws SerialException
-     *                         if an error is encountered in the reference
-     *                         resolution
+     *         if an error is encountered in the reference
+     *         resolution
      */
-    public Object getObject(java.util.Map<String, Class<?>> map)
-            throws SerialException {
+    public Object getObject(java.util.Map<String, Class<?>> map) throws SerialException {
         map = new Hashtable<String, Class<?>>(map);
         if (object != null) {
             return map.get(object);
@@ -119,8 +114,8 @@ public class SerialRef implements Ref, Serializable, Cloneable {
      *
      * @return an object instance resolved from the Ref reference
      * @throws SerialException
-     *                         if an error is encountered in the reference
-     *                         resolution
+     *         if an error is encountered in the reference
+     *         resolution
      */
     public Object getObject() throws SerialException {
 
@@ -145,12 +140,12 @@ public class SerialRef implements Ref, Serializable, Cloneable {
      * references to the given <code>Object</code> object.
      *
      * @param obj
-     *            an <code>Object</code> representing the SQL structured type to
-     *            be referenced
+     *        an <code>Object</code> representing the SQL structured type to
+     *        be referenced
      * @throws SerialException
-     *                         if an error is encountered generating the the
-     *                         structured type
-     *                         referenced by this <code>SerialRef</code> object
+     *         if an error is encountered generating the the
+     *         structured type
+     *         referenced by this <code>SerialRef</code> object
      */
     public void setObject(Object obj) throws SerialException {
         try {
@@ -167,11 +162,9 @@ public class SerialRef implements Ref, Serializable, Cloneable {
      * SerialRef} object that represents the same object as this object.
      *
      * @param obj
-     *            The object to compare this {@code SerialRef} against
-     *
+     *        The object to compare this {@code SerialRef} against
      * @return {@code true} if the given object represents a {@code SerialRef}
      *         equivalent to this SerialRef, {@code false} otherwise
-     *
      */
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -179,8 +172,7 @@ public class SerialRef implements Ref, Serializable, Cloneable {
         }
         if (obj instanceof SerialRef) {
             SerialRef ref = (SerialRef) obj;
-            return baseTypeName.equals(ref.baseTypeName) && object.equals(
-                    ref.object);
+            return baseTypeName.equals(ref.baseTypeName) && object.equals(ref.object);
         }
         return false;
     }
@@ -215,8 +207,7 @@ public class SerialRef implements Ref, Serializable, Cloneable {
     /**
      * readObject is called to restore the state of the SerialRef from a stream.
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         ObjectInputStream.GetField fields = s.readFields();
         object = fields.get("object", null);
         baseTypeName = (String) fields.get("baseTypeName", null);
@@ -226,16 +217,14 @@ public class SerialRef implements Ref, Serializable, Cloneable {
     /**
      * writeObject is called to save the state of the SerialRef to a stream.
      */
-    private void writeObject(ObjectOutputStream s) throws IOException,
-            ClassNotFoundException {
+    private void writeObject(ObjectOutputStream s) throws IOException, ClassNotFoundException {
 
         ObjectOutputStream.PutField fields = s.putFields();
         fields.put("baseTypeName", baseTypeName);
         fields.put("object", object);
         // Note: this check to see if it is an instance of Serializable
         // is for backwards compatibiity
-        fields.put("reference", reference instanceof Serializable ? reference
-                : null);
+        fields.put("reference", reference instanceof Serializable ? reference : null);
         s.writeFields();
     }
 

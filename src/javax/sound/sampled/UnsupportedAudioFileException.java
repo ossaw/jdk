@@ -36,7 +36,7 @@ public class UnsupportedAudioFileException extends Exception {
      * specified detail message.
      *
      * @param message
-     *                a string containing the error detail message
+     *        a string containing the error detail message
      */
     public UnsupportedAudioFileException(String message) {
 

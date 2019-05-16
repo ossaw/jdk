@@ -34,13 +34,13 @@ public interface CompositeContext {
      * createContext} method of the <code>Composite</code> interface.
      * 
      * @param src
-     *               the first source for the compositing operation
+     *        the first source for the compositing operation
      * @param dstIn
-     *               the second source for the compositing operation
+     *        the second source for the compositing operation
      * @param dstOut
-     *               the <code>WritableRaster</code> into which the result of
-     *               the
-     *               operation is stored
+     *        the <code>WritableRaster</code> into which the result of
+     *        the
+     *        operation is stored
      * @see Composite
      */
     public void compose(Raster src, Raster dstIn, WritableRaster dstOut);

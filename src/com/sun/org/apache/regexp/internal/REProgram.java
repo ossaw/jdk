@@ -26,7 +26,6 @@ import java.io.Serializable;
  *
  * @see RE
  * @see RECompiler
- *
  * @author <a href="mailto:jonl@muppetlabs.com">Jonathan Locke</a>
  */
 public class REProgram implements Serializable {
@@ -42,7 +41,7 @@ public class REProgram implements Serializable {
      * Constructs a program object from a character array
      * 
      * @param instruction
-     *                    Character array with RE opcode instructions in it
+     *        Character array with RE opcode instructions in it
      */
     public REProgram(char[] instruction) {
         this(instruction, instruction.length);
@@ -52,9 +51,9 @@ public class REProgram implements Serializable {
      * Constructs a program object from a character array
      * 
      * @param parens
-     *                    Count of parens in the program
+     *        Count of parens in the program
      * @param instruction
-     *                    Character array with RE opcode instructions in it
+     *        Character array with RE opcode instructions in it
      */
     public REProgram(int parens, char[] instruction) {
         this(instruction, instruction.length);
@@ -65,9 +64,9 @@ public class REProgram implements Serializable {
      * Constructs a program object from a character array
      * 
      * @param instruction
-     *                       Character array with RE opcode instructions in it
+     *        Character array with RE opcode instructions in it
      * @param lenInstruction
-     *                       Amount of instruction array in use
+     *        Amount of instruction array in use
      */
     public REProgram(char[] instruction, int lenInstruction) {
         setInstructions(instruction, lenInstruction);
@@ -100,9 +99,9 @@ public class REProgram implements Serializable {
      * be skipped without running the actual program.
      * 
      * @param instruction
-     *                       Program instruction buffer
+     *        Program instruction buffer
      * @param lenInstruction
-     *                       Length of instruction buffer in use
+     *        Length of instruction buffer in use
      */
     public void setInstructions(char[] instruction, int lenInstruction) {
         // Save reference to instruction array
@@ -116,22 +115,18 @@ public class REProgram implements Serializable {
         // Try various compile-time optimizations if there's a program
         if (instruction != null && lenInstruction != 0) {
             // If the first node is a branch
-            if (lenInstruction >= RE.nodeSize && instruction[0
-                    + RE.offsetOpcode] == RE.OP_BRANCH) {
+            if (lenInstruction >= RE.nodeSize && instruction[0 + RE.offsetOpcode] == RE.OP_BRANCH) {
                 // to the end node
                 int next = instruction[0 + RE.offsetNext];
                 if (instruction[next + RE.offsetOpcode] == RE.OP_END) {
                     // and the branch starts with an atom
-                    if (lenInstruction >= (RE.nodeSize * 2)
-                            && instruction[RE.nodeSize
-                                    + RE.offsetOpcode] == RE.OP_ATOM) {
+                    if (lenInstruction >= (RE.nodeSize * 2) && instruction[RE.nodeSize
+                            + RE.offsetOpcode] == RE.OP_ATOM) {
                         // then get that atom as an prefix because there's no
                         // other choice
-                        int lenAtom = instruction[RE.nodeSize
-                                + RE.offsetOpdata];
+                        int lenAtom = instruction[RE.nodeSize + RE.offsetOpdata];
                         prefix = new char[lenAtom];
-                        System.arraycopy(instruction, RE.nodeSize * 2, prefix,
-                                0, lenAtom);
+                        System.arraycopy(instruction, RE.nodeSize * 2, prefix, 0, lenAtom);
                     }
                 }
             }

@@ -28,7 +28,7 @@ public class UnsatisfiedLinkError extends LinkageError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public UnsatisfiedLinkError(String s) {
         super(s);

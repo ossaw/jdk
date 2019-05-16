@@ -51,8 +51,7 @@ public class ConsoleHandler extends StreamHandler {
 
         setLevel(manager.getLevelProperty(cname + ".level", Level.INFO));
         setFilter(manager.getFilterProperty(cname + ".filter", null));
-        setFormatter(manager.getFormatterProperty(cname + ".formatter",
-                new SimpleFormatter()));
+        setFormatter(manager.getFormatterProperty(cname + ".formatter", new SimpleFormatter()));
         try {
             setEncoding(manager.getStringProperty(cname + ".encoding", null));
         } catch (Exception ex) {
@@ -70,7 +69,6 @@ public class ConsoleHandler extends StreamHandler {
      * <p>
      * The <tt>ConsoleHandler</tt> is configured based on <tt>LogManager</tt>
      * properties (or their default values).
-     *
      */
     public ConsoleHandler() {
         sealed = false;
@@ -87,8 +85,8 @@ public class ConsoleHandler extends StreamHandler {
      * <p>
      * 
      * @param record
-     *               description of the log event. A null record is silently
-     *               ignored and is not published
+     *        description of the log event. A null record is silently
+     *        ignored and is not published
      */
     @Override
     public void publish(LogRecord record) {

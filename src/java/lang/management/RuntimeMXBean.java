@@ -7,7 +7,6 @@ package java.lang.management;
 
 /**
  * The management interface for the runtime system of the Java virtual machine.
- *
  * <p>
  * A Java virtual machine has a single instance of the implementation class of
  * this interface. This instance implementing this interface is an
@@ -15,16 +14,13 @@ package java.lang.management;
  * calling the {@link ManagementFactory#getRuntimeMXBean} method or from the
  * {@link ManagementFactory#getPlatformMBeanServer platform <tt>MBeanServer</tt>
  * } method.
- *
  * <p>
  * The <tt>ObjectName</tt> for uniquely identifying the MXBean for the runtime
  * system within an MBeanServer is:
  * <blockquote> {@link ManagementFactory#RUNTIME_MXBEAN_NAME
  * <tt>java.lang:type=Runtime</tt>} </blockquote>
- *
  * It can be obtained by calling the {@link PlatformManagedObject#getObjectName}
  * method.
- *
  * <p>
  * This interface defines several convenient methods for accessing system
  * properties about the Java virtual machine.
@@ -33,7 +29,6 @@ package java.lang.management;
  * @see <a href="../../../javax/management/package-summary.html"> JMX
  *      Specification.</a>
  * @see <a href="package-summary.html#examples"> Ways to Access MXBeans</a>
- *
  * @author Mandy Chung
  * @since 1.5
  */
@@ -55,7 +50,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * System.getProperty("java.vm.name")}.
      *
      * @return the Java virtual machine implementation name.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -71,7 +65,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * System.getProperty("java.vm.vendor")}.
      *
      * @return the Java virtual machine implementation vendor.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -87,7 +80,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * System.getProperty("java.vm.version")}.
      *
      * @return the Java virtual machine implementation version.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -103,7 +95,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * System.getProperty("java.vm.specification.name")}.
      *
      * @return the Java virtual machine specification name.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -119,7 +110,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * System.getProperty("java.vm.specification.vendor")}.
      *
      * @return the Java virtual machine specification vendor.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -135,7 +125,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * System.getProperty("java.vm.specification.version")}.
      *
      * @return the Java virtual machine specification version.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -158,13 +147,11 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * Returns the Java class path that is used by the system class loader to
      * search for class files. This method is equivalent to
      * {@link System#getProperty System.getProperty("java.class.path")}.
-     *
      * <p>
      * Multiple paths in the Java class path are separated by the path separator
      * character of the platform of the Java virtual machine being monitored.
      *
      * @return the Java class path.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -177,14 +164,12 @@ public interface RuntimeMXBean extends PlatformManagedObject {
     /**
      * Returns the Java library path. This method is equivalent to
      * {@link System#getProperty System.getProperty("java.library.path")}.
-     *
      * <p>
      * Multiple paths in the Java library path are separated by the path
      * separator character of the platform of the Java virtual machine being
      * monitored.
      *
      * @return the Java library path.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -206,11 +191,9 @@ public interface RuntimeMXBean extends PlatformManagedObject {
     /**
      * Returns the boot class path that is used by the bootstrap class loader to
      * search for class files.
-     *
      * <p>
      * Multiple paths in the boot class path are separated by the path separator
      * character of the platform on which the Java virtual machine is running.
-     *
      * <p>
      * A Java virtual machine implementation may not support the boot class path
      * mechanism for the bootstrap class loader to search for class files. The
@@ -218,10 +201,8 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * Java virtual machine supports this method.
      *
      * @return the boot class path.
-     *
      * @throws java.lang.UnsupportedOperationException
      *         if the Java virtual machine does not support this operation.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and the caller does not have
      *         ManagementPermission("monitor").
@@ -242,14 +223,12 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * Typically, not all command-line options to the 'java' command are passed
      * to the Java virtual machine. Thus, the returned input arguments may not
      * include all command-line options.
-     *
      * <p>
      * <b>MBeanServer access</b>:<br>
      * The mapped type of {@code List<String>} is <tt>String[]</tt>.
      *
      * @return a list of <tt>String</tt> objects; each element is an argument
      *         passed to the Java virtual machine.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and the caller does not have
      *         ManagementPermission("monitor").
@@ -269,7 +248,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * started.
      *
      * @return start time of the Java virtual machine in milliseconds.
-     *
      */
     public long getStartTime();
 
@@ -277,7 +255,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * Returns a map of names and values of all system properties. This method
      * calls {@link System#getProperties} to get all system properties.
      * Properties whose name or value is not a <tt>String</tt> are omitted.
-     *
      * <p>
      * <b>MBeanServer access</b>:<br>
      * The mapped type of {@code Map<String,String>} is
@@ -300,7 +277,6 @@ public interface RuntimeMXBean extends PlatformManagedObject {
      * </blockquote>
      *
      * @return a map of names and values of all system properties.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow

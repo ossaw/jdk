@@ -38,13 +38,11 @@ public class FuncNormalizeSpace extends FunctionDef1Arg {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         XMLString s1 = getArg0AsString(xctxt);
 
         return (XString) s1.fixWhiteSpace(true, true, false);
@@ -54,20 +52,15 @@ public class FuncNormalizeSpace extends FunctionDef1Arg {
      * Execute an expression in the XPath runtime context, and return the result
      * of the expression.
      *
-     *
      * @param xctxt
-     *              The XPath runtime context.
-     *
+     *        The XPath runtime context.
      * @return The result of the expression in the form of a
      *         <code>XObject</code>.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if a runtime exception occurs.
      */
-    public void executeCharsToContentHandler(XPathContext xctxt,
-            ContentHandler handler)
-            throws javax.xml.transform.TransformerException,
-            org.xml.sax.SAXException {
+    public void executeCharsToContentHandler(XPathContext xctxt, ContentHandler handler)
+            throws javax.xml.transform.TransformerException, org.xml.sax.SAXException {
         if (Arg0IsNodesetExpr()) {
             int node = getArg0AsNode(xctxt);
             if (DTM.NULL != node) {

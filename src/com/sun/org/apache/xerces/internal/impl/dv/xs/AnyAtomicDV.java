@@ -24,9 +24,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * Represent the schema type "anyAtomicType"
  *
  * @xerces.experimental
- *
  * @author Ankit Pasricha, IBM
- *
  */
 class AnyAtomicDV extends TypeValidator {
 

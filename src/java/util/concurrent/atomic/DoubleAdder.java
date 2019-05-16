@@ -21,12 +21,10 @@ import java.io.Serializable;
  * across threads is not guaranteed. Thus, this class may not be applicable if
  * numerical stability is required, especially when combining values of
  * substantially different orders of magnitude.
- *
  * <p>
  * This class is usually preferable to alternatives when multiple threads update
  * a common value that is used for purposes such as summary statistics that are
  * frequently updated but less frequently read.
- *
  * <p>
  * This class extends {@link Number}, but does <em>not</em> define methods such
  * as {@code equals}, {@code hashCode} and {@code
@@ -58,20 +56,18 @@ public class DoubleAdder extends Striped64 implements Serializable {
      * Adds the given value.
      *
      * @param x
-     *          the value to add
+     *        the value to add
      */
     public void add(double x) {
         Cell[] as;
         long b, v;
         int m;
         Cell a;
-        if ((as = cells) != null || !casBase(b = base, Double
-                .doubleToRawLongBits(Double.longBitsToDouble(b) + x))) {
+        if ((as = cells) != null || !casBase(b = base, Double.doubleToRawLongBits(Double.longBitsToDouble(b)
+                + x))) {
             boolean uncontended = true;
-            if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe()
-                    & m]) == null || !(uncontended = a.cas(v = a.value, Double
-                            .doubleToRawLongBits(Double.longBitsToDouble(v)
-                                    + x))))
+            if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe() & m]) == null || !(uncontended = a
+                    .cas(v = a.value, Double.doubleToRawLongBits(Double.longBitsToDouble(v) + x))))
                 doubleAccumulate(x, null, uncontended);
         }
     }
@@ -235,12 +231,11 @@ public class DoubleAdder extends Striped64 implements Serializable {
 
     /**
      * @param s
-     *          the stream
+     *        the stream
      * @throws java.io.InvalidObjectException
      *         always
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.InvalidObjectException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.InvalidObjectException {
         throw new java.io.InvalidObjectException("Proxy required");
     }
 

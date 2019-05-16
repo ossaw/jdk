@@ -14,7 +14,6 @@ import java.util.Date;
  * A URLConnection with support for HTTP-specific features. See
  * <A HREF="http://www.w3.org/pub/WWW/Protocols/"> the spec </A> for details.
  * <p>
- *
  * Each HttpURLConnection instance is used to make a single request but the
  * underlying network connection to the HTTP server may be transparently shared
  * by other instances. Calling the close() methods on the InputStream or
@@ -22,7 +21,6 @@ import java.util.Date;
  * resources associated with this instance but has no effect on any shared
  * persistent connection. Calling the disconnect() method may close the
  * underlying socket if a persistent connection is otherwise idle at that time.
- *
  * <P>
  * The HTTP protocol handler has a few settings that can be accessed through
  * System Properties. This covers
@@ -66,7 +64,6 @@ abstract public class HttpURLConnection extends URLConnection {
     /**
      * The fixed content-length when using fixed-length streaming mode. A value
      * of {@code -1} means fixed-length streaming mode is disabled for output.
-     *
      * <P>
      * <B>NOTE:</B> {@link #fixedContentLengthLong} is recommended instead of
      * this field, as it allows larger content lengths to be set.
@@ -91,7 +88,7 @@ abstract public class HttpURLConnection extends URLConnection {
      * line, but {@code getHeaderFieldKey(0)} returns null.
      *
      * @param n
-     *          an index, where {@code n >=0}.
+     *        an index, where {@code n >=0}.
      * @return the key for the {@code n}<sup>th</sup> header field, or
      *         {@code null} if the key does not exist.
      */
@@ -118,18 +115,15 @@ abstract public class HttpURLConnection extends URLConnection {
      * instead of this method as it allows larger content lengths to be set.
      *
      * @param contentLength
-     *                      The number of bytes which will be written to the
-     *                      OutputStream.
-     *
+     *        The number of bytes which will be written to the
+     *        OutputStream.
      * @throws IllegalStateException
-     *                                  if URLConnection is already connected or
-     *                                  if a different
-     *                                  streaming mode is already enabled.
-     *
+     *         if URLConnection is already connected or
+     *         if a different
+     *         streaming mode is already enabled.
      * @throws IllegalArgumentException
-     *                                  if a content length less than zero is
-     *                                  specified.
-     *
+     *         if a content length less than zero is
+     *         specified.
      * @see #setChunkedStreamingMode(int)
      * @since 1.5
      */
@@ -138,8 +132,7 @@ abstract public class HttpURLConnection extends URLConnection {
             throw new IllegalStateException("Already connected");
         }
         if (chunkLength != -1) {
-            throw new IllegalStateException(
-                    "Chunked encoding streaming mode set");
+            throw new IllegalStateException("Chunked encoding streaming mode set");
         }
         if (contentLength < 0) {
             throw new IllegalArgumentException("invalid content length");
@@ -150,38 +143,31 @@ abstract public class HttpURLConnection extends URLConnection {
     /**
      * This method is used to enable streaming of a HTTP request body without
      * internal buffering, when the content length is known in advance.
-     *
      * <P>
      * An exception will be thrown if the application attempts to write more
      * data than the indicated content-length, or if the application closes the
      * OutputStream before writing the indicated amount.
-     *
      * <P>
      * When output streaming is enabled, authentication and redirection cannot
      * be handled automatically. A {@linkplain HttpRetryException} will be
      * thrown when reading the response if authentication or redirection are
      * required. This exception can be queried for the details of the error.
-     *
      * <P>
      * This method must be called before the URLConnection is connected.
-     *
      * <P>
      * The content length set by invoking this method takes precedence over any
      * value set by {@link #setFixedLengthStreamingMode(int)}.
      *
      * @param contentLength
-     *                      The number of bytes which will be written to the
-     *                      OutputStream.
-     *
+     *        The number of bytes which will be written to the
+     *        OutputStream.
      * @throws IllegalStateException
-     *                                  if URLConnection is already connected or
-     *                                  if a different
-     *                                  streaming mode is already enabled.
-     *
+     *         if URLConnection is already connected or
+     *         if a different
+     *         streaming mode is already enabled.
      * @throws IllegalArgumentException
-     *                                  if a content length less than zero is
-     *                                  specified.
-     *
+     *         if a content length less than zero is
+     *         specified.
      * @since 1.7
      */
     public void setFixedLengthStreamingMode(long contentLength) {
@@ -189,8 +175,7 @@ abstract public class HttpURLConnection extends URLConnection {
             throw new IllegalStateException("Already connected");
         }
         if (chunkLength != -1) {
-            throw new IllegalStateException(
-                    "Chunked encoding streaming mode set");
+            throw new IllegalStateException("Chunked encoding streaming mode set");
         }
         if (contentLength < 0) {
             throw new IllegalArgumentException("invalid content length");
@@ -219,22 +204,19 @@ abstract public class HttpURLConnection extends URLConnection {
      * This method must be called before the URLConnection is connected.
      *
      * @param chunklen
-     *                 The number of bytes to write in each chunk. If chunklen
-     *                 is
-     *                 less than or equal to zero, a default value will be used.
-     *
+     *        The number of bytes to write in each chunk. If chunklen
+     *        is
+     *        less than or equal to zero, a default value will be used.
      * @throws IllegalStateException
-     *                               if URLConnection is already connected or if
-     *                               a different
-     *                               streaming mode is already enabled.
-     *
+     *         if URLConnection is already connected or if
+     *         a different
+     *         streaming mode is already enabled.
      * @see #setFixedLengthStreamingMode(int)
      * @since 1.5
      */
     public void setChunkedStreamingMode(int chunklen) {
         if (connected) {
-            throw new IllegalStateException(
-                    "Can't set streaming mode: already connected");
+            throw new IllegalStateException("Can't set streaming mode: already connected");
         }
         if (fixedContentLength != -1 || fixedContentLengthLong != -1) {
             throw new IllegalStateException("Fixed length streaming mode set");
@@ -252,7 +234,7 @@ abstract public class HttpURLConnection extends URLConnection {
      * message.
      *
      * @param n
-     *          an index, where {@code n>=0}.
+     *        an index, where {@code n>=0}.
      * @return the value of the {@code n}<sup>th</sup> header field, or
      *         {@code null} if the value does not exist.
      * @see java.net.HttpURLConnection#getHeaderFieldKey(int)
@@ -300,14 +282,13 @@ abstract public class HttpURLConnection extends URLConnection {
     protected boolean instanceFollowRedirects = followRedirects;
 
     /* valid HTTP methods */
-    private static final String[] methods = { "GET", "POST", "HEAD", "OPTIONS",
-            "PUT", "DELETE", "TRACE" };
+    private static final String[] methods = { "GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "TRACE" };
 
     /**
      * Constructor for the HttpURLConnection.
      * 
      * @param u
-     *          the URL
+     *        the URL
      */
     protected HttpURLConnection(URL u) {
         super(u);
@@ -323,13 +304,13 @@ abstract public class HttpURLConnection extends URLConnection {
      * allowed. This could result in a SecurityException.
      *
      * @param set
-     *            a {@code boolean} indicating whether or not to follow HTTP
-     *            redirects.
+     *        a {@code boolean} indicating whether or not to follow HTTP
+     *        redirects.
      * @exception SecurityException
-     *                              if a security manager exists and its
-     *                              {@code checkSetFactory} method doesn't allow
-     *                              the
-     *                              operation.
+     *            if a security manager exists and its
+     *            {@code checkSetFactory} method doesn't allow
+     *            the
+     *            operation.
      * @see SecurityManager#checkSetFactory
      * @see #getFollowRedirects()
      */
@@ -361,10 +342,9 @@ abstract public class HttpURLConnection extends URLConnection {
      * The default value comes from followRedirects, which defaults to true.
      *
      * @param followRedirects
-     *                        a {@code boolean} indicating whether or not to
-     *                        follow HTTP
-     *                        redirects.
-     *
+     *        a {@code boolean} indicating whether or not to
+     *        follow HTTP
+     *        redirects.
      * @see java.net.HttpURLConnection#instanceFollowRedirects
      * @see #getInstanceFollowRedirects
      * @since 1.3
@@ -401,22 +381,21 @@ abstract public class HttpURLConnection extends URLConnection {
      * are legal, subject to protocol restrictions. The default method is GET.
      *
      * @param method
-     *               the HTTP method
+     *        the HTTP method
      * @exception ProtocolException
-     *                              if the method cannot be reset or if the
-     *                              requested method
-     *                              isn't valid for HTTP.
+     *            if the method cannot be reset or if the
+     *            requested method
+     *            isn't valid for HTTP.
      * @exception SecurityException
-     *                              if a security manager is set and the method
-     *                              is "TRACE",
-     *                              but the "allowHttpTrace" NetPermission is
-     *                              not granted.
+     *            if a security manager is set and the method
+     *            is "TRACE",
+     *            but the "allowHttpTrace" NetPermission is
+     *            not granted.
      * @see #getRequestMethod()
      */
     public void setRequestMethod(String method) throws ProtocolException {
         if (connected) {
-            throw new ProtocolException(
-                    "Can't reset method: already connected");
+            throw new ProtocolException("Can't reset method: already connected");
         }
         // This restriction will prevent people from using this class to
         // experiment w/ new HTTP methods using java. But it should
@@ -461,7 +440,7 @@ abstract public class HttpURLConnection extends URLConnection {
      * discerned from the response (i.e., the response is not valid HTTP).
      * 
      * @throws IOException
-     *                     if an error occurred connecting to the server.
+     *         if an error occurred connecting to the server.
      * @return the HTTP Status-Code, or -1
      */
     public int getResponseCode() throws IOException {
@@ -519,11 +498,9 @@ abstract public class HttpURLConnection extends URLConnection {
                     phrasePos = statusLine.length();
 
                 try {
-                    responseCode = Integer.parseInt(statusLine.substring(codePos
-                            + 1, phrasePos));
+                    responseCode = Integer.parseInt(statusLine.substring(codePos + 1, phrasePos));
                     return responseCode;
-                } catch (NumberFormatException e) {
-                }
+                } catch (NumberFormatException e) {}
             }
         }
         return -1;
@@ -543,7 +520,7 @@ abstract public class HttpURLConnection extends URLConnection {
      * HTTP).
      * 
      * @throws IOException
-     *                     if an error occurred connecting to the server.
+     *         if an error occurred connecting to the server.
      * @return the HTTP response message, or {@code null}
      */
     public String getResponseMessage() throws IOException {
@@ -559,8 +536,7 @@ abstract public class HttpURLConnection extends URLConnection {
                 dateString = dateString + " GMT";
             }
             return Date.parse(dateString);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         return Default;
     }
 
@@ -583,8 +559,7 @@ abstract public class HttpURLConnection extends URLConnection {
      * necessary to connect to the destination host and port.
      *
      * @exception IOException
-     *                        if an error occurs while computing the permission.
-     *
+     *            if an error occurs while computing the permission.
      * @return a {@code SocketPermission} object representing the permission
      *         necessary to connect to the destination host and port.
      */
@@ -602,7 +577,6 @@ abstract public class HttpURLConnection extends URLConnection {
      * responds with a 404, which will cause a FileNotFoundException to be
      * thrown in connect, but the server sent an HTML help page with suggestions
      * as to what to do.
-     *
      * <p>
      * This method will not cause a connection to be initiated. If the
      * connection was not connected, or if the server did not have an error

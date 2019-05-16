@@ -18,7 +18,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  * the annotation is applied to the component class, the annotation declares a
  * resource that the application will look up at runtime.
  * <p>
- *
  * Even though this annotation is not marked Inherited, deployment tools are
  * required to examine all superclasses of any component class to discover all
  * uses of this annotation in all superclasses. All such annotation instances
@@ -87,7 +86,6 @@ public @interface Resource {
      * of resources known to the application server. This mapped name is often a
      * <i>global</i> JNDI name, but may be a name of any form.
      * <p>
-     *
      * Application servers are not required to support any particular form or
      * type of mapped name, nor the ability to use mapped names. The mapped name
      * is product-dependent and often installation-dependent. No use of a mapped

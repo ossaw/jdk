@@ -7,7 +7,6 @@ package com.sun.source.tree;
 
 /**
  * A tree node for a type cast expression.
- *
  * For example:
  * 
  * <pre>
@@ -15,7 +14,6 @@ package com.sun.source.tree;
  * </pre>
  *
  * @jls section 15.16
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

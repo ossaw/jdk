@@ -21,8 +21,7 @@ import java.util.Locale;
 import javax.imageio.plugins.bmp.BMPImageWriteParam;
 
 public class BMPImageWriterSpi extends ImageWriterSpi {
-    private static String[] readerSpiNames = {
-            "com.sun.imageio.plugins.bmp.BMPImageReaderSpi" };
+    private static String[] readerSpiNames = { "com.sun.imageio.plugins.bmp.BMPImageReaderSpi" };
     private static String[] formatNames = { "bmp", "BMP" };
     private static String[] entensions = { "bmp" };
     private static String[] mimeType = { "image/bmp" };
@@ -31,9 +30,8 @@ public class BMPImageWriterSpi extends ImageWriterSpi {
 
     public BMPImageWriterSpi() {
         super("Oracle Corporation", "1.0", formatNames, entensions, mimeType,
-                "com.sun.imageio.plugins.bmp.BMPImageWriter", new Class[] {
-                        ImageOutputStream.class }, readerSpiNames, false, null,
-                null, null, null, true, BMPMetadata.nativeMetadataFormatName,
+                "com.sun.imageio.plugins.bmp.BMPImageWriter", new Class[] { ImageOutputStream.class },
+                readerSpiNames, false, null, null, null, null, true, BMPMetadata.nativeMetadataFormatName,
                 "com.sun.imageio.plugins.bmp.BMPMetadataFormat", null, null);
     }
 
@@ -62,15 +60,13 @@ public class BMPImageWriterSpi extends ImageWriterSpi {
         if (numBands == 1 && dataType != DataBuffer.TYPE_BYTE)
             return false;
 
-        if (dataType > DataBuffer.TYPE_BYTE
-                && !(sm instanceof SinglePixelPackedSampleModel))
+        if (dataType > DataBuffer.TYPE_BYTE && !(sm instanceof SinglePixelPackedSampleModel))
             return false;
 
         return true;
     }
 
-    public ImageWriter createWriterInstance(Object extension)
-            throws IIOException {
+    public ImageWriter createWriterInstance(Object extension) throws IIOException {
         return new BMPImageWriter(this);
     }
 }

@@ -11,11 +11,8 @@ import java.security.PrivateKey;
  * The interface to an elliptic curve (EC) private key.
  *
  * @author Valerie Peng
- *
- *
  * @see PrivateKey
  * @see ECKey
- *
  * @since 1.5
  */
 public interface ECPrivateKey extends PrivateKey, ECKey {

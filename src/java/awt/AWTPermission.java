@@ -11,17 +11,14 @@ import java.security.BasicPermission;
  * This class is for AWT permissions. An <code>AWTPermission</code> contains a
  * target name but no actions list; you either have the named permission or you
  * don't.
- *
  * <P>
  * The target name is the name of the AWT permission (see below). The naming
  * convention follows the hierarchical property naming convention. Also, an
  * asterisk could be used to represent all AWT permissions.
- *
  * <P>
  * The following table lists all the possible <code>AWTPermission</code> target
  * names, and for each provides a description of what the permission allows and
  * a discussion of the risks of granting code the permission.
- *
  * <table border=1 cellpadding=5 summary=
  * "AWTPermission target names, descriptions, and associated risks.">
  * <tr>
@@ -29,14 +26,12 @@ import java.security.BasicPermission;
  * <th>What the Permission Allows</th>
  * <th>Risks of Allowing this Permission</th>
  * </tr>
- *
  * <tr>
  * <td>accessClipboard</td>
  * <td>Posting and retrieval of information to and from the AWT clipboard</td>
  * <td>This would allow malfeasant code to share potentially sensitive or
  * confidential information.</td>
  * </tr>
- *
  * <tr>
  * <td>accessEventQueue</td>
  * <td>Access to the AWT event queue</td>
@@ -45,7 +40,6 @@ import java.security.BasicPermission;
  * which may purposefully cause the application or applet to misbehave in an
  * insecure manner.</td>
  * </tr>
- *
  * <tr>
  * <td>accessSystemTray</td>
  * <td>Access to the AWT SystemTray instance</td>
@@ -55,7 +49,6 @@ import java.security.BasicPermission;
  * of balloon messages). Second, the system tray may be glutted with tray icons
  * so that no one could add a tray icon anymore.</td>
  * </tr>
- *
  * <tr>
  * <td>createRobot</td>
  * <td>Create java.awt.Robot objects</td>
@@ -64,7 +57,6 @@ import java.security.BasicPermission;
  * control the system, run other programs, read the display, and deny mouse and
  * keyboard access to the user.</td>
  * </tr>
- *
  * <tr>
  * <td>fullScreenExclusive</td>
  * <td>Enter full-screen exclusive mode</td>
@@ -80,7 +72,6 @@ import java.security.BasicPermission;
  * non-full-screen windows will continue to be shown with the security warning.
  * </td>
  * </tr>
- *
  * <tr>
  * <td>listenToAllAWTEvents</td>
  * <td>Listen to all AWT events, system-wide</td>
@@ -92,7 +83,6 @@ import java.security.BasicPermission;
  * system-wide, causing the application or applet to misbehave in an insecure
  * manner.</td>
  * </tr>
- *
  * <tr>
  * <td>readDisplayPixels</td>
  * <td>Readback of pixels from the display screen</td>
@@ -100,7 +90,6 @@ import java.security.BasicPermission;
  * class allow arbitrary code to examine pixels on the display enable malicious
  * code to snoop on the activities of the user.</td>
  * </tr>
- *
  * <tr>
  * <td>replaceKeyboardFocusManager</td>
  * <td>Sets the <code>KeyboardFocusManager</code> for a particular thread.
@@ -109,14 +98,12 @@ import java.security.BasicPermission;
  * <code>KeyboardFocusManager</code>. If permission is not granted, a
  * <code>SecurityException</code> will be thrown.
  * </tr>
- *
  * <tr>
  * <td>setAppletStub</td>
  * <td>Setting the stub which implements Applet container services</td>
  * <td>Malicious code could set an applet's stub and result in unexpected
  * behavior or denial of service to an applet.</td>
  * </tr>
- *
  * <tr>
  * <td>setWindowAlwaysOnTop</td>
  * <td>Setting always-on-top property of the window:
@@ -125,7 +112,6 @@ import java.security.BasicPermission;
  * desktop, so that information entered by the unsuspecting user is captured and
  * subsequently misused</td>
  * </tr>
- *
  * <tr>
  * <td>showWindowWithoutWarningBanner</td>
  * <td>Display of a window without also displaying a banner warning that the
@@ -137,7 +123,6 @@ import java.security.BasicPermission;
  * disabling this warning banner may allow applets to trick the user into
  * entering such information.</td>
  * </tr>
- *
  * <tr>
  * <td>toolkitModality</td>
  * <td>Creating {@link Dialog.ModalityType#TOOLKIT_MODAL TOOLKIT_MODAL} dialogs
@@ -148,7 +133,6 @@ import java.security.BasicPermission;
  * windows (such as the security dialog) may also be blocked by toolkit-modal
  * dialogs, shown from these applications.</td>
  * </tr>
- *
  * <tr>
  * <td>watchMousePointer</td>
  * <td>Getting the information about the mouse pointer position at any time</td>
@@ -165,8 +149,6 @@ import java.security.BasicPermission;
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
  * @see java.lang.SecurityManager
- *
- *
  * @author Marianne Mueller
  * @author Roland Schemers
  */
@@ -183,13 +165,12 @@ public final class AWTPermission extends BasicPermission {
      * indicate all AWT permissions.
      *
      * @param name
-     *             the name of the AWTPermission
-     *
+     *        the name of the AWTPermission
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty.
+     *         if <code>name</code> is empty.
      */
 
     public AWTPermission(String name) {
@@ -202,15 +183,14 @@ public final class AWTPermission extends BasicPermission {
      * actions string is currently unused and should be <code>null</code>.
      *
      * @param name
-     *                the name of the <code>AWTPermission</code>
+     *        the name of the <code>AWTPermission</code>
      * @param actions
-     *                should be <code>null</code>
-     *
+     *        should be <code>null</code>
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty.
+     *         if <code>name</code> is empty.
      */
 
     public AWTPermission(String name, String actions) {

@@ -25,7 +25,6 @@ import org.omg.CORBA.SystemException;
  * is a singleton instance of a class that implements this interface and
  * provides a replacement implementation for all the methods of
  * <code>javax.rmi.CORBA.Util</code>.
- *
  * Delegation is enabled by providing the delegate's class name as the value of
  * the <code>javax.rmi.CORBA.UtilClass</code> system property.
  *

@@ -16,8 +16,7 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
  * @Author Hemanth
  */
 public class CorbanameURL extends INSURLBase {
-    private static NamingSystemException wrapper = NamingSystemException.get(
-            CORBALogDomains.NAMING);
+    private static NamingSystemException wrapper = NamingSystemException.get(CORBALogDomains.NAMING);
 
     /**
      * This constructor takes a corbaname: url with 'corbaname:' prefix stripped
@@ -39,8 +38,7 @@ public class CorbanameURL extends INSURLBase {
         if (delimiterIndex != -1) {
             // Append corbaloc: for Grammar check, Get the string between
             // corbaname: and # which forms the corbaloc string
-            corbalocString = "corbaloc:" + url.substring(0, delimiterIndex)
-                    + "/";
+            corbalocString = "corbaloc:" + url.substring(0, delimiterIndex) + "/";
         } else {
             // Build a corbaloc string to check the grammar.
             // 10 is the length of corbaname:
@@ -54,15 +52,13 @@ public class CorbanameURL extends INSURLBase {
         try {
             // Check the corbaloc grammar and set the returned corbaloc
             // object to the CorbaName Object
-            INSURL insURL = INSURLHandler.getINSURLHandler().parseURL(
-                    corbalocString);
+            INSURL insURL = INSURLHandler.getINSURLHandler().parseURL(corbalocString);
             copyINSURL(insURL);
             // String after '#' is the Stringified name used to resolve
             // the Object reference from the rootnaming context. If
             // the String is null then the Root Naming context is passed
             // back
-            if ((delimiterIndex > -1) && (delimiterIndex < (aURL.length()
-                    - 1))) {
+            if ((delimiterIndex > -1) && (delimiterIndex < (aURL.length() - 1))) {
                 int start = delimiterIndex + 1;
                 String result = url.substring(start);
                 theStringifiedName = result;
@@ -75,8 +71,7 @@ public class CorbanameURL extends INSURLBase {
     /**
      * A Utility method to throw BAD_PARAM exception.
      */
-    private void badAddress(java.lang.Throwable e)
-            throws org.omg.CORBA.BAD_PARAM {
+    private void badAddress(java.lang.Throwable e) throws org.omg.CORBA.BAD_PARAM {
         throw wrapper.insBadAddress(e);
     }
 

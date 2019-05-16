@@ -21,7 +21,7 @@ public class IntrospectionException extends Exception {
      * message.
      *
      * @param mess
-     *             Descriptive message
+     *        Descriptive message
      */
     public IntrospectionException(String mess) {
         super(mess);

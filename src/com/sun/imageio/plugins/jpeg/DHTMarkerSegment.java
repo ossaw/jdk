@@ -156,30 +156,23 @@ class DHTMarkerSegment extends MarkerSegment {
                 NamedNodeMap attrs = node.getAttributes();
                 int count = attrs.getLength();
                 if (count != 2) {
-                    throw new IIOInvalidTreeException(
-                            "dhtable node must have 2 attributes", node);
+                    throw new IIOInvalidTreeException("dhtable node must have 2 attributes", node);
                 }
-                tableClass = getAttributeValue(node, attrs, "class", 0, 1,
-                        true);
-                tableID = getAttributeValue(node, attrs, "htableId", 0, 3,
-                        true);
+                tableClass = getAttributeValue(node, attrs, "class", 0, 1, true);
+                tableID = getAttributeValue(node, attrs, "htableId", 0, 3, true);
                 if (node instanceof IIOMetadataNode) {
                     IIOMetadataNode ourNode = (IIOMetadataNode) node;
-                    JPEGHuffmanTable table = (JPEGHuffmanTable) ourNode
-                            .getUserObject();
+                    JPEGHuffmanTable table = (JPEGHuffmanTable) ourNode.getUserObject();
                     if (table == null) {
-                        throw new IIOInvalidTreeException(
-                                "dhtable node must have user object", node);
+                        throw new IIOInvalidTreeException("dhtable node must have user object", node);
                     }
                     numCodes = table.getLengths();
                     values = table.getValues();
                 } else {
-                    throw new IIOInvalidTreeException(
-                            "dhtable node must have user object", node);
+                    throw new IIOInvalidTreeException("dhtable node must have user object", node);
                 }
             } else {
-                throw new IIOInvalidTreeException(
-                        "Invalid node, expected dqtable", node);
+                throw new IIOInvalidTreeException("Invalid node, expected dqtable", node);
             }
 
         }
@@ -188,8 +181,7 @@ class DHTMarkerSegment extends MarkerSegment {
             Htable newGuy = null;
             try {
                 newGuy = (Htable) super.clone();
-            } catch (CloneNotSupportedException e) {
-            } // won't happen
+            } catch (CloneNotSupportedException e) {} // won't happen
             if (numCodes != null) {
                 newGuy.numCodes = (short[]) numCodes.clone();
             }
@@ -211,8 +203,7 @@ class DHTMarkerSegment extends MarkerSegment {
 
         void print() {
             System.out.println("Huffman Table");
-            System.out.println("table class: " + ((tableClass == 0) ? "DC"
-                    : "AC"));
+            System.out.println("table class: " + ((tableClass == 0) ? "DC" : "AC"));
             System.out.println("table id: " + Integer.toString(tableID));
 
             (new JPEGHuffmanTable(numCodes, values)).toString();

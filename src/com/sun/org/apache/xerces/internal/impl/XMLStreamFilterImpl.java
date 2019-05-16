@@ -14,7 +14,6 @@ import javax.xml.namespace.QName;
 import javax.xml.stream.events.XMLEvent;
 
 /**
- *
  * @author Joe Wang: This is a rewrite of the original class. The focus is on
  *         removing caching, and make the filtered stream reader more compatible
  *         with those in other implementations. Note however, that this version
@@ -62,7 +61,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param sf
      */
     protected void setStreamFilter(StreamFilter sf) {
@@ -70,7 +68,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      * @throws XMLStreamException
      */
@@ -90,14 +87,12 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @throws XMLStreamException
      * @return
      */
     public int nextTag() throws XMLStreamException {
-        if (fStreamAdvancedByHasNext && fEventAccepted
-                && (fCurrentEvent == XMLEvent.START_ELEMENT
-                        || fCurrentEvent == XMLEvent.START_ELEMENT)) {
+        if (fStreamAdvancedByHasNext && fEventAccepted && (fCurrentEvent == XMLEvent.START_ELEMENT
+                || fCurrentEvent == XMLEvent.START_ELEMENT)) {
             fStreamAdvancedByHasNext = false;
             return fCurrentEvent;
         }
@@ -112,7 +107,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @throws XMLStreamException
      * @return
      */
@@ -166,7 +160,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @throws XMLStreamException
      */
     public void close() throws XMLStreamException {
@@ -174,7 +167,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public int getAttributeCount() {
@@ -182,7 +174,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param index
      * @return
      */
@@ -191,7 +182,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param index
      * @return
      */
@@ -200,7 +190,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param index
      * @return
      */
@@ -209,7 +198,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param index
      * @return
      */
@@ -218,7 +206,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param index
      * @return
      */
@@ -227,7 +214,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param namespaceURI
      * @param localName
      * @return
@@ -237,7 +223,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public String getCharacterEncodingScheme() {
@@ -245,7 +230,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @throws XMLStreamException
      * @return
      */
@@ -254,7 +238,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public String getEncoding() {
@@ -262,7 +245,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public int getEventType() {
@@ -270,7 +252,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public String getLocalName() {
@@ -278,7 +259,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public javax.xml.stream.Location getLocation() {
@@ -286,7 +266,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public javax.xml.namespace.QName getName() {
@@ -294,7 +273,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public javax.xml.namespace.NamespaceContext getNamespaceContext() {
@@ -302,7 +280,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public int getNamespaceCount() {
@@ -310,7 +287,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param index
      * @return
      */
@@ -319,7 +295,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public String getNamespaceURI() {
@@ -327,7 +302,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param index
      * @return
      */
@@ -336,7 +310,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param prefix
      * @return
      */
@@ -345,7 +318,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public String getPIData() {
@@ -353,7 +325,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public String getPITarget() {
@@ -361,7 +332,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public String getPrefix() {
@@ -369,18 +339,15 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param name
      * @throws IllegalArgumentException
      * @return
      */
-    public Object getProperty(java.lang.String name)
-            throws java.lang.IllegalArgumentException {
+    public Object getProperty(java.lang.String name) throws java.lang.IllegalArgumentException {
         return fStreamReader.getProperty(name);
     }
 
     /**
-     *
      * @return
      */
     public String getText() {
@@ -388,7 +355,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public char[] getTextCharacters() {
@@ -396,7 +362,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param sourceStart
      * @param target
      * @param targetStart
@@ -404,14 +369,12 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
      * @throws XMLStreamException
      * @return
      */
-    public int getTextCharacters(int sourceStart, char[] target,
-            int targetStart, int length) throws XMLStreamException {
-        return fStreamReader.getTextCharacters(sourceStart, target, targetStart,
-                length);
+    public int getTextCharacters(int sourceStart, char[] target, int targetStart, int length)
+            throws XMLStreamException {
+        return fStreamReader.getTextCharacters(sourceStart, target, targetStart, length);
     }
 
     /**
-     *
      * @return
      */
     public int getTextLength() {
@@ -419,7 +382,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public int getTextStart() {
@@ -427,7 +389,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public String getVersion() {
@@ -435,7 +396,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public boolean hasName() {
@@ -443,7 +403,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public boolean hasText() {
@@ -451,7 +410,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      * @param index
      */
@@ -460,7 +418,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public boolean isCharacters() {
@@ -468,7 +425,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public boolean isEndElement() {
@@ -476,7 +432,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public boolean isStandalone() {
@@ -484,7 +439,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public boolean isStartElement() {
@@ -492,7 +446,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @return
      */
     public boolean isWhiteSpace() {
@@ -500,19 +453,16 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param type
      * @param namespaceURI
      * @param localName
      * @throws XMLStreamException
      */
-    public void require(int type, String namespaceURI, String localName)
-            throws XMLStreamException {
+    public void require(int type, String namespaceURI, String localName) throws XMLStreamException {
         fStreamReader.require(type, namespaceURI, localName);
     }
 
     /**
-     *
      * @return
      */
     public boolean standaloneSet() {
@@ -520,7 +470,6 @@ public class XMLStreamFilterImpl implements javax.xml.stream.XMLStreamReader {
     }
 
     /**
-     *
      * @param index
      * @return
      */

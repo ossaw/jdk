@@ -29,8 +29,7 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLGrammarPool;
  *
  * @author Michael Glavassevich, IBM
  */
-final class SimpleXMLSchema extends AbstractXMLSchema implements
-        XMLGrammarPool {
+final class SimpleXMLSchema extends AbstractXMLSchema implements XMLGrammarPool {
 
     /** Zero length grammar array. */
     private static final Grammar[] ZERO_LENGTH_GRAMMAR_ARRAY = new Grammar[0];
@@ -50,8 +49,7 @@ final class SimpleXMLSchema extends AbstractXMLSchema implements
      */
 
     public Grammar[] retrieveInitialGrammarSet(String grammarType) {
-        return XMLGrammarDescription.XML_SCHEMA.equals(grammarType)
-                ? (Grammar[]) fGrammars.clone()
+        return XMLGrammarDescription.XML_SCHEMA.equals(grammarType) ? (Grammar[]) fGrammars.clone()
                 : ZERO_LENGTH_GRAMMAR_ARRAY;
     }
 

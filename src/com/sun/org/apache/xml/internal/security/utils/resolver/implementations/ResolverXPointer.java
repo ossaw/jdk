@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -46,8 +44,8 @@ import org.w3c.dom.Node;
 public class ResolverXPointer extends ResourceResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(ResolverXPointer.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(ResolverXPointer.class
+            .getName());
 
     private static final String XP = "#xpointer(id(";
     private static final int XP_LENGTH = XP.length();
@@ -74,12 +72,10 @@ public class ResolverXPointer extends ResourceResolverSpi {
             resultNode = doc.getElementById(id);
 
             if (context.secureValidation) {
-                Element start = context.attr.getOwnerDocument()
-                        .getDocumentElement();
+                Element start = context.attr.getOwnerDocument().getDocumentElement();
                 if (!XMLUtils.protectAgainstWrappingAttack(start, id)) {
                     Object exArgs[] = { id };
-                    throw new ResourceResolverException(
-                            "signature.Verification.MultipleIDs", exArgs,
+                    throw new ResourceResolverException("signature.Verification.MultipleIDs", exArgs,
                             context.attr, context.baseUri);
                 }
             }
@@ -87,9 +83,8 @@ public class ResolverXPointer extends ResourceResolverSpi {
             if (resultNode == null) {
                 Object exArgs[] = { id };
 
-                throw new ResourceResolverException(
-                        "signature.Verification.MissingID", exArgs,
-                        context.attr, context.baseUri);
+                throw new ResourceResolverException("signature.Verification.MissingID", exArgs, context.attr,
+                        context.baseUri);
             }
         }
 
@@ -112,8 +107,7 @@ public class ResolverXPointer extends ResourceResolverSpi {
         if (context.uriToResolve == null) {
             return false;
         }
-        if (isXPointerSlash(context.uriToResolve) || isXPointerId(
-                context.uriToResolve)) {
+        if (isXPointerSlash(context.uriToResolve) || isXPointerId(context.uriToResolve)) {
             return true;
         }
 
@@ -145,12 +139,10 @@ public class ResolverXPointer extends ResourceResolverSpi {
             String idPlusDelim = uri.substring(XP_LENGTH, uri.length() - 2);
 
             int idLen = idPlusDelim.length() - 1;
-            if (((idPlusDelim.charAt(0) == '"') && (idPlusDelim.charAt(
-                    idLen) == '"')) || ((idPlusDelim.charAt(0) == '\'')
-                            && (idPlusDelim.charAt(idLen) == '\''))) {
+            if (((idPlusDelim.charAt(0) == '"') && (idPlusDelim.charAt(idLen) == '"')) || ((idPlusDelim
+                    .charAt(0) == '\'') && (idPlusDelim.charAt(idLen) == '\''))) {
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE, "Id = " + idPlusDelim
-                            .substring(1, idLen));
+                    log.log(java.util.logging.Level.FINE, "Id = " + idPlusDelim.substring(1, idLen));
                 }
                 return true;
             }
@@ -170,9 +162,8 @@ public class ResolverXPointer extends ResourceResolverSpi {
             String idPlusDelim = uri.substring(XP_LENGTH, uri.length() - 2);
 
             int idLen = idPlusDelim.length() - 1;
-            if (((idPlusDelim.charAt(0) == '"') && (idPlusDelim.charAt(
-                    idLen) == '"')) || ((idPlusDelim.charAt(0) == '\'')
-                            && (idPlusDelim.charAt(idLen) == '\''))) {
+            if (((idPlusDelim.charAt(0) == '"') && (idPlusDelim.charAt(idLen) == '"')) || ((idPlusDelim
+                    .charAt(0) == '\'') && (idPlusDelim.charAt(idLen) == '\''))) {
                 return idPlusDelim.substring(1, idLen);
             }
         }

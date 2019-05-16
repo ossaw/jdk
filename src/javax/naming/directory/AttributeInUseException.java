@@ -16,7 +16,6 @@ import javax.naming.NamingException;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see DirContext#modifyAttributes
  * @since 1.3
  */
@@ -26,7 +25,7 @@ public class AttributeInUseException extends NamingException {
      * All other fields are set to null.
      *
      * @param explanation
-     *                    Possibly null additional detail about this exception.
+     *        Possibly null additional detail about this exception.
      * @see java.lang.Throwable#getMessage
      */
     public AttributeInUseException(String explanation) {

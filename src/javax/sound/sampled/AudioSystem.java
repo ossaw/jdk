@@ -37,7 +37,6 @@ import com.sun.media.sound.JDK13Services;
  * for translating between audio files and streams. It also provides a method
  * for obtaining a <code>{@link Line}</code> directly from the
  * <code>AudioSystem</code> without dealing explicitly with mixers.
- *
  * <p>
  * Properties can be used to specify the default mixer for specific line types.
  * Both system properties and a properties file are considered. The
@@ -49,7 +48,6 @@ import com.sun.media.sound.JDK13Services;
  * available devices. The syntax of the properties file is specified in
  * {@link java.util.Properties#load(InputStream) Properties.load}. The following
  * table lists the available property keys and which methods consider them:
- *
  * <table border=0>
  * <caption>Audio System Property Keys</caption>
  * <tr>
@@ -78,7 +76,6 @@ import com.sun.media.sound.JDK13Services;
  * <td>{@link #getLine}, {@link #getTargetDataLine}</td>
  * </tr>
  * </table>
- *
  * The property value consists of the provider class name and the mixer name,
  * separated by the hash mark (&quot;#&quot;). The provider class name is the
  * fully-qualified name of a concrete
@@ -87,14 +84,12 @@ import com.sun.media.sound.JDK13Services;
  * <code>getName</code> method of <code>Mixer.Info</code>. Either the class
  * name, or the mixer name may be omitted. If only the class name is specified,
  * the trailing hash mark is optional.
- *
  * <p>
  * If the provider class is specified, and it can be successfully retrieved from
  * the installed providers, the list of <code>Mixer.Info</code> objects is
  * retrieved from the provider. Otherwise, or when these mixers do not provide a
  * subsequent match, the list is retrieved from {@link #getMixerInfo} to contain
  * all available <code>Mixer.Info</code> objects.
- *
  * <p>
  * If a mixer name is specified, the resulting list of <code>Mixer.Info</code>
  * objects is searched: the first one with a matching name, and whose
@@ -102,7 +97,6 @@ import com.sun.media.sound.JDK13Services;
  * If no matching <code>Mixer.Info</code> object is found, or the mixer name is
  * not specified, the first mixer from the resulting list, which provides the
  * respective line interface, will be returned.
- *
  * For example, the property <code>javax.sound.sampled.Clip</code> with a value
  * <code>&quot;com.sun.media.sound.MixerProvider#SunClip&quot;</code> will have
  * the following consequences when <code>getLine</code> is called requesting a
@@ -123,7 +117,6 @@ import com.sun.media.sound.JDK13Services;
  * @author Florian Bomers
  * @author Matthias Pfisterer
  * @author Kevin P. Smith
- *
  * @see AudioFormat
  * @see AudioInputStream
  * @see Mixer
@@ -160,8 +153,7 @@ public class AudioSystem {
     public static Mixer.Info[] getMixerInfo() {
 
         List infos = getMixerInfoList();
-        Mixer.Info[] allInfos = (Mixer.Info[]) infos.toArray(
-                new Mixer.Info[infos.size()]);
+        Mixer.Info[] allInfos = (Mixer.Info[]) infos.toArray(new Mixer.Info[infos.size()]);
         return allInfos;
     }
 
@@ -169,17 +161,17 @@ public class AudioSystem {
      * Obtains the requested audio mixer.
      * 
      * @param info
-     *             a <code>Mixer.Info</code> object representing the desired
-     *             mixer, or <code>null</code> for the system default mixer
+     *        a <code>Mixer.Info</code> object representing the desired
+     *        mixer, or <code>null</code> for the system default mixer
      * @return the requested mixer
      * @throws SecurityException
-     *                                  if the requested mixer is unavailable
-     *                                  because of security
-     *                                  restrictions
+     *         if the requested mixer is unavailable
+     *         because of security
+     *         restrictions
      * @throws IllegalArgumentException
-     *                                  if the info object does not represent a
-     *                                  mixer installed on
-     *                                  the system
+     *         if the info object does not represent a
+     *         mixer installed on
+     *         the system
      * @see #getMixerInfo
      */
     public static Mixer getMixer(Mixer.Info info) {
@@ -192,8 +184,7 @@ public class AudioSystem {
             try {
                 return ((MixerProvider) providers.get(i)).getMixer(info);
 
-            } catch (IllegalArgumentException e) {
-            } catch (NullPointerException e) {
+            } catch (IllegalArgumentException e) {} catch (NullPointerException e) {
                 // $$jb 08.20.99: If the strings in the info object aren't
                 // set, then Netscape (using jdk1.1.5) tends to throw
                 // NPE's when doing some string manipulation. This is
@@ -218,14 +209,12 @@ public class AudioSystem {
                             // this is not a good default device :)
                         }
                     }
-                } catch (IllegalArgumentException e) {
-                } catch (NullPointerException e) {
-                }
+                } catch (IllegalArgumentException e) {} catch (NullPointerException e) {}
             }
         }
 
-        throw new IllegalArgumentException("Mixer not supported: "
-                + (info != null ? info.toString() : "null"));
+        throw new IllegalArgumentException("Mixer not supported: " + (info != null ? info.toString()
+                : "null"));
     }
 
     // $$fb 2002-11-26: fix for 4757930: DOC:
@@ -235,12 +224,11 @@ public class AudioSystem {
      * supported by the installed mixers.
      * 
      * @param info
-     *             a <code>Line.Info</code> object that specifies the kind of
-     *             lines about which information is requested
+     *        a <code>Line.Info</code> object that specifies the kind of
+     *        lines about which information is requested
      * @return an array of <code>Line.Info</code> objects describing source
      *         lines matching the type requested. If no matching source lines
      *         are supported, an array of length 0 is returned.
-     *
      * @see Mixer#getSourceLineInfo(Line.Info)
      */
     public static Line.Info[] getSourceLineInfo(Line.Info info) {
@@ -276,12 +264,11 @@ public class AudioSystem {
      * supported by the installed mixers.
      * 
      * @param info
-     *             a <code>Line.Info</code> object that specifies the kind of
-     *             lines about which information is requested
+     *        a <code>Line.Info</code> object that specifies the kind of
+     *        lines about which information is requested
      * @return an array of <code>Line.Info</code> objects describing target
      *         lines matching the type requested. If no matching target lines
      *         are supported, an array of length 0 is returned.
-     *
      * @see Mixer#getTargetLineInfo(Line.Info)
      */
     public static Line.Info[] getTargetLineInfo(Line.Info info) {
@@ -318,11 +305,10 @@ public class AudioSystem {
      * supports it.
      * 
      * @param info
-     *             a <code>Line.Info</code> object describing the line for which
-     *             support is queried
+     *        a <code>Line.Info</code> object describing the line for which
+     *        support is queried
      * @return <code>true</code> if at least one matching line is supported,
      *         otherwise <code>false</code>
-     *
      * @see Mixer#isLineSupported(Line.Info)
      */
     public static boolean isLineSupported(Line.Info info) {
@@ -346,13 +332,11 @@ public class AudioSystem {
     /**
      * Obtains a line that matches the description in the specified
      * <code>Line.Info</code> object.
-     *
      * <p>
      * If a <code>DataLine</code> is requested, and <code>info</code> is an
      * instance of <code>DataLine.Info</code> specifying at least one fully
      * qualified audio format, the last one will be used as the default format
      * of the returned <code>DataLine</code>.
-     *
      * <p>
      * If system properties <code>javax.sound.sampled.Clip</code>,
      * <code>javax.sound.sampled.Port</code>,
@@ -361,32 +345,30 @@ public class AudioSystem {
      * defined in the file &quot;sound.properties&quot;, they are used to
      * retrieve default lines. For details, refer to the {@link AudioSystem
      * class description}.
-     *
      * If the respective property is not set, or the mixer requested in the
      * property is not installed or does not provide the requested line, all
      * installed mixers are queried for the requested line type. A Line will be
      * returned from the first mixer providing the requested line type.
      *
      * @param info
-     *             a <code>Line.Info</code> object describing the desired kind
-     *             of
-     *             line
+     *        a <code>Line.Info</code> object describing the desired kind
+     *        of
+     *        line
      * @return a line of the requested kind
-     *
      * @throws LineUnavailableException
-     *                                  if a matching line is not available due
-     *                                  to resource
-     *                                  restrictions
+     *         if a matching line is not available due
+     *         to resource
+     *         restrictions
      * @throws SecurityException
-     *                                  if a matching line is not available due
-     *                                  to security
-     *                                  restrictions
+     *         if a matching line is not available due
+     *         to security
+     *         restrictions
      * @throws IllegalArgumentException
-     *                                  if the system does not support at least
-     *                                  one line matching the
-     *                                  specified <code>Line.Info</code> object
-     *                                  through any installed
-     *                                  mixer
+     *         if the system does not support at least
+     *         one line matching the
+     *         specified <code>Line.Info</code> object
+     *         through any installed
+     *         mixer
      */
     public static Line getLine(Line.Info info) throws LineUnavailableException {
         LineUnavailableException lue = null;
@@ -454,8 +436,7 @@ public class AudioSystem {
 
         // otherwise, the requested line was not supported, so throw
         // an Illegal argument exception
-        throw new IllegalArgumentException("No line matching " + info.toString()
-                + " is supported.");
+        throw new IllegalArgumentException("No line matching " + info.toString() + " is supported.");
     }
 
     /**
@@ -463,15 +444,12 @@ public class AudioSystem {
      * audio stream. The returned clip will be provided by the default system
      * mixer, or, if not possible, by any other mixer installed in the system
      * that supports a <code>Clip</code> object.
-     *
      * <p>
      * The returned clip must be opened with the <code>open(AudioFormat)</code>
      * or <code>open(AudioInputStream)</code> method.
-     *
      * <p>
      * This is a high-level method that uses <code>getMixer</code> and
      * <code>getLine</code> internally.
-     *
      * <p>
      * If the system property <code>javax.sound.sampled.Clip</code> is defined
      * or it is defined in the file &quot;sound.properties&quot;, it is used to
@@ -479,27 +457,24 @@ public class AudioSystem {
      * class description}.
      *
      * @return the desired clip object
-     *
      * @throws LineUnavailableException
-     *                                  if a clip object is not available due to
-     *                                  resource
-     *                                  restrictions
+     *         if a clip object is not available due to
+     *         resource
+     *         restrictions
      * @throws SecurityException
-     *                                  if a clip object is not available due to
-     *                                  security
-     *                                  restrictions
+     *         if a clip object is not available due to
+     *         security
+     *         restrictions
      * @throws IllegalArgumentException
-     *                                  if the system does not support at least
-     *                                  one clip instance
-     *                                  through any installed mixer
-     *
+     *         if the system does not support at least
+     *         one clip instance
+     *         through any installed mixer
      * @see #getClip(Mixer.Info)
      * @since 1.5
      */
     public static Clip getClip() throws LineUnavailableException {
-        AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
-                AudioSystem.NOT_SPECIFIED, 16, 2, 4, AudioSystem.NOT_SPECIFIED,
-                true);
+        AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, AudioSystem.NOT_SPECIFIED, 16,
+                2, 4, AudioSystem.NOT_SPECIFIED, true);
         DataLine.Info info = new DataLine.Info(Clip.class, format);
         return (Clip) AudioSystem.getLine(info);
     }
@@ -507,42 +482,36 @@ public class AudioSystem {
     /**
      * Obtains a clip from the specified mixer that can be used for playing back
      * an audio file or an audio stream.
-     *
      * <p>
      * The returned clip must be opened with the <code>open(AudioFormat)</code>
      * or <code>open(AudioInputStream)</code> method.
-     *
      * <p>
      * This is a high-level method that uses <code>getMixer</code> and
      * <code>getLine</code> internally.
      *
      * @param mixerInfo
-     *                  a <code>Mixer.Info</code> object representing the
-     *                  desired
-     *                  mixer, or <code>null</code> for the system default mixer
+     *        a <code>Mixer.Info</code> object representing the
+     *        desired
+     *        mixer, or <code>null</code> for the system default mixer
      * @return a clip object from the specified mixer
-     *
      * @throws LineUnavailableException
-     *                                  if a clip is not available from this
-     *                                  mixer due to resource
-     *                                  restrictions
+     *         if a clip is not available from this
+     *         mixer due to resource
+     *         restrictions
      * @throws SecurityException
-     *                                  if a clip is not available from this
-     *                                  mixer due to security
-     *                                  restrictions
+     *         if a clip is not available from this
+     *         mixer due to security
+     *         restrictions
      * @throws IllegalArgumentException
-     *                                  if the system does not support at least
-     *                                  one clip through the
-     *                                  specified mixer
-     *
+     *         if the system does not support at least
+     *         one clip through the
+     *         specified mixer
      * @see #getClip()
      * @since 1.5
      */
-    public static Clip getClip(Mixer.Info mixerInfo)
-            throws LineUnavailableException {
-        AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
-                AudioSystem.NOT_SPECIFIED, 16, 2, 4, AudioSystem.NOT_SPECIFIED,
-                true);
+    public static Clip getClip(Mixer.Info mixerInfo) throws LineUnavailableException {
+        AudioFormat format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, AudioSystem.NOT_SPECIFIED, 16,
+                2, 4, AudioSystem.NOT_SPECIFIED, true);
         DataLine.Info info = new DataLine.Info(Clip.class, format);
         Mixer mixer = AudioSystem.getMixer(mixerInfo);
         return (Clip) mixer.getLine(info);
@@ -554,20 +523,16 @@ public class AudioSystem {
      * returned line will be provided by the default system mixer, or, if not
      * possible, by any other mixer installed in the system that supports a
      * matching <code>SourceDataLine</code> object.
-     *
      * <p>
      * The returned line should be opened with the
      * <code>open(AudioFormat)</code> or <code>open(AudioFormat, int)</code>
      * method.
-     *
      * <p>
      * This is a high-level method that uses <code>getMixer</code> and
      * <code>getLine</code> internally.
-     *
      * <p>
      * The returned <code>SourceDataLine</code>'s default audio format will be
      * initialized with <code>format</code>.
-     *
      * <p>
      * If the system property <code>javax.sound.sampled.SourceDataLine</code> is
      * defined or it is defined in the file &quot;sound.properties&quot;, it is
@@ -575,31 +540,28 @@ public class AudioSystem {
      * {@link AudioSystem class description}.
      *
      * @param format
-     *               an <code>AudioFormat</code> object specifying the supported
-     *               audio format of the returned line, or <code>null</code> for
-     *               any audio format
+     *        an <code>AudioFormat</code> object specifying the supported
+     *        audio format of the returned line, or <code>null</code> for
+     *        any audio format
      * @return the desired <code>SourceDataLine</code> object
-     *
      * @throws LineUnavailableException
-     *                                  if a matching source data line is not
-     *                                  available due to
-     *                                  resource restrictions
+     *         if a matching source data line is not
+     *         available due to
+     *         resource restrictions
      * @throws SecurityException
-     *                                  if a matching source data line is not
-     *                                  available due to
-     *                                  security restrictions
+     *         if a matching source data line is not
+     *         available due to
+     *         security restrictions
      * @throws IllegalArgumentException
-     *                                  if the system does not support at least
-     *                                  one source data line
-     *                                  supporting the specified audio format
-     *                                  through any installed
-     *                                  mixer
-     *
+     *         if the system does not support at least
+     *         one source data line
+     *         supporting the specified audio format
+     *         through any installed
+     *         mixer
      * @see #getSourceDataLine(AudioFormat, Mixer.Info)
      * @since 1.5
      */
-    public static SourceDataLine getSourceDataLine(AudioFormat format)
-            throws LineUnavailableException {
+    public static SourceDataLine getSourceDataLine(AudioFormat format) throws LineUnavailableException {
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
         return (SourceDataLine) AudioSystem.getLine(info);
     }
@@ -608,53 +570,48 @@ public class AudioSystem {
      * Obtains a source data line that can be used for playing back audio data
      * in the format specified by the <code>AudioFormat</code> object, provided
      * by the mixer specified by the <code>Mixer.Info</code> object.
-     *
      * <p>
      * The returned line should be opened with the
      * <code>open(AudioFormat)</code> or <code>open(AudioFormat, int)</code>
      * method.
-     *
      * <p>
      * This is a high-level method that uses <code>getMixer</code> and
      * <code>getLine</code> internally.
-     *
      * <p>
      * The returned <code>SourceDataLine</code>'s default audio format will be
      * initialized with <code>format</code>.
      *
      * @param format
-     *                  an <code>AudioFormat</code> object specifying the
-     *                  supported
-     *                  audio format of the returned line, or <code>null</code>
-     *                  for
-     *                  any audio format
+     *        an <code>AudioFormat</code> object specifying the
+     *        supported
+     *        audio format of the returned line, or <code>null</code>
+     *        for
+     *        any audio format
      * @param mixerinfo
-     *                  a <code>Mixer.Info</code> object representing the
-     *                  desired
-     *                  mixer, or <code>null</code> for the system default mixer
+     *        a <code>Mixer.Info</code> object representing the
+     *        desired
+     *        mixer, or <code>null</code> for the system default mixer
      * @return the desired <code>SourceDataLine</code> object
-     *
      * @throws LineUnavailableException
-     *                                  if a matching source data line is not
-     *                                  available from the
-     *                                  specified mixer due to resource
-     *                                  restrictions
+     *         if a matching source data line is not
+     *         available from the
+     *         specified mixer due to resource
+     *         restrictions
      * @throws SecurityException
-     *                                  if a matching source data line is not
-     *                                  available from the
-     *                                  specified mixer due to security
-     *                                  restrictions
+     *         if a matching source data line is not
+     *         available from the
+     *         specified mixer due to security
+     *         restrictions
      * @throws IllegalArgumentException
-     *                                  if the specified mixer does not support
-     *                                  at least one source
-     *                                  data line supporting the specified audio
-     *                                  format
-     *
+     *         if the specified mixer does not support
+     *         at least one source
+     *         data line supporting the specified audio
+     *         format
      * @see #getSourceDataLine(AudioFormat)
      * @since 1.5
      */
-    public static SourceDataLine getSourceDataLine(AudioFormat format,
-            Mixer.Info mixerinfo) throws LineUnavailableException {
+    public static SourceDataLine getSourceDataLine(AudioFormat format, Mixer.Info mixerinfo)
+            throws LineUnavailableException {
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
         Mixer mixer = AudioSystem.getMixer(mixerinfo);
         return (SourceDataLine) mixer.getLine(info);
@@ -666,20 +623,16 @@ public class AudioSystem {
      * line will be provided by the default system mixer, or, if not possible,
      * by any other mixer installed in the system that supports a matching
      * <code>TargetDataLine</code> object.
-     *
      * <p>
      * The returned line should be opened with the
      * <code>open(AudioFormat)</code> or <code>open(AudioFormat, int)</code>
      * method.
-     *
      * <p>
      * This is a high-level method that uses <code>getMixer</code> and
      * <code>getLine</code> internally.
-     *
      * <p>
      * The returned <code>TargetDataLine</code>'s default audio format will be
      * initialized with <code>format</code>.
-     *
      * <p>
      * If the system property {@code javax.sound.sampled.TargetDataLine} is
      * defined or it is defined in the file &quot;sound.properties&quot;, it is
@@ -687,32 +640,29 @@ public class AudioSystem {
      * {@link AudioSystem class description}.
      *
      * @param format
-     *               an <code>AudioFormat</code> object specifying the supported
-     *               audio format of the returned line, or <code>null</code> for
-     *               any audio format
+     *        an <code>AudioFormat</code> object specifying the supported
+     *        audio format of the returned line, or <code>null</code> for
+     *        any audio format
      * @return the desired <code>TargetDataLine</code> object
-     *
      * @throws LineUnavailableException
-     *                                  if a matching target data line is not
-     *                                  available due to
-     *                                  resource restrictions
+     *         if a matching target data line is not
+     *         available due to
+     *         resource restrictions
      * @throws SecurityException
-     *                                  if a matching target data line is not
-     *                                  available due to
-     *                                  security restrictions
+     *         if a matching target data line is not
+     *         available due to
+     *         security restrictions
      * @throws IllegalArgumentException
-     *                                  if the system does not support at least
-     *                                  one target data line
-     *                                  supporting the specified audio format
-     *                                  through any installed
-     *                                  mixer
-     *
+     *         if the system does not support at least
+     *         one target data line
+     *         supporting the specified audio format
+     *         through any installed
+     *         mixer
      * @see #getTargetDataLine(AudioFormat, Mixer.Info)
      * @see AudioPermission
      * @since 1.5
      */
-    public static TargetDataLine getTargetDataLine(AudioFormat format)
-            throws LineUnavailableException {
+    public static TargetDataLine getTargetDataLine(AudioFormat format) throws LineUnavailableException {
 
         DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
         return (TargetDataLine) AudioSystem.getLine(info);
@@ -722,54 +672,49 @@ public class AudioSystem {
      * Obtains a target data line that can be used for recording audio data in
      * the format specified by the <code>AudioFormat</code> object, provided by
      * the mixer specified by the <code>Mixer.Info</code> object.
-     *
      * <p>
      * The returned line should be opened with the
      * <code>open(AudioFormat)</code> or <code>open(AudioFormat, int)</code>
      * method.
-     *
      * <p>
      * This is a high-level method that uses <code>getMixer</code> and
      * <code>getLine</code> internally.
-     *
      * <p>
      * The returned <code>TargetDataLine</code>'s default audio format will be
      * initialized with <code>format</code>.
      *
      * @param format
-     *                  an <code>AudioFormat</code> object specifying the
-     *                  supported
-     *                  audio format of the returned line, or <code>null</code>
-     *                  for
-     *                  any audio format
+     *        an <code>AudioFormat</code> object specifying the
+     *        supported
+     *        audio format of the returned line, or <code>null</code>
+     *        for
+     *        any audio format
      * @param mixerinfo
-     *                  a <code>Mixer.Info</code> object representing the
-     *                  desired
-     *                  mixer, or <code>null</code> for the system default mixer
+     *        a <code>Mixer.Info</code> object representing the
+     *        desired
+     *        mixer, or <code>null</code> for the system default mixer
      * @return the desired <code>TargetDataLine</code> object
-     *
      * @throws LineUnavailableException
-     *                                  if a matching target data line is not
-     *                                  available from the
-     *                                  specified mixer due to resource
-     *                                  restrictions
+     *         if a matching target data line is not
+     *         available from the
+     *         specified mixer due to resource
+     *         restrictions
      * @throws SecurityException
-     *                                  if a matching target data line is not
-     *                                  available from the
-     *                                  specified mixer due to security
-     *                                  restrictions
+     *         if a matching target data line is not
+     *         available from the
+     *         specified mixer due to security
+     *         restrictions
      * @throws IllegalArgumentException
-     *                                  if the specified mixer does not support
-     *                                  at least one target
-     *                                  data line supporting the specified audio
-     *                                  format
-     *
+     *         if the specified mixer does not support
+     *         at least one target
+     *         data line supporting the specified audio
+     *         format
      * @see #getTargetDataLine(AudioFormat)
      * @see AudioPermission
      * @since 1.5
      */
-    public static TargetDataLine getTargetDataLine(AudioFormat format,
-            Mixer.Info mixerinfo) throws LineUnavailableException {
+    public static TargetDataLine getTargetDataLine(AudioFormat format, Mixer.Info mixerinfo)
+            throws LineUnavailableException {
 
         DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
         Mixer mixer = AudioSystem.getMixer(mixerinfo);
@@ -784,15 +729,14 @@ public class AudioSystem {
      * converters.
      * 
      * @param sourceEncoding
-     *                       the encoding for which conversion support is
-     *                       queried
+     *        the encoding for which conversion support is
+     *        queried
      * @return array of encodings. If <code>sourceEncoding</code>is not
      *         supported, an array of length 0 is returned. Otherwise, the array
      *         will have a length of at least 1, representing
      *         <code>sourceEncoding</code> (no conversion).
      */
-    public static AudioFormat.Encoding[] getTargetEncodings(
-            AudioFormat.Encoding sourceEncoding) {
+    public static AudioFormat.Encoding[] getTargetEncodings(AudioFormat.Encoding sourceEncoding) {
 
         List codecs = getFormatConversionProviders();
         Vector encodings = new Vector();
@@ -801,8 +745,7 @@ public class AudioSystem {
 
         // gather from all the codecs
         for (int i = 0; i < codecs.size(); i++) {
-            FormatConversionProvider codec = (FormatConversionProvider) codecs
-                    .get(i);
+            FormatConversionProvider codec = (FormatConversionProvider) codecs.get(i);
             if (codec.isSourceEncodingSupported(sourceEncoding)) {
                 encs = codec.getTargetEncodings();
                 for (int j = 0; j < encs.length; j++) {
@@ -810,8 +753,8 @@ public class AudioSystem {
                 }
             }
         }
-        AudioFormat.Encoding encs2[] = (AudioFormat.Encoding[]) encodings
-                .toArray(new AudioFormat.Encoding[0]);
+        AudioFormat.Encoding encs2[] = (AudioFormat.Encoding[]) encodings.toArray(
+                new AudioFormat.Encoding[0]);
         return encs2;
     }
 
@@ -823,14 +766,13 @@ public class AudioSystem {
      * converters.
      * 
      * @param sourceFormat
-     *                     the audio format for which conversion is queried
+     *        the audio format for which conversion is queried
      * @return array of encodings. If <code>sourceFormat</code>is not supported,
      *         an array of length 0 is returned. Otherwise, the array will have
      *         a length of at least 1, representing the encoding of
      *         <code>sourceFormat</code> (no conversion).
      */
-    public static AudioFormat.Encoding[] getTargetEncodings(
-            AudioFormat sourceFormat) {
+    public static AudioFormat.Encoding[] getTargetEncodings(AudioFormat sourceFormat) {
 
         List codecs = getFormatConversionProviders();
         Vector encodings = new Vector();
@@ -842,8 +784,7 @@ public class AudioSystem {
         // gather from all the codecs
 
         for (int i = 0; i < codecs.size(); i++) {
-            encs = ((FormatConversionProvider) codecs.get(i))
-                    .getTargetEncodings(sourceFormat);
+            encs = ((FormatConversionProvider) codecs.get(i)).getTargetEncodings(sourceFormat);
             size += encs.length;
             encodings.addElement(encs);
         }
@@ -865,20 +806,19 @@ public class AudioSystem {
      * obtained from an audio input stream that has the specified format.
      * 
      * @param targetEncoding
-     *                       the desired encoding after conversion
+     *        the desired encoding after conversion
      * @param sourceFormat
-     *                       the audio format before conversion
+     *        the audio format before conversion
      * @return <code>true</code> if the conversion is supported, otherwise
      *         <code>false</code>
      */
-    public static boolean isConversionSupported(
-            AudioFormat.Encoding targetEncoding, AudioFormat sourceFormat) {
+    public static boolean isConversionSupported(AudioFormat.Encoding targetEncoding,
+            AudioFormat sourceFormat) {
 
         List codecs = getFormatConversionProviders();
 
         for (int i = 0; i < codecs.size(); i++) {
-            FormatConversionProvider codec = (FormatConversionProvider) codecs
-                    .get(i);
+            FormatConversionProvider codec = (FormatConversionProvider) codecs.get(i);
             if (codec.isConversionSupported(targetEncoding, sourceFormat)) {
                 return true;
             }
@@ -891,34 +831,31 @@ public class AudioSystem {
      * the provided audio input stream.
      * 
      * @param targetEncoding
-     *                       the desired encoding after conversion
+     *        the desired encoding after conversion
      * @param sourceStream
-     *                       the stream to be converted
+     *        the stream to be converted
      * @return an audio input stream of the indicated encoding
      * @throws IllegalArgumentException
-     *                                  if the conversion is not supported
+     *         if the conversion is not supported
      * @see #getTargetEncodings(AudioFormat.Encoding)
      * @see #getTargetEncodings(AudioFormat)
      * @see #isConversionSupported(AudioFormat.Encoding, AudioFormat)
      * @see #getAudioInputStream(AudioFormat, AudioInputStream)
      */
-    public static AudioInputStream getAudioInputStream(
-            AudioFormat.Encoding targetEncoding,
+    public static AudioInputStream getAudioInputStream(AudioFormat.Encoding targetEncoding,
             AudioInputStream sourceStream) {
 
         List codecs = getFormatConversionProviders();
 
         for (int i = 0; i < codecs.size(); i++) {
-            FormatConversionProvider codec = (FormatConversionProvider) codecs
-                    .get(i);
-            if (codec.isConversionSupported(targetEncoding, sourceStream
-                    .getFormat())) {
+            FormatConversionProvider codec = (FormatConversionProvider) codecs.get(i);
+            if (codec.isConversionSupported(targetEncoding, sourceStream.getFormat())) {
                 return codec.getAudioInputStream(targetEncoding, sourceStream);
             }
         }
         // we ran out of options, throw an exception
-        throw new IllegalArgumentException("Unsupported conversion: "
-                + targetEncoding + " from " + sourceStream.getFormat());
+        throw new IllegalArgumentException("Unsupported conversion: " + targetEncoding + " from "
+                + sourceStream.getFormat());
     }
 
     /**
@@ -927,14 +864,14 @@ public class AudioSystem {
      * installed format converters.
      * 
      * @param targetEncoding
-     *                       the desired encoding after conversion
+     *        the desired encoding after conversion
      * @param sourceFormat
-     *                       the audio format before conversion
+     *        the audio format before conversion
      * @return array of formats. If no formats of the specified encoding are
      *         supported, an array of length 0 is returned.
      */
-    public static AudioFormat[] getTargetFormats(
-            AudioFormat.Encoding targetEncoding, AudioFormat sourceFormat) {
+    public static AudioFormat[] getTargetFormats(AudioFormat.Encoding targetEncoding,
+            AudioFormat sourceFormat) {
 
         List codecs = getFormatConversionProviders();
         Vector formats = new Vector();
@@ -946,8 +883,7 @@ public class AudioSystem {
         // gather from all the codecs
 
         for (int i = 0; i < codecs.size(); i++) {
-            FormatConversionProvider codec = (FormatConversionProvider) codecs
-                    .get(i);
+            FormatConversionProvider codec = (FormatConversionProvider) codecs.get(i);
             fmts = codec.getTargetFormats(targetEncoding, sourceFormat);
             size += fmts.length;
             formats.addElement(fmts);
@@ -970,21 +906,19 @@ public class AudioSystem {
      * obtained from an audio input stream of another specified format.
      * 
      * @param targetFormat
-     *                     the desired audio format after conversion
+     *        the desired audio format after conversion
      * @param sourceFormat
-     *                     the audio format before conversion
+     *        the audio format before conversion
      * @return <code>true</code> if the conversion is supported, otherwise
      *         <code>false</code>
      */
 
-    public static boolean isConversionSupported(AudioFormat targetFormat,
-            AudioFormat sourceFormat) {
+    public static boolean isConversionSupported(AudioFormat targetFormat, AudioFormat sourceFormat) {
 
         List codecs = getFormatConversionProviders();
 
         for (int i = 0; i < codecs.size(); i++) {
-            FormatConversionProvider codec = (FormatConversionProvider) codecs
-                    .get(i);
+            FormatConversionProvider codec = (FormatConversionProvider) codecs.get(i);
             if (codec.isConversionSupported(targetFormat, sourceFormat)) {
                 return true;
             }
@@ -997,13 +931,13 @@ public class AudioSystem {
      * provided audio input stream.
      * 
      * @param targetFormat
-     *                     the desired audio format after conversion
+     *        the desired audio format after conversion
      * @param sourceStream
-     *                     the stream to be converted
+     *        the stream to be converted
      * @return an audio input stream of the indicated format
      * @throws IllegalArgumentException
-     *                                  if the conversion is not supported #see
-     *                                  #getTargetEncodings(AudioFormat)
+     *         if the conversion is not supported #see
+     *         #getTargetEncodings(AudioFormat)
      * @see #getTargetFormats(AudioFormat.Encoding, AudioFormat)
      * @see #isConversionSupported(AudioFormat, AudioFormat)
      * @see #getAudioInputStream(AudioFormat.Encoding, AudioInputStream)
@@ -1018,17 +952,15 @@ public class AudioSystem {
         List codecs = getFormatConversionProviders();
 
         for (int i = 0; i < codecs.size(); i++) {
-            FormatConversionProvider codec = (FormatConversionProvider) codecs
-                    .get(i);
-            if (codec.isConversionSupported(targetFormat, sourceStream
-                    .getFormat())) {
+            FormatConversionProvider codec = (FormatConversionProvider) codecs.get(i);
+            if (codec.isConversionSupported(targetFormat, sourceStream.getFormat())) {
                 return codec.getAudioInputStream(targetFormat, sourceStream);
             }
         }
 
         // we ran out of options...
-        throw new IllegalArgumentException("Unsupported conversion: "
-                + targetFormat + " from " + sourceStream.getFormat());
+        throw new IllegalArgumentException("Unsupported conversion: " + targetFormat + " from " + sourceStream
+                .getFormat());
     }
 
     /**
@@ -1042,22 +974,22 @@ public class AudioSystem {
      * <code>IOException</code>.
      * 
      * @param stream
-     *               the input stream from which file format information should
-     *               be
-     *               extracted
+     *        the input stream from which file format information should
+     *        be
+     *        extracted
      * @return an <code>AudioFileFormat</code> object describing the stream's
      *         audio file format
      * @throws UnsupportedAudioFileException
-     *                                       if the stream does not point to
-     *                                       valid audio file data
-     *                                       recognized by the system
+     *         if the stream does not point to
+     *         valid audio file data
+     *         recognized by the system
      * @throws IOException
-     *                                       if an input/output exception occurs
+     *         if an input/output exception occurs
      * @see InputStream#markSupported
      * @see InputStream#mark
      */
-    public static AudioFileFormat getAudioFileFormat(InputStream stream)
-            throws UnsupportedAudioFileException, IOException {
+    public static AudioFileFormat getAudioFileFormat(InputStream stream) throws UnsupportedAudioFileException,
+            IOException {
 
         List providers = getAudioFileReaders();
         AudioFileFormat format = null;
@@ -1074,8 +1006,7 @@ public class AudioSystem {
         }
 
         if (format == null) {
-            throw new UnsupportedAudioFileException(
-                    "file is not a supported file type");
+            throw new UnsupportedAudioFileException("file is not a supported file type");
         } else {
             return format;
         }
@@ -1086,18 +1017,18 @@ public class AudioSystem {
      * valid audio file data.
      * 
      * @param url
-     *            the URL from which file format information should be extracted
+     *        the URL from which file format information should be extracted
      * @return an <code>AudioFileFormat</code> object describing the audio file
      *         format
      * @throws UnsupportedAudioFileException
-     *                                       if the URL does not point to valid
-     *                                       audio file data recognized
-     *                                       by the system
+     *         if the URL does not point to valid
+     *         audio file data recognized
+     *         by the system
      * @throws IOException
-     *                                       if an input/output exception occurs
+     *         if an input/output exception occurs
      */
-    public static AudioFileFormat getAudioFileFormat(URL url)
-            throws UnsupportedAudioFileException, IOException {
+    public static AudioFileFormat getAudioFileFormat(URL url) throws UnsupportedAudioFileException,
+            IOException {
 
         List providers = getAudioFileReaders();
         AudioFileFormat format = null;
@@ -1113,8 +1044,7 @@ public class AudioSystem {
         }
 
         if (format == null) {
-            throw new UnsupportedAudioFileException(
-                    "file is not a supported file type");
+            throw new UnsupportedAudioFileException("file is not a supported file type");
         } else {
             return format;
         }
@@ -1125,19 +1055,19 @@ public class AudioSystem {
      * <code>File</code> must point to valid audio file data.
      * 
      * @param file
-     *             the <code>File</code> from which file format information
-     *             should be extracted
+     *        the <code>File</code> from which file format information
+     *        should be extracted
      * @return an <code>AudioFileFormat</code> object describing the audio file
      *         format
      * @throws UnsupportedAudioFileException
-     *                                       if the <code>File</code> does not
-     *                                       point to valid audio file
-     *                                       data recognized by the system
+     *         if the <code>File</code> does not
+     *         point to valid audio file
+     *         data recognized by the system
      * @throws IOException
-     *                                       if an I/O exception occurs
+     *         if an I/O exception occurs
      */
-    public static AudioFileFormat getAudioFileFormat(File file)
-            throws UnsupportedAudioFileException, IOException {
+    public static AudioFileFormat getAudioFileFormat(File file) throws UnsupportedAudioFileException,
+            IOException {
 
         List providers = getAudioFileReaders();
         AudioFileFormat format = null;
@@ -1153,8 +1083,7 @@ public class AudioSystem {
         }
 
         if (format == null) {
-            throw new UnsupportedAudioFileException(
-                    "file is not a supported file type");
+            throw new UnsupportedAudioFileException("file is not a supported file type");
         } else {
             return format;
         }
@@ -1171,17 +1100,17 @@ public class AudioSystem {
      * <code>IOException</code>.
      * 
      * @param stream
-     *               the input stream from which the
-     *               <code>AudioInputStream</code>
-     *               should be constructed
+     *        the input stream from which the
+     *        <code>AudioInputStream</code>
+     *        should be constructed
      * @return an <code>AudioInputStream</code> object based on the audio file
      *         data contained in the input stream.
      * @throws UnsupportedAudioFileException
-     *                                       if the stream does not point to
-     *                                       valid audio file data
-     *                                       recognized by the system
+     *         if the stream does not point to
+     *         valid audio file data
+     *         recognized by the system
      * @throws IOException
-     *                                       if an I/O exception occurs
+     *         if an I/O exception occurs
      * @see InputStream#markSupported
      * @see InputStream#mark
      */
@@ -1203,8 +1132,7 @@ public class AudioSystem {
         }
 
         if (audioStream == null) {
-            throw new UnsupportedAudioFileException(
-                    "could not get audio input stream from input stream");
+            throw new UnsupportedAudioFileException("could not get audio input stream from input stream");
         } else {
             return audioStream;
         }
@@ -1215,19 +1143,19 @@ public class AudioSystem {
      * to valid audio file data.
      * 
      * @param url
-     *            the URL for which the <code>AudioInputStream</code> should be
-     *            constructed
+     *        the URL for which the <code>AudioInputStream</code> should be
+     *        constructed
      * @return an <code>AudioInputStream</code> object based on the audio file
      *         data pointed to by the URL
      * @throws UnsupportedAudioFileException
-     *                                       if the URL does not point to valid
-     *                                       audio file data recognized
-     *                                       by the system
+     *         if the URL does not point to valid
+     *         audio file data recognized
+     *         by the system
      * @throws IOException
-     *                                       if an I/O exception occurs
+     *         if an I/O exception occurs
      */
-    public static AudioInputStream getAudioInputStream(URL url)
-            throws UnsupportedAudioFileException, IOException {
+    public static AudioInputStream getAudioInputStream(URL url) throws UnsupportedAudioFileException,
+            IOException {
 
         List providers = getAudioFileReaders();
         AudioInputStream audioStream = null;
@@ -1244,8 +1172,7 @@ public class AudioSystem {
         }
 
         if (audioStream == null) {
-            throw new UnsupportedAudioFileException(
-                    "could not get audio input stream from input URL");
+            throw new UnsupportedAudioFileException("could not get audio input stream from input URL");
         } else {
             return audioStream;
         }
@@ -1256,19 +1183,19 @@ public class AudioSystem {
      * <code>File</code> must point to valid audio file data.
      * 
      * @param file
-     *             the <code>File</code> for which the
-     *             <code>AudioInputStream</code> should be constructed
+     *        the <code>File</code> for which the
+     *        <code>AudioInputStream</code> should be constructed
      * @return an <code>AudioInputStream</code> object based on the audio file
      *         data pointed to by the <code>File</code>
      * @throws UnsupportedAudioFileException
-     *                                       if the <code>File</code> does not
-     *                                       point to valid audio file
-     *                                       data recognized by the system
+     *         if the <code>File</code> does not
+     *         point to valid audio file
+     *         data recognized by the system
      * @throws IOException
-     *                                       if an I/O exception occurs
+     *         if an I/O exception occurs
      */
-    public static AudioInputStream getAudioInputStream(File file)
-            throws UnsupportedAudioFileException, IOException {
+    public static AudioInputStream getAudioInputStream(File file) throws UnsupportedAudioFileException,
+            IOException {
 
         List providers = getAudioFileReaders();
         AudioInputStream audioStream = null;
@@ -1285,8 +1212,7 @@ public class AudioSystem {
         }
 
         if (audioStream == null) {
-            throw new UnsupportedAudioFileException(
-                    "could not get audio input stream from input file");
+            throw new UnsupportedAudioFileException("could not get audio input stream from input file");
         } else {
             return audioStream;
         }
@@ -1310,8 +1236,8 @@ public class AudioSystem {
                 returnTypesSet.add(fileTypes[j]);
             }
         }
-        AudioFileFormat.Type returnTypes[] = (AudioFileFormat.Type[]) returnTypesSet
-                .toArray(new AudioFileFormat.Type[0]);
+        AudioFileFormat.Type returnTypes[] = (AudioFileFormat.Type[]) returnTypesSet.toArray(
+                new AudioFileFormat.Type[0]);
         return returnTypes;
     }
 
@@ -1320,7 +1246,7 @@ public class AudioSystem {
      * provided by the system.
      * 
      * @param fileType
-     *                 the file type for which write capabilities are queried
+     *        the file type for which write capabilities are queried
      * @return <code>true</code> if the file type is supported, otherwise
      *         <code>false</code>
      */
@@ -1342,13 +1268,12 @@ public class AudioSystem {
      * stream specified.
      * 
      * @param stream
-     *               the audio input stream for which audio file type support is
-     *               queried
+     *        the audio input stream for which audio file type support is
+     *        queried
      * @return array of file types. If no file types are supported, an array of
      *         length 0 is returned.
      */
-    public static AudioFileFormat.Type[] getAudioFileTypes(
-            AudioInputStream stream) {
+    public static AudioFileFormat.Type[] getAudioFileTypes(AudioInputStream stream) {
         List providers = getAudioFileWriters();
         Set returnTypesSet = new HashSet();
 
@@ -1359,8 +1284,8 @@ public class AudioSystem {
                 returnTypesSet.add(fileTypes[j]);
             }
         }
-        AudioFileFormat.Type returnTypes[] = (AudioFileFormat.Type[]) returnTypesSet
-                .toArray(new AudioFileFormat.Type[0]);
+        AudioFileFormat.Type returnTypes[] = (AudioFileFormat.Type[]) returnTypesSet.toArray(
+                new AudioFileFormat.Type[0]);
         return returnTypes;
     }
 
@@ -1369,14 +1294,13 @@ public class AudioSystem {
      * from the indicated audio input stream.
      * 
      * @param fileType
-     *                 the file type for which write capabilities are queried
+     *        the file type for which write capabilities are queried
      * @param stream
-     *                 the stream for which file-writing support is queried
+     *        the stream for which file-writing support is queried
      * @return <code>true</code> if the file type is supported for this audio
      *         input stream, otherwise <code>false</code>
      */
-    public static boolean isFileTypeSupported(AudioFileFormat.Type fileType,
-            AudioInputStream stream) {
+    public static boolean isFileTypeSupported(AudioFileFormat.Type fileType, AudioInputStream stream) {
 
         List providers = getAudioFileWriters();
 
@@ -1398,24 +1322,23 @@ public class AudioSystem {
      * in the audio file type is <code>AudioSystem.NOT_SPECIFIED</code>.
      *
      * @param stream
-     *                 the audio input stream containing audio data to be
-     *                 written to
-     *                 the file
+     *        the audio input stream containing audio data to be
+     *        written to
+     *        the file
      * @param fileType
-     *                 the kind of audio file to write
+     *        the kind of audio file to write
      * @param out
-     *                 the stream to which the file data should be written
+     *        the stream to which the file data should be written
      * @return the number of bytes written to the output stream
      * @throws IOException
-     *                                  if an input/output exception occurs
+     *         if an input/output exception occurs
      * @throws IllegalArgumentException
-     *                                  if the file type is not supported by the
-     *                                  system
+     *         if the file type is not supported by the
+     *         system
      * @see #isFileTypeSupported
      * @see #getAudioFileTypes
      */
-    public static int write(AudioInputStream stream,
-            AudioFileFormat.Type fileType, OutputStream out)
+    public static int write(AudioInputStream stream, AudioFileFormat.Type fileType, OutputStream out)
             throws IOException {
 
         List providers = getAudioFileWriters();
@@ -1436,9 +1359,8 @@ public class AudioSystem {
             }
         }
         if (!flag) {
-            throw new IllegalArgumentException(
-                    "could not write audio file: file type not supported: "
-                            + fileType);
+            throw new IllegalArgumentException("could not write audio file: file type not supported: "
+                    + fileType);
         } else {
             return bytesWritten;
         }
@@ -1449,25 +1371,25 @@ public class AudioSystem {
      * type to the external file provided.
      * 
      * @param stream
-     *                 the audio input stream containing audio data to be
-     *                 written to
-     *                 the file
+     *        the audio input stream containing audio data to be
+     *        written to
+     *        the file
      * @param fileType
-     *                 the kind of audio file to write
+     *        the kind of audio file to write
      * @param out
-     *                 the external file to which the file data should be
-     *                 written
+     *        the external file to which the file data should be
+     *        written
      * @return the number of bytes written to the file
      * @throws IOException
-     *                                  if an I/O exception occurs
+     *         if an I/O exception occurs
      * @throws IllegalArgumentException
-     *                                  if the file type is not supported by the
-     *                                  system
+     *         if the file type is not supported by the
+     *         system
      * @see #isFileTypeSupported
      * @see #getAudioFileTypes
      */
-    public static int write(AudioInputStream stream,
-            AudioFileFormat.Type fileType, File out) throws IOException {
+    public static int write(AudioInputStream stream, AudioFileFormat.Type fileType, File out)
+            throws IOException {
 
         List providers = getAudioFileWriters();
         int bytesWritten = 0;
@@ -1487,9 +1409,8 @@ public class AudioSystem {
             }
         }
         if (!flag) {
-            throw new IllegalArgumentException(
-                    "could not write audio file: file type not supported: "
-                            + fileType);
+            throw new IllegalArgumentException("could not write audio file: file type not supported: "
+                    + fileType);
         } else {
             return bytesWritten;
         }
@@ -1549,24 +1470,22 @@ public class AudioSystem {
      * specified type.
      *
      * @param providers
-     *                  the installed mixer providers
+     *        the installed mixer providers
      * @param info
-     *                  The requested line type TargetDataLine.class, Clip.class
-     *                  or
-     *                  Port.class.
+     *        The requested line type TargetDataLine.class, Clip.class
+     *        or
+     *        Port.class.
      * @return a Mixer that matches the requirements, or null if no default
      *         mixer found
      */
     private static Mixer getDefaultMixer(List providers, Line.Info info) {
         Class lineClass = info.getLineClass();
-        String providerClassName = JDK13Services.getDefaultProviderClassName(
-                lineClass);
+        String providerClassName = JDK13Services.getDefaultProviderClassName(lineClass);
         String instanceName = JDK13Services.getDefaultInstanceName(lineClass);
         Mixer mixer;
 
         if (providerClassName != null) {
-            MixerProvider defaultProvider = getNamedProvider(providerClassName,
-                    providers);
+            MixerProvider defaultProvider = getNamedProvider(providerClassName, providers);
             if (defaultProvider != null) {
                 if (instanceName != null) {
                     mixer = getNamedMixer(instanceName, defaultProvider, info);
@@ -1608,17 +1527,15 @@ public class AudioSystem {
 
     /**
      * Return a MixerProvider of a given class from the list of MixerProviders.
-     * 
      * This method never requires the returned Mixer to do mixing.
      * 
      * @param providerClassName
-     *                          The class name of the provider to be returned.
+     *        The class name of the provider to be returned.
      * @param providers
-     *                          The list of MixerProviders that is searched.
+     *        The list of MixerProviders that is searched.
      * @return A MixerProvider of the requested class, or null if none is found.
      */
-    private static MixerProvider getNamedProvider(String providerClassName,
-            List providers) {
+    private static MixerProvider getNamedProvider(String providerClassName, List providers) {
         for (int i = 0; i < providers.size(); i++) {
             MixerProvider provider = (MixerProvider) providers.get(i);
             if (provider.getClass().getName().equals(providerClassName)) {
@@ -1633,17 +1550,15 @@ public class AudioSystem {
      * never requires the returned Mixer to do mixing.
      * 
      * @param mixerName
-     *                  The name of the Mixer to be returned.
+     *        The name of the Mixer to be returned.
      * @param provider
-     *                  The MixerProvider to check for Mixers.
+     *        The MixerProvider to check for Mixers.
      * @param info
-     *                  The type of line the returned Mixer is required to
-     *                  support.
-     * 
+     *        The type of line the returned Mixer is required to
+     *        support.
      * @return A Mixer matching the requirements, or null if none is found.
      */
-    private static Mixer getNamedMixer(String mixerName, MixerProvider provider,
-            Line.Info info) {
+    private static Mixer getNamedMixer(String mixerName, MixerProvider provider, Line.Info info) {
         Mixer.Info[] infos = provider.getMixerInfo();
         for (int i = 0; i < infos.length; i++) {
             if (infos[i].getName().equals(mixerName)) {
@@ -1661,16 +1576,15 @@ public class AudioSystem {
      * method never requires the returned Mixer to do mixing.
      * 
      * @param mixerName
-     *                  The name of the Mixer to be returned.
+     *        The name of the Mixer to be returned.
      * @param providers
-     *                  The List of MixerProviders to check for Mixers.
+     *        The List of MixerProviders to check for Mixers.
      * @param info
-     *                  The type of line the returned Mixer is required to
-     *                  support.
+     *        The type of line the returned Mixer is required to
+     *        support.
      * @return A Mixer matching the requirements, or null if none is found.
      */
-    private static Mixer getNamedMixer(String mixerName, List providers,
-            Line.Info info) {
+    private static Mixer getNamedMixer(String mixerName, List providers, Line.Info info) {
         for (int i = 0; i < providers.size(); i++) {
             MixerProvider provider = (MixerProvider) providers.get(i);
             Mixer mixer = getNamedMixer(mixerName, provider, info);
@@ -1685,19 +1599,17 @@ public class AudioSystem {
      * From a given MixerProvider, return the first appropriate Mixer.
      * 
      * @param provider
-     *                         The MixerProvider to check for Mixers.
+     *        The MixerProvider to check for Mixers.
      * @param info
-     *                         The type of line the returned Mixer is required
-     *                         to support.
+     *        The type of line the returned Mixer is required
+     *        to support.
      * @param isMixingRequired
-     *                         If true, only Mixers that support mixing are
-     *                         returned for line
-     *                         types of SourceDataLine and Clip.
-     * 
+     *        If true, only Mixers that support mixing are
+     *        returned for line
+     *        types of SourceDataLine and Clip.
      * @return A Mixer that is considered appropriate, or null if none is found.
      */
-    private static Mixer getFirstMixer(MixerProvider provider, Line.Info info,
-            boolean isMixingRequired) {
+    private static Mixer getFirstMixer(MixerProvider provider, Line.Info info, boolean isMixingRequired) {
         Mixer.Info[] infos = provider.getMixerInfo();
         for (int j = 0; j < infos.length; j++) {
             Mixer mixer = provider.getMixer(infos[j]);
@@ -1717,14 +1629,13 @@ public class AudioSystem {
      * @return true if the mixer is considered appropriate according to the
      *         rules given above, false otherwise.
      */
-    private static boolean isAppropriateMixer(Mixer mixer, Line.Info lineInfo,
-            boolean isMixingRequired) {
+    private static boolean isAppropriateMixer(Mixer mixer, Line.Info lineInfo, boolean isMixingRequired) {
         if (!mixer.isLineSupported(lineInfo)) {
             return false;
         }
         Class lineClass = lineInfo.getLineClass();
-        if (isMixingRequired && (SourceDataLine.class.isAssignableFrom(
-                lineClass) || Clip.class.isAssignableFrom(lineClass))) {
+        if (isMixingRequired && (SourceDataLine.class.isAssignableFrom(lineClass) || Clip.class
+                .isAssignableFrom(lineClass))) {
             int maxLines = mixer.getMaxLines(lineInfo);
             return ((maxLines == NOT_SPECIFIED) || (maxLines > 1));
         }
@@ -1749,8 +1660,7 @@ public class AudioSystem {
         Mixer.Info[] allInfos; // for all mixers
 
         for (int i = 0; i < providers.size(); i++) {
-            someInfos = (Mixer.Info[]) ((MixerProvider) providers.get(i))
-                    .getMixerInfo();
+            someInfos = (Mixer.Info[]) ((MixerProvider) providers.get(i)).getMixerInfo();
 
             for (int j = 0; j < someInfos.length; j++) {
                 infos.add(someInfos[j]);

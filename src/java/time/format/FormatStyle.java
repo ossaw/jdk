@@ -37,7 +37,6 @@ package java.time.format;
  * See {@link DateTimeFormatter} and {@link DateTimeFormatterBuilder} for usage.
  *
  * @implSpec This is an immutable and thread-safe enum.
- *
  * @since 1.8
  */
 public enum FormatStyle {

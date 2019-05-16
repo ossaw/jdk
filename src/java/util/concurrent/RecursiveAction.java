@@ -16,7 +16,6 @@ package java.util.concurrent;
  * {@code ForkJoinTask}s. Because {@code null} is the only valid value of type
  * {@code Void}, methods such as {@code join} always return {@code null} upon
  * completion.
- *
  * <p>
  * <b>Sample Usages.</b> Here is a simple but complete ForkJoin sort that sorts
  * a given {@code long[]} array:
@@ -43,8 +42,7 @@ package java.util.concurrent;
  *                 sortSequentially(lo, hi);
  *             else {
  *                 int mid = (lo + hi) >>> 1;
- *                 invokeAll(new SortTask(array, lo, mid), new SortTask(array,
- *                         mid, hi));
+ *                 invokeAll(new SortTask(array, lo, mid), new SortTask(array, mid, hi));
  *                 merge(lo, mid, hi);
  *             }
  *         }
@@ -59,8 +57,7 @@ package java.util.concurrent;
  *         void merge(int lo, int mid, int hi) {
  *             long[] buf = Arrays.copyOfRange(array, lo, mid);
  *             for (int i = 0, j = lo, k = mid; i < buf.length; j++)
- *                 array[j] = (k == hi || buf[i] < array[k]) ? buf[i++]
- *                         : array[k++];
+ *                 array[j] = (k == hi || buf[i] < array[k]) ? buf[i++] : array[k++];
  *         }
  *     }
  * }
@@ -89,14 +86,12 @@ package java.util.concurrent;
  *                     array[i]++;
  *             } else {
  *                 int mid = (lo + hi) >>> 1;
- *                 invokeAll(new IncrementTask(array, lo, mid),
- *                         new IncrementTask(array, mid, hi));
+ *                 invokeAll(new IncrementTask(array, lo, mid), new IncrementTask(array, mid, hi));
  *             }
  *         }
  *     }
  * }
  * </pre>
- *
  * <p>
  * The following example illustrates some refinements and idioms that may lead
  * to better performance: RecursiveActions need not be fully recursive, so long

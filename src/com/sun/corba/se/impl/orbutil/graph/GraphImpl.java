@@ -35,8 +35,7 @@ public class GraphImpl extends AbstractSet implements Graph {
     public boolean add(Object obj) // obj must be a Node
     {
         if (!(obj instanceof Node))
-            throw new IllegalArgumentException(
-                    "Graphs must contain only Node instances");
+            throw new IllegalArgumentException("Graphs must contain only Node instances");
 
         Node node = (Node) obj;
         boolean found = nodeToData.keySet().contains(obj);
@@ -93,8 +92,7 @@ public class GraphImpl extends AbstractSet implements Graph {
 
             // Copy entries to array to avoid concurrent modification
             // problem with iterator if the visitor is updating the graph.
-            Map.Entry[] entries = (Map.Entry[]) nodeToData.entrySet().toArray(
-                    new Map.Entry[0]);
+            Map.Entry[] entries = (Map.Entry[]) nodeToData.entrySet().toArray(new Map.Entry[0]);
 
             // Visit each node in the graph that has not already been visited.
             // If any node is visited in this pass, we must run at least one

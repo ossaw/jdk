@@ -15,12 +15,10 @@ import sun.reflect.misc.ReflectUtil;
  * responsiblity of the class using the EventListenerList to provide type-safe
  * API (preferably conforming to the JavaBeans spec) and methods which dispatch
  * event notification methods to appropriate Event Listeners on the list.
- *
  * The main benefits that this class provides are that it is relatively cheap in
  * the case of no listeners, and it provides serialization for event-listener
  * lists in a single place, as well as a degree of MT safety (when used
  * correctly).
- *
  * Usage example: Say one is defining a class that sends out FooEvents, and one
  * wants to allow users of the class to register FooListeners and receive
  * notification when FooEvents occur. The following should be added to the class
@@ -88,7 +86,6 @@ public class EventListenerList implements Serializable {
      * internally! This method is guaranteed to pass back a non-null array, so
      * that no null-checking is required in fire methods. A zero-length array of
      * Object should be returned if there are currently no listeners.
-     *
      * WARNING!!! Absolutely NO modification of the data contained in this array
      * should be made -- if any such manipulation is necessary, it should be
      * done on a copy of the array returned rather than the array itself.
@@ -102,9 +99,8 @@ public class EventListenerList implements Serializable {
      * 
      * @return all of the listeners of the specified type.
      * @exception ClassCastException
-     *                               if the supplied class is not assignable to
-     *                               EventListener
-     *
+     *            if the supplied class is not assignable to
+     *            EventListener
      * @since 1.3
      */
     public <T extends EventListener> T[] getListeners(Class<T> t) {
@@ -149,9 +145,9 @@ public class EventListenerList implements Serializable {
      * Adds the listener as a listener of the specified type.
      * 
      * @param t
-     *          the type of the listener to be added
+     *        the type of the listener to be added
      * @param l
-     *          the listener to be added
+     *        the listener to be added
      */
     public synchronized <T extends EventListener> void add(Class<T> t, T l) {
         if (l == null) {
@@ -161,8 +157,7 @@ public class EventListenerList implements Serializable {
             return;
         }
         if (!t.isInstance(l)) {
-            throw new IllegalArgumentException("Listener " + l
-                    + " is not of type " + t);
+            throw new IllegalArgumentException("Listener " + l + " is not of type " + t);
         }
         if (listenerList == NULL_ARRAY) {
             // if this is the first listener added,
@@ -185,9 +180,9 @@ public class EventListenerList implements Serializable {
      * Removes the listener as a listener of the specified type.
      * 
      * @param t
-     *          the type of the listener to be removed
+     *        the type of the listener to be removed
      * @param l
-     *          the listener to be removed
+     *        the listener to be removed
      */
     public synchronized <T extends EventListener> void remove(Class<T> t, T l) {
         if (l == null) {
@@ -197,14 +192,12 @@ public class EventListenerList implements Serializable {
             return;
         }
         if (!t.isInstance(l)) {
-            throw new IllegalArgumentException("Listener " + l
-                    + " is not of type " + t);
+            throw new IllegalArgumentException("Listener " + l + " is not of type " + t);
         }
         // Is l on the list?
         int index = -1;
         for (int i = listenerList.length - 2; i >= 0; i -= 2) {
-            if ((listenerList[i] == t) && (listenerList[i + 1].equals(
-                    l) == true)) {
+            if ((listenerList[i] == t) && (listenerList[i + 1].equals(l) == true)) {
                 index = i;
                 break;
             }
@@ -219,8 +212,7 @@ public class EventListenerList implements Serializable {
             // the end of tmp (which is two elements
             // shorter than the old list)
             if (index < tmp.length)
-                System.arraycopy(listenerList, index + 2, tmp, index, tmp.length
-                        - index);
+                System.arraycopy(listenerList, index + 2, tmp, index, tmp.length - index);
             // set the listener array to the new array or null
             listenerList = (tmp.length == 0) ? NULL_ARRAY : tmp;
         }
@@ -244,8 +236,7 @@ public class EventListenerList implements Serializable {
         s.writeObject(null);
     }
 
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         listenerList = NULL_ARRAY;
         s.defaultReadObject();
         Object listenerTypeOrNull;

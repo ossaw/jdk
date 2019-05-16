@@ -15,7 +15,6 @@ import java.io.ObjectInputStream;
  * of this class are usually obtained using {@link Query#attr(String)
  * Query.attr}.
  * </p>
- *
  * <p>
  * An <CODE>AttributeValueExp</CODE> may be used anywhere a
  * <CODE>ValueExp</CODE> is required.
@@ -46,8 +45,8 @@ public class AttributeValueExp implements ValueExp {
      * object attribute, named attr.
      *
      * @param attr
-     *             the name of the attribute whose value is the value of this
-     *             {@link ValueExp}.
+     *        the name of the attribute whose value is the value of this
+     *        {@link ValueExp}.
      */
     public AttributeValueExp(String attr) {
         this.attr = attr;
@@ -73,21 +72,17 @@ public class AttributeValueExp implements ValueExp {
      * </p>
      *
      * @param name
-     *             The name of the MBean on which the
-     *             <CODE>AttributeValueExp</CODE> will be applied.
-     *
+     *        The name of the MBean on which the
+     *        <CODE>AttributeValueExp</CODE> will be applied.
      * @return The <CODE>ValueExp</CODE>.
-     *
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
-     *
      */
     @Override
-    public ValueExp apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public ValueExp apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         Object result = getAttribute(name);
 
         if (result instanceof Number) {
@@ -113,8 +108,7 @@ public class AttributeValueExp implements ValueExp {
      * Sets the MBean server on which the query is to be performed.
      *
      * @param s
-     *          The MBean server on which the query is to be performed.
-     *
+     *        The MBean server on which the query is to be performed.
      * @deprecated This method has no effect. The MBean Server used to obtain an
      *             attribute value is {@link QueryEval#getMBeanServer()}.
      */
@@ -132,15 +126,13 @@ public class AttributeValueExp implements ValueExp {
      * Return the value of the given attribute in the named MBean. If the
      * attempt to access the attribute generates an exception, return null.
      * </p>
-     *
      * <p>
      * The MBean Server used is the one returned by
      * {@link QueryEval#getMBeanServer()}.
      * </p>
      *
      * @param name
-     *             the name of the MBean whose attribute is to be returned.
-     *
+     *        the name of the MBean whose attribute is to be returned.
      * @return the value of the attribute, or null if it could not be obtained.
      */
     protected Object getAttribute(ObjectName name) {

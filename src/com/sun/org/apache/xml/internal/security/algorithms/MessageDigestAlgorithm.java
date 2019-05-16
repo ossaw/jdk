@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -40,23 +38,17 @@ import org.w3c.dom.Document;
 public class MessageDigestAlgorithm extends Algorithm {
 
     /** Message Digest - NOT RECOMMENDED MD5 */
-    public static final String ALGO_ID_DIGEST_NOT_RECOMMENDED_MD5 = Constants.MoreAlgorithmsSpecNS
-            + "md5";
+    public static final String ALGO_ID_DIGEST_NOT_RECOMMENDED_MD5 = Constants.MoreAlgorithmsSpecNS + "md5";
     /** Digest - Required SHA1 */
-    public static final String ALGO_ID_DIGEST_SHA1 = Constants.SignatureSpecNS
-            + "sha1";
+    public static final String ALGO_ID_DIGEST_SHA1 = Constants.SignatureSpecNS + "sha1";
     /** Message Digest - RECOMMENDED SHA256 */
-    public static final String ALGO_ID_DIGEST_SHA256 = EncryptionConstants.EncryptionSpecNS
-            + "sha256";
+    public static final String ALGO_ID_DIGEST_SHA256 = EncryptionConstants.EncryptionSpecNS + "sha256";
     /** Message Digest - OPTIONAL SHA384 */
-    public static final String ALGO_ID_DIGEST_SHA384 = Constants.MoreAlgorithmsSpecNS
-            + "sha384";
+    public static final String ALGO_ID_DIGEST_SHA384 = Constants.MoreAlgorithmsSpecNS + "sha384";
     /** Message Digest - OPTIONAL SHA512 */
-    public static final String ALGO_ID_DIGEST_SHA512 = EncryptionConstants.EncryptionSpecNS
-            + "sha512";
+    public static final String ALGO_ID_DIGEST_SHA512 = EncryptionConstants.EncryptionSpecNS + "sha512";
     /** Message Digest - OPTIONAL RIPEMD-160 */
-    public static final String ALGO_ID_DIGEST_RIPEMD160 = EncryptionConstants.EncryptionSpecNS
-            + "ripemd160";
+    public static final String ALGO_ID_DIGEST_RIPEMD160 = EncryptionConstants.EncryptionSpecNS + "ripemd160";
 
     /** Field algorithm stores the actual {@link java.security.MessageDigest} */
     private final MessageDigest algorithm;
@@ -68,8 +60,7 @@ public class MessageDigestAlgorithm extends Algorithm {
      * @param doc
      * @param algorithmURI
      */
-    private MessageDigestAlgorithm(Document doc, String algorithmURI)
-            throws XMLSignatureException {
+    private MessageDigestAlgorithm(Document doc, String algorithmURI) throws XMLSignatureException {
         super(doc, algorithmURI);
 
         algorithm = getDigestInstance(algorithmURI);
@@ -84,13 +75,12 @@ public class MessageDigestAlgorithm extends Algorithm {
      *         digest
      * @throws XMLSignatureException
      */
-    public static MessageDigestAlgorithm getInstance(Document doc,
-            String algorithmURI) throws XMLSignatureException {
+    public static MessageDigestAlgorithm getInstance(Document doc, String algorithmURI)
+            throws XMLSignatureException {
         return new MessageDigestAlgorithm(doc, algorithmURI);
     }
 
-    private static MessageDigest getDigestInstance(String algorithmURI)
-            throws XMLSignatureException {
+    private static MessageDigest getDigestInstance(String algorithmURI) throws XMLSignatureException {
         String algorithmID = JCEMapper.translateURItoJCEID(algorithmURI);
 
         if (algorithmID == null) {
@@ -109,13 +99,11 @@ public class MessageDigestAlgorithm extends Algorithm {
         } catch (java.security.NoSuchAlgorithmException ex) {
             Object[] exArgs = { algorithmID, ex.getLocalizedMessage() };
 
-            throw new XMLSignatureException("algorithms.NoSuchAlgorithm",
-                    exArgs);
+            throw new XMLSignatureException("algorithms.NoSuchAlgorithm", exArgs);
         } catch (NoSuchProviderException ex) {
             Object[] exArgs = { algorithmID, ex.getLocalizedMessage() };
 
-            throw new XMLSignatureException("algorithms.NoSuchAlgorithm",
-                    exArgs);
+            throw new XMLSignatureException("algorithms.NoSuchAlgorithm", exArgs);
         }
 
         return md;
@@ -179,8 +167,7 @@ public class MessageDigestAlgorithm extends Algorithm {
      *         method
      * @throws java.security.DigestException
      */
-    public int digest(byte buf[], int offset, int len)
-            throws java.security.DigestException {
+    public int digest(byte buf[], int offset, int len) throws java.security.DigestException {
         return algorithm.digest(buf, offset, len);
     }
 
@@ -221,7 +208,6 @@ public class MessageDigestAlgorithm extends Algorithm {
     /**
      * Proxy method for {@link java.security.MessageDigest#reset} which is
      * executed on the internal {@link java.security.MessageDigest} object.
-     *
      */
     public void reset() {
         algorithm.reset();

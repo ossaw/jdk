@@ -57,7 +57,6 @@ import com.sun.org.apache.xerces.internal.impl.dtd.XMLContentSpec;
 import com.sun.org.apache.xerces.internal.xni.QName;
 
 /**
- * 
  * @version $Id: DFAContentModel.java,v 1.4 2010/08/06 23:49:43 joehw Exp $
  *          DFAContentModel is the derivative of ContentModel that does all of
  *          the non-trivial element content validation. This class does the
@@ -69,9 +68,7 @@ import com.sun.org.apache.xerces.internal.xni.QName;
  *          and is handled via the MixedContentModel class since mixed models
  *          are very constrained in form and easily handled via a special case.
  *          This also makes implementation of this class much easier.
- *
  * @xerces.internal
- *
  * @version $Id: DFAContentModel.java,v 1.4 2010/08/06 23:49:43 joehw Exp $
  */
 public class DFAContentModel implements ContentModelValidator {
@@ -222,11 +219,10 @@ public class DFAContentModel implements ContentModelValidator {
      * Constructs a DFA content model.
      *
      * @param syntaxTree
-     *                   The syntax tree of the content model.
+     *        The syntax tree of the content model.
      * @param leafCount
-     *                   The number of leaves.
+     *        The number of leaves.
      * @param mixed
-     *
      */
     public DFAContentModel(CMNode syntaxTree, int leafCount, boolean mixed) {
         // Store away our index and pools in members
@@ -263,21 +259,19 @@ public class DFAContentModel implements ContentModelValidator {
      * confirmed.
      *
      * @param children
-     *                 The children of this element. Each integer is an index
-     *                 within
-     *                 the <code>StringPool</code> of the child element name. An
-     *                 index of -1 is used to indicate an occurrence of
-     *                 non-whitespace character data.
+     *        The children of this element. Each integer is an index
+     *        within
+     *        the <code>StringPool</code> of the child element name. An
+     *        index of -1 is used to indicate an occurrence of
+     *        non-whitespace character data.
      * @param offset
-     *                 Offset into the array where the children starts.
+     *        Offset into the array where the children starts.
      * @param length
-     *                 The number of entries in the <code>children</code> array.
-     *
+     *        The number of entries in the <code>children</code> array.
      * @return The value -1 if fully valid, else the 0 based index of the child
      *         that first failed. If the value returned is equal to the number
      *         of children, then the specified children are valid but additional
      *         content is required to reach a valid ending state.
-     *
      */
     public int validate(QName[] children, int offset, int length) {
 
@@ -305,8 +299,8 @@ public class DFAContentModel implements ContentModelValidator {
                     String uri = fElemMap[i].uri;
                     String localpart = fElemMap[i].localpart;
 
-                    System.out.println("fElemMap[" + i + "]=" + uri + ","
-                            + localpart + " (" + uri + ", " + localpart + ')');
+                    System.out.println("fElemMap[" + i + "]=" + uri + "," + localpart + " (" + uri + ", "
+                            + localpart + ')');
 
                 }
                 System.out.println("EOCIndex=" + fEOCString);
@@ -363,10 +357,8 @@ public class DFAContentModel implements ContentModelValidator {
 
                     System.out.println("curElem : " + curElem);
                     for (int i = 0; i < fElemMapSize; i++) {
-                        System.out.println("fElemMap[" + i + "] = "
-                                + fElemMap[i]);
-                        System.out.println("fElemMapType[" + i + "] = "
-                                + fElemMapType[i]);
+                        System.out.println("fElemMap[" + i + "] = " + fElemMap[i]);
+                        System.out.println("fElemMapType[" + i + "] = " + fElemMapType[i]);
                     }
                 }
 
@@ -393,8 +385,7 @@ public class DFAContentModel implements ContentModelValidator {
         // our ending state is a final state.
         //
         if (DEBUG_VALIDATE_CONTENT)
-            System.out.println("curState=" + curState + ", childCount="
-                    + length);
+            System.out.println("curState=" + curState + ", childCount=" + length);
         if (!fFinalStateFlags[curState])
             return length;
 
@@ -410,10 +401,9 @@ public class DFAContentModel implements ContentModelValidator {
      * Builds the internal DFA transition table from the given syntax tree.
      *
      * @param syntaxTree
-     *                   The syntax tree.
-     *
+     *        The syntax tree.
      * @exception CMException
-     *                        Thrown if DFA cannot be built.
+     *            Thrown if DFA cannot be built.
      */
     private void buildDFA(CMNode syntaxTree) {
         //
@@ -457,8 +447,7 @@ public class DFAContentModel implements ContentModelValidator {
 
         fQName.setValues(null, fEOCString, fEOCString, null);
         CMLeaf nodeEOC = new CMLeaf(fQName);
-        fHeadNode = new CMBinOp(XMLContentSpec.CONTENTSPECNODE_SEQ, syntaxTree,
-                nodeEOC);
+        fHeadNode = new CMBinOp(XMLContentSpec.CONTENTSPECNODE_SEQ, syntaxTree, nodeEOC);
 
         //
         // And handle specially the EOC node, which also must be numbered
@@ -543,7 +532,6 @@ public class DFAContentModel implements ContentModelValidator {
          * if (fLeafNameTypeVector != null) {
          * fLeafNameTypeVector.setValues(fElemMap, fElemMapType, fElemMapSize);
          * }
-         * 
          * /*** Optimization(Jan, 2001); We sort fLeafList according to
          * elemIndex which is *uniquely* associated to each leaf. We are
          * *assuming* that each element appears in at least one leaf.
@@ -685,8 +673,7 @@ public class DFAContentModel implements ContentModelValidator {
 
                     /* Optimization(Jan, 2001) */
                     Integer stateObj = (Integer) stateTable.get(newSet);
-                    int stateIndex = (stateObj == null ? curState
-                            : stateObj.intValue());
+                    int stateIndex = (stateObj == null ? curState : stateObj.intValue());
                     /* Optimization(Jan, 2001) */
 
                     // If we did not find it, then add it
@@ -735,12 +722,9 @@ public class DFAContentModel implements ContentModelValidator {
                         int[][] newTransTable = new int[newSize][];
 
                         // Copy over all of the existing content
-                        System.arraycopy(statesToDo, 0, newToDo, 0,
-                                curArraySize);
-                        System.arraycopy(fFinalStateFlags, 0, newFinalFlags, 0,
-                                curArraySize);
-                        System.arraycopy(fTransTable, 0, newTransTable, 0,
-                                curArraySize);
+                        System.arraycopy(statesToDo, 0, newToDo, 0, curArraySize);
+                        System.arraycopy(fFinalStateFlags, 0, newFinalFlags, 0, curArraySize);
+                        System.arraycopy(fTransTable, 0, newTransTable, 0, curArraySize);
 
                         // Store the new array size
                         curArraySize = newSize;
@@ -771,10 +755,9 @@ public class DFAContentModel implements ContentModelValidator {
      * Calculates the follow list of the current node.
      *
      * @param nodeCur
-     *                The curent node.
-     *
+     *        The curent node.
      * @exception CMException
-     *                        Thrown if follow list cannot be calculated.
+     *            Thrown if follow list cannot be calculated.
      */
     private void calcFollowList(CMNode nodeCur) {
         // Recurse as required
@@ -809,11 +792,9 @@ public class DFAContentModel implements ContentModelValidator {
          * else if (nodeCur.type() ==
          * XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE) { // Recurse first
          * calcFollowList(((CMUniOp)nodeCur).getChild());
-         * 
          * // // Now handle our level. We use our own first and last position //
          * sets, so get them up front. // final CMStateSet first =
          * nodeCur.firstPos(); final CMStateSet last = nodeCur.lastPos();
-         * 
          * // // For every position which is in our last position set, add all
          * // of our first position states to the follow set for that //
          * position. // for (int index = 0; index < fLeafCount; index++) { if
@@ -822,9 +803,8 @@ public class DFAContentModel implements ContentModelValidator {
          * (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_ONE)) {
          * throw new RuntimeException("ImplementationMessages.VAL_NIICM"); } /
          ***/
-        else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE
-                || nodeCur
-                        .type() == XMLContentSpec.CONTENTSPECNODE_ONE_OR_MORE) {
+        else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE || nodeCur
+                .type() == XMLContentSpec.CONTENTSPECNODE_ONE_OR_MORE) {
             // Recurse first
             calcFollowList(((CMUniOp) nodeCur).getChild());
 
@@ -857,20 +837,18 @@ public class DFAContentModel implements ContentModelValidator {
      * Dumps the tree of the current node to standard output.
      *
      * @param nodeCur
-     *                The current node.
+     *        The current node.
      * @param level
-     *                The maximum levels to output.
-     *
+     *        The maximum levels to output.
      * @exception CMException
-     *                        Thrown on error.
+     *            Thrown on error.
      */
     private void dumpTree(CMNode nodeCur, int level) {
         for (int index = 0; index < level; index++)
             System.out.print("   ");
 
         int type = nodeCur.type();
-        if ((type == XMLContentSpec.CONTENTSPECNODE_CHOICE)
-                || (type == XMLContentSpec.CONTENTSPECNODE_SEQ)) {
+        if ((type == XMLContentSpec.CONTENTSPECNODE_CHOICE) || (type == XMLContentSpec.CONTENTSPECNODE_SEQ)) {
             if (type == XMLContentSpec.CONTENTSPECNODE_CHOICE)
                 System.out.print("Choice Node ");
             else
@@ -886,8 +864,7 @@ public class DFAContentModel implements ContentModelValidator {
 
             dumpTree(((CMBinOp) nodeCur).getLeft(), level + 1);
             dumpTree(((CMBinOp) nodeCur).getRight(), level + 1);
-        } else if (nodeCur
-                .type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE) {
+        } else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE) {
             System.out.print("Rep Node ");
 
             if (nodeCur.isNullable())
@@ -900,9 +877,8 @@ public class DFAContentModel implements ContentModelValidator {
 
             dumpTree(((CMUniOp) nodeCur).getChild(), level + 1);
         } else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_LEAF) {
-            System.out.print("Leaf: (pos=" + ((CMLeaf) nodeCur).getPosition()
-                    + "), " + ((CMLeaf) nodeCur).getElement() + "(elemIndex="
-                    + ((CMLeaf) nodeCur).getElement() + ") ");
+            System.out.print("Leaf: (pos=" + ((CMLeaf) nodeCur).getPosition() + "), " + ((CMLeaf) nodeCur)
+                    .getElement() + "(elemIndex=" + ((CMLeaf) nodeCur).getElement() + ") ");
 
             if (nodeCur.isNullable())
                 System.out.print(" Nullable ");
@@ -934,30 +910,22 @@ public class DFAContentModel implements ContentModelValidator {
         nodeCur.setMaxStates(fLeafCount);
 
         // Recurse as required
-        if ((nodeCur.type() & 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY
-                || (nodeCur.type()
-                        & 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY_LOCAL
-                || (nodeCur.type()
+        if ((nodeCur.type() & 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY || (nodeCur.type()
+                & 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY_LOCAL || (nodeCur.type()
                         & 0x0f) == XMLContentSpec.CONTENTSPECNODE_ANY_OTHER) {
             // REVISIT: Don't waste these structures.
-            QName qname = new QName(null, null, null, ((CMAny) nodeCur)
-                    .getURI());
-            fLeafList[curIndex] = new CMLeaf(qname, ((CMAny) nodeCur)
-                    .getPosition());
+            QName qname = new QName(null, null, null, ((CMAny) nodeCur).getURI());
+            fLeafList[curIndex] = new CMLeaf(qname, ((CMAny) nodeCur).getPosition());
             fLeafListType[curIndex] = nodeCur.type();
             curIndex++;
-        } else if ((nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_CHOICE)
-                || (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_SEQ)) {
-            curIndex = postTreeBuildInit(((CMBinOp) nodeCur).getLeft(),
-                    curIndex);
-            curIndex = postTreeBuildInit(((CMBinOp) nodeCur).getRight(),
-                    curIndex);
-        } else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE
-                || nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ONE_OR_MORE
-                || nodeCur
+        } else if ((nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_CHOICE) || (nodeCur
+                .type() == XMLContentSpec.CONTENTSPECNODE_SEQ)) {
+            curIndex = postTreeBuildInit(((CMBinOp) nodeCur).getLeft(), curIndex);
+            curIndex = postTreeBuildInit(((CMBinOp) nodeCur).getRight(), curIndex);
+        } else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_MORE || nodeCur
+                .type() == XMLContentSpec.CONTENTSPECNODE_ONE_OR_MORE || nodeCur
                         .type() == XMLContentSpec.CONTENTSPECNODE_ZERO_OR_ONE) {
-            curIndex = postTreeBuildInit(((CMUniOp) nodeCur).getChild(),
-                    curIndex);
+            curIndex = postTreeBuildInit(((CMUniOp) nodeCur).getChild(), curIndex);
         } else if (nodeCur.type() == XMLContentSpec.CONTENTSPECNODE_LEAF) {
             //
             // Put this node in the leaf list at the current index if its
@@ -970,8 +938,7 @@ public class DFAContentModel implements ContentModelValidator {
                 curIndex++;
             }
         } else {
-            throw new RuntimeException("ImplementationMessages.VAL_NIICM: type="
-                    + nodeCur.type());
+            throw new RuntimeException("ImplementationMessages.VAL_NIICM: type=" + nodeCur.type());
         }
         return curIndex;
     }

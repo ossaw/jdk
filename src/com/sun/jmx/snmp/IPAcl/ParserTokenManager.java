@@ -696,8 +696,7 @@ class ParserTokenManager implements ParserConstants {
         jjCheckNAdd(jjnextStates[start + 1]);
     }
 
-    static final long[] jjbitVec0 = { 0x0L, 0x0L, 0xffffffffffffffffL,
-            0xffffffffffffffffL };
+    static final long[] jjbitVec0 = { 0x0L, 0x0L, 0xffffffffffffffffL, 0xffffffffffffffffL };
 
     private final int jjMoveNfa_0(int startState, int curPos) {
         int[] nextStates;
@@ -711,7 +710,8 @@ class ParserTokenManager implements ParserConstants {
                 ReInitRounds();
             if (curChar < 64) {
                 long l = 1L << curChar;
-                MatchLoop: do {
+                MatchLoop:
+                do {
                     switch (jjstateSet[--i]) {
                         case 49:
                             if ((0x3ff200000000000L & l) != 0L)
@@ -1043,7 +1043,8 @@ class ParserTokenManager implements ParserConstants {
                 } while (i != startsAt);
             } else if (curChar < 128) {
                 long l = 1L << (curChar & 077);
-                MatchLoop: do {
+                MatchLoop:
+                do {
                     switch (jjstateSet[--i]) {
                         case 49:
                             if ((0x7fffffe87fffffeL & l) != 0L)
@@ -1237,7 +1238,8 @@ class ParserTokenManager implements ParserConstants {
             } else {
                 int i2 = (curChar & 0xff) >> 6;
                 long l2 = 1L << (curChar & 077);
-                MatchLoop: do {
+                MatchLoop:
+                do {
                     switch (jjstateSet[--i]) {
                         case 1:
                             if ((jjbitVec0[i2] & l2) != 0L)
@@ -1262,8 +1264,7 @@ class ParserTokenManager implements ParserConstants {
                 kind = 0x7fffffff;
             }
             ++curPos;
-            if ((i = jjnewStateCnt) == (startsAt = 47
-                    - (jjnewStateCnt = startsAt)))
+            if ((i = jjnewStateCnt) == (startsAt = 47 - (jjnewStateCnt = startsAt)))
                 return curPos;
             try {
                 curChar = input_stream.readChar();
@@ -1273,22 +1274,17 @@ class ParserTokenManager implements ParserConstants {
         }
     }
 
-    static final int[] jjnextStates = { 18, 19, 21, 28, 29, 39, 23, 24, 26, 27,
-            41, 42, 7, 8, 10, 18, 20, 21, 44, 46, 13, 1, 2, 4, 37, 28, 38, 26,
-            27, 37, 28, 38, 15, 16, };
-    public static final String[] jjstrLiteralImages = { "", null, null, null,
-            null, null, null, "\141\143\143\145\163\163", "\141\143\154", "\75",
-            "\143\157\155\155\165\156\151\164\151\145\163",
-            "\145\156\164\145\162\160\162\151\163\145", "\150\157\163\164\163",
-            "\173", "\155\141\156\141\147\145\162\163", "\55", "\175",
-            "\162\145\141\144\55\157\156\154\171",
-            "\162\145\141\144\55\167\162\151\164\145", "\164\162\141\160",
-            "\151\156\146\157\162\155",
+    static final int[] jjnextStates = { 18, 19, 21, 28, 29, 39, 23, 24, 26, 27, 41, 42, 7, 8, 10, 18, 20, 21,
+            44, 46, 13, 1, 2, 4, 37, 28, 38, 26, 27, 37, 28, 38, 15, 16, };
+    public static final String[] jjstrLiteralImages = { "", null, null, null, null, null, null,
+            "\141\143\143\145\163\163", "\141\143\154", "\75", "\143\157\155\155\165\156\151\164\151\145\163",
+            "\145\156\164\145\162\160\162\151\163\145", "\150\157\163\164\163", "\173",
+            "\155\141\156\141\147\145\162\163", "\55", "\175", "\162\145\141\144\55\157\156\154\171",
+            "\162\145\141\144\55\167\162\151\164\145", "\164\162\141\160", "\151\156\146\157\162\155",
             "\164\162\141\160\55\143\157\155\155\165\156\151\164\171",
             "\151\156\146\157\162\155\55\143\157\155\155\165\156\151\164\171",
-            "\164\162\141\160\55\156\165\155", null, null, null, null, null,
-            null, null, null, null, null, null, null, "\54", "\56", "\41",
-            "\57", };
+            "\164\162\141\160\55\156\165\155", null, null, null, null, null, null, null, null, null, null,
+            null, null, "\54", "\56", "\41", "\57", };
     public static final String[] lexStateNames = { "DEFAULT", };
     static final long[] jjtoToken = { 0xf891ffff81L, };
     static final long[] jjtoSkip = { 0x7eL, };
@@ -1330,9 +1326,8 @@ class ParserTokenManager implements ParserConstants {
 
     public void SwitchTo(int lexState) {
         if (lexState >= 1 || lexState < 0)
-            throw new TokenMgrError("Error: Ignoring invalid lexical state : "
-                    + lexState + ". State unchanged.",
-                    TokenMgrError.INVALID_LEXICAL_STATE);
+            throw new TokenMgrError("Error: Ignoring invalid lexical state : " + lexState
+                    + ". State unchanged.", TokenMgrError.INVALID_LEXICAL_STATE);
         else
             curLexState = lexState;
     }
@@ -1362,7 +1357,8 @@ class ParserTokenManager implements ParserConstants {
         Token matchedToken;
         int curPos = 0;
 
-        EOFLoop: for (;;) {
+        EOFLoop:
+        for (;;) {
             try {
                 curChar = input_stream.BeginToken();
             } catch (java.io.IOException e) {
@@ -1384,8 +1380,7 @@ class ParserTokenManager implements ParserConstants {
             if (jjmatchedKind != 0x7fffffff) {
                 if (jjmatchedPos + 1 < curPos)
                     input_stream.backup(curPos - jjmatchedPos - 1);
-                if ((jjtoToken[jjmatchedKind >> 6] & (1L << (jjmatchedKind
-                        & 077))) != 0L) {
+                if ((jjtoToken[jjmatchedKind >> 6] & (1L << (jjmatchedKind & 077))) != 0L) {
                     matchedToken = jjFillToken();
                     return matchedToken;
                 } else {
@@ -1412,8 +1407,7 @@ class ParserTokenManager implements ParserConstants {
                 input_stream.backup(1);
                 error_after = curPos <= 1 ? "" : input_stream.GetImage();
             }
-            throw new TokenMgrError(EOFSeen, curLexState, error_line,
-                    error_column, error_after, curChar,
+            throw new TokenMgrError(EOFSeen, curLexState, error_line, error_column, error_after, curChar,
                     TokenMgrError.LEXICAL_ERROR);
         }
     }

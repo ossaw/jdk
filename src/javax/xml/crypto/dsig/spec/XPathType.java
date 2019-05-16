@@ -96,14 +96,14 @@ public class XPathType {
      * expression and filter.
      *
      * @param expression
-     *                   the XPath expression to be evaluated
+     *        the XPath expression to be evaluated
      * @param filter
-     *                   the filter operation ({@link Filter#INTERSECT},
-     *                   {@link Filter#SUBTRACT}, or {@link Filter#UNION})
+     *        the filter operation ({@link Filter#INTERSECT},
+     *        {@link Filter#SUBTRACT}, or {@link Filter#UNION})
      * @throws NullPointerException
-     *                              if <code>expression</code> or
-     *                              <code>filter</code> is
-     *                              <code>null</code>
+     *         if <code>expression</code> or
+     *         <code>filter</code> is
+     *         <code>null</code>
      */
     public XPathType(String expression, Filter filter) {
         if (expression == null) {
@@ -123,25 +123,25 @@ public class XPathType {
      * against subsequent modification.
      *
      * @param expression
-     *                     the XPath expression to be evaluated
+     *        the XPath expression to be evaluated
      * @param filter
-     *                     the filter operation ({@link Filter#INTERSECT},
-     *                     {@link Filter#SUBTRACT}, or {@link Filter#UNION})
+     *        the filter operation ({@link Filter#INTERSECT},
+     *        {@link Filter#SUBTRACT}, or {@link Filter#UNION})
      * @param namespaceMap
-     *                     the map of namespace prefixes. Each key is a
-     *                     namespace prefix
-     *                     <code>String</code> that maps to a corresponding
-     *                     namespace URI
-     *                     <code>String</code>.
+     *        the map of namespace prefixes. Each key is a
+     *        namespace prefix
+     *        <code>String</code> that maps to a corresponding
+     *        namespace URI
+     *        <code>String</code>.
      * @throws NullPointerException
-     *                              if <code>expression</code>,
-     *                              <code>filter</code> or
-     *                              <code>namespaceMap</code> are
-     *                              <code>null</code>
+     *         if <code>expression</code>,
+     *         <code>filter</code> or
+     *         <code>namespaceMap</code> are
+     *         <code>null</code>
      * @throws ClassCastException
-     *                              if any of the map's keys or entries are not
-     *                              of type
-     *                              <code>String</code>
+     *         if any of the map's keys or entries are not
+     *         of type
+     *         <code>String</code>
      */
     @SuppressWarnings("rawtypes")
     public XPathType(String expression, Filter filter, Map namespaceMap) {
@@ -150,12 +150,10 @@ public class XPathType {
             throw new NullPointerException("namespaceMap cannot be null");
         }
         Map<?, ?> copy = new HashMap<>((Map<?, ?>) namespaceMap);
-        Iterator<? extends Map.Entry<?, ?>> entries = copy.entrySet()
-                .iterator();
+        Iterator<? extends Map.Entry<?, ?>> entries = copy.entrySet().iterator();
         while (entries.hasNext()) {
             Map.Entry<?, ?> me = entries.next();
-            if (!(me.getKey() instanceof String) || !(me
-                    .getValue() instanceof String)) {
+            if (!(me.getKey() instanceof String) || !(me.getValue() instanceof String)) {
                 throw new ClassCastException("not a String");
             }
         }

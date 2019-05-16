@@ -73,11 +73,10 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLPullParserConfiguration;
  * @author Elena Litani, IBM
  * @author Neil Graham, IBM
  * @author Michael Glavassevich, IBM
- *
  * @version $Id: XML11Configuration.java,v 1.9 2010-11-01 04:40:10 joehw Exp $
  */
-public class XML11Configuration extends ParserConfigurationSettings implements
-        XMLPullParserConfiguration, XML11Configurable {
+public class XML11Configuration extends ParserConfigurationSettings implements XMLPullParserConfiguration,
+        XML11Configurable {
 
     //
     // Constants
@@ -165,12 +164,10 @@ public class XML11Configuration extends ParserConfigurationSettings implements
     // feature identifiers
 
     /** Feature identifier: validation. */
-    protected static final String VALIDATION = Constants.SAX_FEATURE_PREFIX
-            + Constants.VALIDATION_FEATURE;
+    protected static final String VALIDATION = Constants.SAX_FEATURE_PREFIX + Constants.VALIDATION_FEATURE;
 
     /** Feature identifier: namespaces. */
-    protected static final String NAMESPACES = Constants.SAX_FEATURE_PREFIX
-            + Constants.NAMESPACES_FEATURE;
+    protected static final String NAMESPACES = Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;
 
     /** Feature identifier: external general entities. */
     protected static final String EXTERNAL_GENERAL_ENTITIES = Constants.SAX_FEATURE_PREFIX
@@ -183,8 +180,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
     // property identifiers
 
     /** Property identifier: xml string. */
-    protected static final String XML_STRING = Constants.SAX_PROPERTY_PREFIX
-            + Constants.XML_STRING_PROPERTY;
+    protected static final String XML_STRING = Constants.SAX_PROPERTY_PREFIX + Constants.XML_STRING_PROPERTY;
 
     /** Property identifier: symbol table. */
     protected static final String SYMBOL_TABLE = Constants.XERCES_PROPERTY_PREFIX
@@ -258,8 +254,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
             + Constants.SCHEMA_SOURCE;
 
     /** Property identifier: locale. */
-    protected static final String LOCALE = Constants.XERCES_PROPERTY_PREFIX
-            + Constants.LOCALE_PROPERTY;
+    protected static final String LOCALE = Constants.XERCES_PROPERTY_PREFIX + Constants.LOCALE_PROPERTY;
 
     /** Property identifier: Schema DV Factory */
     protected static final String SCHEMA_DV_FACTORY = Constants.XERCES_PROPERTY_PREFIX
@@ -406,7 +401,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Constructs a parser configuration using the specified symbol table.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      */
     public XML11Configuration(SymbolTable symbolTable) {
         this(symbolTable, null, null);
@@ -420,12 +415,11 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * validation engine is implemented.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                    The grammar pool to use.
+     *        The grammar pool to use.
      */
-    public XML11Configuration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool) {
+    public XML11Configuration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this(symbolTable, grammarPool, null);
     } // <init>(SymbolTable,XMLGrammarPool)
 
@@ -437,14 +431,14 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * validation engine is implemented.
      *
      * @param symbolTable
-     *                       The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                       The grammar pool to use.
+     *        The grammar pool to use.
      * @param parentSettings
-     *                       The parent settings.
+     *        The parent settings.
      */
-    public XML11Configuration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
+    public XML11Configuration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
+            XMLComponentManager parentSettings) {
 
         super(parentSettings);
 
@@ -461,20 +455,17 @@ public class XML11Configuration extends ParserConfigurationSettings implements
         fProperties = new HashMap<>();
 
         // add default recognized features
-        final String[] recognizedFeatures = { CONTINUE_AFTER_FATAL_ERROR,
-                LOAD_EXTERNAL_DTD, // from
+        final String[] recognizedFeatures = { CONTINUE_AFTER_FATAL_ERROR, LOAD_EXTERNAL_DTD, // from
                 // XMLDTDScannerImpl
-                VALIDATION, NAMESPACES, NORMALIZE_DATA, SCHEMA_ELEMENT_DEFAULT,
-                SCHEMA_AUGMENT_PSVI, GENERATE_SYNTHETIC_ANNOTATIONS,
-                VALIDATE_ANNOTATIONS, HONOUR_ALL_SCHEMALOCATIONS,
+                VALIDATION, NAMESPACES, NORMALIZE_DATA, SCHEMA_ELEMENT_DEFAULT, SCHEMA_AUGMENT_PSVI,
+                GENERATE_SYNTHETIC_ANNOTATIONS, VALIDATE_ANNOTATIONS, HONOUR_ALL_SCHEMALOCATIONS,
                 NAMESPACE_GROWTH, TOLERATE_DUPLICATES, USE_GRAMMAR_POOL_ONLY,
                 // NOTE: These shouldn't really be here but since the XML Schema
                 // validator is constructed dynamically, its recognized
                 // features might not have been set and it would cause a
                 // not-recognized exception to be thrown. -Ac
-                XMLSCHEMA_VALIDATION, XMLSCHEMA_FULL_CHECKING,
-                EXTERNAL_GENERAL_ENTITIES, EXTERNAL_PARAMETER_ENTITIES,
-                PARSER_SETTINGS, XMLConstants.FEATURE_SECURE_PROCESSING };
+                XMLSCHEMA_VALIDATION, XMLSCHEMA_FULL_CHECKING, EXTERNAL_GENERAL_ENTITIES,
+                EXTERNAL_PARAMETER_ENTITIES, PARSER_SETTINGS, XMLConstants.FEATURE_SECURE_PROCESSING };
         addRecognizedFeatures(recognizedFeatures);
         // set state for default features
         fFeatures.put(VALIDATION, Boolean.FALSE);
@@ -496,18 +487,15 @@ public class XML11Configuration extends ParserConfigurationSettings implements
         fFeatures.put(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
 
         // add default recognized properties
-        final String[] recognizedProperties = { SYMBOL_TABLE, ERROR_HANDLER,
-                ENTITY_RESOLVER, ERROR_REPORTER, ENTITY_MANAGER,
-                DOCUMENT_SCANNER, DTD_SCANNER, DTD_PROCESSOR, DTD_VALIDATOR,
-                DATATYPE_VALIDATOR_FACTORY, VALIDATION_MANAGER,
-                SCHEMA_VALIDATOR, XML_STRING, XMLGRAMMAR_POOL,
+        final String[] recognizedProperties = { SYMBOL_TABLE, ERROR_HANDLER, ENTITY_RESOLVER, ERROR_REPORTER,
+                ENTITY_MANAGER, DOCUMENT_SCANNER, DTD_SCANNER, DTD_PROCESSOR, DTD_VALIDATOR,
+                DATATYPE_VALIDATOR_FACTORY, VALIDATION_MANAGER, SCHEMA_VALIDATOR, XML_STRING, XMLGRAMMAR_POOL,
                 JAXP_SCHEMA_SOURCE, JAXP_SCHEMA_LANGUAGE,
                 // NOTE: These shouldn't really be here but since the XML Schema
                 // validator is constructed dynamically, its recognized
                 // properties might not have been set and it would cause a
                 // not-recognized exception to be thrown. -Ac
-                SCHEMA_LOCATION, SCHEMA_NONS_LOCATION, LOCALE,
-                SCHEMA_DV_FACTORY, SECURITY_MANAGER,
+                SCHEMA_LOCATION, SCHEMA_NONS_LOCATION, LOCALE, SCHEMA_DV_FACTORY, SECURITY_MANAGER,
                 XML_SECURITY_PROPERTY_MANAGER };
         addRecognizedProperties(recognizedProperties);
 
@@ -556,13 +544,10 @@ public class XML11Configuration extends ParserConfigurationSettings implements
         fVersionDetector = new XMLVersionDetector();
 
         // add message formatters
-        if (fErrorReporter.getMessageFormatter(
-                XMLMessageFormatter.XML_DOMAIN) == null) {
+        if (fErrorReporter.getMessageFormatter(XMLMessageFormatter.XML_DOMAIN) == null) {
             XMLMessageFormatter xmft = new XMLMessageFormatter();
-            fErrorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN,
-                    xmft);
-            fErrorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN,
-                    xmft);
+            fErrorReporter.putMessageFormatter(XMLMessageFormatter.XML_DOMAIN, xmft);
+            fErrorReporter.putMessageFormatter(XMLMessageFormatter.XMLNS_DOMAIN, xmft);
         }
 
         // set locale
@@ -584,19 +569,16 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Sets the input source for the document to parse.
      *
      * @param inputSource
-     *                    The document's input source.
-     *
+     *        The document's input source.
      * @exception XMLConfigurationException
-     *                                      Thrown if there is a configuration
-     *                                      error when initializing
-     *                                      the parser.
+     *            Thrown if there is a configuration
+     *            error when initializing
+     *            the parser.
      * @exception IOException
-     *                                      Thrown on I/O error.
-     *
+     *            Thrown on I/O error.
      * @see #parse(boolean)
      */
-    public void setInputSource(XMLInputSource inputSource)
-            throws XMLConfigurationException, IOException {
+    public void setInputSource(XMLInputSource inputSource) throws XMLConfigurationException, IOException {
 
         // REVISIT: this method used to reset all the components and
         // construct the pipeline. Now reset() is called
@@ -611,12 +593,11 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Set the locale to use for messages.
      *
      * @param locale
-     *               The locale object to use for localization of messages.
-     *
+     *        The locale object to use for localization of messages.
      * @exception XNIException
-     *                         Thrown if the parser does not support the
-     *                         specified
-     *                         locale.
+     *            Thrown if the parser does not support the
+     *            specified
+     *            locale.
      */
     public void setLocale(Locale locale) throws XNIException {
         fLocale = locale;
@@ -628,7 +609,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * receive information about the document.
      *
      * @param documentHandler
-     *                        The document handler.
+     *        The document handler.
      */
     public void setDocumentHandler(XMLDocumentHandler documentHandler) {
         fDocumentHandler = documentHandler;
@@ -649,7 +630,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Sets the DTD handler.
      *
      * @param dtdHandler
-     *                   The DTD handler.
+     *        The DTD handler.
      */
     public void setDTDHandler(XMLDTDHandler dtdHandler) {
         fDTDHandler = dtdHandler;
@@ -664,7 +645,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Sets the DTD content model handler.
      *
      * @param handler
-     *                The DTD content model handler.
+     *        The DTD content model handler.
      */
     public void setDTDContentModelHandler(XMLDTDContentModelHandler handler) {
         fDTDContentModelHandler = handler;
@@ -680,9 +661,9 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * interface supports resolution of public and system identifiers.
      *
      * @param resolver
-     *                 The new entity resolver. Passing a null value will
-     *                 uninstall
-     *                 the currently installed resolver.
+     *        The new entity resolver. Passing a null value will
+     *        uninstall
+     *        the currently installed resolver.
      */
     public void setEntityResolver(XMLEntityResolver resolver) {
         fProperties.put(ENTITY_RESOLVER, resolver);
@@ -700,21 +681,19 @@ public class XML11Configuration extends ParserConfigurationSettings implements
 
     /**
      * Allow an application to register an error event handler.
-     *
      * <p>
      * If the application does not register an error handler, all error events
      * reported by the SAX parser will be silently ignored; however, normal
      * processing may not continue. It is highly recommended that all SAX
      * applications implement an error handler to avoid unexpected bugs.
      * </p>
-     *
      * <p>
      * Applications may register a new or different handler in the middle of a
      * parse, and the SAX parser must begin using the new handler immediately.
      * </p>
      *
      * @param errorHandler
-     *                     The error handler.
+     *        The error handler.
      * @exception java.lang.NullPointerException
      *            If the handler argument is null.
      * @see #getErrorHandler
@@ -747,19 +726,17 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Parses the specified input source.
      *
      * @param source
-     *               The input source.
-     *
+     *        The input source.
      * @exception XNIException
-     *                         Throws exception on XNI error.
-     * @exception              java.io.IOException
-     *                         Throws exception on i/o error.
+     *            Throws exception on XNI error.
+     * @exception java.io.IOException
+     *            Throws exception on i/o error.
      */
     public void parse(XMLInputSource source) throws XNIException, IOException {
 
         if (fParseInProgress) {
             // REVISIT - need to add new error message
-            throw new XNIException(
-                    "FWK005 parse may not be called while parsing.");
+            throw new XNIException("FWK005 parse may not be called while parsing.");
         }
         fParseInProgress = true;
 
@@ -800,8 +777,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
                 fConfigUpdated = true;
                 resetCommon();
 
-                short version = fVersionDetector.determineDocVersion(
-                        fInputSource);
+                short version = fVersionDetector.determineDocVersion(fInputSource);
                 if (version == Constants.XML_VERSION_1_1) {
                     initXML11Components();
                     configureXML11Pipeline();
@@ -815,8 +791,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
                 fConfigUpdated = false;
 
                 // resets and sets the pipeline.
-                fVersionDetector.startDocumentParsing(
-                        (XMLEntityHandler) fCurrentScanner, version);
+                fVersionDetector.startDocumentParsing((XMLEntityHandler) fCurrentScanner, version);
                 fInputSource = null;
             } catch (XNIException ex) {
                 if (PRINT_EXCEPTION_STACK_TRACE)
@@ -863,18 +838,16 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Returns the state of a feature.
      *
      * @param featureId
-     *                  The feature identifier.
+     *        The feature identifier.
      * @return true if the feature is supported
-     *
      * @throws XMLConfigurationException
-     *                                   Thrown for configuration error. In
-     *                                   general, components should
-     *                                   only throw this exception if it is
-     *                                   <strong>really</strong> a
-     *                                   critical error.
+     *         Thrown for configuration error. In
+     *         general, components should
+     *         only throw this exception if it is
+     *         <strong>really</strong> a
+     *         critical error.
      */
-    public FeatureState getFeatureState(String featureId)
-            throws XMLConfigurationException {
+    public FeatureState getFeatureState(String featureId) throws XMLConfigurationException {
         // make this feature special
         if (featureId.equals(PARSER_SETTINGS)) {
             return FeatureState.is(fConfigUpdated);
@@ -885,21 +858,18 @@ public class XML11Configuration extends ParserConfigurationSettings implements
 
     /**
      * Set the state of a feature.
-     *
      * Set the state of any feature in a SAX2 parser. The parser might not
      * recognize the feature, and if it does recognize it, it might not be able
      * to fulfill the request.
      *
      * @param featureId
-     *                  The unique identifier (URI) of the feature.
+     *        The unique identifier (URI) of the feature.
      * @param state
-     *                  The requested state of the feature (true or false).
-     *
+     *        The requested state of the feature (true or false).
      * @exception com.sun.org.apache.xerces.internal.xni.parser.XMLConfigurationException
      *            If the requested feature is not known.
      */
-    public void setFeature(String featureId, boolean state)
-            throws XMLConfigurationException {
+    public void setFeature(String featureId, boolean state) throws XMLConfigurationException {
         fConfigUpdated = true;
         // forward to every XML 1.0 component
         int count = fComponents.size();
@@ -933,18 +903,16 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Returns the value of a property.
      *
      * @param propertyId
-     *                   The property identifier.
+     *        The property identifier.
      * @return the value of the property
-     *
      * @throws XMLConfigurationException
-     *                                   Thrown for configuration error. In
-     *                                   general, components should
-     *                                   only throw this exception if it is
-     *                                   <strong>really</strong> a
-     *                                   critical error.
+     *         Thrown for configuration error. In
+     *         general, components should
+     *         only throw this exception if it is
+     *         <strong>really</strong> a
+     *         critical error.
      */
-    public PropertyState getPropertyState(String propertyId)
-            throws XMLConfigurationException {
+    public PropertyState getPropertyState(String propertyId) throws XMLConfigurationException {
         if (LOCALE.equals(propertyId)) {
             return PropertyState.is(getLocale());
         }
@@ -957,8 +925,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * @param propertyId
      * @param value
      */
-    public void setProperty(String propertyId, Object value)
-            throws XMLConfigurationException {
+    public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
         fConfigUpdated = true;
         if (LOCALE.equals(propertyId)) {
             setLocale((Locale) value);
@@ -1060,8 +1027,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
         fXML11DTDProcessor.setDTDContentModelSource(fXML11DTDScanner);
         fXML11DTDProcessor.setDTDContentModelHandler(fDTDContentModelHandler);
         if (fDTDContentModelHandler != null) {
-            fDTDContentModelHandler.setDTDContentModelSource(
-                    fXML11DTDProcessor);
+            fDTDContentModelHandler.setDTDContentModelSource(fXML11DTDProcessor);
         }
 
         // setup XML 1.1 document pipeline
@@ -1116,11 +1082,9 @@ public class XML11Configuration extends ParserConfigurationSettings implements
                 addCommonComponent(fSchemaValidator);
                 fSchemaValidator.reset(this);
                 // add schema message formatter
-                if (fErrorReporter.getMessageFormatter(
-                        XSMessageFormatter.SCHEMA_DOMAIN) == null) {
+                if (fErrorReporter.getMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN) == null) {
                     XSMessageFormatter xmft = new XSMessageFormatter();
-                    fErrorReporter.putMessageFormatter(
-                            XSMessageFormatter.SCHEMA_DOMAIN, xmft);
+                    fErrorReporter.putMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN, xmft);
                 }
             }
 
@@ -1212,11 +1176,9 @@ public class XML11Configuration extends ParserConfigurationSettings implements
                 addCommonComponent(fSchemaValidator);
                 fSchemaValidator.reset(this);
                 // add schema message formatter
-                if (fErrorReporter.getMessageFormatter(
-                        XSMessageFormatter.SCHEMA_DOMAIN) == null) {
+                if (fErrorReporter.getMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN) == null) {
                     XSMessageFormatter xmft = new XSMessageFormatter();
-                    fErrorReporter.putMessageFormatter(
-                            XSMessageFormatter.SCHEMA_DOMAIN, xmft);
+                    fErrorReporter.putMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN, xmft);
                 }
 
             }
@@ -1237,25 +1199,22 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * returns. Otherwise, the appropriate exception is thrown.
      *
      * @param featureId
-     *                  The unique identifier (URI) of the feature.
-     *
+     *        The unique identifier (URI) of the feature.
      * @throws XMLConfigurationException
-     *                                   Thrown for configuration error. In
-     *                                   general, components should
-     *                                   only throw this exception if it is
-     *                                   <strong>really</strong> a
-     *                                   critical error.
+     *         Thrown for configuration error. In
+     *         general, components should
+     *         only throw this exception if it is
+     *         <strong>really</strong> a
+     *         critical error.
      */
-    protected FeatureState checkFeature(String featureId)
-            throws XMLConfigurationException {
+    protected FeatureState checkFeature(String featureId) throws XMLConfigurationException {
 
         //
         // Xerces Features
         //
 
         if (featureId.startsWith(Constants.XERCES_FEATURE_PREFIX)) {
-            final int suffixLength = featureId.length()
-                    - Constants.XERCES_FEATURE_PREFIX.length();
+            final int suffixLength = featureId.length() - Constants.XERCES_FEATURE_PREFIX.length();
 
             //
             // http://apache.org/xml/features/validation/dynamic
@@ -1263,52 +1222,47 @@ public class XML11Configuration extends ParserConfigurationSettings implements
             // contains a grammar. Validation is turned on/off based
             // on each document instance, automatically.
             //
-            if (suffixLength == Constants.DYNAMIC_VALIDATION_FEATURE.length()
-                    && featureId.endsWith(
-                            Constants.DYNAMIC_VALIDATION_FEATURE)) {
+            if (suffixLength == Constants.DYNAMIC_VALIDATION_FEATURE.length() && featureId.endsWith(
+                    Constants.DYNAMIC_VALIDATION_FEATURE)) {
                 return FeatureState.RECOGNIZED;
             }
 
             //
             // http://apache.org/xml/features/validation/default-attribute-values
             //
-            if (suffixLength == Constants.DEFAULT_ATTRIBUTE_VALUES_FEATURE
-                    .length() && featureId.endsWith(
-                            Constants.DEFAULT_ATTRIBUTE_VALUES_FEATURE)) {
+            if (suffixLength == Constants.DEFAULT_ATTRIBUTE_VALUES_FEATURE.length() && featureId.endsWith(
+                    Constants.DEFAULT_ATTRIBUTE_VALUES_FEATURE)) {
                 // REVISIT
                 return FeatureState.NOT_SUPPORTED;
             }
             //
             // http://apache.org/xml/features/validation/default-attribute-values
             //
-            if (suffixLength == Constants.VALIDATE_CONTENT_MODELS_FEATURE
-                    .length() && featureId.endsWith(
-                            Constants.VALIDATE_CONTENT_MODELS_FEATURE)) {
+            if (suffixLength == Constants.VALIDATE_CONTENT_MODELS_FEATURE.length() && featureId.endsWith(
+                    Constants.VALIDATE_CONTENT_MODELS_FEATURE)) {
                 // REVISIT
                 return FeatureState.NOT_SUPPORTED;
             }
             //
             // http://apache.org/xml/features/validation/nonvalidating/load-dtd-grammar
             //
-            if (suffixLength == Constants.LOAD_DTD_GRAMMAR_FEATURE.length()
-                    && featureId.endsWith(Constants.LOAD_DTD_GRAMMAR_FEATURE)) {
+            if (suffixLength == Constants.LOAD_DTD_GRAMMAR_FEATURE.length() && featureId.endsWith(
+                    Constants.LOAD_DTD_GRAMMAR_FEATURE)) {
                 return FeatureState.RECOGNIZED;
             }
             //
             // http://apache.org/xml/features/validation/nonvalidating/load-external-dtd
             //
-            if (suffixLength == Constants.LOAD_EXTERNAL_DTD_FEATURE.length()
-                    && featureId.endsWith(
-                            Constants.LOAD_EXTERNAL_DTD_FEATURE)) {
+            if (suffixLength == Constants.LOAD_EXTERNAL_DTD_FEATURE.length() && featureId.endsWith(
+                    Constants.LOAD_EXTERNAL_DTD_FEATURE)) {
                 return FeatureState.RECOGNIZED;
             }
 
             //
             // http://apache.org/xml/features/validation/default-attribute-values
             //
-            if (suffixLength == Constants.VALIDATE_DATATYPES_FEATURE.length()
-                    && featureId.endsWith(
-                            Constants.VALIDATE_DATATYPES_FEATURE)) {
+            if (suffixLength == Constants.VALIDATE_DATATYPES_FEATURE.length() && featureId.endsWith(
+                    Constants.VALIDATE_DATATYPES_FEATURE)) {
                 return FeatureState.NOT_SUPPORTED;
             }
 
@@ -1316,33 +1270,32 @@ public class XML11Configuration extends ParserConfigurationSettings implements
             // http://apache.org/xml/features/validation/schema
             // Lets the user turn Schema validation support on/off.
             //
-            if (suffixLength == Constants.SCHEMA_VALIDATION_FEATURE.length()
-                    && featureId.endsWith(
-                            Constants.SCHEMA_VALIDATION_FEATURE)) {
+            if (suffixLength == Constants.SCHEMA_VALIDATION_FEATURE.length() && featureId.endsWith(
+                    Constants.SCHEMA_VALIDATION_FEATURE)) {
                 return FeatureState.RECOGNIZED;
             }
             // activate full schema checking
-            if (suffixLength == Constants.SCHEMA_FULL_CHECKING.length()
-                    && featureId.endsWith(Constants.SCHEMA_FULL_CHECKING)) {
+            if (suffixLength == Constants.SCHEMA_FULL_CHECKING.length() && featureId.endsWith(
+                    Constants.SCHEMA_FULL_CHECKING)) {
                 return FeatureState.RECOGNIZED;
             }
             // Feature identifier: expose schema normalized value
             // http://apache.org/xml/features/validation/schema/normalized-value
-            if (suffixLength == Constants.SCHEMA_NORMALIZED_VALUE.length()
-                    && featureId.endsWith(Constants.SCHEMA_NORMALIZED_VALUE)) {
+            if (suffixLength == Constants.SCHEMA_NORMALIZED_VALUE.length() && featureId.endsWith(
+                    Constants.SCHEMA_NORMALIZED_VALUE)) {
                 return FeatureState.RECOGNIZED;
             }
             // Feature identifier: send element default value via characters()
             // http://apache.org/xml/features/validation/schema/element-default
-            if (suffixLength == Constants.SCHEMA_ELEMENT_DEFAULT.length()
-                    && featureId.endsWith(Constants.SCHEMA_ELEMENT_DEFAULT)) {
+            if (suffixLength == Constants.SCHEMA_ELEMENT_DEFAULT.length() && featureId.endsWith(
+                    Constants.SCHEMA_ELEMENT_DEFAULT)) {
                 return FeatureState.RECOGNIZED;
             }
 
             // special performance feature: only component manager is allowed to
             // set it.
-            if (suffixLength == Constants.PARSER_SETTINGS.length() && featureId
-                    .endsWith(Constants.PARSER_SETTINGS)) {
+            if (suffixLength == Constants.PARSER_SETTINGS.length() && featureId.endsWith(
+                    Constants.PARSER_SETTINGS)) {
                 return FeatureState.NOT_SUPPORTED;
             }
 
@@ -1361,54 +1314,49 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * simply returns. Otherwise, the appropriate exception is thrown.
      *
      * @param propertyId
-     *                   The unique identifier (URI) of the property being set.
-     *
+     *        The unique identifier (URI) of the property being set.
      * @throws XMLConfigurationException
-     *                                   Thrown for configuration error. In
-     *                                   general, components should
-     *                                   only throw this exception if it is
-     *                                   <strong>really</strong> a
-     *                                   critical error.
+     *         Thrown for configuration error. In
+     *         general, components should
+     *         only throw this exception if it is
+     *         <strong>really</strong> a
+     *         critical error.
      */
-    protected PropertyState checkProperty(String propertyId)
-            throws XMLConfigurationException {
+    protected PropertyState checkProperty(String propertyId) throws XMLConfigurationException {
 
         //
         // Xerces Properties
         //
 
         if (propertyId.startsWith(Constants.XERCES_PROPERTY_PREFIX)) {
-            final int suffixLength = propertyId.length()
-                    - Constants.XERCES_PROPERTY_PREFIX.length();
+            final int suffixLength = propertyId.length() - Constants.XERCES_PROPERTY_PREFIX.length();
 
-            if (suffixLength == Constants.DTD_SCANNER_PROPERTY.length()
-                    && propertyId.endsWith(Constants.DTD_SCANNER_PROPERTY)) {
+            if (suffixLength == Constants.DTD_SCANNER_PROPERTY.length() && propertyId.endsWith(
+                    Constants.DTD_SCANNER_PROPERTY)) {
                 return PropertyState.RECOGNIZED;
             }
-            if (suffixLength == Constants.SCHEMA_LOCATION.length() && propertyId
-                    .endsWith(Constants.SCHEMA_LOCATION)) {
+            if (suffixLength == Constants.SCHEMA_LOCATION.length() && propertyId.endsWith(
+                    Constants.SCHEMA_LOCATION)) {
                 return PropertyState.RECOGNIZED;
             }
-            if (suffixLength == Constants.SCHEMA_NONS_LOCATION.length()
-                    && propertyId.endsWith(Constants.SCHEMA_NONS_LOCATION)) {
+            if (suffixLength == Constants.SCHEMA_NONS_LOCATION.length() && propertyId.endsWith(
+                    Constants.SCHEMA_NONS_LOCATION)) {
                 return PropertyState.RECOGNIZED;
             }
         }
 
         if (propertyId.startsWith(Constants.JAXP_PROPERTY_PREFIX)) {
-            final int suffixLength = propertyId.length()
-                    - Constants.JAXP_PROPERTY_PREFIX.length();
+            final int suffixLength = propertyId.length() - Constants.JAXP_PROPERTY_PREFIX.length();
 
-            if (suffixLength == Constants.SCHEMA_SOURCE.length() && propertyId
-                    .endsWith(Constants.SCHEMA_SOURCE)) {
+            if (suffixLength == Constants.SCHEMA_SOURCE.length() && propertyId.endsWith(
+                    Constants.SCHEMA_SOURCE)) {
                 return PropertyState.RECOGNIZED;
             }
         }
 
         // special cases
         if (propertyId.startsWith(Constants.SAX_PROPERTY_PREFIX)) {
-            final int suffixLength = propertyId.length()
-                    - Constants.SAX_PROPERTY_PREFIX.length();
+            final int suffixLength = propertyId.length() - Constants.SAX_PROPERTY_PREFIX.length();
 
             //
             // http://xml.org/sax/properties/xml-string
@@ -1420,8 +1368,8 @@ public class XML11Configuration extends ParserConfigurationSettings implements
             // null (this is a good way to check for availability before the
             // parse begins).
             //
-            if (suffixLength == Constants.XML_STRING_PROPERTY.length()
-                    && propertyId.endsWith(Constants.XML_STRING_PROPERTY)) {
+            if (suffixLength == Constants.XML_STRING_PROPERTY.length() && propertyId.endsWith(
+                    Constants.XML_STRING_PROPERTY)) {
                 // REVISIT - we should probably ask xml-dev for a precise
                 // definition of what this is actually supposed to return, and
                 // in exactly which circumstances.
@@ -1443,7 +1391,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * default recognized features and properties.
      *
      * @param component
-     *                  The component to add.
+     *        The component to add.
      */
     protected void addComponent(XMLComponent component) {
 
@@ -1462,7 +1410,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * of default recognized features and properties.
      *
      * @param component
-     *                  The component to add.
+     *        The component to add.
      */
     protected void addCommonComponent(XMLComponent component) {
 
@@ -1481,7 +1429,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * list of default recognized features and properties.
      *
      * @param component
-     *                  The component to add.
+     *        The component to add.
      */
     protected void addXML11Component(XMLComponent component) {
 
@@ -1501,9 +1449,9 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * previously absent from the configuration.
      *
      * @param component
-     *                  The component whose recognized features and properties
-     *                  will be
-     *                  added to the configuration
+     *        The component whose recognized features and properties
+     *        will be
+     *        added to the configuration
      */
     protected void addRecognizedParamsAndSetDefaults(XMLComponent component) {
 
@@ -1557,8 +1505,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
         if (!f11Initialized) {
 
             // create datatype factory
-            fXML11DatatypeFactory = DTDDVFactory.getInstance(
-                    XML11_DATATYPE_VALIDATOR_FACTORY);
+            fXML11DatatypeFactory = DTDDVFactory.getInstance(XML11_DATATYPE_VALIDATOR_FACTORY);
 
             // setup XML 1.1 DTD pipeline
             fXML11DTDScanner = new XML11DTDScannerImpl();
@@ -1580,8 +1527,7 @@ public class XML11Configuration extends ParserConfigurationSettings implements
      * Returns the state of a feature. This method calls getFeature() on
      * ParserConfigurationSettings, bypassing getFeature() on this class.
      */
-    FeatureState getFeatureState0(String featureId)
-            throws XMLConfigurationException {
+    FeatureState getFeatureState0(String featureId) throws XMLConfigurationException {
         return super.getFeatureState(featureId);
     }
 

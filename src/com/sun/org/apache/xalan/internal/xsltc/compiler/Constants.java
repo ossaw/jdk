@@ -132,18 +132,15 @@ public interface Constants extends InstructionConstants {
     public static final String XSLT_PACKAGE = "com.sun.org.apache.xalan.internal.xsltc";
     public static final String COMPILER_PACKAGE = XSLT_PACKAGE + ".compiler";
     public static final String RUNTIME_PACKAGE = XSLT_PACKAGE + ".runtime";
-    public static final String TRANSLET_CLASS = RUNTIME_PACKAGE
-            + ".AbstractTranslet";
+    public static final String TRANSLET_CLASS = RUNTIME_PACKAGE + ".AbstractTranslet";
 
     public static final String TRANSLET_SIG = "Lcom/sun/org/apache/xalan/internal/xsltc/runtime/AbstractTranslet;";
     public static final String UNION_ITERATOR_SIG = "Lcom/sun/org/apache/xalan/internal/xsltc/dom/UnionIterator;";
     public static final String TRANSLET_OUTPUT_SIG = "Lcom/sun/org/apache/xml/internal/serializer/SerializationHandler;";
     public static final String MAKE_NODE_SIG = "(I)Lorg/w3c/dom/Node;";
-    public static final String MAKE_NODE_SIG2 = "(" + NODE_ITERATOR_SIG
-            + ")Lorg/w3c/dom/Node;";
+    public static final String MAKE_NODE_SIG2 = "(" + NODE_ITERATOR_SIG + ")Lorg/w3c/dom/Node;";
     public static final String MAKE_NODE_LIST_SIG = "(I)Lorg/w3c/dom/NodeList;";
-    public static final String MAKE_NODE_LIST_SIG2 = "(" + NODE_ITERATOR_SIG
-            + ")Lorg/w3c/dom/NodeList;";
+    public static final String MAKE_NODE_LIST_SIG2 = "(" + NODE_ITERATOR_SIG + ")Lorg/w3c/dom/NodeList;";
 
     public static final String STREAM_XML_OUTPUT = "com.sun.org.apache.xml.internal.serializer.ToXMLStream";
 
@@ -205,19 +202,14 @@ public interface Constants extends InstructionConstants {
     public static final String SET_START_NODE = "setStartNode";
     public static final String RESET = "reset";
 
-    public static final String ATTR_SET_SIG = "(" + DOM_INTF_SIG
-            + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG + "I)V";
+    public static final String ATTR_SET_SIG = "(" + DOM_INTF_SIG + NODE_ITERATOR_SIG + TRANSLET_OUTPUT_SIG
+            + "I)V";
 
-    public static final String GET_NODE_NAME_SIG = "(" + NODE_SIG + ")"
-            + STRING_SIG;
-    public static final String CHARACTERSW_SIG = "(" + STRING_SIG
-            + TRANSLET_OUTPUT_SIG + ")V";
-    public static final String CHARACTERS_SIG = "(" + NODE_SIG
-            + TRANSLET_OUTPUT_SIG + ")V";
-    public static final String GET_CHILDREN_SIG = "(" + NODE_SIG + ")"
-            + NODE_ITERATOR_SIG;
-    public static final String GET_TYPED_CHILDREN_SIG = "(I)"
-            + NODE_ITERATOR_SIG;
+    public static final String GET_NODE_NAME_SIG = "(" + NODE_SIG + ")" + STRING_SIG;
+    public static final String CHARACTERSW_SIG = "(" + STRING_SIG + TRANSLET_OUTPUT_SIG + ")V";
+    public static final String CHARACTERS_SIG = "(" + NODE_SIG + TRANSLET_OUTPUT_SIG + ")V";
+    public static final String GET_CHILDREN_SIG = "(" + NODE_SIG + ")" + NODE_ITERATOR_SIG;
+    public static final String GET_TYPED_CHILDREN_SIG = "(I)" + NODE_ITERATOR_SIG;
     public static final String GET_NODE_TYPE_SIG = "()S";
     public static final String GET_NODE_VALUE_SIG = "(I)" + STRING_SIG;
     public static final String GET_ELEMENT_VALUE_SIG = "(I)" + STRING_SIG;
@@ -256,20 +248,16 @@ public interface Constants extends InstructionConstants {
     public static final String CLEAR_ATTRIBUTES = "clear";
     public static final String ADD_ATTRIBUTE = "addAttribute";
     public static final String ATTRIBUTE_LIST_IMPL_SIG = "Lcom/sun/org/apache/xalan/internal/xsltc/runtime/AttributeListImpl;";
-    public static final String CLEAR_ATTRIBUTES_SIG = "()"
+    public static final String CLEAR_ATTRIBUTES_SIG = "()" + ATTRIBUTE_LIST_IMPL_SIG;
+    public static final String ADD_ATTRIBUTE_SIG = "(" + STRING_SIG + STRING_SIG + ")"
             + ATTRIBUTE_LIST_IMPL_SIG;
-    public static final String ADD_ATTRIBUTE_SIG = "(" + STRING_SIG + STRING_SIG
-            + ")" + ATTRIBUTE_LIST_IMPL_SIG;
 
-    public static final String ADD_ITERATOR_SIG = "(" + NODE_ITERATOR_SIG + ")"
-            + UNION_ITERATOR_SIG;
+    public static final String ADD_ITERATOR_SIG = "(" + NODE_ITERATOR_SIG + ")" + UNION_ITERATOR_SIG;
 
     public static final String ORDER_ITERATOR = "orderNodes";
-    public static final String ORDER_ITERATOR_SIG = "(" + NODE_ITERATOR_SIG
-            + "I)" + NODE_ITERATOR_SIG;
+    public static final String ORDER_ITERATOR_SIG = "(" + NODE_ITERATOR_SIG + "I)" + NODE_ITERATOR_SIG;
 
-    public static final String SET_START_NODE_SIG = "(" + NODE_SIG + ")"
-            + NODE_ITERATOR_SIG;
+    public static final String SET_START_NODE_SIG = "(" + NODE_SIG + ")" + NODE_ITERATOR_SIG;
 
     public static final String NODE_COUNTER = "com.sun.org.apache.xalan.internal.xsltc.dom.NodeCounter";
     public static final String NODE_COUNTER_SIG = "Lcom/sun/org/apache/xalan/internal/xsltc/dom/NodeCounter;";
@@ -285,10 +273,8 @@ public interface Constants extends InstructionConstants {
     public static final String PUSH_PARAM_FRAME_SIG = "()V";
     public static final String POP_PARAM_FRAME = "popParamFrame";
     public static final String POP_PARAM_FRAME_SIG = "()V";
-    public static final String GET_PARAMETER_SIG = "(" + STRING_SIG + ")"
-            + OBJECT_SIG;
-    public static final String ADD_PARAMETER_SIG = "(" + STRING_SIG + OBJECT_SIG
-            + "Z)" + OBJECT_SIG;
+    public static final String GET_PARAMETER_SIG = "(" + STRING_SIG + ")" + OBJECT_SIG;
+    public static final String ADD_PARAMETER_SIG = "(" + STRING_SIG + OBJECT_SIG + "Z)" + OBJECT_SIG;
 
     public static final String STRIP_SPACE = "stripSpace";
     public static final String STRIP_SPACE_INTF = "com/sun/org/apache/xalan/internal/xsltc/StripFilter";
@@ -296,11 +282,10 @@ public interface Constants extends InstructionConstants {
     public static final String STRIP_SPACE_PARAMS = "(Lcom/sun/org/apache/xalan/internal/xsltc/DOM;II)Z";
 
     public static final String GET_NODE_VALUE_ITERATOR = "getNodeValueIterator";
-    public static final String GET_NODE_VALUE_ITERATOR_SIG = "("
-            + NODE_ITERATOR_SIG + "I" + STRING_SIG + "Z)" + NODE_ITERATOR_SIG;
+    public static final String GET_NODE_VALUE_ITERATOR_SIG = "(" + NODE_ITERATOR_SIG + "I" + STRING_SIG + "Z)"
+            + NODE_ITERATOR_SIG;
 
-    public static final String GET_UNPARSED_ENTITY_URI_SIG = "(" + STRING_SIG
-            + ")" + STRING_SIG;
+    public static final String GET_UNPARSED_ENTITY_URI_SIG = "(" + STRING_SIG + ")" + STRING_SIG;
 
     public static final int POSITION_INDEX = 2;
     public static final int LAST_INDEX = 3;

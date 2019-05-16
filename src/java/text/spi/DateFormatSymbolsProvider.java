@@ -28,15 +28,15 @@ public abstract class DateFormatSymbolsProvider extends LocaleServiceProvider {
      * locale.
      *
      * @param locale
-     *               the desired locale
+     *        the desired locale
      * @exception NullPointerException
-     *                                     if <code>locale</code> is null
+     *            if <code>locale</code> is null
      * @exception IllegalArgumentException
-     *                                     if <code>locale</code> isn't one of
-     *                                     the locales returned
-     *                                     from
-     *                                     {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
-     *                                     getAvailableLocales()}.
+     *            if <code>locale</code> isn't one of
+     *            the locales returned
+     *            from
+     *            {@link java.util.spi.LocaleServiceProvider#getAvailableLocales()
+     *            getAvailableLocales()}.
      * @return a <code>DateFormatSymbols</code> instance.
      * @see java.text.DateFormatSymbols#getInstance(java.util.Locale)
      */

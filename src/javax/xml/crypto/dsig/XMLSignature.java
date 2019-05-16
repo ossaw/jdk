@@ -46,12 +46,10 @@ import java.util.List;
  * An <code>XMLSignature</code> instance may be created by invoking one of the
  * {@link XMLSignatureFactory#newXMLSignature newXMLSignature} methods of the
  * {@link XMLSignatureFactory} class.
- *
  * <p>
  * If the contents of the underlying document containing the
  * <code>XMLSignature</code> are subsequently modified, the behavior is
  * undefined.
- *
  * <p>
  * Note that this class is named <code>XMLSignature</code> rather than
  * <code>Signature</code> to avoid naming clashes with the existing
@@ -81,30 +79,28 @@ public interface XMLSignature extends XMLStructure {
      * using the existing state, it does not unmarshal and reinitialize the
      * contents of the <code>XMLSignature</code> using the location information
      * specified in the context.
-     *
      * <p>
      * This method only validates the signature the first time it is invoked. On
      * subsequent invocations, it returns a cached result.
      *
      * @param validateContext
-     *                        the validating context
+     *        the validating context
      * @return <code>true</code> if the signature passed core validation,
      *         otherwise <code>false</code>
      * @throws ClassCastException
-     *                               if the type of <code>validateContext</code>
-     *                               is not compatible
-     *                               with this <code>XMLSignature</code>
+     *         if the type of <code>validateContext</code>
+     *         is not compatible
+     *         with this <code>XMLSignature</code>
      * @throws NullPointerException
-     *                               if <code>validateContext</code> is
-     *                               <code>null</code>
+     *         if <code>validateContext</code> is
+     *         <code>null</code>
      * @throws XMLSignatureException
-     *                               if an unexpected error occurs during
-     *                               validation that
-     *                               prevented the validation operation from
-     *                               completing
+     *         if an unexpected error occurs during
+     *         validation that
+     *         prevented the validation operation from
+     *         completing
      */
-    boolean validate(XMLValidateContext validateContext)
-            throws XMLSignatureException;
+    boolean validate(XMLValidateContext validateContext) throws XMLSignatureException;
 
     /**
      * Returns the key info of this <code>XMLSignature</code>.
@@ -146,30 +142,28 @@ public interface XMLSignature extends XMLStructure {
 
     /**
      * Signs this <code>XMLSignature</code>.
-     *
      * <p>
      * If this method throws an exception, this <code>XMLSignature</code> and
      * the <code>signContext</code> parameter will be left in the state that it
      * was in prior to the invocation.
      *
      * @param signContext
-     *                    the signing context
+     *        the signing context
      * @throws ClassCastException
-     *                               if the type of <code>signContext</code> is
-     *                               not compatible
-     *                               with this <code>XMLSignature</code>
+     *         if the type of <code>signContext</code> is
+     *         not compatible
+     *         with this <code>XMLSignature</code>
      * @throws NullPointerException
-     *                               if <code>signContext</code> is
-     *                               <code>null</code>
+     *         if <code>signContext</code> is
+     *         <code>null</code>
      * @throws MarshalException
-     *                               if an exception occurs while marshalling
+     *         if an exception occurs while marshalling
      * @throws XMLSignatureException
-     *                               if an unexpected exception occurs while
-     *                               generating the
-     *                               signature
+     *         if an unexpected exception occurs while
+     *         generating the
+     *         signature
      */
-    void sign(XMLSignContext signContext) throws MarshalException,
-            XMLSignatureException;
+    void sign(XMLSignContext signContext) throws MarshalException, XMLSignatureException;
 
     /**
      * Returns the result of the {@link KeySelector}, if specified, after this
@@ -227,7 +221,6 @@ public interface XMLSignature extends XMLStructure {
          * Validates the signature value. This method performs a cryptographic
          * validation of the signature calculated over the
          * <code>SignedInfo</code> of the <code>XMLSignature</code>.
-         *
          * <p>
          * This method only validates the signature the first time it is
          * invoked. On subsequent invocations, it returns a cached result.
@@ -235,16 +228,15 @@ public interface XMLSignature extends XMLStructure {
          * @return <code>true</code> if the signature was validated
          *         successfully; <code>false</code> otherwise
          * @param validateContext
-         *                        the validating context
+         *        the validating context
          * @throws NullPointerException
-         *                               if <code>validateContext</code> is
-         *                               <code>null</code>
+         *         if <code>validateContext</code> is
+         *         <code>null</code>
          * @throws XMLSignatureException
-         *                               if an unexpected exception occurs while
-         *                               validating the
-         *                               signature
+         *         if an unexpected exception occurs while
+         *         validating the
+         *         signature
          */
-        boolean validate(XMLValidateContext validateContext)
-                throws XMLSignatureException;
+        boolean validate(XMLValidateContext validateContext) throws XMLSignatureException;
     }
 }

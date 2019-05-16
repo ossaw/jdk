@@ -34,7 +34,6 @@ import java.lang.annotation.Native;
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/actionlistener.html">
  *      Tutorial: How to Write an Action Listener</a>
- *
  * @author Carl Quinn
  * @since 1.1
  */
@@ -123,17 +122,17 @@ public class ActionEvent extends AWTEvent {
      * <code>command</code> string is legal, but not recommended.
      *
      * @param source
-     *                The object that originated the event
+     *        The object that originated the event
      * @param id
-     *                An integer that identifies the event. For information on
-     *                allowable values, see the class description for
-     *                {@link ActionEvent}
+     *        An integer that identifies the event. For information on
+     *        allowable values, see the class description for
+     *        {@link ActionEvent}
      * @param command
-     *                A string that may specify a command (possibly one of
-     *                several)
-     *                associated with the event
+     *        A string that may specify a command (possibly one of
+     *        several)
+     *        associated with the event
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getSource()
      * @see #getID()
      * @see #getActionCommand()
@@ -150,23 +149,23 @@ public class ActionEvent extends AWTEvent {
      * <code>command</code> string is legal, but not recommended.
      *
      * @param source
-     *                  The object that originated the event
+     *        The object that originated the event
      * @param id
-     *                  An integer that identifies the event. For information on
-     *                  allowable values, see the class description for
-     *                  {@link ActionEvent}
+     *        An integer that identifies the event. For information on
+     *        allowable values, see the class description for
+     *        {@link ActionEvent}
      * @param command
-     *                  A string that may specify a command (possibly one of
-     *                  several)
-     *                  associated with the event
+     *        A string that may specify a command (possibly one of
+     *        several)
+     *        associated with the event
      * @param modifiers
-     *                  The modifier keys down during event (shift, ctrl, alt,
-     *                  meta).
-     *                  Passing negative parameter is not recommended. Zero
-     *                  value
-     *                  means that no modifiers were passed
+     *        The modifier keys down during event (shift, ctrl, alt,
+     *        meta).
+     *        Passing negative parameter is not recommended. Zero
+     *        value
+     *        means that no modifiers were passed
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getSource()
      * @see #getID()
      * @see #getActionCommand()
@@ -185,36 +184,34 @@ public class ActionEvent extends AWTEvent {
      * <code>command</code> string is legal, but not recommended.
      *
      * @param source
-     *                  The object that originated the event
+     *        The object that originated the event
      * @param id
-     *                  An integer that identifies the event. For information on
-     *                  allowable values, see the class description for
-     *                  {@link ActionEvent}
+     *        An integer that identifies the event. For information on
+     *        allowable values, see the class description for
+     *        {@link ActionEvent}
      * @param command
-     *                  A string that may specify a command (possibly one of
-     *                  several)
-     *                  associated with the event
+     *        A string that may specify a command (possibly one of
+     *        several)
+     *        associated with the event
      * @param modifiers
-     *                  The modifier keys down during event (shift, ctrl, alt,
-     *                  meta).
-     *                  Passing negative parameter is not recommended. Zero
-     *                  value
-     *                  means that no modifiers were passed
+     *        The modifier keys down during event (shift, ctrl, alt,
+     *        meta).
+     *        Passing negative parameter is not recommended. Zero
+     *        value
+     *        means that no modifiers were passed
      * @param when
-     *                  A long that gives the time the event occurred. Passing
-     *                  negative or zero value is not recommended
+     *        A long that gives the time the event occurred. Passing
+     *        negative or zero value is not recommended
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getSource()
      * @see #getID()
      * @see #getActionCommand()
      * @see #getModifiers()
      * @see #getWhen()
-     *
      * @since 1.4
      */
-    public ActionEvent(Object source, int id, String command, long when,
-            int modifiers) {
+    public ActionEvent(Object source, int id, String command, long when, int modifiers) {
         super(source, id);
         this.actionCommand = command;
         this.when = when;
@@ -275,7 +272,7 @@ public class ActionEvent extends AWTEvent {
             default:
                 typeStr = "unknown type";
         }
-        return typeStr + ",cmd=" + actionCommand + ",when=" + when
-                + ",modifiers=" + KeyEvent.getKeyModifiersText(modifiers);
+        return typeStr + ",cmd=" + actionCommand + ",when=" + when + ",modifiers=" + KeyEvent
+                .getKeyModifiersText(modifiers);
     }
 }

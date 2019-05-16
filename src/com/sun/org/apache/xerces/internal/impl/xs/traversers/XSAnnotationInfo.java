@@ -25,7 +25,6 @@ import com.sun.org.apache.xerces.internal.impl.xs.opti.ElementImpl;
  * document it originated from.
  *
  * @xerces.internal
- *
  * @author Michael Glavassevich, IBM
  */
 final class XSAnnotationInfo {

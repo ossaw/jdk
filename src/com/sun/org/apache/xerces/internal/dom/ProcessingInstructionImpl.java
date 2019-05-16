@@ -24,15 +24,12 @@ import org.w3c.dom.ProcessingInstruction;
  * Processing Instructions (PIs) permit documents to carry processor-specific
  * information alongside their actual content. PIs are most common in XML, but
  * they are supported in HTML as well.
- *
  * This class inherits from CharacterDataImpl to reuse its setNodeValue method.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
-public class ProcessingInstructionImpl extends CharacterDataImpl implements
-        ProcessingInstruction {
+public class ProcessingInstructionImpl extends CharacterDataImpl implements ProcessingInstruction {
 
     //
     // Constants
@@ -52,8 +49,7 @@ public class ProcessingInstructionImpl extends CharacterDataImpl implements
     //
 
     /** Factory constructor. */
-    public ProcessingInstructionImpl(CoreDocumentImpl ownerDoc, String target,
-            String data) {
+    public ProcessingInstructionImpl(CoreDocumentImpl ownerDoc, String target, String data) {
         super(ownerDoc, data);
         this.target = target;
     }
@@ -129,7 +125,7 @@ public class ProcessingInstructionImpl extends CharacterDataImpl implements
      * 
      * @see #getData().
      * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-     *                                                   if node is read-only.
+     *         if node is read-only.
      */
     public void setData(String data) {
         // Hand off to setNodeValue for code-reuse reasons (mutation

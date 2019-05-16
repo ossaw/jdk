@@ -11,16 +11,13 @@ import java.security.BasicPermission;
  * This class is for JAXB permissions. A {@code JAXBPermission} contains a name
  * (also referred to as a "target name") but no actions list; you either have
  * the named permission or you don't.
- *
  * <P>
  * The target name is the name of the JAXB permission (see below).
- *
  * <P>
  * The following table lists all the possible {@code JAXBPermission} target
  * names, and for each provides a description of what the permission allows and
  * a discussion of the risks of granting code the permission.
  * <P>
- *
  * <table border=1 cellpadding=5 summary=
  * "Permission target name, what the permission allows, and associated risks">
  * <tr>
@@ -28,7 +25,6 @@ import java.security.BasicPermission;
  * <th>What the Permission Allows</th>
  * <th>Risks of Allowing this Permission</th>
  * </tr>
- *
  * <tr>
  * <td>setDatatypeConverter</td>
  * <td>Allows the code to set VM-wide {@link DatatypeConverterInterface} via
@@ -48,7 +44,6 @@ import java.security.BasicPermission;
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
  * @see java.lang.SecurityManager
- *
  * @author Joe Fialli
  * @since JAXB 2.2
  */
@@ -59,8 +54,8 @@ public final class JAXBPermission extends BasicPermission {
      * Creates a new JAXBPermission with the specified name.
      *
      * @param name
-     *             The name of the JAXBPermission. As of 2.2 only
-     *             "setDatatypeConverter" is defined.
+     *        The name of the JAXBPermission. As of 2.2 only
+     *        "setDatatypeConverter" is defined.
      */
     public JAXBPermission(String name) {
         super(name);

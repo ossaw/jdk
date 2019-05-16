@@ -34,7 +34,7 @@ public class DatatypeConfigurationException extends Exception {
      * </p>
      *
      * @param message
-     *                The detail message.
+     *        The detail message.
      */
 
     public DatatypeConfigurationException(String message) {
@@ -48,10 +48,10 @@ public class DatatypeConfigurationException extends Exception {
      * </p>
      *
      * @param message
-     *                The detail message.
+     *        The detail message.
      * @param cause
-     *                The cause. A <code>null</code> value is permitted, and
-     *                indicates that the cause is nonexistent or unknown.
+     *        The cause. A <code>null</code> value is permitted, and
+     *        indicates that the cause is nonexistent or unknown.
      */
 
     public DatatypeConfigurationException(String message, Throwable cause) {
@@ -65,8 +65,8 @@ public class DatatypeConfigurationException extends Exception {
      * </p>
      *
      * @param cause
-     *              The cause. A <code>null</code> value is permitted, and
-     *              indicates that the cause is nonexistent or unknown.
+     *        The cause. A <code>null</code> value is permitted, and
+     *        indicates that the cause is nonexistent or unknown.
      */
 
     public DatatypeConfigurationException(Throwable cause) {

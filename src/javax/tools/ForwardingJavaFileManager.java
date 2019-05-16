@@ -20,8 +20,7 @@ import javax.tools.JavaFileObject.Kind;
  * @author Peter von der Ah&eacute;
  * @since 1.6
  */
-public class ForwardingJavaFileManager<M extends JavaFileManager> implements
-        JavaFileManager {
+public class ForwardingJavaFileManager<M extends JavaFileManager> implements JavaFileManager {
 
     /**
      * The file manager which all methods are delegated to.
@@ -32,7 +31,7 @@ public class ForwardingJavaFileManager<M extends JavaFileManager> implements
      * Creates a new instance of ForwardingJavaFileManager.
      * 
      * @param fileManager
-     *                    delegate to this file manager
+     *        delegate to this file manager
      */
     protected ForwardingJavaFileManager(M fileManager) {
         fileManager.getClass(); // null check
@@ -41,9 +40,9 @@ public class ForwardingJavaFileManager<M extends JavaFileManager> implements
 
     /**
      * @throws SecurityException
-     *                               {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalStateException
-     *                               {@inheritDoc}
+     *         {@inheritDoc}
      */
     public ClassLoader getClassLoader(Location location) {
         return fileManager.getClassLoader(location);
@@ -51,18 +50,18 @@ public class ForwardingJavaFileManager<M extends JavaFileManager> implements
 
     /**
      * @throws IOException
-     *                               {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalStateException
-     *                               {@inheritDoc}
+     *         {@inheritDoc}
      */
-    public Iterable<JavaFileObject> list(Location location, String packageName,
-            Set<Kind> kinds, boolean recurse) throws IOException {
+    public Iterable<JavaFileObject> list(Location location, String packageName, Set<Kind> kinds,
+            boolean recurse) throws IOException {
         return fileManager.list(location, packageName, kinds, recurse);
     }
 
     /**
      * @throws IllegalStateException
-     *                               {@inheritDoc}
+     *         {@inheritDoc}
      */
     public String inferBinaryName(Location location, JavaFileObject file) {
         return fileManager.inferBinaryName(location, file);
@@ -70,7 +69,7 @@ public class ForwardingJavaFileManager<M extends JavaFileManager> implements
 
     /**
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
     public boolean isSameFile(FileObject a, FileObject b) {
         return fileManager.isSameFile(a, b);
@@ -78,9 +77,9 @@ public class ForwardingJavaFileManager<M extends JavaFileManager> implements
 
     /**
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalStateException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
     public boolean handleOption(String current, Iterator<String> remaining) {
         return fileManager.handleOption(current, remaining);
@@ -96,49 +95,46 @@ public class ForwardingJavaFileManager<M extends JavaFileManager> implements
 
     /**
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalStateException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
-    public JavaFileObject getJavaFileForInput(Location location,
-            String className, Kind kind) throws IOException {
+    public JavaFileObject getJavaFileForInput(Location location, String className, Kind kind)
+            throws IOException {
         return fileManager.getJavaFileForInput(location, className, kind);
     }
 
     /**
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalStateException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
-    public JavaFileObject getJavaFileForOutput(Location location,
-            String className, Kind kind, FileObject sibling)
-            throws IOException {
-        return fileManager.getJavaFileForOutput(location, className, kind,
-                sibling);
+    public JavaFileObject getJavaFileForOutput(Location location, String className, Kind kind,
+            FileObject sibling) throws IOException {
+        return fileManager.getJavaFileForOutput(location, className, kind, sibling);
     }
 
     /**
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalStateException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
-    public FileObject getFileForInput(Location location, String packageName,
-            String relativeName) throws IOException {
+    public FileObject getFileForInput(Location location, String packageName, String relativeName)
+            throws IOException {
         return fileManager.getFileForInput(location, packageName, relativeName);
     }
 
     /**
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalStateException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
-    public FileObject getFileForOutput(Location location, String packageName,
-            String relativeName, FileObject sibling) throws IOException {
-        return fileManager.getFileForOutput(location, packageName, relativeName,
-                sibling);
+    public FileObject getFileForOutput(Location location, String packageName, String relativeName,
+            FileObject sibling) throws IOException {
+        return fileManager.getFileForOutput(location, packageName, relativeName, sibling);
     }
 
     public void flush() throws IOException {

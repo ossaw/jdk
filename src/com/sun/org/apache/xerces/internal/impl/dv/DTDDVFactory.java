@@ -29,9 +29,7 @@ import java.util.Map;
  * parser instance, and multiple threads.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  * @version $Id: DTDDVFactory.java,v 1.6 2010-11-01 04:39:43 joehw Exp $
  */
 public abstract class DTDDVFactory {
@@ -45,9 +43,9 @@ public abstract class DTDDVFactory {
      *
      * @return an instance of DTDDVFactory implementation
      * @exception DVFactoryException
-     *                               cannot create an instance of the specified
-     *                               class name or
-     *                               the default class name
+     *            cannot create an instance of the specified
+     *            class name or
+     *            the default class name
      */
     public static final DTDDVFactory getInstance() throws DVFactoryException {
         return getInstance(DEFAULT_FACTORY_CLASS);
@@ -57,15 +55,14 @@ public abstract class DTDDVFactory {
      * Get an instance of DTDDVFactory implementation.
      *
      * @param factoryClass
-     *                     name of the implementation to load.
+     *        name of the implementation to load.
      * @return an instance of DTDDVFactory implementation
      * @exception DVFactoryException
-     *                               cannot create an instance of the specified
-     *                               class name or
-     *                               the default class name
+     *            cannot create an instance of the specified
+     *            class name or
+     *            the default class name
      */
-    public static final DTDDVFactory getInstance(String factoryClass)
-            throws DVFactoryException {
+    public static final DTDDVFactory getInstance(String factoryClass) throws DVFactoryException {
         try {
             if (DEFAULT_FACTORY_CLASS.equals(factoryClass)) {
                 return new DTDDVFactoryImpl();
@@ -73,8 +70,7 @@ public abstract class DTDDVFactory {
                 return new XML11DTDDVFactoryImpl();
             } else {
                 // fall back for compatibility
-                return (DTDDVFactory) (ObjectFactory.newInstance(factoryClass,
-                        true));
+                return (DTDDVFactory) (ObjectFactory.newInstance(factoryClass, true));
             }
         } catch (ClassCastException e) {
             throw new DVFactoryException("DTD factory class " + factoryClass
@@ -89,7 +85,7 @@ public abstract class DTDDVFactory {
      * return a dtd type of the given name
      *
      * @param name
-     *             the name of the datatype
+     *        the name of the datatype
      * @return the datatype validator of the given name
      */
     public abstract DatatypeValidator getBuiltInDV(String name);

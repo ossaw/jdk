@@ -12,14 +12,12 @@ import java.io.ObjectInput;
  * Only the identity of the class of an Externalizable instance is written in
  * the serialization stream and it is the responsibility of the class to save
  * and restore the contents of its instances.
- *
  * The writeExternal and readExternal methods of the Externalizable interface
  * are implemented by a class to give the class complete control over the format
  * and contents of the stream for an object and its supertypes. These methods
  * must explicitly coordinate with the supertype to save its state. These
  * methods supersede customized implementations of writeObject and readObject
  * methods.<br>
- *
  * Object Serialization uses the Serializable and Externalizable interfaces.
  * Object persistence mechanisms can use them as well. Each object to be stored
  * is tested for the Externalizable interface. If the object supports
@@ -30,7 +28,6 @@ import java.io.ObjectInput;
  * the public no-arg constructor, then the readExternal method called.
  * Serializable objects are restored by reading them from an ObjectInputStream.
  * <br>
- *
  * An Externalizable instance can designate a substitution object via the
  * writeReplace and readResolve methods documented in the Serializable
  * interface.<br>
@@ -54,11 +51,10 @@ public interface Externalizable extends java.io.Serializable {
      *             element types and, if possible, relate the element to a
      *             public/protected field and/or method of this Externalizable
      *             class.
-     *
      * @param out
-     *            the stream to write the object to
+     *        the stream to write the object to
      * @exception IOException
-     *                        Includes any I/O exceptions that may occur
+     *            Includes any I/O exceptions that may occur
      */
     void writeExternal(ObjectOutput out) throws IOException;
 
@@ -70,13 +66,12 @@ public interface Externalizable extends java.io.Serializable {
      * writeExternal.
      *
      * @param in
-     *           the stream to read data from in order to restore the object
+     *        the stream to read data from in order to restore the object
      * @exception IOException
-     *                                   if I/O errors occur
+     *            if I/O errors occur
      * @exception ClassNotFoundException
-     *                                   If the class for an object being
-     *                                   restored cannot be found.
+     *            If the class for an object being
+     *            restored cannot be found.
      */
-    void readExternal(ObjectInput in) throws IOException,
-            ClassNotFoundException;
+    void readExternal(ObjectInput in) throws IOException, ClassNotFoundException;
 }

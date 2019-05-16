@@ -29,8 +29,7 @@ public class BasicHTML {
      */
     public static View createHTMLView(JComponent c, String html) {
         BasicEditorKit kit = getFactory();
-        Document doc = kit.createDefaultDocument(c.getFont(), c
-                .getForeground());
+        Document doc = kit.createDefaultDocument(c.getFont(), c.getForeground());
         Object base = c.getClientProperty(documentBaseKey);
         if (base instanceof URL) {
             ((HTMLDocument) doc).setBase((URL) base);
@@ -38,8 +37,7 @@ public class BasicHTML {
         Reader r = new StringReader(html);
         try {
             kit.read(r, doc, 0);
-        } catch (Throwable e) {
-        }
+        } catch (Throwable e) {}
         ViewFactory f = kit.getViewFactory();
         View hview = f.create(doc.getDefaultRootElement());
         View v = new Renderer(c, f, hview);
@@ -50,13 +48,13 @@ public class BasicHTML {
      * Returns the baseline for the html renderer.
      *
      * @param view
-     *             the View to get the baseline for
+     *        the View to get the baseline for
      * @param w
-     *             the width to get the baseline for
+     *        the width to get the baseline for
      * @param h
-     *             the height to get the baseline for
+     *        the height to get the baseline for
      * @throws IllegalArgumentException
-     *                                  if width or height is &lt; 0
+     *         if width or height is &lt; 0
      * @return baseline or a value &lt; 0 indicating there is no reasonable
      *         baseline
      * @see java.awt.FontMetrics
@@ -127,8 +125,7 @@ public class BasicHTML {
             } else {
                 rect = bounds.getBounds();
             }
-            return rect.y + (int) (rect.height * child.getAlignment(
-                    View.Y_AXIS));
+            return rect.y + (int) (rect.height * child.getAlignment(View.Y_AXIS));
         }
         return getBaseline(child, bounds);
     }
@@ -159,8 +156,7 @@ public class BasicHTML {
      */
     public static boolean isHTMLString(String s) {
         if (s != null) {
-            if ((s.length() >= 6) && (s.charAt(0) == '<') && (s.charAt(
-                    5) == '>')) {
+            if ((s.length() >= 6) && (s.charAt(0) == '<') && (s.charAt(5) == '>')) {
                 String tag = s.substring(1, 5);
                 return tag.equalsIgnoreCase(propertyKey);
             }
@@ -210,8 +206,7 @@ public class BasicHTML {
      * use the following the set the base:
      * 
      * <pre>
-     * jComponent.putClientProperty(documentBaseKey, xxx.class.getResource(
-     *         "resources/"));
+     * jComponent.putClientProperty(documentBaseKey, xxx.class.getResource("resources/"));
      * </pre>
      */
     public static final String documentBaseKey = "html.base";
@@ -279,8 +274,7 @@ public class BasicHTML {
          * Sets the async policy to flush everything in one chunk, and to not
          * display unknown tags.
          */
-        public Document createDefaultDocument(Font defaultFont,
-                Color foreground) {
+        public Document createDefaultDocument(Font defaultFont, Color foreground) {
             StyleSheet styles = getStyleSheet();
             StyleSheet ss = new StyleSheet();
             ss.addStyleSheet(styles);
@@ -335,8 +329,7 @@ public class BasicHTML {
          * html to override these should it wish to have a custom font or color.
          */
         private void setFontAndColor(Font font, Color fg) {
-            getStyleSheet().addRule(sun.swing.SwingUtilities2
-                    .displayPropertiesToCSS(font, fg));
+            getStyleSheet().addRule(sun.swing.SwingUtilities2.displayPropertiesToCSS(font, fg));
         }
     }
 
@@ -352,8 +345,7 @@ public class BasicHTML {
             view = v;
             view.setParent(this);
             // initially layout to the preferred size
-            setSize(view.getPreferredSpan(X_AXIS), view.getPreferredSpan(
-                    Y_AXIS));
+            setSize(view.getPreferredSpan(X_AXIS), view.getPreferredSpan(Y_AXIS));
         }
 
         /**
@@ -369,7 +361,7 @@ public class BasicHTML {
          * Determines the preferred span for this view along an axis.
          *
          * @param axis
-         *             may be either X_AXIS or Y_AXIS
+         *        may be either X_AXIS or Y_AXIS
          * @return the span the view would like to be rendered into. Typically
          *         the view is told to render into the span that is returned,
          *         although there is no guarantee. The parent may choose to
@@ -387,7 +379,7 @@ public class BasicHTML {
          * Determines the minimum span for this view along an axis.
          *
          * @param axis
-         *             may be either X_AXIS or Y_AXIS
+         *        may be either X_AXIS or Y_AXIS
          * @return the span the view would like to be rendered into. Typically
          *         the view is told to render into the span that is returned,
          *         although there is no guarantee. The parent may choose to
@@ -401,7 +393,7 @@ public class BasicHTML {
          * Determines the maximum span for this view along an axis.
          *
          * @param axis
-         *             may be either X_AXIS or Y_AXIS
+         *        may be either X_AXIS or Y_AXIS
          * @return the span the view would like to be rendered into. Typically
          *         the view is told to render into the span that is returned,
          *         although there is no guarantee. The parent may choose to
@@ -424,14 +416,13 @@ public class BasicHTML {
          * behavior helps make that true.
          *
          * @param child
-         *               the child view
+         *        the child view
          * @param width
-         *               true if the width preference has changed
+         *        true if the width preference has changed
          * @param height
-         *               true if the height preference has changed
+         *        true if the height preference has changed
          */
-        public void preferenceChanged(View child, boolean width,
-                boolean height) {
+        public void preferenceChanged(View child, boolean width, boolean height) {
             host.revalidate();
             host.repaint();
         }
@@ -440,7 +431,7 @@ public class BasicHTML {
          * Determines the desired alignment for this view along an axis.
          *
          * @param axis
-         *             may be either X_AXIS or Y_AXIS
+         *        may be either X_AXIS or Y_AXIS
          * @return the desired alignment, where 0.0 indicates the origin and 1.0
          *         the full span away from the origin
          */
@@ -452,9 +443,9 @@ public class BasicHTML {
          * Renders the view.
          *
          * @param g
-         *                   the graphics context
+         *        the graphics context
          * @param allocation
-         *                   the region to render into
+         *        the region to render into
          */
         public void paint(Graphics g, Shape allocation) {
             Rectangle alloc = allocation.getBounds();
@@ -466,7 +457,7 @@ public class BasicHTML {
          * Sets the view parent.
          *
          * @param parent
-         *               the parent view
+         *        the parent view
          */
         public void setParent(View parent) {
             throw new Error("Can't set parent on root view");
@@ -487,7 +478,7 @@ public class BasicHTML {
          * Gets the n-th view in this container.
          *
          * @param n
-         *          the number of the view to get
+         *        the number of the view to get
          * @return the view
          */
         public View getView(int n) {
@@ -499,13 +490,12 @@ public class BasicHTML {
          * coordinate space of the view mapped to it.
          *
          * @param pos
-         *            the position to convert
+         *        the position to convert
          * @param a
-         *            the allocated region to render into
+         *        the allocated region to render into
          * @return the bounding box of the given position
          */
-        public Shape modelToView(int pos, Shape a, Position.Bias b)
-                throws BadLocationException {
+        public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
             return view.modelToView(pos, a, b);
         }
 
@@ -514,31 +504,31 @@ public class BasicHTML {
          * coordinate space of the view mapped to it.
          *
          * @param p0
-         *           the position to convert >= 0
+         *        the position to convert >= 0
          * @param b0
-         *           the bias toward the previous character or the next
-         *           character represented by p0, in case the position is a
-         *           boundary of two views.
+         *        the bias toward the previous character or the next
+         *        character represented by p0, in case the position is a
+         *        boundary of two views.
          * @param p1
-         *           the position to convert >= 0
+         *        the position to convert >= 0
          * @param b1
-         *           the bias toward the previous character or the next
-         *           character represented by p1, in case the position is a
-         *           boundary of two views.
+         *        the bias toward the previous character or the next
+         *        character represented by p1, in case the position is a
+         *        boundary of two views.
          * @param a
-         *           the allocated region to render into
+         *        the allocated region to render into
          * @return the bounding box of the given position is returned
          * @exception BadLocationException
-         *                                     if the given position does not
-         *                                     represent a valid
-         *                                     location in the associated
-         *                                     document
+         *            if the given position does not
+         *            represent a valid
+         *            location in the associated
+         *            document
          * @exception IllegalArgumentException
-         *                                     for an invalid bias argument
+         *            for an invalid bias argument
          * @see View#viewToModel
          */
-        public Shape modelToView(int p0, Position.Bias b0, int p1,
-                Position.Bias b1, Shape a) throws BadLocationException {
+        public Shape modelToView(int p0, Position.Bias b0, int p1, Position.Bias b1, Shape a)
+                throws BadLocationException {
             return view.modelToView(p0, b0, p1, b1, a);
         }
 
@@ -547,16 +537,15 @@ public class BasicHTML {
          * coordinate space of the model.
          *
          * @param x
-         *          x coordinate of the view location to convert
+         *        x coordinate of the view location to convert
          * @param y
-         *          y coordinate of the view location to convert
+         *        y coordinate of the view location to convert
          * @param a
-         *          the allocated region to render into
+         *        the allocated region to render into
          * @return the location within the model that best represents the given
          *         point in the view
          */
-        public int viewToModel(float x, float y, Shape a,
-                Position.Bias[] bias) {
+        public int viewToModel(float x, float y, Shape a, Position.Bias[] bias) {
             return view.viewToModel(x, y, a, bias);
         }
 
@@ -600,9 +589,9 @@ public class BasicHTML {
          * Sets the view size.
          *
          * @param width
-         *               the width
+         *        the width
          * @param height
-         *               the height
+         *        the height
          */
         public void setSize(float width, float height) {
             this.width = (int) width;

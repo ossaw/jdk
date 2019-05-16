@@ -41,20 +41,19 @@ public class JNDIStateFactoryImpl implements StateFactory {
     private static final Field orbField;
 
     static {
-        orbField = (Field) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        Field fld = null;
-                        try {
-                            Class cls = CNCtx.class;
-                            fld = cls.getDeclaredField("_orb");
-                            fld.setAccessible(true);
-                        } catch (Exception exc) {
-                            // XXX log exception at FINE
-                        }
-                        return fld;
-                    }
-                });
+        orbField = (Field) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                Field fld = null;
+                try {
+                    Class cls = CNCtx.class;
+                    fld = cls.getDeclaredField("_orb");
+                    fld.setAccessible(true);
+                } catch (Exception exc) {
+                    // XXX log exception at FINE
+                }
+                return fld;
+            }
+        });
     }
 
     public JNDIStateFactoryImpl() {}
@@ -65,26 +64,26 @@ public class JNDIStateFactoryImpl implements StateFactory {
      * library is not available, throw ConfigurationException.
      *
      * @param orig
-     *             The object to turn into a CORBA object. If not Remote, or if
-     *             is a JRMP stub or impl, return null.
+     *        The object to turn into a CORBA object. If not Remote, or if
+     *        is a JRMP stub or impl, return null.
      * @param name
-     *             Ignored
+     *        Ignored
      * @param ctx
-     *             The non-null CNCtx whose ORB to use.
+     *        The non-null CNCtx whose ORB to use.
      * @param env
-     *             Ignored
+     *        Ignored
      * @return The CORBA object for <tt>orig</tt> or null.
      * @exception ConfigurationException
-     *                                   If the CORBA object cannot be obtained
-     *                                   due to
-     *                                   configuration problems
+     *            If the CORBA object cannot be obtained
+     *            due to
+     *            configuration problems
      * @exception NamingException
-     *                                   If some other problem prevented a CORBA
-     *                                   object from being
-     *                                   obtained from the Remote object.
+     *            If some other problem prevented a CORBA
+     *            object from being
+     *            obtained from the Remote object.
      */
-    public Object getStateToBind(Object orig, Name name, Context ctx,
-            Hashtable<?, ?> env) throws NamingException {
+    public Object getStateToBind(Object orig, Name name, Context ctx, Hashtable<?, ?> env)
+            throws NamingException {
         if (orig instanceof org.omg.CORBA.Object)
             return orig;
 

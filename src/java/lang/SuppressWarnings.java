@@ -15,7 +15,6 @@ import static java.lang.annotation.ElementType.*;
  * superset of the warnings suppressed in all containing elements. For example,
  * if you annotate a class to suppress one warning and annotate a method to
  * suppress another, both warnings will be suppressed in the method.
- *
  * <p>
  * As a matter of style, programmers should always use this annotation on the
  * most deeply nested element where it is effective. If you want to suppress a
@@ -40,7 +39,6 @@ public @interface SuppressWarnings {
      * unrecognized warning names is <i>not</i> an error: Compilers must ignore
      * any warning names they do not recognize. They are, however, free to emit
      * a warning if an annotation contains an unrecognized warning name.
-     *
      * <p>
      * The string {@code "unchecked"} is used to suppress unchecked warnings.
      * Compiler vendors should document the additional warning names they

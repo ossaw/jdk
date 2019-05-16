@@ -43,12 +43,10 @@ import com.sun.org.apache.xerces.internal.xni.XNIException;
  * </ul>
  *
  * @xerces.internal
- *
  * @author Arnaud Le Hors, IBM
  * @author Andy Clark, IBM
  * @author Glenn Marcy, IBM
  * @author Eric Ye, IBM
- *
  */
 public class XML11DTDScannerImpl extends XMLDTDScannerImpl {
 
@@ -65,8 +63,8 @@ public class XML11DTDScannerImpl extends XMLDTDScannerImpl {
     } // <init>()
 
     /** Constructor for he use of non-XMLComponentManagers. */
-    public XML11DTDScannerImpl(SymbolTable symbolTable,
-            XMLErrorReporter errorReporter, XMLEntityManager entityManager) {
+    public XML11DTDScannerImpl(SymbolTable symbolTable, XMLErrorReporter errorReporter,
+            XMLEntityManager entityManager) {
         super(symbolTable, errorReporter, entityManager);
     }
 
@@ -83,26 +81,21 @@ public class XML11DTDScannerImpl extends XMLDTDScannerImpl {
     // This needs to be refactored!!! - NG
     /**
      * Scans public ID literal.
-     *
      * [12] PubidLiteral ::= '"' PubidChar* '"' | "'" (PubidChar - "'")* "'"
      * [13] PubidChar::= #x20 | #xD | #xA | [a-zA-Z0-9] | [-'()+,./:=?;!*#@$_%]
-     *
      * The returned string is normalized according to the following rule, from
      * http://www.w3.org/TR/REC-xml#dt-pubid:
-     *
      * Before a match is attempted, all strings of white space in the public
      * identifier must be normalized to single space characters (#x20), and
      * leading and trailing white space must be removed.
      *
      * @param literal
-     *                The string to fill in with the public ID literal.
+     *        The string to fill in with the public ID literal.
      * @return True on success.
-     *
      *         <strong>Note:</strong> This method uses fStringBuffer, anything
      *         in it at the time of calling is lost.
      */
-    protected boolean scanPubidLiteral(XMLString literal) throws IOException,
-            XNIException {
+    protected boolean scanPubidLiteral(XMLString literal) throws IOException, XNIException {
         int quote = fEntityScanner.scanChar(null);
         if (quote != '\'' && quote != '"') {
             reportFatalError("QuoteRequiredInPublicID", null);
@@ -117,8 +110,7 @@ public class XML11DTDScannerImpl extends XMLDTDScannerImpl {
             int c = fEntityScanner.scanChar(null);
             // REVISIT: it could really only be \n or 0x20; all else is
             // normalized, no? - neilg
-            if (c == ' ' || c == '\n' || c == '\r' || c == 0x85
-                    || c == 0x2028) {
+            if (c == ' ' || c == '\n' || c == '\r' || c == 0x85 || c == 0x2028) {
                 if (!skipSpace) {
                     // take the first whitespace as a space and skip the others
                     fStringBuffer.append(' ');
@@ -139,8 +131,7 @@ public class XML11DTDScannerImpl extends XMLDTDScannerImpl {
                 return false;
             } else {
                 dataok = false;
-                reportFatalError("InvalidCharInPublicID", new Object[] { Integer
-                        .toHexString(c) });
+                reportFatalError("InvalidCharInPublicID", new Object[] { Integer.toHexString(c) });
             }
         }
         return dataok;

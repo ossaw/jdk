@@ -10,7 +10,6 @@ package java.security;
  * This exception is thrown by the AccessController to indicate that a requested
  * access (to a critical system resource such as the file system or the network)
  * is denied.
- *
  * <p>
  * The reason to deny access can vary. For example, the requested permission
  * might be of an incorrect type, contain an invalid value, or request access
@@ -33,7 +32,7 @@ public class AccessControlException extends SecurityException {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public AccessControlException(String s) {
         super(s);
@@ -44,9 +43,9 @@ public class AccessControlException extends SecurityException {
      * message, and the requested permission that caused the exception.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      * @param p
-     *          the permission that caused the exception.
+     *        the permission that caused the exception.
      */
     public AccessControlException(String s, Permission p) {
         super(s);

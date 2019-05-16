@@ -16,8 +16,7 @@ import java.io.Serializable;
  *
  * @author Alan Kaminsky
  */
-public class HashDocAttributeSet extends HashAttributeSet implements
-        DocAttributeSet, Serializable {
+public class HashDocAttributeSet extends HashAttributeSet implements DocAttributeSet, Serializable {
 
     private static final long serialVersionUID = -1128534486061432528L;
 
@@ -33,12 +32,11 @@ public class HashDocAttributeSet extends HashAttributeSet implements
      * given value.
      *
      * @param attribute
-     *                  Attribute value to add to the set.
-     *
+     *        Attribute value to add to the set.
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if
-     *                                 <CODE>attribute</CODE> is
-     *                                 null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>attribute</CODE> is
+     *            null.
      */
     public HashDocAttributeSet(DocAttribute attribute) {
         super(attribute, DocAttribute.class);
@@ -53,14 +51,13 @@ public class HashDocAttributeSet extends HashAttributeSet implements
      * categories.
      *
      * @param attributes
-     *                   Array of attribute values to add to the set. If null,
-     *                   an empty
-     *                   attribute set is constructed.
-     *
+     *        Array of attribute values to add to the set. If null,
+     *        an empty
+     *        attribute set is constructed.
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if any
-     *                                 element of
-     *                                 <CODE>attributes</CODE> is null.
+     *            (unchecked exception) Thrown if any
+     *            element of
+     *            <CODE>attributes</CODE> is null.
      */
     public HashDocAttributeSet(DocAttribute[] attributes) {
         super(attributes, DocAttribute.class);
@@ -72,16 +69,15 @@ public class HashDocAttributeSet extends HashAttributeSet implements
      * the <code>DocAttribute</code> interface.
      *
      * @param attributes
-     *                   set of attribute values to initialise the set. If null,
-     *                   an
-     *                   empty attribute set is constructed.
-     *
+     *        set of attribute values to initialise the set. If null,
+     *        an
+     *        empty attribute set is constructed.
      * @exception ClassCastException
-     *                               (unchecked exception) Thrown if any element
-     *                               of
-     *                               <CODE>attributes</CODE> is not an instance
-     *                               of
-     *                               <CODE>DocAttribute</CODE>.
+     *            (unchecked exception) Thrown if any element
+     *            of
+     *            <CODE>attributes</CODE> is not an instance
+     *            of
+     *            <CODE>DocAttribute</CODE>.
      */
     public HashDocAttributeSet(DocAttributeSet attributes) {
         super(attributes, DocAttribute.class);

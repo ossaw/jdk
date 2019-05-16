@@ -21,7 +21,7 @@ public class SyncFailedException extends IOException {
      * is a String that describes this particular exception.
      *
      * @param desc
-     *             a String describing the exception.
+     *        a String describing the exception.
      */
     public SyncFailedException(String desc) {
         super(desc);

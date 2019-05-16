@@ -59,7 +59,6 @@ import java.util.HashMap;
  * Instances of this class give users a handle to the instructions contained in
  * an InstructionList. Instruction objects may be used more than once within a
  * list, this is useful because it saves memory and may be much faster.
- *
  * Within an InstructionList an InstructionHandle object is wrapped around all
  * instructions, i.e., it implements a cell in a doubly-linked list. From the
  * outside only the next and the previous instruction (handle) are accessible.
@@ -98,10 +97,8 @@ public class InstructionHandle implements java.io.Serializable {
         if (i == null)
             throw new ClassGenException("Assigning null to handle");
 
-        if ((this.getClass() != BranchHandle.class)
-                && (i instanceof BranchInstruction))
-            throw new ClassGenException("Assigning branch instruction " + i
-                    + " to plain handle");
+        if ((this.getClass() != BranchHandle.class) && (i instanceof BranchInstruction))
+            throw new ClassGenException("Assigning branch instruction " + i + " to plain handle");
 
         if (instruction != null)
             instruction.dispose();
@@ -150,11 +147,11 @@ public class InstructionHandle implements java.io.Serializable {
      * function.
      *
      * @param offset
-     *                   additional offset caused by preceding (variable length)
-     *                   instructions
+     *        additional offset caused by preceding (variable length)
+     *        instructions
      * @param max_offset
-     *                   the maximum offset that may be caused by these
-     *                   instructions
+     *        the maximum offset that may be caused by these
+     *        instructions
      * @return additional offset caused by possible change of this instruction's
      *         length
      */
@@ -247,8 +244,7 @@ public class InstructionHandle implements java.io.Serializable {
      * @return a (verbose) string representation of the contained instruction.
      */
     public String toString(boolean verbose) {
-        return Utility.format(i_position, 4, false, ' ') + ": " + instruction
-                .toString(verbose);
+        return Utility.format(i_position, 4, false, ' ') + ": " + instruction.toString(verbose);
     }
 
     /**
@@ -262,9 +258,9 @@ public class InstructionHandle implements java.io.Serializable {
      * Add an attribute to an instruction handle.
      *
      * @param key
-     *             the key object to store/retrieve the attribute
+     *        the key object to store/retrieve the attribute
      * @param attr
-     *             the attribute to associate with this handle
+     *        the attribute to associate with this handle
      */
     public void addAttribute(Object key, Object attr) {
         if (attributes == null)
@@ -277,7 +273,7 @@ public class InstructionHandle implements java.io.Serializable {
      * Delete an attribute of an instruction handle.
      *
      * @param key
-     *            the key object to retrieve the attribute
+     *        the key object to retrieve the attribute
      */
     public void removeAttribute(Object key) {
         if (attributes != null)
@@ -288,7 +284,7 @@ public class InstructionHandle implements java.io.Serializable {
      * Get attribute of an instruction handle.
      *
      * @param key
-     *            the key object to store/retrieve the attribute
+     *        the key object to store/retrieve the attribute
      */
     public Object getAttribute(Object key) {
         if (attributes != null)
@@ -308,7 +304,7 @@ public class InstructionHandle implements java.io.Serializable {
      * Convenience method, simply calls accept() on the contained instruction.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         instruction.accept(v);

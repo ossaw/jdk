@@ -33,10 +33,8 @@ import com.sun.org.apache.xerces.internal.util.XMLChar;
  * </P>
  *
  * @xerces.internal
- *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
- *
  */
 public class IDREFDatatypeValidator implements DatatypeValidator {
 
@@ -48,29 +46,27 @@ public class IDREFDatatypeValidator implements DatatypeValidator {
      * validation exception is thrown.
      *
      * @param content
-     *                the string value that needs to be validated
+     *        the string value that needs to be validated
      * @param context
-     *                the validation context
+     *        the validation context
      * @throws InvalidDatatypeException
-     *                                  if the content is invalid according to
-     *                                  the rules for the
-     *                                  validators
+     *         if the content is invalid according to
+     *         the rules for the
+     *         validators
      * @see InvalidDatatypeValueException
      */
-    public void validate(String content, ValidationContext context)
-            throws InvalidDatatypeValueException {
+    public void validate(String content, ValidationContext context) throws InvalidDatatypeValueException {
 
         // Check if is valid key-[81] EncName ::= [A-Za-z] ([A-Za-z0-9._] |
         // '-')*
         if (context.useNamespaces()) {
             if (!XMLChar.isValidNCName(content)) {
-                throw new InvalidDatatypeValueException(
-                        "IDREFInvalidWithNamespaces", new Object[] { content });
+                throw new InvalidDatatypeValueException("IDREFInvalidWithNamespaces", new Object[] {
+                        content });
             }
         } else {
             if (!XMLChar.isValidName(content)) {
-                throw new InvalidDatatypeValueException("IDREFInvalid",
-                        new Object[] { content });
+                throw new InvalidDatatypeValueException("IDREFInvalid", new Object[] { content });
             }
         }
 

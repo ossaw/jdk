@@ -12,7 +12,6 @@ import java.security.Principal;
  * Interface representing an Access Control List (ACL). An Access Control List
  * is a data structure used to guard access to resources.
  * <p>
- *
  * An ACL can be thought of as a data structure with multiple ACL entries. Each
  * ACL entry, of interface type AclEntry, contains a set of permissions
  * associated with a particular principal. (A principal represents an entity
@@ -21,31 +20,24 @@ import java.security.Principal;
  * are to be granted to the associated principal. If negative, the permissions
  * are to be denied.
  * <p>
- *
  * The ACL Entries in each ACL observe the following rules:
- *
  * <ul>
  * <li>Each principal can have at most one positive ACL entry and one negative
  * entry; that is, multiple positive or negative ACL entries are not allowed for
  * any principal. Each entry specifies the set of permissions that are to be
  * granted (if positive) or denied (if negative).
- *
  * <li>If there is no entry for a particular principal, then the principal is
  * considered to have a null (empty) permission set.
- *
  * <li>If there is a positive entry that grants a principal a particular
  * permission, and a negative entry that denies the principal the same
  * permission, the result is as though the permission was never granted or
  * denied.
- *
  * <li>Individual permissions always override permissions of the group(s) to
  * which the individual belongs. That is, individual negative permissions
  * (specific denial of permissions) override the groups' positive permissions.
  * And individual positive permissions override the groups' negative
  * permissions.
- *
  * </ul>
- *
  * The {@code  java.security.acl } package provides the interfaces to the ACL
  * and related data structures (ACL entries, groups, permissions, etc.), and the
  * {@code  sun.security.acl } classes provide a default implementation of the
@@ -53,7 +45,6 @@ import java.security.Principal;
  * interface to an ACL and the {@code  sun.security.acl.AclImpl } class provides
  * the default implementation of the interface.
  * <p>
- *
  * The {@code  java.security.acl.Acl } interface extends the
  * {@code  java.security.acl.Owner } interface. The Owner interface is used to
  * maintain a list of owners for each ACL. Only owners are allowed to modify an
@@ -63,7 +54,6 @@ import java.security.Principal;
  * @see java.security.acl.AclEntry
  * @see java.security.acl.Owner
  * @see java.security.acl.Acl#getPermissions
- *
  * @author Satish Dharmaraj
  */
 
@@ -73,16 +63,13 @@ public interface Acl extends Owner {
      * Sets the name of this ACL.
      *
      * @param caller
-     *               the principal invoking this method. It must be an owner of
-     *               this ACL.
-     *
+     *        the principal invoking this method. It must be an owner of
+     *        this ACL.
      * @param name
-     *               the name to be given to this ACL.
-     *
+     *        the name to be given to this ACL.
      * @exception NotOwnerException
-     *                              if the caller principal is not an owner of
-     *                              this ACL.
-     *
+     *            if the caller principal is not an owner of
+     *            this ACL.
      * @see #getName
      */
     public void setName(Principal caller, String name) throws NotOwnerException;
@@ -91,7 +78,6 @@ public interface Acl extends Owner {
      * Returns the name of this ACL.
      *
      * @return the name of this ACL.
-     *
      * @see #setName
      */
     public String getName();
@@ -105,51 +91,40 @@ public interface Acl extends Owner {
      * positive) already in the ACL, false is returned.
      *
      * @param caller
-     *               the principal invoking this method. It must be an owner of
-     *               this ACL.
-     *
+     *        the principal invoking this method. It must be an owner of
+     *        this ACL.
      * @param entry
-     *               the ACL entry to be added to this ACL.
-     *
+     *        the ACL entry to be added to this ACL.
      * @return true on success, false if an entry of the same type (positive or
      *         negative) for the same principal is already present in this ACL.
-     *
      * @exception NotOwnerException
-     *                              if the caller principal is not an owner of
-     *                              this ACL.
+     *            if the caller principal is not an owner of
+     *            this ACL.
      */
-    public boolean addEntry(Principal caller, AclEntry entry)
-            throws NotOwnerException;
+    public boolean addEntry(Principal caller, AclEntry entry) throws NotOwnerException;
 
     /**
      * Removes an ACL entry from this ACL.
      *
      * @param caller
-     *               the principal invoking this method. It must be an owner of
-     *               this ACL.
-     *
+     *        the principal invoking this method. It must be an owner of
+     *        this ACL.
      * @param entry
-     *               the ACL entry to be removed from this ACL.
-     *
+     *        the ACL entry to be removed from this ACL.
      * @return true on success, false if the entry is not part of this ACL.
-     *
      * @exception NotOwnerException
-     *                              if the caller principal is not an owner of
-     *                              this Acl.
+     *            if the caller principal is not an owner of
+     *            this Acl.
      */
-    public boolean removeEntry(Principal caller, AclEntry entry)
-            throws NotOwnerException;
+    public boolean removeEntry(Principal caller, AclEntry entry) throws NotOwnerException;
 
     /**
      * Returns an enumeration for the set of allowed permissions for the
      * specified principal (representing an entity such as an individual or a
      * group). This set of allowed permissions is calculated as follows:
-     *
      * <ul>
-     *
      * <li>If there is no entry in this Access Control List for the specified
      * principal, an empty permission set is returned.
-     *
      * <li>Otherwise, the principal's group permission sets are determined. (A
      * principal can belong to one or more groups, where a group is a group of
      * principals, represented by the Group interface.) The group positive
@@ -160,7 +135,6 @@ public interface Acl extends Owner {
      * positive permission set and the negative permission set, it is removed
      * from both.
      * <p>
-     *
      * The individual positive and negative permission sets are also determined.
      * The positive permission set contains the permissions specified in the
      * positive ACL entry (if any) for the principal. Similarly, the negative
@@ -169,19 +143,16 @@ public interface Acl extends Owner {
      * permission set is considered to be null if there is not a positive
      * (negative) ACL entry for the principal in this ACL.
      * <p>
-     *
      * The set of permissions granted to the principal is then calculated using
      * the simple rule that individual permissions always override the group
      * permissions. That is, the principal's individual negative permission set
      * (specific denial of permissions) overrides the group positive permission
      * set, and the principal's individual positive permission set overrides the
      * group negative permission set.
-     *
      * </ul>
      *
      * @param user
-     *             the principal whose permission set is to be returned.
-     *
+     *        the principal whose permission set is to be returned.
      * @return the permission set specifying the permissions the principal is
      *         allowed.
      */
@@ -198,22 +169,18 @@ public interface Acl extends Owner {
     /**
      * Checks whether or not the specified principal has the specified
      * permission. If it does, true is returned, otherwise false is returned.
-     *
      * More specifically, this method checks whether the passed permission is a
      * member of the allowed permission set of the specified principal. The
      * allowed permission set is determined by the same algorithm as is used by
      * the {@code getPermissions} method.
      *
      * @param principal
-     *                   the principal, assumed to be a valid authenticated
-     *                   Principal.
-     *
+     *        the principal, assumed to be a valid authenticated
+     *        Principal.
      * @param permission
-     *                   the permission to be checked for.
-     *
+     *        the permission to be checked for.
      * @return true if the principal has the specified permission, false
      *         otherwise.
-     *
      * @see #getPermissions
      */
     public boolean checkPermission(Principal principal, Permission permission);

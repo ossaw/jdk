@@ -16,10 +16,8 @@ import com.sun.jmx.snmp.SnmpEngine;
  * MIB. One object implementing this interface will be created for every MIB
  * involved in a SNMP request, and that object will be passed to the
  * SnmpMibAgent in charge of handling that MIB.
- *
  * Objects implementing this interface will be allocated by the SNMP engine. You
  * will never need to implement this interface. You will only use it.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -57,7 +55,6 @@ public interface SnmpMibRequest {
      * returned.
      *
      * @return The SNMP protocol version of the original request.
-     *
      * @since 1.5
      */
     public int getRequestPduVersion();
@@ -68,7 +65,6 @@ public interface SnmpMibRequest {
      * Otherwise null is returned.
      * 
      * @return the local engine.
-     *
      * @since 1.5
      */
     public SnmpEngine getEngine();
@@ -79,7 +75,6 @@ public interface SnmpMibRequest {
      * Otherwise null is returned.
      * 
      * @return The request principal.
-     *
      * @since 1.5
      **/
     public String getPrincipal();
@@ -91,7 +86,6 @@ public interface SnmpMibRequest {
      * receiving this request. Otherwise -1 is returned.
      * 
      * @return The security level.
-     *
      * @since 1.5
      */
     public int getSecurityLevel();
@@ -102,7 +96,6 @@ public interface SnmpMibRequest {
      * request. Otherwise -1 is returned.
      * 
      * @return The security model.
-     *
      * @since 1.5
      */
     public int getSecurityModel();
@@ -113,7 +106,6 @@ public interface SnmpMibRequest {
      * request. Otherwise null is returned.
      * 
      * @return The context name.
-     *
      * @since 1.5
      */
     public byte[] getContextName();
@@ -125,7 +117,6 @@ public interface SnmpMibRequest {
      * request. Otherwise null is returned.
      * 
      * @return The checked context name.
-     *
      * @since 1.5
      */
     public byte[] getAccessContextName();
@@ -147,13 +138,12 @@ public interface SnmpMibRequest {
      * the result PDU.
      *
      * @param varbind
-     *                The varbind for which the index value is querried. Note
-     *                that
-     *                this varbind <b>must</b> have been obtained from the
-     *                enumeration returned by <CODE>getElements()</CODE>, or
-     *                from
-     *                the vector returned by <CODE>getSublist()</CODE>.
-     *
+     *        The varbind for which the index value is querried. Note
+     *        that
+     *        this varbind <b>must</b> have been obtained from the
+     *        enumeration returned by <CODE>getElements()</CODE>, or
+     *        from
+     *        the vector returned by <CODE>getSublist()</CODE>.
      * @return The varbind index that should be embedded in an
      *         SnmpStatusException for this particular varbind.
      */
@@ -164,8 +154,7 @@ public interface SnmpMibRequest {
      * purposes and you should never need to call it directly.
      *
      * @param varbind
-     *                The varbind to be added in the sublist.
-     *
+     *        The varbind to be added in the sublist.
      */
     public void addVarBind(SnmpVarBind varbind);
 
@@ -173,7 +162,6 @@ public interface SnmpMibRequest {
      * Returns the number of elements (varbinds) in this request sublist.
      *
      * @return The number of elements in the sublist.
-     *
      **/
     public int getSize();
 
@@ -181,7 +169,6 @@ public interface SnmpMibRequest {
      * Returns the SNMP PDU attached to the request.
      * 
      * @return The SNMP PDU.
-     *
      * @since 1.5
      **/
     public SnmpPdu getPdu();

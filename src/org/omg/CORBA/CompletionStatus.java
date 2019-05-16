@@ -29,8 +29,7 @@ package org.omg.CORBA;
  * @since JDK1.2
  */
 
-public final class CompletionStatus implements
-        org.omg.CORBA.portable.IDLEntity {
+public final class CompletionStatus implements org.omg.CORBA.portable.IDLEntity {
     /**
      * The constant indicating that a method completed running before a
      * <code>SystemException</code> was thrown.
@@ -53,22 +52,19 @@ public final class CompletionStatus implements
      * An instance of <code>CompletionStatus</code> initialized with the
      * constant <code>_COMPLETED_YES</code>.
      */
-    public static final CompletionStatus COMPLETED_YES = new CompletionStatus(
-            _COMPLETED_YES);
+    public static final CompletionStatus COMPLETED_YES = new CompletionStatus(_COMPLETED_YES);
 
     /**
      * An instance of <code>CompletionStatus</code> initialized with the
      * constant <code>_COMPLETED_NO</code>.
      */
-    public static final CompletionStatus COMPLETED_NO = new CompletionStatus(
-            _COMPLETED_NO);
+    public static final CompletionStatus COMPLETED_NO = new CompletionStatus(_COMPLETED_NO);
 
     /**
      * An instance of <code>CompletionStatus</code> initialized with the
      * constant <code>_COMPLETED_MAYBE</code>.
      */
-    public static final CompletionStatus COMPLETED_MAYBE = new CompletionStatus(
-            _COMPLETED_MAYBE);
+    public static final CompletionStatus COMPLETED_MAYBE = new CompletionStatus(_COMPLETED_MAYBE);
 
     /**
      * Retrieves the value of this <code>CompletionStatus</code> object.
@@ -76,7 +72,6 @@ public final class CompletionStatus implements
      * @return one of the possible <code>CompletionStatus</code> values:
      *         <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>, or
      *         <code>_COMPLETED_MAYBE</code>
-     *
      */
     public int value() {
         return _value;
@@ -87,13 +82,11 @@ public final class CompletionStatus implements
      * <code>int</code>.
      *
      * @param i
-     *          one of <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>
-     *          , or <code>_COMPLETED_MAYBE</code>
-     *
+     *        one of <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>
+     *        , or <code>_COMPLETED_MAYBE</code>
      * @return one of the possible <code>CompletionStatus</code> objects with
      *         values: <code>_COMPLETED_YES</code>, <code>_COMPLETED_NO</code>,
      *         or <code>_COMPLETED_MAYBE</code>
-     *
      * @exception org.omg.CORBA.BAD_PARAM
      *            if the argument given is not one of the <code>int</code>
      *            constants defined in <code>CompletionStatus</code>
@@ -116,10 +109,9 @@ public final class CompletionStatus implements
      * <code>int</code>.
      *
      * @param _value
-     *               one of <code>_COMPLETED_YES</code>,
-     *               <code>_COMPLETED_NO</code>
-     *               , or <code>_COMPLETED_MAYBE</code>
-     *
+     *        one of <code>_COMPLETED_YES</code>,
+     *        <code>_COMPLETED_NO</code>
+     *        , or <code>_COMPLETED_MAYBE</code>
      */
     private CompletionStatus(int _value) {
         this._value = _value;

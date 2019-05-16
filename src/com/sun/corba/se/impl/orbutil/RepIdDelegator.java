@@ -17,16 +17,14 @@ import com.sun.corba.se.impl.util.RepositoryId;
  * com.sun.corba.se.impl.util. This is necessary to overcome the fact that many
  * of RepositoryId's methods are static.
  */
-public final class RepIdDelegator implements RepositoryIdStrings,
-        RepositoryIdUtility, RepositoryIdInterface {
+public final class RepIdDelegator implements RepositoryIdStrings, RepositoryIdUtility, RepositoryIdInterface {
     // RepositoryIdFactory methods
 
     public String createForAnyType(Class type) {
         return RepositoryId.createForAnyType(type);
     }
 
-    public String createForJavaType(Serializable ser)
-            throws TypeMismatchException {
+    public String createForJavaType(Serializable ser) throws TypeMismatchException {
         return RepositoryId.createForJavaType(ser);
     }
 
@@ -106,13 +104,12 @@ public final class RepIdDelegator implements RepositoryIdStrings,
         return delegate.getClassFromType();
     }
 
-    public Class getClassFromType(String codebaseURL)
-            throws ClassNotFoundException, MalformedURLException {
+    public Class getClassFromType(String codebaseURL) throws ClassNotFoundException, MalformedURLException {
         return delegate.getClassFromType(codebaseURL);
     }
 
-    public Class getClassFromType(Class expectedType, String codebaseURL)
-            throws ClassNotFoundException, MalformedURLException {
+    public Class getClassFromType(Class expectedType, String codebaseURL) throws ClassNotFoundException,
+            MalformedURLException {
         return delegate.getClassFromType(expectedType, codebaseURL);
     }
 

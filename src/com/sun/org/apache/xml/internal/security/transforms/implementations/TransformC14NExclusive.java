@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -37,7 +35,6 @@ import org.w3c.dom.Element;
 
 /**
  * Class TransformC14NExclusive
- *
  */
 public class TransformC14NExclusive extends TransformSpi {
 
@@ -53,22 +50,19 @@ public class TransformC14NExclusive extends TransformSpi {
         return implementedTransformURI;
     }
 
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
-            OutputStream os, Transform transformObject)
-            throws CanonicalizationException {
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
+            Transform transformObject) throws CanonicalizationException {
         try {
             String inclusiveNamespaces = null;
 
-            if (transformObject.length(
-                    InclusiveNamespaces.ExclusiveCanonicalizationNamespace,
+            if (transformObject.length(InclusiveNamespaces.ExclusiveCanonicalizationNamespace,
                     InclusiveNamespaces._TAG_EC_INCLUSIVENAMESPACES) == 1) {
-                Element inclusiveElement = XMLUtils.selectNode(transformObject
-                        .getElement().getFirstChild(),
+                Element inclusiveElement = XMLUtils.selectNode(transformObject.getElement().getFirstChild(),
                         InclusiveNamespaces.ExclusiveCanonicalizationNamespace,
                         InclusiveNamespaces._TAG_EC_INCLUSIVENAMESPACES, 0);
 
-                inclusiveNamespaces = new InclusiveNamespaces(inclusiveElement,
-                        transformObject.getBaseURI()).getInclusiveNamespaces();
+                inclusiveNamespaces = new InclusiveNamespaces(inclusiveElement, transformObject.getBaseURI())
+                        .getInclusiveNamespaces();
             }
 
             Canonicalizer20010315ExclOmitComments c14n = new Canonicalizer20010315ExclOmitComments();

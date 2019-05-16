@@ -28,7 +28,6 @@ import com.sun.org.apache.xerces.internal.utils.XMLSecurityManager;
  * that is, it permits applications to instruct Xerces to limit certain
  * operations that could be exploited by malicious document authors to cause a
  * denail-of-service attack when the document is parsed.
- *
  * In addition to the features and properties recognized by the base parser
  * configuration, this class recognizes these additional features and
  * properties:
@@ -40,7 +39,6 @@ import com.sun.org.apache.xerces.internal.utils.XMLSecurityManager;
  * </ul>
  *
  * @author Neil Graham, IBM
- *
  * @version $Id: SecurityConfiguration.java,v 1.6 2010-11-01 04:40:09 joehw Exp
  *          $
  */
@@ -66,7 +64,7 @@ public class SecurityConfiguration extends XIncludeAwareParserConfiguration {
      * Constructs a parser configuration using the specified symbol table.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      */
     public SecurityConfiguration(SymbolTable symbolTable) {
         this(symbolTable, null, null);
@@ -80,12 +78,11 @@ public class SecurityConfiguration extends XIncludeAwareParserConfiguration {
      * validation engine is implemented.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                    The grammar pool to use.
+     *        The grammar pool to use.
      */
-    public SecurityConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool) {
+    public SecurityConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this(symbolTable, grammarPool, null);
     } // <init>(SymbolTable,XMLGrammarPool)
 
@@ -97,14 +94,14 @@ public class SecurityConfiguration extends XIncludeAwareParserConfiguration {
      * validation engine is implemented.
      *
      * @param symbolTable
-     *                       The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                       The grammar pool to use.
+     *        The grammar pool to use.
      * @param parentSettings
-     *                       The parent settings.
+     *        The parent settings.
      */
-    public SecurityConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
+    public SecurityConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
+            XMLComponentManager parentSettings) {
         super(symbolTable, grammarPool, parentSettings);
 
         // create the SecurityManager property:

@@ -18,8 +18,7 @@ import com.sun.corba.se.impl.logging.NamingSystemException;
  * @author Hemanth
  */
 public class CorbalocURL extends INSURLBase {
-    static NamingSystemException wrapper = NamingSystemException.get(
-            CORBALogDomains.NAMING_READ);
+    static NamingSystemException wrapper = NamingSystemException.get(CORBALogDomains.NAMING_READ);
 
     /**
      * This constructor parses the URL and initializes all the variables. Once
@@ -50,8 +49,7 @@ public class CorbalocURL extends INSURLBase {
             }
             // Anything between corbaloc: and / is the host,port information
             // of the server where the Service Object is located
-            StringTokenizer endpoints = new StringTokenizer(url.substring(0,
-                    endIndex), ",");
+            StringTokenizer endpoints = new StringTokenizer(url.substring(0, endIndex), ",");
             // NOTE:
             // There should be atleast one token, because there are checks
             // to make sure that there is host information before the
@@ -140,8 +138,8 @@ public class CorbalocURL extends INSURLBase {
                 badAddress(null);
             }
             try {
-                iiopEndpointInfo.setVersion(Integer.parseInt(version.substring(
-                        0, dot)), Integer.parseInt(version.substring(dot + 1)));
+                iiopEndpointInfo.setVersion(Integer.parseInt(version.substring(0, dot)), Integer.parseInt(
+                        version.substring(dot + 1)));
                 hostandport = tokenizer.nextToken();
             } catch (Throwable e) {
                 badAddress(e);
@@ -172,8 +170,7 @@ public class CorbalocURL extends INSURLBase {
             if (tokenizer.countTokens() == 2) {
                 // Case 1: There is Host and Port Info
                 iiopEndpointInfo.setHost(tokenizer.nextToken());
-                iiopEndpointInfo.setPort(Integer.parseInt(tokenizer
-                        .nextToken()));
+                iiopEndpointInfo.setPort(Integer.parseInt(tokenizer.nextToken()));
             } else {
                 if ((hostandport != null) && (hostandport.length() != 0)) {
                     // Case 2: Only Host is specified. iiopEndpointInfo is
@@ -217,8 +214,7 @@ public class CorbalocURL extends INSURLBase {
         // equality check requires squareBracketEndIndex + 1.
         if ((squareBracketEndIndex + 1) != (endpointInfo.length())) {
             if (endpointInfo.charAt(squareBracketEndIndex + 1) != ':') {
-                throw new RuntimeException(
-                        "Host and Port is not separated by ':'");
+                throw new RuntimeException("Host and Port is not separated by ':'");
             }
             // PortInformation should be after ']:' delimiter
             // If there is an exception then it will be caught in

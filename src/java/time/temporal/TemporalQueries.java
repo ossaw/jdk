@@ -324,20 +324,18 @@ public final class TemporalQueries {
     /**
      * A strict query for the {@code ZoneId}.
      */
-    static final TemporalQuery<ZoneId> ZONE_ID = (temporal) -> temporal.query(
-            TemporalQueries.ZONE_ID);
+    static final TemporalQuery<ZoneId> ZONE_ID = (temporal) -> temporal.query(TemporalQueries.ZONE_ID);
 
     /**
      * A query for the {@code Chronology}.
      */
-    static final TemporalQuery<Chronology> CHRONO = (temporal) -> temporal
-            .query(TemporalQueries.CHRONO);
+    static final TemporalQuery<Chronology> CHRONO = (temporal) -> temporal.query(TemporalQueries.CHRONO);
 
     /**
      * A query for the smallest supported unit.
      */
-    static final TemporalQuery<TemporalUnit> PRECISION = (temporal) -> temporal
-            .query(TemporalQueries.PRECISION);
+    static final TemporalQuery<TemporalUnit> PRECISION = (temporal) -> temporal.query(
+            TemporalQueries.PRECISION);
 
     // -----------------------------------------------------------------------
     /**

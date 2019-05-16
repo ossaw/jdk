@@ -35,8 +35,8 @@ public interface StringList extends List {
      * this list.
      * 
      * @param item
-     *             <code>GenericString</code> whose presence in this list is to
-     *             be tested.
+     *        <code>GenericString</code> whose presence in this list is to
+     *        be tested.
      * @return True if this list contains the <code>GenericString</code>
      *         <code>item</code>.
      */
@@ -48,7 +48,7 @@ public interface StringList extends List {
      * number of objects in the list. The index starts at 0.
      * 
      * @param index
-     *              index into the collection.
+     *        index into the collection.
      * @return The <code>GenericString</code> at the <code>index</code>th
      *         position in the <code>StringList</code>, or <code>null</code> if
      *         the index specified is not valid.

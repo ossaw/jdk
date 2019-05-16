@@ -16,12 +16,10 @@ import javax.lang.model.util.Types;
  * variables, and the null type. Also represented are wildcard type arguments,
  * the signature and return types of executables, and pseudo-types corresponding
  * to packages and to the keyword {@code void}.
- *
  * <p>
  * Types should be compared using the utility methods in {@link Types}. There is
  * no guarantee that any particular type will always be represented by the same
  * object.
- *
  * <p>
  * To implement operations based on the class of an {@code
  * TypeMirror} object, either use a {@linkplain TypeVisitor visitor} or use the
@@ -55,7 +53,7 @@ public interface TypeMirror extends javax.lang.model.AnnotatedConstruct {
      * {@code t1.equals(t2)} and {@code Types.isSameType(t1, t2)} may differ.
      *
      * @param obj
-     *            the object to be compared with this type
+     *        the object to be compared with this type
      * @return {@code true} if the specified object is equal to this one
      */
     boolean equals(Object obj);
@@ -79,14 +77,14 @@ public interface TypeMirror extends javax.lang.model.AnnotatedConstruct {
     /**
      * Applies a visitor to this type.
      *
-     * @param   <R>
-     *          the return type of the visitor's methods
-     * @param   <P>
-     *          the type of the additional parameter to the visitor's methods
+     * @param <R>
+     *        the return type of the visitor's methods
+     * @param <P>
+     *        the type of the additional parameter to the visitor's methods
      * @param v
-     *          the visitor operating on this type
+     *        the visitor operating on this type
      * @param p
-     *          additional parameter to the visitor
+     *        additional parameter to the visitor
      * @return a visitor-specified result
      */
     <R, P> R accept(TypeVisitor<R, P> v, P p);

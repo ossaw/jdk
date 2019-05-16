@@ -128,10 +128,9 @@ public class GetOpt {
      * @param none
      * @return int - the next option found.
      * @throws IllegalArgumentException,
-     *                                   MissingOptArgException.
+     *         MissingOptArgException.
      */
-    public int getNextOption() throws IllegalArgumentException,
-            MissingOptArgException {
+    public int getNextOption() throws IllegalArgumentException, MissingOptArgException {
         int retval = -1;
         if (theOptionsIterator.hasNext()) {
             theCurrentOption = (Option) theOptionsIterator.next();
@@ -139,12 +138,10 @@ public class GetOpt {
             boolean shouldHaveArg = theOptionMatcher.hasArg(c);
             String arg = theCurrentOption.getArgument();
             if (!theOptionMatcher.match(c)) {
-                ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_CMDLINE_OPTION_ERR,
-                        new Character(c));
+                ErrorMsg msg = new ErrorMsg(ErrorMsg.ILLEGAL_CMDLINE_OPTION_ERR, new Character(c));
                 throw (new IllegalArgumentException(msg.toString()));
             } else if (shouldHaveArg && (arg == null)) {
-                ErrorMsg msg = new ErrorMsg(
-                        ErrorMsg.CMDLINE_OPT_MISSING_ARG_ERR, new Character(c));
+                ErrorMsg msg = new ErrorMsg(ErrorMsg.CMDLINE_OPT_MISSING_ARG_ERR, new Character(c));
                 throw (new MissingOptArgException(msg.toString()));
             }
             retval = c;

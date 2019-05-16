@@ -55,8 +55,7 @@ final class Include extends TopLevelElement {
         String docToLoad = getAttribute("href");
         try {
             if (context.checkForLoop(docToLoad)) {
-                final ErrorMsg msg = new ErrorMsg(ErrorMsg.CIRCULAR_INCLUDE_ERR,
-                        docToLoad, this);
+                final ErrorMsg msg = new ErrorMsg(ErrorMsg.CIRCULAR_INCLUDE_ERR, docToLoad, this);
                 parser.reportError(Constants.FATAL, msg);
                 return;
             }
@@ -79,18 +78,13 @@ final class Include extends TopLevelElement {
 
             // No SourceLoader or not resolved by SourceLoader
             if (input == null) {
-                docToLoad = SystemIDResolver.getAbsoluteURI(docToLoad,
-                        currLoadedDoc);
-                String accessError = SecuritySupport.checkAccess(docToLoad,
-                        (String) xsltc.getProperty(
-                                XMLConstants.ACCESS_EXTERNAL_STYLESHEET),
-                        XalanConstants.ACCESS_EXTERNAL_ALL);
+                docToLoad = SystemIDResolver.getAbsoluteURI(docToLoad, currLoadedDoc);
+                String accessError = SecuritySupport.checkAccess(docToLoad, (String) xsltc.getProperty(
+                        XMLConstants.ACCESS_EXTERNAL_STYLESHEET), XalanConstants.ACCESS_EXTERNAL_ALL);
 
                 if (accessError != null) {
-                    final ErrorMsg msg = new ErrorMsg(
-                            ErrorMsg.ACCESSING_XSLT_TARGET_ERR, SecuritySupport
-                                    .sanitizePath(docToLoad), accessError,
-                            this);
+                    final ErrorMsg msg = new ErrorMsg(ErrorMsg.ACCESSING_XSLT_TARGET_ERR, SecuritySupport
+                            .sanitizePath(docToLoad), accessError, this);
                     parser.reportError(Constants.FATAL, msg);
                     return;
                 }
@@ -99,8 +93,7 @@ final class Include extends TopLevelElement {
 
             // Return if we could not resolve the URL
             if (input == null) {
-                final ErrorMsg msg = new ErrorMsg(ErrorMsg.FILE_NOT_FOUND_ERR,
-                        docToLoad, this);
+                final ErrorMsg msg = new ErrorMsg(ErrorMsg.FILE_NOT_FOUND_ERR, docToLoad, this);
                 parser.reportError(Constants.FATAL, msg);
                 return;
             }

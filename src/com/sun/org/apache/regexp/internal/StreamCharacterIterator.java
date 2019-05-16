@@ -37,7 +37,7 @@ public final class StreamCharacterIterator implements CharacterIterator {
 
     /**
      * @param is
-     *           an InputStream, which is parsed
+     *        an InputStream, which is parsed
      */
     public StreamCharacterIterator(InputStream is) {
         this.is = is;

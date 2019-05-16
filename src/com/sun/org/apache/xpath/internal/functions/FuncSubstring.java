@@ -38,13 +38,11 @@ public class FuncSubstring extends Function3Args {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         XMLString s1 = m_arg0.execute(xctxt).xstr();
         double start = m_arg1.execute(xctxt).num();
@@ -94,11 +92,9 @@ public class FuncSubstring extends Function3Args {
     /**
      * Check that the number of arguments passed to this function is correct.
      *
-     *
      * @param argNum
-     *               The number of arguments that is being passed to the
-     *               function.
-     *
+     *        The number of arguments that is being passed to the
+     *        function.
      * @throws WrongNumberArgsException
      */
     public void checkNumberArgs(int argNum) throws WrongNumberArgsException {
@@ -113,8 +109,8 @@ public class FuncSubstring extends Function3Args {
      * @throws WrongNumberArgsException
      */
     protected void reportWrongNumberArgs() throws WrongNumberArgsException {
-        throw new WrongNumberArgsException(XSLMessages.createXPATHMessage(
-                XPATHErrorResources.ER_TWO_OR_THREE, null)); // "2
+        throw new WrongNumberArgsException(XSLMessages.createXPATHMessage(XPATHErrorResources.ER_TWO_OR_THREE,
+                null)); // "2
                                                                                                                                // or
                                                                                                                                // 3");
     }

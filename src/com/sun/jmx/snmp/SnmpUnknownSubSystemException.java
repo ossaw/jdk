@@ -21,7 +21,7 @@ public class SnmpUnknownSubSystemException extends Exception {
      * Constructor.
      * 
      * @param msg
-     *            The exception msg to display.
+     *        The exception msg to display.
      */
     public SnmpUnknownSubSystemException(String msg) {
         super(msg);

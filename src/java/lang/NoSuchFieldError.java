@@ -30,7 +30,7 @@ public class NoSuchFieldError extends IncompatibleClassChangeError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public NoSuchFieldError(String s) {
         super(s);

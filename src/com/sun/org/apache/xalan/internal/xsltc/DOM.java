@@ -58,14 +58,12 @@ public interface DOM {
 
     public DTMAxisIterator getTypedAxisIterator(final int axis, final int type);
 
-    public DTMAxisIterator getNthDescendant(int node, int n,
-            boolean includeself);
+    public DTMAxisIterator getNthDescendant(int node, int n, boolean includeself);
 
-    public DTMAxisIterator getNamespaceAxisIterator(final int axis,
-            final int ns);
+    public DTMAxisIterator getNamespaceAxisIterator(final int axis, final int ns);
 
-    public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iter,
-            int returnType, String value, boolean op);
+    public DTMAxisIterator getNodeValueIterator(DTMAxisIterator iter, int returnType, String value,
+            boolean op);
 
     public DTMAxisIterator orderNodes(DTMAxisIterator source, int node);
 
@@ -85,19 +83,15 @@ public interface DOM {
 
     public String getStringValueX(final int node);
 
-    public void copy(final int node, SerializationHandler handler)
-            throws TransletException;
+    public void copy(final int node, SerializationHandler handler) throws TransletException;
 
-    public void copy(DTMAxisIterator nodes, SerializationHandler handler)
-            throws TransletException;
+    public void copy(DTMAxisIterator nodes, SerializationHandler handler) throws TransletException;
 
-    public String shallowCopy(final int node, SerializationHandler handler)
-            throws TransletException;
+    public String shallowCopy(final int node, SerializationHandler handler) throws TransletException;
 
     public boolean lessThan(final int node1, final int node2);
 
-    public void characters(final int textNode, SerializationHandler handler)
-            throws TransletException;
+    public void characters(final int textNode, SerializationHandler handler) throws TransletException;
 
     public Node makeNode(int index);
 
@@ -115,15 +109,13 @@ public interface DOM {
 
     public void setFilter(StripFilter filter);
 
-    public void setupMapping(String[] names, String[] urisArray,
-            int[] typesArray, String[] namespaces);
+    public void setupMapping(String[] names, String[] urisArray, int[] typesArray, String[] namespaces);
 
     public boolean isElement(final int node);
 
     public boolean isAttribute(final int node);
 
-    public String lookupNamespace(int node, String prefix)
-            throws TransletException;
+    public String lookupNamespace(int node, String prefix) throws TransletException;
 
     public int getNodeIdent(final int nodehandle);
 
@@ -131,8 +123,7 @@ public interface DOM {
 
     public DOM getResultTreeFrag(int initialSize, int rtfType);
 
-    public DOM getResultTreeFrag(int initialSize, int rtfType,
-            boolean addToDTMManager);
+    public DOM getResultTreeFrag(int initialSize, int rtfType, boolean addToDTMManager);
 
     public SerializationHandler getOutputDomBuilder();
 

@@ -20,12 +20,12 @@ public interface CodecFactoryOperations {
      * <p>
      * 
      * @param enc
-     *            The encoding for which to create a <code>Codec</code>.
+     *        The encoding for which to create a <code>Codec</code>.
      * @return A <code>Codec</code> obtained with the given encoding.
      * @exception UnknownEncoding
-     *                            thrown if this factory cannot create a
-     *                            <code>Codec</code>
-     *                            of the given encoding.
+     *            thrown if this factory cannot create a
+     *            <code>Codec</code>
+     *            of the given encoding.
      */
     org.omg.IOP.Codec create_codec(org.omg.IOP.Encoding enc)
             throws org.omg.IOP.CodecFactoryPackage.UnknownEncoding;

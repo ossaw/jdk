@@ -39,8 +39,8 @@ class DirectFloatBufferRU
     }
 
     public FloatBuffer duplicate() {
-        return new DirectFloatBufferRU(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectFloatBufferRU(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
     }
 
     public FloatBuffer asReadOnlyBuffer() {
@@ -89,8 +89,7 @@ class DirectFloatBufferRU
 
     public ByteOrder order() {
 
-        return ((ByteOrder.nativeOrder() != ByteOrder.BIG_ENDIAN)
-                ? ByteOrder.LITTLE_ENDIAN
+        return ((ByteOrder.nativeOrder() != ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
                 : ByteOrder.BIG_ENDIAN);
 
     }

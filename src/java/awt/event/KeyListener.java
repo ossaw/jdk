@@ -20,13 +20,11 @@ import java.util.EventListener;
  * <code>KeyEvent</code> is passed to it.
  *
  * @author Carl Quinn
- *
  * @see KeyAdapter
  * @see KeyEvent
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/keylistener.html">
  *      Tutorial: Writing a Key Listener</a>
- *
  * @since 1.1
  */
 public interface KeyListener extends EventListener {

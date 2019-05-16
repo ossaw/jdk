@@ -25,7 +25,7 @@ public class NoSuchFieldException extends ReflectiveOperationException {
      * Constructor with a detail message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      */
     public NoSuchFieldException(String s) {
         super(s);

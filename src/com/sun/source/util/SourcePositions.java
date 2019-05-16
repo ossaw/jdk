@@ -24,7 +24,6 @@ public interface SourcePositions {
      * {@link javax.tools.Diagnostic#NOPOS}. The returned position must be at
      * the start of the yield of this tree, that is for any sub-tree of this
      * tree, the following must hold:
-     *
      * <p>
      * {@code tree.getStartPosition() <= subtree.getStartPosition()} or <br>
      * {@code tree.getStartPosition() == NOPOS} or <br>
@@ -32,9 +31,9 @@ public interface SourcePositions {
      * </p>
      *
      * @param file
-     *             CompilationUnit in which to find tree.
+     *        CompilationUnit in which to find tree.
      * @param tree
-     *             tree for which a position is sought.
+     *        tree for which a position is sought.
      * @return the start position of tree.
      */
     long getStartPosition(CompilationUnitTree file, Tree tree);
@@ -45,15 +44,12 @@ public interface SourcePositions {
      * {@link javax.tools.Diagnostic#NOPOS}. The returned position must be at
      * the end of the yield of this tree, that is for any sub-tree of this tree,
      * the following must hold:
-     *
      * <p>
      * {@code tree.getEndPosition() >= subtree.getEndPosition()} or <br>
      * {@code tree.getEndPosition() == NOPOS} or <br>
      * {@code subtree.getEndPosition() == NOPOS}
      * </p>
-     *
      * In addition, the following must hold:
-     *
      * <p>
      * {@code tree.getStartPosition() <= tree.getEndPosition()} or <br>
      * {@code tree.getStartPosition() == NOPOS} or <br>
@@ -61,9 +57,9 @@ public interface SourcePositions {
      * </p>
      *
      * @param file
-     *             CompilationUnit in which to find tree.
+     *        CompilationUnit in which to find tree.
      * @param tree
-     *             tree for which a position is sought.
+     *        tree for which a position is sought.
      * @return the end position of tree.
      */
     long getEndPosition(CompilationUnitTree file, Tree tree);

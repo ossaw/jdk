@@ -49,7 +49,6 @@ import javax.sound.sampled.Control;
  * @see Receiver
  * @see Transmitter
  * @see MidiDevice
- *
  * @author Kara Kytle
  */
 public interface Synthesizer extends MidiDevice {
@@ -119,7 +118,7 @@ public interface Synthesizer extends MidiDevice {
      * <code>IllegalArgumentException</code>.
      * 
      * @param soundbank
-     *                  soundbank for which support is queried
+     *        soundbank for which support is queried
      * @return <code>true</code> if the soundbank is supported, otherwise
      *         <code>false</code>
      * @see #loadInstruments
@@ -145,15 +144,15 @@ public interface Synthesizer extends MidiDevice {
      * <code>isSoundbankSupported</code> method of <code>Synthesizer</code>.)
      * 
      * @param instrument
-     *                   instrument to load
+     *        instrument to load
      * @return <code>true</code> if the instrument is successfully loaded (or
      *         already had been), <code>false</code> if the instrument could not
      *         be loaded (for example, if the synthesizer has insufficient
      *         memory to load it)
      * @throws IllegalArgumentException
-     *                                  if this <code>Synthesizer</code> doesn't
-     *                                  support the
-     *                                  specified instrument's soundbank
+     *         if this <code>Synthesizer</code> doesn't
+     *         support the
+     *         specified instrument's soundbank
      * @see #unloadInstrument
      * @see #loadInstruments
      * @see #loadAllInstruments
@@ -167,11 +166,11 @@ public interface Synthesizer extends MidiDevice {
      * Unloads a particular instrument.
      * 
      * @param instrument
-     *                   instrument to unload
+     *        instrument to unload
      * @throws IllegalArgumentException
-     *                                  if this <code>Synthesizer</code> doesn't
-     *                                  support the
-     *                                  specified instrument's soundbank
+     *         if this <code>Synthesizer</code> doesn't
+     *         support the
+     *         specified instrument's soundbank
      * @see #loadInstrument
      * @see #unloadInstruments
      * @see #unloadAllInstruments
@@ -193,22 +192,22 @@ public interface Synthesizer extends MidiDevice {
      * {@link #loadAllInstruments}.
      *
      * @param from
-     *             the <code>Instrument</code> object to be replaced
+     *        the <code>Instrument</code> object to be replaced
      * @param to
-     *             the <code>Instrument</code> object to be used in place of the
-     *             old instrument, it should be loaded into the synthesizer
+     *        the <code>Instrument</code> object to be used in place of the
+     *        old instrument, it should be loaded into the synthesizer
      * @return <code>true</code> if the instrument successfully remapped,
      *         <code>false</code> if feature is not implemented by synthesizer
      * @throws IllegalArgumentException
-     *                                  if instrument <code>from</code> or
-     *                                  instrument <code>to</code>
-     *                                  aren't supported by synthesizer or if
-     *                                  instrument
-     *                                  <code>to</code> is not loaded
+     *         if instrument <code>from</code> or
+     *         instrument <code>to</code>
+     *         aren't supported by synthesizer or if
+     *         instrument
+     *         <code>to</code> is not loaded
      * @throws NullPointerException
-     *                                  if <code>from</code> or <code>to</code>
-     *                                  parameters have null
-     *                                  value
+     *         if <code>from</code> or <code>to</code>
+     *         parameters have null
+     *         value
      * @see #loadInstrument
      * @see #loadInstruments
      * @see #loadAllInstruments
@@ -264,17 +263,17 @@ public interface Synthesizer extends MidiDevice {
      * specified <code>Soundbank</code>.
      * 
      * @param soundbank
-     *                  the <code>Soundbank</code> whose are instruments are to
-     *                  be
-     *                  loaded
+     *        the <code>Soundbank</code> whose are instruments are to
+     *        be
+     *        loaded
      * @return <code>true</code> if the instruments are all successfully loaded
      *         (or already had been), <code>false</code> if any instrument could
      *         not be loaded (for example, if the <code>Synthesizer</code> had
      *         insufficient memory)
      * @throws IllegalArgumentException
-     *                                  if the requested soundbank is
-     *                                  incompatible with this
-     *                                  synthesizer.
+     *         if the requested soundbank is
+     *         incompatible with this
+     *         synthesizer.
      * @see #isSoundbankSupported
      * @see #loadInstrument
      * @see #loadInstruments
@@ -286,10 +285,10 @@ public interface Synthesizer extends MidiDevice {
      * .
      * 
      * @param soundbank
-     *                  soundbank containing instruments to unload
+     *        soundbank containing instruments to unload
      * @throws IllegalArgumentException
-     *                                  thrown if the soundbank is not
-     *                                  supported.
+     *         thrown if the soundbank is not
+     *         supported.
      * @see #isSoundbankSupported
      * @see #unloadInstrument
      * @see #unloadInstruments
@@ -304,17 +303,17 @@ public interface Synthesizer extends MidiDevice {
      * location.
      * 
      * @param soundbank
-     *                  the <code>Soundbank</code> containing the instruments to
-     *                  load
+     *        the <code>Soundbank</code> containing the instruments to
+     *        load
      * @param patchList
-     *                  list of patches for which instruments should be loaded
+     *        list of patches for which instruments should be loaded
      * @return <code>true</code> if the instruments are all successfully loaded
      *         (or already had been), <code>false</code> if any instrument could
      *         not be loaded (for example, if the <code>Synthesizer</code> had
      *         insufficient memory)
      * @throws IllegalArgumentException
-     *                                  thrown if the soundbank is not
-     *                                  supported.
+     *         thrown if the soundbank is not
+     *         supported.
      * @see #isSoundbankSupported
      * @see Instrument#getPatch
      * @see #loadAllInstruments
@@ -329,13 +328,12 @@ public interface Synthesizer extends MidiDevice {
      * MIDI sound bank specified.
      * 
      * @param soundbank
-     *                  soundbank containing instruments to unload
+     *        soundbank containing instruments to unload
      * @param patchList
-     *                  list of patches for which instruments should be unloaded
+     *        list of patches for which instruments should be unloaded
      * @throws IllegalArgumentException
-     *                                  thrown if the soundbank is not
-     *                                  supported.
-     *
+     *         thrown if the soundbank is not
+     *         supported.
      * @see #unloadInstrument
      * @see #unloadAllInstruments
      * @see #isSoundbankSupported
@@ -357,13 +355,13 @@ public interface Synthesizer extends MidiDevice {
      * Opens the receiver.
      * 
      * @throws MidiUnavailableException
-     *                                  if the receiver is cannot be opened,
-     *                                  usually because the MIDI
-     *                                  device is in use by another application.
+     *         if the receiver is cannot be opened,
+     *         usually because the MIDI
+     *         device is in use by another application.
      * @throws SecurityException
-     *                                  if the receiver cannot be opened due to
-     *                                  security
-     *                                  restrictions.
+     *         if the receiver cannot be opened due to
+     *         security
+     *         restrictions.
      */
     // public abstract void open() throws MidiUnavailableException,
     // SecurityException;
@@ -377,9 +375,9 @@ public interface Synthesizer extends MidiDevice {
      * Sends a MIDI event to the receiver.
      * 
      * @param event
-     *              event to send.
+     *        event to send.
      * @throws IllegalStateException
-     *                               if the receiver is not open.
+     *         if the receiver is not open.
      */
     // public void send(MidiEvent event) throws IllegalStateException {
     //
@@ -402,7 +400,7 @@ public interface Synthesizer extends MidiDevice {
      * Obtains the specified control.
      * 
      * @param controlClass
-     *                     class of the requested control
+     *        class of the requested control
      * @return requested control object, or null if the control is not
      *         supported.
      */

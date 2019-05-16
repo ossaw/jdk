@@ -17,5 +17,4 @@ import java.awt.event.MouseAdapter;
  * @author Philip Milne
  * @author Shannon Hickey
  */
-public abstract class MouseInputAdapter extends MouseAdapter implements
-        MouseInputListener {}
+public abstract class MouseInputAdapter extends MouseAdapter implements MouseInputListener {}

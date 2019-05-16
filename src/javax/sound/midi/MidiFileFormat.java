@@ -14,7 +14,6 @@ import java.util.Map;
 /**
  * A <code>MidiFileFormat</code> object encapsulates a MIDI file's type, as well
  * as its length and timing information.
- *
  * <p>
  * A <code>MidiFileFormat</code> object can include a set of properties. A
  * property is a pair of key and value: the key is of type <code>String</code>,
@@ -22,11 +21,9 @@ import java.util.Map;
  * additional informational meta data (like a author, or copyright). Properties
  * are optional information, and file reader and file writer implementations are
  * not required to provide or recognize properties.
- *
  * <p>
  * The following table lists some common properties that should be used in
  * implementations:
- *
  * <table border=1>
  * <caption>MIDI File Format Properties</caption>
  * <tr>
@@ -63,7 +60,6 @@ import java.util.Map;
  *
  * @see MidiSystem#getMidiFileFormat(java.io.File)
  * @see Sequencer#setSequence(java.io.InputStream stream)
- *
  * @author Kara Kytle
  * @author Florian Bomers
  */
@@ -116,20 +112,20 @@ public class MidiFileFormat {
      * Constructs a <code>MidiFileFormat</code>.
      *
      * @param type
-     *                     the MIDI file type (0, 1, or 2)
+     *        the MIDI file type (0, 1, or 2)
      * @param divisionType
-     *                     the timing division type (PPQ or one of the SMPTE
-     *                     types)
+     *        the timing division type (PPQ or one of the SMPTE
+     *        types)
      * @param resolution
-     *                     the timing resolution
+     *        the timing resolution
      * @param bytes
-     *                     the length of the MIDI file in bytes, or
-     *                     UNKNOWN_LENGTH if not
-     *                     known
+     *        the length of the MIDI file in bytes, or
+     *        UNKNOWN_LENGTH if not
+     *        known
      * @param microseconds
-     *                     the duration of the file in microseconds, or
-     *                     UNKNOWN_LENGTH if
-     *                     not known
+     *        the duration of the file in microseconds, or
+     *        UNKNOWN_LENGTH if
+     *        not known
      * @see #UNKNOWN_LENGTH
      * @see Sequence#PPQ
      * @see Sequence#SMPTE_24
@@ -137,8 +133,7 @@ public class MidiFileFormat {
      * @see Sequence#SMPTE_30DROP
      * @see Sequence#SMPTE_30
      */
-    public MidiFileFormat(int type, float divisionType, int resolution,
-            int bytes, long microseconds) {
+    public MidiFileFormat(int type, float divisionType, int resolution, int bytes, long microseconds) {
 
         this.type = type;
         this.divisionType = divisionType;
@@ -152,24 +147,23 @@ public class MidiFileFormat {
      * Construct a <code>MidiFileFormat</code> with a set of properties.
      *
      * @param type
-     *                     the MIDI file type (0, 1, or 2)
+     *        the MIDI file type (0, 1, or 2)
      * @param divisionType
-     *                     the timing division type (PPQ or one of the SMPTE
-     *                     types)
+     *        the timing division type (PPQ or one of the SMPTE
+     *        types)
      * @param resolution
-     *                     the timing resolution
+     *        the timing resolution
      * @param bytes
-     *                     the length of the MIDI file in bytes, or
-     *                     UNKNOWN_LENGTH if not
-     *                     known
+     *        the length of the MIDI file in bytes, or
+     *        UNKNOWN_LENGTH if not
+     *        known
      * @param microseconds
-     *                     the duration of the file in microseconds, or
-     *                     UNKNOWN_LENGTH if
-     *                     not known
+     *        the duration of the file in microseconds, or
+     *        UNKNOWN_LENGTH if
+     *        not known
      * @param properties
-     *                     a <code>Map&lt;String,Object&gt;</code> object with
-     *                     properties
-     *
+     *        a <code>Map&lt;String,Object&gt;</code> object with
+     *        properties
      * @see #UNKNOWN_LENGTH
      * @see Sequence#PPQ
      * @see Sequence#SMPTE_24
@@ -178,8 +172,8 @@ public class MidiFileFormat {
      * @see Sequence#SMPTE_30
      * @since 1.5
      */
-    public MidiFileFormat(int type, float divisionType, int resolution,
-            int bytes, long microseconds, Map<String, Object> properties) {
+    public MidiFileFormat(int type, float divisionType, int resolution, int bytes, long microseconds,
+            Map<String, Object> properties) {
         this(type, divisionType, resolution, bytes, microseconds);
         this.properties = new HashMap<String, Object>(properties);
     }
@@ -197,7 +191,6 @@ public class MidiFileFormat {
      * Obtains the timing division type for the MIDI file.
      *
      * @return the division type (PPQ or one of the SMPTE types)
-     *
      * @see Sequence#Sequence(float, int)
      * @see Sequence#PPQ
      * @see Sequence#SMPTE_24
@@ -253,7 +246,6 @@ public class MidiFileFormat {
      * @return a <code>Map&lt;String,Object&gt;</code> object containing all
      *         properties. If no properties are recognized, an empty map is
      *         returned.
-     *
      * @see #getProperty(String)
      * @since 1.5
      */
@@ -270,16 +262,14 @@ public class MidiFileFormat {
     /**
      * Obtain the property value specified by the key. The concept of properties
      * is further explained in the {@link MidiFileFormat class description}.
-     *
      * <p>
      * If the specified property is not defined for a particular file format,
      * this method returns <code>null</code>.
      *
      * @param key
-     *            the key of the desired property
+     *        the key of the desired property
      * @return the value of the property with the specified key, or
      *         <code>null</code> if the property does not exist.
-     *
      * @see #properties()
      * @since 1.5
      */

@@ -16,19 +16,15 @@ import java.util.Map;
 
 /**
  * This class is used to create operating system processes.
- *
  * <p>
  * Each {@code ProcessBuilder} instance manages a collection of process
  * attributes. The {@link #start()} method creates a new {@link Process}
  * instance with those attributes. The {@link #start()} method can be invoked
  * repeatedly from the same instance to create new subprocesses with identical
  * or related attributes.
- *
  * <p>
  * Each process builder manages these process attributes:
- *
  * <ul>
- *
  * <li>a <i>command</i>, a list of strings which signifies the external program
  * file to be invoked and its arguments, if any. Which string lists represent a
  * valid operating system command is system-dependent. For example, it is common
@@ -36,15 +32,12 @@ import java.util.Map;
  * operating systems where programs are expected to tokenize command line
  * strings themselves - on such a system a Java implementation might require
  * commands to contain exactly two elements.
- *
  * <li>an <i>environment</i>, which is a system-dependent mapping from
  * <i>variables</i> to <i>values</i>. The initial value is a copy of the
  * environment of the current process (see {@link System#getenv()}).
- *
  * <li>a <i>working directory</i>. The default value is the current working
  * directory of the current process, usually the directory named by the system
  * property {@code user.dir}.
- *
  * <li><a name="redirect-input">a source of <i>standard input</i></a>. By
  * default, the subprocess reads input from a pipe. Java code can access this
  * pipe via the output stream returned by {@link Process#getOutputStream()}.
@@ -52,13 +45,11 @@ import java.util.Map;
  * {@link #redirectInput(Redirect) redirectInput}. In this case,
  * {@link Process#getOutputStream()} will return a <i>null output stream</i>,
  * for which:
- *
  * <ul>
  * <li>the {@link OutputStream#write(int) write} methods always throw
  * {@code IOException}
  * <li>the {@link OutputStream#close() close} method does nothing
  * </ul>
- *
  * <li><a name="redirect-output">a destination for <i>standard output</i> and
  * <i>standard error</i></a>. By default, the subprocess writes standard output
  * and standard error to pipes. Java code can access these pipes via the input
@@ -69,23 +60,19 @@ import java.util.Map;
  * {@link #redirectError(Redirect) redirectError}. In this case,
  * {@link Process#getInputStream()} and/or {@link Process#getErrorStream()} will
  * return a <i>null input stream</i>, for which:
- *
  * <ul>
  * <li>the {@link InputStream#read() read} methods always return {@code -1}
  * <li>the {@link InputStream#available() available} method always returns
  * {@code 0}
  * <li>the {@link InputStream#close() close} method does nothing
  * </ul>
- *
  * <li>a <i>redirectErrorStream</i> property. Initially, this property is
  * {@code false}, meaning that the standard output and error output of a
  * subprocess are sent to two separate streams, which can be accessed using the
  * {@link Process#getInputStream()} and {@link Process#getErrorStream()}
  * methods.
- *
  * <p>
  * If the value is set to {@code true}, then:
- *
  * <ul>
  * <li>standard error is merged with the standard output and always sent to the
  * same destination (this makes it easier to correlate error messages with the
@@ -97,26 +84,21 @@ import java.util.Map;
  * <li>the stream returned from {@link Process#getErrorStream()} will always be
  * a <a href="#redirect-output">null input stream</a>
  * </ul>
- *
  * </ul>
- *
  * <p>
  * Modifying a process builder's attributes will affect processes subsequently
  * started by that object's {@link #start()} method, but will never affect
  * previously started processes or the Java process itself.
- *
  * <p>
  * Most error checking is performed by the {@link #start()} method. It is
  * possible to modify the state of an object so that {@link #start()} will fail.
  * For example, setting the command attribute to an empty list will not throw an
  * exception unless {@link #start()} is invoked.
- *
  * <p>
  * <strong>Note that this class is not synchronized.</strong> If multiple
  * threads access a {@code ProcessBuilder} instance concurrently, and at least
  * one of the threads modifies one of the attributes structurally, it
  * <i>must</i> be synchronized externally.
- *
  * <p>
  * Starting a new process which uses the default working directory and
  * environment is easy:
@@ -127,7 +109,6 @@ import java.util.Map;
  *     Process p = new ProcessBuilder("myCommand", "myArg").start();
  * }
  * </pre>
- *
  * <p>
  * Here is an example that starts a process with a modified working directory
  * and environment, and redirects standard output and error to be appended to a
@@ -151,7 +132,6 @@ import java.util.Map;
  *     assert p.getInputStream().read() == -1;
  * }
  * </pre>
- *
  * <p>
  * To start a process with an explicit set of environment variables, first call
  * {@link java.util.Map#clear() Map.clear()} before adding environment
@@ -176,9 +156,9 @@ public final class ProcessBuilder {
      * {@code command} corresponds to a valid operating system command.
      *
      * @param command
-     *                the list containing the program and its arguments
+     *        the list containing the program and its arguments
      * @throws NullPointerException
-     *                              if the argument is null
+     *         if the argument is null
      */
     public ProcessBuilder(List<String> command) {
         if (command == null)
@@ -194,7 +174,7 @@ public final class ProcessBuilder {
      * {@code command} corresponds to a valid operating system command.
      *
      * @param command
-     *                a string array containing the program and its arguments
+     *        a string array containing the program and its arguments
      */
     public ProcessBuilder(String... command) {
         this.command = new ArrayList<>(command.length);
@@ -210,11 +190,10 @@ public final class ProcessBuilder {
      * a valid operating system command.
      *
      * @param command
-     *                the list containing the program and its arguments
+     *        the list containing the program and its arguments
      * @return this process builder
-     *
      * @throws NullPointerException
-     *                              if the argument is null
+     *         if the argument is null
      */
     public ProcessBuilder command(List<String> command) {
         if (command == null)
@@ -231,7 +210,7 @@ public final class ProcessBuilder {
      * system command.
      *
      * @param command
-     *                a string array containing the program and its arguments
+     *        a string array containing the program and its arguments
      * @return this process builder
      */
     public ProcessBuilder command(String... command) {
@@ -254,12 +233,10 @@ public final class ProcessBuilder {
 
     /**
      * Returns a string map view of this process builder's environment.
-     *
      * Whenever a process builder is created, the environment is initialized to
      * a copy of the current process environment (see {@link System#getenv()}).
      * Subprocesses subsequently started by this object's {@link #start()}
      * method will use this map as their environment.
-     *
      * <p>
      * The returned object may be modified using ordinary {@link java.util.Map
      * Map} operations. These modifications will be visible to subprocesses
@@ -268,18 +245,15 @@ public final class ProcessBuilder {
      * the returned map will never be reflected in any other
      * {@code ProcessBuilder} instance or the values returned by
      * {@link System#getenv System.getenv}.
-     *
      * <p>
      * If the system does not support environment variables, an empty map is
      * returned.
-     *
      * <p>
      * The returned map does not permit null keys or values. Attempting to
      * insert or query the presence of a null key or value will throw a
      * {@link NullPointerException}. Attempting to query the presence of a key
      * or value which is not of type {@link String} will throw a
      * {@link ClassCastException}.
-     *
      * <p>
      * The behavior of the returned map is system-dependent. A system may not
      * allow modifications to environment variables or may forbid certain
@@ -287,42 +261,35 @@ public final class ProcessBuilder {
      * fail with {@link UnsupportedOperationException} or
      * {@link IllegalArgumentException} if the modification is not permitted by
      * the operating system.
-     *
      * <p>
      * Since the external format of environment variable names and values is
      * system-dependent, there may not be a one-to-one mapping between them and
      * Java's Unicode strings. Nevertheless, the map is implemented in such a
      * way that environment variables which are not modified by Java code will
      * have an unmodified native representation in the subprocess.
-     *
      * <p>
      * The returned map and its collection views may not obey the general
      * contract of the {@link Object#equals} and {@link Object#hashCode}
      * methods.
-     *
      * <p>
      * The returned map is typically case-sensitive on all platforms.
-     *
      * <p>
      * If a security manager exists, its {@link SecurityManager#checkPermission
      * checkPermission} method is called with a {@link RuntimePermission}
      * {@code ("getenv.*")} permission. This may result in a
      * {@link SecurityException} being thrown.
-     *
      * <p>
      * When passing information to a Java subprocess,
      * <a href=System.html#EnvironmentVSSystemProperties>system properties</a>
      * are generally preferred over environment variables.
      *
      * @return this process builder's environment
-     *
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@link SecurityManager#checkPermission
-     *                           checkPermission}
-     *                           method doesn't allow access to the process
-     *                           environment
-     *
+     *         if a security manager exists and its
+     *         {@link SecurityManager#checkPermission
+     *         checkPermission}
+     *         method doesn't allow access to the process
+     *         environment
      * @see Runtime#exec(String[],String[],java.io.File)
      * @see System#getenv()
      */
@@ -356,12 +323,10 @@ public final class ProcessBuilder {
                 if (envstring.indexOf((int) '\u0000') != -1)
                     envstring = envstring.replaceFirst("\u0000.*", "");
 
-                int eqlsign = envstring.indexOf('=',
-                        ProcessEnvironment.MIN_NAME_LENGTH);
+                int eqlsign = envstring.indexOf('=', ProcessEnvironment.MIN_NAME_LENGTH);
                 // Silently ignore envstrings lacking the required `='.
                 if (eqlsign != -1)
-                    environment.put(envstring.substring(0, eqlsign), envstring
-                            .substring(eqlsign + 1));
+                    environment.put(envstring.substring(0, eqlsign), envstring.substring(eqlsign + 1));
             }
         }
         return this;
@@ -369,7 +334,6 @@ public final class ProcessBuilder {
 
     /**
      * Returns this process builder's working directory.
-     *
      * Subprocesses subsequently started by this object's {@link #start()}
      * method will use this as their working directory. The returned value may
      * be {@code null} -- this means to use the working directory of the current
@@ -384,7 +348,6 @@ public final class ProcessBuilder {
 
     /**
      * Sets this process builder's working directory.
-     *
      * Subprocesses subsequently started by this object's {@link #start()}
      * method will use this as their working directory. The argument may be
      * {@code null} -- this means to use the working directory of the current
@@ -392,7 +355,7 @@ public final class ProcessBuilder {
      * {@code user.dir}, as the working directory of the child process.
      *
      * @param directory
-     *                  the new working directory
+     *        the new working directory
      * @return this process builder
      */
     public ProcessBuilder directory(File directory) {
@@ -435,9 +398,7 @@ public final class ProcessBuilder {
     /**
      * Represents a source of subprocess input or a destination of subprocess
      * output.
-     *
      * Each {@code Redirect} instance is one of the following:
-     *
      * <ul>
      * <li>the special value {@link #PIPE Redirect.PIPE}
      * <li>the special value {@link #INHERIT Redirect.INHERIT}
@@ -448,7 +409,6 @@ public final class ProcessBuilder {
      * <li>a redirection to append to a file, created by an invocation of
      * {@link Redirect#appendTo Redirect.appendTo(File)}
      * </ul>
-     *
      * <p>
      * Each of the above categories has an associated unique {@link Type Type}.
      *
@@ -459,33 +419,33 @@ public final class ProcessBuilder {
          * The type of a {@link Redirect}.
          */
         public enum Type {
-        /**
-         * The type of {@link Redirect#PIPE Redirect.PIPE}.
-         */
-        PIPE,
+            /**
+             * The type of {@link Redirect#PIPE Redirect.PIPE}.
+             */
+            PIPE,
 
-        /**
-         * The type of {@link Redirect#INHERIT Redirect.INHERIT}.
-         */
-        INHERIT,
+            /**
+             * The type of {@link Redirect#INHERIT Redirect.INHERIT}.
+             */
+            INHERIT,
 
-        /**
-         * The type of redirects returned from {@link Redirect#from
-         * Redirect.from(File)}.
-         */
-        READ,
+            /**
+             * The type of redirects returned from {@link Redirect#from
+             * Redirect.from(File)}.
+             */
+            READ,
 
-        /**
-         * The type of redirects returned from {@link Redirect#to
-         * Redirect.to(File)}.
-         */
-        WRITE,
+            /**
+             * The type of redirects returned from {@link Redirect#to
+             * Redirect.to(File)}.
+             */
+            WRITE,
 
-        /**
-         * The type of redirects returned from {@link Redirect#appendTo
-         * Redirect.appendTo(File)}.
-         */
-        APPEND
+            /**
+             * The type of redirects returned from {@link Redirect#appendTo
+             * Redirect.appendTo(File)}.
+             */
+            APPEND
         };
 
         /**
@@ -498,9 +458,7 @@ public final class ProcessBuilder {
         /**
          * Indicates that subprocess I/O will be connected to the current Java
          * process over a pipe.
-         *
          * This is the default handling of subprocess standard I/O.
-         *
          * <p>
          * It will always be true that
          * 
@@ -525,7 +483,6 @@ public final class ProcessBuilder {
          * Indicates that subprocess I/O source or destination will be the same
          * as those of the current process. This is the normal behavior of most
          * operating system command interpreters (shells).
-         *
          * <p>
          * It will always be true that
          * 
@@ -567,7 +524,6 @@ public final class ProcessBuilder {
 
         /**
          * Returns a redirect to read from the specified file.
-         *
          * <p>
          * It will always be true that
          * 
@@ -579,9 +535,9 @@ public final class ProcessBuilder {
          * </pre>
          *
          * @param file
-         *             The {@code File} for the {@code Redirect}.
+         *        The {@code File} for the {@code Redirect}.
          * @throws NullPointerException
-         *                              if the specified file is null
+         *         if the specified file is null
          * @return a redirect to read from the specified file
          */
         public static Redirect from(final File file) {
@@ -606,7 +562,6 @@ public final class ProcessBuilder {
          * Returns a redirect to write to the specified file. If the specified
          * file exists when the subprocess is started, its previous contents
          * will be discarded.
-         *
          * <p>
          * It will always be true that
          * 
@@ -618,9 +573,9 @@ public final class ProcessBuilder {
          * </pre>
          *
          * @param file
-         *             The {@code File} for the {@code Redirect}.
+         *        The {@code File} for the {@code Redirect}.
          * @throws NullPointerException
-         *                              if the specified file is null
+         *         if the specified file is null
          * @return a redirect to write to the specified file
          */
         public static Redirect to(final File file) {
@@ -651,7 +606,6 @@ public final class ProcessBuilder {
          * writes the requested data. Whether the advancement of the position
          * and the writing of the data are done in a single atomic operation is
          * system-dependent and therefore unspecified.
-         *
          * <p>
          * It will always be true that
          * 
@@ -663,9 +617,9 @@ public final class ProcessBuilder {
          * </pre>
          *
          * @param file
-         *             The {@code File} for the {@code Redirect}.
+         *        The {@code File} for the {@code Redirect}.
          * @throws NullPointerException
-         *                              if the specified file is null
+         *         if the specified file is null
          * @return a redirect to append to the specified file
          */
         public static Redirect appendTo(final File file) {
@@ -730,17 +684,14 @@ public final class ProcessBuilder {
 
     private Redirect[] redirects() {
         if (redirects == null)
-            redirects = new Redirect[] { Redirect.PIPE, Redirect.PIPE,
-                    Redirect.PIPE };
+            redirects = new Redirect[] { Redirect.PIPE, Redirect.PIPE, Redirect.PIPE };
         return redirects;
     }
 
     /**
      * Sets this process builder's standard input source.
-     *
      * Subprocesses subsequently started by this object's {@link #start()}
      * method obtain their standard input from this source.
-     *
      * <p>
      * If the source is {@link Redirect#PIPE Redirect.PIPE} (the initial value),
      * then the standard input of a subprocess can be written to using the
@@ -749,31 +700,27 @@ public final class ProcessBuilder {
      * will return a <a href="#redirect-input">null output stream</a>.
      *
      * @param source
-     *               the new standard input source
+     *        the new standard input source
      * @return this process builder
      * @throws IllegalArgumentException
-     *                                  if the redirect does not correspond to a
-     *                                  valid source of
-     *                                  data, that is, has type
-     *                                  {@link Redirect.Type#WRITE WRITE} or
-     *                                  {@link Redirect.Type#APPEND APPEND}
+     *         if the redirect does not correspond to a
+     *         valid source of
+     *         data, that is, has type
+     *         {@link Redirect.Type#WRITE WRITE} or
+     *         {@link Redirect.Type#APPEND APPEND}
      * @since 1.7
      */
     public ProcessBuilder redirectInput(Redirect source) {
-        if (source.type() == Redirect.Type.WRITE || source
-                .type() == Redirect.Type.APPEND)
-            throw new IllegalArgumentException("Redirect invalid for reading: "
-                    + source);
+        if (source.type() == Redirect.Type.WRITE || source.type() == Redirect.Type.APPEND)
+            throw new IllegalArgumentException("Redirect invalid for reading: " + source);
         redirects()[0] = source;
         return this;
     }
 
     /**
      * Sets this process builder's standard output destination.
-     *
      * Subprocesses subsequently started by this object's {@link #start()}
      * method send their standard output to this destination.
-     *
      * <p>
      * If the destination is {@link Redirect#PIPE Redirect.PIPE} (the initial
      * value), then the standard output of a subprocess can be read using the
@@ -783,62 +730,56 @@ public final class ProcessBuilder {
      * <a href="#redirect-output">null input stream</a>.
      *
      * @param destination
-     *                    the new standard output destination
+     *        the new standard output destination
      * @return this process builder
      * @throws IllegalArgumentException
-     *                                  if the redirect does not correspond to a
-     *                                  valid destination of
-     *                                  data, that is, has type
-     *                                  {@link Redirect.Type#READ READ}
+     *         if the redirect does not correspond to a
+     *         valid destination of
+     *         data, that is, has type
+     *         {@link Redirect.Type#READ READ}
      * @since 1.7
      */
     public ProcessBuilder redirectOutput(Redirect destination) {
         if (destination.type() == Redirect.Type.READ)
-            throw new IllegalArgumentException("Redirect invalid for writing: "
-                    + destination);
+            throw new IllegalArgumentException("Redirect invalid for writing: " + destination);
         redirects()[1] = destination;
         return this;
     }
 
     /**
      * Sets this process builder's standard error destination.
-     *
      * Subprocesses subsequently started by this object's {@link #start()}
      * method send their standard error to this destination.
-     *
      * <p>
      * If the destination is {@link Redirect#PIPE Redirect.PIPE} (the initial
      * value), then the error output of a subprocess can be read using the input
      * stream returned by {@link Process#getErrorStream()}. If the destination
      * is set to any other value, then {@link Process#getErrorStream()} will
      * return a <a href="#redirect-output">null input stream</a>.
-     *
      * <p>
      * If the {@link #redirectErrorStream redirectErrorStream} attribute has
      * been set {@code true}, then the redirection set by this method has no
      * effect.
      *
      * @param destination
-     *                    the new standard error destination
+     *        the new standard error destination
      * @return this process builder
      * @throws IllegalArgumentException
-     *                                  if the redirect does not correspond to a
-     *                                  valid destination of
-     *                                  data, that is, has type
-     *                                  {@link Redirect.Type#READ READ}
+     *         if the redirect does not correspond to a
+     *         valid destination of
+     *         data, that is, has type
+     *         {@link Redirect.Type#READ READ}
      * @since 1.7
      */
     public ProcessBuilder redirectError(Redirect destination) {
         if (destination.type() == Redirect.Type.READ)
-            throw new IllegalArgumentException("Redirect invalid for writing: "
-                    + destination);
+            throw new IllegalArgumentException("Redirect invalid for writing: " + destination);
         redirects()[2] = destination;
         return this;
     }
 
     /**
      * Sets this process builder's standard input source to a file.
-     *
      * <p>
      * This is a convenience method. An invocation of the form
      * {@code redirectInput(file)} behaves in exactly the same way as the
@@ -846,7 +787,7 @@ public final class ProcessBuilder {
      * {@code (Redirect.from(file))}.
      *
      * @param file
-     *             the new standard input source
+     *        the new standard input source
      * @return this process builder
      * @since 1.7
      */
@@ -856,7 +797,6 @@ public final class ProcessBuilder {
 
     /**
      * Sets this process builder's standard output destination to a file.
-     *
      * <p>
      * This is a convenience method. An invocation of the form
      * {@code redirectOutput(file)} behaves in exactly the same way as the
@@ -864,7 +804,7 @@ public final class ProcessBuilder {
      * {@code (Redirect.to(file))}.
      *
      * @param file
-     *             the new standard output destination
+     *        the new standard output destination
      * @return this process builder
      * @since 1.7
      */
@@ -874,7 +814,6 @@ public final class ProcessBuilder {
 
     /**
      * Sets this process builder's standard error destination to a file.
-     *
      * <p>
      * This is a convenience method. An invocation of the form
      * {@code redirectError(file)} behaves in exactly the same way as the
@@ -882,7 +821,7 @@ public final class ProcessBuilder {
      * {@code (Redirect.to(file))}.
      *
      * @param file
-     *             the new standard error destination
+     *        the new standard error destination
      * @return this process builder
      * @since 1.7
      */
@@ -892,7 +831,6 @@ public final class ProcessBuilder {
 
     /**
      * Returns this process builder's standard input source.
-     *
      * Subprocesses subsequently started by this object's {@link #start()}
      * method obtain their standard input from this source. The initial value is
      * {@link Redirect#PIPE Redirect.PIPE}.
@@ -906,7 +844,6 @@ public final class ProcessBuilder {
 
     /**
      * Returns this process builder's standard output destination.
-     *
      * Subprocesses subsequently started by this object's {@link #start()}
      * method redirect their standard output to this destination. The initial
      * value is {@link Redirect#PIPE Redirect.PIPE}.
@@ -920,7 +857,6 @@ public final class ProcessBuilder {
 
     /**
      * Returns this process builder's standard error destination.
-     *
      * Subprocesses subsequently started by this object's {@link #start()}
      * method redirect their standard error to this destination. The initial
      * value is {@link Redirect#PIPE Redirect.PIPE}.
@@ -935,7 +871,6 @@ public final class ProcessBuilder {
     /**
      * Sets the source and destination for subprocess standard I/O to be the
      * same as those of the current Java process.
-     *
      * <p>
      * This is a convenience method. An invocation of the form
      * 
@@ -969,7 +904,6 @@ public final class ProcessBuilder {
     /**
      * Tells whether this process builder merges standard error and standard
      * output.
-     *
      * <p>
      * If this property is {@code true}, then any error output generated by
      * subprocesses subsequently started by this object's {@link #start()}
@@ -986,7 +920,6 @@ public final class ProcessBuilder {
 
     /**
      * Sets this process builder's {@code redirectErrorStream} property.
-     *
      * <p>
      * If this property is {@code true}, then any error output generated by
      * subprocesses subsequently started by this object's {@link #start()}
@@ -996,7 +929,7 @@ public final class ProcessBuilder {
      * value is {@code false}.
      *
      * @param redirectErrorStream
-     *                            the new property value
+     *        the new property value
      * @return this process builder
      */
     public ProcessBuilder redirectErrorStream(boolean redirectErrorStream) {
@@ -1006,30 +939,25 @@ public final class ProcessBuilder {
 
     /**
      * Starts a new process using the attributes of this process builder.
-     *
      * <p>
      * The new process will invoke the command and arguments given by
      * {@link #command()}, in a working directory as given by
      * {@link #directory()}, with a process environment as given by
      * {@link #environment()}.
-     *
      * <p>
      * This method checks that the command is a valid operating system command.
      * Which commands are valid is system-dependent, but at the very least the
      * command must be a non-empty list of non-null strings.
-     *
      * <p>
      * A minimal set of system dependent environment variables may be required
      * to start a process on some operating systems. As a result, the subprocess
      * may inherit additional environment variable settings beyond those in the
      * process builder's {@link #environment()}.
-     *
      * <p>
      * If there is a security manager, its {@link SecurityManager#checkExec
      * checkExec} method is called with the first component of this object's
      * {@code command} array as its argument. This may result in a
      * {@link SecurityException} being thrown.
-     *
      * <p>
      * Starting an operating system process is highly system-dependent. Among
      * the many things that can go wrong are:
@@ -1038,59 +966,48 @@ public final class ProcessBuilder {
      * <li>Access to the program file was denied.
      * <li>The working directory does not exist.
      * </ul>
-     *
      * <p>
      * In such cases an exception will be thrown. The exact nature of the
      * exception is system-dependent, but it will always be a subclass of
      * {@link IOException}.
-     *
      * <p>
      * Subsequent modifications to this process builder will not affect the
      * returned {@link Process}.
      *
      * @return a new {@link Process} object for managing the subprocess
-     *
      * @throws NullPointerException
-     *                                   if an element of the command list is
-     *                                   null
-     *
+     *         if an element of the command list is
+     *         null
      * @throws IndexOutOfBoundsException
-     *                                   if the command is an empty list (has
-     *                                   size {@code 0})
-     *
+     *         if the command is an empty list (has
+     *         size {@code 0})
      * @throws SecurityException
-     *                                   if a security manager exists and
-     *                                   <ul>
-     *
-     *                                   <li>its
-     *                                   {@link SecurityManager#checkExec
-     *                                   checkExec} method
-     *                                   doesn't allow creation of the
-     *                                   subprocess, or
-     *
-     *                                   <li>the standard input to the
-     *                                   subprocess was
-     *                                   {@linkplain #redirectInput redirected
-     *                                   from a file} and the
-     *                                   security manager's
-     *                                   {@link SecurityManager#checkRead
-     *                                   checkRead} method denies read access to
-     *                                   the file, or
-     *
-     *                                   <li>the standard output or standard
-     *                                   error of the subprocess
-     *                                   was {@linkplain #redirectOutput
-     *                                   redirected to a file} and the
-     *                                   security manager's
-     *                                   {@link SecurityManager#checkWrite
-     *                                   checkWrite} method denies write access
-     *                                   to the file
-     *
-     *                                   </ul>
-     *
+     *         if a security manager exists and
+     *         <ul>
+     *         <li>its
+     *         {@link SecurityManager#checkExec
+     *         checkExec} method
+     *         doesn't allow creation of the
+     *         subprocess, or
+     *         <li>the standard input to the
+     *         subprocess was
+     *         {@linkplain #redirectInput redirected
+     *         from a file} and the
+     *         security manager's
+     *         {@link SecurityManager#checkRead
+     *         checkRead} method denies read access to
+     *         the file, or
+     *         <li>the standard output or standard
+     *         error of the subprocess
+     *         was {@linkplain #redirectOutput
+     *         redirected to a file} and the
+     *         security manager's
+     *         {@link SecurityManager#checkWrite
+     *         checkWrite} method denies write access
+     *         to the file
+     *         </ul>
      * @throws IOException
-     *                                   if an I/O error occurs
-     *
+     *         if an I/O error occurs
      * @see Runtime#exec(String[], String[], java.io.File)
      */
     public Process start() throws IOException {
@@ -1118,8 +1035,7 @@ public final class ProcessBuilder {
         }
 
         try {
-            return ProcessImpl.start(cmdarray, environment, dir, redirects,
-                    redirectErrorStream);
+            return ProcessImpl.start(cmdarray, environment, dir, redirects, redirectErrorStream);
         } catch (IOException | IllegalArgumentException e) {
             String exceptionInfo = ": " + e.getMessage();
             Throwable cause = e;
@@ -1134,9 +1050,8 @@ public final class ProcessBuilder {
             }
             // It's much easier for us to create a high-quality error
             // message than the low-level C code which found the problem.
-            throw new IOException("Cannot run program \"" + prog + "\""
-                    + (dir == null ? "" : " (in directory \"" + dir + "\")")
-                    + exceptionInfo, cause);
+            throw new IOException("Cannot run program \"" + prog + "\"" + (dir == null ? ""
+                    : " (in directory \"" + dir + "\")") + exceptionInfo, cause);
         }
     }
 }

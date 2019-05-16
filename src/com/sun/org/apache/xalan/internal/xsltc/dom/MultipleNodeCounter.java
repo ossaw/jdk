@@ -33,13 +33,11 @@ import com.sun.org.apache.xml.internal.dtm.Axis;
 public abstract class MultipleNodeCounter extends NodeCounter {
     private DTMAxisIterator _precSiblings = null;
 
-    public MultipleNodeCounter(Translet translet, DOM document,
-            DTMAxisIterator iterator) {
+    public MultipleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator) {
         super(translet, document, iterator);
     }
 
-    public MultipleNodeCounter(Translet translet, DOM document,
-            DTMAxisIterator iterator, boolean hasFrom) {
+    public MultipleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator, boolean hasFrom) {
         super(translet, document, iterator, hasFrom);
     }
 
@@ -90,26 +88,23 @@ public abstract class MultipleNodeCounter extends NodeCounter {
                 _precSiblings.setStartNode(ancestor);
                 while ((next = _precSiblings.next()) != END) {
                     if (matchesCount(next)) {
-                        counters[j] = (counters[j] == Integer.MIN_VALUE) ? 1
-                                : counters[j] + 1;
+                        counters[j] = (counters[j] == Integer.MIN_VALUE) ? 1 : counters[j] + 1;
                     }
                 }
                 // Count the node itself
-                counters[j] = counters[j] == Integer.MIN_VALUE ? 1
-                        : counters[j] + 1;
+                counters[j] = counters[j] == Integer.MIN_VALUE ? 1 : counters[j] + 1;
             }
         }
         return formatNumbers(counters);
     }
 
-    public static NodeCounter getDefaultNodeCounter(Translet translet,
-            DOM document, DTMAxisIterator iterator) {
+    public static NodeCounter getDefaultNodeCounter(Translet translet, DOM document,
+            DTMAxisIterator iterator) {
         return new DefaultMultipleNodeCounter(translet, document, iterator);
     }
 
     static class DefaultMultipleNodeCounter extends MultipleNodeCounter {
-        public DefaultMultipleNodeCounter(Translet translet, DOM document,
-                DTMAxisIterator iterator) {
+        public DefaultMultipleNodeCounter(Translet translet, DOM document, DTMAxisIterator iterator) {
             super(translet, document, iterator);
         }
     }

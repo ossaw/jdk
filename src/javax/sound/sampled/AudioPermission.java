@@ -21,7 +21,6 @@ import java.security.BasicPermission;
  * permission allows, as well as a discussion of the risks of granting code the
  * permission.
  * <p>
- *
  * <table border=1 cellpadding=5 summary=
  * "permission target name, what the permission allows, and associated risks">
  * <tr>
@@ -29,7 +28,6 @@ import java.security.BasicPermission;
  * <th>What the Permission Allows</th>
  * <th>Risks of Allowing this Permission</th>
  * </tr>
- *
  * <tr>
  * <td>play</td>
  * <td>Audio playback through the audio device or devices on the system. Allows
@@ -40,7 +38,6 @@ import java.security.BasicPermission;
  * the system, or because manipulation of a mixer affects the audio for all
  * lines using that mixer.</td>
  * </tr>
- *
  * <tr>
  * <td>record</td>
  * <td>Audio recording through the audio device or devices on the system. Allows
@@ -139,13 +136,12 @@ public class AudioPermission extends BasicPermission {
      * indicate all audio permissions.
      * 
      * @param name
-     *             the name of the new <code>AudioPermission</code>
-     *
+     *        the name of the new <code>AudioPermission</code>
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty.
+     *         if <code>name</code> is empty.
      */
     public AudioPermission(String name) {
 
@@ -158,15 +154,14 @@ public class AudioPermission extends BasicPermission {
      * parameter is currently unused and should be <code>null</code>.
      * 
      * @param name
-     *                the name of the new <code>AudioPermission</code>
+     *        the name of the new <code>AudioPermission</code>
      * @param actions
-     *                (unused; should be <code>null</code>)
-     *
+     *        (unused; should be <code>null</code>)
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty.
+     *         if <code>name</code> is empty.
      */
     public AudioPermission(String name, String actions) {
 

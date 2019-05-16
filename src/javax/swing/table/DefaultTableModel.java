@@ -30,12 +30,10 @@ import javax.swing.event.TableModelEvent;
  * Please see {@link java.beans.XMLEncoder}.
  *
  * @author Philip Milne
- *
  * @see TableModel
  * @see #getDataVector
  */
-public class DefaultTableModel extends AbstractTableModel implements
-        Serializable {
+public class DefaultTableModel extends AbstractTableModel implements Serializable {
 
     //
     // Instance Variables
@@ -73,10 +71,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * and <code>columnCount</code> of <code>null</code> object values.
      *
      * @param rowCount
-     *                    the number of rows the table holds
+     *        the number of rows the table holds
      * @param columnCount
-     *                    the number of columns the table holds
-     *
+     *        the number of columns the table holds
      * @see #setValueAt
      */
     public DefaultTableModel(int rowCount, int columnCount) {
@@ -90,12 +87,12 @@ public class DefaultTableModel extends AbstractTableModel implements
      * the <code>columnNames</code> vector.
      *
      * @param columnNames
-     *                    <code>vector</code> containing the names of the new
-     *                    columns;
-     *                    if this is <code>null</code> then the model has no
-     *                    columns
+     *        <code>vector</code> containing the names of the new
+     *        columns;
+     *        if this is <code>null</code> then the model has no
+     *        columns
      * @param rowCount
-     *                    the number of rows the table holds
+     *        the number of rows the table holds
      * @see #setDataVector
      * @see #setValueAt
      */
@@ -110,12 +107,12 @@ public class DefaultTableModel extends AbstractTableModel implements
      * the <code>columnNames</code> array.
      *
      * @param columnNames
-     *                    <code>array</code> containing the names of the new
-     *                    columns; if
-     *                    this is <code>null</code> then the model has no
-     *                    columns
+     *        <code>array</code> containing the names of the new
+     *        columns; if
+     *        this is <code>null</code> then the model has no
+     *        columns
      * @param rowCount
-     *                    the number of rows the table holds
+     *        the number of rows the table holds
      * @see #setDataVector
      * @see #setValueAt
      */
@@ -129,11 +126,11 @@ public class DefaultTableModel extends AbstractTableModel implements
      * <code>setDataVector</code> method.
      *
      * @param data
-     *                    the data of the table, a <code>Vector</code> of
-     *                    <code>Vector</code>s of <code>Object</code> values
+     *        the data of the table, a <code>Vector</code> of
+     *        <code>Vector</code>s of <code>Object</code> values
      * @param columnNames
-     *                    <code>vector</code> containing the names of the new
-     *                    columns
+     *        <code>vector</code> containing the names of the new
+     *        columns
      * @see #getDataVector
      * @see #setDataVector
      */
@@ -149,9 +146,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * column index.
      *
      * @param data
-     *                    the data of the table
+     *        the data of the table
      * @param columnNames
-     *                    the names of the columns
+     *        the names of the columns
      * @see #getDataVector
      * @see #setDataVector
      */
@@ -165,11 +162,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * single row of values. In other words, to get to the cell at row 1, column
      * 5:
      * <p>
-     *
      * <code>((Vector)getDataVector().elementAt(1)).elementAt(5);</code>
      *
      * @return the vector of vectors containing the tables data values
-     *
      * @see #newDataAvailable
      * @see #newRowsAdded
      * @see #setDataVector
@@ -199,9 +194,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * exception.
      *
      * @param dataVector
-     *                          the new data vector
+     *        the new data vector
      * @param columnIdentifiers
-     *                          the names of the columns
+     *        the names of the columns
      * @see #getDataVector
      */
     public void setDataVector(Vector dataVector, Vector columnIdentifiers) {
@@ -219,23 +214,20 @@ public class DefaultTableModel extends AbstractTableModel implements
      * columns.
      *
      * @param dataVector
-     *                          the new data vector
+     *        the new data vector
      * @param columnIdentifiers
-     *                          the names of the columns
+     *        the names of the columns
      * @see #setDataVector(Vector, Vector)
      */
-    public void setDataVector(Object[][] dataVector,
-            Object[] columnIdentifiers) {
-        setDataVector(convertToVector(dataVector), convertToVector(
-                columnIdentifiers));
+    public void setDataVector(Object[][] dataVector, Object[] columnIdentifiers) {
+        setDataVector(convertToVector(dataVector), convertToVector(columnIdentifiers));
     }
 
     /**
      * Equivalent to <code>fireTableChanged</code>.
      *
      * @param event
-     *              the change event
-     *
+     *        the change event
      */
     public void newDataAvailable(TableModelEvent event) {
         fireTableChanged(event);
@@ -269,9 +261,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * listeners.
      *
      * @param e
-     *          this <code>TableModelEvent</code> describes where the rows
-     *          were added. If <code>null</code> it assumes all the rows were
-     *          newly added
+     *        this <code>TableModelEvent</code> describes where the rows
+     *        were added. If <code>null</code> it assumes all the rows were
+     *        newly added
      * @see #getDataVector
      */
     public void newRowsAdded(TableModelEvent e) {
@@ -283,8 +275,7 @@ public class DefaultTableModel extends AbstractTableModel implements
      * Equivalent to <code>fireTableChanged</code>.
      *
      * @param event
-     *              the change event
-     *
+     *        the change event
      */
     public void rowsRemoved(TableModelEvent event) {
         fireTableChanged(event);
@@ -335,7 +326,7 @@ public class DefaultTableModel extends AbstractTableModel implements
      * Notification of the row being added will be generated.
      *
      * @param rowData
-     *                optional data of the row being added
+     *        optional data of the row being added
      */
     public void addRow(Vector rowData) {
         insertRow(getRowCount(), rowData);
@@ -347,7 +338,7 @@ public class DefaultTableModel extends AbstractTableModel implements
      * Notification of the row being added will be generated.
      *
      * @param rowData
-     *                optional data of the row being added
+     *        optional data of the row being added
      */
     public void addRow(Object[] rowData) {
         addRow(convertToVector(rowData));
@@ -359,11 +350,11 @@ public class DefaultTableModel extends AbstractTableModel implements
      * Notification of the row being added will be generated.
      *
      * @param row
-     *                the row index of the row to be inserted
+     *        the row index of the row to be inserted
      * @param rowData
-     *                optional data of the row being added
+     *        optional data of the row being added
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if the row was invalid
+     *            if the row was invalid
      */
     public void insertRow(int row, Vector rowData) {
         dataVector.insertElementAt(rowData, row);
@@ -377,11 +368,11 @@ public class DefaultTableModel extends AbstractTableModel implements
      * Notification of the row being added will be generated.
      *
      * @param row
-     *                the row index of the row to be inserted
+     *        the row index of the row to be inserted
      * @param rowData
-     *                optional data of the row being added
+     *        optional data of the row being added
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if the row was invalid
+     *            if the row was invalid
      */
     public void insertRow(int row, Object[] rowData) {
         insertRow(row, convertToVector(rowData));
@@ -398,8 +389,7 @@ public class DefaultTableModel extends AbstractTableModel implements
         for (int i = 0; i < g; i++) {
             int to = i;
             Object tmp = v.elementAt(a + to);
-            for (int from = (to + r) % size; from != i; from = (to + r)
-                    % size) {
+            for (int from = (to + r) % size; from != i; from = (to + r) % size) {
                 v.setElementAt(v.elementAt(a + from), a + to);
                 to = from;
             }
@@ -427,16 +417,15 @@ public class DefaultTableModel extends AbstractTableModel implements
      * </pre>
      *
      * @param start
-     *              the starting row index to be moved
+     *        the starting row index to be moved
      * @param end
-     *              the ending row index to be moved
+     *        the ending row index to be moved
      * @param to
-     *              the destination of the rows to be moved
+     *        the destination of the rows to be moved
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if any of the elements would be
-     *                                           moved out of the table's
-     *                                           range
-     *
+     *            if any of the elements would be
+     *            moved out of the table's
+     *            range
      */
     public void moveRow(int start, int end, int to) {
         int shift = to - start;
@@ -458,9 +447,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * row being removed will be sent to all the listeners.
      *
      * @param row
-     *            the row index of the row to be removed
+     *        the row index of the row to be removed
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if the row was invalid
+     *            if the row was invalid
      */
     public void removeRow(int row) {
         dataVector.removeElementAt(row);
@@ -479,9 +468,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * of columns, all the extra columns at the end of a row are discarded.
      *
      * @param columnIdentifiers
-     *                          vector of column identifiers. If
-     *                          <code>null</code>, set the
-     *                          model to zero columns
+     *        vector of column identifiers. If
+     *        <code>null</code>, set the
+     *        model to zero columns
      * @see #setNumRows
      */
     public void setColumnIdentifiers(Vector columnIdentifiers) {
@@ -496,9 +485,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * of columns, all the extra columns at the end of a row are discarded.
      *
      * @param newIdentifiers
-     *                       array of column identifiers. If <code>null</code>,
-     *                       set the
-     *                       model to zero columns
+     *        array of column identifiers. If <code>null</code>,
+     *        set the
+     *        model to zero columns
      * @see #setNumRows
      */
     public void setColumnIdentifiers(Object[] newIdentifiers) {
@@ -513,8 +502,7 @@ public class DefaultTableModel extends AbstractTableModel implements
      * discarded.
      *
      * @param columnCount
-     *                    the new number of columns in the model
-     *
+     *        the new number of columns in the model
      * @see #setColumnCount
      * @since 1.3
      */
@@ -532,7 +520,7 @@ public class DefaultTableModel extends AbstractTableModel implements
      * <code>null</code> as the data vector.
      *
      * @param columnName
-     *                   the identifier of the column being added
+     *        the identifier of the column being added
      */
     public void addColumn(Object columnName) {
         addColumn(columnName, (Vector) null);
@@ -548,9 +536,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * message to all the listeners.
      *
      * @param columnName
-     *                   the identifier of the column being added
+     *        the identifier of the column being added
      * @param columnData
-     *                   optional data of the column being added
+     *        optional data of the column being added
      */
     public void addColumn(Object columnName, Vector columnData) {
         columnIdentifiers.addElement(columnName);
@@ -631,9 +619,9 @@ public class DefaultTableModel extends AbstractTableModel implements
      * Returns true regardless of parameter values.
      *
      * @param row
-     *               the row whose value is to be queried
+     *        the row whose value is to be queried
      * @param column
-     *               the column whose value is to be queried
+     *        the column whose value is to be queried
      * @return true
      * @see #setValueAt
      */
@@ -646,13 +634,13 @@ public class DefaultTableModel extends AbstractTableModel implements
      * <code>column</code>.
      *
      * @param row
-     *               the row whose value is to be queried
+     *        the row whose value is to be queried
      * @param column
-     *               the column whose value is to be queried
+     *        the column whose value is to be queried
      * @return the value Object at the specified cell
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if an invalid row or column was
-     *                                           given
+     *            if an invalid row or column was
+     *            given
      */
     public Object getValueAt(int row, int column) {
         Vector rowVector = (Vector) dataVector.elementAt(row);
@@ -665,14 +653,14 @@ public class DefaultTableModel extends AbstractTableModel implements
      * generate a <code>tableChanged</code> notification.
      *
      * @param aValue
-     *               the new value; this can be null
+     *        the new value; this can be null
      * @param row
-     *               the row whose value is to be changed
+     *        the row whose value is to be changed
      * @param column
-     *               the column whose value is to be changed
+     *        the column whose value is to be changed
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if an invalid row or column was
-     *                                           given
+     *            if an invalid row or column was
+     *            given
      */
     public void setValueAt(Object aValue, int row, int column) {
         Vector rowVector = (Vector) dataVector.elementAt(row);
@@ -688,7 +676,7 @@ public class DefaultTableModel extends AbstractTableModel implements
      * Returns a vector that contains the same objects as the array.
      * 
      * @param anArray
-     *                the array to be converted
+     *        the array to be converted
      * @return the new vector; if <code>anArray</code> is <code>null</code>,
      *         returns <code>null</code>
      */
@@ -707,7 +695,7 @@ public class DefaultTableModel extends AbstractTableModel implements
      * Returns a vector of vectors that contains the same objects as the array.
      * 
      * @param anArray
-     *                the double array to be converted
+     *        the double array to be converted
      * @return the new vector of vectors; if <code>anArray</code> is
      *         <code>null</code>, returns <code>null</code>
      */

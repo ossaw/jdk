@@ -18,13 +18,11 @@ import java.lang.annotation.Annotation;
  * members--are performed when Fields, Methods or Constructors are used to set
  * or get fields, to invoke methods, or to create and initialize new instances
  * of classes, respectively.
- *
  * <p>
  * Setting the {@code accessible} flag in a reflected object permits
  * sophisticated applications with sufficient privilege, such as Java Object
  * Serialization or other persistence mechanisms, to manipulate objects in a
  * manner that would normally be prohibited.
- *
  * <p>
  * By default, a reflected object is <em>not</em> accessible.
  *
@@ -32,7 +30,6 @@ import java.lang.annotation.Annotation;
  * @see Method
  * @see Constructor
  * @see ReflectPermission
- *
  * @since 1.2
  */
 public class AccessibleObject implements AnnotatedElement {
@@ -47,12 +44,10 @@ public class AccessibleObject implements AnnotatedElement {
     /**
      * Convenience method to set the {@code accessible} flag for an array of
      * objects with a single security check (for efficiency).
-     *
      * <p>
      * First, if there is a security manager, its {@code checkPermission} method
      * is called with a {@code ReflectPermission("suppressAccessChecks")}
      * permission.
-     *
      * <p>
      * A {@code SecurityException} is raised if {@code flag} is {@code true} but
      * accessibility of any of the elements of the input {@code array} may not
@@ -64,16 +59,15 @@ public class AccessibleObject implements AnnotatedElement {
      * the element for which the exception occurred is unchanged.
      *
      * @param array
-     *              the array of AccessibleObjects
+     *        the array of AccessibleObjects
      * @param flag
-     *              the new value for the {@code accessible} flag in each object
+     *        the new value for the {@code accessible} flag in each object
      * @throws SecurityException
-     *                           if the request is denied.
+     *         if the request is denied.
      * @see SecurityManager#checkPermission
      * @see java.lang.RuntimePermission
      */
-    public static void setAccessible(AccessibleObject[] array, boolean flag)
-            throws SecurityException {
+    public static void setAccessible(AccessibleObject[] array, boolean flag) throws SecurityException {
         SecurityManager sm = System.getSecurityManager();
         if (sm != null)
             sm.checkPermission(ACCESS_PERMISSION);
@@ -88,27 +82,24 @@ public class AccessibleObject implements AnnotatedElement {
      * suppress Java language access checking when it is used. A value of
      * {@code false} indicates that the reflected object should enforce Java
      * language access checks.
-     *
      * <p>
      * First, if there is a security manager, its {@code checkPermission} method
      * is called with a {@code ReflectPermission("suppressAccessChecks")}
      * permission.
-     *
      * <p>
      * A {@code SecurityException} is raised if {@code flag} is {@code true} but
      * accessibility of this object may not be changed (for example, if this
      * element object is a {@link Constructor} object for the class
      * {@link java.lang.Class}).
-     *
      * <p>
      * A {@code SecurityException} is raised if this object is a
      * {@link java.lang.reflect.Constructor} object for the class
      * {@code java.lang.Class}, and {@code flag} is true.
      *
      * @param flag
-     *             the new value for the {@code accessible} flag
+     *        the new value for the {@code accessible} flag
      * @throws SecurityException
-     *                           if the request is denied.
+     *         if the request is denied.
      * @see SecurityManager#checkPermission
      * @see java.lang.RuntimePermission
      */
@@ -123,13 +114,11 @@ public class AccessibleObject implements AnnotatedElement {
      * Check that you aren't exposing java.lang.Class.<init> or sensitive fields
      * in java.lang.Class.
      */
-    private static void setAccessible0(AccessibleObject obj, boolean flag)
-            throws SecurityException {
+    private static void setAccessible0(AccessibleObject obj, boolean flag) throws SecurityException {
         if (obj instanceof Constructor && flag == true) {
             Constructor<?> c = (Constructor<?>) obj;
             if (c.getDeclaringClass() == Class.class) {
-                throw new SecurityException("Cannot make a java.lang.Class"
-                        + " constructor accessible");
+                throw new SecurityException("Cannot make a java.lang.Class" + " constructor accessible");
             }
         }
         obj.override = flag;
@@ -160,13 +149,12 @@ public class AccessibleObject implements AnnotatedElement {
     // Reflection factory used by subclasses for creating field,
     // method, and constructor accessors. Note that this is called
     // very early in the bootstrapping process.
-    static final ReflectionFactory reflectionFactory = AccessController
-            .doPrivileged(
-                    new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
+    static final ReflectionFactory reflectionFactory = AccessController.doPrivileged(
+            new sun.reflect.ReflectionFactory.GetReflectionFactoryAction());
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     public <T extends Annotation> T getAnnotation(Class<T> annotationClass) {
@@ -177,23 +165,21 @@ public class AccessibleObject implements AnnotatedElement {
      * {@inheritDoc}
      * 
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
-    public boolean isAnnotationPresent(
-            Class<? extends Annotation> annotationClass) {
+    public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {
         return AnnotatedElement.super.isAnnotationPresent(annotationClass);
     }
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
-    public <T extends Annotation> T[] getAnnotationsByType(
-            Class<T> annotationClass) {
+    public <T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass) {
         throw new AssertionError("All subclasses should override this method");
     }
 
@@ -206,12 +192,11 @@ public class AccessibleObject implements AnnotatedElement {
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
-    public <T extends Annotation> T getDeclaredAnnotation(
-            Class<T> annotationClass) {
+    public <T extends Annotation> T getDeclaredAnnotation(Class<T> annotationClass) {
         // Only annotations on classes are inherited, for all other
         // objects getDeclaredAnnotation is the same as
         // getAnnotation.
@@ -220,12 +205,11 @@ public class AccessibleObject implements AnnotatedElement {
 
     /**
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.8
      */
     @Override
-    public <T extends Annotation> T[] getDeclaredAnnotationsByType(
-            Class<T> annotationClass) {
+    public <T extends Annotation> T[] getDeclaredAnnotationsByType(Class<T> annotationClass) {
         // Only annotations on classes are inherited, for all other
         // objects getDeclaredAnnotationsByType is the same as
         // getAnnotationsByType.
@@ -265,8 +249,7 @@ public class AccessibleObject implements AnnotatedElement {
         }
         Object cache = securityCheckCache; // read volatile
         Class<?> targetClass = clazz;
-        if (obj != null && Modifier.isProtected(modifiers)
-                && ((targetClass = obj.getClass()) != clazz)) {
+        if (obj != null && Modifier.isProtected(modifiers) && ((targetClass = obj.getClass()) != clazz)) {
             // Must match a 2-list of { caller, targetClass }.
             if (cache instanceof Class[]) {
                 Class<?>[] cache2 = (Class<?>[]) cache;
@@ -286,13 +269,12 @@ public class AccessibleObject implements AnnotatedElement {
     }
 
     // Keep all this slow stuff out of line:
-    void slowCheckMemberAccess(Class<?> caller, Class<?> clazz, Object obj,
-            int modifiers, Class<?> targetClass) throws IllegalAccessException {
+    void slowCheckMemberAccess(Class<?> caller, Class<?> clazz, Object obj, int modifiers,
+            Class<?> targetClass) throws IllegalAccessException {
         Reflection.ensureMemberAccess(caller, clazz, obj, modifiers);
 
         // Success: Update the cache.
-        Object cache = ((targetClass == clazz) ? caller
-                : new Class<?>[] { caller, targetClass });
+        Object cache = ((targetClass == clazz) ? caller : new Class<?>[] { caller, targetClass });
 
         // Note: The two cache elements are not volatile,
         // but they are effectively final. The Java memory model

@@ -27,16 +27,14 @@ package org.omg.PortableInterceptor;
 abstract public class CurrentHelper {
     private static String _id = "IDL:omg.org/PortableInterceptor/Current:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.PortableInterceptor.Current that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.PortableInterceptor.Current that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static org.omg.PortableInterceptor.Current extract(
-            org.omg.CORBA.Any a) {
+    public static org.omg.PortableInterceptor.Current extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -54,8 +52,7 @@ abstract public class CurrentHelper {
         return _id;
     }
 
-    public static org.omg.PortableInterceptor.Current read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.PortableInterceptor.Current read(org.omg.CORBA.portable.InputStream istream) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
@@ -64,8 +61,7 @@ abstract public class CurrentHelper {
         throw new org.omg.CORBA.MARSHAL();
     }
 
-    public static org.omg.PortableInterceptor.Current narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.PortableInterceptor.Current narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.PortableInterceptor.Current)
@@ -74,8 +70,7 @@ abstract public class CurrentHelper {
             throw new org.omg.CORBA.BAD_PARAM();
     }
 
-    public static org.omg.PortableInterceptor.Current unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.PortableInterceptor.Current unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.PortableInterceptor.Current)

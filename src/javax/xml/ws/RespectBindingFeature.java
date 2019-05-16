@@ -10,7 +10,6 @@ import javax.xml.ws.soap.AddressingFeature;
 /**
  * This feature clarifies the use of the <code>wsdl:binding</code> in a JAX-WS
  * runtime.
- *
  * This feature can be used during the creation of SEI proxy, and
  * {@link Dispatch} instances on the client side and {@link Endpoint} instances
  * on the server side. This feature cannot be used for {@link Service} instance
@@ -46,7 +45,6 @@ import javax.xml.ws.soap.AddressingFeature;
  * <li>Server: throw a {@link WebServiceException} and the endpoint MUST fail to
  * deploy
  * </ul>
- *
  * <li>DISABLED: In this Mode, an implementation may choose whether to inspect
  * the <code>wsdl:binding</code> or not and to what degree the
  * <code>wsdl:binding</code> will be inspected. For example, one implementation
@@ -55,12 +53,10 @@ import javax.xml.ws.soap.AddressingFeature;
  * </ul>
  *
  * @see AddressingFeature
- *
  * @since JAX-WS 2.1
  */
 public final class RespectBindingFeature extends WebServiceFeature {
     /**
-     *
      * Constant value identifying the RespectBindingFeature
      */
     public static final String ID = "javax.xml.ws.RespectBindingFeature";
@@ -77,7 +73,7 @@ public final class RespectBindingFeature extends WebServiceFeature {
      * Creates an RespectBindingFeature
      *
      * @param enabled
-     *                specifies whether this feature should be enabled or not.
+     *        specifies whether this feature should be enabled or not.
      */
     public RespectBindingFeature(boolean enabled) {
         this.enabled = enabled;

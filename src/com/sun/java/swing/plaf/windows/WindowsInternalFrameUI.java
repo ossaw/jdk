@@ -40,8 +40,7 @@ public class WindowsInternalFrameUI extends BasicInternalFrameUI {
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        LookAndFeel.installProperty(c, "opaque", xp == null ? Boolean.TRUE
-                : Boolean.FALSE);
+        LookAndFeel.installProperty(c, "opaque", xp == null ? Boolean.TRUE : Boolean.FALSE);
     }
 
     public void uninstallDefaults() {
@@ -73,31 +72,25 @@ public class WindowsInternalFrameUI extends BasicInternalFrameUI {
 
         /**
          * @param x
-         *               the x position of the painted border
+         *        the x position of the painted border
          * @param y
-         *               the y position of the painted border
+         *        the y position of the painted border
          * @param width
-         *               the width of the painted border
+         *        the width of the painted border
          * @param height
-         *               the height of the painted border
+         *        the height of the painted border
          */
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
-            State state = ((JInternalFrame) c).isSelected() ? State.ACTIVE
-                    : State.INACTIVE;
-            int topBorderHeight = (titlePane != null) ? titlePane
-                    .getSize().height : 0;
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            State state = ((JInternalFrame) c).isSelected() ? State.ACTIVE : State.INACTIVE;
+            int topBorderHeight = (titlePane != null) ? titlePane.getSize().height : 0;
 
-            bottomSkin.paintSkin(g, 0, height - bottomSkin.getHeight(), width,
-                    bottomSkin.getHeight(), state);
+            bottomSkin.paintSkin(g, 0, height - bottomSkin.getHeight(), width, bottomSkin.getHeight(), state);
 
-            leftSkin.paintSkin(g, 0, topBorderHeight - 1, leftSkin.getWidth(),
-                    height - topBorderHeight - bottomSkin.getHeight() + 2,
-                    state);
+            leftSkin.paintSkin(g, 0, topBorderHeight - 1, leftSkin.getWidth(), height - topBorderHeight
+                    - bottomSkin.getHeight() + 2, state);
 
-            rightSkin.paintSkin(g, width - rightSkin.getWidth(), topBorderHeight
-                    - 1, rightSkin.getWidth(), height - topBorderHeight
-                            - bottomSkin.getHeight() + 2, state);
+            rightSkin.paintSkin(g, width - rightSkin.getWidth(), topBorderHeight - 1, rightSkin.getWidth(),
+                    height - topBorderHeight - bottomSkin.getHeight() + 2, state);
 
         }
 

@@ -44,8 +44,7 @@ import com.sun.corba.se.impl.encoding.CodeSetConversion;
 import com.sun.corba.se.impl.encoding.CDRInputStream;
 import com.sun.corba.se.impl.encoding.CDROutputStream;
 
-public class WrapperInputStream extends org.omg.CORBA_2_3.portable.InputStream
-        implements TypeCodeReader {
+public class WrapperInputStream extends org.omg.CORBA_2_3.portable.InputStream implements TypeCodeReader {
     private CDRInputStream stream;
     private Map typeMap = null;
     private int startPos = 0;
@@ -293,8 +292,7 @@ public class WrapperInputStream extends org.omg.CORBA_2_3.portable.InputStream
         while (i.hasNext()) {
             Integer pos = (Integer) i.next();
             TypeCodeImpl tci = (TypeCodeImpl) typeMap.get(pos);
-            System.out.println("  key = " + pos.intValue() + ", value = " + tci
-                    .description());
+            System.out.println("  key = " + pos.intValue() + ", value = " + tci.description());
         }
         System.out.println("}");
     }

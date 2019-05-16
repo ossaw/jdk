@@ -24,7 +24,6 @@ package com.sun.org.apache.xerces.internal.util;
  * </p>
  *
  * @author Naela Nissar, IBM
- *
  */
 final class XMLErrorCode {
 
@@ -44,9 +43,9 @@ final class XMLErrorCode {
      * </p>
      *
      * @param domain
-     *               The error domain.
+     *        The error domain.
      * @param key
-     *               The key of the error message.
+     *        The key of the error message.
      */
     public XMLErrorCode(String domain, String key) {
         fDomain = domain;
@@ -59,9 +58,9 @@ final class XMLErrorCode {
      * </p>
      *
      * @param domain
-     *               The error domain.
+     *        The error domain.
      * @param key
-     *               The key of the error message.
+     *        The key of the error message.
      */
     public void setValues(String domain, String key) {
         fDomain = domain;
@@ -74,7 +73,7 @@ final class XMLErrorCode {
      * </p>
      *
      * @param obj
-     *            the object with which to compare.
+     *        the object with which to compare.
      */
     public boolean equals(Object obj) {
         if (!(obj instanceof XMLErrorCode))

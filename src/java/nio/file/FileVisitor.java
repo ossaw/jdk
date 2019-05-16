@@ -12,7 +12,6 @@ import java.io.IOException;
  * A visitor of files. An implementation of this interface is provided to the
  * {@link Files#walkFileTree Files.walkFileTree} methods to visit each file in a
  * file tree.
- *
  * <p>
  * <b>Usage Examples:</b> Suppose we want to delete a file tree. In that case,
  * each directory should be deleted after the entries in the directory are
@@ -83,7 +82,6 @@ public interface FileVisitor<T> {
 
     /**
      * Invoked for a directory before entries in the directory are visited.
-     *
      * <p>
      * If this method returns {@link FileVisitResult#CONTINUE CONTINUE}, then
      * entries in the directory are visited. If this method returns
@@ -92,33 +90,27 @@ public interface FileVisitor<T> {
      * directory (and any descendants) will not be visited.
      *
      * @param dir
-     *              a reference to the directory
+     *        a reference to the directory
      * @param attrs
-     *              the directory's basic attributes
-     *
+     *        the directory's basic attributes
      * @return the visit result
-     *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
-    FileVisitResult preVisitDirectory(T dir, BasicFileAttributes attrs)
-            throws IOException;
+    FileVisitResult preVisitDirectory(T dir, BasicFileAttributes attrs) throws IOException;
 
     /**
      * Invoked for a file in a directory.
      *
      * @param file
-     *              a reference to the file
+     *        a reference to the file
      * @param attrs
-     *              the file's basic attributes
-     *
+     *        the file's basic attributes
      * @return the visit result
-     *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
-    FileVisitResult visitFile(T file, BasicFileAttributes attrs)
-            throws IOException;
+    FileVisitResult visitFile(T file, BasicFileAttributes attrs) throws IOException;
 
     /**
      * Invoked for a file that could not be visited. This method is invoked if
@@ -126,14 +118,12 @@ public interface FileVisitor<T> {
      * could not be opened, and other reasons.
      *
      * @param file
-     *             a reference to the file
+     *        a reference to the file
      * @param exc
-     *             the I/O exception that prevented the file from being visited
-     *
+     *        the I/O exception that prevented the file from being visited
      * @return the visit result
-     *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
     FileVisitResult visitFileFailed(T file, IOException exc) throws IOException;
 
@@ -145,17 +135,14 @@ public interface FileVisitor<T> {
      * SKIP_SIBLINGS}, or an I/O error when iterating over the directory).
      *
      * @param dir
-     *            a reference to the directory
+     *        a reference to the directory
      * @param exc
-     *            {@code null} if the iteration of the directory completes
-     *            without an error; otherwise the I/O exception that caused the
-     *            iteration of the directory to complete prematurely
-     *
+     *        {@code null} if the iteration of the directory completes
+     *        without an error; otherwise the I/O exception that caused the
+     *        iteration of the directory to complete prematurely
      * @return the visit result
-     *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
-    FileVisitResult postVisitDirectory(T dir, IOException exc)
-            throws IOException;
+    FileVisitResult postVisitDirectory(T dir, IOException exc) throws IOException;
 }

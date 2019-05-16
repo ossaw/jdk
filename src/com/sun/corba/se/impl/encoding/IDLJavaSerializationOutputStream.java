@@ -32,14 +32,12 @@ import org.omg.CORBA.CompletionStatus;
 /**
  * Implementation class that uses Java serialization for output streams. This
  * assumes a GIOP version 1.2 message format.
- *
  * This class uses a ByteArrayOutputStream as the underlying buffer. The first
  * 16 bytes are direct writes into the underlying buffer. This allows
  * [GIOPHeader (12 bytes) + requestID (4 bytes)] to be written as bytes.
  * Subsequent write operations on this output stream object uses
  * ObjectOutputStream class to write into the buffer. This allows marshaling
  * complex types and graphs using the ObjectOutputStream implementation.
- *
  * Note, this class assumes a GIOP 1.2 style header. Note, we expect that the
  * first 16 bytes are written only using the write_octet, write_long or
  * write_ulong method calls.
@@ -74,19 +72,17 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
 
         ORB orb;
 
-        MarshalObjectOutputStream(java.io.OutputStream out, ORB orb)
-                throws IOException {
+        MarshalObjectOutputStream(java.io.OutputStream out, ORB orb) throws IOException {
 
             super(out);
             this.orb = orb;
-            java.security.AccessController.doPrivileged(
-                    new java.security.PrivilegedAction() {
-                        public Object run() {
-                            // needs SerializablePermission("enableSubstitution")
-                            enableReplaceObject(true);
-                            return null;
-                        }
-                    });
+            java.security.AccessController.doPrivileged(new java.security.PrivilegedAction() {
+                public Object run() {
+                    // needs SerializablePermission("enableSubstitution")
+                    enableReplaceObject(true);
+                    return null;
+                }
+            });
         }
 
         /**
@@ -95,8 +91,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
          */
         protected final Object replaceObject(Object obj) throws IOException {
             try {
-                if ((obj instanceof java.rmi.Remote) && !(StubAdapter.isStub(
-                        obj))) {
+                if ((obj instanceof java.rmi.Remote) && !(StubAdapter.isStub(obj))) {
                     return Utility.autoConnect(obj, orb, true);
                 }
             } catch (Exception e) {
@@ -113,13 +108,11 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
         this.encodingVersion = encodingVersion;
     }
 
-    public void init(org.omg.CORBA.ORB orb, boolean littleEndian,
-            BufferManagerWrite bufferManager, byte streamFormatVersion,
-            boolean usePooledByteBuffers) {
+    public void init(org.omg.CORBA.ORB orb, boolean littleEndian, BufferManagerWrite bufferManager,
+            byte streamFormatVersion, boolean usePooledByteBuffers) {
         this.orb = (ORB) orb;
         this.bufferManager = bufferManager;
-        wrapper = ORBUtilSystemException.get((ORB) orb,
-                CORBALogDomains.RPC_ENCODING);
+        wrapper = ORBUtilSystemException.get((ORB) orb, CORBALogDomains.RPC_ENCODING);
         bos = new _ByteArrayOutputStream(ORBConstants.GIOP_DEFAULT_BUFFER_SIZE);
     }
 
@@ -271,8 +264,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
 
     // Array types.
 
-    public final void write_boolean_array(boolean[] value, int offset,
-            int length) {
+    public final void write_boolean_array(boolean[] value, int offset, int length) {
         for (int i = 0; i < length; i++) {
             write_boolean(value[offset + i]);
         }
@@ -302,8 +294,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
         }
     }
 
-    public final void write_ushort_array(short[] value, int offset,
-            int length) {
+    public final void write_ushort_array(short[] value, int offset, int length) {
         write_short_array(value, offset, length);
     }
 
@@ -317,15 +308,13 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
         write_long_array(value, offset, length);
     }
 
-    public final void write_longlong_array(long[] value, int offset,
-            int length) {
+    public final void write_longlong_array(long[] value, int offset, int length) {
         for (int i = 0; i < length; i++) {
             write_longlong(value[offset + i]);
         }
     }
 
-    public final void write_ulonglong_array(long[] value, int offset,
-            int length) {
+    public final void write_ulonglong_array(long[] value, int offset, int length) {
         write_longlong_array(value, offset, length);
     }
 
@@ -335,8 +324,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
         }
     }
 
-    public final void write_double_array(double[] value, int offset,
-            int length) {
+    public final void write_double_array(double[] value, int offset, int length) {
         for (int i = 0; i < length; i++) {
             write_double(value[offset + i]);
         }
@@ -453,13 +441,11 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
         write_value(value, (String) null);
     }
 
-    public final void write_value(java.io.Serializable value,
-            java.lang.Class clz) {
+    public final void write_value(java.io.Serializable value, java.lang.Class clz) {
         write_value(value);
     }
 
-    public final void write_value(java.io.Serializable value,
-            String repository_id) {
+    public final void write_value(java.io.Serializable value, String repository_id) {
         try {
             os.writeObject(value);
         } catch (Exception e) {
@@ -496,8 +482,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
                 if (obj instanceof java.io.Serializable) {
                     throw cce;
                 } else {
-                    ORBUtility.throwNotSerializableForCorba(obj.getClass()
-                            .getName());
+                    ORBUtility.throwNotSerializableForCorba(obj.getClass().getName());
                 }
             }
         }
@@ -545,8 +530,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
         write_value(value);
     }
 
-    public final void write_any_array(org.omg.CORBA.Any[] value, int offset,
-            int length) {
+    public final void write_any_array(org.omg.CORBA.Any[] value, int offset, int length) {
         for (int i = 0; i < length; i++) {
             write_any(value[offset + i]);
         }
@@ -598,8 +582,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
         try {
             os.flush();
         } catch (Exception e) {
-            throw wrapper.javaSerializationException(e,
-                    "getByteBufferWithInfo");
+            throw wrapper.javaSerializationException(e, "getByteBufferWithInfo");
         }
         ByteBuffer byteBuffer = ByteBuffer.wrap(bos.getByteArray());
         byteBuffer.limit(bos.size());
@@ -619,8 +602,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
     //
     // Pads the string representation of bigDecimal with zeros to fit the given
     // digits and scale before it gets written to the stream.
-    public final void write_fixed(java.math.BigDecimal bigDecimal, short digits,
-            short scale) {
+    public final void write_fixed(java.math.BigDecimal bigDecimal, short digits, short scale) {
         String string = bigDecimal.toString();
         String integerPart;
         String fractionPart;
@@ -663,8 +645,7 @@ final class IDLJavaSerializationOutputStream extends CDROutputStreamBase {
         this.write_fixed(stringBuffer.toString(), bigDecimal.signum());
     }
 
-    public final void writeOctetSequenceTo(
-            org.omg.CORBA.portable.OutputStream s) {
+    public final void writeOctetSequenceTo(org.omg.CORBA.portable.OutputStream s) {
         byte[] buf = this.toByteArray(); // new copy.
         s.write_long(buf.length);
         s.write_octet_array(buf, 0, buf.length);

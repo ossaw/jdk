@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,8 +37,8 @@ import org.w3c.dom.Element;
 public class X509SubjectNameResolver extends KeyResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(X509SubjectNameResolver.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(
+            X509SubjectNameResolver.class.getName());
 
     /**
      * Method engineResolvePublicKey
@@ -51,12 +49,10 @@ public class X509SubjectNameResolver extends KeyResolverSpi {
      * @return null if no {@link PublicKey} could be obtained
      * @throws KeyResolverException
      */
-    public PublicKey engineLookupAndResolvePublicKey(Element element,
-            String baseURI, StorageResolver storage)
+    public PublicKey engineLookupAndResolvePublicKey(Element element, String baseURI, StorageResolver storage)
             throws KeyResolverException {
 
-        X509Certificate cert = this.engineLookupResolveX509Certificate(element,
-                baseURI, storage);
+        X509Certificate cert = this.engineLookupResolveX509Certificate(element, baseURI, storage);
 
         if (cert != null) {
             return cert.getPublicKey();
@@ -72,28 +68,23 @@ public class X509SubjectNameResolver extends KeyResolverSpi {
      * @param element
      * @param baseURI
      * @param storage
-     *
      * @throws KeyResolverException
      */
-    public X509Certificate engineLookupResolveX509Certificate(Element element,
-            String baseURI, StorageResolver storage)
-            throws KeyResolverException {
+    public X509Certificate engineLookupResolveX509Certificate(Element element, String baseURI,
+            StorageResolver storage) throws KeyResolverException {
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE, "Can I resolve " + element
-                    .getTagName() + "?");
+            log.log(java.util.logging.Level.FINE, "Can I resolve " + element.getTagName() + "?");
         }
         Element[] x509childNodes = null;
         XMLX509SubjectName x509childObject[] = null;
 
-        if (!XMLUtils.elementIsInSignatureSpace(element,
-                Constants._TAG_X509DATA)) {
+        if (!XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_X509DATA)) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
                 log.log(java.util.logging.Level.FINE, "I can't");
             }
             return null;
         }
-        x509childNodes = XMLUtils.selectDsNodes(element.getFirstChild(),
-                Constants._TAG_X509SUBJECTNAME);
+        x509childNodes = XMLUtils.selectDsNodes(element.getFirstChild(), Constants._TAG_X509SUBJECTNAME);
 
         if (!((x509childNodes != null) && (x509childNodes.length > 0))) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
@@ -105,8 +96,7 @@ public class X509SubjectNameResolver extends KeyResolverSpi {
         try {
             if (storage == null) {
                 Object exArgs[] = { Constants._TAG_X509SUBJECTNAME };
-                KeyResolverException ex = new KeyResolverException(
-                        "KeyResolver.needStorageResolver", exArgs);
+                KeyResolverException ex = new KeyResolverException("KeyResolver.needStorageResolver", exArgs);
 
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
                     log.log(java.util.logging.Level.FINE, "", ex);
@@ -118,26 +108,22 @@ public class X509SubjectNameResolver extends KeyResolverSpi {
             x509childObject = new XMLX509SubjectName[x509childNodes.length];
 
             for (int i = 0; i < x509childNodes.length; i++) {
-                x509childObject[i] = new XMLX509SubjectName(x509childNodes[i],
-                        baseURI);
+                x509childObject[i] = new XMLX509SubjectName(x509childNodes[i], baseURI);
             }
 
             Iterator<Certificate> storageIterator = storage.getIterator();
             while (storageIterator.hasNext()) {
                 X509Certificate cert = (X509Certificate) storageIterator.next();
-                XMLX509SubjectName certSN = new XMLX509SubjectName(element
-                        .getOwnerDocument(), cert);
+                XMLX509SubjectName certSN = new XMLX509SubjectName(element.getOwnerDocument(), cert);
 
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "Found Certificate SN: " + certSN.getSubjectName());
+                    log.log(java.util.logging.Level.FINE, "Found Certificate SN: " + certSN.getSubjectName());
                 }
 
                 for (int i = 0; i < x509childObject.length; i++) {
                     if (log.isLoggable(java.util.logging.Level.FINE)) {
-                        log.log(java.util.logging.Level.FINE,
-                                "Found Element SN:     " + x509childObject[i]
-                                        .getSubjectName());
+                        log.log(java.util.logging.Level.FINE, "Found Element SN:     " + x509childObject[i]
+                                .getSubjectName());
                     }
 
                     if (certSN.equals(x509childObject[i])) {
@@ -156,8 +142,7 @@ public class X509SubjectNameResolver extends KeyResolverSpi {
             return null;
         } catch (XMLSecurityException ex) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE, "XMLSecurityException",
-                        ex);
+                log.log(java.util.logging.Level.FINE, "XMLSecurityException", ex);
             }
 
             throw new KeyResolverException("generic.EmptyMessage", ex);
@@ -171,10 +156,9 @@ public class X509SubjectNameResolver extends KeyResolverSpi {
      * @param element
      * @param baseURI
      * @param storage
-     *
      */
-    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
-            Element element, String baseURI, StorageResolver storage) {
+    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String baseURI,
+            StorageResolver storage) {
         return null;
     }
 }

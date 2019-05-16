@@ -39,9 +39,9 @@ public class ObjectStreamField implements Comparable<Object> {
      * documented with a <code>serialField</code> tag.
      *
      * @param name
-     *             the name of the serializable field
+     *        the name of the serializable field
      * @param type
-     *             the <code>Class</code> object of the serializable field
+     *        the <code>Class</code> object of the serializable field
      */
     public ObjectStreamField(String name, Class<?> type) {
         this(name, type, false);
@@ -58,14 +58,14 @@ public class ObjectStreamField implements Comparable<Object> {
      * writeUnshared and readUnshared.
      *
      * @param name
-     *                 field name
+     *        field name
      * @param type
-     *                 field type
+     *        field type
      * @param unshared
-     *                 if false, write/read field values in the same manner as
-     *                 writeObject/readObject; if true, write/read in the same
-     *                 manner
-     *                 as writeUnshared/readUnshared
+     *        if false, write/read field values in the same manner as
+     *        writeObject/readObject; if true, write/read in the same
+     *        manner
+     *        as writeUnshared/readUnshared
      * @since 1.4
      */
     public ObjectStreamField(String name, Class<?> type, boolean unshared) {
@@ -167,8 +167,7 @@ public class ObjectStreamField implements Comparable<Object> {
     public Class<?> getType() {
         if (System.getSecurityManager() != null) {
             Class<?> caller = Reflection.getCallerClass();
-            if (ReflectUtil.needsPackageAccessCheck(caller.getClassLoader(),
-                    type.getClassLoader())) {
+            if (ReflectUtil.needsPackageAccessCheck(caller.getClassLoader(), type.getClassLoader())) {
                 ReflectUtil.checkPackageAccess(type);
             }
         }
@@ -226,7 +225,7 @@ public class ObjectStreamField implements Comparable<Object> {
      * Offset within instance data.
      *
      * @param offset
-     *               the offset of the field
+     *        the offset of the field
      * @see #getOffset
      */
     // REMIND: deprecate?
@@ -250,7 +249,6 @@ public class ObjectStreamField implements Comparable<Object> {
      * represented by this ObjectStreamField instance is unshared.
      *
      * @return {@code true} if this field is unshared
-     *
      * @since 1.4
      */
     public boolean isUnshared() {

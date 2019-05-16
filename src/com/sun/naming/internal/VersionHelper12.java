@@ -42,28 +42,25 @@ final class VersionHelper12 extends VersionHelper {
 
     /**
      * Package private.
-     *
      * This internal method is used with Thread Context Class Loader (TCCL),
      * please don't expose this method as public.
      */
-    Class<?> loadClass(String className, ClassLoader cl)
-            throws ClassNotFoundException {
+    Class<?> loadClass(String className, ClassLoader cl) throws ClassNotFoundException {
         Class<?> cls = Class.forName(className, true, cl);
         return cls;
     }
 
     /**
      * @param className
-     *                  A non-null fully qualified class name.
+     *        A non-null fully qualified class name.
      * @param codebase
-     *                  A non-null, space-separated list of URL strings.
+     *        A non-null, space-separated list of URL strings.
      */
-    public Class<?> loadClass(String className, String codebase)
-            throws ClassNotFoundException, MalformedURLException {
+    public Class<?> loadClass(String className, String codebase) throws ClassNotFoundException,
+            MalformedURLException {
 
         ClassLoader parent = getContextClassLoader();
-        ClassLoader cl = URLClassLoader.newInstance(getUrlArray(codebase),
-                parent);
+        ClassLoader cl = URLClassLoader.newInstance(getUrlArray(codebase), parent);
 
         return loadClass(className, cl);
     }
@@ -81,16 +78,15 @@ final class VersionHelper12 extends VersionHelper {
     }
 
     String[] getJndiProperties() {
-        Properties sysProps = AccessController.doPrivileged(
-                new PrivilegedAction<Properties>() {
-                    public Properties run() {
-                        try {
-                            return System.getProperties();
-                        } catch (SecurityException e) {
-                            return null;
-                        }
-                    }
-                });
+        Properties sysProps = AccessController.doPrivileged(new PrivilegedAction<Properties>() {
+            public Properties run() {
+                try {
+                    return System.getProperties();
+                } catch (SecurityException e) {
+                    return null;
+                }
+            }
+        });
         if (sysProps == null) {
             return null;
         }
@@ -102,45 +98,39 @@ final class VersionHelper12 extends VersionHelper {
     }
 
     InputStream getResourceAsStream(final Class<?> c, final String name) {
-        return AccessController.doPrivileged(
-                new PrivilegedAction<InputStream>() {
-                    public InputStream run() {
-                        return c.getResourceAsStream(name);
-                    }
-                });
+        return AccessController.doPrivileged(new PrivilegedAction<InputStream>() {
+            public InputStream run() {
+                return c.getResourceAsStream(name);
+            }
+        });
     }
 
     InputStream getJavaHomeLibStream(final String filename) {
-        return AccessController.doPrivileged(
-                new PrivilegedAction<InputStream>() {
-                    public InputStream run() {
-                        try {
-                            String javahome = System.getProperty("java.home");
-                            if (javahome == null) {
-                                return null;
-                            }
-                            String pathname = javahome + java.io.File.separator
-                                    + "lib" + java.io.File.separator + filename;
-                            return new java.io.FileInputStream(pathname);
-                        } catch (Exception e) {
-                            return null;
-                        }
+        return AccessController.doPrivileged(new PrivilegedAction<InputStream>() {
+            public InputStream run() {
+                try {
+                    String javahome = System.getProperty("java.home");
+                    if (javahome == null) {
+                        return null;
                     }
-                });
+                    String pathname = javahome + java.io.File.separator + "lib" + java.io.File.separator
+                            + filename;
+                    return new java.io.FileInputStream(pathname);
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+        });
     }
 
-    NamingEnumeration<InputStream> getResources(final ClassLoader cl,
-            final String name) throws IOException {
+    NamingEnumeration<InputStream> getResources(final ClassLoader cl, final String name) throws IOException {
         Enumeration<URL> urls;
         try {
-            urls = AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<Enumeration<URL>>() {
-                        public Enumeration<URL> run() throws IOException {
-                            return (cl == null) ? ClassLoader
-                                    .getSystemResources(name)
-                                    : cl.getResources(name);
-                        }
-                    });
+            urls = AccessController.doPrivileged(new PrivilegedExceptionAction<Enumeration<URL>>() {
+                public Enumeration<URL> run() throws IOException {
+                    return (cl == null) ? ClassLoader.getSystemResources(name) : cl.getResources(name);
+                }
+            });
         } catch (PrivilegedActionException e) {
             throw (IOException) e.getException();
         }
@@ -149,27 +139,23 @@ final class VersionHelper12 extends VersionHelper {
 
     /**
      * Package private.
-     *
      * This internal method returns Thread Context Class Loader (TCCL), if null,
      * returns the system Class Loader.
-     *
      * Please don't expose this method as public.
      */
     ClassLoader getContextClassLoader() {
 
-        return AccessController.doPrivileged(
-                new PrivilegedAction<ClassLoader>() {
-                    public ClassLoader run() {
-                        ClassLoader loader = Thread.currentThread()
-                                .getContextClassLoader();
-                        if (loader == null) {
-                            // Don't use bootstrap class loader directly!
-                            loader = ClassLoader.getSystemClassLoader();
-                        }
+        return AccessController.doPrivileged(new PrivilegedAction<ClassLoader>() {
+            public ClassLoader run() {
+                ClassLoader loader = Thread.currentThread().getContextClassLoader();
+                if (loader == null) {
+                    // Don't use bootstrap class loader directly!
+                    loader = ClassLoader.getSystemClassLoader();
+                }
 
-                        return loader;
-                    }
-                });
+                return loader;
+            }
+        });
     }
 
     /**
@@ -193,19 +179,18 @@ final class VersionHelper12 extends VersionHelper {
          * InputStream that cannot be opened is skipped.
          */
         private InputStream getNextElement() {
-            return AccessController.doPrivileged(
-                    new PrivilegedAction<InputStream>() {
-                        public InputStream run() {
-                            while (urls.hasMoreElements()) {
-                                try {
-                                    return urls.nextElement().openStream();
-                                } catch (IOException e) {
-                                    // skip this URL
-                                }
-                            }
-                            return null;
+            return AccessController.doPrivileged(new PrivilegedAction<InputStream>() {
+                public InputStream run() {
+                    while (urls.hasMoreElements()) {
+                        try {
+                            return urls.nextElement().openStream();
+                        } catch (IOException e) {
+                            // skip this URL
                         }
-                    });
+                    }
+                    return null;
+                }
+            });
         }
 
         public boolean hasMore() {

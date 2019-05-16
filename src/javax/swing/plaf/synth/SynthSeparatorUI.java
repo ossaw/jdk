@@ -22,15 +22,14 @@ import javax.swing.plaf.DimensionUIResource;
  * @author Joshua Outwater
  * @since 1.7
  */
-public class SynthSeparatorUI extends SeparatorUI implements
-        PropertyChangeListener, SynthUI {
+public class SynthSeparatorUI extends SeparatorUI implements PropertyChangeListener, SynthUI {
     private SynthStyle style;
 
     /**
      * Creates a new UI object for the given component.
      *
      * @param c
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent c) {
@@ -73,8 +72,7 @@ public class SynthSeparatorUI extends SeparatorUI implements
             if (sep instanceof JToolBar.Separator) {
                 Dimension size = ((JToolBar.Separator) sep).getSeparatorSize();
                 if (size == null || size instanceof UIResource) {
-                    size = (DimensionUIResource) style.get(context,
-                            "ToolBar.separatorSize");
+                    size = (DimensionUIResource) style.get(context, "ToolBar.separatorSize");
                     if (size == null) {
                         size = new DimensionUIResource(10, 10);
                     }
@@ -118,15 +116,14 @@ public class SynthSeparatorUI extends SeparatorUI implements
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -135,8 +132,8 @@ public class SynthSeparatorUI extends SeparatorUI implements
 
         JSeparator separator = (JSeparator) context.getComponent();
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintSeparatorBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight(), separator.getOrientation());
+        context.getPainter().paintSeparatorBackground(context, g, 0, 0, c.getWidth(), c.getHeight(), separator
+                .getOrientation());
         paint(context, g);
         context.dispose();
     }
@@ -148,9 +145,9 @@ public class SynthSeparatorUI extends SeparatorUI implements
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -165,27 +162,24 @@ public class SynthSeparatorUI extends SeparatorUI implements
      * Paints the specified component.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
         JSeparator separator = (JSeparator) context.getComponent();
-        context.getPainter().paintSeparatorForeground(context, g, 0, 0,
-                separator.getWidth(), separator.getHeight(), separator
-                        .getOrientation());
+        context.getPainter().paintSeparatorForeground(context, g, 0, 0, separator.getWidth(), separator
+                .getHeight(), separator.getOrientation());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         JSeparator separator = (JSeparator) context.getComponent();
-        context.getPainter().paintSeparatorBorder(context, g, x, y, w, h,
-                separator.getOrientation());
+        context.getPainter().paintSeparatorBorder(context, g, x, y, w, h, separator.getOrientation());
     }
 
     /**
@@ -200,11 +194,9 @@ public class SynthSeparatorUI extends SeparatorUI implements
         Dimension size;
 
         if (((JSeparator) c).getOrientation() == JSeparator.VERTICAL) {
-            size = new Dimension(insets.left + insets.right + thickness,
-                    insets.top + insets.bottom);
+            size = new Dimension(insets.left + insets.right + thickness, insets.top + insets.bottom);
         } else {
-            size = new Dimension(insets.left + insets.right, insets.top
-                    + insets.bottom + thickness);
+            size = new Dimension(insets.left + insets.right, insets.top + insets.bottom + thickness);
         }
         context.dispose();
         return size;

@@ -134,12 +134,10 @@ class DQTMarkerSegment extends MarkerSegment {
             // the resulting table will still be reasonable, as it will reflect
             // a comparable scaling of chrominance frequency response of the
             // eye.
-            float scaleFactor = ((float) (luma.data[largestPos]))
-                    / ((float) (JPEGQTable.K1Div2Luminance
-                            .getTable()[largestPos]));
+            float scaleFactor = ((float) (luma.data[largestPos])) / ((float) (JPEGQTable.K1Div2Luminance
+                    .getTable()[largestPos]));
             // generate a new table
-            JPEGQTable jpegTable = JPEGQTable.K2Div2Chrominance
-                    .getScaledInstance(scaleFactor, true);
+            JPEGQTable jpegTable = JPEGQTable.K2Div2Chrominance.getScaledInstance(scaleFactor, true);
             newGuy = new Qtable(jpegTable, 1);
         }
         return newGuy;
@@ -162,11 +160,9 @@ class DQTMarkerSegment extends MarkerSegment {
          * The zigzag-order position of the i'th element of a DCT block read in
          * natural order.
          */
-        private final int[] zigzag = { 0, 1, 5, 6, 14, 15, 27, 28, 2, 4, 7, 13,
-                16, 26, 29, 42, 3, 8, 12, 17, 25, 30, 41, 43, 9, 11, 18, 24, 31,
-                40, 44, 53, 10, 19, 23, 32, 39, 45, 52, 54, 20, 22, 33, 38, 46,
-                51, 55, 60, 21, 34, 37, 47, 50, 56, 59, 61, 35, 36, 48, 49, 57,
-                58, 62, 63 };
+        private final int[] zigzag = { 0, 1, 5, 6, 14, 15, 27, 28, 2, 4, 7, 13, 16, 26, 29, 42, 3, 8, 12, 17,
+                25, 30, 41, 43, 9, 11, 18, 24, 31, 40, 44, 53, 10, 19, 23, 32, 39, 45, 52, 54, 20, 22, 33, 38,
+                46, 51, 55, 60, 21, 34, 37, 47, 50, 56, 59, 61, 35, 36, 48, 49, 57, 58, 62, 63 };
 
         Qtable(boolean wantLuma, float quality) {
             elementPrecision = 0;
@@ -181,11 +177,9 @@ class DQTMarkerSegment extends MarkerSegment {
             if (quality != JPEG.DEFAULT_QUALITY) {
                 quality = JPEG.convertToLinearQuality(quality);
                 if (wantLuma) {
-                    base = JPEGQTable.K1Luminance.getScaledInstance(quality,
-                            true);
+                    base = JPEGQTable.K1Luminance.getScaledInstance(quality, true);
                 } else {
-                    base = JPEGQTable.K2Div2Chrominance.getScaledInstance(
-                            quality, true);
+                    base = JPEGQTable.K2Div2Chrominance.getScaledInstance(quality, true);
                 }
             }
             data = base.getTable();
@@ -217,27 +211,22 @@ class DQTMarkerSegment extends MarkerSegment {
                 NamedNodeMap attrs = node.getAttributes();
                 int count = attrs.getLength();
                 if ((count < 1) || (count > 2)) {
-                    throw new IIOInvalidTreeException(
-                            "dqtable node must have 1 or 2 attributes", node);
+                    throw new IIOInvalidTreeException("dqtable node must have 1 or 2 attributes", node);
                 }
                 elementPrecision = 0;
-                tableID = getAttributeValue(node, attrs, "qtableId", 0, 3,
-                        true);
+                tableID = getAttributeValue(node, attrs, "qtableId", 0, 3, true);
                 if (node instanceof IIOMetadataNode) {
                     IIOMetadataNode ourNode = (IIOMetadataNode) node;
                     JPEGQTable table = (JPEGQTable) ourNode.getUserObject();
                     if (table == null) {
-                        throw new IIOInvalidTreeException(
-                                "dqtable node must have user object", node);
+                        throw new IIOInvalidTreeException("dqtable node must have user object", node);
                     }
                     data = table.getTable();
                 } else {
-                    throw new IIOInvalidTreeException(
-                            "dqtable node must have user object", node);
+                    throw new IIOInvalidTreeException("dqtable node must have user object", node);
                 }
             } else {
-                throw new IIOInvalidTreeException(
-                        "Invalid node, expected dqtable", node);
+                throw new IIOInvalidTreeException("Invalid node, expected dqtable", node);
             }
         }
 
@@ -245,8 +234,7 @@ class DQTMarkerSegment extends MarkerSegment {
             Qtable newGuy = null;
             try {
                 newGuy = (Qtable) super.clone();
-            } catch (CloneNotSupportedException e) {
-            } // won't happen
+            } catch (CloneNotSupportedException e) {} // won't happen
             if (data != null) {
                 newGuy.data = (int[]) data.clone();
             }
@@ -255,8 +243,7 @@ class DQTMarkerSegment extends MarkerSegment {
 
         IIOMetadataNode getNativeNode() {
             IIOMetadataNode node = new IIOMetadataNode("dqtable");
-            node.setAttribute("elementPrecision", Integer.toString(
-                    elementPrecision));
+            node.setAttribute("elementPrecision", Integer.toString(elementPrecision));
             node.setAttribute("qtableId", Integer.toString(tableID));
             node.setUserObject(new JPEGQTable(data));
             return node;
@@ -264,8 +251,7 @@ class DQTMarkerSegment extends MarkerSegment {
 
         void print() {
             System.out.println("Table id: " + Integer.toString(tableID));
-            System.out.println("Element precision: " + Integer.toString(
-                    elementPrecision));
+            System.out.println("Element precision: " + Integer.toString(elementPrecision));
 
             (new JPEGQTable(data)).toString();
             /*

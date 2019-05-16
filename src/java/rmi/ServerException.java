@@ -10,7 +10,6 @@ package java.rmi;
  * invocation when a <code>RemoteException</code> is thrown while processing the
  * invocation on the server, either while unmarshalling the arguments or
  * executing the remote method itself.
- *
  * A <code>ServerException</code> instance contains the original
  * <code>RemoteException</code> that occurred as its cause.
  *
@@ -27,7 +26,7 @@ public class ServerException extends RemoteException {
      * message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since JDK1.1
      */
     public ServerException(String s) {
@@ -39,9 +38,9 @@ public class ServerException extends RemoteException {
      * message and nested exception.
      *
      * @param s
-     *           the detail message
+     *        the detail message
      * @param ex
-     *           the nested exception
+     *        the nested exception
      * @since JDK1.1
      */
     public ServerException(String s, Exception ex) {

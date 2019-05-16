@@ -23,7 +23,6 @@ import org.w3c.dom.Node;
  * An interface for deferred node object.
  *
  * @xerces.internal
- *
  */
 public interface DeferredNode extends Node {
 

@@ -27,8 +27,7 @@ public class FileImageInputStreamSpi extends ImageInputStreamSpi {
         return "Service provider that instantiates a FileImageInputStream from a File";
     }
 
-    public ImageInputStream createInputStreamInstance(Object input,
-            boolean useCache, File cacheDir) {
+    public ImageInputStream createInputStreamInstance(Object input, boolean useCache, File cacheDir) {
         if (input instanceof File) {
             try {
                 return new FileImageInputStream((File) input);

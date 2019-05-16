@@ -25,7 +25,6 @@ import java.io.Serializable;
  * appropriate for short term storage or RMI between applications running the
  * same version of Swing. A future release of Swing will provide support for
  * long term persistence.
- *
  * 1.20 04/27/99
  * 
  * @author Georges Saab
@@ -69,8 +68,7 @@ public class MotifIconFactory implements Serializable {
         return radioButtonIcon;
     }
 
-    private static class CheckBoxIcon implements Icon, UIResource,
-            Serializable {
+    private static class CheckBoxIcon implements Icon, UIResource, Serializable {
         final static int csize = 13;
 
         private Color control = UIManager.getColor("control");
@@ -99,13 +97,12 @@ public class MotifIconFactory implements Serializable {
             // drawBezel - when we uncheck in toggled state
             // drawCheckBezel - when we check in toggle state
             // drawCheckBezelIn - selected, mouseReleased
-            boolean checkToggleIn = ((isPressed && !isArmed && isSelected)
-                    || (isPressed && isArmed && !isSelected));
-            boolean uncheckToggleOut = ((isPressed && !isArmed && !isSelected)
-                    || (isPressed && isArmed && isSelected));
+            boolean checkToggleIn = ((isPressed && !isArmed && isSelected) || (isPressed && isArmed
+                    && !isSelected));
+            boolean uncheckToggleOut = ((isPressed && !isArmed && !isSelected) || (isPressed && isArmed
+                    && isSelected));
 
-            boolean checkIn = (!isPressed && isArmed && isSelected
-                    || (!isPressed && !isArmed && isSelected));
+            boolean checkIn = (!isPressed && isArmed && isSelected || (!isPressed && !isArmed && isSelected));
 
             if (flat) {
                 g.setColor(shadow);
@@ -158,8 +155,8 @@ public class MotifIconFactory implements Serializable {
             g.setColor(oldColor);
         }
 
-        public void drawCheckBezel(Graphics g, int x, int y, int csize,
-                boolean shade, boolean out, boolean check, boolean flat) {
+        public void drawCheckBezel(Graphics g, int x, int y, int csize, boolean shade, boolean out,
+                boolean check, boolean flat) {
 
             Color oldColor = g.getColor();
             g.translate(x, y);
@@ -228,8 +225,7 @@ public class MotifIconFactory implements Serializable {
         }
     } // end class CheckBoxIcon
 
-    private static class RadioButtonIcon implements Icon, UIResource,
-            Serializable {
+    private static class RadioButtonIcon implements Icon, UIResource, Serializable {
         private Color dot = UIManager.getColor("activeCaptionBorder");
         private Color highlight = UIManager.getColor("controlHighlight");
         private Color shadow = UIManager.getColor("controlShadow");
@@ -247,10 +243,8 @@ public class MotifIconFactory implements Serializable {
             boolean isEnabled = model.isEnabled();
             boolean isSelected = model.isSelected();
 
-            boolean checkIn = ((isPressed && !isArmed && isSelected)
-                    || (isPressed && isArmed && !isSelected) || (!isPressed
-                            && isArmed && isSelected || (!isPressed && !isArmed
-                                    && isSelected)));
+            boolean checkIn = ((isPressed && !isArmed && isSelected) || (isPressed && isArmed && !isSelected)
+                    || (!isPressed && isArmed && isSelected || (!isPressed && !isArmed && isSelected)));
 
             if (checkIn) {
                 g.setColor(shadow);
@@ -310,8 +304,7 @@ public class MotifIconFactory implements Serializable {
         }
     } // end class RadioButtonIcon
 
-    private static class MenuItemCheckIcon implements Icon, UIResource,
-            Serializable {
+    private static class MenuItemCheckIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {}
 
         public int getIconWidth() {
@@ -323,8 +316,7 @@ public class MotifIconFactory implements Serializable {
         }
     } // end class MenuItemCheckIcon
 
-    private static class MenuItemArrowIcon implements Icon, UIResource,
-            Serializable {
+    private static class MenuItemArrowIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {}
 
         public int getIconWidth() {
@@ -336,8 +328,7 @@ public class MotifIconFactory implements Serializable {
         }
     } // end class MenuItemArrowIcon
 
-    private static class MenuArrowIcon implements Icon, UIResource,
-            Serializable {
+    private static class MenuArrowIcon implements Icon, UIResource, Serializable {
         private Color focus = UIManager.getColor("windowBorder");
         private Color shadow = UIManager.getColor("controlShadow");
         private Color highlight = UIManager.getColor("controlHighlight");

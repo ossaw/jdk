@@ -47,8 +47,7 @@ final class ElementAvailableCall extends FunctionCall {
         if (argument() instanceof LiteralExpr) {
             return _type = Type.Boolean;
         }
-        ErrorMsg err = new ErrorMsg(ErrorMsg.NEED_LITERAL_ERR,
-                "element-available", this);
+        ErrorMsg err = new ErrorMsg(ErrorMsg.NEED_LITERAL_ERR, "element-available", this);
         throw new TypeCheckError(err);
     }
 
@@ -69,8 +68,7 @@ final class ElementAvailableCall extends FunctionCall {
             final LiteralExpr arg = (LiteralExpr) argument();
             final String qname = arg.getValue();
             final int index = qname.indexOf(':');
-            final String localName = (index > 0) ? qname.substring(index + 1)
-                    : qname;
+            final String localName = (index > 0) ? qname.substring(index + 1) : qname;
             return getParser().elementSupported(arg.getNamespace(), localName);
         } catch (ClassCastException e) {
             return false;

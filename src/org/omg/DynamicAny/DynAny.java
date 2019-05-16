@@ -89,5 +89,4 @@ package org.omg.DynamicAny;
  * exception. An attempt to use a DynAny object with the DII may raise the
  * NO_IMPLEMENT exception.
  */
-public interface DynAny extends DynAnyOperations, org.omg.CORBA.Object,
-        org.omg.CORBA.portable.IDLEntity {} // interface DynAny
+public interface DynAny extends DynAnyOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface DynAny

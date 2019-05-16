@@ -34,8 +34,7 @@ public final class FilteredStepIterator extends StepIterator {
 
     private Filter _filter;
 
-    public FilteredStepIterator(DTMAxisIterator source,
-            DTMAxisIterator iterator, Filter filter) {
+    public FilteredStepIterator(DTMAxisIterator source, DTMAxisIterator iterator, Filter filter) {
         super(source, iterator);
         _filter = filter;
     }

@@ -44,8 +44,7 @@ final class NotCall extends FunctionCall {
         il.append(IXOR);
     }
 
-    public void translateDesynthesized(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
         final InstructionList il = methodGen.getInstructionList();
         final Expression exp = argument();
         exp.translateDesynthesized(classGen, methodGen);

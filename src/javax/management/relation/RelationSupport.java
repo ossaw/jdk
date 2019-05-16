@@ -50,8 +50,7 @@ import javax.management.ReflectionException;
  *
  * @since 1.5
  */
-public class RelationSupport implements RelationSupportMBean,
-        MBeanRegistration {
+public class RelationSupport implements RelationSupportMBean, MBeanRegistration {
 
     //
     // Private members
@@ -123,63 +122,58 @@ public class RelationSupport implements RelationSupportMBean,
      * addRelation().
      *
      * @param relationId
-     *                            relation identifier, to identify the relation
-     *                            in the Relation
-     *                            Service.
-     *                            <P>
-     *                            Expected to be unique in the given Relation
-     *                            Service.
+     *        relation identifier, to identify the relation
+     *        in the Relation
+     *        Service.
+     *        <P>
+     *        Expected to be unique in the given Relation
+     *        Service.
      * @param relationServiceName
-     *                            ObjectName of the Relation Service where the
-     *                            relation will be
-     *                            registered.
-     *                            <P>
-     *                            This parameter is required as it is the
-     *                            Relation Service that
-     *                            is aware of the definition of the relation
-     *                            type of the given
-     *                            relation, so that will be able to check update
-     *                            operations
-     *                            (set).
+     *        ObjectName of the Relation Service where the
+     *        relation will be
+     *        registered.
+     *        <P>
+     *        This parameter is required as it is the
+     *        Relation Service that
+     *        is aware of the definition of the relation
+     *        type of the given
+     *        relation, so that will be able to check update
+     *        operations
+     *        (set).
      * @param relationTypeName
-     *                            Name of relation type.
-     *                            <P>
-     *                            Expected to have been created in the given
-     *                            Relation Service.
+     *        Name of relation type.
+     *        <P>
+     *        Expected to have been created in the given
+     *        Relation Service.
      * @param list
-     *                            list of roles (Role objects) to initialize the
-     *                            relation. Can
-     *                            be {@code null}.
-     *                            <P>
-     *                            Expected to conform to relation info in
-     *                            associated relation
-     *                            type.
-     *
+     *        list of roles (Role objects) to initialize the
+     *        relation. Can
+     *        be {@code null}.
+     *        <P>
+     *        Expected to conform to relation info in
+     *        associated relation
+     *        type.
      * @exception InvalidRoleValueException
-     *                                      if the same name is used for two
-     *                                      roles.
+     *            if the same name is used for two
+     *            roles.
      * @exception IllegalArgumentException
-     *                                      if any of the required parameters
-     *                                      (relation id, relation
-     *                                      service ObjectName, or relation type
-     *                                      name) is {@code null}
-     *                                      .
+     *            if any of the required parameters
+     *            (relation id, relation
+     *            service ObjectName, or relation type
+     *            name) is {@code null}
+     *            .
      */
-    public RelationSupport(String relationId, ObjectName relationServiceName,
-            String relationTypeName, RoleList list)
-            throws InvalidRoleValueException, IllegalArgumentException {
+    public RelationSupport(String relationId, ObjectName relationServiceName, String relationTypeName,
+            RoleList list) throws InvalidRoleValueException, IllegalArgumentException {
 
         super();
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "RelationSupport");
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "RelationSupport");
 
         // Can throw InvalidRoleValueException and IllegalArgumentException
-        initMembers(relationId, relationServiceName, null, relationTypeName,
-                list);
+        initMembers(relationId, relationServiceName, null, relationTypeName, list);
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "RelationSupport");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "RelationSupport");
     }
 
     /**
@@ -213,60 +207,58 @@ public class RelationSupport implements RelationSupportMBean,
      * addRelation().
      *
      * @param relationId
-     *                                   relation identifier, to identify the
-     *                                   relation in the Relation
-     *                                   Service.
-     *                                   <P>
-     *                                   Expected to be unique in the given
-     *                                   Relation Service.
+     *        relation identifier, to identify the
+     *        relation in the Relation
+     *        Service.
+     *        <P>
+     *        Expected to be unique in the given
+     *        Relation Service.
      * @param relationServiceName
-     *                                   ObjectName of the Relation Service
-     *                                   where the relation will be
-     *                                   registered.
-     *                                   <P>
-     *                                   This parameter is required as it is the
-     *                                   Relation Service that
-     *                                   is aware of the definition of the
-     *                                   relation type of the given
-     *                                   relation, so that will be able to check
-     *                                   update operations
-     *                                   (set).
+     *        ObjectName of the Relation Service
+     *        where the relation will be
+     *        registered.
+     *        <P>
+     *        This parameter is required as it is the
+     *        Relation Service that
+     *        is aware of the definition of the
+     *        relation type of the given
+     *        relation, so that will be able to check
+     *        update operations
+     *        (set).
      * @param relationServiceMBeanServer
-     *                                   MBean Server where the wrapping MBean
-     *                                   is or will be
-     *                                   registered.
-     *                                   <P>
-     *                                   Expected to be the MBean Server where
-     *                                   the Relation Service is
-     *                                   or will be registered.
+     *        MBean Server where the wrapping MBean
+     *        is or will be
+     *        registered.
+     *        <P>
+     *        Expected to be the MBean Server where
+     *        the Relation Service is
+     *        or will be registered.
      * @param relationTypeName
-     *                                   Name of relation type.
-     *                                   <P>
-     *                                   Expected to have been created in the
-     *                                   given Relation Service.
+     *        Name of relation type.
+     *        <P>
+     *        Expected to have been created in the
+     *        given Relation Service.
      * @param list
-     *                                   list of roles (Role objects) to
-     *                                   initialize the relation. Can
-     *                                   be {@code null}.
-     *                                   <P>
-     *                                   Expected to conform to relation info in
-     *                                   associated relation
-     *                                   type.
-     *
+     *        list of roles (Role objects) to
+     *        initialize the relation. Can
+     *        be {@code null}.
+     *        <P>
+     *        Expected to conform to relation info in
+     *        associated relation
+     *        type.
      * @exception InvalidRoleValueException
-     *                                      if the same name is used for two
-     *                                      roles.
+     *            if the same name is used for two
+     *            roles.
      * @exception IllegalArgumentException
-     *                                      if any of the required parameters
-     *                                      (relation id, relation
-     *                                      service ObjectName, relation service
-     *                                      MBeanServer, or
-     *                                      relation type name) is {@code null}.
+     *            if any of the required parameters
+     *            (relation id, relation
+     *            service ObjectName, relation service
+     *            MBeanServer, or
+     *            relation type name) is {@code null}.
      */
     public RelationSupport(String relationId, ObjectName relationServiceName,
-            MBeanServer relationServiceMBeanServer, String relationTypeName,
-            RoleList list) throws InvalidRoleValueException,
-            IllegalArgumentException {
+            MBeanServer relationServiceMBeanServer, String relationTypeName, RoleList list)
+            throws InvalidRoleValueException, IllegalArgumentException {
 
         super();
 
@@ -275,16 +267,13 @@ public class RelationSupport implements RelationSupportMBean,
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "RelationSupport");
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "RelationSupport");
 
         // Can throw InvalidRoleValueException and
         // IllegalArgumentException
-        initMembers(relationId, relationServiceName, relationServiceMBeanServer,
-                relationTypeName, list);
+        initMembers(relationId, relationServiceName, relationServiceMBeanServer, relationTypeName, list);
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "RelationSupport");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "RelationSupport");
     }
 
     //
@@ -297,30 +286,26 @@ public class RelationSupport implements RelationSupportMBean,
      * Checks if the role exists and is readable according to the relation type.
      *
      * @param roleName
-     *                 name of role
-     *
+     *        name of role
      * @return the ArrayList of ObjectName objects being the role value
-     *
      * @exception IllegalArgumentException
-     *                                                  if null role name
+     *            if null role name
      * @exception RoleNotFoundException
-     *                                                  if:
-     *                                                  <P>
-     *                                                  - there is no role with
-     *                                                  given name
-     *                                                  <P>
-     *                                                  - the role is not
-     *                                                  readable.
+     *            if:
+     *            <P>
+     *            - there is no role with
+     *            given name
+     *            <P>
+     *            - the role is not
+     *            readable.
      * @exception RelationServiceNotRegisteredException
-     *                                                  if the Relation Service
-     *                                                  is not registered in the
-     *                                                  MBean
-     *                                                  Server
-     *
+     *            if the Relation Service
+     *            is not registered in the
+     *            MBean
+     *            Server
      * @see #setRole
      */
-    public List<ObjectName> getRole(String roleName)
-            throws IllegalArgumentException, RoleNotFoundException,
+    public List<ObjectName> getRole(String roleName) throws IllegalArgumentException, RoleNotFoundException,
             RelationServiceNotRegisteredException {
 
         if (roleName == null) {
@@ -328,13 +313,11 @@ public class RelationSupport implements RelationSupportMBean,
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getRole",
-                roleName);
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getRole", roleName);
 
         // Can throw RoleNotFoundException and
         // RelationServiceNotRegisteredException
-        List<ObjectName> result = cast(getRoleInt(roleName, false, null,
-                false));
+        List<ObjectName> result = cast(getRoleInt(roleName, false, null, false));
 
         RELATION_LOGGER.exiting(RelationSupport.class.getName(), "getRole");
         return result;
@@ -347,23 +330,19 @@ public class RelationSupport implements RelationSupportMBean,
      * relation type.
      *
      * @param roleNameArray
-     *                      array of names of roles to be retrieved
-     *
+     *        array of names of roles to be retrieved
      * @return a RoleResult object, including a RoleList (for roles successfully
      *         retrieved) and a RoleUnresolvedList (for roles not retrieved).
-     *
      * @exception IllegalArgumentException
-     *                                                  if null role name
+     *            if null role name
      * @exception RelationServiceNotRegisteredException
-     *                                                  if the Relation Service
-     *                                                  is not registered in the
-     *                                                  MBean
-     *                                                  Server
-     *
+     *            if the Relation Service
+     *            is not registered in the
+     *            MBean
+     *            Server
      * @see #setRoles
      */
-    public RoleResult getRoles(String[] roleNameArray)
-            throws IllegalArgumentException,
+    public RoleResult getRoles(String[] roleNameArray) throws IllegalArgumentException,
             RelationServiceNotRegisteredException {
 
         if (roleNameArray == null) {
@@ -385,18 +364,15 @@ public class RelationSupport implements RelationSupportMBean,
      *
      * @return a RoleResult object, including a RoleList (for roles successfully
      *         retrieved) and a RoleUnresolvedList (for roles not readable).
-     *
      * @exception RelationServiceNotRegisteredException
-     *                                                  if the Relation Service
-     *                                                  is not registered in the
-     *                                                  MBean
-     *                                                  Server
+     *            if the Relation Service
+     *            is not registered in the
+     *            MBean
+     *            Server
      */
-    public RoleResult getAllRoles()
-            throws RelationServiceNotRegisteredException {
+    public RoleResult getAllRoles() throws RelationServiceNotRegisteredException {
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "getAllRoles");
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getAllRoles");
 
         RoleResult result = null;
         try {
@@ -416,17 +392,14 @@ public class RelationSupport implements RelationSupportMBean,
      */
     public RoleList retrieveAllRoles() {
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "retrieveAllRoles");
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "retrieveAllRoles");
 
         RoleList result;
         synchronized (myRoleName2ValueMap) {
-            result = new RoleList(new ArrayList<Role>(myRoleName2ValueMap
-                    .values()));
+            result = new RoleList(new ArrayList<Role>(myRoleName2ValueMap.values()));
         }
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "retrieveAllRoles");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "retrieveAllRoles");
         return result;
     }
 
@@ -434,25 +407,22 @@ public class RelationSupport implements RelationSupportMBean,
      * Returns the number of MBeans currently referenced in the given role.
      *
      * @param roleName
-     *                 name of role
-     *
+     *        name of role
      * @return the number of currently referenced MBeans in that role
-     *
      * @exception IllegalArgumentException
-     *                                     if null role name
+     *            if null role name
      * @exception RoleNotFoundException
-     *                                     if there is no role with given name
+     *            if there is no role with given name
      */
-    public Integer getRoleCardinality(String roleName)
-            throws IllegalArgumentException, RoleNotFoundException {
+    public Integer getRoleCardinality(String roleName) throws IllegalArgumentException,
+            RoleNotFoundException {
 
         if (roleName == null) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "getRoleCardinality", roleName);
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getRoleCardinality", roleName);
 
         // Try to retrieve the role
         Role role;
@@ -476,8 +446,7 @@ public class RelationSupport implements RelationSupportMBean,
 
         List<ObjectName> roleValue = role.getRoleValue();
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "getRoleCardinality");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "getRoleCardinality");
         return roleValue.size();
     }
 
@@ -492,64 +461,61 @@ public class RelationSupport implements RelationSupportMBean,
      * is a MBean or not).
      *
      * @param role
-     *             role to be set (name and new value)
-     *
+     *        role to be set (name and new value)
      * @exception IllegalArgumentException
-     *                                                  if null role
+     *            if null role
      * @exception RoleNotFoundException
-     *                                                  if there is no role with
-     *                                                  the supplied role's name
-     *                                                  or if
-     *                                                  the role is not writable
-     *                                                  (no test on the write
-     *                                                  access mode
-     *                                                  performed when
-     *                                                  initializing the role)
+     *            if there is no role with
+     *            the supplied role's name
+     *            or if
+     *            the role is not writable
+     *            (no test on the write
+     *            access mode
+     *            performed when
+     *            initializing the role)
      * @exception InvalidRoleValueException
-     *                                                  if value provided for
-     *                                                  role is not valid, i.e.:
-     *                                                  <P>
-     *                                                  - the number of
-     *                                                  referenced MBeans in
-     *                                                  given value is less
-     *                                                  than expected minimum
-     *                                                  degree
-     *                                                  <P>
-     *                                                  - the number of
-     *                                                  referenced MBeans in
-     *                                                  provided value
-     *                                                  exceeds expected maximum
-     *                                                  degree
-     *                                                  <P>
-     *                                                  - one referenced MBean
-     *                                                  in the value is not an
-     *                                                  Object of
-     *                                                  the MBean class expected
-     *                                                  for that role
-     *                                                  <P>
-     *                                                  - a MBean provided for
-     *                                                  that role does not exist
+     *            if value provided for
+     *            role is not valid, i.e.:
+     *            <P>
+     *            - the number of
+     *            referenced MBeans in
+     *            given value is less
+     *            than expected minimum
+     *            degree
+     *            <P>
+     *            - the number of
+     *            referenced MBeans in
+     *            provided value
+     *            exceeds expected maximum
+     *            degree
+     *            <P>
+     *            - one referenced MBean
+     *            in the value is not an
+     *            Object of
+     *            the MBean class expected
+     *            for that role
+     *            <P>
+     *            - a MBean provided for
+     *            that role does not exist
      * @exception RelationServiceNotRegisteredException
-     *                                                  if the Relation Service
-     *                                                  is not registered in the
-     *                                                  MBean
-     *                                                  Server
+     *            if the Relation Service
+     *            is not registered in the
+     *            MBean
+     *            Server
      * @exception RelationTypeNotFoundException
-     *                                                  if the relation type has
-     *                                                  not been declared in the
-     *                                                  Relation
-     *                                                  Service
+     *            if the relation type has
+     *            not been declared in the
+     *            Relation
+     *            Service
      * @exception RelationNotFoundException
-     *                                                  if the relation has not
-     *                                                  been added in the
-     *                                                  Relation
-     *                                                  Service.
-     *
+     *            if the relation has not
+     *            been added in the
+     *            Relation
+     *            Service.
      * @see #getRole
      */
-    public void setRole(Role role) throws IllegalArgumentException,
-            RoleNotFoundException, RelationTypeNotFoundException,
-            InvalidRoleValueException, RelationServiceNotRegisteredException,
+    public void setRole(Role role) throws IllegalArgumentException, RoleNotFoundException,
+            RelationTypeNotFoundException, InvalidRoleValueException, RelationServiceNotRegisteredException,
             RelationNotFoundException {
 
         if (role == null) {
@@ -557,8 +523,7 @@ public class RelationSupport implements RelationSupportMBean,
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(), "setRole",
-                role);
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "setRole", role);
 
         // Will return null :)
         Object result = setRoleInt(role, false, null, false);
@@ -578,42 +543,37 @@ public class RelationSupport implements RelationSupportMBean,
      * is a MBean or not) per updated role.
      *
      * @param list
-     *             list of roles to be set
-     *
+     *        list of roles to be set
      * @return a RoleResult object, including a RoleList (for roles successfully
      *         set) and a RoleUnresolvedList (for roles not set).
-     *
      * @exception IllegalArgumentException
-     *                                                  if null role list
+     *            if null role list
      * @exception RelationServiceNotRegisteredException
-     *                                                  if the Relation Service
-     *                                                  is not registered in the
-     *                                                  MBean
-     *                                                  Server
+     *            if the Relation Service
+     *            is not registered in the
+     *            MBean
+     *            Server
      * @exception RelationTypeNotFoundException
-     *                                                  if the relation type has
-     *                                                  not been declared in the
-     *                                                  Relation
-     *                                                  Service.
+     *            if the relation type has
+     *            not been declared in the
+     *            Relation
+     *            Service.
      * @exception RelationNotFoundException
-     *                                                  if the relation MBean
-     *                                                  has not been added in
-     *                                                  the Relation
-     *                                                  Service.
-     *
+     *            if the relation MBean
+     *            has not been added in
+     *            the Relation
+     *            Service.
      * @see #getRoles
      */
     public RoleResult setRoles(RoleList list) throws IllegalArgumentException,
-            RelationServiceNotRegisteredException,
-            RelationTypeNotFoundException, RelationNotFoundException {
+            RelationServiceNotRegisteredException, RelationTypeNotFoundException, RelationNotFoundException {
 
         if (list == null) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(), "setRoles",
-                list);
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "setRoles", list);
 
         RoleResult result = setRolesInt(list, false, null);
 
@@ -634,61 +594,56 @@ public class RelationSupport implements RelationSupportMBean,
      * ObjectNames of referenced MBeans) without the unregistered one.
      *
      * @param objectName
-     *                   ObjectName of unregistered MBean
+     *        ObjectName of unregistered MBean
      * @param roleName
-     *                   name of role where the MBean is referenced
-     *
+     *        name of role where the MBean is referenced
      * @exception IllegalArgumentException
-     *                                                  if null parameter
+     *            if null parameter
      * @exception RoleNotFoundException
-     *                                                  if role does not exist
-     *                                                  in the relation or is
-     *                                                  not writable
+     *            if role does not exist
+     *            in the relation or is
+     *            not writable
      * @exception InvalidRoleValueException
-     *                                                  if role value does not
-     *                                                  conform to the
-     *                                                  associated role info
-     *                                                  (this will never happen
-     *                                                  when called from the
-     *                                                  Relation
-     *                                                  Service)
+     *            if role value does not
+     *            conform to the
+     *            associated role info
+     *            (this will never happen
+     *            when called from the
+     *            Relation
+     *            Service)
      * @exception RelationServiceNotRegisteredException
-     *                                                  if the Relation Service
-     *                                                  is not registered in the
-     *                                                  MBean
-     *                                                  Server
+     *            if the Relation Service
+     *            is not registered in the
+     *            MBean
+     *            Server
      * @exception RelationTypeNotFoundException
-     *                                                  if the relation type has
-     *                                                  not been declared in the
-     *                                                  Relation
-     *                                                  Service.
+     *            if the relation type has
+     *            not been declared in the
+     *            Relation
+     *            Service.
      * @exception RelationNotFoundException
-     *                                                  if this method is called
-     *                                                  for a relation MBean not
-     *                                                  added in
-     *                                                  the Relation Service.
+     *            if this method is called
+     *            for a relation MBean not
+     *            added in
+     *            the Relation Service.
      */
-    public void handleMBeanUnregistration(ObjectName objectName,
-            String roleName) throws IllegalArgumentException,
-            RoleNotFoundException, InvalidRoleValueException,
-            RelationServiceNotRegisteredException,
-            RelationTypeNotFoundException, RelationNotFoundException {
+    public void handleMBeanUnregistration(ObjectName objectName, String roleName)
+            throws IllegalArgumentException, RoleNotFoundException, InvalidRoleValueException,
+            RelationServiceNotRegisteredException, RelationTypeNotFoundException, RelationNotFoundException {
 
         if (objectName == null || roleName == null) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "handleMBeanUnregistration", new Object[] { objectName,
-                        roleName });
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "handleMBeanUnregistration", new Object[] {
+                objectName, roleName });
 
         // Can throw RoleNotFoundException, InvalidRoleValueException,
         // or RelationTypeNotFoundException
         handleMBeanUnregistrationInt(objectName, roleName, false, null);
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "handleMBeanUnregistration");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "handleMBeanUnregistration");
         return;
     }
 
@@ -701,8 +656,7 @@ public class RelationSupport implements RelationSupportMBean,
      */
     public Map<ObjectName, List<String>> getReferencedMBeans() {
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "getReferencedMBeans");
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getReferencedMBeans");
 
         Map<ObjectName, List<String>> refMBeanMap = new HashMap<ObjectName, List<String>>();
 
@@ -718,8 +672,7 @@ public class RelationSupport implements RelationSupportMBean,
 
                     // Sees if current MBean has been already referenced in
                     // roles already seen
-                    List<String> mbeanRoleNameList = refMBeanMap.get(
-                            currRoleObjName);
+                    List<String> mbeanRoleNameList = refMBeanMap.get(currRoleObjName);
 
                     boolean newRefFlg = false;
                     if (mbeanRoleNameList == null) {
@@ -734,8 +687,7 @@ public class RelationSupport implements RelationSupportMBean,
             }
         }
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "getReferencedMBeans");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "getReferencedMBeans");
         return refMBeanMap;
     }
 
@@ -775,8 +727,7 @@ public class RelationSupport implements RelationSupportMBean,
     // a MBean created by the user outside of the Relation Service.
     //
     // No exception thrown.
-    public ObjectName preRegister(MBeanServer server, ObjectName name)
-            throws Exception {
+    public ObjectName preRegister(MBeanServer server, ObjectName name) throws Exception {
 
         myRelServiceMBeanServer = server;
         return name;
@@ -809,8 +760,7 @@ public class RelationSupport implements RelationSupportMBean,
         return myInRelServFlg.get();
     }
 
-    public void setRelationServiceManagementFlag(Boolean flag)
-            throws IllegalArgumentException {
+    public void setRelationServiceManagementFlag(Boolean flag) throws IllegalArgumentException {
 
         if (flag == null) {
             String excMsg = "Invalid parameter.";
@@ -869,9 +819,8 @@ public class RelationSupport implements RelationSupportMBean,
     // - the role is not readable.
     // -exception RelationServiceNotRegisteredException if the Relation
     // Service is not registered in the MBean Server
-    Object getRoleInt(String roleName, boolean relationServCallFlg,
-            RelationService relationServ, boolean multiRoleFlg)
-            throws IllegalArgumentException, RoleNotFoundException,
+    Object getRoleInt(String roleName, boolean relationServCallFlg, RelationService relationServ,
+            boolean multiRoleFlg) throws IllegalArgumentException, RoleNotFoundException,
             RelationServiceNotRegisteredException {
 
         if (roleName == null || (relationServCallFlg && relationServ == null)) {
@@ -879,8 +828,7 @@ public class RelationSupport implements RelationSupportMBean,
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getRoleInt",
-                roleName);
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getRoleInt", roleName);
 
         int pbType = 0;
 
@@ -903,8 +851,7 @@ public class RelationSupport implements RelationSupportMBean,
                 // avoiding MBean Server
                 // Shall not throw a RelationTypeNotFoundException
                 try {
-                    status = relationServ.checkRoleReading(roleName,
-                            myRelTypeName);
+                    status = relationServ.checkRoleReading(roleName, myRelTypeName);
                 } catch (RelationTypeNotFoundException exc) {
                     throw new RuntimeException(exc.getMessage());
                 }
@@ -927,16 +874,14 @@ public class RelationSupport implements RelationSupportMBean,
                 // Shall not throw a MBeanException, or a ReflectionException
                 // or an InstanceNotFoundException
                 try {
-                    status = (Integer) (myRelServiceMBeanServer.invoke(
-                            myRelServiceName, "checkRoleReading", params,
-                            signature));
+                    status = (Integer) (myRelServiceMBeanServer.invoke(myRelServiceName, "checkRoleReading",
+                            params, signature));
                 } catch (MBeanException exc1) {
                     throw new RuntimeException("incorrect relation type");
                 } catch (ReflectionException exc2) {
                     throw new RuntimeException(exc2.getMessage());
                 } catch (InstanceNotFoundException exc3) {
-                    throw new RelationServiceNotRegisteredException(exc3
-                            .getMessage());
+                    throw new RelationServiceNotRegisteredException(exc3.getMessage());
                 }
             }
 
@@ -1006,18 +951,15 @@ public class RelationSupport implements RelationSupportMBean,
     // -exception IllegalArgumentException if null parameter
     // -exception RelationServiceNotRegisteredException if the Relation
     // Service is not registered in the MBean Server
-    RoleResult getRolesInt(String[] roleNameArray, boolean relationServCallFlg,
-            RelationService relationServ) throws IllegalArgumentException,
-            RelationServiceNotRegisteredException {
+    RoleResult getRolesInt(String[] roleNameArray, boolean relationServCallFlg, RelationService relationServ)
+            throws IllegalArgumentException, RelationServiceNotRegisteredException {
 
-        if (roleNameArray == null || (relationServCallFlg
-                && relationServ == null)) {
+        if (roleNameArray == null || (relationServCallFlg && relationServ == null)) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "getRolesInt");
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getRolesInt");
 
         RoleList roleList = new RoleList();
         RoleUnresolvedList roleUnresList = new RoleUnresolvedList();
@@ -1031,8 +973,7 @@ public class RelationSupport implements RelationSupportMBean,
             //
             // RoleNotFoundException: not possible but catch it for compiler :)
             try {
-                currResult = getRoleInt(currRoleName, relationServCallFlg,
-                        relationServ, true);
+                currResult = getRoleInt(currRoleName, relationServCallFlg, relationServ, true);
 
             } catch (RoleNotFoundException exc) {
                 return null; // :)
@@ -1073,17 +1014,15 @@ public class RelationSupport implements RelationSupportMBean,
     // -exception RelationServiceNotRegisteredException if the Relation
     // Service is not registered in the MBean Server
     //
-    RoleResult getAllRolesInt(boolean relationServCallFlg,
-            RelationService relationServ) throws IllegalArgumentException,
-            RelationServiceNotRegisteredException {
+    RoleResult getAllRolesInt(boolean relationServCallFlg, RelationService relationServ)
+            throws IllegalArgumentException, RelationServiceNotRegisteredException {
 
         if (relationServCallFlg && relationServ == null) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "getAllRolesInt");
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "getAllRolesInt");
 
         List<String> roleNameList;
         synchronized (myRoleName2ValueMap) {
@@ -1092,11 +1031,9 @@ public class RelationSupport implements RelationSupportMBean,
         String[] roleNames = new String[roleNameList.size()];
         roleNameList.toArray(roleNames);
 
-        RoleResult result = getRolesInt(roleNames, relationServCallFlg,
-                relationServ);
+        RoleResult result = getRolesInt(roleNames, relationServCallFlg, relationServ);
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "getAllRolesInt");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "getAllRolesInt");
         return result;
     }
 
@@ -1155,20 +1092,18 @@ public class RelationSupport implements RelationSupportMBean,
     // -exception RelationTypeNotFoundException if relation type unknown
     // -exception RelationNotFoundException if a relation MBean has not been
     // added in the Relation Service
-    Object setRoleInt(Role aRole, boolean relationServCallFlg,
-            RelationService relationServ, boolean multiRoleFlg)
-            throws IllegalArgumentException, RoleNotFoundException,
-            InvalidRoleValueException, RelationServiceNotRegisteredException,
-            RelationTypeNotFoundException, RelationNotFoundException {
+    Object setRoleInt(Role aRole, boolean relationServCallFlg, RelationService relationServ,
+            boolean multiRoleFlg) throws IllegalArgumentException, RoleNotFoundException,
+            InvalidRoleValueException, RelationServiceNotRegisteredException, RelationTypeNotFoundException,
+            RelationNotFoundException {
 
         if (aRole == null || (relationServCallFlg && relationServ == null)) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(), "setRoleInt",
-                new Object[] { aRole, relationServCallFlg, relationServ,
-                        multiRoleFlg });
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "setRoleInt", new Object[] { aRole,
+                relationServCallFlg, relationServ, multiRoleFlg });
 
         String roleName = aRole.getRoleName();
         int pbType = 0;
@@ -1206,8 +1141,7 @@ public class RelationSupport implements RelationSupportMBean,
                 // avoiding MBean Server
                 //
                 // Shall not raise a RelationTypeNotFoundException
-                status = relationServ.checkRoleWriting(aRole, myRelTypeName,
-                        initFlg);
+                status = relationServ.checkRoleWriting(aRole, myRelTypeName, initFlg);
 
             } else {
 
@@ -1231,9 +1165,8 @@ public class RelationSupport implements RelationSupportMBean,
                 // throw wrapped exception.
                 //
                 // Shall not throw a ReflectionException
-                status = (Integer) (myRelServiceMBeanServer.invoke(
-                        myRelServiceName, "checkRoleWriting", params,
-                        signature));
+                status = (Integer) (myRelServiceMBeanServer.invoke(myRelServiceName, "checkRoleWriting",
+                        params, signature));
             }
 
             pbType = status.intValue();
@@ -1274,13 +1207,11 @@ public class RelationSupport implements RelationSupportMBean,
 
                 // Sends a notification (RelationNotification)
                 // Can throw a RelationNotFoundException
-                sendRoleUpdateNotification(aRole, oldRoleValue,
-                        relationServCallFlg, relationServ);
+                sendRoleUpdateNotification(aRole, oldRoleValue, relationServCallFlg, relationServ);
 
                 // Updates the role map of the Relation Service
                 // Can throw RelationNotFoundException
-                updateRelationServiceMap(aRole, oldRoleValue,
-                        relationServCallFlg, relationServ);
+                updateRelationServiceMap(aRole, oldRoleValue, relationServCallFlg, relationServ);
 
             }
 
@@ -1312,8 +1243,7 @@ public class RelationSupport implements RelationSupportMBean,
             } else {
                 // Problem when retrieving a role in a multi-role retrieval:
                 // returns a RoleUnresolved object
-                result = new RoleUnresolved(roleName, aRole.getRoleValue(),
-                        pbType);
+                result = new RoleUnresolved(roleName, aRole.getRoleValue(), pbType);
             }
         }
 
@@ -1344,28 +1274,24 @@ public class RelationSupport implements RelationSupportMBean,
     // - relation MBean
     // and
     // - it has not been added into the Relation Service
-    private void sendRoleUpdateNotification(Role newRole,
-            List<ObjectName> oldRoleValue, boolean relationServCallFlg,
-            RelationService relationServ) throws IllegalArgumentException,
+    private void sendRoleUpdateNotification(Role newRole, List<ObjectName> oldRoleValue,
+            boolean relationServCallFlg, RelationService relationServ) throws IllegalArgumentException,
             RelationServiceNotRegisteredException, RelationNotFoundException {
 
-        if (newRole == null || oldRoleValue == null || (relationServCallFlg
-                && relationServ == null)) {
+        if (newRole == null || oldRoleValue == null || (relationServCallFlg && relationServ == null)) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "sendRoleUpdateNotification", new Object[] { newRole,
-                        oldRoleValue, relationServCallFlg, relationServ });
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "sendRoleUpdateNotification", new Object[] {
+                newRole, oldRoleValue, relationServCallFlg, relationServ });
 
         if (relationServCallFlg) {
             // Direct call to the Relation Service
             // Shall not throw a RelationNotFoundException for an internal
             // relation
             try {
-                relationServ.sendRoleUpdateNotification(myRelId, newRole,
-                        oldRoleValue);
+                relationServ.sendRoleUpdateNotification(myRelId, newRole, oldRoleValue);
             } catch (RelationNotFoundException exc) {
                 throw new RuntimeException(exc.getMessage());
             }
@@ -1390,13 +1316,12 @@ public class RelationSupport implements RelationSupportMBean,
             //
             // Shall not throw a ReflectionException
             try {
-                myRelServiceMBeanServer.invoke(myRelServiceName,
-                        "sendRoleUpdateNotification", params, signature);
+                myRelServiceMBeanServer.invoke(myRelServiceName, "sendRoleUpdateNotification", params,
+                        signature);
             } catch (ReflectionException exc1) {
                 throw new RuntimeException(exc1.getMessage());
             } catch (InstanceNotFoundException exc2) {
-                throw new RelationServiceNotRegisteredException(exc2
-                        .getMessage());
+                throw new RelationServiceNotRegisteredException(exc2.getMessage());
             } catch (MBeanException exc3) {
                 Exception wrappedExc = exc3.getTargetException();
                 if (wrappedExc instanceof RelationNotFoundException) {
@@ -1407,8 +1332,7 @@ public class RelationSupport implements RelationSupportMBean,
             }
         }
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "sendRoleUpdateNotification");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "sendRoleUpdateNotification");
         return;
     }
 
@@ -1434,20 +1358,17 @@ public class RelationSupport implements RelationSupportMBean,
     // - relation MBean
     // and
     // - the relation is not added in the Relation Service
-    private void updateRelationServiceMap(Role newRole,
-            List<ObjectName> oldRoleValue, boolean relationServCallFlg,
-            RelationService relationServ) throws IllegalArgumentException,
+    private void updateRelationServiceMap(Role newRole, List<ObjectName> oldRoleValue,
+            boolean relationServCallFlg, RelationService relationServ) throws IllegalArgumentException,
             RelationServiceNotRegisteredException, RelationNotFoundException {
 
-        if (newRole == null || oldRoleValue == null || (relationServCallFlg
-                && relationServ == null)) {
+        if (newRole == null || oldRoleValue == null || (relationServCallFlg && relationServ == null)) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "updateRelationServiceMap", new Object[] { newRole,
-                        oldRoleValue, relationServCallFlg, relationServ });
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "updateRelationServiceMap", new Object[] {
+                newRole, oldRoleValue, relationServCallFlg, relationServ });
 
         if (relationServCallFlg) {
             // Direct call to the Relation Service
@@ -1474,13 +1395,11 @@ public class RelationSupport implements RelationSupportMBean,
             //
             // Shall not throw a ReflectionException
             try {
-                myRelServiceMBeanServer.invoke(myRelServiceName,
-                        "updateRoleMap", params, signature);
+                myRelServiceMBeanServer.invoke(myRelServiceName, "updateRoleMap", params, signature);
             } catch (ReflectionException exc1) {
                 throw new RuntimeException(exc1.getMessage());
             } catch (InstanceNotFoundException exc2) {
-                throw new RelationServiceNotRegisteredException(exc2
-                        .getMessage());
+                throw new RelationServiceNotRegisteredException(exc2.getMessage());
             } catch (MBeanException exc3) {
                 Exception wrappedExc = exc3.getTargetException();
                 if (wrappedExc instanceof RelationNotFoundException) {
@@ -1491,8 +1410,7 @@ public class RelationSupport implements RelationSupportMBean,
             }
         }
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "updateRelationServiceMap");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "updateRelationServiceMap");
         return;
     }
 
@@ -1528,9 +1446,8 @@ public class RelationSupport implements RelationSupportMBean,
     // - relation MBean
     // and
     // - not added in the RS
-    RoleResult setRolesInt(RoleList list, boolean relationServCallFlg,
-            RelationService relationServ) throws IllegalArgumentException,
-            RelationServiceNotRegisteredException,
+    RoleResult setRolesInt(RoleList list, boolean relationServCallFlg, RelationService relationServ)
+            throws IllegalArgumentException, RelationServiceNotRegisteredException,
             RelationTypeNotFoundException, RelationNotFoundException {
 
         if (list == null || (relationServCallFlg && relationServ == null)) {
@@ -1538,8 +1455,8 @@ public class RelationSupport implements RelationSupportMBean,
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(), "setRolesInt",
-                new Object[] { list, relationServCallFlg, relationServ });
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "setRolesInt", new Object[] { list,
+                relationServCallFlg, relationServ });
 
         RoleList roleList = new RoleList();
         RoleUnresolvedList roleUnresList = new RoleUnresolvedList();
@@ -1555,8 +1472,7 @@ public class RelationSupport implements RelationSupportMBean,
             // InvalidRoleValueException, but catch them to keep compiler
             // happy
             try {
-                currResult = setRoleInt(currRole, relationServCallFlg,
-                        relationServ, true);
+                currResult = setRoleInt(currRole, relationServCallFlg, relationServ, true);
             } catch (RoleNotFoundException exc1) {
                 // OK : Do not throw a RoleNotFoundException.
             } catch (InvalidRoleValueException exc2) {
@@ -1615,19 +1531,16 @@ public class RelationSupport implements RelationSupportMBean,
     // -exception IllegalArgumentException if a required value (Relation
     // Service Object Name, etc.) is not provided as parameter.
     private void initMembers(String relationId, ObjectName relationServiceName,
-            MBeanServer relationServiceMBeanServer, String relationTypeName,
-            RoleList list) throws InvalidRoleValueException,
-            IllegalArgumentException {
+            MBeanServer relationServiceMBeanServer, String relationTypeName, RoleList list)
+            throws InvalidRoleValueException, IllegalArgumentException {
 
-        if (relationId == null || relationServiceName == null
-                || relationTypeName == null) {
+        if (relationId == null || relationServiceName == null || relationTypeName == null) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(), "initMembers",
-                new Object[] { relationId, relationServiceName,
-                        relationServiceMBeanServer, relationTypeName, list });
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "initMembers", new Object[] { relationId,
+                relationServiceName, relationServiceMBeanServer, relationTypeName, list });
 
         myRelId = relationId;
         myRelServiceName = relationServiceName;
@@ -1654,8 +1567,7 @@ public class RelationSupport implements RelationSupportMBean,
             return;
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(), "initRoleMap",
-                list);
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "initRoleMap", list);
 
         synchronized (myRoleName2ValueMap) {
 
@@ -1673,8 +1585,7 @@ public class RelationSupport implements RelationSupportMBean,
                     throw new InvalidRoleValueException(excMsgStrB.toString());
                 }
 
-                myRoleName2ValueMap.put(currRoleName, (Role) (currRole
-                        .clone()));
+                myRoleName2ValueMap.put(currRoleName, (Role) (currRole.clone()));
             }
         }
 
@@ -1720,21 +1631,18 @@ public class RelationSupport implements RelationSupportMBean,
     // -exception RelationTypeNotFoundException if unknown relation type
     // -exception RelationNotFoundException if current relation has not been
     // added in the RS
-    void handleMBeanUnregistrationInt(ObjectName objectName, String roleName,
-            boolean relationServCallFlg, RelationService relationServ)
-            throws IllegalArgumentException, RoleNotFoundException,
-            InvalidRoleValueException, RelationServiceNotRegisteredException,
-            RelationTypeNotFoundException, RelationNotFoundException {
+    void handleMBeanUnregistrationInt(ObjectName objectName, String roleName, boolean relationServCallFlg,
+            RelationService relationServ) throws IllegalArgumentException, RoleNotFoundException,
+            InvalidRoleValueException, RelationServiceNotRegisteredException, RelationTypeNotFoundException,
+            RelationNotFoundException {
 
-        if (objectName == null || roleName == null || (relationServCallFlg
-                && relationServ == null)) {
+        if (objectName == null || roleName == null || (relationServCallFlg && relationServ == null)) {
             String excMsg = "Invalid parameter.";
             throw new IllegalArgumentException(excMsg);
         }
 
-        RELATION_LOGGER.entering(RelationSupport.class.getName(),
-                "handleMBeanUnregistrationInt", new Object[] { objectName,
-                        roleName, relationServCallFlg, relationServ });
+        RELATION_LOGGER.entering(RelationSupport.class.getName(), "handleMBeanUnregistrationInt",
+                new Object[] { objectName, roleName, relationServCallFlg, relationServ });
 
         // Retrieves current role value
         Role role;
@@ -1753,19 +1661,16 @@ public class RelationSupport implements RelationSupportMBean,
 
         // Note: no need to test if list not null before cloning, null value
         // not allowed for role value.
-        List<ObjectName> newRoleValue = new ArrayList<ObjectName>(
-                currRoleValue);
+        List<ObjectName> newRoleValue = new ArrayList<ObjectName>(currRoleValue);
         newRoleValue.remove(objectName);
         Role newRole = new Role(roleName, newRoleValue);
 
         // Can throw InvalidRoleValueException,
         // RelationTypeNotFoundException
         // (RoleNotFoundException already detected)
-        Object result = setRoleInt(newRole, relationServCallFlg, relationServ,
-                false);
+        Object result = setRoleInt(newRole, relationServCallFlg, relationServ, false);
 
-        RELATION_LOGGER.exiting(RelationSupport.class.getName(),
-                "handleMBeanUnregistrationInt");
+        RELATION_LOGGER.exiting(RelationSupport.class.getName(), "handleMBeanUnregistrationInt");
         return;
     }
 

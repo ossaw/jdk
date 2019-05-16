@@ -10,5 +10,4 @@ package com.sun.java.swing.plaf.nimbus;
  * @deprecated Use {@link javax.swing.plaf.nimbus.NimbusLookAndFeel} instead.
  */
 @Deprecated
-public class NimbusLookAndFeel extends
-        javax.swing.plaf.nimbus.NimbusLookAndFeel {}
+public class NimbusLookAndFeel extends javax.swing.plaf.nimbus.NimbusLookAndFeel {}

@@ -19,14 +19,12 @@ import java.lang.annotation.RetentionPolicy;
  * inject both service and proxy instances. These injected references are not
  * thread safe. If the references are accessed by multiple threads, usual
  * synchronization techinques can be used to support multiple threads.
- *
  * <p>
  * Web service references are resources in the Java EE 5 sense. The annotations
  * (for example, {@link Addressing}) annotated with meta-annotation
  * {@link WebServiceFeatureAnnotation} can be used in conjunction with
  * <code>WebServiceRef</code>. The created reference MUST be configured with
  * annotation's web service feature.
- *
  * <p>
  * For example, in the code below, the injected <code>StockQuoteProvider</code>
  * proxy MUST have WS-Addressing enabled as specifed by the {@link Addressing}
@@ -42,7 +40,6 @@ import java.lang.annotation.RetentionPolicy;
  *    }
  * </code>
  * </pre>
- *
  * <p>
  * If a JAX-WS implementation encounters an unsupported or unrecognized
  * annotation annotated with the <code>WebServiceFeatureAnnotation</code> that
@@ -50,9 +47,7 @@ import java.lang.annotation.RetentionPolicy;
  *
  * @see javax.annotation.Resource
  * @see WebServiceFeatureAnnotation
- *
  * @since JAX-WS 2.0
- *
  **/
 
 @Target({ ElementType.TYPE, ElementType.METHOD, ElementType.FIELD })
@@ -64,7 +59,6 @@ public @interface WebServiceRef {
      * field name. For method annotations, the default is the JavaBeans property
      * name corresponding to the method. For class annotations, there is no
      * default and this MUST be specified.
-     *
      * The JNDI name can be absolute(with any logical namespace) or relative to
      * JNDI <code>java:comp/env</code> namespace.
      */

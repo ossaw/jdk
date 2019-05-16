@@ -64,7 +64,6 @@ import java.util.Objects;
  * others.
  *
  * @implSpec This class is immutable nad thread-safe.
- *
  * @since 1.8
  */
 final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
@@ -79,8 +78,8 @@ final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
     /**
      * The set of supported units.
      */
-    private static final List<TemporalUnit> SUPPORTED_UNITS = Collections
-            .unmodifiableList(Arrays.<TemporalUnit>asList(YEARS, MONTHS, DAYS));
+    private static final List<TemporalUnit> SUPPORTED_UNITS = Collections.unmodifiableList(Arrays
+            .<TemporalUnit>asList(YEARS, MONTHS, DAYS));
 
     /**
      * The chronology.
@@ -120,8 +119,7 @@ final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
         } else if (unit == ChronoUnit.DAYS) {
             return days;
         } else {
-            throw new UnsupportedTemporalTypeException("Unsupported unit: "
-                    + unit);
+            throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
     }
 
@@ -150,38 +148,34 @@ final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
     @Override
     public ChronoPeriod plus(TemporalAmount amountToAdd) {
         ChronoPeriodImpl amount = validateAmount(amountToAdd);
-        return new ChronoPeriodImpl(chrono, Math.addExact(years, amount.years),
-                Math.addExact(months, amount.months), Math.addExact(days,
-                        amount.days));
+        return new ChronoPeriodImpl(chrono, Math.addExact(years, amount.years), Math.addExact(months,
+                amount.months), Math.addExact(days, amount.days));
     }
 
     @Override
     public ChronoPeriod minus(TemporalAmount amountToSubtract) {
         ChronoPeriodImpl amount = validateAmount(amountToSubtract);
-        return new ChronoPeriodImpl(chrono, Math.subtractExact(years,
-                amount.years), Math.subtractExact(months, amount.months), Math
-                        .subtractExact(days, amount.days));
+        return new ChronoPeriodImpl(chrono, Math.subtractExact(years, amount.years), Math.subtractExact(
+                months, amount.months), Math.subtractExact(days, amount.days));
     }
 
     /**
      * Obtains an instance of {@code ChronoPeriodImpl} from a temporal amount.
      *
      * @param amount
-     *               the temporal amount to convert, not null
+     *        the temporal amount to convert, not null
      * @return the period, not null
      */
     private ChronoPeriodImpl validateAmount(TemporalAmount amount) {
         Objects.requireNonNull(amount, "amount");
         if (amount instanceof ChronoPeriodImpl == false) {
-            throw new DateTimeException(
-                    "Unable to obtain ChronoPeriod from TemporalAmount: "
-                            + amount.getClass());
+            throw new DateTimeException("Unable to obtain ChronoPeriod from TemporalAmount: " + amount
+                    .getClass());
         }
         ChronoPeriodImpl period = (ChronoPeriodImpl) amount;
         if (chrono.equals(period.getChronology()) == false) {
-            throw new ClassCastException("Chronology mismatch, expected: "
-                    + chrono.getId() + ", actual: " + period.getChronology()
-                            .getId());
+            throw new ClassCastException("Chronology mismatch, expected: " + chrono.getId() + ", actual: "
+                    + period.getChronology().getId());
         }
         return period;
     }
@@ -192,9 +186,8 @@ final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
         if (this.isZero() || scalar == 1) {
             return this;
         }
-        return new ChronoPeriodImpl(chrono, Math.multiplyExact(years, scalar),
-                Math.multiplyExact(months, scalar), Math.multiplyExact(days,
-                        scalar));
+        return new ChronoPeriodImpl(chrono, Math.multiplyExact(years, scalar), Math.multiplyExact(months,
+                scalar), Math.multiplyExact(days, scalar));
     }
 
     // -----------------------------------------------------------------------
@@ -208,8 +201,7 @@ final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
             if (splitYears == years && splitMonths == months) {
                 return this;
             }
-            return new ChronoPeriodImpl(chrono, Math.toIntExact(splitYears),
-                    splitMonths, days);
+            return new ChronoPeriodImpl(chrono, Math.toIntExact(splitYears), splitMonths, days);
 
         }
         return this;
@@ -282,11 +274,10 @@ final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
      */
     private void validateChrono(TemporalAccessor temporal) {
         Objects.requireNonNull(temporal, "temporal");
-        Chronology temporalChrono = temporal.query(TemporalQueries
-                .chronology());
+        Chronology temporalChrono = temporal.query(TemporalQueries.chronology());
         if (temporalChrono != null && chrono.equals(temporalChrono) == false) {
-            throw new DateTimeException("Chronology mismatch, expected: "
-                    + chrono.getId() + ", actual: " + temporalChrono.getId());
+            throw new DateTimeException("Chronology mismatch, expected: " + chrono.getId() + ", actual: "
+                    + temporalChrono.getId());
         }
     }
 
@@ -298,16 +289,15 @@ final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
         }
         if (obj instanceof ChronoPeriodImpl) {
             ChronoPeriodImpl other = (ChronoPeriodImpl) obj;
-            return years == other.years && months == other.months
-                    && days == other.days && chrono.equals(other.chrono);
+            return years == other.years && months == other.months && days == other.days && chrono.equals(
+                    other.chrono);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return (years + Integer.rotateLeft(months, 8) + Integer.rotateLeft(days,
-                16)) ^ chrono.hashCode();
+        return (years + Integer.rotateLeft(months, 8) + Integer.rotateLeft(days, 16)) ^ chrono.hashCode();
     }
 
     // -----------------------------------------------------------------------
@@ -355,13 +345,12 @@ final class ChronoPeriodImpl implements ChronoPeriod, Serializable {
      * Defend against malicious streams.
      *
      * @param s
-     *          the stream to read
+     *        the stream to read
      * @throws InvalidObjectException
-     *                                always
+     *         always
      */
     private void readObject(ObjectInputStream s) throws ObjectStreamException {
-        throw new InvalidObjectException(
-                "Deserialization via serialization delegate");
+        throw new InvalidObjectException("Deserialization via serialization delegate");
     }
 
     void writeExternal(DataOutput out) throws IOException {

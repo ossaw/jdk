@@ -24,13 +24,11 @@ import sun.util.ResourceBundleEnumeration;
  * <code>ResourceBundle</code> that manages resources for a locale in a
  * convenient and easy to use list. See <code>ResourceBundle</code> for more
  * information about resource bundles in general.
- *
  * <P>
  * Subclasses must override <code>getContents</code> and provide an array, where
  * each item in the array is a pair of objects. The first element of each pair
  * is the key, which must be a <code>String</code>, and the second element is
  * the value associated with that key.
- *
  * <p>
  * The following <a name="sample">example</a> shows two members of a resource
  * bundle family with the base name "MyResources". "MyResources" is the default
@@ -87,7 +85,6 @@ import sun.util.ResourceBundleEnumeration;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * The implementation of a {@code ListResourceBundle} subclass must be
  * thread-safe if it's simultaneously used by multiple threads. The default
@@ -132,9 +129,7 @@ public abstract class ListResourceBundle extends ResourceBundle {
         }
 
         ResourceBundle parent = this.parent;
-        return new ResourceBundleEnumeration(lookup.keySet(), (parent != null)
-                ? parent.getKeys()
-                : null);
+        return new ResourceBundleEnumeration(lookup.keySet(), (parent != null) ? parent.getKeys() : null);
     }
 
     /**

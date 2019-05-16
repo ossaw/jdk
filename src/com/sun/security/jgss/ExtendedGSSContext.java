@@ -40,12 +40,10 @@ public interface ExtendedGSSContext extends GSSContext {
      * <li>{@code KRB5_GET_AUTHTIME}: the returned object is a String object in
      * the standard KerberosTime format defined in RFC 4120 5.2.3
      * </ol>
-     *
      * If there is a security manager, an {@link InquireSecContextPermission}
      * with the name {@code type.mech} must be granted. Otherwise, this could
      * result in a {@link SecurityException}.
      * <p>
-     *
      * Example:
      * 
      * <pre>
@@ -64,26 +62,26 @@ public interface ExtendedGSSContext extends GSSContext {
      * </pre>
      * 
      * @param type
-     *             the type of the attribute requested
+     *        the type of the attribute requested
      * @return the attribute, see the method documentation for details.
      * @throws GSSException
-     *                           containing the following major error codes:
-     *                           {@link GSSException#BAD_MECH
-     *                           GSSException.BAD_MECH} if the
-     *                           mechanism does not support this method,
-     *                           {@link GSSException#UNAVAILABLE
-     *                           GSSException.UNAVAILABLE} if
-     *                           the type specified is not supported,
-     *                           {@link GSSException#NO_CONTEXT
-     *                           GSSException.NO_CONTEXT} if
-     *                           the security context is invalid,
-     *                           {@link GSSException#FAILURE
-     *                           GSSException.FAILURE} for other unspecified
-     *                           failures.
+     *         containing the following major error codes:
+     *         {@link GSSException#BAD_MECH
+     *         GSSException.BAD_MECH} if the
+     *         mechanism does not support this method,
+     *         {@link GSSException#UNAVAILABLE
+     *         GSSException.UNAVAILABLE} if
+     *         the type specified is not supported,
+     *         {@link GSSException#NO_CONTEXT
+     *         GSSException.NO_CONTEXT} if
+     *         the security context is invalid,
+     *         {@link GSSException#FAILURE
+     *         GSSException.FAILURE} for other unspecified
+     *         failures.
      * @throws SecurityException
-     *                           if a security manager exists and a proper
-     *                           {@link InquireSecContextPermission} is not
-     *                           granted.
+     *         if a security manager exists and a proper
+     *         {@link InquireSecContextPermission} is not
+     *         granted.
      * @see InquireSecContextPermission
      */
     public Object inquireSecContext(InquireType type) throws GSSException;
@@ -128,10 +126,10 @@ public interface ExtendedGSSContext extends GSSContext {
      * on the authentication path must also have the OK-AS-DELAGATE flags set.
      * 
      * @param state
-     *              true if the policy should be respected
+     *        true if the policy should be respected
      * @throws GSSException
-     *                      containing the following major error codes:
-     *                      {@link GSSException#FAILURE GSSException.FAILURE}
+     *         containing the following major error codes:
+     *         {@link GSSException#FAILURE GSSException.FAILURE}
      */
     public void requestDelegPolicy(boolean state) throws GSSException;
 

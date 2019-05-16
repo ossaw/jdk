@@ -14,7 +14,6 @@ class SliderThumbArrowShapeState extends State {
 
     @Override
     protected boolean isInState(JComponent c) {
-        return c.getClientProperty(
-                "Slider.paintThumbArrowShape") == Boolean.TRUE;
+        return c.getClientProperty("Slider.paintThumbArrowShape") == Boolean.TRUE;
     }
 }

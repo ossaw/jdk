@@ -15,7 +15,6 @@ package java.util.concurrent;
  * broken state, or which enters the broken state while the thread is waiting.
  *
  * @see CyclicBarrier
- *
  * @since 1.5
  * @author Doug Lea
  */
@@ -33,7 +32,7 @@ public class BrokenBarrierException extends Exception {
      * message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     public BrokenBarrierException(String message) {
         super(message);

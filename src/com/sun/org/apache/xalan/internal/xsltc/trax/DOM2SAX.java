@@ -65,8 +65,7 @@ public class DOM2SAX implements XMLReader, Locator {
         return _sax;
     }
 
-    public void setContentHandler(ContentHandler handler)
-            throws NullPointerException {
+    public void setContentHandler(ContentHandler handler) throws NullPointerException {
         _sax = handler;
         if (handler instanceof LexicalHandler) {
             _lex = (LexicalHandler) handler;
@@ -81,8 +80,7 @@ public class DOM2SAX implements XMLReader, Locator {
      * Begin the scope of namespace prefix. Forward the event to the SAX handler
      * only if the prefix is unknown or it is mapped to a different URI.
      */
-    private boolean startPrefixMapping(String prefix, String uri)
-            throws SAXException {
+    private boolean startPrefixMapping(String prefix, String uri) throws SAXException {
         boolean pushed = true;
         Stack uriStack = _nsPrefixes.get(prefix);
 
@@ -142,8 +140,7 @@ public class DOM2SAX implements XMLReader, Locator {
 
     public void parse() throws IOException, SAXException {
         if (_dom != null) {
-            boolean isIncomplete = (_dom
-                    .getNodeType() != org.w3c.dom.Node.DOCUMENT_NODE);
+            boolean isIncomplete = (_dom.getNodeType() != org.w3c.dom.Node.DOCUMENT_NODE);
 
             if (isIncomplete) {
                 _sax.startDocument();
@@ -220,8 +217,7 @@ public class DOM2SAX implements XMLReader, Locator {
                     if (qnameAttr.startsWith(XMLNS_PREFIX)) {
                         final String uriAttr = attr.getNodeValue();
                         final int colon = qnameAttr.lastIndexOf(':');
-                        prefix = (colon > 0) ? qnameAttr.substring(colon + 1)
-                                : EMPTYSTRING;
+                        prefix = (colon > 0) ? qnameAttr.substring(colon + 1) : EMPTYSTRING;
                         if (startPrefixMapping(prefix, uriAttr)) {
                             pushedPrefixes.addElement(prefix);
                         }
@@ -255,8 +251,8 @@ public class DOM2SAX implements XMLReader, Locator {
                         }
 
                         // Add attribute to list
-                        attrs.addAttribute(attr.getNamespaceURI(), getLocalName(
-                                attr), qnameAttr, "CDATA", attr.getNodeValue());
+                        attrs.addAttribute(attr.getNamespaceURI(), getLocalName(attr), qnameAttr, "CDATA",
+                                attr.getNodeValue());
                     }
                 }
 
@@ -268,8 +264,7 @@ public class DOM2SAX implements XMLReader, Locator {
                 // Uri may be implicitly declared
                 if (uri != null) {
                     final int colon = qname.lastIndexOf(':');
-                    prefix = (colon > 0) ? qname.substring(0, colon)
-                            : EMPTYSTRING;
+                    prefix = (colon > 0) ? qname.substring(0, colon) : EMPTYSTRING;
                     if (startPrefixMapping(prefix, uri)) {
                         pushedPrefixes.addElement(prefix);
                     }
@@ -300,8 +295,7 @@ public class DOM2SAX implements XMLReader, Locator {
                 break;
 
             case Node.PROCESSING_INSTRUCTION_NODE:
-                _sax.processingInstruction(node.getNodeName(), node
-                        .getNodeValue());
+                _sax.processingInstruction(node.getNodeName(), node.getNodeValue());
                 break;
 
             case Node.TEXT_NODE:
@@ -328,16 +322,15 @@ public class DOM2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public boolean getFeature(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public boolean getFeature(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         return false;
     }
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setFeature(String name, boolean value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {}
+    public void setFeature(String name, boolean value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {}
 
     /**
      * This class is only used internally so this method should never be called.
@@ -354,8 +347,7 @@ public class DOM2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setEntityResolver(EntityResolver resolver)
-            throws NullPointerException {}
+    public void setEntityResolver(EntityResolver resolver) throws NullPointerException {}
 
     /**
      * This class is only used internally so this method should never be called.
@@ -367,20 +359,18 @@ public class DOM2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setErrorHandler(ErrorHandler handler)
-            throws NullPointerException {}
+    public void setErrorHandler(ErrorHandler handler) throws NullPointerException {}
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setProperty(String name, Object value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {}
+    public void setProperty(String name, Object value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {}
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public Object getProperty(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public Object getProperty(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         return null;
     }
 

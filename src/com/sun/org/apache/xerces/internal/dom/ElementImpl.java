@@ -44,9 +44,7 @@ import com.sun.org.apache.xerces.internal.util.URI;
  * it, does.
  * 
  * @see ElementNSImpl
- *
  * @xerces.internal
- *
  * @author Arnaud Le Hors, IBM
  * @author Joe Kesselman, IBM
  * @author Andy Clark, IBM
@@ -179,13 +177,10 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
 
                         // Make any parentURI into a URI object to use with the
                         // URI(URI, String) constructor
-                        String parentBaseURI = (this.ownerNode != null)
-                                ? this.ownerNode.getBaseURI()
-                                : null;
+                        String parentBaseURI = (this.ownerNode != null) ? this.ownerNode.getBaseURI() : null;
                         if (parentBaseURI != null) {
                             try {
-                                uri = new URI(new URI(parentBaseURI), uri)
-                                        .toString();
+                                uri = new URI(new URI(parentBaseURI), uri).toString();
                             } catch (com.sun.org.apache.xerces.internal.util.URI.MalformedURIException ex) {
                                 // This should never happen: parent should have
                                 // checked the URI and returned null if invalid.
@@ -206,8 +201,7 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
         // containing the element
 
         // ownerNode serves as a parent or as document
-        String baseURI = (this.ownerNode != null) ? this.ownerNode.getBaseURI()
-                : null;
+        String baseURI = (this.ownerNode != null) ? this.ownerNode.getBaseURI() : null;
         // base URI of parent element is not null
         if (baseURI != null) {
             try {
@@ -285,10 +279,9 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
      * in the DOM.
      *
      * @param tagname
-     *                The type of element to gather. To obtain a list of all
-     *                elements no matter what their names, use the wild-card tag
-     *                name "*".
-     *
+     *        The type of element to gather. To obtain a list of all
+     *        elements no matter what their names, use the wild-card tag
+     *        name "*".
      * @see DeepNodeListImpl
      */
     public NodeList getElementsByTagName(String tagname) {
@@ -347,8 +340,7 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
                     next = kid; // Don't advance; there might be another.
                 } else {
                     // If kid is empty, remove it
-                    if (kid.getNodeValue() == null || kid.getNodeValue()
-                            .length() == 0) {
+                    if (kid.getNodeValue() == null || kid.getNodeValue().length() == 0) {
                         removeChild(kid);
                     }
                 }
@@ -387,17 +379,15 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
      * that case.
      *
      * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-     *                                                   if the node is
-     *                                                   readonly.
+     *         if the node is
+     *         readonly.
      */
     public void removeAttribute(String name) {
 
         if (ownerDocument.errorChecking && isReadOnly()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "NO_MODIFICATION_ALLOWED_ERR", null);
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    msg);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
         }
 
         if (needsSyncData()) {
@@ -423,21 +413,19 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
      *
      * @return the Attribute object that was removed.
      * @throws DOMException(NOT_FOUND_ERR)
-     *                                                   if oldattr is not an
-     *                                                   attribute of this
-     *                                                   Element.
+     *         if oldattr is not an
+     *         attribute of this
+     *         Element.
      * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-     *                                                   if the node is
-     *                                                   readonly.
+     *         if the node is
+     *         readonly.
      */
     public Attr removeAttributeNode(Attr oldAttr) throws DOMException {
 
         if (ownerDocument.errorChecking && isReadOnly()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "NO_MODIFICATION_ALLOWED_ERR", null);
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    msg);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
         }
 
         if (needsSyncData()) {
@@ -445,8 +433,8 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
         }
 
         if (attributes == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR",
+                    null);
             throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
         }
         return (Attr) attributes.removeItem(oldAttr, true);
@@ -456,34 +444,29 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
     /**
      * Add a new name/value pair, or replace the value of the existing attribute
      * having that name.
-     *
      * Note: this method supports only the simplest kind of Attribute, one whose
      * value is a string contained in a single Text node. If you want to assert
      * a more complex value (which XML permits, though HTML doesn't), see
      * setAttributeNode().
-     *
      * The attribute is created with specified=true, meaning it's an explicit
      * value rather than inherited from the DTD as a default. Again,
      * setAttributeNode can be used to achieve other results.
      *
      * @throws DOMException(INVALID_NAME_ERR)
-     *                                                   if the name is not
-     *                                                   acceptable. (Attribute
-     *                                                   factory will do
-     *                                                   that test for us.)
-     *
+     *         if the name is not
+     *         acceptable. (Attribute
+     *         factory will do
+     *         that test for us.)
      * @throws DOMException(NO_MODIFICATION_ALLOWED_ERR)
-     *                                                   if the node is
-     *                                                   readonly.
+     *         if the node is
+     *         readonly.
      */
     public void setAttribute(String name, String value) {
 
         if (ownerDocument.errorChecking && isReadOnly()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "NO_MODIFICATION_ALLOWED_ERR", null);
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    msg);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
         }
 
         if (needsSyncData()) {
@@ -517,10 +500,10 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
      * references mixed into their text.
      *
      * @throws DOMException(INUSE_ATTRIBUTE_ERR)
-     *                                           if the Attribute object has
-     *                                           already been assigned to
-     *                                           another
-     *                                           Element.
+     *         if the Attribute object has
+     *         already been assigned to
+     *         another
+     *         Element.
      */
     public Attr setAttributeNode(Attr newAttr) throws DOMException {
 
@@ -530,17 +513,14 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
 
         if (ownerDocument.errorChecking) {
             if (isReadOnly()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                         "NO_MODIFICATION_ALLOWED_ERR", null);
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        msg);
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
             }
 
             if (newAttr.getOwnerDocument() != ownerDocument) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "WRONG_DOCUMENT_ERR", null);
                 throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
             }
         }
@@ -560,13 +540,12 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
     /**
      * Introduced in DOM Level 2.
      * <p>
-     *
      * Retrieves an attribute value by local name and namespace URI.
      *
      * @param namespaceURI
-     *                     The namespace URI of the attribute to retrieve.
+     *        The namespace URI of the attribute to retrieve.
      * @param localName
-     *                     The local name of the attribute to retrieve.
+     *        The local name of the attribute to retrieve.
      * @return String The Attr value as a string, or empty string if that
      *         attribute does not have a specified or default value.
      * @since WD-DOM-Level-2-19990923
@@ -589,7 +568,6 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
     /**
      * Introduced in DOM Level 2.
      * <p>
-     *
      * Adds a new attribute. If the given namespaceURI is null or an empty
      * string and the qualifiedName has a prefix that is "xml", the new
      * attribute is bound to the predefined namespace
@@ -607,45 +585,40 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
      * attribute.
      *
      * @param namespaceURI
-     *                      The namespace URI of the attribute to create or
-     *                      alter.
+     *        The namespace URI of the attribute to create or
+     *        alter.
      * @param qualifiedName
-     *                      The qualified name of the attribute to create or
-     *                      alter.
+     *        The qualified name of the attribute to create or
+     *        alter.
      * @param value
-     *                      The value to set in string form.
+     *        The value to set in string form.
      * @throws INVALID_CHARACTER_ERR:
-     *                                      Raised if the specified name
-     *                                      contains an invalid character.
-     *
+     *         Raised if the specified name
+     *         contains an invalid character.
      * @throws NO_MODIFICATION_ALLOWED_ERR:
-     *                                      Raised if this node is readonly.
-     *
+     *         Raised if this node is readonly.
      * @throws NAMESPACE_ERR:
-     *                                      Raised if the qualifiedName has a
-     *                                      prefix that is "xml" and
-     *                                      the namespaceURI is neither null nor
-     *                                      an empty string nor
-     *                                      "http://www.w3.org/XML/1998/namespace",
-     *                                      or if the
-     *                                      qualifiedName has a prefix that is
-     *                                      "xmlns" but the
-     *                                      namespaceURI is neither null nor an
-     *                                      empty string, or if if
-     *                                      the qualifiedName has a prefix
-     *                                      different from "xml" and
-     *                                      "xmlns" and the namespaceURI is null
-     *                                      or an empty string.
+     *         Raised if the qualifiedName has a
+     *         prefix that is "xml" and
+     *         the namespaceURI is neither null nor
+     *         an empty string nor
+     *         "http://www.w3.org/XML/1998/namespace",
+     *         or if the
+     *         qualifiedName has a prefix that is
+     *         "xmlns" but the
+     *         namespaceURI is neither null nor an
+     *         empty string, or if if
+     *         the qualifiedName has a prefix
+     *         different from "xml" and
+     *         "xmlns" and the namespaceURI is null
+     *         or an empty string.
      * @since WD-DOM-Level-2-19990923
      */
-    public void setAttributeNS(String namespaceURI, String qualifiedName,
-            String value) {
+    public void setAttributeNS(String namespaceURI, String qualifiedName, String value) {
         if (ownerDocument.errorChecking && isReadOnly()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "NO_MODIFICATION_ALLOWED_ERR", null);
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    msg);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
         }
         if (needsSyncData()) {
             synchronizeData();
@@ -663,8 +636,7 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
         if (newAttr == null) {
             // REVISIT: this is not efficient, we are creating twice the same
             // strings for prefix and localName.
-            newAttr = getOwnerDocument().createAttributeNS(namespaceURI,
-                    qualifiedName);
+            newAttr = getOwnerDocument().createAttributeNS(namespaceURI, qualifiedName);
             if (attributes == null) {
                 attributes = new AttributeMap(this, null);
             }
@@ -673,8 +645,7 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
         } else {
             if (newAttr instanceof AttrNSImpl) {
                 String origNodeName = ((AttrNSImpl) newAttr).name;
-                String newName = (prefix != null) ? (prefix + ":" + localName)
-                        : localName;
+                String newName = (prefix != null) ? (prefix + ":" + localName) : localName;
 
                 ((AttrNSImpl) newAttr).name = newName;
 
@@ -702,8 +673,8 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
                 // from the tree
                 // note this might cause events to be propagated or user data to
                 // be lost
-                newAttr = new AttrNSImpl((CoreDocumentImpl) getOwnerDocument(),
-                        namespaceURI, qualifiedName, localName);
+                newAttr = new AttrNSImpl((CoreDocumentImpl) getOwnerDocument(), namespaceURI, qualifiedName,
+                        localName);
                 attributes.setNamedItemNS(newAttr);
             }
 
@@ -715,7 +686,6 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
     /**
      * Introduced in DOM Level 2.
      * <p>
-     *
      * Removes an attribute by local name and namespace URI. If the removed
      * attribute has a default value it is immediately replaced. The replacing
      * attribute has the same namespace URI and local name, as well as the
@@ -723,22 +693,19 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
      * <p>
      *
      * @param namespaceURI
-     *                     The namespace URI of the attribute to remove.
-     *
+     *        The namespace URI of the attribute to remove.
      * @param localName
-     *                     The local name of the attribute to remove.
+     *        The local name of the attribute to remove.
      * @throws NO_MODIFICATION_ALLOWED_ERR:
-     *                                      Raised if this node is readonly.
+     *         Raised if this node is readonly.
      * @since WD-DOM-Level-2-19990923
      */
     public void removeAttributeNS(String namespaceURI, String localName) {
 
         if (ownerDocument.errorChecking && isReadOnly()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "NO_MODIFICATION_ALLOWED_ERR", null);
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    msg);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
         }
 
         if (needsSyncData()) {
@@ -757,9 +724,9 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
      * Retrieves an Attr node by local name and namespace URI.
      *
      * @param namespaceURI
-     *                     The namespace URI of the attribute to retrieve.
+     *        The namespace URI of the attribute to retrieve.
      * @param localName
-     *                     The local name of the attribute to retrieve.
+     *        The local name of the attribute to retrieve.
      * @return Attr The Attr node with the specified attribute local name and
      *         namespace URI or null if there is no such attribute.
      * @since WD-DOM-Level-2-19990923
@@ -779,30 +746,27 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
     /**
      * Introduced in DOM Level 2.
      * <p>
-     *
      * Adds a new attribute. If an attribute with that local name and namespace
      * URI is already present in the element, it is replaced by the new one.
      *
      * @param Attr
-     *             The Attr node to add to the attribute list. When the Node has
-     *             no namespaceURI, this method behaves like setAttributeNode.
+     *        The Attr node to add to the attribute list. When the Node has
+     *        no namespaceURI, this method behaves like setAttributeNode.
      * @return Attr If the newAttr attribute replaces an existing attribute with
      *         the same local name and namespace URI, the * previously existing
      *         Attr node is returned, otherwise null is returned.
      * @throws WRONG_DOCUMENT_ERR:
-     *                                      Raised if newAttr was created from a
-     *                                      different document than
-     *                                      the one that created the element.
-     *
+     *         Raised if newAttr was created from a
+     *         different document than
+     *         the one that created the element.
      * @throws NO_MODIFICATION_ALLOWED_ERR:
-     *                                      Raised if this node is readonly.
-     *
+     *         Raised if this node is readonly.
      * @throws INUSE_ATTRIBUTE_ERR:
-     *                                      Raised if newAttr is already an
-     *                                      attribute of another Element
-     *                                      object. The DOM user must explicitly
-     *                                      clone Attr nodes to
-     *                                      re-use them in other elements.
+     *         Raised if newAttr is already an
+     *         attribute of another Element
+     *         object. The DOM user must explicitly
+     *         clone Attr nodes to
+     *         re-use them in other elements.
      * @since WD-DOM-Level-2-19990923
      */
     public Attr setAttributeNodeNS(Attr newAttr) throws DOMException {
@@ -812,16 +776,13 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
         }
         if (ownerDocument.errorChecking) {
             if (isReadOnly()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                         "NO_MODIFICATION_ALLOWED_ERR", null);
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        msg);
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
             }
             if (newAttr.getOwnerDocument() != ownerDocument) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "WRONG_DOCUMENT_ERR", null);
                 throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
             }
         }
@@ -892,28 +853,26 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
     /**
      * Introduced in DOM Level 2.
      * <p>
-     *
      * Returns a NodeList of all the Elements with a given local name and
      * namespace URI in the order in which they would be encountered in a
      * preorder traversal of the Document tree, starting from this node.
      *
      * @param namespaceURI
-     *                     The namespace URI of the elements to match on. The
-     *                     special
-     *                     value "*" matches all namespaces. When it is null or
-     *                     an empty
-     *                     string, this method behaves like
-     *                     getElementsByTagName.
+     *        The namespace URI of the elements to match on. The
+     *        special
+     *        value "*" matches all namespaces. When it is null or
+     *        an empty
+     *        string, this method behaves like
+     *        getElementsByTagName.
      * @param localName
-     *                     The local name of the elements to match on. The
-     *                     special value
-     *                     "*" matches all local names.
+     *        The local name of the elements to match on. The
+     *        special value
+     *        "*" matches all local names.
      * @return NodeList A new NodeList object containing all the matched
      *         Elements.
      * @since WD-DOM-Level-2-19990923
      */
-    public NodeList getElementsByTagNameNS(String namespaceURI,
-            String localName) {
+    public NodeList getElementsByTagNameNS(String namespaceURI, String localName) {
         return new DeepNodeListImpl(this, namespaceURI, localName);
     }
 
@@ -944,8 +903,7 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
                         return false;
                     }
                 } else {
-                    Node n2 = map2.getNamedItemNS(n1.getNamespaceURI(), n1
-                            .getLocalName());
+                    Node n2 = map2.getNamedItemNS(n1.getNamespaceURI(), n1.getLocalName());
                     if (n2 == null || !((NodeImpl) n1).isEqualNode(n2)) {
                         return false;
                     }
@@ -964,16 +922,14 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
         }
         if (ownerDocument.errorChecking) {
             if (isReadOnly()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                         "NO_MODIFICATION_ALLOWED_ERR", null);
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        msg);
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
             }
 
             if (at.getOwnerElement() != this) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NOT_FOUND_ERR", null);
                 throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
             }
         }
@@ -995,23 +951,21 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
         Attr at = getAttributeNode(name);
 
         if (at == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR",
+                    null);
             throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
         }
 
         if (ownerDocument.errorChecking) {
             if (isReadOnly()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                         "NO_MODIFICATION_ALLOWED_ERR", null);
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        msg);
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
             }
 
             if (at.getOwnerElement() != this) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NOT_FOUND_ERR", null);
                 throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
             }
         }
@@ -1027,8 +981,7 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
     /**
      * DOM Level 3: register the given attribute node as an ID attribute
      */
-    public void setIdAttributeNS(String namespaceURI, String localName,
-            boolean makeId) {
+    public void setIdAttributeNS(String namespaceURI, String localName, boolean makeId) {
         if (needsSyncData()) {
             synchronizeData();
         }
@@ -1039,23 +992,21 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
         Attr at = getAttributeNodeNS(namespaceURI, localName);
 
         if (at == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR",
+                    null);
             throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
         }
 
         if (ownerDocument.errorChecking) {
             if (isReadOnly()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                         "NO_MODIFICATION_ALLOWED_ERR", null);
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        msg);
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
             }
 
             if (at.getOwnerElement() != this) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NOT_FOUND_ERR", null);
                 throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
             }
         }
@@ -1088,17 +1039,15 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
      * http://www.w3.org/TR/DOM-Level-3-Core/core.html#TypeInfo-isDerivedFrom
      *
      * @param ancestorNS
-     *                     The namspace of the ancestor type declaration
+     *        The namspace of the ancestor type declaration
      * @param ancestorName
-     *                     The name of the ancestor type declaration
+     *        The name of the ancestor type declaration
      * @param type
-     *                     The reference type definition
-     *
+     *        The reference type definition
      * @return boolean True if the type is derived by restriciton for the
      *         reference type
      */
-    public boolean isDerivedFrom(String typeNamespaceArg, String typeNameArg,
-            int derivationMethod) {
+    public boolean isDerivedFrom(String typeNamespaceArg, String typeNameArg, int derivationMethod) {
 
         return false;
     }
@@ -1186,13 +1135,12 @@ public class ElementImpl extends ParentNode implements Element, TypeInfo {
     /** Get the default attributes. */
     protected NamedNodeMapImpl getDefaultAttributes() {
 
-        DocumentTypeImpl doctype = (DocumentTypeImpl) ownerDocument
-                .getDoctype();
+        DocumentTypeImpl doctype = (DocumentTypeImpl) ownerDocument.getDoctype();
         if (doctype == null) {
             return null;
         }
-        ElementDefinitionImpl eldef = (ElementDefinitionImpl) doctype
-                .getElements().getNamedItem(getNodeName());
+        ElementDefinitionImpl eldef = (ElementDefinitionImpl) doctype.getElements().getNamedItem(
+                getNodeName());
         if (eldef == null) {
             return null;
         }

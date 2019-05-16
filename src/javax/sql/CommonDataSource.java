@@ -14,14 +14,12 @@ import java.util.logging.Logger;
  * Interface that defines the methods which are common between
  * <code>DataSource</code>, <code>XADataSource</code> and
  * <code>ConnectionPoolDataSource</code>.
- *
  */
 public interface CommonDataSource {
 
     /**
      * <p>
      * Retrieves the log writer for this <code>DataSource</code> object.
-     *
      * <p>
      * The log writer is a character output stream to which all logging and
      * tracing messages for this data source will be printed. This includes
@@ -46,7 +44,6 @@ public interface CommonDataSource {
      * <p>
      * Sets the log writer for this <code>DataSource</code> object to the given
      * <code>java.io.PrintWriter</code> object.
-     *
      * <p>
      * The log writer is a character output stream to which all logging and
      * tracing messages for this data source will be printed. This includes
@@ -59,9 +56,9 @@ public interface CommonDataSource {
      * disabled.
      *
      * @param out
-     *            the new log writer; to disable logging, set to null
+     *        the new log writer; to disable logging, set to null
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getLogWriter
      * @since 1.4
      */
@@ -76,9 +73,9 @@ public interface CommonDataSource {
      * is created, the login timeout is initially zero.
      *
      * @param seconds
-     *                the data source login time limit
+     *        the data source login time limit
      * @exception SQLException
-     *                         if a database access error occurs.
+     *            if a database access error occurs.
      * @see #getLoginTimeout
      * @since 1.4
      */
@@ -93,7 +90,7 @@ public interface CommonDataSource {
      *
      * @return the data source login time limit
      * @exception SQLException
-     *                         if a database access error occurs.
+     *            if a database access error occurs.
      * @see #setLoginTimeout
      * @since 1.4
      */
@@ -110,8 +107,8 @@ public interface CommonDataSource {
      *
      * @return the parent Logger for this data source
      * @throws SQLFeatureNotSupportedException
-     *                                         if the data source does not use
-     *                                         {@code java.util.logging}
+     *         if the data source does not use
+     *         {@code java.util.logging}
      * @since 1.7
      */
     public Logger getParentLogger() throws SQLFeatureNotSupportedException;

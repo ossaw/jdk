@@ -9,7 +9,6 @@ package javax.xml.bind;
  * This exception indicates that an error has occurred while performing an
  * unmarshal operation that prevents the JAXB Provider from completing the
  * operation.
- *
  * <p>
  * The <tt>ValidationEventHandler</tt> can cause this exception to be thrown
  * during the unmarshal operations. See
@@ -32,7 +31,7 @@ public class UnmarshalException extends JAXBException {
      * errorCode and linkedException will default to null.
      *
      * @param message
-     *                a description of the exception
+     *        a description of the exception
      */
     public UnmarshalException(String message) {
         this(message, null, null);
@@ -43,9 +42,9 @@ public class UnmarshalException extends JAXBException {
      * vendor specific errorCode. The linkedException will default to null.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param errorCode
-     *                  a string specifying the vendor specific error code
+     *        a string specifying the vendor specific error code
      */
     public UnmarshalException(String message, String errorCode) {
         this(message, errorCode, null);
@@ -56,7 +55,7 @@ public class UnmarshalException extends JAXBException {
      * message and vendor specific errorCode will default to null.
      *
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
     public UnmarshalException(Throwable exception) {
         this(null, null, exception);
@@ -67,9 +66,9 @@ public class UnmarshalException extends JAXBException {
      * linkedException. The errorCode will default to null.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
     public UnmarshalException(String message, Throwable exception) {
         this(message, null, exception);
@@ -80,14 +79,13 @@ public class UnmarshalException extends JAXBException {
      * specific errorCode, and linkedException.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param errorCode
-     *                  a string specifying the vendor specific error code
+     *        a string specifying the vendor specific error code
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
-    public UnmarshalException(String message, String errorCode,
-            Throwable exception) {
+    public UnmarshalException(String message, String errorCode, Throwable exception) {
         super(message, errorCode, exception);
     }
 

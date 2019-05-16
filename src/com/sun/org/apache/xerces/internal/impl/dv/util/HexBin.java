@@ -19,11 +19,9 @@ package com.sun.org.apache.xerces.internal.impl.dv.util;
 
 /**
  * format validation
- *
  * This class encodes/decodes hexadecimal data
  *
  * @xerces.internal
- *
  * @author Jeffrey Rodriguez
  */
 public final class HexBin {
@@ -58,7 +56,7 @@ public final class HexBin {
      * Encode a byte array to hex string
      *
      * @param binaryData
-     *                   array of byte to encode
+     *        array of byte to encode
      * @return return encoded string
      */
     static public String encode(byte[] binaryData) {
@@ -82,7 +80,7 @@ public final class HexBin {
      * Decode hex string to a byte array
      *
      * @param encoded
-     *                encoded string
+     *        encoded string
      * @return return array of byte to encode
      */
     static public byte[] decode(String encoded) {

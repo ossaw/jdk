@@ -45,7 +45,6 @@ import org.xml.sax.SAXNotRecognizedException;
  *
  * @author Arnaud Le Hors, IBM
  * @author Andy Clark, IBM
- *
  * @version $Id: XMLParser.java,v 1.5 2007/07/20 14:11:21 spericas Exp $
  */
 public abstract class XMLParser {
@@ -65,8 +64,7 @@ public abstract class XMLParser {
             + Constants.ERROR_HANDLER_PROPERTY;
 
     /** Recognized properties. */
-    private static final String[] RECOGNIZED_PROPERTIES = { ENTITY_RESOLVER,
-            ERROR_HANDLER, };
+    private static final String[] RECOGNIZED_PROPERTIES = { ENTITY_RESOLVER, ERROR_HANDLER, };
 
     //
     // Data
@@ -88,8 +86,7 @@ public abstract class XMLParser {
     /**
      * Query the state of a feature.
      */
-    public boolean getFeature(String featureId) throws SAXNotSupportedException,
-            SAXNotRecognizedException {
+    public boolean getFeature(String featureId) throws SAXNotSupportedException, SAXNotRecognizedException {
         return fConfiguration.getFeature(featureId);
 
     }
@@ -115,22 +112,18 @@ public abstract class XMLParser {
      * parse
      *
      * @param inputSource
-     *
      * @exception XNIException
-     * @exception              java.io.IOException
+     * @exception java.io.IOException
      */
-    public void parse(XMLInputSource inputSource) throws XNIException,
-            IOException {
+    public void parse(XMLInputSource inputSource) throws XNIException, IOException {
         // null indicates that the parser is called directly, initialize them
         if (securityManager == null) {
             securityManager = new XMLSecurityManager(true);
-            fConfiguration.setProperty(Constants.SECURITY_MANAGER,
-                    securityManager);
+            fConfiguration.setProperty(Constants.SECURITY_MANAGER, securityManager);
         }
         if (securityPropertyManager == null) {
             securityPropertyManager = new XMLSecurityPropertyManager();
-            fConfiguration.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER,
-                    securityPropertyManager);
+            fConfiguration.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER, securityPropertyManager);
         }
 
         reset();

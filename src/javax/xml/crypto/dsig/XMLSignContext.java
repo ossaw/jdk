@@ -13,7 +13,6 @@ import javax.xml.crypto.XMLCryptoContext;
 /**
  * Contains context information for generating XML Signatures. This interface is
  * primarily intended for type-safety.
- *
  * <p>
  * Note that <code>XMLSignContext</code> instances can contain information and
  * state specific to the XML signature structure it is used with. The results

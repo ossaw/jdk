@@ -29,10 +29,8 @@ import java.io.Writer;
  * CHARACTERTOSTREAM events to the trace listener. Each method immediately sends
  * the call to the wrapped writer unchanged, but in addition it collects
  * characters to be issued to a trace listener.
- *
  * In this way the trace listener knows what characters have been written to the
  * output Writer.
- *
  * There may still be differences in what the trace events say is going to the
  * output writer and what is really going there. These differences will be due
  * to the fact that this class is UTF-8 encoding before emiting the trace event
@@ -62,7 +60,6 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
 
     /**
      * Internal buffer to collect the characters to go to the trace listener.
-     *
      */
     private byte buf[];
 
@@ -92,9 +89,9 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
      * such as a debugger, can gather information on what is being written out.
      *
      * @param out
-     *               the Writer to write to (possibly null)
+     *        the Writer to write to (possibly null)
      * @param tracer
-     *               the tracer to inform that characters are being written
+     *        the tracer to inform that characters are being written
      */
     public SerializerTraceWriter(Writer out, SerializerTrace tracer) {
         m_writer = out;
@@ -119,8 +116,7 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
                 chars[i] = (char) buf[i];
 
             if (m_tracer != null)
-                m_tracer.fireGenerateEvent(
-                        SerializerTrace.EVENTTYPE_OUTPUT_CHARACTERS, chars, 0,
+                m_tracer.fireGenerateEvent(SerializerTrace.EVENTTYPE_OUTPUT_CHARACTERS, chars, 0,
                         chars.length);
 
             count = 0;
@@ -159,15 +155,14 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
      * Write a single character. The character to be written is contained in the
      * 16 low-order bits of the given integer value; the 16 high-order bits are
      * ignored.
-     *
      * <p>
      * Subclasses that intend to support efficient single-character output
      * should override this method.
      *
      * @param c
-     *          int specifying a character to be written.
+     *        int specifying a character to be written.
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(final int c) throws IOException {
         // send to the real writer
@@ -199,19 +194,16 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
      * Write a portion of an array of characters.
      *
      * @param chars
-     *               Array of characters
+     *        Array of characters
      * @param start
-     *               Offset from which to start writing characters
+     *        Offset from which to start writing characters
      * @param length
-     *               Number of characters to write
-     *
+     *        Number of characters to write
      * @exception IOException
-     *                        If an I/O error occurs
-     *
+     *            If an I/O error occurs
      * @throws java.io.IOException
      */
-    public void write(final char chars[], final int start, final int length)
-            throws java.io.IOException {
+    public void write(final char chars[], final int start, final int length) throws java.io.IOException {
         // send to the real writer
         if (m_writer != null)
             m_writer.write(chars, start, length);
@@ -257,10 +249,9 @@ final class SerializerTraceWriter extends Writer implements WriterChain {
      * Write a string.
      *
      * @param s
-     *          String to be written
-     *
+     *        String to be written
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(final String s) throws IOException {
         // send to the real writer

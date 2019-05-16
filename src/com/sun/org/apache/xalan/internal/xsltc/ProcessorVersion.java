@@ -40,8 +40,6 @@ public class ProcessorVersion {
     private static int DELTA = 0;
 
     public static void main(String[] args) {
-        System.out.println("XSLTC version " + MAJOR + "." + MINOR + ((DELTA > 0)
-                ? ("." + DELTA)
-                : ("")));
+        System.out.println("XSLTC version " + MAJOR + "." + MINOR + ((DELTA > 0) ? ("." + DELTA) : ("")));
     }
 }

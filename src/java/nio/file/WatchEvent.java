@@ -8,20 +8,17 @@ package java.nio.file;
 /**
  * An event or a repeated event for an object that is registered with a
  * {@link WatchService}.
- *
  * <p>
  * An event is classified by its {@link #kind() kind} and has a {@link #count()
  * count} to indicate the number of times that the event has been observed. This
  * allows for efficient representation of repeated events. The {@link #context()
  * context} method returns any context associated with the event. In the case of
  * a repeated event then the context is the same for all events.
- *
  * <p>
  * Watch events are immutable and safe for use by multiple concurrent threads.
  *
  * @param <T>
  *        The type of the context object associated with the event
- *
  * @since 1.7
  */
 
@@ -44,7 +41,6 @@ public interface WatchEvent<T> {
         /**
          * Returns the type of the {@link WatchEvent#context context} value.
          *
-         *
          * @return the type of the context value
          */
         Class<T> type();
@@ -53,7 +49,6 @@ public interface WatchEvent<T> {
     /**
      * An event modifier that qualifies how a {@link Watchable} is registered
      * with a {@link WatchService}.
-     *
      * <p>
      * This release does not define any <em>standard</em> modifiers.
      *
@@ -86,7 +81,6 @@ public interface WatchEvent<T> {
 
     /**
      * Returns the context for the event.
-     *
      * <p>
      * In the case of {@link StandardWatchEventKinds#ENTRY_CREATE ENTRY_CREATE},
      * {@link StandardWatchEventKinds#ENTRY_DELETE ENTRY_DELETE}, and

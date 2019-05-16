@@ -23,10 +23,8 @@ package com.sun.org.apache.xml.internal.serializer.utils;
 /**
  * This class is for throwing important checked exceptions over non-checked
  * methods. It should be used with care, and in limited circumstances.
- *
  * This class is a copy of the one in com.sun.org.apache.xml.internal.utils. It
  * exists to cut the serializers dependancy on that package.
- *
  * This class is not a public API, it is only public because it is used by
  * com.sun.org.apache.xml.internal.serializer.
  * 
@@ -46,7 +44,7 @@ public final class WrappedRuntimeException extends RuntimeException {
      * Construct a WrappedRuntimeException from a checked exception.
      *
      * @param e
-     *          Primary checked exception
+     *        Primary checked exception
      */
     public WrappedRuntimeException(Exception e) {
 
@@ -58,11 +56,10 @@ public final class WrappedRuntimeException extends RuntimeException {
     /**
      * Constructor WrappedRuntimeException
      *
-     *
      * @param msg
-     *            Exception information.
+     *        Exception information.
      * @param e
-     *            Primary checked exception
+     *        Primary checked exception
      */
     public WrappedRuntimeException(String msg, Exception e) {
 

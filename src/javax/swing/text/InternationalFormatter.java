@@ -66,7 +66,6 @@ import javax.swing.*;
  *
  * @see java.text.Format
  * @see java.lang.Comparable
- *
  * @since 1.4
  */
 public class InternationalFormatter extends DefaultFormatter {
@@ -147,7 +146,7 @@ public class InternationalFormatter extends DefaultFormatter {
      * <code>Format</code> instance.
      *
      * @param format
-     *               Format instance used for converting from/to Strings
+     *        Format instance used for converting from/to Strings
      */
     public InternationalFormatter(Format format) {
         this();
@@ -159,8 +158,8 @@ public class InternationalFormatter extends DefaultFormatter {
      * displayed.
      *
      * @param format
-     *               <code>Format</code> instance used for converting from/to
-     *               Strings
+     *        <code>Format</code> instance used for converting from/to
+     *        Strings
      */
     public void setFormat(Format format) {
         this.format = format;
@@ -183,7 +182,7 @@ public class InternationalFormatter extends DefaultFormatter {
      * <code>minimum</code>.
      *
      * @param minimum
-     *                Minimum legal value that can be input
+     *        Minimum legal value that can be input
      * @see #setValueClass
      */
     public void setMinimum(Comparable minimum) {
@@ -209,7 +208,7 @@ public class InternationalFormatter extends DefaultFormatter {
      * <code>max</code>.
      *
      * @param max
-     *            Maximum legal value that can be input
+     *        Maximum legal value that can be input
      * @see #setValueClass
      */
     public void setMaximum(Comparable max) {
@@ -252,8 +251,8 @@ public class InternationalFormatter extends DefaultFormatter {
      * appropriate times when the value changes, or its internal state changes.
      *
      * @param ftf
-     *            JFormattedTextField to format for, may be null indicating
-     *            uninstall from current JFormattedTextField.
+     *        JFormattedTextField to format for, may be null indicating
+     *        uninstall from current JFormattedTextField.
      */
     public void install(JFormattedTextField ftf) {
         super.install(ftf);
@@ -267,9 +266,9 @@ public class InternationalFormatter extends DefaultFormatter {
      * invokes <code>format</code> on the current <code>Format</code>.
      *
      * @throws ParseException
-     *                        if there is an error in the conversion
+     *         if there is an error in the conversion
      * @param value
-     *              Value to convert
+     *        Value to convert
      * @return String representation of value
      */
     public String valueToString(Object value) throws ParseException {
@@ -289,18 +288,17 @@ public class InternationalFormatter extends DefaultFormatter {
      * <code>text</code>.
      *
      * @param text
-     *             <code>String</code> to convert
+     *        <code>String</code> to convert
      * @return <code>Object</code> representation of text
      * @throws ParseException
-     *                        if there is an error in the conversion
+     *         if there is an error in the conversion
      */
     public Object stringToValue(String text) throws ParseException {
         Object value = stringToValue(text, getFormat());
 
         // Convert to the value class if the Value returned from the
         // Format does not match.
-        if (value != null && getValueClass() != null && !getValueClass()
-                .isInstance(value)) {
+        if (value != null && getValueClass() != null && !getValueClass().isInstance(value)) {
             value = super.stringToValue(value.toString());
         }
         try {
@@ -308,8 +306,7 @@ public class InternationalFormatter extends DefaultFormatter {
                 throw new ParseException("Value not within min/max range", 0);
             }
         } catch (ClassCastException cce) {
-            throw new ParseException("Class cast exception comparing values: "
-                    + cce, 0);
+            throw new ParseException("Class cast exception comparing values: " + cce, 0);
         }
         return value;
     }
@@ -320,7 +317,7 @@ public class InternationalFormatter extends DefaultFormatter {
      * into the current text, this will return an empty array.
      *
      * @param offset
-     *               offset into text to be examined
+     *        offset into text to be examined
      * @return Format.Field constants associated with the text at the given
      *         position.
      */
@@ -362,8 +359,7 @@ public class InternationalFormatter extends DefaultFormatter {
      */
     protected Action[] getActions() {
         if (getSupportsIncrement()) {
-            return new Action[] { new IncrementAction("increment", 1),
-                    new IncrementAction("decrement", -1) };
+            return new Action[] { new IncrementAction("increment", 1), new IncrementAction("decrement", -1) };
         }
         return null;
     }
@@ -382,9 +378,9 @@ public class InternationalFormatter extends DefaultFormatter {
      * Returns true if <code>value</code> is between the min/max.
      *
      * @param wantsCCE
-     *                 If false, and a ClassCastException is thrown in comparing
-     *                 the
-     *                 values, the exception is consumed and false is returned.
+     *        If false, and a ClassCastException is thrown in comparing
+     *        the
+     *        values, the exception is consumed and false is returned.
      */
     boolean isValidValue(Object value, boolean wantsCCE) {
         Comparable min = getMinimum();
@@ -494,14 +490,10 @@ public class InternationalFormatter extends DefaultFormatter {
                 if (string != null) {
                     try {
                         Object value = stringToValue(string);
-                        AttributedCharacterIterator iterator = getFormat()
-                                .formatToCharacterIterator(value);
+                        AttributedCharacterIterator iterator = getFormat().formatToCharacterIterator(value);
 
                         updateMask(iterator);
-                    } catch (ParseException pe) {
-                    } catch (IllegalArgumentException iae) {
-                    } catch (NullPointerException npe) {
-                    }
+                    } catch (ParseException pe) {} catch (IllegalArgumentException iae) {} catch (NullPointerException npe) {}
                 }
             }
         }
@@ -563,8 +555,8 @@ public class InternationalFormatter extends DefaultFormatter {
      * Overriden to unconditionally allow the replace if ignoreDocumentMutate is
      * true.
      */
-    void replace(DocumentFilter.FilterBypass fb, int offset, int length,
-            String text, AttributeSet attrs) throws BadLocationException {
+    void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+            throws BadLocationException {
         if (ignoreDocumentMutate) {
             fb.replace(offset, length, text, attrs);
             return;
@@ -577,7 +569,7 @@ public class InternationalFormatter extends DefaultFormatter {
      * index is not a literal, it will be returned.
      *
      * @param direction
-     *                  Amount to increment looking for non-literal
+     *        Amount to increment looking for non-literal
      */
     private int getNextNonliteralIndex(int index, int direction) {
         int max = getFormattedTextField().getDocument().getLength();
@@ -607,8 +599,7 @@ public class InternationalFormatter extends DefaultFormatter {
             int tl = (text != null) ? text.length() : 0;
             JTextComponent c = getFormattedTextField();
 
-            if (tl == 0 && rh.length == 1 && c
-                    .getSelectionStart() != rh.offset) {
+            if (tl == 0 && rh.length == 1 && c.getSelectionStart() != rh.offset) {
                 // Backspace, adjust to actually delete next non-literal.
                 rh.offset = getNextNonliteralIndex(rh.offset, -1);
             } else if (getOverwriteMode()) {
@@ -637,14 +628,10 @@ public class InternationalFormatter extends DefaultFormatter {
                 rh.offset = getNextNonliteralIndex(rh.offset, -1);
             }
             ((ExtendedReplaceHolder) rh).endOffset = rh.offset;
-            ((ExtendedReplaceHolder) rh).endTextLength = (rh.text != null)
-                    ? rh.text.length()
-                    : 0;
+            ((ExtendedReplaceHolder) rh).endTextLength = (rh.text != null) ? rh.text.length() : 0;
         } else {
             ((ExtendedReplaceHolder) rh).endOffset = rh.offset;
-            ((ExtendedReplaceHolder) rh).endTextLength = (rh.text != null)
-                    ? rh.text.length()
-                    : 0;
+            ((ExtendedReplaceHolder) rh).endTextLength = (rh.text != null) ? rh.text.length() : 0;
         }
         boolean can = super.canReplace(rh);
         if (can && !getAllowsInvalid()) {
@@ -664,9 +651,8 @@ public class InternationalFormatter extends DefaultFormatter {
         int direction = 1;
         int literalCount = -1;
 
-        if (rh.length > 0 && (rh.text == null || rh.text.length() == 0)
-                && (getFormattedTextField().getSelectionStart() != rh.offset
-                        || rh.length > 1)) {
+        if (rh.length > 0 && (rh.text == null || rh.text.length() == 0) && (getFormattedTextField()
+                .getSelectionStart() != rh.offset || rh.length > 1)) {
             direction = -1;
         }
         if (!getAllowsInvalid()) {
@@ -702,8 +688,7 @@ public class InternationalFormatter extends DefaultFormatter {
      * location to adjust from, direction gives the direction relative to
      * <code>end</code> to position the cursor from.
      */
-    private void repositionCursor(int startLiteralCount, int end,
-            int direction) {
+    private void repositionCursor(int startLiteralCount, int end, int direction) {
         int endLiteralCount = getLiteralCountTo(end);
 
         if (endLiteralCount != end) {
@@ -757,8 +742,7 @@ public class InternationalFormatter extends DefaultFormatter {
             if (literalMask == null) {
                 literalMask = new BitSet();
             } else {
-                for (int counter = literalMask.length()
-                        - 1; counter >= 0; counter--) {
+                for (int counter = literalMask.length() - 1; counter >= 0; counter--) {
                     literalMask.clear(counter);
                 }
             }
@@ -798,21 +782,18 @@ public class InternationalFormatter extends DefaultFormatter {
     void selectField(Object f, int count) {
         AttributedCharacterIterator iterator = getIterator();
 
-        if (iterator != null
-                && (f instanceof AttributedCharacterIterator.Attribute)) {
+        if (iterator != null && (f instanceof AttributedCharacterIterator.Attribute)) {
             AttributedCharacterIterator.Attribute field = (AttributedCharacterIterator.Attribute) f;
 
             iterator.first();
             while (iterator.current() != CharacterIterator.DONE) {
-                while (iterator.getAttribute(field) == null && iterator
-                        .next() != CharacterIterator.DONE)
+                while (iterator.getAttribute(field) == null && iterator.next() != CharacterIterator.DONE)
                     ;
                 if (iterator.current() != CharacterIterator.DONE) {
                     int limit = iterator.getRunLimit(field);
 
                     if (--count <= 0) {
-                        getFormattedTextField().select(iterator.getIndex(),
-                                limit);
+                        getFormattedTextField().select(iterator.getIndex(), limit);
                         break;
                     }
                     iterator.setIndex(limit);
@@ -838,14 +819,12 @@ public class InternationalFormatter extends DefaultFormatter {
         AttributedCharacterIterator iterator = getIterator();
         int count = 0;
 
-        if (iterator != null
-                && (f instanceof AttributedCharacterIterator.Attribute)) {
+        if (iterator != null && (f instanceof AttributedCharacterIterator.Attribute)) {
             AttributedCharacterIterator.Attribute field = (AttributedCharacterIterator.Attribute) f;
 
             iterator.first();
             while (iterator.getIndex() < start) {
-                while (iterator.getAttribute(field) == null && iterator
-                        .next() != CharacterIterator.DONE)
+                while (iterator.getAttribute(field) == null && iterator.next() != CharacterIterator.DONE)
                     ;
                 if (iterator.current() != CharacterIterator.DONE) {
                     iterator.setIndex(iterator.getRunLimit(field));
@@ -866,8 +845,8 @@ public class InternationalFormatter extends DefaultFormatter {
      * depending upon <code>canIncrement</code>) and <code>direction</code> is
      * the amount to increment by.
      */
-    Object adjustValue(Object value, Map attributes, Object field,
-            int direction) throws BadLocationException, ParseException {
+    Object adjustValue(Object value, Map attributes, Object field, int direction) throws BadLocationException,
+            ParseException {
         return null;
     }
 
@@ -902,8 +881,7 @@ public class InternationalFormatter extends DefaultFormatter {
      * Subclassed to update the internal representation of the mask after the
      * default read operation has completed.
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         updateMaskIfNecessary();
     }
@@ -911,8 +889,8 @@ public class InternationalFormatter extends DefaultFormatter {
     /**
      * Overriden to return an instance of <code>ExtendedReplaceHolder</code>.
      */
-    ReplaceHolder getReplaceHolder(DocumentFilter.FilterBypass fb, int offset,
-            int length, String text, AttributeSet attrs) {
+    ReplaceHolder getReplaceHolder(DocumentFilter.FilterBypass fb, int offset, int length, String text,
+            AttributeSet attrs) {
         if (replaceHolder == null) {
             replaceHolder = new ExtendedReplaceHolder();
         }
@@ -991,15 +969,11 @@ public class InternationalFormatter extends DefaultFormatter {
 
                         if (canIncrement(field, start)) {
                             try {
-                                Object value = stringToValue(
-                                        getFormattedTextField().getText());
-                                int fieldTypeCount = getFieldTypeCountTo(field,
-                                        start);
+                                Object value = stringToValue(getFormattedTextField().getText());
+                                int fieldTypeCount = getFieldTypeCountTo(field, start);
 
-                                value = adjustValue(value, attributes, field,
-                                        direction);
-                                if (value != null && isValidValue(value,
-                                        false)) {
+                                value = adjustValue(value, attributes, field, direction);
+                                if (value != null && isValidValue(value, false)) {
                                     resetValue(value);
                                     updateMask();
 
@@ -1008,9 +982,7 @@ public class InternationalFormatter extends DefaultFormatter {
                                     }
                                     validEdit = true;
                                 }
-                            } catch (ParseException pe) {
-                            } catch (BadLocationException ble) {
-                            }
+                            } catch (ParseException pe) {} catch (BadLocationException ble) {}
                         }
                     }
                 }

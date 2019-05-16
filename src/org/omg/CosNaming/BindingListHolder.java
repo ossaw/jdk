@@ -11,8 +11,7 @@ package org.omg.CosNaming;
 /**
  * List of Bindings.
  */
-public final class BindingListHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class BindingListHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CosNaming.Binding value[] = null;
 
     public BindingListHolder() {}

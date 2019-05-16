@@ -34,7 +34,7 @@ public interface ThreadPool extends Closeable {
      * WorkQueues in the ThreadPool are 10, then queueIds will go from 0-9
      *
      * @throws NoSuchWorkQueueException
-     *                                  thrown when queueId passed is invalid
+     *         thrown when queueId passed is invalid
      */
     public WorkQueue getWorkQueue(int queueId) throws NoSuchWorkQueueException;
 

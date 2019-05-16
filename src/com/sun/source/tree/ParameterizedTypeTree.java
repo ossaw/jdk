@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for a type expression involving type parameters.
- *
  * For example:
  * 
  * <pre>
@@ -17,7 +16,6 @@ import java.util.List;
  * </pre>
  *
  * @jls section 4.5.1
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

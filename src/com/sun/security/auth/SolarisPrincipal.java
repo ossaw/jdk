@@ -11,7 +11,6 @@ import java.security.Principal;
  * <p>
  * This class implements the <code>Principal</code> interface and represents a
  * Solaris user.
- *
  * <p>
  * Principals such as this <code>SolarisPrincipal</code> may be associated with
  * a particular <code>Subject</code> to augment that <code>Subject</code> with
@@ -30,14 +29,12 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
 
     private static final long serialVersionUID = -7840670002439379038L;
 
-    private static final java.util.ResourceBundle rb = java.security.AccessController
-            .doPrivileged(
-                    new java.security.PrivilegedAction<java.util.ResourceBundle>() {
-                        public java.util.ResourceBundle run() {
-                            return (java.util.ResourceBundle.getBundle(
-                                    "sun.security.util.AuthResources"));
-                        }
-                    });
+    private static final java.util.ResourceBundle rb = java.security.AccessController.doPrivileged(
+            new java.security.PrivilegedAction<java.util.ResourceBundle>() {
+                public java.util.ResourceBundle run() {
+                    return (java.util.ResourceBundle.getBundle("sun.security.util.AuthResources"));
+                }
+            });
 
     /**
      * @serial
@@ -46,15 +43,13 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Create a SolarisPrincipal with a Solaris username.
-     *
      * <p>
      *
      * @param name
-     *             the Unix username for this user.
-     *
+     *        the Unix username for this user.
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public SolarisPrincipal(String name) {
         if (name == null)
@@ -65,7 +60,6 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return the Unix username for this <code>SolarisPrincipal</code>.
-     *
      * <p>
      *
      * @return the Unix username for this <code>SolarisPrincipal</code>
@@ -76,7 +70,6 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return a string representation of this <code>SolarisPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this <code>SolarisPrincipal</code>.
@@ -90,13 +83,11 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
      * equality. Returns true if the given object is also a
      * <code>SolarisPrincipal</code> and the two SolarisPrincipals have the same
      * username.
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>SolarisPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>SolarisPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>SolarisPrincipal</code>.
      */
@@ -118,7 +109,6 @@ public class SolarisPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return a hash code for this <code>SolarisPrincipal</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>SolarisPrincipal</code>.

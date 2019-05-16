@@ -30,7 +30,6 @@ import java.io.Writer;
  * as quickly as possible. It buffers the output in an internal buffer which
  * must be flushed to the OutputStream when done. This flushing is done via the
  * close() flush() or flushBuffer() method.
- *
  * This class is only used internally within Xalan.
  *
  * @xsl.usage internal
@@ -76,14 +75,11 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
     /**
      * Create an buffered UTF-8 writer.
      *
-     *
      * @param out
-     *            the underlying output stream.
-     *
+     *        the underlying output stream.
      * @throws UnsupportedEncodingException
      */
-    public WriterToUTF8Buffered(OutputStream out)
-            throws UnsupportedEncodingException {
+    public WriterToUTF8Buffered(OutputStream out) throws UnsupportedEncodingException {
         m_os = out;
         // get 3 extra bytes to make buffer overflow checking simpler and faster
         // we won't have to keep checking for a few extra characters
@@ -104,11 +100,11 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
      * output stream with the specified buffer size.
      *
      * @param out
-     *             the underlying output stream.
+     *        the underlying output stream.
      * @param size
-     *             the buffer size.
+     *        the buffer size.
      * @exception IllegalArgumentException
-     *                                     if size <= 0.
+     *            if size <= 0.
      */
     // public WriterToUTF8Buffered(final OutputStream out, final int size)
     // {
@@ -130,15 +126,14 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
      * Write a single character. The character to be written is contained in the
      * 16 low-order bits of the given integer value; the 16 high-order bits are
      * ignored.
-     *
      * <p>
      * Subclasses that intend to support efficient single-character output
      * should override this method.
      *
      * @param c
-     *          int specifying a character to be written.
+     *        int specifying a character to be written.
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(final int c) throws IOException {
 
@@ -171,19 +166,16 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
      * Write a portion of an array of characters.
      *
      * @param chars
-     *               Array of characters
+     *        Array of characters
      * @param start
-     *               Offset from which to start writing characters
+     *        Offset from which to start writing characters
      * @param length
-     *               Number of characters to write
-     *
+     *        Number of characters to write
      * @exception IOException
-     *                        If an I/O error occurs
-     *
+     *            If an I/O error occurs
      * @throws java.io.IOException
      */
-    public void write(final char chars[], final int start, final int length)
-            throws java.io.IOException {
+    public void write(final char chars[], final int start, final int length) throws java.io.IOException {
 
         // We multiply the length by three since this is the maximum length
         // of the characters that we can put into the buffer. It is possible
@@ -213,8 +205,7 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
                 int end_chunk = start;
                 for (int chunk = 1; chunk <= chunks; chunk++) {
                     int start_chunk = end_chunk;
-                    end_chunk = start + (int) ((((long) length) * chunk)
-                            / chunks);
+                    end_chunk = start + (int) ((((long) length) * chunk) / chunks);
 
                     // Adjust the end of the chunk if it ends on a high char
                     // of a Unicode surrogate pair and low char of the pair
@@ -289,12 +280,9 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
                 i++;
                 low = chars[i];
 
-                buf_loc[count_loc++] = (byte) (0xF0 | (((high + 0x40) >> 8)
-                        & 0xf0));
-                buf_loc[count_loc++] = (byte) (0x80 | (((high + 0x40) >> 2)
-                        & 0x3f));
-                buf_loc[count_loc++] = (byte) (0x80 | ((low >> 6) & 0x0f)
-                        + ((high << 4) & 0x30));
+                buf_loc[count_loc++] = (byte) (0xF0 | (((high + 0x40) >> 8) & 0xf0));
+                buf_loc[count_loc++] = (byte) (0x80 | (((high + 0x40) >> 2) & 0x3f));
+                buf_loc[count_loc++] = (byte) (0x80 | ((low >> 6) & 0x0f) + ((high << 4) & 0x30));
                 buf_loc[count_loc++] = (byte) (0x80 | (low & 0x3f));
             } else {
                 buf_loc[count_loc++] = (byte) (0xe0 + (c >> 12));
@@ -311,10 +299,9 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
      * Write a string.
      *
      * @param s
-     *          String to be written
-     *
+     *        String to be written
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(final String s) throws IOException {
 
@@ -344,8 +331,7 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
                 int end_chunk = 0;
                 for (int chunk = 1; chunk <= chunks; chunk++) {
                     int start_chunk = end_chunk;
-                    end_chunk = start + (int) ((((long) length) * chunk)
-                            / chunks);
+                    end_chunk = start + (int) ((((long) length) * chunk) / chunks);
                     s.getChars(start_chunk, end_chunk, m_inputChars, 0);
                     int len_chunk = (end_chunk - start_chunk);
 
@@ -416,12 +402,9 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
                 i++;
                 low = chars[i];
 
-                buf_loc[count_loc++] = (byte) (0xF0 | (((high + 0x40) >> 8)
-                        & 0xf0));
-                buf_loc[count_loc++] = (byte) (0x80 | (((high + 0x40) >> 2)
-                        & 0x3f));
-                buf_loc[count_loc++] = (byte) (0x80 | ((low >> 6) & 0x0f)
-                        + ((high << 4) & 0x30));
+                buf_loc[count_loc++] = (byte) (0xF0 | (((high + 0x40) >> 8) & 0xf0));
+                buf_loc[count_loc++] = (byte) (0x80 | (((high + 0x40) >> 2) & 0x3f));
+                buf_loc[count_loc++] = (byte) (0x80 | ((low >> 6) & 0x0f) + ((high << 4) & 0x30));
                 buf_loc[count_loc++] = (byte) (0x80 | (low & 0x3f));
             } else {
                 buf_loc[count_loc++] = (byte) (0xe0 + (c >> 12));
@@ -456,8 +439,7 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
      * in a chain of Writers and OutputStreams.
      *
      * @exception IOException
-     *                        If an I/O error occurs
-     *
+     *            If an I/O error occurs
      * @throws java.io.IOException
      */
     public void flush() throws java.io.IOException {
@@ -471,8 +453,7 @@ final class WriterToUTF8Buffered extends Writer implements WriterChain {
      * thrown. Closing a previously-closed stream, however, has no effect.
      *
      * @exception IOException
-     *                        If an I/O error occurs
-     *
+     *            If an I/O error occurs
      * @throws java.io.IOException
      */
     public void close() throws java.io.IOException {

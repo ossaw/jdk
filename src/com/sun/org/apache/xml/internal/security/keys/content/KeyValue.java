@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -117,8 +115,7 @@ public class KeyValue extends SignatureElementProxy implements KeyInfoContent {
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    public KeyValue(Element element, String BaseURI)
-            throws XMLSecurityException {
+    public KeyValue(Element element, String BaseURI) throws XMLSecurityException {
         super(element, BaseURI);
     }
 
@@ -129,16 +126,16 @@ public class KeyValue extends SignatureElementProxy implements KeyInfoContent {
      * @throws XMLSecurityException
      */
     public PublicKey getPublicKey() throws XMLSecurityException {
-        Element rsa = XMLUtils.selectDsNode(this.constructionElement
-                .getFirstChild(), Constants._TAG_RSAKEYVALUE, 0);
+        Element rsa = XMLUtils.selectDsNode(this.constructionElement.getFirstChild(),
+                Constants._TAG_RSAKEYVALUE, 0);
 
         if (rsa != null) {
             RSAKeyValue kv = new RSAKeyValue(rsa, this.baseURI);
             return kv.getPublicKey();
         }
 
-        Element dsa = XMLUtils.selectDsNode(this.constructionElement
-                .getFirstChild(), Constants._TAG_DSAKEYVALUE, 0);
+        Element dsa = XMLUtils.selectDsNode(this.constructionElement.getFirstChild(),
+                Constants._TAG_DSAKEYVALUE, 0);
 
         if (dsa != null) {
             DSAKeyValue kv = new DSAKeyValue(dsa, this.baseURI);

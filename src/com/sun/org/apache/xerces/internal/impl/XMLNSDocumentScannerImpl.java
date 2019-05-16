@@ -36,16 +36,12 @@ import javax.xml.stream.events.XMLEvent;
 
 /**
  * This class adds the functionality of namespace processing.
- *
  * This class has been modified as per the new design which is more suited to
  * efficiently build pull parser. Lot of improvements have been done and the
  * code has been added to support stax functionality/features.
- *
- *
  * This class scans an XML document, checks if document has a DTD, and if DTD is
  * not found the scanner will remove the DTD Validator from the pipeline and
  * perform namespace binding.
- *
  *
  * @author Neeraj Bajaj, Sun Microsystems
  * @author Venugopal Rao K, Sun Microsystems
@@ -90,8 +86,7 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
                 Constants.ADD_NAMESPACE_DECL_AS_ATTRIBUTE)).booleanValue();
     }
 
-    public void reset(XMLComponentManager componentManager)
-            throws XMLConfigurationException {
+    public void reset(XMLComponentManager componentManager) throws XMLConfigurationException {
         super.reset(componentManager);
         fNotAddNSDeclAsAttribute = false;
         fPerformValidation = false;
@@ -123,11 +118,11 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
      * if it is not needed.
      *
      * @param previous
-     *                     The filter component before DTDValidator
+     *        The filter component before DTDValidator
      * @param dtdValidator
-     *                     The DTDValidator
+     *        The DTDValidator
      * @param next
-     *                     The documentHandler after the DTDValidator
+     *        The documentHandler after the DTDValidator
      */
     public void setDTDValidator(XMLDTDValidatorFilter dtd) {
         fDTDValidator = dtd;
@@ -156,8 +151,7 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
     protected boolean scanStartElement() throws IOException, XNIException {
 
         if (DEBUG_START_END_ELEMENT)
-            System.out.println(this.getClass().toString()
-                    + ">>> scanStartElement()");
+            System.out.println(this.getClass().toString() + ">>> scanStartElement()");
         // when skipping is true and no more elements should be added
         if (fSkip && !fAdd) {
             // get the stored element -- if everything goes right this should
@@ -175,8 +169,7 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
 
             if (fSkip) {
                 if (DEBUG_SKIP_ALGORITHM) {
-                    System.out.println("Element SUCESSFULLY skipped = "
-                            + name.rawname);
+                    System.out.println("Element SUCESSFULLY skipped = " + name.rawname);
                 }
                 fElementStack.push();
                 fElementQName = name;
@@ -185,8 +178,7 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
                 // way of processing
                 fElementStack.reposition();
                 if (DEBUG_SKIP_ALGORITHM) {
-                    System.out.println(
-                            "Element was NOT skipped, REPOSITIONING stack");
+                    System.out.println("Element was NOT skipped, REPOSITIONING stack");
                 }
             }
         }
@@ -208,14 +200,11 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
             }
 
             if (DEBUG)
-                System.out.println("Element scanned in start element is "
-                        + fElementQName.toString());
+                System.out.println("Element scanned in start element is " + fElementQName.toString());
             if (DEBUG_SKIP_ALGORITHM) {
                 if (fAdd) {
-                    System.out.println(
-                            "Elements are being ADDED -- elemet added is = "
-                                    + fElementQName.rawname + " at count = "
-                                    + fElementStack.fCount);
+                    System.out.println("Elements are being ADDED -- elemet added is = "
+                            + fElementQName.rawname + " at count = " + fElementStack.fCount);
                 }
             }
 
@@ -238,15 +227,12 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
             fNamespaceContext.pushContext();
             if (fScannerState == SCANNER_STATE_ROOT_ELEMENT) {
                 if (fPerformValidation) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
-                            "MSG_GRAMMAR_NOT_FOUND", new Object[] { rawname },
-                            XMLErrorReporter.SEVERITY_ERROR);
+                    fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "MSG_GRAMMAR_NOT_FOUND",
+                            new Object[] { rawname }, XMLErrorReporter.SEVERITY_ERROR);
 
                     if (fDoctypeName == null || !fDoctypeName.equals(rawname)) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XML_DOMAIN,
-                                "RootElementTypeMustMatchDoctypedecl",
-                                new Object[] { fDoctypeName, rawname },
+                        fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+                                "RootElementTypeMustMatchDoctypedecl", new Object[] { fDoctypeName, rawname },
                                 XMLErrorReporter.SEVERITY_ERROR);
                     }
                 }
@@ -265,12 +251,10 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
 
             do {
                 scanAttribute(fAttributes);
-                if (fSecurityManager != null && (!fSecurityManager.isNoLimit(
-                        fElementAttributeLimit)) && fAttributes
-                                .getLength() > fElementAttributeLimit) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
-                            "ElementAttributeLimit", new Object[] { rawname,
-                                    fElementAttributeLimit },
+                if (fSecurityManager != null && (!fSecurityManager.isNoLimit(fElementAttributeLimit))
+                        && fAttributes.getLength() > fElementAttributeLimit) {
+                    fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "ElementAttributeLimit",
+                            new Object[] { rawname, fElementAttributeLimit },
                             XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
 
@@ -281,15 +265,12 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
         if (fBindNamespaces) {
             // REVISIT: is it required? forbit xmlns prefix for element
             if (fElementQName.prefix == XMLSymbols.PREFIX_XMLNS) {
-                fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                        "ElementXMLNSPrefix", new Object[] {
-                                fElementQName.rawname },
-                        XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementXMLNSPrefix",
+                        new Object[] { fElementQName.rawname }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
             }
 
             // bind the element
-            String prefix = fElementQName.prefix != null ? fElementQName.prefix
-                    : XMLSymbols.EMPTY_STRING;
+            String prefix = fElementQName.prefix != null ? fElementQName.prefix : XMLSymbols.EMPTY_STRING;
             // assign uri to the element
             fElementQName.uri = fNamespaceContext.getURI(prefix);
             // make sure that object in the element stack is updated as well
@@ -299,9 +280,8 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
                 fElementQName.prefix = XMLSymbols.EMPTY_STRING;
             }
             if (fElementQName.prefix != null && fElementQName.uri == null) {
-                fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                        "ElementPrefixUnbound", new Object[] {
-                                fElementQName.prefix, fElementQName.rawname },
+                fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "ElementPrefixUnbound",
+                        new Object[] { fElementQName.prefix, fElementQName.rawname },
                         XMLErrorReporter.SEVERITY_FATAL_ERROR);
             }
 
@@ -311,8 +291,7 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
             for (int i = 0; i < length; i++) {
                 fAttributes.getName(i, fAttributeQName);
 
-                String aprefix = fAttributeQName.prefix != null
-                        ? fAttributeQName.prefix
+                String aprefix = fAttributeQName.prefix != null ? fAttributeQName.prefix
                         : XMLSymbols.EMPTY_STRING;
                 String uri = fNamespaceContext.getURI(aprefix);
                 // REVISIT: try removing the first "if" and see if it is faster.
@@ -324,11 +303,8 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
                 if (aprefix != XMLSymbols.EMPTY_STRING) {
                     fAttributeQName.uri = uri;
                     if (uri == null) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN,
-                                "AttributePrefixUnbound", new Object[] {
-                                        fElementQName.rawname,
-                                        fAttributeQName.rawname, aprefix },
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "AttributePrefixUnbound",
+                                new Object[] { fElementQName.rawname, fAttributeQName.rawname, aprefix },
                                 XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
                     fAttributes.setURI(i, uri);
@@ -340,17 +316,12 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
                 QName name = fAttributes.checkDuplicatesNS();
                 if (name != null) {
                     if (name.uri != null) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN,
-                                "AttributeNSNotUnique", new Object[] {
-                                        fElementQName.rawname, name.localpart,
-                                        name.uri },
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "AttributeNSNotUnique",
+                                new Object[] { fElementQName.rawname, name.localpart, name.uri },
                                 XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     } else {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN,
-                                "AttributeNotUnique", new Object[] {
-                                        fElementQName.rawname, name.rawname },
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "AttributeNotUnique",
+                                new Object[] { fElementQName.rawname, name.rawname },
                                 XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
                 }
@@ -363,8 +334,7 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
 
             // check that this element was opened in the same entity
             if (fMarkupDepth < fEntityStack[fEntityDepth - 1]) {
-                reportFatalError("ElementEntityMismatch", new Object[] {
-                        fCurrentElement.rawname });
+                reportFatalError("ElementEntityMismatch", new Object[] { fCurrentElement.rawname });
             }
             // call handler
             if (fDocumentHandler != null) {
@@ -402,8 +372,7 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
         }
 
         if (DEBUG_START_END_ELEMENT)
-            System.out.println(this.getClass().toString()
-                    + "<<< scanStartElement(): " + fEmptyElement);
+            System.out.println(this.getClass().toString() + "<<< scanStartElement(): " + fEmptyElement);
         return fEmptyElement;
 
     } // scanStartElement():boolean
@@ -423,13 +392,11 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
      * variables. The contents of these variables will be destroyed.
      *
      * @param attributes
-     *                   The attributes list for the scanned attribute.
+     *        The attributes list for the scanned attribute.
      */
-    protected void scanAttribute(XMLAttributesImpl attributes)
-            throws IOException, XNIException {
+    protected void scanAttribute(XMLAttributesImpl attributes) throws IOException, XNIException {
         if (DEBUG_START_END_ELEMENT)
-            System.out.println(this.getClass().toString()
-                    + ">>> scanAttribute()");
+            System.out.println(this.getClass().toString() + ">>> scanAttribute()");
 
         // name
         fEntityScanner.scanQName(fAttributeQName, NameType.ATTRIBUTENAME);
@@ -437,8 +404,8 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
         // equals
         fEntityScanner.skipSpaces();
         if (!fEntityScanner.skipChar('=', NameType.ATTRIBUTE)) {
-            reportFatalError("EqRequiredInAttribute", new Object[] {
-                    fCurrentElement.rawname, fAttributeQName.rawname });
+            reportFatalError("EqRequiredInAttribute", new Object[] { fCurrentElement.rawname,
+                    fAttributeQName.rawname });
         }
         fEntityScanner.skipSpaces();
 
@@ -469,14 +436,12 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
          * that prefix:xmlns="..." isn't a namespace.
          */
         String localpart = fAttributeQName.localpart;
-        String prefix = fAttributeQName.prefix != null ? fAttributeQName.prefix
-                : XMLSymbols.EMPTY_STRING;
+        String prefix = fAttributeQName.prefix != null ? fAttributeQName.prefix : XMLSymbols.EMPTY_STRING;
         boolean isNSDecl = fBindNamespaces & (prefix == XMLSymbols.PREFIX_XMLNS
-                || prefix == XMLSymbols.EMPTY_STRING
-                        && localpart == XMLSymbols.PREFIX_XMLNS);
+                || prefix == XMLSymbols.EMPTY_STRING && localpart == XMLSymbols.PREFIX_XMLNS);
 
-        scanAttributeValue(tmpStr, fTempString2, fAttributeQName.rawname,
-                attributes, attrIndex, isVC, fCurrentElement.rawname, isNSDecl);
+        scanAttributeValue(tmpStr, fTempString2, fAttributeQName.rawname, attributes, attrIndex, isVC,
+                fCurrentElement.rawname, isNSDecl);
 
         String value = null;
         // fTempString.toString();
@@ -486,91 +451,74 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
             if (isNSDecl) {
                 // check the length of URI
                 if (tmpStr.length > fXMLNameLimit) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
-                            "MaxXMLNameLimit", new Object[] { new String(
-                                    tmpStr.ch, tmpStr.offset, tmpStr.length),
-                                    tmpStr.length, fXMLNameLimit,
-                                    fSecurityManager.getStateLiteral(
+                    fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "MaxXMLNameLimit",
+                            new Object[] { new String(tmpStr.ch, tmpStr.offset, tmpStr.length), tmpStr.length,
+                                    fXMLNameLimit, fSecurityManager.getStateLiteral(
                                             XMLSecurityManager.Limit.MAX_NAME_LIMIT) },
                             XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
                 // get the internalized value of this attribute
-                String uri = fSymbolTable.addSymbol(tmpStr.ch, tmpStr.offset,
-                        tmpStr.length);
+                String uri = fSymbolTable.addSymbol(tmpStr.ch, tmpStr.offset, tmpStr.length);
                 value = uri;
                 // 1. "xmlns" can't be bound to any namespace
-                if (prefix == XMLSymbols.PREFIX_XMLNS
-                        && localpart == XMLSymbols.PREFIX_XMLNS) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "CantBindXMLNS", new Object[] { fAttributeQName },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                if (prefix == XMLSymbols.PREFIX_XMLNS && localpart == XMLSymbols.PREFIX_XMLNS) {
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXMLNS",
+                            new Object[] { fAttributeQName }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
 
                 // 2. the namespace for "xmlns" can't be bound to any prefix
                 if (uri == NamespaceContext.XMLNS_URI) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "CantBindXMLNS", new Object[] { fAttributeQName },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXMLNS",
+                            new Object[] { fAttributeQName }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
 
                 // 3. "xml" can't be bound to any other namespace than it's own
                 if (localpart == XMLSymbols.PREFIX_XML) {
                     if (uri != NamespaceContext.XML_URI) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
-                                new Object[] { fAttributeQName },
-                                XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
+                                new Object[] { fAttributeQName }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
                 }
                 // 4. the namespace for "xml" can't be bound to any other prefix
                 else {
                     if (uri == NamespaceContext.XML_URI) {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
-                                new Object[] { fAttributeQName },
-                                XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                        fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "CantBindXML",
+                                new Object[] { fAttributeQName }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
                 }
-                prefix = localpart != XMLSymbols.PREFIX_XMLNS ? localpart
-                        : XMLSymbols.EMPTY_STRING;
+                prefix = localpart != XMLSymbols.PREFIX_XMLNS ? localpart : XMLSymbols.EMPTY_STRING;
                 // set it equal to XMLSymbols.PREFIX_XMLNS when namespace
                 // declaration
                 // is of type xmlns = "..", in this case prefix = "" and
                 // localname = XMLSymbols.PREFIX_XMLNS
                 // this special behavior is because of dependency on this
                 // behavior in DOM components
-                if (prefix == XMLSymbols.EMPTY_STRING
-                        && localpart == XMLSymbols.PREFIX_XMLNS) {
+                if (prefix == XMLSymbols.EMPTY_STRING && localpart == XMLSymbols.PREFIX_XMLNS) {
                     fAttributeQName.prefix = XMLSymbols.PREFIX_XMLNS;
                 }
                 // http://www.w3.org/TR/1999/REC-xml-names-19990114/#dt-prefix
                 // We should only report an error if there is a prefix,
                 // that is, the local part is not "xmlns". -SG
-                if (uri == XMLSymbols.EMPTY_STRING
-                        && localpart != XMLSymbols.PREFIX_XMLNS) {
-                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN,
-                            "EmptyPrefixedAttName", new Object[] {
-                                    fAttributeQName },
-                            XMLErrorReporter.SEVERITY_FATAL_ERROR);
+                if (uri == XMLSymbols.EMPTY_STRING && localpart != XMLSymbols.PREFIX_XMLNS) {
+                    fErrorReporter.reportError(XMLMessageFormatter.XMLNS_DOMAIN, "EmptyPrefixedAttName",
+                            new Object[] { fAttributeQName }, XMLErrorReporter.SEVERITY_FATAL_ERROR);
                 }
 
                 // check for duplicate prefix bindings
                 if (((com.sun.org.apache.xerces.internal.util.NamespaceSupport) fNamespaceContext)
                         .containsPrefixInCurrentContext(prefix)) {
-                    reportFatalError("AttributeNotUnique", new Object[] {
-                            fCurrentElement.rawname, fAttributeQName.rawname });
+                    reportFatalError("AttributeNotUnique", new Object[] { fCurrentElement.rawname,
+                            fAttributeQName.rawname });
                 }
 
                 // declare prefix in context
-                boolean declared = fNamespaceContext.declarePrefix(prefix, uri
-                        .length() != 0 ? uri : null);
+                boolean declared = fNamespaceContext.declarePrefix(prefix, uri.length() != 0 ? uri : null);
 
                 // check for duplicate xmlns declarations
                 if (!declared) { // by convention, prefix == "xmlns" | "xml"
                     // error if duplicate declaration
                     if (fXmlnsDeclared) {
-                        reportFatalError("AttributeNotUnique", new Object[] {
-                                fCurrentElement.rawname,
+                        reportFatalError("AttributeNotUnique", new Object[] { fCurrentElement.rawname,
                                 fAttributeQName.rawname });
                     }
 
@@ -595,17 +543,15 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
         // add the attributes to the list of attributes
         if (fBindNamespaces) {
             attrIndex = attributes.getLength();
-            attributes.addAttributeNS(fAttributeQName, XMLSymbols.fCDATASymbol,
-                    null);
+            attributes.addAttributeNS(fAttributeQName, XMLSymbols.fCDATASymbol, null);
         } else {
             int oldLen = attributes.getLength();
-            attrIndex = attributes.addAttribute(fAttributeQName,
-                    XMLSymbols.fCDATASymbol, null);
+            attrIndex = attributes.addAttribute(fAttributeQName, XMLSymbols.fCDATASymbol, null);
 
             // WFC: Unique Att Spec
             if (oldLen == attributes.getLength()) {
-                reportFatalError("AttributeNotUnique", new Object[] {
-                        fCurrentElement.rawname, fAttributeQName.rawname });
+                reportFatalError("AttributeNotUnique", new Object[] { fCurrentElement.rawname,
+                        fAttributeQName.rawname });
             }
         }
 
@@ -616,13 +562,11 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
 
         // attempt to bind attribute
         if (fAttributeQName.prefix != null) {
-            attributes.setURI(attrIndex, fNamespaceContext.getURI(
-                    fAttributeQName.prefix));
+            attributes.setURI(attrIndex, fNamespaceContext.getURI(fAttributeQName.prefix));
         }
 
         if (DEBUG_START_END_ELEMENT)
-            System.out.println(this.getClass().toString()
-                    + "<<< scanAttribute()");
+            System.out.println(this.getClass().toString() + "<<< scanAttribute()");
     } // scanAttribute(XMLAttributes)
 
     /** Creates a content driver. */
@@ -641,14 +585,12 @@ public class XMLNSDocumentScannerImpl extends XMLDocumentScannerImpl {
          * no DTD grammar. If DTD validator is no longer in the pipeline bind
          * namespaces in the scanner.
          *
-         *
          * @return True if the caller should stop and return true which allows
          *         the scanner to switch to a new scanning driver. A return
          *         value of false indicates that the content driver should
          *         continue as normal.
          */
-        protected boolean scanRootElementHook() throws IOException,
-                XNIException {
+        protected boolean scanRootElementHook() throws IOException, XNIException {
 
             reconfigurePipeline();
             if (scanStartElement()) {

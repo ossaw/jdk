@@ -13,7 +13,6 @@ import sun.util.logging.LoggingSupport;
 /**
  * Print a brief summary of the {@code LogRecord} in a human readable format.
  * The summary will typically be 1 or 2 lines.
- *
  * <p>
  * <a name="formatting"> <b>Configuration:</b></a> The {@code SimpleFormatter}
  * is initialized with the <a href="../Formatter.html#syntax">format string</a>
@@ -72,7 +71,6 @@ public class SimpleFormatter extends Formatter {
      * and its backtrace beginning with a newline character, if any; otherwise,
      * an empty string.</li>
      * </ol>
-     *
      * <p>
      * Some example formats:<br>
      * <ul>
@@ -124,7 +122,7 @@ public class SimpleFormatter extends Formatter {
      * and format the message field.
      *
      * @param record
-     *               the log record to be formatted.
+     *        the log record to be formatted.
      * @return a formatted log record
      */
     public synchronized String format(LogRecord record) {
@@ -148,7 +146,7 @@ public class SimpleFormatter extends Formatter {
             pw.close();
             throwable = sw.toString();
         }
-        return String.format(format, dat, source, record.getLoggerName(), record
-                .getLevel().getLocalizedLevelName(), message, throwable);
+        return String.format(format, dat, source, record.getLoggerName(), record.getLevel()
+                .getLocalizedLevelName(), message, throwable);
     }
 }

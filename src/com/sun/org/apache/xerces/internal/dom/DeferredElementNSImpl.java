@@ -32,11 +32,9 @@ import org.w3c.dom.NamedNodeMap;
  * ElementImpl.
  *
  * @xerces.internal
- *
  * @see DeferredElementImpl
  */
-public class DeferredElementNSImpl extends ElementNSImpl implements
-        DeferredNode {
+public class DeferredElementNSImpl extends ElementNSImpl implements DeferredNode {
 
     //
     // Constants
@@ -114,15 +112,13 @@ public class DeferredElementNSImpl extends ElementNSImpl implements
             NamedNodeMap attrs = getAttributes();
             boolean seenSchemaDefault = false;
             do {
-                AttrImpl attr = (AttrImpl) ownerDocument.getNodeObject(
-                        attrIndex);
+                AttrImpl attr = (AttrImpl) ownerDocument.getNodeObject(attrIndex);
                 // Take special care of schema defaulted attributes. Calling the
                 // non-namespace aware setAttributeNode() method could overwrite
                 // another attribute with the same local name.
-                if (!attr.getSpecified() && (seenSchemaDefault || (attr
-                        .getNamespaceURI() != null && attr
-                                .getNamespaceURI() != NamespaceContext.XMLNS_URI
-                        && attr.getName().indexOf(':') < 0))) {
+                if (!attr.getSpecified() && (seenSchemaDefault || (attr.getNamespaceURI() != null && attr
+                        .getNamespaceURI() != NamespaceContext.XMLNS_URI && attr.getName().indexOf(
+                                ':') < 0))) {
                     seenSchemaDefault = true;
                     attrs.setNamedItemNS(attr);
                 } else {

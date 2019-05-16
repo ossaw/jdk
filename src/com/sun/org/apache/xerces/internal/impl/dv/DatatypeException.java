@@ -29,9 +29,7 @@ import java.util.MissingResourceException;
  * error message substitution.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  * @version $Id: DatatypeException.java,v 1.6 2010-11-01 04:39:43 joehw Exp $
  */
 public class DatatypeException extends Exception {
@@ -48,9 +46,9 @@ public class DatatypeException extends Exception {
      * error message substitution arguments.
      *
      * @param key
-     *             error code
+     *        error code
      * @param args
-     *             error arguments
+     *        error arguments
      */
     public DatatypeException(String key, Object[] args) {
         super(key);
@@ -78,7 +76,6 @@ public class DatatypeException extends Exception {
 
     /**
      * Overrides this method to get the formatted&localized error message.
-     *
      * REVISIT: the system locale is used to load the property file. do we want
      * to allow the appilcation to specify a different locale?
      */
@@ -88,15 +85,13 @@ public class DatatypeException extends Exception {
                 "com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages");
         if (resourceBundle == null)
             throw new MissingResourceException("Property file not found!",
-                    "com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages",
-                    key);
+                    "com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages", key);
 
         String msg = resourceBundle.getString(key);
         if (msg == null) {
             msg = resourceBundle.getString("BadMessageKey");
             throw new MissingResourceException(msg,
-                    "com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages",
-                    key);
+                    "com.sun.org.apache.xerces.internal.impl.msg.XMLSchemaMessages", key);
         }
 
         if (args != null) {

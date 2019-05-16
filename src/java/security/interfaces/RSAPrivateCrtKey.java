@@ -12,8 +12,6 @@ import java.math.BigInteger;
  * the <i>Chinese Remainder Theorem</i> (CRT) information values.
  *
  * @author Jan Luehe
- *
- *
  * @see RSAPrivateKey
  */
 

@@ -41,7 +41,7 @@ public final class DataBufferByte extends DataBuffer {
      * the specified size.
      *
      * @param size
-     *             The size of the <CODE>DataBuffer</CODE>.
+     *        The size of the <CODE>DataBuffer</CODE>.
      */
     public DataBufferByte(int size) {
         super(STABLE, TYPE_BYTE, size);
@@ -55,9 +55,9 @@ public final class DataBufferByte extends DataBuffer {
      * of banks all of which are the specified size.
      *
      * @param size
-     *                 The size of the banks in the <CODE>DataBuffer</CODE>.
+     *        The size of the banks in the <CODE>DataBuffer</CODE>.
      * @param numBanks
-     *                 The number of banks in the a<CODE>DataBuffer</CODE>.
+     *        The number of banks in the a<CODE>DataBuffer</CODE>.
      */
     public DataBufferByte(int size, int numBanks) {
         super(STABLE, TYPE_BYTE, size, numBanks);
@@ -80,9 +80,9 @@ public final class DataBufferByte extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  The byte array for the <CODE>DataBuffer</CODE>.
+     *        The byte array for the <CODE>DataBuffer</CODE>.
      * @param size
-     *                  The size of the <CODE>DataBuffer</CODE> bank.
+     *        The size of the <CODE>DataBuffer</CODE> bank.
      */
     public DataBufferByte(byte dataArray[], int size) {
         super(UNTRACKABLE, TYPE_BYTE, size);
@@ -104,14 +104,14 @@ public final class DataBufferByte extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  The byte array for the <CODE>DataBuffer</CODE>.
+     *        The byte array for the <CODE>DataBuffer</CODE>.
      * @param size
-     *                  The size of the <CODE>DataBuffer</CODE> bank.
+     *        The size of the <CODE>DataBuffer</CODE> bank.
      * @param offset
-     *                  The offset into the <CODE>dataArray</CODE>.
-     *                  <CODE>dataArray</CODE> must have at least
-     *                  <CODE>offset</CODE>
-     *                  + <CODE>size</CODE> elements.
+     *        The offset into the <CODE>dataArray</CODE>.
+     *        <CODE>dataArray</CODE> must have at least
+     *        <CODE>offset</CODE>
+     *        + <CODE>size</CODE> elements.
      */
     public DataBufferByte(byte dataArray[], int size, int offset) {
         super(UNTRACKABLE, TYPE_BYTE, size, 1, offset);
@@ -132,9 +132,9 @@ public final class DataBufferByte extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  The byte arrays for the <CODE>DataBuffer</CODE>.
+     *        The byte arrays for the <CODE>DataBuffer</CODE>.
      * @param size
-     *                  The size of the banks in the <CODE>DataBuffer</CODE>.
+     *        The size of the banks in the <CODE>DataBuffer</CODE>.
      */
     public DataBufferByte(byte dataArray[][], int size) {
         super(UNTRACKABLE, TYPE_BYTE, size, dataArray.length);
@@ -158,11 +158,11 @@ public final class DataBufferByte extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  The byte arrays for the <CODE>DataBuffer</CODE>.
+     *        The byte arrays for the <CODE>DataBuffer</CODE>.
      * @param size
-     *                  The size of the banks in the <CODE>DataBuffer</CODE>.
+     *        The size of the banks in the <CODE>DataBuffer</CODE>.
      * @param offsets
-     *                  The offsets into each array.
+     *        The offsets into each array.
      */
     public DataBufferByte(byte dataArray[][], int size, int offsets[]) {
         super(UNTRACKABLE, TYPE_BYTE, size, dataArray.length, offsets);
@@ -194,7 +194,7 @@ public final class DataBufferByte extends DataBuffer {
      * associated image in video memory).
      *
      * @param bank
-     *             The bank whose data array you want to get.
+     *        The bank whose data array you want to get.
      * @return The data array for the specified bank.
      */
     public byte[] getData(int bank) {
@@ -221,7 +221,7 @@ public final class DataBufferByte extends DataBuffer {
      * Returns the requested data array element from the first (default) bank.
      *
      * @param i
-     *          The data array element you want to get.
+     *        The data array element you want to get.
      * @return The requested data array element as an integer.
      * @see #setElem(int, int)
      * @see #setElem(int, int, int)
@@ -234,9 +234,9 @@ public final class DataBufferByte extends DataBuffer {
      * Returns the requested data array element from the specified bank.
      *
      * @param bank
-     *             The bank from which you want to get a data array element.
+     *        The bank from which you want to get a data array element.
      * @param i
-     *             The data array element you want to get.
+     *        The data array element you want to get.
      * @return The requested data array element as an integer.
      * @see #setElem(int, int)
      * @see #setElem(int, int, int)
@@ -250,10 +250,10 @@ public final class DataBufferByte extends DataBuffer {
      * specified value.
      *
      * @param i
-     *            The data array element you want to set.
+     *        The data array element you want to set.
      * @param val
-     *            The integer value to which you want to set the data array
-     *            element.
+     *        The integer value to which you want to set the data array
+     *        element.
      * @see #getElem(int)
      * @see #getElem(int, int)
      */
@@ -267,12 +267,12 @@ public final class DataBufferByte extends DataBuffer {
      * given integer.
      * 
      * @param bank
-     *             The bank in which you want to set the data array element.
+     *        The bank in which you want to set the data array element.
      * @param i
-     *             The data array element you want to set.
+     *        The data array element you want to set.
      * @param val
-     *             The integer value to which you want to set the specified data
-     *             array element.
+     *        The integer value to which you want to set the specified data
+     *        array element.
      * @see #getElem(int)
      * @see #getElem(int, int)
      */

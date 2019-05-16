@@ -50,7 +50,6 @@ import java.sql.SQLException;
  * the <code>PooledConnection</code> method <code>close</code>. This method is
  * generally called to have an orderly shutdown of the server or if a fatal
  * error has made the connection unusable.
- *
  * <p>
  * A connection pool manager is often also a statement pool manager, maintaining
  * a pool of <code>PreparedStatement</code> objects. When an application closes
@@ -79,9 +78,9 @@ public interface PooledConnection {
      * @return a <code>Connection</code> object that is a handle to this
      *         <code>PooledConnection</code> object
      * @exception SQLException
-     *                         if a database access error occurs
-     * @exception              java.sql.SQLFeatureNotSupportedException
-     *                         if the JDBC driver does not support this method
+     *            if a database access error occurs
+     * @exception java.sql.SQLFeatureNotSupportedException
+     *            if the JDBC driver does not support this method
      * @since 1.4
      */
     Connection getConnection() throws SQLException;
@@ -95,9 +94,9 @@ public interface PooledConnection {
      * information.
      *
      * @exception SQLException
-     *                         if a database access error occurs
-     * @exception              java.sql.SQLFeatureNotSupportedException
-     *                         if the JDBC driver does not support this method
+     *            if a database access error occurs
+     * @exception java.sql.SQLFeatureNotSupportedException
+     *            if the JDBC driver does not support this method
      * @since 1.4
      */
     void close() throws SQLException;
@@ -107,13 +106,13 @@ public interface PooledConnection {
      * event occurs on this <code>PooledConnection</code> object.
      *
      * @param listener
-     *                 a component, usually the connection pool manager, that
-     *                 has
-     *                 implemented the <code>ConnectionEventListener</code>
-     *                 interface
-     *                 and wants to be notified when the connection is closed or
-     *                 has
-     *                 an error
+     *        a component, usually the connection pool manager, that
+     *        has
+     *        implemented the <code>ConnectionEventListener</code>
+     *        interface
+     *        and wants to be notified when the connection is closed or
+     *        has
+     *        an error
      * @see #removeConnectionEventListener
      */
     void addConnectionEventListener(ConnectionEventListener listener);
@@ -124,13 +123,13 @@ public interface PooledConnection {
      * object.
      *
      * @param listener
-     *                 a component, usually the connection pool manager, that
-     *                 has
-     *                 implemented the <code>ConnectionEventListener</code>
-     *                 interface
-     *                 and been registered with this
-     *                 <code>PooledConnection</code>
-     *                 object as a listener
+     *        a component, usually the connection pool manager, that
+     *        has
+     *        implemented the <code>ConnectionEventListener</code>
+     *        interface
+     *        and been registered with this
+     *        <code>PooledConnection</code>
+     *        object as a listener
      * @see #addConnectionEventListener
      */
     void removeConnectionEventListener(ConnectionEventListener listener);
@@ -145,11 +144,11 @@ public interface PooledConnection {
      * <p>
      * 
      * @param listener
-     *                 an component which implements the
-     *                 <code>StatementEventListener</code> interface that is to
-     *                 be
-     *                 registered with this <code>PooledConnection</code> object
-     *                 <p>
+     *        an component which implements the
+     *        <code>StatementEventListener</code> interface that is to
+     *        be
+     *        registered with this <code>PooledConnection</code> object
+     *        <p>
      * @since 1.6
      */
     public void addStatementEventListener(StatementEventListener listener);
@@ -161,12 +160,12 @@ public interface PooledConnection {
      * <p>
      * 
      * @param listener
-     *                 the component which implements the
-     *                 <code>StatementEventListener</code> interface that was
-     *                 previously registered with this
-     *                 <code>PooledConnection</code>
-     *                 object
-     *                 <p>
+     *        the component which implements the
+     *        <code>StatementEventListener</code> interface that was
+     *        previously registered with this
+     *        <code>PooledConnection</code>
+     *        object
+     *        <p>
      * @since 1.6
      */
     public void removeStatementEventListener(StatementEventListener listener);

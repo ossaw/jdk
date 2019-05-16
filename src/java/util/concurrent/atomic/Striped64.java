@@ -75,7 +75,6 @@ abstract class Striped64 extends Number {
 
     /**
      * Padded variant of AtomicLong supporting only raw accesses plus CAS.
-     *
      * JVM intrinsics note: It would be possible to use a release-only form of
      * CAS here, if it were provided.
      */
@@ -98,8 +97,7 @@ abstract class Striped64 extends Number {
             try {
                 UNSAFE = sun.misc.Unsafe.getUnsafe();
                 Class<?> ak = Cell.class;
-                valueOffset = UNSAFE.objectFieldOffset(ak.getDeclaredField(
-                        "value"));
+                valueOffset = UNSAFE.objectFieldOffset(ak.getDeclaredField("value"));
             } catch (Exception e) {
                 throw new Error(e);
             }
@@ -172,17 +170,16 @@ abstract class Striped64 extends Number {
      * rechecked sets of reads.
      *
      * @param x
-     *                       the value
+     *        the value
      * @param fn
-     *                       the update function, or null for add (this
-     *                       convention avoids
-     *                       the need for an extra field or function in
-     *                       LongAdder).
+     *        the update function, or null for add (this
+     *        convention avoids
+     *        the need for an extra field or function in
+     *        LongAdder).
      * @param wasUncontended
-     *                       false if CAS failed before call
+     *        false if CAS failed before call
      */
-    final void longAccumulate(long x, LongBinaryOperator fn,
-            boolean wasUncontended) {
+    final void longAccumulate(long x, LongBinaryOperator fn, boolean wasUncontended) {
         int h;
         if ((h = getProbe()) == 0) {
             ThreadLocalRandom.current(); // force initialization
@@ -204,8 +201,8 @@ abstract class Striped64 extends Number {
                             try { // Recheck under lock
                                 Cell[] rs;
                                 int m, j;
-                                if ((rs = cells) != null && (m = rs.length) > 0
-                                        && rs[j = (m - 1) & h] == null) {
+                                if ((rs = cells) != null && (m = rs.length) > 0 && rs[j = (m - 1)
+                                        & h] == null) {
                                     rs[j] = r;
                                     created = true;
                                 }
@@ -220,8 +217,7 @@ abstract class Striped64 extends Number {
                     collide = false;
                 } else if (!wasUncontended) // CAS already known to fail
                     wasUncontended = true; // Continue after rehash
-                else if (a.cas(v = a.value, ((fn == null) ? v + x
-                        : fn.applyAsLong(v, x))))
+                else if (a.cas(v = a.value, ((fn == null) ? v + x : fn.applyAsLong(v, x))))
                     break;
                 else if (n >= NCPU || cells != as)
                     collide = false; // At max size or stale
@@ -256,8 +252,7 @@ abstract class Striped64 extends Number {
                 }
                 if (init)
                     break;
-            } else if (casBase(v = base, ((fn == null) ? v + x
-                    : fn.applyAsLong(v, x))))
+            } else if (casBase(v = base, ((fn == null) ? v + x : fn.applyAsLong(v, x))))
                 break; // Fall back on using base
         }
     }
@@ -268,8 +263,7 @@ abstract class Striped64 extends Number {
      * requirements of this class. So must instead be maintained by
      * copy/paste/adapt.
      */
-    final void doubleAccumulate(double x, DoubleBinaryOperator fn,
-            boolean wasUncontended) {
+    final void doubleAccumulate(double x, DoubleBinaryOperator fn, boolean wasUncontended) {
         int h;
         if ((h = getProbe()) == 0) {
             ThreadLocalRandom.current(); // force initialization
@@ -291,8 +285,8 @@ abstract class Striped64 extends Number {
                             try { // Recheck under lock
                                 Cell[] rs;
                                 int m, j;
-                                if ((rs = cells) != null && (m = rs.length) > 0
-                                        && rs[j = (m - 1) & h] == null) {
+                                if ((rs = cells) != null && (m = rs.length) > 0 && rs[j = (m - 1)
+                                        & h] == null) {
                                     rs[j] = r;
                                     created = true;
                                 }
@@ -307,10 +301,9 @@ abstract class Striped64 extends Number {
                     collide = false;
                 } else if (!wasUncontended) // CAS already known to fail
                     wasUncontended = true; // Continue after rehash
-                else if (a.cas(v = a.value, ((fn == null) ? Double
-                        .doubleToRawLongBits(Double.longBitsToDouble(v) + x)
-                        : Double.doubleToRawLongBits(fn.applyAsDouble(Double
-                                .longBitsToDouble(v), x)))))
+                else if (a.cas(v = a.value, ((fn == null) ? Double.doubleToRawLongBits(Double
+                        .longBitsToDouble(v) + x)
+                        : Double.doubleToRawLongBits(fn.applyAsDouble(Double.longBitsToDouble(v), x)))))
                     break;
                 else if (n >= NCPU || cells != as)
                     collide = false; // At max size or stale
@@ -345,10 +338,8 @@ abstract class Striped64 extends Number {
                 }
                 if (init)
                     break;
-            } else if (casBase(v = base, ((fn == null) ? Double
-                    .doubleToRawLongBits(Double.longBitsToDouble(v) + x)
-                    : Double.doubleToRawLongBits(fn.applyAsDouble(Double
-                            .longBitsToDouble(v), x)))))
+            } else if (casBase(v = base, ((fn == null) ? Double.doubleToRawLongBits(Double.longBitsToDouble(v)
+                    + x) : Double.doubleToRawLongBits(fn.applyAsDouble(Double.longBitsToDouble(v), x)))))
                 break; // Fall back on using base
         }
     }
@@ -363,11 +354,9 @@ abstract class Striped64 extends Number {
             UNSAFE = sun.misc.Unsafe.getUnsafe();
             Class<?> sk = Striped64.class;
             BASE = UNSAFE.objectFieldOffset(sk.getDeclaredField("base"));
-            CELLSBUSY = UNSAFE.objectFieldOffset(sk.getDeclaredField(
-                    "cellsBusy"));
+            CELLSBUSY = UNSAFE.objectFieldOffset(sk.getDeclaredField("cellsBusy"));
             Class<?> tk = Thread.class;
-            PROBE = UNSAFE.objectFieldOffset(tk.getDeclaredField(
-                    "threadLocalRandomProbe"));
+            PROBE = UNSAFE.objectFieldOffset(tk.getDeclaredField("threadLocalRandomProbe"));
         } catch (Exception e) {
             throw new Error(e);
         }

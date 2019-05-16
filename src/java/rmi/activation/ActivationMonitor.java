@@ -34,7 +34,6 @@ public interface ActivationMonitor extends Remote {
      * activating) in its VM is no longer active, via calls to the activation
      * group's <code>inactiveObject</code> method.
      * <p>
-     *
      * The <code>inactiveObject</code> call informs the
      * <code>ActivationMonitor</code> that the remote object reference it holds
      * for the object with the activation identifier, <code>id</code>, is no
@@ -45,15 +44,14 @@ public interface ActivationMonitor extends Remote {
      * <p>
      *
      * @param id
-     *           the object's activation identifier
+     *        the object's activation identifier
      * @exception UnknownObjectException
-     *                                   if object is unknown
+     *            if object is unknown
      * @exception RemoteException
-     *                                   if remote call fails
+     *            if remote call fails
      * @since 1.2
      */
-    public void inactiveObject(ActivationID id) throws UnknownObjectException,
-            RemoteException;
+    public void inactiveObject(ActivationID id) throws UnknownObjectException, RemoteException;
 
     /**
      * Informs that an object is now active. An <code>ActivationGroup</code>
@@ -62,17 +60,16 @@ public interface ActivationMonitor extends Remote {
      * "activated" itself).
      *
      * @param id
-     *            the active object's id
+     *        the active object's id
      * @param obj
-     *            the marshalled form of the object's stub
+     *        the marshalled form of the object's stub
      * @exception UnknownObjectException
-     *                                   if object is unknown
+     *            if object is unknown
      * @exception RemoteException
-     *                                   if remote call fails
+     *            if remote call fails
      * @since 1.2
      */
-    public void activeObject(ActivationID id,
-            MarshalledObject<? extends Remote> obj)
+    public void activeObject(ActivationID id, MarshalledObject<? extends Remote> obj)
             throws UnknownObjectException, RemoteException;
 
     /**
@@ -82,16 +79,16 @@ public interface ActivationMonitor extends Remote {
      * inactive.
      *
      * @param id
-     *                    the group's id
+     *        the group's id
      * @param incarnation
-     *                    the group's incarnation number
+     *        the group's incarnation number
      * @exception UnknownGroupException
-     *                                  if group is unknown
+     *            if group is unknown
      * @exception RemoteException
-     *                                  if remote call fails
+     *            if remote call fails
      * @since 1.2
      */
-    public void inactiveGroup(ActivationGroupID id, long incarnation)
-            throws UnknownGroupException, RemoteException;
+    public void inactiveGroup(ActivationGroupID id, long incarnation) throws UnknownGroupException,
+            RemoteException;
 
 }

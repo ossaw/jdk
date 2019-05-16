@@ -44,7 +44,6 @@ import sun.swing.PrintingStatus;
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/table.html">How
  * to Use Tables</a> in <em>The Java Tutorial</em> for task-oriented
  * documentation and examples of using <code>JTable</code>.
- *
  * <p>
  * The <code>JTable</code> has many facilities that make it possible to
  * customize its rendering and editing but provides defaults for these features
@@ -179,10 +178,8 @@ import sun.swing.PrintingStatus;
  * JavaBeans&trade; has been added to the <code>java.beans</code> package.
  * Please see {@link java.beans.XMLEncoder}.
  *
- *
  * @beaninfo attribute: isContainer false description: A component which
  *           displays data in a two dimensional grid.
- *
  * @author Philip Milne
  * @author Shannon Hickey (printing support)
  * @see javax.swing.table.DefaultTableModel
@@ -192,9 +189,8 @@ import sun.swing.PrintingStatus;
  * The first versions of the JTable, contained in Swing-0.1 through Swing-0.4,
  * were written by Alan Chung.
  */
-public class JTable extends JComponent implements TableModelListener,
-        Scrollable, TableColumnModelListener, ListSelectionListener,
-        CellEditorListener, Accessible, RowSorterListener {
+public class JTable extends JComponent implements TableModelListener, Scrollable, TableColumnModelListener,
+        ListSelectionListener, CellEditorListener, Accessible, RowSorterListener {
     //
     // Static Constants
     //
@@ -448,15 +444,13 @@ public class JTable extends JComponent implements TableModelListener,
      * @see #getDropLocation
      * @since 1.6
      */
-    public static final class DropLocation extends
-            TransferHandler.DropLocation {
+    public static final class DropLocation extends TransferHandler.DropLocation {
         private final int row;
         private final int col;
         private final boolean isInsertRow;
         private final boolean isInsertCol;
 
-        private DropLocation(Point p, int row, int col, boolean isInsertRow,
-                boolean isInsertCol) {
+        private DropLocation(Point p, int row, int col, boolean isInsertRow, boolean isInsertCol) {
 
             super(p);
             this.row = row;
@@ -527,9 +521,9 @@ public class JTable extends JComponent implements TableModelListener,
          * @return a string representation of this drop location
          */
         public String toString() {
-            return getClass().getName() + "[dropPoint=" + getDropPoint() + ","
-                    + "row=" + row + "," + "column=" + col + "," + "insertRow="
-                    + isInsertRow + "," + "insertColumn=" + isInsertCol + "]";
+            return getClass().getName() + "[dropPoint=" + getDropPoint() + "," + "row=" + row + ","
+                    + "column=" + col + "," + "insertRow=" + isInsertRow + "," + "insertColumn=" + isInsertCol
+                    + "]";
         }
     }
 
@@ -555,7 +549,7 @@ public class JTable extends JComponent implements TableModelListener,
      * as the data model, a default column model, and a default selection model.
      *
      * @param dm
-     *           the data model for the table
+     *        the data model for the table
      * @see #createDefaultColumnModel
      * @see #createDefaultSelectionModel
      */
@@ -569,9 +563,9 @@ public class JTable extends JComponent implements TableModelListener,
      * selection model.
      *
      * @param dm
-     *           the data model for the table
+     *        the data model for the table
      * @param cm
-     *           the column model for the table
+     *        the column model for the table
      * @see #createDefaultSelectionModel
      */
     public JTable(TableModel dm, TableColumnModel cm) {
@@ -589,11 +583,11 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>TableColumns</code> for the columns in <code>dm</code>.
      *
      * @param dm
-     *           the data model for the table
+     *        the data model for the table
      * @param cm
-     *           the column model for the table
+     *        the column model for the table
      * @param sm
-     *           the row selection model for the table
+     *        the row selection model for the table
      * @see #createDefaultDataModel
      * @see #createDefaultColumnModel
      * @see #createDefaultSelectionModel
@@ -602,10 +596,10 @@ public class JTable extends JComponent implements TableModelListener,
         super();
         setLayout(null);
 
-        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-                JComponent.getManagingFocusForwardTraversalKeys());
-        setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
-                JComponent.getManagingFocusBackwardTraversalKeys());
+        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, JComponent
+                .getManagingFocusForwardTraversalKeys());
+        setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, JComponent
+                .getManagingFocusBackwardTraversalKeys());
         if (cm == null) {
             cm = createDefaultColumnModel();
             autoCreateColumnsFromModel = true;
@@ -636,9 +630,9 @@ public class JTable extends JComponent implements TableModelListener,
      * "A", "B", "C", etc.
      *
      * @param numRows
-     *                   the number of rows the table holds
+     *        the number of rows the table holds
      * @param numColumns
-     *                   the number of columns the table holds
+     *        the number of columns the table holds
      * @see javax.swing.table.DefaultTableModel
      */
     public JTable(int numRows, int numColumns) {
@@ -659,9 +653,9 @@ public class JTable extends JComponent implements TableModelListener,
      * <p>
      * 
      * @param rowData
-     *                    the data for the new table
+     *        the data for the new table
      * @param columnNames
-     *                    names of each column
+     *        names of each column
      */
     public JTable(Vector rowData, Vector columnNames) {
         this(new DefaultTableModel(rowData, columnNames));
@@ -682,9 +676,9 @@ public class JTable extends JComponent implements TableModelListener,
      * <p>
      * 
      * @param rowData
-     *                    the data for the new table
+     *        the data for the new table
      * @param columnNames
-     *                    names of each column
+     *        names of each column
      */
     public JTable(final Object[][] rowData, final Object[] columnNames) {
         this(new AbstractTableModel() {
@@ -751,8 +745,7 @@ public class JTable extends JComponent implements TableModelListener,
                 // example, the rowHeaderView of the scrollPane -
                 // an implementor of fixed columns might do this.
                 JViewport viewport = scrollPane.getViewport();
-                if (viewport == null || SwingUtilities.getUnwrappedView(
-                        viewport) != this) {
+                if (viewport == null || SwingUtilities.getUnwrappedView(viewport) != this) {
                     return;
                 }
                 scrollPane.setColumnHeaderView(getTableHeader());
@@ -785,33 +778,28 @@ public class JTable extends JComponent implements TableModelListener,
                 // example, the rowHeaderView of the scrollPane -
                 // an implementor of fixed columns might do this.
                 JViewport viewport = scrollPane.getViewport();
-                if (viewport == null || SwingUtilities.getUnwrappedView(
-                        viewport) != this) {
+                if (viewport == null || SwingUtilities.getUnwrappedView(viewport) != this) {
                     return;
                 }
                 // scrollPane.getViewport().setBackingStoreEnabled(true);
                 Border border = scrollPane.getBorder();
                 if (border == null || border instanceof UIResource) {
-                    Border scrollPaneBorder = UIManager.getBorder(
-                            "Table.scrollPaneBorder");
+                    Border scrollPaneBorder = UIManager.getBorder("Table.scrollPaneBorder");
                     if (scrollPaneBorder != null) {
                         scrollPane.setBorder(scrollPaneBorder);
                     }
                 }
                 // add JScrollBar corner component if available from LAF and not
                 // already set by the user
-                Component corner = scrollPane.getCorner(
-                        JScrollPane.UPPER_TRAILING_CORNER);
+                Component corner = scrollPane.getCorner(JScrollPane.UPPER_TRAILING_CORNER);
                 if (corner == null || corner instanceof UIResource) {
                     corner = null;
                     try {
-                        corner = (Component) UIManager.get(
-                                "Table.scrollPaneCornerComponent");
+                        corner = (Component) UIManager.get("Table.scrollPaneCornerComponent");
                     } catch (Exception e) {
                         // just ignore and don't set corner
                     }
-                    scrollPane.setCorner(JScrollPane.UPPER_TRAILING_CORNER,
-                            corner);
+                    scrollPane.setCorner(JScrollPane.UPPER_TRAILING_CORNER, corner);
                 }
             }
         }
@@ -823,9 +811,8 @@ public class JTable extends JComponent implements TableModelListener,
      * @see #unconfigureEnclosingScrollPane
      */
     public void removeNotify() {
-        KeyboardFocusManager.getCurrentKeyboardFocusManager()
-                .removePropertyChangeListener("permanentFocusOwner",
-                        editorRemover);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removePropertyChangeListener(
+                "permanentFocusOwner", editorRemover);
         editorRemover = null;
         unconfigureEnclosingScrollPane();
         super.removeNotify();
@@ -853,17 +840,14 @@ public class JTable extends JComponent implements TableModelListener,
                 // example, the rowHeaderView of the scrollPane -
                 // an implementor of fixed columns might do this.
                 JViewport viewport = scrollPane.getViewport();
-                if (viewport == null || SwingUtilities.getUnwrappedView(
-                        viewport) != this) {
+                if (viewport == null || SwingUtilities.getUnwrappedView(viewport) != this) {
                     return;
                 }
                 scrollPane.setColumnHeaderView(null);
                 // remove ScrollPane corner if one was added by the LAF
-                Component corner = scrollPane.getCorner(
-                        JScrollPane.UPPER_TRAILING_CORNER);
+                Component corner = scrollPane.getCorner(JScrollPane.UPPER_TRAILING_CORNER);
                 if (corner instanceof UIResource) {
-                    scrollPane.setCorner(JScrollPane.UPPER_TRAILING_CORNER,
-                            null);
+                    scrollPane.setCorner(JScrollPane.UPPER_TRAILING_CORNER, null);
                 }
             }
         }
@@ -905,7 +889,7 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>tableHeader</code>.
      *
      * @param tableHeader
-     *                    new tableHeader
+     *        new tableHeader
      * @see #getTableHeader
      * @beaninfo bound: true description: The JTableHeader instance which
      *           renders the column headers.
@@ -941,10 +925,10 @@ public class JTable extends JComponent implements TableModelListener,
      * row height minus the row margin.
      *
      * @param rowHeight
-     *                  new row height
+     *        new row height
      * @exception IllegalArgumentException
-     *                                     if <code>rowHeight</code> is less
-     *                                     than 1
+     *            if <code>rowHeight</code> is less
+     *            than 1
      * @see #getRowHeight
      * @beaninfo bound: true description: The height of the specified row.
      */
@@ -986,12 +970,12 @@ public class JTable extends JComponent implements TableModelListener,
      * equal to the row height minus the row margin.
      *
      * @param row
-     *                  the row whose height is being changed
+     *        the row whose height is being changed
      * @param rowHeight
-     *                  new row height, in pixels
+     *        new row height, in pixels
      * @exception IllegalArgumentException
-     *                                     if <code>rowHeight</code> is less
-     *                                     than 1
+     *            if <code>rowHeight</code> is less
+     *            than 1
      * @beaninfo bound: true description: The height in pixels of the cells in
      *           <code>row</code>
      * @since 1.3
@@ -1011,7 +995,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Returns the height, in pixels, of the cells in <code>row</code>.
      * 
      * @param row
-     *            the row whose height is to be returned
+     *        the row whose height is to be returned
      * @return the height, in pixels, of the cells in the row
      * @since 1.3
      */
@@ -1023,7 +1007,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Sets the amount of empty space between cells in adjacent rows.
      *
      * @param rowMargin
-     *                  the number of pixels between cells in a row
+     *        the number of pixels between cells in a row
      * @see #getRowMargin
      * @beaninfo bound: true description: The amount of space between cells.
      */
@@ -1039,7 +1023,6 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>getIntercellSpacing().height</code>.
      * 
      * @return the number of pixels between cells in a row
-     *
      * @see #setRowMargin
      */
     public int getRowMargin() {
@@ -1052,9 +1035,9 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>intercellSpacing</code>.
      *
      * @param intercellSpacing
-     *                         a <code>Dimension</code> specifying the new width
-     *                         and height
-     *                         between cells
+     *        a <code>Dimension</code> specifying the new width
+     *        and height
+     *        between cells
      * @see #getIntercellSpacing
      * @beaninfo description: The spacing between the cells, drawn in the
      *           background color of the JTable.
@@ -1083,10 +1066,10 @@ public class JTable extends JComponent implements TableModelListener,
      * redisplays. The default color is look and feel dependent.
      *
      * @param gridColor
-     *                  the new color of the grid lines
+     *        the new color of the grid lines
      * @exception IllegalArgumentException
-     *                                     if <code>gridColor</code> is
-     *                                     <code>null</code>
+     *            if <code>gridColor</code> is
+     *            <code>null</code>
      * @see #getGridColor
      * @beaninfo bound: true description: The grid color.
      */
@@ -1121,8 +1104,7 @@ public class JTable extends JComponent implements TableModelListener,
      * independently.
      *
      * @param showGrid
-     *                 true if table view should draw grid lines
-     *
+     *        true if table view should draw grid lines
      * @see #setShowVerticalLines
      * @see #setShowHorizontalLines
      * @beaninfo description: The color used to draw the grid lines.
@@ -1141,8 +1123,8 @@ public class JTable extends JComponent implements TableModelListener,
      * doesn't.
      *
      * @param showHorizontalLines
-     *                            true if table view should draw horizontal
-     *                            lines
+     *        true if table view should draw horizontal
+     *        lines
      * @see #getShowHorizontalLines
      * @see #setShowGrid
      * @see #setShowVerticalLines
@@ -1164,7 +1146,7 @@ public class JTable extends JComponent implements TableModelListener,
      * doesn't.
      *
      * @param showVerticalLines
-     *                          true if table view should draw vertical lines
+     *        true if table view should draw vertical lines
      * @see #getShowVerticalLines
      * @see #setShowGrid
      * @see #setShowHorizontalLines
@@ -1209,10 +1191,9 @@ public class JTable extends JComponent implements TableModelListener,
      * .
      *
      * @param mode
-     *             One of 5 legal values: AUTO_RESIZE_OFF,
-     *             AUTO_RESIZE_NEXT_COLUMN, AUTO_RESIZE_SUBSEQUENT_COLUMNS,
-     *             AUTO_RESIZE_LAST_COLUMN, AUTO_RESIZE_ALL_COLUMNS
-     *
+     *        One of 5 legal values: AUTO_RESIZE_OFF,
+     *        AUTO_RESIZE_NEXT_COLUMN, AUTO_RESIZE_SUBSEQUENT_COLUMNS,
+     *        AUTO_RESIZE_LAST_COLUMN, AUTO_RESIZE_ALL_COLUMNS
      * @see #getAutoResizeMode
      * @see #doLayout
      * @beaninfo bound: true description: Whether the columns should adjust
@@ -1225,8 +1206,7 @@ public class JTable extends JComponent implements TableModelListener,
      */
     public void setAutoResizeMode(int mode) {
         if ((mode == AUTO_RESIZE_OFF) || (mode == AUTO_RESIZE_NEXT_COLUMN)
-                || (mode == AUTO_RESIZE_SUBSEQUENT_COLUMNS)
-                || (mode == AUTO_RESIZE_LAST_COLUMN)
+                || (mode == AUTO_RESIZE_SUBSEQUENT_COLUMNS) || (mode == AUTO_RESIZE_LAST_COLUMN)
                 || (mode == AUTO_RESIZE_ALL_COLUMNS)) {
             int old = autoResizeMode;
             autoResizeMode = mode;
@@ -1243,7 +1223,6 @@ public class JTable extends JComponent implements TableModelListener,
      * AUTO_RESIZE_SUBSEQUENT_COLUMNS.
      *
      * @return the autoResizeMode of the table
-     *
      * @see #setAutoResizeMode
      * @see #doLayout
      */
@@ -1257,24 +1236,22 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>autoCreateColumnsFromModel</code> changes from false to true.
      *
      * @param autoCreateColumnsFromModel
-     *                                   true if <code>JTable</code> should
-     *                                   automatically create
-     *                                   columns
+     *        true if <code>JTable</code> should
+     *        automatically create
+     *        columns
      * @see #getAutoCreateColumnsFromModel
      * @see #createDefaultColumnsFromModel
      * @beaninfo bound: true description: Automatically populates the
      *           columnModel when a new TableModel is submitted.
      */
-    public void setAutoCreateColumnsFromModel(
-            boolean autoCreateColumnsFromModel) {
+    public void setAutoCreateColumnsFromModel(boolean autoCreateColumnsFromModel) {
         if (this.autoCreateColumnsFromModel != autoCreateColumnsFromModel) {
             boolean old = this.autoCreateColumnsFromModel;
             this.autoCreateColumnsFromModel = autoCreateColumnsFromModel;
             if (autoCreateColumnsFromModel) {
                 createDefaultColumnsFromModel();
             }
-            firePropertyChange("autoCreateColumnsFromModel", old,
-                    autoCreateColumnsFromModel);
+            firePropertyChange("autoCreateColumnsFromModel", old, autoCreateColumnsFromModel);
         }
     }
 
@@ -1326,14 +1303,13 @@ public class JTable extends JComponent implements TableModelListener,
      * default renderer for this column class.
      *
      * @param columnClass
-     *                    set the default cell renderer for this columnClass
+     *        set the default cell renderer for this columnClass
      * @param renderer
-     *                    default cell renderer to be used for this columnClass
+     *        default cell renderer to be used for this columnClass
      * @see #getDefaultRenderer
      * @see #setDefaultEditor
      */
-    public void setDefaultRenderer(Class<?> columnClass,
-            TableCellRenderer renderer) {
+    public void setDefaultRenderer(Class<?> columnClass, TableCellRenderer renderer) {
         if (renderer != null) {
             defaultRenderersByColumnClass.put(columnClass, renderer);
         } else {
@@ -1352,7 +1328,7 @@ public class JTable extends JComponent implements TableModelListener,
      * of which can be modified or replaced.
      *
      * @param columnClass
-     *                    return the default cell renderer for this columnClass
+     *        return the default cell renderer for this columnClass
      * @return the renderer for this columnClass
      * @see #setDefaultRenderer
      * @see #getColumnClass
@@ -1383,9 +1359,9 @@ public class JTable extends JComponent implements TableModelListener,
      * is <code>null</code>, removes the default editor for this column class.
      *
      * @param columnClass
-     *                    set the default cell editor for this columnClass
+     *        set the default cell editor for this columnClass
      * @param editor
-     *                    default cell editor to be used for this columnClass
+     *        default cell editor to be used for this columnClass
      * @see TableModel#isCellEditable
      * @see #getDefaultEditor
      * @see #setDefaultRenderer
@@ -1409,7 +1385,7 @@ public class JTable extends JComponent implements TableModelListener,
      * of which can be modified or replaced.
      *
      * @param columnClass
-     *                    return the default cell editor for this columnClass
+     *        return the default cell editor for this columnClass
      * @return the default cell editor to be used for this columnClass
      * @see #setDefaultEditor
      * @see #getColumnClass
@@ -1448,18 +1424,17 @@ public class JTable extends JComponent implements TableModelListener,
      * table's {@code TransferHandler}.
      *
      * @param b
-     *          whether or not to enable automatic drag handling
+     *        whether or not to enable automatic drag handling
      * @exception HeadlessException
-     *                              if <code>b</code> is <code>true</code> and
-     *                              <code>GraphicsEnvironment.isHeadless()</code>
-     *                              returns
-     *                              <code>true</code>
+     *            if <code>b</code> is <code>true</code> and
+     *            <code>GraphicsEnvironment.isHeadless()</code>
+     *            returns
+     *            <code>true</code>
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @see #getDragEnabled
      * @see #setTransferHandler
      * @see TransferHandler
      * @since 1.4
-     *
      * @beaninfo description: determines whether automatic drag handling is
      *           enabled bound: false
      */
@@ -1505,10 +1480,10 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>TransferHandler</code> that accepts drops.
      *
      * @param dropMode
-     *                 the drop mode to use
+     *        the drop mode to use
      * @throws IllegalArgumentException
-     *                                  if the drop mode is unsupported or
-     *                                  <code>null</code>
+     *         if the drop mode is unsupported or
+     *         <code>null</code>
      * @see #getDropMode
      * @see #getDropLocation
      * @see #setTransferHandler
@@ -1531,8 +1506,7 @@ public class JTable extends JComponent implements TableModelListener,
             }
         }
 
-        throw new IllegalArgumentException(dropMode
-                + ": Unsupported drop mode for table");
+        throw new IllegalArgumentException(dropMode + ": Unsupported drop mode for table");
     }
 
     /**
@@ -1551,7 +1525,7 @@ public class JTable extends JComponent implements TableModelListener,
      * at the given point should insert data.
      *
      * @param p
-     *          the point to calculate a drop location for
+     *        the point to calculate a drop location for
      * @return the drop location, or <code>null</code>
      */
     DropLocation dropLocationForPoint(Point p) {
@@ -1559,8 +1533,8 @@ public class JTable extends JComponent implements TableModelListener,
 
         int row = rowAtPoint(p);
         int col = columnAtPoint(p);
-        boolean outside = Boolean.TRUE == getClientProperty("Table.isFileList")
-                && SwingUtilities2.pointOutsidePrefSize(this, row, col, p);
+        boolean outside = Boolean.TRUE == getClientProperty("Table.isFileList") && SwingUtilities2
+                .pointOutsidePrefSize(this, row, col, p);
 
         Rectangle rect = getCellRect(row, col, true);
         Section xSection, ySection;
@@ -1586,14 +1560,11 @@ public class JTable extends JComponent implements TableModelListener,
 
                 if (row == -1) {
                     if (xSection == LEADING) {
-                        location = new DropLocation(p, getRowCount(), col, true,
-                                true);
+                        location = new DropLocation(p, getRowCount(), col, true, true);
                     } else if (xSection == TRAILING) {
-                        location = new DropLocation(p, getRowCount(), col + 1,
-                                true, true);
+                        location = new DropLocation(p, getRowCount(), col + 1, true, true);
                     } else {
-                        location = new DropLocation(p, getRowCount(), col, true,
-                                false);
+                        location = new DropLocation(p, getRowCount(), col, true, false);
                     }
                 } else if (xSection == LEADING || xSection == TRAILING) {
                     ySection = SwingUtilities2.liesInVertical(rect, p, true);
@@ -1604,12 +1575,9 @@ public class JTable extends JComponent implements TableModelListener,
                         between = true;
                     }
 
-                    location = new DropLocation(p, row, xSection == TRAILING
-                            ? col + 1
-                            : col, between, true);
+                    location = new DropLocation(p, row, xSection == TRAILING ? col + 1 : col, between, true);
                 } else {
-                    if (SwingUtilities2.liesInVertical(rect, p,
-                            false) == TRAILING) {
+                    if (SwingUtilities2.liesInVertical(rect, p, false) == TRAILING) {
                         row++;
                     }
 
@@ -1624,13 +1592,11 @@ public class JTable extends JComponent implements TableModelListener,
                 }
 
                 if (row == -1) {
-                    location = new DropLocation(p, getRowCount(), col, true,
-                            false);
+                    location = new DropLocation(p, getRowCount(), col, true, false);
                     break;
                 }
 
-                if (SwingUtilities2.liesInVertical(rect, p,
-                        false) == TRAILING) {
+                if (SwingUtilities2.liesInVertical(rect, p, false) == TRAILING) {
                     row++;
                 }
 
@@ -1643,8 +1609,7 @@ public class JTable extends JComponent implements TableModelListener,
                 }
 
                 if (row == -1) {
-                    location = new DropLocation(p, getRowCount(), col, true,
-                            false);
+                    location = new DropLocation(p, getRowCount(), col, true, false);
                     break;
                 }
 
@@ -1665,13 +1630,11 @@ public class JTable extends JComponent implements TableModelListener,
                 }
 
                 if (col == -1) {
-                    location = new DropLocation(p, getColumnCount(), col, false,
-                            true);
+                    location = new DropLocation(p, getColumnCount(), col, false, true);
                     break;
                 }
 
-                if (SwingUtilities2.liesInHorizontal(rect, p, ltr,
-                        false) == TRAILING) {
+                if (SwingUtilities2.liesInHorizontal(rect, p, ltr, false) == TRAILING) {
                     col++;
                 }
 
@@ -1684,8 +1647,7 @@ public class JTable extends JComponent implements TableModelListener,
                 }
 
                 if (col == -1) {
-                    location = new DropLocation(p, row, getColumnCount(), false,
-                            true);
+                    location = new DropLocation(p, row, getColumnCount(), false, true);
                     break;
                 }
 
@@ -1709,14 +1671,11 @@ public class JTable extends JComponent implements TableModelListener,
 
                 if (row == -1) {
                     if (xSection == LEADING) {
-                        location = new DropLocation(p, getRowCount(), col, true,
-                                true);
+                        location = new DropLocation(p, getRowCount(), col, true, true);
                     } else if (xSection == TRAILING) {
-                        location = new DropLocation(p, getRowCount(), col + 1,
-                                true, true);
+                        location = new DropLocation(p, getRowCount(), col + 1, true, true);
                     } else {
-                        location = new DropLocation(p, getRowCount(), col, true,
-                                false);
+                        location = new DropLocation(p, getRowCount(), col, true, false);
                     }
 
                     break;
@@ -1730,8 +1689,8 @@ public class JTable extends JComponent implements TableModelListener,
                     between = true;
                 }
 
-                location = new DropLocation(p, row, xSection == TRAILING ? col
-                        + 1 : col, between, xSection != MIDDLE);
+                location = new DropLocation(p, row, xSection == TRAILING ? col + 1 : col, between,
+                        xSection != MIDDLE);
 
                 break;
             default:
@@ -1764,21 +1723,20 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>null</code> since there's no longer anything to store.
      *
      * @param location
-     *                 the drop location (as calculated by
-     *                 <code>dropLocationForPoint</code>) or <code>null</code>
-     *                 if
-     *                 there's no longer a valid drop location
+     *        the drop location (as calculated by
+     *        <code>dropLocationForPoint</code>) or <code>null</code>
+     *        if
+     *        there's no longer a valid drop location
      * @param state
-     *                 the state object saved earlier for this component, or
-     *                 <code>null</code>
+     *        the state object saved earlier for this component, or
+     *        <code>null</code>
      * @param forDrop
-     *                 whether or not the method is being called because an
-     *                 actual
-     *                 drop occurred
+     *        whether or not the method is being called because an
+     *        actual
+     *        drop occurred
      * @return any saved state for this component, or <code>null</code> if none
      */
-    Object setDropLocation(TransferHandler.DropLocation location, Object state,
-            boolean forDrop) {
+    Object setDropLocation(TransferHandler.DropLocation location, Object state, boolean forDrop) {
 
         Object retVal = null;
         DropLocation tableLocation = (DropLocation) location;
@@ -1800,28 +1758,20 @@ public class JTable extends JComponent implements TableModelListener,
                         addColumnSelectionInterval(col, col);
                     }
 
-                    SwingUtilities2.setLeadAnchorWithoutSelection(
-                            getSelectionModel(), anchleads[1], anchleads[0]);
+                    SwingUtilities2.setLeadAnchorWithoutSelection(getSelectionModel(), anchleads[1],
+                            anchleads[0]);
 
-                    SwingUtilities2.setLeadAnchorWithoutSelection(
-                            getColumnModel().getSelectionModel(), anchleads[3],
-                            anchleads[2]);
+                    SwingUtilities2.setLeadAnchorWithoutSelection(getColumnModel().getSelectionModel(),
+                            anchleads[3], anchleads[2]);
                 }
             } else {
                 if (dropLocation == null) {
-                    retVal = new int[][] { getSelectedRows(),
-                            getSelectedColumns(), { getAdjustedIndex(
-                                    getSelectionModel()
-                                            .getAnchorSelectionIndex(), true),
-                                    getAdjustedIndex(getSelectionModel()
-                                            .getLeadSelectionIndex(), true),
-                                    getAdjustedIndex(getColumnModel()
-                                            .getSelectionModel()
-                                            .getAnchorSelectionIndex(), false),
-                                    getAdjustedIndex(getColumnModel()
-                                            .getSelectionModel()
-                                            .getLeadSelectionIndex(),
-                                            false) } };
+                    retVal = new int[][] { getSelectedRows(), getSelectedColumns(), { getAdjustedIndex(
+                            getSelectionModel().getAnchorSelectionIndex(), true), getAdjustedIndex(
+                                    getSelectionModel().getLeadSelectionIndex(), true), getAdjustedIndex(
+                                            getColumnModel().getSelectionModel().getAnchorSelectionIndex(),
+                                            false), getAdjustedIndex(getColumnModel().getSelectionModel()
+                                                    .getLeadSelectionIndex(), false) } };
                 } else {
                     retVal = state;
                 }
@@ -1829,10 +1779,8 @@ public class JTable extends JComponent implements TableModelListener,
                 if (tableLocation.getRow() == -1) {
                     clearSelectionAndLeadAnchor();
                 } else {
-                    setRowSelectionInterval(tableLocation.getRow(),
-                            tableLocation.getRow());
-                    setColumnSelectionInterval(tableLocation.getColumn(),
-                            tableLocation.getColumn());
+                    setRowSelectionInterval(tableLocation.getRow(), tableLocation.getRow());
+                    setColumnSelectionInterval(tableLocation.getColumn(), tableLocation.getColumn());
                 }
             }
         }
@@ -1878,9 +1826,9 @@ public class JTable extends JComponent implements TableModelListener,
      * value for the {@code autoCreateRowSorter} property is {@code false}.
      *
      * @param autoCreateRowSorter
-     *                            whether or not a {@code RowSorter} should be
-     *                            automatically
-     *                            created
+     *        whether or not a {@code RowSorter} should be
+     *        automatically
+     *        created
      * @see javax.swing.table.TableRowSorter
      * @beaninfo bound: true preferred: true description: Whether or not to turn
      *           on sorting by default.
@@ -1892,8 +1840,7 @@ public class JTable extends JComponent implements TableModelListener,
         if (autoCreateRowSorter) {
             setRowSorter(new TableRowSorter<TableModel>(getModel()));
         }
-        firePropertyChange("autoCreateRowSorter", oldValue,
-                autoCreateRowSorter);
+        firePropertyChange("autoCreateRowSorter", oldValue, autoCreateRowSorter);
     }
 
     /**
@@ -1915,7 +1862,7 @@ public class JTable extends JComponent implements TableModelListener,
      * the model, remain selected. The default is true.
      *
      * @param update
-     *               whether or not to update the selection on sorting
+     *        whether or not to update the selection on sorting
      * @beaninfo bound: true expert: true description: Whether or not to update
      *           the selection on sorting
      * @since 1.6
@@ -1952,8 +1899,8 @@ public class JTable extends JComponent implements TableModelListener,
      * of this <code>JTable</code> undefined behavior will result.
      *
      * @param sorter
-     *               the <code>RowSorter</code>; <code>null</code> turns sorting
-     *               off
+     *        the <code>RowSorter</code>; <code>null</code> turns sorting
+     *        off
      * @see javax.swing.table.TableRowSorter
      * @beaninfo bound: true description: The table's RowSorter
      * @since 1.6
@@ -2023,7 +1970,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Sets whether the rows in this model can be selected.
      *
      * @param rowSelectionAllowed
-     *                            true if this model will allow row selection
+     *        true if this model will allow row selection
      * @see #getRowSelectionAllowed
      * @beaninfo bound: true attribute: visualUpdate true description: If true,
      *           an entire row is selected for each selected cell.
@@ -2051,8 +1998,8 @@ public class JTable extends JComponent implements TableModelListener,
      * Sets whether the columns in this model can be selected.
      *
      * @param columnSelectionAllowed
-     *                               true if this model will allow column
-     *                               selection
+     *        true if this model will allow column
+     *        selection
      * @see #getColumnSelectionAllowed
      * @beaninfo bound: true attribute: visualUpdate true description: If true,
      *           an entire column is selected for each selected cell.
@@ -2063,8 +2010,7 @@ public class JTable extends JComponent implements TableModelListener,
         if (old != columnSelectionAllowed) {
             repaint();
         }
-        firePropertyChange("columnSelectionAllowed", old,
-                columnSelectionAllowed);
+        firePropertyChange("columnSelectionAllowed", old, columnSelectionAllowed);
     }
 
     /**
@@ -2088,8 +2034,8 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>columnModel</code> to the supplied value.
      *
      * @param cellSelectionEnabled
-     *                             true if simultaneous row and column selection
-     *                             is allowed
+     *        true if simultaneous row and column selection
+     *        is allowed
      * @see #getCellSelectionEnabled
      * @see #isCellSelected
      * @beaninfo bound: true attribute: visualUpdate true description: Select a
@@ -2109,7 +2055,6 @@ public class JTable extends JComponent implements TableModelListener,
      * getColumnSelectionAllowed()</code>.
      *
      * @return true if both row and column selection models are enabled
-     *
      * @see #setCellSelectionEnabled
      */
     public boolean getCellSelectionEnabled() {
@@ -2132,28 +2077,24 @@ public class JTable extends JComponent implements TableModelListener,
             selModel = selectionModel;
             selModel.setValueIsAdjusting(true);
             oldLead = getAdjustedIndex(selModel.getLeadSelectionIndex(), true);
-            oldAnchor = getAdjustedIndex(selModel.getAnchorSelectionIndex(),
-                    true);
+            oldAnchor = getAdjustedIndex(selModel.getAnchorSelectionIndex(), true);
 
             setRowSelectionInterval(0, getRowCount() - 1);
 
             // this is done to restore the anchor and lead
-            SwingUtilities2.setLeadAnchorWithoutSelection(selModel, oldLead,
-                    oldAnchor);
+            SwingUtilities2.setLeadAnchorWithoutSelection(selModel, oldLead, oldAnchor);
 
             selModel.setValueIsAdjusting(false);
 
             selModel = columnModel.getSelectionModel();
             selModel.setValueIsAdjusting(true);
             oldLead = getAdjustedIndex(selModel.getLeadSelectionIndex(), false);
-            oldAnchor = getAdjustedIndex(selModel.getAnchorSelectionIndex(),
-                    false);
+            oldAnchor = getAdjustedIndex(selModel.getAnchorSelectionIndex(), false);
 
             setColumnSelectionInterval(0, getColumnCount() - 1);
 
             // this is done to restore the anchor and lead
-            SwingUtilities2.setLeadAnchorWithoutSelection(selModel, oldLead,
-                    oldAnchor);
+            SwingUtilities2.setLeadAnchorWithoutSelection(selModel, oldLead, oldAnchor);
 
             selModel.setValueIsAdjusting(false);
         }
@@ -2206,13 +2147,13 @@ public class JTable extends JComponent implements TableModelListener,
      * inclusive.
      *
      * @exception IllegalArgumentException
-     *                                     if <code>index0</code> or
-     *                                     <code>index1</code> lie outside
-     *                                     [0, <code>getRowCount()</code>-1]
+     *            if <code>index0</code> or
+     *            <code>index1</code> lie outside
+     *            [0, <code>getRowCount()</code>-1]
      * @param index0
-     *               one end of the interval
+     *        one end of the interval
      * @param index1
-     *               the other end of the interval
+     *        the other end of the interval
      */
     public void setRowSelectionInterval(int index0, int index1) {
         selectionModel.setSelectionInterval(boundRow(index0), boundRow(index1));
@@ -2223,17 +2164,16 @@ public class JTable extends JComponent implements TableModelListener,
      * inclusive.
      *
      * @exception IllegalArgumentException
-     *                                     if <code>index0</code> or
-     *                                     <code>index1</code> lie outside
-     *                                     [0, <code>getColumnCount()</code>-1]
+     *            if <code>index0</code> or
+     *            <code>index1</code> lie outside
+     *            [0, <code>getColumnCount()</code>-1]
      * @param index0
-     *               one end of the interval
+     *        one end of the interval
      * @param index1
-     *               the other end of the interval
+     *        the other end of the interval
      */
     public void setColumnSelectionInterval(int index0, int index1) {
-        columnModel.getSelectionModel().setSelectionInterval(boundColumn(
-                index0), boundColumn(index1));
+        columnModel.getSelectionModel().setSelectionInterval(boundColumn(index0), boundColumn(index1));
     }
 
     /**
@@ -2241,13 +2181,13 @@ public class JTable extends JComponent implements TableModelListener,
      * to the current selection.
      *
      * @exception IllegalArgumentException
-     *                                     if <code>index0</code> or
-     *                                     <code>index1</code> lie outside
-     *                                     [0, <code>getRowCount()</code>-1]
+     *            if <code>index0</code> or
+     *            <code>index1</code> lie outside
+     *            [0, <code>getRowCount()</code>-1]
      * @param index0
-     *               one end of the interval
+     *        one end of the interval
      * @param index1
-     *               the other end of the interval
+     *        the other end of the interval
      */
     public void addRowSelectionInterval(int index0, int index1) {
         selectionModel.addSelectionInterval(boundRow(index0), boundRow(index1));
@@ -2258,17 +2198,16 @@ public class JTable extends JComponent implements TableModelListener,
      * inclusive, to the current selection.
      *
      * @exception IllegalArgumentException
-     *                                     if <code>index0</code> or
-     *                                     <code>index1</code> lie outside
-     *                                     [0, <code>getColumnCount()</code>-1]
+     *            if <code>index0</code> or
+     *            <code>index1</code> lie outside
+     *            [0, <code>getColumnCount()</code>-1]
      * @param index0
-     *               one end of the interval
+     *        one end of the interval
      * @param index1
-     *               the other end of the interval
+     *        the other end of the interval
      */
     public void addColumnSelectionInterval(int index0, int index1) {
-        columnModel.getSelectionModel().addSelectionInterval(boundColumn(
-                index0), boundColumn(index1));
+        columnModel.getSelectionModel().addSelectionInterval(boundColumn(index0), boundColumn(index1));
     }
 
     /**
@@ -2276,17 +2215,16 @@ public class JTable extends JComponent implements TableModelListener,
      * inclusive.
      *
      * @exception IllegalArgumentException
-     *                                     if <code>index0</code> or
-     *                                     <code>index1</code> lie outside
-     *                                     [0, <code>getRowCount()</code>-1]
+     *            if <code>index0</code> or
+     *            <code>index1</code> lie outside
+     *            [0, <code>getRowCount()</code>-1]
      * @param index0
-     *               one end of the interval
+     *        one end of the interval
      * @param index1
-     *               the other end of the interval
+     *        the other end of the interval
      */
     public void removeRowSelectionInterval(int index0, int index1) {
-        selectionModel.removeSelectionInterval(boundRow(index0), boundRow(
-                index1));
+        selectionModel.removeSelectionInterval(boundRow(index0), boundRow(index1));
     }
 
     /**
@@ -2294,17 +2232,16 @@ public class JTable extends JComponent implements TableModelListener,
      * inclusive.
      *
      * @exception IllegalArgumentException
-     *                                     if <code>index0</code> or
-     *                                     <code>index1</code> lie outside
-     *                                     [0, <code>getColumnCount()</code>-1]
+     *            if <code>index0</code> or
+     *            <code>index1</code> lie outside
+     *            [0, <code>getColumnCount()</code>-1]
      * @param index0
-     *               one end of the interval
+     *        one end of the interval
      * @param index1
-     *               the other end of the interval
+     *        the other end of the interval
      */
     public void removeColumnSelectionInterval(int index0, int index1) {
-        columnModel.getSelectionModel().removeSelectionInterval(boundColumn(
-                index0), boundColumn(index1));
+        columnModel.getSelectionModel().removeSelectionInterval(boundColumn(index0), boundColumn(index1));
     }
 
     /**
@@ -2407,7 +2344,7 @@ public class JTable extends JComponent implements TableModelListener,
      * the column at that index is selected.
      *
      * @param column
-     *               the column in the column model
+     *        the column in the column model
      * @return true if <code>column</code> is a valid index and the column at
      *         that index is selected (where 0 is the first column)
      */
@@ -2420,10 +2357,9 @@ public class JTable extends JComponent implements TableModelListener,
      * columns and the cell at the specified position is selected.
      * 
      * @param row
-     *               the row being queried
+     *        the row being queried
      * @param column
-     *               the column being queried
-     *
+     *        the column being queried
      * @return true if <code>row</code> and <code>column</code> are valid
      *         indices and the cell at index <code>(row, column)</code> is
      *         selected, where the first row and first column are at index 0
@@ -2432,13 +2368,12 @@ public class JTable extends JComponent implements TableModelListener,
         if (!getRowSelectionAllowed() && !getColumnSelectionAllowed()) {
             return false;
         }
-        return (!getRowSelectionAllowed() || isRowSelected(row))
-                && (!getColumnSelectionAllowed() || isColumnSelected(column));
+        return (!getRowSelectionAllowed() || isRowSelected(row)) && (!getColumnSelectionAllowed()
+                || isColumnSelected(column));
     }
 
-    private void changeSelectionModel(ListSelectionModel sm, int index,
-            boolean toggle, boolean extend, boolean selected, int anchor,
-            boolean anchorSelected) {
+    private void changeSelectionModel(ListSelectionModel sm, int index, boolean toggle, boolean extend,
+            boolean selected, int anchor, boolean anchorSelected) {
         if (extend) {
             if (toggle) {
                 if (anchorSelected) {
@@ -2494,18 +2429,16 @@ public class JTable extends JComponent implements TableModelListener,
      * </ul>
      * 
      * @param rowIndex
-     *                    affects the selection at <code>row</code>
+     *        affects the selection at <code>row</code>
      * @param columnIndex
-     *                    affects the selection at <code>column</code>
+     *        affects the selection at <code>column</code>
      * @param toggle
-     *                    see description above
+     *        see description above
      * @param extend
-     *                    if true, extend the current selection
-     *
+     *        if true, extend the current selection
      * @since 1.3
      */
-    public void changeSelection(int rowIndex, int columnIndex, boolean toggle,
-            boolean extend) {
+    public void changeSelection(int rowIndex, int columnIndex, boolean toggle, boolean extend) {
         ListSelectionModel rsm = getSelectionModel();
         ListSelectionModel csm = getColumnModel().getSelectionModel();
 
@@ -2538,10 +2471,8 @@ public class JTable extends JComponent implements TableModelListener,
         boolean selected = isCellSelected(rowIndex, columnIndex);
         anchorSelected = anchorSelected && isCellSelected(anchorRow, anchorCol);
 
-        changeSelectionModel(csm, columnIndex, toggle, extend, selected,
-                anchorCol, anchorSelected);
-        changeSelectionModel(rsm, rowIndex, toggle, extend, selected, anchorRow,
-                anchorSelected);
+        changeSelectionModel(csm, columnIndex, toggle, extend, selected, anchorCol, anchorSelected);
+        changeSelectionModel(rsm, rowIndex, toggle, extend, selected, anchorRow, anchorSelected);
 
         // Scroll after changing the selection as blit scrolling is immediate,
         // so that if we cause the repaint after the scroll we end up painting
@@ -2577,9 +2508,9 @@ public class JTable extends JComponent implements TableModelListener,
      * JavaBeans</a> bound property.
      *
      * @param selectionForeground
-     *                            the <code>Color</code> to use in the
-     *                            foreground for selected
-     *                            list items
+     *        the <code>Color</code> to use in the
+     *        foreground for selected
+     *        list items
      * @see #getSelectionForeground
      * @see #setSelectionBackground
      * @see #setForeground
@@ -2619,9 +2550,9 @@ public class JTable extends JComponent implements TableModelListener,
      * JavaBeans</a> bound property.
      *
      * @param selectionBackground
-     *                            the <code>Color</code> to use for the
-     *                            background of selected
-     *                            cells
+     *        the <code>Color</code> to use for the
+     *        background of selected
+     *        cells
      * @see #getSelectionBackground
      * @see #setSelectionForeground
      * @see #setForeground
@@ -2644,13 +2575,12 @@ public class JTable extends JComponent implements TableModelListener,
      *
      * @return the <code>TableColumn</code> object that matches the identifier
      * @exception IllegalArgumentException
-     *                                     if <code>identifier</code> is
-     *                                     <code>null</code> or no
-     *                                     <code>TableColumn</code> has this
-     *                                     identifier
-     *
+     *            if <code>identifier</code> is
+     *            <code>null</code> or no
+     *            <code>TableColumn</code> has this
+     *            identifier
      * @param identifier
-     *                   the identifier object
+     *        the identifier object
      */
     public TableColumn getColumn(Object identifier) {
         TableColumnModel cm = getColumnModel();
@@ -2669,14 +2599,12 @@ public class JTable extends JComponent implements TableModelListener,
      * less than zero, returns <code>viewColumnIndex</code>.
      *
      * @param viewColumnIndex
-     *                        the index of the column in the view
+     *        the index of the column in the view
      * @return the index of the corresponding column in the model
-     *
      * @see #convertColumnIndexToView
      */
     public int convertColumnIndexToModel(int viewColumnIndex) {
-        return SwingUtilities2.convertColumnIndexToModel(getColumnModel(),
-                viewColumnIndex);
+        return SwingUtilities2.convertColumnIndexToModel(getColumnModel(), viewColumnIndex);
     }
 
     /**
@@ -2687,14 +2615,12 @@ public class JTable extends JComponent implements TableModelListener,
      * less than zero, returns <code>modelColumnIndex</code>.
      *
      * @param modelColumnIndex
-     *                         the index of the column in the model
+     *        the index of the column in the model
      * @return the index of the corresponding column in the view
-     *
      * @see #convertColumnIndexToModel
      */
     public int convertColumnIndexToView(int modelColumnIndex) {
-        return SwingUtilities2.convertColumnIndexToView(getColumnModel(),
-                modelColumnIndex);
+        return SwingUtilities2.convertColumnIndexToView(getColumnModel(), modelColumnIndex);
     }
 
     /**
@@ -2703,13 +2629,13 @@ public class JTable extends JComponent implements TableModelListener,
      * indices are the same.
      *
      * @param modelRowIndex
-     *                      the index of the row in terms of the model
+     *        the index of the row in terms of the model
      * @return the index of the corresponding row in the view, or -1 if the row
      *         isn't visible
      * @throws IndexOutOfBoundsException
-     *                                   if sorting is enabled and passed an
-     *                                   index outside the number
-     *                                   of rows of the <code>TableModel</code>
+     *         if sorting is enabled and passed an
+     *         index outside the number
+     *         of rows of the <code>TableModel</code>
      * @see javax.swing.table.TableRowSorter
      * @since 1.6
      */
@@ -2727,14 +2653,14 @@ public class JTable extends JComponent implements TableModelListener,
      * model and view indices are the same.
      *
      * @param viewRowIndex
-     *                     the index of the row in the view
+     *        the index of the row in the view
      * @return the index of the corresponding row in the model
      * @throws IndexOutOfBoundsException
-     *                                   if sorting is enabled and passed an
-     *                                   index outside the range
-     *                                   of the <code>JTable</code> as
-     *                                   determined by the method
-     *                                   <code>getRowCount</code>
+     *         if sorting is enabled and passed an
+     *         index outside the range
+     *         of the <code>JTable</code> as
+     *         determined by the method
+     *         <code>getRowCount</code>
      * @see javax.swing.table.TableRowSorter
      * @see #getRowCount
      * @since 1.6
@@ -2781,7 +2707,7 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>column</code>.
      *
      * @param column
-     *               the column in the view being queried
+     *        the column in the view being queried
      * @return the name of the column at position <code>column</code> in the
      *         view where the first column is column 0
      */
@@ -2794,7 +2720,7 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>column</code>.
      *
      * @param column
-     *               the column in the view being queried
+     *        the column in the view being queried
      * @return the type of the column at position <code>column</code> in the
      *         view where the first column is column 0
      */
@@ -2812,14 +2738,13 @@ public class JTable extends JComponent implements TableModelListener,
      * user's actions never affect the model's column ordering.
      *
      * @param row
-     *               the row whose value is to be queried
+     *        the row whose value is to be queried
      * @param column
-     *               the column whose value is to be queried
+     *        the column whose value is to be queried
      * @return the Object at the specified cell
      */
     public Object getValueAt(int row, int column) {
-        return getModel().getValueAt(convertRowIndexToModel(row),
-                convertColumnIndexToModel(column));
+        return getModel().getValueAt(convertRowIndexToModel(row), convertColumnIndexToModel(column));
     }
 
     /**
@@ -2831,20 +2756,18 @@ public class JTable extends JComponent implements TableModelListener,
      * important distinction because as the user rearranges the columns in the
      * table, the column at a given index in the view will change. Meanwhile the
      * user's actions never affect the model's column ordering.
-     *
      * <code>aValue</code> is the new value.
      *
      * @param aValue
-     *               the new value
+     *        the new value
      * @param row
-     *               the row of the cell to be changed
+     *        the row of the cell to be changed
      * @param column
-     *               the column of the cell to be changed
+     *        the column of the cell to be changed
      * @see #getValueAt
      */
     public void setValueAt(Object aValue, int row, int column) {
-        getModel().setValueAt(aValue, convertRowIndexToModel(row),
-                convertColumnIndexToModel(column));
+        getModel().setValueAt(aValue, convertRowIndexToModel(row), convertColumnIndexToModel(column));
     }
 
     /**
@@ -2858,17 +2781,15 @@ public class JTable extends JComponent implements TableModelListener,
      * table, the column at a given index in the view will change. Meanwhile the
      * user's actions never affect the model's column ordering.
      *
-     *
      * @param row
-     *               the row whose value is to be queried
+     *        the row whose value is to be queried
      * @param column
-     *               the column whose value is to be queried
+     *        the column whose value is to be queried
      * @return true if the cell is editable
      * @see #setValueAt
      */
     public boolean isCellEditable(int row, int column) {
-        return getModel().isCellEditable(convertRowIndexToModel(row),
-                convertColumnIndexToModel(column));
+        return getModel().isCellEditable(convertRowIndexToModel(row), convertColumnIndexToModel(column));
     }
     //
     // Adding and removing columns in the view
@@ -2899,7 +2820,7 @@ public class JTable extends JComponent implements TableModelListener,
      * does not change when columns are reordered in the view.
      *
      * @param aColumn
-     *                the <code>TableColumn</code> to be added
+     *        the <code>TableColumn</code> to be added
      * @see #removeColumn
      */
     public void addColumn(TableColumn aColumn) {
@@ -2918,7 +2839,7 @@ public class JTable extends JComponent implements TableModelListener,
      * for displaying it.
      *
      * @param aColumn
-     *                the <code>TableColumn</code> to be removed
+     *        the <code>TableColumn</code> to be removed
      * @see #addColumn
      */
     public void removeColumn(TableColumn aColumn) {
@@ -2931,9 +2852,9 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>targetColumn</code> is shifted left or right to make room.
      *
      * @param column
-     *                     the index of column to be moved
+     *        the index of column to be moved
      * @param targetColumn
-     *                     the new index of the column
+     *        the new index of the column
      */
     public void moveColumn(int column, int targetColumn) {
         getColumnModel().moveColumn(column, targetColumn);
@@ -2948,7 +2869,7 @@ public class JTable extends JComponent implements TableModelListener,
      * the result is not in the range [0, <code>getColumnCount()</code>-1].
      *
      * @param point
-     *              the location of interest
+     *        the location of interest
      * @return the index of the column that <code>point</code> lies in, or -1 if
      *         the result is not in the range [0, <code>getColumnCount()</code>
      *         -1]
@@ -2967,15 +2888,14 @@ public class JTable extends JComponent implements TableModelListener,
      * the result is not in the range [0, <code>getRowCount()</code>-1].
      *
      * @param point
-     *              the location of interest
+     *        the location of interest
      * @return the index of the row that <code>point</code> lies in, or -1 if
      *         the result is not in the range [0, <code>getRowCount()</code>-1]
      * @see #columnAtPoint
      */
     public int rowAtPoint(Point point) {
         int y = point.y;
-        int result = (rowModel == null) ? y / getRowHeight()
-                : rowModel.getIndex(y);
+        int result = (rowModel == null) ? y / getRowHeight() : rowModel.getIndex(y);
         if (result < 0) {
             return -1;
         } else if (result >= getRowCount()) {
@@ -3009,23 +2929,22 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>includeSpacing</code> parameter is ignored.
      *
      * @param row
-     *                       the row index where the desired cell is located
+     *        the row index where the desired cell is located
      * @param column
-     *                       the column index where the desired cell is located
-     *                       in the
-     *                       display; this is not necessarily the same as the
-     *                       column index
-     *                       in the data model for the table; the
-     *                       {@link #convertColumnIndexToView(int)} method may
-     *                       be used to
-     *                       convert a data model column index to a display
-     *                       column index
+     *        the column index where the desired cell is located
+     *        in the
+     *        display; this is not necessarily the same as the
+     *        column index
+     *        in the data model for the table; the
+     *        {@link #convertColumnIndexToView(int)} method may
+     *        be used to
+     *        convert a data model column index to a display
+     *        column index
      * @param includeSpacing
-     *                       if false, return the true cell bounds - computed by
-     *                       subtracting the intercell spacing from the height
-     *                       and widths
-     *                       of the column and row models
-     *
+     *        if false, return the true cell bounds - computed by
+     *        subtracting the intercell spacing from the height
+     *        and widths
+     *        of the column and row models
      * @return the rectangle containing the cell at location <code>row</code>,
      *         <code>column</code>
      * @see #getIntercellSpacing
@@ -3041,8 +2960,7 @@ public class JTable extends JComponent implements TableModelListener,
             valid = false;
         } else {
             r.height = getRowHeight(row);
-            r.y = (rowModel == null) ? row * r.height
-                    : rowModel.getPosition(row);
+            r.y = (rowModel == null) ? row * r.height : rowModel.getPosition(row);
         }
 
         if (column < 0) {
@@ -3077,8 +2995,7 @@ public class JTable extends JComponent implements TableModelListener,
             int rm = Math.min(getRowMargin(), r.height);
             int cm = Math.min(getColumnModel().getColumnMargin(), r.width);
             // This is not the same as grow(), it rounds differently.
-            r.setBounds(r.x + cm / 2, r.y + rm / 2, r.width - cm, r.height
-                    - rm);
+            r.setBounds(r.x + cm / 2, r.y + rm / 2, r.width - cm, r.height - rm);
         }
         return r;
     }
@@ -3159,9 +3076,7 @@ public class JTable extends JComponent implements TableModelListener,
      * structure containing a collection of elements with a size, preferred
      * size, maximum size and minimum size to have its elements manipulated by
      * the algorithm.
-     *
      * <H3>Distributing the delta</H3>
-     *
      * <H4>Overview</H4>
      * <P>
      * Call "DELTA" the difference between the target size and the sum of the
@@ -3169,7 +3084,6 @@ public class JTable extends JComponent implements TableModelListener,
      * by taking the original preferred sizes and adding a share of the DELTA -
      * that share being based on how far each preferred size is from its
      * limiting bound (minimum or maximum).
-     *
      * <H4>Definition</H4>
      * <P>
      * Call the individual constraints min[i], max[i], and pref[i].
@@ -3203,7 +3117,6 @@ public class JTable extends JComponent implements TableModelListener,
      * The overall effect is that the total size moves that same percentage, k,
      * towards the total minimum or maximum and that percentage guarantees
      * accommodation of the required space, DELTA.
-     *
      * <H4>Details</H4>
      * <P>
      * Naive evaluation of the formulae presented here would be subject to the
@@ -3214,13 +3127,11 @@ public class JTable extends JComponent implements TableModelListener,
      * set of integers whose values exactly sum to the supplied
      * <code>targetSize</code>, and does so by spreading the rounding errors
      * evenly over the given elements.
-     *
      * <H4>When the MAX and MIN bounds are hit</H4>
      * <P>
      * When <code>targetSize</code> is outside the [MIN, MAX] range, the
      * algorithm sets all sizes to their appropriate limiting value (maximum or
      * minimum).
-     *
      */
     public void doLayout() {
         TableColumn resizingColumn = getResizingColumn();
@@ -3278,8 +3189,7 @@ public class JTable extends JComponent implements TableModelListener,
     @Deprecated
     public void sizeColumnsToFit(boolean lastColumnOnly) {
         int oldAutoResizeMode = autoResizeMode;
-        setAutoResizeMode(lastColumnOnly ? AUTO_RESIZE_LAST_COLUMN
-                : AUTO_RESIZE_ALL_COLUMNS);
+        setAutoResizeMode(lastColumnOnly ? AUTO_RESIZE_LAST_COLUMN : AUTO_RESIZE_ALL_COLUMNS);
         sizeColumnsToFit(-1);
         setAutoResizeMode(oldAutoResizeMode);
     }
@@ -3289,9 +3199,9 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>doLayout()</code> method instead.
      * 
      * @param resizingColumn
-     *                       the column whose resizing made this adjustment
-     *                       necessary or -1
-     *                       if there is no such column
+     *        the column whose resizing made this adjustment
+     *        necessary or -1
+     *        if there is no such column
      * @see #doLayout
      */
     public void sizeColumnsToFit(int resizingColumn) {
@@ -3299,8 +3209,7 @@ public class JTable extends JComponent implements TableModelListener,
             setWidthsFromPreferredWidths(false);
         } else {
             if (autoResizeMode == AUTO_RESIZE_OFF) {
-                TableColumn aColumn = getColumnModel().getColumn(
-                        resizingColumn);
+                TableColumn aColumn = getColumnModel().getColumn(resizingColumn);
                 aColumn.setPreferredWidth(aColumn.getWidth());
             } else {
                 int delta = getWidth() - getColumnModel().getTotalColumnWidth();
@@ -3484,8 +3393,7 @@ public class JTable extends JComponent implements TableModelListener,
         }
 
         if (limitToRange) {
-            target = Math.min(Math.max(totalLowerBound, target),
-                    totalUpperBound);
+            target = Math.min(Math.max(totalLowerBound, target), totalUpperBound);
         }
 
         for (int i = 0; i < r.getElementCount(); i++) {
@@ -3498,10 +3406,8 @@ public class JTable extends JComponent implements TableModelListener,
             if (totalLowerBound == totalUpperBound) {
                 newSize = lowerBound;
             } else {
-                double f = (double) (target - totalLowerBound)
-                        / (totalUpperBound - totalLowerBound);
-                newSize = (int) Math.round(lowerBound + f * (upperBound
-                        - lowerBound));
+                double f = (double) (target - totalLowerBound) / (totalUpperBound - totalLowerBound);
+                newSize = (int) Math.round(lowerBound + f * (upperBound - lowerBound));
                 // We'd need to round manually in an all integer version.
                 // size[i] = (int)(((totalUpperBound - target) * lowerBound +
                 // (target - totalLowerBound) *
@@ -3537,24 +3443,18 @@ public class JTable extends JComponent implements TableModelListener,
         int hitRowIndex = rowAtPoint(p);
 
         if ((hitColumnIndex != -1) && (hitRowIndex != -1)) {
-            TableCellRenderer renderer = getCellRenderer(hitRowIndex,
-                    hitColumnIndex);
-            Component component = prepareRenderer(renderer, hitRowIndex,
-                    hitColumnIndex);
+            TableCellRenderer renderer = getCellRenderer(hitRowIndex, hitColumnIndex);
+            Component component = prepareRenderer(renderer, hitRowIndex, hitColumnIndex);
 
             // Now have to see if the component is a JComponent before
             // getting the tip
             if (component instanceof JComponent) {
                 // Convert the event to the renderer's coordinate system
-                Rectangle cellRect = getCellRect(hitRowIndex, hitColumnIndex,
-                        false);
+                Rectangle cellRect = getCellRect(hitRowIndex, hitColumnIndex, false);
                 p.translate(-cellRect.x, -cellRect.y);
-                MouseEvent newEvent = new MouseEvent(component, event.getID(),
-                        event.getWhen(), event.getModifiers(), p.x, p.y, event
-                                .getXOnScreen(), event.getYOnScreen(), event
-                                        .getClickCount(), event
-                                                .isPopupTrigger(),
-                        MouseEvent.NOBUTTON);
+                MouseEvent newEvent = new MouseEvent(component, event.getID(), event.getWhen(), event
+                        .getModifiers(), p.x, p.y, event.getXOnScreen(), event.getYOnScreen(), event
+                                .getClickCount(), event.isPopupTrigger(), MouseEvent.NOBUTTON);
 
                 tip = ((JComponent) component).getToolTipText(newEvent);
             }
@@ -3578,16 +3478,13 @@ public class JTable extends JComponent implements TableModelListener,
      * focus unless the cell is clicked.
      *
      * @param surrendersFocusOnKeystroke
-     *                                   true if the editor should get the focus
-     *                                   when keystrokes cause
-     *                                   the editor to be activated
-     *
-     *
+     *        true if the editor should get the focus
+     *        when keystrokes cause
+     *        the editor to be activated
      * @see #getSurrendersFocusOnKeystroke
      * @since 1.4
      */
-    public void setSurrendersFocusOnKeystroke(
-            boolean surrendersFocusOnKeystroke) {
+    public void setSurrendersFocusOnKeystroke(boolean surrendersFocusOnKeystroke) {
         this.surrendersFocusOnKeystroke = surrendersFocusOnKeystroke;
     }
 
@@ -3597,7 +3494,6 @@ public class JTable extends JComponent implements TableModelListener,
      *
      * @return true if the editor should get the focus when keystrokes cause the
      *         editor to be activated
-     *
      * @see #setSurrendersFocusOnKeystroke
      * @since 1.4
      */
@@ -3612,9 +3508,9 @@ public class JTable extends JComponent implements TableModelListener,
      * for <code>editCellAt(int, int, null)</code>.
      *
      * @param row
-     *               the row to be edited
+     *        the row to be edited
      * @param column
-     *               the column to be edited
+     *        the column to be edited
      * @return false if for any reason the cell cannot be edited, or if the
      *         indices are invalid
      */
@@ -3631,14 +3527,14 @@ public class JTable extends JComponent implements TableModelListener,
      * interface.
      *
      * @param row
-     *               the row to be edited
+     *        the row to be edited
      * @param column
-     *               the column to be edited
+     *        the column to be edited
      * @param e
-     *               event to pass into <code>shouldSelectCell</code>; note that
-     *               as
-     *               of Java 2 platform v1.2, the call to
-     *               <code>shouldSelectCell</code> is no longer made
+     *        event to pass into <code>shouldSelectCell</code>; note that
+     *        as
+     *        of Java 2 platform v1.2, the call to
+     *        <code>shouldSelectCell</code> is no longer made
      * @return false if for any reason the cell cannot be edited, or if the
      *         indices are invalid
      */
@@ -3647,8 +3543,7 @@ public class JTable extends JComponent implements TableModelListener,
             return false;
         }
 
-        if (row < 0 || row >= getRowCount() || column < 0
-                || column >= getColumnCount()) {
+        if (row < 0 || row >= getRowCount() || column < 0 || column >= getColumnCount()) {
             return false;
         }
 
@@ -3656,8 +3551,7 @@ public class JTable extends JComponent implements TableModelListener,
             return false;
 
         if (editorRemover == null) {
-            KeyboardFocusManager fm = KeyboardFocusManager
-                    .getCurrentKeyboardFocusManager();
+            KeyboardFocusManager fm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
             editorRemover = new CellEditorRemover(fm);
             fm.addPropertyChangeListener("permanentFocusOwner", editorRemover);
         }
@@ -3746,7 +3640,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Sets the L&amp;F object that renders this component and repaints.
      *
      * @param ui
-     *           the TableUI L&amp;F object
+     *        the TableUI L&amp;F object
      * @see UIDefaults#getUI
      * @beaninfo bound: true hidden: true attribute: visualUpdate true
      *           description: The UI object that implements the Component's
@@ -3774,22 +3668,19 @@ public class JTable extends JComponent implements TableModelListener,
             TableColumn aColumn = cm.getColumn(column);
             SwingUtilities.updateRendererOrEditorUI(aColumn.getCellRenderer());
             SwingUtilities.updateRendererOrEditorUI(aColumn.getCellEditor());
-            SwingUtilities.updateRendererOrEditorUI(aColumn
-                    .getHeaderRenderer());
+            SwingUtilities.updateRendererOrEditorUI(aColumn.getHeaderRenderer());
         }
 
         // Update the UIs of all the default renderers.
         Enumeration defaultRenderers = defaultRenderersByColumnClass.elements();
         while (defaultRenderers.hasMoreElements()) {
-            SwingUtilities.updateRendererOrEditorUI(defaultRenderers
-                    .nextElement());
+            SwingUtilities.updateRendererOrEditorUI(defaultRenderers.nextElement());
         }
 
         // Update the UIs of all the default editors.
         Enumeration defaultEditors = defaultEditorsByColumnClass.elements();
         while (defaultEditors.hasMoreElements()) {
-            SwingUtilities.updateRendererOrEditorUI(defaultEditors
-                    .nextElement());
+            SwingUtilities.updateRendererOrEditorUI(defaultEditors.nextElement());
         }
 
         // Update the UI of the table header
@@ -3824,10 +3715,10 @@ public class JTable extends JComponent implements TableModelListener,
      * with it for listener notifications from the new data model.
      *
      * @param dataModel
-     *                  the new data source for this table
+     *        the new data source for this table
      * @exception IllegalArgumentException
-     *                                     if <code>newModel</code> is
-     *                                     <code>null</code>
+     *            if <code>newModel</code> is
+     *            <code>null</code>
      * @see #getModel
      * @beaninfo bound: true description: The model that is the source of the
      *           data for this view.
@@ -3844,8 +3735,7 @@ public class JTable extends JComponent implements TableModelListener,
             this.dataModel = dataModel;
             dataModel.addTableModelListener(this);
 
-            tableChanged(new TableModelEvent(dataModel,
-                    TableModelEvent.HEADER_ROW));
+            tableChanged(new TableModelEvent(dataModel, TableModelEvent.HEADER_ROW));
 
             firePropertyChange("model", old, dataModel);
 
@@ -3874,10 +3764,10 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>columnModel</code>.
      *
      * @param columnModel
-     *                    the new data source for this table
+     *        the new data source for this table
      * @exception IllegalArgumentException
-     *                                     if <code>columnModel</code> is
-     *                                     <code>null</code>
+     *            if <code>columnModel</code> is
+     *            <code>null</code>
      * @see #getColumnModel
      * @beaninfo bound: true description: The object governing the way columns
      *           appear in the view.
@@ -3920,17 +3810,16 @@ public class JTable extends JComponent implements TableModelListener,
      * registers for listener notifications from the new selection model.
      *
      * @param newModel
-     *                 the new selection model
+     *        the new selection model
      * @exception IllegalArgumentException
-     *                                     if <code>newModel</code> is
-     *                                     <code>null</code>
+     *            if <code>newModel</code> is
+     *            <code>null</code>
      * @see #getSelectionModel
      * @beaninfo bound: true description: The selection model for rows.
      */
     public void setSelectionModel(ListSelectionModel newModel) {
         if (newModel == null) {
-            throw new IllegalArgumentException(
-                    "Cannot set a null SelectionModel");
+            throw new IllegalArgumentException("Cannot set a null SelectionModel");
         }
 
         ListSelectionModel oldModel = selectionModel;
@@ -3969,9 +3858,9 @@ public class JTable extends JComponent implements TableModelListener,
      * <code>RowSorter</code> has changed in some way.
      *
      * @param e
-     *          the <code>RowSorterEvent</code> describing the change
+     *        the <code>RowSorterEvent</code> describing the change
      * @throws NullPointerException
-     *                              if <code>e</code> is <code>null</code>
+     *         if <code>e</code> is <code>null</code>
      * @since 1.6
      */
     public void sorterChanged(RowSorterEvent e) {
@@ -4029,8 +3918,7 @@ public class JTable extends JComponent implements TableModelListener,
          */
         public void setViewRowHeight(int viewIndex, int rowHeight) {
             if (modelRowSizes == null) {
-                modelRowSizes = new SizeSequence(getModel().getRowCount(),
-                        getRowHeight());
+                modelRowSizes = new SizeSequence(getModel().getRowCount(), getRowHeight());
             }
             modelRowSizes.setSize(convertRowIndexToModel(viewIndex), rowHeight);
         }
@@ -4057,8 +3945,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Invoked when either the table model has changed, or the RowSorter has
          * changed. This is invoked prior to notifying the sorter of the change.
          */
-        public void prepareForChange(RowSorterEvent sortEvent,
-                ModelChange change) {
+        public void prepareForChange(RowSorterEvent sortEvent, ModelChange change) {
             if (getUpdateSelectionOnSort()) {
                 cacheSelection(sortEvent, change);
             }
@@ -4067,15 +3954,13 @@ public class JTable extends JComponent implements TableModelListener,
         /**
          * Updates the internal cache of the selection based on the change.
          */
-        private void cacheSelection(RowSorterEvent sortEvent,
-                ModelChange change) {
+        private void cacheSelection(RowSorterEvent sortEvent, ModelChange change) {
             if (sortEvent != null) {
                 // sort order changed. If modelSelection is null and filtering
                 // is enabled we need to cache the selection in terms of the
                 // underlying model, this will allow us to correctly restore
                 // the selection even if rows are filtered out.
-                if (modelSelection == null && sorter
-                        .getViewRowCount() != getModel().getRowCount()) {
+                if (modelSelection == null && sorter.getViewRowCount() != getModel().getRowCount()) {
                     modelSelection = new DefaultListSelectionModel();
                     ListSelectionModel viewSelection = getSelectionModel();
                     int min = viewSelection.getMinSelectionIndex();
@@ -4083,18 +3968,14 @@ public class JTable extends JComponent implements TableModelListener,
                     int modelIndex;
                     for (int viewIndex = min; viewIndex <= max; viewIndex++) {
                         if (viewSelection.isSelectedIndex(viewIndex)) {
-                            modelIndex = convertRowIndexToModel(sortEvent,
-                                    viewIndex);
+                            modelIndex = convertRowIndexToModel(sortEvent, viewIndex);
                             if (modelIndex != -1) {
-                                modelSelection.addSelectionInterval(modelIndex,
-                                        modelIndex);
+                                modelSelection.addSelectionInterval(modelIndex, modelIndex);
                             }
                         }
                     }
-                    modelIndex = convertRowIndexToModel(sortEvent, viewSelection
-                            .getLeadSelectionIndex());
-                    SwingUtilities2.setLeadAnchorWithoutSelection(
-                            modelSelection, modelIndex, modelIndex);
+                    modelIndex = convertRowIndexToModel(sortEvent, viewSelection.getLeadSelectionIndex());
+                    SwingUtilities2.setLeadAnchorWithoutSelection(modelSelection, modelIndex, modelIndex);
                 } else if (modelSelection == null) {
                     // Sorting changed, haven't cached selection in terms
                     // of model and no filtering. Temporarily cache selection.
@@ -4107,12 +3988,10 @@ public class JTable extends JComponent implements TableModelListener,
                 // Table changed, reflect changes in cached selection model.
                 switch (change.type) {
                     case TableModelEvent.DELETE:
-                        modelSelection.removeIndexInterval(
-                                change.startModelIndex, change.endModelIndex);
+                        modelSelection.removeIndexInterval(change.startModelIndex, change.endModelIndex);
                         break;
                     case TableModelEvent.INSERT:
-                        modelSelection.insertIndexInterval(
-                                change.startModelIndex, change.length, true);
+                        modelSelection.insertIndexInterval(change.startModelIndex, change.length, true);
                         break;
                     default:
                         break;
@@ -4126,8 +4005,7 @@ public class JTable extends JComponent implements TableModelListener,
 
         private void cacheModelSelection(RowSorterEvent sortEvent) {
             lastModelSelection = convertSelectionToModel(sortEvent);
-            modelLeadIndex = convertRowIndexToModel(sortEvent, selectionModel
-                    .getLeadSelectionIndex());
+            modelLeadIndex = convertRowIndexToModel(sortEvent, selectionModel.getLeadSelectionIndex());
         }
 
         /**
@@ -4135,21 +4013,18 @@ public class JTable extends JComponent implements TableModelListener,
          * and after the sorter has been notified. If necessary this will
          * reapply the selection and variable row heights.
          */
-        public void processChange(RowSorterEvent sortEvent, ModelChange change,
-                boolean sorterChanged) {
+        public void processChange(RowSorterEvent sortEvent, ModelChange change, boolean sorterChanged) {
             if (change != null) {
                 if (change.allRowsChanged) {
                     modelRowSizes = null;
                     rowModel = null;
                 } else if (modelRowSizes != null) {
                     if (change.type == TableModelEvent.INSERT) {
-                        modelRowSizes.insertEntries(change.startModelIndex,
-                                change.endModelIndex - change.startModelIndex
-                                        + 1, getRowHeight());
+                        modelRowSizes.insertEntries(change.startModelIndex, change.endModelIndex
+                                - change.startModelIndex + 1, getRowHeight());
                     } else if (change.type == TableModelEvent.DELETE) {
-                        modelRowSizes.removeEntries(change.startModelIndex,
-                                change.endModelIndex - change.startModelIndex
-                                        + 1);
+                        modelRowSizes.removeEntries(change.startModelIndex, change.endModelIndex
+                                - change.startModelIndex + 1);
                     }
                 }
             }
@@ -4166,11 +4041,9 @@ public class JTable extends JComponent implements TableModelListener,
         private void setViewRowHeightsFromModel() {
             if (modelRowSizes != null) {
                 rowModel.setSizes(getRowCount(), getRowHeight());
-                for (int viewIndex = getRowCount()
-                        - 1; viewIndex >= 0; viewIndex--) {
+                for (int viewIndex = getRowCount() - 1; viewIndex >= 0; viewIndex--) {
                     int modelIndex = convertRowIndexToModel(viewIndex);
-                    rowModel.setSize(viewIndex, modelRowSizes.getSize(
-                            modelIndex));
+                    rowModel.setSize(viewIndex, modelRowSizes.getSize(modelIndex));
                 }
             }
         }
@@ -4181,8 +4054,7 @@ public class JTable extends JComponent implements TableModelListener,
         private void restoreSelection(ModelChange change) {
             syncingSelection = true;
             if (lastModelSelection != null) {
-                restoreSortingSelection(lastModelSelection, modelLeadIndex,
-                        change);
+                restoreSortingSelection(lastModelSelection, modelLeadIndex, change);
                 lastModelSelection = null;
             } else if (modelSelection != null) {
                 ListSelectionModel viewSelection = getSelectionModel();
@@ -4195,8 +4067,7 @@ public class JTable extends JComponent implements TableModelListener,
                     if (modelSelection.isSelectedIndex(modelIndex)) {
                         viewIndex = convertRowIndexToView(modelIndex);
                         if (viewIndex != -1) {
-                            viewSelection.addSelectionInterval(viewIndex,
-                                    viewIndex);
+                            viewSelection.addSelectionInterval(viewIndex, viewIndex);
                         }
                     }
                 }
@@ -4205,8 +4076,7 @@ public class JTable extends JComponent implements TableModelListener,
                 if (viewLeadIndex != -1 && !modelSelection.isSelectionEmpty()) {
                     viewLeadIndex = convertRowIndexToView(viewLeadIndex);
                 }
-                SwingUtilities2.setLeadAnchorWithoutSelection(viewSelection,
-                        viewLeadIndex, viewLeadIndex);
+                SwingUtilities2.setLeadAnchorWithoutSelection(viewSelection, viewLeadIndex, viewLeadIndex);
                 viewSelection.setValueIsAdjusting(false);
             }
             syncingSelection = false;
@@ -4258,15 +4128,12 @@ public class JTable extends JComponent implements TableModelListener,
      * Invoked when <code>sorterChanged</code> is invoked, or when
      * <code>tableChanged</code> is invoked and sorting is enabled.
      */
-    private void sortedTableChanged(RowSorterEvent sortedEvent,
-            TableModelEvent e) {
+    private void sortedTableChanged(RowSorterEvent sortedEvent, TableModelEvent e) {
         int editingModelIndex = -1;
         ModelChange change = (e != null) ? new ModelChange(e) : null;
 
-        if ((change == null || !change.allRowsChanged)
-                && this.editingRow != -1) {
-            editingModelIndex = convertRowIndexToModel(sortedEvent,
-                    this.editingRow);
+        if ((change == null || !change.allRowsChanged) && this.editingRow != -1) {
+            editingModelIndex = convertRowIndexToModel(sortedEvent, this.editingRow);
         }
 
         sortManager.prepareForChange(sortedEvent, change);
@@ -4312,8 +4179,8 @@ public class JTable extends JComponent implements TableModelListener,
      * Repaints the sort of sorted rows in response to a TableModelEvent.
      */
     private void repaintSortedRows(ModelChange change) {
-        if (change.startModelIndex > change.endModelIndex
-                || change.startModelIndex + 10 < change.endModelIndex) {
+        if (change.startModelIndex > change.endModelIndex || change.startModelIndex
+                + 10 < change.endModelIndex) {
             // Too much has changed, punt
             repaint();
             return;
@@ -4332,8 +4199,7 @@ public class JTable extends JComponent implements TableModelListener,
         while (modelIndex <= change.endModelIndex) {
             int viewIndex = convertRowIndexToView(modelIndex++);
             if (viewIndex != -1) {
-                Rectangle dirty = getCellRect(viewIndex, columnViewIndex,
-                        false);
+                Rectangle dirty = getCellRect(viewIndex, columnViewIndex, false);
                 int x = dirty.x;
                 int w = dirty.width;
                 if (eventColumn == TableModelEvent.ALL_COLUMNS) {
@@ -4349,8 +4215,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Restores the selection after a model event/sort order changes. All
      * coordinates are in terms of the model.
      */
-    private void restoreSortingSelection(int[] selection, int lead,
-            ModelChange change) {
+    private void restoreSortingSelection(int[] selection, int lead, ModelChange change) {
         // Convert the selection from model to view
         for (int i = selection.length - 1; i >= 0; i--) {
             selection[i] = convertRowIndexToView(selection[i], change);
@@ -4358,8 +4223,7 @@ public class JTable extends JComponent implements TableModelListener,
         lead = convertRowIndexToView(lead, change);
 
         // Check for the common case of no change in selection for 1 row
-        if (selection.length == 0 || (selection.length == 1
-                && selection[0] == getSelectedRow())) {
+        if (selection.length == 0 || (selection.length == 1 && selection[0] == getSelectedRow())) {
             return;
         }
 
@@ -4371,8 +4235,7 @@ public class JTable extends JComponent implements TableModelListener,
                 selectionModel.addSelectionInterval(selection[i], selection[i]);
             }
         }
-        SwingUtilities2.setLeadAnchorWithoutSelection(selectionModel, lead,
-                lead);
+        SwingUtilities2.setLeadAnchorWithoutSelection(selectionModel, lead, lead);
         selectionModel.setValueIsAdjusting(false);
     }
 
@@ -4380,7 +4243,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Restores the editing row after a model event/sort order change.
      *
      * @param editingRow
-     *                   new index of the editingRow, in terms of the view
+     *        new index of the editingRow, in terms of the view
      */
     private void restoreSortingEditingRow(int editingRow) {
         if (editingRow == -1) {
@@ -4413,22 +4276,18 @@ public class JTable extends JComponent implements TableModelListener,
                 case TableModelEvent.UPDATE:
                     if (change.event.getLastRow() == Integer.MAX_VALUE) {
                         sortManager.sorter.allRowsChanged();
-                    } else if (change.event
-                            .getColumn() == TableModelEvent.ALL_COLUMNS) {
-                        sortManager.sorter.rowsUpdated(change.startModelIndex,
-                                change.endModelIndex);
+                    } else if (change.event.getColumn() == TableModelEvent.ALL_COLUMNS) {
+                        sortManager.sorter.rowsUpdated(change.startModelIndex, change.endModelIndex);
                     } else {
-                        sortManager.sorter.rowsUpdated(change.startModelIndex,
-                                change.endModelIndex, change.event.getColumn());
+                        sortManager.sorter.rowsUpdated(change.startModelIndex, change.endModelIndex,
+                                change.event.getColumn());
                     }
                     break;
                 case TableModelEvent.INSERT:
-                    sortManager.sorter.rowsInserted(change.startModelIndex,
-                            change.endModelIndex);
+                    sortManager.sorter.rowsInserted(change.startModelIndex, change.endModelIndex);
                     break;
                 case TableModelEvent.DELETE:
-                    sortManager.sorter.rowsDeleted(change.startModelIndex,
-                            change.endModelIndex);
+                    sortManager.sorter.rowsDeleted(change.startModelIndex, change.endModelIndex);
                     break;
             }
         } finally {
@@ -4441,9 +4300,9 @@ public class JTable extends JComponent implements TableModelListener,
      * model changes and sorting is enabled.
      *
      * @param change
-     *               describes the TableModelEvent that initiated the change;
-     *               will
-     *               be null if called as the result of a sort
+     *        describes the TableModelEvent that initiated the change;
+     *        will
+     *        be null if called as the result of a sort
      */
     private int convertRowIndexToView(int modelIndex, ModelChange change) {
         if (modelIndex < 0) {
@@ -4454,8 +4313,7 @@ public class JTable extends JComponent implements TableModelListener,
                 if (modelIndex + change.length >= change.modelRowCount) {
                     return -1;
                 }
-                return sortManager.sorter.convertRowIndexToView(modelIndex
-                        + change.length);
+                return sortManager.sorter.convertRowIndexToView(modelIndex + change.length);
             } else if (change.type == TableModelEvent.DELETE) {
                 if (modelIndex <= change.endModelIndex) {
                     // deleted
@@ -4464,8 +4322,7 @@ public class JTable extends JComponent implements TableModelListener,
                     if (modelIndex - change.length >= change.modelRowCount) {
                         return -1;
                     }
-                    return sortManager.sorter.convertRowIndexToView(modelIndex
-                            - change.length);
+                    return sortManager.sorter.convertRowIndexToView(modelIndex - change.length);
                 }
             }
             // else, updated
@@ -4575,8 +4432,7 @@ public class JTable extends JComponent implements TableModelListener,
         Rectangle dirtyRegion;
         if (modelColumn == TableModelEvent.ALL_COLUMNS) {
             // 1 or more rows changed
-            dirtyRegion = new Rectangle(0, start * getRowHeight(),
-                    getColumnModel().getTotalColumnWidth(), 0);
+            dirtyRegion = new Rectangle(0, start * getRowHeight(), getColumnModel().getTotalColumnWidth(), 0);
         } else {
             // A cell or column of cells has changed.
             // Unlike the rest of the methods in the JTable, the TableModelEvent
@@ -4592,8 +4448,7 @@ public class JTable extends JComponent implements TableModelListener,
         // Check for Integer.MAX_VALUE as this will cause an overflow.
         if (end != Integer.MAX_VALUE) {
             dirtyRegion.height = (end - start + 1) * getRowHeight();
-            repaint(dirtyRegion.x, dirtyRegion.y, dirtyRegion.width,
-                    dirtyRegion.height);
+            repaint(dirtyRegion.x, dirtyRegion.y, dirtyRegion.width, dirtyRegion.height);
         }
         // In fact, if the end is Integer.MAX_VALUE we need to revalidate anyway
         // because the scrollbar may need repainting.
@@ -4629,8 +4484,8 @@ public class JTable extends JComponent implements TableModelListener,
             rowModel.insertEntries(start, length, getRowHeight());
         }
         int rh = getRowHeight();
-        Rectangle drawRect = new Rectangle(0, start * rh, getColumnModel()
-                .getTotalColumnWidth(), (getRowCount() - start) * rh);
+        Rectangle drawRect = new Rectangle(0, start * rh, getColumnModel().getTotalColumnWidth(),
+                (getRowCount() - start) * rh);
 
         revalidate();
         // PENDING(milne) revalidate calls repaint() if parent is a ScrollPane
@@ -4666,8 +4521,8 @@ public class JTable extends JComponent implements TableModelListener,
         }
 
         int rh = getRowHeight();
-        Rectangle drawRect = new Rectangle(0, start * rh, getColumnModel()
-                .getTotalColumnWidth(), (previousRowCount - start) * rh);
+        Rectangle drawRect = new Rectangle(0, start * rh, getColumnModel().getTotalColumnWidth(),
+                (previousRowCount - start) * rh);
 
         revalidate();
         // PENDING(milne) revalidate calls repaint() if parent is a ScrollPane
@@ -4720,7 +4575,7 @@ public class JTable extends JComponent implements TableModelListener,
      * internally by JTable.
      *
      * @param e
-     *          the event received
+     *        the event received
      * @see TableColumnModelListener
      */
     public void columnMoved(TableColumnModelEvent e) {
@@ -4738,7 +4593,7 @@ public class JTable extends JComponent implements TableModelListener,
      * internally by JTable.
      *
      * @param e
-     *          the event received
+     *        the event received
      * @see TableColumnModelListener
      */
     public void columnMarginChanged(ChangeEvent e) {
@@ -4766,7 +4621,7 @@ public class JTable extends JComponent implements TableModelListener,
      * internally by JTable.
      *
      * @param e
-     *          the event received
+     *        the event received
      * @see TableColumnModelListener
      */
     public void columnSelectionChanged(ListSelectionEvent e) {
@@ -4790,8 +4645,7 @@ public class JTable extends JComponent implements TableModelListener,
         if (getRowSelectionAllowed()) {
             minRow = selectionModel.getMinSelectionIndex();
             maxRow = selectionModel.getMaxSelectionIndex();
-            int leadRow = getAdjustedIndex(selectionModel
-                    .getLeadSelectionIndex(), true);
+            int leadRow = getAdjustedIndex(selectionModel.getLeadSelectionIndex(), true);
 
             if (minRow == -1 || maxRow == -1) {
                 if (leadRow == -1) {
@@ -4829,7 +4683,7 @@ public class JTable extends JComponent implements TableModelListener,
      * internally by JTable.
      *
      * @param e
-     *          the event received
+     *        the event received
      * @see ListSelectionListener
      */
     public void valueChanged(ListSelectionEvent e) {
@@ -4853,8 +4707,7 @@ public class JTable extends JComponent implements TableModelListener,
         int firstIndex = limit(e.getFirstIndex(), 0, getRowCount() - 1);
         int lastIndex = limit(e.getLastIndex(), 0, getRowCount() - 1);
         Rectangle firstRowRect = getCellRect(firstIndex, 0, false);
-        Rectangle lastRowRect = getCellRect(lastIndex, getColumnCount() - 1,
-                false);
+        Rectangle lastRowRect = getCellRect(lastIndex, getColumnCount() - 1, false);
         Rectangle dirtyRegion = firstRowRect.union(lastRowRect);
         repaint(dirtyRegion);
     }
@@ -4871,7 +4724,7 @@ public class JTable extends JComponent implements TableModelListener,
      * internally by JTable.
      *
      * @param e
-     *          the event received
+     *        the event received
      * @see CellEditorListener
      */
     public void editingStopped(ChangeEvent e) {
@@ -4892,7 +4745,7 @@ public class JTable extends JComponent implements TableModelListener,
      * internally by JTable.
      *
      * @param e
-     *          the event received
+     *        the event received
      * @see CellEditorListener
      */
     public void editingCanceled(ChangeEvent e) {
@@ -4907,9 +4760,9 @@ public class JTable extends JComponent implements TableModelListener,
      * Sets the preferred size of the viewport for this table.
      *
      * @param size
-     *             a <code>Dimension</code> object specifying the
-     *             <code>preferredSize</code> of a <code>JViewport</code> whose
-     *             view is this table
+     *        a <code>Dimension</code> object specifying the
+     *        <code>preferredSize</code> of a <code>JViewport</code> whose
+     *        view is this table
      * @see Scrollable#getPreferredScrollableViewportSize
      * @beaninfo description: The preferred size of the viewport.
      */
@@ -4936,19 +4789,18 @@ public class JTable extends JComponent implements TableModelListener,
      * This method is called each time the user requests a unit scroll.
      *
      * @param visibleRect
-     *                    the view area visible within the viewport
+     *        the view area visible within the viewport
      * @param orientation
-     *                    either <code>SwingConstants.VERTICAL</code> or
-     *                    <code>SwingConstants.HORIZONTAL</code>
+     *        either <code>SwingConstants.VERTICAL</code> or
+     *        <code>SwingConstants.HORIZONTAL</code>
      * @param direction
-     *                    less than zero to scroll up/left, greater than zero
-     *                    for
-     *                    down/right
+     *        less than zero to scroll up/left, greater than zero
+     *        for
+     *        down/right
      * @return the "unit" increment for scrolling in the specified direction
      * @see Scrollable#getScrollableUnitIncrement
      */
-    public int getScrollableUnitIncrement(Rectangle visibleRect,
-            int orientation, int direction) {
+    public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
         int leadingRow;
         int leadingCol;
         Rectangle leadingCellRect;
@@ -5004,8 +4856,7 @@ public class JTable extends JComponent implements TableModelListener,
                 } else { // HORIZONTAL
                          // Loop past any zero-width cols
                     while (--leadingCol >= 0) {
-                        retVal = getCellRect(leadingRow, leadingCol,
-                                true).width;
+                        retVal = getCellRect(leadingRow, leadingCol, true).width;
                         if (retVal != 0) {
                             break;
                         }
@@ -5039,15 +4890,13 @@ public class JTable extends JComponent implements TableModelListener,
      *         per the orientation
      * @see Scrollable#getScrollableBlockIncrement
      */
-    public int getScrollableBlockIncrement(Rectangle visibleRect,
-            int orientation, int direction) {
+    public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
 
         if (getRowCount() == 0) {
             // Short-circuit empty table model
             if (SwingConstants.VERTICAL == orientation) {
                 int rh = getRowHeight();
-                return (rh > 0) ? Math.max(rh, (visibleRect.height / rh) * rh)
-                        : visibleRect.height;
+                return (rh > 0) ? Math.max(rh, (visibleRect.height / rh) * rh) : visibleRect.height;
             } else {
                 return visibleRect.width;
             }
@@ -5077,8 +4926,7 @@ public class JTable extends JComponent implements TableModelListener,
      * horizontal scrolling, or for vertical scrolling of a table with variable
      * row heights.
      */
-    private int getPreviousBlockIncrement(Rectangle visibleRect,
-            int orientation) {
+    private int getPreviousBlockIncrement(Rectangle visibleRect, int orientation) {
         // Measure back from visible leading edge
         // If we hit the cell on its leading edge, it becomes the leading cell.
         // Else, use following cell
@@ -5182,16 +5030,14 @@ public class JTable extends JComponent implements TableModelListener,
         // enough to fill the visibleRect.
         if (orientation == SwingConstants.VERTICAL && trailingRow < 0) {
             return visibleRect.height;
-        } else if (orientation == SwingConstants.HORIZONTAL
-                && trailingCol < 0) {
+        } else if (orientation == SwingConstants.HORIZONTAL && trailingCol < 0) {
             return visibleRect.width;
         }
         cellRect = getCellRect(trailingRow, trailingCol, true);
         cellLeadingEdge = leadingEdge(cellRect, orientation);
         cellTrailingEdge = trailingEdge(cellRect, orientation);
 
-        if (orientation == SwingConstants.VERTICAL || getComponentOrientation()
-                .isLeftToRight()) {
+        if (orientation == SwingConstants.VERTICAL || getComponentOrientation().isLeftToRight()) {
             cellFillsVis = cellLeadingEdge <= visibleLeadingEdge;
         } else { // Horizontal, right-to-left
             cellFillsVis = cellLeadingEdge >= visibleLeadingEdge;
@@ -5224,8 +5070,7 @@ public class JTable extends JComponent implements TableModelListener,
         if (getComponentOrientation().isLeftToRight()) {
             leadingPoint = new Point(visibleRect.x, visibleRect.y);
         } else {
-            leadingPoint = new Point(visibleRect.x + visibleRect.width - 1,
-                    visibleRect.y);
+            leadingPoint = new Point(visibleRect.x + visibleRect.width - 1, visibleRect.y);
         }
         return rowAtPoint(leadingPoint);
     }
@@ -5240,8 +5085,7 @@ public class JTable extends JComponent implements TableModelListener,
         if (getComponentOrientation().isLeftToRight()) {
             leadingPoint = new Point(visibleRect.x, visibleRect.y);
         } else {
-            leadingPoint = new Point(visibleRect.x + visibleRect.width - 1,
-                    visibleRect.y);
+            leadingPoint = new Point(visibleRect.x + visibleRect.width - 1, visibleRect.y);
         }
         return columnAtPoint(leadingPoint);
     }
@@ -5254,11 +5098,10 @@ public class JTable extends JComponent implements TableModelListener,
         Point trailingPoint;
 
         if (getComponentOrientation().isLeftToRight()) {
-            trailingPoint = new Point(visibleRect.x, visibleRect.y
-                    + visibleRect.height - 1);
+            trailingPoint = new Point(visibleRect.x, visibleRect.y + visibleRect.height - 1);
         } else {
-            trailingPoint = new Point(visibleRect.x + visibleRect.width - 1,
-                    visibleRect.y + visibleRect.height - 1);
+            trailingPoint = new Point(visibleRect.x + visibleRect.width - 1, visibleRect.y
+                    + visibleRect.height - 1);
         }
         return rowAtPoint(trailingPoint);
     }
@@ -5271,8 +5114,7 @@ public class JTable extends JComponent implements TableModelListener,
         Point trailingPoint;
 
         if (getComponentOrientation().isLeftToRight()) {
-            trailingPoint = new Point(visibleRect.x + visibleRect.width - 1,
-                    visibleRect.y);
+            trailingPoint = new Point(visibleRect.x + visibleRect.width - 1, visibleRect.y);
         } else {
             trailingPoint = new Point(visibleRect.x, visibleRect.y);
         }
@@ -5350,9 +5192,9 @@ public class JTable extends JComponent implements TableModelListener,
      * the viewport. The default for this property is {@code false}.
      *
      * @param fillsViewportHeight
-     *                            whether or not this table is always made large
-     *                            enough to fill
-     *                            the height of an enclosing viewport
+     *        whether or not this table is always made large
+     *        enough to fill
+     *        the height of an enclosing viewport
      * @see #getFillsViewportHeight
      * @see #getScrollableTracksViewportHeight
      * @since 1.6
@@ -5383,17 +5225,15 @@ public class JTable extends JComponent implements TableModelListener,
     // Protected Methods
     //
 
-    protected boolean processKeyBinding(KeyStroke ks, KeyEvent e, int condition,
-            boolean pressed) {
+    protected boolean processKeyBinding(KeyStroke ks, KeyEvent e, int condition, boolean pressed) {
         boolean retValue = super.processKeyBinding(ks, e, condition, pressed);
 
         // Start editing when a key is typed. UI classes can disable this
         // behavior
         // by setting the client property JTable.autoStartsEdit to
         // Boolean.FALSE.
-        if (!retValue && condition == WHEN_ANCESTOR_OF_FOCUSED_COMPONENT
-                && isFocusOwner() && !Boolean.FALSE.equals(getClientProperty(
-                        "JTable.autoStartsEdit"))) {
+        if (!retValue && condition == WHEN_ANCESTOR_OF_FOCUSED_COMPONENT && isFocusOwner() && !Boolean.FALSE
+                .equals(getClientProperty("JTable.autoStartsEdit"))) {
             // We do not have a binding for the event.
             Component editorComponent = getEditorComponent();
             if (editorComponent == null) {
@@ -5403,14 +5243,12 @@ public class JTable extends JComponent implements TableModelListener,
                 }
                 // Don't start when just a modifier is pressed
                 int code = e.getKeyCode();
-                if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_CONTROL
-                        || code == KeyEvent.VK_ALT) {
+                if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_CONTROL || code == KeyEvent.VK_ALT) {
                     return false;
                 }
                 // Try to install the editor
                 int leadRow = getSelectionModel().getLeadSelectionIndex();
-                int leadColumn = getColumnModel().getSelectionModel()
-                        .getLeadSelectionIndex();
+                int leadColumn = getColumnModel().getSelectionModel().getLeadSelectionIndex();
                 if (leadRow != -1 && leadColumn != -1 && !isEditing()) {
                     if (!editCellAt(leadRow, leadColumn, e)) {
                         return false;
@@ -5423,8 +5261,7 @@ public class JTable extends JComponent implements TableModelListener,
             }
             // If the editorComponent is a JComponent, pass the event to it.
             if (editorComponent instanceof JComponent) {
-                retValue = ((JComponent) editorComponent).processKeyBinding(ks,
-                        e, WHEN_FOCUSED, pressed);
+                retValue = ((JComponent) editorComponent).processKeyBinding(ks, e, WHEN_FOCUSED, pressed);
                 // If we have started an editor as a result of the user
                 // pressing a key and the surrendersFocusOnKeystroke property
                 // is true, give the focus to the new editor.
@@ -5441,7 +5278,6 @@ public class JTable extends JComponent implements TableModelListener,
      * booleans, and icons.
      * 
      * @see javax.swing.table.DefaultTableCellRenderer
-     *
      */
     protected void createDefaultRenderers() {
         defaultRenderersByColumnClass = new UIDefaults(8, 0.75f);
@@ -5451,28 +5287,21 @@ public class JTable extends JComponent implements TableModelListener,
                 (UIDefaults.LazyValue) t -> new DefaultTableCellRenderer.UIResource());
 
         // Numbers
-        defaultRenderersByColumnClass.put(Number.class,
-                (UIDefaults.LazyValue) t -> new NumberRenderer());
+        defaultRenderersByColumnClass.put(Number.class, (UIDefaults.LazyValue) t -> new NumberRenderer());
 
         // Doubles and Floats
-        defaultRenderersByColumnClass.put(Float.class,
-                (UIDefaults.LazyValue) t -> new DoubleRenderer());
-        defaultRenderersByColumnClass.put(Double.class,
-                (UIDefaults.LazyValue) t -> new DoubleRenderer());
+        defaultRenderersByColumnClass.put(Float.class, (UIDefaults.LazyValue) t -> new DoubleRenderer());
+        defaultRenderersByColumnClass.put(Double.class, (UIDefaults.LazyValue) t -> new DoubleRenderer());
 
         // Dates
-        defaultRenderersByColumnClass.put(Date.class,
-                (UIDefaults.LazyValue) t -> new DateRenderer());
+        defaultRenderersByColumnClass.put(Date.class, (UIDefaults.LazyValue) t -> new DateRenderer());
 
         // Icons and ImageIcons
-        defaultRenderersByColumnClass.put(Icon.class,
-                (UIDefaults.LazyValue) t -> new IconRenderer());
-        defaultRenderersByColumnClass.put(ImageIcon.class,
-                (UIDefaults.LazyValue) t -> new IconRenderer());
+        defaultRenderersByColumnClass.put(Icon.class, (UIDefaults.LazyValue) t -> new IconRenderer());
+        defaultRenderersByColumnClass.put(ImageIcon.class, (UIDefaults.LazyValue) t -> new IconRenderer());
 
         // Booleans
-        defaultRenderersByColumnClass.put(Boolean.class,
-                (UIDefaults.LazyValue) t -> new BooleanRenderer());
+        defaultRenderersByColumnClass.put(Boolean.class, (UIDefaults.LazyValue) t -> new BooleanRenderer());
     }
 
     /**
@@ -5526,8 +5355,7 @@ public class JTable extends JComponent implements TableModelListener,
         }
     }
 
-    static class BooleanRenderer extends JCheckBox implements TableCellRenderer,
-            UIResource {
+    static class BooleanRenderer extends JCheckBox implements TableCellRenderer, UIResource {
         private static final Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 
         public BooleanRenderer() {
@@ -5536,9 +5364,8 @@ public class JTable extends JComponent implements TableModelListener,
             setBorderPainted(true);
         }
 
-        public Component getTableCellRendererComponent(JTable table,
-                Object value, boolean isSelected, boolean hasFocus, int row,
-                int column) {
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                boolean hasFocus, int row, int column) {
             if (isSelected) {
                 setForeground(table.getSelectionForeground());
                 super.setBackground(table.getSelectionBackground());
@@ -5549,8 +5376,7 @@ public class JTable extends JComponent implements TableModelListener,
             setSelected((value != null && ((Boolean) value).booleanValue()));
 
             if (hasFocus) {
-                setBorder(UIManager.getBorder(
-                        "Table.focusCellHighlightBorder"));
+                setBorder(UIManager.getBorder("Table.focusCellHighlightBorder"));
             } else {
                 setBorder(noFocusBorder);
             }
@@ -5568,16 +5394,13 @@ public class JTable extends JComponent implements TableModelListener,
         defaultEditorsByColumnClass = new UIDefaults(3, 0.75f);
 
         // Objects
-        defaultEditorsByColumnClass.put(Object.class,
-                (UIDefaults.LazyValue) t -> new GenericEditor());
+        defaultEditorsByColumnClass.put(Object.class, (UIDefaults.LazyValue) t -> new GenericEditor());
 
         // Numbers
-        defaultEditorsByColumnClass.put(Number.class,
-                (UIDefaults.LazyValue) t -> new NumberEditor());
+        defaultEditorsByColumnClass.put(Number.class, (UIDefaults.LazyValue) t -> new NumberEditor());
 
         // Booleans
-        defaultEditorsByColumnClass.put(Boolean.class,
-                (UIDefaults.LazyValue) t -> new BooleanEditor());
+        defaultEditorsByColumnClass.put(Boolean.class, (UIDefaults.LazyValue) t -> new BooleanEditor());
     }
 
     /**
@@ -5613,18 +5436,16 @@ public class JTable extends JComponent implements TableModelListener,
                 SwingUtilities2.checkAccess(constructor.getModifiers());
                 value = constructor.newInstance(new Object[] { s });
             } catch (Exception e) {
-                ((JComponent) getComponent()).setBorder(new LineBorder(
-                        Color.red));
+                ((JComponent) getComponent()).setBorder(new LineBorder(Color.red));
                 return false;
             }
             return super.stopCellEditing();
         }
 
-        public Component getTableCellEditorComponent(JTable table, Object value,
-                boolean isSelected, int row, int column) {
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
+                int column) {
             this.value = null;
-            ((JComponent) getComponent()).setBorder(new LineBorder(
-                    Color.black));
+            ((JComponent) getComponent()).setBorder(new LineBorder(Color.black));
             try {
                 Class<?> type = table.getColumnClass(column);
                 // Since our obligation is to produce a value which is
@@ -5640,8 +5461,7 @@ public class JTable extends JComponent implements TableModelListener,
             } catch (Exception e) {
                 return null;
             }
-            return super.getTableCellEditorComponent(table, value, isSelected,
-                    row, column);
+            return super.getTableCellEditorComponent(table, value, isSelected, row, column);
         }
 
         public Object getCellEditorValue() {
@@ -5652,8 +5472,7 @@ public class JTable extends JComponent implements TableModelListener,
     static class NumberEditor extends GenericEditor {
 
         public NumberEditor() {
-            ((JTextField) getComponent()).setHorizontalAlignment(
-                    JTextField.RIGHT);
+            ((JTextField) getComponent()).setHorizontalAlignment(JTextField.RIGHT);
         }
     }
 
@@ -5768,7 +5587,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Sets the active cell editor.
      *
      * @param anEditor
-     *                 the active cell editor
+     *        the active cell editor
      * @see #cellEditor
      * @beaninfo bound: true description: The table's active cell editor.
      */
@@ -5782,8 +5601,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Sets the <code>editingColumn</code> variable.
      * 
      * @param aColumn
-     *                the column of the cell to be edited
-     *
+     *        the column of the cell to be edited
      * @see #editingColumn
      */
     public void setEditingColumn(int aColumn) {
@@ -5794,8 +5612,7 @@ public class JTable extends JComponent implements TableModelListener,
      * Sets the <code>editingRow</code> variable.
      * 
      * @param aRow
-     *             the row of the cell to be edited
-     *
+     *        the row of the cell to be edited
      * @see #editingRow
      */
     public void setEditingRow(int aRow) {
@@ -5814,10 +5631,10 @@ public class JTable extends JComponent implements TableModelListener,
      * can be safely overridden by a subclass.
      *
      * @param row
-     *               the row of the cell to render, where 0 is the first row
+     *        the row of the cell to render, where 0 is the first row
      * @param column
-     *               the column of the cell to render, where 0 is the first
-     *               column
+     *        the column of the cell to render, where 0 is the first
+     *        column
      * @return the assigned renderer; if <code>null</code> returns the default
      *         renderer for this type of object
      * @see javax.swing.table.DefaultTableCellRenderer
@@ -5851,16 +5668,15 @@ public class JTable extends JComponent implements TableModelListener,
      * can be safely overridden by a subclass.
      *
      * @param renderer
-     *                 the <code>TableCellRenderer</code> to prepare
+     *        the <code>TableCellRenderer</code> to prepare
      * @param row
-     *                 the row of the cell to render, where 0 is the first row
+     *        the row of the cell to render, where 0 is the first row
      * @param column
-     *                 the column of the cell to render, where 0 is the first
-     *                 column
+     *        the column of the cell to render, where 0 is the first
+     *        column
      * @return the <code>Component</code> under the event location
      */
-    public Component prepareRenderer(TableCellRenderer renderer, int row,
-            int column) {
+    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Object value = getValueAt(row, column);
 
         boolean isSelected = false;
@@ -5871,14 +5687,12 @@ public class JTable extends JComponent implements TableModelListener,
             isSelected = isCellSelected(row, column);
 
             boolean rowIsLead = (selectionModel.getLeadSelectionIndex() == row);
-            boolean colIsLead = (columnModel.getSelectionModel()
-                    .getLeadSelectionIndex() == column);
+            boolean colIsLead = (columnModel.getSelectionModel().getLeadSelectionIndex() == column);
 
             hasFocus = (rowIsLead && colIsLead) && isFocusOwner();
         }
 
-        return renderer.getTableCellRendererComponent(this, value, isSelected,
-                hasFocus, row, column);
+        return renderer.getTableCellRendererComponent(this, value, isSelected, hasFocus, row, column);
     }
 
     /**
@@ -5893,9 +5707,9 @@ public class JTable extends JComponent implements TableModelListener,
      * can be safely overridden by a subclass.
      *
      * @param row
-     *               the row of the cell to edit, where 0 is the first row
+     *        the row of the cell to edit, where 0 is the first row
      * @param column
-     *               the column of the cell to edit, where 0 is the first column
+     *        the column of the cell to edit, where 0 is the first column
      * @return the editor for this cell; if <code>null</code> return the default
      *         editor for this type of cell
      * @see DefaultCellEditor
@@ -5918,19 +5732,17 @@ public class JTable extends JComponent implements TableModelListener,
      * can be safely overridden by a subclass.
      *
      * @param editor
-     *               the <code>TableCellEditor</code> to set up
+     *        the <code>TableCellEditor</code> to set up
      * @param row
-     *               the row of the cell to edit, where 0 is the first row
+     *        the row of the cell to edit, where 0 is the first row
      * @param column
-     *               the column of the cell to edit, where 0 is the first column
+     *        the column of the cell to edit, where 0 is the first column
      * @return the <code>Component</code> being edited
      */
-    public Component prepareEditor(TableCellEditor editor, int row,
-            int column) {
+    public Component prepareEditor(TableCellEditor editor, int row, int column) {
         Object value = getValueAt(row, column);
         boolean isSelected = isCellSelected(row, column);
-        Component comp = editor.getTableCellEditorComponent(this, value,
-                isSelected, row, column);
+        Component comp = editor.getTableCellEditorComponent(this, value, isSelected, row, column);
         if (comp instanceof JComponent) {
             JComponent jComp = (JComponent) comp;
             if (jComp.getNextFocusableComponent() == null) {
@@ -5945,20 +5757,17 @@ public class JTable extends JComponent implements TableModelListener,
      * rendering.
      */
     public void removeEditor() {
-        KeyboardFocusManager.getCurrentKeyboardFocusManager()
-                .removePropertyChangeListener("permanentFocusOwner",
-                        editorRemover);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removePropertyChangeListener(
+                "permanentFocusOwner", editorRemover);
         editorRemover = null;
 
         TableCellEditor editor = getCellEditor();
         if (editor != null) {
             editor.removeCellEditorListener(this);
             if (editorComp != null) {
-                Component focusOwner = KeyboardFocusManager
-                        .getCurrentKeyboardFocusManager().getFocusOwner();
-                boolean isFocusOwnerInTheTable = focusOwner != null
-                        ? SwingUtilities.isDescendingFrom(focusOwner, this)
-                        : false;
+                Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+                boolean isFocusOwnerInTheTable = focusOwner != null ? SwingUtilities.isDescendingFrom(
+                        focusOwner, this) : false;
                 remove(editorComp);
                 if (isFocusOwnerInTheTable) {
                     requestFocusInWindow();
@@ -5995,8 +5804,7 @@ public class JTable extends JComponent implements TableModelListener,
         }
     }
 
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         if ((ui != null) && (getUIClassID().equals(uiClassID))) {
             ui.installUI(this);
@@ -6034,10 +5842,8 @@ public class JTable extends JComponent implements TableModelListener,
      * @return a string representation of this table
      */
     protected String paramString() {
-        String gridColorString = (gridColor != null ? gridColor.toString()
-                : "");
-        String showHorizontalLinesString = (showHorizontalLines ? "true"
-                : "false");
+        String gridColorString = (gridColor != null ? gridColor.toString() : "");
+        String showHorizontalLinesString = (showHorizontalLines ? "true" : "false");
         String showVerticalLinesString = (showVerticalLines ? "true" : "false");
         String autoResizeModeString;
         if (autoResizeMode == AUTO_RESIZE_OFF) {
@@ -6052,35 +5858,24 @@ public class JTable extends JComponent implements TableModelListener,
             autoResizeModeString = "AUTO_RESIZE_ALL_COLUMNS";
         } else
             autoResizeModeString = "";
-        String autoCreateColumnsFromModelString = (autoCreateColumnsFromModel
-                ? "true"
-                : "false");
-        String preferredViewportSizeString = (preferredViewportSize != null
-                ? preferredViewportSize.toString()
+        String autoCreateColumnsFromModelString = (autoCreateColumnsFromModel ? "true" : "false");
+        String preferredViewportSizeString = (preferredViewportSize != null ? preferredViewportSize.toString()
                 : "");
-        String rowSelectionAllowedString = (rowSelectionAllowed ? "true"
-                : "false");
-        String cellSelectionEnabledString = (cellSelectionEnabled ? "true"
-                : "false");
-        String selectionForegroundString = (selectionForeground != null
-                ? selectionForeground.toString()
+        String rowSelectionAllowedString = (rowSelectionAllowed ? "true" : "false");
+        String cellSelectionEnabledString = (cellSelectionEnabled ? "true" : "false");
+        String selectionForegroundString = (selectionForeground != null ? selectionForeground.toString()
                 : "");
-        String selectionBackgroundString = (selectionBackground != null
-                ? selectionBackground.toString()
+        String selectionBackgroundString = (selectionBackground != null ? selectionBackground.toString()
                 : "");
 
-        return super.paramString() + ",autoCreateColumnsFromModel="
-                + autoCreateColumnsFromModelString + ",autoResizeMode="
-                + autoResizeModeString + ",cellSelectionEnabled="
-                + cellSelectionEnabledString + ",editingColumn=" + editingColumn
-                + ",editingRow=" + editingRow + ",gridColor=" + gridColorString
-                + ",preferredViewportSize=" + preferredViewportSizeString
-                + ",rowHeight=" + rowHeight + ",rowMargin=" + rowMargin
-                + ",rowSelectionAllowed=" + rowSelectionAllowedString
-                + ",selectionBackground=" + selectionBackgroundString
-                + ",selectionForeground=" + selectionForegroundString
-                + ",showHorizontalLines=" + showHorizontalLinesString
-                + ",showVerticalLines=" + showVerticalLinesString;
+        return super.paramString() + ",autoCreateColumnsFromModel=" + autoCreateColumnsFromModelString
+                + ",autoResizeMode=" + autoResizeModeString + ",cellSelectionEnabled="
+                + cellSelectionEnabledString + ",editingColumn=" + editingColumn + ",editingRow=" + editingRow
+                + ",gridColor=" + gridColorString + ",preferredViewportSize=" + preferredViewportSizeString
+                + ",rowHeight=" + rowHeight + ",rowMargin=" + rowMargin + ",rowSelectionAllowed="
+                + rowSelectionAllowedString + ",selectionBackground=" + selectionBackgroundString
+                + ",selectionForeground=" + selectionForegroundString + ",showHorizontalLines="
+                + showHorizontalLinesString + ",showVerticalLines=" + showVerticalLinesString;
     }
 
     // This class tracks changes in the keyboard focus state. It is used
@@ -6095,8 +5890,7 @@ public class JTable extends JComponent implements TableModelListener,
         }
 
         public void propertyChange(PropertyChangeEvent ev) {
-            if (!isEditing() || getClientProperty(
-                    "terminateEditOnFocusLost") != Boolean.TRUE) {
+            if (!isEditing() || getClientProperty("terminateEditOnFocusLost") != Boolean.TRUE) {
                 return;
             }
 
@@ -6105,8 +5899,7 @@ public class JTable extends JComponent implements TableModelListener,
                 if (c == JTable.this) {
                     // focus remains inside the table
                     return;
-                } else if ((c instanceof Window) || (c instanceof Applet && c
-                        .getParent() == null)) {
+                } else if ((c instanceof Window) || (c instanceof Applet && c.getParent() == null)) {
                     if (c == SwingUtilities.getRoot(JTable.this)) {
                         if (!getCellEditor().stopCellEditing()) {
                             getCellEditor().cancelCellEditing();
@@ -6134,15 +5927,14 @@ public class JTable extends JComponent implements TableModelListener,
      *
      * @return true, unless printing is cancelled by the user
      * @throws SecurityException
-     *                           if this thread is not allowed to initiate a
-     *                           print job request
+     *         if this thread is not allowed to initiate a
+     *         print job request
      * @throws PrinterException
-     *                           if an error in the print system causes the job
-     *                           to be aborted
+     *         if an error in the print system causes the job
+     *         to be aborted
      * @see #print(JTable.PrintMode, MessageFormat, MessageFormat, boolean,
      *      PrintRequestAttributeSet, boolean, PrintService)
      * @see #getPrintable
-     *
      * @since 1.5
      */
     public boolean print() throws PrinterException {
@@ -6160,18 +5952,17 @@ public class JTable extends JComponent implements TableModelListener,
      * default printer.
      *
      * @param printMode
-     *                  the printing mode that the printable should use
+     *        the printing mode that the printable should use
      * @return true, unless printing is cancelled by the user
      * @throws SecurityException
-     *                           if this thread is not allowed to initiate a
-     *                           print job request
+     *         if this thread is not allowed to initiate a
+     *         print job request
      * @throws PrinterException
-     *                           if an error in the print system causes the job
-     *                           to be aborted
+     *         if an error in the print system causes the job
+     *         to be aborted
      * @see #print(JTable.PrintMode, MessageFormat, MessageFormat, boolean,
      *      PrintRequestAttributeSet, boolean, PrintService)
      * @see #getPrintable
-     *
      * @since 1.5
      */
     public boolean print(PrintMode printMode) throws PrinterException {
@@ -6189,34 +5980,32 @@ public class JTable extends JComponent implements TableModelListener,
      * default printer.
      *
      * @param printMode
-     *                     the printing mode that the printable should use
+     *        the printing mode that the printable should use
      * @param headerFormat
-     *                     a <code>MessageFormat</code> specifying the text to
-     *                     be used in
-     *                     printing a header, or null for none
+     *        a <code>MessageFormat</code> specifying the text to
+     *        be used in
+     *        printing a header, or null for none
      * @param footerFormat
-     *                     a <code>MessageFormat</code> specifying the text to
-     *                     be used in
-     *                     printing a footer, or null for none
+     *        a <code>MessageFormat</code> specifying the text to
+     *        be used in
+     *        printing a footer, or null for none
      * @return true, unless printing is cancelled by the user
      * @throws SecurityException
-     *                           if this thread is not allowed to initiate a
-     *                           print job request
+     *         if this thread is not allowed to initiate a
+     *         print job request
      * @throws PrinterException
-     *                           if an error in the print system causes the job
-     *                           to be aborted
+     *         if an error in the print system causes the job
+     *         to be aborted
      * @see #print(JTable.PrintMode, MessageFormat, MessageFormat, boolean,
      *      PrintRequestAttributeSet, boolean, PrintService)
      * @see #getPrintable
-     *
      * @since 1.5
      */
-    public boolean print(PrintMode printMode, MessageFormat headerFormat,
-            MessageFormat footerFormat) throws PrinterException {
+    public boolean print(PrintMode printMode, MessageFormat headerFormat, MessageFormat footerFormat)
+            throws PrinterException {
 
         boolean showDialogs = !GraphicsEnvironment.isHeadless();
-        return print(printMode, headerFormat, footerFormat, showDialogs, null,
-                showDialogs);
+        return print(printMode, headerFormat, footerFormat, showDialogs, null, showDialogs);
     }
 
     /**
@@ -6225,50 +6014,47 @@ public class JTable extends JComponent implements TableModelListener,
      * print} method, with the default printer specified as the print service.
      *
      * @param printMode
-     *                        the printing mode that the printable should use
+     *        the printing mode that the printable should use
      * @param headerFormat
-     *                        a <code>MessageFormat</code> specifying the text
-     *                        to be used in
-     *                        printing a header, or <code>null</code> for none
+     *        a <code>MessageFormat</code> specifying the text
+     *        to be used in
+     *        printing a header, or <code>null</code> for none
      * @param footerFormat
-     *                        a <code>MessageFormat</code> specifying the text
-     *                        to be used in
-     *                        printing a footer, or <code>null</code> for none
+     *        a <code>MessageFormat</code> specifying the text
+     *        to be used in
+     *        printing a footer, or <code>null</code> for none
      * @param showPrintDialog
-     *                        whether or not to display a print dialog
+     *        whether or not to display a print dialog
      * @param attr
-     *                        a <code>PrintRequestAttributeSet</code> specifying
-     *                        any
-     *                        printing attributes, or <code>null</code> for none
+     *        a <code>PrintRequestAttributeSet</code> specifying
+     *        any
+     *        printing attributes, or <code>null</code> for none
      * @param interactive
-     *                        whether or not to print in an interactive mode
+     *        whether or not to print in an interactive mode
      * @return true, unless printing is cancelled by the user
      * @throws HeadlessException
-     *                           if the method is asked to show a printing
-     *                           dialog or run
-     *                           interactively, and
-     *                           <code>GraphicsEnvironment.isHeadless</code>
-     *                           returns
-     *                           <code>true</code>
+     *         if the method is asked to show a printing
+     *         dialog or run
+     *         interactively, and
+     *         <code>GraphicsEnvironment.isHeadless</code>
+     *         returns
+     *         <code>true</code>
      * @throws SecurityException
-     *                           if this thread is not allowed to initiate a
-     *                           print job request
+     *         if this thread is not allowed to initiate a
+     *         print job request
      * @throws PrinterException
-     *                           if an error in the print system causes the job
-     *                           to be aborted
+     *         if an error in the print system causes the job
+     *         to be aborted
      * @see #print(JTable.PrintMode, MessageFormat, MessageFormat, boolean,
      *      PrintRequestAttributeSet, boolean, PrintService)
      * @see #getPrintable
-     *
      * @since 1.5
      */
-    public boolean print(PrintMode printMode, MessageFormat headerFormat,
-            MessageFormat footerFormat, boolean showPrintDialog,
-            PrintRequestAttributeSet attr, boolean interactive)
+    public boolean print(PrintMode printMode, MessageFormat headerFormat, MessageFormat footerFormat,
+            boolean showPrintDialog, PrintRequestAttributeSet attr, boolean interactive)
             throws PrinterException, HeadlessException {
 
-        return print(printMode, headerFormat, footerFormat, showPrintDialog,
-                attr, interactive, null);
+        return print(printMode, headerFormat, footerFormat, showPrintDialog, attr, interactive, null);
     }
 
     /**
@@ -6320,52 +6106,50 @@ public class JTable extends JComponent implements TableModelListener,
      * printed.
      *
      * @param printMode
-     *                        the printing mode that the printable should use
+     *        the printing mode that the printable should use
      * @param headerFormat
-     *                        a <code>MessageFormat</code> specifying the text
-     *                        to be used in
-     *                        printing a header, or <code>null</code> for none
+     *        a <code>MessageFormat</code> specifying the text
+     *        to be used in
+     *        printing a header, or <code>null</code> for none
      * @param footerFormat
-     *                        a <code>MessageFormat</code> specifying the text
-     *                        to be used in
-     *                        printing a footer, or <code>null</code> for none
+     *        a <code>MessageFormat</code> specifying the text
+     *        to be used in
+     *        printing a footer, or <code>null</code> for none
      * @param showPrintDialog
-     *                        whether or not to display a print dialog
+     *        whether or not to display a print dialog
      * @param attr
-     *                        a <code>PrintRequestAttributeSet</code> specifying
-     *                        any
-     *                        printing attributes, or <code>null</code> for none
+     *        a <code>PrintRequestAttributeSet</code> specifying
+     *        any
+     *        printing attributes, or <code>null</code> for none
      * @param interactive
-     *                        whether or not to print in an interactive mode
+     *        whether or not to print in an interactive mode
      * @param service
-     *                        the destination <code>PrintService</code>, or
-     *                        <code>null</code> to use the default printer
+     *        the destination <code>PrintService</code>, or
+     *        <code>null</code> to use the default printer
      * @return true, unless printing is cancelled by the user
      * @throws HeadlessException
-     *                           if the method is asked to show a printing
-     *                           dialog or run
-     *                           interactively, and
-     *                           <code>GraphicsEnvironment.isHeadless</code>
-     *                           returns
-     *                           <code>true</code>
+     *         if the method is asked to show a printing
+     *         dialog or run
+     *         interactively, and
+     *         <code>GraphicsEnvironment.isHeadless</code>
+     *         returns
+     *         <code>true</code>
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@link java.lang.SecurityManager#checkPrintJobAccess}
-     *                           method
-     *                           disallows this thread from creating a print job
-     *                           request
+     *         if a security manager exists and its
+     *         {@link java.lang.SecurityManager#checkPrintJobAccess}
+     *         method
+     *         disallows this thread from creating a print job
+     *         request
      * @throws PrinterException
-     *                           if an error in the print system causes the job
-     *                           to be aborted
+     *         if an error in the print system causes the job
+     *         to be aborted
      * @see #getPrintable
      * @see java.awt.GraphicsEnvironment#isHeadless
-     *
      * @since 1.6
      */
-    public boolean print(PrintMode printMode, MessageFormat headerFormat,
-            MessageFormat footerFormat, boolean showPrintDialog,
-            PrintRequestAttributeSet attr, boolean interactive,
-            PrintService service) throws PrinterException, HeadlessException {
+    public boolean print(PrintMode printMode, MessageFormat headerFormat, MessageFormat footerFormat,
+            boolean showPrintDialog, PrintRequestAttributeSet attr, boolean interactive, PrintService service)
+            throws PrinterException, HeadlessException {
 
         // complain early if an invalid parameter is specified for headless mode
         boolean isHeadless = GraphicsEnvironment.isHeadless();
@@ -6398,8 +6182,7 @@ public class JTable extends JComponent implements TableModelListener,
         final PrintingStatus printingStatus;
 
         // fetch the Printable
-        Printable printable = getPrintable(printMode, headerFormat,
-                footerFormat);
+        Printable printable = getPrintable(printMode, headerFormat, footerFormat);
 
         if (interactive) {
             // wrap the Printable so that we can print on another thread
@@ -6581,25 +6364,24 @@ public class JTable extends JComponent implements TableModelListener,
      * table has been changed.
      *
      * @param printMode
-     *                     the printing mode that the printable should use
+     *        the printing mode that the printable should use
      * @param headerFormat
-     *                     a <code>MessageFormat</code> specifying the text to
-     *                     be used in
-     *                     printing a header, or null for none
+     *        a <code>MessageFormat</code> specifying the text to
+     *        be used in
+     *        printing a header, or null for none
      * @param footerFormat
-     *                     a <code>MessageFormat</code> specifying the text to
-     *                     be used in
-     *                     printing a footer, or null for none
+     *        a <code>MessageFormat</code> specifying the text to
+     *        be used in
+     *        printing a footer, or null for none
      * @return a <code>Printable</code> for printing this JTable
      * @see #print(JTable.PrintMode, MessageFormat, MessageFormat, boolean,
      *      PrintRequestAttributeSet, boolean)
      * @see Printable
      * @see PrinterJob
-     *
      * @since 1.5
      */
-    public Printable getPrintable(PrintMode printMode,
-            MessageFormat headerFormat, MessageFormat footerFormat) {
+    public Printable getPrintable(PrintMode printMode, MessageFormat headerFormat,
+            MessageFormat footerFormat) {
 
         return new TablePrintable(this, printMode, headerFormat, footerFormat);
     }
@@ -6628,7 +6410,7 @@ public class JTable extends JComponent implements TableModelListener,
          * delegate.
          *
          * @param printDelegate
-         *                      the <code>Printable</code> to delegate to
+         *        the <code>Printable</code> to delegate to
          */
         public ThreadSafePrintable(Printable printDelegate) {
             this.printDelegate = printDelegate;
@@ -6642,26 +6424,25 @@ public class JTable extends JComponent implements TableModelListener,
          * the delegate will be done on the event-dispatch thread.
          *
          * @param graphics
-         *                   the context into which the page is drawn
+         *        the context into which the page is drawn
          * @param pageFormat
-         *                   the size and orientation of the page being drawn
+         *        the size and orientation of the page being drawn
          * @param pageIndex
-         *                   the zero based index of the page to be drawn
+         *        the zero based index of the page to be drawn
          * @return PAGE_EXISTS if the page is rendered successfully, or
          *         NO_SUCH_PAGE if a non-existent page index is specified
          * @throws PrinterException
-         *                          if an error causes printing to be aborted
+         *         if an error causes printing to be aborted
          */
-        public int print(final Graphics graphics, final PageFormat pageFormat,
-                final int pageIndex) throws PrinterException {
+        public int print(final Graphics graphics, final PageFormat pageFormat, final int pageIndex)
+                throws PrinterException {
 
             // We'll use this Runnable
             Runnable runnable = new Runnable() {
                 public synchronized void run() {
                     try {
                         // call into the delegate and save the return value
-                        retVal = printDelegate.print(graphics, pageFormat,
-                                pageIndex);
+                        retVal = printDelegate.print(graphics, pageFormat, pageIndex);
                     } catch (Throwable throwable) {
                         // save any Throwable to be rethrown
                         retThrowable = throwable;
@@ -6743,9 +6524,8 @@ public class JTable extends JComponent implements TableModelListener,
      * all JavaBeans&trade; has been added to the <code>java.beans</code>
      * package. Please see {@link java.beans.XMLEncoder}.
      */
-    protected class AccessibleJTable extends AccessibleJComponent implements
-            AccessibleSelection, ListSelectionListener, TableModelListener,
-            TableColumnModelListener, CellEditorListener,
+    protected class AccessibleJTable extends AccessibleJComponent implements AccessibleSelection,
+            ListSelectionListener, TableModelListener, TableColumnModelListener, CellEditorListener,
             PropertyChangeListener, AccessibleExtendedTable {
 
         int previousFocusedRow;
@@ -6764,10 +6544,8 @@ public class JTable extends JComponent implements TableModelListener,
             tcm.addColumnModelListener(this);
             tcm.getSelectionModel().addListSelectionListener(this);
             JTable.this.getModel().addTableModelListener(this);
-            previousFocusedRow = JTable.this.getSelectionModel()
-                    .getLeadSelectionIndex();
-            previousFocusedCol = JTable.this.getColumnModel()
-                    .getSelectionModel().getLeadSelectionIndex();
+            previousFocusedRow = JTable.this.getSelectionModel().getLeadSelectionIndex();
+            previousFocusedCol = JTable.this.getColumnModel().getSelectionModel().getLeadSelectionIndex();
         }
 
         // Listeners to track model, etc. changes to as to re-place the other
@@ -6799,28 +6577,20 @@ public class JTable extends JComponent implements TableModelListener,
                 Object source = e.getSource();
                 if (source == JTable.this) { // row selection model
 
-                    if (oldValue != null
-                            && oldValue instanceof ListSelectionModel) {
-                        ((ListSelectionModel) oldValue)
-                                .removeListSelectionListener(this);
+                    if (oldValue != null && oldValue instanceof ListSelectionModel) {
+                        ((ListSelectionModel) oldValue).removeListSelectionListener(this);
                     }
-                    if (newValue != null
-                            && newValue instanceof ListSelectionModel) {
-                        ((ListSelectionModel) newValue)
-                                .addListSelectionListener(this);
+                    if (newValue != null && newValue instanceof ListSelectionModel) {
+                        ((ListSelectionModel) newValue).addListSelectionListener(this);
                     }
 
                 } else if (source == JTable.this.getColumnModel()) {
 
-                    if (oldValue != null
-                            && oldValue instanceof ListSelectionModel) {
-                        ((ListSelectionModel) oldValue)
-                                .removeListSelectionListener(this);
+                    if (oldValue != null && oldValue instanceof ListSelectionModel) {
+                        ((ListSelectionModel) oldValue).removeListSelectionListener(this);
                     }
-                    if (newValue != null
-                            && newValue instanceof ListSelectionModel) {
-                        ((ListSelectionModel) newValue)
-                                .addListSelectionListener(this);
+                    if (newValue != null && newValue instanceof ListSelectionModel) {
+                        ((ListSelectionModel) newValue).addListSelectionListener(this);
                     }
 
                 } else {
@@ -6860,8 +6630,7 @@ public class JTable extends JComponent implements TableModelListener,
         /*
          * Describes a change in the accessible table model.
          */
-        protected class AccessibleJTableModelChange implements
-                AccessibleTableModelChange {
+        protected class AccessibleJTableModelChange implements AccessibleTableModelChange {
 
             protected int type;
             protected int firstRow;
@@ -6869,8 +6638,8 @@ public class JTable extends JComponent implements TableModelListener,
             protected int firstColumn;
             protected int lastColumn;
 
-            protected AccessibleJTableModelChange(int type, int firstRow,
-                    int lastRow, int firstColumn, int lastColumn) {
+            protected AccessibleJTableModelChange(int type, int firstRow, int lastRow, int firstColumn,
+                    int lastColumn) {
                 this.type = type;
                 this.firstRow = firstRow;
                 this.lastRow = lastRow;
@@ -6903,9 +6672,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Track changes to the table contents
          */
         public void tableChanged(TableModelEvent e) {
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null,
-                    null);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null, null);
             if (e != null) {
                 int firstColumn = e.getColumn();
                 int lastColumn = e.getColumn();
@@ -6916,12 +6683,9 @@ public class JTable extends JComponent implements TableModelListener,
 
                 // Fire a property change event indicating the table model
                 // has changed.
-                AccessibleJTableModelChange change = new AccessibleJTableModelChange(
-                        e.getType(), e.getFirstRow(), e.getLastRow(),
-                        firstColumn, lastColumn);
-                firePropertyChange(
-                        AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED, null,
-                        change);
+                AccessibleJTableModelChange change = new AccessibleJTableModelChange(e.getType(), e
+                        .getFirstRow(), e.getLastRow(), firstColumn, lastColumn);
+                firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED, null, change);
             }
         }
 
@@ -6929,9 +6693,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Track changes to the table contents (row insertions)
          */
         public void tableRowsInserted(TableModelEvent e) {
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null,
-                    null);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null, null);
 
             // Fire a property change event indicating the table model
             // has changed.
@@ -6941,20 +6703,16 @@ public class JTable extends JComponent implements TableModelListener,
                 firstColumn = 0;
                 lastColumn = getColumnCount() - 1;
             }
-            AccessibleJTableModelChange change = new AccessibleJTableModelChange(
-                    e.getType(), e.getFirstRow(), e.getLastRow(), firstColumn,
-                    lastColumn);
-            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED,
-                    null, change);
+            AccessibleJTableModelChange change = new AccessibleJTableModelChange(e.getType(), e.getFirstRow(),
+                    e.getLastRow(), firstColumn, lastColumn);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED, null, change);
         }
 
         /**
          * Track changes to the table contents (row deletions)
          */
         public void tableRowsDeleted(TableModelEvent e) {
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null,
-                    null);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null, null);
 
             // Fire a property change event indicating the table model
             // has changed.
@@ -6964,44 +6722,36 @@ public class JTable extends JComponent implements TableModelListener,
                 firstColumn = 0;
                 lastColumn = getColumnCount() - 1;
             }
-            AccessibleJTableModelChange change = new AccessibleJTableModelChange(
-                    e.getType(), e.getFirstRow(), e.getLastRow(), firstColumn,
-                    lastColumn);
-            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED,
-                    null, change);
+            AccessibleJTableModelChange change = new AccessibleJTableModelChange(e.getType(), e.getFirstRow(),
+                    e.getLastRow(), firstColumn, lastColumn);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED, null, change);
         }
 
         /**
          * Track changes to the table contents (column insertions)
          */
         public void columnAdded(TableColumnModelEvent e) {
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null,
-                    null);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null, null);
 
             // Fire a property change event indicating the table model
             // has changed.
             int type = AccessibleTableModelChange.INSERT;
-            AccessibleJTableModelChange change = new AccessibleJTableModelChange(
-                    type, 0, 0, e.getFromIndex(), e.getToIndex());
-            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED,
-                    null, change);
+            AccessibleJTableModelChange change = new AccessibleJTableModelChange(type, 0, 0, e.getFromIndex(),
+                    e.getToIndex());
+            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED, null, change);
         }
 
         /**
          * Track changes to the table contents (column deletions)
          */
         public void columnRemoved(TableColumnModelEvent e) {
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null,
-                    null);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null, null);
             // Fire a property change event indicating the table model
             // has changed.
             int type = AccessibleTableModelChange.DELETE;
-            AccessibleJTableModelChange change = new AccessibleJTableModelChange(
-                    type, 0, 0, e.getFromIndex(), e.getToIndex());
-            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED,
-                    null, change);
+            AccessibleJTableModelChange change = new AccessibleJTableModelChange(type, 0, 0, e.getFromIndex(),
+                    e.getToIndex());
+            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED, null, change);
         }
 
         /**
@@ -7010,23 +6760,19 @@ public class JTable extends JComponent implements TableModelListener,
          * @see TableColumnModelListener
          */
         public void columnMoved(TableColumnModelEvent e) {
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null,
-                    null);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null, null);
 
             // Fire property change events indicating the table model
             // has changed.
             int type = AccessibleTableModelChange.DELETE;
-            AccessibleJTableModelChange change = new AccessibleJTableModelChange(
-                    type, 0, 0, e.getFromIndex(), e.getFromIndex());
-            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED,
-                    null, change);
+            AccessibleJTableModelChange change = new AccessibleJTableModelChange(type, 0, 0, e.getFromIndex(),
+                    e.getFromIndex());
+            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED, null, change);
 
             int type2 = AccessibleTableModelChange.INSERT;
-            AccessibleJTableModelChange change2 = new AccessibleJTableModelChange(
-                    type2, 0, 0, e.getToIndex(), e.getToIndex());
-            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED,
-                    null, change2);
+            AccessibleJTableModelChange change2 = new AccessibleJTableModelChange(type2, 0, 0, e.getToIndex(),
+                    e.getToIndex());
+            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_MODEL_CHANGED, null, change2);
         }
 
         /**
@@ -7035,9 +6781,7 @@ public class JTable extends JComponent implements TableModelListener,
          * @see TableColumnModelListener
          */
         public void columnMarginChanged(ChangeEvent e) {
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null,
-                    null);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null, null);
         }
 
         /**
@@ -7051,7 +6795,6 @@ public class JTable extends JComponent implements TableModelListener,
 
         /**
          * Track changes to a cell's contents.
-         *
          * Invoked when editing is finished. The changes are saved, the editor
          * object is discarded, and the cell is rendered once again.
          *
@@ -7060,9 +6803,7 @@ public class JTable extends JComponent implements TableModelListener,
         public void editingStopped(ChangeEvent e) {
             // it'd be great if we could figure out which cell, and pass that
             // somehow as a parameter
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null,
-                    null);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_VISIBLE_DATA_PROPERTY, null, null);
         }
 
         /**
@@ -7079,25 +6820,19 @@ public class JTable extends JComponent implements TableModelListener,
          * Track changes to table cell selections
          */
         public void valueChanged(ListSelectionEvent e) {
-            firePropertyChange(AccessibleContext.ACCESSIBLE_SELECTION_PROPERTY,
-                    Boolean.valueOf(false), Boolean.valueOf(true));
+            firePropertyChange(AccessibleContext.ACCESSIBLE_SELECTION_PROPERTY, Boolean.valueOf(false),
+                    Boolean.valueOf(true));
 
             // Using lead selection index to cover both cases: node selected and
             // node
             // is focused but not selected (Ctrl+up/down)
-            int focusedRow = JTable.this.getSelectionModel()
-                    .getLeadSelectionIndex();
-            int focusedCol = JTable.this.getColumnModel().getSelectionModel()
-                    .getLeadSelectionIndex();
+            int focusedRow = JTable.this.getSelectionModel().getLeadSelectionIndex();
+            int focusedCol = JTable.this.getColumnModel().getSelectionModel().getLeadSelectionIndex();
 
-            if (focusedRow != previousFocusedRow
-                    || focusedCol != previousFocusedCol) {
-                Accessible oldA = getAccessibleAt(previousFocusedRow,
-                        previousFocusedCol);
+            if (focusedRow != previousFocusedRow || focusedCol != previousFocusedCol) {
+                Accessible oldA = getAccessibleAt(previousFocusedRow, previousFocusedCol);
                 Accessible newA = getAccessibleAt(focusedRow, focusedCol);
-                firePropertyChange(
-                        AccessibleContext.ACCESSIBLE_ACTIVE_DESCENDANT_PROPERTY,
-                        oldA, newA);
+                firePropertyChange(AccessibleContext.ACCESSIBLE_ACTIVE_DESCENDANT_PROPERTY, oldA, newA);
                 previousFocusedRow = focusedRow;
                 previousFocusedCol = focusedCol;
             }
@@ -7133,9 +6868,9 @@ public class JTable extends JComponent implements TableModelListener,
          * at the local coordinate <code>Point</code>.
          *
          * @param p
-         *          the point defining the top-left corner of the
-         *          <code>Accessible</code>, given in the coordinate space of
-         *          the object's parent
+         *        the point defining the top-left corner of the
+         *        <code>Accessible</code>, given in the coordinate space of
+         *        the object's parent
          * @return the <code>Accessible</code>, if it exists, at the specified
          *         location; else <code>null</code>
          */
@@ -7150,10 +6885,9 @@ public class JTable extends JComponent implements TableModelListener,
                     Class<?> columnClass = getColumnClass(column);
                     renderer = getDefaultRenderer(columnClass);
                 }
-                Component component = renderer.getTableCellRendererComponent(
-                        JTable.this, null, false, false, row, column);
-                return new AccessibleJTableCell(JTable.this, row, column,
-                        getAccessibleIndexAt(row, column));
+                Component component = renderer.getTableCellRendererComponent(JTable.this, null, false, false,
+                        row, column);
+                return new AccessibleJTableCell(JTable.this, row, column, getAccessibleIndexAt(row, column));
             }
             return null;
         }
@@ -7173,7 +6907,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the nth <code>Accessible</code> child of the object.
          *
          * @param i
-         *          zero-based index of child
+         *        zero-based index of child
          * @return the nth Accessible child of the object
          */
         public Accessible getAccessibleChild(int i) {
@@ -7191,10 +6925,9 @@ public class JTable extends JComponent implements TableModelListener,
                     Class<?> columnClass = getColumnClass(column);
                     renderer = getDefaultRenderer(columnClass);
                 }
-                Component component = renderer.getTableCellRendererComponent(
-                        JTable.this, null, false, false, row, column);
-                return new AccessibleJTableCell(JTable.this, row, column,
-                        getAccessibleIndexAt(row, column));
+                Component component = renderer.getTableCellRendererComponent(JTable.this, null, false, false,
+                        row, column);
+                return new AccessibleJTableCell(JTable.this, row, column, getAccessibleIndexAt(row, column));
             }
         }
 
@@ -7215,10 +6948,9 @@ public class JTable extends JComponent implements TableModelListener,
 
             } else {
                 // a column swath and a row swath, with a shared block
-                if (JTable.this.getRowSelectionAllowed() && JTable.this
-                        .getColumnSelectionAllowed()) {
-                    return rowsSel * JTable.this.getColumnCount() + colsSel
-                            * JTable.this.getRowCount() - rowsSel * colsSel;
+                if (JTable.this.getRowSelectionAllowed() && JTable.this.getColumnSelectionAllowed()) {
+                    return rowsSel * JTable.this.getColumnCount() + colsSel * JTable.this.getRowCount()
+                            - rowsSel * colsSel;
 
                     // just one or more rows in selection
                 } else if (JTable.this.getRowSelectionAllowed()) {
@@ -7244,7 +6976,7 @@ public class JTable extends JComponent implements TableModelListener,
          * different from the i-th child.
          *
          * @param i
-         *          the zero-based index of selected children
+         *        the zero-based index of selected children
          * @return the i-th selected child
          * @see #getAccessibleSelectionCount
          */
@@ -7269,8 +7001,7 @@ public class JTable extends JComponent implements TableModelListener,
             } else {
 
                 // a column swath and a row swath, with a shared block
-                if (JTable.this.getRowSelectionAllowed() && JTable.this
-                        .getColumnSelectionAllowed()) {
+                if (JTable.this.getRowSelectionAllowed() && JTable.this.getColumnSelectionAllowed()) {
 
                     // Situation:
                     // We have a table, like the 6x3 table below,
@@ -7306,15 +7037,12 @@ public class JTable extends JComponent implements TableModelListener,
                                 if (curIndex < ttlCols) { // it's here!
                                     c = curIndex % ttlCols;
                                     r = rowIndicies[j];
-                                    return getAccessibleChild((r * ttlCols)
-                                            + c);
+                                    return getAccessibleChild((r * ttlCols) + c);
                                 } else { // not here
                                     curIndex -= ttlCols;
                                 }
                                 // is the next row in table selected or not?
-                                if (j + 1 == rowIndicies.length
-                                        || rowIndicies[j] != rowIndicies[j + 1]
-                                                - 1) {
+                                if (j + 1 == rowIndicies.length || rowIndicies[j] != rowIndicies[j + 1] - 1) {
                                     state = NOT_IN_ROW;
                                     prevRow = rowIndicies[j];
                                 }
@@ -7322,20 +7050,16 @@ public class JTable extends JComponent implements TableModelListener,
                                 break;
 
                             case NOT_IN_ROW: // sparse bunch of rows of selections
-                                if (curIndex < (colsSel * (rowIndicies[j]
-                                        - (prevRow == -1 ? 0
-                                                : (prevRow + 1))))) {
+                                if (curIndex < (colsSel * (rowIndicies[j] - (prevRow == -1 ? 0
+                                        : (prevRow + 1))))) {
 
                                     // it's here!
                                     c = colIndicies[curIndex % colsSel];
-                                    r = (j > 0 ? rowIndicies[j - 1] + 1 : 0)
-                                            + curIndex / colsSel;
-                                    return getAccessibleChild((r * ttlCols)
-                                            + c);
+                                    r = (j > 0 ? rowIndicies[j - 1] + 1 : 0) + curIndex / colsSel;
+                                    return getAccessibleChild((r * ttlCols) + c);
                                 } else { // not here
-                                    curIndex -= colsSel * (rowIndicies[j]
-                                            - (prevRow == -1 ? 0
-                                                    : (prevRow + 1)));
+                                    curIndex -= colsSel * (rowIndicies[j] - (prevRow == -1 ? 0
+                                            : (prevRow + 1)));
                                 }
                                 state = IN_ROW;
                                 break;
@@ -7343,9 +7067,8 @@ public class JTable extends JComponent implements TableModelListener,
                     }
                     // we got here, so we didn't find it yet; find it in
                     // the last sparse bunch of rows
-                    if (curIndex < (colsSel * (ttlRows - (prevRow == -1 ? 0
-                            : (prevRow + 1))))) { // it's
-                                                                                                          // here!
+                    if (curIndex < (colsSel * (ttlRows - (prevRow == -1 ? 0 : (prevRow + 1))))) { // it's
+                                                                                                  // here!
                         c = colIndicies[curIndex % colsSel];
                         r = rowIndicies[j - 1] + curIndex / colsSel + 1;
                         return getAccessibleChild((r * ttlCols) + c);
@@ -7375,8 +7098,8 @@ public class JTable extends JComponent implements TableModelListener,
          * Determines if the current child of this object is selected.
          *
          * @param i
-         *          the zero-based index of the child in this
-         *          <code>Accessible</code> object
+         *        the zero-based index of the child in this
+         *        <code>Accessible</code> object
          * @return true if the current child of this object is selected
          * @see AccessibleContext#getAccessibleChild
          */
@@ -7397,7 +7120,7 @@ public class JTable extends JComponent implements TableModelListener,
          * cell selection enabled.
          *
          * @param i
-         *          the zero-based index of the child
+         *        the zero-based index of the child
          * @see AccessibleContext#getAccessibleChild
          */
         public void addAccessibleSelection(int i) {
@@ -7416,7 +7139,7 @@ public class JTable extends JComponent implements TableModelListener,
          * cell selection enabled.
          *
          * @param i
-         *          the zero-based index of the child
+         *        the zero-based index of the child
          * @see AccessibleContext#getAccessibleChild
          */
         public void removeAccessibleSelection(int i) {
@@ -7453,7 +7176,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the row number of an index in the table.
          *
          * @param index
-         *              the zero-based index in the table
+         *        the zero-based index in the table
          * @return the zero-based row of the table if one exists; otherwise -1.
          * @since 1.4
          */
@@ -7465,7 +7188,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the column number of an index in the table.
          *
          * @param index
-         *              the zero-based index in the table
+         *        the zero-based index in the table
          * @return the zero-based column of the table if one exists; otherwise
          *         -1.
          * @since 1.4
@@ -7478,9 +7201,9 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the index at a row and column in the table.
          *
          * @param r
-         *          zero-based row of the table
+         *        zero-based row of the table
          * @param c
-         *          zero-based column of the table
+         *        zero-based column of the table
          * @return the zero-based index in the table if one exists; otherwise
          *         -1.
          * @since 1.4
@@ -7525,15 +7248,13 @@ public class JTable extends JComponent implements TableModelListener,
          * Sets the caption for the table.
          *
          * @param a
-         *          the caption for the table
+         *        the caption for the table
          * @since 1.3
          */
         public void setAccessibleCaption(Accessible a) {
             Accessible oldCaption = caption;
             this.caption = a;
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_TABLE_CAPTION_CHANGED,
-                    oldCaption, this.caption);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_CAPTION_CHANGED, oldCaption, this.caption);
         }
 
         /**
@@ -7550,15 +7271,13 @@ public class JTable extends JComponent implements TableModelListener,
          * Sets the summary description of the table.
          *
          * @param a
-         *          the summary description of the table
+         *        the summary description of the table
          * @since 1.3
          */
         public void setAccessibleSummary(Accessible a) {
             Accessible oldSummary = summary;
             this.summary = a;
-            firePropertyChange(
-                    AccessibleContext.ACCESSIBLE_TABLE_SUMMARY_CHANGED,
-                    oldSummary, this.summary);
+            firePropertyChange(AccessibleContext.ACCESSIBLE_TABLE_SUMMARY_CHANGED, oldSummary, this.summary);
         }
 
         /*
@@ -7628,8 +7347,8 @@ public class JTable extends JComponent implements TableModelListener,
          * Sets the row headers as an <code>AccessibleTable</code>.
          *
          * @param a
-         *          an <code>AccessibleTable</code> representing the row
-         *          headers
+         *        an <code>AccessibleTable</code> representing the row
+         *        headers
          * @since 1.3
          */
         public void setAccessibleRowHeader(AccessibleTable a) {
@@ -7674,7 +7393,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the caption for the table.
              *
              * @param a
-             *          the caption for the table
+             *        the caption for the table
              */
             public void setAccessibleCaption(Accessible a) {}
 
@@ -7691,7 +7410,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the summary description of the table
              *
              * @param a
-             *          the summary description of the table
+             *        the summary description of the table
              */
             public void setAccessibleSummary(Accessible a) {}
 
@@ -7718,9 +7437,9 @@ public class JTable extends JComponent implements TableModelListener,
              * table.
              *
              * @param row
-             *               zero-based row of the table
+             *        zero-based row of the table
              * @param column
-             *               zero-based column of the table
+             *        zero-based column of the table
              * @return the Accessible at the specified row and column
              */
             public Accessible getAccessibleAt(int row, int column) {
@@ -7731,12 +7450,10 @@ public class JTable extends JComponent implements TableModelListener,
                 if (renderer == null) {
                     renderer = header.getDefaultRenderer();
                 }
-                Component component = renderer.getTableCellRendererComponent(
-                        header.getTable(), aColumn.getHeaderValue(), false,
-                        false, -1, column);
+                Component component = renderer.getTableCellRendererComponent(header.getTable(), aColumn
+                        .getHeaderValue(), false, false, -1, column);
 
-                return new AccessibleJTableHeaderCell(row, column, JTable.this
-                        .getTableHeader(), component);
+                return new AccessibleJTableHeaderCell(row, column, JTable.this.getTableHeader(), component);
             }
 
             /**
@@ -7774,7 +7491,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the row headers.
              *
              * @param table
-             *              an AccessibleTable representing the row headers
+             *        an AccessibleTable representing the row headers
              */
             public void setAccessibleRowHeader(AccessibleTable table) {}
 
@@ -7791,7 +7508,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the column headers.
              *
              * @param table
-             *              an AccessibleTable representing the column headers
+             *        an AccessibleTable representing the column headers
              * @since 1.3
              */
             public void setAccessibleColumnHeader(AccessibleTable table) {}
@@ -7800,7 +7517,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Returns the description of the specified row in the table.
              *
              * @param r
-             *          zero-based row of the table
+             *        zero-based row of the table
              * @return the description of the row
              * @since 1.3
              */
@@ -7812,9 +7529,9 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the description text of the specified row of the table.
              *
              * @param r
-             *          zero-based row of the table
+             *        zero-based row of the table
              * @param a
-             *          the description of the row
+             *        the description of the row
              * @since 1.3
              */
             public void setAccessibleRowDescription(int r, Accessible a) {}
@@ -7824,7 +7541,7 @@ public class JTable extends JComponent implements TableModelListener,
              * table.
              *
              * @param c
-             *          zero-based column of the table
+             *        zero-based column of the table
              * @return the text description of the column
              * @since 1.3
              */
@@ -7836,9 +7553,9 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the description text of the specified column in the table.
              *
              * @param c
-             *          zero-based column of the table
+             *        zero-based column of the table
              * @param a
-             *          the text description of the column
+             *        the text description of the column
              * @since 1.3
              */
             public void setAccessibleColumnDescription(int c, Accessible a) {}
@@ -7848,9 +7565,9 @@ public class JTable extends JComponent implements TableModelListener,
              * specified row and column is selected.
              *
              * @param r
-             *          zero-based row of the table
+             *        zero-based row of the table
              * @param c
-             *          zero-based column of the table
+             *        zero-based column of the table
              * @return the boolean value true if the accessible at the row and
              *         column is selected. Otherwise, the boolean value false
              * @since 1.3
@@ -7864,7 +7581,7 @@ public class JTable extends JComponent implements TableModelListener,
              * selected.
              *
              * @param r
-             *          zero-based row of the table
+             *        zero-based row of the table
              * @return the boolean value true if the specified row is selected.
              *         Otherwise, false.
              * @since 1.3
@@ -7878,7 +7595,7 @@ public class JTable extends JComponent implements TableModelListener,
              * is selected.
              *
              * @param c
-             *          zero-based column of the table
+             *        zero-based column of the table
              * @return the boolean value true if the specified column is
              *         selected. Otherwise, false.
              * @since 1.3
@@ -7914,8 +7631,8 @@ public class JTable extends JComponent implements TableModelListener,
          * Sets the column headers as an <code>AccessibleTable</code>.
          *
          * @param a
-         *          an <code>AccessibleTable</code> representing the column
-         *          headers
+         *        an <code>AccessibleTable</code> representing the column
+         *        headers
          * @since 1.3
          */
         public void setAccessibleColumnHeader(AccessibleTable a) {
@@ -7926,7 +7643,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the description of the specified row in the table.
          *
          * @param r
-         *          zero-based row of the table
+         *        zero-based row of the table
          * @return the description of the row
          * @since 1.3
          */
@@ -7945,9 +7662,9 @@ public class JTable extends JComponent implements TableModelListener,
          * Sets the description text of the specified row of the table.
          *
          * @param r
-         *          zero-based row of the table
+         *        zero-based row of the table
          * @param a
-         *          the description of the row
+         *        the description of the row
          * @since 1.3
          */
         public void setAccessibleRowDescription(int r, Accessible a) {
@@ -7965,7 +7682,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the description of the specified column in the table.
          *
          * @param c
-         *          zero-based column of the table
+         *        zero-based column of the table
          * @return the description of the column
          * @since 1.3
          */
@@ -7984,9 +7701,9 @@ public class JTable extends JComponent implements TableModelListener,
          * Sets the description text of the specified column of the table.
          *
          * @param c
-         *          zero-based column of the table
+         *        zero-based column of the table
          * @param a
-         *          the description of the column
+         *        the description of the column
          * @since 1.3
          */
         public void setAccessibleColumnDescription(int c, Accessible a) {
@@ -8005,9 +7722,9 @@ public class JTable extends JComponent implements TableModelListener,
          * (row, column) is selected.
          *
          * @param r
-         *          zero-based row of the table
+         *        zero-based row of the table
          * @param c
-         *          zero-based column of the table
+         *        zero-based column of the table
          * @return the boolean value true if the accessible at (row, column) is
          *         selected; otherwise, the boolean value false
          * @since 1.3
@@ -8021,7 +7738,7 @@ public class JTable extends JComponent implements TableModelListener,
          * selected.
          *
          * @param r
-         *          zero-based row of the table
+         *        zero-based row of the table
          * @return the boolean value true if the specified row is selected;
          *         otherwise, false
          * @since 1.3
@@ -8035,7 +7752,7 @@ public class JTable extends JComponent implements TableModelListener,
          * selected.
          *
          * @param c
-         *          zero-based column of the table
+         *        zero-based column of the table
          * @return the boolean value true if the specified column is selected;
          *         otherwise, false
          * @since 1.3
@@ -8070,7 +7787,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the row at a given index into the table.
          *
          * @param i
-         *          zero-based index into the table
+         *        zero-based index into the table
          * @return the row at a given index
          * @since 1.3
          */
@@ -8087,7 +7804,7 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the column at a given index into the table.
          *
          * @param i
-         *          zero-based index into the table
+         *        zero-based index into the table
          * @return the column at a given index
          * @since 1.3
          */
@@ -8104,9 +7821,9 @@ public class JTable extends JComponent implements TableModelListener,
          * Returns the index at a given (row, column) in the table.
          *
          * @param r
-         *          zero-based row of the table
+         *        zero-based row of the table
          * @param c
-         *          zero-based column of the table
+         *        zero-based column of the table
          * @return the index into the table
          * @since 1.3
          */
@@ -8120,8 +7837,8 @@ public class JTable extends JComponent implements TableModelListener,
          * The class provides an implementation of the Java Accessibility API
          * appropriate to table cells.
          */
-        protected class AccessibleJTableCell extends AccessibleContext
-                implements Accessible, AccessibleComponent {
+        protected class AccessibleJTableCell extends AccessibleContext implements Accessible,
+                AccessibleComponent {
 
             private JTable parent;
             private int row;
@@ -8168,9 +7885,8 @@ public class JTable extends JComponent implements TableModelListener,
                     Class<?> columnClass = getColumnClass(column);
                     renderer = getDefaultRenderer(columnClass);
                 }
-                Component component = renderer.getTableCellRendererComponent(
-                        JTable.this, getValueAt(row, column), false, false, row,
-                        column);
+                Component component = renderer.getTableCellRendererComponent(JTable.this, getValueAt(row,
+                        column), false, false, row, column);
                 if (component instanceof Accessible) {
                     return component.getAccessibleContext();
                 } else {
@@ -8192,8 +7908,7 @@ public class JTable extends JComponent implements TableModelListener,
                     Class<?> columnClass = getColumnClass(column);
                     renderer = getDefaultRenderer(columnClass);
                 }
-                return renderer.getTableCellRendererComponent(JTable.this, null,
-                        false, false, row, column);
+                return renderer.getTableCellRendererComponent(JTable.this, null, false, false, row, column);
             }
 
             // AccessibleContext methods
@@ -8217,8 +7932,7 @@ public class JTable extends JComponent implements TableModelListener,
                     return accessibleName;
                 } else {
                     // fall back to the client property
-                    return (String) getClientProperty(
-                            AccessibleContext.ACCESSIBLE_NAME_PROPERTY);
+                    return (String) getClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY);
                 }
             }
 
@@ -8226,7 +7940,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the localized accessible name of this object.
              *
              * @param s
-             *          the new localized name of the object
+             *        the new localized name of the object
              */
             public void setAccessibleName(String s) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8260,7 +7974,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the accessible description of this object.
              *
              * @param s
-             *          the new localized description of the object
+             *        the new localized description of the object
              */
             public void setAccessibleDescription(String s) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8318,8 +8032,7 @@ public class JTable extends JComponent implements TableModelListener,
                 } else if (as.contains(AccessibleState.SELECTED)) {
                     as.remove(AccessibleState.SELECTED);
                 }
-                if ((row == getSelectedRow())
-                        && (column == getSelectedColumn())) {
+                if ((row == getSelectedRow()) && (column == getSelectedColumn())) {
                     as.add(AccessibleState.ACTIVE);
                 }
                 as.add(AccessibleState.TRANSIENT);
@@ -8367,7 +8080,7 @@ public class JTable extends JComponent implements TableModelListener,
              * object.
              *
              * @param i
-             *          zero-based index of child
+             *        zero-based index of child
              * @return the <code>Accessible</code> child of the object
              */
             public Accessible getAccessibleChild(int i) {
@@ -8388,16 +8101,16 @@ public class JTable extends JComponent implements TableModelListener,
              * @return this component's locale; if this component does not have
              *         a locale, the locale of its parent is returned
              * @exception IllegalComponentStateException
-             *                                           if the
-             *                                           <code>Component</code>
-             *                                           does not have its
-             *                                           own locale and has not
-             *                                           yet been added to a
-             *                                           containment hierarchy
-             *                                           such that the locale
-             *                                           can be
-             *                                           determined from the
-             *                                           containing parent
+             *            if the
+             *            <code>Component</code>
+             *            does not have its
+             *            own locale and has not
+             *            yet been added to a
+             *            containment hierarchy
+             *            such that the locale
+             *            can be
+             *            determined from the
+             *            containing parent
              * @see #setLocale
              */
             public Locale getLocale() {
@@ -8414,7 +8127,7 @@ public class JTable extends JComponent implements TableModelListener,
              * The listener is registered for all properties.
              *
              * @param l
-             *          the <code>PropertyChangeListener</code> to be added
+             *        the <code>PropertyChangeListener</code> to be added
              */
             public void addPropertyChangeListener(PropertyChangeListener l) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8431,7 +8144,7 @@ public class JTable extends JComponent implements TableModelListener,
              * registered for all properties.
              *
              * @param l
-             *          the <code>PropertyChangeListener</code> to be removed
+             *        the <code>PropertyChangeListener</code> to be removed
              */
             public void removePropertyChangeListener(PropertyChangeListener l) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8520,7 +8233,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the background color of this object.
              *
              * @param c
-             *          the new <code>Color</code> for the background
+             *        the new <code>Color</code> for the background
              */
             public void setBackground(Color c) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8558,7 +8271,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the foreground color of this object.
              *
              * @param c
-             *          the new <code>Color</code> for the foreground
+             *        the new <code>Color</code> for the foreground
              */
             public void setForeground(Color c) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8601,7 +8314,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the <code>Cursor</code> of this object.
              *
              * @param c
-             *          the new <code>Cursor</code> for the object
+             *        the new <code>Cursor</code> for the object
              */
             public void setCursor(Cursor c) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8639,7 +8352,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the <code>Font</code> of this object.
              *
              * @param f
-             *          the new <code>Font</code> for the object
+             *        the new <code>Font</code> for the object
              */
             public void setFont(Font f) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8657,7 +8370,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Gets the <code>FontMetrics</code> of this object.
              *
              * @param f
-             *          the <code>Font</code>
+             *        the <code>Font</code>
              * @return the <code>FontMetrics</code> object, if supported;
              *         otherwise <code>null</code>
              * @see #getFont
@@ -8699,7 +8412,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the enabled state of the object.
              *
              * @param b
-             *          if true, enables this object; otherwise, disables it
+             *        if true, enables this object; otherwise, disables it
              */
             public void setEnabled(boolean b) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8740,7 +8453,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the visible state of the object.
              *
              * @param b
-             *          if true, shows this object; otherwise, hides it
+             *        if true, shows this object; otherwise, hides it
              */
             public void setVisible(boolean b) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -8790,8 +8503,8 @@ public class JTable extends JComponent implements TableModelListener,
              * relative to the coordinate system of the object.
              *
              * @param p
-             *          the <code>Point</code> relative to the coordinate
-             *          system of the object
+             *        the <code>Point</code> relative to the coordinate
+             *        system of the object
              * @return true if object contains <code>Point</code>; otherwise
              *         false
              */
@@ -8821,8 +8534,7 @@ public class JTable extends JComponent implements TableModelListener,
                 if (parent != null && parent.isShowing()) {
                     Point parentLocation = parent.getLocationOnScreen();
                     Point componentLocation = getLocation();
-                    componentLocation.translate(parentLocation.x,
-                            parentLocation.y);
+                    componentLocation.translate(parentLocation.x, parentLocation.y);
                     return componentLocation;
                 } else {
                     return null;
@@ -8966,8 +8678,8 @@ public class JTable extends JComponent implements TableModelListener,
         /**
          * This class implements accessibility for JTable header cells.
          */
-        private class AccessibleJTableHeaderCell extends AccessibleContext
-                implements Accessible, AccessibleComponent {
+        private class AccessibleJTableHeaderCell extends AccessibleContext implements Accessible,
+                AccessibleComponent {
 
             private int row;
             private int column;
@@ -8978,16 +8690,16 @@ public class JTable extends JComponent implements TableModelListener,
              * Constructs an <code>AccessibleJTableHeaderEntry</code> instance.
              *
              * @param row
-             *                          header cell row index
+             *        header cell row index
              * @param column
-             *                          header cell column index
+             *        header cell column index
              * @param parent
-             *                          header cell parent
+             *        header cell parent
              * @param rendererComponent
-             *                          component that renders the header cell
+             *        component that renders the header cell
              */
-            public AccessibleJTableHeaderCell(int row, int column,
-                    JTableHeader parent, Component rendererComponent) {
+            public AccessibleJTableHeaderCell(int row, int column, JTableHeader parent,
+                    Component rendererComponent) {
                 this.row = row;
                 this.column = column;
                 this.parent = parent;
@@ -9048,7 +8760,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the localized accessible name of this object.
              *
              * @param s
-             *          the new localized name of the object
+             *        the new localized name of the object
              */
             public void setAccessibleName(String s) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9079,7 +8791,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the accessible description of this object.
              *
              * @param s
-             *          the new localized description of the object
+             *        the new localized description of the object
              */
             public void setAccessibleDescription(String s) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9137,8 +8849,7 @@ public class JTable extends JComponent implements TableModelListener,
                 } else if (as.contains(AccessibleState.SELECTED)) {
                     as.remove(AccessibleState.SELECTED);
                 }
-                if ((row == getSelectedRow())
-                        && (column == getSelectedColumn())) {
+                if ((row == getSelectedRow()) && (column == getSelectedColumn())) {
                     as.add(AccessibleState.ACTIVE);
                 }
                 as.add(AccessibleState.TRANSIENT);
@@ -9186,7 +8897,7 @@ public class JTable extends JComponent implements TableModelListener,
              * object.
              *
              * @param i
-             *          zero-based index of child
+             *        zero-based index of child
              * @return the <code>Accessible</code> child of the object
              */
             public Accessible getAccessibleChild(int i) {
@@ -9207,16 +8918,16 @@ public class JTable extends JComponent implements TableModelListener,
              * @return this component's locale; if this component does not have
              *         a locale, the locale of its parent is returned
              * @exception IllegalComponentStateException
-             *                                           if the
-             *                                           <code>Component</code>
-             *                                           does not have its
-             *                                           own locale and has not
-             *                                           yet been added to a
-             *                                           containment hierarchy
-             *                                           such that the locale
-             *                                           can be
-             *                                           determined from the
-             *                                           containing parent
+             *            if the
+             *            <code>Component</code>
+             *            does not have its
+             *            own locale and has not
+             *            yet been added to a
+             *            containment hierarchy
+             *            such that the locale
+             *            can be
+             *            determined from the
+             *            containing parent
              * @see #setLocale
              */
             public Locale getLocale() {
@@ -9233,7 +8944,7 @@ public class JTable extends JComponent implements TableModelListener,
              * The listener is registered for all properties.
              *
              * @param l
-             *          the <code>PropertyChangeListener</code> to be added
+             *        the <code>PropertyChangeListener</code> to be added
              */
             public void addPropertyChangeListener(PropertyChangeListener l) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9250,7 +8961,7 @@ public class JTable extends JComponent implements TableModelListener,
              * registered for all properties.
              *
              * @param l
-             *          the <code>PropertyChangeListener</code> to be removed
+             *        the <code>PropertyChangeListener</code> to be removed
              */
             public void removePropertyChangeListener(PropertyChangeListener l) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9339,7 +9050,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the background color of this object.
              *
              * @param c
-             *          the new <code>Color</code> for the background
+             *        the new <code>Color</code> for the background
              */
             public void setBackground(Color c) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9377,7 +9088,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the foreground color of this object.
              *
              * @param c
-             *          the new <code>Color</code> for the foreground
+             *        the new <code>Color</code> for the foreground
              */
             public void setForeground(Color c) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9420,7 +9131,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the <code>Cursor</code> of this object.
              *
              * @param c
-             *          the new <code>Cursor</code> for the object
+             *        the new <code>Cursor</code> for the object
              */
             public void setCursor(Cursor c) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9458,7 +9169,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the <code>Font</code> of this object.
              *
              * @param f
-             *          the new <code>Font</code> for the object
+             *        the new <code>Font</code> for the object
              */
             public void setFont(Font f) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9476,7 +9187,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Gets the <code>FontMetrics</code> of this object.
              *
              * @param f
-             *          the <code>Font</code>
+             *        the <code>Font</code>
              * @return the <code>FontMetrics</code> object, if supported;
              *         otherwise <code>null</code>
              * @see #getFont
@@ -9518,7 +9229,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the enabled state of the object.
              *
              * @param b
-             *          if true, enables this object; otherwise, disables it
+             *        if true, enables this object; otherwise, disables it
              */
             public void setEnabled(boolean b) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9559,7 +9270,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the visible state of the object.
              *
              * @param b
-             *          if true, shows this object; otherwise, hides it
+             *        if true, shows this object; otherwise, hides it
              */
             public void setVisible(boolean b) {
                 AccessibleContext ac = getCurrentAccessibleContext();
@@ -9609,8 +9320,8 @@ public class JTable extends JComponent implements TableModelListener,
              * relative to the coordinate system of the object.
              *
              * @param p
-             *          the <code>Point</code> relative to the coordinate
-             *          system of the object
+             *        the <code>Point</code> relative to the coordinate
+             *        system of the object
              * @return true if object contains <code>Point</code>; otherwise
              *         false
              */
@@ -9640,8 +9351,7 @@ public class JTable extends JComponent implements TableModelListener,
                 if (parent != null && parent.isShowing()) {
                     Point parentLocation = parent.getLocationOnScreen();
                     Point componentLocation = getLocation();
-                    componentLocation.translate(parentLocation.x,
-                            parentLocation.y);
+                    componentLocation.translate(parentLocation.x, parentLocation.y);
                     return componentLocation;
                 } else {
                     return null;
@@ -9672,7 +9382,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Sets the location of the object relative to the parent.
              * 
              * @param p
-             *          the new position for the top-left corner
+             *        the new position for the top-left corner
              * @see #getLocation
              */
             public void setLocation(Point p) {}
@@ -9700,7 +9410,7 @@ public class JTable extends JComponent implements TableModelListener,
              * relative to its parent.
              *
              * @param r
-             *          rectangle indicating this component's bounds
+             *        rectangle indicating this component's bounds
              * @see #getBounds
              */
             public void setBounds(Rectangle r) {
@@ -9739,7 +9449,7 @@ public class JTable extends JComponent implements TableModelListener,
              * Resizes this object so that it has width and height.
              *
              * @param d
-             *          The dimension specifying the new size of the object.
+             *        The dimension specifying the new size of the object.
              * @see #getSize
              */
             public void setSize(Dimension d) {
@@ -9759,8 +9469,8 @@ public class JTable extends JComponent implements TableModelListener,
              * local coordinate Point.
              *
              * @param p
-             *          The point relative to the coordinate system of this
-             *          object.
+             *        The point relative to the coordinate system of this
+             *        object.
              * @return the Accessible, if it exists, at the specified location;
              *         otherwise null
              */
@@ -9822,7 +9532,7 @@ public class JTable extends JComponent implements TableModelListener,
              * this component.
              *
              * @param l
-             *          the focus listener
+             *        the focus listener
              * @see #removeFocusListener
              */
             public void addFocusListener(FocusListener l) {
@@ -9842,7 +9552,7 @@ public class JTable extends JComponent implements TableModelListener,
              * focus events from this component.
              *
              * @param l
-             *          the focus listener
+             *        the focus listener
              * @see #addFocusListener
              */
             public void removeFocusListener(FocusListener l) {

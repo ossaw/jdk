@@ -19,7 +19,7 @@ public class Principal {
      * Sets the name of this <code>Principal</code> object to the given value.
      * 
      * @param value
-     *              the value to be set in the <code>Principal</code>
+     *        the value to be set in the <code>Principal</code>
      * @deprecated Deprecated by CORBA 2.2.
      */
     @Deprecated

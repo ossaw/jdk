@@ -54,10 +54,10 @@ public class CollectionCertStoreParameters implements CertStoreParameters {
      * must have fail-fast iterators.
      *
      * @param collection
-     *                   a {@code Collection} of {@code Certificate}s and
-     *                   {@code CRL}s
+     *        a {@code Collection} of {@code Certificate}s and
+     *        {@code CRL}s
      * @exception NullPointerException
-     *                                 if {@code collection} is {@code null}
+     *            if {@code collection} is {@code null}
      */
     public CollectionCertStoreParameters(Collection<?> collection) {
         if (collection == null)

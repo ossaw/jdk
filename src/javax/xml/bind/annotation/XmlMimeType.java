@@ -17,12 +17,10 @@ import javax.xml.transform.Source;
 /**
  * Associates the MIME type that controls the XML representation of the
  * property.
- *
  * <p>
  * This annotation is used in conjunction with datatypes such as
  * {@link java.awt.Image} or {@link Source} that are bound to base64-encoded
  * binary in XML.
- *
  * <p>
  * If a property that has this annotation has a sibling property bound to the
  * xmime:contentType attribute, and if in the instance the property has a value,

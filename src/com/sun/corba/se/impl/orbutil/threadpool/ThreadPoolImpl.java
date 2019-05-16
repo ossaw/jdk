@@ -38,8 +38,8 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
 public class ThreadPoolImpl implements ThreadPool {
     // serial counter useful for debugging
     private static AtomicInteger threadCounter = new AtomicInteger(0);
-    private static final ORBUtilSystemException wrapper = ORBUtilSystemException
-            .get(CORBALogDomains.RPC_TRANSPORT);
+    private static final ORBUtilSystemException wrapper = ORBUtilSystemException.get(
+            CORBALogDomains.RPC_TRANSPORT);
 
     // Any time currentThreadCount and/or availableWorkerThreads is updated
     // or accessed this ThreadPool's WorkQueue must be locked. And, it is
@@ -112,8 +112,7 @@ public class ThreadPoolImpl implements ThreadPool {
     /**
      * This constructor is used to create bounded threadpool
      */
-    public ThreadPoolImpl(int minSize, int maxSize, long timeout,
-            String threadpoolName) {
+    public ThreadPoolImpl(int minSize, int maxSize, long timeout, String threadpoolName) {
         minWorkerThreads = minSize;
         maxWorkerThreads = maxSize;
         inactivityTimeout = timeout;
@@ -142,8 +141,7 @@ public class ThreadPoolImpl implements ThreadPool {
                 try {
                     wt.join();
                 } catch (InterruptedException exc) {
-                    wrapper.interruptedJoinCallWhileClosingThreadPool(exc, wt,
-                            this);
+                    wrapper.interruptedJoinCallWhileClosingThreadPool(exc, wt, this);
                 }
             }
         }
@@ -154,24 +152,20 @@ public class ThreadPoolImpl implements ThreadPool {
     // Setup monitoring for this threadpool
     private void initializeMonitoring() {
         // Get root monitored object
-        MonitoredObject root = MonitoringFactories.getMonitoringManagerFactory()
-                .createMonitoringManager(
-                        MonitoringConstants.DEFAULT_MONITORING_ROOT, null)
-                .getRootMonitoredObject();
+        MonitoredObject root = MonitoringFactories.getMonitoringManagerFactory().createMonitoringManager(
+                MonitoringConstants.DEFAULT_MONITORING_ROOT, null).getRootMonitoredObject();
 
         // Create the threadpool monitoring root
         MonitoredObject threadPoolMonitoringObjectRoot = root.getChild(
                 MonitoringConstants.THREADPOOL_MONITORING_ROOT);
         if (threadPoolMonitoringObjectRoot == null) {
-            threadPoolMonitoringObjectRoot = MonitoringFactories
-                    .getMonitoredObjectFactory().createMonitoredObject(
-                            MonitoringConstants.THREADPOOL_MONITORING_ROOT,
+            threadPoolMonitoringObjectRoot = MonitoringFactories.getMonitoredObjectFactory()
+                    .createMonitoredObject(MonitoringConstants.THREADPOOL_MONITORING_ROOT,
                             MonitoringConstants.THREADPOOL_MONITORING_ROOT_DESCRIPTION);
             root.addChild(threadPoolMonitoringObjectRoot);
         }
-        threadpoolMonitoredObject = MonitoringFactories
-                .getMonitoredObjectFactory().createMonitoredObject(name,
-                        MonitoringConstants.THREADPOOL_MONITORING_DESCRIPTION);
+        threadpoolMonitoredObject = MonitoringFactories.getMonitoredObjectFactory().createMonitoredObject(
+                name, MonitoringConstants.THREADPOOL_MONITORING_DESCRIPTION);
 
         threadPoolMonitoringObjectRoot.addChild(threadpoolMonitoredObject);
 
@@ -203,8 +197,7 @@ public class ThreadPoolImpl implements ThreadPool {
                 MonitoringConstants.THREADPOOL_AVERAGE_WORK_COMPLETION_TIME,
                 MonitoringConstants.THREADPOOL_AVERAGE_WORK_COMPLETION_TIME_DESCRIPTION) {
             public Object getValue() {
-                return new Long(ThreadPoolImpl.this
-                        .averageWorkCompletionTime());
+                return new Long(ThreadPoolImpl.this.averageWorkCompletionTime());
             }
         };
         threadpoolMonitoredObject.addAttribute(b4);
@@ -219,8 +212,7 @@ public class ThreadPoolImpl implements ThreadPool {
 
         // Add the monitored object for the WorkQueue
 
-        threadpoolMonitoredObject.addChild(((WorkQueueImpl) workQueue)
-                .getMonitoredObject());
+        threadpoolMonitoredObject.addChild(((WorkQueueImpl) workQueue).getMonitoredObject());
     }
 
     // Package private method to get the monitored object for this
@@ -471,18 +463,15 @@ public class ThreadPoolImpl implements ThreadPool {
             try {
                 while (!closeCalled) {
                     try {
-                        currentWork = ((WorkQueueImpl) workQueue).requestWork(
-                                inactivityTimeout);
+                        currentWork = ((WorkQueueImpl) workQueue).requestWork(inactivityTimeout);
                         if (currentWork == null)
                             continue;
                     } catch (InterruptedException exc) {
-                        wrapper.workQueueThreadInterrupted(exc, getName(),
-                                Boolean.valueOf(closeCalled));
+                        wrapper.workQueueThreadInterrupted(exc, getName(), Boolean.valueOf(closeCalled));
 
                         continue;
                     } catch (Throwable t) {
-                        wrapper.workerThreadThrowableFromRequestWork(this, t,
-                                workQueue.getName());
+                        wrapper.workerThreadThrowableFromRequestWork(this, t, workQueue.getName());
 
                         continue;
                     }
@@ -505,8 +494,7 @@ public class ThreadPoolImpl implements ThreadPool {
             }
         }
 
-        private String composeWorkerThreadName(String poolName,
-                String workerName) {
+        private String composeWorkerThreadName(String poolName, String workerName) {
             workerThreadName.setLength(0);
             workerThreadName.append("p: ").append(poolName);
             workerThreadName.append("; w: ").append(workerName);

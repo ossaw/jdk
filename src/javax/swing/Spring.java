@@ -25,7 +25,6 @@ import java.awt.Component;
  * compressed and the difference between its <em>maximum</em> and
  * <em>preferred</em> values, indicates the ease with which the
  * <code>Spring</code> can be extended. See the {@link #sum} method for details.
- *
  * <p>
  * By defining simple arithmetic operations on <code>Spring</code>s, the
  * behavior of a collection of <code>Spring</code>s can be reduced to that of an
@@ -33,7 +32,6 @@ import java.awt.Component;
  * <em>max</em>, and <em>min</em> operators on <code>Spring</code>s so that, in
  * each case, the result is a <code>Spring</code> whose characteristics bear a
  * useful mathematical relationship to its constituent springs.
- *
  * <p>
  * A <code>Spring</code> can be treated as a pair of intervals with a single
  * common point: the preferred value. The following rules define some of the
@@ -49,7 +47,6 @@ import java.awt.Component;
  *      max([a1, b1], [a2, b2]) = [max(a1, a2), max(b1, b2)]
  * </pre>
  * <p>
- *
  * If we denote <code>Spring</code>s as <code>[a, b, c]</code>, where
  * <code>a &lt;= b &lt;= c</code>, we can define the same arithmetic operators
  * on <code>Spring</code>s:
@@ -94,7 +91,6 @@ import java.awt.Component;
  *
  * @see SpringLayout
  * @see SpringLayout.Constraints
- *
  * @author Philip Milne
  * @since 1.4
  */
@@ -145,7 +141,6 @@ public abstract class Spring {
      * Returns the current <em>value</em> of this <code>Spring</code>.
      *
      * @return the <code>value</code> property of this <code>Spring</code>
-     *
      * @see #setValue
      */
     public abstract int getValue();
@@ -155,8 +150,7 @@ public abstract class Spring {
      * <code>value</code>.
      *
      * @param value
-     *              the new setting of the <code>value</code> property
-     *
+     *        the new setting of the <code>value</code> property
      * @see #getValue
      */
     public abstract void setValue(int value);
@@ -285,8 +279,7 @@ public abstract class Spring {
         }
 
         public int getMinimumValue() {
-            return Math.round((factor < 0 ? s.getMaximumValue()
-                    : s.getMinimumValue()) * factor);
+            return Math.round((factor < 0 ? s.getMaximumValue() : s.getMinimumValue()) * factor);
         }
 
         public int getPreferredValue() {
@@ -294,8 +287,7 @@ public abstract class Spring {
         }
 
         public int getMaximumValue() {
-            return Math.round((factor < 0 ? s.getMinimumValue()
-                    : s.getMaximumValue()) * factor);
+            return Math.round((factor < 0 ? s.getMinimumValue() : s.getMaximumValue()) * factor);
         }
 
         public int getValue() {
@@ -494,12 +486,11 @@ public abstract class Spring {
      * and <em>maximum</em> values each have the value <code>pref</code>.
      *
      * @param pref
-     *             the <em>minimum</em>, <em>preferred</em>, and
-     *             <em>maximum</em>
-     *             values of the new spring
+     *        the <em>minimum</em>, <em>preferred</em>, and
+     *        <em>maximum</em>
+     *        values of the new spring
      * @return a spring whose <em>minimum</em>, <em>preferred</em>, and
      *         <em>maximum</em> values each have the value <code>pref</code>
-     *
      * @see Spring
      */
     public static Spring constant(int pref) {
@@ -512,15 +503,14 @@ public abstract class Spring {
      * <code>pref</code>, and <code>max</code> respectively.
      *
      * @param min
-     *             the <em>minimum</em> value of the new spring
+     *        the <em>minimum</em> value of the new spring
      * @param pref
-     *             the <em>preferred</em> value of the new spring
+     *        the <em>preferred</em> value of the new spring
      * @param max
-     *             the <em>maximum</em> value of the new spring
+     *        the <em>maximum</em> value of the new spring
      * @return a spring whose <em>minimum</em>, <em>preferred</em>, and
      *         <em>maximum</em> values have the values: <code>min</code>,
      *         <code>pref</code>, and <code>max</code> respectively
-     *
      * @see Spring
      */
     public static Spring constant(int min, int pref, int max) {
@@ -533,7 +523,6 @@ public abstract class Spring {
      *
      * @return <code>-s</code>: a spring running in the opposite direction to
      *         <code>s</code>
-     *
      * @see Spring
      */
     public static Spring minus(Spring s) {
@@ -573,7 +562,6 @@ public abstract class Spring {
      *
      * @return <code>s1+s2</code>: a spring representing <code>s1</code> and
      *         <code>s2</code> in series
-     *
      * @see Spring
      */
     public static Spring sum(Spring s1, Spring s2) {
@@ -618,13 +606,13 @@ public abstract class Spring {
      * container.
      *
      * @param s
-     *               the spring to scale
+     *        the spring to scale
      * @param factor
-     *               amount to scale by.
+     *        amount to scale by.
      * @return a spring whose properties are those of the input spring
      *         <code>s</code> multiplied by <code>factor</code>
      * @throws NullPointerException
-     *                              if <code>s</code> is null
+     *         if <code>s</code> is null
      * @since 1.5
      */
     public static Spring scale(Spring s, float factor) {
@@ -644,11 +632,11 @@ public abstract class Spring {
      * they change.
      *
      * @param c
-     *          Component used for calculating size
+     *        Component used for calculating size
      * @return a spring whose properties are defined by the horizontal component
      *         of the component's size methods.
      * @throws NullPointerException
-     *                              if <code>c</code> is null
+     *         if <code>c</code> is null
      * @since 1.5
      */
     public static Spring width(Component c) {
@@ -668,11 +656,11 @@ public abstract class Spring {
      * they change.
      *
      * @param c
-     *          Component used for calculating size
+     *        Component used for calculating size
      * @return a spring whose properties are defined by the vertical component
      *         of the component's size methods.
      * @throws NullPointerException
-     *                              if <code>c</code> is null
+     *         if <code>c</code> is null
      * @since 1.5
      */
     public static Spring height(Component c) {

@@ -56,8 +56,7 @@ public class WindowsToolBarUI extends BasicToolBarUI {
     public void paint(Graphics g, JComponent c) {
         XPStyle xp = XPStyle.getXP();
         if (xp != null) {
-            xp.getSkin(c, Part.TP_TOOLBAR).paintSkin(g, 0, 0, c.getWidth(), c
-                    .getHeight(), null, true);
+            xp.getSkin(c, Part.TP_TOOLBAR).paintSkin(g, 0, 0, c.getWidth(), c.getHeight(), null, true);
         } else {
             super.paint(g, c);
         }

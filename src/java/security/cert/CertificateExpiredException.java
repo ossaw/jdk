@@ -30,7 +30,7 @@ public class CertificateExpiredException extends CertificateException {
      * exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public CertificateExpiredException(String message) {
         super(message);

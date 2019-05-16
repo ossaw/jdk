@@ -15,19 +15,16 @@ package org.omg.CosNaming;
  * object in the same or different contexts at the same time. Using
  * <tt>NamingContextExt</tt>, you can use URL-based names to bind and resolve.
  * <p>
- * 
  * See
  * <a href="http://www.omg.org/technology/documents/formal/naming_service.htm">
  * CORBA COS Naming Specification.</a>
  */
-public final class NamingContextExtHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class NamingContextExtHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CosNaming.NamingContextExt value = null;
 
     public NamingContextExtHolder() {}
 
-    public NamingContextExtHolder(
-            org.omg.CosNaming.NamingContextExt initialValue) {
+    public NamingContextExtHolder(org.omg.CosNaming.NamingContextExt initialValue) {
         value = initialValue;
     }
 

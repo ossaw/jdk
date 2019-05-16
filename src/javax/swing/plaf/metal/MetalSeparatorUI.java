@@ -34,8 +34,7 @@ public class MetalSeparatorUI extends BasicSeparatorUI {
     }
 
     protected void installDefaults(JSeparator s) {
-        LookAndFeel.installColors(s, "Separator.background",
-                "Separator.foreground");
+        LookAndFeel.installColors(s, "Separator.background", "Separator.foreground");
     }
 
     public void paint(Graphics g, JComponent c) {

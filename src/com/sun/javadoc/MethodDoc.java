@@ -32,7 +32,6 @@ public interface MethodDoc extends ExecutableMemberDoc {
 
     /**
      * Return the class containing the method that this method overrides.
-     *
      * <p>
      * <i>The <code>overriddenClass</code> method cannot accommodate certain
      * generic type constructs. The <code>overriddenType</code> method should be
@@ -65,13 +64,12 @@ public interface MethodDoc extends ExecutableMemberDoc {
      * Tests whether this method overrides another. The overridden method may be
      * one declared in a superclass or a superinterface (unlike
      * {@link #overriddenMethod()}).
-     *
      * <p>
      * When a non-abstract method overrides an abstract one, it is also said to
      * <i>implement</i> the other.
      *
      * @param meth
-     *             the other method to examine
+     *        the other method to examine
      * @return <tt>true</tt> if this method overrides the other
      * @since 1.5
      */

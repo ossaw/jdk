@@ -57,9 +57,7 @@ package com.sun.org.apache.xerces.internal.impl;
  * standard, Namespace-1.0-compliant binder in order to do this.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
- *
  */
 public class XML11NamespaceBinder extends XMLNamespaceBinder {
 

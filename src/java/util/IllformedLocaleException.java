@@ -36,7 +36,7 @@ public class IllformedLocaleException extends RuntimeException {
      * message and -1 as the error index.
      *
      * @param message
-     *                the message
+     *        the message
      */
     public IllformedLocaleException(String message) {
         super(message);
@@ -50,13 +50,12 @@ public class IllformedLocaleException extends RuntimeException {
      * error index is not applicable or unknown.
      *
      * @param message
-     *                   the message
+     *        the message
      * @param errorIndex
-     *                   the index
+     *        the index
      */
     public IllformedLocaleException(String message, int errorIndex) {
-        super(message + ((errorIndex < 0) ? ""
-                : " [at index " + errorIndex + "]"));
+        super(message + ((errorIndex < 0) ? "" : " [at index " + errorIndex + "]"));
         _errIdx = errorIndex;
     }
 

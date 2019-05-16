@@ -15,10 +15,9 @@ package org.omg.CosNaming;
  * object in the same or different contexts at the same time. Using
  * <tt>NamingContextExt</tt>, you can use URL-based names to bind and resolve.
  * <p>
- * 
  * See
  * <a href="http://www.omg.org/technology/documents/formal/naming_service.htm">
  * CORBA COS Naming Specification.</a>
  */
-public interface NamingContextExt extends NamingContextExtOperations,
-        org.omg.CosNaming.NamingContext, org.omg.CORBA.portable.IDLEntity {} // interface NamingContextExt
+public interface NamingContextExt extends NamingContextExtOperations, org.omg.CosNaming.NamingContext,
+        org.omg.CORBA.portable.IDLEntity {} // interface NamingContextExt

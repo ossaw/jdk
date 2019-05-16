@@ -45,9 +45,9 @@ public interface DynAnyFactoryOperations {
      * if the passed value has components, to -1 otherwise
      *
      * @exception InconsistentTypeCode
-     *                                 if value has a TypeCode with a TCKind of
-     *                                 tk_Principal,
-     *                                 tk_native, or tk_abstract_interface
+     *            if value has a TypeCode with a TCKind of
+     *            tk_Principal,
+     *            tk_native, or tk_abstract_interface
      */
     org.omg.DynamicAny.DynAny create_dyn_any(org.omg.CORBA.Any value)
             throws org.omg.DynamicAny.DynAnyFactoryPackage.InconsistentTypeCode;
@@ -89,7 +89,6 @@ public interface DynAnyFactoryOperations {
      * <LI>For DynValue and DynValueBox it initializes to a null value.
      * </UL>
      */
-    org.omg.DynamicAny.DynAny create_dyn_any_from_type_code(
-            org.omg.CORBA.TypeCode type)
+    org.omg.DynamicAny.DynAny create_dyn_any_from_type_code(org.omg.CORBA.TypeCode type)
             throws org.omg.DynamicAny.DynAnyFactoryPackage.InconsistentTypeCode;
 } // interface DynAnyFactoryOperations

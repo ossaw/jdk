@@ -43,7 +43,6 @@ import java.util.Map;
  * A helper for analyzing entity expansion limits
  *
  * @author Joe Wang Oracle Corp.
- *
  */
 public final class XMLLimitAnalyzer {
 
@@ -51,11 +50,9 @@ public final class XMLLimitAnalyzer {
      * Map old property names with the new ones
      */
     public static enum NameMap {
-    ENTITY_EXPANSION_LIMIT(Constants.SP_ENTITY_EXPANSION_LIMIT,
-            Constants.ENTITY_EXPANSION_LIMIT), MAX_OCCUR_NODE_LIMIT(
-                    Constants.SP_MAX_OCCUR_LIMIT, Constants.MAX_OCCUR_LIMIT),
-    ELEMENT_ATTRIBUTE_LIMIT(Constants.SP_ELEMENT_ATTRIBUTE_LIMIT,
-            Constants.ELEMENT_ATTRIBUTE_LIMIT);
+        ENTITY_EXPANSION_LIMIT(Constants.SP_ENTITY_EXPANSION_LIMIT, Constants.ENTITY_EXPANSION_LIMIT),
+        MAX_OCCUR_NODE_LIMIT(Constants.SP_MAX_OCCUR_LIMIT, Constants.MAX_OCCUR_LIMIT),
+        ELEMENT_ATTRIBUTE_LIMIT(Constants.SP_ELEMENT_ATTRIBUTE_LIMIT, Constants.ELEMENT_ATTRIBUTE_LIMIT);
 
         final String newName;
         final String oldName;
@@ -109,11 +106,11 @@ public final class XMLLimitAnalyzer {
      * the max value of all entities, set no limit
      *
      * @param limit
-     *                   the type of the property
+     *        the type of the property
      * @param entityName
-     *                   the name of the entity
+     *        the name of the entity
      * @param value
-     *                   the value of the entity
+     *        the value of the entity
      */
     public void addValue(Limit limit, String entityName, int value) {
         addValue(limit.ordinal(), entityName, value);
@@ -123,23 +120,20 @@ public final class XMLLimitAnalyzer {
      * Add the value to the current count by the index of the property
      * 
      * @param index
-     *                   the index of the property
+     *        the index of the property
      * @param entityName
-     *                   the name of the entity
+     *        the name of the entity
      * @param value
-     *                   the value of the entity
+     *        the value of the entity
      */
     public void addValue(int index, String entityName, int value) {
-        if (index == Limit.ENTITY_EXPANSION_LIMIT.ordinal()
-                || index == Limit.MAX_OCCUR_NODE_LIMIT.ordinal()
-                || index == Limit.ELEMENT_ATTRIBUTE_LIMIT.ordinal()
-                || index == Limit.TOTAL_ENTITY_SIZE_LIMIT.ordinal()
-                || index == Limit.ENTITY_REPLACEMENT_LIMIT.ordinal()) {
+        if (index == Limit.ENTITY_EXPANSION_LIMIT.ordinal() || index == Limit.MAX_OCCUR_NODE_LIMIT.ordinal()
+                || index == Limit.ELEMENT_ATTRIBUTE_LIMIT.ordinal() || index == Limit.TOTAL_ENTITY_SIZE_LIMIT
+                        .ordinal() || index == Limit.ENTITY_REPLACEMENT_LIMIT.ordinal()) {
             totalValue[index] += value;
             return;
         }
-        if (index == Limit.MAX_ELEMENT_DEPTH_LIMIT.ordinal()
-                || index == Limit.MAX_NAME_LIMIT.ordinal()) {
+        if (index == Limit.MAX_ELEMENT_DEPTH_LIMIT.ordinal() || index == Limit.MAX_NAME_LIMIT.ordinal()) {
             values[index] = value;
             totalValue[index] = value;
             return;
@@ -166,8 +160,8 @@ public final class XMLLimitAnalyzer {
             names[index] = entityName;
         }
 
-        if (index == Limit.GENERAL_ENTITY_SIZE_LIMIT.ordinal()
-                || index == Limit.PARAMETER_ENTITY_SIZE_LIMIT.ordinal()) {
+        if (index == Limit.GENERAL_ENTITY_SIZE_LIMIT.ordinal() || index == Limit.PARAMETER_ENTITY_SIZE_LIMIT
+                .ordinal()) {
             totalValue[Limit.TOTAL_ENTITY_SIZE_LIMIT.ordinal()] += value;
         }
     }
@@ -176,7 +170,7 @@ public final class XMLLimitAnalyzer {
      * Return the value of the current max count for the specified property
      *
      * @param limit
-     *              the property
+     *        the property
      * @return the value of the property
      */
     public int getValue(Limit limit) {
@@ -194,7 +188,7 @@ public final class XMLLimitAnalyzer {
      * Return the total value accumulated so far
      *
      * @param limit
-     *              the property
+     *        the property
      * @return the accumulated value of the property
      */
     public int getTotalValue(Limit limit) {
@@ -209,7 +203,7 @@ public final class XMLLimitAnalyzer {
      * Return the current max value (count or length) by the index of a property
      * 
      * @param index
-     *              the index of a property
+     *        the index of a property
      * @return count of a property
      */
     public int getValueByIndex(int index) {
@@ -231,9 +225,9 @@ public final class XMLLimitAnalyzer {
      * Stop tracking the entity
      * 
      * @param limit
-     *              the limit property
+     *        the limit property
      * @param name
-     *              the name of an entity
+     *        the name of an entity
      */
     public void endEntity(Limit limit, String name) {
         entityStart = "";
@@ -247,13 +241,12 @@ public final class XMLLimitAnalyzer {
      * Resets the current value of the specified limit.
      * 
      * @param limit
-     *              The limit to be reset.
+     *        The limit to be reset.
      */
     public void reset(Limit limit) {
         if (limit.ordinal() == Limit.TOTAL_ENTITY_SIZE_LIMIT.ordinal()) {
             totalValue[limit.ordinal()] = 0;
-        } else if (limit.ordinal() == Limit.GENERAL_ENTITY_SIZE_LIMIT
-                .ordinal()) {
+        } else if (limit.ordinal() == Limit.GENERAL_ENTITY_SIZE_LIMIT.ordinal()) {
             names[limit.ordinal()] = null;
             values[limit.ordinal()] = 0;
             caches[limit.ordinal()] = null;
@@ -263,15 +256,14 @@ public final class XMLLimitAnalyzer {
 
     public void debugPrint(XMLSecurityManager securityManager) {
         Formatter formatter = new Formatter();
-        System.out.println(formatter.format("%30s %15s %15s %15s %30s",
-                "Property", "Limit", "Total size", "Size", "Entity Name"));
+        System.out.println(formatter.format("%30s %15s %15s %15s %30s", "Property", "Limit", "Total size",
+                "Size", "Entity Name"));
 
         for (Limit limit : Limit.values()) {
             formatter = new Formatter();
-            System.out.println(formatter.format("%30s %15d %15d %15d %30s",
-                    limit.name(), securityManager.getLimit(limit),
-                    totalValue[limit.ordinal()], values[limit.ordinal()],
-                    names[limit.ordinal()]));
+            System.out.println(formatter.format("%30s %15d %15d %15d %30s", limit.name(), securityManager
+                    .getLimit(limit), totalValue[limit.ordinal()], values[limit.ordinal()], names[limit
+                            .ordinal()]));
         }
     }
 }

@@ -91,8 +91,7 @@ public abstract class POAPolicyMediatorBase implements POAPolicyMediator {
         sysIdCounter = 0;
     }
 
-    public final java.lang.Object getInvocationServant(byte[] id,
-            String operation) throws ForwardRequest {
+    public final java.lang.Object getInvocationServant(byte[] id, String operation) throws ForwardRequest {
         java.lang.Object result = internalGetServant(id, operation);
 
         return result;
@@ -117,6 +116,5 @@ public abstract class POAPolicyMediatorBase implements POAPolicyMediator {
         return array;
     }
 
-    protected abstract java.lang.Object internalGetServant(byte[] id,
-            String operation) throws ForwardRequest;
+    protected abstract java.lang.Object internalGetServant(byte[] id, String operation) throws ForwardRequest;
 }

@@ -51,7 +51,6 @@ public class FilterExprIteratorSimple extends LocPathIterator {
 
     /**
      * Create a FilterExprIteratorSimple object.
-     *
      */
     public FilterExprIteratorSimple() {
         super(null);
@@ -59,7 +58,6 @@ public class FilterExprIteratorSimple extends LocPathIterator {
 
     /**
      * Create a FilterExprIteratorSimple object.
-     *
      */
     public FilterExprIteratorSimple(Expression expr) {
         super(null);
@@ -70,21 +68,20 @@ public class FilterExprIteratorSimple extends LocPathIterator {
      * Initialize the context values for this expression after it is cloned.
      *
      * @param context
-     *                The XPath runtime context for this transformation.
+     *        The XPath runtime context for this transformation.
      */
     public void setRoot(int context, Object environment) {
         super.setRoot(context, environment);
-        m_exprObj = executeFilterExpr(context, m_execContext,
-                getPrefixResolver(), getIsTopLevel(), m_stackFrame, m_expr);
+        m_exprObj = executeFilterExpr(context, m_execContext, getPrefixResolver(), getIsTopLevel(),
+                m_stackFrame, m_expr);
     }
 
     /**
      * Execute the expression. Meant for reuse by other FilterExpr iterators
      * that are not derived from this object.
      */
-    public static XNodeSet executeFilterExpr(int context, XPathContext xctxt,
-            PrefixResolver prefixResolver, boolean isTopLevel, int stackFrame,
-            Expression expr)
+    public static XNodeSet executeFilterExpr(int context, XPathContext xctxt, PrefixResolver prefixResolver,
+            boolean isTopLevel, int stackFrame, Expression expr)
             throws com.sun.org.apache.xml.internal.utils.WrappedRuntimeException {
         PrefixResolver savedResolver = xctxt.getNamespaceContext();
         XNodeSet result = null;
@@ -109,21 +106,18 @@ public class FilterExprIteratorSimple extends LocPathIterator {
                 int savedStart = vars.getStackFrame();
                 vars.setStackFrame(stackFrame);
 
-                result = (com.sun.org.apache.xpath.internal.objects.XNodeSet) expr
-                        .execute(xctxt);
+                result = (com.sun.org.apache.xpath.internal.objects.XNodeSet) expr.execute(xctxt);
                 result.setShouldCacheNodes(true);
 
                 // These two statements need to be combined into one operation.
                 vars.setStackFrame(savedStart);
             } else
-                result = (com.sun.org.apache.xpath.internal.objects.XNodeSet) expr
-                        .execute(xctxt);
+                result = (com.sun.org.apache.xpath.internal.objects.XNodeSet) expr.execute(xctxt);
 
         } catch (javax.xml.transform.TransformerException se) {
 
             // TODO: Fix...
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    se);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(se);
         } finally {
             xctxt.popCurrentNode();
             xctxt.setNamespaceContext(savedResolver);
@@ -178,13 +172,13 @@ public class FilterExprIteratorSimple extends LocPathIterator {
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         super.fixupVariables(vars, globalsSize);
@@ -253,7 +247,7 @@ public class FilterExprIteratorSimple extends LocPathIterator {
      * called.
      *
      * @param visitor
-     *                The visitor whose appropriate method will be called.
+     *        The visitor whose appropriate method will be called.
      */
     public void callPredicateVisitors(XPathVisitor visitor) {
         m_expr.callVisitors(new filterExprOwner(), visitor);

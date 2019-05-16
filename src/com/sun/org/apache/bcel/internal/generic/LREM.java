@@ -65,8 +65,7 @@ public class LREM extends ArithmeticInstruction implements ExceptionThrower {
     }
 
     public Class[] getExceptions() {
-        return new Class[] {
-                com.sun.org.apache.bcel.internal.ExceptionConstants.ARITHMETIC_EXCEPTION };
+        return new Class[] { com.sun.org.apache.bcel.internal.ExceptionConstants.ARITHMETIC_EXCEPTION };
     }
 
     /**
@@ -76,7 +75,7 @@ public class LREM extends ArithmeticInstruction implements ExceptionThrower {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitExceptionThrower(this);

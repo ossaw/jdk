@@ -53,7 +53,6 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
 
     /**
      * Constructs a <code>DefaultButtonModel</code>.
-     *
      */
     public DefaultButtonModel() {
         stateMask = 0;
@@ -144,8 +143,7 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
      * {@inheritDoc}
      */
     public void setArmed(boolean b) {
-        if (isMenuItem() && UIManager.getBoolean(
-                "MenuItem.disabledAreNavigable")) {
+        if (isMenuItem() && UIManager.getBoolean("MenuItem.disabledAreNavigable")) {
             if ((isArmed() == b)) {
                 return;
             }
@@ -198,8 +196,8 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
             stateMask &= ~SELECTED;
         }
 
-        fireItemStateChanged(new ItemEvent(this, ItemEvent.ITEM_STATE_CHANGED,
-                this, b ? ItemEvent.SELECTED : ItemEvent.DESELECTED));
+        fireItemStateChanged(new ItemEvent(this, ItemEvent.ITEM_STATE_CHANGED, this, b ? ItemEvent.SELECTED
+                : ItemEvent.DESELECTED));
 
         fireStateChanged();
 
@@ -227,9 +225,8 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
             } else if (currentEvent instanceof ActionEvent) {
                 modifiers = ((ActionEvent) currentEvent).getModifiers();
             }
-            fireActionPerformed(new ActionEvent(this,
-                    ActionEvent.ACTION_PERFORMED, getActionCommand(), EventQueue
-                            .getMostRecentEventTime(), modifiers));
+            fireActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, getActionCommand(),
+                    EventQueue.getMostRecentEventTime(), modifiers));
         }
 
         fireStateChanged();
@@ -287,10 +284,8 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
      *
      * @return all of this model's <code>ChangeListener</code>s or an empty
      *         array if no change listeners are currently registered
-     *
      * @see #addChangeListener
      * @see #removeChangeListener
-     *
      * @since 1.4
      */
     public ChangeListener[] getChangeListeners() {
@@ -338,10 +333,8 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
      *
      * @return all of this model's <code>ActionListener</code>s or an empty
      *         array if no action listeners are currently registered
-     *
      * @see #addActionListener
      * @see #removeActionListener
-     *
      * @since 1.4
      */
     public ActionListener[] getActionListeners() {
@@ -353,7 +346,7 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
      * this event type.
      *
      * @param e
-     *          the <code>ActionEvent</code> to deliver to listeners
+     *        the <code>ActionEvent</code> to deliver to listeners
      * @see EventListenerList
      */
     protected void fireActionPerformed(ActionEvent e) {
@@ -391,10 +384,8 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
      *
      * @return all of this model's <code>ItemListener</code>s or an empty array
      *         if no item listeners are currently registered
-     *
      * @see #addItemListener
      * @see #removeItemListener
-     *
      * @since 1.4
      */
     public ItemListener[] getItemListeners() {
@@ -406,7 +397,7 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
      * this event type.
      *
      * @param e
-     *          the <code>ItemEvent</code> to deliver to listeners
+     *        the <code>ItemEvent</code> to deliver to listeners
      * @see EventListenerList
      */
     protected void fireItemStateChanged(ItemEvent e) {
@@ -436,30 +427,27 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
      * for its action listeners with the following code:
      *
      * <pre>
-     * ActionListener[] als = (ActionListener[]) (m.getListeners(
-     *         ActionListener.class));
+     * ActionListener[] als = (ActionListener[]) (m.getListeners(ActionListener.class));
      * </pre>
      *
      * If no such listeners exist, this method returns an empty array.
      *
      * @param listenerType
-     *                     the type of listeners requested; this parameter
-     *                     should specify
-     *                     an interface that descends from
-     *                     <code>java.util.EventListener</code>
+     *        the type of listeners requested; this parameter
+     *        should specify
+     *        an interface that descends from
+     *        <code>java.util.EventListener</code>
      * @return an array of all objects registered as <code><em>Foo</em>
      *         Listener</code>s on this model, or an empty array if no such
      *         listeners have been added
      * @exception ClassCastException
-     *                               if <code>listenerType</code> doesn't
-     *                               specify a class or
-     *                               interface that implements
-     *                               <code>java.util.EventListener</code>
-     *
+     *            if <code>listenerType</code> doesn't
+     *            specify a class or
+     *            interface that implements
+     *            <code>java.util.EventListener</code>
      * @see #getActionListeners
      * @see #getChangeListeners
      * @see #getItemListeners
-     *
      * @since 1.3
      */
     public <T extends EventListener> T[] getListeners(Class<T> listenerType) {
@@ -483,7 +471,6 @@ public class DefaultButtonModel implements ButtonModel, Serializable {
      * buttons, which are mutually exclusive within their group.
      *
      * @return the <code>ButtonGroup</code> that the button belongs to
-     *
      * @since 1.3
      */
     public ButtonGroup getGroup() {

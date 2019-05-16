@@ -64,7 +64,6 @@ import com.sun.org.apache.xerces.internal.xni.NamespaceContext;
  * are unique symbols. The SymbolTable class can be used for this purpose.
  *
  * @author Andy Clark, IBM
- *
  */
 public class NamespaceSupport implements NamespaceContext {
 
@@ -184,8 +183,7 @@ public class NamespaceSupport implements NamespaceContext {
      */
     public boolean declarePrefix(String prefix, String uri) {
         // ignore "xml" and "xmlns" prefixes
-        if (prefix == XMLSymbols.PREFIX_XML
-                || prefix == XMLSymbols.PREFIX_XMLNS) {
+        if (prefix == XMLSymbols.PREFIX_XML || prefix == XMLSymbols.PREFIX_XMLNS) {
             return false;
         }
 
@@ -343,8 +341,7 @@ public class NamespaceSupport implements NamespaceContext {
      * context.
      *
      * @param prefix
-     *               The prefix to look up.
-     *
+     *        The prefix to look up.
      * @return true if the given prefix exists in the context
      */
     public boolean containsPrefix(String prefix) {
@@ -365,8 +362,7 @@ public class NamespaceSupport implements NamespaceContext {
      * current context.
      *
      * @param prefix
-     *               The prefix to look up.
-     *
+     *        The prefix to look up.
      * @return true if the given prefix exists in the current context
      */
     public boolean containsPrefixInCurrentContext(String prefix) {
@@ -409,8 +405,7 @@ public class NamespaceSupport implements NamespaceContext {
             if (counter < size) {
                 return fPrefixes[counter++];
             }
-            throw new NoSuchElementException(
-                    "Illegal access to Namespace prefixes enumeration.");
+            throw new NoSuchElementException("Illegal access to Namespace prefixes enumeration.");
         }
 
         public String toString() {
@@ -455,8 +450,7 @@ public class NamespaceSupport implements NamespaceContext {
             if (counter < size) {
                 return fPrefixes[counter++];
             }
-            throw new NoSuchElementException(
-                    "Illegal access to Namespace prefixes enumeration.");
+            throw new NoSuchElementException("Illegal access to Namespace prefixes enumeration.");
         }
 
         public String toString() {

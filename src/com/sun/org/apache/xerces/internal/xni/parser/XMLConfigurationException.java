@@ -26,7 +26,6 @@ import com.sun.org.apache.xerces.internal.xni.XNIException;
  * errors and configuration errors.
  *
  * @author Andy Clark, IBM
- *
  * @version $Id: XMLConfigurationException.java,v 1.7 2010-11-01 04:40:22 joehw
  *          Exp $
  */
@@ -54,9 +53,9 @@ public class XMLConfigurationException extends XNIException {
      * feature/property identifier.
      *
      * @param type
-     *                   The type of the exception.
+     *        The type of the exception.
      * @param identifier
-     *                   The feature or property identifier.
+     *        The feature or property identifier.
      */
     public XMLConfigurationException(Status type, String identifier) {
         super(identifier);
@@ -69,14 +68,13 @@ public class XMLConfigurationException extends XNIException {
      * feature/property identifier, and error message
      *
      * @param type
-     *                   The type of the exception.
+     *        The type of the exception.
      * @param identifier
-     *                   The feature or property identifier.
+     *        The feature or property identifier.
      * @param message
-     *                   The error message.
+     *        The error message.
      */
-    public XMLConfigurationException(Status type, String identifier,
-            String message) {
+    public XMLConfigurationException(Status type, String identifier, String message) {
         super(message);
         fType = type;
         fIdentifier = identifier;

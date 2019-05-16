@@ -112,11 +112,9 @@ public class WireObjectKeyTemplate implements ObjectKeyTemplate {
         return ORBVersionFactory.getFOREIGN();
     }
 
-    public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb,
-            ObjectId id) {
+    public CorbaServerRequestDispatcher getServerRequestDispatcher(ORB orb, ObjectId id) {
         byte[] bid = id.getId();
         String str = new String(bid);
-        return orb.getRequestDispatcherRegistry().getServerRequestDispatcher(
-                str);
+        return orb.getRequestDispatcherRegistry().getServerRequestDispatcher(str);
     }
 }

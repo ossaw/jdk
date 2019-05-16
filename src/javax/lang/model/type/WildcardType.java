@@ -15,7 +15,6 @@ package javax.lang.model.type;
  *   ? super T
  * </tt>
  * </pre>
- *
  * <p>
  * A wildcard may have its upper bound explicitly set by an {@code extends}
  * clause, its lower bound explicitly set by a {@code super} clause, or neither

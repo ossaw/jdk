@@ -30,7 +30,6 @@ import org.xml.sax.SAXException;
  * IncrementalSAXSource is an API that delivers a small number of SAX events
  * each time a request is made from a "controller" coroutine. See
  * IncrementalSAXFilter and IncrementalSAXFilter_Xerces for examples.
- *
  * Note that interaction is via the deliverMoreNodes method, and therefore
  * coroutine support is not exposed here.
  * </p>
@@ -63,15 +62,13 @@ public interface IncrementalSAXSource {
      * deliverMoreNodes() is a simple API which tells the thread in which the
      * IncrementalSAXSource is running to deliver more events (true), or stop
      * delivering events and close out its input (false).
-     *
      * This is intended to be called from one of our partner coroutines, and
      * serves to encapsulate the coroutine communication protocol.
      *
      * @param parsemore
-     *                  If true, tells the incremental SAX stream to deliver
-     *                  another
-     *                  chunk of events. If false, finishes out the stream.
-     *
+     *        If true, tells the incremental SAX stream to deliver
+     *        another
+     *        chunk of events. If false, finishes out the stream.
      * @return Boolean.TRUE if the IncrementalSAXSource believes more data may
      *         be available for further parsing. Boolean.FALSE if parsing ran to
      *         completion, or was ended by deliverMoreNodes(false).
@@ -89,9 +86,9 @@ public interface IncrementalSAXSource {
      * others, it may do other forms of initialization.
      *
      * @throws SAXException
-     *                      is parse thread is already in progress or parsing
-     *                      can not be
-     *                      started.
+     *         is parse thread is already in progress or parsing
+     *         can not be
+     *         started.
      */
     public void startParse(InputSource source) throws SAXException;
 

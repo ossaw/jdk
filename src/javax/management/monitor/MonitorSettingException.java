@@ -13,11 +13,9 @@ package javax.management.monitor;
  * each observation. If a monitor attribute has become invalid, a monitor
  * setting exception is thrown.
  *
- *
  * @since 1.5
  */
-public class MonitorSettingException extends
-        javax.management.JMRuntimeException {
+public class MonitorSettingException extends javax.management.JMRuntimeException {
 
     /* Serial version */
     private static final long serialVersionUID = -8807913418190202007L;
@@ -33,7 +31,7 @@ public class MonitorSettingException extends
      * Constructor that allows an error message to be specified.
      *
      * @param message
-     *                The specific error message.
+     *        The specific error message.
      */
     public MonitorSettingException(String message) {
         super(message);

@@ -38,11 +38,9 @@ package com.sun.org.apache.xerces.internal.dom;
  * CDATA does not participate in Element.normalize() processing.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
-public class DeferredCDATASectionImpl extends CDATASectionImpl implements
-        DeferredNode {
+public class DeferredCDATASectionImpl extends CDATASectionImpl implements DeferredNode {
 
     //
     // Constants
@@ -66,8 +64,7 @@ public class DeferredCDATASectionImpl extends CDATASectionImpl implements
      * This is the deferred constructor. Only the fNodeIndex is given here. All
      * other data, can be requested from the ownerDocument via the index.
      */
-    DeferredCDATASectionImpl(DeferredDocumentImpl ownerDocument,
-            int nodeIndex) {
+    DeferredCDATASectionImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
         super(ownerDocument, null);
 
         fNodeIndex = nodeIndex;
@@ -95,8 +92,7 @@ public class DeferredCDATASectionImpl extends CDATASectionImpl implements
         needsSyncData(false);
 
         // fluff data
-        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
-                .ownerDocument();
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument();
         data = ownerDocument.getNodeValueString(fNodeIndex);
 
     } // synchronizeData()

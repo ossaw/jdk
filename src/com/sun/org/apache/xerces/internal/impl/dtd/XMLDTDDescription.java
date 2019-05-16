@@ -63,7 +63,6 @@ import com.sun.org.apache.xerces.internal.util.XMLResourceIdentifierImpl;
  * All information specific to DTD grammars.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
  * @version $Id: XMLDTDDescription.java,v 1.4 2010/08/11 07:18:38 joehw Exp $
  */
@@ -82,22 +81,21 @@ public class XMLDTDDescription extends XMLResourceIdentifierImpl implements
 
     // Constructors:
     public XMLDTDDescription(XMLResourceIdentifier id, String rootName) {
-        this.setValues(id.getPublicId(), id.getLiteralSystemId(), id
-                .getBaseSystemId(), id.getExpandedSystemId());
+        this.setValues(id.getPublicId(), id.getLiteralSystemId(), id.getBaseSystemId(), id
+                .getExpandedSystemId());
         this.fRootName = rootName;
         this.fPossibleRoots = null;
     } // init(XMLResourceIdentifier, String)
 
-    public XMLDTDDescription(String publicId, String literalId, String baseId,
-            String expandedId, String rootName) {
+    public XMLDTDDescription(String publicId, String literalId, String baseId, String expandedId,
+            String rootName) {
         this.setValues(publicId, literalId, baseId, expandedId);
         this.fRootName = rootName;
         this.fPossibleRoots = null;
     } // init(String, String, String, String, String)
 
     public XMLDTDDescription(XMLInputSource source) {
-        this.setValues(source.getPublicId(), null, source.getBaseSystemId(),
-                source.getSystemId());
+        this.setValues(source.getPublicId(), null, source.getBaseSystemId(), source.getSystemId());
         this.fRootName = null;
         this.fPossibleRoots = null;
     } // init(XMLInputSource)
@@ -128,8 +126,7 @@ public class XMLDTDDescription extends XMLResourceIdentifierImpl implements
 
     /** Set possible roots **/
     public void setPossibleRoots(Vector possibleRoots) {
-        fPossibleRoots = (possibleRoots != null) ? new ArrayList(possibleRoots)
-                : null;
+        fPossibleRoots = (possibleRoots != null) ? new ArrayList(possibleRoots) : null;
     }
 
     /**
@@ -140,24 +137,21 @@ public class XMLDTDDescription extends XMLResourceIdentifierImpl implements
      * combinations - test fExpandedSystemId and fPublicId as above
      *
      * @param desc
-     *             The description of the grammar to be compared with
+     *        The description of the grammar to be compared with
      * @return True if they are equal, else false
      */
     public boolean equals(Object desc) {
         if (!(desc instanceof XMLGrammarDescription))
             return false;
-        if (!getGrammarType().equals(((XMLGrammarDescription) desc)
-                .getGrammarType())) {
+        if (!getGrammarType().equals(((XMLGrammarDescription) desc).getGrammarType())) {
             return false;
         }
         // assume it's a DTDDescription
         XMLDTDDescription dtdDesc = (XMLDTDDescription) desc;
         if (fRootName != null) {
-            if ((dtdDesc.fRootName) != null && !dtdDesc.fRootName.equals(
-                    fRootName)) {
+            if ((dtdDesc.fRootName) != null && !dtdDesc.fRootName.equals(fRootName)) {
                 return false;
-            } else if (dtdDesc.fPossibleRoots != null && !dtdDesc.fPossibleRoots
-                    .contains(fRootName)) {
+            } else if (dtdDesc.fPossibleRoots != null && !dtdDesc.fPossibleRoots.contains(fRootName)) {
                 return false;
             }
         } else if (fPossibleRoots != null) {

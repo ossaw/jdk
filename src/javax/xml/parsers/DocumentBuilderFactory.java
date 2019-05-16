@@ -13,9 +13,7 @@ import javax.xml.validation.Schema;
  *
  * @author <a href="mailto:Jeff.Suttor@Sun.com">Jeff Suttor</a>
  * @author <a href="mailto:Neeraj.Bajaj@sun.com">Neeraj Bajaj</a>
- *
  * @version $Revision: 1.9 $, $Date: 2010/05/25 16:19:44 $
- * 
  */
 
 public abstract class DocumentBuilderFactory {
@@ -48,7 +46,6 @@ public abstract class DocumentBuilderFactory {
      * </code> format and contains the fully qualified name of the
      * implementation class with the key being the system property defined
      * above.
-     *
      * The jaxp.properties file is read only once by the JAXP implementation and
      * it's values are then cached for future use. If the file does not exist
      * when the first attempt is made to read from it, no further attempts are
@@ -66,19 +63,15 @@ public abstract class DocumentBuilderFactory {
      * system class loader} will be used.</li>
      * <li>Otherwise, the system-default implementation is returned.</li>
      * </ul>
-     *
      * Once an application has obtained a reference to a
      * <code>DocumentBuilderFactory</code> it can use the factory to configure
      * and obtain parser instances.
-     *
-     *
      * <h2>Tip for Trouble-shooting</h2>
      * <p>
      * Setting the <code>jaxp.debug</code> system property will cause this
      * method to print a lot of debug messages to <code>System.err</code> about
      * what it is doing and where it is looking at.
      * </p>
-     *
      * <p>
      * If you have problems loading {@link DocumentBuilder}s, try:
      * </p>
@@ -88,13 +81,12 @@ public abstract class DocumentBuilderFactory {
      * </pre>
      *
      * @return New instance of a <code>DocumentBuilderFactory</code>
-     *
      * @throws FactoryConfigurationError
-     *                                   in case of
-     *                                   {@linkplain java.util.ServiceConfigurationError
-     *                                   service configuration error} or if the
-     *                                   implementation is not
-     *                                   available or cannot be instantiated.
+     *         in case of
+     *         {@linkplain java.util.ServiceConfigurationError
+     *         service configuration error} or if the
+     *         implementation is not
+     *         available or cannot be instantiated.
      */
     public static DocumentBuilderFactory newInstance() {
         return FactoryFinder.find(
@@ -111,21 +103,17 @@ public abstract class DocumentBuilderFactory {
      * classpath. It gives more control to the application as it can specify
      * which provider should be loaded.
      * </p>
-     *
      * <p>
      * Once an application has obtained a reference to a
      * <code>DocumentBuilderFactory</code> it can use the factory to configure
      * and obtain parser instances.
      * </p>
-     *
-     *
      * <h2>Tip for Trouble-shooting</h2>
      * <p>
      * Setting the <code>jaxp.debug</code> system property will cause this
      * method to print a lot of debug messages to <code>System.err</code> about
      * what it is doing and where it is looking at.
      * </p>
-     *
      * <p>
      * If you have problems try:
      * </p>
@@ -135,35 +123,28 @@ public abstract class DocumentBuilderFactory {
      * </pre>
      *
      * @param factoryClassName
-     *                         fully qualified factory class name that provides
-     *                         implementation of
-     *                         <code>javax.xml.parsers.DocumentBuilderFactory</code>.
-     *
+     *        fully qualified factory class name that provides
+     *        implementation of
+     *        <code>javax.xml.parsers.DocumentBuilderFactory</code>.
      * @param classLoader
-     *                         <code>ClassLoader</code> used to load the factory
-     *                         class. If
-     *                         <code>null</code> current <code>Thread</code>'s
-     *                         context
-     *                         classLoader is used to load the factory class.
-     *
+     *        <code>ClassLoader</code> used to load the factory
+     *        class. If
+     *        <code>null</code> current <code>Thread</code>'s
+     *        context
+     *        classLoader is used to load the factory class.
      * @return New instance of a <code>DocumentBuilderFactory</code>
-     *
      * @throws FactoryConfigurationError
-     *                                   if <code>factoryClassName</code> is
-     *                                   <code>null</code>, or the
-     *                                   factory class cannot be loaded,
-     *                                   instantiated.
-     *
+     *         if <code>factoryClassName</code> is
+     *         <code>null</code>, or the
+     *         factory class cannot be loaded,
+     *         instantiated.
      * @see #newInstance()
-     *
      * @since 1.6
      */
-    public static DocumentBuilderFactory newInstance(String factoryClassName,
-            ClassLoader classLoader) {
+    public static DocumentBuilderFactory newInstance(String factoryClassName, ClassLoader classLoader) {
         // do not fallback if given classloader can't find the class, throw
         // exception
-        return FactoryFinder.newInstance(DocumentBuilderFactory.class,
-                factoryClassName, classLoader, false);
+        return FactoryFinder.newInstance(DocumentBuilderFactory.class, factoryClassName, classLoader, false);
     }
 
     /**
@@ -171,23 +152,21 @@ public abstract class DocumentBuilderFactory {
      * using the currently configured parameters.
      *
      * @return A new instance of a DocumentBuilder.
-     *
      * @throws ParserConfigurationException
-     *                                      if a DocumentBuilder cannot be
-     *                                      created which satisfies the
-     *                                      configuration requested.
+     *         if a DocumentBuilder cannot be
+     *         created which satisfies the
+     *         configuration requested.
      */
 
-    public abstract DocumentBuilder newDocumentBuilder()
-            throws ParserConfigurationException;
+    public abstract DocumentBuilder newDocumentBuilder() throws ParserConfigurationException;
 
     /**
      * Specifies that the parser produced by this code will provide support for
      * XML namespaces. By default the value of this is set to <code>false</code>
      *
      * @param awareness
-     *                  true if the parser produced will provide support for XML
-     *                  namespaces; false otherwise.
+     *        true if the parser produced will provide support for XML
+     *        namespaces; false otherwise.
      */
 
     public void setNamespaceAware(boolean awareness) {
@@ -198,7 +177,6 @@ public abstract class DocumentBuilderFactory {
      * Specifies that the parser produced by this code will validate documents
      * as they are parsed. By default the value of this is set to
      * <code>false</code>.
-     *
      * <p>
      * Note that "the validation" here means
      * <a href="http://www.w3.org/TR/REC-xml#proc-types">a validating parser</a>
@@ -206,7 +184,6 @@ public abstract class DocumentBuilderFactory {
      * controls the DTD validation. (except the legacy two properties defined in
      * JAXP 1.2.)
      * </p>
-     *
      * <p>
      * To use modern schema languages such as W3C XML Schema or RELAX NG instead
      * of DTD, you can configure your parser to be a non-validating parser by
@@ -216,9 +193,9 @@ public abstract class DocumentBuilderFactory {
      * </p>
      *
      * @param validating
-     *                   true if the parser produced will validate documents as
-     *                   they
-     *                   are parsed; false otherwise.
+     *        true if the parser produced will validate documents as
+     *        they
+     *        are parsed; false otherwise.
      */
 
     public void setValidating(boolean validating) {
@@ -236,10 +213,10 @@ public abstract class DocumentBuilderFactory {
      * <code>false</code>.
      *
      * @param whitespace
-     *                   true if the parser created must eliminate whitespace in
-     *                   the
-     *                   element content when parsing XML documents; false
-     *                   otherwise.
+     *        true if the parser created must eliminate whitespace in
+     *        the
+     *        element content when parsing XML documents; false
+     *        otherwise.
      */
 
     public void setIgnoringElementContentWhitespace(boolean whitespace) {
@@ -251,9 +228,9 @@ public abstract class DocumentBuilderFactory {
      * reference nodes. By default the value of this is set to <code>true</code>
      *
      * @param expandEntityRef
-     *                        true if the parser produced will expand entity
-     *                        reference
-     *                        nodes; false otherwise.
+     *        true if the parser produced will expand entity
+     *        reference
+     *        nodes; false otherwise.
      */
 
     public void setExpandEntityReferences(boolean expandEntityRef) {
@@ -268,9 +245,9 @@ public abstract class DocumentBuilderFactory {
      * </p>
      *
      * @param ignoreComments
-     *                       <code>boolean</code> value to ignore comments
-     *                       during
-     *                       processing
+     *        <code>boolean</code> value to ignore comments
+     *        during
+     *        processing
      */
 
     public void setIgnoringComments(boolean ignoreComments) {
@@ -283,11 +260,11 @@ public abstract class DocumentBuilderFactory {
      * default the value of this is set to <code>false</code>
      *
      * @param coalescing
-     *                   true if the parser produced will convert CDATA nodes to
-     *                   Text
-     *                   nodes and append it to the adjacent (if any) text node;
-     *                   false
-     *                   otherwise.
+     *        true if the parser produced will convert CDATA nodes to
+     *        Text
+     *        nodes and append it to the adjacent (if any) text node;
+     *        false
+     *        otherwise.
      */
 
     public void setCoalescing(boolean coalescing) {
@@ -398,41 +375,35 @@ public abstract class DocumentBuilderFactory {
      * </ul>
      *
      * @param name
-     *              The name of the attribute.
+     *        The name of the attribute.
      * @param value
-     *              The value of the attribute.
-     *
+     *        The value of the attribute.
      * @throws IllegalArgumentException
-     *                                  thrown if the underlying implementation
-     *                                  doesn't recognize the
-     *                                  attribute.
+     *         thrown if the underlying implementation
+     *         doesn't recognize the
+     *         attribute.
      */
-    public abstract void setAttribute(String name, Object value)
-            throws IllegalArgumentException;
+    public abstract void setAttribute(String name, Object value) throws IllegalArgumentException;
 
     /**
      * Allows the user to retrieve specific attributes on the underlying
      * implementation.
      *
      * @param name
-     *             The name of the attribute.
-     *
+     *        The name of the attribute.
      * @return value The value of the attribute.
-     *
      * @throws IllegalArgumentException
-     *                                  thrown if the underlying implementation
-     *                                  doesn't recognize the
-     *                                  attribute.
+     *         thrown if the underlying implementation
+     *         doesn't recognize the
+     *         attribute.
      */
-    public abstract Object getAttribute(String name)
-            throws IllegalArgumentException;
+    public abstract Object getAttribute(String name) throws IllegalArgumentException;
 
     /**
      * <p>
      * Set a feature for this <code>DocumentBuilderFactory</code> and
      * <code>DocumentBuilder</code>s created by this factory.
      * </p>
-     *
      * <p>
      * Feature names are fully qualified {@link java.net.URI}s. Implementations
      * may define their own features. A {@link ParserConfigurationException} is
@@ -441,7 +412,6 @@ public abstract class DocumentBuilderFactory {
      * is possible for a <code>DocumentBuilderFactory</code> to expose a feature
      * value but be unable to change its state.
      * </p>
-     *
      * <p>
      * All implementations are required to support the
      * {@link javax.xml.XMLConstants#FEATURE_SECURE_PROCESSING} feature. When
@@ -463,29 +433,26 @@ public abstract class DocumentBuilderFactory {
      * </ul>
      *
      * @param name
-     *              Feature name.
+     *        Feature name.
      * @param value
-     *              Is feature state <code>true</code> or <code>false</code>.
-     *
+     *        Is feature state <code>true</code> or <code>false</code>.
      * @throws ParserConfigurationException
-     *                                      if this
-     *                                      <code>DocumentBuilderFactory</code>
-     *                                      or the
-     *                                      <code>DocumentBuilder</code>s it
-     *                                      creates cannot support this
-     *                                      feature.
+     *         if this
+     *         <code>DocumentBuilderFactory</code>
+     *         or the
+     *         <code>DocumentBuilder</code>s it
+     *         creates cannot support this
+     *         feature.
      * @throws NullPointerException
-     *                                      If the <code>name</code> parameter
-     *                                      is null.
+     *         If the <code>name</code> parameter
+     *         is null.
      */
-    public abstract void setFeature(String name, boolean value)
-            throws ParserConfigurationException;
+    public abstract void setFeature(String name, boolean value) throws ParserConfigurationException;
 
     /**
      * <p>
      * Get the state of the named feature.
      * </p>
-     *
      * <p>
      * Feature names are fully qualified {@link java.net.URI}s. Implementations
      * may define their own features. An {@link ParserConfigurationException} is
@@ -496,20 +463,17 @@ public abstract class DocumentBuilderFactory {
      * </p>
      *
      * @param name
-     *             Feature name.
-     *
+     *        Feature name.
      * @return State of the named feature.
-     *
      * @throws ParserConfigurationException
-     *                                      if this
-     *                                      <code>DocumentBuilderFactory</code>
-     *                                      or the
-     *                                      <code>DocumentBuilder</code>s it
-     *                                      creates cannot support this
-     *                                      feature.
+     *         if this
+     *         <code>DocumentBuilderFactory</code>
+     *         or the
+     *         <code>DocumentBuilder</code>s it
+     *         creates cannot support this
+     *         feature.
      */
-    public abstract boolean getFeature(String name)
-            throws ParserConfigurationException;
+    public abstract boolean getFeature(String name) throws ParserConfigurationException;
 
     /**
      * Gets the {@link Schema} object specified through the
@@ -518,31 +482,25 @@ public abstract class DocumentBuilderFactory {
      * @return the {@link Schema} object that was last set through the
      *         {@link #setSchema(Schema)} method, or null if the method was not
      *         invoked since a {@link DocumentBuilderFactory} is created.
-     *
      * @throws UnsupportedOperationException
-     *                                       When implementation does not
-     *                                       override this method.
-     *
+     *         When implementation does not
+     *         override this method.
      * @since 1.5
      */
     public Schema getSchema() {
-        throw new UnsupportedOperationException(
-                "This parser does not support specification \"" + this
-                        .getClass().getPackage().getSpecificationTitle()
-                        + "\" version \"" + this.getClass().getPackage()
-                                .getSpecificationVersion() + "\"");
+        throw new UnsupportedOperationException("This parser does not support specification \"" + this
+                .getClass().getPackage().getSpecificationTitle() + "\" version \"" + this.getClass()
+                        .getPackage().getSpecificationVersion() + "\"");
 
     }
 
     /**
      * <p>
      * Set the {@link Schema} to be used by parsers created from this factory.
-     *
      * <p>
      * When a {@link Schema} is non-null, a parser will use a validator created
      * from it to validate documents before it passes information down to the
      * application.
-     *
      * <p>
      * When errors are found by the validator, the parser is responsible to
      * report them to the user-specified {@link org.xml.sax.ErrorHandler} (or if
@@ -551,20 +509,16 @@ public abstract class DocumentBuilderFactory {
      * user-specified {@link org.xml.sax.ErrorHandler} is set, it must receive
      * those errors, and if not, they must be treated according to the
      * implementation specific default error handling rules.
-     *
      * <p>
      * A validator may modify the outcome of a parse (for example by adding
      * default values that were missing in documents), and a parser is
      * responsible to make sure that the application will receive modified DOM
      * trees.
-     *
      * <p>
      * Initialy, null is set as the {@link Schema}.
-     *
      * <p>
      * This processing will take effect even if the {@link #isValidating()}
      * method returns <code>false</code>.
-     *
      * <p>
      * It is an error to use the
      * <code>http://java.sun.com/xml/jaxp/properties/schemaSource</code>
@@ -574,10 +528,7 @@ public abstract class DocumentBuilderFactory {
      * will cause a {@link ParserConfigurationException} exception when the
      * {@link #newDocumentBuilder()} is invoked.
      * </p>
-     *
-     *
      * <h4>Note for implmentors</h4>
-     *
      * <p>
      * A parser must be able to work with any {@link Schema} implementation.
      * However, parsers and schemas are allowed to use implementation-specific
@@ -586,52 +537,43 @@ public abstract class DocumentBuilderFactory {
      * </p>
      *
      * @param schema
-     *               <code>Schema</code> to use or <code>null</code> to remove a
-     *               schema.
-     *
+     *        <code>Schema</code> to use or <code>null</code> to remove a
+     *        schema.
      * @throws UnsupportedOperationException
-     *                                       When implementation does not
-     *                                       override this method.
-     *
+     *         When implementation does not
+     *         override this method.
      * @since 1.5
      */
     public void setSchema(Schema schema) {
-        throw new UnsupportedOperationException(
-                "This parser does not support specification \"" + this
-                        .getClass().getPackage().getSpecificationTitle()
-                        + "\" version \"" + this.getClass().getPackage()
-                                .getSpecificationVersion() + "\"");
+        throw new UnsupportedOperationException("This parser does not support specification \"" + this
+                .getClass().getPackage().getSpecificationTitle() + "\" version \"" + this.getClass()
+                        .getPackage().getSpecificationVersion() + "\"");
     }
 
     /**
      * <p>
      * Set state of XInclude processing.
      * </p>
-     *
      * <p>
      * If XInclude markup is found in the document instance, should it be
      * processed as specified in <a href="http://www.w3.org/TR/xinclude/"> XML
      * Inclusions (XInclude) Version 1.0</a>.
      * </p>
-     *
      * <p>
      * XInclude processing defaults to <code>false</code>.
      * </p>
      *
      * @param state
-     *              Set XInclude processing to <code>true</code> or
-     *              <code>false</code>
-     *
+     *        Set XInclude processing to <code>true</code> or
+     *        <code>false</code>
      * @throws UnsupportedOperationException
-     *                                       When implementation does not
-     *                                       override this method.
-     *
+     *         When implementation does not
+     *         override this method.
      * @since 1.5
      */
     public void setXIncludeAware(final boolean state) {
         if (state) {
-            throw new UnsupportedOperationException(" setXIncludeAware "
-                    + "is not supported on this JAXP"
+            throw new UnsupportedOperationException(" setXIncludeAware " + "is not supported on this JAXP"
                     + " implementation or earlier: " + this.getClass());
         }
     }
@@ -642,18 +584,14 @@ public abstract class DocumentBuilderFactory {
      * </p>
      *
      * @return current state of XInclude processing
-     *
      * @throws UnsupportedOperationException
-     *                                       When implementation does not
-     *                                       override this method.
-     *
+     *         When implementation does not
+     *         override this method.
      * @since 1.5
      */
     public boolean isXIncludeAware() {
-        throw new UnsupportedOperationException(
-                "This parser does not support specification \"" + this
-                        .getClass().getPackage().getSpecificationTitle()
-                        + "\" version \"" + this.getClass().getPackage()
-                                .getSpecificationVersion() + "\"");
+        throw new UnsupportedOperationException("This parser does not support specification \"" + this
+                .getClass().getPackage().getSpecificationTitle() + "\" version \"" + this.getClass()
+                        .getPackage().getSpecificationVersion() + "\"");
     }
 }

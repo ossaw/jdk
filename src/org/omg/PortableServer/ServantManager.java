@@ -16,5 +16,5 @@ package org.omg.PortableServer;
  * ServantLocators. A ServantManager object must be local to the process
  * containing the POA objects it is registered with.
  */
-public interface ServantManager extends ServantManagerOperations,
-        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface ServantManager
+public interface ServantManager extends ServantManagerOperations, org.omg.CORBA.Object,
+        org.omg.CORBA.portable.IDLEntity {} // interface ServantManager

@@ -64,7 +64,7 @@ public final class ArrayType extends ReferenceType {
      * Convenience constructor for array type, e.g. int[]
      *
      * @param type
-     *             array type, e.g. T_INT
+     *        array type, e.g. T_INT
      */
     public ArrayType(byte type, int dimensions) {
         this(BasicType.getType(type), dimensions);
@@ -74,7 +74,7 @@ public final class ArrayType extends ReferenceType {
      * Convenience constructor for reference array type, e.g. Object[]
      *
      * @param class_name
-     *                   complete name of class (java.lang.String, e.g.)
+     *        complete name of class (java.lang.String, e.g.)
      */
     public ArrayType(String class_name, int dimensions) {
         this(new ObjectType(class_name), dimensions);
@@ -84,14 +84,13 @@ public final class ArrayType extends ReferenceType {
      * Constructor for array of given type
      *
      * @param type
-     *             type of array (may be an array itself)
+     *        type of array (may be an array itself)
      */
     public ArrayType(Type type, int dimensions) {
         super(Constants.T_ARRAY, "<dummy>");
 
         if ((dimensions < 1) || (dimensions > Constants.MAX_BYTE))
-            throw new ClassGenException("Invalid number of dimensions: "
-                    + dimensions);
+            throw new ClassGenException("Invalid number of dimensions: " + dimensions);
 
         switch (type.getType()) {
             case Constants.T_ARRAY:
@@ -156,8 +155,7 @@ public final class ArrayType extends ReferenceType {
     public boolean equals(Object type) {
         if (type instanceof ArrayType) {
             ArrayType array = (ArrayType) type;
-            return (array.dimensions == dimensions) && array.basic_type.equals(
-                    basic_type);
+            return (array.dimensions == dimensions) && array.basic_type.equals(basic_type);
         } else
             return false;
     }

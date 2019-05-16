@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -62,8 +60,7 @@ public class ResourceResolverException extends XMLSecurityException {
      * @param uri
      * @param baseURI
      */
-    public ResourceResolverException(String msgID, Object exArgs[], Attr uri,
-            String baseURI) {
+    public ResourceResolverException(String msgID, Object exArgs[], Attr uri, String baseURI) {
         super(msgID, exArgs);
 
         this.uri = uri;
@@ -78,8 +75,7 @@ public class ResourceResolverException extends XMLSecurityException {
      * @param uri
      * @param baseURI
      */
-    public ResourceResolverException(String msgID, Exception originalException,
-            Attr uri, String baseURI) {
+    public ResourceResolverException(String msgID, Exception originalException, Attr uri, String baseURI) {
         super(msgID, originalException);
 
         this.uri = uri;
@@ -95,8 +91,8 @@ public class ResourceResolverException extends XMLSecurityException {
      * @param uri
      * @param baseURI
      */
-    public ResourceResolverException(String msgID, Object exArgs[],
-            Exception originalException, Attr uri, String baseURI) {
+    public ResourceResolverException(String msgID, Object exArgs[], Exception originalException, Attr uri,
+            String baseURI) {
         super(msgID, exArgs, originalException);
 
         this.uri = uri;
@@ -104,7 +100,6 @@ public class ResourceResolverException extends XMLSecurityException {
     }
 
     /**
-     *
      * @param uri
      */
     public void setURI(Attr uri) {
@@ -112,7 +107,6 @@ public class ResourceResolverException extends XMLSecurityException {
     }
 
     /**
-     *
      * @return the uri
      */
     public Attr getURI() {
@@ -120,7 +114,6 @@ public class ResourceResolverException extends XMLSecurityException {
     }
 
     /**
-     *
      * @param baseURI
      */
     public void setbaseURI(String baseURI) {
@@ -128,7 +121,6 @@ public class ResourceResolverException extends XMLSecurityException {
     }
 
     /**
-     *
      * @return the baseURI
      */
     public String getbaseURI() {

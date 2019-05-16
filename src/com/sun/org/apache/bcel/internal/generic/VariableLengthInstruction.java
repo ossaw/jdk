@@ -55,7 +55,6 @@ package com.sun.org.apache.bcel.internal.generic;
  * JSR, LOOKUPSWITCH and TABLESWITCH.
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
- * 
  * @see GOTO
  * @see JSR
  * @see LOOKUPSWITCH

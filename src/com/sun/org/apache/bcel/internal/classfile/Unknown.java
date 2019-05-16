@@ -64,7 +64,6 @@ import java.util.*;
  * com.sun.org.apache.bcel.internal.classfile.AttributeReader)">Attribute.
  * addAttributeReader</a>.
  *
- * 
  * @see com.sun.org.apache.bcel.internal.classfile.Attribute
  * @see com.sun.org.apache.bcel.internal.classfile.AttributeReader
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
@@ -94,29 +93,26 @@ public final class Unknown extends Attribute {
      * references (shallow copy). Use clone() for a physical copy.
      */
     public Unknown(Unknown c) {
-        this(c.getNameIndex(), c.getLength(), c.getBytes(), c
-                .getConstantPool());
+        this(c.getNameIndex(), c.getLength(), c.getBytes(), c.getConstantPool());
     }
 
     /**
      * Create a non-standard attribute.
      *
      * @param name_index
-     *                      Index in constant pool
+     *        Index in constant pool
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param bytes
-     *                      Attribute contents
+     *        Attribute contents
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      */
-    public Unknown(int name_index, int length, byte[] bytes,
-            ConstantPool constant_pool) {
+    public Unknown(int name_index, int length, byte[] bytes, ConstantPool constant_pool) {
         super(Constants.ATTR_UNKNOWN, name_index, length, constant_pool);
         this.bytes = bytes;
 
-        name = ((ConstantUtf8) constant_pool.getConstant(name_index,
-                Constants.CONSTANT_Utf8)).getBytes();
+        name = ((ConstantUtf8) constant_pool.getConstant(name_index, Constants.CONSTANT_Utf8)).getBytes();
         unknown_attributes.put(name, this);
     }
 
@@ -124,17 +120,16 @@ public final class Unknown extends Attribute {
      * Construct object from file stream.
      * 
      * @param name_index
-     *                      Index in constant pool
+     *        Index in constant pool
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                      Input stream
+     *        Input stream
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      * @throws IOException
      */
-    Unknown(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    Unknown(int name_index, int length, DataInputStream file, ConstantPool constant_pool) throws IOException {
         this(name_index, length, (byte[]) null, constant_pool);
 
         if (length > 0) {
@@ -149,7 +144,7 @@ public final class Unknown extends Attribute {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitUnknown(this);
@@ -159,7 +154,7 @@ public final class Unknown extends Attribute {
      * Dump unknown bytes to file stream.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {

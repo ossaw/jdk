@@ -46,7 +46,6 @@ public interface ParameterizedType extends Type {
      * Return the class type that is a direct supertype of this one. This is the
      * superclass of this type's declaring class, with type arguments
      * substituted in. Return null if this is an interface type.
-     *
      * <p>
      * For example, if this parameterized type is {@code java.util.ArrayList
      * <String>}, the result will be {@code java.util.AbstractList<String>}.
@@ -60,7 +59,6 @@ public interface ParameterizedType extends Type {
      * parameterized type. These are the interfaces directly implemented or
      * extended by this type's declaring class or interface, with type arguments
      * substituted in. Return an empty array if there are no interfaces.
-     *
      * <p>
      * For example, the interface extended by {@code java.util.Set<String>} is
      * {@code java.util.Collection<String>}.
@@ -73,7 +71,6 @@ public interface ParameterizedType extends Type {
     /**
      * Return the type that contains this type as a member. Return null is this
      * is a top-level type.
-     *
      * <p>
      * For example, the containing type of {@code AnInterface.Nested<Number>} is
      * the <code>ClassDoc</code> representing {@code AnInterface}, and the

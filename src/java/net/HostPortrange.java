@@ -26,10 +26,8 @@ class HostPortrange {
     static final int PORT_MAX = (1 << 16) - 1;
 
     boolean equals(HostPortrange that) {
-        return this.hostname.equals(that.hostname)
-                && this.portrange[0] == that.portrange[0]
-                && this.portrange[1] == that.portrange[1]
-                && this.wildcard == that.wildcard
+        return this.hostname.equals(that.hostname) && this.portrange[0] == that.portrange[0]
+                && this.portrange[1] == that.portrange[1] && this.wildcard == that.wildcard
                 && this.literal == that.literal;
     }
 
@@ -58,8 +56,7 @@ class HostPortrange {
             if (rb != -1) {
                 hoststr = str.substring(1, rb);
             } else {
-                throw new IllegalArgumentException("invalid IPv6 address: "
-                        + str);
+                throw new IllegalArgumentException("invalid IPv6 address: " + str);
             }
             int sep = str.indexOf(':', rb + 1);
             if (sep != -1 && str.length() > sep) {
@@ -72,10 +69,9 @@ class HostPortrange {
             }
             StringBuilder sb = new StringBuilder();
             Formatter formatter = new Formatter(sb, Locale.US);
-            formatter.format("%02x%02x:%02x%02x:%02x%02x:%02x"
-                    + "%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x", ip[0], ip[1],
-                    ip[2], ip[3], ip[4], ip[5], ip[6], ip[7], ip[8], ip[9],
-                    ip[10], ip[11], ip[12], ip[13], ip[14], ip[15]);
+            formatter.format("%02x%02x:%02x%02x:%02x%02x:%02x" + "%02x:%02x%02x:%02x%02x:%02x%02x:%02x%02x",
+                    ip[0], ip[1], ip[2], ip[3], ip[4], ip[5], ip[6], ip[7], ip[8], ip[9], ip[10], ip[11],
+                    ip[12], ip[13], ip[14], ip[15]);
             hostname = sb.toString();
         } else {
             // not IPv6 therefore ':' is the port separator
@@ -89,8 +85,7 @@ class HostPortrange {
             }
             // is this a domain wildcard specification?
             if (hoststr.lastIndexOf('*') > 0) {
-                throw new IllegalArgumentException(
-                        "invalid host wildcard specification");
+                throw new IllegalArgumentException("invalid host wildcard specification");
             } else if (hoststr.startsWith("*")) {
                 wildcard = true;
                 if (hoststr.equals("*")) {
@@ -98,8 +93,7 @@ class HostPortrange {
                 } else if (hoststr.startsWith("*.")) {
                     hoststr = toLowerCase(hoststr.substring(1));
                 } else {
-                    throw new IllegalArgumentException(
-                            "invalid host wildcard specification");
+                    throw new IllegalArgumentException("invalid host wildcard specification");
                 }
             } else {
                 // check if ipv4 (if rightmost label a number)
@@ -111,8 +105,7 @@ class HostPortrange {
                 if (lastdot != -1 && (hoststr.length() > 1)) {
                     boolean ipv4 = true;
 
-                    for (int i = lastdot + 1, len = hoststr
-                            .length(); i < len; i++) {
+                    for (int i = lastdot + 1, len = hoststr.length(); i < len; i++) {
                         char c = hoststr.charAt(i);
                         if (c < '0' || c > '9') {
                             ipv4 = false;
@@ -121,16 +114,13 @@ class HostPortrange {
                     }
                     this.ipv4 = this.literal = ipv4;
                     if (ipv4) {
-                        byte[] ip = IPAddressUtil.textToNumericFormatV4(
-                                hoststr);
+                        byte[] ip = IPAddressUtil.textToNumericFormatV4(hoststr);
                         if (ip == null) {
-                            throw new IllegalArgumentException(
-                                    "illegal IPv4 address");
+                            throw new IllegalArgumentException("illegal IPv4 address");
                         }
                         StringBuilder sb = new StringBuilder();
                         Formatter formatter = new Formatter(sb, Locale.US);
-                        formatter.format("%d.%d.%d.%d", ip[0], ip[1], ip[2],
-                                ip[3]);
+                        formatter.format("%d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
                         hoststr = sb.toString();
                     } else {
                         // regular domain name
@@ -144,8 +134,7 @@ class HostPortrange {
         try {
             portrange = parsePort(portstr);
         } catch (Exception e) {
-            throw new IllegalArgumentException("invalid port range: "
-                    + portstr);
+            throw new IllegalArgumentException("invalid port range: " + portstr);
         }
     }
 
@@ -174,8 +163,7 @@ class HostPortrange {
                 }
                 sb.append((char) (c - CASE_DIFF));
             } else {
-                throw new IllegalArgumentException(
-                        "Invalid characters in hostname");
+                throw new IllegalArgumentException("Invalid characters in hostname");
             }
         }
         return sb == null ? s : sb.toString();

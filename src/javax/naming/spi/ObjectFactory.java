@@ -38,7 +38,6 @@ import javax.naming.*;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see NamingManager#getObjectInstance
  * @see NamingManager#getURLContext
  * @see ObjectFactoryBuilder
@@ -94,16 +93,13 @@ public interface ObjectFactory {
      * <tt>getObjectInstance()</tt> is determined by the context factory
      * implementation.
      * </ol>
-     *
      * <p>
      * The <tt>name</tt> and <tt>environment</tt> parameters are owned by the
      * caller. The implementation will not modify these objects or keep
      * references to them, although it may keep references to clones or copies.
-     *
      * <p>
      * <b>Name and Context Parameters.</b> &nbsp;&nbsp;&nbsp;
      * <a name=NAMECTX></a>
-     *
      * The <code>name</code> and <code>nameCtx</code> parameters may optionally
      * be used to specify the name of the object being created.
      * <code>name</code> is the name of the object, relative to context
@@ -119,33 +115,32 @@ public interface ObjectFactory {
      * <p>
      *
      * @param obj
-     *                    The possibly null object containing location or
-     *                    reference
-     *                    information that can be used in creating an object.
+     *        The possibly null object containing location or
+     *        reference
+     *        information that can be used in creating an object.
      * @param name
-     *                    The name of this object relative to
-     *                    <code>nameCtx</code>, or
-     *                    null if no name is specified.
+     *        The name of this object relative to
+     *        <code>nameCtx</code>, or
+     *        null if no name is specified.
      * @param nameCtx
-     *                    The context relative to which the <code>name</code>
-     *                    parameter
-     *                    is specified, or null if <code>name</code> is relative
-     *                    to the
-     *                    default initial context.
+     *        The context relative to which the <code>name</code>
+     *        parameter
+     *        is specified, or null if <code>name</code> is relative
+     *        to the
+     *        default initial context.
      * @param environment
-     *                    The possibly null environment that is used in creating
-     *                    the
-     *                    object.
+     *        The possibly null environment that is used in creating
+     *        the
+     *        object.
      * @return The object created; null if an object cannot be created.
      * @exception Exception
-     *                      if this object factory encountered an exception
-     *                      while
-     *                      attempting to create an object, and no other object
-     *                      factories are to be tried.
-     *
+     *            if this object factory encountered an exception
+     *            while
+     *            attempting to create an object, and no other object
+     *            factories are to be tried.
      * @see NamingManager#getObjectInstance
      * @see NamingManager#getURLContext
      */
-    public Object getObjectInstance(Object obj, Name name, Context nameCtx,
-            Hashtable<?, ?> environment) throws Exception;
+    public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
+            throws Exception;
 }

@@ -40,16 +40,13 @@ public class FunctionDef1Arg extends FunctionOneArg {
      * nodeset. If the argument is null, then return the current context node.
      *
      * @param xctxt
-     *              Runtime XPath context.
-     *
+     *        Runtime XPath context.
      * @return The first node of the executed nodeset, or the current context
      *         node if the first argument is null.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if an error occurs while executing the argument expression.
      */
-    protected int getArg0AsNode(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    protected int getArg0AsNode(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         return (null == m_arg0) ? xctxt.getCurrentNode() : m_arg0.asNode(xctxt);
     }
@@ -69,16 +66,13 @@ public class FunctionDef1Arg extends FunctionOneArg {
      * current context node.
      *
      * @param xctxt
-     *              Runtime XPath context.
-     *
+     *        Runtime XPath context.
      * @return The string value of the first argument, or the string value of
      *         the current context node if the first argument is null.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if an error occurs while executing the argument expression.
      */
-    protected XMLString getArg0AsString(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    protected XMLString getArg0AsString(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         if (null == m_arg0) {
             int currentNode = xctxt.getCurrentNode();
             if (DTM.NULL == currentNode)
@@ -98,16 +92,13 @@ public class FunctionDef1Arg extends FunctionOneArg {
      * current context node.
      *
      * @param xctxt
-     *              Runtime XPath context.
-     *
+     *        Runtime XPath context.
      * @return The number value of the first argument, or the number value of
      *         the current context node if the first argument is null.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if an error occurs while executing the argument expression.
      */
-    protected double getArg0AsNumber(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    protected double getArg0AsNumber(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         if (null == m_arg0) {
             int currentNode = xctxt.getCurrentNode();
@@ -127,12 +118,11 @@ public class FunctionDef1Arg extends FunctionOneArg {
      * Check that the number of arguments passed to this function is correct.
      *
      * @param argNum
-     *               The number of arguments that is being passed to the
-     *               function.
-     *
+     *        The number of arguments that is being passed to the
+     *        function.
      * @throws WrongNumberArgsException
-     *                                  if the number of arguments is not 0 or
-     *                                  1.
+     *         if the number of arguments is not 0 or
+     *         1.
      */
     public void checkNumberArgs(int argNum) throws WrongNumberArgsException {
         if (argNum > 1)
@@ -146,8 +136,8 @@ public class FunctionDef1Arg extends FunctionOneArg {
      * @throws WrongNumberArgsException
      */
     protected void reportWrongNumberArgs() throws WrongNumberArgsException {
-        throw new WrongNumberArgsException(XSLMessages.createXPATHMessage(
-                XPATHErrorResources.ER_ZERO_OR_ONE, null)); // "0
+        throw new WrongNumberArgsException(XSLMessages.createXPATHMessage(XPATHErrorResources.ER_ZERO_OR_ONE,
+                null)); // "0
                                                                                                                               // or
                                                                                                                               // 1");
     }

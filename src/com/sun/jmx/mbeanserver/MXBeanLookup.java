@@ -61,8 +61,7 @@ public class MXBeanLookup {
     static MXBeanLookup lookupFor(MBeanServerConnection mbsc) {
         synchronized (mbscToLookup) {
             WeakReference<MXBeanLookup> weakLookup = mbscToLookup.get(mbsc);
-            MXBeanLookup lookup = (weakLookup == null) ? null
-                    : weakLookup.get();
+            MXBeanLookup lookup = (weakLookup == null) ? null : weakLookup.get();
             if (lookup == null) {
                 lookup = new MXBeanLookup(mbsc);
                 mbscToLookup.put(mbsc, new WeakReference<MXBeanLookup>(lookup));
@@ -83,8 +82,7 @@ public class MXBeanLookup {
         return proxy;
     }
 
-    synchronized ObjectName mxbeanToObjectName(Object mxbean)
-            throws OpenDataException {
+    synchronized ObjectName mxbeanToObjectName(Object mxbean) throws OpenDataException {
         String wrong;
         if (mxbean instanceof Proxy) {
             InvocationHandler ih = Proxy.getInvocationHandler(mxbean);
@@ -102,23 +100,18 @@ public class MXBeanLookup {
                 return name;
             wrong = "not an MXBean registered in this MBeanServer";
         }
-        String s = (mxbean == null) ? "null"
-                : "object of type " + mxbean.getClass().getName();
-        throw new OpenDataException("Could not convert " + s
-                + " to an ObjectName: " + wrong);
+        String s = (mxbean == null) ? "null" : "object of type " + mxbean.getClass().getName();
+        throw new OpenDataException("Could not convert " + s + " to an ObjectName: " + wrong);
         // Message will be strange if mxbean is null but it is not
         // supposed to be.
     }
 
-    synchronized void addReference(ObjectName name, Object mxbean)
-            throws InstanceAlreadyExistsException {
+    synchronized void addReference(ObjectName name, Object mxbean) throws InstanceAlreadyExistsException {
         ObjectName existing = mxbeanToObjectName.get(mxbean);
         if (existing != null) {
-            String multiname = AccessController.doPrivileged(
-                    new GetPropertyAction("jmx.mxbean.multiname"));
+            String multiname = AccessController.doPrivileged(new GetPropertyAction("jmx.mxbean.multiname"));
             if (!"true".equalsIgnoreCase(multiname)) {
-                throw new InstanceAlreadyExistsException(
-                        "MXBean already registered with name " + existing);
+                throw new InstanceAlreadyExistsException("MXBean already registered with name " + existing);
             }
         }
         mxbeanToObjectName.put(mxbean, name);
@@ -147,8 +140,7 @@ public class MXBeanLookup {
     private static final ThreadLocal<MXBeanLookup> currentLookup = new ThreadLocal<MXBeanLookup>();
 
     private final MBeanServerConnection mbsc;
-    private final WeakIdentityHashMap<Object, ObjectName> mxbeanToObjectName = WeakIdentityHashMap
-            .make();
+    private final WeakIdentityHashMap<Object, ObjectName> mxbeanToObjectName = WeakIdentityHashMap.make();
     private final Map<ObjectName, WeakReference<Object>> objectNameToProxy = newMap();
     private static final WeakIdentityHashMap<MBeanServerConnection, WeakReference<MXBeanLookup>> mbscToLookup = WeakIdentityHashMap
             .make();

@@ -120,8 +120,7 @@ final class WithParam extends Instruction {
         final String name = getAttribute("name");
         if (name.length() > 0) {
             if (!XML11Char.isXML11ValidQName(name)) {
-                ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, name,
-                        this);
+                ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, name, this);
                 parser.reportError(Constants.ERROR, err);
             }
             setName(parser.getQNameIgnoreDefaultNs(name));
@@ -157,8 +156,7 @@ final class WithParam extends Instruction {
      * Compile the value of the parameter, which is either in an expression in a
      * 'select' attribute, or in the with-param element's body
      */
-    public void translateValue(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateValue(ClassGenerator classGen, MethodGenerator methodGen) {
         // Compile expression is 'select' attribute if present
         if (_select != null) {
             _select.translate(classGen, methodGen);
@@ -169,8 +167,8 @@ final class WithParam extends Instruction {
         else if (hasContents()) {
             final InstructionList il = methodGen.getInstructionList();
             compileResultTree(classGen, methodGen);
-            _domAdapter = methodGen.addLocalVariable2("@" + _escapedName,
-                    Type.ResultTree.toJCType(), il.getEnd());
+            _domAdapter = methodGen.addLocalVariable2("@" + _escapedName, Type.ResultTree.toJCType(), il
+                    .getEnd());
             il.append(DUP);
             il.append(new ASTORE(_domAdapter.getIndex()));
         }
@@ -210,31 +208,27 @@ final class WithParam extends Instruction {
         // Mark this parameter value is not being the default value
         il.append(new PUSH(cpg, false));
         // Pass the parameter to the template
-        il.append(new INVOKEVIRTUAL(cpg.addMethodref(TRANSLET_CLASS,
-                ADD_PARAMETER, ADD_PARAMETER_SIG)));
+        il.append(new INVOKEVIRTUAL(cpg.addMethodref(TRANSLET_CLASS, ADD_PARAMETER, ADD_PARAMETER_SIG)));
         il.append(POP); // cleanup stack
     }
 
     /**
      * Release the compiled result tree.
      */
-    public void releaseResultTree(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void releaseResultTree(ClassGenerator classGen, MethodGenerator methodGen) {
         if (_domAdapter != null) {
             final ConstantPoolGen cpg = classGen.getConstantPool();
             final InstructionList il = methodGen.getInstructionList();
-            if (classGen.getStylesheet().callsNodeset() && classGen
-                    .getDOMClass().equals(MULTI_DOM_CLASS)) {
-                final int removeDA = cpg.addMethodref(MULTI_DOM_CLASS,
-                        "removeDOMAdapter", "(" + DOM_ADAPTER_SIG + ")V");
+            if (classGen.getStylesheet().callsNodeset() && classGen.getDOMClass().equals(MULTI_DOM_CLASS)) {
+                final int removeDA = cpg.addMethodref(MULTI_DOM_CLASS, "removeDOMAdapter", "("
+                        + DOM_ADAPTER_SIG + ")V");
                 il.append(methodGen.loadDOM());
                 il.append(new CHECKCAST(cpg.addClass(MULTI_DOM_CLASS)));
                 il.append(new ALOAD(_domAdapter.getIndex()));
                 il.append(new CHECKCAST(cpg.addClass(DOM_ADAPTER_CLASS)));
                 il.append(new INVOKEVIRTUAL(removeDA));
             }
-            final int release = cpg.addInterfaceMethodref(DOM_IMPL_CLASS,
-                    "release", "()V");
+            final int release = cpg.addInterfaceMethodref(DOM_IMPL_CLASS, "release", "()V");
             il.append(new ALOAD(_domAdapter.getIndex()));
             il.append(new INVOKEINTERFACE(release, 1));
             _domAdapter = null;

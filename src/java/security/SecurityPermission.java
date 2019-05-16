@@ -22,7 +22,6 @@ import java.util.StringTokenizer;
  * The following table lists all the possible SecurityPermission target names,
  * and for each provides a description of what the permission allows and a
  * discussion of the risks of granting code the permission.
- *
  * <table border=1 cellpadding=5 summary=
  * "target name,what the permission allows, and associated risks">
  * <tr>
@@ -30,7 +29,6 @@ import java.util.StringTokenizer;
  * <th>What the Permission Allows</th>
  * <th>Risks of Allowing this Permission</th>
  * </tr>
- *
  * <tr>
  * <td>createAccessControlContext</td>
  * <td>Creation of an AccessControlContext</td>
@@ -40,7 +38,6 @@ import java.util.StringTokenizer;
  * set of permissions granted to code, and even grant the code
  * {@link java.security.AllPermission}.</td>
  * </tr>
- *
  * <tr>
  * <td>getDomainCombiner</td>
  * <td>Retrieval of an AccessControlContext's DomainCombiner</td>
@@ -48,7 +45,6 @@ import java.util.StringTokenizer;
  * {@code DomainCombiner}. Since DomainCombiners may contain sensitive
  * information, this could potentially lead to a privacy leak.</td>
  * </tr>
- *
  * <tr>
  * <td>getPolicy</td>
  * <td>Retrieval of the system-wide security policy (specifically, of the
@@ -60,7 +56,6 @@ import java.util.StringTokenizer;
  * it may use to better aim an attack. It is wise not to divulge more
  * information than necessary.</td>
  * </tr>
- *
  * <tr>
  * <td>setPolicy</td>
  * <td>Setting of the system-wide security policy (specifically, the Policy
@@ -69,7 +64,6 @@ import java.util.StringTokenizer;
  * grant itself all the necessary permissions it needs to successfully mount an
  * attack on the system.</td>
  * </tr>
- *
  * <tr>
  * <td>createPolicy.{policy type}</td>
  * <td>Getting an instance of a Policy implementation from a provider</td>
@@ -77,7 +71,6 @@ import java.util.StringTokenizer;
  * Malicious code may query the Policy object to determine what permissions have
  * been granted to code other than itself.</td>
  * </tr>
- *
  * <tr>
  * <td>getProperty.{key}</td>
  * <td>Retrieval of the security property with the specified key</td>
@@ -88,7 +81,6 @@ import java.util.StringTokenizer;
  * malicious code with additional information which it may use to better aim an
  * attack.</td>
  * </tr>
- *
  * <tr>
  * <td>setProperty.{key}</td>
  * <td>Setting of the security property with the specified key</td>
@@ -100,7 +92,6 @@ import java.util.StringTokenizer;
  * point it to a security policy that grants the attacker all the necessary
  * permissions it requires to successfully mount an attack on the system.</td>
  * </tr>
- *
  * <tr>
  * <td>insertProvider</td>
  * <td>Addition of a new provider</td>
@@ -112,7 +103,6 @@ import java.util.StringTokenizer;
  * "insertProvider" permission subsumes the "insertProvider.{provider name}"
  * permission (see the section below for more information).</td>
  * </tr>
- *
  * <tr>
  * <td>removeProvider.{provider name}</td>
  * <td>Removal of the specified provider</td>
@@ -124,7 +114,6 @@ import java.util.StringTokenizer;
  * the list of providers), a different provider will be chosen instead, or no
  * suitable provider will be found, thereby resulting in program failure.</td>
  * </tr>
- *
  * <tr>
  * <td>clearProviderProperties.{provider name}</td>
  * <td>"Clearing" of a Provider so that it no longer contains the properties
@@ -134,7 +123,6 @@ import java.util.StringTokenizer;
  * program that would normally utilize the Provider, as described under the
  * "removeProvider.{provider name}" permission.</td>
  * </tr>
- *
  * <tr>
  * <td>putProviderProperty.{provider name}</td>
  * <td>Setting of properties for the specified Provider</td>
@@ -143,7 +131,6 @@ import java.util.StringTokenizer;
  * you let code replace the service specification with another one, thereby
  * specifying a different implementation.</td>
  * </tr>
- *
  * <tr>
  * <td>removeProviderProperty.{provider name}</td>
  * <td>Removal of properties from the specified Provider</td>
@@ -153,15 +140,12 @@ import java.util.StringTokenizer;
  * other parts of the program that would normally utilize the Provider, as
  * described under the "removeProvider.{provider name}" permission.</td>
  * </tr>
- *
  * </table>
- *
  * <P>
  * The following permissions have been superseded by newer permissions or are
  * associated with classes that have been deprecated: {@link Identity},
  * {@link IdentityScope}, {@link Signer}. Use of them is discouraged. See the
  * applicable classes for more information.
- *
  * <table border=1 cellpadding=5 summary=
  * "target name,what the permission allows, and associated risks">
  * <tr>
@@ -169,7 +153,6 @@ import java.util.StringTokenizer;
  * <th>What the Permission Allows</th>
  * <th>Risks of Allowing this Permission</th>
  * </tr>
- *
  * <tr>
  * <td>insertProvider.{provider name}</td>
  * <td>Addition of a new provider, with the specified name</td>
@@ -186,7 +169,6 @@ import java.util.StringTokenizer;
  * the installed providers) currently does not check the integrity or
  * authenticity of a provider before attaching it.</td>
  * </tr>
- *
  * <tr>
  * <td>setSystemScope</td>
  * <td>Setting of the system identity scope</td>
@@ -195,7 +177,6 @@ import java.util.StringTokenizer;
  * application code signed with those certificates privileges that would have
  * been denied by the system's original identity scope.</td>
  * </tr>
- *
  * <tr>
  * <td>setIdentityPublicKey</td>
  * <td>Setting of the public key for an Identity</td>
@@ -204,7 +185,6 @@ import java.util.StringTokenizer;
  * system's identity scope, thereby granting applet or application code signed
  * with that public key privileges that would have been denied otherwise.</td>
  * </tr>
- *
  * <tr>
  * <td>setIdentityInfo</td>
  * <td>Setting of a general information string for an Identity</td>
@@ -212,7 +192,6 @@ import java.util.StringTokenizer;
  * This may trick applications into using a different identity than intended or
  * may prevent applications from finding a particular identity.</td>
  * </tr>
- *
  * <tr>
  * <td>addIdentityCertificate</td>
  * <td>Addition of a certificate for an Identity</td>
@@ -221,7 +200,6 @@ import java.util.StringTokenizer;
  * system. This public key suddenly becomes trusted to a wider audience than it
  * otherwise would be.</td>
  * </tr>
- *
  * <tr>
  * <td>removeIdentityCertificate</td>
  * <td>Removal of a certificate for an Identity</td>
@@ -230,7 +208,6 @@ import java.util.StringTokenizer;
  * system. This public key suddenly becomes considered less trustworthy than it
  * otherwise would be.</td>
  * </tr>
- *
  * <tr>
  * <td>printIdentity</td>
  * <td>Viewing the name of a principal and optionally the scope in which it is
@@ -241,7 +218,6 @@ import java.util.StringTokenizer;
  * database:<br>
  * carol[/home/luehe/identitydb.obj][not trusted]</td>
  * </tr>
- *
  * <tr>
  * <td>getSignerPrivateKey</td>
  * <td>Retrieval of a Signer's private key</td>
@@ -249,7 +225,6 @@ import java.util.StringTokenizer;
  * supposed to be kept secret. Otherwise, code can use the private key to sign
  * various files and claim the signature came from the Signer.</td>
  * </tr>
- *
  * <tr>
  * <td>setSignerKeyPair</td>
  * <td>Setting of the key pair (public key and private key) for a Signer</td>
@@ -262,7 +237,6 @@ import java.util.StringTokenizer;
  * the session key and decipher the communication data encrypted under that
  * session key.</td>
  * </tr>
- *
  * </table>
  *
  * @see java.security.BasicPermission
@@ -270,8 +244,6 @@ import java.util.StringTokenizer;
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
  * @see java.lang.SecurityManager
- *
- *
  * @author Marianne Mueller
  * @author Roland Schemers
  */
@@ -287,12 +259,11 @@ public final class SecurityPermission extends BasicPermission {
      * match.
      *
      * @param name
-     *             the name of the SecurityPermission
-     *
+     *        the name of the SecurityPermission
      * @throws NullPointerException
-     *                                  if {@code name} is {@code null}.
+     *         if {@code name} is {@code null}.
      * @throws IllegalArgumentException
-     *                                  if {@code name} is empty.
+     *         if {@code name} is empty.
      */
     public SecurityPermission(String name) {
         super(name);
@@ -304,14 +275,13 @@ public final class SecurityPermission extends BasicPermission {
      * currently unused and should be null.
      *
      * @param name
-     *                the name of the SecurityPermission
+     *        the name of the SecurityPermission
      * @param actions
-     *                should be null.
-     *
+     *        should be null.
      * @throws NullPointerException
-     *                                  if {@code name} is {@code null}.
+     *         if {@code name} is {@code null}.
      * @throws IllegalArgumentException
-     *                                  if {@code name} is empty.
+     *         if {@code name} is empty.
      */
     public SecurityPermission(String name, String actions) {
         super(name, actions);

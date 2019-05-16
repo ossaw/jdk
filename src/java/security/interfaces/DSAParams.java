@@ -15,7 +15,6 @@ import java.math.BigInteger;
  * @see DSAKey
  * @see java.security.Key
  * @see java.security.Signature
- *
  * @author Benjamin Renaud
  * @author Josh Bloch
  */

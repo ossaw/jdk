@@ -44,9 +44,8 @@ class TextJustifier {
             System.out.println("start: " + start + ", limit: " + limit);
             for (int i = start; i < limit; i++) {
                 GlyphJustificationInfo gji = info[i];
-                System.out.println("w: " + gji.weight + ", gp: "
-                        + gji.growPriority + ", gll: " + gji.growLeftLimit
-                        + ", grl: " + gji.growRightLimit);
+                System.out.println("w: " + gji.weight + ", gp: " + gji.growPriority + ", gll: "
+                        + gji.growLeftLimit + ", grl: " + gji.growRightLimit);
             }
         }
     }
@@ -57,7 +56,6 @@ class TextJustifier {
      * Return an array of deltas twice as long as the original info array,
      * indicating the amount by which each side of each glyph should grow or
      * shrink.
-     *
      * Delta should be positive to expand the line, and negative to compress it.
      */
     public float[] justify(float delta) {
@@ -127,8 +125,7 @@ class TextJustifier {
             if (!grow) {
                 gslimit = -gslimit; // negative for negative deltas
             }
-            boolean hitLimit = (weight == 0) || (!lastPass
-                    && ((delta < 0) == (delta < gslimit)));
+            boolean hitLimit = (weight == 0) || (!lastPass && ((delta < 0) == (delta < gslimit)));
             boolean absorbing = hitLimit && absorbweight > 0;
 
             // predivide delta by weight
@@ -140,9 +137,8 @@ class TextJustifier {
             }
 
             if (DEBUG) {
-                System.out.println("pass: " + p + ", d: " + delta + ", l: "
-                        + gslimit + ", w: " + weight + ", aw: " + absorbweight
-                        + ", wd: " + weightedDelta + ", wa: " + weightedAbsorb
+                System.out.println("pass: " + p + ", d: " + delta + ", l: " + gslimit + ", w: " + weight
+                        + ", aw: " + absorbweight + ", wd: " + weightedDelta + ", wa: " + weightedAbsorb
                         + ", hit: " + (hitLimit ? "y" : "n"));
             }
 

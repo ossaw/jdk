@@ -104,8 +104,7 @@ abstract class GraphicsCallback extends SunGraphicsCallback {
         }
     }
 
-    static final class PaintHeavyweightComponentsCallback extends
-            GraphicsCallback {
+    static final class PaintHeavyweightComponentsCallback extends GraphicsCallback {
         private static PaintHeavyweightComponentsCallback instance = new PaintHeavyweightComponentsCallback();
 
         private PaintHeavyweightComponentsCallback() {}
@@ -123,8 +122,7 @@ abstract class GraphicsCallback extends SunGraphicsCallback {
         }
     }
 
-    static final class PrintHeavyweightComponentsCallback extends
-            GraphicsCallback {
+    static final class PrintHeavyweightComponentsCallback extends GraphicsCallback {
         private static PrintHeavyweightComponentsCallback instance = new PrintHeavyweightComponentsCallback();
 
         private PrintHeavyweightComponentsCallback() {}

@@ -63,8 +63,8 @@ import com.sun.org.apache.bcel.internal.ExceptionConstants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class MULTIANEWARRAY extends CPInstruction implements LoadClass,
-        AllocationInstruction, ExceptionThrower {
+public class MULTIANEWARRAY extends CPInstruction implements LoadClass, AllocationInstruction,
+        ExceptionThrower {
     private short dimensions;
 
     /**
@@ -77,8 +77,7 @@ public class MULTIANEWARRAY extends CPInstruction implements LoadClass,
         super(com.sun.org.apache.bcel.internal.Constants.MULTIANEWARRAY, index);
 
         if (dimensions < 1)
-            throw new ClassGenException("Invalid dimensions value: "
-                    + dimensions);
+            throw new ClassGenException("Invalid dimensions value: " + dimensions);
 
         this.dimensions = dimensions;
         length = 4;
@@ -88,7 +87,7 @@ public class MULTIANEWARRAY extends CPInstruction implements LoadClass,
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         out.writeByte(opcode);
@@ -99,8 +98,7 @@ public class MULTIANEWARRAY extends CPInstruction implements LoadClass,
     /**
      * Read needed data (i.e., no. dimension) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         super.initFromFile(bytes, wide);
         dimensions = bytes.readByte();
         length = 4;
@@ -138,11 +136,9 @@ public class MULTIANEWARRAY extends CPInstruction implements LoadClass,
     }
 
     public Class[] getExceptions() {
-        Class[] cs = new Class[2
-                + ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length];
+        Class[] cs = new Class[2 + ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length];
 
-        System.arraycopy(ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION,
-                0, cs, 0,
+        System.arraycopy(ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION, 0, cs, 0,
                 ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length);
 
         cs[ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length
@@ -169,7 +165,7 @@ public class MULTIANEWARRAY extends CPInstruction implements LoadClass,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitLoadClass(this);

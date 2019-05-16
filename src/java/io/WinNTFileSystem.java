@@ -22,10 +22,8 @@ class WinNTFileSystem extends FileSystem {
     private final char semicolon;
 
     public WinNTFileSystem() {
-        slash = AccessController.doPrivileged(new GetPropertyAction(
-                "file.separator")).charAt(0);
-        semicolon = AccessController.doPrivileged(new GetPropertyAction(
-                "path.separator")).charAt(0);
+        slash = AccessController.doPrivileged(new GetPropertyAction("file.separator")).charAt(0);
+        semicolon = AccessController.doPrivileged(new GetPropertyAction("path.separator")).charAt(0);
         altSlash = (this.slash == '\\') ? '/' : '\\';
     }
 
@@ -171,8 +169,7 @@ class WinNTFileSystem extends FileSystem {
         while ((src < len) && isSlash(path.charAt(src)))
             src++;
         char c;
-        if ((len - src >= 2) && isLetter(c = path.charAt(src)) && path.charAt(
-                src + 1) == ':') {
+        if ((len - src >= 2) && isLetter(c = path.charAt(src)) && path.charAt(src + 1) == ':') {
             /*
              * Remove leading slashes if followed by drive specifier. This hack
              * is necessary to support file URLs containing drive specifiers
@@ -184,8 +181,7 @@ class WinNTFileSystem extends FileSystem {
             src += 2;
         } else {
             src = 0;
-            if ((len >= 2) && isSlash(path.charAt(0)) && isSlash(path.charAt(
-                    1))) {
+            if ((len >= 2) && isSlash(path.charAt(0)) && isSlash(path.charAt(1))) {
                 /*
                  * UNC pathname: Retain first slash; leave src pointed at second
                  * slash so that further slashes will be collapsed into the
@@ -392,14 +388,13 @@ class WinNTFileSystem extends FileSystem {
     public String canonicalize(String path) throws IOException {
         // If path is a drive letter only then skip canonicalization
         int len = path.length();
-        if ((len == 2) && (isLetter(path.charAt(0))) && (path.charAt(
-                1) == ':')) {
+        if ((len == 2) && (isLetter(path.charAt(0))) && (path.charAt(1) == ':')) {
             char c = path.charAt(0);
             if ((c >= 'A') && (c <= 'Z'))
                 return path;
             return "" + ((char) (c - 32)) + ':';
-        } else if ((len == 3) && (isLetter(path.charAt(0))) && (path.charAt(
-                1) == ':') && (path.charAt(2) == '\\')) {
+        } else if ((len == 3) && (isLetter(path.charAt(0))) && (path.charAt(1) == ':') && (path.charAt(
+                2) == '\\')) {
             char c = path.charAt(0);
             if ((c >= 'A') && (c <= 'Z'))
                 return path;
@@ -449,17 +444,15 @@ class WinNTFileSystem extends FileSystem {
 
     private native String canonicalize0(String path) throws IOException;
 
-    private String canonicalizeWithPrefix(String canonicalPrefix,
-            String filename) throws IOException {
-        return canonicalizeWithPrefix0(canonicalPrefix, canonicalPrefix
-                + File.separatorChar + filename);
+    private String canonicalizeWithPrefix(String canonicalPrefix, String filename) throws IOException {
+        return canonicalizeWithPrefix0(canonicalPrefix, canonicalPrefix + File.separatorChar + filename);
     }
 
     // Run the canonicalization operation assuming that the prefix
     // (everything up to the last filename) is canonical; just gets
     // the canonical name of the last element of the path
-    private native String canonicalizeWithPrefix0(String canonicalPrefix,
-            String pathWithCanonicalPrefix) throws IOException;
+    private native String canonicalizeWithPrefix0(String canonicalPrefix, String pathWithCanonicalPrefix)
+            throws IOException;
 
     // Best-effort attempt to get parent of this path; used for
     // optimization of filename canonicalization. This must return null for
@@ -493,8 +486,8 @@ class WinNTFileSystem extends FileSystem {
                     // Punt on pathnames containing . and ..
                     return null;
                 }
-                if (idx == 0 || idx >= last - 1 || path.charAt(idx - 1) == sep
-                        || path.charAt(idx - 1) == altSep) {
+                if (idx == 0 || idx >= last - 1 || path.charAt(idx - 1) == sep || path.charAt(idx
+                        - 1) == altSep) {
                     // Punt on pathnames containing adjacent slashes
                     // toward the end
                     return null;
@@ -531,8 +524,7 @@ class WinNTFileSystem extends FileSystem {
     public native long getLength(File f);
 
     @Override
-    public native boolean setPermission(File f, int access, boolean enable,
-            boolean owneronly);
+    public native boolean setPermission(File f, int access, boolean enable, boolean owneronly);
 
     /* -- File operations -- */
 

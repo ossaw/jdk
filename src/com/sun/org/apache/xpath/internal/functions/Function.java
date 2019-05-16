@@ -45,17 +45,15 @@ public abstract class Function extends Expression {
      * XPath compiler.
      *
      * @param arg
-     *               non-null expression that represents the argument.
+     *        non-null expression that represents the argument.
      * @param argNum
-     *               The argument number index.
-     *
+     *        The argument number index.
      * @throws WrongNumberArgsException
-     *                                  If the argNum parameter is beyond what
-     *                                  is specified for this
-     *                                  function.
+     *         If the argNum parameter is beyond what
+     *         is specified for this
+     *         function.
      */
-    public void setArg(Expression arg, int argNum)
-            throws WrongNumberArgsException {
+    public void setArg(Expression arg, int argNum) throws WrongNumberArgsException {
         // throw new
         // WrongNumberArgsException(XSLMessages.createXPATHMessage("zero",
         // null));
@@ -69,9 +67,8 @@ public abstract class Function extends Expression {
      * called by the compiler for static number of arguments checking.
      *
      * @param argNum
-     *               The number of arguments that is being passed to the
-     *               function.
-     *
+     *        The number of arguments that is being passed to the
+     *        function.
      * @throws WrongNumberArgsException
      */
     public void checkNumberArgs(int argNum) throws WrongNumberArgsException {
@@ -87,8 +84,7 @@ public abstract class Function extends Expression {
      * @throws WrongNumberArgsException
      */
     protected void reportWrongNumberArgs() throws WrongNumberArgsException {
-        throw new WrongNumberArgsException(XSLMessages.createXPATHMessage(
-                "zero", null));
+        throw new WrongNumberArgsException(XSLMessages.createXPATHMessage("zero", null));
     }
 
     /**
@@ -96,13 +92,11 @@ public abstract class Function extends Expression {
      * object.
      * 
      * @param xctxt
-     *              The execution current context.
+     *        The execution current context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         // Programmer's assert. (And, no, I don't want the method to be
         // abstract).

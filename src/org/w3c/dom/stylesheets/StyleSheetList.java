@@ -43,7 +43,7 @@ public interface StyleSheetList {
      * <code>null</code>.
      * 
      * @param index
-     *              Index into the collection
+     *        Index into the collection
      * @return The style sheet at the <code>index</code> position in the
      *         <code>StyleSheetList</code>, or <code>null</code> if that is not
      *         a valid index.

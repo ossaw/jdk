@@ -51,48 +51,42 @@ public final class SecuritySupport {
     }
 
     static ClassLoader getContextClassLoader() {
-        return (ClassLoader) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        ClassLoader cl = null;
-                        try {
-                            cl = Thread.currentThread().getContextClassLoader();
-                        } catch (SecurityException ex) {
-                        }
-                        return cl;
-                    }
-                });
+        return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                ClassLoader cl = null;
+                try {
+                    cl = Thread.currentThread().getContextClassLoader();
+                } catch (SecurityException ex) {}
+                return cl;
+            }
+        });
     }
 
     static ClassLoader getSystemClassLoader() {
-        return (ClassLoader) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        ClassLoader cl = null;
-                        try {
-                            cl = ClassLoader.getSystemClassLoader();
-                        } catch (SecurityException ex) {
-                        }
-                        return cl;
-                    }
-                });
+        return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                ClassLoader cl = null;
+                try {
+                    cl = ClassLoader.getSystemClassLoader();
+                } catch (SecurityException ex) {}
+                return cl;
+            }
+        });
     }
 
     static ClassLoader getParentClassLoader(final ClassLoader cl) {
-        return (ClassLoader) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        ClassLoader parent = null;
-                        try {
-                            parent = cl.getParent();
-                        } catch (SecurityException ex) {
-                        }
+        return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                ClassLoader parent = null;
+                try {
+                    parent = cl.getParent();
+                } catch (SecurityException ex) {}
 
-                        // eliminate loops in case of the boot
-                        // ClassLoader returning itself as a parent
-                        return (parent == cl) ? null : parent;
-                    }
-                });
+                // eliminate loops in case of the boot
+                // ClassLoader returning itself as a parent
+                return (parent == cl) ? null : parent;
+            }
+        });
     }
 
     public static String getSystemProperty(final String propName) {
@@ -103,15 +97,13 @@ public final class SecuritySupport {
         });
     }
 
-    static FileInputStream getFileInputStream(final File file)
-            throws FileNotFoundException {
+    static FileInputStream getFileInputStream(final File file) throws FileNotFoundException {
         try {
-            return (FileInputStream) AccessController.doPrivileged(
-                    new PrivilegedExceptionAction() {
-                        public Object run() throws FileNotFoundException {
-                            return new FileInputStream(file);
-                        }
-                    });
+            return (FileInputStream) AccessController.doPrivileged(new PrivilegedExceptionAction() {
+                public Object run() throws FileNotFoundException {
+                    return new FileInputStream(file);
+                }
+            });
         } catch (PrivilegedActionException e) {
             throw (FileNotFoundException) e.getException();
         }
@@ -129,20 +121,18 @@ public final class SecuritySupport {
         }
     }
 
-    public static InputStream getResourceAsStream(final ClassLoader cl,
-            final String name) {
-        return (InputStream) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        InputStream ris;
-                        if (cl == null) {
-                            ris = Object.class.getResourceAsStream("/" + name);
-                        } else {
-                            ris = cl.getResourceAsStream(name);
-                        }
-                        return ris;
-                    }
-                });
+    public static InputStream getResourceAsStream(final ClassLoader cl, final String name) {
+        return (InputStream) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                InputStream ris;
+                if (cl == null) {
+                    ris = Object.class.getResourceAsStream("/" + name);
+                } else {
+                    ris = cl.getResourceAsStream(name);
+                }
+                return ris;
+            }
+        });
     }
 
     /**
@@ -150,9 +140,9 @@ public final class SecuritySupport {
      * and the caller's class loader.
      * 
      * @param bundle
-     *               the base name of the resource bundle, a fully qualified
-     *               class
-     *               name
+     *        the base name of the resource bundle, a fully qualified
+     *        class
+     *        name
      * @return a resource bundle for the given base name and the default locale
      */
     public static ResourceBundle getResourceBundle(String bundle) {
@@ -164,33 +154,28 @@ public final class SecuritySupport {
      * caller's class loader.
      * 
      * @param bundle
-     *               the base name of the resource bundle, a fully qualified
-     *               class
-     *               name
+     *        the base name of the resource bundle, a fully qualified
+     *        class
+     *        name
      * @param locale
-     *               the locale for which a resource bundle is desired
+     *        the locale for which a resource bundle is desired
      * @return a resource bundle for the given base name and locale
      */
-    public static ResourceBundle getResourceBundle(final String bundle,
-            final Locale locale) {
-        return AccessController.doPrivileged(
-                new PrivilegedAction<ResourceBundle>() {
-                    public ResourceBundle run() {
-                        try {
-                            return PropertyResourceBundle.getBundle(bundle,
-                                    locale);
-                        } catch (MissingResourceException e) {
-                            try {
-                                return PropertyResourceBundle.getBundle(bundle,
-                                        new Locale("en", "US"));
-                            } catch (MissingResourceException e2) {
-                                throw new MissingResourceException(
-                                        "Could not load any resource bundle by "
-                                                + bundle, bundle, "");
-                            }
-                        }
+    public static ResourceBundle getResourceBundle(final String bundle, final Locale locale) {
+        return AccessController.doPrivileged(new PrivilegedAction<ResourceBundle>() {
+            public ResourceBundle run() {
+                try {
+                    return PropertyResourceBundle.getBundle(bundle, locale);
+                } catch (MissingResourceException e) {
+                    try {
+                        return PropertyResourceBundle.getBundle(bundle, new Locale("en", "US"));
+                    } catch (MissingResourceException e2) {
+                        throw new MissingResourceException("Could not load any resource bundle by " + bundle,
+                                bundle, "");
                     }
-                });
+                }
+            }
+        });
     }
 
     static boolean getFileExists(final File f) {
@@ -213,7 +198,7 @@ public final class SecuritySupport {
      * Strip off path from an URI
      *
      * @param uri
-     *            an URI with full path
+     *        an URI with full path
      * @return the file name only
      */
     public static String sanitizePath(String uri) {
@@ -231,17 +216,16 @@ public final class SecuritySupport {
      * Check the protocol used in the systemId against allowed protocols
      *
      * @param systemId
-     *                         the Id of the URI
+     *        the Id of the URI
      * @param allowedProtocols
-     *                         a list of allowed protocols separated by comma
+     *        a list of allowed protocols separated by comma
      * @param accessAny
-     *                         keyword to indicate allowing any protocol
+     *        keyword to indicate allowing any protocol
      * @return the name of the protocol if rejected, null otherwise
      */
-    public static String checkAccess(String systemId, String allowedProtocols,
-            String accessAny) throws IOException {
-        if (systemId == null || (allowedProtocols != null && allowedProtocols
-                .equalsIgnoreCase(accessAny))) {
+    public static String checkAccess(String systemId, String allowedProtocols, String accessAny)
+            throws IOException {
+        if (systemId == null || (allowedProtocols != null && allowedProtocols.equalsIgnoreCase(accessAny))) {
             return null;
         }
 
@@ -270,13 +254,12 @@ public final class SecuritySupport {
      * case-insensitive while ignoring whitespaces.
      *
      * @param protocol
-     *                         a protocol
+     *        a protocol
      * @param allowedProtocols
-     *                         a list of allowed protocols
+     *        a list of allowed protocols
      * @return true if the protocol is in the list
      */
-    private static boolean isProtocolAllowed(String protocol,
-            String allowedProtocols) {
+    private static boolean isProtocolAllowed(String protocol, String allowedProtocols) {
         if (allowedProtocols == null) {
             return false;
         }
@@ -295,7 +278,7 @@ public final class SecuritySupport {
      * $java.home/lib/jaxp.properties if the system property is not specified
      *
      * @param propertyId
-     *                   the Id of the property
+     *        the Id of the property
      * @return the value of the property
      */
     public static String getJAXPSystemProperty(String sysPropertyId) {
@@ -311,7 +294,7 @@ public final class SecuritySupport {
      * program
      *
      * @param propertyId
-     *                   the Id of the property
+     *        the Id of the property
      * @return the value of the property
      */
     static String readJAXPProperty(String propertyId) {
@@ -321,9 +304,8 @@ public final class SecuritySupport {
             if (firstTime) {
                 synchronized (cacheProps) {
                     if (firstTime) {
-                        String configFile = getSystemProperty("java.home")
-                                + File.separator + "lib" + File.separator
-                                + "jaxp.properties";
+                        String configFile = getSystemProperty("java.home") + File.separator + "lib"
+                                + File.separator + "jaxp.properties";
                         File f = new File(configFile);
                         if (getFileExists(f)) {
                             is = getFileInputStream(f);
@@ -335,13 +317,11 @@ public final class SecuritySupport {
             }
             value = cacheProps.getProperty(propertyId);
 
-        } catch (Exception ex) {
-        } finally {
+        } catch (Exception ex) {} finally {
             if (is != null) {
                 try {
                     is.close();
-                } catch (IOException ex) {
-                }
+                } catch (IOException ex) {}
             }
         }
 

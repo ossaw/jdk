@@ -36,7 +36,7 @@ public class WindowsTextAreaUI extends BasicTextAreaUI {
      * Creates a UI for a JTextField.
      *
      * @param c
-     *          the text field
+     *        the text field
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {

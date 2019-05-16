@@ -28,7 +28,7 @@ public class UnsupportedClassVersionError extends ClassFormatError {
      * detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public UnsupportedClassVersionError(String s) {
         super(s);

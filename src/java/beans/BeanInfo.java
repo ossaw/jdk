@@ -116,10 +116,9 @@ public interface BeanInfo {
      * recommendation is to set a transparent background for the icons.
      *
      * @param iconKind
-     *                 the kind of icon requested
+     *        the kind of icon requested
      * @return an image object representing the requested icon, or {@code null}
      *         if no suitable icon is available
-     *
      * @see #ICON_COLOR_16x16
      * @see #ICON_COLOR_32x32
      * @see #ICON_MONO_16x16

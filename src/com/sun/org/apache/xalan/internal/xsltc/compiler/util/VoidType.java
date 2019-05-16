@@ -58,13 +58,11 @@ public final class VoidType extends Type {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            Type type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, Type type) {
         if (type == Type.String) {
             translateTo(classGen, methodGen, (StringType) type);
         } else {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
-                    toString(), type.toString());
+            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), type.toString());
             classGen.getParser().reportError(Constants.FATAL, err);
         }
     }
@@ -74,8 +72,7 @@ public final class VoidType extends Type {
      *
      * @see com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type#translateTo
      */
-    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen,
-            StringType type) {
+    public void translateTo(ClassGenerator classGen, MethodGenerator methodGen, StringType type) {
         final InstructionList il = methodGen.getInstructionList();
         il.append(new PUSH(classGen.getConstantPool(), ""));
     }
@@ -84,11 +81,9 @@ public final class VoidType extends Type {
      * Translates an external (primitive) Java type into a void. Only an
      * external "void" can be converted to this class.
      */
-    public void translateFrom(ClassGenerator classGen,
-            MethodGenerator methodGen, Class clazz) {
+    public void translateFrom(ClassGenerator classGen, MethodGenerator methodGen, Class clazz) {
         if (!clazz.getName().equals("void")) {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR,
-                    toString(), clazz.getName());
+            ErrorMsg err = new ErrorMsg(ErrorMsg.DATA_CONVERSION_ERR, toString(), clazz.getName());
             classGen.getParser().reportError(Constants.FATAL, err);
         }
     }

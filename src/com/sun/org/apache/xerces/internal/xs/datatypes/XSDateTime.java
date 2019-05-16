@@ -25,7 +25,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * table shows the methods defined for various XML Schema 1.0 built-in types.
  * 'X' marks whether a particular method is defined for a particular type.
  * Accessing undefined methods may return unexpected values.
- *
  * <table border="1">
  * <br/>
  * <tr>
@@ -202,13 +201,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * </p>
  *
  * @author Ankit Pasricha, IBM
- *
  */
 public interface XSDateTime {
 
     /**
      * @return years - can be negative for date-time related types;
-     *
      */
     public int getYears();
 
@@ -220,19 +217,16 @@ public interface XSDateTime {
 
     /**
      * @return days - cannot be negative;
-     *
      */
     public int getDays();
 
     /**
      * @return hours - cannot be negative;
-     *
      */
     public int getHours();
 
     /**
      * @return minutes - cannot be negative;
-     *
      */
     public int getMinutes();
 
@@ -245,19 +239,16 @@ public interface XSDateTime {
     /**
      * @return boolean (true when timezone is specified in the original lexical
      *         value)
-     *
      */
     public boolean hasTimeZone();
 
     /**
      * @return timezone hours (for GMT-xx:xx this will be negative),
-     *
      */
     public int getTimeZoneHours();
 
     /**
      * @return timezone minutes (for GMT-xx:xx this will be negative),
-     *
      */
     public int getTimeZoneMinutes();
 

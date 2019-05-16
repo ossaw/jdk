@@ -40,11 +40,11 @@ final class ColorModelHSV extends ColorModel {
      * Converts HSV components of a color to a set of RGB components.
      *
      * @param hsv
-     *            a float array with length equal to the number of HSV
-     *            components
+     *        a float array with length equal to the number of HSV
+     *        components
      * @param rgb
-     *            a float array with length of at least 3 that contains RGB
-     *            components of a color
+     *        a float array with length of at least 3 that contains RGB
+     *        components of a color
      * @return a float array that contains RGB components
      */
     private static float[] HSVtoRGB(float[] hsv, float[] rgb) {
@@ -97,11 +97,11 @@ final class ColorModelHSV extends ColorModel {
      * Converts RGB components of a color to a set of HSV components.
      *
      * @param rgb
-     *            a float array with length of at least 3 that contains RGB
-     *            components of a color
+     *        a float array with length of at least 3 that contains RGB
+     *        components of a color
      * @param hsv
-     *            a float array with length equal to the number of HSV
-     *            components
+     *        a float array with length equal to the number of HSV
+     *        components
      * @return a float array that contains HSV components
      */
     private static float[] RGBtoHSV(float[] rgb, float[] hsv) {

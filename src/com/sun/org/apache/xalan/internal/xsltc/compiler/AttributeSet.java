@@ -100,8 +100,7 @@ final class AttributeSet extends TopLevelElement {
         final String useSets = getAttribute("use-attribute-sets");
         if (useSets.length() > 0) {
             if (!Util.isValidQNames(useSets)) {
-                ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, useSets,
-                        this);
+                ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, useSets, this);
                 parser.reportError(Constants.ERROR, err);
             }
             _useSets = new UseAttributeSets(useSets, parser);
@@ -170,8 +169,7 @@ final class AttributeSet extends TopLevelElement {
             il.append(methodGen.loadIterator());
             il.append(methodGen.loadHandler());
             il.append(methodGen.loadCurrentNode());
-            final int method = cpg.addMethodref(classGen.getClassName(),
-                    methodName, ATTR_SET_SIG);
+            final int method = cpg.addMethodref(classGen.getClassName(), methodName, ATTR_SET_SIG);
             il.append(new INVOKESPECIAL(method));
         }
 

@@ -18,7 +18,6 @@ import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
 /**
  * Indicates an exceptional condition that occurred during the XML marshalling
  * or unmarshalling process.
- *
  * <p>
  * A <code>MarshalException</code> can contain a cause: another throwable that
  * caused this <code>MarshalException</code> to get thrown.
@@ -55,7 +54,7 @@ public class MarshalException extends Exception {
      * message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     public MarshalException(String message) {
         super(message);
@@ -69,11 +68,11 @@ public class MarshalException extends Exception {
      * <i>not</i> automatically incorporated in this exception's detail message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      * @param cause
-     *                the cause (A <tt>null</tt> value is permitted, and
-     *                indicates
-     *                that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and
+     *        indicates
+     *        that the cause is nonexistent or unknown.)
      */
     public MarshalException(String message, Throwable cause) {
         super(message);
@@ -87,8 +86,8 @@ public class MarshalException extends Exception {
      * <code>cause</code>).
      *
      * @param cause
-     *              the cause (A <tt>null</tt> value is permitted, and indicates
-     *              that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and indicates
+     *        that the cause is nonexistent or unknown.)
      */
     public MarshalException(Throwable cause) {
         super(cause == null ? null : cause.toString());
@@ -122,7 +121,7 @@ public class MarshalException extends Exception {
      * backtrace to the specified print stream.
      *
      * @param s
-     *          <code>PrintStream</code> to use for output
+     *        <code>PrintStream</code> to use for output
      */
     public void printStackTrace(PrintStream s) {
         super.printStackTrace(s);
@@ -134,7 +133,7 @@ public class MarshalException extends Exception {
      * backtrace to the specified print writer.
      *
      * @param s
-     *          <code>PrintWriter</code> to use for output
+     *        <code>PrintWriter</code> to use for output
      */
     public void printStackTrace(PrintWriter s) {
         super.printStackTrace(s);

@@ -22,13 +22,11 @@ import sun.util.logging.PlatformLogger;
  * the class are thread-safe.
  *
  * @author Anton Tarasov, Artem Ananiev
- *
  * @since 1.7
  */
 class WaitDispatchSupport implements SecondaryLoop {
 
-    private final static PlatformLogger log = PlatformLogger.getLogger(
-            "java.awt.event.WaitDispatchSupport");
+    private final static PlatformLogger log = PlatformLogger.getLogger("java.awt.event.WaitDispatchSupport");
 
     private EventDispatchThread dispatchThread;
     private EventFilter filter;
@@ -57,10 +55,9 @@ class WaitDispatchSupport implements SecondaryLoop {
      * dispatch thread.
      *
      * @param dispatchThread
-     *                       An event dispatch thread that should not stop
-     *                       dispatching
-     *                       events while waiting
-     *
+     *        An event dispatch thread that should not stop
+     *        dispatching
+     *        events while waiting
      * @since 1.7
      */
     public WaitDispatchSupport(EventDispatchThread dispatchThread) {
@@ -72,21 +69,18 @@ class WaitDispatchSupport implements SecondaryLoop {
      * dispatch thread.
      *
      * @param dispatchThread
-     *                       An event dispatch thread that should not stop
-     *                       dispatching
-     *                       events while waiting
+     *        An event dispatch thread that should not stop
+     *        dispatching
+     *        events while waiting
      * @param extCond
-     *                       A conditional object used to determine if the loop
-     *                       should be
-     *                       terminated
-     *
+     *        A conditional object used to determine if the loop
+     *        should be
+     *        terminated
      * @since 1.7
      */
-    public WaitDispatchSupport(EventDispatchThread dispatchThread,
-            Conditional extCond) {
+    public WaitDispatchSupport(EventDispatchThread dispatchThread, Conditional extCond) {
         if (dispatchThread == null) {
-            throw new IllegalArgumentException(
-                    "The dispatchThread can not be null");
+            throw new IllegalArgumentException("The dispatchThread can not be null");
         }
 
         this.dispatchThread = dispatchThread;
@@ -95,11 +89,10 @@ class WaitDispatchSupport implements SecondaryLoop {
             @Override
             public boolean evaluate() {
                 if (log.isLoggable(PlatformLogger.Level.FINEST)) {
-                    log.finest("evaluate(): blockingEDT=" + keepBlockingEDT
-                            .get() + ", blockingCT=" + keepBlockingCT.get());
+                    log.finest("evaluate(): blockingEDT=" + keepBlockingEDT.get() + ", blockingCT="
+                            + keepBlockingCT.get());
                 }
-                boolean extEvaluate = (extCondition != null) ? extCondition
-                        .evaluate() : true;
+                boolean extEvaluate = (extCondition != null) ? extCondition.evaluate() : true;
                 if (!keepBlockingEDT.get() || !extEvaluate) {
                     if (timerTask != null) {
                         timerTask.cancel();
@@ -120,29 +113,26 @@ class WaitDispatchSupport implements SecondaryLoop {
      * waiting. The filter is removed on completion of the waiting process.
      * <p>
      *
-     *
      * @param dispatchThread
-     *                       An event dispatch thread that should not stop
-     *                       dispatching
-     *                       events while waiting
+     *        An event dispatch thread that should not stop
+     *        dispatching
+     *        events while waiting
      * @param filter
-     *                       {@code EventFilter} to be set
+     *        {@code EventFilter} to be set
      * @param interval
-     *                       A time interval to wait for. Note that when the
-     *                       waiting
-     *                       process takes place on EDT there is no guarantee to
-     *                       stop it in
-     *                       the given time
-     *
+     *        A time interval to wait for. Note that when the
+     *        waiting
+     *        process takes place on EDT there is no guarantee to
+     *        stop it in
+     *        the given time
      * @since 1.7
      */
-    public WaitDispatchSupport(EventDispatchThread dispatchThread,
-            Conditional extCondition, EventFilter filter, long interval) {
+    public WaitDispatchSupport(EventDispatchThread dispatchThread, Conditional extCondition,
+            EventFilter filter, long interval) {
         this(dispatchThread, extCondition);
         this.filter = filter;
         if (interval < 0) {
-            throw new IllegalArgumentException(
-                    "The interval value must be >= 0");
+            throw new IllegalArgumentException("The interval value must be >= 0");
         }
         this.interval = interval;
         if (interval != 0) {
@@ -156,8 +146,8 @@ class WaitDispatchSupport implements SecondaryLoop {
     @Override
     public boolean enter() {
         if (log.isLoggable(PlatformLogger.Level.FINE)) {
-            log.fine("enter(): blockingEDT=" + keepBlockingEDT.get()
-                    + ", blockingCT=" + keepBlockingCT.get());
+            log.fine("enter(): blockingEDT=" + keepBlockingEDT.get() + ", blockingCT=" + keepBlockingCT
+                    .get());
         }
 
         if (!keepBlockingEDT.compareAndSet(false, true)) {
@@ -200,8 +190,7 @@ class WaitDispatchSupport implements SecondaryLoop {
             }
             // Dispose SequencedEvent we are dispatching on the the current
             // AppContext, to prevent us from hang - see 4531693 for details
-            SequencedEvent currentSE = KeyboardFocusManager
-                    .getCurrentKeyboardFocusManager()
+            SequencedEvent currentSE = KeyboardFocusManager.getCurrentKeyboardFocusManager()
                     .getCurrentSequencedEvent();
             if (currentSE != null) {
                 if (log.isLoggable(PlatformLogger.Level.FINE)) {
@@ -231,27 +220,22 @@ class WaitDispatchSupport implements SecondaryLoop {
                 }
                 try {
                     EventQueue eq = dispatchThread.getEventQueue();
-                    eq.postEvent(new PeerEvent(this, run,
-                            PeerEvent.PRIORITY_EVENT));
+                    eq.postEvent(new PeerEvent(this, run, PeerEvent.PRIORITY_EVENT));
                     keepBlockingCT.set(true);
                     if (interval > 0) {
                         long currTime = System.currentTimeMillis();
-                        while (keepBlockingCT.get() && ((extCondition != null)
-                                ? extCondition.evaluate()
-                                : true) && (currTime + interval > System
-                                        .currentTimeMillis())) {
+                        while (keepBlockingCT.get() && ((extCondition != null) ? extCondition.evaluate()
+                                : true) && (currTime + interval > System.currentTimeMillis())) {
                             getTreeLock().wait(interval);
                         }
                     } else {
-                        while (keepBlockingCT.get() && ((extCondition != null)
-                                ? extCondition.evaluate()
+                        while (keepBlockingCT.get() && ((extCondition != null) ? extCondition.evaluate()
                                 : true)) {
                             getTreeLock().wait();
                         }
                     }
                     if (log.isLoggable(PlatformLogger.Level.FINE)) {
-                        log.fine("waitDone " + keepBlockingEDT.get() + " "
-                                + keepBlockingCT.get());
+                        log.fine("waitDone " + keepBlockingEDT.get() + " " + keepBlockingCT.get());
                     }
                 } catch (InterruptedException e) {
                     if (log.isLoggable(PlatformLogger.Level.FINE)) {
@@ -278,8 +262,7 @@ class WaitDispatchSupport implements SecondaryLoop {
      */
     public boolean exit() {
         if (log.isLoggable(PlatformLogger.Level.FINE)) {
-            log.fine("exit(): blockingEDT=" + keepBlockingEDT.get()
-                    + ", blockingCT=" + keepBlockingCT.get());
+            log.fine("exit(): blockingEDT=" + keepBlockingEDT.get() + ", blockingCT=" + keepBlockingCT.get());
         }
         if (keepBlockingEDT.compareAndSet(true, false)) {
             wakeupEDT();
@@ -308,7 +291,6 @@ class WaitDispatchSupport implements SecondaryLoop {
             log.finest("wakeupEDT(): EDT == " + dispatchThread);
         }
         EventQueue eq = dispatchThread.getEventQueue();
-        eq.postEvent(new PeerEvent(this, wakingRunnable,
-                PeerEvent.PRIORITY_EVENT));
+        eq.postEvent(new PeerEvent(this, wakingRunnable, PeerEvent.PRIORITY_EVENT));
     }
 }

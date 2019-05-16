@@ -9,7 +9,6 @@ import javax.lang.model.element.Name;
 
 /**
  * A tree node for an HTML entity.
- *
  * <p>
  * &amp; name ;
  *

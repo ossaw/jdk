@@ -27,10 +27,8 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * comparison, etc.
  *
  * @xerces.internal
- *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
- *
  */
 public abstract class TypeValidator {
 
@@ -41,8 +39,8 @@ public abstract class TypeValidator {
     // for number types (decimal, double, float, and types derived from them),
     // get the BigDecimal, Double, Flout object.
     // for some types (string and derived), they just return the string itself
-    public abstract Object getActualValue(String content,
-            ValidationContext context) throws InvalidDatatypeValueException;
+    public abstract Object getActualValue(String content, ValidationContext context)
+            throws InvalidDatatypeValueException;
 
     // for ID/IDREF/ENTITY types, do some extra checking after the value is
     // checked to be valid with respect to both lexical representation and

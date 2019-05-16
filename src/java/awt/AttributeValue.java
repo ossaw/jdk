@@ -8,8 +8,7 @@ package java.awt;
 import sun.util.logging.PlatformLogger;
 
 abstract class AttributeValue {
-    private static final PlatformLogger log = PlatformLogger.getLogger(
-            "java.awt.AttributeValue");
+    private static final PlatformLogger log = PlatformLogger.getLogger("java.awt.AttributeValue");
     private final int value;
     private final String[] names;
 

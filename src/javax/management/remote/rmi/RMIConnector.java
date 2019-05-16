@@ -98,19 +98,15 @@ import sun.rmi.transport.LiveRef;
  *
  * @since 1.5
  */
-public class RMIConnector implements JMXConnector, Serializable,
-        JMXAddressable {
+public class RMIConnector implements JMXConnector, Serializable, JMXAddressable {
 
-    private static final ClassLogger logger = new ClassLogger(
-            "javax.management.remote.rmi", "RMIConnector");
+    private static final ClassLogger logger = new ClassLogger("javax.management.remote.rmi", "RMIConnector");
 
     private static final long serialVersionUID = 817323035842634473L;
 
-    private RMIConnector(RMIServer rmiServer, JMXServiceURL address,
-            Map<String, ?> environment) {
+    private RMIConnector(RMIServer rmiServer, JMXServiceURL address, Map<String, ?> environment) {
         if (rmiServer == null && address == null)
-            throw new IllegalArgumentException(
-                    "rmiServer and jmxServiceURL both null");
+            throw new IllegalArgumentException("rmiServer and jmxServiceURL both null");
         initTransients();
 
         this.rmiServer = rmiServer;
@@ -128,7 +124,6 @@ public class RMIConnector implements JMXConnector, Serializable,
      * Constructs an <code>RMIConnector</code> that will connect the RMI
      * connector server with the given address.
      * </p>
-     *
      * <p>
      * The address can refer directly to the connector server, using one of the
      * following syntaxes:
@@ -138,12 +133,10 @@ public class RMIConnector implements JMXConnector, Serializable,
      * service:jmx:rmi://<em>[host[:port]]</em>/stub/<em>encoded-stub</em>
      * service:jmx:iiop://<em>[host[:port]]</em>/ior/<em>encoded-IOR</em>
      * </pre>
-     *
      * <p>
      * (Here, the square brackets <code>[]</code> are not part of the address
      * but indicate that the host and port are optional.)
      * </p>
-     *
      * <p>
      * The address can instead indicate where to find an RMI stub through JNDI,
      * using one of the following syntaxes:
@@ -153,7 +146,6 @@ public class RMIConnector implements JMXConnector, Serializable,
      * service:jmx:rmi://<em>[host[:port]]</em>/jndi/<em>jndi-name</em>
      * service:jmx:iiop://<em>[host[:port]]</em>/jndi/<em>jndi-name</em>
      * </pre>
-     *
      * <p>
      * An implementation may also recognize additional address syntaxes, for
      * example:
@@ -164,20 +156,18 @@ public class RMIConnector implements JMXConnector, Serializable,
      * </pre>
      *
      * @param url
-     *                    the address of the RMI connector server.
-     *
+     *        the address of the RMI connector server.
      * @param environment
-     *                    additional attributes specifying how to make the
-     *                    connection.
-     *                    For JNDI-based addresses, these attributes can
-     *                    usefully
-     *                    include JNDI attributes recognized by
-     *                    {@link InitialContext#InitialContext(Hashtable)
-     *                    InitialContext}. This parameter can be null, which is
-     *                    equivalent to an empty Map.
-     *
+     *        additional attributes specifying how to make the
+     *        connection.
+     *        For JNDI-based addresses, these attributes can
+     *        usefully
+     *        include JNDI attributes recognized by
+     *        {@link InitialContext#InitialContext(Hashtable)
+     *        InitialContext}. This parameter can be null, which is
+     *        equivalent to an empty Map.
      * @exception IllegalArgumentException
-     *                                     if <code>url</code> is null.
+     *            if <code>url</code> is null.
      */
     public RMIConnector(JMXServiceURL url, Map<String, ?> environment) {
         this(null, url, environment);
@@ -188,16 +178,15 @@ public class RMIConnector implements JMXConnector, Serializable,
      * Constructs an <code>RMIConnector</code> using the given RMI stub.
      *
      * @param rmiServer
-     *                    an RMI stub representing the RMI connector server.
+     *        an RMI stub representing the RMI connector server.
      * @param environment
-     *                    additional attributes specifying how to make the
-     *                    connection.
-     *                    This parameter can be null, which is equivalent to an
-     *                    empty
-     *                    Map.
-     *
+     *        additional attributes specifying how to make the
+     *        connection.
+     *        This parameter can be null, which is equivalent to an
+     *        empty
+     *        Map.
      * @exception IllegalArgumentException
-     *                                     if <code>rmiServer</code> is null.
+     *            if <code>rmiServer</code> is null.
      */
     public RMIConnector(RMIServer rmiServer, Map<String, ?> environment) {
         this(rmiServer, null, environment);
@@ -234,7 +223,6 @@ public class RMIConnector implements JMXConnector, Serializable,
      * </p>
      *
      * @return the address of this connector, or null if it does not have one.
-     *
      * @since 1.6
      */
     public JMXServiceURL getAddress() {
@@ -247,10 +235,10 @@ public class RMIConnector implements JMXConnector, Serializable,
 
     /**
      * @throws IOException
-     *                     if the connection could not be made because of a
-     *                     communication problem, or in the case of the
-     *                     {@code iiop}
-     *                     protocol, that RMI/IIOP is not supported
+     *         if the connection could not be made because of a
+     *         communication problem, or in the case of the
+     *         {@code iiop}
+     *         protocol, that RMI/IIOP is not supported
      */
     public void connect() throws IOException {
         connect(null);
@@ -258,13 +246,12 @@ public class RMIConnector implements JMXConnector, Serializable,
 
     /**
      * @throws IOException
-     *                     if the connection could not be made because of a
-     *                     communication problem, or in the case of the
-     *                     {@code iiop}
-     *                     protocol, that RMI/IIOP is not supported
+     *         if the connection could not be made because of a
+     *         communication problem, or in the case of the
+     *         {@code iiop}
+     *         protocol, that RMI/IIOP is not supported
      */
-    public synchronized void connect(Map<String, ?> environment)
-            throws IOException {
+    public synchronized void connect(Map<String, ?> environment) throws IOException {
         final boolean tracing = logger.traceOn();
         String idstr = (tracing ? "[" + this.toString() + "]" : null);
 
@@ -281,9 +268,8 @@ public class RMIConnector implements JMXConnector, Serializable,
             if (tracing)
                 logger.trace("connect", idstr + " connecting...");
 
-            final Map<String, Object> usemap = new HashMap<String, Object>(
-                    (this.env == null) ? Collections.<String, Object>emptyMap()
-                            : this.env);
+            final Map<String, Object> usemap = new HashMap<String, Object>((this.env == null) ? Collections
+                    .<String, Object>emptyMap() : this.env);
 
             if (environment != null) {
                 EnvHelp.checkAttributes(environment);
@@ -293,14 +279,12 @@ public class RMIConnector implements JMXConnector, Serializable,
             // Get RMIServer stub from directory or URL encoding if needed.
             if (tracing)
                 logger.trace("connect", idstr + " finding stub...");
-            RMIServer stub = (rmiServer != null) ? rmiServer
-                    : findRMIServer(jmxServiceURL, usemap);
+            RMIServer stub = (rmiServer != null) ? rmiServer : findRMIServer(jmxServiceURL, usemap);
 
             // Check for secure RMIServer stub if the corresponding
             // client-side environment property is set to "true".
             //
-            String stringBoolean = (String) usemap.get(
-                    "jmx.remote.x.check.stub");
+            String stringBoolean = (String) usemap.get("jmx.remote.x.check.stub");
             boolean checkStub = EnvHelp.computeBooleanFromString(stringBoolean);
 
             if (checkStub)
@@ -326,8 +310,7 @@ public class RMIConnector implements JMXConnector, Serializable,
 
                     if ("rmi".equals(pro) && path.startsWith("/jndi/iiop:")) {
                         MalformedURLException mfe = new MalformedURLException(
-                                "Protocol is rmi but JNDI scheme is iiop: "
-                                        + jmxServiceURL);
+                                "Protocol is rmi but JNDI scheme is iiop: " + jmxServiceURL);
                         mfe.initCause(re);
                         throw mfe;
                     }
@@ -342,8 +325,7 @@ public class RMIConnector implements JMXConnector, Serializable,
                 logger.trace("connect", idstr + " getting class loader...");
             defaultClassLoader = EnvHelp.resolveClientClassLoader(usemap);
 
-            usemap.put(JMXConnectorFactory.DEFAULT_CLASS_LOADER,
-                    defaultClassLoader);
+            usemap.put(JMXConnectorFactory.DEFAULT_CLASS_LOADER, defaultClassLoader);
 
             rmiNotifClient = new RMINotifClient(defaultClassLoader, usemap);
 
@@ -358,9 +340,8 @@ public class RMIConnector implements JMXConnector, Serializable,
             //
             connectionId = getConnectionId();
 
-            Notification connectedNotif = new JMXConnectionNotification(
-                    JMXConnectionNotification.OPENED, this, connectionId,
-                    clientNotifSeqNo++, "Successful connection", null);
+            Notification connectedNotif = new JMXConnectionNotification(JMXConnectionNotification.OPENED,
+                    this, connectionId, clientNotifSeqNo++, "Successful connection", null);
             sendNotification(connectedNotif);
 
             if (tracing)
@@ -384,8 +365,7 @@ public class RMIConnector implements JMXConnector, Serializable,
     public synchronized String getConnectionId() throws IOException {
         if (terminated || !connected) {
             if (logger.traceOn())
-                logger.trace("getConnectionId", "[" + this.toString()
-                        + "] not connected.");
+                logger.trace("getConnectionId", "[" + this.toString() + "] not connected.");
 
             throw new IOException("Not connected");
         }
@@ -396,51 +376,45 @@ public class RMIConnector implements JMXConnector, Serializable,
         return connection.getConnectionId();
     }
 
-    public synchronized MBeanServerConnection getMBeanServerConnection()
-            throws IOException {
+    public synchronized MBeanServerConnection getMBeanServerConnection() throws IOException {
         return getMBeanServerConnection(null);
     }
 
-    public synchronized MBeanServerConnection getMBeanServerConnection(
-            Subject delegationSubject) throws IOException {
+    public synchronized MBeanServerConnection getMBeanServerConnection(Subject delegationSubject)
+            throws IOException {
 
         if (terminated) {
             if (logger.traceOn())
-                logger.trace("getMBeanServerConnection", "[" + this.toString()
-                        + "] already closed.");
+                logger.trace("getMBeanServerConnection", "[" + this.toString() + "] already closed.");
             throw new IOException("Connection closed");
         } else if (!connected) {
             if (logger.traceOn())
-                logger.trace("getMBeanServerConnection", "[" + this.toString()
-                        + "] is not connected.");
+                logger.trace("getMBeanServerConnection", "[" + this.toString() + "] is not connected.");
             throw new IOException("Not connected");
         }
 
         return getConnectionWithSubject(delegationSubject);
     }
 
-    public void addConnectionNotificationListener(NotificationListener listener,
-            NotificationFilter filter, Object handback) {
+    public void addConnectionNotificationListener(NotificationListener listener, NotificationFilter filter,
+            Object handback) {
         if (listener == null)
             throw new NullPointerException("listener");
-        connectionBroadcaster.addNotificationListener(listener, filter,
-                handback);
+        connectionBroadcaster.addNotificationListener(listener, filter, handback);
     }
 
-    public void removeConnectionNotificationListener(
-            NotificationListener listener) throws ListenerNotFoundException {
+    public void removeConnectionNotificationListener(NotificationListener listener)
+            throws ListenerNotFoundException {
         if (listener == null)
             throw new NullPointerException("listener");
         connectionBroadcaster.removeNotificationListener(listener);
     }
 
-    public void removeConnectionNotificationListener(
-            NotificationListener listener, NotificationFilter filter,
+    public void removeConnectionNotificationListener(NotificationListener listener, NotificationFilter filter,
             Object handback) throws ListenerNotFoundException {
         if (listener == null)
             throw new NullPointerException("listener");
-        connectionBroadcaster.removeNotificationListener(listener, filter,
-                handback);
+        connectionBroadcaster.removeNotificationListener(listener, filter, handback);
     }
 
     private void sendNotification(Notification n) {
@@ -499,14 +473,11 @@ public class RMIConnector implements JMXConnector, Serializable,
             try {
                 rmiNotifClient.terminate();
                 if (tracing)
-                    logger.trace("close", idstr
-                            + " RMI Notification client terminated.");
+                    logger.trace("close", idstr + " RMI Notification client terminated.");
             } catch (RuntimeException x) {
                 closeException = x;
                 if (tracing)
-                    logger.trace("close", idstr
-                            + " Failed to terminate RMI Notification client: "
-                            + x);
+                    logger.trace("close", idstr + " Failed to terminate RMI Notification client: " + x);
                 if (debug)
                     logger.debug("close", x);
             }
@@ -522,8 +493,7 @@ public class RMIConnector implements JMXConnector, Serializable,
             } catch (IOException e) {
                 closeException = e;
                 if (tracing)
-                    logger.trace("close", idstr + " Failed to close RMIServer: "
-                            + e);
+                    logger.trace("close", idstr + " Failed to close RMIServer: " + e);
                 if (debug)
                     logger.debug("close", e);
             }
@@ -540,9 +510,8 @@ public class RMIConnector implements JMXConnector, Serializable,
          */
 
         if (savedConnectionId != null) {
-            Notification closedNotif = new JMXConnectionNotification(
-                    JMXConnectionNotification.CLOSED, this, savedConnectionId,
-                    clientNotifSeqNo++, "Client has been closed", null);
+            Notification closedNotif = new JMXConnectionNotification(JMXConnectionNotification.CLOSED, this,
+                    savedConnectionId, clientNotifSeqNo++, "Client has been closed", null);
             sendNotification(closedNotif);
         }
 
@@ -550,68 +519,56 @@ public class RMIConnector implements JMXConnector, Serializable,
         //
         if (closeException != null) {
             if (tracing)
-                logger.trace("close", idstr + " failed to close: "
-                        + closeException);
+                logger.trace("close", idstr + " failed to close: " + closeException);
             if (closeException instanceof IOException)
                 throw (IOException) closeException;
             if (closeException instanceof RuntimeException)
                 throw (RuntimeException) closeException;
-            final IOException x = new IOException("Failed to close: "
-                    + closeException);
+            final IOException x = new IOException("Failed to close: " + closeException);
             throw EnvHelp.initCause(x, closeException);
         }
     }
 
     // added for re-connection
-    private Integer addListenerWithSubject(ObjectName name,
-            MarshalledObject<NotificationFilter> filter,
-            Subject delegationSubject, boolean reconnect)
-            throws InstanceNotFoundException, IOException {
+    private Integer addListenerWithSubject(ObjectName name, MarshalledObject<NotificationFilter> filter,
+            Subject delegationSubject, boolean reconnect) throws InstanceNotFoundException, IOException {
 
         final boolean debug = logger.debugOn();
         if (debug)
-            logger.debug("addListenerWithSubject",
-                    "(ObjectName,MarshalledObject,Subject)");
+            logger.debug("addListenerWithSubject", "(ObjectName,MarshalledObject,Subject)");
 
         final ObjectName[] names = new ObjectName[] { name };
-        final MarshalledObject<NotificationFilter>[] filters = Util.cast(
-                new MarshalledObject<?>[] { filter });
-        final Subject[] delegationSubjects = new Subject[] {
-                delegationSubject };
+        final MarshalledObject<NotificationFilter>[] filters = Util.cast(new MarshalledObject<?>[] {
+                filter });
+        final Subject[] delegationSubjects = new Subject[] { delegationSubject };
 
-        final Integer[] listenerIDs = addListenersWithSubjects(names, filters,
-                delegationSubjects, reconnect);
+        final Integer[] listenerIDs = addListenersWithSubjects(names, filters, delegationSubjects, reconnect);
 
         if (debug)
-            logger.debug("addListenerWithSubject", "listenerID="
-                    + listenerIDs[0]);
+            logger.debug("addListenerWithSubject", "listenerID=" + listenerIDs[0]);
         return listenerIDs[0];
     }
 
     // added for re-connection
     private Integer[] addListenersWithSubjects(ObjectName[] names,
-            MarshalledObject<NotificationFilter>[] filters,
-            Subject[] delegationSubjects, boolean reconnect)
+            MarshalledObject<NotificationFilter>[] filters, Subject[] delegationSubjects, boolean reconnect)
             throws InstanceNotFoundException, IOException {
 
         final boolean debug = logger.debugOn();
         if (debug)
-            logger.debug("addListenersWithSubjects",
-                    "(ObjectName[],MarshalledObject[],Subject[])");
+            logger.debug("addListenersWithSubjects", "(ObjectName[],MarshalledObject[],Subject[])");
 
         final ClassLoader old = pushDefaultClassLoader();
         Integer[] listenerIDs = null;
 
         try {
-            listenerIDs = connection.addNotificationListeners(names, filters,
-                    delegationSubjects);
+            listenerIDs = connection.addNotificationListeners(names, filters, delegationSubjects);
         } catch (NoSuchObjectException noe) {
             // maybe reconnect
             if (reconnect) {
                 communicatorAdmin.gotIOException(noe);
 
-                listenerIDs = connection.addNotificationListeners(names,
-                        filters, delegationSubjects);
+                listenerIDs = connection.addNotificationListeners(names, filters, delegationSubjects);
             } else {
                 throw noe;
             }
@@ -623,9 +580,8 @@ public class RMIConnector implements JMXConnector, Serializable,
         }
 
         if (debug)
-            logger.debug("addListenersWithSubjects", "registered "
-                    + ((listenerIDs == null) ? 0 : listenerIDs.length)
-                    + " listener(s)");
+            logger.debug("addListenersWithSubjects", "registered " + ((listenerIDs == null) ? 0
+                    : listenerIDs.length) + " listener(s)");
         return listenerIDs;
     }
 
@@ -643,112 +599,92 @@ public class RMIConnector implements JMXConnector, Serializable,
             this.delegationSubject = delegationSubject;
         }
 
-        public ObjectInstance createMBean(String className, ObjectName name)
-                throws ReflectionException, InstanceAlreadyExistsException,
-                MBeanRegistrationException, MBeanException,
+        public ObjectInstance createMBean(String className, ObjectName name) throws ReflectionException,
+                InstanceAlreadyExistsException, MBeanRegistrationException, MBeanException,
                 NotCompliantMBeanException, IOException {
             if (logger.debugOn())
-                logger.debug("createMBean(String,ObjectName)", "className="
-                        + className + ", name=" + name);
+                logger.debug("createMBean(String,ObjectName)", "className=" + className + ", name=" + name);
 
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                return connection.createMBean(className, name,
-                        delegationSubject);
+                return connection.createMBean(className, name, delegationSubject);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                return connection.createMBean(className, name,
-                        delegationSubject);
+                return connection.createMBean(className, name, delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
         }
 
-        public ObjectInstance createMBean(String className, ObjectName name,
-                ObjectName loaderName) throws ReflectionException,
-                InstanceAlreadyExistsException, MBeanRegistrationException,
-                MBeanException, NotCompliantMBeanException,
-                InstanceNotFoundException, IOException {
+        public ObjectInstance createMBean(String className, ObjectName name, ObjectName loaderName)
+                throws ReflectionException, InstanceAlreadyExistsException, MBeanRegistrationException,
+                MBeanException, NotCompliantMBeanException, InstanceNotFoundException, IOException {
 
             if (logger.debugOn())
-                logger.debug("createMBean(String,ObjectName,ObjectName)",
-                        "className=" + className + ", name=" + name
-                                + ", loaderName=" + loaderName + ")");
+                logger.debug("createMBean(String,ObjectName,ObjectName)", "className=" + className + ", name="
+                        + name + ", loaderName=" + loaderName + ")");
 
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                return connection.createMBean(className, name, loaderName,
-                        delegationSubject);
+                return connection.createMBean(className, name, loaderName, delegationSubject);
 
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                return connection.createMBean(className, name, loaderName,
-                        delegationSubject);
+                return connection.createMBean(className, name, loaderName, delegationSubject);
 
             } finally {
                 popDefaultClassLoader(old);
             }
         }
 
-        public ObjectInstance createMBean(String className, ObjectName name,
+        public ObjectInstance createMBean(String className, ObjectName name, Object params[],
+                String signature[]) throws ReflectionException, InstanceAlreadyExistsException,
+                MBeanRegistrationException, MBeanException, NotCompliantMBeanException, IOException {
+            if (logger.debugOn())
+                logger.debug("createMBean(String,ObjectName,Object[],String[])", "className=" + className
+                        + ", name=" + name + ", signature=" + strings(signature));
+
+            final MarshalledObject<Object[]> sParams = new MarshalledObject<Object[]>(params);
+            final ClassLoader old = pushDefaultClassLoader();
+            try {
+                return connection.createMBean(className, name, sParams, signature, delegationSubject);
+            } catch (IOException ioe) {
+                communicatorAdmin.gotIOException(ioe);
+
+                return connection.createMBean(className, name, sParams, signature, delegationSubject);
+            } finally {
+                popDefaultClassLoader(old);
+            }
+        }
+
+        public ObjectInstance createMBean(String className, ObjectName name, ObjectName loaderName,
                 Object params[], String signature[]) throws ReflectionException,
-                InstanceAlreadyExistsException, MBeanRegistrationException,
-                MBeanException, NotCompliantMBeanException, IOException {
+                InstanceAlreadyExistsException, MBeanRegistrationException, MBeanException,
+                NotCompliantMBeanException, InstanceNotFoundException, IOException {
             if (logger.debugOn())
-                logger.debug("createMBean(String,ObjectName,Object[],String[])",
-                        "className=" + className + ", name=" + name
-                                + ", signature=" + strings(signature));
+                logger.debug("createMBean(String,ObjectName,ObjectName,Object[],String[])", "className="
+                        + className + ", name=" + name + ", loaderName=" + loaderName + ", signature="
+                        + strings(signature));
 
-            final MarshalledObject<Object[]> sParams = new MarshalledObject<Object[]>(
-                    params);
+            final MarshalledObject<Object[]> sParams = new MarshalledObject<Object[]>(params);
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                return connection.createMBean(className, name, sParams,
-                        signature, delegationSubject);
+                return connection.createMBean(className, name, loaderName, sParams, signature,
+                        delegationSubject);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                return connection.createMBean(className, name, sParams,
-                        signature, delegationSubject);
+                return connection.createMBean(className, name, loaderName, sParams, signature,
+                        delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
         }
 
-        public ObjectInstance createMBean(String className, ObjectName name,
-                ObjectName loaderName, Object params[], String signature[])
-                throws ReflectionException, InstanceAlreadyExistsException,
-                MBeanRegistrationException, MBeanException,
-                NotCompliantMBeanException, InstanceNotFoundException,
-                IOException {
-            if (logger.debugOn())
-                logger.debug(
-                        "createMBean(String,ObjectName,ObjectName,Object[],String[])",
-                        "className=" + className + ", name=" + name
-                                + ", loaderName=" + loaderName + ", signature="
-                                + strings(signature));
-
-            final MarshalledObject<Object[]> sParams = new MarshalledObject<Object[]>(
-                    params);
-            final ClassLoader old = pushDefaultClassLoader();
-            try {
-                return connection.createMBean(className, name, loaderName,
-                        sParams, signature, delegationSubject);
-            } catch (IOException ioe) {
-                communicatorAdmin.gotIOException(ioe);
-
-                return connection.createMBean(className, name, loaderName,
-                        sParams, signature, delegationSubject);
-            } finally {
-                popDefaultClassLoader(old);
-            }
-        }
-
-        public void unregisterMBean(ObjectName name)
-                throws InstanceNotFoundException, MBeanRegistrationException,
-                IOException {
+        public void unregisterMBean(ObjectName name) throws InstanceNotFoundException,
+                MBeanRegistrationException, IOException {
             if (logger.debugOn())
                 logger.debug("unregisterMBean", "name=" + name);
 
@@ -764,8 +700,8 @@ public class RMIConnector implements JMXConnector, Serializable,
             }
         }
 
-        public ObjectInstance getObjectInstance(ObjectName name)
-                throws InstanceNotFoundException, IOException {
+        public ObjectInstance getObjectInstance(ObjectName name) throws InstanceNotFoundException,
+                IOException {
             if (logger.debugOn())
                 logger.debug("getObjectInstance", "name=" + name);
 
@@ -781,14 +717,11 @@ public class RMIConnector implements JMXConnector, Serializable,
             }
         }
 
-        public Set<ObjectInstance> queryMBeans(ObjectName name, QueryExp query)
-                throws IOException {
+        public Set<ObjectInstance> queryMBeans(ObjectName name, QueryExp query) throws IOException {
             if (logger.debugOn())
-                logger.debug("queryMBeans", "name=" + name + ", query="
-                        + query);
+                logger.debug("queryMBeans", "name=" + name + ", query=" + query);
 
-            final MarshalledObject<QueryExp> sQuery = new MarshalledObject<QueryExp>(
-                    query);
+            final MarshalledObject<QueryExp> sQuery = new MarshalledObject<QueryExp>(query);
             final ClassLoader old = pushDefaultClassLoader();
             try {
                 return connection.queryMBeans(name, sQuery, delegationSubject);
@@ -801,13 +734,11 @@ public class RMIConnector implements JMXConnector, Serializable,
             }
         }
 
-        public Set<ObjectName> queryNames(ObjectName name, QueryExp query)
-                throws IOException {
+        public Set<ObjectName> queryNames(ObjectName name, QueryExp query) throws IOException {
             if (logger.debugOn())
                 logger.debug("queryNames", "name=" + name + ", query=" + query);
 
-            final MarshalledObject<QueryExp> sQuery = new MarshalledObject<QueryExp>(
-                    query);
+            final MarshalledObject<QueryExp> sQuery = new MarshalledObject<QueryExp>(query);
             final ClassLoader old = pushDefaultClassLoader();
             try {
                 return connection.queryNames(name, sQuery, delegationSubject);
@@ -852,60 +783,49 @@ public class RMIConnector implements JMXConnector, Serializable,
             }
         }
 
-        public Object getAttribute(ObjectName name, String attribute)
-                throws MBeanException, AttributeNotFoundException,
-                InstanceNotFoundException, ReflectionException, IOException {
+        public Object getAttribute(ObjectName name, String attribute) throws MBeanException,
+                AttributeNotFoundException, InstanceNotFoundException, ReflectionException, IOException {
             if (logger.debugOn())
-                logger.debug("getAttribute", "name=" + name + ", attribute="
-                        + attribute);
+                logger.debug("getAttribute", "name=" + name + ", attribute=" + attribute);
 
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                return connection.getAttribute(name, attribute,
-                        delegationSubject);
+                return connection.getAttribute(name, attribute, delegationSubject);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                return connection.getAttribute(name, attribute,
-                        delegationSubject);
+                return connection.getAttribute(name, attribute, delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
         }
 
         public AttributeList getAttributes(ObjectName name, String[] attributes)
-                throws InstanceNotFoundException, ReflectionException,
-                IOException {
+                throws InstanceNotFoundException, ReflectionException, IOException {
             if (logger.debugOn())
-                logger.debug("getAttributes", "name=" + name + ", attributes="
-                        + strings(attributes));
+                logger.debug("getAttributes", "name=" + name + ", attributes=" + strings(attributes));
 
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                return connection.getAttributes(name, attributes,
-                        delegationSubject);
+                return connection.getAttributes(name, attributes, delegationSubject);
 
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                return connection.getAttributes(name, attributes,
-                        delegationSubject);
+                return connection.getAttributes(name, attributes, delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
         }
 
-        public void setAttribute(ObjectName name, Attribute attribute)
-                throws InstanceNotFoundException, AttributeNotFoundException,
-                InvalidAttributeValueException, MBeanException,
+        public void setAttribute(ObjectName name, Attribute attribute) throws InstanceNotFoundException,
+                AttributeNotFoundException, InvalidAttributeValueException, MBeanException,
                 ReflectionException, IOException {
 
             if (logger.debugOn())
-                logger.debug("setAttribute", "name=" + name
-                        + ", attribute name=" + attribute.getName());
+                logger.debug("setAttribute", "name=" + name + ", attribute name=" + attribute.getName());
 
-            final MarshalledObject<Attribute> sAttribute = new MarshalledObject<Attribute>(
-                    attribute);
+            final MarshalledObject<Attribute> sAttribute = new MarshalledObject<Attribute>(attribute);
             final ClassLoader old = pushDefaultClassLoader();
             try {
                 connection.setAttribute(name, sAttribute, delegationSubject);
@@ -918,52 +838,43 @@ public class RMIConnector implements JMXConnector, Serializable,
             }
         }
 
-        public AttributeList setAttributes(ObjectName name,
-                AttributeList attributes) throws InstanceNotFoundException,
-                ReflectionException, IOException {
+        public AttributeList setAttributes(ObjectName name, AttributeList attributes)
+                throws InstanceNotFoundException, ReflectionException, IOException {
 
             if (logger.debugOn()) {
-                logger.debug("setAttributes", "name=" + name
-                        + ", attribute names=" + getAttributesNames(
-                                attributes));
+                logger.debug("setAttributes", "name=" + name + ", attribute names=" + getAttributesNames(
+                        attributes));
             }
 
             final MarshalledObject<AttributeList> sAttributes = new MarshalledObject<AttributeList>(
                     attributes);
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                return connection.setAttributes(name, sAttributes,
-                        delegationSubject);
+                return connection.setAttributes(name, sAttributes, delegationSubject);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                return connection.setAttributes(name, sAttributes,
-                        delegationSubject);
+                return connection.setAttributes(name, sAttributes, delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
         }
 
-        public Object invoke(ObjectName name, String operationName,
-                Object params[], String signature[])
-                throws InstanceNotFoundException, MBeanException,
-                ReflectionException, IOException {
+        public Object invoke(ObjectName name, String operationName, Object params[], String signature[])
+                throws InstanceNotFoundException, MBeanException, ReflectionException, IOException {
 
             if (logger.debugOn())
-                logger.debug("invoke", "name=" + name + ", operationName="
-                        + operationName + ", signature=" + strings(signature));
+                logger.debug("invoke", "name=" + name + ", operationName=" + operationName + ", signature="
+                        + strings(signature));
 
-            final MarshalledObject<Object[]> sParams = new MarshalledObject<Object[]>(
-                    params);
+            final MarshalledObject<Object[]> sParams = new MarshalledObject<Object[]>(params);
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                return connection.invoke(name, operationName, sParams,
-                        signature, delegationSubject);
+                return connection.invoke(name, operationName, sParams, signature, delegationSubject);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                return connection.invoke(name, operationName, sParams,
-                        signature, delegationSubject);
+                return connection.invoke(name, operationName, sParams, signature, delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
@@ -1001,9 +912,8 @@ public class RMIConnector implements JMXConnector, Serializable,
             }
         }
 
-        public MBeanInfo getMBeanInfo(ObjectName name)
-                throws InstanceNotFoundException, IntrospectionException,
-                ReflectionException, IOException {
+        public MBeanInfo getMBeanInfo(ObjectName name) throws InstanceNotFoundException,
+                IntrospectionException, ReflectionException, IOException {
 
             if (logger.debugOn())
                 logger.debug("getMBeanInfo", "name=" + name);
@@ -1019,100 +929,83 @@ public class RMIConnector implements JMXConnector, Serializable,
             }
         }
 
-        public boolean isInstanceOf(ObjectName name, String className)
-                throws InstanceNotFoundException, IOException {
-            if (logger.debugOn())
-                logger.debug("isInstanceOf", "name=" + name + ", className="
-                        + className);
-
-            final ClassLoader old = pushDefaultClassLoader();
-            try {
-                return connection.isInstanceOf(name, className,
-                        delegationSubject);
-            } catch (IOException ioe) {
-                communicatorAdmin.gotIOException(ioe);
-
-                return connection.isInstanceOf(name, className,
-                        delegationSubject);
-            } finally {
-                popDefaultClassLoader(old);
-            }
-        }
-
-        public void addNotificationListener(ObjectName name,
-                ObjectName listener, NotificationFilter filter, Object handback)
-                throws InstanceNotFoundException, IOException {
-
-            if (logger.debugOn())
-                logger.debug("addNotificationListener"
-                        + "(ObjectName,ObjectName,NotificationFilter,Object)",
-                        "name=" + name + ", listener=" + listener + ", filter="
-                                + filter + ", handback=" + handback);
-
-            final MarshalledObject<NotificationFilter> sFilter = new MarshalledObject<NotificationFilter>(
-                    filter);
-            final MarshalledObject<Object> sHandback = new MarshalledObject<Object>(
-                    handback);
-            final ClassLoader old = pushDefaultClassLoader();
-            try {
-                connection.addNotificationListener(name, listener, sFilter,
-                        sHandback, delegationSubject);
-            } catch (IOException ioe) {
-                communicatorAdmin.gotIOException(ioe);
-
-                connection.addNotificationListener(name, listener, sFilter,
-                        sHandback, delegationSubject);
-            } finally {
-                popDefaultClassLoader(old);
-            }
-        }
-
-        public void removeNotificationListener(ObjectName name,
-                ObjectName listener) throws InstanceNotFoundException,
-                ListenerNotFoundException, IOException {
-
-            if (logger.debugOn())
-                logger.debug("removeNotificationListener"
-                        + "(ObjectName,ObjectName)", "name=" + name
-                                + ", listener=" + listener);
-
-            final ClassLoader old = pushDefaultClassLoader();
-            try {
-                connection.removeNotificationListener(name, listener,
-                        delegationSubject);
-            } catch (IOException ioe) {
-                communicatorAdmin.gotIOException(ioe);
-
-                connection.removeNotificationListener(name, listener,
-                        delegationSubject);
-            } finally {
-                popDefaultClassLoader(old);
-            }
-        }
-
-        public void removeNotificationListener(ObjectName name,
-                ObjectName listener, NotificationFilter filter, Object handback)
-                throws InstanceNotFoundException, ListenerNotFoundException,
+        public boolean isInstanceOf(ObjectName name, String className) throws InstanceNotFoundException,
                 IOException {
             if (logger.debugOn())
-                logger.debug("removeNotificationListener"
-                        + "(ObjectName,ObjectName,NotificationFilter,Object)",
-                        "name=" + name + ", listener=" + listener + ", filter="
-                                + filter + ", handback=" + handback);
+                logger.debug("isInstanceOf", "name=" + name + ", className=" + className);
 
-            final MarshalledObject<NotificationFilter> sFilter = new MarshalledObject<NotificationFilter>(
-                    filter);
-            final MarshalledObject<Object> sHandback = new MarshalledObject<Object>(
-                    handback);
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                connection.removeNotificationListener(name, listener, sFilter,
-                        sHandback, delegationSubject);
+                return connection.isInstanceOf(name, className, delegationSubject);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                connection.removeNotificationListener(name, listener, sFilter,
-                        sHandback, delegationSubject);
+                return connection.isInstanceOf(name, className, delegationSubject);
+            } finally {
+                popDefaultClassLoader(old);
+            }
+        }
+
+        public void addNotificationListener(ObjectName name, ObjectName listener, NotificationFilter filter,
+                Object handback) throws InstanceNotFoundException, IOException {
+
+            if (logger.debugOn())
+                logger.debug("addNotificationListener" + "(ObjectName,ObjectName,NotificationFilter,Object)",
+                        "name=" + name + ", listener=" + listener + ", filter=" + filter + ", handback="
+                                + handback);
+
+            final MarshalledObject<NotificationFilter> sFilter = new MarshalledObject<NotificationFilter>(
+                    filter);
+            final MarshalledObject<Object> sHandback = new MarshalledObject<Object>(handback);
+            final ClassLoader old = pushDefaultClassLoader();
+            try {
+                connection.addNotificationListener(name, listener, sFilter, sHandback, delegationSubject);
+            } catch (IOException ioe) {
+                communicatorAdmin.gotIOException(ioe);
+
+                connection.addNotificationListener(name, listener, sFilter, sHandback, delegationSubject);
+            } finally {
+                popDefaultClassLoader(old);
+            }
+        }
+
+        public void removeNotificationListener(ObjectName name, ObjectName listener)
+                throws InstanceNotFoundException, ListenerNotFoundException, IOException {
+
+            if (logger.debugOn())
+                logger.debug("removeNotificationListener" + "(ObjectName,ObjectName)", "name=" + name
+                        + ", listener=" + listener);
+
+            final ClassLoader old = pushDefaultClassLoader();
+            try {
+                connection.removeNotificationListener(name, listener, delegationSubject);
+            } catch (IOException ioe) {
+                communicatorAdmin.gotIOException(ioe);
+
+                connection.removeNotificationListener(name, listener, delegationSubject);
+            } finally {
+                popDefaultClassLoader(old);
+            }
+        }
+
+        public void removeNotificationListener(ObjectName name, ObjectName listener,
+                NotificationFilter filter, Object handback) throws InstanceNotFoundException,
+                ListenerNotFoundException, IOException {
+            if (logger.debugOn())
+                logger.debug("removeNotificationListener"
+                        + "(ObjectName,ObjectName,NotificationFilter,Object)", "name=" + name + ", listener="
+                                + listener + ", filter=" + filter + ", handback=" + handback);
+
+            final MarshalledObject<NotificationFilter> sFilter = new MarshalledObject<NotificationFilter>(
+                    filter);
+            final MarshalledObject<Object> sHandback = new MarshalledObject<Object>(handback);
+            final ClassLoader old = pushDefaultClassLoader();
+            try {
+                connection.removeNotificationListener(name, listener, sFilter, sHandback, delegationSubject);
+            } catch (IOException ioe) {
+                communicatorAdmin.gotIOException(ioe);
+
+                connection.removeNotificationListener(name, listener, sFilter, sHandback, delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
@@ -1120,88 +1013,72 @@ public class RMIConnector implements JMXConnector, Serializable,
 
         // Specific Notification Handle ----------------------------------
 
-        public void addNotificationListener(ObjectName name,
-                NotificationListener listener, NotificationFilter filter,
-                Object handback) throws InstanceNotFoundException, IOException {
+        public void addNotificationListener(ObjectName name, NotificationListener listener,
+                NotificationFilter filter, Object handback) throws InstanceNotFoundException, IOException {
 
             final boolean debug = logger.debugOn();
 
             if (debug)
-                logger.debug("addNotificationListener"
-                        + "(ObjectName,NotificationListener,"
-                        + "NotificationFilter,Object)", "name=" + name
-                                + ", listener=" + listener + ", filter="
-                                + filter + ", handback=" + handback);
+                logger.debug("addNotificationListener" + "(ObjectName,NotificationListener,"
+                        + "NotificationFilter,Object)", "name=" + name + ", listener=" + listener
+                                + ", filter=" + filter + ", handback=" + handback);
 
-            final Integer listenerID = addListenerWithSubject(name,
-                    new MarshalledObject<NotificationFilter>(filter),
-                    delegationSubject, true);
-            rmiNotifClient.addNotificationListener(listenerID, name, listener,
-                    filter, handback, delegationSubject);
+            final Integer listenerID = addListenerWithSubject(name, new MarshalledObject<NotificationFilter>(
+                    filter), delegationSubject, true);
+            rmiNotifClient.addNotificationListener(listenerID, name, listener, filter, handback,
+                    delegationSubject);
         }
 
-        public void removeNotificationListener(ObjectName name,
-                NotificationListener listener) throws InstanceNotFoundException,
-                ListenerNotFoundException, IOException {
+        public void removeNotificationListener(ObjectName name, NotificationListener listener)
+                throws InstanceNotFoundException, ListenerNotFoundException, IOException {
 
             final boolean debug = logger.debugOn();
 
             if (debug)
-                logger.debug("removeNotificationListener"
-                        + "(ObjectName,NotificationListener)", "name=" + name
-                                + ", listener=" + listener);
+                logger.debug("removeNotificationListener" + "(ObjectName,NotificationListener)", "name="
+                        + name + ", listener=" + listener);
 
-            final Integer[] ret = rmiNotifClient.removeNotificationListener(
-                    name, listener);
+            final Integer[] ret = rmiNotifClient.removeNotificationListener(name, listener);
 
             if (debug)
-                logger.debug("removeNotificationListener", "listenerIDs="
-                        + objects(ret));
+                logger.debug("removeNotificationListener", "listenerIDs=" + objects(ret));
 
             final ClassLoader old = pushDefaultClassLoader();
 
             try {
-                connection.removeNotificationListeners(name, ret,
-                        delegationSubject);
+                connection.removeNotificationListeners(name, ret, delegationSubject);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                connection.removeNotificationListeners(name, ret,
-                        delegationSubject);
+                connection.removeNotificationListeners(name, ret, delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
 
         }
 
-        public void removeNotificationListener(ObjectName name,
-                NotificationListener listener, NotificationFilter filter,
-                Object handback) throws InstanceNotFoundException,
+        public void removeNotificationListener(ObjectName name, NotificationListener listener,
+                NotificationFilter filter, Object handback) throws InstanceNotFoundException,
                 ListenerNotFoundException, IOException {
             final boolean debug = logger.debugOn();
 
             if (debug)
-                logger.debug("removeNotificationListener"
-                        + "(ObjectName,NotificationListener,"
-                        + "NotificationFilter,Object)", "name=" + name
-                                + ", listener=" + listener + ", filter="
-                                + filter + ", handback=" + handback);
+                logger.debug("removeNotificationListener" + "(ObjectName,NotificationListener,"
+                        + "NotificationFilter,Object)", "name=" + name + ", listener=" + listener
+                                + ", filter=" + filter + ", handback=" + handback);
 
-            final Integer ret = rmiNotifClient.removeNotificationListener(name,
-                    listener, filter, handback);
+            final Integer ret = rmiNotifClient.removeNotificationListener(name, listener, filter, handback);
 
             if (debug)
                 logger.debug("removeNotificationListener", "listenerID=" + ret);
 
             final ClassLoader old = pushDefaultClassLoader();
             try {
-                connection.removeNotificationListeners(name, new Integer[] {
-                        ret }, delegationSubject);
+                connection.removeNotificationListeners(name, new Integer[] { ret }, delegationSubject);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                connection.removeNotificationListeners(name, new Integer[] {
-                        ret }, delegationSubject);
+                connection.removeNotificationListeners(name, new Integer[] { ret }, delegationSubject);
             } finally {
                 popDefaultClassLoader(old);
             }
@@ -1215,16 +1092,14 @@ public class RMIConnector implements JMXConnector, Serializable,
             super(cl, env);
         }
 
-        protected NotificationResult fetchNotifs(long clientSequenceNumber,
-                int maxNotifications, long timeout) throws IOException,
-                ClassNotFoundException {
+        protected NotificationResult fetchNotifs(long clientSequenceNumber, int maxNotifications,
+                long timeout) throws IOException, ClassNotFoundException {
 
             boolean retried = false;
             while (true) { // used for a successful re-connection
                            // or a transient network problem
                 try {
-                    return connection.fetchNotifications(clientSequenceNumber,
-                            maxNotifications, timeout); // return normally
+                    return connection.fetchNotifications(clientSequenceNumber, maxNotifications, timeout); // return normally
                 } catch (IOException ioe) {
                     // Examine the chain of exceptions to determine whether this
                     // is a deserialization issue. If so - we propagate the
@@ -1270,10 +1145,8 @@ public class RMIConnector implements JMXConnector, Serializable,
                             // the
                             // NotifFetcher thread to die silently.
                             final Notification failedNotif = new JMXConnectionNotification(
-                                    JMXConnectionNotification.FAILED, this,
-                                    connectionId, clientNotifSeqNo++,
-                                    "Failed to communicate with the server: "
-                                            + ioe.toString(), ioe);
+                                    JMXConnectionNotification.FAILED, this, connectionId, clientNotifSeqNo++,
+                                    "Failed to communicate with the server: " + ioe.toString(), ioe);
 
                             sendNotification(failedNotif);
 
@@ -1294,8 +1167,8 @@ public class RMIConnector implements JMXConnector, Serializable,
             }
         }
 
-        private void rethrowDeserializationException(IOException ioe)
-                throws ClassNotFoundException, IOException {
+        private void rethrowDeserializationException(IOException ioe) throws ClassNotFoundException,
+                IOException {
             // specially treating for an UnmarshalException
             if (ioe instanceof UnmarshalException) {
                 throw ioe; // the fix of 6937053 made
@@ -1314,46 +1187,38 @@ public class RMIConnector implements JMXConnector, Serializable,
             // Not serialization problem, return.
         }
 
-        protected Integer addListenerForMBeanRemovedNotif() throws IOException,
-                InstanceNotFoundException {
+        protected Integer addListenerForMBeanRemovedNotif() throws IOException, InstanceNotFoundException {
             NotificationFilterSupport clientFilter = new NotificationFilterSupport();
-            clientFilter.enableType(
-                    MBeanServerNotification.UNREGISTRATION_NOTIFICATION);
+            clientFilter.enableType(MBeanServerNotification.UNREGISTRATION_NOTIFICATION);
             MarshalledObject<NotificationFilter> sFilter = new MarshalledObject<NotificationFilter>(
                     clientFilter);
 
             Integer[] listenerIDs;
-            final ObjectName[] names = new ObjectName[] {
-                    MBeanServerDelegate.DELEGATE_NAME };
-            final MarshalledObject<NotificationFilter>[] filters = Util.cast(
-                    new MarshalledObject<?>[] { sFilter });
+            final ObjectName[] names = new ObjectName[] { MBeanServerDelegate.DELEGATE_NAME };
+            final MarshalledObject<NotificationFilter>[] filters = Util.cast(new MarshalledObject<?>[] {
+                    sFilter });
             final Subject[] subjects = new Subject[] { null };
             try {
-                listenerIDs = connection.addNotificationListeners(names,
-                        filters, subjects);
+                listenerIDs = connection.addNotificationListeners(names, filters, subjects);
 
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                listenerIDs = connection.addNotificationListeners(names,
-                        filters, subjects);
+                listenerIDs = connection.addNotificationListeners(names, filters, subjects);
             }
             return listenerIDs[0];
         }
 
-        protected void removeListenerForMBeanRemovedNotif(Integer id)
-                throws IOException, InstanceNotFoundException,
-                ListenerNotFoundException {
+        protected void removeListenerForMBeanRemovedNotif(Integer id) throws IOException,
+                InstanceNotFoundException, ListenerNotFoundException {
             try {
-                connection.removeNotificationListeners(
-                        MBeanServerDelegate.DELEGATE_NAME, new Integer[] { id },
-                        null);
+                connection.removeNotificationListeners(MBeanServerDelegate.DELEGATE_NAME, new Integer[] {
+                        id }, null);
             } catch (IOException ioe) {
                 communicatorAdmin.gotIOException(ioe);
 
-                connection.removeNotificationListeners(
-                        MBeanServerDelegate.DELEGATE_NAME, new Integer[] { id },
-                        null);
+                connection.removeNotificationListeners(MBeanServerDelegate.DELEGATE_NAME, new Integer[] {
+                        id }, null);
             }
 
         }
@@ -1361,9 +1226,8 @@ public class RMIConnector implements JMXConnector, Serializable,
         protected void lostNotifs(String message, long number) {
             final String notifType = JMXConnectionNotification.NOTIFS_LOST;
 
-            final JMXConnectionNotification n = new JMXConnectionNotification(
-                    notifType, RMIConnector.this, connectionId,
-                    clientNotifCounter++, message, Long.valueOf(number));
+            final JMXConnectionNotification n = new JMXConnectionNotification(notifType, RMIConnector.this,
+                    connectionId, clientNotifCounter++, message, Long.valueOf(number));
             sendNotification(n);
         }
     }
@@ -1400,10 +1264,8 @@ public class RMIConnector implements JMXConnector, Serializable,
                     // we should close the connection,
                     // but send a failed notif at first
                     final Notification failedNotif = new JMXConnectionNotification(
-                            JMXConnectionNotification.FAILED, this,
-                            connectionId, clientNotifSeqNo++,
-                            "Failed to communicate with the server: " + ioe
-                                    .toString(), ioe);
+                            JMXConnectionNotification.FAILED, this, connectionId, clientNotifSeqNo++,
+                            "Failed to communicate with the server: " + ioe.toString(), ioe);
 
                     sendNotification(failedNotif);
 
@@ -1438,8 +1300,7 @@ public class RMIConnector implements JMXConnector, Serializable,
             throw ioe;
         }
 
-        public void reconnectNotificationListeners(ClientListenerInfo[] old)
-                throws IOException {
+        public void reconnectNotificationListeners(ClientListenerInfo[] old) throws IOException {
             final int len = old.length;
             int i;
 
@@ -1449,8 +1310,7 @@ public class RMIConnector implements JMXConnector, Serializable,
             final ObjectName[] names = new ObjectName[len];
             final NotificationListener[] listeners = new NotificationListener[len];
             final NotificationFilter[] filters = new NotificationFilter[len];
-            final MarshalledObject<NotificationFilter>[] mFilters = Util.cast(
-                    new MarshalledObject<?>[len]);
+            final MarshalledObject<NotificationFilter>[] mFilters = Util.cast(new MarshalledObject<?>[len]);
             final Object[] handbacks = new Object[len];
 
             for (i = 0; i < len; i++) {
@@ -1458,18 +1318,15 @@ public class RMIConnector implements JMXConnector, Serializable,
                 names[i] = old[i].getObjectName();
                 listeners[i] = old[i].getListener();
                 filters[i] = old[i].getNotificationFilter();
-                mFilters[i] = new MarshalledObject<NotificationFilter>(
-                        filters[i]);
+                mFilters[i] = new MarshalledObject<NotificationFilter>(filters[i]);
                 handbacks[i] = old[i].getHandback();
             }
 
             try {
-                Integer[] ids = addListenersWithSubjects(names, mFilters,
-                        subjects, false);
+                Integer[] ids = addListenersWithSubjects(names, mFilters, subjects, false);
 
                 for (i = 0; i < len; i++) {
-                    clis[i] = new ClientListenerInfo(ids[i], names[i],
-                            listeners[i], filters[i], handbacks[i],
+                    clis[i] = new ClientListenerInfo(ids[i], names[i], listeners[i], filters[i], handbacks[i],
                             subjects[i]);
                 }
 
@@ -1483,16 +1340,14 @@ public class RMIConnector implements JMXConnector, Serializable,
             int j = 0;
             for (i = 0; i < len; i++) {
                 try {
-                    Integer id = addListenerWithSubject(names[i],
-                            new MarshalledObject<NotificationFilter>(
-                                    filters[i]), subjects[i], false);
+                    Integer id = addListenerWithSubject(names[i], new MarshalledObject<NotificationFilter>(
+                            filters[i]), subjects[i], false);
 
-                    clis[j++] = new ClientListenerInfo(id, names[i],
-                            listeners[i], filters[i], handbacks[i],
+                    clis[j++] = new ClientListenerInfo(id, names[i], listeners[i], filters[i], handbacks[i],
                             subjects[i]);
                 } catch (InstanceNotFoundException infe) {
-                    logger.warning("reconnectNotificationListeners",
-                            "Can't reconnect listener for " + names[i]);
+                    logger.warning("reconnectNotificationListeners", "Can't reconnect listener for "
+                            + names[i]);
                 }
             }
 
@@ -1517,8 +1372,7 @@ public class RMIConnector implements JMXConnector, Serializable,
             // Get RMIServer stub from directory or URL encoding if needed.
             RMIServer stub;
             try {
-                stub = (rmiServer != null) ? rmiServer
-                        : findRMIServer(jmxServiceURL, env);
+                stub = (rmiServer != null) ? rmiServer : findRMIServer(jmxServiceURL, env);
             } catch (NamingException ne) {
                 throw new IOException("Failed to get a RMI stub: " + ne);
             }
@@ -1537,9 +1391,8 @@ public class RMIConnector implements JMXConnector, Serializable,
 
             connectionId = getConnectionId();
 
-            Notification reconnectedNotif = new JMXConnectionNotification(
-                    JMXConnectionNotification.OPENED, this, connectionId,
-                    clientNotifSeqNo++, "Reconnected to server", null);
+            Notification reconnectedNotif = new JMXConnectionNotification(JMXConnectionNotification.OPENED,
+                    this, connectionId, clientNotifSeqNo++, "Reconnected to server", null);
             sendNotification(reconnectedNotif);
 
         }
@@ -1548,8 +1401,8 @@ public class RMIConnector implements JMXConnector, Serializable,
             try {
                 close();
             } catch (IOException ioe) {
-                logger.warning("RMIClientCommunicatorAdmin-doStop",
-                        "Failed to call the method close():" + ioe);
+                logger.warning("RMIClientCommunicatorAdmin-doStop", "Failed to call the method close():"
+                        + ioe);
                 logger.debug("RMIClientCommunicatorAdmin-doStop", ioe);
             }
         }
@@ -1592,20 +1445,19 @@ public class RMIConnector implements JMXConnector, Serializable,
      * </ul>
      * 
      * @param rmiServer
-     *                    A RMI Server Stub.
+     *        A RMI Server Stub.
      * @param environment
-     *                    An environment map, possibly containing an ORB.
+     *        An environment map, possibly containing an ORB.
      * @return the given stub.
      * @exception IllegalArgumentException
-     *                                     if the <tt>java.naming.corba.orb</tt>
-     *                                     property is
-     *                                     specified and does not point to an
-     *                                     {@link org.omg.CORBA.ORB ORB}.
+     *            if the <tt>java.naming.corba.orb</tt>
+     *            property is
+     *            specified and does not point to an
+     *            {@link org.omg.CORBA.ORB ORB}.
      * @exception IOException
-     *                                     if the connection to the ORB failed.
+     *            if the connection to the ORB failed.
      **/
-    static RMIServer connectStub(RMIServer rmiServer,
-            Map<String, ?> environment) throws IOException {
+    static RMIServer connectStub(RMIServer rmiServer, Map<String, ?> environment) throws IOException {
         if (IIOPHelper.isStub(rmiServer)) {
             try {
                 IIOPHelper.getOrb(rmiServer);
@@ -1632,15 +1484,15 @@ public class RMIConnector implements JMXConnector, Serializable,
      * the ORB provided in the <var>environment</var> map, if any.
      * 
      * @param environment
-     *                    An environment map, possibly containing an ORB.
+     *        An environment map, possibly containing an ORB.
      * @return An ORB.
      * @exception IllegalArgumentException
-     *                                     if the <tt>java.naming.corba.orb</tt>
-     *                                     property is
-     *                                     specified and does not point to an
-     *                                     {@link org.omg.CORBA.ORB ORB}.
+     *            if the <tt>java.naming.corba.orb</tt>
+     *            property is
+     *            specified and does not point to an
+     *            {@link org.omg.CORBA.ORB ORB}.
      * @exception IOException
-     *                                     if the ORB initialization failed.
+     *            if the ORB initialization failed.
      **/
     static Object resolveOrb(Map<String, ?> environment) throws IOException {
         if (environment != null) {
@@ -1651,13 +1503,11 @@ public class RMIConnector implements JMXConnector, Serializable,
             if (orb != null)
                 return orb;
         }
-        final Object orb = (RMIConnector.orb == null) ? null
-                : RMIConnector.orb.get();
+        final Object orb = (RMIConnector.orb == null) ? null : RMIConnector.orb.get();
         if (orb != null)
             return orb;
 
-        final Object newOrb = IIOPHelper.createOrb((String[]) null,
-                (Properties) null);
+        final Object newOrb = IIOPHelper.createOrb((String[]) null, (Properties) null);
         RMIConnector.orb = new WeakReference<Object>(newOrb);
         return newOrb;
     }
@@ -1668,20 +1518,18 @@ public class RMIConnector implements JMXConnector, Serializable,
      * initializes all transient variables that need initializing.
      * 
      * @param s
-     *          The ObjectInputStream to read from.
+     *        The ObjectInputStream to read from.
      * @exception InvalidObjectException
-     *                                   if none of <var>rmiServer</var> stub or
-     *                                   <var>jmxServiceURL</var> are set.
+     *            if none of <var>rmiServer</var> stub or
+     *            <var>jmxServiceURL</var> are set.
      * @see #RMIConnector(JMXServiceURL,Map)
      * @see #RMIConnector(RMIServer,Map)
      **/
-    private void readObject(java.io.ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
 
         if (rmiServer == null && jmxServiceURL == null)
-            throw new InvalidObjectException(
-                    "rmiServer and jmxServiceURL both null");
+            throw new InvalidObjectException("rmiServer and jmxServiceURL both null");
 
         initTransients();
     }
@@ -1721,17 +1569,16 @@ public class RMIConnector implements JMXConnector, Serializable,
      * </p>
      * 
      * @param s
-     *          The ObjectOutputStream to write to.
+     *        The ObjectOutputStream to write to.
      * @exception InvalidObjectException
-     *                                   if none of <var>rmiServer</var> stub or
-     *                                   <var>jmxServiceURL</var> are set.
+     *            if none of <var>rmiServer</var> stub or
+     *            <var>jmxServiceURL</var> are set.
      * @see #RMIConnector(JMXServiceURL,Map)
      * @see #RMIConnector(RMIServer,Map)
      **/
     private void writeObject(java.io.ObjectOutputStream s) throws IOException {
         if (rmiServer == null && jmxServiceURL == null)
-            throw new InvalidObjectException(
-                    "rmiServer and jmxServiceURL both null.");
+            throw new InvalidObjectException("rmiServer and jmxServiceURL both null.");
         connectStub(this.rmiServer, env);
         s.defaultWriteObject();
     }
@@ -1755,16 +1602,12 @@ public class RMIConnector implements JMXConnector, Serializable,
         //
         if (stub.getClass() != stubClass) {
             if (!Proxy.isProxyClass(stub.getClass())) {
-                throw new SecurityException("Expecting a " + stubClass.getName()
-                        + " stub!");
+                throw new SecurityException("Expecting a " + stubClass.getName() + " stub!");
             } else {
                 InvocationHandler handler = Proxy.getInvocationHandler(stub);
                 if (handler.getClass() != RemoteObjectInvocationHandler.class)
-                    throw new SecurityException(
-                            "Expecting a dynamic proxy instance with a "
-                                    + RemoteObjectInvocationHandler.class
-                                            .getName()
-                                    + " invocation handler!");
+                    throw new SecurityException("Expecting a dynamic proxy instance with a "
+                            + RemoteObjectInvocationHandler.class.getName() + " invocation handler!");
                 else
                     stub = (Remote) handler;
             }
@@ -1775,8 +1618,8 @@ public class RMIConnector implements JMXConnector, Serializable,
         //
         RemoteRef ref = ((RemoteObject) stub).getRef();
         if (ref.getClass() != UnicastRef2.class)
-            throw new SecurityException("Expecting a " + UnicastRef2.class
-                    .getName() + " remote reference in stub!");
+            throw new SecurityException("Expecting a " + UnicastRef2.class.getName()
+                    + " remote reference in stub!");
 
         // Check RMIClientSocketFactory in stub is from the expected class
         // "javax.rmi.ssl.SslRMIClientSocketFactory".
@@ -1784,8 +1627,7 @@ public class RMIConnector implements JMXConnector, Serializable,
         LiveRef liveRef = ((UnicastRef2) ref).getLiveRef();
         RMIClientSocketFactory csf = liveRef.getClientSocketFactory();
         if (csf == null || csf.getClass() != SslRMIClientSocketFactory.class)
-            throw new SecurityException("Expecting a "
-                    + SslRMIClientSocketFactory.class.getName()
+            throw new SecurityException("Expecting a " + SslRMIClientSocketFactory.class.getName()
                     + " RMI client socket factory in stub!");
     }
 
@@ -1793,9 +1635,8 @@ public class RMIConnector implements JMXConnector, Serializable,
     // Private stuff - RMIServer creation
     // --------------------------------------------------------------------
 
-    private RMIServer findRMIServer(JMXServiceURL directoryURL,
-            Map<String, Object> environment) throws NamingException,
-            IOException {
+    private RMIServer findRMIServer(JMXServiceURL directoryURL, Map<String, Object> environment)
+            throws NamingException, IOException {
         final boolean isIiop = RMIConnectorServer.isIiopURL(directoryURL, true);
         if (isIiop) {
             // Make sure java.naming.corba.orb is in the Map.
@@ -1807,19 +1648,15 @@ public class RMIConnector implements JMXConnector, Serializable,
         if (end < 0)
             end = path.length();
         if (path.startsWith("/jndi/"))
-            return findRMIServerJNDI(path.substring(6, end), environment,
-                    isIiop);
+            return findRMIServerJNDI(path.substring(6, end), environment, isIiop);
         else if (path.startsWith("/stub/"))
-            return findRMIServerJRMP(path.substring(6, end), environment,
-                    isIiop);
+            return findRMIServerJRMP(path.substring(6, end), environment, isIiop);
         else if (path.startsWith("/ior/")) {
             if (!IIOPHelper.isAvailable())
                 throw new IOException("iiop protocol not available");
-            return findRMIServerIIOP(path.substring(5, end), environment,
-                    isIiop);
+            return findRMIServerIIOP(path.substring(5, end), environment, isIiop);
         } else {
-            final String msg = "URL path must begin with /jndi/ or /stub/ "
-                    + "or /ior/: " + path;
+            final String msg = "URL path must begin with /jndi/ or /stub/ " + "or /ior/: " + path;
             throw new MalformedURLException(msg);
         }
     }
@@ -1828,25 +1665,25 @@ public class RMIConnector implements JMXConnector, Serializable,
      * Lookup the RMIServer stub in a directory.
      * 
      * @param jndiURL
-     *                A JNDI URL indicating the location of the Stub (see
-     *                {@link javax.management.remote.rmi}), e.g.:
-     *                <ul>
-     *                <li><tt>rmi://registry-host:port/rmi-stub-name</tt></li>
-     *                <li>or
-     *                <tt>iiop://cosnaming-host:port/iiop-stub-name</tt></li>
-     *                <li>or
-     *                <tt>ldap://ldap-host:port/java-container-dn</tt></li>
-     *                </ul>
+     *        A JNDI URL indicating the location of the Stub (see
+     *        {@link javax.management.remote.rmi}), e.g.:
+     *        <ul>
+     *        <li><tt>rmi://registry-host:port/rmi-stub-name</tt></li>
+     *        <li>or
+     *        <tt>iiop://cosnaming-host:port/iiop-stub-name</tt></li>
+     *        <li>or
+     *        <tt>ldap://ldap-host:port/java-container-dn</tt></li>
+     *        </ul>
      * @param env
-     *                the environment Map passed to the connector.
+     *        the environment Map passed to the connector.
      * @param isIiop
-     *                true if the stub is expected to be an IIOP stub.
+     *        true if the stub is expected to be an IIOP stub.
      * @return The retrieved RMIServer stub.
      * @exception NamingException
-     *                            if the stub couldn't be found.
+     *            if the stub couldn't be found.
      **/
-    private RMIServer findRMIServerJNDI(String jndiURL, Map<String, ?> env,
-            boolean isIiop) throws NamingException {
+    private RMIServer findRMIServerJNDI(String jndiURL, Map<String, ?> env, boolean isIiop)
+            throws NamingException {
 
         InitialContext ctx = new InitialContext(EnvHelp.mapToHashtable(env));
 
@@ -1869,37 +1706,34 @@ public class RMIConnector implements JMXConnector, Serializable,
             return IIOPHelper.narrow(objref, RMIServer.class);
         } catch (ClassCastException e) {
             if (logger.traceOn())
-                logger.trace("narrowIIOPServer", "Failed to narrow objref="
-                        + objref + ": " + e);
+                logger.trace("narrowIIOPServer", "Failed to narrow objref=" + objref + ": " + e);
             if (logger.debugOn())
                 logger.debug("narrowIIOPServer", e);
             return null;
         }
     }
 
-    private RMIServer findRMIServerIIOP(String ior, Map<String, ?> env,
-            boolean isIiop) {
+    private RMIServer findRMIServerIIOP(String ior, Map<String, ?> env, boolean isIiop) {
         // could forbid "rmi:" URL here -- but do we need to?
         final Object orb = env.get(EnvHelp.DEFAULT_ORB);
         final Object stub = IIOPHelper.stringToObject(orb, ior);
         return IIOPHelper.narrow(stub, RMIServer.class);
     }
 
-    private RMIServer findRMIServerJRMP(String base64, Map<String, ?> env,
-            boolean isIiop) throws IOException {
+    private RMIServer findRMIServerJRMP(String base64, Map<String, ?> env, boolean isIiop)
+            throws IOException {
         // could forbid "iiop:" URL here -- but do we need to?
         final byte[] serialized;
         try {
             serialized = base64ToByteArray(base64);
         } catch (IllegalArgumentException e) {
-            throw new MalformedURLException("Bad BASE64 encoding: " + e
-                    .getMessage());
+            throw new MalformedURLException("Bad BASE64 encoding: " + e.getMessage());
         }
         final ByteArrayInputStream bin = new ByteArrayInputStream(serialized);
 
         final ClassLoader loader = EnvHelp.resolveClientClassLoader(env);
-        final ObjectInputStream oin = (loader == null) ? new ObjectInputStream(
-                bin) : new ObjectInputStreamWithLoader(bin, loader);
+        final ObjectInputStream oin = (loader == null) ? new ObjectInputStream(bin)
+                : new ObjectInputStreamWithLoader(bin, loader);
         final Object stub;
         try {
             stub = oin.readObject();
@@ -1909,17 +1743,15 @@ public class RMIConnector implements JMXConnector, Serializable,
         return (RMIServer) stub;
     }
 
-    private static final class ObjectInputStreamWithLoader extends
-            ObjectInputStream {
-        ObjectInputStreamWithLoader(InputStream in, ClassLoader cl)
-                throws IOException {
+    private static final class ObjectInputStreamWithLoader extends ObjectInputStream {
+        ObjectInputStreamWithLoader(InputStream in, ClassLoader cl) throws IOException {
             super(in);
             this.loader = cl;
         }
 
         @Override
-        protected Class<?> resolveClass(ObjectStreamClass classDesc)
-                throws IOException, ClassNotFoundException {
+        protected Class<?> resolveClass(ObjectStreamClass classDesc) throws IOException,
+                ClassNotFoundException {
             String name = classDesc.getName();
             ReflectUtil.checkPackageAccess(name);
             return Class.forName(name, false, loader);
@@ -1928,19 +1760,16 @@ public class RMIConnector implements JMXConnector, Serializable,
         private final ClassLoader loader;
     }
 
-    private MBeanServerConnection getConnectionWithSubject(
-            Subject delegationSubject) {
+    private MBeanServerConnection getConnectionWithSubject(Subject delegationSubject) {
         MBeanServerConnection conn = null;
 
         if (delegationSubject == null) {
-            if (nullSubjectConnRef == null || (conn = nullSubjectConnRef
-                    .get()) == null) {
+            if (nullSubjectConnRef == null || (conn = nullSubjectConnRef.get()) == null) {
                 conn = new RemoteMBeanServerConnection(null);
                 nullSubjectConnRef = new WeakReference(conn);
             }
         } else {
-            WeakReference<MBeanServerConnection> wr = rmbscMap.get(
-                    delegationSubject);
+            WeakReference<MBeanServerConnection> wr = rmbscMap.get(delegationSubject);
             if (wr == null || (conn = wr.get()) == null) {
                 conn = new RemoteMBeanServerConnection(delegationSubject);
                 rmbscMap.put(delegationSubject, new WeakReference(conn));
@@ -1994,11 +1823,9 @@ public class RMIConnector implements JMXConnector, Serializable,
      * } }
      */
 
-    private static final String rmiServerImplStubClassName = RMIServer.class
-            .getName() + "Impl_Stub";
+    private static final String rmiServerImplStubClassName = RMIServer.class.getName() + "Impl_Stub";
     private static final Class<?> rmiServerImplStubClass;
-    private static final String rmiConnectionImplStubClassName = RMIConnection.class
-            .getName() + "Impl_Stub";
+    private static final String rmiConnectionImplStubClassName = RMIConnection.class.getName() + "Impl_Stub";
     private static final Class<?> rmiConnectionImplStubClass;
     private static final String pRefClassName = "com.sun.jmx.remote.internal.PRef";
     private static final Constructor<?> proxyRefConstructor;
@@ -2014,18 +1841,15 @@ public class RMIConnector implements JMXConnector, Serializable,
                 + "\0\2\0\1\0\6\0\7\0\1\0\10\0\0\0\22\0\2\0\2\0\0\0\6*+\267\0\1\261"
                 + "\0\0\0\0\0\1\0\11\0\12\0\2\0\10\0\0\0\33\0\6\0\6\0\0\0\17*\264\0"
                 + "\2+,-\26\4\271\0\3\6\0\260\0\0\0\0\0\13\0\0\0\4\0\1\0\14\0\0";
-        final byte[] pRefByteCode = NoCallStackClassLoader.stringToBytes(
-                pRefByteCodeString);
+        final byte[] pRefByteCode = NoCallStackClassLoader.stringToBytes(pRefByteCodeString);
         PrivilegedExceptionAction<Constructor<?>> action = new PrivilegedExceptionAction<Constructor<?>>() {
             public Constructor<?> run() throws Exception {
                 Class thisClass = RMIConnector.class;
                 ClassLoader thisLoader = thisClass.getClassLoader();
-                ProtectionDomain thisProtectionDomain = thisClass
-                        .getProtectionDomain();
+                ProtectionDomain thisProtectionDomain = thisClass.getProtectionDomain();
                 String[] otherClassNames = { ProxyRef.class.getName() };
-                ClassLoader cl = new NoCallStackClassLoader(pRefClassName,
-                        pRefByteCode, otherClassNames, thisLoader,
-                        thisProtectionDomain);
+                ClassLoader cl = new NoCallStackClassLoader(pRefClassName, pRefByteCode, otherClassNames,
+                        thisLoader, thisProtectionDomain);
                 Class<?> c = cl.loadClass(pRefClassName);
                 return c.getConstructor(RemoteRef.class);
             }
@@ -2035,8 +1859,7 @@ public class RMIConnector implements JMXConnector, Serializable,
         try {
             serverStubClass = Class.forName(rmiServerImplStubClassName);
         } catch (Exception e) {
-            logger.error("<clinit>", "Failed to instantiate "
-                    + rmiServerImplStubClassName + ": " + e);
+            logger.error("<clinit>", "Failed to instantiate " + rmiServerImplStubClassName + ": " + e);
             logger.debug("<clinit>", e);
             serverStubClass = null;
         }
@@ -2048,9 +1871,8 @@ public class RMIConnector implements JMXConnector, Serializable,
             stubClass = Class.forName(rmiConnectionImplStubClassName);
             constr = (Constructor<?>) AccessController.doPrivileged(action);
         } catch (Exception e) {
-            logger.error("<clinit>",
-                    "Failed to initialize proxy reference constructor " + "for "
-                            + rmiConnectionImplStubClassName + ": " + e);
+            logger.error("<clinit>", "Failed to initialize proxy reference constructor " + "for "
+                    + rmiConnectionImplStubClassName + ": " + e);
             logger.debug("<clinit>", e);
             stubClass = null;
             constr = null;
@@ -2059,18 +1881,14 @@ public class RMIConnector implements JMXConnector, Serializable,
         proxyRefConstructor = constr;
     }
 
-    private static RMIConnection shadowJrmpStub(RemoteObject stub)
-            throws InstantiationException, IllegalAccessException,
-            InvocationTargetException, ClassNotFoundException,
-            NoSuchMethodException {
+    private static RMIConnection shadowJrmpStub(RemoteObject stub) throws InstantiationException,
+            IllegalAccessException, InvocationTargetException, ClassNotFoundException, NoSuchMethodException {
         RemoteRef ref = stub.getRef();
-        RemoteRef proxyRef = (RemoteRef) proxyRefConstructor.newInstance(
-                new Object[] { ref });
-        final Constructor<?> rmiConnectionImplStubConstructor = rmiConnectionImplStubClass
-                .getConstructor(RemoteRef.class);
+        RemoteRef proxyRef = (RemoteRef) proxyRefConstructor.newInstance(new Object[] { ref });
+        final Constructor<?> rmiConnectionImplStubConstructor = rmiConnectionImplStubClass.getConstructor(
+                RemoteRef.class);
         Object[] args = { proxyRef };
-        RMIConnection proxyStub = (RMIConnection) rmiConnectionImplStubConstructor
-                .newInstance(args);
+        RMIConnection proxyStub = (RMIConnection) rmiConnectionImplStubConstructor.newInstance(args);
         return proxyStub;
     }
 
@@ -2188,25 +2006,19 @@ public class RMIConnector implements JMXConnector, Serializable,
                 + "\0\0\1\0\13\0\14\0\1\0\12\0\0\0\24\0\1\0\1\0\0\0\10*\264\0\2\266"
                 + "\0\3\260\0\0\0\0\0\1\0\15\0\16\0\1\0\12\0\0\0\25\0\2\0\2\0\0\0"
                 + "\11*\266\0\4+\266\0\5\260\0\0\0\0\0\0";
-        final byte[] proxyStubByteCode = NoCallStackClassLoader.stringToBytes(
-                proxyStubByteCodeString);
-        final byte[] pInputStreamByteCode = NoCallStackClassLoader
-                .stringToBytes(pInputStreamByteCodeString);
-        final String[] classNames = { proxyStubClassName,
-                pInputStreamClassName };
+        final byte[] proxyStubByteCode = NoCallStackClassLoader.stringToBytes(proxyStubByteCodeString);
+        final byte[] pInputStreamByteCode = NoCallStackClassLoader.stringToBytes(pInputStreamByteCodeString);
+        final String[] classNames = { proxyStubClassName, pInputStreamClassName };
         final byte[][] byteCodes = { proxyStubByteCode, pInputStreamByteCode };
-        final String[] otherClassNames = { iiopConnectionStubClassName,
-                ProxyInputStreamClassName, };
+        final String[] otherClassNames = { iiopConnectionStubClassName, ProxyInputStreamClassName, };
         if (IIOPHelper.isAvailable()) {
             PrivilegedExceptionAction<Class<?>> action = new PrivilegedExceptionAction<Class<?>>() {
                 public Class<?> run() throws Exception {
                     Class thisClass = RMIConnector.class;
                     ClassLoader thisLoader = thisClass.getClassLoader();
-                    ProtectionDomain thisProtectionDomain = thisClass
-                            .getProtectionDomain();
-                    ClassLoader cl = new NoCallStackClassLoader(classNames,
-                            byteCodes, otherClassNames, thisLoader,
-                            thisProtectionDomain);
+                    ProtectionDomain thisProtectionDomain = thisClass.getProtectionDomain();
+                    ClassLoader cl = new NoCallStackClassLoader(classNames, byteCodes, otherClassNames,
+                            thisLoader, thisProtectionDomain);
                     return cl.loadClass(proxyStubClassName);
                 }
             };
@@ -2214,9 +2026,7 @@ public class RMIConnector implements JMXConnector, Serializable,
             try {
                 stubClass = AccessController.doPrivileged(action);
             } catch (Exception e) {
-                logger.error("<clinit>",
-                        "Unexpected exception making shadow IIOP stub class: "
-                                + e);
+                logger.error("<clinit>", "Unexpected exception making shadow IIOP stub class: " + e);
                 logger.debug("<clinit>", e);
                 stubClass = null;
             }
@@ -2226,16 +2036,15 @@ public class RMIConnector implements JMXConnector, Serializable,
         }
     }
 
-    private static RMIConnection shadowIiopStub(Object stub)
-            throws InstantiationException, IllegalAccessException {
+    private static RMIConnection shadowIiopStub(Object stub) throws InstantiationException,
+            IllegalAccessException {
         Object proxyStub = null;
         try {
-            proxyStub = AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<Object>() {
-                        public Object run() throws Exception {
-                            return proxyStubClass.newInstance();
-                        }
-                    });
+            proxyStub = AccessController.doPrivileged(new PrivilegedExceptionAction<Object>() {
+                public Object run() throws Exception {
+                    return proxyStubClass.newInstance();
+                }
+            });
         } catch (PrivilegedActionException e) {
             throw new InternalError();
         }
@@ -2243,8 +2052,8 @@ public class RMIConnector implements JMXConnector, Serializable,
         return (RMIConnection) proxyStub;
     }
 
-    private static RMIConnection getConnection(RMIServer server,
-            Object credentials, boolean checkStub) throws IOException {
+    private static RMIConnection getConnection(RMIServer server, Object credentials, boolean checkStub)
+            throws IOException {
         RMIConnection c = server.newClient(credentials);
         if (checkStub)
             checkStub(c, rmiConnectionImplStubClass);
@@ -2253,15 +2062,11 @@ public class RMIConnector implements JMXConnector, Serializable,
                 return shadowJrmpStub((RemoteObject) c);
             if (c.getClass().getName().equals(iiopConnectionStubClassName))
                 return shadowIiopStub(c);
-            logger.trace("getConnection", "Did not wrap " + c.getClass()
-                    + " to foil "
-                    + "stack search for classes: class loading semantics "
-                    + "may be incorrect");
+            logger.trace("getConnection", "Did not wrap " + c.getClass() + " to foil "
+                    + "stack search for classes: class loading semantics " + "may be incorrect");
         } catch (Exception e) {
-            logger.error("getConnection", "Could not wrap " + c.getClass()
-                    + " to foil "
-                    + "stack search for classes: class loading semantics "
-                    + "may be incorrect: " + e);
+            logger.error("getConnection", "Could not wrap " + c.getClass() + " to foil "
+                    + "stack search for classes: class loading semantics " + "may be incorrect: " + e);
             logger.debug("getConnection", e);
             // so just return the original stub, which will work for all
             // but the most exotic class loading situations
@@ -2273,8 +2078,7 @@ public class RMIConnector implements JMXConnector, Serializable,
         int sLen = s.length();
         int numGroups = sLen / 4;
         if (4 * numGroups != sLen)
-            throw new IllegalArgumentException(
-                    "String length must be a multiple of four.");
+            throw new IllegalArgumentException("String length must be a multiple of four.");
         int missingBytesInLastGroup = 0;
         int numFullGroups = numGroups;
         if (sLen != 0) {
@@ -2320,7 +2124,7 @@ public class RMIConnector implements JMXConnector, Serializable,
      * "Base 64 Alphabet" into its equivalent 6-bit positive integer.
      *
      * @throws IllegalArgumentException
-     *                                  if c is not in the Base64 Alphabet.
+     *         if c is not in the Base64 Alphabet.
      */
     private static int base64toInt(char c) {
         int result;
@@ -2342,14 +2146,12 @@ public class RMIConnector implements JMXConnector, Serializable,
      * Base64 alphabet but fall within the bounds of the array are translated to
      * -1.
      */
-    private static final byte base64ToInt[] = { -1, -1, -1, -1, -1, -1, -1, -1,
-            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-            -1, 62, -1, -1, -1, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1,
-            -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1,
-            -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-            41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 };
+    private static final byte base64ToInt[] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+            -1, -1, -1, -1, 62, -1, -1, -1, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1,
+            -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+            25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
+            43, 44, 45, 46, 47, 48, 49, 50, 51 };
 
     // --------------------------------------------------------------------
     // Private stuff - Find / Set default class loader
@@ -2386,7 +2188,6 @@ public class RMIConnector implements JMXConnector, Serializable,
      *         case where <var>jmxServiceURL</var> contains a serialized
      *         RMIServer stub. If both <var>rmiServer</var> and
      *         <var>jmxServiceURL</var> are null then serialization will fail.
-     *
      * @see #RMIConnector(RMIServer,Map)
      **/
     private final RMIServer rmiServer;
@@ -2397,7 +2198,6 @@ public class RMIConnector implements JMXConnector, Serializable,
      *         <var>rmiServer</var> is not null. If both <var>rmiServer</var>
      *         and <var>jmxServiceURL</var> are null then serialization will
      *         fail.
-     *
      * @see #RMIConnector(JMXServiceURL,Map)
      **/
     private final JMXServiceURL jmxServiceURL;
@@ -2453,8 +2253,7 @@ public class RMIConnector implements JMXConnector, Serializable,
     }
 
     static String getAttributesNames(AttributeList attributes) {
-        return attributes != null ? attributes.asList().stream().map(
-                Attribute::getName).collect(Collectors.joining(", ", "[", "]"))
-                : "[]";
+        return attributes != null ? attributes.asList().stream().map(Attribute::getName).collect(Collectors
+                .joining(", ", "[", "]")) : "[]";
     }
 }

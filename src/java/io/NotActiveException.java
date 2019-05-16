@@ -19,7 +19,7 @@ public class NotActiveException extends ObjectStreamException {
      * Constructor to create a new NotActiveException with the reason given.
      *
      * @param reason
-     *               a String describing the reason for the exception.
+     *        a String describing the reason for the exception.
      */
     public NotActiveException(String reason) {
         super(reason);

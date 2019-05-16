@@ -27,11 +27,10 @@ abstract public class StringSeqHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_string_tc(0);
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
             __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    com.sun.corba.se.spi.activation.RepositoryPackage.StringSeqHelper
-                            .id(), "StringSeq", __typeCode);
+                    com.sun.corba.se.spi.activation.RepositoryPackage.StringSeqHelper.id(), "StringSeq",
+                    __typeCode);
         }
         return __typeCode;
     }
@@ -49,8 +48,7 @@ abstract public class StringSeqHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            String[] value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, String[] value) {
         ostream.write_long(value.length);
         for (int _i0 = 0; _i0 < value.length; ++_i0)
             ostream.write_string(value[_i0]);

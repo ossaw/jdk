@@ -20,7 +20,7 @@ public class StreamCorruptedException extends ObjectStreamException {
      * Create a StreamCorruptedException and list a reason why thrown.
      *
      * @param reason
-     *               String describing the reason for the exception.
+     *        String describing the reason for the exception.
      */
     public StreamCorruptedException(String reason) {
         super(reason);

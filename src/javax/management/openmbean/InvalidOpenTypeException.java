@@ -9,7 +9,6 @@ package javax.management.openmbean;
  * This runtime exception is thrown to indicate that the <i>open type</i> of an
  * <i>open data</i> value is not the one expected.
  *
- *
  * @since 1.5
  */
 public class InvalidOpenTypeException extends IllegalArgumentException {
@@ -25,7 +24,7 @@ public class InvalidOpenTypeException extends IllegalArgumentException {
      * An InvalidOpenTypeException with a detail message.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public InvalidOpenTypeException(String msg) {
         super(msg);

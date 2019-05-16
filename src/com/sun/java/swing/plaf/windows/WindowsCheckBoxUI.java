@@ -40,8 +40,7 @@ public class WindowsCheckBoxUI extends WindowsRadioButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent c) {
         AppContext appContext = AppContext.getAppContext();
-        WindowsCheckBoxUI windowsCheckBoxUI = (WindowsCheckBoxUI) appContext
-                .get(WINDOWS_CHECK_BOX_UI_KEY);
+        WindowsCheckBoxUI windowsCheckBoxUI = (WindowsCheckBoxUI) appContext.get(WINDOWS_CHECK_BOX_UI_KEY);
         if (windowsCheckBoxUI == null) {
             windowsCheckBoxUI = new WindowsCheckBoxUI();
             appContext.put(WINDOWS_CHECK_BOX_UI_KEY, windowsCheckBoxUI);

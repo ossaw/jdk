@@ -42,12 +42,10 @@ import java.util.ServiceConfigurationError;
  * this case instances of <code>ImageReader</code>, <code>ImageWriter</code>,
  * <code>ImageTranscoder</code>, <code>ImageInputStream</code>, and
  * <code>ImageOutputStream</code>.
- *
  * <p>
  * Service providers found on the system classpath (typically the
  * <code>lib/ext</code> directory in the Java installation directory) are
  * automatically loaded as soon as this class is instantiated.
- *
  * <p>
  * When the <code>registerApplicationClasspathSpis</code> method is called,
  * service provider instances declared in the meta-information section of JAR
@@ -70,23 +68,19 @@ import java.util.ServiceConfigurationError;
  * <pre>
  * com.mycompany.imageio.MyFormatReaderSpi
  * </pre>
- *
  * <p>
  * The service provider classes are intended to be lightweight and quick to
  * load. Implementations of these interfaces should avoid complex dependencies
  * on other classes and on native code.
- *
  * <p>
  * It is also possible to manually add service providers not found
  * automatically, as well as to remove those that are using the interfaces of
  * the <code>ServiceRegistry</code> class. Thus the application may customize
  * the contents of the registry as it sees fit.
- *
  * <p>
  * For more details on declaring service providers, and the JAR format in
  * general, see the <a href="{@docRoot}/../technotes/guides/jar/jar.html"> JAR
  * File Specification</a>.
- *
  */
 public final class IIORegistry extends ServiceRegistry {
 
@@ -107,7 +101,6 @@ public final class IIORegistry extends ServiceRegistry {
     /**
      * Set up the valid service provider categories and automatically register
      * all available service providers.
-     *
      * <p>
      * The constructor is private in order to prevent creation of additional
      * instances.
@@ -121,7 +114,6 @@ public final class IIORegistry extends ServiceRegistry {
     /**
      * Returns the default <code>IIORegistry</code> instance used by the Image
      * I/O API. This instance should be used for all registry functions.
-     *
      * <p>
      * Each <code>ThreadGroup</code> will receive its own instance; this allows
      * different <code>Applet</code>s in the same browser (for example) to each
@@ -178,8 +170,7 @@ public final class IIORegistry extends ServiceRegistry {
         Iterator categories = getCategories();
         while (categories.hasNext()) {
             Class<IIOServiceProvider> c = (Class) categories.next();
-            Iterator<IIOServiceProvider> riter = ServiceLoader.load(c, loader)
-                    .iterator();
+            Iterator<IIOServiceProvider> riter = ServiceLoader.load(c, loader).iterator();
             while (riter.hasNext()) {
                 try {
                     // Note that the next() call is required to be inside
@@ -214,8 +205,7 @@ public final class IIORegistry extends ServiceRegistry {
                 Iterator categories = getCategories();
                 while (categories.hasNext()) {
                     Class<IIOServiceProvider> c = (Class) categories.next();
-                    for (IIOServiceProvider p : ServiceLoader.loadInstalled(
-                            c)) {
+                    for (IIOServiceProvider p : ServiceLoader.loadInstalled(c)) {
                         registerServiceProvider(p);
                     }
                 }

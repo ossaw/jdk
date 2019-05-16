@@ -25,7 +25,6 @@ import java.io.Serializable;
  * see <a href=
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/textfield.html">
  * How to Use Text Fields</a> in <em>The Java Tutorial.</em>
- *
  * <p>
  * <code>JTextField</code> is intended to be source-compatible with
  * <code>java.awt.TextField</code> where it is reasonable to do so. This
@@ -128,7 +127,6 @@ import java.io.Serializable;
  *
  * @beaninfo attribute: isContainer false description: A component which allows
  *           for the editing of a single line of text.
- *
  * @author Timothy Prinzing
  * @see #setActionCommand
  * @see JPasswordField
@@ -150,7 +148,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * text. A default model is created and the number of columns is 0.
      *
      * @param text
-     *             the text to be displayed, or <code>null</code>
+     *        the text to be displayed, or <code>null</code>
      */
     public JTextField(String text) {
         this(null, text, 0);
@@ -162,11 +160,11 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * <code>null</code>.
      *
      * @param columns
-     *                the number of columns to use to calculate the preferred
-     *                width;
-     *                if columns is set to zero, the preferred width will be
-     *                whatever naturally results from the component
-     *                implementation
+     *        the number of columns to use to calculate the preferred
+     *        width;
+     *        if columns is set to zero, the preferred width will be
+     *        whatever naturally results from the component
+     *        implementation
      */
     public JTextField(int columns) {
         this(null, null, columns);
@@ -177,13 +175,13 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * text and columns. A default model is created.
      *
      * @param text
-     *                the text to be displayed, or <code>null</code>
+     *        the text to be displayed, or <code>null</code>
      * @param columns
-     *                the number of columns to use to calculate the preferred
-     *                width;
-     *                if columns is set to zero, the preferred width will be
-     *                whatever naturally results from the component
-     *                implementation
+     *        the number of columns to use to calculate the preferred
+     *        width;
+     *        if columns is set to zero, the preferred width will be
+     *        whatever naturally results from the component
+     *        implementation
      */
     public JTextField(String text, int columns) {
         this(null, text, columns);
@@ -196,21 +194,21 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * a default model is created.
      *
      * @param doc
-     *                the text storage to use; if this is <code>null</code>, a
-     *                default will be provided by calling the
-     *                <code>createDefaultModel</code> method
+     *        the text storage to use; if this is <code>null</code>, a
+     *        default will be provided by calling the
+     *        <code>createDefaultModel</code> method
      * @param text
-     *                the initial string to display, or <code>null</code>
+     *        the initial string to display, or <code>null</code>
      * @param columns
-     *                the number of columns to use to calculate the preferred
-     *                width
-     *                &gt;= 0; if <code>columns</code> is set to zero, the
-     *                preferred
-     *                width will be whatever naturally results from the
-     *                component
-     *                implementation
+     *        the number of columns to use to calculate the preferred
+     *        width
+     *        &gt;= 0; if <code>columns</code> is set to zero, the
+     *        preferred
+     *        width will be whatever naturally results from the
+     *        component
+     *        implementation
      * @exception IllegalArgumentException
-     *                                     if <code>columns</code> &lt; 0
+     *            if <code>columns</code> &lt; 0
      */
     public JTextField(Document doc, String text, int columns) {
         if (columns < 0) {
@@ -246,7 +244,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * propagated to each listener.
      *
      * @param doc
-     *            the document to display/edit
+     *        the document to display/edit
      * @see #getDocument
      * @beaninfo description: the text document model bound: true expert: true
      */
@@ -265,7 +263,6 @@ public class JTextField extends JTextComponent implements SwingConstants {
      *
      * @return if the parent of this textfield is a <code>JViewPort</code>
      *         return false, otherwise return true
-     *
      * @see JComponent#revalidate
      * @see JComponent#isValidateRoot
      * @see java.awt.Container#isValidateRoot
@@ -305,10 +302,10 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * ("horizontalAlignment") is fired.
      *
      * @param alignment
-     *                  the alignment
+     *        the alignment
      * @exception IllegalArgumentException
-     *                                     if <code>alignment</code> is not a
-     *                                     valid key
+     *            if <code>alignment</code> is not a
+     *            valid key
      * @beaninfo preferred: true bound: true description: Set the field
      *           alignment to LEFT, CENTER, RIGHT, LEADING (the default) or
      *           TRAILING enum: LEFT JTextField.LEFT CENTER JTextField.CENTER
@@ -319,14 +316,13 @@ public class JTextField extends JTextComponent implements SwingConstants {
         if (alignment == horizontalAlignment)
             return;
         int oldValue = horizontalAlignment;
-        if ((alignment == LEFT) || (alignment == CENTER) || (alignment == RIGHT)
-                || (alignment == LEADING) || (alignment == TRAILING)) {
+        if ((alignment == LEFT) || (alignment == CENTER) || (alignment == RIGHT) || (alignment == LEADING)
+                || (alignment == TRAILING)) {
             horizontalAlignment = alignment;
         } else {
             throw new IllegalArgumentException("horizontalAlignment");
         }
-        firePropertyChange("horizontalAlignment", oldValue,
-                horizontalAlignment);
+        firePropertyChange("horizontalAlignment", oldValue, horizontalAlignment);
         invalidate();
         repaint();
     }
@@ -356,10 +352,10 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * invalidate the layout.
      *
      * @param columns
-     *                the number of columns &gt;= 0
+     *        the number of columns &gt;= 0
      * @exception IllegalArgumentException
-     *                                     if <code>columns</code> is less than
-     *                                     0
+     *            if <code>columns</code> is less than
+     *            0
      * @beaninfo description: the number of columns preferred for display
      */
     public void setColumns(int columns) {
@@ -401,8 +397,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
         Dimension size = super.getPreferredSize();
         if (columns != 0) {
             Insets insets = getInsets();
-            size.width = columns * getColumnWidth() + insets.left
-                    + insets.right;
+            size.width = columns * getColumnWidth() + insets.left + insets.right;
         }
         return size;
     }
@@ -413,7 +408,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * setting the font.
      *
      * @param f
-     *          the new font
+     *        the new font
      */
     public void setFont(Font f) {
         super.setFont(f);
@@ -425,7 +420,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * textfield.
      *
      * @param l
-     *          the action listener to be added
+     *        the action listener to be added
      */
     public synchronized void addActionListener(ActionListener l) {
         listenerList.add(ActionListener.class, l);
@@ -436,7 +431,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * action events from this textfield.
      *
      * @param l
-     *          the action listener to be removed
+     *        the action listener to be removed
      */
     public synchronized void removeActionListener(ActionListener l) {
         if ((l != null) && (getAction() == l)) {
@@ -475,9 +470,8 @@ public class JTextField extends JTextComponent implements SwingConstants {
         } else if (currentEvent instanceof ActionEvent) {
             modifiers = ((ActionEvent) currentEvent).getModifiers();
         }
-        ActionEvent e = new ActionEvent(this, ActionEvent.ACTION_PERFORMED,
-                (command != null) ? command : getText(), EventQueue
-                        .getMostRecentEventTime(), modifiers);
+        ActionEvent e = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, (command != null) ? command
+                : getText(), EventQueue.getMostRecentEventTime(), modifiers);
 
         // Process the listeners last to first, notifying
         // those that are interested in this event
@@ -492,7 +486,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * Sets the command string used for action events.
      *
      * @param command
-     *                the command string
+     *        the command string
      */
     public void setActionCommand(String command) {
         this.command = command;
@@ -526,8 +520,8 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * method when a property in the {@code Action} changes.
      *
      * @param a
-     *          the <code>Action</code> for the <code>JTextField</code>, or
-     *          <code>null</code>
+     *        the <code>Action</code> for the <code>JTextField</code>, or
+     *        <code>null</code>
      * @since 1.3
      * @see Action
      * @see #getAction
@@ -543,8 +537,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
             action = a;
             if (oldValue != null) {
                 removeActionListener(oldValue);
-                oldValue.removePropertyChangeListener(
-                        actionPropertyChangeListener);
+                oldValue.removePropertyChangeListener(actionPropertyChangeListener);
                 actionPropertyChangeListener = null;
             }
             configurePropertiesFromAction(action);
@@ -554,8 +547,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
                     addActionListener(action);
                 }
                 // Reverse linkage:
-                actionPropertyChangeListener = createActionPropertyChangeListener(
-                        action);
+                actionPropertyChangeListener = createActionPropertyChangeListener(action);
                 action.addPropertyChangeListener(actionPropertyChangeListener);
             }
             firePropertyChange("action", oldValue, action);
@@ -595,8 +587,8 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * which properties this sets.
      *
      * @param a
-     *          the <code>Action</code> from which to get the properties, or
-     *          <code>null</code>
+     *        the <code>Action</code> from which to get the properties, or
+     *        <code>null</code>
      * @since 1.3
      * @see Action
      * @see #setAction
@@ -621,10 +613,10 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * properties this method sets.
      *
      * @param action
-     *                     the <code>Action</code> associated with this
-     *                     textfield
+     *        the <code>Action</code> associated with this
+     *        textfield
      * @param propertyName
-     *                     the name of the property that changed
+     *        the name of the property that changed
      * @since 1.6
      * @see Action
      * @see #configurePropertiesFromAction
@@ -640,8 +632,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
     }
 
     private void setActionCommandFromAction(Action action) {
-        setActionCommand((action == null) ? null
-                : (String) action.getValue(Action.ACTION_COMMAND_KEY));
+        setActionCommand((action == null) ? null : (String) action.getValue(Action.ACTION_COMMAND_KEY));
     }
 
     /**
@@ -654,13 +645,12 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * the <code>Action</code>.
      *
      * @param a
-     *          the textfield's action
+     *        the textfield's action
      * @since 1.3
      * @see Action
      * @see #setAction
      */
-    protected PropertyChangeListener createActionPropertyChangeListener(
-            Action a) {
+    protected PropertyChangeListener createActionPropertyChangeListener(Action a) {
         return new TextFieldActionPropertyChangeListener(this, a);
     }
 
@@ -670,8 +660,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
             super(tf, a);
         }
 
-        protected void actionPropertyChanged(JTextField textField,
-                Action action, PropertyChangeEvent e) {
+        protected void actionPropertyChanged(JTextField textField, Action action, PropertyChangeEvent e) {
             if (AbstractAction.shouldReconfigure(e)) {
                 textField.configurePropertiesFromAction(action);
             } else {
@@ -707,7 +696,6 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * Gets the visibility of the text field. This can be adjusted to change the
      * location of the visible area if the size of the field is greater than the
      * area that was allocated to the field.
-     *
      * <p>
      * The fields look-and-feel implementation manages the values of the
      * minimum, maximum, and extent properties on the
@@ -733,7 +721,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * Sets the scroll offset, in pixels.
      *
      * @param scrollOffset
-     *                     the offset &gt;= 0
+     *        the offset &gt;= 0
      */
     public void setScrollOffset(int scrollOffset) {
         visibility.setValue(scrollOffset);
@@ -743,7 +731,7 @@ public class JTextField extends JTextComponent implements SwingConstants {
      * Scrolls the field left or right.
      *
      * @param r
-     *          the region to scroll
+     *        the region to scroll
      */
     public void scrollRectToVisible(Rectangle r) {
         // convert to coordinate system of the bounded range
@@ -873,9 +861,8 @@ public class JTextField extends JTextComponent implements SwingConstants {
             horizontalAlignmentString = "";
         String commandString = (command != null ? command : "");
 
-        return super.paramString() + ",columns=" + columns + ",columnWidth="
-                + columnWidth + ",command=" + commandString
-                + ",horizontalAlignment=" + horizontalAlignmentString;
+        return super.paramString() + ",columns=" + columns + ",columnWidth=" + columnWidth + ",command="
+                + commandString + ",horizontalAlignment=" + horizontalAlignmentString;
     }
 
     /////////////////

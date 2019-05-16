@@ -17,8 +17,8 @@ import org.omg.IOP.TAG_ALTERNATE_IIOP_ADDRESS;
 /**
  * @author Ken Cavanaugh
  */
-public class AlternateIIOPAddressComponentImpl extends TaggedComponentBase
-        implements AlternateIIOPAddressComponent {
+public class AlternateIIOPAddressComponentImpl extends TaggedComponentBase implements
+        AlternateIIOPAddressComponent {
     private IIOPAddress addr;
 
     public boolean equals(Object obj) {

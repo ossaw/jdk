@@ -22,8 +22,7 @@ package org.omg.PortableInterceptor;
  *
  * @see IORInfo
  */
-public interface IORInterceptorOperations extends
-        org.omg.PortableInterceptor.InterceptorOperations {
+public interface IORInterceptorOperations extends org.omg.PortableInterceptor.InterceptorOperations {
 
     /**
      * A server side ORB calls the <code>establish_components</code> operation
@@ -41,10 +40,10 @@ public interface IORInterceptorOperations extends
      * operation.
      *
      * @param info
-     *             The <code>IORInfo</code> instance used by the ORB service to
-     *             query applicable policies and add components to be included
-     *             in
-     *             the generated IORs.
+     *        The <code>IORInfo</code> instance used by the ORB service to
+     *        query applicable policies and add components to be included
+     *        in
+     *        the generated IORs.
      */
     void establish_components(org.omg.PortableInterceptor.IORInfo info);
 } // interface IORInterceptorOperations

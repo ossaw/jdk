@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,8 +34,8 @@ import org.w3c.dom.Element;
 public class DSAKeyValueResolver extends KeyResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(DSAKeyValueResolver.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(DSAKeyValueResolver.class
+            .getName());
 
     /**
      * Method engineResolvePublicKey
@@ -47,19 +45,16 @@ public class DSAKeyValueResolver extends KeyResolverSpi {
      * @param storage
      * @return null if no {@link PublicKey} could be obtained
      */
-    public PublicKey engineLookupAndResolvePublicKey(Element element,
-            String BaseURI, StorageResolver storage) {
+    public PublicKey engineLookupAndResolvePublicKey(Element element, String BaseURI,
+            StorageResolver storage) {
         if (element == null) {
             return null;
         }
         Element dsaKeyElement = null;
-        boolean isKeyValue = XMLUtils.elementIsInSignatureSpace(element,
-                Constants._TAG_KEYVALUE);
+        boolean isKeyValue = XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_KEYVALUE);
         if (isKeyValue) {
-            dsaKeyElement = XMLUtils.selectDsNode(element.getFirstChild(),
-                    Constants._TAG_DSAKEYVALUE, 0);
-        } else if (XMLUtils.elementIsInSignatureSpace(element,
-                Constants._TAG_DSAKEYVALUE)) {
+            dsaKeyElement = XMLUtils.selectDsNode(element.getFirstChild(), Constants._TAG_DSAKEYVALUE, 0);
+        } else if (XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_DSAKEYVALUE)) {
             // this trick is needed to allow the RetrievalMethodResolver to eat
             // a
             // ds:DSAKeyValue directly (without KeyValue)
@@ -86,14 +81,14 @@ public class DSAKeyValueResolver extends KeyResolverSpi {
     }
 
     /** @inheritDoc */
-    public X509Certificate engineLookupResolveX509Certificate(Element element,
-            String BaseURI, StorageResolver storage) {
+    public X509Certificate engineLookupResolveX509Certificate(Element element, String BaseURI,
+            StorageResolver storage) {
         return null;
     }
 
     /** @inheritDoc */
-    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
-            Element element, String BaseURI, StorageResolver storage) {
+    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String BaseURI,
+            StorageResolver storage) {
         return null;
     }
 }

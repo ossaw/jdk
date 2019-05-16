@@ -8,14 +8,12 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class NoSuchEndPointHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class NoSuchEndPointHolder implements org.omg.CORBA.portable.Streamable {
     public com.sun.corba.se.spi.activation.NoSuchEndPoint value = null;
 
     public NoSuchEndPointHolder() {}
 
-    public NoSuchEndPointHolder(
-            com.sun.corba.se.spi.activation.NoSuchEndPoint initialValue) {
+    public NoSuchEndPointHolder(com.sun.corba.se.spi.activation.NoSuchEndPoint initialValue) {
         value = initialValue;
     }
 

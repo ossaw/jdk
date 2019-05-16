@@ -44,8 +44,8 @@ public class HasPositionalPredChecker extends XPathVisitor {
      * that may make it context dependent.
      * 
      * @param path
-     *             LocPathIterator that is assumed to be absolute, but needs
-     *             checking.
+     *        LocPathIterator that is assumed to be absolute, but needs
+     *        checking.
      * @return true if the path is confirmed to be absolute, false if it may
      *         contain context dependencies.
      */
@@ -59,10 +59,10 @@ public class HasPositionalPredChecker extends XPathVisitor {
      * Visit a function.
      * 
      * @param owner
-     *              The owner of the expression, to which the expression can be
-     *              reset if rewriting takes place.
+     *        The owner of the expression, to which the expression can be
+     *        reset if rewriting takes place.
      * @param func
-     *              The function reference object.
+     *        The function reference object.
      * @return true if the sub expressions should be traversed.
      */
     public boolean visitFunction(ExpressionOwner owner, Function func) {
@@ -90,19 +90,18 @@ public class HasPositionalPredChecker extends XPathVisitor {
      * also for whatever type Expression is.
      *
      * @param owner
-     *              The owner of the expression, to which the expression can be
-     *              reset if rewriting takes place.
+     *        The owner of the expression, to which the expression can be
+     *        reset if rewriting takes place.
      * @param pred
-     *              The predicate object.
+     *        The predicate object.
      * @return true if the sub expressions should be traversed.
      */
     public boolean visitPredicate(ExpressionOwner owner, Expression pred) {
         m_predDepth++;
 
         if (m_predDepth == 1) {
-            if ((pred instanceof Variable) || (pred instanceof XNumber)
-                    || (pred instanceof Div) || (pred instanceof Plus)
-                    || (pred instanceof Minus) || (pred instanceof Mod)
+            if ((pred instanceof Variable) || (pred instanceof XNumber) || (pred instanceof Div)
+                    || (pred instanceof Plus) || (pred instanceof Minus) || (pred instanceof Mod)
                     || (pred instanceof Quo) || (pred instanceof Mult)
                     || (pred instanceof com.sun.org.apache.xpath.internal.operations.Number)
                     || (pred instanceof Function))

@@ -39,31 +39,27 @@ public class TextOutputCallback implements Callback, java.io.Serializable {
     /**
      * Construct a TextOutputCallback with a message type and message to be
      * displayed.
-     *
      * <p>
      *
      * @param messageType
-     *                    the message type ({@code INFORMATION}, {@code WARNING}
-     *                    or
-     *                    {@code ERROR}).
-     *                    <p>
-     *
+     *        the message type ({@code INFORMATION}, {@code WARNING}
+     *        or
+     *        {@code ERROR}).
+     *        <p>
      * @param message
-     *                    the message to be displayed.
-     *                    <p>
-     *
+     *        the message to be displayed.
+     *        <p>
      * @exception IllegalArgumentException
-     *                                     if {@code messageType} is not either
-     *                                     {@code INFORMATION},
-     *                                     {@code WARNING} or {@code ERROR}, if
-     *                                     {@code message} is
-     *                                     null, or if {@code message} has a
-     *                                     length of 0.
+     *            if {@code messageType} is not either
+     *            {@code INFORMATION},
+     *            {@code WARNING} or {@code ERROR}, if
+     *            {@code message} is
+     *            null, or if {@code message} has a
+     *            length of 0.
      */
     public TextOutputCallback(int messageType, String message) {
-        if ((messageType != INFORMATION && messageType != WARNING
-                && messageType != ERROR) || message == null || message
-                        .length() == 0)
+        if ((messageType != INFORMATION && messageType != WARNING && messageType != ERROR) || message == null
+                || message.length() == 0)
             throw new IllegalArgumentException();
 
         this.messageType = messageType;
@@ -72,7 +68,6 @@ public class TextOutputCallback implements Callback, java.io.Serializable {
 
     /**
      * Get the message type.
-     *
      * <p>
      *
      * @return the message type ({@code INFORMATION}, {@code WARNING} or
@@ -84,7 +79,6 @@ public class TextOutputCallback implements Callback, java.io.Serializable {
 
     /**
      * Get the message to be displayed.
-     *
      * <p>
      *
      * @return the message to be displayed.

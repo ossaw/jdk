@@ -4,20 +4,15 @@
  */
 
 /**********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
+ ********************************************************************** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
  *** As an unpublished work pursuant to Title 17 of the United ***
  *** States Code. All rights reserved. ***
- **********************************************************************
- **********************************************************************
  **********************************************************************/
 
 package com.sun.image.codec.jpeg;
 
 /**
  * JPEGImageEncoder Interface
- *
  * JPEGImageEncoder compresses images into JPEG data streams and
  * writes the JPEG stream to an OutputStream. Image data that is to
  * be encoded can be passed in as a Raster of image data or as a
@@ -25,7 +20,6 @@ package com.sun.image.codec.jpeg;
  * stream is controlled by the parameters setting found in the
  * JPEGEncodeParam object.
  * <P>
- *
  * ColorSpace comments: First off JPEG by specification is color
  * blind! That said, this interface will perform some color space
  * conversion in the name of better compression ratios. There is no
@@ -38,7 +32,6 @@ package com.sun.image.codec.jpeg;
  * JPEGEncodeParam description for more details on additional color
  * space designations ( @see JPEGEncodeParam ).
  * <P>
- *
  * This encoder will process interchange, and abbreviated JPEG
  * streams.
  */
@@ -55,7 +48,6 @@ import java.awt.image.Raster;
  * BufferedImage, set the necessary parameters in the JPEGEncodeParams object
  * and successfully open the <code>OutputStream</code> that is the destination
  * of the encoded JPEG stream.
- *
  * The JPEGImageEncoder interface can encode image data into interchange, and
  * abbreviated JPEG data streams that are written to the OutputStream provided
  * to the encoder.
@@ -87,8 +79,7 @@ public interface JPEGImageEncoder {
      * call this method again.
      * 
      * @param jep
-     *            The JPEGEncodeParam object to use for future encodings.
-     *
+     *        The JPEGEncodeParam object to use for future encodings.
      */
     public void setJPEGEncodeParam(JPEGEncodeParam jep);
 
@@ -107,8 +98,7 @@ public interface JPEGImageEncoder {
      * returned object will do a credible job of encoding the given
      * BufferedImage.
      */
-    public JPEGEncodeParam getDefaultJPEGEncodeParam(BufferedImage bi)
-            throws ImageFormatException;
+    public JPEGEncodeParam getDefaultJPEGEncodeParam(BufferedImage bi) throws ImageFormatException;
 
     /**
      * Encode a BufferedImage as a JPEG data stream. Note, some color
@@ -116,15 +106,13 @@ public interface JPEGImageEncoder {
      * COLOR_ID should match the value returned by getDefaultColorID when given
      * the BufferedImage's ColorModel.
      * <P>
-     * 
      * If no JPEGEncodeParam object has been provided yet a default one will be
      * created by calling getDefaultJPEGEncodeParam with bi.
      * 
      * @param bi
-     *           The BufferedImage to encode.
+     *        The BufferedImage to encode.
      */
-    public void encode(BufferedImage bi) throws IOException,
-            ImageFormatException;
+    public void encode(BufferedImage bi) throws IOException, ImageFormatException;
 
     /**
      * Encode a BufferedImage as a JPEG data stream. Note, some color
@@ -132,19 +120,17 @@ public interface JPEGImageEncoder {
      * value returned by getDefaultColorID when given the BufferedImage's
      * ColorModel.
      * <P>
-     * 
      * This call also sets the current JPEGEncodeParam object. The given
      * JPEGEncodeParam object will be used for this and future encodings. If jep
      * is null then a new JPEGEncodeParam object will be created by calling
      * getDefaultJPEGEncodeParam with bi.
      * 
      * @param bi
-     *            The BufferedImage to encode.
+     *        The BufferedImage to encode.
      * @param jep
-     *            The JPEGEncodeParam object used to control the encoding.
+     *        The JPEGEncodeParam object used to control the encoding.
      */
-    public void encode(BufferedImage bi, JPEGEncodeParam jep)
-            throws IOException, ImageFormatException;
+    public void encode(BufferedImage bi, JPEGEncodeParam jep) throws IOException, ImageFormatException;
 
     /**
      * Returns the 'default' encoded COLOR_ID for a given ColorModel. This
@@ -154,7 +140,7 @@ public interface JPEGImageEncoder {
      * encoding.
      * 
      * @param cm
-     *           The ColorModel to map to an jpeg encoded COLOR_ID.
+     *        The ColorModel to map to an jpeg encoded COLOR_ID.
      * @return The default mapping of cm to a jpeg Color_ID note that in a few
      *         cases color conversion is required.
      */
@@ -167,8 +153,7 @@ public interface JPEGImageEncoder {
      * image quality. If you don't understand much about JPEG it is strongly
      * reccomended that you stick to the BufferedImage interfaces.
      */
-    public JPEGEncodeParam getDefaultJPEGEncodeParam(Raster ras, int colorID)
-            throws ImageFormatException;
+    public JPEGEncodeParam getDefaultJPEGEncodeParam(Raster ras, int colorID) throws ImageFormatException;
 
     /**
      * This is a factory method for creating JPEGEncodeParam objects. It is the
@@ -179,15 +164,14 @@ public interface JPEGImageEncoder {
      * interface.
      *
      * @param numBands
-     *                 the number of bands that will be encoded (max of four).
+     *        the number of bands that will be encoded (max of four).
      * @param colorID
-     *                 the COLOR_ID for the encoded data. This is used to set
-     *                 reasonable defaults in the parameter object. This must
-     *                 match
-     *                 the number of bands given.
+     *        the COLOR_ID for the encoded data. This is used to set
+     *        reasonable defaults in the parameter object. This must
+     *        match
+     *        the number of bands given.
      */
-    public JPEGEncodeParam getDefaultJPEGEncodeParam(int numBands, int colorID)
-            throws ImageFormatException;
+    public JPEGEncodeParam getDefaultJPEGEncodeParam(int numBands, int colorID) throws ImageFormatException;
 
     /**
      * This is a factory method for creating a JPEGEncodeParam from a
@@ -197,23 +181,21 @@ public interface JPEGImageEncoder {
      * mappings).
      * 
      * @param jdp
-     *            The JPEGDecodeParam object to copy.
+     *        The JPEGDecodeParam object to copy.
      */
-    public JPEGEncodeParam getDefaultJPEGEncodeParam(JPEGDecodeParam jdp)
-            throws ImageFormatException;
+    public JPEGEncodeParam getDefaultJPEGEncodeParam(JPEGDecodeParam jdp) throws ImageFormatException;
 
     /**
      * Encode a Raster as a JPEG data stream. Note that no color conversion
      * takes place. It is required that you match the Raster to the encoded
      * COLOR_ID contained in the current JPEGEncodeParam object.
      * <P>
-     * 
      * If no JPEGEncodeParam object has been provided yet a new JPEGEncodeParam
      * object will be created by calling getDefaultJPEGEncodeParam with ras and
      * COLOR_ID_UNKNOWN.
      * 
      * @param ras
-     *            The Raster to encode.
+     *        The Raster to encode.
      */
     public void encode(Raster ras) throws IOException, ImageFormatException;
 
@@ -221,15 +203,13 @@ public interface JPEGImageEncoder {
      * Encode a Raster as a JPEG data stream. Note that no color conversion
      * takes place. It is required that you match the Raster to the encoded
      * COLOR_ID contained in the JPEGEncodeParam object.
-     * 
      * If jep is null a new JPEGEncodeParam object will be created by calling
      * getDefaultJPEGEncodeParam with ras and COLOR_ID_UNKNOWN.
      * 
      * @param ras
-     *            The Raster to encode.
+     *        The Raster to encode.
      * @param jep
-     *            The JPEGEncodeParam object used to control the encoding.
+     *        The JPEGEncodeParam object used to control the encoding.
      */
-    public void encode(Raster ras, JPEGEncodeParam jep) throws IOException,
-            ImageFormatException;
+    public void encode(Raster ras, JPEGEncodeParam jep) throws IOException, ImageFormatException;
 }

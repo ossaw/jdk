@@ -38,10 +38,8 @@ import java.util.Map;
  * DTMStringPool, since it is both much more memory-hungry and probably slower
  * -- especially in JDK 1.1.x, where Hashtable is synchronized. We need to
  * either justify this implementation or discard it.
- *
  * <p>
  * Status: In progress, under discussion.
- *
  */
 public class CustomStringPool extends DTMStringPool {
 
@@ -65,8 +63,7 @@ public class CustomStringPool extends DTMStringPool {
      *         if index doesn't map to a string.
      */
     @Override
-    public String indexToString(int i)
-            throws java.lang.ArrayIndexOutOfBoundsException {
+    public String indexToString(int i) throws java.lang.ArrayIndexOutOfBoundsException {
         return (String) m_intToString.elementAt(i);
     }
 

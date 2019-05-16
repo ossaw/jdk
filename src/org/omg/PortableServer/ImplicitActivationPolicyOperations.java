@@ -12,8 +12,7 @@ package org.omg.PortableServer;
  * This policy specifies whether implicit activation of servants is supported in
  * the created POA.
  */
-public interface ImplicitActivationPolicyOperations extends
-        org.omg.CORBA.PolicyOperations {
+public interface ImplicitActivationPolicyOperations extends org.omg.CORBA.PolicyOperations {
 
     /**
      * specifies the policy value

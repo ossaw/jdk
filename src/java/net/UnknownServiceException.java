@@ -28,7 +28,7 @@ public class UnknownServiceException extends IOException {
      * detail message.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public UnknownServiceException(String msg) {
         super(msg);

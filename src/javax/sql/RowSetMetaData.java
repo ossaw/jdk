@@ -31,10 +31,10 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * number.
      *
      * @param columnCount
-     *                    the number of columns in the <code>RowSet</code>
-     *                    object
+     *        the number of columns in the <code>RowSet</code>
+     *        object
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setColumnCount(int columnCount) throws SQLException;
 
@@ -44,47 +44,42 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * numbered.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param property
-     *                    <code>true</code> if the column is automatically
-     *                    numbered;
-     *                    <code>false</code> if it is not
-     *
+     *        <code>true</code> if the column is automatically
+     *        numbered;
+     *        <code>false</code> if it is not
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setAutoIncrement(int columnIndex, boolean property)
-            throws SQLException;
+    void setAutoIncrement(int columnIndex, boolean property) throws SQLException;
 
     /**
      * Sets whether the designated column is case sensitive. The default is
      * <code>false</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param property
-     *                    <code>true</code> if the column is case sensitive;
-     *                    <code>false</code> if it is not
-     *
+     *        <code>true</code> if the column is case sensitive;
+     *        <code>false</code> if it is not
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setCaseSensitive(int columnIndex, boolean property)
-            throws SQLException;
+    void setCaseSensitive(int columnIndex, boolean property) throws SQLException;
 
     /**
      * Sets whether the designated column can be used in a where clause. The
      * default is <code>false</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param property
-     *                    <code>true</code> if the column can be used in a
-     *                    <code>WHERE</code> clause; <code>false</code> if it
-     *                    cannot
-     *
+     *        <code>true</code> if the column can be used in a
+     *        <code>WHERE</code> clause; <code>false</code> if it
+     *        cannot
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setSearchable(int columnIndex, boolean property) throws SQLException;
 
@@ -93,13 +88,12 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * <code>false</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param property
-     *                    <code>true</code> if the column is a cash value;
-     *                    <code>false</code> if it is not
-     *
+     *        <code>true</code> if the column is a cash value;
+     *        <code>false</code> if it is not
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setCurrency(int columnIndex, boolean property) throws SQLException;
 
@@ -109,15 +103,14 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * <code>ResultSetMetaData.columnNullableUnknown</code>
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param property
-     *                    one of the following constants:
-     *                    <code>ResultSetMetaData.columnNoNulls</code>,
-     *                    <code>ResultSetMetaData.columnNullable</code>, or
-     *                    <code>ResultSetMetaData.columnNullableUnknown</code>
-     *
+     *        one of the following constants:
+     *        <code>ResultSetMetaData.columnNoNulls</code>,
+     *        <code>ResultSetMetaData.columnNullable</code>, or
+     *        <code>ResultSetMetaData.columnNullableUnknown</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setNullable(int columnIndex, int property) throws SQLException;
 
@@ -126,13 +119,12 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * <code>false</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param property
-     *                    <code>true</code> if the column is a signed number;
-     *                    <code>false</code> if it is not
-     *
+     *        <code>true</code> if the column is a signed number;
+     *        <code>false</code> if it is not
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setSigned(int columnIndex, boolean property) throws SQLException;
 
@@ -141,14 +133,13 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * <code>int</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param size
-     *                    the normal maximum number of characters for the
-     *                    designated
-     *                    column
-     *
+     *        the normal maximum number of characters for the
+     *        designated
+     *        column
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setColumnDisplaySize(int columnIndex, int size) throws SQLException;
 
@@ -157,11 +148,11 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * any, to the given <code>String</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param label
-     *                    the column title
+     *        the column title
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setColumnLabel(int columnIndex, String label) throws SQLException;
 
@@ -169,11 +160,11 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * Sets the name of the designated column to the given <code>String</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param columnName
-     *                    the designated column's name
+     *        the designated column's name
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setColumnName(int columnIndex, String columnName) throws SQLException;
 
@@ -182,11 +173,11 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * given <code>String</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param schemaName
-     *                    the schema name
+     *        the schema name
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setSchemaName(int columnIndex, String schemaName) throws SQLException;
 
@@ -195,11 +186,11 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * <code>int</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param precision
-     *                    the total number of decimal digits
+     *        the total number of decimal digits
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setPrecision(int columnIndex, int precision) throws SQLException;
 
@@ -208,11 +199,11 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * point to the given <code>int</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param scale
-     *                    the number of digits to right of decimal point
+     *        the number of digits to right of decimal point
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setScale(int columnIndex, int scale) throws SQLException;
 
@@ -221,11 +212,11 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * <code>String</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param tableName
-     *                    the column's table name
+     *        the column's table name
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setTableName(int columnIndex, String tableName) throws SQLException;
 
@@ -234,24 +225,23 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * <code>String</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param catalogName
-     *                    the column's catalog name
+     *        the column's catalog name
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setCatalogName(int columnIndex, String catalogName)
-            throws SQLException;
+    void setCatalogName(int columnIndex, String catalogName) throws SQLException;
 
     /**
      * Sets the designated column's SQL type to the one given.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param SQLType
-     *                    the column's SQL type
+     *        the column's SQL type
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see Types
      */
     void setColumnType(int columnIndex, int SQLType) throws SQLException;
@@ -261,13 +251,12 @@ public interface RowSetMetaData extends ResultSetMetaData {
      * source, if any, to the given <code>String</code>.
      *
      * @param columnIndex
-     *                    the first column is 1, the second is 2, ...
+     *        the first column is 1, the second is 2, ...
      * @param typeName
-     *                    data source specific type name.
+     *        data source specific type name.
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setColumnTypeName(int columnIndex, String typeName)
-            throws SQLException;
+    void setColumnTypeName(int columnIndex, String typeName) throws SQLException;
 
 }

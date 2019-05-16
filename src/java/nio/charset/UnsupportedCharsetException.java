@@ -24,7 +24,7 @@ public class UnsupportedCharsetException extends IllegalArgumentException {
      * Constructs an instance of this class.
      *
      * @param charsetName
-     *                    The name of the unsupported charset
+     *        The name of the unsupported charset
      */
     public UnsupportedCharsetException(String charsetName) {
         super(String.valueOf(charsetName));

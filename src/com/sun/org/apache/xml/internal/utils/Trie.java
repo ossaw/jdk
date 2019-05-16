@@ -48,10 +48,9 @@ public class Trie {
      * Put an object into the trie for lookup.
      *
      * @param key
-     *              must be a 7-bit ASCII string
+     *        must be a 7-bit ASCII string
      * @param value
-     *              any java object.
-     *
+     *        any java object.
      * @return The old object that matched key, or null.
      */
     public Object put(String key, Object value) {
@@ -65,8 +64,7 @@ public class Trie {
         Node node = m_Root;
 
         for (int i = 0; i < len; i++) {
-            Node nextNode = node.m_nextChar[Character.toUpperCase(key.charAt(
-                    i))];
+            Node nextNode = node.m_nextChar[Character.toUpperCase(key.charAt(i))];
 
             if (nextNode != null) {
                 node = nextNode;
@@ -74,10 +72,8 @@ public class Trie {
                 for (; i < len; i++) {
                     Node newNode = new Node();
                     // put this value into the tree with a case insensitive key
-                    node.m_nextChar[Character.toUpperCase(key.charAt(
-                            i))] = newNode;
-                    node.m_nextChar[Character.toLowerCase(key.charAt(
-                            i))] = newNode;
+                    node.m_nextChar[Character.toUpperCase(key.charAt(i))] = newNode;
+                    node.m_nextChar[Character.toLowerCase(key.charAt(i))] = newNode;
                     node = newNode;
                 }
                 break;
@@ -95,8 +91,7 @@ public class Trie {
      * Get an object that matches the key.
      *
      * @param key
-     *            must be a 7-bit ASCII string
-     *
+     *        must be a 7-bit ASCII string
      * @return The object that matches the key, or null.
      */
     public Object get(final String key) {

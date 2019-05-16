@@ -25,7 +25,7 @@ public interface DynEnum extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
      * Set a particular enum in this <code>DynEnum</code>.
      *
      * @param arg
-     *            the string corresponding to the value.
+     *        the string corresponding to the value.
      */
     public void value_as_string(String arg);
 
@@ -40,7 +40,7 @@ public interface DynEnum extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
      * Set the value of the IDL enum.
      *
      * @param arg
-     *            the int value of the enum.
+     *        the int value of the enum.
      */
     public void value_as_ulong(int arg);
 }

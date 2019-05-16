@@ -9,7 +9,6 @@ import com.sun.org.apache.xalan.internal.XalanConstants;
 
 /**
  * This class manages security related properties
- *
  */
 public final class FeatureManager extends FeaturePropertyBase {
 
@@ -19,16 +18,15 @@ public final class FeatureManager extends FeaturePropertyBase {
      * properties, and jaxp api properties
      */
     public static enum State {
-    // this order reflects the overriding order
-    DEFAULT, FSP, JAXPDOTPROPERTIES, SYSTEMPROPERTY, APIPROPERTY
+        // this order reflects the overriding order
+        DEFAULT, FSP, JAXPDOTPROPERTIES, SYSTEMPROPERTY, APIPROPERTY
     }
 
     /**
      * Xalan Features
      */
     public static enum Feature {
-        ORACLE_ENABLE_EXTENSION_FUNCTION(
-                XalanConstants.ORACLE_ENABLE_EXTENSION_FUNCTION, "true");
+        ORACLE_ENABLE_EXTENSION_FUNCTION(XalanConstants.ORACLE_ENABLE_EXTENSION_FUNCTION, "true");
 
         final String name;
         final String defaultValue;
@@ -63,7 +61,7 @@ public final class FeatureManager extends FeaturePropertyBase {
      * Check if the feature is enabled
      * 
      * @param feature
-     *                name of the feature
+     *        name of the feature
      * @return true if enabled, false otherwise
      */
     public boolean isFeatureEnabled(Feature feature) {
@@ -74,7 +72,7 @@ public final class FeatureManager extends FeaturePropertyBase {
      * Check if the feature is enabled
      * 
      * @param propertyName
-     *                     name of the feature
+     *        name of the feature
      * @return true if enabled, false otherwise
      */
     public boolean isFeatureEnabled(String propertyName) {
@@ -85,7 +83,7 @@ public final class FeatureManager extends FeaturePropertyBase {
      * Get the index by property name
      * 
      * @param propertyName
-     *                     property name
+     *        property name
      * @return the index of the property if found; return -1 if not
      */
     public int getIndex(String propertyName) {

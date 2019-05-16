@@ -11,13 +11,11 @@ import java.lang.*;
  * A generic superclass for streams which read and parse text consisting of runs
  * of characters interspersed with occasional ``specials'' (formatting
  * characters).
- *
  * <p>
  * Most of the functionality of this class would be redundant except that the
  * <code>ByteToChar</code> converters are suddenly private API. Presumably this
  * class will disappear when the API is made public again. (sigh) That will also
  * let us handle multibyte character sets...
- *
  * <P>
  * A subclass should override at least <code>write(char)</code> and
  * <code>writeSpecial(int)</code>. For efficiency's sake it's a good idea to
@@ -68,7 +66,7 @@ abstract class AbstractFilter extends OutputStream {
      * are processed.
      *
      * @param in
-     *           An InputStream providing text.
+     *        An InputStream providing text.
      */
     public void readFromStream(InputStream in) throws IOException {
         byte buf[];
@@ -124,7 +122,6 @@ abstract class AbstractFilter extends OutputStream {
 
     /**
      * Implements the buffer-at-a-time write method for greater efficiency.
-     *
      * <p>
      * <strong>PENDING:</strong> Does <code>write(byte[])</code> call
      * <code>write(byte[], int, int)</code> or is it the other way around?
@@ -167,8 +164,8 @@ abstract class AbstractFilter extends OutputStream {
      * them via <code>write(char)</code>.
      *
      * @param s
-     *          The string of non-special characters written to the
-     *          OutputStream.
+     *        The string of non-special characters written to the
+     *        OutputStream.
      */
     public void write(String s) throws IOException {
         int index, length;
@@ -184,7 +181,7 @@ abstract class AbstractFilter extends OutputStream {
      * single (non-special) character.
      *
      * @param ch
-     *           The character written to the OutputStream.
+     *        The character written to the OutputStream.
      */
     protected abstract void write(char ch) throws IOException;
 
@@ -193,7 +190,7 @@ abstract class AbstractFilter extends OutputStream {
      * single special byte. No translation is performed on specials.
      *
      * @param b
-     *          The byte written to the OutputStream.
+     *        The byte written to the OutputStream.
      */
     protected abstract void writeSpecial(int b) throws IOException;
 }

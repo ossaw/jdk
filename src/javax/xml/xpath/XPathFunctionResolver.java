@@ -12,13 +12,11 @@ import javax.xml.namespace.QName;
  * <code>XPathFunctionResolver</code> provides access to the set of user defined
  * <code>XPathFunction</code>s.
  * </p>
- *
  * <p>
  * XPath functions are resolved by name and arity. The resolver is not needed
  * for XPath built-in functions and the resolver <strong>
  * <em>cannot</em></strong> be used to override those functions.
  * </p>
- *
  * <p>
  * In particular, the resolver is only called for functions in an another
  * namespace (functions with an explicit prefix). This means that you cannot use
@@ -27,7 +25,6 @@ import javax.xml.namespace.QName;
  * Processing</a> which extend the function library of XPath 1.0 in the same
  * namespace. This is a consequence of the design of the resolver.
  * </p>
- *
  * <p>
  * If you wish to implement additional built-in functions, you will have to
  * extend the underlying implementation directly.
@@ -44,27 +41,24 @@ public interface XPathFunctionResolver {
      * <p>
      * Find a function in the set of available functions.
      * </p>
-     *
      * <p>
      * If <code>functionName</code> or <code>arity</code> is <code>null</code>,
      * then a <code>NullPointerException</code> is thrown.
      * </p>
      *
      * @param functionName
-     *                     The function name.
+     *        The function name.
      * @param arity
-     *                     The number of arguments that the returned function
-     *                     must
-     *                     accept.
-     *
+     *        The number of arguments that the returned function
+     *        must
+     *        accept.
      * @return The function or <code>null</code> if no function named
      *         <code>functionName</code> with <code>arity</code> arguments
      *         exists.
-     *
      * @throws NullPointerException
-     *                              If <code>functionName</code> or
-     *                              <code>arity</code> is
-     *                              <code>null</code>.
+     *         If <code>functionName</code> or
+     *         <code>arity</code> is
+     *         <code>null</code>.
      */
     public XPathFunction resolveFunction(QName functionName, int arity);
 }

@@ -22,7 +22,7 @@ public class AWTException extends Exception {
      * that describes this particular exception.
      * 
      * @param msg
-     *            the detail message
+     *        the detail message
      * @since JDK1.0
      */
     public AWTException(String msg) {

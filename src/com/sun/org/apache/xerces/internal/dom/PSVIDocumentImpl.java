@@ -30,9 +30,7 @@ import org.w3c.dom.*;
  * PSVI information.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  */
 public class PSVIDocumentImpl extends DocumentImpl {
 
@@ -61,7 +59,7 @@ public class PSVIDocumentImpl extends DocumentImpl {
      *
      * @return org.w3c.dom.Node
      * @param deep
-     *             boolean, iff true replicate children
+     *        boolean, iff true replicate children
      */
     public Node cloneNode(boolean deep) {
 
@@ -91,38 +89,34 @@ public class PSVIDocumentImpl extends DocumentImpl {
     /**
      * Create an element with PSVI information
      */
-    public Element createElementNS(String namespaceURI, String qualifiedName)
-            throws DOMException {
+    public Element createElementNS(String namespaceURI, String qualifiedName) throws DOMException {
         return new PSVIElementNSImpl(this, namespaceURI, qualifiedName);
     }
 
     /**
      * Create an element with PSVI information
      */
-    public Element createElementNS(String namespaceURI, String qualifiedName,
-            String localpart) throws DOMException {
-        return new PSVIElementNSImpl(this, namespaceURI, qualifiedName,
-                localpart);
+    public Element createElementNS(String namespaceURI, String qualifiedName, String localpart)
+            throws DOMException {
+        return new PSVIElementNSImpl(this, namespaceURI, qualifiedName, localpart);
     }
 
     /**
      * Create an attribute with PSVI information
      */
-    public Attr createAttributeNS(String namespaceURI, String qualifiedName)
-            throws DOMException {
+    public Attr createAttributeNS(String namespaceURI, String qualifiedName) throws DOMException {
         return new PSVIAttrNSImpl(this, namespaceURI, qualifiedName);
     }
 
     /**
      * Create an attribute with PSVI information
      */
-    public Attr createAttributeNS(String namespaceURI, String qualifiedName,
-            String localName) throws DOMException {
+    public Attr createAttributeNS(String namespaceURI, String qualifiedName, String localName)
+            throws DOMException {
         return new PSVIAttrNSImpl(this, namespaceURI, qualifiedName, localName);
     }
 
     /**
-     *
      * The configuration used when <code>Document.normalizeDocument</code> is
      * invoked.
      * 
@@ -140,8 +134,7 @@ public class PSVIDocumentImpl extends DocumentImpl {
         throw new NotSerializableException(getClass().getName());
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         throw new NotSerializableException(getClass().getName());
     }
 

@@ -78,7 +78,7 @@ public class XPointerParserConfiguration extends XML11Configuration {
      * Constructs a parser configuration using the specified symbol table.
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      */
     public XPointerParserConfiguration(SymbolTable symbolTable) {
         this(symbolTable, null, null);
@@ -90,12 +90,11 @@ public class XPointerParserConfiguration extends XML11Configuration {
      * <p>
      *
      * @param symbolTable
-     *                    The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                    The grammar pool to use.
+     *        The grammar pool to use.
      */
-    public XPointerParserConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool) {
+    public XPointerParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this(symbolTable, grammarPool, null);
     } // <init>(SymbolTable,XMLGrammarPool)
 
@@ -105,14 +104,14 @@ public class XPointerParserConfiguration extends XML11Configuration {
      * <p>
      *
      * @param symbolTable
-     *                       The symbol table to use.
+     *        The symbol table to use.
      * @param grammarPool
-     *                       The grammar pool to use.
+     *        The grammar pool to use.
      * @param parentSettings
-     *                       The parent settings.
+     *        The parent settings.
      */
-    public XPointerParserConfiguration(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool, XMLComponentManager parentSettings) {
+    public XPointerParserConfiguration(SymbolTable symbolTable, XMLGrammarPool grammarPool,
+            XMLComponentManager parentSettings) {
         super(symbolTable, grammarPool, parentSettings);
 
         fXIncludeHandler = new XIncludeHandler();
@@ -121,13 +120,12 @@ public class XPointerParserConfiguration extends XML11Configuration {
         fXPointerHandler = new XPointerHandler();
         addCommonComponent(fXPointerHandler);
 
-        final String[] recognizedFeatures = { ALLOW_UE_AND_NOTATION_EVENTS,
-                XINCLUDE_FIXUP_BASE_URIS, XINCLUDE_FIXUP_LANGUAGE };
+        final String[] recognizedFeatures = { ALLOW_UE_AND_NOTATION_EVENTS, XINCLUDE_FIXUP_BASE_URIS,
+                XINCLUDE_FIXUP_LANGUAGE };
         addRecognizedFeatures(recognizedFeatures);
 
         // add default recognized properties
-        final String[] recognizedProperties = { XINCLUDE_HANDLER,
-                XPOINTER_HANDLER, NAMESPACE_CONTEXT };
+        final String[] recognizedProperties = { XINCLUDE_HANDLER, XPOINTER_HANDLER, NAMESPACE_CONTEXT };
         addRecognizedProperties(recognizedProperties);
 
         setFeature(ALLOW_UE_AND_NOTATION_EVENTS, true);
@@ -228,8 +226,7 @@ public class XPointerParserConfiguration extends XML11Configuration {
 
     } // configureXML11Pipeline()
 
-    public void setProperty(String propertyId, Object value)
-            throws XMLConfigurationException {
+    public void setProperty(String propertyId, Object value) throws XMLConfigurationException {
 
         // if (propertyId.equals(XINCLUDE_HANDLER)) {
         // }

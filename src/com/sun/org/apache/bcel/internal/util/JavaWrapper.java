@@ -104,12 +104,11 @@ public class JavaWrapper {
      * argv
      *
      * @param class_name
-     *                   the fully qualified class name
+     *        the fully qualified class name
      * @param argv
-     *                   the arguments just as you would pass them directly
+     *        the arguments just as you would pass them directly
      */
-    public void runMain(String class_name, String[] argv)
-            throws ClassNotFoundException {
+    public void runMain(String class_name, String[] argv) throws ClassNotFoundException {
         Class cl = loader.loadClass(class_name);
         Method method = null;
 
@@ -122,8 +121,7 @@ public class JavaWrapper {
             int m = method.getModifiers();
             Class r = method.getReturnType();
 
-            if (!(Modifier.isPublic(m) && Modifier.isStatic(m)) || Modifier
-                    .isAbstract(m) || (r != Void.TYPE))
+            if (!(Modifier.isPublic(m) && Modifier.isStatic(m)) || Modifier.isAbstract(m) || (r != Void.TYPE))
                 throw new NoSuchMethodException();
         } catch (NoSuchMethodException no) {
             System.out.println("In class " + class_name

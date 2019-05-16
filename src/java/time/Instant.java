@@ -77,7 +77,6 @@ import java.util.Objects;
  * the epoch have positive values, and earlier instants have negative values.
  * For both the epoch-second and nanosecond parts, a larger value is always
  * later on the time-line than a smaller value.
- *
  * <h3>Time-scale</h3>
  * <p>
  * The length of the solar day is the standard way that humans measure time.
@@ -159,7 +158,6 @@ import java.util.Objects;
  * The Java time-scale is used for all date-time classes. This includes
  * {@code Instant}, {@code LocalDate}, {@code LocalTime}, {@code OffsetDateTime}
  * , {@code ZonedDateTime} and {@code Duration}.
- *
  * <p>
  * This is a <a href="{@docRoot}/java/lang/doc-files/ValueBased.html"
  * >value-based</a> class; use of identity-sensitive operations (including
@@ -168,11 +166,9 @@ import java.util.Objects;
  * avoided. The {@code equals} method should be used for comparisons.
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
-public final class Instant implements Temporal, TemporalAdjuster,
-        Comparable<Instant>, Serializable {
+public final class Instant implements Temporal, TemporalAdjuster, Comparable<Instant>, Serializable {
 
     /**
      * Constant for the 1970-01-01T00:00:00Z epoch instant.
@@ -206,8 +202,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * which affect the instant in addition to the local date-time. The value is
      * also chosen such that the value of the year fits in an {@code int}.
      */
-    public static final Instant MAX = Instant.ofEpochSecond(MAX_SECOND,
-            999_999_999);
+    public static final Instant MAX = Instant.ofEpochSecond(MAX_SECOND, 999_999_999);
 
     /**
      * Serialization version.
@@ -250,7 +245,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * injection}.
      *
      * @param clock
-     *              the clock to use, not null
+     *        the clock to use, not null
      * @return the current instant, not null
      */
     public static Instant now(Clock clock) {
@@ -266,11 +261,11 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * The nanosecond field is set to zero.
      *
      * @param epochSecond
-     *                    the number of seconds from 1970-01-01T00:00:00Z
+     *        the number of seconds from 1970-01-01T00:00:00Z
      * @return an instant, not null
      * @throws DateTimeException
-     *                           if the instant exceeds the maximum or minimum
-     *                           instant
+     *         if the instant exceeds the maximum or minimum
+     *         instant
      */
     public static Instant ofEpochSecond(long epochSecond) {
         return create(epochSecond, 0);
@@ -292,21 +287,20 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * </pre>
      *
      * @param epochSecond
-     *                       the number of seconds from 1970-01-01T00:00:00Z
+     *        the number of seconds from 1970-01-01T00:00:00Z
      * @param nanoAdjustment
-     *                       the nanosecond adjustment to the number of seconds,
-     *                       positive
-     *                       or negative
+     *        the nanosecond adjustment to the number of seconds,
+     *        positive
+     *        or negative
      * @return an instant, not null
      * @throws DateTimeException
-     *                             if the instant exceeds the maximum or minimum
-     *                             instant
+     *         if the instant exceeds the maximum or minimum
+     *         instant
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     public static Instant ofEpochSecond(long epochSecond, long nanoAdjustment) {
-        long secs = Math.addExact(epochSecond, Math.floorDiv(nanoAdjustment,
-                NANOS_PER_SECOND));
+        long secs = Math.addExact(epochSecond, Math.floorDiv(nanoAdjustment, NANOS_PER_SECOND));
         int nos = (int) Math.floorMod(nanoAdjustment, NANOS_PER_SECOND);
         return create(secs, nos);
     }
@@ -319,11 +313,11 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * milliseconds.
      *
      * @param epochMilli
-     *                   the number of milliseconds from 1970-01-01T00:00:00Z
+     *        the number of milliseconds from 1970-01-01T00:00:00Z
      * @return an instant, not null
      * @throws DateTimeException
-     *                           if the instant exceeds the maximum or minimum
-     *                           instant
+     *         if the instant exceeds the maximum or minimum
+     *         instant
      */
     public static Instant ofEpochMilli(long epochMilli) {
         long secs = Math.floorDiv(epochMilli, 1000);
@@ -349,10 +343,10 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * reference, {@code Instant::from}.
      *
      * @param temporal
-     *                 the temporal object to convert, not null
+     *        the temporal object to convert, not null
      * @return the instant, not null
      * @throws DateTimeException
-     *                           if unable to convert to an {@code Instant}
+     *         if unable to convert to an {@code Instant}
      */
     public static Instant from(TemporalAccessor temporal) {
         if (temporal instanceof Instant) {
@@ -364,10 +358,8 @@ public final class Instant implements Temporal, TemporalAdjuster,
             int nanoOfSecond = temporal.get(NANO_OF_SECOND);
             return Instant.ofEpochSecond(instantSecs, nanoOfSecond);
         } catch (DateTimeException ex) {
-            throw new DateTimeException(
-                    "Unable to obtain Instant from TemporalAccessor: "
-                            + temporal + " of type " + temporal.getClass()
-                                    .getName(), ex);
+            throw new DateTimeException("Unable to obtain Instant from TemporalAccessor: " + temporal
+                    + " of type " + temporal.getClass().getName(), ex);
         }
     }
 
@@ -380,10 +372,10 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * {@link DateTimeFormatter#ISO_INSTANT}.
      *
      * @param text
-     *             the text to parse, not null
+     *        the text to parse, not null
      * @return the parsed instant, not null
      * @throws DateTimeParseException
-     *                                if the text cannot be parsed
+     *         if the text cannot be parsed
      */
     public static Instant parse(final CharSequence text) {
         return DateTimeFormatter.ISO_INSTANT.parse(text, Instant::from);
@@ -394,20 +386,19 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * Obtains an instance of {@code Instant} using seconds and nanoseconds.
      *
      * @param seconds
-     *                     the length of the duration in seconds
+     *        the length of the duration in seconds
      * @param nanoOfSecond
-     *                     the nano-of-second, from 0 to 999,999,999
+     *        the nano-of-second, from 0 to 999,999,999
      * @throws DateTimeException
-     *                           if the instant exceeds the maximum or minimum
-     *                           instant
+     *         if the instant exceeds the maximum or minimum
+     *         instant
      */
     private static Instant create(long seconds, int nanoOfSecond) {
         if ((seconds | nanoOfSecond) == 0) {
             return EPOCH;
         }
         if (seconds < MIN_SECOND || seconds > MAX_SECOND) {
-            throw new DateTimeException(
-                    "Instant exceeds minimum or maximum instant");
+            throw new DateTimeException("Instant exceeds minimum or maximum instant");
         }
         return new Instant(seconds, nanoOfSecond);
     }
@@ -417,9 +408,9 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * 1970-01-01T00:00:00Z and nanosecond fraction of second.
      *
      * @param epochSecond
-     *                    the number of seconds from 1970-01-01T00:00:00Z
+     *        the number of seconds from 1970-01-01T00:00:00Z
      * @param nanos
-     *                    the nanoseconds within the second, must be positive
+     *        the nanoseconds within the second, must be positive
      */
     private Instant(long epochSecond, int nanos) {
         super();
@@ -453,14 +444,14 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * determined by the field.
      *
      * @param field
-     *              the field to check, null returns false
+     *        the field to check, null returns false
      * @return true if the field is supported on this instant, false if not
      */
     @Override
     public boolean isSupported(TemporalField field) {
         if (field instanceof ChronoField) {
-            return field == INSTANT_SECONDS || field == NANO_OF_SECOND
-                    || field == MICRO_OF_SECOND || field == MILLI_OF_SECOND;
+            return field == INSTANT_SECONDS || field == NANO_OF_SECOND || field == MICRO_OF_SECOND
+                    || field == MILLI_OF_SECOND;
         }
         return field != null && field.isSupportedBy(this);
     }
@@ -493,7 +484,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * determined by the unit.
      *
      * @param unit
-     *             the unit to check, null returns false
+     *        the unit to check, null returns false
      * @return true if the unit can be added/subtracted, false if not
      */
     @Override
@@ -525,13 +516,13 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * determined by the field.
      *
      * @param field
-     *              the field to query the range for, not null
+     *        the field to query the range for, not null
      * @return the range of valid values for the field, not null
      * @throws DateTimeException
-     *                                          if the range for the field
-     *                                          cannot be obtained
+     *         if the range for the field
+     *         cannot be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      */
     @Override // override for Javadoc
     public ValueRange range(TemporalField field) {
@@ -560,19 +551,19 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained or the value is
-     *                                          outside the range of valid
-     *                                          values for the field
+     *         if a value for the field cannot
+     *         be obtained or the value is
+     *         outside the range of valid
+     *         values for the field
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported or
-     *                                          the range of values exceeds
-     *                                          an {@code int}
+     *         if the field is not supported or
+     *         the range of values exceeds
+     *         an {@code int}
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override // override for Javadoc and performance
     public int get(TemporalField field) {
@@ -587,8 +578,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
                 case INSTANT_SECONDS:
                     INSTANT_SECONDS.checkValidIntValue(seconds);
             }
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         return range(field).checkValidIntValue(field.getFrom(this), field);
     }
@@ -612,15 +602,15 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained
+     *         if a value for the field cannot
+     *         be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public long getLong(TemporalField field) {
@@ -635,8 +625,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
                 case INSTANT_SECONDS:
                     return seconds;
             }
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         return field.getFrom(this);
     }
@@ -685,13 +674,13 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param adjuster
-     *                 the adjuster to use, not null
+     *        the adjuster to use, not null
      * @return an {@code Instant} based on {@code this} with the adjustment
      *         made, not null
      * @throws DateTimeException
-     *                             if the adjustment cannot be made
+     *         if the adjustment cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Instant with(TemporalAdjuster adjuster) {
@@ -736,17 +725,17 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param field
-     *                 the field to set in the result, not null
+     *        the field to set in the result, not null
      * @param newValue
-     *                 the new value of the field in the result
+     *        the new value of the field in the result
      * @return an {@code Instant} based on {@code this} with the specified field
      *         set, not null
      * @throws DateTimeException
-     *                                          if the field cannot be set
+     *         if the field cannot be set
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Instant with(TemporalField field, long newValue) {
@@ -763,14 +752,11 @@ public final class Instant implements Temporal, TemporalAdjuster,
                     return (nval != nanos ? create(seconds, nval) : this);
                 }
                 case NANO_OF_SECOND:
-                    return (newValue != nanos ? create(seconds, (int) newValue)
-                            : this);
+                    return (newValue != nanos ? create(seconds, (int) newValue) : this);
                 case INSTANT_SECONDS:
-                    return (newValue != seconds ? create(newValue, nanos)
-                            : this);
+                    return (newValue != seconds ? create(newValue, nanos) : this);
             }
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         return field.adjustInto(this, newValue);
     }
@@ -793,14 +779,14 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param unit
-     *             the unit to truncate to, not null
+     *        the unit to truncate to, not null
      * @return an {@code Instant} based on this instant with the time truncated,
      *         not null
      * @throws DateTimeException
-     *                                          if the unit is invalid for
-     *                                          truncation
+     *         if the unit is invalid for
+     *         truncation
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      */
     public Instant truncatedTo(TemporalUnit unit) {
         if (unit == ChronoUnit.NANOS) {
@@ -808,16 +794,14 @@ public final class Instant implements Temporal, TemporalAdjuster,
         }
         Duration unitDur = unit.getDuration();
         if (unitDur.getSeconds() > LocalTime.SECONDS_PER_DAY) {
-            throw new UnsupportedTemporalTypeException(
-                    "Unit is too large to be used for truncation");
+            throw new UnsupportedTemporalTypeException("Unit is too large to be used for truncation");
         }
         long dur = unitDur.toNanos();
         if ((LocalTime.NANOS_PER_DAY % dur) != 0) {
             throw new UnsupportedTemporalTypeException(
                     "Unit must divide into a standard day without remainder");
         }
-        long nod = (seconds % LocalTime.SECONDS_PER_DAY)
-                * LocalTime.NANOS_PER_SECOND + nanos;
+        long nod = (seconds % LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + nanos;
         long result = (nod / dur) * dur;
         return plusNanos(result - nod);
     }
@@ -840,13 +824,13 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToAdd
-     *                    the amount to add, not null
+     *        the amount to add, not null
      * @return an {@code Instant} based on this instant with the addition made,
      *         not null
      * @throws DateTimeException
-     *                             if the addition cannot be made
+     *         if the addition cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Instant plus(TemporalAmount amountToAdd) {
@@ -900,18 +884,18 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToAdd
-     *                    the amount of the unit to add to the result, may be
-     *                    negative
+     *        the amount of the unit to add to the result, may be
+     *        negative
      * @param unit
-     *                    the unit of the amount to add, not null
+     *        the unit of the amount to add, not null
      * @return an {@code Instant} based on this instant with the specified
      *         amount added, not null
      * @throws DateTimeException
-     *                                          if the addition cannot be made
+     *         if the addition cannot be made
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Instant plus(long amountToAdd, TemporalUnit unit) {
@@ -920,27 +904,21 @@ public final class Instant implements Temporal, TemporalAdjuster,
                 case NANOS:
                     return plusNanos(amountToAdd);
                 case MICROS:
-                    return plus(amountToAdd / 1000_000, (amountToAdd % 1000_000)
-                            * 1000);
+                    return plus(amountToAdd / 1000_000, (amountToAdd % 1000_000) * 1000);
                 case MILLIS:
                     return plusMillis(amountToAdd);
                 case SECONDS:
                     return plusSeconds(amountToAdd);
                 case MINUTES:
-                    return plusSeconds(Math.multiplyExact(amountToAdd,
-                            SECONDS_PER_MINUTE));
+                    return plusSeconds(Math.multiplyExact(amountToAdd, SECONDS_PER_MINUTE));
                 case HOURS:
-                    return plusSeconds(Math.multiplyExact(amountToAdd,
-                            SECONDS_PER_HOUR));
+                    return plusSeconds(Math.multiplyExact(amountToAdd, SECONDS_PER_HOUR));
                 case HALF_DAYS:
-                    return plusSeconds(Math.multiplyExact(amountToAdd,
-                            SECONDS_PER_DAY / 2));
+                    return plusSeconds(Math.multiplyExact(amountToAdd, SECONDS_PER_DAY / 2));
                 case DAYS:
-                    return plusSeconds(Math.multiplyExact(amountToAdd,
-                            SECONDS_PER_DAY));
+                    return plusSeconds(Math.multiplyExact(amountToAdd, SECONDS_PER_DAY));
             }
-            throw new UnsupportedTemporalTypeException("Unsupported unit: "
-                    + unit);
+            throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -953,14 +931,14 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param secondsToAdd
-     *                     the seconds to add, positive or negative
+     *        the seconds to add, positive or negative
      * @return an {@code Instant} based on this instant with the specified
      *         seconds added, not null
      * @throws DateTimeException
-     *                             if the result exceeds the maximum or minimum
-     *                             instant
+     *         if the result exceeds the maximum or minimum
+     *         instant
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     public Instant plusSeconds(long secondsToAdd) {
         return plus(secondsToAdd, 0);
@@ -973,14 +951,14 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param millisToAdd
-     *                    the milliseconds to add, positive or negative
+     *        the milliseconds to add, positive or negative
      * @return an {@code Instant} based on this instant with the specified
      *         milliseconds added, not null
      * @throws DateTimeException
-     *                             if the result exceeds the maximum or minimum
-     *                             instant
+     *         if the result exceeds the maximum or minimum
+     *         instant
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     public Instant plusMillis(long millisToAdd) {
         return plus(millisToAdd / 1000, (millisToAdd % 1000) * 1000_000);
@@ -993,14 +971,14 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param nanosToAdd
-     *                   the nanoseconds to add, positive or negative
+     *        the nanoseconds to add, positive or negative
      * @return an {@code Instant} based on this instant with the specified
      *         nanoseconds added, not null
      * @throws DateTimeException
-     *                             if the result exceeds the maximum or minimum
-     *                             instant
+     *         if the result exceeds the maximum or minimum
+     *         instant
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     public Instant plusNanos(long nanosToAdd) {
         return plus(0, nanosToAdd);
@@ -1012,16 +990,16 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param secondsToAdd
-     *                     the seconds to add, positive or negative
+     *        the seconds to add, positive or negative
      * @param nanosToAdd
-     *                     the nanos to add, positive or negative
+     *        the nanos to add, positive or negative
      * @return an {@code Instant} based on this instant with the specified
      *         seconds added, not null
      * @throws DateTimeException
-     *                             if the result exceeds the maximum or minimum
-     *                             instant
+     *         if the result exceeds the maximum or minimum
+     *         instant
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     private Instant plus(long secondsToAdd, long nanosToAdd) {
         if ((secondsToAdd | nanosToAdd) == 0) {
@@ -1052,13 +1030,13 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToSubtract
-     *                         the amount to subtract, not null
+     *        the amount to subtract, not null
      * @return an {@code Instant} based on this instant with the subtraction
      *         made, not null
      * @throws DateTimeException
-     *                             if the subtraction cannot be made
+     *         if the subtraction cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Instant minus(TemporalAmount amountToSubtract) {
@@ -1080,25 +1058,25 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToSubtract
-     *                         the amount of the unit to subtract from the
-     *                         result, may be
-     *                         negative
+     *        the amount of the unit to subtract from the
+     *        result, may be
+     *        negative
      * @param unit
-     *                         the unit of the amount to subtract, not null
+     *        the unit of the amount to subtract, not null
      * @return an {@code Instant} based on this instant with the specified
      *         amount subtracted, not null
      * @throws DateTimeException
-     *                                          if the subtraction cannot be
-     *                                          made
+     *         if the subtraction cannot be
+     *         made
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Instant minus(long amountToSubtract, TemporalUnit unit) {
-        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit)
-                .plus(1, unit) : plus(-amountToSubtract, unit));
+        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit)
+                : plus(-amountToSubtract, unit));
     }
 
     // -----------------------------------------------------------------------
@@ -1109,14 +1087,14 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param secondsToSubtract
-     *                          the seconds to subtract, positive or negative
+     *        the seconds to subtract, positive or negative
      * @return an {@code Instant} based on this instant with the specified
      *         seconds subtracted, not null
      * @throws DateTimeException
-     *                             if the result exceeds the maximum or minimum
-     *                             instant
+     *         if the result exceeds the maximum or minimum
+     *         instant
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     public Instant minusSeconds(long secondsToSubtract) {
         if (secondsToSubtract == Long.MIN_VALUE) {
@@ -1132,15 +1110,15 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param millisToSubtract
-     *                         the milliseconds to subtract, positive or
-     *                         negative
+     *        the milliseconds to subtract, positive or
+     *        negative
      * @return an {@code Instant} based on this instant with the specified
      *         milliseconds subtracted, not null
      * @throws DateTimeException
-     *                             if the result exceeds the maximum or minimum
-     *                             instant
+     *         if the result exceeds the maximum or minimum
+     *         instant
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     public Instant minusMillis(long millisToSubtract) {
         if (millisToSubtract == Long.MIN_VALUE) {
@@ -1156,14 +1134,14 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param nanosToSubtract
-     *                        the nanoseconds to subtract, positive or negative
+     *        the nanoseconds to subtract, positive or negative
      * @return an {@code Instant} based on this instant with the specified
      *         nanoseconds subtracted, not null
      * @throws DateTimeException
-     *                             if the result exceeds the maximum or minimum
-     *                             instant
+     *         if the result exceeds the maximum or minimum
+     *         instant
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     public Instant minusNanos(long nanosToSubtract) {
         if (nanosToSubtract == Long.MIN_VALUE) {
@@ -1185,16 +1163,16 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
      * query passing {@code this} as the argument.
      *
-     * @param       <R>
-     *              the type of the result
+     * @param <R>
+     *        the type of the result
      * @param query
-     *              the query to invoke, not null
+     *        the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException
-     *                             if unable to query (defined by the query)
+     *         if unable to query (defined by the query)
      * @throws ArithmeticException
-     *                             if numeric overflow occurs (defined by the
-     *                             query)
+     *         if numeric overflow occurs (defined by the
+     *         query)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -1203,10 +1181,9 @@ public final class Instant implements Temporal, TemporalAdjuster,
             return (R) NANOS;
         }
         // inline TemporalAccessor.super.query(query) as an optimization
-        if (query == TemporalQueries.chronology() || query == TemporalQueries
-                .zoneId() || query == TemporalQueries.zone()
-                || query == TemporalQueries.offset() || query == TemporalQueries
-                        .localDate() || query == TemporalQueries.localTime()) {
+        if (query == TemporalQueries.chronology() || query == TemporalQueries.zoneId()
+                || query == TemporalQueries.zone() || query == TemporalQueries.offset()
+                || query == TemporalQueries.localDate() || query == TemporalQueries.localTime()) {
             return null;
         }
         return query.queryFrom(this);
@@ -1235,17 +1212,16 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param temporal
-     *                 the target object to be adjusted, not null
+     *        the target object to be adjusted, not null
      * @return the adjusted object, not null
      * @throws DateTimeException
-     *                             if unable to make the adjustment
+     *         if unable to make the adjustment
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Temporal adjustInto(Temporal temporal) {
-        return temporal.with(INSTANT_SECONDS, seconds).with(NANO_OF_SECOND,
-                nanos);
+        return temporal.with(INSTANT_SECONDS, seconds).with(NANO_OF_SECOND, nanos);
     }
 
     /**
@@ -1287,20 +1263,20 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param endExclusive
-     *                     the end date, exclusive, which is converted to an
-     *                     {@code Instant}, not null
+     *        the end date, exclusive, which is converted to an
+     *        {@code Instant}, not null
      * @param unit
-     *                     the unit to measure the amount in, not null
+     *        the unit to measure the amount in, not null
      * @return the amount of time between this instant and the end instant
      * @throws DateTimeException
-     *                                          if the amount cannot be
-     *                                          calculated, or the end temporal
-     *                                          cannot be converted to an
-     *                                          {@code Instant}
+     *         if the amount cannot be
+     *         calculated, or the end temporal
+     *         cannot be converted to an
+     *         {@code Instant}
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public long until(Temporal endExclusive, TemporalUnit unit) {
@@ -1313,8 +1289,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
                 case MICROS:
                     return nanosUntil(end) / 1000;
                 case MILLIS:
-                    return Math.subtractExact(end.toEpochMilli(),
-                            toEpochMilli());
+                    return Math.subtractExact(end.toEpochMilli(), toEpochMilli());
                 case SECONDS:
                     return secondsUntil(end);
                 case MINUTES:
@@ -1326,8 +1301,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
                 case DAYS:
                     return secondsUntil(end) / (SECONDS_PER_DAY);
             }
-            throw new UnsupportedTemporalTypeException("Unsupported unit: "
-                    + unit);
+            throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
         return unit.between(this, end);
     }
@@ -1362,11 +1336,11 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * OffsetDateTime.ofInstant(this, offset)}.
      *
      * @param offset
-     *               the offset to combine with, not null
+     *        the offset to combine with, not null
      * @return the offset date-time formed from this instant and the specified
      *         offset, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported range
+     *         if the result exceeds the supported range
      */
     public OffsetDateTime atOffset(ZoneOffset offset) {
         return OffsetDateTime.ofInstant(this, offset);
@@ -1384,11 +1358,11 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * ZonedDateTime.ofInstant(this, zone)}.
      *
      * @param zone
-     *             the zone to combine with, not null
+     *        the zone to combine with, not null
      * @return the zoned date-time formed from this instant and the specified
      *         zone, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported range
+     *         if the result exceeds the supported range
      */
     public ZonedDateTime atZone(ZoneId zone) {
         return ZonedDateTime.ofInstant(this, zone);
@@ -1410,7 +1384,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * @return the number of milliseconds since the epoch of
      *         1970-01-01T00:00:00Z
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     public long toEpochMilli() {
         if (seconds < 0 && nanos > 0) {
@@ -1431,10 +1405,10 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * "consistent with equals", as defined by {@link Comparable}.
      *
      * @param otherInstant
-     *                     the other instant to compare to, not null
+     *        the other instant to compare to, not null
      * @return the comparator value, negative if less, positive if greater
      * @throws NullPointerException
-     *                              if otherInstant is null
+     *         if otherInstant is null
      */
     @Override
     public int compareTo(Instant otherInstant) {
@@ -1451,10 +1425,10 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * The comparison is based on the time-line position of the instants.
      *
      * @param otherInstant
-     *                     the other instant to compare to, not null
+     *        the other instant to compare to, not null
      * @return true if this instant is after the specified instant
      * @throws NullPointerException
-     *                              if otherInstant is null
+     *         if otherInstant is null
      */
     public boolean isAfter(Instant otherInstant) {
         return compareTo(otherInstant) > 0;
@@ -1466,10 +1440,10 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * The comparison is based on the time-line position of the instants.
      *
      * @param otherInstant
-     *                     the other instant to compare to, not null
+     *        the other instant to compare to, not null
      * @return true if this instant is before the specified instant
      * @throws NullPointerException
-     *                              if otherInstant is null
+     *         if otherInstant is null
      */
     public boolean isBefore(Instant otherInstant) {
         return compareTo(otherInstant) < 0;
@@ -1482,7 +1456,7 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * The comparison is based on the time-line position of the instants.
      *
      * @param otherInstant
-     *                     the other instant, null returns false
+     *        the other instant, null returns false
      * @return true if the other instant is equal to this one
      */
     @Override
@@ -1544,13 +1518,12 @@ public final class Instant implements Temporal, TemporalAdjuster,
      * Defend against malicious streams.
      *
      * @param s
-     *          the stream to read
+     *        the stream to read
      * @throws InvalidObjectException
-     *                                always
+     *         always
      */
     private void readObject(ObjectInputStream s) throws InvalidObjectException {
-        throw new InvalidObjectException(
-                "Deserialization via serialization delegate");
+        throw new InvalidObjectException("Deserialization via serialization delegate");
     }
 
     void writeExternal(DataOutput out) throws IOException {

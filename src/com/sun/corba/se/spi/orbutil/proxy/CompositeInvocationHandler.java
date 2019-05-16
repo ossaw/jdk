@@ -8,8 +8,7 @@ package com.sun.corba.se.spi.orbutil.proxy;
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 
-public interface CompositeInvocationHandler extends InvocationHandler,
-        Serializable {
+public interface CompositeInvocationHandler extends InvocationHandler, Serializable {
     /**
      * Add an invocation handler for all methods on interface interf.
      */

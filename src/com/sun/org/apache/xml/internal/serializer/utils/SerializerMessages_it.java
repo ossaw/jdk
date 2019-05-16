@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * map to are defined here.
  * <p>
  * The messages in the English version are intended to be translated.
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -66,17 +65,14 @@ public class SerializerMessages_it extends ListResourceBundle {
                 { MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
                         "La classe serializzatore ''{0}'' non implementa org.xml.sax.ContentHandler." },
 
-                { MsgKey.ER_RESOURCE_COULD_NOT_FIND,
-                        "Risorsa [ {0} ] non trovata.\n {1}" },
+                { MsgKey.ER_RESOURCE_COULD_NOT_FIND, "Risorsa [ {0} ] non trovata.\n {1}" },
 
                 { MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
                         "Impossibile caricare la risorsa [ {0} ]: {1} \n {2} \t {3}" },
 
-                { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO,
-                        "Dimensione buffer <=0" },
+                { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "Dimensione buffer <=0" },
 
-                { MsgKey.ER_INVALID_UTF16_SURROGATE,
-                        "Rilevato surrogato UTF-16 non valido: {0}?" },
+                { MsgKey.ER_INVALID_UTF16_SURROGATE, "Rilevato surrogato UTF-16 non valido: {0}?" },
 
                 { MsgKey.ER_OIERROR, "Errore di I/O" },
 
@@ -98,8 +94,7 @@ public class SerializerMessages_it extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { MsgKey.ER_STRAY_ATTRIBUTE,
-                        "Attributo ''{0}'' al di fuori dell''elemento." },
+                { MsgKey.ER_STRAY_ATTRIBUTE, "Attributo ''{0}'' al di fuori dell''elemento." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -125,23 +120,18 @@ public class SerializerMessages_it extends ListResourceBundle {
                 { MsgKey.ER_PORT_WHEN_HOST_NULL,
                         "La porta non pu\u00F2 essere impostata se l'host \u00E8 nullo" },
 
-                { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
-                        "Host non \u00E8 un indirizzo corretto" },
+                { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED, "Host non \u00E8 un indirizzo corretto" },
 
-                { MsgKey.ER_SCHEME_NOT_CONFORMANT,
-                        "Lo schema non \u00E8 conforme." },
+                { MsgKey.ER_SCHEME_NOT_CONFORMANT, "Lo schema non \u00E8 conforme." },
 
-                { MsgKey.ER_SCHEME_FROM_NULL_STRING,
-                        "Impossibile impostare lo schema da una stringa nulla" },
+                { MsgKey.ER_SCHEME_FROM_NULL_STRING, "Impossibile impostare lo schema da una stringa nulla" },
 
                 { MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
                         "Il percorso contiene sequenza di escape non valida" },
 
-                { MsgKey.ER_PATH_INVALID_CHAR,
-                        "Il percorso contiene un carattere non valido: {0}" },
+                { MsgKey.ER_PATH_INVALID_CHAR, "Il percorso contiene un carattere non valido: {0}" },
 
-                { MsgKey.ER_FRAG_INVALID_CHAR,
-                        "Il frammento contiene un carattere non valido" },
+                { MsgKey.ER_FRAG_INVALID_CHAR, "Il frammento contiene un carattere non valido" },
 
                 { MsgKey.ER_FRAG_WHEN_PATH_NULL,
                         "Il frammento non pu\u00F2 essere impostato se il percorso \u00E8 nullo" },
@@ -149,8 +139,7 @@ public class SerializerMessages_it extends ListResourceBundle {
                 { MsgKey.ER_FRAG_FOR_GENERIC_URI,
                         "Il frammento pu\u00F2 essere impostato solo per un URI generico" },
 
-                { MsgKey.ER_NO_SCHEME_IN_URI,
-                        "Nessuno schema trovato nell'URI" },
+                { MsgKey.ER_NO_SCHEME_IN_URI, "Nessuno schema trovato nell'URI" },
 
                 { MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
                         "Impossibile inizializzare l'URI con i parametri vuoti" },

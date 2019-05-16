@@ -30,15 +30,13 @@ public class PNGImageWriterSpi extends ImageWriterSpi {
 
     private static final String writerClassName = "com.sun.imageio.plugins.png.PNGImageWriter";
 
-    private static final String[] readerSpiNames = {
-            "com.sun.imageio.plugins.png.PNGImageReaderSpi" };
+    private static final String[] readerSpiNames = { "com.sun.imageio.plugins.png.PNGImageReaderSpi" };
 
     public PNGImageWriterSpi() {
-        super(vendorName, version, names, suffixes, MIMETypes, writerClassName,
-                new Class[] { ImageOutputStream.class }, readerSpiNames, false,
-                null, null, null, null, true,
-                PNGMetadata.nativeMetadataFormatName,
-                "com.sun.imageio.plugins.png.PNGMetadataFormat", null, null);
+        super(vendorName, version, names, suffixes, MIMETypes, writerClassName, new Class[] {
+                ImageOutputStream.class }, readerSpiNames, false, null, null, null, null, true,
+                PNGMetadata.nativeMetadataFormatName, "com.sun.imageio.plugins.png.PNGMetadataFormat", null,
+                null);
     }
 
     public boolean canEncodeImage(ImageTypeSpecifier type) {

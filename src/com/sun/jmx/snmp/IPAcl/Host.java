@@ -19,7 +19,6 @@ import static com.sun.jmx.defaults.JmxProperties.SNMP_LOGGER;
 
 /**
  * The class defines an abstract representation of a host.
- *
  */
 abstract class Host extends SimpleNode implements Serializable {
 
@@ -31,8 +30,7 @@ abstract class Host extends SimpleNode implements Serializable {
         super(p, id);
     }
 
-    protected abstract PrincipalImpl createAssociatedPrincipal()
-            throws UnknownHostException;
+    protected abstract PrincipalImpl createAssociatedPrincipal() throws UnknownHostException;
 
     protected abstract String getHname();
 
@@ -44,12 +42,10 @@ abstract class Host extends SimpleNode implements Serializable {
             p = createAssociatedPrincipal();
         } catch (UnknownHostException e) {
             if (SNMP_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(),
-                        "buildAclEntries",
+                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(), "buildAclEntries",
                         "Cannot create ACL entry; got exception", e);
             }
-            throw new IllegalArgumentException("Cannot create ACL entry for "
-                    + e.getMessage());
+            throw new IllegalArgumentException("Cannot create ACL entry for " + e.getMessage());
         }
 
         // Create an AclEntry
@@ -63,15 +59,13 @@ abstract class Host extends SimpleNode implements Serializable {
             acl.addEntry(owner, entry);
         } catch (UnknownHostException e) {
             if (SNMP_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(),
-                        "buildAclEntries",
+                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(), "buildAclEntries",
                         "Cannot create ACL entry; got exception", e);
             }
             return;
         } catch (NotOwnerException a) {
             if (SNMP_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(),
-                        "buildAclEntries",
+                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(), "buildAclEntries",
                         "Cannot create ACL entry; got exception", a);
             }
             return;
@@ -91,8 +85,7 @@ abstract class Host extends SimpleNode implements Serializable {
     public void buildTrapEntries(Hashtable<InetAddress, Vector<String>> dest) {
 
         JDMHostTrap host = (JDMHostTrap) jjtGetParent();
-        JDMTrapInterestedHost hosts = (JDMTrapInterestedHost) host
-                .jjtGetParent();
+        JDMTrapInterestedHost hosts = (JDMTrapInterestedHost) host.jjtGetParent();
         JDMTrapItem trap = (JDMTrapItem) hosts.jjtGetParent();
         JDMTrapCommunity community = trap.getCommunity();
         String comm = community.getCommunity();
@@ -102,8 +95,7 @@ abstract class Host extends SimpleNode implements Serializable {
             add = java.net.InetAddress.getByName(getHname());
         } catch (UnknownHostException e) {
             if (SNMP_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(),
-                        "buildTrapEntries",
+                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(), "buildTrapEntries",
                         "Cannot create TRAP entry; got exception", e);
             }
             return;
@@ -122,12 +114,10 @@ abstract class Host extends SimpleNode implements Serializable {
         }
     }
 
-    public void buildInformEntries(
-            Hashtable<InetAddress, Vector<String>> dest) {
+    public void buildInformEntries(Hashtable<InetAddress, Vector<String>> dest) {
 
         JDMHostInform host = (JDMHostInform) jjtGetParent();
-        JDMInformInterestedHost hosts = (JDMInformInterestedHost) host
-                .jjtGetParent();
+        JDMInformInterestedHost hosts = (JDMInformInterestedHost) host.jjtGetParent();
         JDMInformItem inform = (JDMInformItem) hosts.jjtGetParent();
         JDMInformCommunity community = inform.getCommunity();
         String comm = community.getCommunity();
@@ -137,8 +127,7 @@ abstract class Host extends SimpleNode implements Serializable {
             add = java.net.InetAddress.getByName(getHname());
         } catch (UnknownHostException e) {
             if (SNMP_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(),
-                        "buildTrapEntries",
+                SNMP_LOGGER.logp(Level.FINEST, Host.class.getName(), "buildTrapEntries",
                         "Cannot create INFORM entry; got exception", e);
             }
             return;

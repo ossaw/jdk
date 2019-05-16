@@ -31,7 +31,7 @@ public interface XMLEventConsumer {
      * application that continues to use such references is undefined.
      *
      * @param event
-     *              the event to add, may not be null
+     *        the event to add, may not be null
      */
     public void add(XMLEvent event) throws XMLStreamException;
 }

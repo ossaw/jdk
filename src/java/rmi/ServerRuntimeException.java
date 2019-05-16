@@ -11,10 +11,8 @@ package java.rmi;
  * invocation when a <code>RuntimeException</code> is thrown while processing
  * the invocation on the server, either while unmarshalling the arguments,
  * executing the remote method itself, or marshalling the return value.
- *
  * A <code>ServerRuntimeException</code> instance contains the original
  * <code>RuntimeException</code> that occurred as its cause.
- *
  * <p>
  * A <code>ServerRuntimeException</code> is not thrown from servers executing on
  * the Java 2 platform v1.2 or later versions.
@@ -34,9 +32,9 @@ public class ServerRuntimeException extends RemoteException {
      * detail message and nested exception.
      *
      * @param s
-     *           the detail message
+     *        the detail message
      * @param ex
-     *           the nested exception
+     *        the nested exception
      * @deprecated no replacement
      * @since JDK1.1
      */

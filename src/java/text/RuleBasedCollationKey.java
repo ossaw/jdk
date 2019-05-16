@@ -29,7 +29,7 @@ final class RuleBasedCollationKey extends CollationKey {
      * Collators can not be compared.
      * 
      * @param target
-     *               target RuleBasedCollationKey
+     *        target RuleBasedCollationKey
      * @return Returns an integer value. Value is less than zero if this is less
      *         than target, value is zero if this and target are equal and value
      *         is greater than zero if this is greater than target.
@@ -51,7 +51,7 @@ final class RuleBasedCollationKey extends CollationKey {
      * different Collators can not be compared.
      * 
      * @param target
-     *               the RuleBasedCollationKey to compare to.
+     *        the RuleBasedCollationKey to compare to.
      * @return Returns true if two objects are equal, false otherwise.
      */
     public boolean equals(Object target) {

@@ -8,7 +8,6 @@ package java.security;
 /**
  * This exception is thrown if a key in the keystore cannot be recovered.
  *
- *
  * @since 1.2
  */
 
@@ -29,7 +28,7 @@ public class UnrecoverableKeyException extends UnrecoverableEntryException {
      * been thrown.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public UnrecoverableKeyException(String msg) {
         super(msg);

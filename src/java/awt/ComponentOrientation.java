@@ -85,23 +85,21 @@ public final class ComponentOrientation implements java.io.Serializable {
      * Items run left to right and lines flow top to bottom Examples: English,
      * French.
      */
-    public static final ComponentOrientation LEFT_TO_RIGHT = new ComponentOrientation(
-            HORIZ_BIT | LTR_BIT);
+    public static final ComponentOrientation LEFT_TO_RIGHT = new ComponentOrientation(HORIZ_BIT | LTR_BIT);
 
     /**
      * Items run right to left and lines flow top to bottom Examples: Arabic,
      * Hebrew.
      */
-    public static final ComponentOrientation RIGHT_TO_LEFT = new ComponentOrientation(
-            HORIZ_BIT);
+    public static final ComponentOrientation RIGHT_TO_LEFT = new ComponentOrientation(HORIZ_BIT);
 
     /**
      * Indicates that a component's orientation has not been set. To preserve
      * the behavior of existing applications, isLeftToRight will return true for
      * this value.
      */
-    public static final ComponentOrientation UNKNOWN = new ComponentOrientation(
-            HORIZ_BIT | LTR_BIT | UNK_BIT);
+    public static final ComponentOrientation UNKNOWN = new ComponentOrientation(HORIZ_BIT | LTR_BIT
+            | UNK_BIT);
 
     /**
      * Are lines horizontal? This will return true for horizontal, left-to-right
@@ -125,7 +123,7 @@ public final class ComponentOrientation implements java.io.Serializable {
      * Returns the orientation that is appropriate for the given locale.
      * 
      * @param locale
-     *               the specified locale
+     *        the specified locale
      */
     public static ComponentOrientation getOrientation(Locale locale) {
         // A more flexible implementation would consult a ResourceBundle
@@ -133,8 +131,7 @@ public final class ComponentOrientation implements java.io.Serializable {
         // are introduced however, the flexiblity isn't really needed.
         // So we choose efficiency instead.
         String lang = locale.getLanguage();
-        if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang) || "ur"
-                .equals(lang)) {
+        if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang) || "ur".equals(lang)) {
             return RIGHT_TO_LEFT;
         } else {
             return LEFT_TO_RIGHT;
@@ -161,8 +158,7 @@ public final class ComponentOrientation implements java.io.Serializable {
 
         try {
             result = (ComponentOrientation) bdl.getObject("Orientation");
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
 
         if (result == null) {
             result = getOrientation(bdl.getLocale());

@@ -20,8 +20,8 @@ public interface Streamable {
      * <code>value</code> field of the Holder with the unmarshalled data.
      *
      * @param istream
-     *                the InputStream that represents the CDR data from the
-     *                wire.
+     *        the InputStream that represents the CDR data from the
+     *        wire.
      */
     void _read(InputStream istream);
 
@@ -30,7 +30,7 @@ public interface Streamable {
      * field of the Holder.
      *
      * @param ostream
-     *                the CDR OutputStream
+     *        the CDR OutputStream
      */
     void _write(OutputStream ostream);
 

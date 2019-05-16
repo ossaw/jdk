@@ -17,7 +17,6 @@
  * <pre>
  *  {@code boolean compareAndSet(expectedValue, updateValue);}
  * </pre>
- *
  * <p>
  * This method (which varies in argument types across different classes)
  * atomically sets a variable to the {@code updateValue} if it currently holds
@@ -25,7 +24,6 @@
  * this package also contain methods to get and unconditionally set values, as
  * well as a weaker conditional atomic update operation
  * {@code weakCompareAndSet} described below.
- *
  * <p>
  * The specifications of these methods enable implementations to employ
  * efficient machine-level atomic instructions that are available on
@@ -33,7 +31,6 @@
  * form of internal locking. Thus the methods are not strictly guaranteed to be
  * non-blocking -- a thread may block transiently before performing the
  * operation.
- *
  * <p>
  * Instances of classes {@link java.util.concurrent.atomic.AtomicBoolean},
  * {@link java.util.concurrent.atomic.AtomicInteger},
@@ -56,7 +53,6 @@
  *     }
  * }
  * </pre>
- *
  * <p>
  * It is straightforward to define new utility functions that, like
  * {@code getAndIncrement}, apply a function to a value atomically. For example,
@@ -79,44 +75,35 @@
  *   return prev; // return next; for transformAndGet
  * }}
  * </pre>
- *
  * <p>
  * The memory effects for accesses and updates of atomics generally follow the
  * rules for volatiles, as stated in <a href=
  * "https://docs.oracle.com/javase/specs/jls/se7/html/jls-17.html#jls-17.4"> The
  * Java Language Specification (17.4 Memory Model)</a>:
- *
  * <ul>
- *
  * <li>{@code get} has the memory effects of reading a {@code volatile}
  * variable.
- *
  * <li>{@code set} has the memory effects of writing (assigning) a
  * {@code volatile} variable.
- *
  * <li>{@code lazySet} has the memory effects of writing (assigning) a
  * {@code volatile} variable except that it permits reorderings with subsequent
  * (but not previous) memory actions that do not themselves impose reordering
  * constraints with ordinary non-{@code volatile} writes. Among other usage
  * contexts, {@code lazySet} may apply when nulling out, for the sake of garbage
  * collection, a reference that is never accessed again.
- *
  * <li>{@code weakCompareAndSet} atomically reads and conditionally writes a
  * variable but does <em>not</em> create any happens-before orderings, so
  * provides no guarantees with respect to previous or subsequent reads and
  * writes of any variables other than the target of the
  * {@code weakCompareAndSet}.
- *
  * <li>{@code compareAndSet} and all other read-and-update operations such as
  * {@code getAndIncrement} have the memory effects of both reading and writing
  * {@code volatile} variables.
  * </ul>
- *
  * <p>
  * In addition to classes representing single values, this package contains
  * <em>Updater</em> classes that can be used to obtain {@code compareAndSet}
  * operations on any selected {@code volatile} field of any selected class.
- *
  * {@link java.util.concurrent.atomic.AtomicReferenceFieldUpdater},
  * {@link java.util.concurrent.atomic.AtomicIntegerFieldUpdater}, and
  * {@link java.util.concurrent.atomic.AtomicLongFieldUpdater} are
@@ -127,7 +114,6 @@
  * greater flexibility in how and when to use atomic updates, at the expense of
  * more awkward reflection-based setup, less convenient usage, and weaker
  * guarantees.
- *
  * <p>
  * The {@link java.util.concurrent.atomic.AtomicIntegerArray},
  * {@link java.util.concurrent.atomic.AtomicLongArray}, and
@@ -135,7 +121,6 @@
  * extend atomic operation support to arrays of these types. These classes are
  * also notable in providing {@code volatile} access semantics for their array
  * elements, which is not supported for ordinary arrays.
- *
  * <p id="weakCompareAndSet">
  * The atomic classes also support method {@code weakCompareAndSet}, which has
  * limited applicability. On some platforms, the weak version may be more
@@ -157,24 +142,20 @@
  * any <em>other</em> variables that occurred before the
  * {@code weakCompareAndSet}. This may be acceptable when, for example, updating
  * performance statistics, but rarely otherwise.
- *
  * <p>
  * The {@link java.util.concurrent.atomic.AtomicMarkableReference} class
  * associates a single boolean with a reference. For example, this bit might be
  * used inside a data structure to mean that the object being referenced has
  * logically been deleted.
- *
  * The {@link java.util.concurrent.atomic.AtomicStampedReference} class
  * associates an integer value with a reference. This may be used for example,
  * to represent version numbers corresponding to series of updates.
- *
  * <p>
  * Atomic classes are designed primarily as building blocks for implementing
  * non-blocking data structures and related infrastructure classes. The
  * {@code compareAndSet} method is not a general replacement for locking. It
  * applies only when critical updates for an object are confined to a
  * <em>single</em> variable.
- *
  * <p>
  * Atomic classes are not general purpose replacements for
  * {@code java.lang.Integer} and related classes. They do <em>not</em> define
@@ -185,7 +166,6 @@
  * atomic class for representing {@code byte}. In those infrequent cases where
  * you would like to do so, you can use an {@code AtomicInteger} to hold
  * {@code byte} values, and cast appropriately.
- *
  * You can also hold floats using {@link java.lang.Float#floatToRawIntBits} and
  * {@link java.lang.Float#intBitsToFloat} conversions, and doubles using
  * {@link java.lang.Double#doubleToRawLongBits} and

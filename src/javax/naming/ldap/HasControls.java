@@ -37,7 +37,6 @@ import javax.naming.NamingException;
  * @author Scott Seligman
  * @author Vincent Ryan
  * @since 1.3
- *
  */
 
 public interface HasControls {
@@ -48,7 +47,7 @@ public interface HasControls {
      *
      * @return A possibly null array of <tt>Control</tt> objects.
      * @throws NamingException
-     *                         If cannot return controls due to an error.
+     *         If cannot return controls due to an error.
      */
     public Control[] getControls() throws NamingException;
 }

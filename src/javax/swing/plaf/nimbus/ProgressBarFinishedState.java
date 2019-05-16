@@ -15,8 +15,7 @@ class ProgressBarFinishedState extends State {
     @Override
     protected boolean isInState(JComponent c) {
 
-        return c instanceof JProgressBar && ((JProgressBar) c)
-                .getPercentComplete() == 1.0;
+        return c instanceof JProgressBar && ((JProgressBar) c).getPercentComplete() == 1.0;
 
     }
 }

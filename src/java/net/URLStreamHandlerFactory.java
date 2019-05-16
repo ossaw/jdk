@@ -22,9 +22,9 @@ public interface URLStreamHandlerFactory {
      * protocol.
      *
      * @param protocol
-     *                 the protocol ("{@code ftp}", "{@code http}",
-     *                 "{@code nntp}",
-     *                 etc.).
+     *        the protocol ("{@code ftp}", "{@code http}",
+     *        "{@code nntp}",
+     *        etc.).
      * @return a {@code URLStreamHandler} for the specific protocol.
      * @see java.net.URLStreamHandler
      */

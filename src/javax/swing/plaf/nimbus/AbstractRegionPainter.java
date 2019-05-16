@@ -27,7 +27,6 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * only computed once and reused over multiple paint calls, whereas the
      * other values (w, h, f, leftWidth, etc) are recomputed for each call to
      * paint.
-     *
      * This field is retrieved from subclasses on each paint operation. It is up
      * to the subclass to compute and cache the PaintContext over multiple
      * calls.
@@ -128,11 +127,8 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
 
         Object[] extendedCacheKeys = getExtendedCacheKeys(c);
         ctx = getPaintContext();
-        PaintContext.CacheMode cacheMode = ctx == null
-                ? PaintContext.CacheMode.NO_CACHING
-                : ctx.cacheMode;
-        if (cacheMode == PaintContext.CacheMode.NO_CACHING || !ImageCache
-                .getInstance().isImageCachable(w, h)
+        PaintContext.CacheMode cacheMode = ctx == null ? PaintContext.CacheMode.NO_CACHING : ctx.cacheMode;
+        if (cacheMode == PaintContext.CacheMode.NO_CACHING || !ImageCache.getInstance().isImageCachable(w, h)
                 || g instanceof PrinterGraphics) {
             // no caching so paint directly
             paint0(g, c, w, h, extendedCacheKeys);
@@ -150,7 +146,7 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * paint(g, c, w, h) method.
      *
      * @param c
-     *          The component on the current paint call
+     *        The component on the current paint call
      * @return Array of extra objects to be included in the cache key
      */
     protected Object[] getExtendedCacheKeys(JComponent c) {
@@ -166,7 +162,6 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * insets, the canvas size at which the encoded points were defined, and
      * whether the stretching insets are inverted.
      * </p>
-     *
      * <p>
      * This method allows for subclasses to package the painting of different
      * states with possibly different canvas sizes, etc, into one
@@ -188,11 +183,10 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * </p>
      *
      * @param g
-     *          The Graphics2D object to configure. Will not be null.
+     *        The Graphics2D object to configure. Will not be null.
      */
     protected void configureGraphics(Graphics2D g) {
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     }
 
     /**
@@ -205,43 +199,43 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * Graphics2D object and only render within that space.
      *
      * @param g
-     *                          The Graphics2D surface to paint to
+     *        The Graphics2D surface to paint to
      * @param c
-     *                          The JComponent related to the drawing event. For
-     *                          example, if
-     *                          the region being rendered is Button, then
-     *                          <code>c</code> will
-     *                          be a JButton. If the region being drawn is
-     *                          ScrollBarSlider,
-     *                          then the component will be JScrollBar. This
-     *                          value may be null.
+     *        The JComponent related to the drawing event. For
+     *        example, if
+     *        the region being rendered is Button, then
+     *        <code>c</code> will
+     *        be a JButton. If the region being drawn is
+     *        ScrollBarSlider,
+     *        then the component will be JScrollBar. This
+     *        value may be null.
      * @param width
-     *                          The width of the region to paint. Note that in
-     *                          the case of
-     *                          painting the foreground, this value may differ
-     *                          from
-     *                          c.getWidth().
+     *        The width of the region to paint. Note that in
+     *        the case of
+     *        painting the foreground, this value may differ
+     *        from
+     *        c.getWidth().
      * @param height
-     *                          The height of the region to paint. Note that in
-     *                          the case of
-     *                          painting the foreground, this value may differ
-     *                          from
-     *                          c.getHeight().
+     *        The height of the region to paint. Note that in
+     *        the case of
+     *        painting the foreground, this value may differ
+     *        from
+     *        c.getHeight().
      * @param extendedCacheKeys
-     *                          The result of the call to getExtendedCacheKeys()
+     *        The result of the call to getExtendedCacheKeys()
      */
-    protected abstract void doPaint(Graphics2D g, JComponent c, int width,
-            int height, Object[] extendedCacheKeys);
+    protected abstract void doPaint(Graphics2D g, JComponent c, int width, int height,
+            Object[] extendedCacheKeys);
 
     /**
      * Decodes and returns a float value representing the actual pixel location
      * for the given encoded X value.
      *
      * @param x
-     *          an encoded x value (0...1, or 1...2, or 2...3)
+     *        an encoded x value (0...1, or 1...2, or 2...3)
      * @return the decoded x value
      * @throws IllegalArgumentException
-     *                                  if {@code x < 0} or {@code x > 3}
+     *         if {@code x < 0} or {@code x > 3}
      */
     protected final float decodeX(float x) {
         if (x >= 0 && x <= 1) {
@@ -260,10 +254,10 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * for the given encoded y value.
      *
      * @param y
-     *          an encoded y value (0...1, or 1...2, or 2...3)
+     *        an encoded y value (0...1, or 1...2, or 2...3)
      * @return the decoded y value
      * @throws IllegalArgumentException
-     *                                  if {@code y < 0} or {@code y > 3}
+     *         if {@code y < 0} or {@code y > 3}
      */
     protected final float decodeY(float y) {
         if (y >= 0 && y <= 1) {
@@ -283,13 +277,13 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * the offset distance to the anchor from that control point.
      *
      * @param x
-     *           an encoded x value of the bezier control point (0...1, or
-     *           1...2, or 2...3)
+     *        an encoded x value of the bezier control point (0...1, or
+     *        1...2, or 2...3)
      * @param dx
-     *           the offset distance to the anchor from the control point x
+     *        the offset distance to the anchor from the control point x
      * @return the decoded x location of the control point
      * @throws IllegalArgumentException
-     *                                  if {@code x < 0} or {@code x > 3}
+     *         if {@code x < 0} or {@code x > 3}
      */
     protected final float decodeAnchorX(float x, float dx) {
         if (x >= 0 && x <= 1) {
@@ -309,13 +303,13 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * the offset distance to the anchor from that control point.
      *
      * @param y
-     *           an encoded y value of the bezier control point (0...1, or
-     *           1...2, or 2...3)
+     *        an encoded y value of the bezier control point (0...1, or
+     *        1...2, or 2...3)
      * @param dy
-     *           the offset distance to the anchor from the control point y
+     *        the offset distance to the anchor from the control point y
      * @return the decoded y position of the control point
      * @throws IllegalArgumentException
-     *                                  if {@code y < 0} or {@code y > 3}
+     *         if {@code y < 0} or {@code y > 3}
      */
     protected final float decodeAnchorY(float y, float dy) {
         if (y >= 0 && y <= 1) {
@@ -334,27 +328,24 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * defaults.
      *
      * @param key
-     *                A key corresponding to the value in the UI Defaults table
-     *                of
-     *                UIManager where the base color is defined
+     *        A key corresponding to the value in the UI Defaults table
+     *        of
+     *        UIManager where the base color is defined
      * @param hOffset
-     *                The hue offset used for derivation.
+     *        The hue offset used for derivation.
      * @param sOffset
-     *                The saturation offset used for derivation.
+     *        The saturation offset used for derivation.
      * @param bOffset
-     *                The brightness offset used for derivation.
+     *        The brightness offset used for derivation.
      * @param aOffset
-     *                The alpha offset used for derivation. Between 0...255
+     *        The alpha offset used for derivation. Between 0...255
      * @return The derived color, whose color value will change if the parent
      *         uiDefault color changes.
      */
-    protected final Color decodeColor(String key, float hOffset, float sOffset,
-            float bOffset, int aOffset) {
+    protected final Color decodeColor(String key, float hOffset, float sOffset, float bOffset, int aOffset) {
         if (UIManager.getLookAndFeel() instanceof NimbusLookAndFeel) {
-            NimbusLookAndFeel laf = (NimbusLookAndFeel) UIManager
-                    .getLookAndFeel();
-            return laf.getDerivedColor(key, hOffset, sOffset, bOffset, aOffset,
-                    true);
+            NimbusLookAndFeel laf = (NimbusLookAndFeel) UIManager.getLookAndFeel();
+            return laf.getDerivedColor(key, hOffset, sOffset, bOffset, aOffset, true);
         } else {
             // can not give a right answer as painter sould not be used outside
             // of nimbus laf but do the best we can
@@ -367,18 +358,16 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * other colors.
      *
      * @param color1
-     *                 The first color
+     *        The first color
      * @param color2
-     *                 The second color
+     *        The second color
      * @param midPoint
-     *                 The offset between color 1 and color 2, a value of 0.0 is
-     *                 color 1 and 1.0 is color 2;
+     *        The offset between color 1 and color 2, a value of 0.0 is
+     *        color 1 and 1.0 is color 2;
      * @return The derived color
      */
-    protected final Color decodeColor(Color color1, Color color2,
-            float midPoint) {
-        return new Color(NimbusLookAndFeel.deriveARGB(color1, color2,
-                midPoint));
+    protected final Color decodeColor(Color color1, Color color2, float midPoint) {
+        return new Color(NimbusLookAndFeel.deriveARGB(color1, color2, midPoint));
     }
 
     /**
@@ -396,23 +385,23 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * @param colors
      * @return a valid LinearGradientPaint. This method never returns null.
      * @throws NullPointerException
-     *                                  if {@code midpoints} array is null, or
-     *                                  {@code colors} array
-     *                                  is null,
+     *         if {@code midpoints} array is null, or
+     *         {@code colors} array
+     *         is null,
      * @throws IllegalArgumentException
-     *                                  if start and end points are the same
-     *                                  points, or
-     *                                  {@code midpoints.length != colors.length},
-     *                                  or {@code colors}
-     *                                  is less than 2 in size, or a
-     *                                  {@code midpoints} value is less
-     *                                  than 0.0 or greater than 1.0, or the
-     *                                  {@code midpoints} are
-     *                                  not provided in strictly increasing
-     *                                  order
+     *         if start and end points are the same
+     *         points, or
+     *         {@code midpoints.length != colors.length},
+     *         or {@code colors}
+     *         is less than 2 in size, or a
+     *         {@code midpoints} value is less
+     *         than 0.0 or greater than 1.0, or the
+     *         {@code midpoints} are
+     *         not provided in strictly increasing
+     *         order
      */
-    protected final LinearGradientPaint decodeGradient(float x1, float y1,
-            float x2, float y2, float[] midpoints, Color[] colors) {
+    protected final LinearGradientPaint decodeGradient(float x1, float y1, float x2, float y2,
+            float[] midpoints, Color[] colors) {
         if (x1 == x2 && y1 == y2) {
             y2 += .00001f;
         }
@@ -433,22 +422,22 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * @param colors
      * @return a valid RadialGradientPaint. This method never returns null.
      * @throws NullPointerException
-     *                                  if {@code midpoints} array is null, or
-     *                                  {@code colors} array
-     *                                  is null
+     *         if {@code midpoints} array is null, or
+     *         {@code colors} array
+     *         is null
      * @throws IllegalArgumentException
-     *                                  if {@code r} is non-positive, or
-     *                                  {@code midpoints.length != colors.length},
-     *                                  or {@code colors}
-     *                                  is less than 2 in size, or a
-     *                                  {@code midpoints} value is less
-     *                                  than 0.0 or greater than 1.0, or the
-     *                                  {@code midpoints} are
-     *                                  not provided in strictly increasing
-     *                                  order
+     *         if {@code r} is non-positive, or
+     *         {@code midpoints.length != colors.length},
+     *         or {@code colors}
+     *         is less than 2 in size, or a
+     *         {@code midpoints} value is less
+     *         than 0.0 or greater than 1.0, or the
+     *         {@code midpoints} are
+     *         not provided in strictly increasing
+     *         order
      */
-    protected final RadialGradientPaint decodeRadialGradient(float x, float y,
-            float r, float[] midpoints, Color[] colors) {
+    protected final RadialGradientPaint decodeRadialGradient(float x, float y, float r, float[] midpoints,
+            Color[] colors) {
         if (r == 0f) {
             r = .00001f;
         }
@@ -462,17 +451,16 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * Color then <code>defaultColor</code> is returned.
      *
      * @param c
-     *                     The component to get the color property from
+     *        The component to get the color property from
      * @param property
-     *                     The name of a bean style property or client property
+     *        The name of a bean style property or client property
      * @param defaultColor
-     *                     The color to return if no color was obtained from the
-     *                     component.
+     *        The color to return if no color was obtained from the
+     *        component.
      * @return The color that was obtained from the component or defaultColor
      */
-    protected final Color getComponentColor(JComponent c, String property,
-            Color defaultColor, float saturationOffset, float brightnessOffset,
-            int alphaOffset) {
+    protected final Color getComponentColor(JComponent c, String property, Color defaultColor,
+            float saturationOffset, float brightnessOffset, int alphaOffset) {
         Color color = null;
         if (c != null) {
             // handle some special cases for performance
@@ -480,21 +468,16 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
                 color = c.getBackground();
             } else if ("foreground".equals(property)) {
                 color = c.getForeground();
-            } else if (c instanceof JList && "selectionForeground".equals(
-                    property)) {
+            } else if (c instanceof JList && "selectionForeground".equals(property)) {
                 color = ((JList) c).getSelectionForeground();
-            } else if (c instanceof JList && "selectionBackground".equals(
-                    property)) {
+            } else if (c instanceof JList && "selectionBackground".equals(property)) {
                 color = ((JList) c).getSelectionBackground();
-            } else if (c instanceof JTable && "selectionForeground".equals(
-                    property)) {
+            } else if (c instanceof JTable && "selectionForeground".equals(property)) {
                 color = ((JTable) c).getSelectionForeground();
-            } else if (c instanceof JTable && "selectionBackground".equals(
-                    property)) {
+            } else if (c instanceof JTable && "selectionBackground".equals(property)) {
                 color = ((JTable) c).getSelectionBackground();
             } else {
-                String s = "get" + Character.toUpperCase(property.charAt(0))
-                        + property.substring(1);
+                String s = "get" + Character.toUpperCase(property.charAt(0)) + property.substring(1);
                 try {
                     Method method = MethodUtil.getMethod(c.getClass(), s, null);
                     color = (Color) MethodUtil.invoke(method, c, null);
@@ -520,15 +503,12 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
         // to set by us.
         if (color == null || color instanceof UIResource) {
             return defaultColor;
-        } else if (saturationOffset != 0 || brightnessOffset != 0
-                || alphaOffset != 0) {
-            float[] tmp = Color.RGBtoHSB(color.getRed(), color.getGreen(), color
-                    .getBlue(), null);
+        } else if (saturationOffset != 0 || brightnessOffset != 0 || alphaOffset != 0) {
+            float[] tmp = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
             tmp[1] = clamp(tmp[1] + saturationOffset);
             tmp[2] = clamp(tmp[2] + brightnessOffset);
             int alpha = clamp(color.getAlpha() + alphaOffset);
-            return new Color((Color.HSBtoRGB(tmp[0], tmp[1], tmp[2]) & 0xFFFFFF)
-                    | (alpha << 24));
+            return new Color((Color.HSBtoRGB(tmp[0], tmp[1], tmp[2]) & 0xFFFFFF) | (alpha << 24));
         } else {
             return color;
         }
@@ -568,24 +548,23 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
          * any cached images.
          *
          * @param insets
-         *                   The stretching insets. May be null. If null, then
-         *                   assumed
-         *                   to be 0, 0, 0, 0.
+         *        The stretching insets. May be null. If null, then
+         *        assumed
+         *        to be 0, 0, 0, 0.
          * @param canvasSize
-         *                   The size of the canvas used when encoding the
-         *                   various x/y
-         *                   values. May be null. If null, then it is assumed
-         *                   that
-         *                   there are no encoded values, and any calls to one
-         *                   of the
-         *                   "decode" methods will return the passed in value.
+         *        The size of the canvas used when encoding the
+         *        various x/y
+         *        values. May be null. If null, then it is assumed
+         *        that
+         *        there are no encoded values, and any calls to one
+         *        of the
+         *        "decode" methods will return the passed in value.
          * @param inverted
-         *                   Whether to "invert" the meaning of the 9-square
-         *                   grid and
-         *                   stretching insets
+         *        Whether to "invert" the meaning of the 9-square
+         *        grid and
+         *        stretching insets
          */
-        public PaintContext(Insets insets, Dimension canvasSize,
-                boolean inverted) {
+        public PaintContext(Insets insets, Dimension canvasSize, boolean inverted) {
             this(insets, canvasSize, inverted, null, 1, 1);
         }
 
@@ -593,67 +572,64 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
          * Creates a new PaintContext.
          *
          * @param insets
-         *                   The stretching insets. May be null. If null, then
-         *                   assumed
-         *                   to be 0, 0, 0, 0.
+         *        The stretching insets. May be null. If null, then
+         *        assumed
+         *        to be 0, 0, 0, 0.
          * @param canvasSize
-         *                   The size of the canvas used when encoding the
-         *                   various x/y
-         *                   values. May be null. If null, then it is assumed
-         *                   that
-         *                   there are no encoded values, and any calls to one
-         *                   of the
-         *                   "decode" methods will return the passed in value.
+         *        The size of the canvas used when encoding the
+         *        various x/y
+         *        values. May be null. If null, then it is assumed
+         *        that
+         *        there are no encoded values, and any calls to one
+         *        of the
+         *        "decode" methods will return the passed in value.
          * @param inverted
-         *                   Whether to "invert" the meaning of the 9-square
-         *                   grid and
-         *                   stretching insets
+         *        Whether to "invert" the meaning of the 9-square
+         *        grid and
+         *        stretching insets
          * @param cacheMode
-         *                   A hint as to which caching mode to use. If null,
-         *                   then set
-         *                   to no caching.
+         *        A hint as to which caching mode to use. If null,
+         *        then set
+         *        to no caching.
          * @param maxH
-         *                   The maximum scale in the horizontal direction to
-         *                   use
-         *                   before punting and redrawing from scratch. For
-         *                   example, if
-         *                   maxH is 2, then we will attempt to scale any cached
-         *                   images
-         *                   up to 2x the canvas width before redrawing from
-         *                   scratch.
-         *                   Reasonable maxH values may improve painting
-         *                   performance.
-         *                   If set too high, then you may get poor looking
-         *                   graphics at
-         *                   higher zoom levels. Must be &gt;= 1.
+         *        The maximum scale in the horizontal direction to
+         *        use
+         *        before punting and redrawing from scratch. For
+         *        example, if
+         *        maxH is 2, then we will attempt to scale any cached
+         *        images
+         *        up to 2x the canvas width before redrawing from
+         *        scratch.
+         *        Reasonable maxH values may improve painting
+         *        performance.
+         *        If set too high, then you may get poor looking
+         *        graphics at
+         *        higher zoom levels. Must be &gt;= 1.
          * @param maxV
-         *                   The maximum scale in the vertical direction to use
-         *                   before
-         *                   punting and redrawing from scratch. For example, if
-         *                   maxV
-         *                   is 2, then we will attempt to scale any cached
-         *                   images up
-         *                   to 2x the canvas height before redrawing from
-         *                   scratch.
-         *                   Reasonable maxV values may improve painting
-         *                   performance.
-         *                   If set too high, then you may get poor looking
-         *                   graphics at
-         *                   higher zoom levels. Must be &gt;= 1.
+         *        The maximum scale in the vertical direction to use
+         *        before
+         *        punting and redrawing from scratch. For example, if
+         *        maxV
+         *        is 2, then we will attempt to scale any cached
+         *        images up
+         *        to 2x the canvas height before redrawing from
+         *        scratch.
+         *        Reasonable maxV values may improve painting
+         *        performance.
+         *        If set too high, then you may get poor looking
+         *        graphics at
+         *        higher zoom levels. Must be &gt;= 1.
          */
-        public PaintContext(Insets insets, Dimension canvasSize,
-                boolean inverted, CacheMode cacheMode, double maxH,
-                double maxV) {
+        public PaintContext(Insets insets, Dimension canvasSize, boolean inverted, CacheMode cacheMode,
+                double maxH, double maxV) {
             if (maxH < 1 || maxH < 1) {
-                throw new IllegalArgumentException(
-                        "Both maxH and maxV must be >= 1");
+                throw new IllegalArgumentException("Both maxH and maxV must be >= 1");
             }
 
             this.stretchingInsets = insets == null ? EMPTY_INSETS : insets;
             this.canvasSize = canvasSize;
             this.inverted = inverted;
-            this.cacheMode = cacheMode == null ? CacheMode.NO_CACHING
-                    : cacheMode;
+            this.cacheMode = cacheMode == null ? CacheMode.NO_CACHING : cacheMode;
             this.maxHorizontalScaleFactor = maxH;
             this.maxVerticalScaleFactor = maxV;
 
@@ -716,53 +692,44 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
         }
 
         leftScale = ctx.a == 0f ? 0f : leftWidth / ctx.a;
-        centerHScale = (ctx.b - ctx.a) == 0f ? 0f
-                : centerWidth / (ctx.b - ctx.a);
-        rightScale = (ctx.canvasSize.width - ctx.b) == 0f ? 0f
-                : rightWidth / (ctx.canvasSize.width - ctx.b);
+        centerHScale = (ctx.b - ctx.a) == 0f ? 0f : centerWidth / (ctx.b - ctx.a);
+        rightScale = (ctx.canvasSize.width - ctx.b) == 0f ? 0f : rightWidth / (ctx.canvasSize.width - ctx.b);
         topScale = ctx.c == 0f ? 0f : topHeight / ctx.c;
-        centerVScale = (ctx.d - ctx.c) == 0f ? 0f
-                : centerHeight / (ctx.d - ctx.c);
+        centerVScale = (ctx.d - ctx.c) == 0f ? 0f : centerHeight / (ctx.d - ctx.c);
         bottomScale = (ctx.canvasSize.height - ctx.d) == 0f ? 0f
                 : bottomHeight / (ctx.canvasSize.height - ctx.d);
     }
 
-    private void paintWith9SquareCaching(Graphics2D g, PaintContext ctx,
-            JComponent c, int w, int h, Object[] extendedCacheKeys) {
+    private void paintWith9SquareCaching(Graphics2D g, PaintContext ctx, JComponent c, int w, int h,
+            Object[] extendedCacheKeys) {
         // check if we can scale to the requested size
         Dimension canvas = ctx.canvasSize;
         Insets insets = ctx.stretchingInsets;
-        if (w <= (canvas.width * ctx.maxHorizontalScaleFactor)
-                && h <= (canvas.height * ctx.maxVerticalScaleFactor)) {
+        if (w <= (canvas.width * ctx.maxHorizontalScaleFactor) && h <= (canvas.height
+                * ctx.maxVerticalScaleFactor)) {
             // get image at canvas size
-            VolatileImage img = getImage(g.getDeviceConfiguration(), c,
-                    canvas.width, canvas.height, extendedCacheKeys);
+            VolatileImage img = getImage(g.getDeviceConfiguration(), c, canvas.width, canvas.height,
+                    extendedCacheKeys);
             if (img != null) {
                 // calculate dst inserts
                 // todo: destination inserts need to take into acount scale
                 // factor for high dpi. Note: You can use f for this, I think
                 Insets dstInsets;
                 if (ctx.inverted) {
-                    int leftRight = (w - (canvas.width - (insets.left
-                            + insets.right))) / 2;
-                    int topBottom = (h - (canvas.height - (insets.top
-                            + insets.bottom))) / 2;
-                    dstInsets = new Insets(topBottom, leftRight, topBottom,
-                            leftRight);
+                    int leftRight = (w - (canvas.width - (insets.left + insets.right))) / 2;
+                    int topBottom = (h - (canvas.height - (insets.top + insets.bottom))) / 2;
+                    dstInsets = new Insets(topBottom, leftRight, topBottom, leftRight);
                 } else {
                     dstInsets = insets;
                 }
                 // paint 9 square scaled
-                Object oldScaleingHints = g.getRenderingHint(
-                        RenderingHints.KEY_INTERPOLATION);
+                Object oldScaleingHints = g.getRenderingHint(RenderingHints.KEY_INTERPOLATION);
                 g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
                         RenderingHints.VALUE_INTERPOLATION_BILINEAR);
                 ImageScalingHelper.paint(g, 0, 0, w, h, img, insets, dstInsets,
-                        ImageScalingHelper.PaintType.PAINT9_STRETCH,
-                        ImageScalingHelper.PAINT_ALL);
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                        oldScaleingHints != null ? oldScaleingHints
-                                : RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+                        ImageScalingHelper.PaintType.PAINT9_STRETCH, ImageScalingHelper.PAINT_ALL);
+                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, oldScaleingHints != null
+                        ? oldScaleingHints : RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
             } else {
                 // render directly
                 paint0(g, c, w, h, extendedCacheKeys);
@@ -773,10 +740,9 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
         }
     }
 
-    private void paintWithFixedSizeCaching(Graphics2D g, JComponent c, int w,
-            int h, Object[] extendedCacheKeys) {
-        VolatileImage img = getImage(g.getDeviceConfiguration(), c, w, h,
-                extendedCacheKeys);
+    private void paintWithFixedSizeCaching(Graphics2D g, JComponent c, int w, int h,
+            Object[] extendedCacheKeys) {
+        VolatileImage img = getImage(g.getDeviceConfiguration(), c, w, h, extendedCacheKeys);
         if (img != null) {
             // render cached image
             g.drawImage(img, 0, 0, null);
@@ -790,12 +756,11 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
      * Gets the rendered image for this painter at the requested size, either
      * from cache or create a new one
      */
-    private VolatileImage getImage(GraphicsConfiguration config, JComponent c,
-            int w, int h, Object[] extendedCacheKeys) {
+    private VolatileImage getImage(GraphicsConfiguration config, JComponent c, int w, int h,
+            Object[] extendedCacheKeys) {
         ImageCache imageCache = ImageCache.getInstance();
         // get the buffer for this component
-        VolatileImage buffer = (VolatileImage) imageCache.getImage(config, w, h,
-                this, extendedCacheKeys);
+        VolatileImage buffer = (VolatileImage) imageCache.getImage(config, w, h, this, extendedCacheKeys);
 
         int renderCounter = 0; // to avoid any potential, though unlikely,
                                // infinite loop
@@ -813,8 +778,7 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
                 // if the buffer is null (hasn't been created), or isn't the
                 // right size, or has lost its contents,
                 // then recreate the buffer
-                if (buffer == null || buffer.getWidth() != w || buffer
-                        .getHeight() != h
+                if (buffer == null || buffer.getWidth() != w || buffer.getHeight() != h
                         || bufferStatus == VolatileImage.IMAGE_INCOMPATIBLE) {
                     // clear any resources related to the old back buffer
                     if (buffer != null) {
@@ -822,11 +786,9 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
                         buffer = null;
                     }
                     // recreate the buffer
-                    buffer = config.createCompatibleVolatileImage(w, h,
-                            Transparency.TRANSLUCENT);
+                    buffer = config.createCompatibleVolatileImage(w, h, Transparency.TRANSLUCENT);
                     // put in cache for future
-                    imageCache.setImage(buffer, config, w, h, this,
-                            extendedCacheKeys);
+                    imageCache.setImage(buffer, config, w, h, this, extendedCacheKeys);
                 }
                 // create the graphics context with which to paint to the buffer
                 Graphics2D bg = buffer.createGraphics();
@@ -854,8 +816,7 @@ public abstract class AbstractRegionPainter implements Painter<JComponent> {
     // it.
     // These steps have to be taken to ensure that any hints set on the graphics
     // are removed subsequent to painting.
-    private void paint0(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    private void paint0(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         prepare(width, height);
         g = (Graphics2D) g.create();
         configureGraphics(g);

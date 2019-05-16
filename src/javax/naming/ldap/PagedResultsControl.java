@@ -75,7 +75,6 @@ import com.sun.jndi.ldap.BerEncoder;
  * <p>
  * This class implements the LDAPv3 Control for paged-results as defined in
  * <a href="http://www.ietf.org/rfc/rfc2696.txt">RFC 2696</a>.
- *
  * The control's value has the following ASN.1 definition:
  * 
  * <pre>
@@ -112,22 +111,21 @@ final public class PagedResultsControl extends BasicControl {
      * of results.
      *
      * @param pageSize
-     *                    The number of entries to return in a page.
+     *        The number of entries to return in a page.
      * @param criticality
-     *                    If true then the server must honor the control and
-     *                    return
-     *                    search results as indicated by pageSize or refuse to
-     *                    perform
-     *                    the search. If false, then the server need not honor
-     *                    the
-     *                    control.
+     *        If true then the server must honor the control and
+     *        return
+     *        search results as indicated by pageSize or refuse to
+     *        perform
+     *        the search. If false, then the server need not honor
+     *        the
+     *        control.
      * @exception IOException
-     *                        If an error was encountered while encoding the
-     *                        supplied
-     *                        arguments into a control.
+     *            If an error was encountered while encoding the
+     *            supplied
+     *            arguments into a control.
      */
-    public PagedResultsControl(int pageSize, boolean criticality)
-            throws IOException {
+    public PagedResultsControl(int pageSize, boolean criticality) throws IOException {
 
         super(OID, criticality, null);
         value = setEncodedValue(pageSize, EMPTY_COOKIE);
@@ -142,24 +140,23 @@ final public class PagedResultsControl extends BasicControl {
      * zero and setting the cookie to the last cookie received from the server.
      *
      * @param pageSize
-     *                    The number of entries to return in a page.
+     *        The number of entries to return in a page.
      * @param cookie
-     *                    A possibly null server-generated cookie.
+     *        A possibly null server-generated cookie.
      * @param criticality
-     *                    If true then the server must honor the control and
-     *                    return
-     *                    search results as indicated by pageSize or refuse to
-     *                    perform
-     *                    the search. If false, then the server need not honor
-     *                    the
-     *                    control.
+     *        If true then the server must honor the control and
+     *        return
+     *        search results as indicated by pageSize or refuse to
+     *        perform
+     *        the search. If false, then the server need not honor
+     *        the
+     *        control.
      * @exception IOException
-     *                        If an error was encountered while encoding the
-     *                        supplied
-     *                        arguments into a control.
+     *            If an error was encountered while encoding the
+     *            supplied
+     *            arguments into a control.
      */
-    public PagedResultsControl(int pageSize, byte[] cookie, boolean criticality)
-            throws IOException {
+    public PagedResultsControl(int pageSize, byte[] cookie, boolean criticality) throws IOException {
 
         super(OID, criticality, null);
         if (cookie == null) {
@@ -178,8 +175,7 @@ final public class PagedResultsControl extends BasicControl {
      * value of the LDAP paged-results control.
      * @exception IOException If a BER encoding error occurs.
      */
-    private byte[] setEncodedValue(int pageSize, byte[] cookie)
-            throws IOException {
+    private byte[] setEncodedValue(int pageSize, byte[] cookie) throws IOException {
 
         // build the ASN.1 encoding
         BerEncoder ber = new BerEncoder(10 + cookie.length);

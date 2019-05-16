@@ -55,8 +55,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class ArrayInstruction extends Instruction implements
-        ExceptionThrower, TypedInstruction {
+public abstract class ArrayInstruction extends Instruction implements ExceptionThrower, TypedInstruction {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -65,7 +64,7 @@ public abstract class ArrayInstruction extends Instruction implements
 
     /**
      * @param opcode
-     *               of instruction
+     *        of instruction
      */
     protected ArrayInstruction(short opcode) {
         super(opcode, (short) 1);
@@ -106,8 +105,7 @@ public abstract class ArrayInstruction extends Instruction implements
                 return Type.OBJECT;
 
             default:
-                throw new ClassGenException("Oops: unknown case in switch"
-                        + opcode);
+                throw new ClassGenException("Oops: unknown case in switch" + opcode);
         }
     }
 }

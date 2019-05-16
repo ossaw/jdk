@@ -45,29 +45,28 @@ public interface EventTarget {
      * removed with the <code>removeEventListener</code> method.
      * 
      * @param type
-     *                   The event type for which the user is registering
+     *        The event type for which the user is registering
      * @param listener
-     *                   The <code>listener</code> parameter takes an interface
-     *                   implemented by the user which contains the methods to
-     *                   be
-     *                   called when the event occurs.
+     *        The <code>listener</code> parameter takes an interface
+     *        implemented by the user which contains the methods to
+     *        be
+     *        called when the event occurs.
      * @param useCapture
-     *                   If true, <code>useCapture</code> indicates that the
-     *                   user
-     *                   wishes to initiate capture. After initiating capture,
-     *                   all
-     *                   events of the specified type will be dispatched to the
-     *                   registered <code>EventListener</code> before being
-     *                   dispatched
-     *                   to any <code>EventTargets</code> beneath them in the
-     *                   tree.
-     *                   Events which are bubbling upward through the tree will
-     *                   not
-     *                   trigger an <code>EventListener</code> designated to use
-     *                   capture.
+     *        If true, <code>useCapture</code> indicates that the
+     *        user
+     *        wishes to initiate capture. After initiating capture,
+     *        all
+     *        events of the specified type will be dispatched to the
+     *        registered <code>EventListener</code> before being
+     *        dispatched
+     *        to any <code>EventTargets</code> beneath them in the
+     *        tree.
+     *        Events which are bubbling upward through the tree will
+     *        not
+     *        trigger an <code>EventListener</code> designated to use
+     *        capture.
      */
-    public void addEventListener(String type, EventListener listener,
-            boolean useCapture);
+    public void addEventListener(String type, EventListener listener, boolean useCapture);
 
     /**
      * This method allows the removal of event listeners from the event target.
@@ -80,27 +79,26 @@ public interface EventTarget {
      * <code>EventTarget</code> has no effect.
      * 
      * @param type
-     *                   Specifies the event type of the
-     *                   <code>EventListener</code>
-     *                   being removed.
+     *        Specifies the event type of the
+     *        <code>EventListener</code>
+     *        being removed.
      * @param listener
-     *                   The <code>EventListener</code> parameter indicates the
-     *                   <code>EventListener </code> to be removed.
+     *        The <code>EventListener</code> parameter indicates the
+     *        <code>EventListener </code> to be removed.
      * @param useCapture
-     *                   Specifies whether the <code>EventListener</code> being
-     *                   removed
-     *                   was registered as a capturing listener or not. If a
-     *                   listener
-     *                   was registered twice, one with capture and one without,
-     *                   each
-     *                   must be removed separately. Removal of a capturing
-     *                   listener
-     *                   does not affect a non-capturing version of the same
-     *                   listener,
-     *                   and vice versa.
+     *        Specifies whether the <code>EventListener</code> being
+     *        removed
+     *        was registered as a capturing listener or not. If a
+     *        listener
+     *        was registered twice, one with capture and one without,
+     *        each
+     *        must be removed separately. Removal of a capturing
+     *        listener
+     *        does not affect a non-capturing version of the same
+     *        listener,
+     *        and vice versa.
      */
-    public void removeEventListener(String type, EventListener listener,
-            boolean useCapture);
+    public void removeEventListener(String type, EventListener listener, boolean useCapture);
 
     /**
      * This method allows the dispatch of events into the implementations event
@@ -110,22 +108,22 @@ public interface EventTarget {
      * <code>dispatchEvent</code> is called.
      * 
      * @param evt
-     *            Specifies the event type, behavior, and contextual information
-     *            to be used in processing the event.
+     *        Specifies the event type, behavior, and contextual information
+     *        to be used in processing the event.
      * @return The return value of <code>dispatchEvent</code> indicates whether
      *         any of the listeners which handled the event called
      *         <code>preventDefault</code>. If <code>preventDefault</code> was
      *         called the value is false, else the value is true.
      * @exception EventException
-     *                           UNSPECIFIED_EVENT_TYPE_ERR: Raised if the
-     *                           <code>Event</code>'s type was not specified by
-     *                           initializing the event before
-     *                           <code>dispatchEvent</code>
-     *                           was called. Specification of the
-     *                           <code>Event</code>'s type
-     *                           as <code>null</code> or an empty string will
-     *                           also trigger
-     *                           this exception.
+     *            UNSPECIFIED_EVENT_TYPE_ERR: Raised if the
+     *            <code>Event</code>'s type was not specified by
+     *            initializing the event before
+     *            <code>dispatchEvent</code>
+     *            was called. Specification of the
+     *            <code>Event</code>'s type
+     *            as <code>null</code> or an empty string will
+     *            also trigger
+     *            this exception.
      */
     public boolean dispatchEvent(Event evt) throws EventException;
 

@@ -46,7 +46,6 @@ import org.xml.sax.DocumentHandler;
  * method are missing, the default is an XML serializer with UTF-8 encoding and
  * now indentation.
  *
- *
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @author <a href="mailto:Scott_Boag/CAM/Lotus@lotus.com">Scott Boag</a>
  * @see DocumentHandler
@@ -77,7 +76,7 @@ public interface Serializer {
      * process of serializing a document.
      *
      * @param format
-     *               The output format to use
+     *        The output format to use
      */
     public void setOutputFormat(OutputFormat format);
 

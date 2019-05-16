@@ -62,8 +62,7 @@ final class UseAttributeSets extends Instruction {
         if ((setNames != null) && (!setNames.equals(Constants.EMPTYSTRING))) {
             final StringTokenizer tokens = new StringTokenizer(setNames);
             while (tokens.hasMoreTokens()) {
-                final QName qname = getParser().getQNameIgnoreDefaultNs(tokens
-                        .nextToken());
+                final QName qname = getParser().getQNameIgnoreDefaultNs(tokens.nextToken());
                 _sets.add(qname);
             }
         }
@@ -99,8 +98,7 @@ final class UseAttributeSets extends Instruction {
                 il.append(methodGen.loadIterator());
                 il.append(methodGen.loadHandler());
                 il.append(methodGen.loadCurrentNode());
-                final int method = cpg.addMethodref(classGen.getClassName(),
-                        methodName, ATTR_SET_SIG);
+                final int method = cpg.addMethodref(classGen.getClassName(), methodName, ATTR_SET_SIG);
                 il.append(new INVOKESPECIAL(method));
             }
             // Generate an error if the attribute set does not exist

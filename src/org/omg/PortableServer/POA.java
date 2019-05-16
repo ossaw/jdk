@@ -16,5 +16,4 @@ package org.omg.PortableServer;
  * object must not be exported to other processes, or externalized with
  * ORB::object_to_string.
  */
-public interface POA extends POAOperations, org.omg.CORBA.Object,
-        org.omg.CORBA.portable.IDLEntity {} // interface POA
+public interface POA extends POAOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface POA

@@ -69,40 +69,38 @@ public final class ConstantValue extends Attribute {
      * references (shallow copy). Use clone() for a physical copy.
      */
     public ConstantValue(ConstantValue c) {
-        this(c.getNameIndex(), c.getLength(), c.getConstantValueIndex(), c
-                .getConstantPool());
+        this(c.getNameIndex(), c.getLength(), c.getConstantValueIndex(), c.getConstantPool());
     }
 
     /**
      * Construct object from file stream.
      * 
      * @param name_index
-     *                      Name index in constant pool
+     *        Name index in constant pool
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                      Input stream
+     *        Input stream
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      * @throw IOException
      */
-    ConstantValue(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    ConstantValue(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
+            throws IOException {
         this(name_index, length, (int) file.readUnsignedShort(), constant_pool);
     }
 
     /**
      * @param name_index
-     *                            Name index in constant pool
+     *        Name index in constant pool
      * @param length
-     *                            Content length in bytes
+     *        Content length in bytes
      * @param constantvalue_index
-     *                            Index in constant pool
+     *        Index in constant pool
      * @param constant_pool
-     *                            Array of constants
+     *        Array of constants
      */
-    public ConstantValue(int name_index, int length, int constantvalue_index,
-            ConstantPool constant_pool) {
+    public ConstantValue(int name_index, int length, int constantvalue_index, ConstantPool constant_pool) {
         super(Constants.ATTR_CONSTANT_VALUE, name_index, length, constant_pool);
         this.constantvalue_index = constantvalue_index;
     }
@@ -113,7 +111,7 @@ public final class ConstantValue extends Attribute {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantValue(this);
@@ -123,7 +121,7 @@ public final class ConstantValue extends Attribute {
      * Dump constant value attribute to file stream on binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -171,13 +169,11 @@ public final class ConstantValue extends Attribute {
             case Constants.CONSTANT_String:
                 i = ((ConstantString) c).getStringIndex();
                 c = constant_pool.getConstant(i, Constants.CONSTANT_Utf8);
-                buf = "\"" + Utility.convertString(((ConstantUtf8) c)
-                        .getBytes()) + "\"";
+                buf = "\"" + Utility.convertString(((ConstantUtf8) c).getBytes()) + "\"";
                 break;
 
             default:
-                throw new IllegalStateException("Type of ConstValue invalid: "
-                        + c);
+                throw new IllegalStateException("Type of ConstValue invalid: " + c);
         }
 
         return buf;

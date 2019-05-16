@@ -26,7 +26,6 @@ import java.util.*;
  * files}, {@linkplain java.util.zip.ZipEntry zip file entries}, or entries in
  * similar file system based containers. Any file object returned from a file
  * manager implementing this interface must observe the following behavior:
- *
  * <ul>
  * <li>File names need not be canonical.</li>
  * <li>For file objects representing regular files
@@ -68,7 +67,6 @@ import java.util.*;
  * </ul>
  * </li>
  * </ul>
- *
  * According to these rules, the following URIs, for example, are allowed:
  * <ul>
  * <li>
@@ -103,16 +101,15 @@ public interface StandardJavaFileManager extends JavaFileManager {
      * container.
      *
      * @param a
-     *          a file object
+     *        a file object
      * @param b
-     *          a file object
+     *        a file object
      * @return true if the given file objects represent the same canonical file
      *         or zip file entry; false otherwise
-     *
      * @throws IllegalArgumentException
-     *                                  if either of the arguments were created
-     *                                  with another file
-     *                                  manager implementation
+     *         if either of the arguments were created
+     *         with another file
+     *         manager implementation
      */
     boolean isSameFile(FileObject a, FileObject b);
 
@@ -120,14 +117,13 @@ public interface StandardJavaFileManager extends JavaFileManager {
      * Gets file objects representing the given files.
      *
      * @param files
-     *              a list of files
+     *        a list of files
      * @return a list of file objects
      * @throws IllegalArgumentException
-     *                                  if the list of files includes a
-     *                                  directory
+     *         if the list of files includes a
+     *         directory
      */
-    Iterable<? extends JavaFileObject> getJavaFileObjectsFromFiles(
-            Iterable<? extends File> files);
+    Iterable<? extends JavaFileObject> getJavaFileObjectsFromFiles(Iterable<? extends File> files);
 
     /**
      * Gets file objects representing the given files. Convenience method
@@ -138,14 +134,14 @@ public interface StandardJavaFileManager extends JavaFileManager {
      * </pre>
      *
      * @param files
-     *              an array of files
+     *        an array of files
      * @return a list of file objects
      * @throws IllegalArgumentException
-     *                                  if the array of files includes a
-     *                                  directory
+     *         if the array of files includes a
+     *         directory
      * @throws NullPointerException
-     *                                  if the given array contains null
-     *                                  elements
+     *         if the given array contains null
+     *         elements
      */
     Iterable<? extends JavaFileObject> getJavaFileObjects(File... files);
 
@@ -153,14 +149,13 @@ public interface StandardJavaFileManager extends JavaFileManager {
      * Gets file objects representing the given file names.
      *
      * @param names
-     *              a list of file names
+     *        a list of file names
      * @return a list of file objects
      * @throws IllegalArgumentException
-     *                                  if the list of file names includes a
-     *                                  directory
+     *         if the list of file names includes a
+     *         directory
      */
-    Iterable<? extends JavaFileObject> getJavaFileObjectsFromStrings(
-            Iterable<String> names);
+    Iterable<? extends JavaFileObject> getJavaFileObjectsFromStrings(Iterable<String> names);
 
     /**
      * Gets file objects representing the given file names. Convenience method
@@ -171,14 +166,14 @@ public interface StandardJavaFileManager extends JavaFileManager {
      * </pre>
      *
      * @param names
-     *              a list of file names
+     *        a list of file names
      * @return a list of file objects
      * @throws IllegalArgumentException
-     *                                  if the array of file names includes a
-     *                                  directory
+     *         if the array of file names includes a
+     *         directory
      * @throws NullPointerException
-     *                                  if the given array contains null
-     *                                  elements
+     *         if the given array contains null
+     *         elements
      */
     Iterable<? extends JavaFileObject> getJavaFileObjects(String... names);
 
@@ -187,29 +182,28 @@ public interface StandardJavaFileManager extends JavaFileManager {
      * will be discarded.
      *
      * @param location
-     *                 a location
+     *        a location
      * @param path
-     *                 a list of files, if {@code null} use the default path for
-     *                 this
-     *                 location
+     *        a list of files, if {@code null} use the default path for
+     *        this
+     *        location
      * @see #getLocation
      * @throws IllegalArgumentException
-     *                                  if location is an output location and
-     *                                  path does not contain
-     *                                  exactly one element
+     *         if location is an output location and
+     *         path does not contain
+     *         exactly one element
      * @throws IOException
-     *                                  if location is an output location and
-     *                                  path does not represent
-     *                                  an existing directory
+     *         if location is an output location and
+     *         path does not represent
+     *         an existing directory
      */
-    void setLocation(Location location, Iterable<? extends File> path)
-            throws IOException;
+    void setLocation(Location location, Iterable<? extends File> path) throws IOException;
 
     /**
      * Gets the path associated with the given location.
      *
      * @param location
-     *                 a location
+     *        a location
      * @return a list of files or {@code null} if this location has no
      *         associated path
      * @see #setLocation

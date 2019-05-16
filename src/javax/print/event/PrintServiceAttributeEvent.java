@@ -10,7 +10,6 @@ import javax.print.attribute.AttributeSetUtilities;
 import javax.print.attribute.PrintServiceAttributeSet;
 
 /**
- *
  * Class PrintServiceAttributeEvent encapsulates an event a Print Service
  * instance reports to let the client know of changes in the print service
  * state.
@@ -26,15 +25,14 @@ public class PrintServiceAttributeEvent extends PrintEvent {
      * Constructs a PrintServiceAttributeEvent object.
      *
      * @param source
-     *                   the print job generating this event
+     *        the print job generating this event
      * @param attributes
-     *                   the attribute changes being reported
+     *        the attribute changes being reported
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is
-     *                                  <code>null</code>.
+     *         if <code>source</code> is
+     *         <code>null</code>.
      */
-    public PrintServiceAttributeEvent(PrintService source,
-            PrintServiceAttributeSet attributes) {
+    public PrintServiceAttributeEvent(PrintService source, PrintServiceAttributeSet attributes) {
 
         super(source);
         this.attributes = AttributeSetUtilities.unmodifiableView(attributes);

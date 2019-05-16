@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * map to are defined here.
  * <p>
  * The messages in the English version are intended to be translated.
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -66,16 +65,14 @@ public class SerializerMessages_sv extends ListResourceBundle {
                 { MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
                         "Serializerklassen ''{0}'' implementerar inte org.xml.sax.ContentHandler." },
 
-                { MsgKey.ER_RESOURCE_COULD_NOT_FIND,
-                        "Resursen [ {0} ] kunde inte h\u00E4mtas.\n {1}" },
+                { MsgKey.ER_RESOURCE_COULD_NOT_FIND, "Resursen [ {0} ] kunde inte h\u00E4mtas.\n {1}" },
 
                 { MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
                         "Resursen [ {0} ] kunde inte laddas: {1} \n {2} \t {3}" },
 
                 { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "Buffertstorlek <=0" },
 
-                { MsgKey.ER_INVALID_UTF16_SURROGATE,
-                        "Ogiltigt UTF-16-surrogat uppt\u00E4ckt: {0} ?" },
+                { MsgKey.ER_INVALID_UTF16_SURROGATE, "Ogiltigt UTF-16-surrogat uppt\u00E4ckt: {0} ?" },
 
                 { MsgKey.ER_OIERROR, "IO-fel" },
 
@@ -87,8 +84,7 @@ public class SerializerMessages_sv extends ListResourceBundle {
                  * a namespace prefix that was undefined. The value of the
                  * substitution text is the name of the prefix.
                  */
-                { MsgKey.ER_NAMESPACE_PREFIX,
-                        "Namnrymd f\u00F6r prefix ''{0}'' har inte deklarerats." },
+                { MsgKey.ER_NAMESPACE_PREFIX, "Namnrymd f\u00F6r prefix ''{0}'' har inte deklarerats." },
 
                 /*
                  * Note to translators: This message is reported if the
@@ -97,8 +93,7 @@ public class SerializerMessages_sv extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { MsgKey.ER_STRAY_ATTRIBUTE,
-                        "Attributet ''{0}'' finns utanf\u00F6r elementet." },
+                { MsgKey.ER_STRAY_ATTRIBUTE, "Attributet ''{0}'' finns utanf\u00F6r elementet." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -127,8 +122,7 @@ public class SerializerMessages_sv extends ListResourceBundle {
                 { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
                         "V\u00E4rd \u00E4r inte en v\u00E4lformulerad adress" },
 
-                { MsgKey.ER_SCHEME_NOT_CONFORMANT,
-                        "Schemat \u00E4r inte likformigt." },
+                { MsgKey.ER_SCHEME_NOT_CONFORMANT, "Schemat \u00E4r inte likformigt." },
 
                 { MsgKey.ER_SCHEME_FROM_NULL_STRING,
                         "Kan inte st\u00E4lla in schema fr\u00E5n null-str\u00E4ng" },
@@ -139,8 +133,7 @@ public class SerializerMessages_sv extends ListResourceBundle {
                 { MsgKey.ER_PATH_INVALID_CHAR,
                         "S\u00F6kv\u00E4gen inneh\u00E5ller ett ogiltigt tecken: {0}" },
 
-                { MsgKey.ER_FRAG_INVALID_CHAR,
-                        "Fragment inneh\u00E5ller ett ogiltigt tecken" },
+                { MsgKey.ER_FRAG_INVALID_CHAR, "Fragment inneh\u00E5ller ett ogiltigt tecken" },
 
                 { MsgKey.ER_FRAG_WHEN_PATH_NULL,
                         "Fragment kan inte st\u00E4llas in n\u00E4r s\u00F6kv\u00E4g \u00E4r null" },
@@ -150,8 +143,7 @@ public class SerializerMessages_sv extends ListResourceBundle {
 
                 { MsgKey.ER_NO_SCHEME_IN_URI, "Schema saknas i URI" },
 
-                { MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
-                        "Kan inte initiera URI med tomma parametrar" },
+                { MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS, "Kan inte initiera URI med tomma parametrar" },
 
                 { MsgKey.ER_NO_FRAGMENT_STRING_IN_PATH,
                         "Fragment kan inte anges i b\u00E5de s\u00F6kv\u00E4gen och fragmentet" },

@@ -10,7 +10,6 @@ package javax.management;
  * expressions.
  * 
  * @serial include
- *
  * @since 1.6
  */
 class InstanceOfQueryExp extends QueryEval implements QueryExp {
@@ -28,9 +27,9 @@ class InstanceOfQueryExp extends QueryEval implements QueryExp {
      * Creates a new InstanceOfExp with a specific class name.
      * 
      * @param classNameValue
-     *                       The {@link StringValueExp} returning the name of
-     *                       the class of
-     *                       which selected MBeans should be instances.
+     *        The {@link StringValueExp} returning the name of
+     *        the class of
+     *        which selected MBeans should be instances.
      */
     // We are using StringValueExp here to be consistent with other queries,
     // although we should actually either use a simple string (the classname)
@@ -61,18 +60,16 @@ class InstanceOfQueryExp extends QueryEval implements QueryExp {
      * Applies the InstanceOf on a MBean.
      *
      * @param name
-     *             The name of the MBean on which the InstanceOf will be
-     *             applied.
-     *
+     *        The name of the MBean on which the InstanceOf will be
+     *        applied.
      * @return True if the MBean specified by the name is instance of the class.
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      */
-    public boolean apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public boolean apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
 
         // Get the class name value
         final StringValueExp val;
@@ -81,8 +78,7 @@ class InstanceOfQueryExp extends QueryEval implements QueryExp {
         } catch (ClassCastException x) {
             // Should not happen - unless someone wrongly implemented
             // StringValueExp.apply().
-            final BadStringOperationException y = new BadStringOperationException(
-                    x.toString());
+            final BadStringOperationException y = new BadStringOperationException(x.toString());
             y.initCause(x);
             throw y;
         }

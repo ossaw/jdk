@@ -30,7 +30,6 @@ import java.util.Hashtable;
  *
  * @see RE
  * @see recompile
- *
  * @author <a href="mailto:jonl@muppetlabs.com">Jonathan Locke</a>
  * @author <a href="mailto:gholam@xtra.co.nz">Michael McCallum</a>
  */
@@ -101,7 +100,7 @@ public class RECompiler {
      * can't fit, then the size is doubled until it can.
      * 
      * @param n
-     *          Number of additional characters to ensure will fit.
+     *        Number of additional characters to ensure will fit.
      */
     void ensure(int n) {
         // Get current program length
@@ -125,7 +124,7 @@ public class RECompiler {
      * Emit a single character into the program stream.
      * 
      * @param c
-     *          Character to add
+     *        Character to add
      */
     void emit(char c) {
         // Make room for character
@@ -140,20 +139,20 @@ public class RECompiler {
      * relative next pointer is initialized to 0.
      * 
      * @param opcode
-     *                 Opcode for new node
+     *        Opcode for new node
      * @param opdata
-     *                 Opdata for new node (only the low 16 bits are currently
-     *                 used)
+     *        Opdata for new node (only the low 16 bits are currently
+     *        used)
      * @param insertAt
-     *                 Index at which to insert the new node in the program
+     *        Index at which to insert the new node in the program
      */
     void nodeInsert(char opcode, int opdata, int insertAt) {
         // Make room for a new node
         ensure(RE.nodeSize);
 
         // Move everything from insertAt to the end down nodeSize elements
-        System.arraycopy(instruction, insertAt, instruction, insertAt
-                + RE.nodeSize, lenInstruction - insertAt);
+        System.arraycopy(instruction, insertAt, instruction, insertAt + RE.nodeSize, lenInstruction
+                - insertAt);
         instruction[insertAt + RE.offsetOpcode] = opcode;
         instruction[insertAt + RE.offsetOpdata] = (char) opdata;
         instruction[insertAt + RE.offsetNext] = 0;
@@ -164,9 +163,9 @@ public class RECompiler {
      * Appends a node to the end of a node chain
      * 
      * @param node
-     *                Start of node chain to traverse
+     *        Start of node chain to traverse
      * @param pointTo
-     *                Node to have the tail of the chain point to
+     *        Node to have the tail of the chain point to
      */
     void setNextOfEnd(int node, int pointTo) {
         // Traverse the chain until the next offset is 0
@@ -199,9 +198,9 @@ public class RECompiler {
      * Adds a new node
      * 
      * @param opcode
-     *               Opcode for node
+     *        Opcode for node
      * @param opdata
-     *               Opdata for node (only the low 16 bits are currently used)
+     *        Opdata for node (only the low 16 bits are currently used)
      * @return Index of new node in program
      */
     int node(char opcode, int opdata) {
@@ -222,7 +221,7 @@ public class RECompiler {
      * Throws a new internal error exception
      * 
      * @exception Error
-     *                  Thrown in the event of an internal error.
+     *            Thrown in the event of an internal error.
      */
     void internalError() throws Error {
         throw new Error("Internal error!");
@@ -232,8 +231,8 @@ public class RECompiler {
      * Throws a new syntax error exception
      * 
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     void syntaxError(String s) throws RESyntaxException {
         throw new RESyntaxException(s);
@@ -289,8 +288,8 @@ public class RECompiler {
      * Match bracket {m,n} expression put results in bracket member variables
      * 
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     void bracket() throws RESyntaxException {
         // Current character must be a '{'
@@ -354,8 +353,7 @@ public class RECompiler {
             number.append(pattern.charAt(idx++));
         }
         try {
-            bracketOpt[brackets] = Integer.parseInt(number.toString())
-                    - bracketMin[brackets];
+            bracketOpt[brackets] = Integer.parseInt(number.toString()) - bracketMin[brackets];
         } catch (NumberFormatException e) {
             syntaxError("Expected valid number");
         }
@@ -380,8 +378,8 @@ public class RECompiler {
      * 
      * @return ESC_* code or character if simple escape
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     int escape() throws RESyntaxException {
         // "Shouldn't" happen
@@ -436,8 +434,7 @@ public class RECompiler {
                             // must be invalid
                             // because hexDigits of input have not been absorbed
                             // yet.
-                            syntaxError("Expected " + hexDigits
-                                    + " hexadecimal digits after \\"
+                            syntaxError("Expected " + hexDigits + " hexadecimal digits after \\"
                                     + escapeChar);
                         }
                     }
@@ -469,14 +466,12 @@ public class RECompiler {
             case '9':
 
                 // An octal escape starts with a 0 or has two digits in a row
-                if ((idx < len && Character.isDigit(pattern.charAt(idx)))
-                        || escapeChar == '0') {
+                if ((idx < len && Character.isDigit(pattern.charAt(idx))) || escapeChar == '0') {
                     // Handle \nnn octal escapes
                     int val = escapeChar - '0';
                     if (idx < len && Character.isDigit(pattern.charAt(idx))) {
                         val = ((val << 3) + (pattern.charAt(idx++) - '0'));
-                        if (idx < len && Character.isDigit(pattern.charAt(
-                                idx))) {
+                        if (idx < len && Character.isDigit(pattern.charAt(idx))) {
                             val = ((val << 3) + (pattern.charAt(idx++) - '0'));
                         }
                     }
@@ -498,8 +493,8 @@ public class RECompiler {
      * 
      * @return Index of class node
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     int characterClass() throws RESyntaxException {
         // Check for bad calling or empty class
@@ -519,14 +514,12 @@ public class RECompiler {
 
             // POSIX character classes are denoted with lowercase ASCII strings
             int idxStart = idx;
-            while (idx < len && pattern.charAt(idx) >= 'a' && pattern.charAt(
-                    idx) <= 'z') {
+            while (idx < len && pattern.charAt(idx) >= 'a' && pattern.charAt(idx) <= 'z') {
                 idx++;
             }
 
             // Should be a ":]" to terminate the POSIX character class
-            if ((idx + 1) < len && pattern.charAt(idx) == ':' && pattern.charAt(
-                    idx + 1) == ']') {
+            if ((idx + 1) < len && pattern.charAt(idx) == ':' && pattern.charAt(idx + 1) == ']') {
                 // Get character class
                 String charClass = pattern.substring(idxStart, idx);
 
@@ -539,8 +532,7 @@ public class RECompiler {
                     // Return new POSIX character class node
                     return node(RE.OP_POSIXCLASS, i.charValue());
                 }
-                syntaxError("Invalid POSIX character class '" + charClass
-                        + "'");
+                syntaxError("Invalid POSIX character class '" + charClass + "'");
             }
             syntaxError("Invalid POSIX character class syntax");
         }
@@ -567,8 +559,7 @@ public class RECompiler {
                 case '^':
                     include = !include;
                     if (idx == idxFirst) {
-                        range.include(Character.MIN_VALUE, Character.MAX_VALUE,
-                                true);
+                        range.include(Character.MIN_VALUE, Character.MAX_VALUE, true);
                     }
                     idx++;
                     continue;
@@ -703,8 +694,8 @@ public class RECompiler {
      * 
      * @return Index of new atom node
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     int atom() throws RESyntaxException {
         // Create a string node
@@ -818,11 +809,11 @@ public class RECompiler {
      * Match a terminal node.
      * 
      * @param flags
-     *              Flags
+     *        Flags
      * @return Index of terminal node (closeable)
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     int terminal(int[] flags) throws RESyntaxException {
         switch (pattern.charAt(idx)) {
@@ -867,8 +858,7 @@ public class RECompiler {
                         return node(RE.OP_ESCAPE, pattern.charAt(idx - 1));
 
                     case ESC_BACKREF: {
-                        char backreference = (char) (pattern.charAt(idx - 1)
-                                - '0');
+                        char backreference = (char) (pattern.charAt(idx - 1) - '0');
                         if (parens <= backreference) {
                             syntaxError("Bad backreference");
                         }
@@ -898,11 +888,11 @@ public class RECompiler {
      * Compile a possibly closured terminal
      * 
      * @param flags
-     *              Flags passed by reference
+     *        Flags passed by reference
      * @return Index of closured node
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     int closure(int[] flags) throws RESyntaxException {
         // Before terminal
@@ -987,8 +977,7 @@ public class RECompiler {
                             // Rewind stream and run it through again - more
                             // matchers coming
                             for (int j = 0; j < brackets; j++) {
-                                if (j != i && bracketStart[j] < idx
-                                        && bracketStart[j] >= idxBeforeTerminal) {
+                                if (j != i && bracketStart[j] < idx && bracketStart[j] >= idxBeforeTerminal) {
                                     brackets--;
                                     bracketStart[j] = bracketStart[brackets];
                                     bracketEnd[j] = bracketEnd[brackets];
@@ -1117,11 +1106,11 @@ public class RECompiler {
      * Compile one branch of an or operator (implements concatenation)
      * 
      * @param flags
-     *              Flags passed by reference
+     *        Flags passed by reference
      * @return Pointer to branch node
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     int branch(int[] flags) throws RESyntaxException {
         // Get each possibly closured piece and concat
@@ -1130,8 +1119,7 @@ public class RECompiler {
         int chain = -1;
         int[] closureFlags = new int[1];
         boolean nullable = true;
-        while (idx < len && pattern.charAt(idx) != '|' && pattern.charAt(
-                idx) != ')') {
+        while (idx < len && pattern.charAt(idx) != '|' && pattern.charAt(idx) != ')') {
             // Get new node
             closureFlags[0] = NODE_NORMAL;
             node = closure(closureFlags);
@@ -1165,11 +1153,11 @@ public class RECompiler {
      * done at this level so we can tie the branch tails together.
      * 
      * @param flags
-     *              Flag value passed by reference
+     *        Flag value passed by reference
      * @return Node index of expression in instruction array
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      */
     int expr(int[] flags) throws RESyntaxException {
         // Create open paren node unless we were called from the top level
@@ -1180,8 +1168,7 @@ public class RECompiler {
         if ((flags[0] & NODE_TOPLEVEL) == 0 && pattern.charAt(idx) == '(') {
             // if its a cluster ( rather than a proper subexpression ie with
             // backrefs )
-            if (idx + 2 < len && pattern.charAt(idx + 1) == '?' && pattern
-                    .charAt(idx + 2) == ':') {
+            if (idx + 2 < len && pattern.charAt(idx + 1) == '?' && pattern.charAt(idx + 2) == ':') {
                 paren = 2;
                 idx += 3;
                 ret = node(RE.OP_OPEN_CLUSTER, 0);
@@ -1251,13 +1238,13 @@ public class RECompiler {
      * pattern matcher class 'RE'.
      * 
      * @param pattern
-     *                Regular expression pattern to compile (see RECompiler
-     *                class
-     *                for details).
+     *        Regular expression pattern to compile (see RECompiler
+     *        class
+     *        for details).
      * @return A compiled regular expression program.
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      * @see RECompiler
      * @see RE
      */
@@ -1304,8 +1291,8 @@ public class RECompiler {
          * Deletes the range at a given index from the range lists
          * 
          * @param index
-         *              Index of range to delete from minRange and maxRange
-         *              arrays.
+         *        Index of range to delete from minRange and maxRange
+         *        arrays.
          */
         void delete(int index) {
             // Return if no elements left or index is out of range
@@ -1329,9 +1316,9 @@ public class RECompiler {
          * Merges a range into the range list, coalescing ranges if possible.
          * 
          * @param min
-         *            Minimum end of range
+         *        Minimum end of range
          * @param max
-         *            Maximum end of range
+         *        Maximum end of range
          */
         void merge(int min, int max) {
             // Loop through ranges
@@ -1384,9 +1371,9 @@ public class RECompiler {
          * Removes a range by deleting or shrinking all other ranges
          * 
          * @param min
-         *            Minimum end of range
+         *        Minimum end of range
          * @param max
-         *            Maximum end of range
+         *        Maximum end of range
          */
         void remove(int min, int max) {
             // Loop through ranges
@@ -1430,11 +1417,11 @@ public class RECompiler {
          * Includes (or excludes) the range from min to max, inclusive.
          * 
          * @param min
-         *                Minimum end of range
+         *        Minimum end of range
          * @param max
-         *                Maximum end of range
+         *        Maximum end of range
          * @param include
-         *                True if range should be included. False otherwise.
+         *        True if range should be included. False otherwise.
          */
         void include(int min, int max, boolean include) {
             if (include) {
@@ -1448,9 +1435,9 @@ public class RECompiler {
          * Includes a range with the same min and max
          * 
          * @param minmax
-         *                Minimum and maximum end of range (inclusive)
+         *        Minimum and maximum end of range (inclusive)
          * @param include
-         *                True if range should be included. False otherwise.
+         *        True if range should be included. False otherwise.
          */
         void include(char minmax, boolean include) {
             include(minmax, minmax, include);

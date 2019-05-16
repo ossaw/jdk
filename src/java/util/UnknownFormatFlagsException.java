@@ -7,7 +7,6 @@ package java.util;
 
 /**
  * Unchecked exception thrown when an unknown flag is given.
- *
  * <p>
  * Unless otherwise specified, passing a <tt>null</tt> argument to any method or
  * constructor in this class will cause a {@link NullPointerException} to be
@@ -25,7 +24,7 @@ public class UnknownFormatFlagsException extends IllegalFormatException {
      * Constructs an instance of this class with the specified flags.
      *
      * @param f
-     *          The set of format flags which contain an unknown flag
+     *        The set of format flags which contain an unknown flag
      */
     public UnknownFormatFlagsException(String f) {
         if (f == null)

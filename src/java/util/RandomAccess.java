@@ -11,7 +11,6 @@ package java.util;
  * this interface is to allow generic algorithms to alter their behavior to
  * provide good performance when applied to either random or sequential access
  * lists.
- *
  * <p>
  * The best algorithms for manipulating random access lists (such as
  * <tt>ArrayList</tt>) can produce quadratic behavior when applied to sequential
@@ -20,7 +19,6 @@ package java.util;
  * interface before applying an algorithm that would provide poor performance if
  * it were applied to a sequential access list, and to alter their behavior if
  * necessary to guarantee acceptable performance.
- *
  * <p>
  * It is recognized that the distinction between random and sequential access is
  * often fuzzy. For example, some <tt>List</tt> implementations provide
@@ -41,7 +39,6 @@ package java.util;
  * for (Iterator i = list.iterator(); i.hasNext();)
  *     i.next();
  * </pre>
- *
  * <p>
  * This interface is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections

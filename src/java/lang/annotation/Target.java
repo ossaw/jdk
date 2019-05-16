@@ -10,17 +10,14 @@ package java.lang.annotation;
  * declaration contexts and type contexts in which an annotation type may be
  * applicable are specified in JLS 9.6.4.1, and denoted in source code by enum
  * constants of {@link ElementType java.lang.annotation.ElementType}.
- *
  * <p>
  * If an {@code @Target} meta-annotation is not present on an annotation type
  * {@code T} , then an annotation of type {@code T} may be written as a modifier
  * for any declaration except a type parameter declaration.
- *
  * <p>
  * If an {@code @Target} meta-annotation is present, the compiler will enforce
  * the usage restrictions indicated by {@code ElementType} enum constants, in
  * line with JLS 9.7.4.
- *
  * <p>
  * For example, this {@code @Target} meta-annotation indicates that the declared
  * type is itself a meta-annotation type. It can only be used on annotation type
@@ -32,7 +29,6 @@ package java.lang.annotation;
  *        ...
  *    }
  * </pre>
- *
  * <p>
  * This {@code @Target} meta-annotation indicates that the declared type is
  * intended solely for use as a member type in complex annotation type
@@ -44,7 +40,6 @@ package java.lang.annotation;
  *        ...
  *    }
  * </pre>
- *
  * <p>
  * It is a compile-time error for a single {@code ElementType} constant to
  * appear more than once in an {@code @Target} annotation. For example, the

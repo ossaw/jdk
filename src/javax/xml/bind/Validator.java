@@ -10,7 +10,6 @@ package javax.xml.bind;
  * <p>
  * The <tt>Validator</tt> class is responsible for controlling the validation of
  * content trees during runtime.
- *
  * <p>
  * <a name="validationtypes"></a> <b>Three Forms of Validation</b><br>
  * <blockquote>
@@ -22,7 +21,6 @@ package javax.xml.bind;
  * types of validation. To enable or disable it, see the javadoc for
  * {@link Unmarshaller#setValidating(boolean) Unmarshaller.setValidating}. All
  * JAXB 1.0 Providers are required to support this operation.</dd>
- *
  * <dt><b>On-Demand Validation</b></dt>
  * <dd>This form of validation enables a client application to receive
  * information about validation errors and warnings detected in the Java content
@@ -30,7 +28,6 @@ package javax.xml.bind;
  * {@link Validator#validate(Object) Validator.validate} method on the Java
  * content tree (or any sub-tree of it). All JAXB 1.0 Providers are required to
  * support this operation.</dd>
- *
  * <dt><b>Fail-Fast Validation</b></dt>
  * <dd>This form of validation enables a client application to receive immediate
  * feedback about modifications to the Java content tree that violate type
@@ -41,7 +38,6 @@ package javax.xml.bind;
  * allowed to request fail-fast validation at runtime.</dd>
  * </dl>
  * </blockquote>
- *
  * <p>
  * The <tt>Validator</tt> class is responsible for managing On-Demand
  * Validation. The <tt>Unmarshaller</tt> class is responsible for managing
@@ -49,7 +45,6 @@ package javax.xml.bind;
  * no formal method of enabling validation during the marshal operations, the
  * <tt>Marshaller</tt> may detect errors, which will be reported to the
  * <tt>ValidationEventHandler</tt> registered on it.
- *
  * <p>
  * <a name="defaulthandler"></a> <b>Using the Default EventHandler</b><br>
  * <blockquote> If the client application does not set an event handler on their
@@ -59,7 +54,6 @@ package javax.xml.bind;
  * default event handler will cause the current operation to halt after
  * encountering the first error or fatal error (but will attempt to continue
  * after receiving warnings). </blockquote>
- *
  * <p>
  * <a name="handlingevents"></a> <b>Handling Validation Events</b><br>
  * <blockquote> There are three ways to handle events encountered during the
@@ -69,12 +63,10 @@ package javax.xml.bind;
  * <dd>The default event handler will be used if you do not specify one via the
  * <tt>setEventHandler</tt> API's on <tt>Validator</tt>, <tt>Unmarshaller</tt>,
  * or <tt>Marshaller</tt>.</dd>
- *
  * <dt>Implement and register a custom event handler</dt>
  * <dd>Client applications that require sophisticated event processing can
  * implement the <tt>ValidationEventHandler</tt> interface and register it with
  * the <tt>Unmarshaller</tt> and/or <tt>Validator</tt>.</dd>
- *
  * <dt>Use the {@link javax.xml.bind.util.ValidationEventCollector
  * ValidationEventCollector} utility</dt>
  * <dd>For convenience, a specialized event handler is provided that simply
@@ -83,7 +75,6 @@ package javax.xml.bind;
  * as a <tt>java.util.Collection</tt>.</dd>
  * </dl>
  * </blockquote>
- *
  * <p>
  * <b>Validation and Well-Formedness</b><br>
  * <blockquote>
@@ -100,7 +91,6 @@ package javax.xml.bind;
  * own <tt>ValidationEventHandler</tt> should also terminate processing after
  * being notified of a fatal error. If not, unexpected behaviour may
  * occur. </blockquote>
- *
  * <p>
  * <a name="supportedProps"></a> <b>Supported Properties</b><br>
  * <blockquote>
@@ -108,7 +98,6 @@ package javax.xml.bind;
  * There currently are not any properties required to be supported by all JAXB
  * Providers on Validator. However, some providers may support their own set of
  * provider specific properties. </blockquote>
- *
  *
  * @author
  *         <ul>
@@ -141,14 +130,13 @@ public interface Validator {
      * revert back to the default default event handler.
      *
      * @param handler
-     *                the validation event handler
+     *        the validation event handler
      * @throws JAXBException
-     *                       if an error was encountered while setting the event
-     *                       handler
+     *         if an error was encountered while setting the event
+     *         handler
      * @deprecated since JAXB2.0
      */
-    public void setEventHandler(ValidationEventHandler handler)
-            throws JAXBException;
+    public void setEventHandler(ValidationEventHandler handler) throws JAXBException;
 
     /**
      * Return the current event handler or the default event handler if one
@@ -157,9 +145,9 @@ public interface Validator {
      * @return the current ValidationEventHandler or the default event handler
      *         if it hasn't been set
      * @throws JAXBException
-     *                       if an error was encountered while getting the
-     *                       current event
-     *                       handler
+     *         if an error was encountered while getting the
+     *         current event
+     *         handler
      * @deprecated since JAXB2.0
      */
     public ValidationEventHandler getEventHandler() throws JAXBException;
@@ -174,20 +162,20 @@ public interface Validator {
      * constraints).
      *
      * @param subrootObj
-     *                   the obj to begin validation at
+     *        the obj to begin validation at
      * @throws JAXBException
-     *                                  if any unexpected problem occurs during
-     *                                  validation
+     *         if any unexpected problem occurs during
+     *         validation
      * @throws ValidationException
-     *                                  If the {@link ValidationEventHandler
-     *                                  ValidationEventHandler}
-     *                                  returns false from its
-     *                                  <tt>handleEvent</tt> method or the
-     *                                  <tt>Validator</tt> is unable to validate
-     *                                  the content tree
-     *                                  rooted at <tt>subrootObj</tt>
+     *         If the {@link ValidationEventHandler
+     *         ValidationEventHandler}
+     *         returns false from its
+     *         <tt>handleEvent</tt> method or the
+     *         <tt>Validator</tt> is unable to validate
+     *         the content tree
+     *         rooted at <tt>subrootObj</tt>
      * @throws IllegalArgumentException
-     *                                  If the subrootObj parameter is null
+     *         If the subrootObj parameter is null
      * @return true if the subtree rooted at <tt>subrootObj</tt> is valid, false
      *         otherwise
      * @deprecated since JAXB2.0
@@ -203,20 +191,20 @@ public interface Validator {
      * of this operation (i.e. ID/IDREF constraints).
      *
      * @param rootObj
-     *                the root obj to begin validation at
+     *        the root obj to begin validation at
      * @throws JAXBException
-     *                                  if any unexpected problem occurs during
-     *                                  validation
+     *         if any unexpected problem occurs during
+     *         validation
      * @throws ValidationException
-     *                                  If the {@link ValidationEventHandler
-     *                                  ValidationEventHandler}
-     *                                  returns false from its
-     *                                  <tt>handleEvent</tt> method or the
-     *                                  <tt>Validator</tt> is unable to validate
-     *                                  the content tree
-     *                                  rooted at <tt>rootObj</tt>
+     *         If the {@link ValidationEventHandler
+     *         ValidationEventHandler}
+     *         returns false from its
+     *         <tt>handleEvent</tt> method or the
+     *         <tt>Validator</tt> is unable to validate
+     *         the content tree
+     *         rooted at <tt>rootObj</tt>
      * @throws IllegalArgumentException
-     *                                  If the rootObj parameter is null
+     *         If the rootObj parameter is null
      * @return true if the tree rooted at <tt>rootObj</tt> is valid, false
      *         otherwise
      * @deprecated since JAXB2.0
@@ -232,18 +220,17 @@ public interface Validator {
      * Properties</a>.
      *
      * @param name
-     *              the name of the property to be set. This value can either be
-     *              specified using one of the constant fields or a user
-     *              supplied
-     *              string.
+     *        the name of the property to be set. This value can either be
+     *        specified using one of the constant fields or a user
+     *        supplied
+     *        string.
      * @param value
-     *              the value of the property to be set
-     *
+     *        the value of the property to be set
      * @throws PropertyException
-     *                                  when there is an error processing the
-     *                                  given property or value
+     *         when there is an error processing the
+     *         given property or value
      * @throws IllegalArgumentException
-     *                                  If the name parameter is null
+     *         If the name parameter is null
      * @deprecated since JAXB2.0
      */
     public void setProperty(String name, Object value) throws PropertyException;
@@ -257,15 +244,14 @@ public interface Validator {
      * Properties</a>.
      *
      * @param name
-     *             the name of the property to retrieve
+     *        the name of the property to retrieve
      * @return the value of the requested property
-     *
      * @throws PropertyException
-     *                                  when there is an error retrieving the
-     *                                  given property or value
-     *                                  property name
+     *         when there is an error retrieving the
+     *         given property or value
+     *         property name
      * @throws IllegalArgumentException
-     *                                  If the name parameter is null
+     *         If the name parameter is null
      * @deprecated since JAXB2.0
      */
     public Object getProperty(String name) throws PropertyException;

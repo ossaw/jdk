@@ -38,16 +38,14 @@ package org.omg.DynamicAny;
 abstract public class DynAnyFactoryHelper {
     private static String _id = "IDL:omg.org/DynamicAny/DynAnyFactory:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.DynamicAny.DynAnyFactory that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.DynamicAny.DynAnyFactory that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static org.omg.DynamicAny.DynAnyFactory extract(
-            org.omg.CORBA.Any a) {
+    public static org.omg.DynamicAny.DynAnyFactory extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -55,9 +53,8 @@ abstract public class DynAnyFactoryHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.DynamicAny.DynAnyFactoryHelper.id(),
-                    "DynAnyFactory");
+            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(org.omg.DynamicAny.DynAnyFactoryHelper
+                    .id(), "DynAnyFactory");
         }
         return __typeCode;
     }
@@ -66,8 +63,7 @@ abstract public class DynAnyFactoryHelper {
         return _id;
     }
 
-    public static org.omg.DynamicAny.DynAnyFactory read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.DynamicAny.DynAnyFactory read(org.omg.CORBA.portable.InputStream istream) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
@@ -76,8 +72,7 @@ abstract public class DynAnyFactoryHelper {
         throw new org.omg.CORBA.MARSHAL();
     }
 
-    public static org.omg.DynamicAny.DynAnyFactory narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.DynamicAny.DynAnyFactory narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.DynamicAny.DynAnyFactory)
@@ -93,8 +88,7 @@ abstract public class DynAnyFactoryHelper {
         }
     }
 
-    public static org.omg.DynamicAny.DynAnyFactory unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.DynamicAny.DynAnyFactory unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.DynamicAny.DynAnyFactory)

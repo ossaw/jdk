@@ -219,8 +219,7 @@ public class ErrorMessages_zh_TW extends ListResourceBundle {
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { BasisLibrary.UNSUPPORTED_XSL_ERR,
-                        "\u4E0D\u652F\u63F4\u7684 XSL \u5143\u7D20 ''{0}''" },
+                { BasisLibrary.UNSUPPORTED_XSL_ERR, "\u4E0D\u652F\u63F4\u7684 XSL \u5143\u7D20 ''{0}''" },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension

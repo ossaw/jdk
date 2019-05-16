@@ -125,23 +125,19 @@ class MetalTitlePane extends JComponent {
 
     // Colors
     private Color inactiveBackground = UIManager.getColor("inactiveCaption");
-    private Color inactiveForeground = UIManager.getColor(
-            "inactiveCaptionText");
+    private Color inactiveForeground = UIManager.getColor("inactiveCaptionText");
     private Color inactiveShadow = UIManager.getColor("inactiveCaptionBorder");
-    private Color activeBumpsHighlight = MetalLookAndFeel
-            .getPrimaryControlHighlight();
-    private Color activeBumpsShadow = MetalLookAndFeel
-            .getPrimaryControlDarkShadow();
+    private Color activeBumpsHighlight = MetalLookAndFeel.getPrimaryControlHighlight();
+    private Color activeBumpsShadow = MetalLookAndFeel.getPrimaryControlDarkShadow();
     private Color activeBackground = null;
     private Color activeForeground = null;
     private Color activeShadow = null;
 
     // Bumps
-    private MetalBumps activeBumps = new MetalBumps(0, 0, activeBumpsHighlight,
-            activeBumpsShadow, MetalLookAndFeel.getPrimaryControl());
-    private MetalBumps inactiveBumps = new MetalBumps(0, 0, MetalLookAndFeel
-            .getControlHighlight(), MetalLookAndFeel.getControlDarkShadow(),
-            MetalLookAndFeel.getControl());
+    private MetalBumps activeBumps = new MetalBumps(0, 0, activeBumpsHighlight, activeBumpsShadow,
+            MetalLookAndFeel.getPrimaryControl());
+    private MetalBumps inactiveBumps = new MetalBumps(0, 0, MetalLookAndFeel.getControlHighlight(),
+            MetalLookAndFeel.getControlDarkShadow(), MetalLookAndFeel.getControl());
 
     public MetalTitlePane(JRootPane root, MetalRootPaneUI ui) {
         this.rootPane = root;
@@ -279,30 +275,21 @@ class MetalTitlePane extends JComponent {
                 activeShadow = UIManager.getColor("activeCaptionBorder");
                 break;
             case JRootPane.ERROR_DIALOG:
-                activeBackground = UIManager.getColor(
-                        "OptionPane.errorDialog.titlePane.background");
-                activeForeground = UIManager.getColor(
-                        "OptionPane.errorDialog.titlePane.foreground");
-                activeShadow = UIManager.getColor(
-                        "OptionPane.errorDialog.titlePane.shadow");
+                activeBackground = UIManager.getColor("OptionPane.errorDialog.titlePane.background");
+                activeForeground = UIManager.getColor("OptionPane.errorDialog.titlePane.foreground");
+                activeShadow = UIManager.getColor("OptionPane.errorDialog.titlePane.shadow");
                 break;
             case JRootPane.QUESTION_DIALOG:
             case JRootPane.COLOR_CHOOSER_DIALOG:
             case JRootPane.FILE_CHOOSER_DIALOG:
-                activeBackground = UIManager.getColor(
-                        "OptionPane.questionDialog.titlePane.background");
-                activeForeground = UIManager.getColor(
-                        "OptionPane.questionDialog.titlePane.foreground");
-                activeShadow = UIManager.getColor(
-                        "OptionPane.questionDialog.titlePane.shadow");
+                activeBackground = UIManager.getColor("OptionPane.questionDialog.titlePane.background");
+                activeForeground = UIManager.getColor("OptionPane.questionDialog.titlePane.foreground");
+                activeShadow = UIManager.getColor("OptionPane.questionDialog.titlePane.shadow");
                 break;
             case JRootPane.WARNING_DIALOG:
-                activeBackground = UIManager.getColor(
-                        "OptionPane.warningDialog.titlePane.background");
-                activeForeground = UIManager.getColor(
-                        "OptionPane.warningDialog.titlePane.foreground");
-                activeShadow = UIManager.getColor(
-                        "OptionPane.warningDialog.titlePane.shadow");
+                activeBackground = UIManager.getColor("OptionPane.warningDialog.titlePane.background");
+                activeForeground = UIManager.getColor("OptionPane.warningDialog.titlePane.foreground");
+                activeShadow = UIManager.getColor("OptionPane.warningDialog.titlePane.shadow");
                 break;
             case JRootPane.PLAIN_DIALOG:
             case JRootPane.INFORMATION_DIALOG:
@@ -312,8 +299,7 @@ class MetalTitlePane extends JComponent {
                 activeShadow = UIManager.getColor("activeCaptionBorder");
                 break;
         }
-        activeBumps.setBumpColors(activeBumpsHighlight, activeBumpsShadow,
-                activeBackground);
+        activeBumps.setBumpColors(activeBumpsHighlight, activeBumpsShadow, activeBackground);
     }
 
     /**
@@ -347,8 +333,7 @@ class MetalTitlePane extends JComponent {
         Window window = getWindow();
 
         if (window != null) {
-            window.dispatchEvent(new WindowEvent(window,
-                    WindowEvent.WINDOW_CLOSING));
+            window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
         }
     }
 
@@ -432,8 +417,7 @@ class MetalTitlePane extends JComponent {
             mi.setMnemonic(mnemonic);
         }
 
-        if (Toolkit.getDefaultToolkit().isFrameStateSupported(
-                Frame.MAXIMIZED_BOTH)) {
+        if (Toolkit.getDefaultToolkit().isFrameStateSupported(Frame.MAXIMIZED_BOTH)) {
             mi = menu.add(maximizeAction);
             mnemonic = MetalUtils.getInt("MetalTitlePane.maximizeMnemonic", -1);
             if (mnemonic != -1) {
@@ -472,8 +456,7 @@ class MetalTitlePane extends JComponent {
         closeButton.setText(null);
         closeButton.putClientProperty("paintActive", Boolean.TRUE);
         closeButton.setBorder(handyEmptyBorder);
-        closeButton.putClientProperty(
-                AccessibleContext.ACCESSIBLE_NAME_PROPERTY, "Close");
+        closeButton.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY, "Close");
         closeButton.setIcon(UIManager.getIcon("InternalFrame.closeIcon"));
 
         if (getWindowDecorationStyle() == JRootPane.FRAME) {
@@ -485,17 +468,14 @@ class MetalTitlePane extends JComponent {
             iconifyButton.setText(null);
             iconifyButton.putClientProperty("paintActive", Boolean.TRUE);
             iconifyButton.setBorder(handyEmptyBorder);
-            iconifyButton.putClientProperty(
-                    AccessibleContext.ACCESSIBLE_NAME_PROPERTY, "Iconify");
-            iconifyButton.setIcon(UIManager.getIcon(
-                    "InternalFrame.iconifyIcon"));
+            iconifyButton.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY, "Iconify");
+            iconifyButton.setIcon(UIManager.getIcon("InternalFrame.iconifyIcon"));
 
             toggleButton = createTitleButton();
             toggleButton.setAction(restoreAction);
             toggleButton.putClientProperty("paintActive", Boolean.TRUE);
             toggleButton.setBorder(handyEmptyBorder);
-            toggleButton.putClientProperty(
-                    AccessibleContext.ACCESSIBLE_NAME_PROPERTY, "Maximize");
+            toggleButton.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY, "Maximize");
             toggleButton.setIcon(maximizeIcon);
         }
     }
@@ -547,10 +527,8 @@ class MetalTitlePane extends JComponent {
             if (frame != null) {
                 JRootPane rootPane = getRootPane();
 
-                if (((state & Frame.MAXIMIZED_BOTH) != 0) && (rootPane
-                        .getBorder() == null || (rootPane
-                                .getBorder() instanceof UIResource)) && frame
-                                        .isShowing()) {
+                if (((state & Frame.MAXIMIZED_BOTH) != 0) && (rootPane.getBorder() == null || (rootPane
+                        .getBorder() instanceof UIResource)) && frame.isShowing()) {
                     rootPane.setBorder(null);
                 } else if ((state & Frame.MAXIMIZED_BOTH) == 0) {
                     // This is a croak, if state becomes bound, this can
@@ -567,8 +545,7 @@ class MetalTitlePane extends JComponent {
                         maximizeAction.setEnabled(true);
                         restoreAction.setEnabled(false);
                     }
-                    if (toggleButton.getParent() == null || iconifyButton
-                            .getParent() == null) {
+                    if (toggleButton.getParent() == null || iconifyButton.getParent() == null) {
                         add(toggleButton);
                         add(iconifyButton);
                         revalidate();
@@ -656,8 +633,7 @@ class MetalTitlePane extends JComponent {
         }
         JRootPane rootPane = getRootPane();
         Window window = getWindow();
-        boolean leftToRight = (window == null) ? rootPane
-                .getComponentOrientation().isLeftToRight()
+        boolean leftToRight = (window == null) ? rootPane.getComponentOrientation().isLeftToRight()
                 : window.getComponentOrientation().isLeftToRight();
         boolean isSelected = (window == null) ? true : window.isActive();
         int width = getWidth();
@@ -714,16 +690,13 @@ class MetalTitlePane extends JComponent {
                     rect.x = window.getWidth() - window.getInsets().right - 2;
                 }
                 titleW = rect.x - xOffset - 4;
-                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm,
-                        theTitle, titleW);
+                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
             } else {
                 titleW = xOffset - rect.x - rect.width - 4;
-                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm,
-                        theTitle, titleW);
+                theTitle = SwingUtilities2.clipStringIfNecessary(rootPane, fm, theTitle, titleW);
                 xOffset -= SwingUtilities2.stringWidth(rootPane, fm, theTitle);
             }
-            int titleLength = SwingUtilities2.stringWidth(rootPane, fm,
-                    theTitle);
+            int titleLength = SwingUtilities2.stringWidth(rootPane, fm, theTitle);
             SwingUtilities2.drawString(rootPane, g, theTitle, xOffset, yOffset);
             xOffset += leftToRight ? titleLength + 5 : -5;
         }
@@ -748,8 +721,7 @@ class MetalTitlePane extends JComponent {
      */
     private class CloseAction extends AbstractAction {
         public CloseAction() {
-            super(UIManager.getString("MetalTitlePane.closeTitle",
-                    getLocale()));
+            super(UIManager.getString("MetalTitlePane.closeTitle", getLocale()));
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -762,8 +734,7 @@ class MetalTitlePane extends JComponent {
      */
     private class IconifyAction extends AbstractAction {
         public IconifyAction() {
-            super(UIManager.getString("MetalTitlePane.iconifyTitle",
-                    getLocale()));
+            super(UIManager.getString("MetalTitlePane.iconifyTitle", getLocale()));
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -776,8 +747,7 @@ class MetalTitlePane extends JComponent {
      */
     private class RestoreAction extends AbstractAction {
         public RestoreAction() {
-            super(UIManager.getString("MetalTitlePane.restoreTitle",
-                    getLocale()));
+            super(UIManager.getString("MetalTitlePane.restoreTitle", getLocale()));
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -790,8 +760,7 @@ class MetalTitlePane extends JComponent {
      */
     private class MaximizeAction extends AbstractAction {
         public MaximizeAction() {
-            super(UIManager.getString("MetalTitlePane.maximizeTitle",
-                    getLocale()));
+            super(UIManager.getString("MetalTitlePane.maximizeTitle", getLocale()));
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -828,8 +797,7 @@ class MetalTitlePane extends JComponent {
         public Dimension getPreferredSize() {
             Dimension size = super.getPreferredSize();
 
-            return new Dimension(Math.max(IMAGE_WIDTH, size.width), Math.max(
-                    size.height, IMAGE_HEIGHT));
+            return new Dimension(Math.max(IMAGE_WIDTH, size.width), Math.max(size.height, IMAGE_HEIGHT));
         }
     }
 
@@ -861,8 +829,7 @@ class MetalTitlePane extends JComponent {
         }
 
         public void layoutContainer(Container c) {
-            boolean leftToRight = (window == null) ? getRootPane()
-                    .getComponentOrientation().isLeftToRight()
+            boolean leftToRight = (window == null) ? getRootPane().getComponentOrientation().isLeftToRight()
                     : window.getComponentOrientation().isLeftToRight();
 
             int w = getWidth();
@@ -902,8 +869,7 @@ class MetalTitlePane extends JComponent {
                 x += buttonWidth;
 
             if (getWindowDecorationStyle() == JRootPane.FRAME) {
-                if (Toolkit.getDefaultToolkit().isFrameStateSupported(
-                        Frame.MAXIMIZED_BOTH)) {
+                if (Toolkit.getDefaultToolkit().isFrameStateSupported(Frame.MAXIMIZED_BOTH)) {
                     if (toggleButton.getParent() != null) {
                         spacing = 10;
                         x += leftToRight ? -spacing - buttonWidth : spacing;
@@ -914,8 +880,7 @@ class MetalTitlePane extends JComponent {
                     }
                 }
 
-                if (iconifyButton != null && iconifyButton
-                        .getParent() != null) {
+                if (iconifyButton != null && iconifyButton.getParent() != null) {
                     spacing = 2;
                     x += leftToRight ? -spacing - buttonWidth : spacing;
                     iconifyButton.setBounds(x, y, buttonWidth, buttonHeight);
@@ -976,8 +941,7 @@ class MetalTitlePane extends JComponent {
         } else if (icons.size() == 1) {
             systemIcon = icons.get(0);
         } else {
-            systemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH,
-                    IMAGE_HEIGHT);
+            systemIcon = SunToolkit.getScaledIconImage(icons, IMAGE_WIDTH, IMAGE_HEIGHT);
         }
     }
 

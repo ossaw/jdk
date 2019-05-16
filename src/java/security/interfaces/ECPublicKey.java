@@ -11,12 +11,9 @@ import java.security.spec.ECPoint;
  * The interface to an elliptic curve (EC) public key.
  *
  * @author Valerie Peng
- *
- *
  * @see PublicKey
  * @see ECKey
  * @see java.security.spec.ECPoint
- *
  * @since 1.5
  */
 public interface ECPublicKey extends PublicKey, ECKey {

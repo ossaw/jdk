@@ -87,39 +87,34 @@ class GlyphPainter2 extends GlyphView.GlyphPainter {
         if (g instanceof Graphics2D) {
             Rectangle2D alloc = a.getBounds2D();
             Graphics2D g2d = (Graphics2D) g;
-            float y = (float) alloc.getY() + layout.getAscent() + layout
-                    .getLeading();
+            float y = (float) alloc.getY() + layout.getAscent() + layout.getLeading();
             float x = (float) alloc.getX();
             if (p0 > v.getStartOffset() || p1 < v.getEndOffset()) {
                 try {
                     // TextLayout can't render only part of it's range, so if a
                     // partial range is required, add a clip region.
-                    Shape s = v.modelToView(p0, Position.Bias.Forward, p1,
-                            Position.Bias.Backward, a);
+                    Shape s = v.modelToView(p0, Position.Bias.Forward, p1, Position.Bias.Backward, a);
                     Shape savedClip = g.getClip();
                     g2d.clip(s);
                     layout.draw(g2d, x, y);
                     g.setClip(savedClip);
-                } catch (BadLocationException e) {
-                }
+                } catch (BadLocationException e) {}
             } else {
                 layout.draw(g2d, x, y);
             }
         }
     }
 
-    public Shape modelToView(GlyphView v, int pos, Position.Bias bias, Shape a)
-            throws BadLocationException {
+    public Shape modelToView(GlyphView v, int pos, Position.Bias bias, Shape a) throws BadLocationException {
         int offs = pos - v.getStartOffset();
         Rectangle2D alloc = a.getBounds2D();
-        TextHitInfo hit = (bias == Position.Bias.Forward) ? TextHitInfo
-                .afterOffset(offs) : TextHitInfo.beforeOffset(offs);
+        TextHitInfo hit = (bias == Position.Bias.Forward) ? TextHitInfo.afterOffset(offs)
+                : TextHitInfo.beforeOffset(offs);
         float[] locs = layout.getCaretInfo(hit);
 
         // vertical at the baseline, should use slope and check if glyphs
         // are being rendered vertically.
-        alloc.setRect(alloc.getX() + locs[0], alloc.getY(), 1, alloc
-                .getHeight());
+        alloc.setRect(alloc.getX() + locs[0], alloc.getY(), 1, alloc.getHeight());
         return alloc;
     }
 
@@ -128,27 +123,25 @@ class GlyphPainter2 extends GlyphView.GlyphPainter {
      * coordinate space of the model.
      *
      * @param v
-     *                   the view containing the view coordinates
+     *        the view containing the view coordinates
      * @param x
-     *                   the X coordinate
+     *        the X coordinate
      * @param y
-     *                   the Y coordinate
+     *        the Y coordinate
      * @param a
-     *                   the allocated region to render into
+     *        the allocated region to render into
      * @param biasReturn
-     *                   either <code>Position.Bias.Forward</code> or
-     *                   <code>Position.Bias.Backward</code> is returned as the
-     *                   zero-th
-     *                   element of this array
+     *        either <code>Position.Bias.Forward</code> or
+     *        <code>Position.Bias.Backward</code> is returned as the
+     *        zero-th
+     *        element of this array
      * @return the location within the model that best represents the given
      *         point of view
      * @see View#viewToModel
      */
-    public int viewToModel(GlyphView v, float x, float y, Shape a,
-            Position.Bias[] biasReturn) {
+    public int viewToModel(GlyphView v, float x, float y, Shape a, Position.Bias[] biasReturn) {
 
-        Rectangle2D alloc = (a instanceof Rectangle2D) ? (Rectangle2D) a
-                : a.getBounds2D();
+        Rectangle2D alloc = (a instanceof Rectangle2D) ? (Rectangle2D) a : a.getBounds2D();
         // Move the y co-ord of the hit onto the baseline. This is because
         // TextLayout supports
         // italic carets and we do not.
@@ -159,8 +152,7 @@ class GlyphPainter2 extends GlyphView.GlyphPainter {
             pos--;
         }
 
-        biasReturn[0] = hit.isLeadingEdge() ? Position.Bias.Forward
-                : Position.Bias.Backward;
+        biasReturn[0] = hit.isLeadingEdge() ? Position.Bias.Forward : Position.Bias.Backward;
         return pos + v.getStartOffset();
     }
 
@@ -172,17 +164,17 @@ class GlyphPainter2 extends GlyphView.GlyphPainter {
      * be proud of the maximum advance.
      *
      * @param v
-     *            the view to find the model location to break at.
+     *        the view to find the model location to break at.
      * @param p0
-     *            the location in the model where the fragment should start it's
-     *            representation >= 0.
+     *        the location in the model where the fragment should start it's
+     *        representation >= 0.
      * @param pos
-     *            the graphic location along the axis that the broken view would
-     *            occupy >= 0. This may be useful for things like tab
-     *            calculations.
+     *        the graphic location along the axis that the broken view would
+     *        occupy >= 0. This may be useful for things like tab
+     *        calculations.
      * @param len
-     *            specifies the distance into the view where a potential break
-     *            is desired >= 0.
+     *        specifies the distance into the view where a potential break
+     *        is desired >= 0.
      * @return the maximum model location possible for a break.
      * @see View#breakView
      */
@@ -207,27 +199,26 @@ class GlyphPainter2 extends GlyphView.GlyphPainter {
      * access to some of the locations in the model.
      *
      * @param v
-     *                  the view to use
+     *        the view to use
      * @param pos
-     *                  the position to convert >= 0
+     *        the position to convert >= 0
      * @param a
-     *                  the allocated region to render into
+     *        the allocated region to render into
      * @param direction
-     *                  the direction from the current position that can be
-     *                  thought of
-     *                  as the arrow keys typically found on a keyboard. This
-     *                  may be
-     *                  SwingConstants.WEST, SwingConstants.EAST,
-     *                  SwingConstants.NORTH, or SwingConstants.SOUTH.
+     *        the direction from the current position that can be
+     *        thought of
+     *        as the arrow keys typically found on a keyboard. This
+     *        may be
+     *        SwingConstants.WEST, SwingConstants.EAST,
+     *        SwingConstants.NORTH, or SwingConstants.SOUTH.
      * @return the location within the model that best represents the next
      *         location visual position.
      * @exception BadLocationException
      * @exception IllegalArgumentException
-     *                                     for an invalid direction
+     *            for an invalid direction
      */
-    public int getNextVisualPositionFrom(GlyphView v, int pos, Position.Bias b,
-            Shape a, int direction, Position.Bias[] biasRet)
-            throws BadLocationException {
+    public int getNextVisualPositionFrom(GlyphView v, int pos, Position.Bias b, Shape a, int direction,
+            Position.Bias[] biasRet) throws BadLocationException {
 
         Document doc = v.getDocument();
         int startOffset = v.getStartOffset();
@@ -242,8 +233,7 @@ class GlyphPainter2 extends GlyphView.GlyphPainter {
             case View.SOUTH:
                 break;
             case View.EAST:
-                viewIsLeftToRight = AbstractDocument.isLeftToRight(doc,
-                        startOffset, endOffset);
+                viewIsLeftToRight = AbstractDocument.isLeftToRight(doc, startOffset, endOffset);
 
                 if (startOffset == doc.getLength()) {
                     if (pos == -1) {
@@ -302,8 +292,7 @@ class GlyphPainter2 extends GlyphView.GlyphPainter {
                 }
                 return pos;
             case View.WEST:
-                viewIsLeftToRight = AbstractDocument.isLeftToRight(doc,
-                        startOffset, endOffset);
+                viewIsLeftToRight = AbstractDocument.isLeftToRight(doc, startOffset, endOffset);
 
                 if (startOffset == doc.getLength()) {
                     if (pos == -1) {
@@ -362,8 +351,7 @@ class GlyphPainter2 extends GlyphView.GlyphPainter {
                 }
                 return pos;
             default:
-                throw new IllegalArgumentException("Bad direction: "
-                        + direction);
+                throw new IllegalArgumentException("Bad direction: " + direction);
         }
         return pos;
 

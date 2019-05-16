@@ -11,7 +11,6 @@ package java.io;
  *
  * @see ObjectInputValidation
  * @since JDK1.1
- *
  * @author unascribed
  * @since JDK1.1
  */
@@ -23,8 +22,7 @@ public class InvalidObjectException extends ObjectStreamException {
      * Constructs an <code>InvalidObjectException</code>.
      * 
      * @param reason
-     *               Detailed message explaining the reason for the failure.
-     *
+     *        Detailed message explaining the reason for the failure.
      * @see ObjectInputValidation
      */
     public InvalidObjectException(String reason) {

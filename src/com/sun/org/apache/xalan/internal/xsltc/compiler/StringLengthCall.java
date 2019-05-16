@@ -47,7 +47,7 @@ final class StringLengthCall extends FunctionCall {
             il.append(methodGen.loadContextNode());
             Type.Node.translateTo(classGen, methodGen, Type.String);
         }
-        il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS,
-                "getStringLength", "(Ljava/lang/String;)I")));
+        il.append(new INVOKESTATIC(cpg.addMethodref(BASIS_LIBRARY_CLASS, "getStringLength",
+                "(Ljava/lang/String;)I")));
     }
 }

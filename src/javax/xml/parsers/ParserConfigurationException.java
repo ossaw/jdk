@@ -27,7 +27,7 @@ public class ParserConfigurationException extends Exception {
      * <code>String</code> specified as an error message.
      *
      * @param msg
-     *            The error message for the exception.
+     *        The error message for the exception.
      */
 
     public ParserConfigurationException(String msg) {

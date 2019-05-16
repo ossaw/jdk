@@ -88,8 +88,7 @@ public final class FlowList {
      * Redirect the handles from oldList to newList. "This" flow list is assumed
      * to be relative to oldList.
      */
-    public FlowList copyAndRedirect(InstructionList oldList,
-            InstructionList newList) {
+    public FlowList copyAndRedirect(InstructionList oldList, InstructionList newList) {
         final FlowList result = new FlowList();
         if (_elements == null) {
             return result;

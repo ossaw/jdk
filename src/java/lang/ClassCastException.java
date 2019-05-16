@@ -35,7 +35,7 @@ public class ClassCastException extends RuntimeException {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public ClassCastException(String s) {
         super(s);

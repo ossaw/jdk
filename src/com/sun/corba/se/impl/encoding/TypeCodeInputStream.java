@@ -46,8 +46,7 @@ import com.sun.corba.se.impl.encoding.MarshalInputStream;
 
 import sun.corba.EncapsInputStreamFactory;
 
-public class TypeCodeInputStream extends EncapsInputStream implements
-        TypeCodeReader {
+public class TypeCodeInputStream extends EncapsInputStream implements TypeCodeReader {
     private Map typeMap = null;
     private InputStream enclosure = null;
     private boolean isEncapsulation = false;
@@ -56,13 +55,13 @@ public class TypeCodeInputStream extends EncapsInputStream implements
         super(orb, data, size);
     }
 
-    public TypeCodeInputStream(org.omg.CORBA.ORB orb, byte[] data, int size,
-            boolean littleEndian, GIOPVersion version) {
+    public TypeCodeInputStream(org.omg.CORBA.ORB orb, byte[] data, int size, boolean littleEndian,
+            GIOPVersion version) {
         super(orb, data, size, littleEndian, version);
     }
 
-    public TypeCodeInputStream(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer,
-            int size, boolean littleEndian, GIOPVersion version) {
+    public TypeCodeInputStream(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer, int size, boolean littleEndian,
+            GIOPVersion version) {
         super(orb, byteBuffer, size, littleEndian, version);
     }
 
@@ -127,8 +126,7 @@ public class TypeCodeInputStream extends EncapsInputStream implements
         return getPosition();
     }
 
-    public static TypeCodeInputStream readEncapsulation(InputStream is,
-            org.omg.CORBA.ORB _orb) {
+    public static TypeCodeInputStream readEncapsulation(InputStream is, org.omg.CORBA.ORB _orb) {
         // _REVISIT_ Would be nice if we didn't have to copy the buffer!
         TypeCodeInputStream encap;
 
@@ -140,13 +138,12 @@ public class TypeCodeInputStream extends EncapsInputStream implements
 
         // create an encapsulation using the marshal buffer
         if (is instanceof CDRInputStream) {
-            encap = EncapsInputStreamFactory.newTypeCodeInputStream((ORB) _orb,
-                    encapBuffer, encapBuffer.length, ((CDRInputStream) is)
-                            .isLittleEndian(), ((CDRInputStream) is)
-                                    .getGIOPVersion());
+            encap = EncapsInputStreamFactory.newTypeCodeInputStream((ORB) _orb, encapBuffer,
+                    encapBuffer.length, ((CDRInputStream) is).isLittleEndian(), ((CDRInputStream) is)
+                            .getGIOPVersion());
         } else {
-            encap = EncapsInputStreamFactory.newTypeCodeInputStream((ORB) _orb,
-                    encapBuffer, encapBuffer.length);
+            encap = EncapsInputStreamFactory.newTypeCodeInputStream((ORB) _orb, encapBuffer,
+                    encapBuffer.length);
         }
         encap.setEnclosingInputStream(is);
         encap.makeEncapsulation();
@@ -170,8 +167,7 @@ public class TypeCodeInputStream extends EncapsInputStream implements
         while (i.hasNext()) {
             Integer pos = (Integer) i.next();
             TypeCodeImpl tci = (TypeCodeImpl) typeMap.get(pos);
-            System.out.println("  key = " + pos.intValue() + ", value = " + tci
-                    .description());
+            System.out.println("  key = " + pos.intValue() + ", value = " + tci.description());
         }
         System.out.println("}");
     }

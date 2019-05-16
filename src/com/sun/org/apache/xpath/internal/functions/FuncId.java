@@ -43,23 +43,21 @@ public class FuncId extends FunctionOneArg {
      * references.
      *
      * @param xctxt
-     *                   The runtime XPath context.
+     *        The runtime XPath context.
      * @param docContext
-     *                   The document where the nodes are being looked for.
+     *        The document where the nodes are being looked for.
      * @param refval
-     *                   A space delimited list of ID references.
+     *        A space delimited list of ID references.
      * @param usedrefs
-     *                   List of references for which nodes were found.
+     *        List of references for which nodes were found.
      * @param nodeSet
-     *                   Node set where the nodes will be added to.
+     *        Node set where the nodes will be added to.
      * @param mayBeMore
-     *                   true if there is another set of nodes to be looked for.
-     *
+     *        true if there is another set of nodes to be looked for.
      * @return The usedrefs value.
      */
-    private StringVector getNodesByID(XPathContext xctxt, int docContext,
-            String refval, StringVector usedrefs, NodeSetDTM nodeSet,
-            boolean mayBeMore) {
+    private StringVector getNodesByID(XPathContext xctxt, int docContext, String refval,
+            StringVector usedrefs, NodeSetDTM nodeSet, boolean mayBeMore) {
 
         if (null != refval) {
             String ref = null;
@@ -99,13 +97,11 @@ public class FuncId extends FunctionOneArg {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         int context = xctxt.getCurrentNode();
         DTM dtm = xctxt.getDTM(context);
@@ -129,8 +125,7 @@ public class FuncId extends FunctionOneArg {
                 String refval = ndtm.getStringValue(pos).toString();
 
                 pos = ni.nextNode();
-                usedrefs = getNodesByID(xctxt, docContext, refval, usedrefs,
-                        nodeSet, DTM.NULL != pos);
+                usedrefs = getNodesByID(xctxt, docContext, refval, usedrefs, nodeSet, DTM.NULL != pos);
             }
             // ni.detach();
         } else if (XObject.CLASS_NULL == argType) {

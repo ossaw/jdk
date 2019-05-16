@@ -20,15 +20,12 @@ import java.util.Vector;
  * If you need to load a specific <CODE>SnmpOidTable</CODE>, just call the
  * static method {@link com.sun.jmx.snmp.SnmpOid#setSnmpOidTable
  * <CODE>SnmpOid.setSnmpOidTable(<I>myOidTable</I>)</CODE>}.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
  * </p>
  * 
  * @see com.sun.jmx.snmp.SnmpOidRecord
- *
- *
  */
 
 public interface SnmpOidTable {
@@ -39,11 +36,11 @@ public interface SnmpOidTable {
      * the variable.
      *
      * @param name
-     *             The name of the MIB variable.
+     *        The name of the MIB variable.
      * @return The <CODE>SnmpOidRecord</CODE> object containing information on
      *         the variable.
      * @exception SnmpStatusException
-     *                                If the variable is not found.
+     *            If the variable is not found.
      */
     public SnmpOidRecord resolveVarName(String name) throws SnmpStatusException;
 
@@ -53,11 +50,11 @@ public interface SnmpOidTable {
      * the variable.
      *
      * @param oid
-     *            The OID of the MIB variable.
+     *        The OID of the MIB variable.
      * @return The <CODE>SnmpOidRecord</CODE> object containing information on
      *         the variable.
      * @exception SnmpStatusException
-     *                                If the variable is not found.
+     *            If the variable is not found.
      */
     public SnmpOidRecord resolveVarOid(String oid) throws SnmpStatusException;
 

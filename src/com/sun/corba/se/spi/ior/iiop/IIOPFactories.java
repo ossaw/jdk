@@ -51,19 +51,16 @@ public abstract class IIOPFactories {
     private IIOPFactories() {}
 
     public static IdentifiableFactory makeRequestPartitioningComponentFactory() {
-        return new EncapsulationFactoryBase(
-                ORBConstants.TAG_REQUEST_PARTITIONING_ID) {
+        return new EncapsulationFactoryBase(ORBConstants.TAG_REQUEST_PARTITIONING_ID) {
             public Identifiable readContents(InputStream in) {
                 int threadPoolToUse = in.read_ulong();
-                Identifiable comp = new RequestPartitioningComponentImpl(
-                        threadPoolToUse);
+                Identifiable comp = new RequestPartitioningComponentImpl(threadPoolToUse);
                 return comp;
             }
         };
     }
 
-    public static RequestPartitioningComponent makeRequestPartitioningComponent(
-            int threadPoolToUse) {
+    public static RequestPartitioningComponent makeRequestPartitioningComponent(int threadPoolToUse) {
         return new RequestPartitioningComponentImpl(threadPoolToUse);
     }
 
@@ -77,8 +74,7 @@ public abstract class IIOPFactories {
         };
     }
 
-    public static AlternateIIOPAddressComponent makeAlternateIIOPAddressComponent(
-            IIOPAddress addr) {
+    public static AlternateIIOPAddressComponent makeAlternateIIOPAddressComponent(IIOPAddress addr) {
         return new AlternateIIOPAddressComponentImpl(addr);
     }
 
@@ -104,8 +100,7 @@ public abstract class IIOPFactories {
         };
     }
 
-    public static JavaCodebaseComponent makeJavaCodebaseComponent(
-            String codebase) {
+    public static JavaCodebaseComponent makeJavaCodebaseComponent(String codebase) {
         return new JavaCodebaseComponentImpl(codebase);
     }
 
@@ -124,12 +119,10 @@ public abstract class IIOPFactories {
     }
 
     public static IdentifiableFactory makeMaxStreamFormatVersionComponentFactory() {
-        return new EncapsulationFactoryBase(
-                TAG_RMI_CUSTOM_MAX_STREAM_FORMAT.value) {
+        return new EncapsulationFactoryBase(TAG_RMI_CUSTOM_MAX_STREAM_FORMAT.value) {
             public Identifiable readContents(InputStream in) {
                 byte version = in.read_octet();
-                Identifiable comp = new MaxStreamFormatVersionComponentImpl(
-                        version);
+                Identifiable comp = new MaxStreamFormatVersionComponentImpl(version);
                 return comp;
             }
         };
@@ -140,8 +133,7 @@ public abstract class IIOPFactories {
     }
 
     public static IdentifiableFactory makeJavaSerializationComponentFactory() {
-        return new EncapsulationFactoryBase(
-                ORBConstants.TAG_JAVA_SERIALIZATION_ID) {
+        return new EncapsulationFactoryBase(ORBConstants.TAG_JAVA_SERIALIZATION_ID) {
             public Identifiable readContents(InputStream in) {
                 byte version = in.read_octet();
                 Identifiable cmp = new JavaSerializationComponent(version);
@@ -163,13 +155,12 @@ public abstract class IIOPFactories {
         };
     }
 
-    public static IIOPProfile makeIIOPProfile(ORB orb, ObjectKeyTemplate oktemp,
-            ObjectId oid, IIOPProfileTemplate ptemp) {
+    public static IIOPProfile makeIIOPProfile(ORB orb, ObjectKeyTemplate oktemp, ObjectId oid,
+            IIOPProfileTemplate ptemp) {
         return new IIOPProfileImpl(orb, oktemp, oid, ptemp);
     }
 
-    public static IIOPProfile makeIIOPProfile(ORB orb,
-            org.omg.IOP.TaggedProfile profile) {
+    public static IIOPProfile makeIIOPProfile(ORB orb, org.omg.IOP.TaggedProfile profile) {
         return new IIOPProfileImpl(orb, profile);
     }
 
@@ -182,8 +173,8 @@ public abstract class IIOPFactories {
         };
     }
 
-    public static IIOPProfileTemplate makeIIOPProfileTemplate(ORB orb,
-            GIOPVersion version, IIOPAddress primary) {
+    public static IIOPProfileTemplate makeIIOPProfileTemplate(ORB orb, GIOPVersion version,
+            IIOPAddress primary) {
         return new IIOPProfileTemplateImpl(orb, version, primary);
     }
 

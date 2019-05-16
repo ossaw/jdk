@@ -76,8 +76,7 @@ public final class FilterIterator extends DTMAxisIteratorBase {
             clone._isRestartable = false;
             return clone.reset();
         } catch (CloneNotSupportedException e) {
-            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-                    .toString());
+            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
             return null;
         }
     }
@@ -90,8 +89,7 @@ public final class FilterIterator extends DTMAxisIteratorBase {
     public int next() {
         int node;
         while ((node = _source.next()) != END) {
-            if (_filter.acceptNode(node,
-                    DTMFilter.SHOW_ALL) == DTMIterator.FILTER_ACCEPT) {
+            if (_filter.acceptNode(node, DTMFilter.SHOW_ALL) == DTMIterator.FILTER_ACCEPT) {
                 return returnNode(node);
             }
         }

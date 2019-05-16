@@ -37,7 +37,7 @@ public class LineUnavailableException extends Exception {
      * detail message.
      *
      * @param message
-     *                a string containing the error detail message
+     *        a string containing the error detail message
      */
     public LineUnavailableException(String message) {
 

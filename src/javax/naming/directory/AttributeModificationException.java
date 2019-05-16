@@ -22,7 +22,6 @@ import javax.naming.NamingException;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see DirContext#modifyAttributes
  * @since 1.3
  */
@@ -46,10 +45,9 @@ public class AttributeModificationException extends NamingException {
      * explanation. All other fields are set to null.
      *
      * @param explanation
-     *                    Possibly null additional detail about this exception.
-     *                    If null,
-     *                    this exception has no detail message.
-     * 
+     *        Possibly null additional detail about this exception.
+     *        If null,
+     *        this exception has no detail message.
      * @see java.lang.Throwable#getMessage
      */
     public AttributeModificationException(String explanation) {
@@ -72,7 +70,7 @@ public class AttributeModificationException extends NamingException {
      * originally submitted to modifyAttributes() were executed.
      * 
      * @param e
-     *          The possibly null list of unexecuted modifications.
+     *        The possibly null list of unexecuted modifications.
      * @see #getUnexecutedModifications
      */
     public void setUnexecutedModifications(ModificationItem[] e) {

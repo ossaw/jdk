@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -68,7 +66,7 @@ public class NameSpaceSymbTable {
      * Get all the unrendered nodes in the name space. For Inclusive rendering
      * 
      * @param result
-     *               the list where to fill the unrendered xmlns definitions.
+     *        the list where to fill the unrendered xmlns definitions.
      **/
     public void getUnrenderedNodes(Collection<Attr> result) {
         Iterator<NameSpaceSymbEntry> it = symb.entrySet().iterator();
@@ -140,7 +138,7 @@ public class NameSpaceSymbTable {
      * Gets the attribute node that defines the binding for the prefix.
      * 
      * @param prefix
-     *               the prefix to obtain the attribute.
+     *        the prefix to obtain the attribute.
      * @return null if there is no need to render the prefix. Otherwise the node
      *         of definition.
      **/
@@ -169,7 +167,7 @@ public class NameSpaceSymbTable {
      * the namespaces in the include prefixes.
      * 
      * @param prefix
-     *               The prefix whose definition is neaded.
+     *        The prefix whose definition is neaded.
      * @return the attr to render, null if there is no need to render
      **/
     public Attr getMappingWithoutRendered(String prefix) {
@@ -187,11 +185,11 @@ public class NameSpaceSymbTable {
      * Adds the mapping for a prefix.
      * 
      * @param prefix
-     *               the prefix of definition
+     *        the prefix of definition
      * @param uri
-     *               the Uri of the definition
+     *        the Uri of the definition
      * @param n
-     *               the attribute that have the definition
+     *        the attribute that have the definition
      * @return true if there is already defined.
      **/
     public boolean addMapping(String prefix, String uri, Attr n) {
@@ -221,11 +219,11 @@ public class NameSpaceSymbTable {
      * Adds a definition and mark it as render. For inclusive c14n.
      * 
      * @param prefix
-     *               the prefix of definition
+     *        the prefix of definition
      * @param uri
-     *               the Uri of the definition
+     *        the Uri of the definition
      * @param n
-     *               the attribute that have the definition
+     *        the attribute that have the definition
      * @return the attr to render, null if there is no need to render
      **/
     public Node addMappingAndRender(String prefix, String uri, Attr n) {
@@ -247,8 +245,7 @@ public class NameSpaceSymbTable {
         ne.lastrendered = uri;
         needsClone();
         symb.put(prefix, ne);
-        if ((ob != null) && (ob.lastrendered != null) && (ob.lastrendered
-                .equals(uri))) {
+        if ((ob != null) && (ob.lastrendered != null) && (ob.lastrendered.equals(uri))) {
             ne.rendered = true;
             return null;
         }
@@ -378,7 +375,7 @@ class SymbMap implements Cloneable {
      * rehashes the map to the new capacity.
      *
      * @param newCapacity
-     *                    an <code>int</code> value
+     *        an <code>int</code> value
      */
     protected void rehash(int newCapacity) {
         int oldCapacity = keys.length;

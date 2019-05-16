@@ -22,11 +22,9 @@ import com.sun.org.apache.xerces.internal.impl.dtd.models.CMStateSet;
 import com.sun.org.apache.xerces.internal.impl.xs.XSParticleDecl;
 
 /**
- *
  * Content model Uni-Op node.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
  * @version $$
  */

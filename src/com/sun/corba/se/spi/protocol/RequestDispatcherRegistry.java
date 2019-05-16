@@ -39,14 +39,12 @@ public interface RequestDispatcherRegistry {
      * is used to control how a particular kind of colocated request is
      * processed.
      */
-    void registerLocalClientRequestDispatcherFactory(
-            LocalClientRequestDispatcherFactory csc, int scid);
+    void registerLocalClientRequestDispatcherFactory(LocalClientRequestDispatcherFactory csc, int scid);
 
     /**
      * Get the LocalClientRequestDispatcher for subcontract ID scid.
      */
-    LocalClientRequestDispatcherFactory getLocalClientRequestDispatcherFactory(
-            int scid);
+    LocalClientRequestDispatcherFactory getLocalClientRequestDispatcherFactory(int scid);
 
     /**
      * Register a CorbaServerRequestDispatcher for a particular subcontract ID.
@@ -54,8 +52,7 @@ public interface RequestDispatcherRegistry {
      * is used to control how a particular kind of request is processed when
      * received by the ORB.
      */
-    void registerServerRequestDispatcher(CorbaServerRequestDispatcher ssc,
-            int scid);
+    void registerServerRequestDispatcher(CorbaServerRequestDispatcher ssc, int scid);
 
     /**
      * Get the CorbaServerRequestDispatcher for subcontract ID scid.
@@ -67,8 +64,7 @@ public interface RequestDispatcherRegistry {
      * key name. This is used for non-standard invocations such as INS and the
      * bootstrap name service.
      */
-    void registerServerRequestDispatcher(CorbaServerRequestDispatcher ssc,
-            String name);
+    void registerServerRequestDispatcher(CorbaServerRequestDispatcher ssc, String name);
 
     /**
      * Get the CorbaServerRequestDispatcher for a particular object key.

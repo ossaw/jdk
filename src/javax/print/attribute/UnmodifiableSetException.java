@@ -22,7 +22,7 @@ public class UnmodifiableSetException extends RuntimeException {
      * Constructs an UnmodifiableSetException with the specified detail message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     public UnmodifiableSetException(String message) {
         super(message);

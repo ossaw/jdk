@@ -29,7 +29,7 @@ public interface AppletContext {
      * Creates an audio clip.
      *
      * @param url
-     *            an absolute URL giving the location of the audio clip.
+     *        an absolute URL giving the location of the audio clip.
      * @return the audio clip at the specified URL.
      */
     AudioClip getAudioClip(URL url);
@@ -45,7 +45,7 @@ public interface AppletContext {
      * paint on the screen.
      *
      * @param url
-     *            an absolute URL giving the location of the image.
+     *        an absolute URL giving the location of the image.
      * @return the image at the specified URL.
      * @see java.awt.Image
      */
@@ -57,7 +57,7 @@ public interface AppletContext {
      * setting the <code>name</code> attribute.
      *
      * @param name
-     *             an applet name.
+     *        an applet name.
      * @return the applet with the given name, or <code>null</code> if not
      *         found.
      */
@@ -78,7 +78,7 @@ public interface AppletContext {
      * by applet contexts that are not browsers.
      *
      * @param url
-     *            an absolute URL giving the location of the document.
+     *        an absolute URL giving the location of the document.
      */
     void showDocument(URL url);
 
@@ -87,7 +87,6 @@ public interface AppletContext {
      * the <code>url</code> argument. The <code>target</code> argument indicates
      * in which HTML frame the document is to be displayed. The target argument
      * is interpreted as follows:
-     *
      * <center>
      * <table border="3" summary="Target arguments and their descriptions">
      * <tr>
@@ -124,9 +123,9 @@ public interface AppletContext {
      * An applet viewer or browser is free to ignore <code>showDocument</code>.
      *
      * @param url
-     *               an absolute URL giving the location of the document.
+     *        an absolute URL giving the location of the document.
      * @param target
-     *               a <code>String</code> indicating where to display the page.
+     *        a <code>String</code> indicating where to display the page.
      */
     public void showDocument(URL url, String target);
 
@@ -136,7 +135,7 @@ public interface AppletContext {
      * application can inform users of its current state.
      *
      * @param status
-     *               a string to display in the status window.
+     *        a string to display in the status window.
      */
     void showStatus(String status);
 
@@ -151,16 +150,16 @@ public interface AppletContext {
      * <p>
      * 
      * @param key
-     *               key with which the specified value is to be associated.
+     *        key with which the specified value is to be associated.
      * @param stream
-     *               stream to be associated with the specified key. If this
-     *               parameter is <code>null</code>, the specified key is
-     *               removed
-     *               in this applet context.
+     *        stream to be associated with the specified key. If this
+     *        parameter is <code>null</code>, the specified key is
+     *        removed
+     *        in this applet context.
      * @throws IOException
-     *                     if the stream size exceeds a certain size limit. Size
-     *                     limit
-     *                     is decided by the implementor of this interface.
+     *         if the stream size exceeds a certain size limit. Size
+     *         limit
+     *         is decided by the implementor of this interface.
      * @since 1.4
      */
     public void setStream(String key, InputStream stream) throws IOException;
@@ -177,7 +176,7 @@ public interface AppletContext {
      * 
      * @return the stream to which this applet context maps the key
      * @param key
-     *            key whose associated stream is to be returned.
+     *        key whose associated stream is to be returned.
      * @since 1.4
      */
     public InputStream getStream(String key);

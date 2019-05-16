@@ -11,16 +11,14 @@ package com.sun.corba.se.spi.activation;
 abstract public class LocatorHelper {
     private static String _id = "IDL:activation/Locator:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            com.sun.corba.se.spi.activation.Locator that) {
+    public static void insert(org.omg.CORBA.Any a, com.sun.corba.se.spi.activation.Locator that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static com.sun.corba.se.spi.activation.Locator extract(
-            org.omg.CORBA.Any a) {
+    public static com.sun.corba.se.spi.activation.Locator extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -29,8 +27,7 @@ abstract public class LocatorHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    com.sun.corba.se.spi.activation.LocatorHelper.id(),
-                    "Locator");
+                    com.sun.corba.se.spi.activation.LocatorHelper.id(), "Locator");
         }
         return __typeCode;
     }
@@ -39,8 +36,7 @@ abstract public class LocatorHelper {
         return _id;
     }
 
-    public static com.sun.corba.se.spi.activation.Locator read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static com.sun.corba.se.spi.activation.Locator read(org.omg.CORBA.portable.InputStream istream) {
         return narrow(istream.read_Object(_LocatorStub.class));
     }
 
@@ -49,8 +45,7 @@ abstract public class LocatorHelper {
         ostream.write_Object((org.omg.CORBA.Object) value);
     }
 
-    public static com.sun.corba.se.spi.activation.Locator narrow(
-            org.omg.CORBA.Object obj) {
+    public static com.sun.corba.se.spi.activation.Locator narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof com.sun.corba.se.spi.activation.Locator)
@@ -66,8 +61,7 @@ abstract public class LocatorHelper {
         }
     }
 
-    public static com.sun.corba.se.spi.activation.Locator unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static com.sun.corba.se.spi.activation.Locator unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof com.sun.corba.se.spi.activation.Locator)

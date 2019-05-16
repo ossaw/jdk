@@ -22,7 +22,6 @@ import java.io.*;
  * escaped sequence.
  * <p>
  * The following rules are applied in the conversion:
- *
  * <ul>
  * <li>The alphanumeric characters &quot;{@code a}&quot; through &quot;{@code z}
  * &quot;, &quot;{@code A}&quot; through &quot;{@code Z}&quot; and &quot;
@@ -61,7 +60,7 @@ public class URLDecoder {
      * consecutive sequences of the form "<i>{@code %xy}</i>".
      * 
      * @param s
-     *          the {@code String} to decode
+     *        the {@code String} to decode
      * @deprecated The resulting string may vary depending on the platform's
      *             default encoding. Instead, use the decode(String,String)
      *             method to specify the encoding.
@@ -94,32 +93,29 @@ public class URLDecoder {
      * incompatibilities.</em>
      *
      * @param s
-     *            the {@code String} to decode
+     *        the {@code String} to decode
      * @param enc
-     *            The name of a supported
-     *            <a href="../lang/package-summary.html#charenc">character
-     *            encoding</a>.
+     *        The name of a supported
+     *        <a href="../lang/package-summary.html#charenc">character
+     *        encoding</a>.
      * @return the newly decoded {@code String}
      * @exception UnsupportedEncodingException
-     *                                         If character encoding needs to be
-     *                                         consulted, but named
-     *                                         character encoding is not
-     *                                         supported
+     *            If character encoding needs to be
+     *            consulted, but named
+     *            character encoding is not
+     *            supported
      * @see URLEncoder#encode(java.lang.String, java.lang.String)
      * @since 1.4
      */
-    public static String decode(String s, String enc)
-            throws UnsupportedEncodingException {
+    public static String decode(String s, String enc) throws UnsupportedEncodingException {
 
         boolean needToChange = false;
         int numChars = s.length();
-        StringBuffer sb = new StringBuffer(numChars > 500 ? numChars / 2
-                : numChars);
+        StringBuffer sb = new StringBuffer(numChars > 500 ? numChars / 2 : numChars);
         int i = 0;
 
         if (enc.length() == 0) {
-            throw new UnsupportedEncodingException(
-                    "URLDecoder: empty string enc parameter");
+            throw new UnsupportedEncodingException("URLDecoder: empty string enc parameter");
         }
 
         char c;
@@ -151,8 +147,7 @@ public class URLDecoder {
                         int pos = 0;
 
                         while (((i + 2) < numChars) && (c == '%')) {
-                            int v = Integer.parseInt(s.substring(i + 1, i + 3),
-                                    16);
+                            int v = Integer.parseInt(s.substring(i + 1, i + 3), 16);
                             if (v < 0)
                                 throw new IllegalArgumentException(
                                         "URLDecoder: Illegal hex characters in escape (%) pattern - negative value");
@@ -172,8 +167,8 @@ public class URLDecoder {
                         sb.append(new String(bytes, 0, pos, enc));
                     } catch (NumberFormatException e) {
                         throw new IllegalArgumentException(
-                                "URLDecoder: Illegal hex characters in escape (%) pattern - "
-                                        + e.getMessage());
+                                "URLDecoder: Illegal hex characters in escape (%) pattern - " + e
+                                        .getMessage());
                     }
                     needToChange = true;
                     break;

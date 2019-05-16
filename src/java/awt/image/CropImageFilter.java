@@ -19,7 +19,6 @@ import java.awt.Rectangle;
  *
  * @see FilteredImageSource
  * @see ImageFilter
- *
  * @author Jim Graham
  */
 public class CropImageFilter extends ImageFilter {
@@ -34,13 +33,13 @@ public class CropImageFilter extends ImageFilter {
      * parameters.
      * 
      * @param x
-     *          the x location of the top of the rectangle to be extracted
+     *        the x location of the top of the rectangle to be extracted
      * @param y
-     *          the y location of the top of the rectangle to be extracted
+     *        the y location of the top of the rectangle to be extracted
      * @param w
-     *          the width of the rectangle to be extracted
+     *        the width of the rectangle to be extracted
      * @param h
-     *          the height of the rectangle to be extracted
+     *        the height of the rectangle to be extracted
      */
     public CropImageFilter(int x, int y, int w, int h) {
         cropX = x;
@@ -94,8 +93,8 @@ public class CropImageFilter extends ImageFilter {
      * image should avoid calling this method directly since that operation
      * could interfere with the filtering operation.
      */
-    public void setPixels(int x, int y, int w, int h, ColorModel model,
-            byte pixels[], int off, int scansize) {
+    public void setPixels(int x, int y, int w, int h, ColorModel model, byte pixels[], int off,
+            int scansize) {
         int x1 = x;
         if (x1 < cropX) {
             x1 = cropX;
@@ -116,8 +115,8 @@ public class CropImageFilter extends ImageFilter {
         if (x1 >= x2 || y1 >= y2) {
             return;
         }
-        consumer.setPixels(x1 - cropX, y1 - cropY, (x2 - x1), (y2 - y1), model,
-                pixels, off + (y1 - y) * scansize + (x1 - x), scansize);
+        consumer.setPixels(x1 - cropX, y1 - cropY, (x2 - x1), (y2 - y1), model, pixels, off + (y1 - y)
+                * scansize + (x1 - x), scansize);
     }
 
     /**
@@ -131,8 +130,7 @@ public class CropImageFilter extends ImageFilter {
      * image should avoid calling this method directly since that operation
      * could interfere with the filtering operation.
      */
-    public void setPixels(int x, int y, int w, int h, ColorModel model,
-            int pixels[], int off, int scansize) {
+    public void setPixels(int x, int y, int w, int h, ColorModel model, int pixels[], int off, int scansize) {
         int x1 = x;
         if (x1 < cropX) {
             x1 = cropX;
@@ -153,8 +151,8 @@ public class CropImageFilter extends ImageFilter {
         if (x1 >= x2 || y1 >= y2) {
             return;
         }
-        consumer.setPixels(x1 - cropX, y1 - cropY, (x2 - x1), (y2 - y1), model,
-                pixels, off + (y1 - y) * scansize + (x1 - x), scansize);
+        consumer.setPixels(x1 - cropX, y1 - cropY, (x2 - x1), (y2 - y1), model, pixels, off + (y1 - y)
+                * scansize + (x1 - x), scansize);
     }
 
     // check for potential overflow (see bug 4801285)

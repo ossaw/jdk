@@ -18,9 +18,7 @@ import java.beans.beancontext.BeanContext;
  * </p>
  *
  * @see java.beans.Beans#instantiate
- *
  * @since 1.2
- *
  */
 
 public interface AppletInitializer {
@@ -36,10 +34,8 @@ public interface AppletInitializer {
      * <ol>
      * <li>Associate the newly instantiated Applet with the appropriate
      * AppletContext.
-     *
      * <li>Instantiate an AppletStub() and associate that AppletStub with the
      * Applet via an invocation of setStub().
-     *
      * <li>If BeanContext parameter is null, then it shall associate the Applet
      * with its appropriate Container by adding that Applet to its Container via
      * an invocation of add(). If the BeanContext parameter is non-null, then it
@@ -48,9 +44,9 @@ public interface AppletInitializer {
      * </ol>
      *
      * @param newAppletBean
-     *                      The newly instantiated JavaBean
+     *        The newly instantiated JavaBean
      * @param bCtxt
-     *                      The BeanContext intended for this Applet, or null.
+     *        The BeanContext intended for this Applet, or null.
      */
 
     void initialize(Applet newAppletBean, BeanContext bCtxt);
@@ -62,7 +58,7 @@ public interface AppletInitializer {
      * </p>
      *
      * @param newApplet
-     *                  The newly instantiated JavaBean
+     *        The newly instantiated JavaBean
      */
 
     void activate(Applet newApplet);

@@ -36,8 +36,8 @@ import java.util.List;
  *
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
- * SignatureProperty property = factory.newSignatureProperty(Collections
- *         .singletonList(content), "#Signature-1", "TimeStamp");
+ * SignatureProperty property = factory.newSignatureProperty(Collections.singletonList(content),
+ *         "#Signature-1", "TimeStamp");
  * </pre>
  *
  * @author Sean Mullan

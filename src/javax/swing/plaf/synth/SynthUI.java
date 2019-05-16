@@ -19,7 +19,7 @@ public interface SynthUI extends SynthConstants {
      * Returns the Context for the specified component.
      *
      * @param c
-     *          Component requesting SynthContext.
+     *        Component requesting SynthContext.
      * @return SynthContext describing component.
      */
     public SynthContext getContext(JComponent c);
@@ -28,18 +28,17 @@ public interface SynthUI extends SynthConstants {
      * Paints the border.
      *
      * @param context
-     *                a component context
+     *        a component context
      * @param g
-     *                {@code Graphics} to paint on
+     *        {@code Graphics} to paint on
      * @param x
-     *                the X coordinate
+     *        the X coordinate
      * @param y
-     *                the Y coordinate
+     *        the Y coordinate
      * @param w
-     *                width of the border
+     *        width of the border
      * @param h
-     *                height of the border
+     *        height of the border
      */
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h);
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h);
 }

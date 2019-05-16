@@ -27,7 +27,7 @@ public class ExportException extends java.rmi.RemoteException {
      * message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since JDK1.1
      */
     public ExportException(String s) {
@@ -39,9 +39,9 @@ public class ExportException extends java.rmi.RemoteException {
      * message and nested exception.
      *
      * @param s
-     *           the detail message
+     *        the detail message
      * @param ex
-     *           the nested exception
+     *        the nested exception
      * @since JDK1.1
      */
     public ExportException(String s, Exception ex) {

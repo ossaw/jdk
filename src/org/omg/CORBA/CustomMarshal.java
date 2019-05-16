@@ -25,7 +25,7 @@ public interface CustomMarshal {
      * This is the method invoked for Marshalling.
      *
      * @param os
-     *           a DataOutputStream
+     *        a DataOutputStream
      */
     void marshal(DataOutputStream os);
 
@@ -34,7 +34,7 @@ public interface CustomMarshal {
      * This is the method invoked for Unmarshalling.
      *
      * @param is
-     *           a DataInputStream
+     *        a DataInputStream
      */
     void unmarshal(DataInputStream is);
 }

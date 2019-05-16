@@ -24,7 +24,7 @@ public class WindowsTextPaneUI extends BasicTextPaneUI {
      * Creates a UI for a JTextPane.
      *
      * @param c
-     *          the styled text component
+     *        the styled text component
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {

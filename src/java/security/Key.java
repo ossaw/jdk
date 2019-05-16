@@ -8,20 +8,15 @@ package java.security;
 /**
  * The Key interface is the top-level interface for all keys. It defines the
  * functionality shared by all key objects. All keys have three characteristics:
- *
  * <UL>
- *
  * <LI>An Algorithm
- *
  * <P>
  * This is the key algorithm for that key. The key algorithm is usually an
  * encryption or asymmetric operation algorithm (such as DSA or RSA), which will
  * work with those algorithms and with related algorithms (such as MD5 with RSA,
  * SHA-1 with RSA, Raw DSA, etc.) The name of the algorithm of a key is obtained
  * using the {@link #getAlgorithm() getAlgorithm} method.
- *
  * <LI>An Encoded Form
- *
  * <P>
  * This is an external encoded form for the key used when a standard
  * representation of the key is needed outside the Java Virtual Machine, as when
@@ -43,20 +38,15 @@ package java.security;
  * For more information, see <a href="http://www.ietf.org/rfc/rfc3280.txt">RFC
  * 3280: Internet X.509 Public Key Infrastructure Certificate and CRL
  * Profile</a>.
- *
  * <LI>A Format
- *
  * <P>
  * This is the name of the format of the encoded key. It is returned by the
  * {@link #getFormat() getFormat} method.
- *
  * </UL>
- *
  * Keys are generally obtained through key generators, certificates, or various
  * Identity classes used to manage keys. Keys may also be obtained from key
  * specifications (transparent representations of the underlying key material)
  * through the use of a key factory (see {@link KeyFactory}).
- *
  * <p>
  * A Key should use KeyRep as its serialized representation. Note that a
  * serialized Key may contain sensitive information which should not be exposed
@@ -73,7 +63,6 @@ package java.security;
  * @see java.security.spec.KeySpec
  * @see Identity
  * @see Signer
- *
  * @author Benjamin Renaud
  */
 

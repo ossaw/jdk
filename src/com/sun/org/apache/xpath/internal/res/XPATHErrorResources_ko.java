@@ -333,11 +333,9 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_COULDNOT_GET_VAR_NAMED,
                     "\uC774\uB984\uC774 {0}\uC778 \uBCC0\uC218\uB97C \uAC00\uC838\uC62C \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-            { ER_UNKNOWN_OPCODE,
-                    "\uC624\uB958! \uC54C \uC218 \uC5C6\uB294 \uC791\uC5C5 \uCF54\uB4DC: {0}" },
+            { ER_UNKNOWN_OPCODE, "\uC624\uB958! \uC54C \uC218 \uC5C6\uB294 \uC791\uC5C5 \uCF54\uB4DC: {0}" },
 
-            { ER_EXTRA_ILLEGAL_TOKENS,
-                    "\uC798\uBABB\uB41C \uCD94\uAC00 \uD1A0\uD070: {0}" },
+            { ER_EXTRA_ILLEGAL_TOKENS, "\uC798\uBABB\uB41C \uCD94\uAC00 \uD1A0\uD070: {0}" },
 
             { ER_EXPECTED_DOUBLE_QUOTE,
                     "\uB9AC\uD130\uB7F4\uC758 \uB530\uC634\uD45C\uAC00 \uC798\uBABB \uC9C0\uC815\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uD070 \uB530\uC634\uD45C\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
@@ -345,8 +343,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_EXPECTED_SINGLE_QUOTE,
                     "\uB9AC\uD130\uB7F4\uC758 \uB530\uC634\uD45C\uAC00 \uC798\uBABB \uC9C0\uC815\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC791\uC740 \uB530\uC634\uD45C\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
 
-            { ER_EMPTY_EXPRESSION,
-                    "\uD45C\uD604\uC2DD\uC774 \uBE44\uC5B4 \uC788\uC2B5\uB2C8\uB2E4!" },
+            { ER_EMPTY_EXPRESSION, "\uD45C\uD604\uC2DD\uC774 \uBE44\uC5B4 \uC788\uC2B5\uB2C8\uB2E4!" },
 
             { ER_EXPECTED_BUT_FOUND,
                     "{0}\uC774(\uAC00) \uD544\uC694\uD558\uC9C0\uB9CC {1}\uC774(\uAC00) \uBC1C\uACAC\uB418\uC5C8\uC2B5\uB2C8\uB2E4." },
@@ -366,8 +363,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_PREDICATE_ILLEGAL_SYNTAX,
                     "'..[predicate]' \uB610\uB294 '.[predicate]'\uB294 \uC798\uBABB\uB41C \uAD6C\uBB38\uC785\uB2C8\uB2E4. \uB300\uC2E0 'self::node()[predicate]'\uB97C \uC0AC\uC6A9\uD558\uC2ED\uC2DC\uC624." },
 
-            { ER_ILLEGAL_AXIS_NAME,
-                    "\uC798\uBABB\uB41C \uCD95 \uC774\uB984: {0}" },
+            { ER_ILLEGAL_AXIS_NAME, "\uC798\uBABB\uB41C \uCD95 \uC774\uB984: {0}" },
 
             { ER_UNKNOWN_NODETYPE, "\uC54C \uC218 \uC5C6\uB294 nodetype: {0}" },
 
@@ -386,8 +382,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_COULDNOT_FIND_ENDOP_AFTER_OPLOCATIONPATH,
                     "\uC624\uB958! OP_LOCATIONPATH \uB4A4\uC5D0\uC11C ENDOP\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-            { ER_ERROR_OCCURED,
-                    "\uC624\uB958\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4!" },
+            { ER_ERROR_OCCURED, "\uC624\uB958\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4!" },
 
             { ER_ILLEGAL_VARIABLE_REFERENCE,
                     "\uBCC0\uC218\uC5D0 \uB300\uD574 \uC81C\uACF5\uB41C VariableReference\uAC00 \uCEE8\uD14D\uC2A4\uD2B8\uC5D0\uC11C \uBC97\uC5B4\uB098\uAC70\uB098 \uC815\uC758\uB97C \uD3EC\uD568\uD558\uC9C0 \uC5C6\uC2B5\uB2C8\uB2E4! \uC774\uB984 = {0}" },
@@ -401,11 +396,9 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_COUNT_TAKES_1_ARG,
                     "count \uD568\uC218\uC5D0\uB294 \uD55C \uAC1C\uC758 \uC778\uC218\uAC00 \uC0AC\uC6A9\uB418\uC5B4\uC57C \uD569\uB2C8\uB2E4!" },
 
-            { ER_COULDNOT_FIND_FUNCTION,
-                    "\uD568\uC218\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC74C: {0}" },
+            { ER_COULDNOT_FIND_FUNCTION, "\uD568\uC218\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC74C: {0}" },
 
-            { ER_UNSUPPORTED_ENCODING,
-                    "\uC9C0\uC6D0\uB418\uC9C0 \uC54A\uB294 \uC778\uCF54\uB529: {0}" },
+            { ER_UNSUPPORTED_ENCODING, "\uC9C0\uC6D0\uB418\uC9C0 \uC54A\uB294 \uC778\uCF54\uB529: {0}" },
 
             { ER_PROBLEM_IN_DTM_NEXTSIBLING,
                     "DTM\uC5D0\uC11C getNextSibling\uC5D0 \uBB38\uC81C\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4. \uBCF5\uAD6C\uD558\uB824\uACE0 \uC2DC\uB3C4\uD558\uB294 \uC911" },
@@ -434,8 +427,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_XERCES_CANNOT_HANDLE_NODES,
                     "DOM2Helper\uB294 {0} \uC720\uD615\uC758 \uB178\uB4DC\uB97C \uCC98\uB9AC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-            { ER_XERCES_PARSE_ERROR_DETAILS,
-                    "DOM2Helper.parse \uC624\uB958: SystemID - {0} \uD589 - {1}" },
+            { ER_XERCES_PARSE_ERROR_DETAILS, "DOM2Helper.parse \uC624\uB958: SystemID - {0} \uD589 - {1}" },
 
             { ER_XERCES_PARSE_ERROR, "DOM2Helper.parse \uC624\uB958" },
 
@@ -447,8 +439,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_CANNOT_CREATE_URL,
                     "{0}\uC5D0 \uB300\uD55C URL\uC744 \uC0DD\uC131\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-            { ER_XPATH_READOBJECT,
-                    "XPath.readObject\uC5D0 \uC624\uB958 \uBC1C\uC0DD: {0}" },
+            { ER_XPATH_READOBJECT, "XPath.readObject\uC5D0 \uC624\uB958 \uBC1C\uC0DD: {0}" },
 
             { ER_FUNCTION_TOKEN_NOT_FOUND,
                     "\uD568\uC218 \uD1A0\uD070\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
@@ -462,8 +453,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_NODESETDTM_NOT_MUTABLE,
                     "\uC774 NodeSetDTM\uC740 \uBCC0\uACBD\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-            { ER_VAR_NOT_RESOLVABLE,
-                    "\uBCC0\uC218\uB97C \uBD84\uC11D\uD560 \uC218 \uC5C6\uC74C: {0}" },
+            { ER_VAR_NOT_RESOLVABLE, "\uBCC0\uC218\uB97C \uBD84\uC11D\uD560 \uC218 \uC5C6\uC74C: {0}" },
 
             { ER_NULL_ERROR_HANDLER, "\uB110 \uC624\uB958 \uCC98\uB9AC\uAE30" },
 
@@ -627,8 +617,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { ER_DOC_MUTATED,
                     "\uACB0\uACFC\uAC00 \uBC18\uD658\uB41C \uD6C4 \uBB38\uC11C\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC774\uD130\uB808\uC774\uD130\uAC00 \uBD80\uC801\uD569\uD569\uB2C8\uB2E4." },
 
-            { ER_INVALID_XPATH_TYPE,
-                    "\uBD80\uC801\uD569\uD55C XPath \uC720\uD615 \uC778\uC218: {0}" },
+            { ER_INVALID_XPATH_TYPE, "\uBD80\uC801\uD569\uD55C XPath \uC720\uD615 \uC778\uC218: {0}" },
 
             { ER_EMPTY_XPATH_RESULT,
                     "XPath \uACB0\uACFC \uAC1D\uCCB4\uAC00 \uBE44\uC5B4 \uC788\uC2B5\uB2C8\uB2E4." },
@@ -703,8 +692,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
 
             /** Field ER_ARG_CANNOT_BE_NULL */
 
-            { ER_ARG_CANNOT_BE_NULL,
-                    "{0} \uC778\uC218\uB294 \uB110\uC77C \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
+            { ER_ARG_CANNOT_BE_NULL, "{0} \uC778\uC218\uB294 \uB110\uC77C \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
             /** Field ER_OBJECT_MODEL_NULL */
 
@@ -775,8 +763,7 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { WG_FUNCTION_TOKEN_NOT_FOUND,
                     "\uD568\uC218 \uD1A0\uD070\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-            { WG_COULDNOT_FIND_FUNCTION,
-                    "\uD568\uC218\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC74C: {0}" },
+            { WG_COULDNOT_FIND_FUNCTION, "\uD568\uC218\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC74C: {0}" },
 
             { WG_CANNOT_MAKE_URL_FROM,
                     "{0}\uC5D0\uC11C URL\uC744 \uC0DD\uC131\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
@@ -787,41 +774,30 @@ public class XPATHErrorResources_ko extends ListResourceBundle {
             { WG_ILLEGAL_VARIABLE_REFERENCE,
                     "\uBCC0\uC218\uC5D0 \uB300\uD574 \uC81C\uACF5\uB41C VariableReference\uAC00 \uCEE8\uD14D\uC2A4\uD2B8\uC5D0\uC11C \uBC97\uC5B4\uB098\uAC70\uB098 \uC815\uC758\uB97C \uD3EC\uD568\uD558\uC9C0 \uC5C6\uC2B5\uB2C8\uB2E4! \uC774\uB984 = {0}" },
 
-            { WG_UNSUPPORTED_ENCODING,
-                    "\uC9C0\uC6D0\uB418\uC9C0 \uC54A\uB294 \uC778\uCF54\uB529: {0}" },
+            { WG_UNSUPPORTED_ENCODING, "\uC9C0\uC6D0\uB418\uC9C0 \uC54A\uB294 \uC778\uCF54\uB529: {0}" },
 
             // Other miscellaneous text used inside the code...
-            { "ui_language", "ko" }, { "help_language", "ko" }, { "language",
-                    "ko" }, { "BAD_CODE",
-                            "createMessage\uC5D0 \uB300\uD55C \uB9E4\uAC1C\uBCC0\uC218\uAC00 \uBC94\uC704\uB97C \uBC97\uC5B4\uB0AC\uC2B5\uB2C8\uB2E4." },
+            { "ui_language", "ko" }, { "help_language", "ko" }, { "language", "ko" }, { "BAD_CODE",
+                    "createMessage\uC5D0 \uB300\uD55C \uB9E4\uAC1C\uBCC0\uC218\uAC00 \uBC94\uC704\uB97C \uBC97\uC5B4\uB0AC\uC2B5\uB2C8\uB2E4." },
             { "FORMAT_FAILED",
                     "messageFormat \uD638\uCD9C \uC911 \uC608\uC678\uC0AC\uD56D\uC774 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4." },
-            { "version", ">>>>>>> Xalan \uBC84\uC804 " }, { "version2",
-                    "<<<<<<<" }, { "yes", "\uC608" }, { "line",
-                            "\uD589 \uBC88\uD638" }, { "column",
-                                    "\uC5F4 \uBC88\uD638" }, { "xsldone",
-                                            "XSLProcessor: \uC644\uB8CC" }, {
-                                                    "xpath_option",
-                                                    "XPath \uC635\uC158: " }, {
-                                                            "optionIN",
-                                                            "   [-in inputXMLURL]" },
-            { "optionSelect", "   [-select XPath \uD45C\uD604\uC2DD]" }, {
-                    "optionMatch",
-                    "   [-match \uC77C\uCE58 \uD328\uD134(\uC77C\uCE58 \uC9C4\uB2E8\uC758 \uACBD\uC6B0)]" },
+            { "version", ">>>>>>> Xalan \uBC84\uC804 " }, { "version2", "<<<<<<<" }, { "yes", "\uC608" }, {
+                    "line", "\uD589 \uBC88\uD638" }, { "column", "\uC5F4 \uBC88\uD638" }, { "xsldone",
+                            "XSLProcessor: \uC644\uB8CC" }, { "xpath_option", "XPath \uC635\uC158: " }, {
+                                    "optionIN", "   [-in inputXMLURL]" }, { "optionSelect",
+                                            "   [-select XPath \uD45C\uD604\uC2DD]" }, { "optionMatch",
+                                                    "   [-match \uC77C\uCE58 \uD328\uD134(\uC77C\uCE58 \uC9C4\uB2E8\uC758 \uACBD\uC6B0)]" },
             { "optionAnyExpr",
                     "\uB610\uB294 XPath \uD45C\uD604\uC2DD\uC774 \uC9C4\uB2E8 \uB364\uD504\uB97C \uC218\uD589\uD569\uB2C8\uB2E4." },
-            { "noParsermsg1",
-                    "XSL \uD504\uB85C\uC138\uC2A4\uB97C \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4." },
-            { "noParsermsg2",
-                    "** \uAD6C\uBB38 \uBD84\uC11D\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC74C **" },
-            { "noParsermsg3",
-                    "\uD074\uB798\uC2A4 \uACBD\uB85C\uB97C \uD655\uC778\uD558\uC2ED\uC2DC\uC624." },
-            { "noParsermsg4",
-                    "IBM\uC758 Java\uC6A9 XML \uAD6C\uBB38 \uBD84\uC11D\uAE30\uAC00 \uC5C6\uC744 \uACBD\uC6B0 \uB2E4\uC74C \uC704\uCE58\uC5D0\uC11C \uB2E4\uC6B4\uB85C\uB4DC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." },
-            { "noParsermsg5",
-                    "IBM AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
-            { "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
-            { "three", "3" }
+            { "noParsermsg1", "XSL \uD504\uB85C\uC138\uC2A4\uB97C \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4." }, {
+                    "noParsermsg2",
+                    "** \uAD6C\uBB38 \uBD84\uC11D\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC74C **" }, {
+                            "noParsermsg3",
+                            "\uD074\uB798\uC2A4 \uACBD\uB85C\uB97C \uD655\uC778\uD558\uC2ED\uC2DC\uC624." }, {
+                                    "noParsermsg4",
+                                    "IBM\uC758 Java\uC6A9 XML \uAD6C\uBB38 \uBD84\uC11D\uAE30\uAC00 \uC5C6\uC744 \uACBD\uC6B0 \uB2E4\uC74C \uC704\uCE58\uC5D0\uC11C \uB2E4\uC6B4\uB85C\uB4DC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." },
+            { "noParsermsg5", "IBM AlphaWorks: http://www.alphaworks.ibm.com/formula/xml" }, { "gtone",
+                    ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
 
     };
 

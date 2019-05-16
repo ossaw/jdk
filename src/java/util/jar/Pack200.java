@@ -103,7 +103,6 @@ public abstract class Pack200 {
      * thrown.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If an implementation has not been specified with the system property,
@@ -112,7 +111,6 @@ public abstract class Pack200 {
      * </p>
      * </li>
      * </ul>
-     *
      * <p>
      * Note: The returned object is not guaranteed to operate correctly if
      * multiple threads use it at the same time. A multi-threaded application
@@ -137,7 +135,6 @@ public abstract class Pack200 {
      * error is thrown.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If an implementation has not been specified with the system property,
@@ -146,7 +143,6 @@ public abstract class Pack200 {
      * </p>
      * </li>
      * </ul>
-     *
      * <p>
      * Note: The returned object is not guaranteed to operate correctly if
      * multiple threads use it at the same time. A multi-threaded application
@@ -166,7 +162,6 @@ public abstract class Pack200 {
      * making the pack stream highly compressible by a compressor such as gzip
      * or zip. An instance of the engine can be obtained using
      * {@link #newPacker}.
-     * 
      * The high degree of compression is achieved by using a number of
      * techniques described in the JSR 200 specification. Some of the techniques
      * are sorting, re-ordering and co-location of the constant pool.
@@ -529,7 +524,6 @@ public abstract class Pack200 {
          * so that changing its contents immediately affects the Packer engine,
          * and changes from the engine (such as progress indications) are
          * immediately visible in the map.
-         *
          * <p>
          * The property map may contain pre-defined implementation specific and
          * default properties. Users are encouraged to read the information and
@@ -544,7 +538,6 @@ public abstract class Pack200 {
          * Unknown properties may be ignored or rejected with an unspecified
          * error, and invalid entries may cause an unspecified error to be
          * thrown.
-         *
          * <p>
          * The returned map implements all optional {@link SortedMap} operations
          * 
@@ -560,11 +553,11 @@ public abstract class Pack200 {
          * appendable.)
          * 
          * @param in
-         *            a JarFile
+         *        a JarFile
          * @param out
-         *            an OutputStream
+         *        an OutputStream
          * @exception IOException
-         *                        if an error is encountered.
+         *            if an error is encountered.
          */
         void pack(JarFile in, OutputStream out) throws IOException;
 
@@ -580,23 +573,21 @@ public abstract class Pack200 {
          * @see #MODIFICATION_TIME
          * @see #DEFLATE_HINT
          * @param in
-         *            a JarInputStream
+         *        a JarInputStream
          * @param out
-         *            an OutputStream
+         *        an OutputStream
          * @exception IOException
-         *                        if an error is encountered.
+         *            if an error is encountered.
          */
         void pack(JarInputStream in, OutputStream out) throws IOException;
 
         /**
          * Registers a listener for PropertyChange events on the properties map.
          * This is typically used by applications to update a progress bar.
-         *
          * <p>
          * The default implementation of this method does nothing and has no
          * side-effects.
          * </p>
-         *
          * <p>
          * <b>WARNING:</b> This method is omitted from the interface declaration
          * in all subset Profiles of Java SE that do not include the
@@ -606,7 +597,7 @@ public abstract class Pack200 {
          * @see #properties
          * @see #PROGRESS
          * @param listener
-         *                 An object to be invoked when a property is changed.
+         *        An object to be invoked when a property is changed.
          * @deprecated The dependency on {@code PropertyChangeListener} creates
          *             a significant impediment to future modularization of the
          *             Java platform. This method will be removed in a future
@@ -615,18 +606,15 @@ public abstract class Pack200 {
          *             PROGRESS} property instead.
          */
         @Deprecated
-        default void addPropertyChangeListener(
-                PropertyChangeListener listener) {}
+        default void addPropertyChangeListener(PropertyChangeListener listener) {}
 
         /**
          * Remove a listener for PropertyChange events, added by the
          * {@link #addPropertyChangeListener}.
-         *
          * <p>
          * The default implementation of this method does nothing and has no
          * side-effects.
          * </p>
-         *
          * <p>
          * <b>WARNING:</b> This method is omitted from the interface declaration
          * in all subset Profiles of Java SE that do not include the
@@ -635,15 +623,14 @@ public abstract class Pack200 {
          *
          * @see #addPropertyChangeListener
          * @param listener
-         *                 The PropertyChange listener to be removed.
+         *        The PropertyChange listener to be removed.
          * @deprecated The dependency on {@code PropertyChangeListener} creates
          *             a significant impediment to future modularization of the
          *             Java platform. This method will be removed in a future
          *             release.
          */
         @Deprecated
-        default void removePropertyChangeListener(
-                PropertyChangeListener listener) {}
+        default void removePropertyChangeListener(PropertyChangeListener listener) {}
     }
 
     /**
@@ -709,7 +696,6 @@ public abstract class Pack200 {
          * so that changing its contents immediately affects the Packer engine,
          * and changes from the engine (such as progress indications) are
          * immediately visible in the map.
-         *
          * <p>
          * The property map may contain pre-defined implementation specific and
          * default properties. Users are encouraged to read the information and
@@ -739,11 +725,11 @@ public abstract class Pack200 {
          * elements.)
          * 
          * @param in
-         *            an InputStream.
+         *        an InputStream.
          * @param out
-         *            a JarOutputStream.
+         *        a JarOutputStream.
          * @exception IOException
-         *                        if an error is encountered.
+         *            if an error is encountered.
          */
         void unpack(InputStream in, JarOutputStream out) throws IOException;
 
@@ -754,23 +740,21 @@ public abstract class Pack200 {
          * Does not close its output. (The output can accumulate more elements.)
          * 
          * @param in
-         *            a File.
+         *        a File.
          * @param out
-         *            a JarOutputStream.
+         *        a JarOutputStream.
          * @exception IOException
-         *                        if an error is encountered.
+         *            if an error is encountered.
          */
         void unpack(File in, JarOutputStream out) throws IOException;
 
         /**
          * Registers a listener for PropertyChange events on the properties map.
          * This is typically used by applications to update a progress bar.
-         *
          * <p>
          * The default implementation of this method does nothing and has no
          * side-effects.
          * </p>
-         *
          * <p>
          * <b>WARNING:</b> This method is omitted from the interface declaration
          * in all subset Profiles of Java SE that do not include the
@@ -780,7 +764,7 @@ public abstract class Pack200 {
          * @see #properties
          * @see #PROGRESS
          * @param listener
-         *                 An object to be invoked when a property is changed.
+         *        An object to be invoked when a property is changed.
          * @deprecated The dependency on {@code PropertyChangeListener} creates
          *             a significant impediment to future modularization of the
          *             Java platform. This method will be removed in a future
@@ -789,18 +773,15 @@ public abstract class Pack200 {
          *             PROGRESS} property instead.
          */
         @Deprecated
-        default void addPropertyChangeListener(
-                PropertyChangeListener listener) {}
+        default void addPropertyChangeListener(PropertyChangeListener listener) {}
 
         /**
          * Remove a listener for PropertyChange events, added by the
          * {@link #addPropertyChangeListener}.
-         *
          * <p>
          * The default implementation of this method does nothing and has no
          * side-effects.
          * </p>
-         *
          * <p>
          * <b>WARNING:</b> This method is omitted from the interface declaration
          * in all subset Profiles of Java SE that do not include the
@@ -809,15 +790,14 @@ public abstract class Pack200 {
          *
          * @see #addPropertyChangeListener
          * @param listener
-         *                 The PropertyChange listener to be removed.
+         *        The PropertyChange listener to be removed.
          * @deprecated The dependency on {@code PropertyChangeListener} creates
          *             a significant impediment to future modularization of the
          *             Java platform. This method will be removed in a future
          *             release.
          */
         @Deprecated
-        default void removePropertyChangeListener(
-                PropertyChangeListener listener) {}
+        default void removePropertyChangeListener(PropertyChangeListener listener) {}
     }
 
     // Private stuff....
@@ -831,8 +811,7 @@ public abstract class Pack200 {
     private synchronized static Object newInstance(String prop) {
         String implName = "(unknown)";
         try {
-            Class<?> impl = (PACK_PROVIDER.equals(prop)) ? packerImpl
-                    : unpackerImpl;
+            Class<?> impl = (PACK_PROVIDER.equals(prop)) ? packerImpl : unpackerImpl;
             if (impl == null) {
                 // The first time, we must decide which class to use.
                 implName = java.security.AccessController.doPrivileged(
@@ -847,17 +826,14 @@ public abstract class Pack200 {
             // We have a class. Now instantiate it.
             return impl.newInstance();
         } catch (ClassNotFoundException e) {
-            throw new Error("Class not found: " + implName
-                    + ":\ncheck property " + prop + " in your properties file.",
-                    e);
+            throw new Error("Class not found: " + implName + ":\ncheck property " + prop
+                    + " in your properties file.", e);
         } catch (InstantiationException e) {
-            throw new Error("Could not instantiate: " + implName
-                    + ":\ncheck property " + prop + " in your properties file.",
-                    e);
+            throw new Error("Could not instantiate: " + implName + ":\ncheck property " + prop
+                    + " in your properties file.", e);
         } catch (IllegalAccessException e) {
-            throw new Error("Cannot access class: " + implName
-                    + ":\ncheck property " + prop + " in your properties file.",
-                    e);
+            throw new Error("Cannot access class: " + implName + ":\ncheck property " + prop
+                    + " in your properties file.", e);
         }
     }
 

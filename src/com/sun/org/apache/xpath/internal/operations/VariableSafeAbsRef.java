@@ -46,12 +46,9 @@ public class VariableSafeAbsRef extends Variable {
      * will be sent to the error listener, and an empty nodeset will be
      * returned.
      *
-     *
      * @param xctxt
-     *              The runtime execution context.
-     *
+     *        The runtime execution context.
      * @return The evaluated variable, or an empty nodeset if not found.
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public XObject execute(XPathContext xctxt, boolean destructiveOK)
@@ -59,8 +56,7 @@ public class VariableSafeAbsRef extends Variable {
         XNodeSet xns = (XNodeSet) super.execute(xctxt, destructiveOK);
         DTMManager dtmMgr = xctxt.getDTMManager();
         int context = xctxt.getContextNode();
-        if (dtmMgr.getDTM(xns.getRoot()).getDocument() != dtmMgr.getDTM(context)
-                .getDocument()) {
+        if (dtmMgr.getDTM(xns.getRoot()).getDocument() != dtmMgr.getDTM(context).getDocument()) {
             Expression expr = (Expression) xns.getContainedIter();
             xns = (XNodeSet) expr.asIterator(xctxt, context);
         }

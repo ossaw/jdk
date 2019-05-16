@@ -18,7 +18,6 @@ import javax.swing.text.*;
  * off through a series of LTTextAcceptor calls). Can be used to generate RTF
  * from any object which knows how to write to a text acceptor (e.g.,
  * LTAttributedText and LTRTFFilter).
- *
  * <p>
  * Note that this is a lossy conversion since RTF's model of text does not
  * exactly correspond with LightText's.
@@ -88,19 +87,17 @@ class RTFGenerator extends Object {
         while (keys.hasMoreElements()) {
             CharacterKeywordPair pair = new CharacterKeywordPair();
             pair.keyword = (String) keys.nextElement();
-            pair.character = ((String) textKeywordDictionary.get(pair.keyword))
-                    .charAt(0);
+            pair.character = ((String) textKeywordDictionary.get(pair.keyword)).charAt(0);
             tempPairs.addElement(pair);
         }
         textKeywords = new CharacterKeywordPair[tempPairs.size()];
         tempPairs.copyInto(textKeywords);
     }
 
-    static final char[] hexdigits = { '0', '1', '2', '3', '4', '5', '6', '7',
-            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    static final char[] hexdigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
+            'e', 'f' };
 
-    static public void writeDocument(Document d, OutputStream to)
-            throws IOException {
+    static public void writeDocument(Document d, OutputStream to) throws IOException {
         RTFGenerator gen = new RTFGenerator(to);
         Element root = d.getDefaultRootElement();
 
@@ -149,15 +146,13 @@ class RTFGenerator extends Object {
             /* TODO: default color must be color 0! */
 
             foregroundColor = StyleConstants.getForeground(a);
-            if (foregroundColor != null && colorTable.get(
-                    foregroundColor) == null) {
+            if (foregroundColor != null && colorTable.get(foregroundColor) == null) {
                 colorTable.put(foregroundColor, new Integer(colorCount));
                 colorCount++;
             }
 
             backgroundColor = a.getAttribute(StyleConstants.Background);
-            if (backgroundColor != null && colorTable.get(
-                    backgroundColor) == null) {
+            if (backgroundColor != null && colorTable.get(backgroundColor) == null) {
                 colorTable.put(backgroundColor, new Integer(colorCount));
                 colorCount++;
             }
@@ -210,8 +205,7 @@ class RTFGenerator extends Object {
             if (a instanceof Style) {
                 Integer aNum = styleTable.get(a);
                 if (aNum != null) {
-                    if (domain == null || domain.equals(a.getAttribute(
-                            Constants.StyleType)))
+                    if (domain == null || domain.equals(a.getAttribute(Constants.StyleType)))
                         return aNum;
                 }
 
@@ -221,8 +215,8 @@ class RTFGenerator extends Object {
         return null;
     }
 
-    static private Object attrDiff(MutableAttributeSet oldAttrs,
-            AttributeSet newAttrs, Object key, Object dfl) {
+    static private Object attrDiff(MutableAttributeSet oldAttrs, AttributeSet newAttrs, Object key,
+            Object dfl) {
         Object oldValue, newValue;
 
         oldValue = oldAttrs.getAttribute(key);
@@ -346,8 +340,7 @@ class RTFGenerator extends Object {
                 Style style = (Style) styles.nextElement();
                 int styleNumber = styleTable.get(style).intValue();
                 writeBegingroup();
-                String styleType = (String) style.getAttribute(
-                        Constants.StyleType);
+                String styleType = (String) style.getAttribute(Constants.StyleType);
                 if (styleType == null)
                     styleType = Constants.STParagraph;
                 if (styleType.equals(Constants.STCharacter)) {
@@ -380,8 +373,7 @@ class RTFGenerator extends Object {
                     }
                 }
 
-                Style nextStyle = (Style) style.getAttribute(
-                        Constants.StyleNext);
+                Style nextStyle = (Style) style.getAttribute(Constants.StyleNext);
                 if (nextStyle != null) {
                     Integer nextNum = styleTable.get(nextStyle);
                     if (nextNum != null) {
@@ -389,13 +381,11 @@ class RTFGenerator extends Object {
                     }
                 }
 
-                Boolean hidden = (Boolean) style.getAttribute(
-                        Constants.StyleHidden);
+                Boolean hidden = (Boolean) style.getAttribute(Constants.StyleHidden);
                 if (hidden != null && hidden.booleanValue())
                     writeControlWord("shidden");
 
-                Boolean additive = (Boolean) style.getAttribute(
-                        Constants.StyleAdditive);
+                Boolean additive = (Boolean) style.getAttribute(Constants.StyleAdditive);
                 if (additive != null && additive.booleanValue())
                     writeControlWord("additive");
 
@@ -434,14 +424,11 @@ class RTFGenerator extends Object {
         writeLineBreak();
     }
 
-    protected void checkNumericControlWord(
-            MutableAttributeSet currentAttributes, AttributeSet newAttributes,
-            Object attrName, String controlWord, float dflt, float scale)
-            throws IOException {
+    protected void checkNumericControlWord(MutableAttributeSet currentAttributes, AttributeSet newAttributes,
+            Object attrName, String controlWord, float dflt, float scale) throws IOException {
         Object parm;
 
-        if ((parm = attrDiff(currentAttributes, newAttributes, attrName,
-                MagicToken)) != null) {
+        if ((parm = attrDiff(currentAttributes, newAttributes, attrName, MagicToken)) != null) {
             float targ;
             if (parm == MagicToken)
                 targ = dflt;
@@ -451,21 +438,19 @@ class RTFGenerator extends Object {
         }
     }
 
-    protected void checkControlWord(MutableAttributeSet currentAttributes,
-            AttributeSet newAttributes, RTFAttribute word) throws IOException {
+    protected void checkControlWord(MutableAttributeSet currentAttributes, AttributeSet newAttributes,
+            RTFAttribute word) throws IOException {
         Object parm;
 
-        if ((parm = attrDiff(currentAttributes, newAttributes, word.swingName(),
-                MagicToken)) != null) {
+        if ((parm = attrDiff(currentAttributes, newAttributes, word.swingName(), MagicToken)) != null) {
             if (parm == MagicToken)
                 parm = null;
             word.writeValue(parm, this, true);
         }
     }
 
-    protected void checkControlWords(MutableAttributeSet currentAttributes,
-            AttributeSet newAttributes, RTFAttribute words[], int domain)
-            throws IOException {
+    protected void checkControlWords(MutableAttributeSet currentAttributes, AttributeSet newAttributes,
+            RTFAttribute words[], int domain) throws IOException {
         int wordIndex;
         int wordCount = words.length;
         for (wordIndex = 0; wordIndex < wordCount; wordIndex++) {
@@ -475,13 +460,11 @@ class RTFGenerator extends Object {
         }
     }
 
-    void updateSectionAttributes(MutableAttributeSet current,
-            AttributeSet newAttributes, boolean emitStyleChanges)
-            throws IOException {
+    void updateSectionAttributes(MutableAttributeSet current, AttributeSet newAttributes,
+            boolean emitStyleChanges) throws IOException {
         if (emitStyleChanges) {
             Object oldStyle = current.getAttribute("sectionStyle");
-            Object newStyle = findStyleNumber(newAttributes,
-                    Constants.STSection);
+            Object newStyle = findStyleNumber(newAttributes, Constants.STSection);
             if (oldStyle != newStyle) {
                 if (oldStyle != null) {
                     resetSectionAttributes(current);
@@ -495,12 +478,10 @@ class RTFGenerator extends Object {
             }
         }
 
-        checkControlWords(current, newAttributes, RTFAttributes.attributes,
-                RTFAttribute.D_SECTION);
+        checkControlWords(current, newAttributes, RTFAttributes.attributes, RTFAttribute.D_SECTION);
     }
 
-    protected void resetSectionAttributes(MutableAttributeSet currentAttributes)
-            throws IOException {
+    protected void resetSectionAttributes(MutableAttributeSet currentAttributes) throws IOException {
         writeControlWord("sectd");
 
         int wordIndex;
@@ -514,9 +495,8 @@ class RTFGenerator extends Object {
         currentAttributes.removeAttribute("sectionStyle");
     }
 
-    void updateParagraphAttributes(MutableAttributeSet current,
-            AttributeSet newAttributes, boolean emitStyleChanges)
-            throws IOException {
+    void updateParagraphAttributes(MutableAttributeSet current, AttributeSet newAttributes,
+            boolean emitStyleChanges) throws IOException {
         Object parm;
         Object oldStyle, newStyle;
 
@@ -556,8 +536,7 @@ class RTFGenerator extends Object {
             current.addAttribute("paragraphStyle", newStyle);
         }
 
-        checkControlWords(current, newAttributes, RTFAttributes.attributes,
-                RTFAttribute.D_PARAGRAPH);
+        checkControlWords(current, newAttributes, RTFAttributes.attributes, RTFAttribute.D_PARAGRAPH);
 
         if (oldTabs != newTabs && newTabs != null) {
             TabStop tabs[] = (TabStop[]) newTabs;
@@ -629,12 +608,10 @@ class RTFGenerator extends Object {
      * if ((i+1) < ts.length) buf = buf + ","; } return buf + "]"; }
      */
 
-    protected void resetParagraphAttributes(
-            MutableAttributeSet currentAttributes) throws IOException {
+    protected void resetParagraphAttributes(MutableAttributeSet currentAttributes) throws IOException {
         writeControlWord("pard");
 
-        currentAttributes.addAttribute(StyleConstants.Alignment, Integer
-                .valueOf(0));
+        currentAttributes.addAttribute(StyleConstants.Alignment, Integer.valueOf(0));
 
         int wordIndex;
         int wordCount = RTFAttributes.attributes.length;
@@ -648,15 +625,13 @@ class RTFGenerator extends Object {
         currentAttributes.removeAttribute(Constants.Tabs);
     }
 
-    void updateCharacterAttributes(MutableAttributeSet current,
-            AttributeSet newAttributes, boolean updateStyleChanges)
-            throws IOException {
+    void updateCharacterAttributes(MutableAttributeSet current, AttributeSet newAttributes,
+            boolean updateStyleChanges) throws IOException {
         Object parm;
 
         if (updateStyleChanges) {
             Object oldStyle = current.getAttribute("characterStyle");
-            Object newStyle = findStyleNumber(newAttributes,
-                    Constants.STCharacter);
+            Object newStyle = findStyleNumber(newAttributes, Constants.STCharacter);
             if (oldStyle != newStyle) {
                 if (oldStyle != null) {
                     resetCharacterAttributes(current);
@@ -670,26 +645,22 @@ class RTFGenerator extends Object {
             }
         }
 
-        if ((parm = attrDiff(current, newAttributes, StyleConstants.FontFamily,
-                null)) != null) {
+        if ((parm = attrDiff(current, newAttributes, StyleConstants.FontFamily, null)) != null) {
             Integer fontNum = fontTable.get(parm);
             writeControlWord("f", fontNum.intValue());
         }
 
-        checkNumericControlWord(current, newAttributes, StyleConstants.FontSize,
-                "fs", defaultFontSize, 2f);
+        checkNumericControlWord(current, newAttributes, StyleConstants.FontSize, "fs", defaultFontSize, 2f);
 
-        checkControlWords(current, newAttributes, RTFAttributes.attributes,
-                RTFAttribute.D_CHARACTER);
+        checkControlWords(current, newAttributes, RTFAttributes.attributes, RTFAttribute.D_CHARACTER);
 
-        checkNumericControlWord(current, newAttributes,
-                StyleConstants.LineSpacing, "sl", 0, 20f); /*
-                                                            * TODO: sl
-                                                            * wackiness
-                                                            */
+        checkNumericControlWord(current, newAttributes, StyleConstants.LineSpacing, "sl", 0, 20f); /*
+                                                                                                    * TODO:
+                                                                                                    * sl
+                                                                                                    * wackiness
+                                                                                                    */
 
-        if ((parm = attrDiff(current, newAttributes, StyleConstants.Background,
-                MagicToken)) != null) {
+        if ((parm = attrDiff(current, newAttributes, StyleConstants.Background, MagicToken)) != null) {
             int colorNum;
             if (parm == MagicToken)
                 colorNum = 0;
@@ -698,8 +669,7 @@ class RTFGenerator extends Object {
             writeControlWord("cb", colorNum);
         }
 
-        if ((parm = attrDiff(current, newAttributes, StyleConstants.Foreground,
-                null)) != null) {
+        if ((parm = attrDiff(current, newAttributes, StyleConstants.Foreground, null)) != null) {
             int colorNum;
             if (parm == MagicToken)
                 colorNum = 0;
@@ -709,8 +679,7 @@ class RTFGenerator extends Object {
         }
     }
 
-    protected void resetCharacterAttributes(
-            MutableAttributeSet currentAttributes) throws IOException {
+    protected void resetCharacterAttributes(MutableAttributeSet currentAttributes) throws IOException {
         writeControlWord("plain");
 
         int wordIndex;
@@ -736,8 +705,8 @@ class RTFGenerator extends Object {
 
         if (el.isLeaf()) {
             try {
-                el.getDocument().getText(el.getStartOffset(), el.getEndOffset()
-                        - el.getStartOffset(), this.workingSegment);
+                el.getDocument().getText(el.getStartOffset(), el.getEndOffset() - el.getStartOffset(),
+                        this.workingSegment);
             } catch (BadLocationException ble) {
                 /* TODO is this the correct error to raise? */
                 ble.printStackTrace();

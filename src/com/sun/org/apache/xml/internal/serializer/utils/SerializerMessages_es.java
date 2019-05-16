@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * map to are defined here.
  * <p>
  * The messages in the English version are intended to be translated.
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -66,14 +65,12 @@ public class SerializerMessages_es extends ListResourceBundle {
                 { MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
                         "La clase de serializador ''{0}'' no implanta org.xml.sax.ContentHandler." },
 
-                { MsgKey.ER_RESOURCE_COULD_NOT_FIND,
-                        "No se ha encontrado el recurso [ {0} ].\n {1}" },
+                { MsgKey.ER_RESOURCE_COULD_NOT_FIND, "No se ha encontrado el recurso [ {0} ].\n {1}" },
 
                 { MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
                         "No se ha podido cargar el recurso [ {0} ]: {1} \n {2} \t {3}" },
 
-                { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO,
-                        "Tama\u00F1o de buffer menor o igual que 0" },
+                { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "Tama\u00F1o de buffer menor o igual que 0" },
 
                 { MsgKey.ER_INVALID_UTF16_SURROGATE,
                         "\u00BFSe ha detectado un sustituto UTF-16 no v\u00E1lido: {0}?" },
@@ -98,8 +95,7 @@ public class SerializerMessages_es extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { MsgKey.ER_STRAY_ATTRIBUTE,
-                        "El atributo ''{0}'' est\u00E1 fuera del elemento." },
+                { MsgKey.ER_STRAY_ATTRIBUTE, "El atributo ''{0}'' est\u00E1 fuera del elemento." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -120,17 +116,14 @@ public class SerializerMessages_es extends ListResourceBundle {
                 { MsgKey.ER_COULD_NOT_LOAD_METHOD_PROPERTY,
                         "No se ha podido cargar el archivo de propiedades ''{0}'' para el m\u00E9todo de salida ''{1}'' (compruebe la CLASSPATH)" },
 
-                { MsgKey.ER_INVALID_PORT,
-                        "N\u00FAmero de puerto no v\u00E1lido" },
+                { MsgKey.ER_INVALID_PORT, "N\u00FAmero de puerto no v\u00E1lido" },
 
-                { MsgKey.ER_PORT_WHEN_HOST_NULL,
-                        "No se puede definir el puerto si el host es nulo" },
+                { MsgKey.ER_PORT_WHEN_HOST_NULL, "No se puede definir el puerto si el host es nulo" },
 
                 { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
                         "El formato de la direcci\u00F3n de host no es correcto" },
 
-                { MsgKey.ER_SCHEME_NOT_CONFORMANT,
-                        "El esquema no es v\u00E1lido." },
+                { MsgKey.ER_SCHEME_NOT_CONFORMANT, "El esquema no es v\u00E1lido." },
 
                 { MsgKey.ER_SCHEME_FROM_NULL_STRING,
                         "No se puede definir un esquema a partir de una cadena nula" },
@@ -141,8 +134,7 @@ public class SerializerMessages_es extends ListResourceBundle {
                 { MsgKey.ER_PATH_INVALID_CHAR,
                         "La ruta de acceso contiene un car\u00E1cter no v\u00E1lido: {0}" },
 
-                { MsgKey.ER_FRAG_INVALID_CHAR,
-                        "El fragmento contiene un car\u00E1cter no v\u00E1lido" },
+                { MsgKey.ER_FRAG_INVALID_CHAR, "El fragmento contiene un car\u00E1cter no v\u00E1lido" },
 
                 { MsgKey.ER_FRAG_WHEN_PATH_NULL,
                         "No se puede definir el fragmento si la ruta de acceso es nula" },
@@ -150,8 +142,7 @@ public class SerializerMessages_es extends ListResourceBundle {
                 { MsgKey.ER_FRAG_FOR_GENERIC_URI,
                         "S\u00F3lo se puede definir el fragmento para un URI gen\u00E9rico" },
 
-                { MsgKey.ER_NO_SCHEME_IN_URI,
-                        "No se ha encontrado un esquema en el URI" },
+                { MsgKey.ER_NO_SCHEME_IN_URI, "No se ha encontrado un esquema en el URI" },
 
                 { MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
                         "No se puede inicializar el URI con par\u00E1metros vac\u00EDos" },

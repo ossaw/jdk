@@ -17,7 +17,6 @@ import sun.security.util.*;
  * This class represents an X.500 {@code Principal}. {@code X500Principal}s are
  * represented by distinguished names such as
  * "CN=Duke, OU=JavaSoft, O=Sun Microsystems, C=US".
- *
  * <p>
  * This class can be instantiated by using a string representation of the
  * distinguished name, or by using the ASN.1 DER encoded byte representation of
@@ -31,11 +30,9 @@ import sun.security.util.*;
  * keywords whose OIDs (Object Identifiers) are defined in
  * <a href="http://www.ietf.org/rfc/rfc3280.txt">RFC 3280: Internet X.509 Public
  * Key Infrastructure Certificate and CRL Profile</a>.
- *
  * <p>
  * The string representation for this {@code X500Principal} can be obtained by
  * calling the {@code getName} methods.
- *
  * <p>
  * Note that the {@code getSubjectX500Principal} and
  * {@code getIssuerX500Principal} methods of {@code X509Certificate} return
@@ -63,14 +60,12 @@ public final class X500Principal implements Principal, java.io.Serializable {
 
     /**
      * The X500Name representing this principal.
-     *
      * NOTE: this field is reflectively accessed from within X500Name.
      */
     private transient X500Name thisX500Name;
 
     /**
      * Creates an X500Principal by wrapping an X500Name.
-     *
      * NOTE: The constructor is package private. It is intended to be accessed
      * using privileged reflection from classes in sun.security.*. Currently
      * referenced from sun.security.x509.X500Name.asX500Principal().
@@ -84,7 +79,6 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * distinguished name (ex: "CN=Duke, OU=JavaSoft, O=Sun Microsystems, C=US"
      * ). The distinguished name must be specified using the grammar defined in
      * RFC 1779 or RFC 2253 (either format is acceptable).
-     *
      * <p>
      * This constructor recognizes the attribute type keywords defined in RFC
      * 1779 and RFC 2253 (and listed in {@link #getName(String format)
@@ -92,23 +86,21 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * GIVENNAME, INITIALS, GENERATION, EMAILADDRESS, and SERIALNUMBER keywords
      * whose Object Identifiers (OIDs) are defined in RFC 3280 and its
      * successor. Any other attribute type must be specified as an OID.
-     *
      * <p>
      * This implementation enforces a more restrictive OID syntax than defined
      * in RFC 1779 and 2253. It uses the more correct syntax defined in
      * <a href="http://www.ietf.org/rfc/rfc4512.txt">RFC 4512</a>, which
      * specifies that OIDs contain at least 2 digits:
-     *
      * <p>
      * {@code numericoid = number 1*( DOT number ) }
      *
      * @param name
-     *             an X.500 distinguished name in RFC 1779 or RFC 2253 format
+     *        an X.500 distinguished name in RFC 1779 or RFC 2253 format
      * @exception NullPointerException
-     *                                     if the {@code name} is {@code null}
+     *            if the {@code name} is {@code null}
      * @exception IllegalArgumentException
-     *                                     if the {@code name} is improperly
-     *                                     specified
+     *            if the {@code name} is improperly
+     *            specified
      */
     public X500Principal(String name) {
         this(name, Collections.<String, String>emptyMap());
@@ -119,7 +111,6 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * distinguished name (ex: "CN=Duke, OU=JavaSoft, O=Sun Microsystems, C=US"
      * ). The distinguished name must be specified using the grammar defined in
      * RFC 1779 or RFC 2253 (either format is acceptable).
-     *
      * <p>
      * This constructor recognizes the attribute type keywords specified in
      * {@link #X500Principal(String)} and also recognizes additional keywords
@@ -131,53 +122,50 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * specified Object Identifier (OID), an {@code IllegalArgumentException} is
      * thrown. It is permissible to have 2 different keywords that map to the
      * same OID.
-     *
      * <p>
      * This implementation enforces a more restrictive OID syntax than defined
      * in RFC 1779 and 2253. It uses the more correct syntax defined in
      * <a href="http://www.ietf.org/rfc/rfc4512.txt">RFC 4512</a>, which
      * specifies that OIDs contain at least 2 digits:
-     *
      * <p>
      * {@code numericoid = number 1*( DOT number ) }
      *
      * @param name
-     *                   an X.500 distinguished name in RFC 1779 or RFC 2253
-     *                   format
+     *        an X.500 distinguished name in RFC 1779 or RFC 2253
+     *        format
      * @param keywordMap
-     *                   an attribute type keyword map, where each key is a
-     *                   keyword
-     *                   String that maps to a corresponding object identifier
-     *                   in
-     *                   String form (a sequence of nonnegative integers
-     *                   separated by
-     *                   periods). The map may be empty but never {@code null}.
+     *        an attribute type keyword map, where each key is a
+     *        keyword
+     *        String that maps to a corresponding object identifier
+     *        in
+     *        String form (a sequence of nonnegative integers
+     *        separated by
+     *        periods). The map may be empty but never {@code null}.
      * @exception NullPointerException
-     *                                     if {@code name} or {@code keywordMap}
-     *                                     is {@code null}
+     *            if {@code name} or {@code keywordMap}
+     *            is {@code null}
      * @exception IllegalArgumentException
-     *                                     if the {@code name} is improperly
-     *                                     specified or a keyword
-     *                                     in the {@code name} maps to an OID
-     *                                     that is not in the
-     *                                     correct form
+     *            if the {@code name} is improperly
+     *            specified or a keyword
+     *            in the {@code name} maps to an OID
+     *            that is not in the
+     *            correct form
      * @since 1.6
      */
     public X500Principal(String name, Map<String, String> keywordMap) {
         if (name == null) {
-            throw new NullPointerException(sun.security.util.ResourcesMgr
-                    .getString("provided.null.name"));
+            throw new NullPointerException(sun.security.util.ResourcesMgr.getString("provided.null.name"));
         }
         if (keywordMap == null) {
-            throw new NullPointerException(sun.security.util.ResourcesMgr
-                    .getString("provided.null.keyword.map"));
+            throw new NullPointerException(sun.security.util.ResourcesMgr.getString(
+                    "provided.null.keyword.map"));
         }
 
         try {
             thisX500Name = new X500Name(name, keywordMap);
         } catch (Exception e) {
-            IllegalArgumentException iae = new IllegalArgumentException(
-                    "improperly specified input name: " + name);
+            IllegalArgumentException iae = new IllegalArgumentException("improperly specified input name: "
+                    + name);
             iae.initCause(e);
             throw iae;
         }
@@ -215,18 +203,17 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * </pre>
      *
      * @param name
-     *             a byte array containing the distinguished name in ASN.1 DER
-     *             encoded form
+     *        a byte array containing the distinguished name in ASN.1 DER
+     *        encoded form
      * @throws IllegalArgumentException
-     *                                  if an encoding error occurs (incorrect
-     *                                  form for DN)
+     *         if an encoding error occurs (incorrect
+     *         form for DN)
      */
     public X500Principal(byte[] name) {
         try {
             thisX500Name = new X500Name(name);
         } catch (Exception e) {
-            IllegalArgumentException iae = new IllegalArgumentException(
-                    "improperly specified input name");
+            IllegalArgumentException iae = new IllegalArgumentException("improperly specified input name");
             iae.initCause(e);
             throw iae;
         }
@@ -237,21 +224,19 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * the distinguished name in ASN.1 DER encoded form. The ASN.1 notation for
      * this structure is supplied in the documentation for
      * {@link #X500Principal(byte[] name) X500Principal(byte[] name)}.
-     *
      * <p>
      * The read position of the input stream is positioned to the next available
      * byte after the encoded distinguished name.
      *
      * @param is
-     *           an {@code InputStream} containing the distinguished name in
-     *           ASN.1 DER encoded form
-     *
+     *        an {@code InputStream} containing the distinguished name in
+     *        ASN.1 DER encoded form
      * @exception NullPointerException
-     *                                     if the {@code InputStream} is
-     *                                     {@code null}
+     *            if the {@code InputStream} is
+     *            {@code null}
      * @exception IllegalArgumentException
-     *                                     if an encoding error occurs
-     *                                     (incorrect form for DN)
+     *            if an encoding error occurs
+     *            (incorrect form for DN)
      */
     public X500Principal(InputStream is) {
         if (is == null) {
@@ -269,14 +254,12 @@ public final class X500Principal implements Principal, java.io.Serializable {
                     is.reset();
                 } catch (IOException ioe) {
                     IllegalArgumentException iae = new IllegalArgumentException(
-                            "improperly specified input stream "
-                                    + ("and unable to reset input stream"));
+                            "improperly specified input stream " + ("and unable to reset input stream"));
                     iae.initCause(e);
                     throw iae;
                 }
             }
-            IllegalArgumentException iae = new IllegalArgumentException(
-                    "improperly specified input stream");
+            IllegalArgumentException iae = new IllegalArgumentException("improperly specified input stream");
             iae.initCause(e);
             throw iae;
         }
@@ -285,7 +268,6 @@ public final class X500Principal implements Principal, java.io.Serializable {
     /**
      * Returns a string representation of the X.500 distinguished name using the
      * format defined in RFC 2253.
-     *
      * <p>
      * This method is equivalent to calling
      * {@code getName(X500Principal.RFC2253)}.
@@ -300,12 +282,10 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * Returns a string representation of the X.500 distinguished name using the
      * specified format. Valid values for the format are "RFC1779", "RFC2253",
      * and "CANONICAL" (case insensitive).
-     *
      * <p>
      * If "RFC1779" is specified as the format, this method emits the attribute
      * type keywords defined in RFC 1779 (CN, L, ST, O, OU, C, STREET). Any
      * other attribute type is emitted as an OID.
-     *
      * <p>
      * If "RFC2253" is specified as the format, this method emits the attribute
      * type keywords defined in RFC 2253 (CN, L, ST, O, OU, C, STREET, DC, UID).
@@ -313,12 +293,10 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * RFC 2253 only specifies a UTF-8 string representation. The String
      * returned by this method is the Unicode string achieved by decoding this
      * UTF-8 representation.
-     *
      * <p>
      * If "CANONICAL" is specified as the format, this method returns an RFC
      * 2253 conformant string representation with the following additional
      * canonicalizations:
-     *
      * <ol>
      * <li>Leading zeros are removed from attribute types that are encoded as
      * dotted decimal OIDs
@@ -345,18 +323,16 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * <li>The name is finally normalized using normalization form KD, as
      * described in the Unicode Standard and UAX #15
      * </ol>
-     *
      * <p>
      * Additional standard formats may be introduced in the future.
      *
      * @param format
-     *               the format to use
-     *
+     *        the format to use
      * @return a string representation of this {@code X500Principal} using the
      *         specified format
      * @throws IllegalArgumentException
-     *                                  if the specified format is invalid or
-     *                                  null
+     *         if the specified format is invalid or
+     *         null
      */
     public String getName(String format) {
         if (format != null) {
@@ -376,7 +352,6 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * specified format. Valid values for the format are "RFC1779" and "RFC2253"
      * (case insensitive). "CANONICAL" is not permitted and an
      * {@code IllegalArgumentException} will be thrown.
-     *
      * <p>
      * This method returns Strings in the format as specified in
      * {@link #getName(String)} and also emits additional attribute type
@@ -385,39 +360,36 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * {@code getName(String)}. Improperly specified OIDs are ignored; however
      * if an OID in the name maps to an improperly specified keyword, an
      * {@code IllegalArgumentException} is thrown.
-     *
      * <p>
      * Additional standard formats may be introduced in the future.
-     *
      * <p>
      * Warning: additional attribute type keywords may not be recognized by
      * other implementations; therefore do not use this method if you are unsure
      * if these keywords will be recognized by other implementations.
      *
      * @param format
-     *               the format to use
+     *        the format to use
      * @param oidMap
-     *               an OID map, where each key is an object identifier in
-     *               String
-     *               form (a sequence of nonnegative integers separated by
-     *               periods)
-     *               that maps to a corresponding attribute type keyword String.
-     *               The map may be empty but never {@code null}.
+     *        an OID map, where each key is an object identifier in
+     *        String
+     *        form (a sequence of nonnegative integers separated by
+     *        periods)
+     *        that maps to a corresponding attribute type keyword String.
+     *        The map may be empty but never {@code null}.
      * @return a string representation of this {@code X500Principal} using the
      *         specified format
      * @throws IllegalArgumentException
-     *                                  if the specified format is invalid,
-     *                                  null, or an OID in the
-     *                                  name maps to an improperly specified
-     *                                  keyword
+     *         if the specified format is invalid,
+     *         null, or an OID in the
+     *         name maps to an improperly specified
+     *         keyword
      * @throws NullPointerException
-     *                                  if {@code oidMap} is {@code null}
+     *         if {@code oidMap} is {@code null}
      * @since 1.6
      */
     public String getName(String format, Map<String, String> oidMap) {
         if (oidMap == null) {
-            throw new NullPointerException(sun.security.util.ResourcesMgr
-                    .getString("provided.null.OID.map"));
+            throw new NullPointerException(sun.security.util.ResourcesMgr.getString("provided.null.OID.map"));
         }
         if (format != null) {
             if (format.equalsIgnoreCase(RFC1779)) {
@@ -433,7 +405,6 @@ public final class X500Principal implements Principal, java.io.Serializable {
      * Returns the distinguished name in ASN.1 DER encoded form. The ASN.1
      * notation for this structure is supplied in the documentation for
      * {@link #X500Principal(byte[] name) X500Principal(byte[] name)}.
-     *
      * <p>
      * Note that the byte array returned is cloned to protect against subsequent
      * modifications.
@@ -462,21 +433,18 @@ public final class X500Principal implements Principal, java.io.Serializable {
     /**
      * Compares the specified {@code Object} with this {@code X500Principal} for
      * equality.
-     *
      * <p>
      * Specifically, this method returns {@code true} if the {@code Object}
      * <i>o</i> is an {@code X500Principal} and if the respective canonical
      * string representations (obtained via the
      * {@code getName(X500Principal.CANONICAL)} method) of this object and
      * <i>o</i> are equal.
-     *
      * <p>
      * This implementation is compliant with the requirements of RFC 3280.
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          {@code X500Principal}
-     *
+     *        Object to be compared for equality with this
+     *        {@code X500Principal}
      * @return {@code true} if the specified {@code Object} is equal to this
      *         {@code X500Principal}, {@code false} otherwise
      */
@@ -493,7 +461,6 @@ public final class X500Principal implements Principal, java.io.Serializable {
 
     /**
      * Return a hash code for this {@code X500Principal}.
-     *
      * <p>
      * The hash code is calculated via:
      * {@code getName(X500Principal.CANONICAL).hashCode()}
@@ -518,9 +485,8 @@ public final class X500Principal implements Principal, java.io.Serializable {
     /**
      * Reads this object from a stream (i.e., deserializes it).
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, java.io.NotActiveException,
-            ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException,
+            java.io.NotActiveException, ClassNotFoundException {
 
         // re-create thisX500Name
         thisX500Name = new X500Name((byte[]) s.readObject());

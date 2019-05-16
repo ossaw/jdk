@@ -15,7 +15,6 @@ import javax.xml.crypto.XMLStructure;
  * <a href="http://www.w3.org/TR/1999/REC-xslt-19991116"> XSLT Transform
  * Algorithm</a>. The parameters include a namespace-qualified stylesheet
  * element.
- *
  * <p>
  * An <code>XSLTTransformParameterSpec</code> is instantiated with a
  * mechanism-dependent (ex: DOM) stylesheet element. For example:
@@ -33,8 +32,7 @@ import javax.xml.crypto.XMLStructure;
  * @since 1.6
  * @see Transform
  */
-public final class XSLTTransformParameterSpec implements
-        TransformParameterSpec {
+public final class XSLTTransformParameterSpec implements TransformParameterSpec {
     private XMLStructure stylesheet;
 
     /**
@@ -42,10 +40,10 @@ public final class XSLTTransformParameterSpec implements
      * stylesheet.
      *
      * @param stylesheet
-     *                   the XSLT stylesheet to be used
+     *        the XSLT stylesheet to be used
      * @throws NullPointerException
-     *                              if <code>stylesheet</code> is
-     *                              <code>null</code>
+     *         if <code>stylesheet</code> is
+     *         <code>null</code>
      */
     public XSLTTransformParameterSpec(XMLStructure stylesheet) {
         if (stylesheet == null) {

@@ -41,9 +41,9 @@ public class Manifest implements Cloneable {
      * Constructs a new Manifest from the specified input stream.
      *
      * @param is
-     *           the input stream containing manifest data
+     *        the input stream containing manifest data
      * @throws IOException
-     *                     if an I/O error has occurred
+     *         if an I/O error has occurred
      */
     public Manifest(InputStream is) throws IOException {
         read(is);
@@ -53,7 +53,7 @@ public class Manifest implements Cloneable {
      * Constructs a new Manifest that is a copy of the specified Manifest.
      *
      * @param man
-     *            the Manifest to copy
+     *        the Manifest to copy
      */
     public Manifest(Manifest man) {
         attr.putAll(man.getMainAttributes());
@@ -102,7 +102,7 @@ public class Manifest implements Cloneable {
      * {@link #getMainAttributes}.
      *
      * @param name
-     *             entry name
+     *        entry name
      * @return the Attributes for the specified entry name
      */
     public Attributes getAttributes(String name) {
@@ -123,9 +123,9 @@ public class Manifest implements Cloneable {
      * invoking this method.
      *
      * @param out
-     *            the output stream
+     *        the output stream
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      * @see #getMainAttributes
      */
     public void write(OutputStream out) throws IOException {
@@ -133,8 +133,7 @@ public class Manifest implements Cloneable {
         // Write out the main attributes for the manifest
         attr.writeMain(dos);
         // Now write out the pre-entry attributes
-        Iterator<Map.Entry<String, Attributes>> it = entries.entrySet()
-                .iterator();
+        Iterator<Map.Entry<String, Attributes>> it = entries.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, Attributes> e = it.next();
             StringBuffer buffer = new StringBuffer("Name: ");
@@ -173,9 +172,9 @@ public class Manifest implements Cloneable {
      * attributes read will be merged in with the current manifest entries.
      *
      * @param is
-     *           the input stream
+     *        the input stream
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public void read(InputStream is) throws IOException {
         // Buffered input stream for reading manifest data
@@ -249,13 +248,11 @@ public class Manifest implements Cloneable {
     }
 
     private String parseName(byte[] lbuf, int len) {
-        if (toLower(lbuf[0]) == 'n' && toLower(lbuf[1]) == 'a' && toLower(
-                lbuf[2]) == 'm' && toLower(lbuf[3]) == 'e' && lbuf[4] == ':'
-                && lbuf[5] == ' ') {
+        if (toLower(lbuf[0]) == 'n' && toLower(lbuf[1]) == 'a' && toLower(lbuf[2]) == 'm' && toLower(
+                lbuf[3]) == 'e' && lbuf[4] == ':' && lbuf[5] == ' ') {
             try {
                 return new String(lbuf, 6, len - 6, "UTF8");
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
         return null;
     }
@@ -269,15 +266,14 @@ public class Manifest implements Cloneable {
      * main Attributes and entries.
      *
      * @param o
-     *          the object to be compared
+     *        the object to be compared
      * @return true if the specified Object is also a Manifest and has the same
      *         main Attributes and entries
      */
     public boolean equals(Object o) {
         if (o instanceof Manifest) {
             Manifest m = (Manifest) o;
-            return attr.equals(m.getMainAttributes()) && entries.equals(m
-                    .getEntries());
+            return attr.equals(m.getMainAttributes()) && entries.equals(m.getEntries());
         } else {
             return false;
         }

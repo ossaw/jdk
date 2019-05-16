@@ -117,7 +117,7 @@ class ElemDesc {
      * Construct an ElementDescription with an initial set of flags.
      *
      * @param flags
-     *              Element flags
+     *        Element flags
      * @see m_flags
      */
     ElemDesc(int flags) {
@@ -126,7 +126,6 @@ class ElemDesc {
 
     /**
      * "is (this element described by these flags)".
-     *
      * This might more properly be called areFlagsSet(). It accepts an integer
      * (being used as a bitvector) and checks whether all the corresponding bits
      * are set in our internal flags. Note that this test is performed as a
@@ -134,11 +133,9 @@ class ElemDesc {
      * "don't test", not "must be set false".
      *
      * @param flags
-     *              Vector of flags to compare against this element's flags
-     *
+     *        Vector of flags to compare against this element's flags
      * @return true if the flags set in the parameter are also set in the
      *         element's stored flags.
-     *
      * @see m_flags
      * @see isAttrFlagSet
      */
@@ -150,11 +147,10 @@ class ElemDesc {
     /**
      * Set a new attribute for this element
      *
-     *
      * @param name
-     *              Attribute name
+     *        Attribute name
      * @param flags
-     *              Attibute flags
+     *        Attibute flags
      */
     void setAttr(String name, int flags) {
 
@@ -167,12 +163,10 @@ class ElemDesc {
     /**
      * Find out if a flag is set in a given attribute of this element
      *
-     *
      * @param name
-     *              Attribute name
+     *        Attribute name
      * @param flags
-     *              Flag to check
-     *
+     *        Flag to check
      * @return True if the flag is set in the attribute. Returns false if the
      *         attribute is not found
      * @see m_flags

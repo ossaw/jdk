@@ -25,7 +25,6 @@ import sun.misc.HexDumpEncoder;
 /**
  * <p>
  * This <code>LoginModule</code> authenticates users using Kerberos protocols.
- *
  * <p>
  * The configuration entry for <code>Krb5LoginModule</code> has several options
  * that control the authentication process and additions to the
@@ -37,7 +36,6 @@ import sun.misc.HexDumpEncoder;
  * specified as "*"). If <code>isInitiator</code> is true, the
  * <code>KerberosTicket</code> is added to the <code>Subject</code>'s private
  * credentials.
- *
  * <p>
  * If the configuration entry for <code>KerberosLoginModule</code> has the
  * option <code>storeKey</code> set to true, then <code>KerberosKey</code> or
@@ -47,19 +45,15 @@ import sun.misc.HexDumpEncoder;
  * <code>useKeyTab</code> is set to true. The <code>KeyTab</code> object is
  * restricted to be used by the specified principal unless the principal value
  * is "*".
- *
  * <p>
  * This <code>LoginModule</code> recognizes the <code>doNotPrompt</code> option.
  * If set to true the user will not be prompted for the password.
- *
  * <p>
  * The user can specify the location of the ticket cache by using the option
  * <code>ticketCache</code> in the configuration entry.
- *
  * <p>
  * The user can specify the keytab location by using the option
  * <code>keyTab</code> in the configuration entry.
- *
  * <p>
  * The principal name can be specified in the configuration entry by using the
  * option <code>principal</code>. The principal name can either be a simple user
@@ -71,7 +65,6 @@ import sun.misc.HexDumpEncoder;
  * and the principal entry also does not exist, the user is prompted for the
  * name. When this property of entry is set, and <code>useTicketCache</code> is
  * set to true, only TGT belonging to this principal is used.
- *
  * <p>
  * The following is a list of configuration options supported for
  * <code>Krb5LoginModule</code>: <blockquote>
@@ -139,13 +132,11 @@ import sun.misc.HexDumpEncoder;
  * (Default is true). Note: Do not set this value to false for initiators.</dd>
  * </dl>
  * </blockquote>
- *
  * <p>
  * This <code>LoginModule</code> also recognizes the following additional
  * <code>Configuration</code> options that enable you to share username and
  * passwords across different authentication modules: <blockquote>
  * <dl>
- *
  * <dt><b><code>useFirstPass</code></b>:</dt>
  * <dd>if, true, this LoginModule retrieves the username and password from the
  * module's shared state, using "javax.security.auth.login.name" and
@@ -153,7 +144,6 @@ import sun.misc.HexDumpEncoder;
  * values are used for authentication. If authentication fails, no attempt for a
  * retry is made, and the failure is reported back to the calling application.
  * </dd>
- *
  * <dt><b><code>tryFirstPass</code></b>:</dt>
  * <dd>if, true, this LoginModule retrieves the the username and password from
  * the module's shared state using "javax.security.auth.login.name" and
@@ -162,7 +152,6 @@ import sun.misc.HexDumpEncoder;
  * the CallbackHandler to retrieve a new username and password, and another
  * attempt to authenticate is made. If the authentication fails, the failure is
  * reported back to the calling application</dd>
- *
  * <dt><b><code>storePass</code></b>:</dt>
  * <dd>if, true, this LoginModule stores the username and password obtained from
  * the CallbackHandler in the modules shared state, using
@@ -170,7 +159,6 @@ import sun.misc.HexDumpEncoder;
  * the respective keys. This is not performed if existing values already exist
  * for the username and password in the shared state, or if authentication
  * fails.</dd>
- *
  * <dt><b><code>clearPass</code></b>:</dt>
  * <dd>if, true, this LoginModule clears the username and password stored in the
  * module's shared state after both phases of authentication (login and commit)
@@ -404,43 +392,38 @@ public class Krb5LoginModule implements LoginModule {
     private static final ResourceBundle rb = AccessController.doPrivileged(
             new PrivilegedAction<ResourceBundle>() {
                 public ResourceBundle run() {
-                    return ResourceBundle.getBundle(
-                            "sun.security.util.AuthResources");
+                    return ResourceBundle.getBundle("sun.security.util.AuthResources");
                 }
             });
 
     /**
      * Initialize this <code>LoginModule</code>.
-     *
      * <p>
      * 
      * @param subject
-     *                        the <code>Subject</code> to be authenticated.
-     *                        <p>
-     *
+     *        the <code>Subject</code> to be authenticated.
+     *        <p>
      * @param callbackHandler
-     *                        a <code>CallbackHandler</code> for communication
-     *                        with the end
-     *                        user (prompting for usernames and passwords, for
-     *                        example).
-     *                        <p>
-     *
+     *        a <code>CallbackHandler</code> for communication
+     *        with the end
+     *        user (prompting for usernames and passwords, for
+     *        example).
+     *        <p>
      * @param sharedState
-     *                        shared <code>LoginModule</code> state.
-     *                        <p>
-     *
+     *        shared <code>LoginModule</code> state.
+     *        <p>
      * @param options
-     *                        options specified in the login
-     *                        <code>Configuration</code> for
-     *                        this particular <code>LoginModule</code>.
+     *        options specified in the login
+     *        <code>Configuration</code> for
+     *        this particular <code>LoginModule</code>.
      */
     // Unchecked warning from (Map<String, Object>)sharedState is safe
     // since javax.security.auth.login.LoginContext passes a raw HashMap.
     // Unchecked warnings from options.get(String) are safe since we are
     // passing known keys.
     @SuppressWarnings("unchecked")
-    public void initialize(Subject subject, CallbackHandler callbackHandler,
-            Map<String, ?> sharedState, Map<String, ?> options) {
+    public void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> sharedState,
+            Map<String, ?> options) {
 
         this.subject = subject;
         this.callbackHandler = callbackHandler;
@@ -451,20 +434,16 @@ public class Krb5LoginModule implements LoginModule {
 
         debug = "true".equalsIgnoreCase((String) options.get("debug"));
         storeKey = "true".equalsIgnoreCase((String) options.get("storeKey"));
-        doNotPrompt = "true".equalsIgnoreCase((String) options.get(
-                "doNotPrompt"));
-        useTicketCache = "true".equalsIgnoreCase((String) options.get(
-                "useTicketCache"));
+        doNotPrompt = "true".equalsIgnoreCase((String) options.get("doNotPrompt"));
+        useTicketCache = "true".equalsIgnoreCase((String) options.get("useTicketCache"));
         useKeyTab = "true".equalsIgnoreCase((String) options.get("useKeyTab"));
         ticketCacheName = (String) options.get("ticketCache");
         keyTabName = (String) options.get("keyTab");
         if (keyTabName != null) {
-            keyTabName = sun.security.krb5.internal.ktab.KeyTab.normalize(
-                    keyTabName);
+            keyTabName = sun.security.krb5.internal.ktab.KeyTab.normalize(keyTabName);
         }
         princName = (String) options.get("principal");
-        refreshKrb5Config = "true".equalsIgnoreCase((String) options.get(
-                "refreshKrb5Config"));
+        refreshKrb5Config = "true".equalsIgnoreCase((String) options.get("refreshKrb5Config"));
         renewTGT = "true".equalsIgnoreCase((String) options.get("renewTGT"));
 
         // check isInitiator value
@@ -475,42 +454,33 @@ public class Krb5LoginModule implements LoginModule {
             isInitiator = "true".equalsIgnoreCase(isInitiatorValue);
         }
 
-        tryFirstPass = "true".equalsIgnoreCase((String) options.get(
-                "tryFirstPass"));
-        useFirstPass = "true".equalsIgnoreCase((String) options.get(
-                "useFirstPass"));
+        tryFirstPass = "true".equalsIgnoreCase((String) options.get("tryFirstPass"));
+        useFirstPass = "true".equalsIgnoreCase((String) options.get("useFirstPass"));
         storePass = "true".equalsIgnoreCase((String) options.get("storePass"));
         clearPass = "true".equalsIgnoreCase((String) options.get("clearPass"));
         if (debug) {
-            System.out.print("Debug is  " + debug + " storeKey " + storeKey
-                    + " useTicketCache " + useTicketCache + " useKeyTab "
-                    + useKeyTab + " doNotPrompt " + doNotPrompt
-                    + " ticketCache is " + ticketCacheName + " isInitiator "
-                    + isInitiator + " KeyTab is " + keyTabName
-                    + " refreshKrb5Config is " + refreshKrb5Config
-                    + " principal is " + princName + " tryFirstPass is "
-                    + tryFirstPass + " useFirstPass is " + useFirstPass
-                    + " storePass is " + storePass + " clearPass is "
-                    + clearPass + "\n");
+            System.out.print("Debug is  " + debug + " storeKey " + storeKey + " useTicketCache "
+                    + useTicketCache + " useKeyTab " + useKeyTab + " doNotPrompt " + doNotPrompt
+                    + " ticketCache is " + ticketCacheName + " isInitiator " + isInitiator + " KeyTab is "
+                    + keyTabName + " refreshKrb5Config is " + refreshKrb5Config + " principal is " + princName
+                    + " tryFirstPass is " + tryFirstPass + " useFirstPass is " + useFirstPass
+                    + " storePass is " + storePass + " clearPass is " + clearPass + "\n");
         }
     }
 
     /**
      * Authenticate the user
-     *
      * <p>
      *
      * @return true in all cases since this <code>LoginModule</code> should not
      *         be ignored.
-     *
      * @exception FailedLoginException
-     *                                 if the authentication fails.
-     *                                 <p>
-     *
+     *            if the authentication fails.
+     *            <p>
      * @exception LoginException
-     *                                 if this <code>LoginModule</code> is
-     *                                 unable to perform the
-     *                                 authentication.
+     *            if this <code>LoginModule</code> is
+     *            unable to perform the
+     *            authentication.
      */
     public boolean login() throws LoginException {
 
@@ -526,8 +496,7 @@ public class Krb5LoginModule implements LoginModule {
                 throw le;
             }
         }
-        String principalProperty = System.getProperty(
-                "sun.security.krb5.principal");
+        String principalProperty = System.getProperty("sun.security.krb5.principal");
         if (principalProperty != null) {
             krb5PrincName = new StringBuffer(principalProperty);
         } else {
@@ -546,8 +515,7 @@ public class Krb5LoginModule implements LoginModule {
             try {
                 attemptAuthentication(true);
                 if (debug)
-                    System.out.println("\t\t[Krb5LoginModule] "
-                            + "authentication succeeded");
+                    System.out.println("\t\t[Krb5LoginModule] " + "authentication succeeded");
                 succeeded = true;
                 cleanState();
                 return true;
@@ -555,8 +523,8 @@ public class Krb5LoginModule implements LoginModule {
                 // authentication failed -- try again below by prompting
                 cleanState();
                 if (debug) {
-                    System.out.println("\t\t[Krb5LoginModule] "
-                            + "tryFirstPass failed with:" + le.getMessage());
+                    System.out.println("\t\t[Krb5LoginModule] " + "tryFirstPass failed with:" + le
+                            .getMessage());
                 }
             }
         } else if (useFirstPass) {
@@ -568,8 +536,8 @@ public class Krb5LoginModule implements LoginModule {
             } catch (LoginException e) {
                 // authentication failed -- clean out state
                 if (debug) {
-                    System.out.println("\t\t[Krb5LoginModule] "
-                            + "authentication failed \n" + e.getMessage());
+                    System.out.println("\t\t[Krb5LoginModule] " + "authentication failed \n" + e
+                            .getMessage());
                 }
                 succeeded = false;
                 cleanState();
@@ -588,8 +556,7 @@ public class Krb5LoginModule implements LoginModule {
         } catch (LoginException e) {
             // authentication failed -- clean out state
             if (debug) {
-                System.out.println("\t\t[Krb5LoginModule] "
-                        + "authentication failed \n" + e.getMessage());
+                System.out.println("\t\t[Krb5LoginModule] " + "authentication failed \n" + e.getMessage());
             }
             succeeded = false;
             cleanState();
@@ -603,8 +570,7 @@ public class Krb5LoginModule implements LoginModule {
      * the TGT
      */
 
-    private void attemptAuthentication(boolean getPasswdFromSharedState)
-            throws LoginException {
+    private void attemptAuthentication(boolean getPasswdFromSharedState) throws LoginException {
 
         /*
          * Check the creds cache to see whether we have TGT for this client
@@ -612,8 +578,7 @@ public class Krb5LoginModule implements LoginModule {
          */
         if (krb5PrincName != null) {
             try {
-                principal = new PrincipalName(krb5PrincName.toString(),
-                        PrincipalName.KRB_NT_PRINCIPAL);
+                principal = new PrincipalName(krb5PrincName.toString(), PrincipalName.KRB_NT_PRINCIPAL);
             } catch (KrbException e) {
                 LoginException le = new LoginException(e.getMessage());
                 le.initCause(e);
@@ -626,8 +591,7 @@ public class Krb5LoginModule implements LoginModule {
                 // ticketCacheName == null implies the default cache
                 if (debug)
                     System.out.println("Acquire TGT from Cache");
-                cred = Credentials.acquireTGTFromCache(principal,
-                        ticketCacheName);
+                cred = Credentials.acquireTGTFromCache(principal, ticketCacheName);
 
                 if (cred != null) {
                     // check to renew credentials
@@ -638,8 +602,7 @@ public class Krb5LoginModule implements LoginModule {
                             // credentials have expired
                             cred = null;
                             if (debug)
-                                System.out.println("Credentials are"
-                                        + " no longer valid");
+                                System.out.println("Credentials are" + " no longer valid");
                         }
                     }
                 }
@@ -653,8 +616,7 @@ public class Krb5LoginModule implements LoginModule {
                 if (debug) {
                     System.out.println("Principal is " + principal);
                     if (cred == null) {
-                        System.out.println(
-                                "null credentials from Ticket Cache");
+                        System.out.println("null credentials from Ticket Cache");
                     }
                 }
             }
@@ -667,8 +629,7 @@ public class Krb5LoginModule implements LoginModule {
                 // or AS Exchange
                 if (principal == null) {
                     promptForName(getPasswdFromSharedState);
-                    principal = new PrincipalName(krb5PrincName.toString(),
-                            PrincipalName.KRB_NT_PRINCIPAL);
+                    principal = new PrincipalName(krb5PrincName.toString(), PrincipalName.KRB_NT_PRINCIPAL);
                 }
 
                 /*
@@ -689,26 +650,19 @@ public class Krb5LoginModule implements LoginModule {
                  */
                 if (useKeyTab) {
                     if (!unboundServer) {
-                        KerberosPrincipal kp = new KerberosPrincipal(principal
-                                .getName());
+                        KerberosPrincipal kp = new KerberosPrincipal(principal.getName());
                         ktab = (keyTabName == null) ? KeyTab.getInstance(kp)
                                 : KeyTab.getInstance(kp, new File(keyTabName));
                     } else {
-                        ktab = (keyTabName == null) ? KeyTab
-                                .getUnboundInstance()
-                                : KeyTab.getUnboundInstance(new File(
-                                        keyTabName));
+                        ktab = (keyTabName == null) ? KeyTab.getUnboundInstance()
+                                : KeyTab.getUnboundInstance(new File(keyTabName));
                     }
                     if (isInitiator) {
-                        if (Krb5Util.keysFromJavaxKeyTab(ktab,
-                                principal).length == 0) {
+                        if (Krb5Util.keysFromJavaxKeyTab(ktab, principal).length == 0) {
                             ktab = null;
                             if (debug) {
-                                System.out.println("Key for the principal "
-                                        + principal + " not available in "
-                                        + ((keyTabName == null)
-                                                ? "default key tab"
-                                                : keyTabName));
+                                System.out.println("Key for the principal " + principal + " not available in "
+                                        + ((keyTabName == null) ? "default key tab" : keyTabName));
                             }
                         }
                     }
@@ -745,18 +699,15 @@ public class Krb5LoginModule implements LoginModule {
                         System.out.println("Will use keytab");
                     } else if (storeKey) {
                         for (int i = 0; i < encKeys.length; i++) {
-                            System.out.println("EncryptionKey: keyType="
-                                    + encKeys[i].getEType()
-                                    + " keyBytes (hex dump)=" + hd.encodeBuffer(
-                                            encKeys[i].getBytes()));
+                            System.out.println("EncryptionKey: keyType=" + encKeys[i].getEType()
+                                    + " keyBytes (hex dump)=" + hd.encodeBuffer(encKeys[i].getBytes()));
                         }
                     }
                 }
 
                 // we should hava a non-null cred
                 if (isInitiator && (cred == null)) {
-                    throw new LoginException(
-                            "TGT Can not be obtained from the KDC ");
+                    throw new LoginException("TGT Can not be obtained from the KDC ");
                 }
 
             }
@@ -771,24 +722,20 @@ public class Krb5LoginModule implements LoginModule {
         }
     }
 
-    private void promptForName(boolean getPasswdFromSharedState)
-            throws LoginException {
+    private void promptForName(boolean getPasswdFromSharedState) throws LoginException {
         krb5PrincName = new StringBuffer("");
         if (getPasswdFromSharedState) {
             // use the name saved by the first module in the stack
             username = (String) sharedState.get(NAME);
             if (debug) {
-                System.out.println("username from shared state is " + username
-                        + "\n");
+                System.out.println("username from shared state is " + username + "\n");
             }
             if (username == null) {
                 System.out.println("username from shared state is null\n");
-                throw new LoginException(
-                        "Username can not be obtained from sharedstate ");
+                throw new LoginException("Username can not be obtained from sharedstate ");
             }
             if (debug) {
-                System.out.println("username from shared state is " + username
-                        + "\n");
+                System.out.println("username from shared state is " + username + "\n");
             }
             if (username != null && username.length() > 0) {
                 krb5PrincName.insert(0, username);
@@ -797,19 +744,16 @@ public class Krb5LoginModule implements LoginModule {
         }
 
         if (doNotPrompt) {
-            throw new LoginException(
-                    "Unable to obtain Principal Name for authentication ");
+            throw new LoginException("Unable to obtain Principal Name for authentication ");
         } else {
             if (callbackHandler == null)
-                throw new LoginException("No CallbackHandler " + "available "
-                        + "to garner authentication "
+                throw new LoginException("No CallbackHandler " + "available " + "to garner authentication "
                         + "information from the user");
             try {
                 String defUsername = System.getProperty("user.name");
 
                 Callback[] callbacks = new Callback[1];
-                MessageFormat form = new MessageFormat(rb.getString(
-                        "Kerberos.username.defUsername."));
+                MessageFormat form = new MessageFormat(rb.getString("Kerberos.username.defUsername."));
                 Object[] source = { defUsername };
                 callbacks[0] = new NameCallback(form.format(source));
                 callbackHandler.handle(callbacks);
@@ -821,15 +765,13 @@ public class Krb5LoginModule implements LoginModule {
             } catch (java.io.IOException ioe) {
                 throw new LoginException(ioe.getMessage());
             } catch (UnsupportedCallbackException uce) {
-                throw new LoginException(uce.getMessage()
-                        + " not available to garner "
+                throw new LoginException(uce.getMessage() + " not available to garner "
                         + " authentication information " + " from the user");
             }
         }
     }
 
-    private void promptForPass(boolean getPasswdFromSharedState)
-            throws LoginException {
+    private void promptForPass(boolean getPasswdFromSharedState) throws LoginException {
 
         if (getPasswdFromSharedState) {
             // use the password saved by the first module in the stack
@@ -838,8 +780,7 @@ public class Krb5LoginModule implements LoginModule {
                 if (debug) {
                     System.out.println("Password from shared state is null");
                 }
-                throw new LoginException(
-                        "Password can not be obtained from sharedstate ");
+                throw new LoginException("Password can not be obtained from sharedstate ");
             }
             if (debug) {
                 System.out.println("password is " + new String(password));
@@ -850,25 +791,21 @@ public class Krb5LoginModule implements LoginModule {
             throw new LoginException("Unable to obtain password from user\n");
         } else {
             if (callbackHandler == null)
-                throw new LoginException("No CallbackHandler " + "available "
-                        + "to garner authentication "
+                throw new LoginException("No CallbackHandler " + "available " + "to garner authentication "
                         + "information from the user");
             try {
                 Callback[] callbacks = new Callback[1];
                 String userName = krb5PrincName.toString();
-                MessageFormat form = new MessageFormat(rb.getString(
-                        "Kerberos.password.for.username."));
+                MessageFormat form = new MessageFormat(rb.getString("Kerberos.password.for.username."));
                 Object[] source = { userName };
                 callbacks[0] = new PasswordCallback(form.format(source), false);
                 callbackHandler.handle(callbacks);
-                char[] tmpPassword = ((PasswordCallback) callbacks[0])
-                        .getPassword();
+                char[] tmpPassword = ((PasswordCallback) callbacks[0]).getPassword();
                 if (tmpPassword == null) {
                     throw new LoginException("No password provided");
                 }
                 password = new char[tmpPassword.length];
-                System.arraycopy(tmpPassword, 0, password, 0,
-                        tmpPassword.length);
+                System.arraycopy(tmpPassword, 0, password, 0, tmpPassword.length);
                 ((PasswordCallback) callbacks[0]).clearPassword();
 
                 // clear tmpPassword
@@ -876,45 +813,35 @@ public class Krb5LoginModule implements LoginModule {
                     tmpPassword[i] = ' ';
                 tmpPassword = null;
                 if (debug) {
-                    System.out.println("\t\t[Krb5LoginModule] "
-                            + "user entered username: " + krb5PrincName);
+                    System.out.println("\t\t[Krb5LoginModule] " + "user entered username: " + krb5PrincName);
                     System.out.println();
                 }
             } catch (java.io.IOException ioe) {
                 throw new LoginException(ioe.getMessage());
             } catch (UnsupportedCallbackException uce) {
-                throw new LoginException(uce.getMessage()
-                        + " not available to garner "
+                throw new LoginException(uce.getMessage() + " not available to garner "
                         + " authentication information " + "from the user");
             }
         }
     }
 
     private void validateConfiguration() throws LoginException {
-        if (doNotPrompt && !useTicketCache && !useKeyTab && !tryFirstPass
-                && !useFirstPass)
-            throw new LoginException("Configuration Error"
-                    + " - either doNotPrompt should be "
+        if (doNotPrompt && !useTicketCache && !useKeyTab && !tryFirstPass && !useFirstPass)
+            throw new LoginException("Configuration Error" + " - either doNotPrompt should be "
                     + " false or at least one of useTicketCache, "
-                    + " useKeyTab, tryFirstPass and useFirstPass"
-                    + " should be true");
+                    + " useKeyTab, tryFirstPass and useFirstPass" + " should be true");
         if (ticketCacheName != null && !useTicketCache)
-            throw new LoginException("Configuration Error "
-                    + " - useTicketCache should be set "
+            throw new LoginException("Configuration Error " + " - useTicketCache should be set "
                     + "to true to use the ticket cache" + ticketCacheName);
         if (keyTabName != null & !useKeyTab)
-            throw new LoginException(
-                    "Configuration Error - useKeyTab should be set to true "
-                            + "to use the keytab" + keyTabName);
-        if (storeKey && doNotPrompt && !useKeyTab && !tryFirstPass
-                && !useFirstPass)
-            throw new LoginException(
-                    "Configuration Error - either doNotPrompt should be set to "
-                            + " false or at least one of tryFirstPass, useFirstPass "
-                            + "or useKeyTab must be set to true for storeKey option");
+            throw new LoginException("Configuration Error - useKeyTab should be set to true "
+                    + "to use the keytab" + keyTabName);
+        if (storeKey && doNotPrompt && !useKeyTab && !tryFirstPass && !useFirstPass)
+            throw new LoginException("Configuration Error - either doNotPrompt should be set to "
+                    + " false or at least one of tryFirstPass, useFirstPass "
+                    + "or useKeyTab must be set to true for storeKey option");
         if (renewTGT && !useTicketCache)
-            throw new LoginException("Configuration Error"
-                    + " - either useTicketCache should be "
+            throw new LoginException("Configuration Error" + " - either useTicketCache should be "
                     + " true or renewTGT should be false");
         if (krb5PrincName != null && krb5PrincName.toString().equals("*")) {
             if (isInitiator) {
@@ -936,19 +863,16 @@ public class Krb5LoginModule implements LoginModule {
         Credentials lcreds;
         try {
             if (!creds.isRenewable())
-                throw new RefreshFailedException("This ticket"
-                        + " is not renewable");
+                throw new RefreshFailedException("This ticket" + " is not renewable");
             if (System.currentTimeMillis() > cred.getRenewTill().getTime())
-                throw new RefreshFailedException("This ticket is past "
-                        + "its last renewal time.");
+                throw new RefreshFailedException("This ticket is past " + "its last renewal time.");
             lcreds = creds.renew();
             if (debug)
                 System.out.println("Renewed Kerberos Ticket");
         } catch (Exception e) {
             lcreds = null;
             if (debug)
-                System.out.println("Ticket could not be renewed : " + e
-                        .getMessage());
+                System.out.println("Ticket could not be renewed : " + e.getMessage());
         }
         return lcreds;
     }
@@ -958,7 +882,6 @@ public class Krb5LoginModule implements LoginModule {
      * This method is called if the LoginContext's overall authentication
      * succeeded (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL
      * LoginModules succeeded).
-     *
      * <p>
      * If this LoginModule's own authentication attempt succeeded (checked by
      * retrieving the private state saved by the <code>login</code> method),
@@ -967,12 +890,10 @@ public class Krb5LoginModule implements LoginModule {
      * Kerberos Credentials to the the Subject's private credentials set. If
      * this LoginModule's own authentication attempted failed, then this method
      * removes any state that was originally saved.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the commit fails.
-     *
+     *            if the commit fails.
      * @return true if this LoginModule's own login and commit attempts
      *         succeeded, or false otherwise.
      */
@@ -1021,10 +942,8 @@ public class Krb5LoginModule implements LoginModule {
                 kerbKeys = new KerberosKey[encKeys.length];
                 for (int i = 0; i < encKeys.length; i++) {
                     Integer temp = encKeys[i].getKeyVersionNumber();
-                    kerbKeys[i] = new KerberosKey(kerbClientPrinc, encKeys[i]
-                            .getBytes(), encKeys[i].getEType(), (temp == null
-                                    ? 0
-                                    : temp.intValue()));
+                    kerbKeys[i] = new KerberosKey(kerbClientPrinc, encKeys[i].getBytes(), encKeys[i]
+                            .getEType(), (temp == null ? 0 : temp.intValue()));
                 }
 
             }
@@ -1060,11 +979,9 @@ public class Krb5LoginModule implements LoginModule {
                         encKeys[i].destroy();
                         encKeys[i] = null;
                         if (debug) {
-                            System.out.println("Added server's key"
-                                    + kerbKeys[i]);
-                            System.out.println("\t\t[Krb5LoginModule] "
-                                    + "added Krb5Principal  " + kerbClientPrinc
-                                            .toString() + " to Subject");
+                            System.out.println("Added server's key" + kerbKeys[i]);
+                            System.out.println("\t\t[Krb5LoginModule] " + "added Krb5Principal  "
+                                    + kerbClientPrinc.toString() + " to Subject");
                         }
                     }
                 }
@@ -1081,18 +998,15 @@ public class Krb5LoginModule implements LoginModule {
      * This method is called if the LoginContext's overall authentication
      * failed. (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL
      * LoginModules did not succeed).
-     *
      * <p>
      * If this LoginModule's own authentication attempt succeeded (checked by
      * retrieving the private state saved by the <code>login</code> and
      * <code>commit</code> methods), then this method cleans up any state that
      * was originally saved.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the abort fails.
-     *
+     *            if the abort fails.
      * @return false if this LoginModule's own login and/or commit attempts
      *         failed, and true otherwise.
      */
@@ -1114,16 +1028,13 @@ public class Krb5LoginModule implements LoginModule {
 
     /**
      * Logout the user.
-     *
      * <p>
      * This method removes the <code>Krb5Principal</code> that was added by the
      * <code>commit</code> method.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the logout fails.
-     *
+     *            if the logout fails.
      * @return true in all cases since this <code>LoginModule</code> should not
      *         be ignored.
      */
@@ -1143,8 +1054,7 @@ public class Krb5LoginModule implements LoginModule {
         Iterator<Object> it = subject.getPrivateCredentials().iterator();
         while (it.hasNext()) {
             Object o = it.next();
-            if (o instanceof KerberosTicket || o instanceof KerberosKey
-                    || o instanceof KeyTab) {
+            if (o instanceof KerberosTicket || o instanceof KerberosKey || o instanceof KeyTab) {
                 it.remove();
             }
         }
@@ -1154,8 +1064,7 @@ public class Krb5LoginModule implements LoginModule {
         succeeded = false;
         commitSucceeded = false;
         if (debug) {
-            System.out.println("\t\t[Krb5LoginModule]: "
-                    + "logged out Subject");
+            System.out.println("\t\t[Krb5LoginModule]: " + "logged out Subject");
         }
         return true;
     }
@@ -1174,8 +1083,7 @@ public class Krb5LoginModule implements LoginModule {
                 }
             }
         } catch (DestroyFailedException e) {
-            throw new LoginException(
-                    "Destroy Failed on Kerberos Private Credentials");
+            throw new LoginException("Destroy Failed on Kerberos Private Credentials");
         }
         kerbTicket = null;
         kerbKeys = null;
@@ -1190,8 +1098,7 @@ public class Krb5LoginModule implements LoginModule {
         // save input as shared state only if
         // authentication succeeded
         if (succeeded) {
-            if (storePass && !sharedState.containsKey(NAME) && !sharedState
-                    .containsKey(PWD)) {
+            if (storePass && !sharedState.containsKey(NAME) && !sharedState.containsKey(PWD)) {
                 sharedState.put(NAME, username);
                 sharedState.put(PWD, password);
             }

@@ -10,8 +10,7 @@ import java.util.Properties;
 import com.sun.corba.se.spi.orb.Operation;
 
 public class NormalParserAction extends ParserActionBase {
-    public NormalParserAction(String propertyName, Operation operation,
-            String fieldName) {
+    public NormalParserAction(String propertyName, Operation operation, String fieldName) {
         super(propertyName, false, operation, fieldName);
     }
 

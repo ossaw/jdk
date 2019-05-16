@@ -11,8 +11,7 @@ package org.omg.DynamicAny;
 abstract public class DynAnySeqHelper {
     private static String _id = "IDL:omg.org/DynamicAny/DynAnySeq:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.DynamicAny.DynAny[] that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.DynamicAny.DynAny[] that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -28,11 +27,9 @@ abstract public class DynAnySeqHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.DynamicAny.DynAnyHelper.type();
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.DynamicAny.DynAnySeqHelper.id(), "DynAnySeq",
-                    __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.DynamicAny.DynAnySeqHelper.id(),
+                    "DynAnySeq", __typeCode);
         }
         return __typeCode;
     }
@@ -41,8 +38,7 @@ abstract public class DynAnySeqHelper {
         return _id;
     }
 
-    public static org.omg.DynamicAny.DynAny[] read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.DynamicAny.DynAny[] read(org.omg.CORBA.portable.InputStream istream) {
         org.omg.DynamicAny.DynAny value[] = null;
         int _len0 = istream.read_long();
         value = new org.omg.DynamicAny.DynAny[_len0];
@@ -51,8 +47,7 @@ abstract public class DynAnySeqHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.DynamicAny.DynAny[] value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.DynamicAny.DynAny[] value) {
         ostream.write_long(value.length);
         for (int _i0 = 0; _i0 < value.length; ++_i0)
             org.omg.DynamicAny.DynAnyHelper.write(ostream, value[_i0]);

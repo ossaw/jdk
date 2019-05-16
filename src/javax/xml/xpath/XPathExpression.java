@@ -12,7 +12,6 @@ import javax.xml.namespace.QName;
  * <p>
  * <code>XPathExpression</code> provides access to compiled XPath expressions.
  * </p>
- *
  * <a name="XPathExpression-evaluation"/>
  * <table border="1" cellpadding="2">
  * <thead>
@@ -63,7 +62,6 @@ import javax.xml.namespace.QName;
  * </td>
  * </tr>
  * </table>
- *
  * <p>
  * An XPath expression is not thread-safe and not reentrant. In other words, it
  * is the application's responsibility to make sure that one
@@ -85,19 +83,16 @@ public interface XPathExpression {
      * Evaluate the compiled XPath expression in the specified context and
      * return the result as the specified type.
      * </p>
-     *
      * <p>
      * See <a href="#XPathExpression-evaluation">Evaluation of XPath
      * Expressions</a> for context item evaluation, variable, function and QName
      * resolution and return type conversion.
      * </p>
-     *
      * <p>
      * If <code>returnType</code> is not one of the types defined in
      * {@link XPathConstants}, then an <code>IllegalArgumentException</code> is
      * thrown.
      * </p>
-     *
      * <p>
      * If a <code>null</code> value is provided for <code>item</code>, an empty
      * document will be used for the context. If <code>returnType</code> is
@@ -105,55 +100,47 @@ public interface XPathExpression {
      * </p>
      *
      * @param item
-     *                   The starting context (a node, for example).
+     *        The starting context (a node, for example).
      * @param returnType
-     *                   The desired return type.
-     *
+     *        The desired return type.
      * @return The <code>Object</code> that is the result of evaluating the
      *         expression and converting the result to <code>returnType</code>.
-     *
      * @throws XPathExpressionException
-     *                                  If the expression cannot be evaluated.
+     *         If the expression cannot be evaluated.
      * @throws IllegalArgumentException
-     *                                  If <code>returnType</code> is not one of
-     *                                  the types defined in
-     *                                  {@link XPathConstants}.
+     *         If <code>returnType</code> is not one of
+     *         the types defined in
+     *         {@link XPathConstants}.
      * @throws NullPointerException
-     *                                  If <code>returnType</code> is
-     *                                  <code>null</code>.
+     *         If <code>returnType</code> is
+     *         <code>null</code>.
      */
-    public Object evaluate(Object item, QName returnType)
-            throws XPathExpressionException;
+    public Object evaluate(Object item, QName returnType) throws XPathExpressionException;
 
     /**
      * <p>
      * Evaluate the compiled XPath expression in the specified context and
      * return the result as a <code>String</code>.
      * </p>
-     *
      * <p>
      * This method calls {@link #evaluate(Object item, QName returnType)} with a
      * <code>returnType</code> of {@link XPathConstants#STRING}.
      * </p>
-     *
      * <p>
      * See <a href="#XPathExpression-evaluation">Evaluation of XPath
      * Expressions</a> for context item evaluation, variable, function and QName
      * resolution and return type conversion.
      * </p>
-     *
      * <p>
      * If a <code>null</code> value is provided for <code>item</code>, an empty
      * document will be used for the context.
      *
      * @param item
-     *             The starting context (a node, for example).
-     *
+     *        The starting context (a node, for example).
      * @return The <code>String</code> that is the result of evaluating the
      *         expression and converting the result to a <code>String</code>.
-     *
      * @throws XPathExpressionException
-     *                                  If the expression cannot be evaluated.
+     *         If the expression cannot be evaluated.
      */
     public String evaluate(Object item) throws XPathExpressionException;
 
@@ -162,87 +149,75 @@ public interface XPathExpression {
      * Evaluate the compiled XPath expression in the context of the specified
      * <code>InputSource</code> and return the result as the specified type.
      * </p>
-     *
      * <p>
      * This method builds a data model for the {@link InputSource} and calls
      * {@link #evaluate(Object item, QName returnType)} on the resulting
      * document object.
      * </p>
-     *
      * <p>
      * See <a href="#XPathExpression-evaluation">Evaluation of XPath
      * Expressions</a> for context item evaluation, variable, function and QName
      * resolution and return type conversion.
      * </p>
-     *
      * <p>
      * If <code>returnType</code> is not one of the types defined in
      * {@link XPathConstants}, then an <code>IllegalArgumentException</code> is
      * thrown.
      * </p>
-     *
      * <p>
      * If <code>source</code> or <code>returnType</code> is <code>null</code>,
      * then a <code>NullPointerException</code> is thrown.
      * </p>
      *
      * @param source
-     *                   The <code>InputSource</code> of the document to
-     *                   evaluate over.
+     *        The <code>InputSource</code> of the document to
+     *        evaluate over.
      * @param returnType
-     *                   The desired return type.
-     *
+     *        The desired return type.
      * @return The <code>Object</code> that is the result of evaluating the
      *         expression and converting the result to <code>returnType</code>.
-     *
      * @throws XPathExpressionException
-     *                                  If the expression cannot be evaluated.
+     *         If the expression cannot be evaluated.
      * @throws IllegalArgumentException
-     *                                  If <code>returnType</code> is not one of
-     *                                  the types defined in
-     *                                  {@link XPathConstants}.
+     *         If <code>returnType</code> is not one of
+     *         the types defined in
+     *         {@link XPathConstants}.
      * @throws NullPointerException
-     *                                  If <code>source</code> or
-     *                                  <code>returnType</code> is
-     *                                  <code>null</code>.
+     *         If <code>source</code> or
+     *         <code>returnType</code> is
+     *         <code>null</code>.
      */
-    public Object evaluate(InputSource source, QName returnType)
-            throws XPathExpressionException;
+    public Object evaluate(InputSource source, QName returnType) throws XPathExpressionException;
 
     /**
      * <p>
      * Evaluate the compiled XPath expression in the context of the specified
      * <code>InputSource</code> and return the result as a <code>String</code>.
      * </p>
-     *
      * <p>
      * This method calls {@link #evaluate(InputSource source, QName returnType)}
      * with a <code>returnType</code> of {@link XPathConstants#STRING}.
      * </p>
-     *
      * <p>
      * See <a href="#XPathExpression-evaluation">Evaluation of XPath
      * Expressions</a> for context item evaluation, variable, function and QName
      * resolution and return type conversion.
      * </p>
-     *
      * <p>
      * If <code>source</code> is <code>null</code>, then a
      * <code>NullPointerException</code> is thrown.
      * </p>
      *
      * @param source
-     *               The <code>InputSource</code> of the document to evaluate
-     *               over.
-     *
+     *        The <code>InputSource</code> of the document to evaluate
+     *        over.
      * @return The <code>String</code> that is the result of evaluating the
      *         expression and converting the result to a <code>String</code>.
-     *
      * @throws XPathExpressionException
-     *                                  If the expression cannot be evaluated.
+     *         If the expression cannot be evaluated.
      * @throws NullPointerException
-     *                                  If <code>source</code> is
-     *                                  <code>null</code>.
+     *         If <code>source</code> is
+     *         <code>null</code>.
      */
     public String evaluate(InputSource source) throws XPathExpressionException;
 }

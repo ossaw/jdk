@@ -26,7 +26,6 @@ import javax.xml.transform.SourceLocator;
  * information about child and parent expressions, and give the originating
  * source information. A class that implements this interface does not lay any
  * claim to being directly executable.
- *
  * <p>
  * Note: This interface should not be considered stable. Only exprSetParent and
  * exprGetParent can be counted on to work reliably. Work in progress.

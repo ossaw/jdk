@@ -221,8 +221,7 @@ public class ORBDataParserImpl extends ParserImplTableBase implements ORBData {
         if (persistentPortInitialized) // this is a user-activated server
             return persistentServerPort;
         else {
-            throw wrapper.persistentServerportNotSet(
-                    CompletionStatus.COMPLETED_MAYBE);
+            throw wrapper.persistentServerportNotSet(CompletionStatus.COMPLETED_MAYBE);
         }
     }
 
@@ -257,8 +256,7 @@ public class ORBDataParserImpl extends ParserImplTableBase implements ORBData {
         if (persistentServerIdInitialized) {
             return persistentServerId;
         } else {
-            throw wrapper.persistentServeridNotSet(
-                    CompletionStatus.COMPLETED_MAYBE);
+            throw wrapper.persistentServeridNotSet(CompletionStatus.COMPLETED_MAYBE);
         }
     }
 
@@ -348,8 +346,7 @@ public class ORBDataParserImpl extends ParserImplTableBase implements ORBData {
     public ORBDataParserImpl(ORB orb, DataCollector coll) {
         super(ParserTable.get().getParserData());
         this.orb = orb;
-        wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.ORB_LIFECYCLE);
+        wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.ORB_LIFECYCLE);
         init(coll);
         complete();
     }

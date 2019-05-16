@@ -12,14 +12,12 @@ package java.lang.reflect;
  * {@code Error}) that is not assignable to any of the exception types declared
  * in the {@code throws} clause of the method that was invoked on the proxy
  * instance and dispatched to the invocation handler.
- *
  * <p>
  * An {@code UndeclaredThrowableException} instance contains the undeclared
  * checked exception that was thrown by the invocation handler, and it can be
  * retrieved with the {@code getUndeclaredThrowable()} method.
  * {@code UndeclaredThrowableException} extends {@code RuntimeException}, so it
  * is an unchecked exception that wraps a checked exception.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "undeclared checked
@@ -48,8 +46,8 @@ public class UndeclaredThrowableException extends RuntimeException {
      * {@code Throwable}.
      *
      * @param undeclaredThrowable
-     *                            the undeclared checked exception that was
-     *                            thrown
+     *        the undeclared checked exception that was
+     *        thrown
      */
     public UndeclaredThrowableException(Throwable undeclaredThrowable) {
         super((Throwable) null); // Disallow initCause
@@ -61,13 +59,12 @@ public class UndeclaredThrowableException extends RuntimeException {
      * {@code Throwable} and a detail message.
      *
      * @param undeclaredThrowable
-     *                            the undeclared checked exception that was
-     *                            thrown
+     *        the undeclared checked exception that was
+     *        thrown
      * @param s
-     *                            the detail message
+     *        the detail message
      */
-    public UndeclaredThrowableException(Throwable undeclaredThrowable,
-            String s) {
+    public UndeclaredThrowableException(Throwable undeclaredThrowable, String s) {
         super(s, null); // Disallow initCause
         this.undeclaredThrowable = undeclaredThrowable;
     }
@@ -75,7 +72,6 @@ public class UndeclaredThrowableException extends RuntimeException {
     /**
      * Returns the {@code Throwable} instance wrapped in this
      * {@code UndeclaredThrowableException}, which may be {@code null}.
-     *
      * <p>
      * This method predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of

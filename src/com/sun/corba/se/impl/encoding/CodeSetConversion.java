@@ -23,25 +23,20 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
 /**
  * Collection of classes, interfaces, and factory methods for CORBA code set
  * conversion.
- *
  * This is mainly used to shield other code from the sun.io converters which
  * might change, as well as provide some basic translation from conversion to
  * CORBA error exceptions. Some extra work is required here to facilitate the
  * way CORBA says it uses UTF-16 as of the 00-11-03 spec.
- *
  * REVISIT - Since the nio.Charset and nio.Charset.Encoder/Decoder use NIO
  * ByteBuffer and NIO CharBuffer, the interaction and interface between this
  * class and the CDR streams should be looked at more closely for optimizations
  * to avoid unnecessary copying of data between char[] & CharBuffer and byte[] &
  * ByteBuffer, especially DirectByteBuffers.
- *
  */
 public class CodeSetConversion {
     /**
      * Abstraction for char to byte conversion.
-     *
      * Must be used in the proper sequence:
-     *
      * 1) convert 2) Optional getNumBytes and/or getAlignment (if necessary) 3)
      * getBytes (see warning)
      */
@@ -108,11 +103,9 @@ public class CodeSetConversion {
      * CORBA versions.
      */
     private class JavaCTBConverter extends CTBConverter {
-        private ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                CORBALogDomains.RPC_ENCODING);
+        private ORBUtilSystemException wrapper = ORBUtilSystemException.get(CORBALogDomains.RPC_ENCODING);
 
-        private OMGSystemException omgWrapper = OMGSystemException.get(
-                CORBALogDomains.RPC_ENCODING);
+        private OMGSystemException omgWrapper = OMGSystemException.get(CORBALogDomains.RPC_ENCODING);
 
         // nio.Charset.CharsetEncoder actually does the work here
         // have to use it directly rather than through String's interface
@@ -142,8 +135,7 @@ public class CodeSetConversion {
         // What code set are we using?
         private OSFCodeSetRegistry.Entry codeset;
 
-        public JavaCTBConverter(OSFCodeSetRegistry.Entry codeset,
-                int alignmentForEncoding) {
+        public JavaCTBConverter(OSFCodeSetRegistry.Entry codeset, int alignmentForEncoding) {
 
             try {
                 ctb = cache.getCharToByteConverter(codeset.getName());
@@ -270,8 +262,7 @@ public class CodeSetConversion {
         // Using this constructor, we don't use a BOM and use the
         // byte order specified
         public UTF16CTBConverter(boolean littleEndian) {
-            super(littleEndian ? OSFCodeSetRegistry.UTF_16LE
-                    : OSFCodeSetRegistry.UTF_16BE, 2);
+            super(littleEndian ? OSFCodeSetRegistry.UTF_16LE : OSFCodeSetRegistry.UTF_16BE, 2);
         }
     }
 
@@ -281,11 +272,9 @@ public class CodeSetConversion {
      * CORBA versions.
      */
     private class JavaBTCConverter extends BTCConverter {
-        private ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                CORBALogDomains.RPC_ENCODING);
+        private ORBUtilSystemException wrapper = ORBUtilSystemException.get(CORBALogDomains.RPC_ENCODING);
 
-        private OMGSystemException omgWrapper = OMGSystemException.get(
-                CORBALogDomains.RPC_ENCODING);
+        private OMGSystemException omgWrapper = OMGSystemException.get(CORBALogDomains.RPC_ENCODING);
 
         protected CharsetDecoder btc;
         private char[] buffer;
@@ -396,7 +385,6 @@ public class CodeSetConversion {
      * Special converter for UTF16 since it's required to optionally support a
      * byte order marker while the internal Java converters either require it or
      * require that it isn't there.
-     *
      * The solution is to check for the byte order marker, and if we need to do
      * something differently, switch internal converters.
      */
@@ -442,8 +430,7 @@ public class CodeSetConversion {
          * Utility method for determining if a UTF-16 byte order marker is
          * present.
          */
-        private boolean hasUTF16ByteOrderMarker(byte[] array, int offset,
-                int length) {
+        private boolean hasUTF16ByteOrderMarker(byte[] array, int offset, int length) {
             // If there aren't enough bytes to represent the marker and data,
             // return false.
             if (length >= 4) {
@@ -475,26 +462,22 @@ public class CodeSetConversion {
      * CTB converter factory for single byte or variable length encodings.
      */
     public CTBConverter getCTBConverter(OSFCodeSetRegistry.Entry codeset) {
-        int alignment = (!codeset.isFixedWidth() ? 1
-                : codeset.getMaxBytesPerChar());
+        int alignment = (!codeset.isFixedWidth() ? 1 : codeset.getMaxBytesPerChar());
 
         return new JavaCTBConverter(codeset, alignment);
     }
 
     /**
      * CTB converter factory for multibyte (mainly fixed) encodings.
-     *
      * Because of the awkwardness with byte order markers and the possibility of
      * using UCS-2, you must specify both the endianness of the stream as well
      * as whether or not to use byte order markers if applicable. UCS-2 has no
      * byte order markers. UTF-16 has optional markers.
-     *
      * If you select useByteOrderMarkers, there is no guarantee that the
      * encoding will use the endianness specified.
-     *
      */
-    public CTBConverter getCTBConverter(OSFCodeSetRegistry.Entry codeset,
-            boolean littleEndian, boolean useByteOrderMarkers) {
+    public CTBConverter getCTBConverter(OSFCodeSetRegistry.Entry codeset, boolean littleEndian,
+            boolean useByteOrderMarkers) {
 
         // UCS2 doesn't have byte order markers, and we're encoding it
         // as UTF-16 since UCS2 isn't available in all Java platforms.
@@ -521,8 +504,7 @@ public class CodeSetConversion {
         //
         // This doesn't matter for GIOP 1.2 wchars and wstrings
         // since the encoded bytes are treated as an encapsulation.
-        int alignment = (!codeset.isFixedWidth() ? 1
-                : codeset.getMaxBytesPerChar());
+        int alignment = (!codeset.isFixedWidth() ? 1 : codeset.getMaxBytesPerChar());
 
         return new JavaCTBConverter(codeset, alignment);
     }
@@ -537,11 +519,9 @@ public class CodeSetConversion {
     /**
      * BTCConverter factory for fixed width multibyte encodings.
      */
-    public BTCConverter getBTCConverter(OSFCodeSetRegistry.Entry codeset,
-            boolean defaultToLittleEndian) {
+    public BTCConverter getBTCConverter(OSFCodeSetRegistry.Entry codeset, boolean defaultToLittleEndian) {
 
-        if (codeset == OSFCodeSetRegistry.UTF_16
-                || codeset == OSFCodeSetRegistry.UCS_2) {
+        if (codeset == OSFCodeSetRegistry.UTF_16 || codeset == OSFCodeSetRegistry.UCS_2) {
 
             return new UTF16BTCConverter(defaultToLittleEndian);
         } else {
@@ -552,7 +532,6 @@ public class CodeSetConversion {
     /**
      * Follows the code set negotiation algorithm in CORBA formal 99-10-07
      * 13.7.2.
-     *
      * Returns the proper negotiated OSF character encoding number or
      * CodeSetConversion.FALLBACK_CODESET.
      */
@@ -624,17 +603,15 @@ public class CodeSetConversion {
      * Perform the code set negotiation algorithm and come up with the two
      * encodings to use.
      */
-    public CodeSetComponentInfo.CodeSetContext negotiate(
-            CodeSetComponentInfo client, CodeSetComponentInfo server) {
-        int charData = selectEncoding(client.getCharComponent(), server
-                .getCharComponent());
+    public CodeSetComponentInfo.CodeSetContext negotiate(CodeSetComponentInfo client,
+            CodeSetComponentInfo server) {
+        int charData = selectEncoding(client.getCharComponent(), server.getCharComponent());
 
         if (charData == CodeSetConversion.FALLBACK_CODESET) {
             charData = OSFCodeSetRegistry.UTF_8.getNumber();
         }
 
-        int wcharData = selectEncoding(client.getWCharComponent(), server
-                .getWCharComponent());
+        int wcharData = selectEncoding(client.getWCharComponent(), server.getWCharComponent());
 
         if (wcharData == CodeSetConversion.FALLBACK_CODESET) {
             wcharData = OSFCodeSetRegistry.UTF_16.getNumber();

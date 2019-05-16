@@ -59,22 +59,19 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class ARRAYLENGTH extends Instruction implements ExceptionThrower,
-        StackProducer {
+public class ARRAYLENGTH extends Instruction implements ExceptionThrower, StackProducer {
     /**
      * Get length of array
      */
     public ARRAYLENGTH() {
-        super(com.sun.org.apache.bcel.internal.Constants.ARRAYLENGTH,
-                (short) 1);
+        super(com.sun.org.apache.bcel.internal.Constants.ARRAYLENGTH, (short) 1);
     }
 
     /**
      * @return exceptions this instruction may cause
      */
     public Class[] getExceptions() {
-        return new Class[] {
-                com.sun.org.apache.bcel.internal.ExceptionConstants.NULL_POINTER_EXCEPTION };
+        return new Class[] { com.sun.org.apache.bcel.internal.ExceptionConstants.NULL_POINTER_EXCEPTION };
     }
 
     /**
@@ -84,7 +81,7 @@ public class ARRAYLENGTH extends Instruction implements ExceptionThrower,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitExceptionThrower(this);

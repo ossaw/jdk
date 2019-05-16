@@ -13,7 +13,6 @@ import java.io.InvalidObjectException;
  * iteration order of the set; in particular, it does not guarantee that the
  * order will remain constant over time. This class permits the <tt>null</tt>
  * element.
- *
  * <p>
  * This class offers constant time performance for the basic operations (
  * <tt>add</tt>, <tt>remove</tt>, <tt>contains</tt> and <tt>size</tt>), assuming
@@ -23,14 +22,12 @@ import java.io.InvalidObjectException;
  * of the backing <tt>HashMap</tt> instance (the number of buckets). Thus, it's
  * very important not to set the initial capacity too high (or the load factor
  * too low) if iteration performance is important.
- *
  * <p>
  * <strong>Note that this implementation is not synchronized.</strong> If
  * multiple threads access a hash set concurrently, and at least one of the
  * threads modifies the set, it <i>must</i> be synchronized externally. This is
  * typically accomplished by synchronizing on some object that naturally
  * encapsulates the set.
- *
  * If no such object exists, the set should be "wrapped" using the
  * {@link Collections#synchronizedSet Collections.synchronizedSet} method. This
  * is best done at creation time, to prevent accidental unsynchronized access to
@@ -39,7 +36,6 @@ import java.io.InvalidObjectException;
  * <pre>
  *   Set s = Collections.synchronizedSet(new HashSet(...));
  * </pre>
- *
  * <p>
  * The iterators returned by this class's <tt>iterator</tt> method are
  * <i>fail-fast</i>: if the set is modified at any time after the iterator is
@@ -48,7 +44,6 @@ import java.io.InvalidObjectException;
  * face of concurrent modification, the iterator fails quickly and cleanly,
  * rather than risking arbitrary, non-deterministic behavior at an undetermined
  * time in the future.
- *
  * <p>
  * Note that the fail-fast behavior of an iterator cannot be guaranteed as it
  * is, generally speaking, impossible to make any hard guarantees in the
@@ -57,7 +52,6 @@ import java.io.InvalidObjectException;
  * it would be wrong to write a program that depended on this exception for its
  * correctness: <i>the fail-fast behavior of iterators should be used only to
  * detect bugs.</i>
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -65,7 +59,6 @@ import java.io.InvalidObjectException;
  *
  * @param <E>
  *        the type of elements maintained by this set
- *
  * @author Josh Bloch
  * @author Neal Gafter
  * @see Collection
@@ -75,8 +68,7 @@ import java.io.InvalidObjectException;
  * @since 1.2
  */
 
-public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
-        java.io.Serializable {
+public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, java.io.Serializable {
     static final long serialVersionUID = -5024744406713321676L;
 
     private transient HashMap<E, Object> map;
@@ -99,9 +91,9 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      * collection.
      *
      * @param c
-     *          the collection whose elements are to be placed into this set
+     *        the collection whose elements are to be placed into this set
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public HashSet(Collection<? extends E> c) {
         map = new HashMap<>(Math.max((int) (c.size() / .75f) + 1, 16));
@@ -113,13 +105,13 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      * the specified initial capacity and the specified load factor.
      *
      * @param initialCapacity
-     *                        the initial capacity of the hash map
+     *        the initial capacity of the hash map
      * @param loadFactor
-     *                        the load factor of the hash map
+     *        the load factor of the hash map
      * @throws IllegalArgumentException
-     *                                  if the initial capacity is less than
-     *                                  zero, or if the load
-     *                                  factor is nonpositive
+     *         if the initial capacity is less than
+     *         zero, or if the load
+     *         factor is nonpositive
      */
     public HashSet(int initialCapacity, float loadFactor) {
         map = new HashMap<>(initialCapacity, loadFactor);
@@ -130,10 +122,10 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      * the specified initial capacity and default load factor (0.75).
      *
      * @param initialCapacity
-     *                        the initial capacity of the hash table
+     *        the initial capacity of the hash table
      * @throws IllegalArgumentException
-     *                                  if the initial capacity is less than
-     *                                  zero
+     *         if the initial capacity is less than
+     *         zero
      */
     public HashSet(int initialCapacity) {
         map = new HashMap<>(initialCapacity);
@@ -146,17 +138,17 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      * load factor.
      *
      * @param initialCapacity
-     *                        the initial capacity of the hash map
+     *        the initial capacity of the hash map
      * @param loadFactor
-     *                        the load factor of the hash map
+     *        the load factor of the hash map
      * @param dummy
-     *                        ignored (distinguishes this constructor from other
-     *                        int, float
-     *                        constructor.)
+     *        ignored (distinguishes this constructor from other
+     *        int, float
+     *        constructor.)
      * @throws IllegalArgumentException
-     *                                  if the initial capacity is less than
-     *                                  zero, or if the load
-     *                                  factor is nonpositive
+     *         if the initial capacity is less than
+     *         zero, or if the load
+     *         factor is nonpositive
      */
     HashSet(int initialCapacity, float loadFactor, boolean dummy) {
         map = new LinkedHashMap<>(initialCapacity, loadFactor);
@@ -198,7 +190,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
      *
      * @param o
-     *          element whose presence in this set is to be tested
+     *        element whose presence in this set is to be tested
      * @return <tt>true</tt> if this set contains the specified element
      */
     public boolean contains(Object o) {
@@ -214,7 +206,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      * returns <tt>false</tt>.
      *
      * @param e
-     *          element to be added to this set
+     *        element to be added to this set
      * @return <tt>true</tt> if this set did not already contain the specified
      *         element
      */
@@ -231,7 +223,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      * call). (This set will not contain the element once the call returns.)
      *
      * @param o
-     *          object to be removed from this set, if present
+     *        object to be removed from this set, if present
      * @return <tt>true</tt> if the set contained the specified element
      */
     public boolean remove(Object o) {
@@ -273,8 +265,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      *             followed by all of its elements (each an Object) in no
      *             particular order.
      */
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         // Write out any hidden serialization magic
         s.defaultWriteObject();
 
@@ -294,8 +285,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
      * Reconstitute the <tt>HashSet</tt> instance from a stream (that is,
      * deserialize it).
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         // Read in any hidden serialization magic
         s.defaultReadObject();
 
@@ -308,8 +298,7 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
         // Read load factor and verify positive and non NaN.
         float loadFactor = s.readFloat();
         if (loadFactor <= 0 || Float.isNaN(loadFactor)) {
-            throw new InvalidObjectException("Illegal load factor: "
-                    + loadFactor);
+            throw new InvalidObjectException("Illegal load factor: " + loadFactor);
         }
 
         // Read size and verify non-negative.
@@ -320,13 +309,11 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
 
         // Set the capacity according to the size and load factor ensuring that
         // the HashMap is at least 25% full but clamping to maximum capacity.
-        capacity = (int) Math.min(size * Math.min(1 / loadFactor, 4.0f),
-                HashMap.MAXIMUM_CAPACITY);
+        capacity = (int) Math.min(size * Math.min(1 / loadFactor, 4.0f), HashMap.MAXIMUM_CAPACITY);
 
         // Create backing HashMap
-        map = (((HashSet<?>) this) instanceof LinkedHashSet
-                ? new LinkedHashMap<E, Object>(capacity, loadFactor)
-                : new HashMap<E, Object>(capacity, loadFactor));
+        map = (((HashSet<?>) this) instanceof LinkedHashSet ? new LinkedHashMap<E, Object>(capacity,
+                loadFactor) : new HashMap<E, Object>(capacity, loadFactor));
 
         // Read in all elements in the proper order.
         for (int i = 0; i < size; i++) {
@@ -339,7 +326,6 @@ public class HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable,
     /**
      * Creates a <em><a href="Spliterator.html#binding">late-binding</a></em>
      * and <em>fail-fast</em> {@link Spliterator} over the elements in this set.
-     *
      * <p>
      * The {@code Spliterator} reports {@link Spliterator#SIZED} and
      * {@link Spliterator#DISTINCT}. Overriding implementations should document

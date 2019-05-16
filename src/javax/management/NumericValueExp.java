@@ -17,13 +17,11 @@ import java.security.AccessController;
 /**
  * This class represents numbers that are arguments to relational constraints. A
  * NumericValueExp may be used anywhere a ValueExp is required.
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is
  * <code>-4679739485102359104L</code>.
  *
  * @serial include
- *
  * @since 1.5
  */
 @SuppressWarnings("serial") // serialVersionUID not constant
@@ -42,14 +40,13 @@ class NumericValueExp extends QueryEval implements ValueExp {
     private static final long newSerialVersionUID = -4679739485102359104L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("longVal", Long.TYPE), new ObjectStreamField(
-                    "doubleVal", Double.TYPE), new ObjectStreamField(
-                            "valIsLong", Boolean.TYPE) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField("longVal",
+            Long.TYPE), new ObjectStreamField("doubleVal", Double.TYPE), new ObjectStreamField("valIsLong",
+                    Boolean.TYPE) };
     //
     // Serializable fields in new serial form
-    private static final ObjectStreamField[] newSerialPersistentFields = {
-            new ObjectStreamField("val", Number.class) };
+    private static final ObjectStreamField[] newSerialPersistentFields = { new ObjectStreamField("val",
+            Number.class) };
     //
     // Actual serial version and serial form
     private static final long serialVersionUID;
@@ -57,7 +54,6 @@ class NumericValueExp extends QueryEval implements ValueExp {
     /**
      * @serialField val
      *              Number The numeric value
-     *
      *              <p>
      *              The <b>serialVersionUID</b> of this class is
      *              <code>-4679739485102359104L</code>.
@@ -145,26 +141,22 @@ class NumericValueExp extends QueryEval implements ValueExp {
      * Applies the ValueExp on a MBean.
      *
      * @param name
-     *             The name of the MBean on which the ValueExp will be applied.
-     *
+     *        The name of the MBean on which the ValueExp will be applied.
      * @return The <CODE>ValueExp</CODE>.
-     *
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
-    public ValueExp apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public ValueExp apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         return this;
     }
 
     /**
      * Deserializes a {@link NumericValueExp} from an {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         if (compat) {
             // Read an object serialized in the old serial form
             //

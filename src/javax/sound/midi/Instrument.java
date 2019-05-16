@@ -40,18 +40,16 @@ public abstract class Instrument extends SoundbankResource {
      * program location indicated by the <code>Patch</code> object.
      * 
      * @param soundbank
-     *                  sound bank containing the instrument
+     *        sound bank containing the instrument
      * @param patch
-     *                  the patch of this instrument
+     *        the patch of this instrument
      * @param name
-     *                  the name of this instrument
+     *        the name of this instrument
      * @param dataClass
-     *                  the class used to represent the sample's data.
-     *
+     *        the class used to represent the sample's data.
      * @see Synthesizer#loadInstrument(Instrument)
      */
-    protected Instrument(Soundbank soundbank, Patch patch, String name,
-            Class<?> dataClass) {
+    protected Instrument(Soundbank soundbank, Patch patch, String name, Class<?> dataClass) {
 
         super(soundbank, name, dataClass);
         this.patch = patch;

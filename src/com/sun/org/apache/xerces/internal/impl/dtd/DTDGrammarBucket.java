@@ -32,9 +32,7 @@ import java.util.Map;
  * possible inclusion.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
- *
  */
 public class DTDGrammarBucket {
 
@@ -73,11 +71,10 @@ public class DTDGrammarBucket {
      * irrelevant).
      *
      * @param grammar
-     *                The grammar.
+     *        The grammar.
      */
     public void putGrammar(DTDGrammar grammar) {
-        XMLDTDDescription desc = (XMLDTDDescription) grammar
-                .getGrammarDescription();
+        XMLDTDDescription desc = (XMLDTDDescription) grammar.getGrammarDescription();
         fGrammars.put(desc, grammar);
     } // putGrammar(DTDGrammar)
 

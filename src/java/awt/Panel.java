@@ -38,7 +38,7 @@ public class Panel extends Container implements Accessible {
      * Creates a new panel with the specified layout manager.
      * 
      * @param layout
-     *               the layout manager for this panel.
+     *        the layout manager for this panel.
      * @since JDK1.1
      */
     public Panel(LayoutManager layout) {

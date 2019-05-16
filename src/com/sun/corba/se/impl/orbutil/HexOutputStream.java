@@ -17,8 +17,8 @@ import java.io.IOException;
  * @author Jeff Nisewanger
  */
 public class HexOutputStream extends OutputStream {
-    static private final char hex[] = { '0', '1', '2', '3', '4', '5', '6', '7',
-            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    static private final char hex[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
+            'e', 'f' };
 
     private StringWriter writer;
 
@@ -26,7 +26,7 @@ public class HexOutputStream extends OutputStream {
      * Creates a new HexOutputStream.
      * 
      * @param w
-     *          The underlying StringWriter.
+     *        The underlying StringWriter.
      */
     public HexOutputStream(StringWriter w) {
         writer = w;
@@ -48,8 +48,7 @@ public class HexOutputStream extends OutputStream {
         write(b, 0, b.length);
     }
 
-    public synchronized void write(byte[] b, int off, int len)
-            throws IOException {
+    public synchronized void write(byte[] b, int off, int len) throws IOException {
         for (int i = 0; i < len; i++) {
             write(b[off + i]);
         }

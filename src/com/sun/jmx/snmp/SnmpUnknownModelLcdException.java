@@ -21,7 +21,7 @@ public class SnmpUnknownModelLcdException extends Exception {
      * Constructor.
      * 
      * @param msg
-     *            The exception msg to display.
+     *        The exception msg to display.
      */
     public SnmpUnknownModelLcdException(String msg) {
         super(msg);

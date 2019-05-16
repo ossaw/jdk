@@ -71,8 +71,7 @@ package javax.xml.soap;
  * object, creates a new <code>Name</code> object with all three.
  * 
  * <PRE>
- * Name name = se.createName("GetLastTradePrice", "WOMBAT",
- *         "http://www.wombat.org/trader");
+ * Name name = se.createName("GetLastTradePrice", "WOMBAT", "http://www.wombat.org/trader");
  * </PRE>
  */
 public interface SOAPEnvelope extends SOAPElement {
@@ -85,18 +84,17 @@ public interface SOAPEnvelope extends SOAPElement {
      * SOAP/XML document.
      *
      * @param localName
-     *                  a <code>String</code> giving the local name
+     *        a <code>String</code> giving the local name
      * @param prefix
-     *                  a <code>String</code> giving the prefix of the namespace
+     *        a <code>String</code> giving the prefix of the namespace
      * @param uri
-     *                  a <code>String</code> giving the URI of the namespace
+     *        a <code>String</code> giving the URI of the namespace
      * @return a <code>Name</code> object initialized with the given local name,
      *         namespace prefix, and namespace URI
      * @throws SOAPException
-     *                       if there is a SOAP error
+     *         if there is a SOAP error
      */
-    public abstract Name createName(String localName, String prefix, String uri)
-            throws SOAPException;
+    public abstract Name createName(String localName, String prefix, String uri) throws SOAPException;
 
     /**
      * Creates a new <code>Name</code> object initialized with the given local
@@ -106,10 +104,10 @@ public interface SOAPEnvelope extends SOAPElement {
      * SOAP/XML document.
      *
      * @param localName
-     *                  a <code>String</code> giving the local name
+     *        a <code>String</code> giving the local name
      * @return a <code>Name</code> object initialized with the given local name
      * @throws SOAPException
-     *                       if there is a SOAP error
+     *         if there is a SOAP error
      */
     public abstract Name createName(String localName) throws SOAPException;
 
@@ -127,8 +125,8 @@ public interface SOAPEnvelope extends SOAPElement {
      * @return the <code>SOAPHeader</code> object or <code>null</code> if there
      *         is none
      * @exception SOAPException
-     *                          if there is a problem obtaining the
-     *                          <code>SOAPHeader</code> object
+     *            if there is a problem obtaining the
+     *            <code>SOAPHeader</code> object
      */
     public SOAPHeader getHeader() throws SOAPException;
 
@@ -146,9 +144,9 @@ public interface SOAPEnvelope extends SOAPElement {
      *         <code>SOAPEnvelope</code> object or <code>null</code> if there is
      *         none
      * @exception SOAPException
-     *                          if there is a problem obtaining the
-     *                          <code>SOAPBody</code>
-     *                          object
+     *            if there is a problem obtaining the
+     *            <code>SOAPBody</code>
+     *            object
      */
     public SOAPBody getBody() throws SOAPException;
 
@@ -161,11 +159,10 @@ public interface SOAPEnvelope extends SOAPElement {
      * header has been removed.
      *
      * @return the new <code>SOAPHeader</code> object
-     *
      * @exception SOAPException
-     *                          if this <code>SOAPEnvelope</code> object already
-     *                          contains
-     *                          a valid <code>SOAPHeader</code> object
+     *            if this <code>SOAPEnvelope</code> object already
+     *            contains
+     *            a valid <code>SOAPHeader</code> object
      */
     public SOAPHeader addHeader() throws SOAPException;
 
@@ -178,11 +175,10 @@ public interface SOAPEnvelope extends SOAPElement {
      * been removed.
      *
      * @return the new <code>SOAPBody</code> object
-     *
      * @exception SOAPException
-     *                          if this <code>SOAPEnvelope</code> object already
-     *                          contains
-     *                          a valid <code>SOAPBody</code> object
+     *            if this <code>SOAPEnvelope</code> object already
+     *            contains
+     *            a valid <code>SOAPBody</code> object
      */
     public SOAPBody addBody() throws SOAPException;
 }

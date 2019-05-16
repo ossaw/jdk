@@ -57,8 +57,7 @@ public abstract class ServiceContext {
      * read from in. Note that the service context id has been consumed from the
      * input stream before this object is constructed.
      */
-    protected ServiceContext(InputStream s, GIOPVersion gv)
-            throws SystemException {
+    protected ServiceContext(InputStream s, GIOPVersion gv) throws SystemException {
         in = s;
     }
 
@@ -72,8 +71,7 @@ public abstract class ServiceContext {
      * for writing the service context to a request or reply header.
      */
     public void write(OutputStream s, GIOPVersion gv) throws SystemException {
-        EncapsOutputStream os = sun.corba.OutputStreamFactory
-                .newEncapsOutputStream((ORB) (s.orb()), gv);
+        EncapsOutputStream os = sun.corba.OutputStreamFactory.newEncapsOutputStream((ORB) (s.orb()), gv);
         os.putEndian();
         writeData(os);
         byte[] data = os.toByteArray();

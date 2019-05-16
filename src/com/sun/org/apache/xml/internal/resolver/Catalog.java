@@ -42,13 +42,11 @@ import javax.xml.parsers.SAXParserFactory;
 
 /**
  * Represents OASIS Open Catalog files.
- *
  * <p>
  * This class implements the semantics of OASIS Open Catalog files (defined by
  * <a href="http://www.oasis-open.org/html/a401.htm">OASIS Technical Resolution
  * 9401:1997 (Amendment 2 to TR 9401)</a>).
  * </p>
- *
  * <p>
  * The primary purpose of the Catalog is to associate resources in the document
  * with local system identifiers. Some entities (document types, XML entities,
@@ -58,18 +56,15 @@ import javax.xml.parsers.SAXParserFactory;
  * the Catalog semantics from the SGML days when system identifiers were
  * optional.)
  * </p>
- *
  * <p>
  * The system identifiers returned by the resolution methods in this class are
  * valid, i.e. usable by, and in fact constructed by, the <tt>java.net.URL</tt>
  * class. Unfortunately, this class seems to behave in somewhat non-standard
  * ways and the system identifiers returned may not be directly usable in a
  * browser or filesystem context.
- *
  * <p>
  * This class recognizes all of the Catalog entries defined in TR9401:1997:
  * </p>
- *
  * <ul>
  * <li><b>BASE</b> changes the base URI for resolving relative system
  * identifiers. The initial base URI is the URI of the location of the catalog
@@ -114,7 +109,6 @@ import javax.xml.parsers.SAXParserFactory;
  * <li><b>SYSTEM</b> maps a system identifier to another system identifier.</li>
  * <li><b>URI</b> maps a URI to another URI.</li>
  * </ul>
- *
  * <p>
  * Note that BASE entries are treated as described by RFC2396. In particular,
  * this has the counter-intuitive property that after a BASE entry identifing
@@ -124,26 +118,22 @@ import javax.xml.parsers.SAXParserFactory;
  * discarded as a filename would in a URI for a resource:
  * "http://example.com/a/b/c/".
  * </p>
- *
  * <p>
  * Note that subordinate catalogs (all catalogs except the first, including
  * CATALOG and DELEGATE* catalogs) are only loaded if and when they are
  * required.
  * </p>
- *
  * <p>
  * This class relies on classes which implement the CatalogReader interface to
  * actually load catalog files. This allows the catalog semantics to be
  * implemented for TR9401 text-based catalogs, XML catalogs, or any number of
  * other storage formats.
  * </p>
- *
  * <p>
  * Additional catalogs may also be loaded with the {@link #parseCatalog} method.
  * </p>
  * </dd>
  * </dl>
- *
  * <p>
  * <b>Change Log:</b>
  * </p>
@@ -191,12 +181,9 @@ import javax.xml.parsers.SAXParserFactory;
  *
  * @see CatalogReader
  * @see CatalogEntry
- *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  * @version 1.0
- *
  *          <p>
  *          Derived from public domain code originally published by Arbortext,
  *          Inc.
@@ -219,16 +206,13 @@ public class Catalog {
     public static final int SGMLDECL = CatalogEntry.addEntryType("SGMLDECL", 1);
 
     /** The DELEGATE_PUBLIC Catalog Entry type. */
-    public static final int DELEGATE_PUBLIC = CatalogEntry.addEntryType(
-            "DELEGATE_PUBLIC", 2);
+    public static final int DELEGATE_PUBLIC = CatalogEntry.addEntryType("DELEGATE_PUBLIC", 2);
 
     /** The DELEGATE_SYSTEM Catalog Entry type. */
-    public static final int DELEGATE_SYSTEM = CatalogEntry.addEntryType(
-            "DELEGATE_SYSTEM", 2);
+    public static final int DELEGATE_SYSTEM = CatalogEntry.addEntryType("DELEGATE_SYSTEM", 2);
 
     /** The DELEGATE_URI Catalog Entry type. */
-    public static final int DELEGATE_URI = CatalogEntry.addEntryType(
-            "DELEGATE_URI", 2);
+    public static final int DELEGATE_URI = CatalogEntry.addEntryType("DELEGATE_URI", 2);
 
     /** The DOCTYPE Catalog Entry type. */
     public static final int DOCTYPE = CatalogEntry.addEntryType("DOCTYPE", 2);
@@ -255,18 +239,14 @@ public class Catalog {
     public static final int URI = CatalogEntry.addEntryType("URI", 2);
 
     /** The REWRITE_SYSTEM Catalog Entry type. */
-    public static final int REWRITE_SYSTEM = CatalogEntry.addEntryType(
-            "REWRITE_SYSTEM", 2);
+    public static final int REWRITE_SYSTEM = CatalogEntry.addEntryType("REWRITE_SYSTEM", 2);
 
     /** The REWRITE_URI Catalog Entry type. */
-    public static final int REWRITE_URI = CatalogEntry.addEntryType(
-            "REWRITE_URI", 2);
+    public static final int REWRITE_URI = CatalogEntry.addEntryType("REWRITE_URI", 2);
     /** The SYSTEM_SUFFIX Catalog Entry type. */
-    public static final int SYSTEM_SUFFIX = CatalogEntry.addEntryType(
-            "SYSTEM_SUFFIX", 2);
+    public static final int SYSTEM_SUFFIX = CatalogEntry.addEntryType("SYSTEM_SUFFIX", 2);
     /** The URI_SUFFIX Catalog Entry type. */
-    public static final int URI_SUFFIX = CatalogEntry.addEntryType("URI_SUFFIX",
-            2);
+    public static final int URI_SUFFIX = CatalogEntry.addEntryType("URI_SUFFIX", 2);
 
     /**
      * The base URI for relative system identifiers in the catalog. This may be
@@ -288,7 +268,6 @@ public class Catalog {
 
     /**
      * A vector of catalog files to be loaded.
-     *
      * <p>
      * This list is initially established by <code>loadSystemCatalogs</code>
      * when it parses the system catalog list, but CATALOG entries may
@@ -303,7 +282,6 @@ public class Catalog {
     /**
      * A vector of catalog files constructed during processing of CATALOG
      * entries in the current catalog.
-     *
      * <p>
      * This two-level system is actually necessary to correctly implement the
      * semantics of the CATALOG entry. If one catalog file includes another with
@@ -312,7 +290,6 @@ public class Catalog {
      * other words, the CATALOG entry cannot insert anything into the middle of
      * a catalog file.
      * </p>
-     *
      * <p>
      * When processing reaches the end of each catalog files, any elements on
      * this vector are added to the front of the <code>catalogFiles</code>
@@ -325,19 +302,16 @@ public class Catalog {
 
     /**
      * A vector of Catalogs.
-     *
      * <p>
      * The semantics of Catalog resolution are such that each catalog is
      * effectively a list of Catalogs (in other words, a recursive list of
      * Catalog instances).
      * </p>
-     *
      * <p>
      * Catalogs that are processed as the result of CATALOG or DELEGATE* entries
      * are subordinate to the catalog that contained them, but they may in turn
      * have subordinate catalogs.
      * </p>
-     *
      * <p>
      * Catalogs are only loaded when they are needed, so this vector initially
      * contains a list of Catalog filenames (URLs). If, during processing, one
@@ -350,14 +324,12 @@ public class Catalog {
     /**
      * A vector of DELEGATE* Catalog entries constructed during processing of
      * the Catalog.
-     *
      * <p>
      * This two-level system has two purposes; first, it allows us to sort the
      * DELEGATE* entries by the length of the partial public identifier so that
      * a linear search encounters them in the correct order and second, it puts
      * them all at the end of the Catalog.
      * </p>
-     *
      * <p>
      * When processing reaches the end of each catalog file, any elements on
      * this vector are added to the end of the <code>catalogEntries</code>
@@ -369,7 +341,6 @@ public class Catalog {
 
     /**
      * A hash of CatalogReaders.
-     *
      * <p>
      * This hash maps MIME types to elements in the readerArr vector. This
      * allows the Catalog to quickly locate the reader for a particular MIME
@@ -380,7 +351,6 @@ public class Catalog {
 
     /**
      * A vector of CatalogReaders.
-     *
      * <p>
      * This vector contains all of the readers in the order that they were
      * added. In the event that a catalog is read from a file, where the MIME
@@ -391,7 +361,6 @@ public class Catalog {
 
     /**
      * Constructs an empty Catalog.
-     *
      * <p>
      * The constructor interrogates the relevant system properties using the
      * default (static) CatalogManager and initializes the catalog data
@@ -404,7 +373,6 @@ public class Catalog {
 
     /**
      * Constructs an empty Catalog with a specific CatalogManager.
-     *
      * <p>
      * The constructor interrogates the relevant system properties using the
      * specified Catalog Manager and initializes the catalog data structures.
@@ -416,7 +384,6 @@ public class Catalog {
 
     /**
      * Return the CatalogManager used by this catalog.
-     *
      */
     public CatalogManager getCatalogManager() {
         return catalogManager;
@@ -424,7 +391,6 @@ public class Catalog {
 
     /**
      * Establish the CatalogManager used by this catalog.
-     *
      */
     public void setCatalogManager(CatalogManager manager) {
         catalogManager = manager;
@@ -434,8 +400,7 @@ public class Catalog {
      * Setup readers.
      */
     public void setupReaders() {
-        SAXParserFactory spf = catalogManager.useServicesMechanism()
-                ? SAXParserFactory.newInstance()
+        SAXParserFactory spf = catalogManager.useServicesMechanism() ? SAXParserFactory.newInstance()
                 : new SAXParserFactoryImpl();
         spf.setNamespaceAware(true);
         spf.setValidating(false);
@@ -445,8 +410,7 @@ public class Catalog {
         saxReader.setCatalogParser(null, "XMLCatalog",
                 "com.sun.org.apache.xml.internal.resolver.readers.XCatalogReader");
 
-        saxReader.setCatalogParser(OASISXMLCatalogReader.namespaceName,
-                "catalog",
+        saxReader.setCatalogParser(OASISXMLCatalogReader.namespaceName, "catalog",
                 "com.sun.org.apache.xml.internal.resolver.readers.OASISXMLCatalogReader");
 
         addReader("application/xml", saxReader);
@@ -457,19 +421,16 @@ public class Catalog {
 
     /**
      * Add a new CatalogReader to the Catalog.
-     *
      * <p>
      * This method allows you to add a new CatalogReader to the catalog. The
      * reader will be associated with the specified mimeType. You can only have
      * one reader per mimeType.
      * </p>
-     *
      * <p>
      * In the absence of a mimeType (e.g., when reading a catalog directly from
      * a file on the local system), the readers are attempted in the order that
      * you add them to the Catalog.
      * </p>
-     *
      * <p>
      * Note that subordinate catalogs (created by CATALOG or DELEGATE* entries)
      * get a copy of the set of readers present in the primary catalog when they
@@ -479,9 +440,9 @@ public class Catalog {
      * </p>
      *
      * @param mimeType
-     *                 The MIME type associated with this reader.
+     *        The MIME type associated with this reader.
      * @param reader
-     *                 The CatalogReader to use.
+     *        The CatalogReader to use.
      */
     public void addReader(String mimeType, CatalogReader reader) {
         if (readerMap.containsKey(mimeType)) {
@@ -496,14 +457,13 @@ public class Catalog {
 
     /**
      * Copies the reader list from the current Catalog to a new Catalog.
-     *
      * <p>
      * This method is used internally when constructing a new catalog. It copies
      * the current reader associations over to the new catalog.
      * </p>
      *
      * @param newCatalog
-     *                   The new Catalog.
+     *        The new Catalog.
      */
     protected void copyReaders(Catalog newCatalog) {
         // Have to copy the readers in the right order...convert hash to arr
@@ -527,13 +487,11 @@ public class Catalog {
 
     /**
      * Create a new Catalog object.
-     *
      * <p>
      * This method constructs a new instance of the running Catalog class (which
      * might be a subtype of com.sun.org.apache.xml.internal.resolver.Catalog).
      * All new catalogs are managed by the same CatalogManager.
      * </p>
-     *
      * <p>
      * N.B. All Catalog subtypes should call newCatalog() to construct a new
      * Catalog. Do not simply use "new Subclass()" since that will confuse
@@ -549,17 +507,13 @@ public class Catalog {
             copyReaders(c);
             return c;
         } catch (ClassNotFoundException cnfe) {
-            catalogManager.debug.message(1, "Class Not Found Exception: "
-                    + catalogClass);
+            catalogManager.debug.message(1, "Class Not Found Exception: " + catalogClass);
         } catch (IllegalAccessException iae) {
-            catalogManager.debug.message(1, "Illegal Access Exception: "
-                    + catalogClass);
+            catalogManager.debug.message(1, "Illegal Access Exception: " + catalogClass);
         } catch (InstantiationException ie) {
-            catalogManager.debug.message(1, "Instantiation Exception: "
-                    + catalogClass);
+            catalogManager.debug.message(1, "Instantiation Exception: " + catalogClass);
         } catch (ClassCastException cce) {
-            catalogManager.debug.message(1, "Class Cast Exception: "
-                    + catalogClass);
+            catalogManager.debug.message(1, "Class Cast Exception: " + catalogClass);
         } catch (Exception e) {
             catalogManager.debug.message(1, "Other Exception: " + catalogClass);
         }
@@ -579,7 +533,6 @@ public class Catalog {
 
     /**
      * Returns the default override setting associated with this catalog.
-     *
      * <p>
      * All catalog files loaded by this catalog will have the initial override
      * setting specified by this default.
@@ -595,18 +548,17 @@ public class Catalog {
 
     /**
      * Load the system catalog files.
-     *
      * <p>
      * The method adds all of the catalogs specified in the
      * <tt>xml.catalog.files</tt> property to the Catalog list.
      * </p>
      *
      * @throws MalformedURLException
-     *                               One of the system catalogs is identified
-     *                               with a filename that
-     *                               is not a valid URL.
+     *         One of the system catalogs is identified
+     *         with a filename that
+     *         is not a valid URL.
      * @throws IOException
-     *                               One of the system catalogs cannot be read.
+     *         One of the system catalogs cannot be read.
      */
     public void loadSystemCatalogs() throws MalformedURLException, IOException {
 
@@ -640,16 +592,14 @@ public class Catalog {
      * Parse a catalog file, augmenting internal data structures.
      *
      * @param fileName
-     *                 The filename of the catalog file to process
-     *
+     *        The filename of the catalog file to process
      * @throws MalformedURLException
-     *                               The fileName cannot be turned into a valid
-     *                               URL.
+     *         The fileName cannot be turned into a valid
+     *         URL.
      * @throws IOException
-     *                               Error reading catalog file.
+     *         Error reading catalog file.
      */
-    public synchronized void parseCatalog(String fileName)
-            throws MalformedURLException, IOException {
+    public synchronized void parseCatalog(String fileName) throws MalformedURLException, IOException {
 
         default_override = catalogManager.getPreferPublic();
         catalogManager.debug.message(4, "Parse catalog: " + fileName);
@@ -665,28 +615,25 @@ public class Catalog {
 
     /**
      * Parse a catalog file, augmenting internal data structures.
-     *
      * <p>
      * Catalogs retrieved over the net may have an associated MIME type. The
      * MIME type can be used to select an appropriate reader.
      * </p>
      *
      * @param mimeType
-     *                 The MIME type of the catalog file.
+     *        The MIME type of the catalog file.
      * @param is
-     *                 The InputStream from which the catalog should be read
-     *
+     *        The InputStream from which the catalog should be read
      * @throws CatalogException
-     *                          Failed to load catalog mimeType.
+     *         Failed to load catalog mimeType.
      * @throws IOException
-     *                          Error reading catalog file.
+     *         Error reading catalog file.
      */
-    public synchronized void parseCatalog(String mimeType, InputStream is)
-            throws IOException, CatalogException {
+    public synchronized void parseCatalog(String mimeType, InputStream is) throws IOException,
+            CatalogException {
 
         default_override = catalogManager.getPreferPublic();
-        catalogManager.debug.message(4, "Parse " + mimeType
-                + " catalog on input stream");
+        catalogManager.debug.message(4, "Parse " + mimeType + " catalog on input stream");
 
         CatalogReader reader = null;
 
@@ -709,7 +656,6 @@ public class Catalog {
 
     /**
      * Parse a catalog document, augmenting internal data structures.
-     *
      * <p>
      * This method supports catalog files stored in jar files: e.g.,
      * jar:file:///path/to/filename.jar!/path/to/catalog.xml". That URI doesn't
@@ -717,16 +663,14 @@ public class Catalog {
      * parseCatalog(String) performs and passing it as an input stream doesn't
      * set the base URI appropriately.
      * </p>
-     *
      * <p>
      * Written by Stefan Wachter (2002-09-26)
      * </p>
      *
      * @param aUrl
-     *             The URL of the catalog document to process
-     *
+     *        The URL of the catalog document to process
      * @throws IOException
-     *                     Error reading catalog file.
+     *         Error reading catalog file.
      */
     public synchronized void parseCatalog(URL aUrl) throws IOException {
         catalogCwd = aUrl;
@@ -773,14 +717,12 @@ public class Catalog {
 
     /**
      * Parse all of the pending catalogs.
-     *
      * <p>
      * Catalogs may refer to other catalogs, this method parses all of the
      * currently pending catalog files.
      * </p>
      */
-    protected synchronized void parsePendingCatalogs()
-            throws MalformedURLException, IOException {
+    protected synchronized void parsePendingCatalogs() throws MalformedURLException, IOException {
 
         if (!localCatalogFiles.isEmpty()) {
             // Move all the localCatalogFiles into the front of
@@ -873,16 +815,15 @@ public class Catalog {
      * Parse a single catalog file, augmenting internal data structures.
      *
      * @param fileName
-     *                 The filename of the catalog file to process
-     *
+     *        The filename of the catalog file to process
      * @throws MalformedURLException
-     *                               The fileName cannot be turned into a valid
-     *                               URL.
+     *         The fileName cannot be turned into a valid
+     *         URL.
      * @throws IOException
-     *                               Error reading catalog file.
+     *         Error reading catalog file.
      */
-    protected synchronized void parseCatalogFile(String fileName)
-            throws MalformedURLException, IOException, CatalogException {
+    protected synchronized void parseCatalogFile(String fileName) throws MalformedURLException, IOException,
+            CatalogException {
 
         CatalogEntry entry;
 
@@ -904,9 +845,7 @@ public class Catalog {
             try {
                 base = new URL("file:" + fixSlashes(fileName));
             } catch (MalformedURLException e2) {
-                catalogManager.debug.message(1,
-                        "Malformed URL on catalog filename", fixSlashes(
-                                fileName));
+                catalogManager.debug.message(1, "Malformed URL on catalog filename", fixSlashes(fileName));
                 base = null;
             }
         }
@@ -953,18 +892,15 @@ public class Catalog {
 
         if (!parsed) {
             if (notFound) {
-                catalogManager.debug.message(3, "Catalog does not exist",
-                        fileName);
+                catalogManager.debug.message(3, "Catalog does not exist", fileName);
             } else {
-                catalogManager.debug.message(1, "Failed to parse catalog",
-                        fileName);
+                catalogManager.debug.message(1, "Failed to parse catalog", fileName);
             }
         }
     }
 
     /**
      * Cleanup and process a Catalog entry.
-     *
      * <p>
      * This method processes each Catalog entry, changing mapped relative system
      * identifiers into absolute ones (based on the current base URI), and
@@ -972,7 +908,7 @@ public class Catalog {
      * </p>
      *
      * @param entry
-     *              The CatalogEntry to process.
+     *        The CatalogEntry to process.
      */
     public void addEntry(CatalogEntry entry) {
         int type = entry.getEntryType();
@@ -995,8 +931,7 @@ public class Catalog {
                 try {
                     newbase = new URL("file:" + value);
                 } catch (MalformedURLException e2) {
-                    catalogManager.debug.message(1, "Malformed URL on base",
-                            value);
+                    catalogManager.debug.message(1, "Malformed URL on base", value);
                     newbase = null;
                 }
             }
@@ -1133,8 +1068,7 @@ public class Catalog {
             String fsi = makeAbsolute(normalizeURI(entry.getEntryArg(1)));
             entry.setEntryArg(1, fsi);
 
-            catalogManager.debug.message(4, "DOCTYPE", entry.getEntryArg(0),
-                    fsi);
+            catalogManager.debug.message(4, "DOCTYPE", entry.getEntryArg(0), fsi);
 
             catalogEntries.addElement(entry);
         } else if (type == DTDDECL) {
@@ -1151,8 +1085,7 @@ public class Catalog {
             String fsi = makeAbsolute(normalizeURI(entry.getEntryArg(1)));
             entry.setEntryArg(1, fsi);
 
-            catalogManager.debug.message(4, "ENTITY", entry.getEntryArg(0),
-                    fsi);
+            catalogManager.debug.message(4, "ENTITY", entry.getEntryArg(0), fsi);
 
             catalogEntries.addElement(entry);
         } else if (type == LINKTYPE) {
@@ -1160,16 +1093,14 @@ public class Catalog {
             String fsi = makeAbsolute(normalizeURI(entry.getEntryArg(1)));
             entry.setEntryArg(1, fsi);
 
-            catalogManager.debug.message(4, "LINKTYPE", entry.getEntryArg(0),
-                    fsi);
+            catalogManager.debug.message(4, "LINKTYPE", entry.getEntryArg(0), fsi);
 
             catalogEntries.addElement(entry);
         } else if (type == NOTATION) {
             String fsi = makeAbsolute(normalizeURI(entry.getEntryArg(1)));
             entry.setEntryArg(1, fsi);
 
-            catalogManager.debug.message(4, "NOTATION", entry.getEntryArg(0),
-                    fsi);
+            catalogManager.debug.message(4, "NOTATION", entry.getEntryArg(0), fsi);
 
             catalogEntries.addElement(entry);
         } else {
@@ -1179,7 +1110,6 @@ public class Catalog {
 
     /**
      * Handle unknown CatalogEntry types.
-     *
      * <p>
      * This method exists to allow subclasses to deal with unknown entry types.
      * </p>
@@ -1187,21 +1117,18 @@ public class Catalog {
     public void unknownEntry(Vector strings) {
         if (strings != null && strings.size() > 0) {
             String keyword = (String) strings.elementAt(0);
-            catalogManager.debug.message(2,
-                    "Unrecognized token parsing catalog", keyword);
+            catalogManager.debug.message(2, "Unrecognized token parsing catalog", keyword);
         }
     }
 
     /**
      * Parse all subordinate catalogs.
-     *
      * <p>
      * This method recursively parses all of the subordinate catalogs. If this
      * method does not throw an exception, you can be confident that no
      * subsequent call to any resolve*() method will either, with two possible
      * exceptions:
      * </p>
-     *
      * <ol>
      * <li>
      * <p>
@@ -1221,19 +1148,18 @@ public class Catalog {
      * <code>parseAllCatalogs</code> again.
      * </p>
      * </ol>
-     *
      * <p>
      * On the other hand, if you don't call this method, you may successfully
      * parse documents without having to load all possible catalogs.
      * </p>
      *
      * @throws MalformedURLException
-     *                               The filename (URL) for a subordinate or
-     *                               delegated catalog is
-     *                               not a valid URL.
+     *         The filename (URL) for a subordinate or
+     *         delegated catalog is
+     *         not a valid URL.
      * @throws IOException
-     *                               Error reading some subordinate or delegated
-     *                               catalog file.
+     *         Error reading some subordinate or delegated
+     *         catalog file.
      */
     public void parseAllCatalogs() throws MalformedURLException, IOException {
 
@@ -1257,9 +1183,8 @@ public class Catalog {
         Enumeration en = catalogEntries.elements();
         while (en.hasMoreElements()) {
             CatalogEntry e = (CatalogEntry) en.nextElement();
-            if (e.getEntryType() == DELEGATE_PUBLIC || e
-                    .getEntryType() == DELEGATE_SYSTEM || e
-                            .getEntryType() == DELEGATE_URI) {
+            if (e.getEntryType() == DELEGATE_PUBLIC || e.getEntryType() == DELEGATE_SYSTEM || e
+                    .getEntryType() == DELEGATE_URI) {
                 Catalog dcat = newCatalog();
                 dcat.parseCatalog(e.getEntryArg(1));
             }
@@ -1270,32 +1195,30 @@ public class Catalog {
      * Return the applicable DOCTYPE system identifier.
      *
      * @param entityName
-     *                   The name of the entity (element) for which a doctype is
-     *                   required.
+     *        The name of the entity (element) for which a doctype is
+     *        required.
      * @param publicId
-     *                   The nominal public identifier for the doctype (as
-     *                   provided in
-     *                   the source document).
+     *        The nominal public identifier for the doctype (as
+     *        provided in
+     *        the source document).
      * @param systemId
-     *                   The nominal system identifier for the doctype (as
-     *                   provided in
-     *                   the source document).
-     *
+     *        The nominal system identifier for the doctype (as
+     *        provided in
+     *        the source document).
      * @return The system identifier to use for the doctype.
-     *
      * @throws MalformedURLException
-     *                               The formal system identifier of a
-     *                               subordinate catalog cannot
-     *                               be turned into a valid URL.
+     *         The formal system identifier of a
+     *         subordinate catalog cannot
+     *         be turned into a valid URL.
      * @throws IOException
-     *                               Error reading subordinate catalog file.
+     *         Error reading subordinate catalog file.
      */
-    public String resolveDoctype(String entityName, String publicId,
-            String systemId) throws MalformedURLException, IOException {
+    public String resolveDoctype(String entityName, String publicId, String systemId)
+            throws MalformedURLException, IOException {
         String resolved = null;
 
-        catalogManager.debug.message(3, "resolveDoctype(" + entityName + ","
-                + publicId + "," + systemId + ")");
+        catalogManager.debug.message(3, "resolveDoctype(" + entityName + "," + publicId + "," + systemId
+                + ")");
 
         systemId = normalizeURI(systemId);
 
@@ -1325,8 +1248,7 @@ public class Catalog {
 
         if (publicId != null) {
             // If there's a PUBLIC entry in this catalog, use it
-            resolved = resolveLocalPublic(DOCTYPE, entityName, publicId,
-                    systemId);
+            resolved = resolveLocalPublic(DOCTYPE, entityName, publicId, systemId);
             if (resolved != null) {
                 return resolved;
             }
@@ -1342,8 +1264,7 @@ public class Catalog {
                 continue;
             }
 
-            if (e.getEntryType() == DOCTYPE && e.getEntryArg(0).equals(
-                    entityName)) {
+            if (e.getEntryType() == DOCTYPE && e.getEntryArg(0).equals(entityName)) {
                 if (over || systemId == null) {
                     return e.getEntryArg(1);
                 }
@@ -1351,21 +1272,19 @@ public class Catalog {
         }
 
         // Otherwise, look in the subordinate catalogs
-        return resolveSubordinateCatalogs(DOCTYPE, entityName, publicId,
-                systemId);
+        return resolveSubordinateCatalogs(DOCTYPE, entityName, publicId, systemId);
     }
 
     /**
      * Return the applicable DOCUMENT entry.
      *
      * @return The system identifier to use for the doctype.
-     *
      * @throws MalformedURLException
-     *                               The formal system identifier of a
-     *                               subordinate catalog cannot
-     *                               be turned into a valid URL.
+     *         The formal system identifier of a
+     *         subordinate catalog cannot
+     *         be turned into a valid URL.
      * @throws IOException
-     *                               Error reading subordinate catalog file.
+     *         Error reading subordinate catalog file.
      */
     public String resolveDocument() throws MalformedURLException, IOException {
         // If there's a DOCUMENT entry, return it
@@ -1387,32 +1306,30 @@ public class Catalog {
      * Return the applicable ENTITY system identifier.
      *
      * @param entityName
-     *                   The name of the entity for which a system identifier is
-     *                   required.
+     *        The name of the entity for which a system identifier is
+     *        required.
      * @param publicId
-     *                   The nominal public identifier for the entity (as
-     *                   provided in
-     *                   the source document).
+     *        The nominal public identifier for the entity (as
+     *        provided in
+     *        the source document).
      * @param systemId
-     *                   The nominal system identifier for the entity (as
-     *                   provided in
-     *                   the source document).
-     *
+     *        The nominal system identifier for the entity (as
+     *        provided in
+     *        the source document).
      * @return The system identifier to use for the entity.
-     *
      * @throws MalformedURLException
-     *                               The formal system identifier of a
-     *                               subordinate catalog cannot
-     *                               be turned into a valid URL.
+     *         The formal system identifier of a
+     *         subordinate catalog cannot
+     *         be turned into a valid URL.
      * @throws IOException
-     *                               Error reading subordinate catalog file.
+     *         Error reading subordinate catalog file.
      */
-    public String resolveEntity(String entityName, String publicId,
-            String systemId) throws MalformedURLException, IOException {
+    public String resolveEntity(String entityName, String publicId, String systemId)
+            throws MalformedURLException, IOException {
         String resolved = null;
 
-        catalogManager.debug.message(3, "resolveEntity(" + entityName + ","
-                + publicId + "," + systemId + ")");
+        catalogManager.debug.message(3, "resolveEntity(" + entityName + "," + publicId + "," + systemId
+                + ")");
 
         systemId = normalizeURI(systemId);
 
@@ -1442,8 +1359,7 @@ public class Catalog {
 
         if (publicId != null) {
             // If there's a PUBLIC entry in this catalog, use it
-            resolved = resolveLocalPublic(ENTITY, entityName, publicId,
-                    systemId);
+            resolved = resolveLocalPublic(ENTITY, entityName, publicId, systemId);
             if (resolved != null) {
                 return resolved;
             }
@@ -1459,8 +1375,7 @@ public class Catalog {
                 continue;
             }
 
-            if (e.getEntryType() == ENTITY && e.getEntryArg(0).equals(
-                    entityName)) {
+            if (e.getEntryType() == ENTITY && e.getEntryArg(0).equals(entityName)) {
                 if (over || systemId == null) {
                     return e.getEntryArg(1);
                 }
@@ -1468,40 +1383,37 @@ public class Catalog {
         }
 
         // Otherwise, look in the subordinate catalogs
-        return resolveSubordinateCatalogs(ENTITY, entityName, publicId,
-                systemId);
+        return resolveSubordinateCatalogs(ENTITY, entityName, publicId, systemId);
     }
 
     /**
      * Return the applicable NOTATION system identifier.
      *
      * @param notationName
-     *                     The name of the notation for which a doctype is
-     *                     required.
+     *        The name of the notation for which a doctype is
+     *        required.
      * @param publicId
-     *                     The nominal public identifier for the notation (as
-     *                     provided in
-     *                     the source document).
+     *        The nominal public identifier for the notation (as
+     *        provided in
+     *        the source document).
      * @param systemId
-     *                     The nominal system identifier for the notation (as
-     *                     provided in
-     *                     the source document).
-     *
+     *        The nominal system identifier for the notation (as
+     *        provided in
+     *        the source document).
      * @return The system identifier to use for the notation.
-     *
      * @throws MalformedURLException
-     *                               The formal system identifier of a
-     *                               subordinate catalog cannot
-     *                               be turned into a valid URL.
+     *         The formal system identifier of a
+     *         subordinate catalog cannot
+     *         be turned into a valid URL.
      * @throws IOException
-     *                               Error reading subordinate catalog file.
+     *         Error reading subordinate catalog file.
      */
-    public String resolveNotation(String notationName, String publicId,
-            String systemId) throws MalformedURLException, IOException {
+    public String resolveNotation(String notationName, String publicId, String systemId)
+            throws MalformedURLException, IOException {
         String resolved = null;
 
-        catalogManager.debug.message(3, "resolveNotation(" + notationName + ","
-                + publicId + "," + systemId + ")");
+        catalogManager.debug.message(3, "resolveNotation(" + notationName + "," + publicId + "," + systemId
+                + ")");
 
         systemId = normalizeURI(systemId);
 
@@ -1531,8 +1443,7 @@ public class Catalog {
 
         if (publicId != null) {
             // If there's a PUBLIC entry in this catalog, use it
-            resolved = resolveLocalPublic(NOTATION, notationName, publicId,
-                    systemId);
+            resolved = resolveLocalPublic(NOTATION, notationName, publicId, systemId);
             if (resolved != null) {
                 return resolved;
             }
@@ -1548,8 +1459,7 @@ public class Catalog {
                 continue;
             }
 
-            if (e.getEntryType() == NOTATION && e.getEntryArg(0).equals(
-                    notationName)) {
+            if (e.getEntryType() == NOTATION && e.getEntryArg(0).equals(notationName)) {
                 if (over || systemId == null) {
                     return e.getEntryArg(1);
                 }
@@ -1557,13 +1467,11 @@ public class Catalog {
         }
 
         // Otherwise, look in the subordinate catalogs
-        return resolveSubordinateCatalogs(NOTATION, notationName, publicId,
-                systemId);
+        return resolveSubordinateCatalogs(NOTATION, notationName, publicId, systemId);
     }
 
     /**
      * Return the applicable PUBLIC or SYSTEM identifier.
-     *
      * <p>
      * This method searches the Catalog and returns the system identifier
      * specified for the given system or public identifiers. If no appropriate
@@ -1571,30 +1479,26 @@ public class Catalog {
      * </p>
      *
      * @param publicId
-     *                 The public identifier to locate in the catalog. Public
-     *                 identifiers are normalized before comparison.
+     *        The public identifier to locate in the catalog. Public
+     *        identifiers are normalized before comparison.
      * @param systemId
-     *                 The nominal system identifier for the entity in question
-     *                 (as
-     *                 provided in the source document).
-     *
+     *        The nominal system identifier for the entity in question
+     *        (as
+     *        provided in the source document).
      * @throws MalformedURLException
-     *                               The formal system identifier of a
-     *                               subordinate catalog cannot
-     *                               be turned into a valid URL.
+     *         The formal system identifier of a
+     *         subordinate catalog cannot
+     *         be turned into a valid URL.
      * @throws IOException
-     *                               Error reading subordinate catalog file.
-     *
+     *         Error reading subordinate catalog file.
      * @return The system identifier to use. Note that the nominal system
      *         identifier is not returned if a match is not found in the
      *         catalog, instead null is returned to indicate that no match was
      *         found.
      */
-    public String resolvePublic(String publicId, String systemId)
-            throws MalformedURLException, IOException {
+    public String resolvePublic(String publicId, String systemId) throws MalformedURLException, IOException {
 
-        catalogManager.debug.message(3, "resolvePublic(" + publicId + ","
-                + systemId + ")");
+        catalogManager.debug.message(3, "resolvePublic(" + publicId + "," + systemId + ")");
 
         systemId = normalizeURI(systemId);
 
@@ -1634,18 +1538,15 @@ public class Catalog {
 
     /**
      * Return the applicable PUBLIC or SYSTEM identifier.
-     *
      * <p>
      * This method searches the Catalog and returns the system identifier
      * specified for the given system or public identifiers. If no appropriate
      * PUBLIC or SYSTEM entry is found in the Catalog, delegated Catalogs are
      * interrogated.
      * </p>
-     *
      * <p>
      * There are four possible cases:
      * </p>
-     *
      * <ul>
      * <li>If the system identifier provided matches a SYSTEM entry in the
      * current catalog, the SYSTEM entry is returned.
@@ -1666,36 +1567,33 @@ public class Catalog {
      * </ul>
      *
      * @param entityType
-     *                   The CatalogEntry type for which this query is being
-     *                   conducted.
-     *                   This is necessary in order to do the approprate query
-     *                   on a
-     *                   delegated catalog.
+     *        The CatalogEntry type for which this query is being
+     *        conducted.
+     *        This is necessary in order to do the approprate query
+     *        on a
+     *        delegated catalog.
      * @param entityName
-     *                   The name of the entity being searched for, if
-     *                   appropriate.
+     *        The name of the entity being searched for, if
+     *        appropriate.
      * @param publicId
-     *                   The public identifier of the entity in question.
+     *        The public identifier of the entity in question.
      * @param systemId
-     *                   The nominal system identifier for the entity in
-     *                   question (as
-     *                   provided in the source document).
-     *
+     *        The nominal system identifier for the entity in
+     *        question (as
+     *        provided in the source document).
      * @throws MalformedURLException
-     *                               The formal system identifier of a delegated
-     *                               catalog cannot be
-     *                               turned into a valid URL.
+     *         The formal system identifier of a delegated
+     *         catalog cannot be
+     *         turned into a valid URL.
      * @throws IOException
-     *                               Error reading delegated catalog file.
-     *
+     *         Error reading delegated catalog file.
      * @return The system identifier to use. Note that the nominal system
      *         identifier is not returned if a match is not found in the
      *         catalog, instead null is returned to indicate that no match was
      *         found.
      */
-    protected synchronized String resolveLocalPublic(int entityType,
-            String entityName, String publicId, String systemId)
-            throws MalformedURLException, IOException {
+    protected synchronized String resolveLocalPublic(int entityType, String entityName, String publicId,
+            String systemId) throws MalformedURLException, IOException {
 
         // Always normalize the public identifier before attempting a match
         publicId = PublicId.normalize(publicId);
@@ -1718,8 +1616,7 @@ public class Catalog {
                 continue;
             }
 
-            if (e.getEntryType() == PUBLIC && e.getEntryArg(0).equals(
-                    publicId)) {
+            if (e.getEntryType() == PUBLIC && e.getEntryArg(0).equals(publicId)) {
                 if (over || systemId == null) {
                     return e.getEntryArg(1);
                 }
@@ -1737,11 +1634,9 @@ public class Catalog {
                 continue;
             }
 
-            if (e.getEntryType() == DELEGATE_PUBLIC && (over
-                    || systemId == null)) {
+            if (e.getEntryType() == DELEGATE_PUBLIC && (over || systemId == null)) {
                 String p = (String) e.getEntryArg(0);
-                if (p.length() <= publicId.length() && p.equals(publicId
-                        .substring(0, p.length()))) {
+                if (p.length() <= publicId.length() && p.equals(publicId.substring(0, p.length()))) {
                     // delegate this match to the other catalog
 
                     delCats.addElement(e.getEntryArg(1));
@@ -1753,8 +1648,7 @@ public class Catalog {
             Enumeration enCats = delCats.elements();
 
             if (catalogManager.debug.getDebug() > 1) {
-                catalogManager.debug.message(2,
-                        "Switching to delegated catalog(s):");
+                catalogManager.debug.message(2, "Switching to delegated catalog(s):");
                 while (enCats.hasMoreElements()) {
                     String delegatedCatalog = (String) enCats.nextElement();
                     catalogManager.debug.message(2, "\t" + delegatedCatalog);
@@ -1778,12 +1672,10 @@ public class Catalog {
 
     /**
      * Return the applicable SYSTEM system identifier.
-     *
      * <p>
      * If a SYSTEM entry exists in the Catalog for the system ID specified,
      * return the mapped value.
      * </p>
-     *
      * <p>
      * On Windows-based operating systems, the comparison between the system
      * identifier provided and the SYSTEM entries in the Catalog is
@@ -1791,19 +1683,16 @@ public class Catalog {
      * </p>
      *
      * @param systemId
-     *                 The system ID to locate in the catalog.
-     *
+     *        The system ID to locate in the catalog.
      * @return The resolved system identifier.
-     *
      * @throws MalformedURLException
-     *                               The formal system identifier of a
-     *                               subordinate catalog cannot
-     *                               be turned into a valid URL.
+     *         The formal system identifier of a
+     *         subordinate catalog cannot
+     *         be turned into a valid URL.
      * @throws IOException
-     *                               Error reading subordinate catalog file.
+     *         Error reading subordinate catalog file.
      */
-    public String resolveSystem(String systemId) throws MalformedURLException,
-            IOException {
+    public String resolveSystem(String systemId) throws MalformedURLException, IOException {
 
         catalogManager.debug.message(3, "resolveSystem(" + systemId + ")");
 
@@ -1828,28 +1717,24 @@ public class Catalog {
 
     /**
      * Return the applicable SYSTEM system identifier in this catalog.
-     *
      * <p>
      * If a SYSTEM entry exists in the catalog file for the system ID specified,
      * return the mapped value.
      * </p>
      *
      * @param systemId
-     *                 The system ID to locate in the catalog
-     *
+     *        The system ID to locate in the catalog
      * @return The mapped system identifier or null
      */
-    protected String resolveLocalSystem(String systemId)
-            throws MalformedURLException, IOException {
+    protected String resolveLocalSystem(String systemId) throws MalformedURLException, IOException {
 
         String osname = SecuritySupport.getSystemProperty("os.name");
         boolean windows = (osname.indexOf("Windows") >= 0);
         Enumeration en = catalogEntries.elements();
         while (en.hasMoreElements()) {
             CatalogEntry e = (CatalogEntry) en.nextElement();
-            if (e.getEntryType() == SYSTEM && (e.getEntryArg(0).equals(systemId)
-                    || (windows && e.getEntryArg(0).equalsIgnoreCase(
-                            systemId)))) {
+            if (e.getEntryType() == SYSTEM && (e.getEntryArg(0).equals(systemId) || (windows && e.getEntryArg(
+                    0).equalsIgnoreCase(systemId)))) {
                 return e.getEntryArg(1);
             }
         }
@@ -1863,11 +1748,9 @@ public class Catalog {
 
             if (e.getEntryType() == REWRITE_SYSTEM) {
                 String p = (String) e.getEntryArg(0);
-                if (p.length() <= systemId.length() && p.equals(systemId
-                        .substring(0, p.length()))) {
+                if (p.length() <= systemId.length() && p.equals(systemId.substring(0, p.length()))) {
                     // Is this the longest prefix?
-                    if (startString == null || p.length() > startString
-                            .length()) {
+                    if (startString == null || p.length() > startString.length()) {
                         startString = p;
                         prefix = e.getEntryArg(1);
                     }
@@ -1891,8 +1774,7 @@ public class Catalog {
                 String p = (String) e.getEntryArg(0);
                 if (p.length() <= systemId.length() && systemId.endsWith(p)) {
                     // Is this the longest prefix?
-                    if (suffixString == null || p.length() > suffixString
-                            .length()) {
+                    if (suffixString == null || p.length() > suffixString.length()) {
                         suffixString = p;
                         suffixURI = e.getEntryArg(1);
                     }
@@ -1913,8 +1795,7 @@ public class Catalog {
 
             if (e.getEntryType() == DELEGATE_SYSTEM) {
                 String p = (String) e.getEntryArg(0);
-                if (p.length() <= systemId.length() && p.equals(systemId
-                        .substring(0, p.length()))) {
+                if (p.length() <= systemId.length() && p.equals(systemId.substring(0, p.length()))) {
                     // delegate this match to the other catalog
 
                     delCats.addElement(e.getEntryArg(1));
@@ -1926,8 +1807,7 @@ public class Catalog {
             Enumeration enCats = delCats.elements();
 
             if (catalogManager.debug.getDebug() > 1) {
-                catalogManager.debug.message(2,
-                        "Switching to delegated catalog(s):");
+                catalogManager.debug.message(2, "Switching to delegated catalog(s):");
                 while (enCats.hasMoreElements()) {
                     String delegatedCatalog = (String) enCats.nextElement();
                     catalogManager.debug.message(2, "\t" + delegatedCatalog);
@@ -1950,30 +1830,25 @@ public class Catalog {
 
     /**
      * Return the applicable URI.
-     *
      * <p>
      * If a URI entry exists in the Catalog for the URI specified, return the
      * mapped value.
      * </p>
-     *
      * <p>
      * URI comparison is case sensitive.
      * </p>
      *
      * @param uri
-     *            The URI to locate in the catalog.
-     *
+     *        The URI to locate in the catalog.
      * @return The resolved URI.
-     *
      * @throws MalformedURLException
-     *                               The system identifier of a subordinate
-     *                               catalog cannot be
-     *                               turned into a valid URL.
+     *         The system identifier of a subordinate
+     *         catalog cannot be
+     *         turned into a valid URL.
      * @throws IOException
-     *                               Error reading subordinate catalog file.
+     *         Error reading subordinate catalog file.
      */
-    public String resolveURI(String uri) throws MalformedURLException,
-            IOException {
+    public String resolveURI(String uri) throws MalformedURLException, IOException {
 
         catalogManager.debug.message(3, "resolveURI(" + uri + ")");
 
@@ -1998,19 +1873,16 @@ public class Catalog {
 
     /**
      * Return the applicable URI in this catalog.
-     *
      * <p>
      * If a URI entry exists in the catalog file for the URI specified, return
      * the mapped value.
      * </p>
      *
      * @param uri
-     *            The URI to locate in the catalog
-     *
+     *        The URI to locate in the catalog
      * @return The mapped URI or null
      */
-    protected String resolveLocalURI(String uri) throws MalformedURLException,
-            IOException {
+    protected String resolveLocalURI(String uri) throws MalformedURLException, IOException {
         Enumeration en = catalogEntries.elements();
         while (en.hasMoreElements()) {
             CatalogEntry e = (CatalogEntry) en.nextElement();
@@ -2028,11 +1900,9 @@ public class Catalog {
 
             if (e.getEntryType() == REWRITE_URI) {
                 String p = (String) e.getEntryArg(0);
-                if (p.length() <= uri.length() && p.equals(uri.substring(0, p
-                        .length()))) {
+                if (p.length() <= uri.length() && p.equals(uri.substring(0, p.length()))) {
                     // Is this the longest prefix?
-                    if (startString == null || p.length() > startString
-                            .length()) {
+                    if (startString == null || p.length() > startString.length()) {
                         startString = p;
                         prefix = e.getEntryArg(1);
                     }
@@ -2056,8 +1926,7 @@ public class Catalog {
                 String p = (String) e.getEntryArg(0);
                 if (p.length() <= uri.length() && uri.endsWith(p)) {
                     // Is this the longest prefix?
-                    if (suffixString == null || p.length() > suffixString
-                            .length()) {
+                    if (suffixString == null || p.length() > suffixString.length()) {
                         suffixString = p;
                         suffixURI = e.getEntryArg(1);
                     }
@@ -2078,8 +1947,7 @@ public class Catalog {
 
             if (e.getEntryType() == DELEGATE_URI) {
                 String p = (String) e.getEntryArg(0);
-                if (p.length() <= uri.length() && p.equals(uri.substring(0, p
-                        .length()))) {
+                if (p.length() <= uri.length() && p.equals(uri.substring(0, p.length()))) {
                     // delegate this match to the other catalog
 
                     delCats.addElement(e.getEntryArg(1));
@@ -2091,8 +1959,7 @@ public class Catalog {
             Enumeration enCats = delCats.elements();
 
             if (catalogManager.debug.getDebug() > 1) {
-                catalogManager.debug.message(2,
-                        "Switching to delegated catalog(s):");
+                catalogManager.debug.message(2, "Switching to delegated catalog(s):");
                 while (enCats.hasMoreElements()) {
                     String delegatedCatalog = (String) enCats.nextElement();
                     catalogManager.debug.message(2, "\t" + delegatedCatalog);
@@ -2115,7 +1982,6 @@ public class Catalog {
 
     /**
      * Search the subordinate catalogs, in order, looking for a match.
-     *
      * <p>
      * This method searches the Catalog and returns the system identifier
      * specified for the given entity type with the given name, public, and
@@ -2123,40 +1989,37 @@ public class Catalog {
      * </p>
      *
      * @param entityType
-     *                   The CatalogEntry type for which this query is being
-     *                   conducted.
-     *                   This is necessary in order to do the approprate query
-     *                   on a
-     *                   subordinate catalog.
+     *        The CatalogEntry type for which this query is being
+     *        conducted.
+     *        This is necessary in order to do the approprate query
+     *        on a
+     *        subordinate catalog.
      * @param entityName
-     *                   The name of the entity being searched for, if
-     *                   appropriate.
+     *        The name of the entity being searched for, if
+     *        appropriate.
      * @param publicId
-     *                   The public identifier of the entity in question (as
-     *                   provided
-     *                   in the source document).
+     *        The public identifier of the entity in question (as
+     *        provided
+     *        in the source document).
      * @param systemId
-     *                   The nominal system identifier for the entity in
-     *                   question (as
-     *                   provided in the source document). This parameter is
-     *                   overloaded
-     *                   for the URI entry type.
-     *
+     *        The nominal system identifier for the entity in
+     *        question (as
+     *        provided in the source document). This parameter is
+     *        overloaded
+     *        for the URI entry type.
      * @throws MalformedURLException
-     *                               The formal system identifier of a delegated
-     *                               catalog cannot be
-     *                               turned into a valid URL.
+     *         The formal system identifier of a delegated
+     *         catalog cannot be
+     *         turned into a valid URL.
      * @throws IOException
-     *                               Error reading delegated catalog file.
-     *
+     *         Error reading delegated catalog file.
      * @return The system identifier to use. Note that the nominal system
      *         identifier is not returned if a match is not found in the
      *         catalog, instead null is returned to indicate that no match was
      *         found.
      */
-    protected synchronized String resolveSubordinateCatalogs(int entityType,
-            String entityName, String publicId, String systemId)
-            throws MalformedURLException, IOException {
+    protected synchronized String resolveSubordinateCatalogs(int entityType, String entityName,
+            String publicId, String systemId) throws MalformedURLException, IOException {
 
         for (int catPos = 0; catPos < catalogs.size(); catPos++) {
             Catalog c = null;
@@ -2170,14 +2033,11 @@ public class Catalog {
                 try {
                     c.parseCatalog(catfile);
                 } catch (MalformedURLException mue) {
-                    catalogManager.debug.message(1, "Malformed Catalog URL",
-                            catfile);
+                    catalogManager.debug.message(1, "Malformed Catalog URL", catfile);
                 } catch (FileNotFoundException fnfe) {
-                    catalogManager.debug.message(1,
-                            "Failed to load catalog, file not found", catfile);
+                    catalogManager.debug.message(1, "Failed to load catalog, file not found", catfile);
                 } catch (IOException ioe) {
-                    catalogManager.debug.message(1,
-                            "Failed to load catalog, I/O error", catfile);
+                    catalogManager.debug.message(1, "Failed to load catalog, I/O error", catfile);
                 }
 
                 catalogs.setElementAt(c, catPos);
@@ -2217,7 +2077,7 @@ public class Catalog {
      * slashes.)
      *
      * @param sysid
-     *              The input system identifier.
+     *        The input system identifier.
      * @return The same system identifier with backslashes turned into forward
      *         slashes.
      */
@@ -2230,7 +2090,7 @@ public class Catalog {
      * URI.
      *
      * @param sysid
-     *              The (possibly relative) system identifier
+     *        The (possibly relative) system identifier
      * @return The system identifier made absolute with respect to the current
      *         {@link #base}.
      */
@@ -2242,8 +2102,7 @@ public class Catalog {
         try {
             local = new URL(base, sysid);
         } catch (MalformedURLException e) {
-            catalogManager.debug.message(1,
-                    "Malformed URL on system identifier", sysid);
+            catalogManager.debug.message(1, "Malformed URL on system identifier", sysid);
         }
 
         if (local != null) {
@@ -2257,7 +2116,7 @@ public class Catalog {
      * Perform character normalization on a URI reference.
      *
      * @param uriref
-     *               The URI reference
+     *        The URI reference
      * @return The normalized URI reference.
      */
     protected String normalizeURI(String uriref) {
@@ -2270,8 +2129,7 @@ public class Catalog {
             bytes = uriref.getBytes("UTF-8");
         } catch (UnsupportedEncodingException uee) {
             // this can't happen
-            catalogManager.debug.message(1,
-                    "UTF-8 is an unsupported encoding!?");
+            catalogManager.debug.message(1, "UTF-8 is an unsupported encoding!?");
             return uriref;
         }
 
@@ -2304,8 +2162,8 @@ public class Catalog {
      * Perform %-encoding on a single byte.
      *
      * @param b
-     *          The 8-bit integer that represents th byte. (Bytes are signed
-     *          but encoding needs to look at the bytes unsigned.)
+     *        The 8-bit integer that represents th byte. (Bytes are signed
+     *        but encoding needs to look at the bytes unsigned.)
      * @return The %-encoded string for the byte in question.
      */
     protected String encodedByte(int b) {
@@ -2321,14 +2179,13 @@ public class Catalog {
 
     /**
      * Add to the current list of delegated catalogs.
-     *
      * <p>
      * This method always constructs the {@link #localDelegate} vector so that
      * it is ordered by length of partial public identifier.
      * </p>
      *
      * @param entry
-     *              The DELEGATE catalog entry
+     *        The DELEGATE catalog entry
      */
     protected void addDelegate(CatalogEntry entry) {
         int pos = 0;

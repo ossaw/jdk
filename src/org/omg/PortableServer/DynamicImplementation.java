@@ -17,7 +17,7 @@ abstract public class DynamicImplementation extends Servant {
      * servant and performs the processing necessary to execute the request.
      * 
      * @param request
-     *                the request issued to the CORBA object.
+     *        the request issued to the CORBA object.
      */
     abstract public void invoke(org.omg.CORBA.ServerRequest request);
 }

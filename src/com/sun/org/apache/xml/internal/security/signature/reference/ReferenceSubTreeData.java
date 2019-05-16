@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -108,8 +106,8 @@ public class ReferenceSubTreeData implements ReferenceNodeSetData {
          * Dereferences a same-document URI fragment.
          *
          * @param node
-         *             the node (document or element) referenced by the URI
-         *             fragment. If null, returns an empty set.
+         *        the node (document or element) referenced by the URI
+         *        fragment. If null, returns an empty set.
          * @return a set of nodes (minus any comment nodes)
          */
         private List<Node> dereferenceSameDocumentURI(Node node) {
@@ -126,15 +124,14 @@ public class ReferenceSubTreeData implements ReferenceNodeSetData {
          * specified.
          *
          * @param node
-         *                the node to traverse
+         *        the node to traverse
          * @param nodeSet
-         *                the set of nodes traversed so far
+         *        the set of nodes traversed so far
          * @param the
-         *                previous sibling node
+         *        previous sibling node
          */
         @SuppressWarnings("fallthrough")
-        private void nodeSetMinusCommentNodes(Node node, List<Node> nodeSet,
-                Node prevSibling) {
+        private void nodeSetMinusCommentNodes(Node node, List<Node> nodeSet, Node prevSibling) {
             switch (node.getNodeType()) {
                 case Node.ELEMENT_NODE:
                     nodeSet.add(node);
@@ -145,18 +142,14 @@ public class ReferenceSubTreeData implements ReferenceNodeSetData {
                         }
                     }
                     Node pSibling = null;
-                    for (Node child = node
-                            .getFirstChild(); child != null; child = child
-                                    .getNextSibling()) {
+                    for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
                         nodeSetMinusCommentNodes(child, nodeSet, pSibling);
                         pSibling = child;
                     }
                     break;
                 case Node.DOCUMENT_NODE:
                     pSibling = null;
-                    for (Node child = node
-                            .getFirstChild(); child != null; child = child
-                                    .getNextSibling()) {
+                    for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
                         nodeSetMinusCommentNodes(child, nodeSet, pSibling);
                         pSibling = child;
                     }
@@ -165,9 +158,8 @@ public class ReferenceSubTreeData implements ReferenceNodeSetData {
                 case Node.CDATA_SECTION_NODE:
                     // emulate XPath which only returns the first node in
                     // contiguous text/cdata nodes
-                    if (prevSibling != null && (prevSibling
-                            .getNodeType() == Node.TEXT_NODE || prevSibling
-                                    .getNodeType() == Node.CDATA_SECTION_NODE)) {
+                    if (prevSibling != null && (prevSibling.getNodeType() == Node.TEXT_NODE || prevSibling
+                            .getNodeType() == Node.CDATA_SECTION_NODE)) {
                         return;
                     }
                     nodeSet.add(node);

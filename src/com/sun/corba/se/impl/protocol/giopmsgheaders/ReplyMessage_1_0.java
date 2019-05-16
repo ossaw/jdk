@@ -29,8 +29,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class ReplyMessage_1_0 extends Message_1_0 implements
-        ReplyMessage {
+public final class ReplyMessage_1_0 extends Message_1_0 implements ReplyMessage {
 
     // Instance variables
 
@@ -48,16 +47,14 @@ public final class ReplyMessage_1_0 extends Message_1_0 implements
 
     ReplyMessage_1_0(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
     }
 
-    ReplyMessage_1_0(ORB orb, ServiceContexts _service_contexts,
-            int _request_id, int _reply_status, IOR _ior) {
+    ReplyMessage_1_0(ORB orb, ServiceContexts _service_contexts, int _request_id, int _reply_status,
+            IOR _ior) {
         super(Message.GIOPBigMagic, false, Message.GIOPReply, 0);
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
         service_contexts = _service_contexts;
         request_id = _request_id;
         reply_status = _reply_status;
@@ -87,8 +84,7 @@ public final class ReplyMessage_1_0 extends Message_1_0 implements
     }
 
     public SystemException getSystemException(String message) {
-        return MessageBase.getSystemException(exClassName, minorCode,
-                completionStatus, message, wrapper);
+        return MessageBase.getSystemException(exClassName, minorCode, completionStatus, message, wrapper);
     }
 
     public IOR getIOR() {
@@ -103,8 +99,7 @@ public final class ReplyMessage_1_0 extends Message_1_0 implements
 
     public void read(org.omg.CORBA.portable.InputStream istream) {
         super.read(istream);
-        this.service_contexts = new ServiceContexts(
-                (org.omg.CORBA_2_3.portable.InputStream) istream);
+        this.service_contexts = new ServiceContexts((org.omg.CORBA_2_3.portable.InputStream) istream);
         this.request_id = istream.read_ulong();
         this.reply_status = istream.read_long();
         isValidReplyStatus(this.reply_status); // raises exception on error
@@ -129,9 +124,8 @@ public final class ReplyMessage_1_0 extends Message_1_0 implements
                     this.completionStatus = CompletionStatus.COMPLETED_MAYBE;
                     break;
                 default:
-                    throw wrapper.badCompletionStatusInReply(
-                            CompletionStatus.COMPLETED_MAYBE, new Integer(
-                                    status));
+                    throw wrapper.badCompletionStatusInReply(CompletionStatus.COMPLETED_MAYBE, new Integer(
+                            status));
             }
 
         } else if (this.reply_status == USER_EXCEPTION) {
@@ -147,12 +141,9 @@ public final class ReplyMessage_1_0 extends Message_1_0 implements
     public void write(org.omg.CORBA.portable.OutputStream ostream) {
         super.write(ostream);
         if (this.service_contexts != null) {
-            service_contexts.write(
-                    (org.omg.CORBA_2_3.portable.OutputStream) ostream,
-                    GIOPVersion.V1_0);
+            service_contexts.write((org.omg.CORBA_2_3.portable.OutputStream) ostream, GIOPVersion.V1_0);
         } else {
-            ServiceContexts.writeNullServiceContext(
-                    (org.omg.CORBA_2_3.portable.OutputStream) ostream);
+            ServiceContexts.writeNullServiceContext((org.omg.CORBA_2_3.portable.OutputStream) ostream);
         }
         ostream.write_ulong(this.request_id);
         ostream.write_long(this.reply_status);
@@ -168,10 +159,9 @@ public final class ReplyMessage_1_0 extends Message_1_0 implements
             case LOCATION_FORWARD:
                 break;
             default:
-                ORBUtilSystemException localWrapper = ORBUtilSystemException
-                        .get(CORBALogDomains.RPC_PROTOCOL);
-                throw localWrapper.illegalReplyStatus(
-                        CompletionStatus.COMPLETED_MAYBE);
+                ORBUtilSystemException localWrapper = ORBUtilSystemException.get(
+                        CORBALogDomains.RPC_PROTOCOL);
+                throw localWrapper.illegalReplyStatus(CompletionStatus.COMPLETED_MAYBE);
         }
     }
 

@@ -29,39 +29,36 @@ public final class StackTraceElement implements java.io.Serializable {
      * Creates a stack trace element representing the specified execution point.
      *
      * @param declaringClass
-     *                       the fully qualified name of the class containing
-     *                       the execution
-     *                       point represented by the stack trace element
+     *        the fully qualified name of the class containing
+     *        the execution
+     *        point represented by the stack trace element
      * @param methodName
-     *                       the name of the method containing the execution
-     *                       point
-     *                       represented by the stack trace element
+     *        the name of the method containing the execution
+     *        point
+     *        represented by the stack trace element
      * @param fileName
-     *                       the name of the file containing the execution point
-     *                       represented by the stack trace element, or
-     *                       {@code null} if
-     *                       this information is unavailable
+     *        the name of the file containing the execution point
+     *        represented by the stack trace element, or
+     *        {@code null} if
+     *        this information is unavailable
      * @param lineNumber
-     *                       the line number of the source line containing the
-     *                       execution
-     *                       point represented by this stack trace element, or a
-     *                       negative
-     *                       number if this information is unavailable. A value
-     *                       of -2
-     *                       indicates that the method containing the execution
-     *                       point is a
-     *                       native method
+     *        the line number of the source line containing the
+     *        execution
+     *        point represented by this stack trace element, or a
+     *        negative
+     *        number if this information is unavailable. A value
+     *        of -2
+     *        indicates that the method containing the execution
+     *        point is a
+     *        native method
      * @throws NullPointerException
-     *                              if {@code declaringClass} or
-     *                              {@code methodName} is null
+     *         if {@code declaringClass} or
+     *         {@code methodName} is null
      * @since 1.5
      */
-    public StackTraceElement(String declaringClass, String methodName,
-            String fileName, int lineNumber) {
-        this.declaringClass = Objects.requireNonNull(declaringClass,
-                "Declaring class is null");
-        this.methodName = Objects.requireNonNull(methodName,
-                "Method name is null");
+    public StackTraceElement(String declaringClass, String methodName, String fileName, int lineNumber) {
+        this.declaringClass = Objects.requireNonNull(declaringClass, "Declaring class is null");
+        this.methodName = Objects.requireNonNull(methodName, "Method name is null");
         this.fileName = fileName;
         this.lineNumber = lineNumber;
     }
@@ -155,12 +152,9 @@ public final class StackTraceElement implements java.io.Serializable {
      * @see Throwable#printStackTrace()
      */
     public String toString() {
-        return getClassName() + "." + methodName + (isNativeMethod()
-                ? "(Native Method)"
-                : (fileName != null && lineNumber >= 0 ? "(" + fileName + ":"
-                        + lineNumber + ")"
-                        : (fileName != null ? "(" + fileName + ")"
-                                : "(Unknown Source)")));
+        return getClassName() + "." + methodName + (isNativeMethod() ? "(Native Method)"
+                : (fileName != null && lineNumber >= 0 ? "(" + fileName + ":" + lineNumber + ")"
+                        : (fileName != null ? "(" + fileName + ")" : "(Unknown Source)")));
     }
 
     /**
@@ -181,7 +175,7 @@ public final class StackTraceElement implements java.io.Serializable {
      * {@link java.util.Objects#equals(Object, Object) Objects.equals}.
      *
      * @param obj
-     *            the object to be compared with this stack trace element.
+     *        the object to be compared with this stack trace element.
      * @return true if the specified object is another {@code StackTraceElement}
      *         instance representing the same execution point as this instance.
      */
@@ -191,9 +185,8 @@ public final class StackTraceElement implements java.io.Serializable {
         if (!(obj instanceof StackTraceElement))
             return false;
         StackTraceElement e = (StackTraceElement) obj;
-        return e.declaringClass.equals(declaringClass)
-                && e.lineNumber == lineNumber && Objects.equals(methodName,
-                        e.methodName) && Objects.equals(fileName, e.fileName);
+        return e.declaringClass.equals(declaringClass) && e.lineNumber == lineNumber && Objects.equals(
+                methodName, e.methodName) && Objects.equals(fileName, e.fileName);
     }
 
     /**

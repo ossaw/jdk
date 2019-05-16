@@ -56,8 +56,7 @@ final class ThreadGroupContext {
 
     boolean isGuiAvailable() {
         Boolean isGuiAvailable = this.isGuiAvailable;
-        return (isGuiAvailable != null) ? isGuiAvailable.booleanValue()
-                : !GraphicsEnvironment.isHeadless();
+        return (isGuiAvailable != null) ? isGuiAvailable.booleanValue() : !GraphicsEnvironment.isHeadless();
     }
 
     void setGuiAvailable(boolean isGuiAvailable) {
@@ -65,8 +64,7 @@ final class ThreadGroupContext {
     }
 
     BeanInfo getBeanInfo(Class<?> type) {
-        return (this.beanInfoCache != null) ? this.beanInfoCache.get(type)
-                : null;
+        return (this.beanInfoCache != null) ? this.beanInfoCache.get(type) : null;
     }
 
     BeanInfo putBeanInfo(Class<?> type, BeanInfo info) {

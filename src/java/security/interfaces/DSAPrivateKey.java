@@ -15,7 +15,6 @@ import java.math.BigInteger;
  * @see java.security.Signature
  * @see DSAKey
  * @see DSAPublicKey
- *
  * @author Benjamin Renaud
  */
 public interface DSAPrivateKey extends DSAKey, java.security.PrivateKey {

@@ -18,7 +18,6 @@ import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
 /**
  * This exception is thrown when a particular XML mechanism is requested but is
  * not available in the environment.
- *
  * <p>
  * A <code>NoSuchMechanismException</code> can contain a cause: another
  * throwable that caused this <code>NoSuchMechanismException</code> to get
@@ -56,7 +55,7 @@ public class NoSuchMechanismException extends RuntimeException {
      * detail message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      */
     public NoSuchMechanismException(String message) {
         super(message);
@@ -70,11 +69,11 @@ public class NoSuchMechanismException extends RuntimeException {
      * <i>not</i> automatically incorporated in this exception's detail message.
      *
      * @param message
-     *                the detail message
+     *        the detail message
      * @param cause
-     *                the cause (A <tt>null</tt> value is permitted, and
-     *                indicates
-     *                that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and
+     *        indicates
+     *        that the cause is nonexistent or unknown.)
      */
     public NoSuchMechanismException(String message, Throwable cause) {
         super(message);
@@ -88,8 +87,8 @@ public class NoSuchMechanismException extends RuntimeException {
      * contains the class and detail message of <code>cause</code>).
      *
      * @param cause
-     *              the cause (A <tt>null</tt> value is permitted, and indicates
-     *              that the cause is nonexistent or unknown.)
+     *        the cause (A <tt>null</tt> value is permitted, and indicates
+     *        that the cause is nonexistent or unknown.)
      */
     public NoSuchMechanismException(Throwable cause) {
         super(cause == null ? null : cause.toString());
@@ -123,7 +122,7 @@ public class NoSuchMechanismException extends RuntimeException {
      * cause's backtrace to the specified print stream.
      *
      * @param s
-     *          <code>PrintStream</code> to use for output
+     *        <code>PrintStream</code> to use for output
      */
     public void printStackTrace(PrintStream s) {
         super.printStackTrace(s);
@@ -135,7 +134,7 @@ public class NoSuchMechanismException extends RuntimeException {
      * cause's backtrace to the specified print writer.
      *
      * @param s
-     *          <code>PrintWriter</code> to use for output
+     *        <code>PrintWriter</code> to use for output
      */
     public void printStackTrace(PrintWriter s) {
         super.printStackTrace(s);

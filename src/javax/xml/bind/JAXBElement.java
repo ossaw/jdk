@@ -12,7 +12,6 @@ import java.io.Serializable;
  * <p>
  * JAXB representation of an Xml Element.
  * </p>
- *
  * <p>
  * This class represents information about an Xml Element from both the element
  * declaration within a schema and the element instance value within an xml
@@ -27,18 +26,15 @@ import java.io.Serializable;
  * <li>boolean <b><tt>nil</tt></b> property. (element instance's
  * <tt><b>xsi:nil</b></tt> attribute)</li>
  * </ul>
- *
  * <p>
  * The <tt>declaredType</tt> and <tt>scope</tt> property are the JAXB class
  * binding for the xml type definition.
  * </p>
- *
  * <p>
  * <b><tt>Scope</tt></b> is either {@link GlobalScope} or the Java class
  * representing the complex type definition containing the schema element
  * declaration.
  * </p>
- *
  * <p>
  * There is a property constraint that if <b><tt>value</tt></b> is <tt>null</tt>
  * , then <tt>nil</tt> must be <tt>true</tt>. The converse is not true to enable
@@ -88,20 +84,19 @@ public class JAXBElement<T> implements Serializable {
      * </p>
      *
      * @param name
-     *                     Java binding of xml element tag name
+     *        Java binding of xml element tag name
      * @param declaredType
-     *                     Java binding of xml element declaration's type
+     *        Java binding of xml element declaration's type
      * @param scope
-     *                     Java binding of scope of xml element declaration.
-     *                     Passing null
-     *                     is the same as passing <tt>GlobalScope.class</tt>
+     *        Java binding of scope of xml element declaration.
+     *        Passing null
+     *        is the same as passing <tt>GlobalScope.class</tt>
      * @param value
-     *                     Java instance representing xml element's value.
+     *        Java instance representing xml element's value.
      * @see #getScope()
      * @see #isTypeSubstituted()
      */
-    public JAXBElement(QName name, Class<T> declaredType, Class scope,
-            T value) {
+    public JAXBElement(QName name, Class<T> declaredType, Class scope, T value) {
         if (declaredType == null || name == null)
             throw new IllegalArgumentException();
         this.declaredType = declaredType;
@@ -114,7 +109,6 @@ public class JAXBElement<T> implements Serializable {
 
     /**
      * Construct an xml element instance.
-     *
      * This is just a convenience method for
      * <tt>new JAXBElement(name,declaredType,GlobalScope.class,value)</tt>
      */
@@ -140,7 +134,6 @@ public class JAXBElement<T> implements Serializable {
      * <p>
      * Set the content model and attributes of this xml element.
      * </p>
-     *
      * <p>
      * When this property is set to <tt>null</tt>, <tt>isNil()</tt> must by
      * <tt>true</tt>. Details of constraint are described at {@link #isNil()}.
@@ -156,7 +149,6 @@ public class JAXBElement<T> implements Serializable {
      * <p>
      * Return the content model and attribute values for this element.
      * </p>
-     *
      * <p>
      * See {@link #isNil()} for a description of a property constraint when this
      * value is <tt>null</tt>
@@ -180,7 +172,6 @@ public class JAXBElement<T> implements Serializable {
      * <p>
      * Returns <tt>true</tt> iff this element instance content model is nil.
      * </p>
-     *
      * <p>
      * This property always returns <tt>true</tt> when {@link #getValue()} is
      * null. Note that the converse is not true, when this property is

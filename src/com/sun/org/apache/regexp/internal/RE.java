@@ -27,7 +27,6 @@ import java.util.Vector;
  * pattern, you can also extract parts of the match. This is especially useful
  * in text parsing! Details on the syntax of regular expression patterns are
  * given below.
- *
  * <p>
  * To compile a regular expression (RE), you can simply construct an RE matcher
  * object from the string specification of the pattern, like this:
@@ -35,7 +34,6 @@ import java.util.Vector;
  * <pre>
  * RE r = new RE("a*b");
  * </pre>
- *
  * <p>
  * Once you have done this, you can call either of the RE.match methods to
  * perform matching on a String. For example:
@@ -46,7 +44,6 @@ import java.util.Vector;
  *
  * will cause the boolean matched to be set to true because the pattern "a*b"
  * matches the string "aaaab".
- *
  * <p>
  * If you were interested in the <i>number</i> of a's which matched the first
  * part of our example expression, you could change the expression to "(a*)b".
@@ -79,7 +76,6 @@ import java.util.Vector;
  * </pre>
  *
  * will match any string of the form n=n (like 0=0 or 2=2).
- *
  * <p>
  * The full regular expression syntax accepted by RE is described here:
  *
@@ -197,7 +193,6 @@ import java.util.Vector;
  *    \8    Backreference to 8th parenthesized subexpression
  *    \9    Backreference to 9th parenthesized subexpression
  * </pre>
- *
  * <p>
  * All closure operators (+, *, ?, {m,n}) are greedy by default, meaning that
  * they match as many elements of the string as possible without causing the
@@ -205,7 +200,6 @@ import java.util.Vector;
  * you can simply follow it with a '?'. A reluctant closure will match as few
  * elements of the string as possible when finding matches. {m,n} closures don't
  * currently support reluctancy.
- *
  * <p>
  * <b><font face="times roman">Line terminators</font></b> <br>
  * A line terminator is a one- or two-character sequence that marks the end of a
@@ -220,7 +214,6 @@ import java.util.Vector;
  * <li>A line-separator character ('\u2028'), or</li>
  * <li>A paragraph-separator character ('\u2029).</li>
  * </ul>
- *
  * <p>
  * RE runs programs compiled by the RECompiler class. But the RE matcher class
  * does not include the actual regular expression compiler for reasons of
@@ -230,9 +223,8 @@ import java.util.Vector;
  *
  * <pre>
  * // Pre-compiled regular expression "a*b"
- * char[] re1Instructions = { 0x007c, 0x0000, 0x001a, 0x007c, 0x0000, 0x000d,
- *         0x0041, 0x0001, 0x0004, 0x0061, 0x007c, 0x0000, 0x0003, 0x0047,
- *         0x0000, 0xfff6, 0x007c, 0x0000, 0x0003, 0x004e, 0x0000, 0x0003,
+ * char[] re1Instructions = { 0x007c, 0x0000, 0x001a, 0x007c, 0x0000, 0x000d, 0x0041, 0x0001, 0x0004, 0x0061,
+ *         0x007c, 0x0000, 0x0003, 0x0047, 0x0000, 0xfff6, 0x007c, 0x0000, 0x0003, 0x004e, 0x0000, 0x0003,
  *         0x0041, 0x0001, 0x0004, 0x0062, 0x0045, 0x0000, 0x0000, };
  *
  * REProgram re1 = new REProgram(re1Instructions);
@@ -250,13 +242,10 @@ import java.util.Vector;
  * synchronization yourself). Once expression compiled into the REProgram
  * object, REProgram can be safely shared across multiple threads and RE
  * objects.
- *
  * <br>
  * <p>
  * <br>
- *
  * <font color="red"> <i>ISSUES:</i>
- *
  * <ul>
  * <li>com.weusours.util.re is not currently compatible with all standard POSIX
  * regcomp flags</li>
@@ -277,12 +266,10 @@ import java.util.Vector;
  * complains about this, I'm not sure it's worth "fixing". If it ever is fixed,
  * test #137 in RETest.txt should be updated.</li>
  * </ul>
- *
  * </font>
  *
  * @see recompile
  * @see RECompiler
- *
  * @author <a href="mailto:jonl@muppetlabs.com">Jonathan Locke</a>
  * @author <a href="mailto:ts@sch-fer.de">Tobias Sch&auml;fer</a>
  */
@@ -416,10 +403,10 @@ public class RE implements Serializable {
      * expressions, you may prefer to use a single RECompiler object instead.
      *
      * @param pattern
-     *                The regular expression pattern to compile.
+     *        The regular expression pattern to compile.
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      * @see RECompiler
      * @see recompile
      */
@@ -433,12 +420,12 @@ public class RE implements Serializable {
      * expressions, you may prefer to use a single RECompiler object instead.
      *
      * @param pattern
-     *                   The regular expression pattern to compile.
+     *        The regular expression pattern to compile.
      * @param matchFlags
-     *                   The matching style
+     *        The matching style
      * @exception RESyntaxException
-     *                              Thrown if the regular expression has invalid
-     *                              syntax.
+     *            Thrown if the regular expression has invalid
+     *            syntax.
      * @see RECompiler
      * @see recompile
      */
@@ -453,18 +440,18 @@ public class RE implements Serializable {
      * behaviour.
      *
      * @param program
-     *                   Compiled regular expression program (see RECompiler
-     *                   and/or
-     *                   recompile)
+     *        Compiled regular expression program (see RECompiler
+     *        and/or
+     *        recompile)
      * @param matchFlags
-     *                   One or more of the RE match behaviour flags
-     *                   (RE.MATCH_*):
+     *        One or more of the RE match behaviour flags
+     *        (RE.MATCH_*):
      *
-     *                   <pre>
+     *        <pre>
      *   MATCH_NORMAL              // Normal (case-sensitive) matching
      *   MATCH_CASEINDEPENDENT     // Case folded comparisons
      *   MATCH_MULTILINE           // Newline matches as BOL/EOL
-     *                   </pre>
+     *        </pre>
      *
      * @see RECompiler
      * @see REProgram
@@ -480,7 +467,7 @@ public class RE implements Serializable {
      * (bytecode) data.
      *
      * @param program
-     *                Compiled regular expression program
+     *        Compiled regular expression program
      * @see RECompiler
      * @see recompile
      */
@@ -500,7 +487,7 @@ public class RE implements Serializable {
      * Converts a 'simplified' regular expression to a full regular expression
      *
      * @param pattern
-     *                The pattern to convert
+     *        The pattern to convert
      * @return The full regular expression
      */
     public static String simplePatternToFullRegularExpression(String pattern) {
@@ -538,14 +525,14 @@ public class RE implements Serializable {
      * Sets match behaviour flags which alter the way RE does matching.
      * 
      * @param matchFlags
-     *                   One or more of the RE match behaviour flags
-     *                   (RE.MATCH_*):
+     *        One or more of the RE match behaviour flags
+     *        (RE.MATCH_*):
      *
-     *                   <pre>
+     *        <pre>
      *   MATCH_NORMAL              // Normal (case-sensitive) matching
      *   MATCH_CASEINDEPENDENT     // Case folded comparisons
      *   MATCH_MULTILINE           // Newline matches as BOL/EOL
-     *                   </pre>
+     *        </pre>
      */
     public void setMatchFlags(int matchFlags) {
         this.matchFlags = matchFlags;
@@ -572,7 +559,7 @@ public class RE implements Serializable {
      * Sets the current regular expression program used by this matcher object.
      *
      * @param program
-     *                Regular expression program compiled by RECompiler.
+     *        Regular expression program compiled by RECompiler.
      * @see RECompiler
      * @see REProgram
      * @see recompile
@@ -612,7 +599,7 @@ public class RE implements Serializable {
      * match.
      *
      * @param which
-     *              Nesting level of subexpression
+     *        Nesting level of subexpression
      * @return String
      */
     public String getParen(int which) {
@@ -627,7 +614,7 @@ public class RE implements Serializable {
      * Returns the start index of a given paren level.
      *
      * @param which
-     *              Nesting level of subexpression
+     *        Nesting level of subexpression
      * @return String index
      */
     public final int getParenStart(int which) {
@@ -656,7 +643,7 @@ public class RE implements Serializable {
      * Returns the end index of a given paren level.
      *
      * @param which
-     *              Nesting level of subexpression
+     *        Nesting level of subexpression
      * @return String index
      */
     public final int getParenEnd(int which) {
@@ -685,7 +672,7 @@ public class RE implements Serializable {
      * Returns the length of a given paren level.
      *
      * @param which
-     *              Nesting level of subexpression
+     *        Nesting level of subexpression
      * @return Number of characters in the parenthesized subexpression
      */
     public final int getParenLength(int which) {
@@ -699,9 +686,9 @@ public class RE implements Serializable {
      * Sets the start of a paren level
      *
      * @param which
-     *              Which paren level
+     *        Which paren level
      * @param i
-     *              Index in input array
+     *        Index in input array
      */
     protected final void setParenStart(int which, int i) {
         if (which < parenCount) {
@@ -732,9 +719,9 @@ public class RE implements Serializable {
      * Sets the end of a paren level
      *
      * @param which
-     *              Which paren level
+     *        Which paren level
      * @param i
-     *              Index in input array
+     *        Index in input array
      */
     protected final void setParenEnd(int which, int i) {
         if (which < parenCount) {
@@ -767,7 +754,7 @@ public class RE implements Serializable {
      * corruption). In practice, this should be very rare.
      *
      * @param s
-     *          Error description
+     *        Error description
      */
     protected void internalError(String s) throws Error {
         throw new Error("RE internal error: " + s);
@@ -792,13 +779,13 @@ public class RE implements Serializable {
      * Try to match a string against a subset of nodes in the program
      *
      * @param firstNode
-     *                  Node to start at in program
+     *        Node to start at in program
      * @param lastNode
-     *                  Last valid node (used for matching a subexpression
-     *                  without
-     *                  matching the rest of the program as well).
+     *        Last valid node (used for matching a subexpression
+     *        without
+     *        matching the rest of the program as well).
      * @param idxStart
-     *                  Starting position in character array
+     *        Starting position in character array
      * @return Final input array index if match succeeded. -1 if not.
      */
     protected int matchNodes(int firstNode, int lastNode, int idxStart) {
@@ -822,14 +809,12 @@ public class RE implements Serializable {
                         if ((idxNew = matchNodes(next, maxNode, idx)) != -1) {
                             return idxNew;
                         }
-                    } while ((once++ == 0) && (idx = matchNodes(node + nodeSize,
-                            next, idx)) != -1);
+                    } while ((once++ == 0) && (idx = matchNodes(node + nodeSize, next, idx)) != -1);
                     return -1;
                 }
 
                 case OP_RELUCTANTPLUS:
-                    while ((idx = matchNodes(node + nodeSize, next,
-                            idx)) != -1) {
+                    while ((idx = matchNodes(node + nodeSize, next, idx)) != -1) {
                         // Try to match the rest without using the reluctant subexpr
                         if ((idxNew = matchNodes(next, maxNode, idx)) != -1) {
                             return idxNew;
@@ -843,8 +828,7 @@ public class RE implements Serializable {
                         if ((idxNew = matchNodes(next, maxNode, idx)) != -1) {
                             return idxNew;
                         }
-                    } while ((idx = matchNodes(node + nodeSize, next,
-                            idx)) != -1);
+                    } while ((idx = matchNodes(node + nodeSize, next, idx)) != -1);
                     return -1;
 
                 case OP_OPEN:
@@ -915,12 +899,10 @@ public class RE implements Serializable {
                     }
 
                     // Case fold the backref?
-                    final boolean caseFold = ((matchFlags
-                            & MATCH_CASEINDEPENDENT) != 0);
+                    final boolean caseFold = ((matchFlags & MATCH_CASEINDEPENDENT) != 0);
                     // Compare backref to input
                     for (int i = 0; i < l; i++) {
-                        if (compareChars(search.charAt(idx++), search.charAt(s
-                                + i), caseFold) != 0) {
+                        if (compareChars(search.charAt(idx++), search.charAt(s + i), caseFold) != 0) {
                             return -1;
                         }
                     }
@@ -969,13 +951,10 @@ public class RE implements Serializable {
                         // Word boundary match
                         case E_NBOUND:
                         case E_BOUND: {
-                            char cLast = ((idx == 0) ? '\n'
-                                    : search.charAt(idx - 1));
-                            char cNext = ((search.isEnd(idx)) ? '\n'
-                                    : search.charAt(idx));
-                            if ((Character.isLetterOrDigit(cLast) == Character
-                                    .isLetterOrDigit(
-                                            cNext)) == (opdata == E_BOUND)) {
+                            char cLast = ((idx == 0) ? '\n' : search.charAt(idx - 1));
+                            char cNext = ((search.isEnd(idx)) ? '\n' : search.charAt(idx));
+                            if ((Character.isLetterOrDigit(cLast) == Character.isLetterOrDigit(
+                                    cNext)) == (opdata == E_BOUND)) {
                                 return -1;
                             }
                         }
@@ -1008,16 +987,14 @@ public class RE implements Serializable {
 
                                 case E_DIGIT:
                                 case E_NDIGIT:
-                                    if (!(Character.isDigit(
-                                            c) == (opdata == E_DIGIT))) {
+                                    if (!(Character.isDigit(c) == (opdata == E_DIGIT))) {
                                         return -1;
                                     }
                                     break;
 
                                 case E_SPACE:
                                 case E_NSPACE:
-                                    if (!(Character.isWhitespace(
-                                            c) == (opdata == E_SPACE))) {
+                                    if (!(Character.isWhitespace(c) == (opdata == E_SPACE))) {
                                         return -1;
                                     }
                                     break;
@@ -1026,8 +1003,7 @@ public class RE implements Serializable {
                             break;
 
                         default:
-                            internalError("Unrecognized escape '" + opdata
-                                    + "'");
+                            internalError("Unrecognized escape '" + opdata + "'");
                     }
                     break;
 
@@ -1063,12 +1039,10 @@ public class RE implements Serializable {
                     }
 
                     // Match atom differently depending on casefolding flag
-                    final boolean caseFold = ((matchFlags
-                            & MATCH_CASEINDEPENDENT) != 0);
+                    final boolean caseFold = ((matchFlags & MATCH_CASEINDEPENDENT) != 0);
 
                     for (int i = 0; i < lenAtom; i++) {
-                        if (compareChars(search.charAt(idx++),
-                                instruction[startAtom + i], caseFold) != 0) {
+                        if (compareChars(search.charAt(idx++), instruction[startAtom + i], caseFold) != 0) {
                             return -1;
                         }
                     }
@@ -1083,8 +1057,7 @@ public class RE implements Serializable {
 
                     switch (opdata) {
                         case POSIX_CLASS_ALNUM:
-                            if (!Character.isLetterOrDigit(search.charAt(
-                                    idx))) {
+                            if (!Character.isLetterOrDigit(search.charAt(idx))) {
                                 return -1;
                             }
                             break;
@@ -1114,8 +1087,7 @@ public class RE implements Serializable {
                             break;
 
                         case POSIX_CLASS_CNTRL:
-                            if (Character.getType(search.charAt(
-                                    idx)) != Character.CONTROL) {
+                            if (Character.getType(search.charAt(idx)) != Character.CONTROL) {
                                 return -1;
                             }
                             break;
@@ -1134,22 +1106,19 @@ public class RE implements Serializable {
                             break;
 
                         case POSIX_CLASS_LOWER:
-                            if (Character.getType(search.charAt(
-                                    idx)) != Character.LOWERCASE_LETTER) {
+                            if (Character.getType(search.charAt(idx)) != Character.LOWERCASE_LETTER) {
                                 return -1;
                             }
                             break;
 
                         case POSIX_CLASS_UPPER:
-                            if (Character.getType(search.charAt(
-                                    idx)) != Character.UPPERCASE_LETTER) {
+                            if (Character.getType(search.charAt(idx)) != Character.UPPERCASE_LETTER) {
                                 return -1;
                             }
                             break;
 
                         case POSIX_CLASS_PRINT:
-                            if (Character.getType(search.charAt(
-                                    idx)) == Character.CONTROL) {
+                            if (Character.getType(search.charAt(idx)) == Character.CONTROL) {
                                 return -1;
                             }
                             break;
@@ -1172,12 +1141,9 @@ public class RE implements Serializable {
 
                         case POSIX_CLASS_XDIGIT: // JWL - bugbug??
                         {
-                            boolean isXDigit = ((search.charAt(idx) >= '0'
-                                    && search.charAt(idx) <= '9') || (search
-                                            .charAt(idx) >= 'a' && search
-                                                    .charAt(idx) <= 'f')
-                                    || (search.charAt(idx) >= 'A' && search
-                                            .charAt(idx) <= 'F'));
+                            boolean isXDigit = ((search.charAt(idx) >= '0' && search.charAt(idx) <= '9')
+                                    || (search.charAt(idx) >= 'a' && search.charAt(idx) <= 'f') || (search
+                                            .charAt(idx) >= 'A' && search.charAt(idx) <= 'F'));
                             if (!isXDigit) {
                                 return -1;
                             }
@@ -1185,15 +1151,13 @@ public class RE implements Serializable {
                             break;
 
                         case POSIX_CLASS_JSTART:
-                            if (!Character.isJavaIdentifierStart(search.charAt(
-                                    idx))) {
+                            if (!Character.isJavaIdentifierStart(search.charAt(idx))) {
                                 return -1;
                             }
                             break;
 
                         case POSIX_CLASS_JPART:
-                            if (!Character.isJavaIdentifierPart(search.charAt(
-                                    idx))) {
+                            if (!Character.isJavaIdentifierPart(search.charAt(idx))) {
                                 return -1;
                             }
                             break;
@@ -1217,8 +1181,7 @@ public class RE implements Serializable {
                     // Get character to match against character class and maybe
                     // casefold
                     char c = search.charAt(idx);
-                    boolean caseFold = (matchFlags
-                            & MATCH_CASEINDEPENDENT) != 0;
+                    boolean caseFold = (matchFlags & MATCH_CASEINDEPENDENT) != 0;
                     // Loop through character class checking our match character
                     int idxRange = node + nodeSize;
                     int idxEnd = idxRange + (opdata * 2);
@@ -1228,8 +1191,7 @@ public class RE implements Serializable {
                         char s = instruction[i++];
                         char e = instruction[i++];
 
-                        match = ((compareChars(c, s, caseFold) >= 0)
-                                && (compareChars(c, e, caseFold) <= 0));
+                        match = ((compareChars(c, s, caseFold) >= 0) && (compareChars(c, e, caseFold) <= 0));
                     }
 
                     // Fail if we didn't match the character class
@@ -1253,16 +1215,14 @@ public class RE implements Serializable {
                     short nextBranch;
                     do {
                         // Try matching the branch against the string
-                        if ((idxNew = matchNodes(node + nodeSize, maxNode,
-                                idx)) != -1) {
+                        if ((idxNew = matchNodes(node + nodeSize, maxNode, idx)) != -1) {
                             return idxNew;
                         }
 
                         // Go to next branch (if any)
                         nextBranch = (short) instruction[node + offsetNext];
                         node += nextBranch;
-                    } while (nextBranch != 0 && (instruction[node
-                            + offsetOpcode] == OP_BRANCH));
+                    } while (nextBranch != 0 && (instruction[node + offsetOpcode] == OP_BRANCH));
 
                     // Failed to match any branch!
                     return -1;
@@ -1301,7 +1261,7 @@ public class RE implements Serializable {
      * meant for internal use.
      *
      * @param i
-     *          The input string index to start matching at
+     *        The input string index to start matching at
      * @return True if the input matched the expression
      */
     protected boolean matchAt(int i) {
@@ -1340,9 +1300,9 @@ public class RE implements Serializable {
      * starting at a given index.
      *
      * @param search
-     *               String to match against
+     *        String to match against
      * @param i
-     *               Index to start searching at
+     *        Index to start searching at
      * @return True if string matched
      */
     public boolean match(String search, int i) {
@@ -1354,9 +1314,9 @@ public class RE implements Serializable {
      * starting at a given index.
      *
      * @param search
-     *               String to match against
+     *        String to match against
      * @param i
-     *               Index to start searching at
+     *        Index to start searching at
      * @return True if string matched
      */
     public boolean match(CharacterIterator search, int i) {
@@ -1392,8 +1352,7 @@ public class RE implements Serializable {
                 do {
                     // If there's a mismatch of any character in the prefix,
                     // give up
-                    match = (compareChars(search.charAt(j++), prefix[k++],
-                            caseIndependent) == 0);
+                    match = (compareChars(search.charAt(j++), prefix[k++], caseIndependent) == 0);
                 } while (match && k < prefix.length);
 
                 // See if the whole prefix string matched
@@ -1412,7 +1371,7 @@ public class RE implements Serializable {
      * Matches the current regular expression program against a String.
      *
      * @param search
-     *               String to match against
+     *        String to match against
      * @return True if string matched
      */
     public boolean match(String search) {
@@ -1425,14 +1384,13 @@ public class RE implements Serializable {
      * same name. Given a regular expression of "[ab]+" and a string to split of
      * "xyzzyababbayyzabbbab123", the result would be the array of Strings
      * "[xyzzy, yyz, 123]".
-     *
      * <p>
      * Please note that the first string in the resulting array may be an empty
      * string. This happens when the very first character of input string is
      * matched by the pattern.
      *
      * @param s
-     *          String to split on this regular exression
+     *        String to split on this regular exression
      * @return Array of strings
      */
     public String[] split(String s) {
@@ -1500,10 +1458,10 @@ public class RE implements Serializable {
      * resulting String returned by subst would be "-foo-garply-wacky-".
      *
      * @param substituteIn
-     *                     String to substitute within
+     *        String to substitute within
      * @param substitution
-     *                     String to substitute for all matches of this regular
-     *                     expression.
+     *        String to substitute for all matches of this regular
+     *        expression.
      * @return The string substituteIn with zero or more occurrences of the
      *         current regular expression replaced with the substitution String
      *         (if this regular expression object doesn't match at any position,
@@ -1533,21 +1491,21 @@ public class RE implements Serializable {
      * <i>Note:</i> $0 represents the whole match.
      *
      * @param substituteIn
-     *                     String to substitute within
+     *        String to substitute within
      * @param substitution
-     *                     String to substitute for matches of this regular
-     *                     expression
+     *        String to substitute for matches of this regular
+     *        expression
      * @param flags
-     *                     One or more bitwise flags from REPLACE_*. If the
-     *                     REPLACE_FIRSTONLY flag bit is set, only the first
-     *                     occurrence
-     *                     of this regular expression is replaced. If the bit is
-     *                     not set
-     *                     (REPLACE_ALL), all occurrences of this pattern will
-     *                     be
-     *                     replaced. If the flag REPLACE_BACKREFERENCES is set,
-     *                     all
-     *                     backreferences will be processed.
+     *        One or more bitwise flags from REPLACE_*. If the
+     *        REPLACE_FIRSTONLY flag bit is set, only the first
+     *        occurrence
+     *        of this regular expression is replaced. If the bit is
+     *        not set
+     *        (REPLACE_ALL), all occurrences of this pattern will
+     *        be
+     *        replaced. If the flag REPLACE_BACKREFERENCES is set,
+     *        all
+     *        backreferences will be processed.
      * @return The string substituteIn with zero or more occurrences of the
      *         current regular expression replaced with the substitution String
      *         (if this regular expression object doesn't match at any position,
@@ -1573,25 +1531,21 @@ public class RE implements Serializable {
                 int lLength = substitution.length();
                 boolean bAddedPrefix = false;
 
-                while ((lCurrentPosition = substitution.indexOf("$",
-                        lCurrentPosition)) >= 0) {
-                    if ((lCurrentPosition == 0 || substitution.charAt(
-                            lCurrentPosition - 1) != '\\') && lCurrentPosition
-                                    + 1 < lLength) {
+                while ((lCurrentPosition = substitution.indexOf("$", lCurrentPosition)) >= 0) {
+                    if ((lCurrentPosition == 0 || substitution.charAt(lCurrentPosition - 1) != '\\')
+                            && lCurrentPosition + 1 < lLength) {
                         char c = substitution.charAt(lCurrentPosition + 1);
                         if (c >= '0' && c <= '9') {
                             if (bAddedPrefix == false) {
                                 // Append everything between the beginning of
                                 // the
                                 // substitution string and the current $ sign
-                                ret.append(substitution.substring(0,
-                                        lCurrentPosition));
+                                ret.append(substitution.substring(0, lCurrentPosition));
                                 bAddedPrefix = true;
                             } else {
                                 // Append everything between the last and the
                                 // current $ sign
-                                ret.append(substitution.substring(lLastPosition
-                                        + 2, lCurrentPosition));
+                                ret.append(substitution.substring(lLastPosition + 2, lCurrentPosition));
                             }
 
                             // Append the parenthesized expression
@@ -1649,7 +1603,7 @@ public class RE implements Serializable {
      * [aab, aaaab].
      *
      * @param search
-     *               Array of Objects to search
+     *        Array of Objects to search
      * @return Array of Strings whose toString() value matches this regular
      *         expression.
      */
@@ -1681,8 +1635,8 @@ public class RE implements Serializable {
     private boolean isNewline(int i) {
         char nextChar = search.charAt(i);
 
-        if (nextChar == '\n' || nextChar == '\r' || nextChar == '\u0085'
-                || nextChar == '\u2028' || nextChar == '\u2029') {
+        if (nextChar == '\n' || nextChar == '\r' || nextChar == '\u0085' || nextChar == '\u2028'
+                || nextChar == '\u2029') {
             return true;
         }
 
@@ -1693,11 +1647,11 @@ public class RE implements Serializable {
      * Compares two characters.
      *
      * @param c1
-     *                        first character to compare.
+     *        first character to compare.
      * @param c2
-     *                        second character to compare.
+     *        second character to compare.
      * @param caseIndependent
-     *                        whether comparision is case insensitive or not.
+     *        whether comparision is case insensitive or not.
      * @return negative, 0, or positive integer as the first character less
      *         than, equal to, or greater then the second.
      */

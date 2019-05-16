@@ -5,7 +5,6 @@
 
 /**
  * Interfaces used to model elements of the Java programming language.
- *
  * The term "element" in this package is used to refer to program elements, the
  * declared entities that make up a program. Elements include classes,
  * interfaces, methods, constructors, and fields. The interfaces in this package
@@ -14,7 +13,6 @@
  * {@code finally} block. However, the interfaces can model some structures only
  * appearing inside method bodies, such as local variables and anonymous
  * classes.
- *
  * <p>
  * When used in the context of annotation processing, an accurate model of the
  * element being represented must be returned. As this is a language model, the
@@ -28,23 +26,18 @@
  * {@linkplain java.lang.annotation.Retention retention} cannot be recovered
  * from class files and class files might not be able to provide source position
  * information.
- *
  * Names of parameters may not be recoverable from class files.
- *
  * The {@linkplain javax.lang.model.element.Modifier modifiers} on an element
  * may differ in some cases including:
- *
  * <ul>
  * <li>{@code strictfp} on a class or interface
  * <li>{@code final} on a parameter
  * <li>{@code protected}, {@code private}, and {@code static} on classes and
  * interfaces
  * </ul>
- *
  * Additionally, synthetic constructs in a class file, such as accessor methods
  * used in implementing nested classes and bridge methods used in implementing
  * covariant returns, are translation artifacts outside of this model.
- *
  * <p>
  * During annotation processing, operating on incomplete or erroneous programs
  * is necessary; however, there are fewer guarantees about the nature of the
@@ -62,12 +55,10 @@
  * XYZ<K1, ... ,Kn>}, the returned model must contain no less information than
  * if the declaration of XYZ were assumed to be {@code
  * "class XYZ<T1, ... ,Tn> {}"} or {@code "interface XYZ<T1, ... ,Tn> {}"}
- *
  * <p>
  * Unless otherwise specified in a particular implementation, the collections
  * returned by methods in this package should be expected to be unmodifiable by
  * the caller and unsafe for concurrent access.
- *
  * <p>
  * Unless otherwise specified, methods in this package will throw a
  * {@code NullPointerException} if given a {@code null} argument.

@@ -47,7 +47,6 @@ import java.io.IOException;
  * when it is supplied to an LDAP server, which may accept or reject the name
  * based on factors such as its schema information and interoperability
  * considerations.
- *
  * <p>
  * The following code example shows how to construct an Rdn using the
  * constructor that takes type and value as arguments:
@@ -102,13 +101,13 @@ public class Rdn implements Serializable, Comparable<Object> {
      * to be unescaped.
      *
      * @param attrSet
-     *                The non-null and non-empty attributes containing
-     *                type/value
-     *                mappings.
+     *        The non-null and non-empty attributes containing
+     *        type/value
+     *        mappings.
      * @throws InvalidNameException
-     *                              If contents of <tt>attrSet</tt> cannot be
-     *                              used to construct a
-     *                              valid RDN.
+     *         If contents of <tt>attrSet</tt> cannot be
+     *         used to construct a
+     *         valid RDN.
      */
     public Rdn(Attributes attrSet) throws InvalidNameException {
         if (attrSet.size() == 0) {
@@ -139,10 +138,10 @@ public class Rdn implements Serializable, Comparable<Object> {
      * in the class description for {@link javax.naming.ldap.LdapName}.
      *
      * @param rdnString
-     *                  The non-null and non-empty RFC2253 formatted string.
+     *        The non-null and non-empty RFC2253 formatted string.
      * @throws InvalidNameException
-     *                              If a syntax error occurs during parsing of
-     *                              the rdnString.
+     *         If a syntax error occurs during parsing of
+     *         the rdnString.
      */
     public Rdn(String rdnString) throws InvalidNameException {
         entries = new ArrayList<>(DEFAULT_SIZE);
@@ -154,7 +153,7 @@ public class Rdn implements Serializable, Comparable<Object> {
      * <tt>rdn</tt> are simply copied into the newly created Rdn.
      * 
      * @param rdn
-     *            The non-null Rdn to be copied.
+     *        The non-null Rdn to be copied.
      */
     public Rdn(Rdn rdn) {
         entries = new ArrayList<>(rdn.entries.size());
@@ -169,12 +168,12 @@ public class Rdn implements Serializable, Comparable<Object> {
      * to be unescaped.
      *
      * @param type
-     *              The non-null and non-empty string attribute type.
+     *        The non-null and non-empty string attribute type.
      * @param value
-     *              The non-null and non-empty attribute value.
+     *        The non-null and non-empty attribute value.
      * @throws InvalidNameException
-     *                              If type/value cannot be used to construct a
-     *                              valid RDN.
+     *         If type/value cannot be used to construct a
+     *         valid RDN.
      * @see #toString()
      */
     public Rdn(String type, Object value) throws InvalidNameException {
@@ -182,17 +181,15 @@ public class Rdn implements Serializable, Comparable<Object> {
             throw new NullPointerException("Cannot set value to null");
         }
         if (type.equals("") || isEmptyValue(value)) {
-            throw new InvalidNameException(
-                    "type or value cannot be empty, type:" + type + " value:"
-                            + value);
+            throw new InvalidNameException("type or value cannot be empty, type:" + type + " value:" + value);
         }
         entries = new ArrayList<>(DEFAULT_SIZE);
         put(type, value);
     }
 
     private boolean isEmptyValue(Object val) {
-        return ((val instanceof String) && val.equals(""))
-                || ((val instanceof byte[]) && (((byte[]) val).length == 0));
+        return ((val instanceof String) && val.equals("")) || ((val instanceof byte[])
+                && (((byte[]) val).length == 0));
     }
 
     // An empty constructor used by the parser
@@ -293,11 +290,11 @@ public class Rdn implements Serializable, Comparable<Object> {
      * multi-valued Rdns (such as "ou=Sales+cn=Bob") is not significant.
      *
      * @param obj
-     *            The non-null object to compare against.
+     *        The non-null object to compare against.
      * @return A negative integer, zero, or a positive integer as this Rdn is
      *         less than, equal to, or greater than the given Object.
      * @exception ClassCastException
-     *                               if obj is null or not a Rdn.
+     *            if obj is null or not a Rdn.
      */
     public int compareTo(Object obj) {
         if (!(obj instanceof Rdn)) {
@@ -337,7 +334,7 @@ public class Rdn implements Serializable, Comparable<Object> {
      * <p>
      * 
      * @param obj
-     *            object to be compared for equality with this Rdn.
+     *        object to be compared for equality with this Rdn.
      * @return true if the specified object is equal to this Rdn.
      * @see #hashCode()
      */
@@ -436,13 +433,12 @@ public class Rdn implements Serializable, Comparable<Object> {
 
             // Any change here must be reflected in hashCode()
             RdnEntry that = (RdnEntry) obj;
-            return (type.equalsIgnoreCase(that.type)) && (getValueComparable()
-                    .equals(that.getValueComparable()));
+            return (type.equalsIgnoreCase(that.type)) && (getValueComparable().equals(that
+                    .getValueComparable()));
         }
 
         public int hashCode() {
-            return (type.toUpperCase(Locale.ENGLISH).hashCode()
-                    + getValueComparable().hashCode());
+            return (type.toUpperCase(Locale.ENGLISH).hashCode() + getValueComparable().hashCode());
         }
 
         public String toString() {
@@ -485,14 +481,13 @@ public class Rdn implements Serializable, Comparable<Object> {
      * array.
      *
      * @param val
-     *            The non-null object to be escaped.
+     *        The non-null object to be escaped.
      * @return Escaped string value.
      * @throws ClassCastException
-     *                            if val is is not a String or byte array.
+     *         if val is is not a String or byte array.
      */
     public static String escapeValue(Object val) {
-        return (val instanceof byte[]) ? escapeBinaryValue((byte[]) val)
-                : escapeStringValue((String) val);
+        return (val instanceof byte[]) ? escapeBinaryValue((byte[]) val) : escapeStringValue((String) val);
     }
 
     /*
@@ -563,10 +558,10 @@ public class Rdn implements Serializable, Comparable<Object> {
      * <tt>IllegalArgumentException</tt>.
      *
      * @param val
-     *            The non-null string to be unescaped.
+     *        The non-null string to be unescaped.
      * @return Unescaped value.
      * @throws IllegalArgumentException
-     *                                  When an Illegal value is provided.
+     *         When an Illegal value is provided.
      */
     public static Object unescapeValue(String val) {
 
@@ -627,9 +622,8 @@ public class Rdn implements Serializable, Comparable<Object> {
                     } else { // no utf8 bytes available, invalid DN
 
                         // '/' has no meaning, throw exception
-                        throw new IllegalArgumentException(
-                                "Not a valid attribute string value:" + val
-                                        + ",improper usage of backslash");
+                        throw new IllegalArgumentException("Not a valid attribute string value:" + val
+                                + ",improper usage of backslash");
                     }
                 }
             } else {
@@ -663,8 +657,7 @@ public class Rdn implements Serializable, Comparable<Object> {
             beg += 2;
         }
         if (beg != end) {
-            throw new IllegalArgumentException("Illegal attribute value: "
-                    + new String(chars));
+            throw new IllegalArgumentException("Illegal attribute value: " + new String(chars));
         }
         return bytes;
     }
@@ -714,8 +707,7 @@ public class Rdn implements Serializable, Comparable<Object> {
         s.writeObject(toString());
     }
 
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         entries = new ArrayList<>(DEFAULT_SIZE);
         String unparsed = (String) s.readObject();
@@ -723,8 +715,7 @@ public class Rdn implements Serializable, Comparable<Object> {
             (new Rfc2253Parser(unparsed)).parseRdn(this);
         } catch (InvalidNameException e) {
             // shouldn't happen
-            throw new java.io.StreamCorruptedException("Invalid name: "
-                    + unparsed);
+            throw new java.io.StreamCorruptedException("Invalid name: " + unparsed);
         }
     }
 }

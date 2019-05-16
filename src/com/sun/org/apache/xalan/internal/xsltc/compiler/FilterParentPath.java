@@ -102,8 +102,8 @@ final class FilterParentPath extends Expression {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
         // Create new StepIterator
-        final int initSI = cpg.addMethodref(STEP_ITERATOR_CLASS, "<init>", "("
-                + NODE_ITERATOR_SIG + NODE_ITERATOR_SIG + ")V");
+        final int initSI = cpg.addMethodref(STEP_ITERATOR_CLASS, "<init>", "(" + NODE_ITERATOR_SIG
+                + NODE_ITERATOR_SIG + ")V");
 
         // Backwards branches are prohibited if an uninitialized object is
         // on the stack by section 4.9.4 of the JVM Specification, 2nd Ed.
@@ -116,15 +116,13 @@ final class FilterParentPath extends Expression {
 
         // Recursively compile 2 iterators
         _filterExpr.translate(classGen, methodGen);
-        LocalVariableGen filterTemp = methodGen.addLocalVariable(
-                "filter_parent_path_tmp1", Util.getJCRefType(NODE_ITERATOR_SIG),
-                null, null);
+        LocalVariableGen filterTemp = methodGen.addLocalVariable("filter_parent_path_tmp1", Util.getJCRefType(
+                NODE_ITERATOR_SIG), null, null);
         filterTemp.setStart(il.append(new ASTORE(filterTemp.getIndex())));
 
         _path.translate(classGen, methodGen);
-        LocalVariableGen pathTemp = methodGen.addLocalVariable(
-                "filter_parent_path_tmp2", Util.getJCRefType(NODE_ITERATOR_SIG),
-                null, null);
+        LocalVariableGen pathTemp = methodGen.addLocalVariable("filter_parent_path_tmp2", Util.getJCRefType(
+                NODE_ITERATOR_SIG), null, null);
         pathTemp.setStart(il.append(new ASTORE(pathTemp.getIndex())));
 
         il.append(new NEW(cpg.addClass(STEP_ITERATOR_CLASS)));
@@ -137,22 +135,18 @@ final class FilterParentPath extends Expression {
 
         // This is a special case for the //* path with or without predicates
         if (_hasDescendantAxis) {
-            final int incl = cpg.addMethodref(NODE_ITERATOR_BASE, "includeSelf",
-                    "()" + NODE_ITERATOR_SIG);
+            final int incl = cpg.addMethodref(NODE_ITERATOR_BASE, "includeSelf", "()" + NODE_ITERATOR_SIG);
             il.append(new INVOKEVIRTUAL(incl));
         }
 
         SyntaxTreeNode parent = getParent();
 
         boolean parentAlreadyOrdered = (parent instanceof RelativeLocationPath)
-                || (parent instanceof FilterParentPath)
-                || (parent instanceof KeyCall)
-                || (parent instanceof CurrentCall)
-                || (parent instanceof DocumentCall);
+                || (parent instanceof FilterParentPath) || (parent instanceof KeyCall)
+                || (parent instanceof CurrentCall) || (parent instanceof DocumentCall);
 
         if (!parentAlreadyOrdered) {
-            final int order = cpg.addInterfaceMethodref(DOM_INTF,
-                    ORDER_ITERATOR, ORDER_ITERATOR_SIG);
+            final int order = cpg.addInterfaceMethodref(DOM_INTF, ORDER_ITERATOR, ORDER_ITERATOR_SIG);
             il.append(methodGen.loadDOM());
             il.append(SWAP);
             il.append(methodGen.loadContextNode());

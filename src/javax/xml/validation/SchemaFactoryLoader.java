@@ -9,11 +9,9 @@ package javax.xml.validation;
  * <p>
  * Factory that creates {@link SchemaFactory}.
  * </p>
- *
  * <p>
  * <b>DO NOT USE THIS CLASS</b>
  * </p>
- *
  * <p>
  * This class was introduced as a part of an early proposal during the JSR-206
  * standardization process. The proposal was eventually abandoned but this class
@@ -40,14 +38,12 @@ public abstract class SchemaFactoryLoader {
      * language.
      *
      * @param schemaLanguage
-     *                       See <a href="SchemaFactory.html#schemaLanguage">
-     *                       the list of
-     *                       available schema languages</a>.
-     *
+     *        See <a href="SchemaFactory.html#schemaLanguage">
+     *        the list of
+     *        available schema languages</a>.
      * @throws NullPointerException
-     *                              If the <tt>schemaLanguage</tt> parameter is
-     *                              null.
-     *
+     *         If the <tt>schemaLanguage</tt> parameter is
+     *         null.
      * @return <code>null</code> if the callee fails to create one.
      */
     public abstract SchemaFactory newFactory(String schemaLanguage);

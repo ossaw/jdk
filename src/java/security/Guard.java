@@ -9,7 +9,6 @@ package java.security;
  * <p>
  * This interface represents a guard, which is an object that is used to protect
  * access to another object.
- *
  * <p>
  * This interface contains a single method, {@code checkGuard}, with a single
  * {@code object} argument. {@code checkGuard} is invoked (by the GuardedObject
@@ -17,7 +16,6 @@ package java.security;
  * object.
  *
  * @see GuardedObject
- *
  * @author Roland Schemers
  * @author Li Gong
  */
@@ -30,11 +28,9 @@ public interface Guard {
      * a SecurityException.
      *
      * @param object
-     *               the object being protected by the guard.
-     *
+     *        the object being protected by the guard.
      * @exception SecurityException
-     *                              if access is denied.
-     *
+     *            if access is denied.
      */
     void checkGuard(Object object) throws SecurityException;
 }

@@ -28,8 +28,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
  * encoding, and discard the byte order mark, if applicable.
  *
  * @author Michael Glavassevich, IBM
- *
- *
  * @see XIncludeHandler
  */
 public class XInclude11TextReader extends XIncludeTextReader {
@@ -39,14 +37,14 @@ public class XInclude11TextReader extends XIncludeTextReader {
      * XIncludeHandler.
      *
      * @param source
-     *                   The XMLInputSource to use.
+     *        The XMLInputSource to use.
      * @param handler
-     *                   The XIncludeHandler to use.
+     *        The XIncludeHandler to use.
      * @param bufferSize
-     *                   The size of this text reader's buffer.
+     *        The size of this text reader's buffer.
      */
-    public XInclude11TextReader(XMLInputSource source, XIncludeHandler handler,
-            int bufferSize) throws IOException {
+    public XInclude11TextReader(XMLInputSource source, XIncludeHandler handler, int bufferSize)
+            throws IOException {
         super(source, handler, bufferSize);
     }
 
@@ -55,7 +53,7 @@ public class XInclude11TextReader extends XIncludeTextReader {
      * the rules of XML 1.1.
      *
      * @param ch
-     *           The character to check.
+     *        The character to check.
      */
     protected boolean isValid(int ch) {
         return XML11Char.isXML11Valid(ch);

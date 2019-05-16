@@ -25,12 +25,10 @@ import javax.xml.ws.spi.WebServiceFeatureAnnotation;
  * a proxy instance is created. The injected SEI proxy, and endpoint MUST honor
  * the values of the <code>RespectBinding</code> annotation.
  * <p>
- *
  * This annotation's behaviour is defined by the corresponding feature
  * {@link RespectBindingFeature}.
  *
  * @see RespectBindingFeature
- *
  * @since JAX-WS 2.1
  */
 @Target({ ElementType.TYPE, ElementType.METHOD, ElementType.FIELD })

@@ -38,7 +38,6 @@ package com.sun.org.apache.xerces.internal.xni;
  *
  * @author Eric Ye, IBM
  * @author Andy Clark, IBM
- *
  */
 public class XMLString {
 
@@ -66,11 +65,11 @@ public class XMLString {
      * Constructs an XMLString structure preset with the specified values.
      *
      * @param ch
-     *               The character array.
+     *        The character array.
      * @param offset
-     *               The offset into the character array.
+     *        The offset into the character array.
      * @param length
-     *               The length of characters from the offset.
+     *        The length of characters from the offset.
      */
     public XMLString(char[] ch, int offset, int length) {
         setValues(ch, offset, length);
@@ -84,7 +83,7 @@ public class XMLString {
      * reference to the array is copied.
      *
      * @param string
-     *               The XMLString to copy.
+     *        The XMLString to copy.
      */
     public XMLString(XMLString string) {
         setValues(string);
@@ -99,11 +98,11 @@ public class XMLString {
      * values.
      *
      * @param ch
-     *               The character array.
+     *        The character array.
      * @param offset
-     *               The offset into the character array.
+     *        The offset into the character array.
      * @param length
-     *               The length of characters from the offset.
+     *        The length of characters from the offset.
      */
     public void setValues(char[] ch, int offset, int length) {
         this.ch = ch;
@@ -136,11 +135,11 @@ public class XMLString {
      * specified array are equal.
      *
      * @param ch
-     *               The character array.
+     *        The character array.
      * @param offset
-     *               The offset into the character array.
+     *        The offset into the character array.
      * @param length
-     *               The length of characters from the offset.
+     *        The length of characters from the offset.
      */
     public boolean equals(char[] ch, int offset, int length) {
         if (ch == null) {
@@ -163,7 +162,7 @@ public class XMLString {
      * specified string are equal.
      *
      * @param s
-     *          The string to compare.
+     *        The string to compare.
      */
     public boolean equals(String s) {
         if (s == null) {

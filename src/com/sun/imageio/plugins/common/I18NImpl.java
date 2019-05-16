@@ -15,7 +15,6 @@ import java.net.URL;
  * line. All such files however have the same name "properties". The resource
  * extractor resolves the extraction of the file from the jar as the package
  * name is included automatically.
- *
  * <p>
  * Extenders need only provide a static method <code>getString(String)</code>
  * which calls the static method in this class with the name of the invoking
@@ -26,12 +25,10 @@ public class I18NImpl {
      * Returns the message string with the specified key from the "properties"
      * file in the package containing the class with the specified name.
      */
-    protected static final String getString(String className,
-            String resource_name, String key) {
+    protected static final String getString(String className, String resource_name, String key) {
         PropertyResourceBundle bundle = null;
         try {
-            InputStream stream = Class.forName(className).getResourceAsStream(
-                    resource_name);
+            InputStream stream = Class.forName(className).getResourceAsStream(resource_name);
             bundle = new PropertyResourceBundle(stream);
         } catch (Throwable e) {
             throw new RuntimeException(e); // Chain the exception.

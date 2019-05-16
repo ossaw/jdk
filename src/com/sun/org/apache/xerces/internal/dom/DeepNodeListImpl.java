@@ -65,7 +65,6 @@ import java.util.Vector;
  * search mechanisms, partly for the reasons just discussed.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
 public class DeepNodeListImpl implements NodeList {
@@ -166,8 +165,7 @@ public class DeepNodeListImpl implements NodeList {
             }
 
             // Look right to sibling (but not from root!)
-            else if (current != rootNode && null != (next = current
-                    .getNextSibling())) {
+            else if (current != rootNode && null != (next = current.getNextSibling())) {
                 current = next;
             }
 
@@ -187,11 +185,9 @@ public class DeepNodeListImpl implements NodeList {
 
             // Have we found an Element with the right tagName?
             // ("*" matches anything.)
-            if (current != rootNode && current != null && current
-                    .getNodeType() == Node.ELEMENT_NODE) {
+            if (current != rootNode && current != null && current.getNodeType() == Node.ELEMENT_NODE) {
                 if (!enableNS) {
-                    if (tagName.equals("*") || ((ElementImpl) current)
-                            .getTagName().equals(tagName)) {
+                    if (tagName.equals("*") || ((ElementImpl) current).getTagName().equals(tagName)) {
                         return current;
                     }
                 } else {
@@ -201,23 +197,19 @@ public class DeepNodeListImpl implements NodeList {
                             return current;
                         } else {
                             ElementImpl el = (ElementImpl) current;
-                            if ((nsName == null && el.getNamespaceURI() == null)
-                                    || (nsName != null && nsName.equals(el
-                                            .getNamespaceURI()))) {
+                            if ((nsName == null && el.getNamespaceURI() == null) || (nsName != null && nsName
+                                    .equals(el.getNamespaceURI()))) {
                                 return current;
                             }
                         }
                     } else {
                         ElementImpl el = (ElementImpl) current;
-                        if (el.getLocalName() != null && el.getLocalName()
-                                .equals(tagName)) {
+                        if (el.getLocalName() != null && el.getLocalName().equals(tagName)) {
                             if (nsName != null && nsName.equals("*")) {
                                 return current;
                             } else {
-                                if ((nsName == null && el
-                                        .getNamespaceURI() == null)
-                                        || (nsName != null && nsName.equals(el
-                                                .getNamespaceURI()))) {
+                                if ((nsName == null && el.getNamespaceURI() == null) || (nsName != null
+                                        && nsName.equals(el.getNamespaceURI()))) {
                                     return current;
                                 }
                             }

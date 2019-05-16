@@ -29,7 +29,7 @@ public class InvalidAttributeValueException extends NamingException {
      * explanation. All other fields are set to null.
      * 
      * @param explanation
-     *                    Additional detail about this exception. Can be null.
+     *        Additional detail about this exception. Can be null.
      * @see java.lang.Throwable#getMessage
      */
     public InvalidAttributeValueException(String explanation) {

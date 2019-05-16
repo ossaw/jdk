@@ -46,7 +46,7 @@ public class StringBufferPool {
      * Return a string buffer back to the pool.
      *
      * @param sb
-     *           Must be a non-null reference to a string buffer.
+     *        Must be a non-null reference to a string buffer.
      */
     public synchronized static void free(FastStringBuffer sb) {
         // Since this isn't synchronized, setLength must be

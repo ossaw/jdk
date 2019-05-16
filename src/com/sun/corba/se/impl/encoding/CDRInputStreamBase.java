@@ -29,8 +29,8 @@ abstract class CDRInputStreamBase extends java.io.InputStream {
         this.parent = parent;
     }
 
-    public abstract void init(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer,
-            int size, boolean littleEndian, BufferManagerRead bufferManager);
+    public abstract void init(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer, int size, boolean littleEndian,
+            BufferManagerRead bufferManager);
 
     // org.omg.CORBA.portable.InputStream
     public abstract boolean read_boolean();
@@ -61,8 +61,7 @@ abstract class CDRInputStreamBase extends java.io.InputStream {
 
     public abstract String read_wstring();
 
-    public abstract void read_boolean_array(boolean[] value, int offset,
-            int length);
+    public abstract void read_boolean_array(boolean[] value, int offset, int length);
 
     public abstract void read_char_array(char[] value, int offset, int length);
 
@@ -70,27 +69,21 @@ abstract class CDRInputStreamBase extends java.io.InputStream {
 
     public abstract void read_octet_array(byte[] value, int offset, int length);
 
-    public abstract void read_short_array(short[] value, int offset,
-            int length);
+    public abstract void read_short_array(short[] value, int offset, int length);
 
-    public abstract void read_ushort_array(short[] value, int offset,
-            int length);
+    public abstract void read_ushort_array(short[] value, int offset, int length);
 
     public abstract void read_long_array(int[] value, int offset, int length);
 
     public abstract void read_ulong_array(int[] value, int offset, int length);
 
-    public abstract void read_longlong_array(long[] value, int offset,
-            int length);
+    public abstract void read_longlong_array(long[] value, int offset, int length);
 
-    public abstract void read_ulonglong_array(long[] value, int offset,
-            int length);
+    public abstract void read_ulonglong_array(long[] value, int offset, int length);
 
-    public abstract void read_float_array(float[] value, int offset,
-            int length);
+    public abstract void read_float_array(float[] value, int offset, int length);
 
-    public abstract void read_double_array(double[] value, int offset,
-            int length);
+    public abstract void read_double_array(double[] value, int offset, int length);
 
     public abstract org.omg.CORBA.Object read_Object();
 
@@ -119,8 +112,7 @@ abstract class CDRInputStreamBase extends java.io.InputStream {
 
     public abstract java.io.Serializable read_value(java.lang.Class clz);
 
-    public abstract java.io.Serializable read_value(
-            org.omg.CORBA.portable.BoxedValueHelper factory);
+    public abstract java.io.Serializable read_value(org.omg.CORBA.portable.BoxedValueHelper factory);
 
     public abstract java.io.Serializable read_value(java.lang.String rep_id);
 
@@ -128,8 +120,7 @@ abstract class CDRInputStreamBase extends java.io.InputStream {
 
     public abstract java.lang.Object read_abstract_interface();
 
-    public abstract java.lang.Object read_abstract_interface(
-            java.lang.Class clz);
+    public abstract java.lang.Object read_abstract_interface(java.lang.Class clz);
 
     // com.sun.corba.se.impl.encoding.MarshalInputStream
     public abstract void consumeEndian();
@@ -141,44 +132,31 @@ abstract class CDRInputStreamBase extends java.io.InputStream {
 
     public abstract java.io.Serializable read_Value();
 
-    public abstract void read_any_array(org.omg.CORBA.AnySeqHolder seq,
-            int offset, int length);
+    public abstract void read_any_array(org.omg.CORBA.AnySeqHolder seq, int offset, int length);
 
-    public abstract void read_boolean_array(org.omg.CORBA.BooleanSeqHolder seq,
-            int offset, int length);
+    public abstract void read_boolean_array(org.omg.CORBA.BooleanSeqHolder seq, int offset, int length);
 
-    public abstract void read_char_array(org.omg.CORBA.CharSeqHolder seq,
-            int offset, int length);
+    public abstract void read_char_array(org.omg.CORBA.CharSeqHolder seq, int offset, int length);
 
-    public abstract void read_wchar_array(org.omg.CORBA.WCharSeqHolder seq,
-            int offset, int length);
+    public abstract void read_wchar_array(org.omg.CORBA.WCharSeqHolder seq, int offset, int length);
 
-    public abstract void read_octet_array(org.omg.CORBA.OctetSeqHolder seq,
-            int offset, int length);
+    public abstract void read_octet_array(org.omg.CORBA.OctetSeqHolder seq, int offset, int length);
 
-    public abstract void read_short_array(org.omg.CORBA.ShortSeqHolder seq,
-            int offset, int length);
+    public abstract void read_short_array(org.omg.CORBA.ShortSeqHolder seq, int offset, int length);
 
-    public abstract void read_ushort_array(org.omg.CORBA.UShortSeqHolder seq,
-            int offset, int length);
+    public abstract void read_ushort_array(org.omg.CORBA.UShortSeqHolder seq, int offset, int length);
 
-    public abstract void read_long_array(org.omg.CORBA.LongSeqHolder seq,
-            int offset, int length);
+    public abstract void read_long_array(org.omg.CORBA.LongSeqHolder seq, int offset, int length);
 
-    public abstract void read_ulong_array(org.omg.CORBA.ULongSeqHolder seq,
-            int offset, int length);
+    public abstract void read_ulong_array(org.omg.CORBA.ULongSeqHolder seq, int offset, int length);
 
-    public abstract void read_ulonglong_array(
-            org.omg.CORBA.ULongLongSeqHolder seq, int offset, int length);
+    public abstract void read_ulonglong_array(org.omg.CORBA.ULongLongSeqHolder seq, int offset, int length);
 
-    public abstract void read_longlong_array(
-            org.omg.CORBA.LongLongSeqHolder seq, int offset, int length);
+    public abstract void read_longlong_array(org.omg.CORBA.LongLongSeqHolder seq, int offset, int length);
 
-    public abstract void read_float_array(org.omg.CORBA.FloatSeqHolder seq,
-            int offset, int length);
+    public abstract void read_float_array(org.omg.CORBA.FloatSeqHolder seq, int offset, int length);
 
-    public abstract void read_double_array(org.omg.CORBA.DoubleSeqHolder seq,
-            int offset, int length);
+    public abstract void read_double_array(org.omg.CORBA.DoubleSeqHolder seq, int offset, int length);
 
     // org.omg.CORBA.portable.ValueBase
     public abstract String[] _truncatable_ids();

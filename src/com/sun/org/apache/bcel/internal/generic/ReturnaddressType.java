@@ -54,7 +54,6 @@ import java.util.Objects;
 
 /**
  * Returnaddress, the type JSR or JSR_W instructions push upon the stack.
- *
  * see vmspec2 3.3.3
  * 
  * @author <A HREF="http://www.inf.fu-berlin.de/~ehaase">Enver Haase</A>
@@ -75,8 +74,7 @@ public class ReturnaddressType extends Type {
      * Creates a ReturnaddressType object with a target.
      */
     public ReturnaddressType(InstructionHandle returnTarget) {
-        super(Constants.T_ADDRESS, "<return address targeting " + returnTarget
-                + ">");
+        super(Constants.T_ADDRESS, "<return address targeting " + returnTarget + ">");
         this.returnTarget = returnTarget;
     }
 

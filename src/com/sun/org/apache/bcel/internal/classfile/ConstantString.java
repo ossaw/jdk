@@ -75,7 +75,7 @@ public final class ConstantString extends Constant implements ConstantObject {
      * Initialize instance from file data.
      *
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
     ConstantString(DataInputStream file) throws IOException {
@@ -84,7 +84,7 @@ public final class ConstantString extends Constant implements ConstantObject {
 
     /**
      * @param string_index
-     *                     Index of Constant_Utf8 in constant pool
+     *        Index of Constant_Utf8 in constant pool
      */
     public ConstantString(int string_index) {
         super(Constants.CONSTANT_String);
@@ -97,7 +97,7 @@ public final class ConstantString extends Constant implements ConstantObject {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantString(this);
@@ -107,7 +107,7 @@ public final class ConstantString extends Constant implements ConstantObject {
      * Dump constant field reference to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {

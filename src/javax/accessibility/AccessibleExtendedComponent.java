@@ -20,7 +20,6 @@ package javax.accessibility;
  * @see Accessible#getAccessibleContext
  * @see AccessibleContext
  * @see AccessibleContext#getAccessibleComponent
- *
  * @author Lynn Monsanto
  * @since 1.4
  */

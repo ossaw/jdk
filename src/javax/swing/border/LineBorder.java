@@ -60,7 +60,7 @@ public class LineBorder extends AbstractBorder {
      * Creates a line border with the specified color and a thickness = 1.
      * 
      * @param color
-     *              the color for the border
+     *        the color for the border
      */
     public LineBorder(Color color) {
         this(color, 1, false);
@@ -70,9 +70,9 @@ public class LineBorder extends AbstractBorder {
      * Creates a line border with the specified color and thickness.
      * 
      * @param color
-     *                  the color of the border
+     *        the color of the border
      * @param thickness
-     *                  the thickness of the border
+     *        the thickness of the border
      */
     public LineBorder(Color color, int thickness) {
         this(color, thickness, false);
@@ -83,11 +83,11 @@ public class LineBorder extends AbstractBorder {
      * shape.
      * 
      * @param color
-     *                       the color of the border
+     *        the color of the border
      * @param thickness
-     *                       the thickness of the border
+     *        the thickness of the border
      * @param roundedCorners
-     *                       whether or not border corners should be round
+     *        whether or not border corners should be round
      * @since 1.3
      */
     @ConstructorProperties({ "lineColor", "thickness", "roundedCorners" })
@@ -102,20 +102,19 @@ public class LineBorder extends AbstractBorder {
      * and size.
      * 
      * @param c
-     *               the component for which this border is being painted
+     *        the component for which this border is being painted
      * @param g
-     *               the paint graphics
+     *        the paint graphics
      * @param x
-     *               the x position of the painted border
+     *        the x position of the painted border
      * @param y
-     *               the y position of the painted border
+     *        the y position of the painted border
      * @param width
-     *               the width of the painted border
+     *        the width of the painted border
      * @param height
-     *               the height of the painted border
+     *        the height of the painted border
      */
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-            int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         if ((this.thickness > 0) && (g instanceof Graphics2D)) {
             Graphics2D g2d = (Graphics2D) g;
 
@@ -129,14 +128,11 @@ public class LineBorder extends AbstractBorder {
             int size = offs + offs;
             if (this.roundedCorners) {
                 float arc = .2f * offs;
-                outer = new RoundRectangle2D.Float(x, y, width, height, offs,
-                        offs);
-                inner = new RoundRectangle2D.Float(x + offs, y + offs, width
-                        - size, height - size, arc, arc);
+                outer = new RoundRectangle2D.Float(x, y, width, height, offs, offs);
+                inner = new RoundRectangle2D.Float(x + offs, y + offs, width - size, height - size, arc, arc);
             } else {
                 outer = new Rectangle2D.Float(x, y, width, height);
-                inner = new Rectangle2D.Float(x + offs, y + offs, width - size,
-                        height - size);
+                inner = new Rectangle2D.Float(x + offs, y + offs, width - size, height - size);
             }
             Path2D path = new Path2D.Float(Path2D.WIND_EVEN_ODD);
             path.append(outer, false);
@@ -150,9 +146,9 @@ public class LineBorder extends AbstractBorder {
      * Reinitialize the insets parameter with this Border's current Insets.
      * 
      * @param c
-     *               the component for which this border insets value applies
+     *        the component for which this border insets value applies
      * @param insets
-     *               the object to be reinitialized
+     *        the object to be reinitialized
      */
     public Insets getBorderInsets(Component c, Insets insets) {
         insets.set(thickness, thickness, thickness, thickness);

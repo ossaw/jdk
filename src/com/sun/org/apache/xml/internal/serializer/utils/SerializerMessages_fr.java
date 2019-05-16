@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * map to are defined here.
  * <p>
  * The messages in the English version are intended to be translated.
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -66,8 +65,7 @@ public class SerializerMessages_fr extends ListResourceBundle {
                 { MsgKey.ER_SERIALIZER_NOT_CONTENTHANDLER,
                         "La classe de serializer ''{0}'' n''impl\u00E9mente pas org.xml.sax.ContentHandler." },
 
-                { MsgKey.ER_RESOURCE_COULD_NOT_FIND,
-                        "La ressource [ {0} ] est introuvable.\n {1}" },
+                { MsgKey.ER_RESOURCE_COULD_NOT_FIND, "La ressource [ {0} ] est introuvable.\n {1}" },
 
                 { MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
                         "La ressource [ {0} ] n''a pas pu charger : {1} \n {2} \t {3}" },
@@ -97,8 +95,7 @@ public class SerializerMessages_fr extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { MsgKey.ER_STRAY_ATTRIBUTE,
-                        "Attribut ''{0}'' en dehors de l''\u00E9l\u00E9ment." },
+                { MsgKey.ER_STRAY_ATTRIBUTE, "Attribut ''{0}'' en dehors de l''\u00E9l\u00E9ment." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -127,8 +124,7 @@ public class SerializerMessages_fr extends ListResourceBundle {
                 { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
                         "Le format de l'adresse de l'h\u00F4te n'est pas correct" },
 
-                { MsgKey.ER_SCHEME_NOT_CONFORMANT,
-                        "Le mod\u00E8le n'est pas conforme." },
+                { MsgKey.ER_SCHEME_NOT_CONFORMANT, "Le mod\u00E8le n'est pas conforme." },
 
                 { MsgKey.ER_SCHEME_FROM_NULL_STRING,
                         "Impossible de d\u00E9finir le mod\u00E8le \u00E0 partir de la cha\u00EEne NULL" },
@@ -136,11 +132,9 @@ public class SerializerMessages_fr extends ListResourceBundle {
                 { MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
                         "Le chemin d'acc\u00E8s contient une s\u00E9quence d'\u00E9chappement non valide" },
 
-                { MsgKey.ER_PATH_INVALID_CHAR,
-                        "Le chemin contient un caract\u00E8re non valide : {0}" },
+                { MsgKey.ER_PATH_INVALID_CHAR, "Le chemin contient un caract\u00E8re non valide : {0}" },
 
-                { MsgKey.ER_FRAG_INVALID_CHAR,
-                        "Le fragment contient un caract\u00E8re non valide" },
+                { MsgKey.ER_FRAG_INVALID_CHAR, "Le fragment contient un caract\u00E8re non valide" },
 
                 { MsgKey.ER_FRAG_WHEN_PATH_NULL,
                         "Impossible de d\u00E9finir le fragment quand le chemin d'acc\u00E8s est NULL" },
@@ -148,8 +142,7 @@ public class SerializerMessages_fr extends ListResourceBundle {
                 { MsgKey.ER_FRAG_FOR_GENERIC_URI,
                         "Le fragment ne peut \u00EAtre d\u00E9fini que pour un URI g\u00E9n\u00E9rique" },
 
-                { MsgKey.ER_NO_SCHEME_IN_URI,
-                        "Mod\u00E8le introuvable dans l'URI" },
+                { MsgKey.ER_NO_SCHEME_IN_URI, "Mod\u00E8le introuvable dans l'URI" },
 
                 { MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS,
                         "Impossible d'initialiser l'URI avec des param\u00E8tres vides" },

@@ -13,12 +13,10 @@ import javax.lang.model.element.*;
  * type is unknown at compile time. When a visitor is passed to a type's
  * {@link TypeMirror#accept accept} method, the <tt>visit<i>XYZ</i></tt> method
  * most applicable to that type is invoked.
- *
  * <p>
  * Classes implementing this interface may or may not throw a
  * {@code NullPointerException} if the additional parameter {@code p} is
  * {@code null}; see documentation of the implementing class for details.
- *
  * <p>
  * <b>WARNING:</b> It is possible that methods will be added to this interface
  * to accommodate new, currently unknown, language structures added to future
@@ -29,7 +27,6 @@ import javax.lang.model.element.*;
  * visitor class that implements this interface. However, an API should
  * generally use this visitor interface as the type for parameters, return type,
  * etc. rather than one of the abstract classes.
- *
  * <p>
  * Note that methods to accommodate new language constructs could be added in a
  * source <em>compatible</em> way if they were added as <em>default methods</em>
@@ -49,7 +46,6 @@ import javax.lang.model.element.*;
  *        the type of the additional parameter to this visitor's methods.
  *        Use {@code Void} for visitors that do not need an additional
  *        parameter.
- *
  * @author Joseph D. Darcy
  * @author Scott Seligman
  * @author Peter von der Ah&eacute;
@@ -60,9 +56,9 @@ public interface TypeVisitor<R, P> {
      * Visits a type.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visit(TypeMirror t, P p);
@@ -71,7 +67,7 @@ public interface TypeVisitor<R, P> {
      * A convenience method equivalent to {@code v.visit(t, null)}.
      * 
      * @param t
-     *          the element to visit
+     *        the element to visit
      * @return a visitor-specified result
      */
     R visit(TypeMirror t);
@@ -80,9 +76,9 @@ public interface TypeVisitor<R, P> {
      * Visits a primitive type.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitPrimitive(PrimitiveType t, P p);
@@ -91,9 +87,9 @@ public interface TypeVisitor<R, P> {
      * Visits the null type.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitNull(NullType t, P p);
@@ -102,9 +98,9 @@ public interface TypeVisitor<R, P> {
      * Visits an array type.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitArray(ArrayType t, P p);
@@ -113,9 +109,9 @@ public interface TypeVisitor<R, P> {
      * Visits a declared type.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitDeclared(DeclaredType t, P p);
@@ -124,9 +120,9 @@ public interface TypeVisitor<R, P> {
      * Visits an error type.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitError(ErrorType t, P p);
@@ -135,9 +131,9 @@ public interface TypeVisitor<R, P> {
      * Visits a type variable.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitTypeVariable(TypeVariable t, P p);
@@ -146,9 +142,9 @@ public interface TypeVisitor<R, P> {
      * Visits a wildcard type.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitWildcard(WildcardType t, P p);
@@ -157,9 +153,9 @@ public interface TypeVisitor<R, P> {
      * Visits an executable type.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitExecutable(ExecutableType t, P p);
@@ -168,9 +164,9 @@ public interface TypeVisitor<R, P> {
      * Visits a {@link NoType} instance.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     R visitNoType(NoType t, P p);
@@ -180,13 +176,13 @@ public interface TypeVisitor<R, P> {
      * and new kinds of types are added to the {@code TypeMirror} hierarchy.
      * 
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      * @throws UnknownTypeException
-     *                              a visitor implementation may optionally
-     *                              throw this exception
+     *         a visitor implementation may optionally
+     *         throw this exception
      */
     R visitUnknown(TypeMirror t, P p);
 
@@ -194,9 +190,9 @@ public interface TypeVisitor<R, P> {
      * Visits a union type.
      *
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      * @since 1.7
      */
@@ -206,9 +202,9 @@ public interface TypeVisitor<R, P> {
      * Visits an intersection type.
      *
      * @param t
-     *          the type to visit
+     *        the type to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      * @since 1.8
      */

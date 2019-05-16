@@ -26,7 +26,6 @@ import com.sun.org.apache.xerces.internal.xni.XNIException;
  * where the exception occurred.
  *
  * @author Andy Clark, IBM
- *
  */
 public class XMLParseException extends XNIException {
 
@@ -77,8 +76,7 @@ public class XMLParseException extends XNIException {
     } // <init>(XMLLocator,String)
 
     /** Constructs a parse exception. */
-    public XMLParseException(XMLLocator locator, String message,
-            Exception exception) {
+    public XMLParseException(XMLLocator locator, String message, Exception exception) {
         super(message, exception);
         if (locator != null) {
             fPublicId = locator.getPublicId();

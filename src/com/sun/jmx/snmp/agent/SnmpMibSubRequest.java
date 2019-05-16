@@ -87,7 +87,6 @@ public interface SnmpMibSubRequest extends SnmpMibRequest {
      * true</CODE> means that either the entry does not exist yet, or it has
      * been created while processing this request. The result of this method is
      * only significant when an entry is involved.
-     *
      * <p>
      * 
      * @return <CODE>true</CODE> If the entry did not exist, or
@@ -120,7 +119,6 @@ public interface SnmpMibSubRequest extends SnmpMibRequest {
      *         RowStatus varbind when processing an SNMP SET request. In this
      *         case, the identified varbind will not be included in the set of
      *         varbinds returned by getSubList() and getElements(). </i>
-     *
      **/
     public SnmpVarBind getRowStatusVarBind();
 
@@ -134,19 +132,17 @@ public interface SnmpMibSubRequest extends SnmpMibRequest {
      * <p>
      *
      * @param varbind
-     *                  The varbind for which the exception is registered. Note
-     *                  that
-     *                  this varbind <b>must</b> have been obtained from the
-     *                  enumeration returned by <CODE>getElements()</CODE>, or
-     *                  from
-     *                  the vector returned by <CODE>getSubList()</CODE>
-     *
+     *        The varbind for which the exception is registered. Note
+     *        that
+     *        this varbind <b>must</b> have been obtained from the
+     *        enumeration returned by <CODE>getElements()</CODE>, or
+     *        from
+     *        the vector returned by <CODE>getSubList()</CODE>
      * @param exception
-     *                  The exception to be registered for the given varbind.
-     *
+     *        The exception to be registered for the given varbind.
      */
-    public void registerGetException(SnmpVarBind varbind,
-            SnmpStatusException exception) throws SnmpStatusException;
+    public void registerGetException(SnmpVarBind varbind, SnmpStatusException exception)
+            throws SnmpStatusException;
 
     /**
      * This method should be called when a status exception needs to be raised
@@ -157,19 +153,17 @@ public interface SnmpMibSubRequest extends SnmpMibRequest {
      * <p>
      *
      * @param varbind
-     *                  The varbind for which the exception is registered. Note
-     *                  that
-     *                  this varbind <b>must</b> have been obtained from the
-     *                  enumeration returned by <CODE>getElements()</CODE>, or
-     *                  from
-     *                  the vector returned by <CODE>getSubList()</CODE>
-     *
+     *        The varbind for which the exception is registered. Note
+     *        that
+     *        this varbind <b>must</b> have been obtained from the
+     *        enumeration returned by <CODE>getElements()</CODE>, or
+     *        from
+     *        the vector returned by <CODE>getSubList()</CODE>
      * @param exception
-     *                  The exception to be registered for the given varbind.
-     *
+     *        The exception to be registered for the given varbind.
      */
-    public void registerSetException(SnmpVarBind varbind,
-            SnmpStatusException exception) throws SnmpStatusException;
+    public void registerSetException(SnmpVarBind varbind, SnmpStatusException exception)
+            throws SnmpStatusException;
 
     /**
      * This method should be called when a status exception needs to be raised
@@ -180,17 +174,15 @@ public interface SnmpMibSubRequest extends SnmpMibRequest {
      * <p>
      *
      * @param varbind
-     *                  The varbind for which the exception is registered. Note
-     *                  that
-     *                  this varbind <b>must</b> have been obtained from the
-     *                  enumeration returned by <CODE>getElements()</CODE>, or
-     *                  from
-     *                  the vector returned by <CODE>getSubList()</CODE>
-     *
+     *        The varbind for which the exception is registered. Note
+     *        that
+     *        this varbind <b>must</b> have been obtained from the
+     *        enumeration returned by <CODE>getElements()</CODE>, or
+     *        from
+     *        the vector returned by <CODE>getSubList()</CODE>
      * @param exception
-     *                  The exception to be registered for the given varbind.
-     *
+     *        The exception to be registered for the given varbind.
      */
-    public void registerCheckException(SnmpVarBind varbind,
-            SnmpStatusException exception) throws SnmpStatusException;
+    public void registerCheckException(SnmpVarBind varbind, SnmpStatusException exception)
+            throws SnmpStatusException;
 }

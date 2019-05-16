@@ -37,7 +37,7 @@ public class UTFDataFormatException extends IOException {
      * <code>java.lang.Throwable</code>.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public UTFDataFormatException(String s) {
         super(s);

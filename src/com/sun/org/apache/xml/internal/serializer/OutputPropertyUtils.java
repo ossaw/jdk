@@ -25,7 +25,6 @@ import java.util.Properties;
 /**
  * This class contains some static methods that act as helpers when parsing a
  * Java Property object.
- *
  * This class is not a public API. It is only public because it is used outside
  * of this package.
  *
@@ -41,9 +40,9 @@ public final class OutputPropertyUtils {
      * than "yes".
      *
      * @param key
-     *              the property key.
+     *        the property key.
      * @param props
-     *              the list of properties that will be searched.
+     *        the list of properties that will be searched.
      * @return the value in this property list as a boolean value, or false if
      *         null or not "yes".
      */
@@ -65,9 +64,9 @@ public final class OutputPropertyUtils {
      * than "yes".
      *
      * @param key
-     *              the property key.
+     *        the property key.
      * @param props
-     *              the list of properties that will be searched.
+     *        the list of properties that will be searched.
      * @return the value in this property list as a int value, or 0 if null or
      *         not a number.
      */

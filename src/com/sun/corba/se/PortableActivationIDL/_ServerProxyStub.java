@@ -11,8 +11,8 @@ package com.sun.corba.se.PortableActivationIDL;
 /**
  * Server callback interface, passed to Activator in registerServer method.
  */
-public class _ServerProxyStub extends org.omg.CORBA.portable.ObjectImpl
-        implements com.sun.corba.se.PortableActivationIDL.ServerProxy {
+public class _ServerProxyStub extends org.omg.CORBA.portable.ObjectImpl implements
+        com.sun.corba.se.PortableActivationIDL.ServerProxy {
 
     /**
      * Shutdown this server. Returns after orb.shutdown() completes.
@@ -20,8 +20,7 @@ public class _ServerProxyStub extends org.omg.CORBA.portable.ObjectImpl
     public void shutdown() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("shutdown",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("shutdown", true);
             $in = _invoke($out);
             return;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
@@ -42,8 +41,7 @@ public class _ServerProxyStub extends org.omg.CORBA.portable.ObjectImpl
     public void install() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("install",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("install", true);
             $in = _invoke($out);
             return;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
@@ -64,8 +62,7 @@ public class _ServerProxyStub extends org.omg.CORBA.portable.ObjectImpl
     public void uninstall() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("uninstall",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("uninstall", true);
             $in = _invoke($out);
             return;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
@@ -80,15 +77,13 @@ public class _ServerProxyStub extends org.omg.CORBA.portable.ObjectImpl
     } // uninstall
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:PortableActivationIDL/ServerProxy:1.0" };
+    private static String[] __ids = { "IDL:PortableActivationIDL/ServerProxy:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -103,8 +98,7 @@ public class _ServerProxyStub extends org.omg.CORBA.portable.ObjectImpl
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

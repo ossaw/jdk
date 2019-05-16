@@ -11,7 +11,6 @@ import java.security.Principal;
  * <p>
  * This class implements the <code>Principal</code> interface and represents a
  * user's Unix identification number (UID).
- *
  * <p>
  * Principals such as this <code>UnixNumericUserPrincipal</code> may be
  * associated with a particular <code>Subject</code> to augment that
@@ -24,8 +23,7 @@ import java.security.Principal;
  * @see javax.security.auth.Subject
  */
 @jdk.Exported
-public class UnixNumericUserPrincipal implements Principal,
-        java.io.Serializable {
+public class UnixNumericUserPrincipal implements Principal, java.io.Serializable {
     private static final long serialVersionUID = -4329764253802397821L;
 
     /**
@@ -37,22 +35,18 @@ public class UnixNumericUserPrincipal implements Principal,
      * Create a <code>UnixNumericUserPrincipal</code> using a
      * <code>String</code> representation of the user's identification number
      * (UID).
-     *
      * <p>
      *
      * @param name
-     *             the user identification number (UID) for this user.
-     *
+     *        the user identification number (UID) for this user.
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public UnixNumericUserPrincipal(String name) {
         if (name == null) {
-            java.text.MessageFormat form = new java.text.MessageFormat(
-                    sun.security.util.ResourcesMgr.getString(
-                            "invalid.null.input.value",
-                            "sun.security.util.AuthResources"));
+            java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
+                    .getString("invalid.null.input.value", "sun.security.util.AuthResources"));
             Object[] source = { "name" };
             throw new NullPointerException(form.format(source));
         }
@@ -63,13 +57,12 @@ public class UnixNumericUserPrincipal implements Principal,
     /**
      * Create a <code>UnixNumericUserPrincipal</code> using a long
      * representation of the user's identification number (UID).
-     *
      * <p>
      *
      * @param name
-     *             the user identification number (UID) for this user
-     *             represented
-     *             as a long.
+     *        the user identification number (UID) for this user
+     *        represented
+     *        as a long.
      */
     public UnixNumericUserPrincipal(long name) {
         this.name = (new Long(name)).toString();
@@ -78,7 +71,6 @@ public class UnixNumericUserPrincipal implements Principal,
     /**
      * Return the user identification number (UID) for this
      * <code>UnixNumericUserPrincipal</code>.
-     *
      * <p>
      *
      * @return the user identification number (UID) for this
@@ -91,7 +83,6 @@ public class UnixNumericUserPrincipal implements Principal,
     /**
      * Return the user identification number (UID) for this
      * <code>UnixNumericUserPrincipal</code> as a long.
-     *
      * <p>
      *
      * @return the user identification number (UID) for this
@@ -104,17 +95,14 @@ public class UnixNumericUserPrincipal implements Principal,
     /**
      * Return a string representation of this
      * <code>UnixNumericUserPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this
      *         <code>UnixNumericUserPrincipal</code>.
      */
     public String toString() {
-        java.text.MessageFormat form = new java.text.MessageFormat(
-                sun.security.util.ResourcesMgr.getString(
-                        "UnixNumericUserPrincipal.name",
-                        "sun.security.util.AuthResources"));
+        java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr.getString(
+                "UnixNumericUserPrincipal.name", "sun.security.util.AuthResources"));
         Object[] source = { name };
         return form.format(source);
     }
@@ -124,13 +112,11 @@ public class UnixNumericUserPrincipal implements Principal,
      * <code>UnixNumericUserPrincipal</code> for equality. Returns true if the
      * given object is also a <code>UnixNumericUserPrincipal</code> and the two
      * UnixNumericUserPrincipals have the same user identification number (UID).
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>UnixNumericUserPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>UnixNumericUserPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>UnixNumericUserPrincipal</code>.
      */
@@ -152,7 +138,6 @@ public class UnixNumericUserPrincipal implements Principal,
 
     /**
      * Return a hash code for this <code>UnixNumericUserPrincipal</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>UnixNumericUserPrincipal</code>.

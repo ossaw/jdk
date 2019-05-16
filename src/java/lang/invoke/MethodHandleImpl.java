@@ -35,8 +35,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         AccessController.doPrivileged(new PrivilegedAction<Void>() {
             @Override
             public Void run() {
-                values[0] = Integer.getInteger(MethodHandleImpl.class.getName()
-                        + ".MAX_ARITY", 255);
+                values[0] = Integer.getInteger(MethodHandleImpl.class.getName() + ".MAX_ARITY", 255);
                 return null;
             }
         });
@@ -50,34 +49,27 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         MemberName.Factory.INSTANCE.getClass();
     }
 
-    static MethodHandle makeArrayElementAccessor(Class<?> arrayClass,
-            boolean isSetter) {
+    static MethodHandle makeArrayElementAccessor(Class<?> arrayClass, boolean isSetter) {
         if (arrayClass == Object[].class)
-            return (isSetter ? ArrayAccessor.OBJECT_ARRAY_SETTER
-                    : ArrayAccessor.OBJECT_ARRAY_GETTER);
+            return (isSetter ? ArrayAccessor.OBJECT_ARRAY_SETTER : ArrayAccessor.OBJECT_ARRAY_GETTER);
         if (!arrayClass.isArray())
             throw newIllegalArgumentException("not an array: " + arrayClass);
         MethodHandle[] cache = ArrayAccessor.TYPED_ACCESSORS.get(arrayClass);
-        int cacheIndex = (isSetter ? ArrayAccessor.SETTER_INDEX
-                : ArrayAccessor.GETTER_INDEX);
+        int cacheIndex = (isSetter ? ArrayAccessor.SETTER_INDEX : ArrayAccessor.GETTER_INDEX);
         MethodHandle mh = cache[cacheIndex];
         if (mh != null)
             return mh;
         mh = ArrayAccessor.getAccessor(arrayClass, isSetter);
-        MethodType correctType = ArrayAccessor.correctType(arrayClass,
-                isSetter);
+        MethodType correctType = ArrayAccessor.correctType(arrayClass, isSetter);
         if (mh.type() != correctType) {
             assert (mh.type().parameterType(0) == Object[].class);
-            assert ((isSetter ? mh.type().parameterType(2)
-                    : mh.type().returnType()) == Object.class);
-            assert (isSetter || correctType.parameterType(0)
-                    .getComponentType() == correctType.returnType());
+            assert ((isSetter ? mh.type().parameterType(2) : mh.type().returnType()) == Object.class);
+            assert (isSetter || correctType.parameterType(0).getComponentType() == correctType.returnType());
             // safe to view non-strictly, because element type follows from
             // array type
             mh = mh.viewAsType(correctType, false);
         }
-        mh = makeIntrinsic(mh, (isSetter ? Intrinsic.ARRAY_STORE
-                : Intrinsic.ARRAY_LOAD));
+        mh = makeIntrinsic(mh, (isSetter ? Intrinsic.ARRAY_STORE : Intrinsic.ARRAY_LOAD));
         // Atomically update accessor cache.
         synchronized (cache) {
             if (cache[cacheIndex] == null) {
@@ -102,15 +94,15 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         static final MethodHandle OBJECT_ARRAY_GETTER, OBJECT_ARRAY_SETTER;
         static {
             MethodHandle[] cache = TYPED_ACCESSORS.get(Object[].class);
-            cache[GETTER_INDEX] = OBJECT_ARRAY_GETTER = makeIntrinsic(
-                    getAccessor(Object[].class, false), Intrinsic.ARRAY_LOAD);
-            cache[SETTER_INDEX] = OBJECT_ARRAY_SETTER = makeIntrinsic(
-                    getAccessor(Object[].class, true), Intrinsic.ARRAY_STORE);
+            cache[GETTER_INDEX] = OBJECT_ARRAY_GETTER = makeIntrinsic(getAccessor(Object[].class, false),
+                    Intrinsic.ARRAY_LOAD);
+            cache[SETTER_INDEX] = OBJECT_ARRAY_SETTER = makeIntrinsic(getAccessor(Object[].class, true),
+                    Intrinsic.ARRAY_STORE);
 
-            assert (InvokerBytecodeGenerator.isStaticallyInvocable(
-                    ArrayAccessor.OBJECT_ARRAY_GETTER.internalMemberName()));
-            assert (InvokerBytecodeGenerator.isStaticallyInvocable(
-                    ArrayAccessor.OBJECT_ARRAY_SETTER.internalMemberName()));
+            assert (InvokerBytecodeGenerator.isStaticallyInvocable(ArrayAccessor.OBJECT_ARRAY_GETTER
+                    .internalMemberName()));
+            assert (InvokerBytecodeGenerator.isStaticallyInvocable(ArrayAccessor.OBJECT_ARRAY_SETTER
+                    .internalMemberName()));
         }
 
         static int getElementI(int[] a, int i) {
@@ -189,8 +181,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             Class<?> elemClass = arrayClass.getComponentType();
             if (elemClass == null)
                 throw newIllegalArgumentException("not an array", arrayClass);
-            return (!isSetter ? "getElement" : "setElement") + Wrapper
-                    .basicTypeChar(elemClass);
+            return (!isSetter ? "getElement" : "setElement") + Wrapper.basicTypeChar(elemClass);
         }
 
         static MethodType type(Class<?> arrayClass, boolean isSetter) {
@@ -200,18 +191,14 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
                 arrayArgClass = Object[].class;
                 elemClass = Object.class;
             }
-            return !isSetter ? MethodType.methodType(elemClass, arrayArgClass,
-                    int.class)
-                    : MethodType.methodType(void.class, arrayArgClass,
-                            int.class, elemClass);
+            return !isSetter ? MethodType.methodType(elemClass, arrayArgClass, int.class)
+                    : MethodType.methodType(void.class, arrayArgClass, int.class, elemClass);
         }
 
         static MethodType correctType(Class<?> arrayClass, boolean isSetter) {
             Class<?> elemClass = arrayClass.getComponentType();
-            return !isSetter ? MethodType.methodType(elemClass, arrayClass,
-                    int.class)
-                    : MethodType.methodType(void.class, arrayClass, int.class,
-                            elemClass);
+            return !isSetter ? MethodType.methodType(elemClass, arrayClass, int.class)
+                    : MethodType.methodType(void.class, arrayClass, int.class, elemClass);
         }
 
         static MethodHandle getAccessor(Class<?> arrayClass, boolean isSetter) {
@@ -233,22 +220,22 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
      * integral widening or narrowing, and floating point widening or narrowing.
      * 
      * @param srcType
-     *                required call type
+     *        required call type
      * @param target
-     *                original method handle
+     *        original method handle
      * @param strict
-     *                if true, only asType conversions are allowed; if false,
-     *                explicitCastArguments conversions allowed
+     *        if true, only asType conversions are allowed; if false,
+     *        explicitCastArguments conversions allowed
      * @param monobox
-     *                if true, unboxing conversions are assumed to be exactly
-     *                typed
-     *                (Integer to int only, not long or double)
+     *        if true, unboxing conversions are assumed to be exactly
+     *        typed
+     *        (Integer to int only, not long or double)
      * @return an adapter to the original handle with the desired new type, or
      *         the original target if the types are already identical or null if
      *         the adaptation cannot be made
      */
-    static MethodHandle makePairwiseConvert(MethodHandle target,
-            MethodType srcType, boolean strict, boolean monobox) {
+    static MethodHandle makePairwiseConvert(MethodHandle target, MethodType srcType, boolean strict,
+            boolean monobox) {
         MethodType dstType = target.type();
         if (srcType == dstType)
             return target;
@@ -264,10 +251,9 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return count;
     }
 
-    static MethodHandle makePairwiseConvertByEditor(MethodHandle target,
-            MethodType srcType, boolean strict, boolean monobox) {
-        Object[] convSpecs = computeValueConversions(srcType, target.type(),
-                strict, monobox);
+    static MethodHandle makePairwiseConvertByEditor(MethodHandle target, MethodType srcType, boolean strict,
+            boolean monobox) {
+        Object[] convSpecs = computeValueConversions(srcType, target.type(), strict, monobox);
         int convCount = countNonNull(convSpecs);
         if (convCount == 0)
             return target.viewAsType(srcType, strict);
@@ -292,8 +278,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
                 midType = srcType;
             else
                 midType = midType.changeParameterType(i, newType);
-            LambdaForm form2 = mh.editor().filterArgumentForm(1 + i, BasicType
-                    .basicType(newType));
+            LambdaForm form2 = mh.editor().filterArgumentForm(1 + i, BasicType.basicType(newType));
             mh = mh.copyWithExtendL(midType, form2, fn);
             mh = mh.rebind();
         }
@@ -313,12 +298,10 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             midType = srcType;
             if (fn != null) {
                 mh = mh.rebind(); // rebind if too complex
-                LambdaForm form2 = mh.editor().filterReturnForm(BasicType
-                        .basicType(newType), false);
+                LambdaForm form2 = mh.editor().filterReturnForm(BasicType.basicType(newType), false);
                 mh = mh.copyWithExtendL(midType, form2, fn);
             } else {
-                LambdaForm form2 = mh.editor().filterReturnForm(BasicType
-                        .basicType(newType), true);
+                LambdaForm form2 = mh.editor().filterReturnForm(BasicType.basicType(newType), true);
                 mh = mh.copyWith(midType, form2);
             }
         }
@@ -327,12 +310,11 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return mh;
     }
 
-    static MethodHandle makePairwiseConvertIndirect(MethodHandle target,
-            MethodType srcType, boolean strict, boolean monobox) {
+    static MethodHandle makePairwiseConvertIndirect(MethodHandle target, MethodType srcType, boolean strict,
+            boolean monobox) {
         assert (target.type().parameterCount() == srcType.parameterCount());
         // Calculate extra arguments (temporaries) required in the names array.
-        Object[] convSpecs = computeValueConversions(srcType, target.type(),
-                strict, monobox);
+        Object[] convSpecs = computeValueConversions(srcType, target.type(), strict, monobox);
         final int INARG_COUNT = srcType.parameterCount();
         int convCount = countNonNull(convSpecs);
         boolean retConv = (convSpecs[INARG_COUNT] != null);
@@ -371,8 +353,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             Name conv;
             if (convSpec instanceof Class) {
                 Class<?> convClass = (Class<?>) convSpec;
-                conv = new Name(Lazy.MH_castReference, convClass,
-                        names[INARG_BASE + i]);
+                conv = new Name(Lazy.MH_castReference, convClass, names[INARG_BASE + i]);
             } else {
                 MethodHandle fn = (MethodHandle) convSpec;
                 conv = new Name(fn, names[INARG_BASE + i]);
@@ -393,12 +374,10 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         } else {
             Name conv;
             if (convSpec == void.class) {
-                conv = new Name(LambdaForm.constantZero(BasicType.basicType(
-                        srcType.returnType())));
+                conv = new Name(LambdaForm.constantZero(BasicType.basicType(srcType.returnType())));
             } else if (convSpec instanceof Class) {
                 Class<?> convClass = (Class<?>) convSpec;
-                conv = new Name(Lazy.MH_castReference, convClass,
-                        names[OUT_CALL]);
+                conv = new Name(Lazy.MH_castReference, convClass, names[OUT_CALL]);
             } else {
                 MethodHandle fn = (MethodHandle) convSpec;
                 if (fn.type().parameterCount() == 0)
@@ -411,8 +390,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             assert (RETURN_CONV == names.length - 1);
         }
 
-        LambdaForm form = new LambdaForm("convert", lambdaType.parameterCount(),
-                names, RESULT);
+        LambdaForm form = new LambdaForm("convert", lambdaType.parameterCount(), names, RESULT);
         return SimpleMethodHandle.make(srcType, form);
     }
 
@@ -420,9 +398,9 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
      * Identity function, with reference cast.
      * 
      * @param t
-     *          an arbitrary reference type
+     *        an arbitrary reference type
      * @param x
-     *          an arbitrary reference value
+     *        an arbitrary reference value
      * @return the same value x
      */
     @ForceInline
@@ -434,34 +412,27 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return (T) x;
     }
 
-    private static ClassCastException newClassCastException(Class<?> t,
-            Object obj) {
-        return new ClassCastException("Cannot cast " + obj.getClass().getName()
-                + " to " + t.getName());
+    private static ClassCastException newClassCastException(Class<?> t, Object obj) {
+        return new ClassCastException("Cannot cast " + obj.getClass().getName() + " to " + t.getName());
     }
 
-    static Object[] computeValueConversions(MethodType srcType,
-            MethodType dstType, boolean strict, boolean monobox) {
+    static Object[] computeValueConversions(MethodType srcType, MethodType dstType, boolean strict,
+            boolean monobox) {
         final int INARG_COUNT = srcType.parameterCount();
         Object[] convSpecs = new Object[INARG_COUNT + 1];
         for (int i = 0; i <= INARG_COUNT; i++) {
             boolean isRet = (i == INARG_COUNT);
-            Class<?> src = isRet ? dstType.returnType()
-                    : srcType.parameterType(i);
-            Class<?> dst = isRet ? srcType.returnType()
-                    : dstType.parameterType(i);
-            if (!VerifyType.isNullConversion(src, dst,
-                    /* keepInterfaces= */ strict)) {
+            Class<?> src = isRet ? dstType.returnType() : srcType.parameterType(i);
+            Class<?> dst = isRet ? srcType.returnType() : dstType.parameterType(i);
+            if (!VerifyType.isNullConversion(src, dst, /* keepInterfaces= */ strict)) {
                 convSpecs[i] = valueConversion(src, dst, strict, monobox);
             }
         }
         return convSpecs;
     }
 
-    static MethodHandle makePairwiseConvert(MethodHandle target,
-            MethodType srcType, boolean strict) {
-        return makePairwiseConvert(target, srcType, strict,
-                /* monobox= */ false);
+    static MethodHandle makePairwiseConvert(MethodHandle target, MethodType srcType, boolean strict) {
+        return makePairwiseConvert(target, srcType, strict, /* monobox= */ false);
     }
 
     /**
@@ -470,11 +441,9 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
      * Return a Class object if a simple cast is needed. Return void.class if
      * void is involved.
      */
-    static Object valueConversion(Class<?> src, Class<?> dst, boolean strict,
-            boolean monobox) {
-        assert (!VerifyType.isNullConversion(src, dst,
-                /* keepInterfaces= */ strict)); // caller
-                                                // responsibility
+    static Object valueConversion(Class<?> src, Class<?> dst, boolean strict, boolean monobox) {
+        assert (!VerifyType.isNullConversion(src, dst, /* keepInterfaces= */ strict)); // caller
+                                        // responsibility
         if (dst == void.class)
             return dst;
         MethodHandle fn;
@@ -490,15 +459,13 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
                 fn = ValueConversions.boxExact(wsrc);
                 assert (fn.type().parameterType(0) == wsrc.primitiveType());
                 assert (fn.type().returnType() == wsrc.wrapperType());
-                if (!VerifyType.isNullConversion(wsrc.wrapperType(), dst,
-                        strict)) {
+                if (!VerifyType.isNullConversion(wsrc.wrapperType(), dst, strict)) {
                     // Corner case, such as int->Long, which will probably fail.
                     MethodType mt = MethodType.methodType(dst, src);
                     if (strict)
                         fn = fn.asType(mt);
                     else
-                        fn = MethodHandleImpl.makePairwiseConvert(fn, mt,
-                                /* strict= */ false);
+                        fn = MethodHandleImpl.makePairwiseConvert(fn, mt, /* strict= */ false);
                 }
             }
         } else if (dst.isPrimitive()) {
@@ -512,8 +479,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
                 // must include additional conversions
                 // src must be examined at runtime, to detect Byte, Character,
                 // etc.
-                fn = (strict ? ValueConversions.unboxWiden(wdst)
-                        : ValueConversions.unboxCast(wdst));
+                fn = (strict ? ValueConversions.unboxWiden(wdst) : ValueConversions.unboxCast(wdst));
             }
         } else {
             // Simple reference conversion.
@@ -522,13 +488,12 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             // will pass the cast conversion.
             return dst;
         }
-        assert (fn.type().parameterCount() <= 1) : "pc" + Arrays.asList(src
-                .getSimpleName(), dst.getSimpleName(), fn);
+        assert (fn.type().parameterCount() <= 1) : "pc" + Arrays.asList(src.getSimpleName(), dst
+                .getSimpleName(), fn);
         return fn;
     }
 
-    static MethodHandle makeVarargsCollector(MethodHandle target,
-            Class<?> arrayType) {
+    static MethodHandle makeVarargsCollector(MethodHandle target, Class<?> arrayType) {
         MethodType type = target.type();
         int last = type.parameterCount() - 1;
         if (type.parameterType(last) != arrayType)
@@ -538,8 +503,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return new AsVarargsCollector(target, arrayType);
     }
 
-    private static final class AsVarargsCollector extends
-            DelegatingMethodHandle {
+    private static final class AsVarargsCollector extends DelegatingMethodHandle {
         private final MethodHandle target;
         private final Class<?> arrayType;
         private @Stable MethodHandle asCollectorCache;
@@ -548,8 +512,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             this(target.type(), target, arrayType);
         }
 
-        AsVarargsCollector(MethodType type, MethodHandle target,
-                Class<?> arrayType) {
+        AsVarargsCollector(MethodType type, MethodHandle target, Class<?> arrayType) {
             super(type, target);
             this.target = target;
             this.arrayType = arrayType;
@@ -583,8 +546,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             MethodType type = this.type();
             int collectArg = type.parameterCount() - 1;
             int newArity = newType.parameterCount();
-            if (newArity == collectArg + 1 && type.parameterType(collectArg)
-                    .isAssignableFrom(newType.parameterType(collectArg))) {
+            if (newArity == collectArg + 1 && type.parameterType(collectArg).isAssignableFrom(newType
+                    .parameterType(collectArg))) {
                 // if arity and trailing parameter are compatible, do normal
                 // thing
                 return asTypeCache = asFixedArity().asType(newType);
@@ -598,12 +561,10 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             MethodHandle collector;
             try {
                 collector = asFixedArity().asCollector(arrayType, arrayLength);
-                assert (collector.type()
-                        .parameterCount() == newArity) : "newArity=" + newArity
-                                + " but collector=" + collector;
+                assert (collector.type().parameterCount() == newArity) : "newArity=" + newArity
+                        + " but collector=" + collector;
             } catch (IllegalArgumentException ex) {
-                throw new WrongMethodTypeException("cannot build collector",
-                        ex);
+                throw new WrongMethodTypeException("cannot build collector", ex);
             }
             asCollectorCache = collector;
             return asTypeCache = collector.asType(newType);
@@ -615,17 +576,15 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             if (strict)
                 return true;
             // extra assertion for non-strict checks:
-            assert (type().lastParameterType().getComponentType()
-                    .isAssignableFrom(newType.lastParameterType()
-                            .getComponentType())) : Arrays.asList(this,
-                                    newType);
+            assert (type().lastParameterType().getComponentType().isAssignableFrom(newType.lastParameterType()
+                    .getComponentType())) : Arrays.asList(this, newType);
             return true;
         }
     }
 
     /** Factory method: Spread selected argument. */
-    static MethodHandle makeSpreadArguments(MethodHandle target,
-            Class<?> spreadArgType, int spreadArgPos, int spreadArgCount) {
+    static MethodHandle makeSpreadArguments(MethodHandle target, Class<?> spreadArgType, int spreadArgPos,
+            int spreadArgCount) {
         MethodType targetType = target.type();
 
         for (int i = 0; i < spreadArgCount; i++) {
@@ -636,24 +595,21 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         }
         target = target.asType(targetType);
 
-        MethodType srcType = targetType.replaceParameterTypes(spreadArgPos,
-                spreadArgPos + spreadArgCount, spreadArgType);
+        MethodType srcType = targetType.replaceParameterTypes(spreadArgPos, spreadArgPos + spreadArgCount,
+                spreadArgType);
         // Now build a LambdaForm.
         MethodType lambdaType = srcType.invokerType();
         Name[] names = arguments(spreadArgCount + 2, lambdaType);
         int nameCursor = lambdaType.parameterCount();
         int[] indexes = new int[targetType.parameterCount()];
 
-        for (int i = 0, argIndex = 1; i < targetType.parameterCount()
-                + 1; i++, argIndex++) {
+        for (int i = 0, argIndex = 1; i < targetType.parameterCount() + 1; i++, argIndex++) {
             Class<?> src = lambdaType.parameterType(i);
             if (i == spreadArgPos) {
                 // Spread the array.
-                MethodHandle aload = MethodHandles.arrayElementGetter(
-                        spreadArgType);
+                MethodHandle aload = MethodHandles.arrayElementGetter(spreadArgType);
                 Name array = names[argIndex];
-                names[nameCursor++] = new Name(Lazy.NF_checkSpreadArgument,
-                        array, spreadArgCount);
+                names[nameCursor++] = new Name(Lazy.NF_checkSpreadArgument, array, spreadArgCount);
                 for (int j = 0; j < spreadArgCount; i++, j++) {
                     indexes[i] = nameCursor;
                     names[nameCursor++] = new Name(aload, array, j);
@@ -673,8 +629,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         }
         names[names.length - 1] = new Name(target, (Object[]) targetArgs);
 
-        LambdaForm form = new LambdaForm("spread", lambdaType.parameterCount(),
-                names);
+        LambdaForm form = new LambdaForm("spread", lambdaType.parameterCount(), names);
         return SimpleMethodHandle.make(srcType, form);
     }
 
@@ -722,43 +677,34 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             FILL_ARRAYS = makeFillArrays();
 
             try {
-                NF_checkSpreadArgument = new NamedFunction(MHI
-                        .getDeclaredMethod("checkSpreadArgument", Object.class,
-                                int.class));
-                NF_guardWithCatch = new NamedFunction(MHI.getDeclaredMethod(
-                        "guardWithCatch", MethodHandle.class, Class.class,
-                        MethodHandle.class, Object[].class));
-                NF_throwException = new NamedFunction(MHI.getDeclaredMethod(
-                        "throwException", Throwable.class));
-                NF_profileBoolean = new NamedFunction(MHI.getDeclaredMethod(
-                        "profileBoolean", boolean.class, int[].class));
+                NF_checkSpreadArgument = new NamedFunction(MHI.getDeclaredMethod("checkSpreadArgument",
+                        Object.class, int.class));
+                NF_guardWithCatch = new NamedFunction(MHI.getDeclaredMethod("guardWithCatch",
+                        MethodHandle.class, Class.class, MethodHandle.class, Object[].class));
+                NF_throwException = new NamedFunction(MHI.getDeclaredMethod("throwException",
+                        Throwable.class));
+                NF_profileBoolean = new NamedFunction(MHI.getDeclaredMethod("profileBoolean", boolean.class,
+                        int[].class));
 
                 NF_checkSpreadArgument.resolve();
                 NF_guardWithCatch.resolve();
                 NF_throwException.resolve();
                 NF_profileBoolean.resolve();
 
-                MH_castReference = IMPL_LOOKUP.findStatic(MHI, "castReference",
-                        MethodType.methodType(Object.class, Class.class,
-                                Object.class));
-                MH_copyAsPrimitiveArray = IMPL_LOOKUP.findStatic(MHI,
-                        "copyAsPrimitiveArray", MethodType.methodType(
-                                Object.class, Wrapper.class, Object[].class));
-                MH_arrayIdentity = IMPL_LOOKUP.findStatic(MHI, "identity",
-                        MethodType.methodType(Object[].class, Object[].class));
-                MH_fillNewArray = IMPL_LOOKUP.findStatic(MHI, "fillNewArray",
-                        MethodType.methodType(Object[].class, Integer.class,
-                                Object[].class));
-                MH_fillNewTypedArray = IMPL_LOOKUP.findStatic(MHI,
-                        "fillNewTypedArray", MethodType.methodType(
-                                Object[].class, Object[].class, Integer.class,
-                                Object[].class));
+                MH_castReference = IMPL_LOOKUP.findStatic(MHI, "castReference", MethodType.methodType(
+                        Object.class, Class.class, Object.class));
+                MH_copyAsPrimitiveArray = IMPL_LOOKUP.findStatic(MHI, "copyAsPrimitiveArray", MethodType
+                        .methodType(Object.class, Wrapper.class, Object[].class));
+                MH_arrayIdentity = IMPL_LOOKUP.findStatic(MHI, "identity", MethodType.methodType(
+                        Object[].class, Object[].class));
+                MH_fillNewArray = IMPL_LOOKUP.findStatic(MHI, "fillNewArray", MethodType.methodType(
+                        Object[].class, Integer.class, Object[].class));
+                MH_fillNewTypedArray = IMPL_LOOKUP.findStatic(MHI, "fillNewTypedArray", MethodType.methodType(
+                        Object[].class, Object[].class, Integer.class, Object[].class));
 
-                MH_selectAlternative = makeIntrinsic(IMPL_LOOKUP.findStatic(MHI,
-                        "selectAlternative", MethodType.methodType(
-                                MethodHandle.class, boolean.class,
-                                MethodHandle.class, MethodHandle.class)),
-                        Intrinsic.SELECT_ALTERNATIVE);
+                MH_selectAlternative = makeIntrinsic(IMPL_LOOKUP.findStatic(MHI, "selectAlternative",
+                        MethodType.methodType(MethodHandle.class, boolean.class, MethodHandle.class,
+                                MethodHandle.class)), Intrinsic.SELECT_ALTERNATIVE);
             } catch (ReflectiveOperationException ex) {
                 throw newInternalError(ex);
             }
@@ -766,8 +712,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     }
 
     /** Factory method: Collect or filter selected argument(s). */
-    static MethodHandle makeCollectArguments(MethodHandle target,
-            MethodHandle collector, int collectArgPos,
+    static MethodHandle makeCollectArguments(MethodHandle target, MethodHandle collector, int collectArgPos,
             boolean retainOriginalArgs) {
         MethodType targetType = target.type(); // (a..., c, [b...])=>r
         MethodType collectorType = collector.type(); // (b...)=>c
@@ -775,11 +720,9 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         Class<?> collectValType = collectorType.returnType();
         int collectValCount = (collectValType == void.class ? 0 : 1);
         MethodType srcType = targetType // (a..., [b...])=>r
-                .dropParameterTypes(collectArgPos, collectArgPos
-                        + collectValCount);
+                .dropParameterTypes(collectArgPos, collectArgPos + collectValCount);
         if (!retainOriginalArgs) { // (a..., b...)=>r
-            srcType = srcType.insertParameterTypes(collectArgPos, collectorType
-                    .parameterList());
+            srcType = srcType.insertParameterTypes(collectArgPos, collectorType.parameterList());
         }
         // in arglist: [0: ...keep1 | cpos: collect... | cpos+cacount: keep2...
         // ]
@@ -794,8 +737,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         final int collectNamePos = names.length - 2;
         final int targetNamePos = names.length - 1;
 
-        Name[] collectorArgs = Arrays.copyOfRange(names, 1 + collectArgPos, 1
-                + collectArgPos + collectArgCount);
+        Name[] collectorArgs = Arrays.copyOfRange(names, 1 + collectArgPos, 1 + collectArgPos
+                + collectArgCount);
         names[collectNamePos] = new Name(collector, (Object[]) collectorArgs);
 
         // Build argument array for the target.
@@ -814,8 +757,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         }
         chunk = collectArgCount;
         if (retainOriginalArgs) {
-            System.arraycopy(names, inputArgPos, targetArgs, targetArgPos,
-                    chunk);
+            System.arraycopy(names, inputArgPos, targetArgs, targetArgPos, chunk);
             targetArgPos += chunk; // optionally pass on the collected chunk
         }
         inputArgPos += chunk;
@@ -825,14 +767,12 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
                                                         // args also
         names[targetNamePos] = new Name(target, (Object[]) targetArgs);
 
-        LambdaForm form = new LambdaForm("collect", lambdaType.parameterCount(),
-                names);
+        LambdaForm form = new LambdaForm("collect", lambdaType.parameterCount(), names);
         return SimpleMethodHandle.make(srcType, form);
     }
 
     @LambdaForm.Hidden
-    static MethodHandle selectAlternative(boolean testResult,
-            MethodHandle target, MethodHandle fallback) {
+    static MethodHandle selectAlternative(boolean testResult, MethodHandle target, MethodHandle fallback) {
         if (testResult) {
             return target;
         } else {
@@ -856,26 +796,20 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return result;
     }
 
-    static MethodHandle makeGuardWithTest(MethodHandle test,
-            MethodHandle target, MethodHandle fallback) {
+    static MethodHandle makeGuardWithTest(MethodHandle test, MethodHandle target, MethodHandle fallback) {
         MethodType type = target.type();
-        assert (test.type().equals(type.changeReturnType(boolean.class))
-                && fallback.type().equals(type));
+        assert (test.type().equals(type.changeReturnType(boolean.class)) && fallback.type().equals(type));
         MethodType basicType = type.basicType();
         LambdaForm form = makeGuardWithTestForm(basicType);
         BoundMethodHandle mh;
         try {
             if (PROFILE_GWT) {
                 int[] counts = new int[2];
-                mh = (BoundMethodHandle) BoundMethodHandle.speciesData_LLLL()
-                        .constructor().invokeBasic(type, form, (Object) test,
-                                (Object) profile(target), (Object) profile(
-                                        fallback), counts);
+                mh = (BoundMethodHandle) BoundMethodHandle.speciesData_LLLL().constructor().invokeBasic(type,
+                        form, (Object) test, (Object) profile(target), (Object) profile(fallback), counts);
             } else {
-                mh = (BoundMethodHandle) BoundMethodHandle.speciesData_LLL()
-                        .constructor().invokeBasic(type, form, (Object) test,
-                                (Object) profile(target), (Object) profile(
-                                        fallback));
+                mh = (BoundMethodHandle) BoundMethodHandle.speciesData_LLL().constructor().invokeBasic(type,
+                        form, (Object) test, (Object) profile(target), (Object) profile(fallback));
             }
         } catch (Throwable ex) {
             throw uncaughtException(ex);
@@ -899,8 +833,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
      */
     static MethodHandle makeBlockInlningWrapper(MethodHandle target) {
         LambdaForm lform = PRODUCE_BLOCK_INLINING_FORM.apply(target);
-        return new CountingWrapper(target, lform, PRODUCE_BLOCK_INLINING_FORM,
-                PRODUCE_REINVOKER_FORM, DONT_INLINE_THRESHOLD);
+        return new CountingWrapper(target, lform, PRODUCE_BLOCK_INLINING_FORM, PRODUCE_REINVOKER_FORM,
+                DONT_INLINE_THRESHOLD);
     }
 
     /**
@@ -910,10 +844,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     private static final Function<MethodHandle, LambdaForm> PRODUCE_BLOCK_INLINING_FORM = new Function<MethodHandle, LambdaForm>() {
         @Override
         public LambdaForm apply(MethodHandle target) {
-            return DelegatingMethodHandle.makeReinvokerForm(target,
-                    MethodTypeForm.LF_DELEGATE_BLOCK_INLINING,
-                    CountingWrapper.class, "reinvoker.dontInline", false,
-                    DelegatingMethodHandle.NF_getTarget,
+            return DelegatingMethodHandle.makeReinvokerForm(target, MethodTypeForm.LF_DELEGATE_BLOCK_INLINING,
+                    CountingWrapper.class, "reinvoker.dontInline", false, DelegatingMethodHandle.NF_getTarget,
                     CountingWrapper.NF_maybeStopCounting);
         }
     };
@@ -924,9 +856,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     private static final Function<MethodHandle, LambdaForm> PRODUCE_REINVOKER_FORM = new Function<MethodHandle, LambdaForm>() {
         @Override
         public LambdaForm apply(MethodHandle target) {
-            return DelegatingMethodHandle.makeReinvokerForm(target,
-                    MethodTypeForm.LF_DELEGATE, DelegatingMethodHandle.class,
-                    DelegatingMethodHandle.NF_getTarget);
+            return DelegatingMethodHandle.makeReinvokerForm(target, MethodTypeForm.LF_DELEGATE,
+                    DelegatingMethodHandle.class, DelegatingMethodHandle.NF_getTarget);
         }
     };
 
@@ -946,8 +877,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
 
         private CountingWrapper(MethodHandle target, LambdaForm lform,
                 Function<MethodHandle, LambdaForm> countingFromProducer,
-                Function<MethodHandle, LambdaForm> nonCountingFormProducer,
-                int count) {
+                Function<MethodHandle, LambdaForm> nonCountingFormProducer, int count) {
             super(target.type(), lform);
             this.target = target;
             this.count = count;
@@ -969,8 +899,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             if (isCounting) {
                 LambdaForm lform;
                 lform = countingFormProducer.apply(newTarget);
-                wrapper = new CountingWrapper(newTarget, lform,
-                        countingFormProducer, nonCountingFormProducer,
+                wrapper = new CountingWrapper(newTarget, lform, countingFormProducer, nonCountingFormProducer,
                         DONT_INLINE_THRESHOLD);
             } else {
                 wrapper = newTarget; // no need for a counting wrapper anymore
@@ -1000,8 +929,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             if (wrapper.countDown()) {
                 // Reached invocation threshold. Replace counting behavior with
                 // a non-counting one.
-                LambdaForm lform = wrapper.nonCountingFormProducer.apply(
-                        wrapper.target);
+                LambdaForm lform = wrapper.nonCountingFormProducer.apply(wrapper.target);
                 lform.compileToBytecode(); // speed up warmup by avoiding LF
                                            // interpretation again after
                                            // transition
@@ -1013,8 +941,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         static {
             Class<?> THIS_CLASS = CountingWrapper.class;
             try {
-                NF_maybeStopCounting = new NamedFunction(THIS_CLASS
-                        .getDeclaredMethod("maybeStopCounting", Object.class));
+                NF_maybeStopCounting = new NamedFunction(THIS_CLASS.getDeclaredMethod("maybeStopCounting",
+                        Object.class));
             } catch (ReflectiveOperationException ex) {
                 throw newInternalError(ex);
             }
@@ -1022,8 +950,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     }
 
     static LambdaForm makeGuardWithTestForm(MethodType basicType) {
-        LambdaForm lform = basicType.form().cachedLambdaForm(
-                MethodTypeForm.LF_GWT);
+        LambdaForm lform = basicType.form().cachedLambdaForm(MethodTypeForm.LF_GWT);
         if (lform != null)
             return lform;
         final int THIS_MH = 0; // the BMH_LLL
@@ -1046,44 +973,37 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         MethodType lambdaType = basicType.invokerType();
         Name[] names = arguments(nameCursor - ARG_LIMIT, lambdaType);
 
-        BoundMethodHandle.SpeciesData data = (GET_COUNTERS != -1)
-                ? BoundMethodHandle.speciesData_LLLL()
+        BoundMethodHandle.SpeciesData data = (GET_COUNTERS != -1) ? BoundMethodHandle.speciesData_LLLL()
                 : BoundMethodHandle.speciesData_LLL();
         names[THIS_MH] = names[THIS_MH].withConstraint(data);
         names[GET_TEST] = new Name(data.getterFunction(0), names[THIS_MH]);
         names[GET_TARGET] = new Name(data.getterFunction(1), names[THIS_MH]);
         names[GET_FALLBACK] = new Name(data.getterFunction(2), names[THIS_MH]);
         if (GET_COUNTERS != -1) {
-            names[GET_COUNTERS] = new Name(data.getterFunction(3),
-                    names[THIS_MH]);
+            names[GET_COUNTERS] = new Name(data.getterFunction(3), names[THIS_MH]);
         }
-        Object[] invokeArgs = Arrays.copyOfRange(names, 0, ARG_LIMIT,
-                Object[].class);
+        Object[] invokeArgs = Arrays.copyOfRange(names, 0, ARG_LIMIT, Object[].class);
 
         // call test
-        MethodType testType = basicType.changeReturnType(boolean.class)
-                .basicType();
+        MethodType testType = basicType.changeReturnType(boolean.class).basicType();
         invokeArgs[0] = names[GET_TEST];
         names[CALL_TEST] = new Name(testType, invokeArgs);
 
         // profile branch
         if (PROFILE != -1) {
-            names[PROFILE] = new Name(Lazy.NF_profileBoolean, names[CALL_TEST],
-                    names[GET_COUNTERS]);
+            names[PROFILE] = new Name(Lazy.NF_profileBoolean, names[CALL_TEST], names[GET_COUNTERS]);
         }
         // call selectAlternative
-        names[SELECT_ALT] = new Name(Lazy.MH_selectAlternative, names[TEST],
-                names[GET_TARGET], names[GET_FALLBACK]);
+        names[SELECT_ALT] = new Name(Lazy.MH_selectAlternative, names[TEST], names[GET_TARGET],
+                names[GET_FALLBACK]);
 
         // call target or fallback
         invokeArgs[0] = names[SELECT_ALT];
         names[CALL_TARGET] = new Name(basicType, invokeArgs);
 
-        lform = new LambdaForm("guard", lambdaType.parameterCount(), names,
-                /* forceInline= */true);
+        lform = new LambdaForm("guard", lambdaType.parameterCount(), names, /* forceInline= */true);
 
-        return basicType.form().setCachedLambdaForm(MethodTypeForm.LF_GWT,
-                lform);
+        return basicType.form().setCachedLambdaForm(MethodTypeForm.LF_GWT, lform);
     }
 
     /**
@@ -1105,12 +1025,10 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
      * </pre>
      * 
      * </blockquote>
-     *
      * argL0 and argL2 are target and catcher method handles. argL1 is exception
      * class. argL3 and argL4 are auxiliary method handles: argL3 boxes
      * arguments and wraps them into Object[] (ValueConversions.array()) and
      * argL4 unboxes result if necessary (ValueConversions.unbox()).
-     *
      * Having t8 and t10 passed outside and not hardcoded into a lambda form
      * allows to share lambda forms among catchException combinators with the
      * same basic type.
@@ -1118,8 +1036,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     private static LambdaForm makeGuardWithCatchForm(MethodType basicType) {
         MethodType lambdaType = basicType.invokerType();
 
-        LambdaForm lform = basicType.form().cachedLambdaForm(
-                MethodTypeForm.LF_GWC);
+        LambdaForm lform = basicType.form().cachedLambdaForm(MethodTypeForm.LF_GWC);
         if (lform != null) {
             return lform;
         }
@@ -1139,16 +1056,13 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
 
         Name[] names = arguments(nameCursor - ARG_LIMIT, lambdaType);
 
-        BoundMethodHandle.SpeciesData data = BoundMethodHandle
-                .speciesData_LLLLL();
+        BoundMethodHandle.SpeciesData data = BoundMethodHandle.speciesData_LLLLL();
         names[THIS_MH] = names[THIS_MH].withConstraint(data);
         names[GET_TARGET] = new Name(data.getterFunction(0), names[THIS_MH]);
         names[GET_CLASS] = new Name(data.getterFunction(1), names[THIS_MH]);
         names[GET_CATCHER] = new Name(data.getterFunction(2), names[THIS_MH]);
-        names[GET_COLLECT_ARGS] = new Name(data.getterFunction(3),
-                names[THIS_MH]);
-        names[GET_UNBOX_RESULT] = new Name(data.getterFunction(4),
-                names[THIS_MH]);
+        names[GET_COLLECT_ARGS] = new Name(data.getterFunction(3), names[THIS_MH]);
+        names[GET_UNBOX_RESULT] = new Name(data.getterFunction(4), names[THIS_MH]);
 
         // FIXME: rework argument boxing/result unboxing logic for LF
         // interpretation
@@ -1159,30 +1073,26 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         Object[] args = new Object[invokeBasic.type().parameterCount()];
         args[0] = names[GET_COLLECT_ARGS];
         System.arraycopy(names, ARG_BASE, args, 1, ARG_LIMIT - ARG_BASE);
-        names[BOXED_ARGS] = new Name(makeIntrinsic(invokeBasic,
-                Intrinsic.GUARD_WITH_CATCH), args);
+        names[BOXED_ARGS] = new Name(makeIntrinsic(invokeBasic, Intrinsic.GUARD_WITH_CATCH), args);
 
         // t_{i+1}:L=MethodHandleImpl.guardWithCatch(target:L,exType:L,catcher:L,t_{i}:L);
-        Object[] gwcArgs = new Object[] { names[GET_TARGET], names[GET_CLASS],
-                names[GET_CATCHER], names[BOXED_ARGS] };
+        Object[] gwcArgs = new Object[] { names[GET_TARGET], names[GET_CLASS], names[GET_CATCHER],
+                names[BOXED_ARGS] };
         names[TRY_CATCH] = new Name(Lazy.NF_guardWithCatch, gwcArgs);
 
         // t_{i+2}:I=MethodHandle.invokeBasic(unbox:L,t_{i+1}:L);
-        MethodHandle invokeBasicUnbox = MethodHandles.basicInvoker(MethodType
-                .methodType(basicType.rtype(), Object.class));
-        Object[] unboxArgs = new Object[] { names[GET_UNBOX_RESULT],
-                names[TRY_CATCH] };
+        MethodHandle invokeBasicUnbox = MethodHandles.basicInvoker(MethodType.methodType(basicType.rtype(),
+                Object.class));
+        Object[] unboxArgs = new Object[] { names[GET_UNBOX_RESULT], names[TRY_CATCH] };
         names[UNBOX_RESULT] = new Name(invokeBasicUnbox, unboxArgs);
 
-        lform = new LambdaForm("guardWithCatch", lambdaType.parameterCount(),
-                names);
+        lform = new LambdaForm("guardWithCatch", lambdaType.parameterCount(), names);
 
-        return basicType.form().setCachedLambdaForm(MethodTypeForm.LF_GWC,
-                lform);
+        return basicType.form().setCachedLambdaForm(MethodTypeForm.LF_GWC, lform);
     }
 
-    static MethodHandle makeGuardWithCatch(MethodHandle target,
-            Class<? extends Throwable> exType, MethodHandle catcher) {
+    static MethodHandle makeGuardWithCatch(MethodHandle target, Class<? extends Throwable> exType,
+            MethodHandle catcher) {
         MethodType type = target.type();
         LambdaForm form = makeGuardWithCatchForm(type.basicType());
 
@@ -1190,8 +1100,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         // interpreation.
         // Box arguments and wrap them into Object[]: ValueConversions.array().
         MethodType varargsType = type.changeReturnType(Object[].class);
-        MethodHandle collectArgs = varargsArray(type.parameterCount()).asType(
-                varargsType);
+        MethodHandle collectArgs = varargsArray(type.parameterCount()).asType(varargsType);
         // Result unboxing: ValueConversions.unbox() OR
         // ValueConversions.identity() OR ValueConversions.ignore().
         MethodHandle unboxResult;
@@ -1207,13 +1116,11 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             unboxResult = MethodHandles.identity(Object.class);
         }
 
-        BoundMethodHandle.SpeciesData data = BoundMethodHandle
-                .speciesData_LLLLL();
+        BoundMethodHandle.SpeciesData data = BoundMethodHandle.speciesData_LLLLL();
         BoundMethodHandle mh;
         try {
-            mh = (BoundMethodHandle) data.constructor().invokeBasic(type, form,
-                    (Object) target, (Object) exType, (Object) catcher,
-                    (Object) collectArgs, (Object) unboxResult);
+            mh = (BoundMethodHandle) data.constructor().invokeBasic(type, form, (Object) target,
+                    (Object) exType, (Object) catcher, (Object) collectArgs, (Object) unboxResult);
         } catch (Throwable ex) {
             throw uncaughtException(ex);
         }
@@ -1226,8 +1133,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
      * {@link InvokerBytecodeGenerator#emitGuardWithCatch emitGuardWithCatch}).
      */
     @LambdaForm.Hidden
-    static Object guardWithCatch(MethodHandle target,
-            Class<? extends Throwable> exType, MethodHandle catcher,
+    static Object guardWithCatch(MethodHandle target, Class<? extends Throwable> exType, MethodHandle catcher,
             Object... av) throws Throwable {
         // Use asFixedArity() to avoid unnecessary boxing of last argument for
         // VarargsCollector case.
@@ -1254,12 +1160,10 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         int arity = type.parameterCount();
         if (arity > 1) {
             MethodHandle mh = throwException(type.dropParameterTypes(1, arity));
-            mh = MethodHandles.dropArguments(mh, 1, type.parameterList()
-                    .subList(1, arity));
+            mh = MethodHandles.dropArguments(mh, 1, type.parameterList().subList(1, arity));
             return mh;
         }
-        return makePairwiseConvert(Lazy.NF_throwException.resolvedHandle(),
-                type, false, true);
+        return makePairwiseConvert(Lazy.NF_throwException.resolvedHandle(), type, false, true);
     }
 
     static <T extends Throwable> Empty throwException(T t) throws T {
@@ -1284,12 +1188,10 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         MethodHandle mh = FAKE_METHOD_HANDLE_INVOKE[idx];
         if (mh != null)
             return mh;
-        MethodType type = MethodType.methodType(Object.class,
-                UnsupportedOperationException.class, MethodHandle.class,
-                Object[].class);
+        MethodType type = MethodType.methodType(Object.class, UnsupportedOperationException.class,
+                MethodHandle.class, Object[].class);
         mh = throwException(type);
-        mh = mh.bindTo(new UnsupportedOperationException(
-                "cannot reflectively invoke MethodHandle"));
+        mh = mh.bindTo(new UnsupportedOperationException("cannot reflectively invoke MethodHandle"));
         if (!method.getInvocationType().equals(mh.type()))
             throw new InternalError(method.toString());
         mh = mh.withInternalMemberName(method, false);
@@ -1315,9 +1217,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     private static class BindCaller {
         static MethodHandle bindCaller(MethodHandle mh, Class<?> hostClass) {
             // Do not use this function to inject calls into system classes.
-            if (hostClass == null || (hostClass.isArray() || hostClass
-                    .isPrimitive() || hostClass.getName().startsWith("java.")
-                    || hostClass.getName().startsWith("sun."))) {
+            if (hostClass == null || (hostClass.isArray() || hostClass.isPrimitive() || hostClass.getName()
+                    .startsWith("java.") || hostClass.getName().startsWith("sun."))) {
                 throw new InternalError(); // does not happen, and should not
                                            // anyway
             }
@@ -1329,29 +1230,26 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         }
 
         private static MethodHandle makeInjectedInvoker(Class<?> hostClass) {
-            Class<?> bcc = UNSAFE.defineAnonymousClass(hostClass, T_BYTES,
-                    null);
+            Class<?> bcc = UNSAFE.defineAnonymousClass(hostClass, T_BYTES, null);
             if (hostClass.getClassLoader() != bcc.getClassLoader())
                 throw new InternalError(hostClass.getName() + " (CL)");
             try {
-                if (hostClass.getProtectionDomain() != bcc
-                        .getProtectionDomain())
+                if (hostClass.getProtectionDomain() != bcc.getProtectionDomain())
                     throw new InternalError(hostClass.getName() + " (PD)");
             } catch (SecurityException ex) {
                 // Self-check was blocked by security manager. This is OK.
                 // In fact the whole try body could be turned into an assertion.
             }
             try {
-                MethodHandle init = IMPL_LOOKUP.findStatic(bcc, "init",
-                        MethodType.methodType(void.class));
+                MethodHandle init = IMPL_LOOKUP.findStatic(bcc, "init", MethodType.methodType(void.class));
                 init.invokeExact(); // force initialization of the class
             } catch (Throwable ex) {
                 throw uncaughtException(ex);
             }
             MethodHandle bccInvoker;
             try {
-                MethodType invokerMT = MethodType.methodType(Object.class,
-                        MethodHandle.class, Object[].class);
+                MethodType invokerMT = MethodType.methodType(Object.class, MethodHandle.class,
+                        Object[].class);
                 bccInvoker = IMPL_LOOKUP.findStatic(bcc, "invoke_V", invokerMT);
             } catch (ReflectiveOperationException ex) {
                 throw uncaughtException(ex);
@@ -1360,8 +1258,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             // place.
             try {
                 MethodHandle vamh = prepareForInvoker(MH_checkCallerClass);
-                Object ok = bccInvoker.invokeExact(vamh, new Object[] {
-                        hostClass, bcc });
+                Object ok = bccInvoker.invokeExact(vamh, new Object[] { hostClass, bcc });
             } catch (Throwable ex) {
                 throw new InternalError(ex);
             }
@@ -1390,15 +1287,13 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         }
 
         // Undo the adapter effect of prepareForInvoker:
-        private static MethodHandle restoreToType(MethodHandle vamh,
-                MethodHandle original, Class<?> hostClass) {
+        private static MethodHandle restoreToType(MethodHandle vamh, MethodHandle original,
+                Class<?> hostClass) {
             MethodType type = original.type();
-            MethodHandle mh = vamh.asCollector(Object[].class, type
-                    .parameterCount());
+            MethodHandle mh = vamh.asCollector(Object[].class, type.parameterCount());
             MemberName member = original.internalMemberName();
             mh = mh.asType(type);
-            mh = new WrappedMember(mh, type, member, original.isInvokeSpecial(),
-                    hostClass);
+            mh = new WrappedMember(mh, type, member, original.isInvokeSpecial(), hostClass);
             return mh;
         }
 
@@ -1407,27 +1302,22 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             final Class<?> THIS_CLASS = BindCaller.class;
             assert (checkCallerClass(THIS_CLASS, THIS_CLASS));
             try {
-                MH_checkCallerClass = IMPL_LOOKUP.findStatic(THIS_CLASS,
-                        "checkCallerClass", MethodType.methodType(boolean.class,
-                                Class.class, Class.class));
-                assert ((boolean) MH_checkCallerClass.invokeExact(THIS_CLASS,
-                        THIS_CLASS));
+                MH_checkCallerClass = IMPL_LOOKUP.findStatic(THIS_CLASS, "checkCallerClass", MethodType
+                        .methodType(boolean.class, Class.class, Class.class));
+                assert ((boolean) MH_checkCallerClass.invokeExact(THIS_CLASS, THIS_CLASS));
             } catch (Throwable ex) {
                 throw new InternalError(ex);
             }
         }
 
         @CallerSensitive
-        private static boolean checkCallerClass(Class<?> expected,
-                Class<?> expected2) {
+        private static boolean checkCallerClass(Class<?> expected, Class<?> expected2) {
             // This method is called via MH_checkCallerClass and so it's
             // correct to ask for the immediate caller here.
             Class<?> actual = Reflection.getCallerClass();
             if (actual != expected && actual != expected2)
-                throw new InternalError("found " + actual.getName()
-                        + ", expected " + expected.getName()
-                        + (expected == expected2 ? ""
-                                : ", or else " + expected2.getName()));
+                throw new InternalError("found " + actual.getName() + ", expected " + expected.getName()
+                        + (expected == expected2 ? "" : ", or else " + expected2.getName()));
             return true;
         }
 
@@ -1439,10 +1329,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
                     try {
                         Class<T> tClass = T.class;
                         String tName = tClass.getName();
-                        String tResource = tName.substring(tName.lastIndexOf(
-                                '.') + 1) + ".class";
-                        java.net.URLConnection uconn = tClass.getResource(
-                                tResource).openConnection();
+                        String tResource = tName.substring(tName.lastIndexOf('.') + 1) + ".class";
+                        java.net.URLConnection uconn = tClass.getResource(tResource).openConnection();
                         int len = uconn.getContentLength();
                         byte[] bytes = new byte[len];
                         try (java.io.InputStream str = uconn.getInputStream()) {
@@ -1465,8 +1353,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         private static class T {
             static void init() {} // side effect: initializes this class
 
-            static Object invoke_V(MethodHandle vamh, Object[] args)
-                    throws Throwable {
+            static Object invoke_V(MethodHandle vamh, Object[] args) throws Throwable {
                 return vamh.invokeExact(args);
             }
         }
@@ -1482,9 +1369,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         private final Class<?> callerClass;
         private final boolean isInvokeSpecial;
 
-        private WrappedMember(MethodHandle target, MethodType type,
-                MemberName member, boolean isInvokeSpecial,
-                Class<?> callerClass) {
+        private WrappedMember(MethodHandle target, MethodType type, MemberName member,
+                boolean isInvokeSpecial, Class<?> callerClass) {
             super(type, target);
             this.target = target;
             this.member = member;
@@ -1520,20 +1406,16 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         }
     }
 
-    static MethodHandle makeWrappedMember(MethodHandle target,
-            MemberName member, boolean isInvokeSpecial) {
-        if (member.equals(target.internalMemberName())
-                && isInvokeSpecial == target.isInvokeSpecial())
+    static MethodHandle makeWrappedMember(MethodHandle target, MemberName member, boolean isInvokeSpecial) {
+        if (member.equals(target.internalMemberName()) && isInvokeSpecial == target.isInvokeSpecial())
             return target;
-        return new WrappedMember(target, target.type(), member, isInvokeSpecial,
-                null);
+        return new WrappedMember(target, target.type(), member, isInvokeSpecial, null);
     }
 
     /** Intrinsic IDs */
     /* non-public */
     enum Intrinsic {
-        SELECT_ALTERNATIVE, GUARD_WITH_CATCH, NEW_ARRAY, ARRAY_LOAD,
-        ARRAY_STORE, IDENTITY, ZERO, NONE // no
+        SELECT_ALTERNATIVE, GUARD_WITH_CATCH, NEW_ARRAY, ARRAY_LOAD, ARRAY_STORE, IDENTITY, ZERO, NONE // no
                                                                                                        // intrinsic
                                                                                                        // associated
     }
@@ -1542,8 +1424,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
      * Mark arbitrary method handle as intrinsic. InvokerBytecodeGenerator uses
      * this info to produce more efficient bytecode shape.
      */
-    private static final class IntrinsicMethodHandle extends
-            DelegatingMethodHandle {
+    private static final class IntrinsicMethodHandle extends DelegatingMethodHandle {
         private final MethodHandle target;
         private final Intrinsic intrinsicName;
 
@@ -1572,42 +1453,35 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
 
         @Override
         String internalProperties() {
-            return super.internalProperties() + "\n& Intrinsic="
-                    + intrinsicName;
+            return super.internalProperties() + "\n& Intrinsic=" + intrinsicName;
         }
 
         @Override
         public MethodHandle asCollector(Class<?> arrayType, int arrayLength) {
             if (intrinsicName == Intrinsic.IDENTITY) {
-                MethodType resultType = type().asCollectorType(arrayType,
-                        arrayLength);
-                MethodHandle newArray = MethodHandleImpl.varargsArray(arrayType,
-                        arrayLength);
+                MethodType resultType = type().asCollectorType(arrayType, arrayLength);
+                MethodHandle newArray = MethodHandleImpl.varargsArray(arrayType, arrayLength);
                 return newArray.asType(resultType);
             }
             return super.asCollector(arrayType, arrayLength);
         }
     }
 
-    static MethodHandle makeIntrinsic(MethodHandle target,
-            Intrinsic intrinsicName) {
+    static MethodHandle makeIntrinsic(MethodHandle target, Intrinsic intrinsicName) {
         if (intrinsicName == target.intrinsicName())
             return target;
         return new IntrinsicMethodHandle(target, intrinsicName);
     }
 
-    static MethodHandle makeIntrinsic(MethodType type, LambdaForm form,
-            Intrinsic intrinsicName) {
-        return new IntrinsicMethodHandle(SimpleMethodHandle.make(type, form),
-                intrinsicName);
+    static MethodHandle makeIntrinsic(MethodType type, LambdaForm form, Intrinsic intrinsicName) {
+        return new IntrinsicMethodHandle(SimpleMethodHandle.make(type, form), intrinsicName);
     }
 
     /// Collection of multiple arguments.
 
-    private static MethodHandle findCollector(String name, int nargs,
-            Class<?> rtype, Class<?>... ptypes) {
-        MethodType type = MethodType.genericMethodType(nargs).changeReturnType(
-                rtype).insertParameterTypes(0, ptypes);
+    private static MethodHandle findCollector(String name, int nargs, Class<?> rtype, Class<?>... ptypes) {
+        MethodType type = MethodType.genericMethodType(nargs).changeReturnType(rtype).insertParameterTypes(0,
+                ptypes);
         try {
             return IMPL_LOOKUP.findStatic(MethodHandleImpl.class, name, type);
         } catch (ReflectiveOperationException ex) {
@@ -1641,41 +1515,38 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return makeArray(a0, a1, a2, a3);
     }
 
-    private static Object[] array(Object a0, Object a1, Object a2, Object a3,
-            Object a4) {
+    private static Object[] array(Object a0, Object a1, Object a2, Object a3, Object a4) {
         return makeArray(a0, a1, a2, a3, a4);
     }
 
-    private static Object[] array(Object a0, Object a1, Object a2, Object a3,
-            Object a4, Object a5) {
+    private static Object[] array(Object a0, Object a1, Object a2, Object a3, Object a4, Object a5) {
         return makeArray(a0, a1, a2, a3, a4, a5);
     }
 
-    private static Object[] array(Object a0, Object a1, Object a2, Object a3,
-            Object a4, Object a5, Object a6) {
+    private static Object[] array(Object a0, Object a1, Object a2, Object a3, Object a4, Object a5,
+            Object a6) {
         return makeArray(a0, a1, a2, a3, a4, a5, a6);
     }
 
-    private static Object[] array(Object a0, Object a1, Object a2, Object a3,
-            Object a4, Object a5, Object a6, Object a7) {
+    private static Object[] array(Object a0, Object a1, Object a2, Object a3, Object a4, Object a5, Object a6,
+            Object a7) {
         return makeArray(a0, a1, a2, a3, a4, a5, a6, a7);
     }
 
-    private static Object[] array(Object a0, Object a1, Object a2, Object a3,
-            Object a4, Object a5, Object a6, Object a7, Object a8) {
+    private static Object[] array(Object a0, Object a1, Object a2, Object a3, Object a4, Object a5, Object a6,
+            Object a7, Object a8) {
         return makeArray(a0, a1, a2, a3, a4, a5, a6, a7, a8);
     }
 
-    private static Object[] array(Object a0, Object a1, Object a2, Object a3,
-            Object a4, Object a5, Object a6, Object a7, Object a8, Object a9) {
+    private static Object[] array(Object a0, Object a1, Object a2, Object a3, Object a4, Object a5, Object a6,
+            Object a7, Object a8, Object a9) {
         return makeArray(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
     }
 
     private static MethodHandle[] makeArrays() {
         ArrayList<MethodHandle> mhs = new ArrayList<>();
         for (;;) {
-            MethodHandle mh = findCollector("array", mhs.size(),
-                    Object[].class);
+            MethodHandle mh = findCollector("array", mhs.size(), Object[].class);
             if (mh == null)
                 break;
             mh = makeIntrinsic(mh, Intrinsic.NEW_ARRAY);
@@ -1688,15 +1559,18 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     // filling versions of the above:
     // using Integer len instead of int len and no varargs to avoid
     // bootstrapping problems
-    private static Object[] fillNewArray(Integer len,
-            Object[] /* not ... */ args) {
+    private static Object[] fillNewArray(Integer len, Object[] /* not ... */ args) {
         Object[] a = new Object[len];
         fillWithArguments(a, 0, args);
         return a;
     }
 
-    private static Object[] fillNewTypedArray(Object[] example, Integer len,
-            Object[] /* not ... */ args) {
+    private static Object[] fillNewTypedArray(Object[] example, Integer len, Object[] /*
+                                                                                       * not
+                                                                                       * .
+                                                                                       * .
+                                                                                       * .
+                                                                                       */ args) {
         Object[] a = Arrays.copyOf(example, len);
         assert (a.getClass() != Object[].class);
         fillWithArguments(a, 0, args);
@@ -1713,59 +1587,53 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1) {
         fillWithArguments(a, pos, a0, a1);
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1, Object a2) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1, Object a2) {
         fillWithArguments(a, pos, a0, a1, a2);
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1, Object a2, Object a3) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1, Object a2, Object a3) {
         fillWithArguments(a, pos, a0, a1, a2, a3);
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1, Object a2, Object a3, Object a4) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1, Object a2, Object a3,
+            Object a4) {
         fillWithArguments(a, pos, a0, a1, a2, a3, a4);
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1, Object a2, Object a3, Object a4, Object a5) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1, Object a2, Object a3,
+            Object a4, Object a5) {
         fillWithArguments(a, pos, a0, a1, a2, a3, a4, a5);
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1, Object a2, Object a3, Object a4, Object a5, Object a6) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1, Object a2, Object a3,
+            Object a4, Object a5, Object a6) {
         fillWithArguments(a, pos, a0, a1, a2, a3, a4, a5, a6);
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1, Object a2, Object a3, Object a4, Object a5, Object a6,
-            Object a7) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1, Object a2, Object a3,
+            Object a4, Object a5, Object a6, Object a7) {
         fillWithArguments(a, pos, a0, a1, a2, a3, a4, a5, a6, a7);
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1, Object a2, Object a3, Object a4, Object a5, Object a6,
-            Object a7, Object a8) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1, Object a2, Object a3,
+            Object a4, Object a5, Object a6, Object a7, Object a8) {
         fillWithArguments(a, pos, a0, a1, a2, a3, a4, a5, a6, a7, a8);
         return a;
     }
 
-    private static Object[] fillArray(Integer pos, Object[] a, Object a0,
-            Object a1, Object a2, Object a3, Object a4, Object a5, Object a6,
-            Object a7, Object a8, Object a9) {
+    private static Object[] fillArray(Integer pos, Object[] a, Object a0, Object a1, Object a2, Object a3,
+            Object a4, Object a5, Object a6, Object a7, Object a8, Object a9) {
         fillWithArguments(a, pos, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
         return a;
     }
@@ -1777,8 +1645,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         ArrayList<MethodHandle> mhs = new ArrayList<>();
         mhs.add(null); // there is no empty fill; at least a0 is required
         for (;;) {
-            MethodHandle mh = findCollector("fillArray", mhs.size(),
-                    Object[].class, Integer.class, Object[].class);
+            MethodHandle mh = findCollector("fillArray", mhs.size(), Object[].class, Integer.class,
+                    Object[].class);
             if (mh == null)
                 break;
             mhs.add(mh);
@@ -1806,16 +1674,14 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             mh = makeIntrinsic(mh, Intrinsic.NEW_ARRAY);
         if (mh != null)
             return Lazy.ARRAYS[nargs] = mh;
-        mh = buildVarargsArray(Lazy.MH_fillNewArray, Lazy.MH_arrayIdentity,
-                nargs);
+        mh = buildVarargsArray(Lazy.MH_fillNewArray, Lazy.MH_arrayIdentity, nargs);
         assert (assertCorrectArity(mh, nargs));
         mh = makeIntrinsic(mh, Intrinsic.NEW_ARRAY);
         return Lazy.ARRAYS[nargs] = mh;
     }
 
     private static boolean assertCorrectArity(MethodHandle mh, int arity) {
-        assert (mh.type().parameterCount() == arity) : "arity != " + arity
-                + ": " + mh;
+        assert (mh.type().parameterCount() == arity) : "arity != " + arity + ": " + mh;
         return true;
     }
 
@@ -1824,8 +1690,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         return x;
     }
 
-    private static MethodHandle buildVarargsArray(MethodHandle newArray,
-            MethodHandle finisher, int nargs) {
+    private static MethodHandle buildVarargsArray(MethodHandle newArray, MethodHandle finisher, int nargs) {
         // Build up the result mh as a sequence of fills like this:
         // finisher(fill(fill(newArrayWA(23,x1..x10),10,x11..x20),20,x21..x23))
         // The various fill(_,10*I,___*[J]) are reusable.
@@ -1850,8 +1715,7 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     }
 
     private static final int LEFT_ARGS = FILL_ARRAYS_COUNT - 1;
-    private static final MethodHandle[] FILL_ARRAY_TO_RIGHT = new MethodHandle[MAX_ARITY
-            + 1];
+    private static final MethodHandle[] FILL_ARRAY_TO_RIGHT = new MethodHandle[MAX_ARITY + 1];
 
     /**
      * fill_array_to_right(N).invoke(a, argL..arg[N-1]) fills a[L]..a[N-1] with
@@ -1927,8 +1791,8 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
             if (slots <= MAX_ARRAY_SLOTS && elemType.isPrimitive())
                 slots *= Wrapper.forPrimitiveType(elemType).stackSlots();
             if (slots > MAX_ARRAY_SLOTS)
-                throw new IllegalArgumentException("too many arguments: "
-                        + arrayType.getSimpleName() + ", length " + nargs);
+                throw new IllegalArgumentException("too many arguments: " + arrayType.getSimpleName()
+                        + ", length " + nargs);
         }
         if (elemType == Object.class)
             return varargsArray(nargs);
@@ -1938,24 +1802,21 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
         if (mh != null)
             return mh;
         if (nargs == 0) {
-            Object example = java.lang.reflect.Array.newInstance(arrayType
-                    .getComponentType(), 0);
+            Object example = java.lang.reflect.Array.newInstance(arrayType.getComponentType(), 0);
             mh = MethodHandles.constant(arrayType, example);
         } else if (elemType.isPrimitive()) {
             MethodHandle builder = Lazy.MH_fillNewArray;
             MethodHandle producer = buildArrayProducer(arrayType);
             mh = buildVarargsArray(builder, producer, nargs);
         } else {
-            Class<? extends Object[]> objArrayType = arrayType.asSubclass(
-                    Object[].class);
+            Class<? extends Object[]> objArrayType = arrayType.asSubclass(Object[].class);
             Object[] example = Arrays.copyOf(NO_ARGS_ARRAY, 0, objArrayType);
             MethodHandle builder = Lazy.MH_fillNewTypedArray.bindTo(example);
             MethodHandle producer = Lazy.MH_arrayIdentity; // must be weakly
                                                            // typed
             mh = buildVarargsArray(builder, producer, nargs);
         }
-        mh = mh.asType(MethodType.methodType(arrayType, Collections
-                .<Class<?>>nCopies(nargs, elemType)));
+        mh = mh.asType(MethodType.methodType(arrayType, Collections.<Class<?>>nCopies(nargs, elemType)));
         mh = makeIntrinsic(mh, Intrinsic.NEW_ARRAY);
         assert (assertCorrectArity(mh, nargs));
         if (nargs < cache.length)
@@ -1966,14 +1827,12 @@ import static java.lang.invoke.MethodHandles.Lookup.IMPL_LOOKUP;
     private static MethodHandle buildArrayProducer(Class<?> arrayType) {
         Class<?> elemType = arrayType.getComponentType();
         assert (elemType.isPrimitive());
-        return Lazy.MH_copyAsPrimitiveArray.bindTo(Wrapper.forPrimitiveType(
-                elemType));
+        return Lazy.MH_copyAsPrimitiveArray.bindTo(Wrapper.forPrimitiveType(elemType));
     }
 
     /* non-public */ static void assertSame(Object mh1, Object mh2) {
         if (mh1 != mh2) {
-            String msg = String.format(
-                    "mh1 != mh2: mh1 = %s (form: %s); mh2 = %s (form: %s)", mh1,
+            String msg = String.format("mh1 != mh2: mh1 = %s (form: %s); mh2 = %s (form: %s)", mh1,
                     ((MethodHandle) mh1).form, mh2, ((MethodHandle) mh2).form);
             throw newInternalError(msg);
         }

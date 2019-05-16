@@ -40,8 +40,7 @@ public final class ObjectStreamClassUtil_1_3 {
         if (csuid == 0)
             return csuid; // for non-serializable/proxy classes
 
-        csuid = (ObjectStreamClassUtil_1_3.getSerialVersion(csuid, cl)
-                .longValue());
+        csuid = (ObjectStreamClassUtil_1_3.getSerialVersion(csuid, cl).longValue());
         return csuid;
     }
 
@@ -56,8 +55,7 @@ public final class ObjectStreamClassUtil_1_3 {
                 try {
                     final Field f = cl.getDeclaredField("serialVersionUID");
                     int mods = f.getModifiers();
-                    if (Modifier.isStatic(mods) && Modifier.isFinal(mods)
-                            && Modifier.isPrivate(mods)) {
+                    if (Modifier.isStatic(mods) && Modifier.isFinal(mods) && Modifier.isPrivate(mods)) {
                         suid = csuid;
                     } else {
                         suid = _computeSerialVersionUID(cl);
@@ -72,15 +70,13 @@ public final class ObjectStreamClassUtil_1_3 {
         });
     }
 
-    public static long computeStructuralUID(boolean hasWriteObject,
-            Class<?> cl) {
+    public static long computeStructuralUID(boolean hasWriteObject, Class<?> cl) {
         ByteArrayOutputStream devnull = new ByteArrayOutputStream(512);
 
         long h = 0;
         try {
 
-            if ((!java.io.Serializable.class.isAssignableFrom(cl)) || (cl
-                    .isInterface())) {
+            if ((!java.io.Serializable.class.isAssignableFrom(cl)) || (cl.isInterface())) {
                 return 0;
             }
 
@@ -105,13 +101,11 @@ public final class ObjectStreamClassUtil_1_3 {
             if ((parent != null) && (parent != java.lang.Object.class)) {
                 boolean hasWriteObjectFlag = false;
                 Class[] args = { java.io.ObjectOutputStream.class };
-                Method hasWriteObjectMethod = ObjectStreamClassUtil_1_3
-                        .getDeclaredMethod(parent, "writeObject", args,
-                                Modifier.PRIVATE, Modifier.STATIC);
+                Method hasWriteObjectMethod = ObjectStreamClassUtil_1_3.getDeclaredMethod(parent,
+                        "writeObject", args, Modifier.PRIVATE, Modifier.STATIC);
                 if (hasWriteObjectMethod != null)
                     hasWriteObjectFlag = true;
-                data.writeLong(ObjectStreamClassUtil_1_3.computeStructuralUID(
-                        hasWriteObjectFlag, parent));
+                data.writeLong(ObjectStreamClassUtil_1_3.computeStructuralUID(hasWriteObjectFlag, parent));
             }
 
             if (hasWriteObject)
@@ -174,8 +168,7 @@ public final class ObjectStreamClassUtil_1_3 {
             data.writeUTF(cl.getName());
 
             int classaccess = cl.getModifiers();
-            classaccess &= (Modifier.PUBLIC | Modifier.FINAL
-                    | Modifier.INTERFACE | Modifier.ABSTRACT);
+            classaccess &= (Modifier.PUBLIC | Modifier.FINAL | Modifier.INTERFACE | Modifier.ABSTRACT);
 
             /*
              * Workaround for javac bug that only set ABSTRACT for interfaces if
@@ -226,8 +219,7 @@ public final class ObjectStreamClassUtil_1_3 {
                  * transient and private static.
                  */
                 int m = f.getModifiers();
-                if (Modifier.isPrivate(m) && (Modifier.isTransient(m)
-                        || Modifier.isStatic(m)))
+                if (Modifier.isPrivate(m) && (Modifier.isTransient(m) || Modifier.isStatic(m)))
                     continue;
 
                 data.writeUTF(f.getName());
@@ -249,8 +241,8 @@ public final class ObjectStreamClassUtil_1_3 {
              * with their access flags
              */
 
-            MethodSignature[] constructors = MethodSignature
-                    .removePrivateAndSort(cl.getDeclaredConstructors());
+            MethodSignature[] constructors = MethodSignature.removePrivateAndSort(cl
+                    .getDeclaredConstructors());
             for (int i = 0; i < constructors.length; i++) {
                 MethodSignature c = constructors[i];
                 String mname = "<init>";
@@ -265,8 +257,7 @@ public final class ObjectStreamClassUtil_1_3 {
              * Include in the hash all methods except those that are private
              * transient and private static.
              */
-            MethodSignature[] methods = MethodSignature.removePrivateAndSort(
-                    method);
+            MethodSignature[] methods = MethodSignature.removePrivateAndSort(method);
             for (int i = 0; i < methods.length; i++) {
                 MethodSignature m = methods[i];
                 String desc = m.signature;
@@ -474,8 +465,7 @@ public final class ObjectStreamClassUtil_1_3 {
         private MethodSignature(Member m) {
             member = m;
             if (isConstructor()) {
-                signature = ObjectStreamClassUtil_1_3.getSignature(
-                        (Constructor) m);
+                signature = ObjectStreamClassUtil_1_3.getSignature((Constructor) m);
             } else {
                 signature = ObjectStreamClassUtil_1_3.getSignature((Method) m);
             }
@@ -500,31 +490,25 @@ public final class ObjectStreamClassUtil_1_3 {
                 if (classWithThisMethod == null)
                     classWithThisMethod = java.io.ObjectStreamClass.class;
 
-                hasStaticInitializerMethod = classWithThisMethod
-                        .getDeclaredMethod("hasStaticInitializer", new Class[] {
-                                Class.class });
-            } catch (NoSuchMethodException ex) {
-            }
+                hasStaticInitializerMethod = classWithThisMethod.getDeclaredMethod("hasStaticInitializer",
+                        new Class[] { Class.class });
+            } catch (NoSuchMethodException ex) {}
 
             if (hasStaticInitializerMethod == null) {
-                throw new InternalError(
-                        "Can't find hasStaticInitializer method on "
-                                + classWithThisMethod.getName());
+                throw new InternalError("Can't find hasStaticInitializer method on " + classWithThisMethod
+                        .getName());
             }
             hasStaticInitializerMethod.setAccessible(true);
         }
         try {
-            Boolean retval = (Boolean) hasStaticInitializerMethod.invoke(null,
-                    new Object[] { cl });
+            Boolean retval = (Boolean) hasStaticInitializerMethod.invoke(null, new Object[] { cl });
             return retval.booleanValue();
         } catch (Exception ex) {
-            throw new InternalError("Error invoking hasStaticInitializer: "
-                    + ex);
+            throw new InternalError("Error invoking hasStaticInitializer: " + ex);
         }
     }
 
-    private static Method getDeclaredMethod(final Class cl,
-            final String methodName, final Class[] args,
+    private static Method getDeclaredMethod(final Class cl, final String methodName, final Class[] args,
             final int requiredModifierMask, final int disallowedModifierMask) {
         return (Method) AccessController.doPrivileged(new PrivilegedAction() {
             public Object run() {

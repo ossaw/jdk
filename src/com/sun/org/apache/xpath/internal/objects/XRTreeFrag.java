@@ -43,7 +43,6 @@ public class XRTreeFrag extends XObject implements Cloneable {
 
     /**
      * Create an XRTreeFrag Object.
-     *
      */
     public XRTreeFrag(int root, XPathContext xctxt, ExpressionNode parent) {
         super(null);
@@ -53,7 +52,6 @@ public class XRTreeFrag extends XObject implements Cloneable {
 
     /**
      * Create an XRTreeFrag Object.
-     *
      */
     public XRTreeFrag(int root, XPathContext xctxt) {
         super(null);
@@ -77,16 +75,14 @@ public class XRTreeFrag extends XObject implements Cloneable {
     public Object object() {
         if (m_DTMXRTreeFrag.getXPathContext() != null)
             return new com.sun.org.apache.xml.internal.dtm.ref.DTMNodeIterator(
-                    (DTMIterator) (new com.sun.org.apache.xpath.internal.NodeSetDTM(
-                            m_dtmRoot, m_DTMXRTreeFrag.getXPathContext()
-                                    .getDTMManager())));
+                    (DTMIterator) (new com.sun.org.apache.xpath.internal.NodeSetDTM(m_dtmRoot, m_DTMXRTreeFrag
+                            .getXPathContext().getDTMManager())));
         else
             return super.object();
     }
 
     /**
      * Create an XRTreeFrag Object.
-     *
      */
     public XRTreeFrag(Expression expr) {
         super(expr);
@@ -96,9 +92,9 @@ public class XRTreeFrag extends XObject implements Cloneable {
      * Specify if it's OK for detach to release the iterator for reuse.
      *
      * @param allowRelease
-     *                     true if it is OK for detach to release this iterator
-     *                     for
-     *                     pooling.
+     *        true if it is OK for detach to release this iterator
+     *        for
+     *        pooling.
      */
     public void allowDetachToRelease(boolean allowRelease) {
         m_allowRelease = allowRelease;
@@ -110,7 +106,6 @@ public class XRTreeFrag extends XObject implements Cloneable {
      * the INVALID state. After <code>detach</code> has been invoked, calls to
      * <code>nextNode</code> or <code>previousNode</code> will raise a runtime
      * exception.
-     *
      * In general, detach should only be called once on the object.
      */
     public void detach() {
@@ -180,8 +175,7 @@ public class XRTreeFrag extends XObject implements Cloneable {
      *
      * @return The string this wraps or the empty string if null
      */
-    public void appendToFsb(
-            com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
+    public void appendToFsb(com.sun.org.apache.xml.internal.utils.FastStringBuffer fsb) {
         XString xstring = (XString) xstr();
         xstring.appendToFsb(fsb);
     }
@@ -192,8 +186,7 @@ public class XRTreeFrag extends XObject implements Cloneable {
      * @return The document fragment node data or the empty string.
      */
     public String str() {
-        String str = m_DTMXRTreeFrag.getDTM().getStringValue(m_dtmRoot)
-                .toString();
+        String str = m_DTMXRTreeFrag.getDTM().getStringValue(m_dtmRoot).toString();
 
         return (null == str) ? "" : str;
     }
@@ -215,8 +208,7 @@ public class XRTreeFrag extends XObject implements Cloneable {
      * @return The document fragment as a DTMIterator
      */
     public DTMIterator asNodeIterator() {
-        return new RTFIterator(m_dtmRoot, m_DTMXRTreeFrag.getXPathContext()
-                .getDTMManager());
+        return new RTFIterator(m_dtmRoot, m_DTMXRTreeFrag.getXPathContext().getDTMManager());
     }
 
     /**
@@ -229,18 +221,15 @@ public class XRTreeFrag extends XObject implements Cloneable {
         if (m_obj instanceof NodeList)
             return (NodeList) m_obj;
         else
-            return new com.sun.org.apache.xml.internal.dtm.ref.DTMNodeList(
-                    asNodeIterator());
+            return new com.sun.org.apache.xml.internal.dtm.ref.DTMNodeList(asNodeIterator());
     }
 
     /**
      * Tell if two objects are functionally equal.
      *
      * @param obj2
-     *             Object to compare this to
-     *
+     *        Object to compare this to
      * @return True if the two objects are equal
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public boolean equals(XObject obj2) {
@@ -268,8 +257,7 @@ public class XRTreeFrag extends XObject implements Cloneable {
                 return super.equals(obj2);
             }
         } catch (javax.xml.transform.TransformerException te) {
-            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(
-                    te);
+            throw new com.sun.org.apache.xml.internal.utils.WrappedRuntimeException(te);
         }
     }
 

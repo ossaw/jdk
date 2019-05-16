@@ -218,56 +218,49 @@ public class DefinitionKind implements org.omg.CORBA.portable.IDLEntity {
      * Interface Repository object is an Attribute.
      */
 
-    public static final DefinitionKind dk_Attribute = new DefinitionKind(
-            _dk_Attribute);
+    public static final DefinitionKind dk_Attribute = new DefinitionKind(_dk_Attribute);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is a constant.
      */
 
-    public static final DefinitionKind dk_Constant = new DefinitionKind(
-            _dk_Constant);
+    public static final DefinitionKind dk_Constant = new DefinitionKind(_dk_Constant);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is an Exception.
      */
 
-    public static final DefinitionKind dk_Exception = new DefinitionKind(
-            _dk_Exception);
+    public static final DefinitionKind dk_Exception = new DefinitionKind(_dk_Exception);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is an Interface.
      */
 
-    public static final DefinitionKind dk_Interface = new DefinitionKind(
-            _dk_Interface);
+    public static final DefinitionKind dk_Interface = new DefinitionKind(_dk_Interface);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is a Module.
      */
 
-    public static final DefinitionKind dk_Module = new DefinitionKind(
-            _dk_Module);
+    public static final DefinitionKind dk_Module = new DefinitionKind(_dk_Module);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is an Operation.
      */
 
-    public static final DefinitionKind dk_Operation = new DefinitionKind(
-            _dk_Operation);
+    public static final DefinitionKind dk_Operation = new DefinitionKind(_dk_Operation);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is a Typedef.
      */
 
-    public static final DefinitionKind dk_Typedef = new DefinitionKind(
-            _dk_Typedef);
+    public static final DefinitionKind dk_Typedef = new DefinitionKind(_dk_Typedef);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
@@ -281,8 +274,7 @@ public class DefinitionKind implements org.omg.CORBA.portable.IDLEntity {
      * Interface Repository object is a Struct.
      */
 
-    public static final DefinitionKind dk_Struct = new DefinitionKind(
-            _dk_Struct);
+    public static final DefinitionKind dk_Struct = new DefinitionKind(_dk_Struct);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
@@ -303,24 +295,21 @@ public class DefinitionKind implements org.omg.CORBA.portable.IDLEntity {
      * Interface Repository object is a Primitive.
      */
 
-    public static final DefinitionKind dk_Primitive = new DefinitionKind(
-            _dk_Primitive);
+    public static final DefinitionKind dk_Primitive = new DefinitionKind(_dk_Primitive);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is a String.
      */
 
-    public static final DefinitionKind dk_String = new DefinitionKind(
-            _dk_String);
+    public static final DefinitionKind dk_String = new DefinitionKind(_dk_String);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is a Sequence.
      */
 
-    public static final DefinitionKind dk_Sequence = new DefinitionKind(
-            _dk_Sequence);
+    public static final DefinitionKind dk_Sequence = new DefinitionKind(_dk_Sequence);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
@@ -334,16 +323,14 @@ public class DefinitionKind implements org.omg.CORBA.portable.IDLEntity {
      * Interface Repository object is a Repository.
      */
 
-    public static final DefinitionKind dk_Repository = new DefinitionKind(
-            _dk_Repository);
+    public static final DefinitionKind dk_Repository = new DefinitionKind(_dk_Repository);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is a Wstring.
      */
 
-    public static final DefinitionKind dk_Wstring = new DefinitionKind(
-            _dk_Wstring);
+    public static final DefinitionKind dk_Wstring = new DefinitionKind(_dk_Wstring);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
@@ -364,31 +351,27 @@ public class DefinitionKind implements org.omg.CORBA.portable.IDLEntity {
      * Interface Repository object is a ValueBox.
      */
 
-    public static final DefinitionKind dk_ValueBox = new DefinitionKind(
-            _dk_ValueBox);
+    public static final DefinitionKind dk_ValueBox = new DefinitionKind(_dk_ValueBox);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is a ValueMember.
      */
 
-    public static final DefinitionKind dk_ValueMember = new DefinitionKind(
-            _dk_ValueMember);
+    public static final DefinitionKind dk_ValueMember = new DefinitionKind(_dk_ValueMember);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object is a Native value.
      */
 
-    public static final DefinitionKind dk_Native = new DefinitionKind(
-            _dk_Native);
+    public static final DefinitionKind dk_Native = new DefinitionKind(_dk_Native);
 
     /**
      * The static instance of <code>DefinitionKind</code> indicating that an
      * Interface Repository object represents an abstract interface.
      */
-    public static final DefinitionKind dk_AbstractInterface = new DefinitionKind(
-            _dk_AbstractInterface);
+    public static final DefinitionKind dk_AbstractInterface = new DefinitionKind(_dk_AbstractInterface);
 
     /**
      * Returns the <code>int</code> constant identifying the type of an IR
@@ -408,8 +391,8 @@ public class DefinitionKind implements org.omg.CORBA.portable.IDLEntity {
      * code .
      * 
      * @param i
-     *          one of the <code>int</code> constants from the class
-     *          <code>DefinitionKind</code>
+     *        one of the <code>int</code> constants from the class
+     *        <code>DefinitionKind</code>
      * @return the <code>DefinitionKind</code> instance corresponding to the
      *         given code
      * @throws org.omg.CORBA.BAD_PARAM
@@ -477,8 +460,8 @@ public class DefinitionKind implements org.omg.CORBA.portable.IDLEntity {
      * <code>_value</code> field initialized with the given value.
      * 
      * @param _value
-     *               one of the <code>int</code> constants defined in the class
-     *               <code>DefinitionKind</code>
+     *        one of the <code>int</code> constants defined in the class
+     *        <code>DefinitionKind</code>
      */
 
     protected DefinitionKind(int _value) {

@@ -42,8 +42,7 @@ public class MetalButtonUI extends BasicButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent c) {
         AppContext appContext = AppContext.getAppContext();
-        MetalButtonUI metalButtonUI = (MetalButtonUI) appContext.get(
-                METAL_BUTTON_UI_KEY);
+        MetalButtonUI metalButtonUI = (MetalButtonUI) appContext.get(METAL_BUTTON_UI_KEY);
         if (metalButtonUI == null) {
             metalButtonUI = new MetalButtonUI();
             appContext.put(METAL_BUTTON_UI_KEY, metalButtonUI);
@@ -78,8 +77,7 @@ public class MetalButtonUI extends BasicButtonUI {
     }
 
     protected Color getDisabledTextColor() {
-        disabledTextColor = UIManager.getColor(getPropertyPrefix()
-                + "disabledText");
+        disabledTextColor = UIManager.getColor(getPropertyPrefix() + "disabledText");
         return disabledTextColor;
     }
 
@@ -96,30 +94,27 @@ public class MetalButtonUI extends BasicButtonUI {
      * <code>paint</code>.
      *
      * @param g
-     *          Graphics to paint to
+     *        Graphics to paint to
      * @param c
-     *          JComponent painting on
+     *        JComponent painting on
      * @throws NullPointerException
-     *                              if <code>g</code> or <code>c</code> is null
+     *         if <code>g</code> or <code>c</code> is null
      * @see javax.swing.plaf.ComponentUI#update
      * @see javax.swing.plaf.ComponentUI#paint
      * @since 1.5
      */
     public void update(Graphics g, JComponent c) {
         AbstractButton button = (AbstractButton) c;
-        if ((c.getBackground() instanceof UIResource) && button
-                .isContentAreaFilled() && c.isEnabled()) {
+        if ((c.getBackground() instanceof UIResource) && button.isContentAreaFilled() && c.isEnabled()) {
             ButtonModel model = button.getModel();
             if (!MetalUtils.isToolBarButton(c)) {
-                if (!model.isArmed() && !model.isPressed() && MetalUtils
-                        .drawGradient(c, g, "Button.gradient", 0, 0, c
-                                .getWidth(), c.getHeight(), true)) {
+                if (!model.isArmed() && !model.isPressed() && MetalUtils.drawGradient(c, g, "Button.gradient",
+                        0, 0, c.getWidth(), c.getHeight(), true)) {
                     paint(g, c);
                     return;
                 }
-            } else if (model.isRollover() && MetalUtils.drawGradient(c, g,
-                    "Button.gradient", 0, 0, c.getWidth(), c.getHeight(),
-                    true)) {
+            } else if (model.isRollover() && MetalUtils.drawGradient(c, g, "Button.gradient", 0, 0, c
+                    .getWidth(), c.getHeight(), true)) {
                 paint(g, c);
                 return;
             }
@@ -135,8 +130,8 @@ public class MetalButtonUI extends BasicButtonUI {
         }
     }
 
-    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect,
-            Rectangle textRect, Rectangle iconRect) {
+    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
+            Rectangle iconRect) {
 
         Rectangle focusRect = new Rectangle();
         String text = b.getText();
@@ -156,13 +151,11 @@ public class MetalButtonUI extends BasicButtonUI {
         }
 
         g.setColor(getFocusColor());
-        g.drawRect((focusRect.x - 1), (focusRect.y - 1), focusRect.width + 1,
-                focusRect.height + 1);
+        g.drawRect((focusRect.x - 1), (focusRect.y - 1), focusRect.width + 1, focusRect.height + 1);
 
     }
 
-    protected void paintText(Graphics g, JComponent c, Rectangle textRect,
-            String text) {
+    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
         FontMetrics fm = SwingUtilities2.getFontMetrics(c, g);
@@ -176,7 +169,7 @@ public class MetalButtonUI extends BasicButtonUI {
             /*** paint the text disabled ***/
             g.setColor(getDisabledTextColor());
         }
-        SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemIndex,
-                textRect.x, textRect.y + fm.getAscent());
+        SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemIndex, textRect.x, textRect.y + fm
+                .getAscent());
     }
 }

@@ -69,14 +69,11 @@ final class ConcatCall extends FunctionCall {
                 break;
 
             default:
-                final int initBuffer = cpg.addMethodref(STRING_BUFFER_CLASS,
-                        "<init>", "()V");
-                final Instruction append = new INVOKEVIRTUAL(cpg.addMethodref(
-                        STRING_BUFFER_CLASS, "append", "(" + STRING_SIG + ")"
-                                + STRING_BUFFER_SIG));
+                final int initBuffer = cpg.addMethodref(STRING_BUFFER_CLASS, "<init>", "()V");
+                final Instruction append = new INVOKEVIRTUAL(cpg.addMethodref(STRING_BUFFER_CLASS, "append",
+                        "(" + STRING_SIG + ")" + STRING_BUFFER_SIG));
 
-                final int toString = cpg.addMethodref(STRING_BUFFER_CLASS,
-                        "toString", "()" + STRING_SIG);
+                final int toString = cpg.addMethodref(STRING_BUFFER_CLASS, "toString", "()" + STRING_SIG);
 
                 il.append(new NEW(cpg.addClass(STRING_BUFFER_CLASS)));
                 il.append(DUP);

@@ -37,16 +37,15 @@ public abstract class Trees {
      * Gets a Trees object for a given CompilationTask.
      * 
      * @param task
-     *             the compilation task for which to get the Trees object
+     *        the compilation task for which to get the Trees object
      * @throws IllegalArgumentException
-     *                                  if the task does not support the Trees
-     *                                  API.
+     *         if the task does not support the Trees
+     *         API.
      */
     public static Trees instance(CompilationTask task) {
         String taskClassName = task.getClass().getName();
-        if (!taskClassName.equals("com.sun.tools.javac.api.JavacTaskImpl")
-                && !taskClassName.equals(
-                        "com.sun.tools.javac.api.BasicJavacTask"))
+        if (!taskClassName.equals("com.sun.tools.javac.api.JavacTaskImpl") && !taskClassName.equals(
+                "com.sun.tools.javac.api.BasicJavacTask"))
             throw new IllegalArgumentException();
         return getJavacTrees(CompilationTask.class, task);
     }
@@ -55,14 +54,13 @@ public abstract class Trees {
      * Gets a Trees object for a given ProcessingEnvironment.
      * 
      * @param env
-     *            the processing environment for which to get the Trees object
+     *        the processing environment for which to get the Trees object
      * @throws IllegalArgumentException
-     *                                  if the env does not support the Trees
-     *                                  API.
+     *         if the env does not support the Trees
+     *         API.
      */
     public static Trees instance(ProcessingEnvironment env) {
-        if (!env.getClass().getName().equals(
-                "com.sun.tools.javac.processing.JavacProcessingEnvironment"))
+        if (!env.getClass().getName().equals("com.sun.tools.javac.processing.JavacProcessingEnvironment"))
             throw new IllegalArgumentException();
         return getJavacTrees(ProcessingEnvironment.class, env);
     }
@@ -70,8 +68,7 @@ public abstract class Trees {
     static Trees getJavacTrees(Class<?> argType, Object arg) {
         try {
             ClassLoader cl = arg.getClass().getClassLoader();
-            Class<?> c = Class.forName("com.sun.tools.javac.api.JavacTrees",
-                    false, cl);
+            Class<?> c = Class.forName("com.sun.tools.javac.api.JavacTrees", false, cl);
             argType = Class.forName(argType.getName(), false, cl);
             Method m = c.getMethod("instance", new Class<?>[] { argType });
             return (Trees) m.invoke(null, new Object[] { arg });
@@ -113,8 +110,7 @@ public abstract class Trees {
      * Gets the Tree node for an AnnotationValue for an AnnotationMirror on a
      * given Element. Returns null if the node can not be found.
      */
-    public abstract Tree getTree(Element e, AnnotationMirror a,
-            AnnotationValue v);
+    public abstract Tree getTree(Element e, AnnotationMirror a, AnnotationValue v);
 
     /**
      * Gets the path to tree node within the specified compilation unit.
@@ -137,17 +133,16 @@ public abstract class Trees {
      * Gets the TreePath node for an AnnotationValue for an AnnotationMirror on
      * a given Element. Returns null if the node can not be found.
      */
-    public abstract TreePath getPath(Element e, AnnotationMirror a,
-            AnnotationValue v);
+    public abstract TreePath getPath(Element e, AnnotationMirror a, AnnotationValue v);
 
     /**
      * Gets the Element for the Tree node identified by a given TreePath.
      * Returns null if the element is not available.
      * 
      * @throws IllegalArgumentException
-     *                                  is the TreePath does not identify a Tree
-     *                                  node that might have
-     *                                  an associated Element.
+     *         is the TreePath does not identify a Tree
+     *         node that might have
+     *         an associated Element.
      */
     public abstract Element getElement(TreePath path);
 
@@ -156,9 +151,9 @@ public abstract class Trees {
      * Returns null if the TypeMirror is not available.
      * 
      * @throws IllegalArgumentException
-     *                                  is the TreePath does not identify a Tree
-     *                                  node that might have
-     *                                  an associated TypeMirror.
+     *         is the TreePath does not identify a Tree
+     *         node that might have
+     *         an associated TypeMirror.
      */
     public abstract TypeMirror getTypeMirror(TreePath path);
 
@@ -180,9 +175,9 @@ public abstract class Trees {
      * Checks whether a given type is accessible in a given scope.
      * 
      * @param scope
-     *              the scope to be checked
+     *        the scope to be checked
      * @param type
-     *              the type to be checked
+     *        the type to be checked
      * @return true if {@code type} is accessible
      */
     public abstract boolean isAccessible(Scope scope, TypeElement type);
@@ -192,22 +187,21 @@ public abstract class Trees {
      * type in a given scope.
      * 
      * @param scope
-     *               the scope to be checked
+     *        the scope to be checked
      * @param member
-     *               the member to be checked
+     *        the member to be checked
      * @param type
-     *               the type for which to check if the member is accessible
+     *        the type for which to check if the member is accessible
      * @return true if {@code member} is accessible in {@code type}
      */
-    public abstract boolean isAccessible(Scope scope, Element member,
-            DeclaredType type);
+    public abstract boolean isAccessible(Scope scope, Element member, DeclaredType type);
 
     /**
      * Gets the original type from the ErrorType object.
      * 
      * @param errorType
-     *                  The errorType for which we want to get the original
-     *                  type.
+     *        The errorType for which we want to get the original
+     *        type.
      * @return javax.lang.model.type.TypeMirror corresponding to the original
      *         type, replaced by the ErrorType.
      */
@@ -218,23 +212,22 @@ public abstract class Trees {
      * the provided compilation unit
      *
      * @param kind
-     *             the kind of message
+     *        the kind of message
      * @param msg
-     *             the message, or an empty string if none
+     *        the message, or an empty string if none
      * @param t
-     *             the tree to use as a position hint
+     *        the tree to use as a position hint
      * @param root
-     *             the compilation unit that contains tree
+     *        the compilation unit that contains tree
      */
-    public abstract void printMessage(Diagnostic.Kind kind, CharSequence msg,
-            com.sun.source.tree.Tree t,
+    public abstract void printMessage(Diagnostic.Kind kind, CharSequence msg, com.sun.source.tree.Tree t,
             com.sun.source.tree.CompilationUnitTree root);
 
     /**
      * Gets the lub of an exception parameter declared in a catch clause.
      * 
      * @param tree
-     *             the tree for the catch clause
+     *        the tree for the catch clause
      * @return The lub of the exception parameter
      */
     public abstract TypeMirror getLub(CatchTree tree);

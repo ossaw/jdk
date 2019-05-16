@@ -19,7 +19,6 @@ import java.util.function.LongBinaryOperator;
  * are contended across threads, the set of variables may grow dynamically to
  * reduce contention. Method {@link #get} (or, equivalently, {@link #longValue})
  * returns the current value across the variables maintaining updates.
- *
  * <p>
  * This class is usually preferable to {@link AtomicLong} when multiple threads
  * update a common value that is used for purposes such as collecting
@@ -27,7 +26,6 @@ import java.util.function.LongBinaryOperator;
  * contention, the two classes have similar characteristics. But under high
  * contention, expected throughput of this class is significantly higher, at the
  * expense of higher space consumption.
- *
  * <p>
  * The order of accumulation within or across threads is not guaranteed and
  * cannot be depended upon, so this class is only applicable to functions for
@@ -38,13 +36,11 @@ import java.util.function.LongBinaryOperator;
  * the second argument. For example, to maintain a running maximum value, you
  * could supply {@code Long::max} along with {@code
  * Long.MIN_VALUE} as the identity.
- *
  * <p>
  * Class {@link LongAdder} provides analogs of the functionality of this class
  * for the common special case of maintaining counts and sums. The call
  * {@code new LongAdder()} is equivalent to {@code new
  * LongAccumulator((x, y) -> x + y, 0L}.
- *
  * <p>
  * This class extends {@link Number}, but does <em>not</em> define methods such
  * as {@code equals}, {@code hashCode} and {@code
@@ -65,13 +61,12 @@ public class LongAccumulator extends Striped64 implements Serializable {
      * element.
      * 
      * @param accumulatorFunction
-     *                            a side-effect-free function of two arguments
+     *        a side-effect-free function of two arguments
      * @param identity
-     *                            identity (initial value) for the accumulator
-     *                            function
+     *        identity (initial value) for the accumulator
+     *        function
      */
-    public LongAccumulator(LongBinaryOperator accumulatorFunction,
-            long identity) {
+    public LongAccumulator(LongBinaryOperator accumulatorFunction, long identity) {
         this.function = accumulatorFunction;
         base = this.identity = identity;
     }
@@ -80,19 +75,17 @@ public class LongAccumulator extends Striped64 implements Serializable {
      * Updates with the given value.
      *
      * @param x
-     *          the value
+     *        the value
      */
     public void accumulate(long x) {
         Cell[] as;
         long b, v, r;
         int m;
         Cell a;
-        if ((as = cells) != null || (r = function.applyAsLong(b = base, x)) != b
-                && !casBase(b, r)) {
+        if ((as = cells) != null || (r = function.applyAsLong(b = base, x)) != b && !casBase(b, r)) {
             boolean uncontended = true;
-            if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe()
-                    & m]) == null || !(uncontended = (r = function.applyAsLong(
-                            v = a.value, x)) == v || a.cas(v, r)))
+            if (as == null || (m = as.length - 1) < 0 || (a = as[getProbe() & m]) == null
+                    || !(uncontended = (r = function.applyAsLong(v = a.value, x)) == v || a.cas(v, r)))
                 longAccumulate(x, function, uncontended);
         }
     }
@@ -267,12 +260,11 @@ public class LongAccumulator extends Striped64 implements Serializable {
 
     /**
      * @param s
-     *          the stream
+     *        the stream
      * @throws java.io.InvalidObjectException
      *         always
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.InvalidObjectException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.InvalidObjectException {
         throw new java.io.InvalidObjectException("Proxy required");
     }
 

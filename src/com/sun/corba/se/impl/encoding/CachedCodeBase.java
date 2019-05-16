@@ -17,14 +17,11 @@ import com.sun.corba.se.spi.orb.ORB;
 /**
  * Provides the reading side with a per connection cache of info obtained via
  * calls to the remote CodeBase.
- *
  * Previously, most of this was in IIOPConnection.
- *
  * Features: Delays cache creation unless used Postpones remote calls until
  * necessary Handles creating obj ref from IOR Maintains caches for the
  * following maps: CodeBase IOR to obj ref (global) RepId to implementation
  * URL(s) RepId to remote FVD RepId to superclass type list
- *
  * Needs cache management.
  */
 public class CachedCodeBase extends _CodeBaseImplBase {
@@ -174,8 +171,8 @@ public class CachedCodeBase extends _CodeBaseImplBase {
     }
 
     private final org.omg.CORBA.Object getObjectFromIOR() {
-        return CDRInputStream_1_0.internalIORToObject(conn.getCodeBaseIOR(),
-                null /* stubFactory */, conn.getBroker());
+        return CDRInputStream_1_0.internalIORToObject(conn.getCodeBaseIOR(), null /* stubFactory */, conn
+                .getBroker());
     }
 }
 

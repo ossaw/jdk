@@ -22,10 +22,8 @@ import java.lang.reflect.Proxy;
  * an implementation of the interface where each getter returns the value of the
  * corresponding item in a {@code CompositeData}.
  * </p>
- * 
  * <p>
  * For example, suppose you have an interface like this:
- * 
  * <blockquote>
  * 
  * <pre>
@@ -37,9 +35,7 @@ import java.lang.reflect.Proxy;
  * </pre>
  * 
  * </blockquote>
- * 
  * and a {@code CompositeData} constructed like this:
- * 
  * <blockquote>
  * 
  * <pre>
@@ -52,22 +48,18 @@ import java.lang.reflect.Proxy;
  * </pre>
  * 
  * </blockquote>
- * 
  * then you can construct an object implementing {@code NamedNumber} and backed
  * by the object {@code cd} like this:
- * 
  * <blockquote>
  * 
  * <pre>
  * InvocationHandler handler = new CompositeDataInvocationHandler(cd);
- * NamedNumber nn = (NamedNumber) Proxy.newProxyInstance(NamedNumber.class
- *         .getClassLoader(), new Class[] { NamedNumber.class }, handler);
+ * NamedNumber nn = (NamedNumber) Proxy.newProxyInstance(NamedNumber.class.getClassLoader(), new Class[] {
+ *         NamedNumber.class }, handler);
  * </pre>
  * 
  * </blockquote>
- * 
  * A call to {@code nn.getNumber()} will then return <b>5</b>.
- * 
  * <p>
  * If the first letter of the property defined by a getter is a capital, then
  * this handler will look first for an item in the {@code CompositeData}
@@ -77,7 +69,6 @@ import java.lang.reflect.Proxy;
  * {@code Number}, then for {@code number}. If the getter is called
  * {@code getnumber()}, then the item must be called {@code number}.
  * </p>
- * 
  * <p>
  * If the method given to {@link #invoke invoke} is the method
  * {@code boolean equals(Object)} inherited from {@code Object}, then it will
@@ -102,12 +93,11 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
      * </p>
      * 
      * @param compositeData
-     *                      the {@code CompositeData} that will supply
-     *                      information to
-     *                      getters.
-     * 
+     *        the {@code CompositeData} that will supply
+     *        information to
+     *        getters.
      * @throws IllegalArgumentException
-     *                                  if {@code compositeData} is null.
+     *         if {@code compositeData} is null.
      */
     public CompositeDataInvocationHandler(CompositeData compositeData) {
         this(compositeData, null);
@@ -120,15 +110,13 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
      * </p>
      * 
      * @param compositeData
-     *                      the {@code CompositeData} that will supply
-     *                      information to
-     *                      getters.
-     * 
+     *        the {@code CompositeData} that will supply
+     *        information to
+     *        getters.
      * @throws IllegalArgumentException
-     *                                  if {@code compositeData} is null.
+     *         if {@code compositeData} is null.
      */
-    CompositeDataInvocationHandler(CompositeData compositeData,
-            MXBeanLookup lookup) {
+    CompositeDataInvocationHandler(CompositeData compositeData, MXBeanLookup lookup) {
         if (compositeData == null)
             throw new IllegalArgumentException("compositeData");
         this.compositeData = compositeData;
@@ -146,8 +134,7 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
         return compositeData;
     }
 
-    public Object invoke(Object proxy, Method method, Object[] args)
-            throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         final String methodName = method.getName();
 
         // Handle the methods from java.lang.Object
@@ -176,26 +163,23 @@ public class CompositeDataInvocationHandler implements InvocationHandler {
 
         String propertyName = DefaultMXBeanMappingFactory.propertyName(method);
         if (propertyName == null) {
-            throw new IllegalArgumentException("Method is not getter: " + method
-                    .getName());
+            throw new IllegalArgumentException("Method is not getter: " + method.getName());
         }
         Object openValue;
         if (compositeData.containsKey(propertyName))
             openValue = compositeData.get(propertyName);
         else {
-            String decap = DefaultMXBeanMappingFactory.decapitalize(
-                    propertyName);
+            String decap = DefaultMXBeanMappingFactory.decapitalize(propertyName);
             if (compositeData.containsKey(decap))
                 openValue = compositeData.get(decap);
             else {
-                final String msg = "No CompositeData item " + propertyName
-                        + (decap.equals(propertyName) ? "" : " or " + decap)
-                        + " to match " + methodName;
+                final String msg = "No CompositeData item " + propertyName + (decap.equals(propertyName) ? ""
+                        : " or " + decap) + " to match " + methodName;
                 throw new IllegalArgumentException(msg);
             }
         }
-        MXBeanMapping mapping = MXBeanMappingFactory.DEFAULT.mappingForType(
-                method.getGenericReturnType(), MXBeanMappingFactory.DEFAULT);
+        MXBeanMapping mapping = MXBeanMappingFactory.DEFAULT.mappingForType(method.getGenericReturnType(),
+                MXBeanMappingFactory.DEFAULT);
         return mapping.fromOpenValue(openValue);
     }
 

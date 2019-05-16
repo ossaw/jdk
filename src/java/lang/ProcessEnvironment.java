@@ -48,15 +48,13 @@ final class ProcessEnvironment extends HashMap<String, String> {
     private static String validateName(String name) {
         // An initial `=' indicates a magic Windows variable name -- OK
         if (name.indexOf('=', 1) != -1 || name.indexOf('\u0000') != -1)
-            throw new IllegalArgumentException(
-                    "Invalid environment variable name: \"" + name + "\"");
+            throw new IllegalArgumentException("Invalid environment variable name: \"" + name + "\"");
         return name;
     }
 
     private static String validateValue(String value) {
         if (value.indexOf('\u0000') != -1)
-            throw new IllegalArgumentException(
-                    "Invalid environment variable value: \"" + value + "\"");
+            throw new IllegalArgumentException("Invalid environment variable value: \"" + value + "\"");
         return value;
     }
 
@@ -118,8 +116,7 @@ final class ProcessEnvironment extends HashMap<String, String> {
         }
     }
 
-    private static class CheckedEntrySet extends
-            AbstractSet<Map.Entry<String, String>> {
+    private static class CheckedEntrySet extends AbstractSet<Map.Entry<String, String>> {
         private final Set<Map.Entry<String, String>> s;
 
         public CheckedEntrySet(Set<Map.Entry<String, String>> s) {
@@ -273,10 +270,8 @@ final class ProcessEnvironment extends HashMap<String, String> {
         }
     }
 
-    private static final class EntryComparator implements
-            Comparator<Map.Entry<String, String>> {
-        public int compare(Map.Entry<String, String> e1,
-                Map.Entry<String, String> e2) {
+    private static final class EntryComparator implements Comparator<Map.Entry<String, String>> {
+        public int compare(Map.Entry<String, String> e1, Map.Entry<String, String> e2) {
             return nameComparator.compare(e1.getKey(), e2.getKey());
         }
     }
@@ -294,8 +289,7 @@ final class ProcessEnvironment extends HashMap<String, String> {
         nameComparator = new NameComparator();
         entryComparator = new EntryComparator();
         theEnvironment = new ProcessEnvironment();
-        theUnmodifiableEnvironment = Collections.unmodifiableMap(
-                theEnvironment);
+        theUnmodifiableEnvironment = Collections.unmodifiableMap(theEnvironment);
 
         String envblock = environmentBlock();
         int beg, end, eql;
@@ -304,8 +298,7 @@ final class ProcessEnvironment extends HashMap<String, String> {
                 (eql = envblock.indexOf('=', beg + 1)) != -1); beg = end + 1) {
             // Ignore corrupted environment strings.
             if (eql < end)
-                theEnvironment.put(envblock.substring(beg, eql), envblock
-                        .substring(eql + 1, end));
+                theEnvironment.put(envblock.substring(beg, eql), envblock.substring(eql + 1, end));
         }
 
         theCaseInsensitiveEnvironment = new TreeMap<>(nameComparator);
@@ -368,8 +361,7 @@ final class ProcessEnvironment extends HashMap<String, String> {
         for (Map.Entry<String, String> e : list) {
             String key = e.getKey();
             String value = e.getValue();
-            if (cmp < 0 && (cmp = nameComparator.compare(key,
-                    SYSTEMROOT)) > 0) {
+            if (cmp < 0 && (cmp = nameComparator.compare(key, SYSTEMROOT)) > 0) {
                 // Not set, so add it here
                 addToEnvIfSet(sb, SYSTEMROOT);
             }
@@ -400,7 +392,6 @@ final class ProcessEnvironment extends HashMap<String, String> {
     }
 
     static String toEnvironmentBlock(Map<String, String> map) {
-        return map == null ? null
-                : ((ProcessEnvironment) map).toEnvironmentBlock();
+        return map == null ? null : ((ProcessEnvironment) map).toEnvironmentBlock();
     }
 }

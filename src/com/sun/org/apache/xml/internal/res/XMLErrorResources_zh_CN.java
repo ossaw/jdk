@@ -171,36 +171,28 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
              */
             { "ER0000", "{0}" },
 
-            { ER_FUNCTION_NOT_SUPPORTED,
-                    "\u4E0D\u652F\u6301\u8BE5\u51FD\u6570!" },
+            { ER_FUNCTION_NOT_SUPPORTED, "\u4E0D\u652F\u6301\u8BE5\u51FD\u6570!" },
 
-            { ER_CANNOT_OVERWRITE_CAUSE,
-                    "\u65E0\u6CD5\u8986\u76D6\u539F\u56E0" },
+            { ER_CANNOT_OVERWRITE_CAUSE, "\u65E0\u6CD5\u8986\u76D6\u539F\u56E0" },
 
-            { ER_NO_DEFAULT_IMPL,
-                    "\u627E\u4E0D\u5230\u9ED8\u8BA4\u5B9E\u73B0 " },
+            { ER_NO_DEFAULT_IMPL, "\u627E\u4E0D\u5230\u9ED8\u8BA4\u5B9E\u73B0 " },
 
-            { ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
-                    "\u5F53\u524D\u4E0D\u652F\u6301 ChunkedIntArray({0})" },
+            { ER_CHUNKEDINTARRAY_NOT_SUPPORTED, "\u5F53\u524D\u4E0D\u652F\u6301 ChunkedIntArray({0})" },
 
-            { ER_OFFSET_BIGGER_THAN_SLOT,
-                    "\u504F\u79FB\u91CF\u5927\u4E8E\u63D2\u69FD" },
+            { ER_OFFSET_BIGGER_THAN_SLOT, "\u504F\u79FB\u91CF\u5927\u4E8E\u63D2\u69FD" },
 
             { ER_COROUTINE_NOT_AVAIL, "Coroutine \u4E0D\u53EF\u7528, id={0}" },
 
-            { ER_COROUTINE_CO_EXIT,
-                    "CoroutineManager \u6536\u5230 co_exit() \u8BF7\u6C42" },
+            { ER_COROUTINE_CO_EXIT, "CoroutineManager \u6536\u5230 co_exit() \u8BF7\u6C42" },
 
-            { ER_COJOINROUTINESET_FAILED,
-                    "co_joinCoroutineSet() \u5931\u8D25" },
+            { ER_COJOINROUTINESET_FAILED, "co_joinCoroutineSet() \u5931\u8D25" },
 
             { ER_COROUTINE_PARAM, "Coroutine \u53C2\u6570\u9519\u8BEF ({0})" },
 
             { ER_PARSER_DOTERMINATE_ANSWERS,
                     "\n\u610F\u5916: \u89E3\u6790\u5668\u5BF9\u7B54\u590D{0}\u6267\u884C doTerminate" },
 
-            { ER_NO_PARSE_CALL_WHILE_PARSING,
-                    "\u65E0\u6CD5\u5728\u89E3\u6790\u65F6\u8C03\u7528 parse" },
+            { ER_NO_PARSE_CALL_WHILE_PARSING, "\u65E0\u6CD5\u5728\u89E3\u6790\u65F6\u8C03\u7528 parse" },
 
             { ER_TYPED_ITERATOR_AXIS_NOT_IMPLEMENTED,
                     "\u9519\u8BEF: \u672A\u5B9E\u73B0\u8F74{0}\u7684\u7C7B\u578B\u5316\u8FED\u4EE3\u5668" },
@@ -208,31 +200,24 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
             { ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
                     "\u9519\u8BEF: \u672A\u5B9E\u73B0\u8F74{0}\u7684\u8FED\u4EE3\u5668 " },
 
-            { ER_ITERATOR_CLONE_NOT_SUPPORTED,
-                    "\u4E0D\u652F\u6301\u514B\u9686\u8FED\u4EE3\u5668" },
+            { ER_ITERATOR_CLONE_NOT_SUPPORTED, "\u4E0D\u652F\u6301\u514B\u9686\u8FED\u4EE3\u5668" },
 
-            { ER_UNKNOWN_AXIS_TYPE,
-                    "\u8F74\u904D\u5386\u7C7B\u578B\u672A\u77E5: {0}" },
+            { ER_UNKNOWN_AXIS_TYPE, "\u8F74\u904D\u5386\u7C7B\u578B\u672A\u77E5: {0}" },
 
-            { ER_AXIS_NOT_SUPPORTED,
-                    "\u4E0D\u652F\u6301\u8F74\u904D\u5386\u7A0B\u5E8F: {0}" },
+            { ER_AXIS_NOT_SUPPORTED, "\u4E0D\u652F\u6301\u8F74\u904D\u5386\u7A0B\u5E8F: {0}" },
 
-            { ER_NO_DTMIDS_AVAIL,
-                    "\u65E0\u6CD5\u4F7F\u7528\u66F4\u591A DTM ID" },
+            { ER_NO_DTMIDS_AVAIL, "\u65E0\u6CD5\u4F7F\u7528\u66F4\u591A DTM ID" },
 
             { ER_NOT_SUPPORTED, "\u4E0D\u652F\u6301: {0}" },
 
             { ER_NODE_NON_NULL,
                     "getDTMHandleFromNode \u7684\u8282\u70B9\u5FC5\u987B\u4E3A\u975E\u7A7A\u503C" },
 
-            { ER_COULD_NOT_RESOLVE_NODE,
-                    "\u65E0\u6CD5\u5C06\u8282\u70B9\u89E3\u6790\u4E3A\u53E5\u67C4" },
+            { ER_COULD_NOT_RESOLVE_NODE, "\u65E0\u6CD5\u5C06\u8282\u70B9\u89E3\u6790\u4E3A\u53E5\u67C4" },
 
-            { ER_STARTPARSE_WHILE_PARSING,
-                    "\u65E0\u6CD5\u5728\u89E3\u6790\u65F6\u8C03\u7528 startParse" },
+            { ER_STARTPARSE_WHILE_PARSING, "\u65E0\u6CD5\u5728\u89E3\u6790\u65F6\u8C03\u7528 startParse" },
 
-            { ER_STARTPARSE_NEEDS_SAXPARSER,
-                    "startParse \u9700\u8981\u975E\u7A7A SAXParser" },
+            { ER_STARTPARSE_NEEDS_SAXPARSER, "startParse \u9700\u8981\u975E\u7A7A SAXParser" },
 
             { ER_COULD_NOT_INIT_PARSER,
                     "\u65E0\u6CD5\u4F7F\u7528\u4EE5\u4E0B\u5BF9\u8C61\u521D\u59CB\u5316\u89E3\u6790\u5668" },
@@ -245,20 +230,16 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 
             { ER_SCHEME_REQUIRED, "\u65B9\u6848\u662F\u5FC5\u9700\u7684!" },
 
-            { ER_NO_SCHEME_IN_URI,
-                    "\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848: {0}" },
+            { ER_NO_SCHEME_IN_URI, "\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848: {0}" },
 
-            { ER_NO_SCHEME_INURI,
-                    "\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848" },
+            { ER_NO_SCHEME_INURI, "\u5728 URI \u4E2D\u627E\u4E0D\u5230\u65B9\u6848" },
 
-            { ER_PATH_INVALID_CHAR,
-                    "\u8DEF\u5F84\u5305\u542B\u65E0\u6548\u7684\u5B57\u7B26: {0}" },
+            { ER_PATH_INVALID_CHAR, "\u8DEF\u5F84\u5305\u542B\u65E0\u6548\u7684\u5B57\u7B26: {0}" },
 
             { ER_SCHEME_FROM_NULL_STRING,
                     "\u65E0\u6CD5\u4ECE\u7A7A\u5B57\u7B26\u4E32\u8BBE\u7F6E\u65B9\u6848" },
 
-            { ER_SCHEME_NOT_CONFORMANT,
-                    "\u65B9\u6848\u4E0D\u4E00\u81F4\u3002" },
+            { ER_SCHEME_NOT_CONFORMANT, "\u65B9\u6848\u4E0D\u4E00\u81F4\u3002" },
 
             { ER_HOST_ADDRESS_NOT_WELLFORMED,
                     "\u4E3B\u673A\u4E0D\u662F\u683C\u5F0F\u826F\u597D\u7684\u5730\u5740" },
@@ -268,22 +249,18 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
 
             { ER_INVALID_PORT, "\u65E0\u6548\u7684\u7AEF\u53E3\u53F7" },
 
-            { ER_FRAG_FOR_GENERIC_URI,
-                    "\u53EA\u80FD\u4E3A\u4E00\u822C URI \u8BBE\u7F6E\u7247\u6BB5" },
+            { ER_FRAG_FOR_GENERIC_URI, "\u53EA\u80FD\u4E3A\u4E00\u822C URI \u8BBE\u7F6E\u7247\u6BB5" },
 
             { ER_FRAG_WHEN_PATH_NULL,
                     "\u8DEF\u5F84\u4E3A\u7A7A\u65F6, \u65E0\u6CD5\u8BBE\u7F6E\u7247\u6BB5" },
 
-            { ER_FRAG_INVALID_CHAR,
-                    "\u7247\u6BB5\u5305\u542B\u65E0\u6548\u7684\u5B57\u7B26" },
+            { ER_FRAG_INVALID_CHAR, "\u7247\u6BB5\u5305\u542B\u65E0\u6548\u7684\u5B57\u7B26" },
 
             { ER_PARSER_IN_USE, "\u89E3\u6790\u5668\u5DF2\u5728\u4F7F\u7528" },
 
-            { ER_CANNOT_CHANGE_WHILE_PARSING,
-                    "\u65E0\u6CD5\u5728\u89E3\u6790\u65F6\u66F4\u6539{0} {1}" },
+            { ER_CANNOT_CHANGE_WHILE_PARSING, "\u65E0\u6CD5\u5728\u89E3\u6790\u65F6\u66F4\u6539{0} {1}" },
 
-            { ER_SELF_CAUSATION_NOT_PERMITTED,
-                    "\u4E0D\u5141\u8BB8\u4F7F\u7528\u81EA\u56E0" },
+            { ER_SELF_CAUSATION_NOT_PERMITTED, "\u4E0D\u5141\u8BB8\u4F7F\u7528\u81EA\u56E0" },
 
             { ER_NO_USERINFO_IF_NO_HOST,
                     "\u5982\u679C\u6CA1\u6709\u6307\u5B9A\u4E3B\u673A, \u5219\u4E0D\u53EF\u4EE5\u6307\u5B9A Userinfo" },
@@ -297,34 +274,28 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
             { ER_NO_FRAGMENT_STRING_IN_PATH,
                     "\u8DEF\u5F84\u548C\u7247\u6BB5\u4E2D\u90FD\u65E0\u6CD5\u6307\u5B9A\u7247\u6BB5" },
 
-            { ER_CANNOT_INIT_URI_EMPTY_PARMS,
-                    "\u65E0\u6CD5\u4EE5\u7A7A\u53C2\u6570\u521D\u59CB\u5316 URI" },
+            { ER_CANNOT_INIT_URI_EMPTY_PARMS, "\u65E0\u6CD5\u4EE5\u7A7A\u53C2\u6570\u521D\u59CB\u5316 URI" },
 
-            { ER_METHOD_NOT_SUPPORTED,
-                    "\u5C1A\u4E0D\u652F\u6301\u8BE5\u65B9\u6CD5 " },
+            { ER_METHOD_NOT_SUPPORTED, "\u5C1A\u4E0D\u652F\u6301\u8BE5\u65B9\u6CD5 " },
 
             { ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
                     "\u5F53\u524D\u65E0\u6CD5\u91CD\u65B0\u542F\u52A8 IncrementalSAXSource_Filter" },
 
-            { ER_XMLRDR_NOT_BEFORE_STARTPARSE,
-                    "XMLReader \u4E0D\u5728 startParse \u8BF7\u6C42\u4E4B\u524D" },
+            { ER_XMLRDR_NOT_BEFORE_STARTPARSE, "XMLReader \u4E0D\u5728 startParse \u8BF7\u6C42\u4E4B\u524D" },
 
-            { ER_AXIS_TRAVERSER_NOT_SUPPORTED,
-                    "\u4E0D\u652F\u6301\u8F74\u904D\u5386\u7A0B\u5E8F: {0}" },
+            { ER_AXIS_TRAVERSER_NOT_SUPPORTED, "\u4E0D\u652F\u6301\u8F74\u904D\u5386\u7A0B\u5E8F: {0}" },
 
             { ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
                     "\u4F7F\u7528\u7A7A PrintWriter \u521B\u5EFA\u4E86 ListingErrorHandler!" },
 
             { ER_SYSTEMID_UNKNOWN, "SystemId \u672A\u77E5" },
 
-            { ER_LOCATION_UNKNOWN,
-                    "\u9519\u8BEF\u6240\u5728\u7684\u4F4D\u7F6E\u672A\u77E5" },
+            { ER_LOCATION_UNKNOWN, "\u9519\u8BEF\u6240\u5728\u7684\u4F4D\u7F6E\u672A\u77E5" },
 
             { ER_PREFIX_MUST_RESOLVE,
                     "\u524D\u7F00\u5FC5\u987B\u89E3\u6790\u4E3A\u540D\u79F0\u7A7A\u95F4: {0}" },
 
-            { ER_CREATEDOCUMENT_NOT_SUPPORTED,
-                    "XPathContext \u4E2D\u4E0D\u652F\u6301 createDocument()!" },
+            { ER_CREATEDOCUMENT_NOT_SUPPORTED, "XPathContext \u4E2D\u4E0D\u652F\u6301 createDocument()!" },
 
             { ER_CHILD_HAS_NO_OWNER_DOCUMENT,
                     "\u5C5E\u6027\u5B50\u7EA7\u6CA1\u6709\u6240\u6709\u8005\u6587\u6863!" },
@@ -335,11 +306,9 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
             { ER_CANT_OUTPUT_TEXT_BEFORE_DOC,
                     "\u8B66\u544A: \u65E0\u6CD5\u8F93\u51FA\u6587\u6863\u5143\u7D20\u4E4B\u524D\u7684\u6587\u672C! \u5C06\u5FFD\u7565..." },
 
-            { ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
-                    "DOM \u4E0A\u4E0D\u80FD\u6709\u591A\u4E2A\u6839!" },
+            { ER_CANT_HAVE_MORE_THAN_ONE_ROOT, "DOM \u4E0A\u4E0D\u80FD\u6709\u591A\u4E2A\u6839!" },
 
-            { ER_ARG_LOCALNAME_NULL,
-                    "\u53C2\u6570 'localName' \u4E3A\u7A7A\u503C" },
+            { ER_ARG_LOCALNAME_NULL, "\u53C2\u6570 'localName' \u4E3A\u7A7A\u503C" },
 
             // Note to translators: A QNAME has the syntactic form
             // [NCName:]NCName
@@ -354,32 +323,25 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
             // The prefix is the portion before the optional colon; the message
             // indicates
             // that there is a problem with that part of the QNAME.
-            { ER_ARG_PREFIX_INVALID,
-                    "QNAME \u4E2D\u7684\u524D\u7F00\u5E94\u4E3A\u6709\u6548 NCName" },
+            { ER_ARG_PREFIX_INVALID, "QNAME \u4E2D\u7684\u524D\u7F00\u5E94\u4E3A\u6709\u6548 NCName" },
 
-            { ER_NAME_CANT_START_WITH_COLON,
-                    "\u540D\u79F0\u4E0D\u80FD\u4EE5\u5192\u53F7\u5F00\u5934" },
+            { ER_NAME_CANT_START_WITH_COLON, "\u540D\u79F0\u4E0D\u80FD\u4EE5\u5192\u53F7\u5F00\u5934" },
 
-            { "BAD_CODE",
-                    "createMessage \u7684\u53C2\u6570\u8D85\u51FA\u8303\u56F4" },
-            { "FORMAT_FAILED",
-                    "\u8C03\u7528 messageFormat \u65F6\u629B\u51FA\u5F02\u5E38\u9519\u8BEF" },
-            { "line", "\u884C\u53F7" }, { "column", "\u5217\u53F7" },
+            { "BAD_CODE", "createMessage \u7684\u53C2\u6570\u8D85\u51FA\u8303\u56F4" }, { "FORMAT_FAILED",
+                    "\u8C03\u7528 messageFormat \u65F6\u629B\u51FA\u5F02\u5E38\u9519\u8BEF" }, { "line",
+                            "\u884C\u53F7" }, { "column", "\u5217\u53F7" },
 
             { ER_SERIALIZER_NOT_CONTENTHANDLER,
                     "\u4E32\u884C\u5668\u7C7B ''{0}'' \u4E0D\u5B9E\u73B0 org.xml.sax.ContentHandler\u3002" },
 
-            { ER_RESOURCE_COULD_NOT_FIND,
-                    "\u627E\u4E0D\u5230\u8D44\u6E90 [ {0} ]\u3002\n {1}" },
+            { ER_RESOURCE_COULD_NOT_FIND, "\u627E\u4E0D\u5230\u8D44\u6E90 [ {0} ]\u3002\n {1}" },
 
             { ER_RESOURCE_COULD_NOT_LOAD,
                     "\u8D44\u6E90 [ {0} ] \u65E0\u6CD5\u52A0\u8F7D: {1} \n {2} \t {3}" },
 
-            { ER_BUFFER_SIZE_LESSTHAN_ZERO,
-                    "\u7F13\u51B2\u533A\u5927\u5C0F <=0" },
+            { ER_BUFFER_SIZE_LESSTHAN_ZERO, "\u7F13\u51B2\u533A\u5927\u5C0F <=0" },
 
-            { ER_INVALID_UTF16_SURROGATE,
-                    "\u68C0\u6D4B\u5230\u65E0\u6548\u7684 UTF-16 \u4EE3\u7406: {0}?" },
+            { ER_INVALID_UTF16_SURROGATE, "\u68C0\u6D4B\u5230\u65E0\u6548\u7684 UTF-16 \u4EE3\u7406: {0}?" },
 
             { ER_OIERROR, "IO \u9519\u8BEF" },
 
@@ -399,8 +361,7 @@ public class XMLErrorResources_zh_CN extends ListResourceBundle {
              * attribute in a place other than on an element. The substitution
              * text specifies the name of the attribute.
              */
-            { ER_STRAY_ATTRIBUTE,
-                    "\u5C5E\u6027 ''{0}'' \u5728\u5143\u7D20\u5916\u90E8\u3002" },
+            { ER_STRAY_ATTRIBUTE, "\u5C5E\u6027 ''{0}'' \u5728\u5143\u7D20\u5916\u90E8\u3002" },
 
             /*
              * Note to translators: As with the preceding message, a namespace

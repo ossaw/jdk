@@ -11,14 +11,13 @@ package com.sun.corba.se.PortableActivationIDL;
 /**
  * Interface used to support binding references in the bootstrap name service.
  */
-public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl
-        implements com.sun.corba.se.PortableActivationIDL.InitialNameService {
+public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl implements
+        com.sun.corba.se.PortableActivationIDL.InitialNameService {
 
     /**
      * bind initial name
      */
-    public void bind(String name, org.omg.CORBA.Object obj,
-            boolean isPersistant)
+    public void bind(String name, org.omg.CORBA.Object obj, boolean isPersistant)
             throws com.sun.corba.se.PortableActivationIDL.InitialNameServicePackage.NameAlreadyBound {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
@@ -31,8 +30,7 @@ public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
             String _id = $ex.getId();
-            if (_id.equals(
-                    "IDL:PortableActivationIDL/InitialNameService/NameAlreadyBound:1.0"))
+            if (_id.equals("IDL:PortableActivationIDL/InitialNameService/NameAlreadyBound:1.0"))
                 throw com.sun.corba.se.PortableActivationIDL.InitialNameServicePackage.NameAlreadyBoundHelper
                         .read($in);
             else
@@ -45,15 +43,13 @@ public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl
     } // bind
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:PortableActivationIDL/InitialNameService:1.0" };
+    private static String[] __ids = { "IDL:PortableActivationIDL/InitialNameService:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -68,8 +64,7 @@ public class _InitialNameServiceStub extends org.omg.CORBA.portable.ObjectImpl
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

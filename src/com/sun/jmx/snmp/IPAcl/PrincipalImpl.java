@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 /**
  * Principal represents a host.
- *
  */
 
 class PrincipalImpl implements java.security.Principal, Serializable {
@@ -37,7 +36,7 @@ class PrincipalImpl implements java.security.Principal, Serializable {
      * </UL>
      *
      * @param hostName
-     *                 the host used to make the principal.
+     *        the host used to make the principal.
      */
     public PrincipalImpl(String hostName) throws UnknownHostException {
         if ((hostName.equals("localhost")) || (hostName.equals("127.0.0.1"))) {
@@ -51,7 +50,7 @@ class PrincipalImpl implements java.security.Principal, Serializable {
      * Constructs a principal using an Internet Protocol (IP) address.
      *
      * @param address
-     *                the Internet Protocol (IP) address.
+     *        the Internet Protocol (IP) address.
      */
     public PrincipalImpl(InetAddress address) {
         add = new InetAddress[1];
@@ -73,7 +72,7 @@ class PrincipalImpl implements java.security.Principal, Serializable {
      * of this interface.
      *
      * @param a
-     *          the principal to compare with.
+     *        the principal to compare with.
      * @return true if the principal passed in is the same as that encapsulated
      *         by this principal, false otherwise.
      */

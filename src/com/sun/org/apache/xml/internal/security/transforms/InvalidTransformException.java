@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -25,7 +23,6 @@ package com.sun.org.apache.xml.internal.security.transforms;
 import com.sun.org.apache.xml.internal.security.exceptions.XMLSecurityException;
 
 /**
- *
  * @author Christian Geuer-Pollmann
  */
 public class InvalidTransformException extends XMLSecurityException {
@@ -37,7 +34,6 @@ public class InvalidTransformException extends XMLSecurityException {
 
     /**
      * Constructor InvalidTransformException
-     *
      */
     public InvalidTransformException() {
         super();
@@ -68,8 +64,7 @@ public class InvalidTransformException extends XMLSecurityException {
      * @param msgId
      * @param originalException
      */
-    public InvalidTransformException(String msgId,
-            Exception originalException) {
+    public InvalidTransformException(String msgId, Exception originalException) {
         super(msgId, originalException);
     }
 
@@ -80,8 +75,7 @@ public class InvalidTransformException extends XMLSecurityException {
      * @param exArgs
      * @param originalException
      */
-    public InvalidTransformException(String msgId, Object exArgs[],
-            Exception originalException) {
+    public InvalidTransformException(String msgId, Object exArgs[], Exception originalException) {
         super(msgId, exArgs, originalException);
     }
 }

@@ -7,7 +7,6 @@ package java.rmi.activation;
 
 /**
  * General exception used by the activation interfaces.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "detail exception" that may
@@ -15,7 +14,6 @@ package java.rmi.activation;
  * field is now known as the <i>cause</i>, and may be accessed via the
  * {@link Throwable#getCause()} method, as well as the aforementioned
  * "legacy field."
- *
  * <p>
  * Invoking the method {@link Throwable#initCause(Throwable)} on an instance of
  * <code>ActivationException</code> always throws {@link IllegalStateException}.
@@ -27,7 +25,6 @@ public class ActivationException extends Exception {
 
     /**
      * The cause of the activation exception.
-     *
      * <p>
      * This field predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of
@@ -52,7 +49,7 @@ public class ActivationException extends Exception {
      * message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      */
     public ActivationException(String s) {
         super(s);
@@ -65,9 +62,9 @@ public class ActivationException extends Exception {
      * specified <code>Throwable</code>.
      *
      * @param s
-     *              the detail message
+     *        the detail message
      * @param cause
-     *              the cause
+     *        the cause
      */
     public ActivationException(String s, Throwable cause) {
         super(s);
@@ -85,8 +82,7 @@ public class ActivationException extends Exception {
         if (detail == null)
             return super.getMessage();
         else
-            return super.getMessage() + "; nested exception is: \n\t" + detail
-                    .toString();
+            return super.getMessage() + "; nested exception is: \n\t" + detail.toString();
     }
 
     /**

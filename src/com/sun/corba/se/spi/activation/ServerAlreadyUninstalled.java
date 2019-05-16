@@ -8,8 +8,7 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ServerAlreadyUninstalled extends
-        org.omg.CORBA.UserException {
+public final class ServerAlreadyUninstalled extends org.omg.CORBA.UserException {
     public int serverId = (int) 0;
 
     public ServerAlreadyUninstalled() {

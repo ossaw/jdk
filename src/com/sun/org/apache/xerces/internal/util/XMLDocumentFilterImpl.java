@@ -65,7 +65,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentSource;
 /**
  * Default implementation of {@link XMLDocumentFilter} that simply passes
  * through events to the next component.
- *
  * <p>
  * Can be used as a base implementation of other more sophisticated
  * {@link XMLDocumentFilter}s.
@@ -92,23 +91,21 @@ public class XMLDocumentFilterImpl implements XMLDocumentFilter {
         return source;
     }
 
-    public void characters(XMLString text, Augmentations augs)
-            throws XNIException {
+    public void characters(XMLString text, Augmentations augs) throws XNIException {
         next.characters(text, augs);
     }
 
-    public void comment(XMLString text, Augmentations augs)
-            throws XNIException {
+    public void comment(XMLString text, Augmentations augs) throws XNIException {
         next.comment(text, augs);
     }
 
-    public void doctypeDecl(String rootElement, String publicId,
-            String systemId, Augmentations augs) throws XNIException {
+    public void doctypeDecl(String rootElement, String publicId, String systemId, Augmentations augs)
+            throws XNIException {
         next.doctypeDecl(rootElement, publicId, systemId, augs);
     }
 
-    public void emptyElement(QName element, XMLAttributes attributes,
-            Augmentations augs) throws XNIException {
+    public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
+            throws XNIException {
         next.emptyElement(element, attributes, augs);
     }
 
@@ -120,23 +117,19 @@ public class XMLDocumentFilterImpl implements XMLDocumentFilter {
         next.endDocument(augs);
     }
 
-    public void endElement(QName element, Augmentations augs)
-            throws XNIException {
+    public void endElement(QName element, Augmentations augs) throws XNIException {
         next.endElement(element, augs);
     }
 
-    public void endGeneralEntity(String name, Augmentations augs)
-            throws XNIException {
+    public void endGeneralEntity(String name, Augmentations augs) throws XNIException {
         next.endGeneralEntity(name, augs);
     }
 
-    public void ignorableWhitespace(XMLString text, Augmentations augs)
-            throws XNIException {
+    public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
         next.ignorableWhitespace(text, augs);
     }
 
-    public void processingInstruction(String target, XMLString data,
-            Augmentations augs) throws XNIException {
+    public void processingInstruction(String target, XMLString data, Augmentations augs) throws XNIException {
         next.processingInstruction(target, data, augs);
     }
 
@@ -144,30 +137,27 @@ public class XMLDocumentFilterImpl implements XMLDocumentFilter {
         next.startCDATA(augs);
     }
 
-    public void startDocument(XMLLocator locator, String encoding,
-            NamespaceContext namespaceContext, Augmentations augs)
-            throws XNIException {
+    public void startDocument(XMLLocator locator, String encoding, NamespaceContext namespaceContext,
+            Augmentations augs) throws XNIException {
         next.startDocument(locator, encoding, namespaceContext, augs);
     }
 
-    public void startElement(QName element, XMLAttributes attributes,
-            Augmentations augs) throws XNIException {
+    public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
+            throws XNIException {
         next.startElement(element, attributes, augs);
     }
 
-    public void startGeneralEntity(String name,
-            XMLResourceIdentifier identifier, String encoding,
+    public void startGeneralEntity(String name, XMLResourceIdentifier identifier, String encoding,
             Augmentations augs) throws XNIException {
         next.startGeneralEntity(name, identifier, encoding, augs);
     }
 
-    public void textDecl(String version, String encoding, Augmentations augs)
-            throws XNIException {
+    public void textDecl(String version, String encoding, Augmentations augs) throws XNIException {
         next.textDecl(version, encoding, augs);
     }
 
-    public void xmlDecl(String version, String encoding, String standalone,
-            Augmentations augs) throws XNIException {
+    public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
+            throws XNIException {
         next.xmlDecl(version, encoding, standalone, augs);
     }
 }

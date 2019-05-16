@@ -24,7 +24,6 @@ import java.io.File;
  * @see FileNameExtensionFilter
  * @see javax.swing.JFileChooser#setFileFilter
  * @see javax.swing.JFileChooser#addChoosableFileFilter
- *
  * @author Jeff Dinkins
  */
 public abstract class FileFilter {

@@ -80,12 +80,11 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
      * Binds the socket to the specified address of the specified local port.
      * 
      * @param address
-     *                the address
+     *        the address
      * @param port
-     *                the port
+     *        the port
      */
-    protected synchronized void bind(InetAddress address, int lport)
-            throws IOException {
+    protected synchronized void bind(InetAddress address, int lport) throws IOException {
         super.bind(address, lport);
         if (address.isAnyLocalAddress()) {
             anyLocalBoundAddr = address;
@@ -117,8 +116,7 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
     }
 
     @Override
-    void socketSetOption(int opt, boolean on, Object value)
-            throws SocketException {
+    void socketSetOption(int opt, boolean on, Object value) throws SocketException {
         // SO_REUSEADDR emulated when using exclusive bind
         if (opt == SO_REUSEADDR && exclusiveBind)
             isReuseAddress = on;
@@ -194,11 +192,9 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
 
     native void socketCreate(boolean isServer) throws IOException;
 
-    native void socketConnect(InetAddress address, int port, int timeout)
-            throws IOException;
+    native void socketConnect(InetAddress address, int port, int timeout) throws IOException;
 
-    native void socketBind(InetAddress address, int port, boolean exclBind)
-            throws IOException;
+    native void socketBind(InetAddress address, int port, boolean exclBind) throws IOException;
 
     native void socketListen(int count) throws IOException;
 
@@ -210,11 +206,9 @@ class TwoStacksPlainSocketImpl extends AbstractPlainSocketImpl {
 
     native void socketShutdown(int howto) throws IOException;
 
-    native void socketNativeSetOption(int cmd, boolean on, Object value)
-            throws SocketException;
+    native void socketNativeSetOption(int cmd, boolean on, Object value) throws SocketException;
 
-    native int socketGetOption(int opt, Object iaContainerObj)
-            throws SocketException;
+    native int socketGetOption(int opt, Object iaContainerObj) throws SocketException;
 
     native void socketSendUrgentData(int data) throws IOException;
 }

@@ -14,18 +14,15 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * The <code>WebServiceRefs</code> annotation allows multiple web service
  * references to be declared at the class level.
- *
  * <p>
  * It can be used to inject both service and proxy instances. These injected
  * references are not thread safe. If the references are accessed by multiple
  * threads, usual synchronization techniques can be used to support multiple
  * threads.
- *
  * <p>
  * There is no way to associate web service features with the injected
  * instances. If an instance needs to be configured with web service features,
  * use @WebServiceRef to inject the resource along with its features.
- *
  * <p>
  * <b>Example</b>: The <code>StockQuoteProvider</code> proxy instance, and the
  * <code>StockQuoteService</code> service instance are injected

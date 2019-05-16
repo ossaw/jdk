@@ -29,8 +29,8 @@ import java.lang.ref.WeakReference;
  * @see javax.swing.DefaultDesktopManager
  * @author Thomas Ball
  */
-public class WindowsDesktopManager extends DefaultDesktopManager implements
-        java.io.Serializable, javax.swing.plaf.UIResource {
+public class WindowsDesktopManager extends DefaultDesktopManager implements java.io.Serializable,
+        javax.swing.plaf.UIResource {
 
     /*
      * The frame which is currently selected/activated. We store this value to
@@ -39,8 +39,7 @@ public class WindowsDesktopManager extends DefaultDesktopManager implements
     private WeakReference<JInternalFrame> currentFrameRef;
 
     public void activateFrame(JInternalFrame f) {
-        JInternalFrame currentFrame = currentFrameRef != null ? currentFrameRef
-                .get() : null;
+        JInternalFrame currentFrame = currentFrameRef != null ? currentFrameRef.get() : null;
         try {
             super.activateFrame(f);
             if (currentFrame != null && f != currentFrame) {
@@ -72,8 +71,7 @@ public class WindowsDesktopManager extends DefaultDesktopManager implements
             if (!f.isSelected()) {
                 f.setSelected(true);
             }
-        } catch (PropertyVetoException e) {
-        }
+        } catch (PropertyVetoException e) {}
         if (f != currentFrame) {
             currentFrameRef = new WeakReference<JInternalFrame>(f);
         }

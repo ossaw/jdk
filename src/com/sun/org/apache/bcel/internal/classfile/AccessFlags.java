@@ -65,7 +65,7 @@ public abstract class AccessFlags implements java.io.Serializable {
 
     /**
      * @param a
-     *          inital access flags
+     *        inital access flags
      */
     public AccessFlags(int a) {
         access_flags = a;
@@ -89,7 +89,7 @@ public abstract class AccessFlags implements java.io.Serializable {
      * Set access flags aka "modifiers".
      * 
      * @param access_flags
-     *                     Access flags of the object.
+     *        Access flags of the object.
      */
     public final void setAccessFlags(int access_flags) {
         this.access_flags = access_flags;
@@ -99,7 +99,7 @@ public abstract class AccessFlags implements java.io.Serializable {
      * Set access flags aka "modifiers".
      * 
      * @param access_flags
-     *                     Access flags of the object.
+     *        Access flags of the object.
      */
     public final void setModifiers(int access_flags) {
         setAccessFlags(access_flags);

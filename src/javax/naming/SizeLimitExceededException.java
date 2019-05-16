@@ -18,7 +18,6 @@ import javax.naming.Name;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @since 1.3
  */
 public class SizeLimitExceededException extends LimitExceededException {
@@ -35,7 +34,7 @@ public class SizeLimitExceededException extends LimitExceededException {
      * explanation. All other fields default to null.
      *
      * @param explanation
-     *                    Possibly null detail about this exception.
+     *        Possibly null detail about this exception.
      */
     public SizeLimitExceededException(String explanation) {
         super(explanation);

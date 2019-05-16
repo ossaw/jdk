@@ -94,8 +94,7 @@ public class StubIORImpl {
         return StubAdapter.getDelegate(obj);
     }
 
-    public void doRead(java.io.ObjectInputStream stream) throws IOException,
-            ClassNotFoundException {
+    public void doRead(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
         // read the IOR from the ObjectInputStream
         int typeLength = stream.readInt();
         typeData = new byte[typeLength];
@@ -197,9 +196,8 @@ public class StubIORImpl {
             return false;
         }
 
-        return equalArrays(typeData, other.typeData) && equalArrays(profileTags,
-                other.profileTags) && equalArrays(profileData,
-                        other.profileData);
+        return equalArrays(typeData, other.typeData) && equalArrays(profileTags, other.profileTags)
+                && equalArrays(profileData, other.profileData);
     }
 
     private void appendByteArray(StringBuffer result, byte[] data) {

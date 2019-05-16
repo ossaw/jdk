@@ -33,7 +33,7 @@ public class InvalidSearchFilterException extends NamingException {
      * explanation. All other fields are set to null.
      * 
      * @param msg
-     *            Detail about this exception. Can be null.
+     *        Detail about this exception. Can be null.
      * @see java.lang.Throwable#getMessage
      */
     public InvalidSearchFilterException(String msg) {

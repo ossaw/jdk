@@ -22,7 +22,6 @@ import java.nio.charset.UnsupportedCharsetException;
  * means that the <code>flush</code> method is automatically invoked after a
  * byte array is written, one of the <code>println</code> methods is invoked, or
  * a newline character or byte (<code>'\n'</code>) is written.
- *
  * <p>
  * All characters printed by a <code>PrintStream</code> are converted into bytes
  * using the platform's default character encoding. The <code>{@link
@@ -34,8 +33,7 @@ import java.nio.charset.UnsupportedCharsetException;
  * @since JDK1.0
  */
 
-public class PrintStream extends FilterOutputStream implements Appendable,
-        Closeable {
+public class PrintStream extends FilterOutputStream implements Appendable, Closeable {
 
     private final boolean autoFlush;
     private boolean trouble = false;
@@ -63,17 +61,15 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * Returns a charset object for the given charset name.
      * 
      * @throws NullPointerException
-     *                                      is csn is null
+     *         is csn is null
      * @throws UnsupportedEncodingException
-     *                                      if the charset is not supported
+     *         if the charset is not supported
      */
-    private static Charset toCharset(String csn)
-            throws UnsupportedEncodingException {
+    private static Charset toCharset(String csn) throws UnsupportedEncodingException {
         requireNonNull(csn, "charsetName");
         try {
             return Charset.forName(csn);
-        } catch (IllegalCharsetNameException
-                | UnsupportedCharsetException unused) {
+        } catch (IllegalCharsetNameException | UnsupportedCharsetException unused) {
             // UnsupportedEncodingException should be thrown
             throw new UnsupportedEncodingException(csn);
         }
@@ -108,8 +104,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * Creates a new print stream. This stream will not flush automatically.
      *
      * @param out
-     *            The output stream to which values and objects will be printed
-     *
+     *        The output stream to which values and objects will be printed
      * @see java.io.PrintWriter#PrintWriter(java.io.OutputStream)
      */
     public PrintStream(OutputStream out) {
@@ -120,15 +115,14 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * Creates a new print stream.
      *
      * @param out
-     *                  The output stream to which values and objects will be
-     *                  printed
+     *        The output stream to which values and objects will be
+     *        printed
      * @param autoFlush
-     *                  A boolean; if true, the output buffer will be flushed
-     *                  whenever
-     *                  a byte array is written, one of the <code>println</code>
-     *                  methods is invoked, or a newline character or byte (
-     *                  <code>'\n'</code>) is written
-     *
+     *        A boolean; if true, the output buffer will be flushed
+     *        whenever
+     *        a byte array is written, one of the <code>println</code>
+     *        methods is invoked, or a newline character or byte (
+     *        <code>'\n'</code>) is written
      * @see java.io.PrintWriter#PrintWriter(java.io.OutputStream, boolean)
      */
     public PrintStream(OutputStream out, boolean autoFlush) {
@@ -139,30 +133,27 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * Creates a new print stream.
      *
      * @param out
-     *                  The output stream to which values and objects will be
-     *                  printed
+     *        The output stream to which values and objects will be
+     *        printed
      * @param autoFlush
-     *                  A boolean; if true, the output buffer will be flushed
-     *                  whenever
-     *                  a byte array is written, one of the <code>println</code>
-     *                  methods is invoked, or a newline character or byte (
-     *                  <code>'\n'</code>) is written
+     *        A boolean; if true, the output buffer will be flushed
+     *        whenever
+     *        a byte array is written, one of the <code>println</code>
+     *        methods is invoked, or a newline character or byte (
+     *        <code>'\n'</code>) is written
      * @param encoding
-     *                  The name of a supported
-     *                  <a href="../lang/package-summary.html#charenc">
-     *                  character
-     *                  encoding</a>
-     *
+     *        The name of a supported
+     *        <a href="../lang/package-summary.html#charenc">
+     *        character
+     *        encoding</a>
      * @throws UnsupportedEncodingException
-     *                                      If the named encoding is not
-     *                                      supported
-     *
+     *         If the named encoding is not
+     *         supported
      * @since 1.4
      */
     public PrintStream(OutputStream out, boolean autoFlush, String encoding)
             throws UnsupportedEncodingException {
-        this(autoFlush, requireNonNull(out, "Null output stream"), toCharset(
-                encoding));
+        this(autoFlush, requireNonNull(out, "Null output stream"), toCharset(encoding));
     }
 
     /**
@@ -174,29 +165,26 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * for this instance of the Java virtual machine.
      *
      * @param fileName
-     *                 The name of the file to use as the destination of this
-     *                 print
-     *                 stream. If the file exists, then it will be truncated to
-     *                 zero
-     *                 size; otherwise, a new file will be created. The output
-     *                 will
-     *                 be written to the file and is buffered.
-     *
+     *        The name of the file to use as the destination of this
+     *        print
+     *        stream. If the file exists, then it will be truncated to
+     *        zero
+     *        size; otherwise, a new file will be created. The output
+     *        will
+     *        be written to the file and is buffered.
      * @throws FileNotFoundException
-     *                               If the given file object does not denote an
-     *                               existing,
-     *                               writable regular file and a new regular
-     *                               file of that name
-     *                               cannot be created, or if some other error
-     *                               occurs while
-     *                               opening or creating the file
-     *
+     *         If the given file object does not denote an
+     *         existing,
+     *         writable regular file and a new regular
+     *         file of that name
+     *         cannot be created, or if some other error
+     *         occurs while
+     *         opening or creating the file
      * @throws SecurityException
-     *                               If a security manager is present and
-     *                               {@link SecurityManager#checkWrite
-     *                               checkWrite(fileName)}
-     *                               denies write access to the file
-     *
+     *         If a security manager is present and
+     *         {@link SecurityManager#checkWrite
+     *         checkWrite(fileName)}
+     *         denies write access to the file
      * @since 1.5
      */
     public PrintStream(String fileName) throws FileNotFoundException {
@@ -211,42 +199,37 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * charset.
      *
      * @param fileName
-     *                 The name of the file to use as the destination of this
-     *                 print
-     *                 stream. If the file exists, then it will be truncated to
-     *                 zero
-     *                 size; otherwise, a new file will be created. The output
-     *                 will
-     *                 be written to the file and is buffered.
-     *
+     *        The name of the file to use as the destination of this
+     *        print
+     *        stream. If the file exists, then it will be truncated to
+     *        zero
+     *        size; otherwise, a new file will be created. The output
+     *        will
+     *        be written to the file and is buffered.
      * @param csn
-     *                 The name of a supported
-     *                 {@linkplain java.nio.charset.Charset
-     *                 charset}
-     *
+     *        The name of a supported
+     *        {@linkplain java.nio.charset.Charset
+     *        charset}
      * @throws FileNotFoundException
-     *                                      If the given file object does not
-     *                                      denote an existing,
-     *                                      writable regular file and a new
-     *                                      regular file of that name
-     *                                      cannot be created, or if some other
-     *                                      error occurs while
-     *                                      opening or creating the file
-     *
+     *         If the given file object does not
+     *         denote an existing,
+     *         writable regular file and a new
+     *         regular file of that name
+     *         cannot be created, or if some other
+     *         error occurs while
+     *         opening or creating the file
      * @throws SecurityException
-     *                                      If a security manager is present and
-     *                                      {@link SecurityManager#checkWrite
-     *                                      checkWrite(fileName)}
-     *                                      denies write access to the file
-     *
+     *         If a security manager is present and
+     *         {@link SecurityManager#checkWrite
+     *         checkWrite(fileName)}
+     *         denies write access to the file
      * @throws UnsupportedEncodingException
-     *                                      If the named charset is not
-     *                                      supported
-     *
+     *         If the named charset is not
+     *         supported
      * @since 1.5
      */
-    public PrintStream(String fileName, String csn)
-            throws FileNotFoundException, UnsupportedEncodingException {
+    public PrintStream(String fileName, String csn) throws FileNotFoundException,
+            UnsupportedEncodingException {
         // ensure charset is checked before the file is opened
         this(false, toCharset(csn), new FileOutputStream(fileName));
     }
@@ -260,26 +243,23 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * for this instance of the Java virtual machine.
      *
      * @param file
-     *             The file to use as the destination of this print stream. If
-     *             the file exists, then it will be truncated to zero size;
-     *             otherwise, a new file will be created. The output will be
-     *             written to the file and is buffered.
-     *
+     *        The file to use as the destination of this print stream. If
+     *        the file exists, then it will be truncated to zero size;
+     *        otherwise, a new file will be created. The output will be
+     *        written to the file and is buffered.
      * @throws FileNotFoundException
-     *                               If the given file object does not denote an
-     *                               existing,
-     *                               writable regular file and a new regular
-     *                               file of that name
-     *                               cannot be created, or if some other error
-     *                               occurs while
-     *                               opening or creating the file
-     *
+     *         If the given file object does not denote an
+     *         existing,
+     *         writable regular file and a new regular
+     *         file of that name
+     *         cannot be created, or if some other error
+     *         occurs while
+     *         opening or creating the file
      * @throws SecurityException
-     *                               If a security manager is present and
-     *                               {@link SecurityManager#checkWrite
-     *                               checkWrite(file.getPath())}
-     *                               denies write access to the file
-     *
+     *         If a security manager is present and
+     *         {@link SecurityManager#checkWrite
+     *         checkWrite(file.getPath())}
+     *         denies write access to the file
      * @since 1.5
      */
     public PrintStream(File file) throws FileNotFoundException {
@@ -294,38 +274,32 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * charset.
      *
      * @param file
-     *             The file to use as the destination of this print stream. If
-     *             the file exists, then it will be truncated to zero size;
-     *             otherwise, a new file will be created. The output will be
-     *             written to the file and is buffered.
-     *
+     *        The file to use as the destination of this print stream. If
+     *        the file exists, then it will be truncated to zero size;
+     *        otherwise, a new file will be created. The output will be
+     *        written to the file and is buffered.
      * @param csn
-     *             The name of a supported {@linkplain java.nio.charset.Charset
-     *             charset}
-     *
+     *        The name of a supported {@linkplain java.nio.charset.Charset
+     *        charset}
      * @throws FileNotFoundException
-     *                                      If the given file object does not
-     *                                      denote an existing,
-     *                                      writable regular file and a new
-     *                                      regular file of that name
-     *                                      cannot be created, or if some other
-     *                                      error occurs while
-     *                                      opening or creating the file
-     *
+     *         If the given file object does not
+     *         denote an existing,
+     *         writable regular file and a new
+     *         regular file of that name
+     *         cannot be created, or if some other
+     *         error occurs while
+     *         opening or creating the file
      * @throws SecurityException
-     *                                      If a security manager is present and
-     *                                      {@link SecurityManager#checkWrite
-     *                                      checkWrite(file.getPath())}
-     *                                      denies write access to the file
-     *
+     *         If a security manager is present and
+     *         {@link SecurityManager#checkWrite
+     *         checkWrite(file.getPath())}
+     *         denies write access to the file
      * @throws UnsupportedEncodingException
-     *                                      If the named charset is not
-     *                                      supported
-     *
+     *         If the named charset is not
+     *         supported
      * @since 1.5
      */
-    public PrintStream(File file, String csn) throws FileNotFoundException,
-            UnsupportedEncodingException {
+    public PrintStream(File file, String csn) throws FileNotFoundException, UnsupportedEncodingException {
         // ensure charset is checked before the file is opened
         this(false, toCharset(csn), new FileOutputStream(file));
     }
@@ -410,7 +384,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
 
     /**
      * Sets the error state of the stream to <code>true</code>.
-     *
      * <p>
      * This method will cause subsequent invocations of {@link #checkError()} to
      * return <tt>true</tt> until {@link #clearError()} is invoked.
@@ -423,7 +396,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
 
     /**
      * Clears the internal error state of this stream.
-     *
      * <p>
      * This method will cause subsequent invocations of {@link #checkError()} to
      * return <tt>false</tt> until another write operation fails and invokes
@@ -444,14 +416,13 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * Writes the specified byte to this stream. If the byte is a newline and
      * automatic flushing is enabled then the <code>flush</code> method will be
      * invoked.
-     *
      * <p>
      * Note that the byte is written as given; to write a character that will be
      * translated according to the platform's default character encoding, use
      * the <code>print(char)</code> or <code>println(char)</code> methods.
      *
      * @param b
-     *          The byte to be written
+     *        The byte to be written
      * @see #print(char)
      * @see #println(char)
      */
@@ -474,7 +445,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * Writes <code>len</code> bytes from the specified byte array starting at
      * offset <code>off</code> to this stream. If automatic flushing is enabled
      * then the <code>flush</code> method will be invoked.
-     *
      * <p>
      * Note that the bytes will be written as given; to write characters that
      * will be translated according to the platform's default character
@@ -482,11 +452,11 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * methods.
      *
      * @param buf
-     *            A byte array
+     *        A byte array
      * @param off
-     *            Offset from which to start taking bytes
+     *        Offset from which to start taking bytes
      * @param len
-     *            Number of bytes to write
+     *        Number of bytes to write
      */
     public void write(byte buf[], int off, int len) {
         try {
@@ -573,7 +543,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * method.
      *
      * @param b
-     *          The <code>boolean</code> to be printed
+     *        The <code>boolean</code> to be printed
      */
     public void print(boolean b) {
         write(b ? "true" : "false");
@@ -586,7 +556,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * method.
      *
      * @param c
-     *          The <code>char</code> to be printed
+     *        The <code>char</code> to be printed
      */
     public void print(char c) {
         write(String.valueOf(c));
@@ -599,7 +569,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * in exactly the manner of the <code>{@link #write(int)}</code> method.
      *
      * @param i
-     *          The <code>int</code> to be printed
+     *        The <code>int</code> to be printed
      * @see java.lang.Integer#toString(int)
      */
     public void print(int i) {
@@ -613,7 +583,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * in exactly the manner of the <code>{@link #write(int)}</code> method.
      *
      * @param l
-     *          The <code>long</code> to be printed
+     *        The <code>long</code> to be printed
      * @see java.lang.Long#toString(long)
      */
     public void print(long l) {
@@ -628,7 +598,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * method.
      *
      * @param f
-     *          The <code>float</code> to be printed
+     *        The <code>float</code> to be printed
      * @see java.lang.Float#toString(float)
      */
     public void print(float f) {
@@ -643,7 +613,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * #write(int)}</code> method.
      *
      * @param d
-     *          The <code>double</code> to be printed
+     *        The <code>double</code> to be printed
      * @see java.lang.Double#toString(double)
      */
     public void print(double d) {
@@ -657,10 +627,9 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * method.
      *
      * @param s
-     *          The array of chars to be printed
-     *
+     *        The array of chars to be printed
      * @throws NullPointerException
-     *                              If <code>s</code> is <code>null</code>
+     *         If <code>s</code> is <code>null</code>
      */
     public void print(char s[]) {
         write(s);
@@ -674,7 +643,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #write(int)}</code> method.
      *
      * @param s
-     *          The <code>String</code> to be printed
+     *        The <code>String</code> to be printed
      */
     public void print(String s) {
         if (s == null) {
@@ -691,7 +660,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * method.
      *
      * @param obj
-     *            The <code>Object</code> to be printed
+     *        The <code>Object</code> to be printed
      * @see java.lang.Object#toString()
      */
     public void print(Object obj) {
@@ -716,7 +685,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          The <code>boolean</code> to be printed
+     *        The <code>boolean</code> to be printed
      */
     public void println(boolean x) {
         synchronized (this) {
@@ -731,7 +700,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          The <code>char</code> to be printed.
+     *        The <code>char</code> to be printed.
      */
     public void println(char x) {
         synchronized (this) {
@@ -746,7 +715,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          The <code>int</code> to be printed.
+     *        The <code>int</code> to be printed.
      */
     public void println(int x) {
         synchronized (this) {
@@ -761,7 +730,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          a The <code>long</code> to be printed.
+     *        a The <code>long</code> to be printed.
      */
     public void println(long x) {
         synchronized (this) {
@@ -776,7 +745,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          The <code>float</code> to be printed.
+     *        The <code>float</code> to be printed.
      */
     public void println(float x) {
         synchronized (this) {
@@ -791,7 +760,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          The <code>double</code> to be printed.
+     *        The <code>double</code> to be printed.
      */
     public void println(double x) {
         synchronized (this) {
@@ -806,7 +775,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          an array of chars to print.
+     *        an array of chars to print.
      */
     public void println(char x[]) {
         synchronized (this) {
@@ -821,7 +790,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          The <code>String</code> to be printed.
+     *        The <code>String</code> to be printed.
      */
     public void println(String x) {
         synchronized (this) {
@@ -837,7 +806,7 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <code>{@link #println()}</code>.
      *
      * @param x
-     *          The <code>Object</code> to be printed.
+     *        The <code>Object</code> to be printed.
      */
     public void println(Object x) {
         String s = String.valueOf(x);
@@ -850,7 +819,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
     /**
      * A convenience method to write a formatted string to this output stream
      * using the specified format string and arguments.
-     *
      * <p>
      * An invocation of this method of the form <tt>out.printf(format,
      * args)</tt> behaves in exactly the same way as the invocation
@@ -860,42 +828,37 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * </pre>
      *
      * @param format
-     *               A format string as described in
-     *               <a href="../util/Formatter.html#syntax">Format string
-     *               syntax</a>
-     *
+     *        A format string as described in
+     *        <a href="../util/Formatter.html#syntax">Format string
+     *        syntax</a>
      * @param args
-     *               Arguments referenced by the format specifiers in the format
-     *               string. If there are more arguments than format specifiers,
-     *               the extra arguments are ignored. The number of arguments is
-     *               variable and may be zero. The maximum number of arguments
-     *               is
-     *               limited by the maximum dimension of a Java array as defined
-     *               by
-     *               <cite>The Java&trade; Virtual Machine Specification</cite>.
-     *               The behaviour on a <tt>null</tt> argument depends on the
-     *               <a href="../util/Formatter.html#syntax">conversion</a>.
-     *
-     * @throws                      java.util.IllegalFormatException
-     *                              If a format string contains an illegal
-     *                              syntax, a format
-     *                              specifier that is incompatible with the
-     *                              given arguments,
-     *                              insufficient arguments given the format
-     *                              string, or other
-     *                              illegal conditions. For specification of all
-     *                              possible
-     *                              formatting errors, see the
-     *                              <a href=
-     *                              "../util/Formatter.html#detail">Details</a>
-     *                              section
-     *                              of the formatter class specification.
-     *
+     *        Arguments referenced by the format specifiers in the format
+     *        string. If there are more arguments than format specifiers,
+     *        the extra arguments are ignored. The number of arguments is
+     *        variable and may be zero. The maximum number of arguments
+     *        is
+     *        limited by the maximum dimension of a Java array as defined
+     *        by
+     *        <cite>The Java&trade; Virtual Machine Specification</cite>.
+     *        The behaviour on a <tt>null</tt> argument depends on the
+     *        <a href="../util/Formatter.html#syntax">conversion</a>.
+     * @throws java.util.IllegalFormatException
+     *         If a format string contains an illegal
+     *         syntax, a format
+     *         specifier that is incompatible with the
+     *         given arguments,
+     *         insufficient arguments given the format
+     *         string, or other
+     *         illegal conditions. For specification of all
+     *         possible
+     *         formatting errors, see the
+     *         <a href=
+     *         "../util/Formatter.html#detail">Details</a>
+     *         section
+     *         of the formatter class specification.
      * @throws NullPointerException
-     *                              If the <tt>format</tt> is <tt>null</tt>
-     *
+     *         If the <tt>format</tt> is <tt>null</tt>
      * @return This output stream
-     *
      * @since 1.5
      */
     public PrintStream printf(String format, Object... args) {
@@ -905,7 +868,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
     /**
      * A convenience method to write a formatted string to this output stream
      * using the specified format string and arguments.
-     *
      * <p>
      * An invocation of this method of the form <tt>out.printf(l, format,
      * args)</tt> behaves in exactly the same way as the invocation
@@ -915,47 +877,41 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * </pre>
      *
      * @param l
-     *               The {@linkplain java.util.Locale locale} to apply during
-     *               formatting. If <tt>l</tt> is <tt>null</tt> then no
-     *               localization is applied.
-     *
+     *        The {@linkplain java.util.Locale locale} to apply during
+     *        formatting. If <tt>l</tt> is <tt>null</tt> then no
+     *        localization is applied.
      * @param format
-     *               A format string as described in
-     *               <a href="../util/Formatter.html#syntax">Format string
-     *               syntax</a>
-     *
+     *        A format string as described in
+     *        <a href="../util/Formatter.html#syntax">Format string
+     *        syntax</a>
      * @param args
-     *               Arguments referenced by the format specifiers in the format
-     *               string. If there are more arguments than format specifiers,
-     *               the extra arguments are ignored. The number of arguments is
-     *               variable and may be zero. The maximum number of arguments
-     *               is
-     *               limited by the maximum dimension of a Java array as defined
-     *               by
-     *               <cite>The Java&trade; Virtual Machine Specification</cite>.
-     *               The behaviour on a <tt>null</tt> argument depends on the
-     *               <a href="../util/Formatter.html#syntax">conversion</a>.
-     *
-     * @throws                      java.util.IllegalFormatException
-     *                              If a format string contains an illegal
-     *                              syntax, a format
-     *                              specifier that is incompatible with the
-     *                              given arguments,
-     *                              insufficient arguments given the format
-     *                              string, or other
-     *                              illegal conditions. For specification of all
-     *                              possible
-     *                              formatting errors, see the
-     *                              <a href=
-     *                              "../util/Formatter.html#detail">Details</a>
-     *                              section
-     *                              of the formatter class specification.
-     *
+     *        Arguments referenced by the format specifiers in the format
+     *        string. If there are more arguments than format specifiers,
+     *        the extra arguments are ignored. The number of arguments is
+     *        variable and may be zero. The maximum number of arguments
+     *        is
+     *        limited by the maximum dimension of a Java array as defined
+     *        by
+     *        <cite>The Java&trade; Virtual Machine Specification</cite>.
+     *        The behaviour on a <tt>null</tt> argument depends on the
+     *        <a href="../util/Formatter.html#syntax">conversion</a>.
+     * @throws java.util.IllegalFormatException
+     *         If a format string contains an illegal
+     *         syntax, a format
+     *         specifier that is incompatible with the
+     *         given arguments,
+     *         insufficient arguments given the format
+     *         string, or other
+     *         illegal conditions. For specification of all
+     *         possible
+     *         formatting errors, see the
+     *         <a href=
+     *         "../util/Formatter.html#detail">Details</a>
+     *         section
+     *         of the formatter class specification.
      * @throws NullPointerException
-     *                              If the <tt>format</tt> is <tt>null</tt>
-     *
+     *         If the <tt>format</tt> is <tt>null</tt>
      * @return This output stream
-     *
      * @since 1.5
      */
     public PrintStream printf(Locale l, String format, Object... args) {
@@ -965,57 +921,50 @@ public class PrintStream extends FilterOutputStream implements Appendable,
     /**
      * Writes a formatted string to this output stream using the specified
      * format string and arguments.
-     *
      * <p>
      * The locale always used is the one returned by
      * {@link java.util.Locale#getDefault() Locale.getDefault()}, regardless of
      * any previous invocations of other formatting methods on this object.
      *
      * @param format
-     *               A format string as described in
-     *               <a href="../util/Formatter.html#syntax">Format string
-     *               syntax</a>
-     *
+     *        A format string as described in
+     *        <a href="../util/Formatter.html#syntax">Format string
+     *        syntax</a>
      * @param args
-     *               Arguments referenced by the format specifiers in the format
-     *               string. If there are more arguments than format specifiers,
-     *               the extra arguments are ignored. The number of arguments is
-     *               variable and may be zero. The maximum number of arguments
-     *               is
-     *               limited by the maximum dimension of a Java array as defined
-     *               by
-     *               <cite>The Java&trade; Virtual Machine Specification</cite>.
-     *               The behaviour on a <tt>null</tt> argument depends on the
-     *               <a href="../util/Formatter.html#syntax">conversion</a>.
-     *
-     * @throws                      java.util.IllegalFormatException
-     *                              If a format string contains an illegal
-     *                              syntax, a format
-     *                              specifier that is incompatible with the
-     *                              given arguments,
-     *                              insufficient arguments given the format
-     *                              string, or other
-     *                              illegal conditions. For specification of all
-     *                              possible
-     *                              formatting errors, see the
-     *                              <a href=
-     *                              "../util/Formatter.html#detail">Details</a>
-     *                              section
-     *                              of the formatter class specification.
-     *
+     *        Arguments referenced by the format specifiers in the format
+     *        string. If there are more arguments than format specifiers,
+     *        the extra arguments are ignored. The number of arguments is
+     *        variable and may be zero. The maximum number of arguments
+     *        is
+     *        limited by the maximum dimension of a Java array as defined
+     *        by
+     *        <cite>The Java&trade; Virtual Machine Specification</cite>.
+     *        The behaviour on a <tt>null</tt> argument depends on the
+     *        <a href="../util/Formatter.html#syntax">conversion</a>.
+     * @throws java.util.IllegalFormatException
+     *         If a format string contains an illegal
+     *         syntax, a format
+     *         specifier that is incompatible with the
+     *         given arguments,
+     *         insufficient arguments given the format
+     *         string, or other
+     *         illegal conditions. For specification of all
+     *         possible
+     *         formatting errors, see the
+     *         <a href=
+     *         "../util/Formatter.html#detail">Details</a>
+     *         section
+     *         of the formatter class specification.
      * @throws NullPointerException
-     *                              If the <tt>format</tt> is <tt>null</tt>
-     *
+     *         If the <tt>format</tt> is <tt>null</tt>
      * @return This output stream
-     *
      * @since 1.5
      */
     public PrintStream format(String format, Object... args) {
         try {
             synchronized (this) {
                 ensureOpen();
-                if ((formatter == null) || (formatter.locale() != Locale
-                        .getDefault()))
+                if ((formatter == null) || (formatter.locale() != Locale.getDefault()))
                     formatter = new Formatter((Appendable) this);
                 formatter.format(Locale.getDefault(), format, args);
             }
@@ -1032,47 +981,41 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * format string and arguments.
      *
      * @param l
-     *               The {@linkplain java.util.Locale locale} to apply during
-     *               formatting. If <tt>l</tt> is <tt>null</tt> then no
-     *               localization is applied.
-     *
+     *        The {@linkplain java.util.Locale locale} to apply during
+     *        formatting. If <tt>l</tt> is <tt>null</tt> then no
+     *        localization is applied.
      * @param format
-     *               A format string as described in
-     *               <a href="../util/Formatter.html#syntax">Format string
-     *               syntax</a>
-     *
+     *        A format string as described in
+     *        <a href="../util/Formatter.html#syntax">Format string
+     *        syntax</a>
      * @param args
-     *               Arguments referenced by the format specifiers in the format
-     *               string. If there are more arguments than format specifiers,
-     *               the extra arguments are ignored. The number of arguments is
-     *               variable and may be zero. The maximum number of arguments
-     *               is
-     *               limited by the maximum dimension of a Java array as defined
-     *               by
-     *               <cite>The Java&trade; Virtual Machine Specification</cite>.
-     *               The behaviour on a <tt>null</tt> argument depends on the
-     *               <a href="../util/Formatter.html#syntax">conversion</a>.
-     *
-     * @throws                      java.util.IllegalFormatException
-     *                              If a format string contains an illegal
-     *                              syntax, a format
-     *                              specifier that is incompatible with the
-     *                              given arguments,
-     *                              insufficient arguments given the format
-     *                              string, or other
-     *                              illegal conditions. For specification of all
-     *                              possible
-     *                              formatting errors, see the
-     *                              <a href=
-     *                              "../util/Formatter.html#detail">Details</a>
-     *                              section
-     *                              of the formatter class specification.
-     *
+     *        Arguments referenced by the format specifiers in the format
+     *        string. If there are more arguments than format specifiers,
+     *        the extra arguments are ignored. The number of arguments is
+     *        variable and may be zero. The maximum number of arguments
+     *        is
+     *        limited by the maximum dimension of a Java array as defined
+     *        by
+     *        <cite>The Java&trade; Virtual Machine Specification</cite>.
+     *        The behaviour on a <tt>null</tt> argument depends on the
+     *        <a href="../util/Formatter.html#syntax">conversion</a>.
+     * @throws java.util.IllegalFormatException
+     *         If a format string contains an illegal
+     *         syntax, a format
+     *         specifier that is incompatible with the
+     *         given arguments,
+     *         insufficient arguments given the format
+     *         string, or other
+     *         illegal conditions. For specification of all
+     *         possible
+     *         formatting errors, see the
+     *         <a href=
+     *         "../util/Formatter.html#detail">Details</a>
+     *         section
+     *         of the formatter class specification.
      * @throws NullPointerException
-     *                              If the <tt>format</tt> is <tt>null</tt>
-     *
+     *         If the <tt>format</tt> is <tt>null</tt>
      * @return This output stream
-     *
      * @since 1.5
      */
     public PrintStream format(Locale l, String format, Object... args) {
@@ -1093,7 +1036,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
 
     /**
      * Appends the specified character sequence to this output stream.
-     *
      * <p>
      * An invocation of this method of the form <tt>out.append(csq)</tt> behaves
      * in exactly the same way as the invocation
@@ -1101,7 +1043,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * <pre>
      * out.print(csq.toString())
      * </pre>
-     *
      * <p>
      * Depending on the specification of <tt>toString</tt> for the character
      * sequence <tt>csq</tt>, the entire sequence may not be appended. For
@@ -1110,12 +1051,10 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * position and limit.
      *
      * @param csq
-     *            The character sequence to append. If <tt>csq</tt> is
-     *            <tt>null</tt>, then the four characters <tt>"null"</tt> are
-     *            appended to this output stream.
-     *
+     *        The character sequence to append. If <tt>csq</tt> is
+     *        <tt>null</tt>, then the four characters <tt>"null"</tt> are
+     *        appended to this output stream.
      * @return This output stream
-     *
      * @since 1.5
      */
     public PrintStream append(CharSequence csq) {
@@ -1129,7 +1068,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
     /**
      * Appends a subsequence of the specified character sequence to this output
      * stream.
-     *
      * <p>
      * An invocation of this method of the form <tt>out.append(csq, start,
      * end)</tt> when <tt>csq</tt> is not <tt>null</tt>, behaves in exactly the
@@ -1140,28 +1078,23 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * </pre>
      *
      * @param csq
-     *              The character sequence from which a subsequence will be
-     *              appended. If <tt>csq</tt> is <tt>null</tt>, then characters
-     *              will be appended as if <tt>csq</tt> contained the four
-     *              characters <tt>"null"</tt>.
-     *
+     *        The character sequence from which a subsequence will be
+     *        appended. If <tt>csq</tt> is <tt>null</tt>, then characters
+     *        will be appended as if <tt>csq</tt> contained the four
+     *        characters <tt>"null"</tt>.
      * @param start
-     *              The index of the first character in the subsequence
-     *
+     *        The index of the first character in the subsequence
      * @param end
-     *              The index of the character following the last character in
-     *              the
-     *              subsequence
-     *
+     *        The index of the character following the last character in
+     *        the
+     *        subsequence
      * @return This output stream
-     *
      * @throws IndexOutOfBoundsException
-     *                                   If <tt>start</tt> or <tt>end</tt> are
-     *                                   negative,
-     *                                   <tt>start</tt> is greater than
-     *                                   <tt>end</tt>, or <tt>end</tt>
-     *                                   is greater than <tt>csq.length()</tt>
-     *
+     *         If <tt>start</tt> or <tt>end</tt> are
+     *         negative,
+     *         <tt>start</tt> is greater than
+     *         <tt>end</tt>, or <tt>end</tt>
+     *         is greater than <tt>csq.length()</tt>
      * @since 1.5
      */
     public PrintStream append(CharSequence csq, int start, int end) {
@@ -1172,7 +1105,6 @@ public class PrintStream extends FilterOutputStream implements Appendable,
 
     /**
      * Appends the specified character to this output stream.
-     *
      * <p>
      * An invocation of this method of the form <tt>out.append(c)</tt> behaves
      * in exactly the same way as the invocation
@@ -1182,10 +1114,8 @@ public class PrintStream extends FilterOutputStream implements Appendable,
      * </pre>
      *
      * @param c
-     *          The 16-bit character to append
-     *
+     *        The 16-bit character to append
      * @return This output stream
-     *
      * @since 1.5
      */
     public PrintStream append(char c) {

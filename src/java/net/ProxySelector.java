@@ -16,21 +16,18 @@ import sun.security.util.SecurityConstants;
  * {@link java.net.ProxySelector#setDefault setDefault} method. The currently
  * registered proxy selector can be retrieved by calling
  * {@link java.net.ProxySelector#getDefault getDefault} method.
- *
  * <p>
  * When a proxy selector is registered, for instance, a subclass of
  * URLConnection class should call the {@link #select select} method for each
  * URL request so that the proxy selector can decide if a direct, or proxied
  * connection should be used. The {@link #select select} method returns an
  * iterator over a collection with the preferred connection approach.
- *
  * <p>
  * If a connection cannot be established to a proxy (PROXY or SOCKS) servers
  * then the caller should call the proxy selector's {@link #connectFailed
  * connectFailed} method to notify the proxy selector that the proxy server is
  * unavailable.
  * </p>
- *
  * <P>
  * The default proxy selector does enforce a
  * <a href="doc-files/net-properties.html#Proxies">set of System Properties</a>
@@ -65,9 +62,9 @@ public abstract class ProxySelector {
      * Gets the system-wide proxy selector.
      *
      * @throws SecurityException
-     *                           If a security manager has been installed and it
-     *                           denies
-     *                           {@link NetPermission}{@code ("getProxySelector")}
+     *         If a security manager has been installed and it
+     *         denies
+     *         {@link NetPermission}{@code ("getProxySelector")}
      * @see #setDefault(ProxySelector)
      * @return the system-wide {@code ProxySelector}
      * @since 1.5
@@ -82,18 +79,15 @@ public abstract class ProxySelector {
 
     /**
      * Sets (or unsets) the system-wide proxy selector.
-     *
      * Note: non-standard protocol handlers may ignore this setting.
      *
      * @param ps
-     *           The HTTP proxy selector, or {@code null} to unset the proxy
-     *           selector.
-     *
+     *        The HTTP proxy selector, or {@code null} to unset the proxy
+     *        selector.
      * @throws SecurityException
-     *                           If a security manager has been installed and it
-     *                           denies
-     *                           {@link NetPermission}{@code ("setProxySelector")}
-     *
+     *         If a security manager has been installed and it
+     *         denies
+     *         {@link NetPermission}{@code ("setProxySelector")}
      * @see #getDefault()
      * @since 1.5
      */
@@ -117,14 +111,13 @@ public abstract class ProxySelector {
      * </UL>
      *
      * @param uri
-     *            The URI that a connection is required to
-     *
+     *        The URI that a connection is required to
      * @return a List of Proxies. Each element in the the List is of type
      *         {@link java.net.Proxy Proxy}; when no proxy is available, the
      *         list will contain one element of type {@link java.net.Proxy
      *         Proxy} that represents a direct connection.
      * @throws IllegalArgumentException
-     *                                  if the argument is null
+     *         if the argument is null
      */
     public abstract List<Proxy> select(URI uri);
 
@@ -136,15 +129,13 @@ public abstract class ProxySelector {
      * trying to connect.
      *
      * @param uri
-     *            The URI that the proxy at sa failed to serve.
+     *        The URI that the proxy at sa failed to serve.
      * @param sa
-     *            The socket address of the proxy/SOCKS server
-     *
+     *        The socket address of the proxy/SOCKS server
      * @param ioe
-     *            The I/O exception thrown when the connect failed.
+     *        The I/O exception thrown when the connect failed.
      * @throws IllegalArgumentException
-     *                                  if either argument is null
+     *         if either argument is null
      */
-    public abstract void connectFailed(URI uri, SocketAddress sa,
-            IOException ioe);
+    public abstract void connectFailed(URI uri, SocketAddress sa, IOException ioe);
 }

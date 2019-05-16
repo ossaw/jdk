@@ -44,22 +44,21 @@ public class Beans {
      * 
      * @return a JavaBean
      * @param cls
-     *                 the class-loader from which we should create the bean. If
-     *                 this
-     *                 is null, then the system class-loader is used.
+     *        the class-loader from which we should create the bean. If
+     *        this
+     *        is null, then the system class-loader is used.
      * @param beanName
-     *                 the name of the bean within the class-loader. For example
-     *                 "sun.beanbox.foobah"
-     *
+     *        the name of the bean within the class-loader. For example
+     *        "sun.beanbox.foobah"
      * @exception ClassNotFoundException
-     *                                   if the class of a serialized object
-     *                                   could not be found.
+     *            if the class of a serialized object
+     *            could not be found.
      * @exception IOException
-     *                                   if an I/O error occurs.
+     *            if an I/O error occurs.
      */
 
-    public static Object instantiate(ClassLoader cls, String beanName)
-            throws IOException, ClassNotFoundException {
+    public static Object instantiate(ClassLoader cls, String beanName) throws IOException,
+            ClassNotFoundException {
         return Beans.instantiate(cls, beanName, null, null);
     }
 
@@ -69,28 +68,25 @@ public class Beans {
      * </p>
      * 
      * @return a JavaBean
-     *
      * @param cls
-     *                    the class-loader from which we should create the bean.
-     *                    If this
-     *                    is null, then the system class-loader is used.
+     *        the class-loader from which we should create the bean.
+     *        If this
+     *        is null, then the system class-loader is used.
      * @param beanName
-     *                    the name of the bean within the class-loader. For
-     *                    example
-     *                    "sun.beanbox.foobah"
+     *        the name of the bean within the class-loader. For
+     *        example
+     *        "sun.beanbox.foobah"
      * @param beanContext
-     *                    The BeanContext in which to nest the new bean
-     *
+     *        The BeanContext in which to nest the new bean
      * @exception ClassNotFoundException
-     *                                   if the class of a serialized object
-     *                                   could not be found.
+     *            if the class of a serialized object
+     *            could not be found.
      * @exception IOException
-     *                                   if an I/O error occurs.
+     *            if an I/O error occurs.
      */
 
-    public static Object instantiate(ClassLoader cls, String beanName,
-            BeanContext beanContext) throws IOException,
-            ClassNotFoundException {
+    public static Object instantiate(ClassLoader cls, String beanName, BeanContext beanContext)
+            throws IOException, ClassNotFoundException {
         return Beans.instantiate(cls, beanName, beanContext, null);
     }
 
@@ -134,28 +130,26 @@ public class Beans {
      *
      * @return a JavaBean
      * @param cls
-     *                    the class-loader from which we should create the bean.
-     *                    If this
-     *                    is null, then the system class-loader is used.
+     *        the class-loader from which we should create the bean.
+     *        If this
+     *        is null, then the system class-loader is used.
      * @param beanName
-     *                    the name of the bean within the class-loader. For
-     *                    example
-     *                    "sun.beanbox.foobah"
+     *        the name of the bean within the class-loader. For
+     *        example
+     *        "sun.beanbox.foobah"
      * @param beanContext
-     *                    The BeanContext in which to nest the new bean
+     *        The BeanContext in which to nest the new bean
      * @param initializer
-     *                    The AppletInitializer for the new bean
-     *
+     *        The AppletInitializer for the new bean
      * @exception ClassNotFoundException
-     *                                   if the class of a serialized object
-     *                                   could not be found.
+     *            if the class of a serialized object
+     *            could not be found.
      * @exception IOException
-     *                                   if an I/O error occurs.
+     *            if an I/O error occurs.
      */
 
-    public static Object instantiate(ClassLoader cls, String beanName,
-            BeanContext beanContext, AppletInitializer initializer)
-            throws IOException, ClassNotFoundException {
+    public static Object instantiate(ClassLoader cls, String beanName, BeanContext beanContext,
+            AppletInitializer initializer) throws IOException, ClassNotFoundException {
 
         InputStream ins;
         ObjectInputStream oins = null;
@@ -221,8 +215,7 @@ public class Beans {
             }
 
             if (!Modifier.isPublic(cl.getModifiers())) {
-                throw new ClassNotFoundException("" + cl
-                        + " : no public access");
+                throw new ClassNotFoundException("" + cl + " : no public access");
             }
 
             /*
@@ -263,12 +256,10 @@ public class Beans {
 
                     if (serialized) {
                         // Serialized bean
-                        resourceName = beanName.replace('.', '/').concat(
-                                ".ser");
+                        resourceName = beanName.replace('.', '/').concat(".ser");
                     } else {
                         // Regular class
-                        resourceName = beanName.replace('.', '/').concat(
-                                ".class");
+                        resourceName = beanName.replace('.', '/').concat(".class");
                     }
 
                     URL objectUrl = null;
@@ -312,8 +303,7 @@ public class Beans {
                     // Setup a default context and stub.
                     BeansAppletContext context = new BeansAppletContext(applet);
 
-                    stub = (AppletStub) new BeansAppletStub(applet, context,
-                            codeBase, docBase);
+                    stub = (AppletStub) new BeansAppletStub(applet, context, codeBase, docBase);
                     applet.setStub(stub);
                 } else {
                     initializer.initialize(applet, beanContext);
@@ -349,8 +339,7 @@ public class Beans {
     }
 
     @SuppressWarnings("unchecked")
-    private static void unsafeBeanContextAdd(BeanContext beanContext,
-            Object res) {
+    private static void unsafeBeanContextAdd(BeanContext beanContext, Object res) {
         beanContext.add(res);
     }
 
@@ -366,10 +355,9 @@ public class Beans {
      *
      * @return an object representing a specified type view of the source object
      * @param bean
-     *                   Object from which we want to obtain a view.
+     *        Object from which we want to obtain a view.
      * @param targetType
-     *                   The type of view we'd like to get.
-     *
+     *        The type of view we'd like to get.
      */
     public static Object getInstanceOf(Object bean, Class<?> targetType) {
         return bean;
@@ -381,11 +369,10 @@ public class Beans {
      * obtain an object that represents the specified targetType type view.
      *
      * @param bean
-     *                   Bean from which we want to obtain a view.
+     *        Bean from which we want to obtain a view.
      * @param targetType
-     *                   The type of view we'd like to get.
+     *        The type of view we'd like to get.
      * @return "true" if the given bean supports the given targetType.
-     *
      */
     public static boolean isInstanceOf(Object bean, Class<?> targetType) {
         return Introspector.isSubclass(bean.getClass(), targetType);
@@ -396,7 +383,6 @@ public class Beans {
      *
      * @return True if we are running in an application construction
      *         environment.
-     *
      * @see DesignMode
      */
     public static boolean isDesignTime() {
@@ -412,9 +398,7 @@ public class Beans {
      *         environment, and will normally return false in a server
      *         environment or if an application is running as part of a batch
      *         job.
-     *
      * @see Visibility
-     *
      */
     public static boolean isGuiAvailable() {
         return ThreadGroupContext.getContext().isGuiAvailable();
@@ -423,7 +407,6 @@ public class Beans {
     /**
      * Used to indicate whether of not we are running in an application builder
      * environment.
-     *
      * <p>
      * Note that this method is security checked and is not available to (for
      * example) untrusted applets. More specifically, if there is a security
@@ -431,17 +414,16 @@ public class Beans {
      * could result in a SecurityException.
      *
      * @param isDesignTime
-     *                     True if we're in an application builder tool.
+     *        True if we're in an application builder tool.
      * @exception SecurityException
-     *                              if a security manager exists and its
-     *                              <code>checkPropertiesAccess</code> method
-     *                              doesn't allow
-     *                              setting of system properties.
+     *            if a security manager exists and its
+     *            <code>checkPropertiesAccess</code> method
+     *            doesn't allow
+     *            setting of system properties.
      * @see SecurityManager#checkPropertiesAccess
      */
 
-    public static void setDesignTime(boolean isDesignTime)
-            throws SecurityException {
+    public static void setDesignTime(boolean isDesignTime) throws SecurityException {
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
             sm.checkPropertiesAccess();
@@ -452,7 +434,6 @@ public class Beans {
     /**
      * Used to indicate whether of not we are running in an environment where
      * GUI interaction is available.
-     *
      * <p>
      * Note that this method is security checked and is not available to (for
      * example) untrusted applets. More specifically, if there is a security
@@ -460,17 +441,16 @@ public class Beans {
      * could result in a SecurityException.
      *
      * @param isGuiAvailable
-     *                       True if GUI interaction is available.
+     *        True if GUI interaction is available.
      * @exception SecurityException
-     *                              if a security manager exists and its
-     *                              <code>checkPropertiesAccess</code> method
-     *                              doesn't allow
-     *                              setting of system properties.
+     *            if a security manager exists and its
+     *            <code>checkPropertiesAccess</code> method
+     *            doesn't allow
+     *            setting of system properties.
      * @see SecurityManager#checkPropertiesAccess
      */
 
-    public static void setGuiAvailable(boolean isGuiAvailable)
-            throws SecurityException {
+    public static void setGuiAvailable(boolean isGuiAvailable) throws SecurityException {
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
             sm.checkPropertiesAccess();
@@ -491,13 +471,12 @@ class ObjectInputStreamWithLoader extends ObjectInputStream {
      * Loader must be non-null;
      */
 
-    public ObjectInputStreamWithLoader(InputStream in, ClassLoader loader)
-            throws IOException, StreamCorruptedException {
+    public ObjectInputStreamWithLoader(InputStream in, ClassLoader loader) throws IOException,
+            StreamCorruptedException {
 
         super(in);
         if (loader == null) {
-            throw new IllegalArgumentException(
-                    "Illegal null argument to ObjectInputStreamWithLoader");
+            throw new IllegalArgumentException("Illegal null argument to ObjectInputStreamWithLoader");
         }
         this.loader = loader;
     }
@@ -506,8 +485,7 @@ class ObjectInputStreamWithLoader extends ObjectInputStream {
      * Use the given ClassLoader rather than using the system class
      */
     @SuppressWarnings("rawtypes")
-    protected Class resolveClass(ObjectStreamClass classDesc)
-            throws IOException, ClassNotFoundException {
+    protected Class resolveClass(ObjectStreamClass classDesc) throws IOException, ClassNotFoundException {
 
         String cname = classDesc.getName();
         return ClassFinder.resolveClass(cname, this.loader);
@@ -610,8 +588,7 @@ class BeansAppletStub implements AppletStub {
     transient URL codeBase;
     transient URL docBase;
 
-    BeansAppletStub(Applet target, AppletContext context, URL codeBase,
-            URL docBase) {
+    BeansAppletStub(Applet target, AppletContext context, URL codeBase, URL docBase) {
         this.target = target;
         this.context = context;
         this.codeBase = codeBase;

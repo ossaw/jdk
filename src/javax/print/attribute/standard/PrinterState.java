@@ -26,8 +26,7 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PrinterState extends EnumSyntax implements
-        PrintServiceAttribute {
+public final class PrinterState extends EnumSyntax implements PrintServiceAttribute {
 
     private static final long serialVersionUID = -649578618346507718L;
 
@@ -56,17 +55,15 @@ public final class PrinterState extends EnumSyntax implements
      * value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected PrinterState(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "unknown", null, null,
-            "idle", "processing", "stopped" };
+    private static final String[] myStringTable = { "unknown", null, null, "idle", "processing", "stopped" };
 
-    private static final PrinterState[] myEnumValueTable = { UNKNOWN, null,
-            null, IDLE, PROCESSING, STOPPED };
+    private static final PrinterState[] myEnumValueTable = { UNKNOWN, null, null, IDLE, PROCESSING, STOPPED };
 
     /**
      * Returns the string table for class PrinterState.

@@ -21,17 +21,14 @@ public class PropertyParser {
         actions = new LinkedList();
     }
 
-    public PropertyParser add(String propName, Operation action,
-            String fieldName) {
-        actions.add(ParserActionFactory.makeNormalAction(propName, action,
-                fieldName));
+    public PropertyParser add(String propName, Operation action, String fieldName) {
+        actions.add(ParserActionFactory.makeNormalAction(propName, action, fieldName));
         return this;
     }
 
-    public PropertyParser addPrefix(String propName, Operation action,
-            String fieldName, Class componentType) {
-        actions.add(ParserActionFactory.makePrefixAction(propName, action,
-                fieldName, componentType));
+    public PropertyParser addPrefix(String propName, Operation action, String fieldName,
+            Class componentType) {
+        actions.add(ParserActionFactory.makePrefixAction(propName, action, fieldName, componentType));
         return this;
     }
 

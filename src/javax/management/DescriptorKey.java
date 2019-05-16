@@ -14,7 +14,6 @@ import java.lang.annotation.*;
  * attribute, operation, or constructor in an MBean, or for a parameter of an
  * operation or constructor.
  * </p>
- *
  * <p>
  * Consider this annotation for example:
  * </p>
@@ -28,7 +27,6 @@ import java.lang.annotation.*;
  *     String value();
  * }
  * </pre>
- *
  * <p>
  * and this use of the annotation:
  * </p>
@@ -39,7 +37,6 @@ import java.lang.annotation.*;
  *     public long getCacheSize();
  * }
  * </pre>
- *
  * <p>
  * When a Standard MBean is made from the {@code CacheControlMBean}, the usual
  * rules mean that it will have an attribute called {@code CacheSize} of type
@@ -48,7 +45,6 @@ import java.lang.annotation.*;
  * {@code Descriptor} that has a field called {@code units} with corresponding
  * value {@code bytes}.
  * </p>
- *
  * <p>
  * Similarly, if the annotation looks like this:
  * </p>
@@ -68,7 +64,6 @@ import java.lang.annotation.*;
  *     String resourceBundleBaseName() default "";
  * }
  * </pre>
- *
  * <p>
  * and it is used like this:
  * </p>
@@ -81,11 +76,9 @@ import java.lang.annotation.*;
  *     public long getCacheSize();
  * }
  * </pre>
- *
  * <p>
  * then the resulting {@code Descriptor} will contain the following fields:
  * </p>
- *
  * <table border="2" summary="Descriptor Fields">
  * <tr>
  * <th>Name</th>
@@ -104,11 +97,9 @@ import java.lang.annotation.*;
  * <td>"com.example.foo.MBeanResources"</td>
  * </tr>
  * </table>
- *
  * <p>
  * An annotation such as {@code @Units} can be applied to:
  * </p>
- *
  * <ul>
  * <li>a Standard MBean or MXBean interface;
  * <li>a method in such an interface;
@@ -118,11 +109,9 @@ import java.lang.annotation.*;
  * MXBean;
  * <li>a parameter in such a constructor.
  * </ul>
- *
  * <p>
  * Other uses of the annotation are ignored.
  * </p>
- *
  * <p>
  * Interface annotations are checked only on the exact interface that defines
  * the management interface of a Standard MBean or an MXBean, not on its parent
@@ -130,7 +119,6 @@ import java.lang.annotation.*;
  * interface in which the method appears; in other words, if a child interface
  * overrides a method from a parent interface, only {@code @DescriptorKey}
  * annotations in the method in the child interface are considered.
- *
  * <p>
  * The Descriptor fields contributed in this way by different annotations on the
  * same program element must be consistent. That is, two different annotations,
@@ -139,7 +127,6 @@ import java.lang.annotation.*;
  * also be consistent with fields from annotations on the corresponding setter
  * method.
  * </p>
- *
  * <p>
  * The Descriptor resulting from these annotations will be merged with any
  * Descriptor fields provided by the implementation, such as the
@@ -147,14 +134,12 @@ import java.lang.annotation.*;
  * immutableInfo}</a> field for an MBean. The fields from the annotations must
  * be consistent with these fields provided by the implementation.
  * </p>
- *
  * <p>
  * An annotation element to be converted into a descriptor field can be of any
  * type allowed by the Java language, except an annotation or an array of
  * annotations. The value of the field is derived from the value of the
  * annotation element as follows:
  * </p>
- *
  * <table border="2" summary="Descriptor Field Types">
  * <tr>
  * <th>Annotation element</th>

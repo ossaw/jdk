@@ -46,8 +46,8 @@ public final class IteratorPool implements java.io.Serializable {
      * Constructor IteratorPool
      *
      * @param original
-     *                 The original iterator from which all others will be
-     *                 cloned.
+     *        The original iterator from which all others will be
+     *        cloned.
      */
     public IteratorPool(DTMIterator original) {
         m_orig = original;
@@ -59,8 +59,7 @@ public final class IteratorPool implements java.io.Serializable {
      *
      * @return An instance of the given object
      */
-    public synchronized DTMIterator getInstanceOrThrow()
-            throws CloneNotSupportedException {
+    public synchronized DTMIterator getInstanceOrThrow() throws CloneNotSupportedException {
         // Check if the pool is empty.
         if (m_freeStack.isEmpty()) {
 
@@ -68,8 +67,7 @@ public final class IteratorPool implements java.io.Serializable {
             return (DTMIterator) m_orig.clone();
         } else {
             // Remove object from end of free pool.
-            DTMIterator result = (DTMIterator) m_freeStack.remove(m_freeStack
-                    .size() - 1);
+            DTMIterator result = (DTMIterator) m_freeStack.remove(m_freeStack.size() - 1);
             return result;
         }
     }
@@ -91,8 +89,7 @@ public final class IteratorPool implements java.io.Serializable {
             }
         } else {
             // Remove object from end of free pool.
-            DTMIterator result = (DTMIterator) m_freeStack.remove(m_freeStack
-                    .size() - 1);
+            DTMIterator result = (DTMIterator) m_freeStack.remove(m_freeStack.size() - 1);
             return result;
         }
     }
@@ -100,9 +97,8 @@ public final class IteratorPool implements java.io.Serializable {
     /**
      * Add an instance of the given object to the pool
      *
-     *
      * @param obj
-     *            Object to add.
+     *        Object to add.
      */
     public synchronized void freeInstance(DTMIterator obj) {
         m_freeStack.add(obj);

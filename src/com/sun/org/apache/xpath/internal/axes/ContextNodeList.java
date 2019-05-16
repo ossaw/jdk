@@ -35,7 +35,6 @@ public interface ContextNodeList {
      * Get the <a href="http://www.w3.org/TR/xslt#dt-current-node">current
      * node</a>.
      *
-     *
      * @return The current node, or null.
      */
     public Node getCurrentNode();
@@ -63,7 +62,7 @@ public interface ContextNodeList {
      * are not cached by default.
      *
      * @param b
-     *          true if the nodes should be cached.
+     *        true if the nodes should be cached.
      */
     public void setShouldCacheNodes(boolean b);
 
@@ -74,8 +73,8 @@ public interface ContextNodeList {
      * end.
      *
      * @param index
-     *              The index to run to, or -1 if the iterator should be run to
-     *              the end.
+     *        The index to run to, or -1 if the iterator should be run to
+     *        the end.
      */
     public void runTo(int index);
 
@@ -83,7 +82,7 @@ public interface ContextNodeList {
      * Set the current position in the node set.
      * 
      * @param i
-     *          Must be a valid index.
+     *        Must be a valid index.
      */
     public void setCurrentPos(int i);
 
@@ -106,7 +105,6 @@ public interface ContextNodeList {
      * Get a cloned Iterator that is reset to the start of the iteration.
      *
      * @return A clone of this iteration that has been reset.
-     *
      * @throws CloneNotSupportedException
      */
     public NodeIterator cloneWithReset() throws CloneNotSupportedException;
@@ -115,16 +113,13 @@ public interface ContextNodeList {
      * Get a clone of this iterator. Be aware that this operation may be
      * somewhat expensive.
      *
-     *
      * @return A clone of this object.
-     *
      * @throws CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException;
 
     /**
      * Get the index of the last node in this list.
-     *
      *
      * @return the index of the last node in this list.
      */
@@ -133,9 +128,8 @@ public interface ContextNodeList {
     /**
      * Set the index of the last node in this list.
      *
-     *
      * @param last
-     *             the index of the last node in this list.
+     *        the index of the last node in this list.
      */
     public void setLast(int last);
 }

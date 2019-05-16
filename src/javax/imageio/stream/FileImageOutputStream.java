@@ -16,7 +16,6 @@ import sun.java2d.Disposer;
 /**
  * An implementation of <code>ImageOutputStream</code> that writes its output
  * directly to a <code>File</code> or <code>RandomAccessFile</code>.
- *
  */
 public class FileImageOutputStream extends ImageOutputStreamImpl {
 
@@ -33,26 +32,24 @@ public class FileImageOutputStream extends ImageOutputStreamImpl {
      * given <code>File</code>.
      *
      * @param f
-     *          a <code>File</code> to write to.
-     *
+     *        a <code>File</code> to write to.
      * @exception IllegalArgumentException
-     *                                     if <code>f</code> is
-     *                                     <code>null</code>.
+     *            if <code>f</code> is
+     *            <code>null</code>.
      * @exception SecurityException
-     *                                     if a security manager exists and does
-     *                                     not allow write
-     *                                     access to the file.
+     *            if a security manager exists and does
+     *            not allow write
+     *            access to the file.
      * @exception FileNotFoundException
-     *                                     if <code>f</code> does not denote a
-     *                                     regular file or it
-     *                                     cannot be opened for reading and
-     *                                     writing for any other
-     *                                     reason.
+     *            if <code>f</code> does not denote a
+     *            regular file or it
+     *            cannot be opened for reading and
+     *            writing for any other
+     *            reason.
      * @exception IOException
-     *                                     if an I/O error occurs.
+     *            if an I/O error occurs.
      */
-    public FileImageOutputStream(File f) throws FileNotFoundException,
-            IOException {
+    public FileImageOutputStream(File f) throws FileNotFoundException, IOException {
         this(f == null ? null : new RandomAccessFile(f, "rw"));
     }
 
@@ -61,11 +58,10 @@ public class FileImageOutputStream extends ImageOutputStreamImpl {
      * given <code>RandomAccessFile</code>.
      *
      * @param raf
-     *            a <code>RandomAccessFile</code> to write to.
-     *
+     *        a <code>RandomAccessFile</code> to write to.
      * @exception IllegalArgumentException
-     *                                     if <code>raf</code> is
-     *                                     <code>null</code>.
+     *            if <code>raf</code> is
+     *            <code>null</code>.
      */
     public FileImageOutputStream(RandomAccessFile raf) {
         if (raf == null) {
@@ -130,10 +126,10 @@ public class FileImageOutputStream extends ImageOutputStreamImpl {
      * increased until a write is performed.
      *
      * @exception IndexOutOfBoundsException
-     *                                      if <code>pos</code> is smaller than
-     *                                      the flushed position.
+     *            if <code>pos</code> is smaller than
+     *            the flushed position.
      * @exception IOException
-     *                                      if any other I/O error occurs.
+     *            if any other I/O error occurs.
      */
     public void seek(long pos) throws IOException {
         checkClosed();

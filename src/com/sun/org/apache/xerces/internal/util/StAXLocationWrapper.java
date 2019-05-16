@@ -30,7 +30,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLLocator;
  * </p>
  *
  * @author Michael Glavassevich, IBM
- *
  * @version $Id: StAXLocationWrapper.java,v 1.2 2010-10-26 23:01:13 joehw Exp $
  */
 public final class StAXLocationWrapper implements XMLLocator {

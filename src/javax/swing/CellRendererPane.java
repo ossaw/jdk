@@ -91,8 +91,8 @@ public class CellRendererPane extends Container implements Accessible {
      * on, typically it's equal to this.getParent(). If shouldValidate is true
      * the component c will be validated before painted.
      */
-    public void paintComponent(Graphics g, Component c, Container p, int x,
-            int y, int w, int h, boolean shouldValidate) {
+    public void paintComponent(Graphics g, Component c, Container p, int x, int y, int w, int h,
+            boolean shouldValidate) {
         if (c == null) {
             if (p != null) {
                 Color oldColor = g.getColor();
@@ -136,16 +136,14 @@ public class CellRendererPane extends Container implements Accessible {
     /**
      * Calls this.paintComponent(g, c, p, x, y, w, h, false).
      */
-    public void paintComponent(Graphics g, Component c, Container p, int x,
-            int y, int w, int h) {
+    public void paintComponent(Graphics g, Component c, Container p, int x, int y, int w, int h) {
         paintComponent(g, c, p, x, y, w, h, false);
     }
 
     /**
      * Calls this.paintComponent() with the rectangles x,y,width,height fields.
      */
-    public void paintComponent(Graphics g, Component c, Container p,
-            Rectangle r) {
+    public void paintComponent(Graphics g, Component c, Container p, Rectangle r) {
         paintComponent(g, c, p, r.x, r.y, r.width, r.height);
     }
 

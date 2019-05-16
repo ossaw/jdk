@@ -181,15 +181,15 @@ public interface TypeInfo {
      * called, and the other type definition, i.e. the one passed as parameters.
      * 
      * @param typeNamespaceArg
-     *                         the namespace of the other type definition.
+     *        the namespace of the other type definition.
      * @param typeNameArg
-     *                         the name of the other type definition.
+     *        the name of the other type definition.
      * @param derivationMethod
-     *                         the type of derivation and conditions applied
-     *                         between two
-     *                         types, as described in the list of constants
-     *                         provided in this
-     *                         interface.
+     *        the type of derivation and conditions applied
+     *        between two
+     *        types, as described in the list of constants
+     *        provided in this
+     *        interface.
      * @return If the document's schema is a DTD or no schema is associated with
      *         the document, this method will always return <code>false</code> .
      *         If the document's schema is an XML Schema, the method will return
@@ -203,7 +203,6 @@ public interface TypeInfo {
      *         definition}, or {member type definitions} from the reference type
      *         definition.
      */
-    public boolean isDerivedFrom(String typeNamespaceArg, String typeNameArg,
-            int derivationMethod);
+    public boolean isDerivedFrom(String typeNamespaceArg, String typeNameArg, int derivationMethod);
 
 }

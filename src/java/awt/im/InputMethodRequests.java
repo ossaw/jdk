@@ -16,11 +16,9 @@ import java.text.AttributedCharacterIterator.Attribute;
  * interface itself or use a separate object that implements it. The object
  * implementing this interface must be returned from the component's
  * getInputMethodRequests method.
- *
  * <p>
  * The text editing component also has to provide an input method event
  * listener.
- *
  * <p>
  * The interface is designed to support one of two input user interfaces:
  * <ul>
@@ -36,7 +34,6 @@ import java.text.AttributedCharacterIterator.Attribute;
  *
  * @see java.awt.Component#getInputMethodRequests
  * @see java.awt.event.InputMethodListener
- *
  * @author JavaSoft Asia/Pacific
  * @since 1.2
  */
@@ -49,13 +46,11 @@ public interface InputMethodRequests {
      * used to position the candidate window near the composed text, or a
      * composition window near the location where committed text will be
      * inserted.
-     *
      * <p>
      * If the component has composed text (because the most recent
      * InputMethodEvent sent to it contained composed text), then the offset is
      * relative to the composed text - offset 0 indicates the first character in
      * the composed text. The location returned should be for this character.
-     *
      * <p>
      * If the component doesn't have composed text, the offset should be
      * ignored, and the location returned should reflect the beginning (in line
@@ -65,7 +60,6 @@ public interface InputMethodRequests {
      * containing selected text is returned. For vertical top-to-bottom text,
      * with lines proceeding from right to left, the location to the top of the
      * left-most line containing selected text is returned.
-     *
      * <p>
      * The location is represented as a 0-thickness caret, that is, it has 0
      * width if the text is drawn horizontally, and 0 height if the text is
@@ -73,8 +67,8 @@ public interface InputMethodRequests {
      * or vertical orientation. The rectangle uses absolute screen coordinates.
      *
      * @param offset
-     *               the offset within the composed text, if there is composed
-     *               text; null otherwise
+     *        the offset within the composed text, if there is composed
+     *        text; null otherwise
      * @return a rectangle representing the screen location of the offset
      */
     Rectangle getTextLocation(TextHitInfo offset);
@@ -84,15 +78,14 @@ public interface InputMethodRequests {
      * y coordinates on the screen. This information is used, for example to
      * handle mouse clicks and the mouse cursor. The offset is relative to the
      * composed text, so offset 0 indicates the beginning of the composed text.
-     *
      * <p>
      * Return null if the location is outside the area occupied by the composed
      * text.
      *
      * @param x
-     *          the absolute x coordinate on screen
+     *        the absolute x coordinate on screen
      * @param y
-     *          the absolute y coordinate on screen
+     *        the absolute y coordinate on screen
      * @return a text hit info describing the offset in the composed text.
      */
     TextHitInfo getLocationOffset(int x, int y);
@@ -113,7 +106,6 @@ public interface InputMethodRequests {
      * contained in the text editing component except for uncommitted text.
      * Uncommitted (composed) text should be ignored for index calculations and
      * should not be made accessible through the iterator.
-     *
      * <p>
      * The input method may provide a list of attributes that it is interested
      * in. In that case, information about other attributes that the implementor
@@ -121,16 +113,15 @@ public interface InputMethodRequests {
      * null, all available attribute information should be made accessible.
      *
      * @param beginIndex
-     *                   the index of the first character
+     *        the index of the first character
      * @param endIndex
-     *                   the index of the character following the last character
+     *        the index of the character following the last character
      * @param attributes
-     *                   a list of attributes that the input method is
-     *                   interested in
+     *        a list of attributes that the input method is
+     *        interested in
      * @return an iterator providing access to the text and its attributes
      */
-    AttributedCharacterIterator getCommittedText(int beginIndex, int endIndex,
-            Attribute[] attributes);
+    AttributedCharacterIterator getCommittedText(int beginIndex, int endIndex, Attribute[] attributes);
 
     /**
      * Gets the length of the entire text contained in the text editing
@@ -146,12 +137,10 @@ public interface InputMethodRequests {
      * "Undo Commit" feature in some input methods, where the committed text
      * reverts to its previous composed state. The composed text will be sent to
      * the component using an InputMethodEvent.
-     *
      * <p>
      * Generally, this feature should only be supported immediately after the
      * text was committed, not after the user performed other operations on the
      * text. When the feature is not supported, return null.
-     *
      * <p>
      * The input method may provide a list of attributes that it is interested
      * in. In that case, information about other attributes that the implementor
@@ -159,13 +148,12 @@ public interface InputMethodRequests {
      * null, all available attribute information should be made accessible.
      *
      * @param attributes
-     *                   a list of attributes that the input method is
-     *                   interested in
+     *        a list of attributes that the input method is
+     *        interested in
      * @return the latest committed text, or null when the "Undo Commit" feature
      *         is not supported
      */
-    AttributedCharacterIterator cancelLatestCommittedText(
-            Attribute[] attributes);
+    AttributedCharacterIterator cancelLatestCommittedText(Attribute[] attributes);
 
     /**
      * Gets the currently selected text from the text editing component. This
@@ -176,7 +164,6 @@ public interface InputMethodRequests {
      * the original composed text for the selected text, the latest composed
      * text entered anywhere in the text, or a version of the text that's
      * converted back from the selected text.
-     *
      * <p>
      * The input method may provide a list of attributes that it is interested
      * in. In that case, information about other attributes that the implementor
@@ -184,8 +171,8 @@ public interface InputMethodRequests {
      * null, all available attribute information should be made accessible.
      *
      * @param attributes
-     *                   a list of attributes that the input method is
-     *                   interested in
+     *        a list of attributes that the input method is
+     *        interested in
      * @return the currently selected text
      */
     AttributedCharacterIterator getSelectedText(Attribute[] attributes);

@@ -27,7 +27,6 @@ import javax.swing.JInternalFrame;
  * @see java.awt.event.WindowListener
  * @see JInternalFrame
  * @see InternalFrameListener
- *
  * @author Thomas Ball
  */
 public class InternalFrameEvent extends AWTEvent {
@@ -86,8 +85,7 @@ public class InternalFrameEvent extends AWTEvent {
      *
      * @see JInternalFrame#setIcon
      */
-    public static final int INTERNAL_FRAME_DEICONIFIED = 4
-            + INTERNAL_FRAME_FIRST;
+    public static final int INTERNAL_FRAME_DEICONIFIED = 4 + INTERNAL_FRAME_FIRST;
 
     /**
      * The "window activated" event type. This event indicates that keystrokes
@@ -104,17 +102,16 @@ public class InternalFrameEvent extends AWTEvent {
      *
      * @see JInternalFrame#setSelected
      */
-    public static final int INTERNAL_FRAME_DEACTIVATED = 6
-            + INTERNAL_FRAME_FIRST;
+    public static final int INTERNAL_FRAME_DEACTIVATED = 6 + INTERNAL_FRAME_FIRST;
 
     /**
      * Constructs an <code>InternalFrameEvent</code> object.
      * 
      * @param source
-     *               the <code>JInternalFrame</code> object that originated the
-     *               event
+     *        the <code>JInternalFrame</code> object that originated the
+     *        event
      * @param id
-     *               an integer indicating the type of event
+     *        an integer indicating the type of event
      */
     public InternalFrameEvent(JInternalFrame source, int id) {
         super(source, id);
@@ -164,8 +161,7 @@ public class InternalFrameEvent extends AWTEvent {
      */
 
     public JInternalFrame getInternalFrame() {
-        return (source instanceof JInternalFrame) ? (JInternalFrame) source
-                : null;
+        return (source instanceof JInternalFrame) ? (JInternalFrame) source : null;
     }
 
 }

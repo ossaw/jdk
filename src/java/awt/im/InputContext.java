@@ -21,7 +21,6 @@ import sun.awt.im.InputMethodContext;
  * support interaction with input methods: They let client components control
  * the behavior of input methods, and dispatch events from the client component
  * to the input method.
- *
  * <p>
  * By default, one InputContext instance is created per Window instance, and
  * this input context is shared by all components within the window's container
@@ -29,7 +28,6 @@ import sun.awt.im.InputMethodContext;
  * at any one time within a window, and that the text needs to be committed when
  * moving the focus from one text component to another. If this is not desired,
  * text components can create their own input context instances.
- *
  * <p>
  * The Java Platform supports input methods that have been developed in the Java
  * programming language, using the interfaces in the {@link java.awt.im.spi}
@@ -37,7 +35,6 @@ import sun.awt.im.InputMethodContext;
  * Implementations may also support using the native input methods of the
  * platforms they run on; however, not all platforms and locales provide input
  * methods. Keyboard layouts are provided by the host platform.
- *
  * <p>
  * Input methods are <em>unavailable</em> if (a) no input method written in the
  * Java programming language has been installed and (b) the Java Platform
@@ -74,28 +71,22 @@ public class InputContext {
      * given locale, and returns a value indicating whether such an input method
      * or keyboard layout has been successfully selected. The following steps
      * are taken until an input method has been selected:
-     *
      * <ul>
      * <li>If the currently selected input method or keyboard layout supports
      * the requested locale, it remains selected.</li>
-     *
      * <li>If there is no input method or keyboard layout available that
      * supports the requested locale, the current input method or keyboard
      * layout remains selected.</li>
-     *
      * <li>If the user has previously selected an input method or keyboard
      * layout for the requested locale from the user interface, then the most
      * recently selected such input method or keyboard layout is reselected.
      * </li>
-     *
      * <li>Otherwise, an input method or keyboard layout that supports the
      * requested locale is selected in an implementation dependent way.</li>
-     *
      * </ul>
      * Before switching away from an input method, any currently uncommitted
      * text is committed. If no input method or keyboard layout supporting the
      * requested locale is available, then false is returned.
-     *
      * <p>
      * Not all host operating systems provide API to determine the locale of the
      * currently selected native input method or keyboard layout, and to select
@@ -103,18 +94,17 @@ public class InputContext {
      * systems that don't provide such API, <code>selectInputMethod</code>
      * assumes that native input methods or keyboard layouts provided by the
      * host operating system support only the system's default locale.
-     *
      * <p>
      * A text editing component may call this method, for example, when the user
      * changes the insertion point, so that the user can immediately continue
      * typing in the language of the surrounding text.
      *
      * @param locale
-     *               The desired new locale.
+     *        The desired new locale.
      * @return true if the input method or keyboard layout that's active after
      *         this call supports the desired locale.
      * @exception NullPointerException
-     *                                 if <code>locale</code> is null
+     *            if <code>locale</code> is null
      */
     public boolean selectInputMethod(Locale locale) {
         // real implementation is in sun.awt.im.InputContext
@@ -126,7 +116,6 @@ public class InputContext {
      * layout. Returns null if the input context does not have a current input
      * method or keyboard layout or if the current input method's
      * {@link java.awt.im.spi.InputMethod#getLocale()} method returns null.
-     *
      * <p>
      * Not all host operating systems provide API to determine the locale of the
      * currently selected native input method or keyboard layout. For host
@@ -155,9 +144,9 @@ public class InputContext {
      * has no effect.
      *
      * @param subsets
-     *                The subsets of the Unicode character set from which
-     *                characters
-     *                may be input
+     *        The subsets of the Unicode character set from which
+     *        characters
+     *        may be input
      */
     public void setCharacterSubsets(Subset[] subsets) {
         // real implementation is in sun.awt.im.InputContext
@@ -184,13 +173,13 @@ public class InputContext {
      * composition is enabled.
      *
      * @param enable
-     *               whether to enable the current input method for composition
+     *        whether to enable the current input method for composition
      * @throws UnsupportedOperationException
-     *                                       if there is no current input method
-     *                                       available or the current
-     *                                       input method does not support the
-     *                                       enabling/disabling
-     *                                       operation
+     *         if there is no current input method
+     *         available or the current
+     *         input method does not support the
+     *         enabling/disabling
+     *         operation
      * @see #isCompositionEnabled
      * @since 1.3
      */
@@ -207,11 +196,11 @@ public class InputContext {
      * @return <code>true</code> if the current input method is enabled for
      *         composition; <code>false</code> otherwise
      * @throws UnsupportedOperationException
-     *                                       if there is no current input method
-     *                                       available or the current
-     *                                       input method does not support
-     *                                       checking whether it is enabled
-     *                                       for composition
+     *         if there is no current input method
+     *         available or the current
+     *         input method does not support
+     *         checking whether it is enabled
+     *         for composition
      * @see #setCompositionEnabled
      * @since 1.3
      */
@@ -234,11 +223,10 @@ public class InputContext {
      * <code>InputMethodEvent</code>.
      *
      * @throws UnsupportedOperationException
-     *                                       if there is no current input method
-     *                                       available or the current
-     *                                       input method does not support the
-     *                                       reconversion operation.
-     *
+     *         if there is no current input method
+     *         available or the current
+     *         input method does not support the
+     *         reconversion operation.
      * @since 1.3
      */
     public void reconvert() {
@@ -250,9 +238,9 @@ public class InputContext {
      * input method is available, then the event will never be consumed.
      *
      * @param event
-     *              The event
+     *        The event
      * @exception NullPointerException
-     *                                 if <code>event</code> is null
+     *            if <code>event</code> is null
      */
     public void dispatchEvent(AWTEvent event) {
         // real implementation is in sun.awt.im.InputContext
@@ -268,9 +256,9 @@ public class InputContext {
      * available, then this method has no effect.
      *
      * @param client
-     *               Client component
+     *        Client component
      * @exception NullPointerException
-     *                                 if <code>client</code> is null
+     *            if <code>client</code> is null
      */
     public void removeNotify(Component client) {
         // real implementation is in sun.awt.im.InputContext
@@ -282,13 +270,11 @@ public class InputContext {
      * may commit or delete uncommitted text. Any changes to the text are
      * communicated to the active component using an input method event. If no
      * input methods are available, then this method has no effect.
-     *
      * <p>
      * A text editing component may call this in a variety of situations, for
      * example, when the user moves the insertion point within the text (but
      * outside the composed text), or when the component's text is saved to a
      * file or copied to the clipboard.
-     *
      */
     public void endComposition() {
         // real implementation is in sun.awt.im.InputContext

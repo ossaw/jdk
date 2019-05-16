@@ -11,7 +11,6 @@ import com.sun.source.doctree.*;
  * A TreeVisitor that visits all the child tree nodes. To visit nodes of a
  * particular type, just override the corresponding visitXYZ method. Inside your
  * method, call super.visitXYZ to visit descendant nodes.
- *
  * <p>
  * The default implementation of the visitXYZ methods will determine a result as
  * follows:
@@ -28,7 +27,6 @@ import com.sun.source.doctree.*;
  * such that the result of the visitXYZ method will be the result of the last
  * child scanned.
  * </ul>
- *
  * <p>
  * Here is an example to count the number of erroneous nodes in a tree:
  * 

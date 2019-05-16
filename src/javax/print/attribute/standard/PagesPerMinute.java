@@ -23,8 +23,7 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PagesPerMinute extends IntegerSyntax implements
-        PrintServiceAttribute {
+public final class PagesPerMinute extends IntegerSyntax implements PrintServiceAttribute {
 
     private static final long serialVersionUID = -6366403993072862015L;
 
@@ -32,12 +31,11 @@ public final class PagesPerMinute extends IntegerSyntax implements
      * Construct a new pages per minute attribute with the given integer value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 0.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 0.
      */
     public PagesPerMinute(int value) {
         super(value, 0, Integer.MAX_VALUE);
@@ -55,8 +53,7 @@ public final class PagesPerMinute extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this pages per
      *         minute attribute, false otherwise.
      */

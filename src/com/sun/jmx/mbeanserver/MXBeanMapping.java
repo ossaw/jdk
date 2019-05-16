@@ -19,7 +19,6 @@ import javax.management.openmbean.OpenType;
  * use an {@link MXBeanMappingClass} annotation on your custom Java types, or
  * include this MXBeanMapping in an {@link MXBeanMappingFactory}.
  * </p>
- *
  * <p>
  * For example, suppose we have a class {@code MyLinkedList}, which looks like
  * this:
@@ -32,7 +31,6 @@ import javax.management.openmbean.OpenType;
  *     public MyLinkedList getNext() {...}
  * }
  * </pre>
- *
  * <p>
  * This is not a valid type for MXBeans, because it contains a self-referential
  * property "next" defined by the {@code getNext()} method. MXBeans do not
@@ -41,7 +39,6 @@ import javax.management.openmbean.OpenType;
  * {@code MyLinkedList}, that will be mapped into a {@code String[]}, which is a
  * valid Open Type.
  * </p>
- *
  * <p>
  * To define this mapping, we first subclass {@code MXBeanMapping}:
  * </p>
@@ -73,7 +70,6 @@ import javax.management.openmbean.OpenType;
  *     }
  * }
  * </pre>
- *
  * <p>
  * The call to the superclass constructor specifies what the original Java type
  * is ({@code MyLinkedList.class}) and what Open Type it is mapped to ({@code
@@ -82,7 +78,6 @@ import javax.management.openmbean.OpenType;
  * String[]}) to the Java type ({@code MyLinkedList}), and the {@code
  * toOpenValue} method says how we go from the Java type to the Open Type.
  * </p>
- *
  * <p>
  * With this mapping defined, we can annotate the {@code MyLinkedList} class
  * appropriately:
@@ -92,11 +87,9 @@ import javax.management.openmbean.OpenType;
  * {@literal @MXBeanMappingClass}(MyLinkedListMapping.class)
  * public class MyLinkedList {...}
  * </pre>
- *
  * <p>
  * Now we can use {@code MyLinkedList} in an MXBean interface and it will work.
  * </p>
- *
  * <p>
  * If we are unable to modify the {@code MyLinkedList} class, we can define an
  * {@link MXBeanMappingFactory}. See the documentation of that class for further
@@ -117,13 +110,12 @@ public abstract class MXBeanMapping {
      * </p>
      *
      * @param javaType
-     *                 the Java type (for example, {@code MyLinkedList}).
+     *        the Java type (for example, {@code MyLinkedList}).
      * @param openType
-     *                 the Open Type (for example, {@code
+     *        the Open Type (for example, {@code
      * ArrayType.getArrayType(SimpleType.STRING)})
-     *
      * @throws NullPointerException
-     *                              if either argument is null.
+     *         if either argument is null.
      */
     protected MXBeanMapping(Type javaType, OpenType<?> openType) {
         if (javaType == null || openType == null)
@@ -174,8 +166,7 @@ public abstract class MXBeanMapping {
             return (Class<?>) javaType;
         try {
             String className = openType.getClassName();
-            return Class.forName(className, false, MXBeanMapping.class
-                    .getClassLoader());
+            return Class.forName(className, false, MXBeanMapping.class.getClassLoader());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e); // should not happen
         }
@@ -186,26 +177,24 @@ public abstract class MXBeanMapping {
      * Convert an instance of the Open Type into the Java type.
      * 
      * @param openValue
-     *                  the value to be converted.
+     *        the value to be converted.
      * @return the converted value.
      * @throws InvalidObjectException
-     *                                if the value cannot be converted.
+     *         if the value cannot be converted.
      */
-    public abstract Object fromOpenValue(Object openValue)
-            throws InvalidObjectException;
+    public abstract Object fromOpenValue(Object openValue) throws InvalidObjectException;
 
     /**
      * <p>
      * Convert an instance of the Java type into the Open Type.
      * 
      * @param javaValue
-     *                  the value to be converted.
+     *        the value to be converted.
      * @return the converted value.
      * @throws OpenDataException
-     *                           if the value cannot be converted.
+     *         if the value cannot be converted.
      */
-    public abstract Object toOpenValue(Object javaValue)
-            throws OpenDataException;
+    public abstract Object toOpenValue(Object javaValue) throws OpenDataException;
 
     /**
      * <p>
@@ -219,9 +208,9 @@ public abstract class MXBeanMapping {
      * </p>
      * 
      * @throws InvalidObjectException
-     *                                if {@code fromOpenValue} will throw an
-     *                                exception no matter
-     *                                what its argument is.
+     *         if {@code fromOpenValue} will throw an
+     *         exception no matter
+     *         what its argument is.
      */
     public void checkReconstructible() throws InvalidObjectException {}
 }

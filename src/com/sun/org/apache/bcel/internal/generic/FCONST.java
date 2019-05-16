@@ -59,8 +59,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class FCONST extends Instruction implements ConstantPushInstruction,
-        TypedInstruction {
+public class FCONST extends Instruction implements ConstantPushInstruction, TypedInstruction {
     private float value;
 
     /**
@@ -79,8 +78,7 @@ public class FCONST extends Instruction implements ConstantPushInstruction,
         else if (f == 2.0)
             opcode = com.sun.org.apache.bcel.internal.Constants.FCONST_2;
         else
-            throw new ClassGenException(
-                    "FCONST can be used only for 0.0, 1.0 and 2.0: " + f);
+            throw new ClassGenException("FCONST can be used only for 0.0, 1.0 and 2.0: " + f);
 
         value = f;
     }
@@ -103,7 +101,7 @@ public class FCONST extends Instruction implements ConstantPushInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitPushInstruction(this);

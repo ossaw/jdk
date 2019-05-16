@@ -16,8 +16,7 @@ import com.sun.corba.se.spi.ior.ObjectKey;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class LocateRequestMessage_1_0 extends Message_1_0 implements
-        LocateRequestMessage {
+public final class LocateRequestMessage_1_0 extends Message_1_0 implements LocateRequestMessage {
 
     // Instance variables
 

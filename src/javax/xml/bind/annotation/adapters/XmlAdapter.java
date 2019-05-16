@@ -7,11 +7,9 @@ package javax.xml.bind.annotation.adapters;
 
 /**
  * Adapts a Java type for custom marshaling.
- *
  * <p>
  * <b> Usage: </b>
  * </p>
- *
  * <p>
  * Some Java types do not map naturally to a XML representation, for example
  * <tt>HashMap</tt> or other non JavaBean classes. Conversely, a XML
@@ -22,30 +20,24 @@ package javax.xml.bind.annotation.adapters;
  * MyXmlGregorianCalendar, for example. In both cases, there is a mismatch
  * between <i> bound type </i>, used by an application to access XML content and
  * the <i> value type</i>, that is mapped to an XML representation.
- *
  * <p>
  * This abstract class defines methods for adapting a bound type to a value type
  * or vice versa. The methods are invoked by the JAXB binding framework during
  * marshaling and unmarshalling:
- *
  * <ul>
  * <li><b> XmlAdapter.marshal(...): </b> During marshalling, JAXB binding
  * framework invokes XmlAdapter.marshal(..) to adapt a bound type to value type,
  * which is then marshaled to XML representation.</li>
- *
  * <li><b> XmlAdapter.unmarshal(...): </b> During unmarshalling, JAXB binding
  * framework first unmarshals XML representation to a value type and then
  * invokes XmlAdapter.unmarshal(..) to adapt the value type to a bound type.
  * </li>
  * </ul>
- *
  * Writing an adapter therefore involves the following steps:
- *
  * <ul>
  * <li>Write an adapter that implements this abstract class.</li>
  * <li>Install the adapter using the annotation {@link XmlJavaTypeAdapter}</li>
  * </ul>
- *
  * <p>
  * <b>Example:</b> Customized mapping of <tt>HashMap</tt>
  * </p>
@@ -53,7 +45,6 @@ package javax.xml.bind.annotation.adapters;
  * The following example illustrates the use of <tt>&#64;XmlAdapter</tt> and
  * <tt>&#64;XmlJavaTypeAdapter</tt> to customize the mapping of a
  * <tt>HashMap</tt>.
- *
  * <p>
  * <b> Step 1: </b> Determine the desired XML representation for HashMap.
  *
@@ -64,7 +55,6 @@ package javax.xml.bind.annotation.adapters;
  *         ...
  *       &lt;/hashmap>
  * </pre>
- *
  * <p>
  * <b> Step 2: </b> Determine the schema definition that the desired XML
  * representation shown above should follow.
@@ -85,9 +75,7 @@ package javax.xml.bind.annotation.adapters;
  *         &lt;/xs:extension>
  *       &lt;/xs:simpleContent>
  *     &lt;/xs:complexType>
- *
  * </pre>
- *
  * <p>
  * <b> Step 3: </b> Write value types that can generate the above schema
  * definition.
@@ -105,7 +93,6 @@ package javax.xml.bind.annotation.adapters;
  *     public String value;
  * }
  * </pre>
- *
  * <p>
  * <b> Step 4: </b> Write the adapter that adapts the value type, MyHashMapType
  * to a bound type, HashMap, used by the application.
@@ -113,9 +100,7 @@ package javax.xml.bind.annotation.adapters;
  * <pre>
  *     public final class MyHashMapAdapter extends
  *                        XmlAdapter&lt;MyHashMapType,HashMap> { ... }
- *
  * </pre>
- *
  * <p>
  * <b> Step 5: </b> Use the adapter.
  *
@@ -143,7 +128,6 @@ package javax.xml.bind.annotation.adapters;
  *        representation through the <tt>ValueType</tt>.
  * @param <ValueType>
  *        The type that JAXB knows how to handle out of the box.
- *
  * @author
  *         <ul>
  *         <li>Sekhar Vajjhala, Sun Microsystems Inc.</li>
@@ -163,12 +147,12 @@ public abstract class XmlAdapter<ValueType, BoundType> {
      * Convert a value type to a bound type.
      *
      * @param v
-     *          The value to be converted. Can be null.
+     *        The value to be converted. Can be null.
      * @throws Exception
-     *                   if there's an error during the conversion. The caller
-     *                   is
-     *                   responsible for reporting the error to the user through
-     *                   {@link javax.xml.bind.ValidationEventHandler}.
+     *         if there's an error during the conversion. The caller
+     *         is
+     *         responsible for reporting the error to the user through
+     *         {@link javax.xml.bind.ValidationEventHandler}.
      */
     public abstract BoundType unmarshal(ValueType v) throws Exception;
 
@@ -176,12 +160,12 @@ public abstract class XmlAdapter<ValueType, BoundType> {
      * Convert a bound type to a value type.
      *
      * @param v
-     *          The value to be convereted. Can be null.
+     *        The value to be convereted. Can be null.
      * @throws Exception
-     *                   if there's an error during the conversion. The caller
-     *                   is
-     *                   responsible for reporting the error to the user through
-     *                   {@link javax.xml.bind.ValidationEventHandler}.
+     *         if there's an error during the conversion. The caller
+     *         is
+     *         responsible for reporting the error to the user through
+     *         {@link javax.xml.bind.ValidationEventHandler}.
      */
     public abstract ValueType marshal(BoundType v) throws Exception;
 }

@@ -32,19 +32,19 @@ public final class XPathFilter2ParameterSpec implements TransformParameterSpec {
      * Creates an <code>XPathFilter2ParameterSpec</code>.
      *
      * @param xPathList
-     *                  a list of one or more {@link XPathType} objects. The
-     *                  list is
-     *                  defensively copied to protect against subsequent
-     *                  modification.
+     *        a list of one or more {@link XPathType} objects. The
+     *        list is
+     *        defensively copied to protect against subsequent
+     *        modification.
      * @throws ClassCastException
-     *                                  if <code>xPathList</code> contains any
-     *                                  entries that are not
-     *                                  of type {@link XPathType}
+     *         if <code>xPathList</code> contains any
+     *         entries that are not
+     *         of type {@link XPathType}
      * @throws IllegalArgumentException
-     *                                  if <code>xPathList</code> is empty
+     *         if <code>xPathList</code> is empty
      * @throws NullPointerException
-     *                                  if <code>xPathList</code> is
-     *                                  <code>null</code>
+     *         if <code>xPathList</code> is
+     *         <code>null</code>
      */
     @SuppressWarnings("rawtypes")
     public XPathFilter2ParameterSpec(List xPathList) {
@@ -58,8 +58,7 @@ public final class XPathFilter2ParameterSpec implements TransformParameterSpec {
         int size = xPathListCopy.size();
         for (int i = 0; i < size; i++) {
             if (!(xPathListCopy.get(i) instanceof XPathType)) {
-                throw new ClassCastException("xPathList[" + i
-                        + "] is not a valid type");
+                throw new ClassCastException("xPathList[" + i + "] is not a valid type");
             }
         }
 

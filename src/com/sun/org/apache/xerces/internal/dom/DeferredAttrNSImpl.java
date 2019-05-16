@@ -27,13 +27,11 @@ package com.sun.org.apache.xerces.internal.dom;
  * DeferredAttrNSImpl is to AttrNSImpl, what DeferredAttrImpl is to AttrImpl.
  *
  * @xerces.internal
- *
  * @author Andy Clark, IBM
  * @author Arnaud Le Hors, IBM
  * @see DeferredAttrImpl
  */
-public final class DeferredAttrNSImpl extends AttrNSImpl implements
-        DeferredNode {
+public final class DeferredAttrNSImpl extends AttrNSImpl implements DeferredNode {
 
     //
     // Constants

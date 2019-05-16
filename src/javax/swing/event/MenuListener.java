@@ -16,7 +16,7 @@ public interface MenuListener extends EventListener {
      * Invoked when a menu is selected.
      *
      * @param e
-     *          a MenuEvent object
+     *        a MenuEvent object
      */
     void menuSelected(MenuEvent e);
 
@@ -24,7 +24,7 @@ public interface MenuListener extends EventListener {
      * Invoked when the menu is deselected.
      *
      * @param e
-     *          a MenuEvent object
+     *        a MenuEvent object
      */
     void menuDeselected(MenuEvent e);
 
@@ -32,7 +32,7 @@ public interface MenuListener extends EventListener {
      * Invoked when the menu is canceled.
      *
      * @param e
-     *          a MenuEvent object
+     *        a MenuEvent object
      */
     void menuCanceled(MenuEvent e);
 }

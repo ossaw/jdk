@@ -14,7 +14,6 @@ package com.sun.javadoc;
  * @see MethodDoc
  * @see FieldDoc
  * @see ClassDoc
- *
  * @author Kaiyang Liu (original)
  * @author Robert Field (rewrite)
  */

@@ -13,8 +13,7 @@ public class ORBDefaultInitRefResolverImpl implements Resolver {
     Operation urlHandler;
     String orbDefaultInitRef;
 
-    public ORBDefaultInitRefResolverImpl(Operation urlHandler,
-            String orbDefaultInitRef) {
+    public ORBDefaultInitRefResolverImpl(Operation urlHandler, String orbDefaultInitRef) {
         this.urlHandler = urlHandler;
 
         // XXX Validate the URL?

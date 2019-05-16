@@ -26,9 +26,7 @@ import com.sun.org.apache.xerces.internal.xs.datatypes.ByteList;
  * <code>com.sun.org.apache.xerces.internal.xs.datatypes.ByteList</code>.
  *
  * @xerces.internal
- *
  * @author Ankit Pasricha, IBM
- *
  * @version $Id: ByteListImpl.java,v 1.7 2010-11-01 04:39:46 joehw Exp $
  */
 public class ByteListImpl extends AbstractList implements ByteList {
@@ -56,8 +54,8 @@ public class ByteListImpl extends AbstractList implements ByteList {
      * list.
      * 
      * @param item
-     *             <code>byte</code> whose presence in this list is to be
-     *             tested.
+     *        <code>byte</code> whose presence in this list is to be
+     *        tested.
      * @return True if this list contains the <code>byte</code>
      *         <code>item</code>.
      */
@@ -75,13 +73,13 @@ public class ByteListImpl extends AbstractList implements ByteList {
      * at 0.
      * 
      * @param index
-     *              index into the collection.
+     *        index into the collection.
      * @return The <code>byte</code> at the <code>index</code>th position in the
      *         <code>ByteList</code>.
      * @exception XSException
-     *                        INDEX_SIZE_ERR: if <code>index</code> is greater
-     *                        than or
-     *                        equal to the number of objects in the list.
+     *            INDEX_SIZE_ERR: if <code>index</code> is greater
+     *            than or
+     *            equal to the number of objects in the list.
      */
     public byte item(int index) throws XSException {
 

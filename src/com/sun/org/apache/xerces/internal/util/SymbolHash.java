@@ -74,7 +74,7 @@ public class SymbolHash {
      * Constructs a key table with a given size.
      *
      * @param size
-     *             the size of the key table.
+     *        the size of the key table.
      */
     public SymbolHash(int size) {
         fTableSize = size;
@@ -113,8 +113,7 @@ public class SymbolHash {
             // would exceed the number of buckets.
             rehash();
             bucket = hash % fTableSize;
-        } else if (collisionCount >= MAX_HASH_COLLISIONS
-                && key instanceof String) {
+        } else if (collisionCount >= MAX_HASH_COLLISIONS && key instanceof String) {
             // Select a new hash function and rehash the table if
             // MAX_HASH_COLLISIONS is exceeded.
             rebalance();
@@ -155,9 +154,9 @@ public class SymbolHash {
      * Add all values to the given array. The array must have enough entry.
      *
      * @param elements
-     *                 the array to store the elements
+     *        the array to store the elements
      * @param from
-     *                 where to start store element in the array
+     *        where to start store element in the array
      * @return number of elements copied to the array
      */
     public int getValues(Object[] elements, int from) {
@@ -191,9 +190,7 @@ public class SymbolHash {
     public SymbolHash makeClone() {
         SymbolHash newTable = new SymbolHash(fTableSize);
         newTable.fNum = fNum;
-        newTable.fHashMultipliers = fHashMultipliers != null
-                ? (int[]) fHashMultipliers.clone()
-                : null;
+        newTable.fHashMultipliers = fHashMultipliers != null ? (int[]) fHashMultipliers.clone() : null;
         for (int i = 0; i < fTableSize; i++) {
             if (fBuckets[i] != null) {
                 newTable.fBuckets[i] = fBuckets[i].makeClone();
@@ -227,7 +224,7 @@ public class SymbolHash {
      * Returns a hashcode value for the specified key.
      *
      * @param key
-     *            The key to hash.
+     *        The key to hash.
      */
     protected int hash(Object key) {
         if (fHashMultipliers == null || !(key instanceof String)) {

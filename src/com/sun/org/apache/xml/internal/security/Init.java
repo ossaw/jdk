@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -61,8 +59,7 @@ public class Init {
     public static final String CONF_NS = "http://www.xmlsecurity.org/NS/#configuration";
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(Init.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(Init.class.getName());
 
     /** Field alreadyInitialized */
     private static boolean alreadyInitialized = false;
@@ -78,24 +75,21 @@ public class Init {
 
     /**
      * Method init
-     *
      */
     public static synchronized void init() {
         if (alreadyInitialized) {
             return;
         }
 
-        InputStream is = AccessController.doPrivileged(
-                new PrivilegedAction<InputStream>() {
-                    public InputStream run() {
-                        String cfile = System.getProperty(
-                                "com.sun.org.apache.xml.internal.security.resource.config");
-                        if (cfile == null) {
-                            return null;
-                        }
-                        return getClass().getResourceAsStream(cfile);
-                    }
-                });
+        InputStream is = AccessController.doPrivileged(new PrivilegedAction<InputStream>() {
+            public InputStream run() {
+                String cfile = System.getProperty("com.sun.org.apache.xml.internal.security.resource.config");
+                if (cfile == null) {
+                    return null;
+                }
+                return getClass().getResourceAsStream(cfile);
+            }
+        });
         if (is == null) {
             dynamicInit();
         } else {
@@ -120,52 +114,50 @@ public class Init {
         I18n.init("en", "US");
 
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE,
-                    "Registering default algorithms");
+            log.log(java.util.logging.Level.FINE, "Registering default algorithms");
         }
         try {
-            AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<Void>() {
-                        @Override
-                        public Void run() throws XMLSecurityException {
-                            //
-                            // Bind the default prefixes
-                            //
-                            ElementProxy.registerDefaultPrefixes();
+            AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
+                @Override
+                public Void run() throws XMLSecurityException {
+                    //
+                    // Bind the default prefixes
+                    //
+                    ElementProxy.registerDefaultPrefixes();
 
-                            //
-                            // Set the default Transforms
-                            //
-                            Transform.registerDefaultAlgorithms();
+                    //
+                    // Set the default Transforms
+                    //
+                    Transform.registerDefaultAlgorithms();
 
-                            //
-                            // Set the default signature algorithms
-                            //
-                            SignatureAlgorithm.registerDefaultAlgorithms();
+                    //
+                    // Set the default signature algorithms
+                    //
+                    SignatureAlgorithm.registerDefaultAlgorithms();
 
-                            //
-                            // Set the default JCE algorithms
-                            //
-                            JCEMapper.registerDefaultAlgorithms();
+                    //
+                    // Set the default JCE algorithms
+                    //
+                    JCEMapper.registerDefaultAlgorithms();
 
-                            //
-                            // Set the default c14n algorithms
-                            //
-                            Canonicalizer.registerDefaultAlgorithms();
+                    //
+                    // Set the default c14n algorithms
+                    //
+                    Canonicalizer.registerDefaultAlgorithms();
 
-                            //
-                            // Register the default resolvers
-                            //
-                            ResourceResolver.registerDefaultResolvers();
+                    //
+                    // Register the default resolvers
+                    //
+                    ResourceResolver.registerDefaultResolvers();
 
-                            //
-                            // Register the default key resolvers
-                            //
-                            KeyResolver.registerDefaultResolvers();
+                    //
+                    // Register the default key resolvers
+                    //
+                    KeyResolver.registerDefaultResolvers();
 
-                            return null;
-                        }
-                    });
+                    return null;
+                }
+            });
         } catch (PrivilegedActionException ex) {
             XMLSecurityException xse = (XMLSecurityException) ex.getException();
             log.log(java.util.logging.Level.SEVERE, xse.getMessage(), xse);
@@ -180,8 +172,7 @@ public class Init {
         try {
             /* read library configuration file */
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
-                    Boolean.TRUE);
+            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
 
             dbf.setNamespaceAware(true);
             dbf.setValidating(false);
@@ -199,8 +190,7 @@ public class Init {
                         "Error in reading configuration file - Configuration element not found");
                 return;
             }
-            for (Node el = config.getFirstChild(); el != null; el = el
-                    .getNextSibling()) {
+            for (Node el = config.getFirstChild(); el != null; el = el.getNextSibling()) {
                 if (Node.ELEMENT_NODE != el.getNodeType()) {
                     continue;
                 }
@@ -208,62 +198,52 @@ public class Init {
                 if (tag.equals("ResourceBundles")) {
                     Element resource = (Element) el;
                     /* configure internationalization */
-                    Attr langAttr = resource.getAttributeNode(
-                            "defaultLanguageCode");
-                    Attr countryAttr = resource.getAttributeNode(
-                            "defaultCountryCode");
-                    String languageCode = (langAttr == null) ? null
-                            : langAttr.getNodeValue();
-                    String countryCode = (countryAttr == null) ? null
-                            : countryAttr.getNodeValue();
+                    Attr langAttr = resource.getAttributeNode("defaultLanguageCode");
+                    Attr countryAttr = resource.getAttributeNode("defaultCountryCode");
+                    String languageCode = (langAttr == null) ? null : langAttr.getNodeValue();
+                    String countryCode = (countryAttr == null) ? null : countryAttr.getNodeValue();
                     I18n.init(languageCode, countryCode);
                 }
 
                 if (tag.equals("CanonicalizationMethods")) {
-                    Element[] list = XMLUtils.selectNodes(el.getFirstChild(),
-                            CONF_NS, "CanonicalizationMethod");
+                    Element[] list = XMLUtils.selectNodes(el.getFirstChild(), CONF_NS,
+                            "CanonicalizationMethod");
 
                     for (int i = 0; i < list.length; i++) {
                         String uri = list[i].getAttributeNS(null, "URI");
-                        String javaClass = list[i].getAttributeNS(null,
-                                "JAVACLASS");
+                        String javaClass = list[i].getAttributeNS(null, "JAVACLASS");
                         try {
                             Canonicalizer.register(uri, javaClass);
                             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                                log.log(java.util.logging.Level.FINE,
-                                        "Canonicalizer.register(" + uri + ", "
-                                                + javaClass + ")");
+                                log.log(java.util.logging.Level.FINE, "Canonicalizer.register(" + uri + ", "
+                                        + javaClass + ")");
                             }
                         } catch (ClassNotFoundException e) {
                             Object exArgs[] = { uri, javaClass };
-                            log.log(java.util.logging.Level.SEVERE, I18n
-                                    .translate("algorithm.classDoesNotExist",
-                                            exArgs));
+                            log.log(java.util.logging.Level.SEVERE, I18n.translate(
+                                    "algorithm.classDoesNotExist", exArgs));
                         }
                     }
                 }
 
                 if (tag.equals("TransformAlgorithms")) {
-                    Element[] tranElem = XMLUtils.selectNodes(el
-                            .getFirstChild(), CONF_NS, "TransformAlgorithm");
+                    Element[] tranElem = XMLUtils.selectNodes(el.getFirstChild(), CONF_NS,
+                            "TransformAlgorithm");
 
                     for (int i = 0; i < tranElem.length; i++) {
                         String uri = tranElem[i].getAttributeNS(null, "URI");
-                        String javaClass = tranElem[i].getAttributeNS(null,
-                                "JAVACLASS");
+                        String javaClass = tranElem[i].getAttributeNS(null, "JAVACLASS");
                         try {
                             Transform.register(uri, javaClass);
                             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                                log.log(java.util.logging.Level.FINE,
-                                        "Transform.register(" + uri + ", "
-                                                + javaClass + ")");
+                                log.log(java.util.logging.Level.FINE, "Transform.register(" + uri + ", "
+                                        + javaClass + ")");
                             }
                         } catch (ClassNotFoundException e) {
                             Object exArgs[] = { uri, javaClass };
 
-                            log.log(java.util.logging.Level.SEVERE, I18n
-                                    .translate("algorithm.classDoesNotExist",
-                                            exArgs));
+                            log.log(java.util.logging.Level.SEVERE, I18n.translate(
+                                    "algorithm.classDoesNotExist", exArgs));
                         } catch (NoClassDefFoundError ex) {
                             log.log(java.util.logging.Level.WARNING,
                                     "Not able to found dependencies for algorithm, I'll keep working.");
@@ -272,107 +252,86 @@ public class Init {
                 }
 
                 if ("JCEAlgorithmMappings".equals(tag)) {
-                    Node algorithmsNode = ((Element) el).getElementsByTagName(
-                            "Algorithms").item(0);
+                    Node algorithmsNode = ((Element) el).getElementsByTagName("Algorithms").item(0);
                     if (algorithmsNode != null) {
-                        Element[] algorithms = XMLUtils.selectNodes(
-                                algorithmsNode.getFirstChild(), CONF_NS,
+                        Element[] algorithms = XMLUtils.selectNodes(algorithmsNode.getFirstChild(), CONF_NS,
                                 "Algorithm");
                         for (int i = 0; i < algorithms.length; i++) {
                             Element element = algorithms[i];
                             String id = element.getAttribute("URI");
-                            JCEMapper.register(id, new JCEMapper.Algorithm(
-                                    element));
+                            JCEMapper.register(id, new JCEMapper.Algorithm(element));
                         }
                     }
                 }
 
                 if (tag.equals("SignatureAlgorithms")) {
-                    Element[] sigElems = XMLUtils.selectNodes(el
-                            .getFirstChild(), CONF_NS, "SignatureAlgorithm");
+                    Element[] sigElems = XMLUtils.selectNodes(el.getFirstChild(), CONF_NS,
+                            "SignatureAlgorithm");
 
                     for (int i = 0; i < sigElems.length; i++) {
                         String uri = sigElems[i].getAttributeNS(null, "URI");
-                        String javaClass = sigElems[i].getAttributeNS(null,
-                                "JAVACLASS");
+                        String javaClass = sigElems[i].getAttributeNS(null, "JAVACLASS");
 
                         /** $todo$ handle registering */
 
                         try {
                             SignatureAlgorithm.register(uri, javaClass);
                             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                                log.log(java.util.logging.Level.FINE,
-                                        "SignatureAlgorithm.register(" + uri
-                                                + ", " + javaClass + ")");
+                                log.log(java.util.logging.Level.FINE, "SignatureAlgorithm.register(" + uri
+                                        + ", " + javaClass + ")");
                             }
                         } catch (ClassNotFoundException e) {
                             Object exArgs[] = { uri, javaClass };
 
-                            log.log(java.util.logging.Level.SEVERE, I18n
-                                    .translate("algorithm.classDoesNotExist",
-                                            exArgs));
+                            log.log(java.util.logging.Level.SEVERE, I18n.translate(
+                                    "algorithm.classDoesNotExist", exArgs));
                         }
                     }
                 }
 
                 if (tag.equals("ResourceResolvers")) {
-                    Element[] resolverElem = XMLUtils.selectNodes(el
-                            .getFirstChild(), CONF_NS, "Resolver");
+                    Element[] resolverElem = XMLUtils.selectNodes(el.getFirstChild(), CONF_NS, "Resolver");
 
                     for (int i = 0; i < resolverElem.length; i++) {
-                        String javaClass = resolverElem[i].getAttributeNS(null,
-                                "JAVACLASS");
-                        String description = resolverElem[i].getAttributeNS(
-                                null, "DESCRIPTION");
+                        String javaClass = resolverElem[i].getAttributeNS(null, "JAVACLASS");
+                        String description = resolverElem[i].getAttributeNS(null, "DESCRIPTION");
 
-                        if ((description != null) && (description
-                                .length() > 0)) {
+                        if ((description != null) && (description.length() > 0)) {
                             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                                log.log(java.util.logging.Level.FINE,
-                                        "Register Resolver: " + javaClass + ": "
-                                                + description);
+                                log.log(java.util.logging.Level.FINE, "Register Resolver: " + javaClass + ": "
+                                        + description);
                             }
                         } else {
                             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                                log.log(java.util.logging.Level.FINE,
-                                        "Register Resolver: " + javaClass
-                                                + ": For unknown purposes");
+                                log.log(java.util.logging.Level.FINE, "Register Resolver: " + javaClass
+                                        + ": For unknown purposes");
                             }
                         }
                         try {
                             ResourceResolver.register(javaClass);
                         } catch (Throwable e) {
-                            log.log(java.util.logging.Level.WARNING,
-                                    "Cannot register:" + javaClass
-                                            + " perhaps some needed jars are not installed",
-                                    e);
+                            log.log(java.util.logging.Level.WARNING, "Cannot register:" + javaClass
+                                    + " perhaps some needed jars are not installed", e);
                         }
                     }
                 }
 
                 if (tag.equals("KeyResolver")) {
-                    Element[] resolverElem = XMLUtils.selectNodes(el
-                            .getFirstChild(), CONF_NS, "Resolver");
-                    List<String> classNames = new ArrayList<String>(
-                            resolverElem.length);
+                    Element[] resolverElem = XMLUtils.selectNodes(el.getFirstChild(), CONF_NS, "Resolver");
+                    List<String> classNames = new ArrayList<String>(resolverElem.length);
                     for (int i = 0; i < resolverElem.length; i++) {
-                        String javaClass = resolverElem[i].getAttributeNS(null,
-                                "JAVACLASS");
-                        String description = resolverElem[i].getAttributeNS(
-                                null, "DESCRIPTION");
+                        String javaClass = resolverElem[i].getAttributeNS(null, "JAVACLASS");
+                        String description = resolverElem[i].getAttributeNS(null, "DESCRIPTION");
 
-                        if ((description != null) && (description
-                                .length() > 0)) {
+                        if ((description != null) && (description.length() > 0)) {
                             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                                log.log(java.util.logging.Level.FINE,
-                                        "Register Resolver: " + javaClass + ": "
-                                                + description);
+                                log.log(java.util.logging.Level.FINE, "Register Resolver: " + javaClass + ": "
+                                        + description);
                             }
                         } else {
                             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                                log.log(java.util.logging.Level.FINE,
-                                        "Register Resolver: " + javaClass
-                                                + ": For unknown purposes");
+                                log.log(java.util.logging.Level.FINE, "Register Resolver: " + javaClass
+                                        + ": For unknown purposes");
                             }
                         }
                         classNames.add(javaClass);
@@ -382,21 +341,17 @@ public class Init {
 
                 if (tag.equals("PrefixMappings")) {
                     if (log.isLoggable(java.util.logging.Level.FINE)) {
-                        log.log(java.util.logging.Level.FINE,
-                                "Now I try to bind prefixes:");
+                        log.log(java.util.logging.Level.FINE, "Now I try to bind prefixes:");
                     }
 
-                    Element[] nl = XMLUtils.selectNodes(el.getFirstChild(),
-                            CONF_NS, "PrefixMapping");
+                    Element[] nl = XMLUtils.selectNodes(el.getFirstChild(), CONF_NS, "PrefixMapping");
 
                     for (int i = 0; i < nl.length; i++) {
-                        String namespace = nl[i].getAttributeNS(null,
-                                "namespace");
+                        String namespace = nl[i].getAttributeNS(null, "namespace");
                         String prefix = nl[i].getAttributeNS(null, "prefix");
                         if (log.isLoggable(java.util.logging.Level.FINE)) {
-                            log.log(java.util.logging.Level.FINE,
-                                    "Now I try to bind " + prefix + " to "
-                                            + namespace);
+                            log.log(java.util.logging.Level.FINE, "Now I try to bind " + prefix + " to "
+                                    + namespace);
                         }
                         ElementProxy.setDefaultPrefix(namespace, prefix);
                     }

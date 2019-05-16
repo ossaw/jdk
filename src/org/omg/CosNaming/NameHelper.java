@@ -14,16 +14,14 @@ package org.omg.CosNaming;
 abstract public class NameHelper {
     private static String _id = "IDL:omg.org/CosNaming/Name:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.CosNaming.NameComponent[] that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.CosNaming.NameComponent[] that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static org.omg.CosNaming.NameComponent[] extract(
-            org.omg.CORBA.Any a) {
+    public static org.omg.CosNaming.NameComponent[] extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -32,10 +30,9 @@ abstract public class NameHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CosNaming.NameComponentHelper.type();
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CosNaming.NameHelper.id(), "Name",
                     __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.CosNaming.NameHelper.id(), "Name", __typeCode);
         }
         return __typeCode;
     }
@@ -44,8 +41,7 @@ abstract public class NameHelper {
         return _id;
     }
 
-    public static org.omg.CosNaming.NameComponent[] read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CosNaming.NameComponent[] read(org.omg.CORBA.portable.InputStream istream) {
         org.omg.CosNaming.NameComponent value[] = null;
         int _len0 = istream.read_long();
         value = new org.omg.CosNaming.NameComponent[_len0];

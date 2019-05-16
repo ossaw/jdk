@@ -10,7 +10,6 @@ package java.lang;
  * {@code newInstance} method in class {@code Class}, but the specified class
  * object cannot be instantiated. The instantiation can fail for a variety of
  * reasons including but not limited to:
- *
  * <ul>
  * <li>the class object represents an abstract class, an interface, an array
  * class, a primitive type, or {@code void}
@@ -36,7 +35,7 @@ public class InstantiationException extends ReflectiveOperationException {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public InstantiationException(String s) {
         super(s);

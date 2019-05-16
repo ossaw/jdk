@@ -11,18 +11,15 @@ import java.util.Locale;
  * Interface for diagnostics from tools. A diagnostic usually reports a problem
  * at a specific position in a source file. However, not all diagnostics are
  * associated with a position or a file.
- *
  * <p>
  * A position is a zero-based character offset from the beginning of a file.
  * Negative values (except {@link #NOPOS}) are not valid positions.
- *
  * <p>
  * Line and column numbers begin at 1. Negative values (except {@link #NOPOS})
  * and 0 are not valid line or column numbers.
  *
  * @param <S>
  *        the type of source object used by this diagnostic
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6
@@ -31,7 +28,6 @@ public interface Diagnostic<S> {
 
     /**
      * Kinds of diagnostics, for example, error or warning.
-     *
      * The kind of a diagnostic can be used to determine how the diagnostic
      * should be presented to the user. For example, errors might be colored red
      * or prefixed with the word "Error", while warnings might be colored yellow
@@ -41,30 +37,30 @@ public interface Diagnostic<S> {
      * warnings as errors.
      */
     enum Kind {
-    /**
-     * Problem which prevents the tool's normal completion.
-     */
-    ERROR,
-    /**
-     * Problem which does not usually prevent the tool from completing
-     * normally.
-     */
-    WARNING,
-    /**
-     * Problem similar to a warning, but is mandated by the tool's
-     * specification. For example, the Java&trade; Language Specification
-     * mandates warnings on certain unchecked operations and the use of
-     * deprecated methods.
-     */
-    MANDATORY_WARNING,
-    /**
-     * Informative message from the tool.
-     */
-    NOTE,
-    /**
-     * Diagnostic which does not fit within the other kinds.
-     */
-    OTHER,
+        /**
+         * Problem which prevents the tool's normal completion.
+         */
+        ERROR,
+        /**
+         * Problem which does not usually prevent the tool from completing
+         * normally.
+         */
+        WARNING,
+        /**
+         * Problem similar to a warning, but is mandated by the tool's
+         * specification. For example, the Java&trade; Language Specification
+         * mandates warnings on certain unchecked operations and the use of
+         * deprecated methods.
+         */
+        MANDATORY_WARNING,
+        /**
+         * Informative message from the tool.
+         */
+        NOTE,
+        /**
+         * Diagnostic which does not fit within the other kinds.
+         */
+        OTHER,
     }
 
     /**
@@ -91,7 +87,6 @@ public interface Diagnostic<S> {
      * Gets a character offset from the beginning of the source object
      * associated with this diagnostic that indicates the location of the
      * problem. In addition, the following must be true:
-     *
      * <p>
      * {@code getStartPostion() <= getPosition()}
      * <p>
@@ -153,7 +148,7 @@ public interface Diagnostic<S> {
      * null} use the default locale.
      *
      * @param locale
-     *               a locale; might be {@code null}
+     *        a locale; might be {@code null}
      * @return a localized message
      */
     String getMessage(Locale locale);

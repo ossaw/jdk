@@ -18,7 +18,7 @@ public interface FileNameMap {
      * Gets the MIME type for the specified file name.
      * 
      * @param fileName
-     *                 the specified file name
+     *        the specified file name
      * @return a {@code String} indicating the MIME type for the specified file
      *         name.
      */

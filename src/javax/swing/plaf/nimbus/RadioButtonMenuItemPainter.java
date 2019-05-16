@@ -34,8 +34,7 @@ final class RadioButtonMenuItemPainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -44,12 +43,9 @@ final class RadioButtonMenuItemPainter extends AbstractRegionPainter {
     // For the moment at least,
     // however, all are created for each instance.
     private Color color1 = decodeColor("nimbusSelection", 0.0f, 0.0f, 0.0f, 0);
-    private Color color2 = decodeColor("nimbusBlueGrey", 0.0f, -0.08983666f,
-            -0.17647058f, 0);
-    private Color color3 = decodeColor("nimbusBlueGrey", 0.055555582f,
-            -0.09663743f, -0.4627451f, 0);
-    private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
-            0.25490195f, 0);
+    private Color color2 = decodeColor("nimbusBlueGrey", 0.0f, -0.08983666f, -0.17647058f, 0);
+    private Color color3 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.09663743f, -0.4627451f, 0);
+    private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, 0);
 
     // Array of current component colors, updated in each paint call
     private Object[] componentColors;
@@ -61,8 +57,7 @@ final class RadioButtonMenuItemPainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;

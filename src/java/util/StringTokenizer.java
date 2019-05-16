@@ -58,7 +58,6 @@ import java.lang.*;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * <tt>StringTokenizer</tt> is a legacy class that is retained for compatibility
  * reasons although its use is discouraged in new code. It is recommended that
@@ -104,7 +103,6 @@ public class StringTokenizer implements Enumeration<Object> {
      * maxDelimCodePoint stores the value of the delimiter character with the
      * highest value. It is used to optimize the detection of delimiter
      * characters.
-     *
      * It is unlikely to provide any optimization benefit in the hasSurrogates
      * case because most string characters will be smaller than the limit, but
      * we keep it so that the two code paths remain similar.
@@ -140,8 +138,7 @@ public class StringTokenizer implements Enumeration<Object> {
         int count = 0;
         for (int i = 0; i < delimiters.length(); i += Character.charCount(c)) {
             c = delimiters.charAt(i);
-            if (c >= Character.MIN_HIGH_SURROGATE
-                    && c <= Character.MAX_LOW_SURROGATE) {
+            if (c >= Character.MIN_HIGH_SURROGATE && c <= Character.MAX_LOW_SURROGATE) {
                 c = delimiters.codePointAt(i);
                 hasSurrogates = true;
             }
@@ -153,8 +150,7 @@ public class StringTokenizer implements Enumeration<Object> {
 
         if (hasSurrogates) {
             delimiterCodePoints = new int[count];
-            for (int i = 0, j = 0; i < count; i++, j += Character.charCount(
-                    c)) {
+            for (int i = 0, j = 0; i < count; i++, j += Character.charCount(c)) {
                 c = delimiters.codePointAt(j);
                 delimiterCodePoints[i] = c;
             }
@@ -177,14 +173,14 @@ public class StringTokenizer implements Enumeration<Object> {
      * <tt>NullPointerException</tt>.
      *
      * @param str
-     *                     a string to be parsed.
+     *        a string to be parsed.
      * @param delim
-     *                     the delimiters.
+     *        the delimiters.
      * @param returnDelims
-     *                     flag indicating whether to return the delimiters as
-     *                     tokens.
+     *        flag indicating whether to return the delimiters as
+     *        tokens.
      * @exception NullPointerException
-     *                                 if str is <CODE>null</CODE>
+     *            if str is <CODE>null</CODE>
      */
     public StringTokenizer(String str, String delim, boolean returnDelims) {
         currentPosition = 0;
@@ -208,11 +204,11 @@ public class StringTokenizer implements Enumeration<Object> {
      * <tt>NullPointerException</tt>.
      *
      * @param str
-     *              a string to be parsed.
+     *        a string to be parsed.
      * @param delim
-     *              the delimiters.
+     *        the delimiters.
      * @exception NullPointerException
-     *                                 if str is <CODE>null</CODE>
+     *            if str is <CODE>null</CODE>
      */
     public StringTokenizer(String str, String delim) {
         this(str, delim, false);
@@ -227,9 +223,9 @@ public class StringTokenizer implements Enumeration<Object> {
      * treated as tokens.
      *
      * @param str
-     *            a string to be parsed.
+     *        a string to be parsed.
      * @exception NullPointerException
-     *                                 if str is <CODE>null</CODE>
+     *            if str is <CODE>null</CODE>
      */
     public StringTokenizer(String str) {
         this(str, " \t\n\r\f", false);
@@ -328,8 +324,8 @@ public class StringTokenizer implements Enumeration<Object> {
      *
      * @return the next token from this string tokenizer.
      * @exception NoSuchElementException
-     *                                   if there are no more tokens in this
-     *                                   tokenizer's string.
+     *            if there are no more tokens in this
+     *            tokenizer's string.
      */
     public String nextToken() {
         /*
@@ -362,13 +358,13 @@ public class StringTokenizer implements Enumeration<Object> {
      * call.
      *
      * @param delim
-     *              the new delimiters.
+     *        the new delimiters.
      * @return the next token, after switching to the new delimiter set.
      * @exception NoSuchElementException
-     *                                   if there are no more tokens in this
-     *                                   tokenizer's string.
+     *            if there are no more tokens in this
+     *            tokenizer's string.
      * @exception NullPointerException
-     *                                   if delim is <CODE>null</CODE>
+     *            if delim is <CODE>null</CODE>
      */
     public String nextToken(String delim) {
         delimiters = delim;
@@ -402,8 +398,8 @@ public class StringTokenizer implements Enumeration<Object> {
      *
      * @return the next token in the string.
      * @exception NoSuchElementException
-     *                                   if there are no more tokens in this
-     *                                   tokenizer's string.
+     *            if there are no more tokens in this
+     *            tokenizer's string.
      * @see java.util.Enumeration
      * @see java.util.StringTokenizer#nextToken()
      */

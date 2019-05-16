@@ -26,13 +26,11 @@ package java.awt.event;
  * object is invoked and the <code>MouseEvent</code> is passed to it.
  *
  * @author Amy Fowler
- *
  * @see MouseEvent
  * @see MouseMotionListener
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/mousemotionlistener.html">
  *      Tutorial: Writing a Mouse Motion Listener</a>
- *
  * @since 1.1
  */
 public abstract class MouseMotionAdapter implements MouseMotionListener {

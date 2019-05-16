@@ -17,7 +17,7 @@ public interface DocErrorReporter {
      * Print error message and increment error count.
      *
      * @param msg
-     *            message to print
+     *        message to print
      */
     void printError(String msg);
 
@@ -25,9 +25,9 @@ public interface DocErrorReporter {
      * Print an error message and increment error count.
      *
      * @param pos
-     *            the position item where the error occurs
+     *        the position item where the error occurs
      * @param msg
-     *            message to print
+     *        message to print
      * @since 1.4
      */
     void printError(SourcePosition pos, String msg);
@@ -36,7 +36,7 @@ public interface DocErrorReporter {
      * Print warning message and increment warning count.
      *
      * @param msg
-     *            message to print
+     *        message to print
      */
     void printWarning(String msg);
 
@@ -44,9 +44,9 @@ public interface DocErrorReporter {
      * Print warning message and increment warning count.
      *
      * @param pos
-     *            the position item where the warning occurs
+     *        the position item where the warning occurs
      * @param msg
-     *            message to print
+     *        message to print
      * @since 1.4
      */
     void printWarning(SourcePosition pos, String msg);
@@ -55,7 +55,7 @@ public interface DocErrorReporter {
      * Print a message.
      *
      * @param msg
-     *            message to print
+     *        message to print
      */
     void printNotice(String msg);
 
@@ -63,9 +63,9 @@ public interface DocErrorReporter {
      * Print a message.
      *
      * @param pos
-     *            the position item where the message occurs
+     *        the position item where the message occurs
      * @param msg
-     *            message to print
+     *        message to print
      * @since 1.4
      */
     void printNotice(SourcePosition pos, String msg);

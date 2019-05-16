@@ -22,7 +22,6 @@ package com.sun.org.apache.xerces.internal.xs.datatypes;
  * </p>
  *
  * @author Ankit Pasricha, IBM
- *
  */
 public interface XSDouble {
 

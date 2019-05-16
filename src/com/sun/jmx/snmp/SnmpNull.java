@@ -37,7 +37,7 @@ public class SnmpNull extends SnmpValue {
      * Constructs a new <CODE>SnmpNull</CODE> from the specified tag value.
      * 
      * @param t
-     *          The initialization value.
+     *        The initialization value.
      */
     public SnmpNull(int t) {
         tag = t;

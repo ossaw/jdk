@@ -14,7 +14,6 @@ import java.util.function.Supplier;
  *        the type of elements to be accepted
  * @param <R>
  *        the type of the result
- *
  * @since 1.8
  */
 interface TerminalSink<T, R> extends Sink<T>, Supplier<R> {}

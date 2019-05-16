@@ -22,7 +22,6 @@ package com.sun.org.apache.xml.internal.resolver.helpers;
 
 /**
  * Static methods for dealing with public identifiers.
- *
  * <p>
  * This class defines a set of static methods that can be called to handle
  * public identifiers.
@@ -30,33 +29,28 @@ package com.sun.org.apache.xml.internal.resolver.helpers;
  *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  */
 public abstract class PublicId {
     protected PublicId() {}
 
     /**
      * Normalize a public identifier.
-     *
      * <p>
      * Public identifiers must be normalized according to the following rules
      * before comparisons between them can be made:
      * </p>
-     *
      * <ul>
      * <li>Whitespace characters are normalized to spaces (e.g., line feeds,
      * tabs, etc. become spaces).</li>
      * <li>Leading and trailing whitespace is removed.</li>
      * <li>Multiple internal whitespaces are normalized to a single space.</li>
      * </ul>
-     *
      * <p>
      * This method is declared static so that other classes can use it directly.
      * </p>
      *
      * @param publicId
-     *                 The unnormalized public identifier.
-     *
+     *        The unnormalized public identifier.
      * @return The normalized identifier.
      */
     public static String normalize(String publicId) {
@@ -76,14 +70,12 @@ public abstract class PublicId {
 
     /**
      * Encode a public identifier as a "publicid" URN.
-     *
      * <p>
      * This method is declared static so that other classes can use it directly.
      * </p>
      *
      * @param publicId
-     *                 The unnormalized public identifier.
-     *
+     *        The unnormalized public identifier.
      * @return The normalized identifier.
      */
     public static String encodeURN(String publicId) {
@@ -106,14 +98,12 @@ public abstract class PublicId {
 
     /**
      * Decode a "publicid" URN into a public identifier.
-     *
      * <p>
      * This method is declared static so that other classes can use it directly.
      * </p>
      *
      * @param urn
-     *            The urn:publicid: URN
-     *
+     *        The urn:publicid: URN
      * @return The normalized identifier.
      */
     public static String decodeURN(String urn) {
@@ -142,10 +132,8 @@ public abstract class PublicId {
 
     /**
      * Replace one string with another.
-     *
      */
-    private static String stringReplace(String str, String oldStr,
-            String newStr) {
+    private static String stringReplace(String str, String oldStr, String newStr) {
 
         String result = "";
         int pos = str.indexOf(oldStr);

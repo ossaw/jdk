@@ -63,7 +63,7 @@ public enum StandardLocation implements Location {
      * {@code "_OUTPUT"}.
      *
      * @param name
-     *             a name
+     *        a name
      * @return a location
      */
     public static Location locationFor(final String name) {

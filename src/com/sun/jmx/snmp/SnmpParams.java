@@ -65,7 +65,7 @@ public abstract class SnmpParams implements SnmpDefinitions {
      * </BLOCKQUOTE>
      * 
      * @param protocolversion
-     *                        The version of the protocol to be used.
+     *        The version of the protocol to be used.
      */
 
     public void setProtocolVersion(int protocolversion) {

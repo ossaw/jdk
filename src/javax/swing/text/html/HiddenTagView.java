@@ -207,21 +207,17 @@ class HiddenTagView extends EditableView implements DocumentListener {
      */
     void _updateModelFromText() {
         Document doc = getDocument();
-        Object name = getElement().getAttributes().getAttribute(
-                StyleConstants.NameAttribute);
-        if ((name instanceof HTML.UnknownTag)
-                && (doc instanceof StyledDocument)) {
+        Object name = getElement().getAttributes().getAttribute(StyleConstants.NameAttribute);
+        if ((name instanceof HTML.UnknownTag) && (doc instanceof StyledDocument)) {
             SimpleAttributeSet sas = new SimpleAttributeSet();
             JTextComponent textComponent = getTextComponent();
             if (textComponent != null) {
                 String text = textComponent.getText();
                 isSettingAttributes = true;
                 try {
-                    sas.addAttribute(StyleConstants.NameAttribute,
-                            new HTML.UnknownTag(text));
-                    ((StyledDocument) doc).setCharacterAttributes(
-                            getStartOffset(), getEndOffset() - getStartOffset(),
-                            sas, false);
+                    sas.addAttribute(StyleConstants.NameAttribute, new HTML.UnknownTag(text));
+                    ((StyledDocument) doc).setCharacterAttributes(getStartOffset(), getEndOffset()
+                            - getStartOffset(), sas, false);
                 } finally {
                     isSettingAttributes = false;
                 }
@@ -232,8 +228,7 @@ class HiddenTagView extends EditableView implements DocumentListener {
     JTextComponent getTextComponent() {
         Component comp = getComponent();
 
-        return (comp == null) ? null
-                : (JTextComponent) ((Container) comp).getComponent(0);
+        return (comp == null) ? null : (JTextComponent) ((Container) comp).getComponent(0);
     }
 
     String getRepresentedText() {
@@ -245,8 +240,7 @@ class HiddenTagView extends EditableView implements DocumentListener {
         AttributeSet as = getElement().getAttributes();
         if (as != null) {
             Object end = as.getAttribute(HTML.Attribute.ENDTAG);
-            if (end != null && (end instanceof String) && ((String) end).equals(
-                    "true")) {
+            if (end != null && (end instanceof String) && ((String) end).equals("true")) {
                 return true;
             }
         }
@@ -270,8 +264,7 @@ class HiddenTagView extends EditableView implements DocumentListener {
     static final Border EndBorder = new EndTagBorder();
 
     static class StartTagBorder implements Border, Serializable {
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             g.setColor(UnknownTagBorderColor);
             x += padding;
             width -= (padding * 2);
@@ -279,12 +272,10 @@ class HiddenTagView extends EditableView implements DocumentListener {
             g.drawArc(x, y + height - circleD - 1, circleD, circleD, 180, 90);
             g.drawArc(x, y, circleD, circleD, 90, 90);
             g.drawLine(x + circleR, y, x + width - tagSize, y);
-            g.drawLine(x + circleR, y + height - 1, x + width - tagSize, y
-                    + height - 1);
+            g.drawLine(x + circleR, y + height - 1, x + width - tagSize, y + height - 1);
 
             g.drawLine(x + width - tagSize, y, x + width - 1, y + height / 2);
-            g.drawLine(x + width - tagSize, y + height, x + width - 1, y
-                    + height / 2);
+            g.drawLine(x + width - tagSize, y + height, x + width - 1, y + height / 2);
         }
 
         public Insets getBorderInsets(Component c) {
@@ -297,19 +288,15 @@ class HiddenTagView extends EditableView implements DocumentListener {
     } // End of class HiddenTagView.StartTagBorder
 
     static class EndTagBorder implements Border, Serializable {
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             g.setColor(UnknownTagBorderColor);
             x += padding;
             width -= (padding * 2);
-            g.drawLine(x + width - 1, y + circleR, x + width - 1, y + height
-                    - circleR);
-            g.drawArc(x + width - circleD - 1, y + height - circleD - 1,
-                    circleD, circleD, 270, 90);
+            g.drawLine(x + width - 1, y + circleR, x + width - 1, y + height - circleR);
+            g.drawArc(x + width - circleD - 1, y + height - circleD - 1, circleD, circleD, 270, 90);
             g.drawArc(x + width - circleD - 1, y, circleD, circleD, 0, 90);
             g.drawLine(x + tagSize, y, x + width - circleR, y);
-            g.drawLine(x + tagSize, y + height - 1, x + width - circleR, y
-                    + height - 1);
+            g.drawLine(x + tagSize, y + height - 1, x + width - circleR, y + height - 1);
 
             g.drawLine(x + tagSize, y, x, y + height / 2);
             g.drawLine(x + tagSize, y + height, x, y + height / 2);

@@ -25,12 +25,11 @@ class ApplicationShutdownHooks {
                                                                         * shutdown
                                                                         * in
                                                                         * progress
-                                                                        */,
-                    new Runnable() {
-                        public void run() {
-                            runHooks();
-                        }
-                    });
+                                                                        */, new Runnable() {
+                public void run() {
+                    runHooks();
+                }
+            });
             hooks = new IdentityHashMap<>();
         } catch (IllegalStateException e) {
             // application shutdown hooks cannot be added if
@@ -89,8 +88,7 @@ class ApplicationShutdownHooks {
         for (Thread hook : threads) {
             try {
                 hook.join();
-            } catch (InterruptedException x) {
-            }
+            } catch (InterruptedException x) {}
         }
     }
 }

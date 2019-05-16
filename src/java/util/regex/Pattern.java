@@ -21,7 +21,6 @@ import java.util.stream.StreamSupport;
 
 /**
  * A compiled representation of a regular expression.
- *
  * <p>
  * A regular expression, specified as a string, must first be compiled into an
  * instance of this class. The resulting pattern can then be used to create a
@@ -29,10 +28,8 @@ import java.util.stream.StreamSupport;
  * {@linkplain java.lang.CharSequence character sequences} against the regular
  * expression. All of the state involved in performing a match resides in the
  * matcher, so many matchers can share the same pattern.
- *
  * <p>
  * A typical invocation sequence is thus
- *
  * <blockquote>
  * 
  * <pre>
@@ -42,13 +39,11 @@ import java.util.stream.StreamSupport;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * A {@link #matches matches} method is defined by this class as a convenience
  * for when a regular expression is used just once. This method compiles an
  * expression and matches an input sequence against it in a single invocation.
  * The statement
- *
  * <blockquote>
  * 
  * <pre>
@@ -56,33 +51,25 @@ import java.util.stream.StreamSupport;
  * </pre>
  * 
  * </blockquote>
- *
  * is equivalent to the three statements above, though for repeated matches it
  * is less efficient since it does not allow the compiled pattern to be reused.
- *
  * <p>
  * Instances of this class are immutable and are safe for use by multiple
  * concurrent threads. Instances of the {@link Matcher} class are not safe for
  * such use.
- *
- *
  * <h3><a name="sum">Summary of regular-expression constructs</a></h3>
- *
  * <table border="0" cellpadding="1" cellspacing="0" summary=
  * "Regular expression constructs, and what they match">
- *
  * <tr align="left">
  * <th align="left" id="construct">Construct</th>
  * <th align="left" id="matches">Matches</th>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="characters">Characters</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct characters"><i>x</i></td>
  * <td headers="matches">The character <i>x</i></td>
@@ -157,14 +144,12 @@ import java.util.stream.StreamSupport;
  * <td valign="top" headers="construct characters"><tt>\c</tt><i>x</i></td>
  * <td headers="matches">The control character corresponding to <i>x</i></td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="classes">Character classes</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct classes">{@code [abc]}</td>
  * <td headers="matches">{@code a}, {@code b}, or {@code c} (simple class)</td>
@@ -201,11 +186,9 @@ import java.util.stream.StreamSupport;
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
- *
  * <tr align="left">
  * <th colspan="2" id="predef">Predefined character classes</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct predef"><tt>.</tt></td>
  * <td headers="matches">Any character (may or may not match <a href="#lt">line
@@ -263,7 +246,6 @@ import java.util.stream.StreamSupport;
  * <th colspan="2" id="posix"><b>POSIX character classes (US-ASCII only)</b>
  * </th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct posix">{@code \p{Lower}}</td>
  * <td headers="matches">A lower-case alphabetic character: {@code [a-z]}</td>
@@ -321,7 +303,6 @@ import java.util.stream.StreamSupport;
  * <td valign="top" headers="construct posix">{@code \p{Space}}</td>
  * <td headers="matches">A whitespace character: {@code [ \t\n\x0B\f\r]}</td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
@@ -329,7 +310,6 @@ import java.util.stream.StreamSupport;
  * <th colspan="2">java.lang.Character classes (simple <a href="#jcc">java
  * character type</a>)</th>
  * </tr>
- *
  * <tr>
  * <td valign="top"><tt>\p{javaLowerCase}</tt></td>
  * <td>Equivalent to java.lang.Character.isLowerCase()</td>
@@ -346,7 +326,6 @@ import java.util.stream.StreamSupport;
  * <td valign="top"><tt>\p{javaMirrored}</tt></td>
  * <td>Equivalent to java.lang.Character.isMirrored()</td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
@@ -387,14 +366,12 @@ import java.util.stream.StreamSupport;
  * <td headers="matches">Any letter except an uppercase letter (subtraction)
  * </td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="bounds">Boundary matchers</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct bounds"><tt>^</tt></td>
  * <td headers="matches">The beginning of a line</td>
@@ -428,7 +405,6 @@ import java.util.stream.StreamSupport;
  * <td valign="top" headers="construct bounds"><tt>\z</tt></td>
  * <td headers="matches">The end of the input</td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
@@ -441,14 +417,12 @@ import java.util.stream.StreamSupport;
  * <tt>&#92;u000D&#92;u000A|[&#92;u000A&#92;u000B&#92;u000C&#92;u000D&#92;u0085&#92;u2028&#92;u2029]
  *     </tt></td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="greedy">Greedy quantifiers</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct greedy"><i>X</i><tt>?</tt></td>
  * <td headers="matches"><i>X</i>, once or not at all</td>
@@ -477,14 +451,12 @@ import java.util.stream.StreamSupport;
  * <td headers="matches"><i>X</i>, at least <i>n</i> but not more than <i>m</i>
  * times</td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="reluc">Reluctant quantifiers</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct reluc"><i>X</i><tt>??</tt></td>
  * <td headers="matches"><i>X</i>, once or not at all</td>
@@ -513,14 +485,12 @@ import java.util.stream.StreamSupport;
  * <td headers="matches"><i>X</i>, at least <i>n</i> but not more than <i>m</i>
  * times</td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="poss">Possessive quantifiers</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct poss"><i>X</i><tt>?+</tt></td>
  * <td headers="matches"><i>X</i>, once or not at all</td>
@@ -549,14 +519,12 @@ import java.util.stream.StreamSupport;
  * <td headers="matches"><i>X</i>, at least <i>n</i> but not more than <i>m</i>
  * times</td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="logical">Logical operators</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct logical"><i>XY</i></td>
  * <td headers="matches"><i>X</i> followed by <i>Y</i></td>
@@ -570,34 +538,29 @@ import java.util.stream.StreamSupport;
  * </td>
  * <td headers="matches">X, as a <a href="#cg">capturing group</a></td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="backref">Back references</th>
  * </tr>
- *
  * <tr>
  * <td valign="bottom" headers="construct backref"><tt>\</tt><i>n</i></td>
  * <td valign="bottom" headers="matches">Whatever the <i>n</i><sup>th</sup>
  * <a href="#cg">capturing group</a> matched</td>
  * </tr>
- *
  * <tr>
  * <td valign="bottom" headers="construct backref"><tt>\</tt><i>k</i>&lt;
  * <i>name</i>&gt;</td>
  * <td valign="bottom" headers="matches">Whatever the
  * <a href="#groupname">named-capturing group</a> "name" matched</td>
  * </tr>
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
  * <tr align="left">
  * <th colspan="2" id="quot">Quotation</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct quot"><tt>\</tt></td>
  * <td headers="matches">Nothing, but quotes the following character</td>
@@ -612,7 +575,6 @@ import java.util.stream.StreamSupport;
  * <td headers="matches">Nothing, but ends quoting started by <tt>\Q</tt></td>
  * </tr>
  * <!-- Metachars: !$()*+.<>?[\]^{|} -->
- *
  * <tr>
  * <th>&nbsp;</th>
  * </tr>
@@ -620,7 +582,6 @@ import java.util.stream.StreamSupport;
  * <th colspan="2" id="special">Special constructs (named-capturing and
  * non-capturing)</th>
  * </tr>
- *
  * <tr>
  * <td valign="top" headers="construct special">
  * <tt>(?&lt;<a href="#groupname">name</a>&gt;</tt><i>X</i><tt>)</tt></td>
@@ -674,28 +635,21 @@ import java.util.stream.StreamSupport;
  * <tt>)</tt></td>
  * <td headers="matches"><i>X</i>, as an independent, non-capturing group</td>
  * </tr>
- *
  * </table>
- *
  * <hr>
- *
- *
  * <h3><a name="bs">Backslashes, escapes, and quoting</a></h3>
- *
  * <p>
  * The backslash character (<tt>'\'</tt>) serves to introduce escaped
  * constructs, as defined in the table above, as well as to quote characters
  * that otherwise would be interpreted as unescaped constructs. Thus the
  * expression <tt>\\</tt> matches a single backslash and <tt>\{</tt> matches a
  * left brace.
- *
  * <p>
  * It is an error to use a backslash prior to any alphabetic character that does
  * not denote an escaped construct; these are reserved for future extensions to
  * the regular-expression language. A backslash may be used prior to a
  * non-alphabetic character regardless of whether that character is part of an
  * unescaped construct.
- *
  * <p>
  * Backslashes within string literals in Java source code are interpreted as
  * required by <cite>The Java&trade; Language Specification</cite> as either
@@ -708,9 +662,7 @@ import java.util.stream.StreamSupport;
  * <tt>"&#92;(hello&#92;)"</tt> is illegal and leads to a compile-time error; in
  * order to match the string <tt>(hello)</tt> the string literal
  * <tt>"&#92;&#92;(hello&#92;&#92;)"</tt> must be used.
- *
  * <h3><a name="cc">Character Classes</a></h3>
- *
  * <p>
  * Character classes may appear within other character classes, and may be
  * composed by the union operator (implicit) and the intersection operator (
@@ -718,11 +670,9 @@ import java.util.stream.StreamSupport;
  * character that is in at least one of its operand classes. The intersection
  * operator denotes a class that contains every character that is in both of its
  * operand classes.
- *
  * <p>
  * The precedence of character-class operators is as follows, from highest to
  * lowest:
- *
  * <blockquote>
  * <table border="0" cellpadding="1" cellspacing="0" summary=
  * "Precedence of character class operators.">
@@ -753,44 +703,31 @@ import java.util.stream.StreamSupport;
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * Note that a different set of metacharacters are in effect inside a character
  * class than outside a character class. For instance, the regular expression
  * <tt>.</tt> loses its special meaning inside a character class, while the
  * expression <tt>-</tt> becomes a range forming metacharacter.
- *
  * <h3><a name="lt">Line terminators</a></h3>
- *
  * <p>
  * A <i>line terminator</i> is a one- or two-character sequence that marks the
  * end of a line of the input character sequence. The following are recognized
  * as line terminators:
- *
  * <ul>
- *
  * <li>A newline (line feed) character&nbsp;(<tt>'\n'</tt>),
- *
  * <li>A carriage-return character followed immediately by a newline
  * character&nbsp;(<tt>"\r\n"</tt>),
- *
  * <li>A standalone carriage-return character&nbsp;(<tt>'\r'</tt>),
- *
  * <li>A next-line character&nbsp;(<tt>'&#92;u0085'</tt>),
- *
  * <li>A line-separator character&nbsp;(<tt>'&#92;u2028'</tt>), or
- *
  * <li>A paragraph-separator character&nbsp;(<tt>'&#92;u2029</tt>).
- *
  * </ul>
  * <p>
  * If {@link #UNIX_LINES} mode is activated, then the only line terminators
  * recognized are newline characters.
- *
  * <p>
  * The regular expression <tt>.</tt> matches any character except a line
  * terminator unless the {@link #DOTALL} flag is specified.
- *
  * <p>
  * By default, the regular expressions <tt>^</tt> and <tt>$</tt> ignore line
  * terminators and only match at the beginning and the end, respectively, of the
@@ -798,16 +735,13 @@ import java.util.stream.StreamSupport;
  * <tt>^</tt> matches at the beginning of input and after any line terminator
  * except at the end of input. When in {@link #MULTILINE} mode <tt>$</tt>
  * matches just before a line terminator or the end of the input sequence.
- *
  * <h3><a name="cg">Groups and capturing</a></h3>
- *
  * <h4><a name="gnumber">Group number</a></h4>
  * <p>
  * Capturing groups are numbered by counting their opening parentheses from left
  * to right. In the expression <tt>((A)(B(C)))</tt>, for example, there are four
  * such groups:
  * </p>
- *
  * <blockquote>
  * <table cellpadding=1 cellspacing=0 summary="Capturing group numberings">
  * <tr>
@@ -828,23 +762,19 @@ import java.util.stream.StreamSupport;
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * Group zero always stands for the entire expression.
- *
  * <p>
  * Capturing groups are so named because, during a match, each subsequence of
  * the input sequence that matches such a group is saved. The captured
  * subsequence may be used later in the expression, via a back reference, and
  * may also be retrieved from the matcher once the match operation is complete.
- *
  * <h4><a name="groupname">Group name</a></h4>
  * <p>
  * A capturing group can also be assigned a "name", a
  * <tt>named-capturing group</tt>, and then be back-referenced later by the
  * "name". Group names are composed of the following characters. The first
  * character must be a <tt>letter</tt>.
- *
  * <ul>
  * <li>The uppercase letters <tt>'A'</tt> through <tt>'Z'</tt> (
  * <tt>'&#92;u0041'</tt>&nbsp;through&nbsp;<tt>'&#92;u005a'</tt>),
@@ -853,11 +783,9 @@ import java.util.stream.StreamSupport;
  * <li>The digits <tt>'0'</tt> through <tt>'9'</tt> (<tt>'&#92;u0030'</tt>
  * &nbsp;through&nbsp;<tt>'&#92;u0039'</tt>),
  * </ul>
- *
  * <p>
  * A <tt>named-capturing group</tt> is still numbered as described in
  * <a href="#gnumber">Group number</a>.
- *
  * <p>
  * The captured input associated with a group is always the subsequence that the
  * group most recently matched. If a group is evaluated a second time because of
@@ -865,14 +793,11 @@ import java.util.stream.StreamSupport;
  * if the second evaluation fails. Matching the string <tt>"aba"</tt> against
  * the expression <tt>(a(b)?)+</tt>, for example, leaves group two set to
  * <tt>"b"</tt>. All captured input is discarded at the beginning of each match.
- *
  * <p>
  * Groups beginning with <tt>(?</tt> are either pure, <i>non-capturing</i>
  * groups that do not capture text and do not count towards the group total, or
  * <i>named-capturing</i> group.
- *
  * <h3>Unicode support</h3>
- *
  * <p>
  * This class is in conformance with Level 1 of
  * <a href="http://www.unicode.org/reports/tr18/"><i>Unicode Technical Standard
@@ -902,7 +827,6 @@ import java.util.stream.StreamSupport;
  * <p>
  * Scripts, blocks, categories and binary properties can be used both inside and
  * outside of a character class.
- *
  * <p>
  * <b><a name="usc">Scripts</a></b> are specified either with the prefix
  * {@code Is}, as in {@code IsHiragana}, or by using the {@code script} keyword
@@ -913,7 +837,6 @@ import java.util.stream.StreamSupport;
  * accepted and defined by
  * {@link java.lang.Character.UnicodeScript#forName(String)
  * UnicodeScript.forName}.
- *
  * <p>
  * <b><a name="ubc">Blocks</a></b> are specified with the prefix {@code In}, as
  * in {@code InMongolian}, or by using the keyword {@code block} (or its short
@@ -924,7 +847,6 @@ import java.util.stream.StreamSupport;
  * {@link java.lang.Character.UnicodeBlock#forName(String) UnicodeBlock.forName}
  * .
  * <p>
- *
  * <b><a name="ucc">Categories</a></b> may be specified with the optional prefix
  * {@code Is}: Both {@code \p{L}} and {@code \p{IsL}} denote the category of
  * Unicode letters. Same as scripts and blocks, categories can also be specified
@@ -937,7 +859,6 @@ import java.util.stream.StreamSupport;
  * {@link java.lang.Character Character} class. The category names are those
  * defined in the Standard, both normative and informative.
  * <p>
- *
  * <b><a name="ubpc">Binary properties</a></b> are specified with the prefix
  * {@code Is}, as in {@code IsAlphabetic}. The supported binary properties by
  * <code>Pattern</code> are
@@ -963,7 +884,6 @@ import java.util.stream.StreamSupport;
  * Compatibility Properties</i> of
  * <a href="http://www.unicode.org/reports/tr18/"><i>Unicode Regular
  * Expression </i></a>, when {@link #UNICODE_CHARACTER_CLASS} flag is specified.
- *
  * <table border="0" cellpadding="1" cellspacing="0" summary=
  * "predefined and posix character classes in Unicode mode">
  * <tr align="left">
@@ -1056,17 +976,13 @@ import java.util.stream.StreamSupport;
  * <i>methodname</i> methods (except for the deprecated ones) are available
  * through the same <tt>\p{</tt><i>prop</i><tt>}</tt> syntax where the specified
  * property has the name <tt>java<i>methodname</i></tt></a>.
- *
  * <h3>Comparison to Perl 5</h3>
- *
  * <p>
  * The <code>Pattern</code> engine performs traditional NFA-based matching with
  * ordered alternation as occurs in Perl 5.
- *
  * <p>
  * Perl constructs not supported by this class:
  * </p>
- *
  * <ul>
  * <li>
  * <p>
@@ -1077,7 +993,6 @@ import java.util.stream.StreamSupport;
  * extended grapheme cluster</i></a>
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The backreference constructs, <tt>\g{</tt><i>n</i><tt>}</tt> for the <i>n</i>
@@ -1085,14 +1000,12 @@ import java.util.stream.StreamSupport;
  * <tt>}</tt> for <a href="#groupname">named-capturing group</a>.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The named character construct, <tt>\N{</tt><i>name</i><tt>}</tt> for a
  * Unicode character by its name.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The conditional constructs <tt>(?(</tt><i>condition</i><tt>)</tt><i>X</i>
@@ -1100,49 +1013,38 @@ import java.util.stream.StreamSupport;
  * <i>Y</i><tt>)</tt>,
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The embedded code constructs <tt>(?{</tt><i>code</i><tt>})</tt> and
  * <tt>(??{</tt><i>code</i><tt>})</tt>,
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The embedded comment syntax <tt>(?#comment)</tt>, and
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The preprocessing operations <tt>\l</tt> <tt>&#92;u</tt>, <tt>\L</tt>, and
  * <tt>\U</tt>.
  * </p>
  * </li>
- *
  * </ul>
- *
  * <p>
  * Constructs supported by this class but not by Perl:
  * </p>
- *
  * <ul>
- *
  * <li>
  * <p>
  * Character-class union and intersection as described <a href="#cc">above</a>.
  * </p>
  * </li>
- *
  * </ul>
- *
  * <p>
  * Notable differences from Perl:
  * </p>
- *
  * <ul>
- *
  * <li>
  * <p>
  * In Perl, <tt>\1</tt> through <tt>\9</tt> are always interpreted as back
@@ -1157,7 +1059,6 @@ import java.util.stream.StreamSupport;
  * digit.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * Perl uses the <tt>g</tt> flag to request a match that resumes where the last
@@ -1167,7 +1068,6 @@ import java.util.stream.StreamSupport;
  * reset.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * In Perl, embedded flags at the top level of an expression affect the whole
@@ -1176,10 +1076,7 @@ import java.util.stream.StreamSupport;
  * the latter case, flags are restored at the end of the group just as in Perl.
  * </p>
  * </li>
- *
  * </ul>
- *
- *
  * <p>
  * For a more precise description of the behavior of regular expression
  * constructs, please see
@@ -1190,7 +1087,6 @@ import java.util.stream.StreamSupport;
  *
  * @see java.lang.String#split(String, int)
  * @see java.lang.String#split(String)
- *
  * @author Mike McCloskey
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
@@ -1216,11 +1112,9 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Enables Unix lines mode.
-     *
      * <p>
      * In this mode, only the <tt>'\n'</tt> line terminator is recognized in the
      * behavior of <tt>.</tt>, <tt>^</tt>, and <tt>$</tt>.
-     *
      * <p>
      * Unix lines mode can also be enabled via the embedded flag
      * expression&nbsp;<tt>(?d)</tt>.
@@ -1229,17 +1123,14 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Enables case-insensitive matching.
-     *
      * <p>
      * By default, case-insensitive matching assumes that only characters in the
      * US-ASCII charset are being matched. Unicode-aware case-insensitive
      * matching can be enabled by specifying the {@link #UNICODE_CASE} flag in
      * conjunction with this flag.
-     *
      * <p>
      * Case-insensitive matching can also be enabled via the embedded flag
      * expression&nbsp;<tt>(?i)</tt>.
-     *
      * <p>
      * Specifying this flag may impose a slight performance penalty.
      * </p>
@@ -1248,11 +1139,9 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Permits whitespace and comments in pattern.
-     *
      * <p>
      * In this mode, whitespace is ignored, and embedded comments starting with
      * <tt>#</tt> are ignored until the end of a line.
-     *
      * <p>
      * Comments mode can also be enabled via the embedded flag expression&nbsp;
      * <tt>(?x)</tt>.
@@ -1261,13 +1150,11 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Enables multiline mode.
-     *
      * <p>
      * In multiline mode the expressions <tt>^</tt> and <tt>$</tt> match just
      * after or just before, respectively, a line terminator or the end of the
      * input sequence. By default these expressions only match at the beginning
      * and the end of the entire input sequence.
-     *
      * <p>
      * Multiline mode can also be enabled via the embedded flag expression&nbsp;
      * <tt>(?m)</tt>.
@@ -1277,17 +1164,14 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Enables literal parsing of the pattern.
-     *
      * <p>
      * When this flag is specified then the input string that specifies the
      * pattern is treated as a sequence of literal characters. Metacharacters or
      * escape sequences in the input sequence will be given no special meaning.
-     *
      * <p>
      * The flags CASE_INSENSITIVE and UNICODE_CASE retain their impact on
      * matching when used in conjunction with this flag. The other flags become
      * superfluous.
-     *
      * <p>
      * There is no embedded flag character for enabling literal parsing.
      * 
@@ -1297,12 +1181,10 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Enables dotall mode.
-     *
      * <p>
      * In dotall mode, the expression <tt>.</tt> matches any character,
      * including a line terminator. By default this expression does not match
      * line terminators.
-     *
      * <p>
      * Dotall mode can also be enabled via the embedded flag expression&nbsp;
      * <tt>(?s)</tt>. (The <tt>s</tt> is a mnemonic for "single-line" mode,
@@ -1313,17 +1195,14 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Enables Unicode-aware case folding.
-     *
      * <p>
      * When this flag is specified then case-insensitive matching, when enabled
      * by the {@link #CASE_INSENSITIVE} flag, is done in a manner consistent
      * with the Unicode Standard. By default, case-insensitive matching assumes
      * that only characters in the US-ASCII charset are being matched.
-     *
      * <p>
      * Unicode-aware case folding can also be enabled via the embedded flag
      * expression&nbsp;<tt>(?u)</tt>.
-     *
      * <p>
      * Specifying this flag may impose a performance penalty.
      * </p>
@@ -1332,17 +1211,14 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Enables canonical equivalence.
-     *
      * <p>
      * When this flag is specified then two characters will be considered to
      * match if, and only if, their full canonical decompositions match. The
      * expression <tt>"a&#92;u030A"</tt>, for example, will match the string
      * <tt>"&#92;u00E5"</tt> when this flag is specified. By default, matching
      * does not take canonical equivalence into account.
-     *
      * <p>
      * There is no embedded flag character for enabling canonical equivalence.
-     *
      * <p>
      * Specifying this flag may impose a performance penalty.
      * </p>
@@ -1352,7 +1228,6 @@ public final class Pattern implements java.io.Serializable {
     /**
      * Enables the Unicode version of <i>Predefined character classes</i> and
      * <i>POSIX character classes</i>.
-     *
      * <p>
      * When this flag is specified then the (US-ASCII only) <i>Predefined
      * character classes</i> and <i>POSIX character classes</i> are in
@@ -1474,10 +1349,10 @@ public final class Pattern implements java.io.Serializable {
      * Compiles the given regular expression into a pattern.
      *
      * @param regex
-     *              The expression to be compiled
+     *        The expression to be compiled
      * @return the given regular expression compiled into a pattern
      * @throws PatternSyntaxException
-     *                                If the expression's syntax is invalid
+     *         If the expression's syntax is invalid
      */
     public static Pattern compile(String regex) {
         return new Pattern(regex, 0);
@@ -1488,25 +1363,22 @@ public final class Pattern implements java.io.Serializable {
      * flags.
      *
      * @param regex
-     *              The expression to be compiled
-     *
+     *        The expression to be compiled
      * @param flags
-     *              Match flags, a bit mask that may include
-     *              {@link #CASE_INSENSITIVE}, {@link #MULTILINE},
-     *              {@link #DOTALL}
-     *              , {@link #UNICODE_CASE}, {@link #CANON_EQ},
-     *              {@link #UNIX_LINES}, {@link #LITERAL},
-     *              {@link #UNICODE_CHARACTER_CLASS} and {@link #COMMENTS}
-     *
+     *        Match flags, a bit mask that may include
+     *        {@link #CASE_INSENSITIVE}, {@link #MULTILINE},
+     *        {@link #DOTALL}
+     *        , {@link #UNICODE_CASE}, {@link #CANON_EQ},
+     *        {@link #UNIX_LINES}, {@link #LITERAL},
+     *        {@link #UNICODE_CHARACTER_CLASS} and {@link #COMMENTS}
      * @return the given regular expression compiled into a pattern with the
      *         given flags
      * @throws IllegalArgumentException
-     *                                  If bit values other than those
-     *                                  corresponding to the defined
-     *                                  match flags are set in <tt>flags</tt>
-     *
+     *         If bit values other than those
+     *         corresponding to the defined
+     *         match flags are set in <tt>flags</tt>
      * @throws PatternSyntaxException
-     *                                  If the expression's syntax is invalid
+     *         If the expression's syntax is invalid
      */
     public static Pattern compile(String regex, int flags) {
         return new Pattern(regex, flags);
@@ -1538,8 +1410,7 @@ public final class Pattern implements java.io.Serializable {
      * Creates a matcher that will match the given input against this pattern.
      *
      * @param input
-     *              The character sequence to be matched
-     *
+     *        The character sequence to be matched
      * @return A new matcher for this pattern
      */
     public Matcher matcher(CharSequence input) {
@@ -1565,10 +1436,8 @@ public final class Pattern implements java.io.Serializable {
     /**
      * Compiles the given regular expression and attempts to match the given
      * input against it.
-     *
      * <p>
      * An invocation of this convenience method of the form
-     *
      * <blockquote>
      * 
      * <pre>
@@ -1576,9 +1445,7 @@ public final class Pattern implements java.io.Serializable {
      * </pre>
      * 
      * </blockquote>
-     *
      * behaves in exactly the same way as the expression
-     *
      * <blockquote>
      * 
      * <pre>
@@ -1586,20 +1453,18 @@ public final class Pattern implements java.io.Serializable {
      * </pre>
      * 
      * </blockquote>
-     *
      * <p>
      * If a pattern is to be used multiple times, compiling it once and reusing
      * it will be more efficient than invoking this method each time.
      * </p>
      *
      * @param regex
-     *              The expression to be compiled
-     *
+     *        The expression to be compiled
      * @param input
-     *              The character sequence to be matched
+     *        The character sequence to be matched
      * @return whether or not the regular expression matches on the input
      * @throws PatternSyntaxException
-     *                                If the expression's syntax is invalid
+     *         If the expression's syntax is invalid
      */
     public static boolean matches(String regex, CharSequence input) {
         Pattern p = Pattern.compile(regex);
@@ -1609,7 +1474,6 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Splits the given input sequence around matches of this pattern.
-     *
      * <p>
      * The array returned by this method contains each substring of the input
      * sequence that is terminated by another subsequence that matches this
@@ -1617,13 +1481,11 @@ public final class Pattern implements java.io.Serializable {
      * in the array are in the order in which they occur in the input. If this
      * pattern does not match any subsequence of the input then the resulting
      * array has just one element, namely the input sequence in string form.
-     *
      * <p>
      * When there is a positive-width match at the beginning of the input
      * sequence then an empty leading substring is included at the beginning of
      * the resulting array. A zero-width match at the beginning however never
      * produces such empty leading substring.
-     *
      * <p>
      * The <tt>limit</tt> parameter controls the number of times the pattern is
      * applied and therefore affects the length of the resulting array. If the
@@ -1635,11 +1497,9 @@ public final class Pattern implements java.io.Serializable {
      * length. If <i>n</i> is zero then the pattern will be applied as many
      * times as possible, the array can have any length, and trailing empty
      * strings will be discarded.
-     *
      * <p>
      * The input <tt>"boo:and:foo"</tt>, for example, yields the following
      * results with these parameters:
-     *
      * <blockquote>
      * <table cellpadding=1 cellspacing=0 summary=
      * "Split examples showing regex, limit, and result">
@@ -1682,11 +1542,9 @@ public final class Pattern implements java.io.Serializable {
      * </blockquote>
      *
      * @param input
-     *              The character sequence to be split
-     *
+     *        The character sequence to be split
      * @param limit
-     *              The result threshold, as described above
-     *
+     *        The result threshold, as described above
      * @return The array of strings computed by splitting the input around
      *         matches of this pattern
      */
@@ -1708,8 +1566,7 @@ public final class Pattern implements java.io.Serializable {
                 matchList.add(match);
                 index = m.end();
             } else if (matchList.size() == limit - 1) { // last one
-                String match = input.subSequence(index, input.length())
-                        .toString();
+                String match = input.subSequence(index, input.length()).toString();
                 matchList.add(match);
                 index = m.end();
             }
@@ -1734,18 +1591,15 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Splits the given input sequence around matches of this pattern.
-     *
      * <p>
      * This method works as if by invoking the two-argument
      * {@link #split(java.lang.CharSequence, int) split} method with the given
      * input sequence and a limit argument of zero. Trailing empty strings are
      * therefore not included in the resulting array.
      * </p>
-     *
      * <p>
      * The input <tt>"boo:and:foo"</tt>, for example, yields the following
      * results with these expressions:
-     *
      * <blockquote>
      * <table cellpadding=1 cellspacing=0 summary=
      * "Split examples showing regex and result">
@@ -1764,10 +1618,8 @@ public final class Pattern implements java.io.Serializable {
      * </table>
      * </blockquote>
      *
-     *
      * @param input
-     *              The character sequence to be split
-     *
+     *        The character sequence to be split
      * @return The array of strings computed by splitting the input around
      *         matches of this pattern
      */
@@ -1778,7 +1630,6 @@ public final class Pattern implements java.io.Serializable {
     /**
      * Returns a literal pattern <code>String</code> for the specified
      * <code>String</code>.
-     *
      * <p>
      * This method produces a <code>String</code> that can be used to create a
      * <code>Pattern</code> that would match the string <code>s</code> as if it
@@ -1788,7 +1639,7 @@ public final class Pattern implements java.io.Serializable {
      * special meaning.
      *
      * @param s
-     *          The string to be literalized
+     *        The string to be literalized
      * @return A literal string replacement
      * @since 1.5
      */
@@ -1815,8 +1666,7 @@ public final class Pattern implements java.io.Serializable {
      * Recompile the Pattern instance from a stream. The original pattern string
      * is read in and the object tree is recompiled from it.
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
 
         // Read in all fields
         s.defaultReadObject();
@@ -1877,8 +1727,7 @@ public final class Pattern implements java.io.Serializable {
         for (int i = 0; i < patternLength;) {
             int c = normalizedPattern.codePointAt(i);
             StringBuilder sequenceBuffer;
-            if ((Character.getType(c) == Character.NON_SPACING_MARK)
-                    && (lastCodePoint != -1)) {
+            if ((Character.getType(c) == Character.NON_SPACING_MARK) && (lastCodePoint != -1)) {
                 sequenceBuffer = new StringBuilder();
                 sequenceBuffer.appendCodePoint(lastCodePoint);
                 sequenceBuffer.appendCodePoint(c);
@@ -1889,10 +1738,8 @@ public final class Pattern implements java.io.Serializable {
                     c = normalizedPattern.codePointAt(i);
                     sequenceBuffer.appendCodePoint(c);
                 }
-                String ea = produceEquivalentAlternation(sequenceBuffer
-                        .toString());
-                newPattern.setLength(newPattern.length() - Character.charCount(
-                        lastCodePoint));
+                String ea = produceEquivalentAlternation(sequenceBuffer.toString());
+                newPattern.setLength(newPattern.length() - Character.charCount(lastCodePoint));
                 newPattern.append("(?:").append(ea).append(")");
             } else if (c == '[' && lastCodePoint != '\\') {
                 i = normalizeCharClass(newPattern, i);
@@ -1935,11 +1782,9 @@ public final class Pattern implements java.io.Serializable {
                         break;
                     c = normalizedPattern.codePointAt(i);
                 }
-                String ea = produceEquivalentAlternation(sequenceBuffer
-                        .toString());
+                String ea = produceEquivalentAlternation(sequenceBuffer.toString());
 
-                charClass.setLength(charClass.length() - Character.charCount(
-                        lastCodePoint));
+                charClass.setLength(charClass.length() - Character.charCount(lastCodePoint));
                 if (eq == null)
                     eq = new StringBuilder();
                 eq.append('|');
@@ -2038,7 +1883,8 @@ public final class Pattern implements java.io.Serializable {
         int index = 0;
         int len;
         // offset maintains the index in code units.
-        loop: for (int x = 0, offset = 0; x < nCodePoints; x++, offset += len) {
+        loop:
+        for (int x = 0, offset = 0; x < nCodePoints; x++, offset += len) {
             len = countChars(input, offset, 1);
             boolean skip = false;
             for (int y = x - 1; y >= 0; y--) {
@@ -2074,8 +1920,7 @@ public final class Pattern implements java.io.Serializable {
     private String composeOneStep(String input) {
         int len = countChars(input, 0, 2);
         String firstTwoCharacters = input.substring(0, len);
-        String result = Normalizer.normalize(firstTwoCharacters,
-                Normalizer.Form.NFC);
+        String result = Normalizer.normalize(firstTwoCharacters, Normalizer.Form.NFC);
 
         if (result.equals(firstTwoCharacters))
             return null;
@@ -2216,14 +2061,12 @@ public final class Pattern implements java.io.Serializable {
         if (matchRoot instanceof Slice) {
             root = BnM.optimize(matchRoot);
             if (root == matchRoot) {
-                root = hasSupplementary ? new StartS(matchRoot)
-                        : new Start(matchRoot);
+                root = hasSupplementary ? new StartS(matchRoot) : new Start(matchRoot);
             }
         } else if (matchRoot instanceof Begin || matchRoot instanceof First) {
             root = matchRoot;
         } else {
-            root = hasSupplementary ? new StartS(matchRoot)
-                    : new Start(matchRoot);
+            root = hasSupplementary ? new StartS(matchRoot) : new Start(matchRoot);
         }
 
         // Release temporary storage
@@ -2434,8 +2277,7 @@ public final class Pattern implements java.io.Serializable {
         if (has(UNIX_LINES)) {
             return ch == '\n';
         } else {
-            return (ch == '\n' || ch == '\r' || (ch | 1) == '\u2029'
-                    || ch == '\u0085');
+            return (ch == '\n' || ch == '\r' || (ch | 1) == '\u2029' || ch == '\u0085');
         }
     }
 
@@ -2481,8 +2323,7 @@ public final class Pattern implements java.io.Serializable {
      * unpaired surrogate.
      */
     private static final boolean isSupplementary(int ch) {
-        return ch >= Character.MIN_SUPPLEMENTARY_CODE_POINT || Character
-                .isSurrogate((char) ch);
+        return ch >= Character.MIN_SUPPLEMENTARY_CODE_POINT || Character.isSurrogate((char) ch);
     }
 
     /**
@@ -2551,7 +2392,8 @@ public final class Pattern implements java.io.Serializable {
         Node head = null;
         Node tail = null;
         Node node = null;
-        LOOP: for (;;) {
+        LOOP:
+        for (;;) {
             int ch = peek();
             switch (ch) {
                 case '(':
@@ -2629,8 +2471,7 @@ public final class Pattern implements java.io.Serializable {
                 case '*':
                 case '+':
                     next();
-                    throw error("Dangling meta character '" + ((char) ch)
-                            + "'");
+                    throw error("Dangling meta character '" + ((char) ch) + "'");
                 case 0:
                     if (cursor >= patternLength) {
                         break LOOP;
@@ -2837,8 +2678,7 @@ public final class Pattern implements java.io.Serializable {
                 break;
             case 'D':
                 if (create)
-                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
-                            UnicodeProp.DIGIT).complement()
+                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.DIGIT).complement()
                             : new Ctype(ASCII.DIGIT).complement();
                 return -1;
             case 'E':
@@ -2872,8 +2712,7 @@ public final class Pattern implements java.io.Serializable {
                 return -1;
             case 'S':
                 if (create)
-                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
-                            UnicodeProp.WHITE_SPACE).complement()
+                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.WHITE_SPACE).complement()
                             : new Ctype(ASCII.SPACE).complement();
                 return -1;
             case 'T':
@@ -2885,8 +2724,7 @@ public final class Pattern implements java.io.Serializable {
                 return -1;
             case 'W':
                 if (create)
-                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
-                            UnicodeProp.WORD).complement()
+                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.WORD).complement()
                             : new Ctype(ASCII.WORD).complement();
                 return -1;
             case 'X':
@@ -2914,8 +2752,8 @@ public final class Pattern implements java.io.Serializable {
                 return c();
             case 'd':
                 if (create)
-                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
-                            UnicodeProp.DIGIT) : new Ctype(ASCII.DIGIT);
+                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.DIGIT)
+                            : new Ctype(ASCII.DIGIT);
                 return -1;
             case 'e':
                 return '\033';
@@ -2934,16 +2772,13 @@ public final class Pattern implements java.io.Serializable {
                 if (inclass)
                     break;
                 if (read() != '<')
-                    throw error(
-                            "\\k is not followed by '<' for named capturing group");
+                    throw error("\\k is not followed by '<' for named capturing group");
                 String name = groupname(read());
                 if (!namedGroups().containsKey(name))
-                    throw error("(named capturing group <" + name
-                            + "> does not exit");
+                    throw error("(named capturing group <" + name + "> does not exit");
                 if (create) {
                     if (has(CASE_INSENSITIVE))
-                        root = new CIBackRef(namedGroups().get(name), has(
-                                UNICODE_CASE));
+                        root = new CIBackRef(namedGroups().get(name), has(UNICODE_CASE));
                     else
                         root = new BackRef(namedGroups().get(name));
                 }
@@ -2961,8 +2796,8 @@ public final class Pattern implements java.io.Serializable {
                 return '\r';
             case 's':
                 if (create)
-                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
-                            UnicodeProp.WHITE_SPACE) : new Ctype(ASCII.SPACE);
+                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.WHITE_SPACE)
+                            : new Ctype(ASCII.SPACE);
                 return -1;
             case 't':
                 return '\t';
@@ -2984,8 +2819,7 @@ public final class Pattern implements java.io.Serializable {
                 return -1;
             case 'w':
                 if (create)
-                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(
-                            UnicodeProp.WORD) : new Ctype(ASCII.WORD);
+                    root = has(UNICODE_CHARACTER_CLASS) ? new Utype(UnicodeProp.WORD) : new Ctype(ASCII.WORD);
                 return -1;
             case 'x':
                 return x();
@@ -3005,7 +2839,6 @@ public final class Pattern implements java.io.Serializable {
 
     /**
      * Parse a character class, and return the node that matches it.
-     *
      * Consumes a ] on the way out if consume is true. Usually consume is true
      * except for the case of [abc&&def] where def is a separate right hand node
      * with "understood" brackets.
@@ -3124,13 +2957,13 @@ public final class Pattern implements java.io.Serializable {
          * (6)AngstromSign u+212b toLowerCase(u+212b) ==> u+00e5
          */
         int d;
-        if (ch < 256 && !(has(CASE_INSENSITIVE) && has(UNICODE_CASE)
-                && (ch == 0xff || ch == 0xb5 || ch == 0x49 || ch == 0x69 || // I
+        if (ch < 256 && !(has(CASE_INSENSITIVE) && has(UNICODE_CASE) && (ch == 0xff || ch == 0xb5
+                || ch == 0x49 || ch == 0x69 || // I
                                                                                                                                          // and
                                                                                                                                          // i
-                        ch == 0x53 || ch == 0x73 || // S and s
-                        ch == 0x4b || ch == 0x6b || // K and k
-                        ch == 0xc5 || ch == 0xe5))) // A+ring
+                ch == 0x53 || ch == 0x73 || // S and s
+                ch == 0x4b || ch == 0x6b || // K and k
+                ch == 0xc5 || ch == 0xe5))) // A+ring
             return bits.add(ch, flags());
         return newSingle(ch);
     }
@@ -3210,8 +3043,7 @@ public final class Pattern implements java.io.Serializable {
         } else {
             int i = cursor;
             mark('}');
-            while (read() != '}') {
-            }
+            while (read() != '}') {}
             mark('\000');
             int j = cursor;
             if (j > patternLength)
@@ -3233,8 +3065,7 @@ public final class Pattern implements java.io.Serializable {
             } else if ("gc".equals(name) || "general_category".equals(name)) {
                 node = charPropertyNodeFor(value);
             } else {
-                throw error("Unknown Unicode property {name=<" + name + ">, "
-                        + "value=<" + value + ">}");
+                throw error("Unknown Unicode property {name=<" + name + ">, " + "value=<" + value + ">}");
             }
         } else {
             if (name.startsWith("In")) {
@@ -3311,8 +3142,7 @@ public final class Pattern implements java.io.Serializable {
     private String groupname(int ch) {
         StringBuilder sb = new StringBuilder();
         sb.append(Character.toChars(ch));
-        while (ASCII.isLower(ch = read()) || ASCII.isUpper(ch) || ASCII.isDigit(
-                ch)) {
+        while (ASCII.isLower(ch = read()) || ASCII.isUpper(ch) || ASCII.isDigit(ch)) {
             sb.append(Character.toChars(ch));
         }
         if (sb.length() == 0)
@@ -3365,8 +3195,7 @@ public final class Pattern implements java.io.Serializable {
                         // named captured group
                         String name = groupname(ch);
                         if (namedGroups().containsKey(name))
-                            throw error("Named capturing group <" + name
-                                    + "> is already defined");
+                            throw error("Named capturing group <" + name + "> is already defined");
                         capturingGroup = true;
                         head = createGroup(false);
                         tail = root;
@@ -3382,21 +3211,15 @@ public final class Pattern implements java.io.Serializable {
                     TreeInfo info = new TreeInfo();
                     head.study(info);
                     if (info.maxValid == false) {
-                        throw error("Look-behind group does not have "
-                                + "an obvious maximum length");
+                        throw error("Look-behind group does not have " + "an obvious maximum length");
                     }
-                    boolean hasSupplementary = findSupplementary(start,
-                            patternLength);
+                    boolean hasSupplementary = findSupplementary(start, patternLength);
                     if (ch == '=') {
-                        head = tail = (hasSupplementary ? new BehindS(head,
-                                info.maxLength, info.minLength)
-                                : new Behind(head, info.maxLength,
-                                        info.minLength));
+                        head = tail = (hasSupplementary ? new BehindS(head, info.maxLength, info.minLength)
+                                : new Behind(head, info.maxLength, info.minLength));
                     } else if (ch == '!') {
-                        head = tail = (hasSupplementary ? new NotBehindS(head,
-                                info.maxLength, info.minLength)
-                                : new NotBehind(head, info.maxLength,
-                                        info.minLength));
+                        head = tail = (hasSupplementary ? new NotBehindS(head, info.maxLength, info.minLength)
+                                : new NotBehind(head, info.maxLength, info.minLength));
                     } else {
                         throw error("Unknown look-behind group");
                     }
@@ -3465,9 +3288,8 @@ public final class Pattern implements java.io.Serializable {
             TreeInfo info = new TreeInfo();
             if (head.study(info)) { // Deterministic
                 GroupTail temp = (GroupTail) tail;
-                head = root = new GroupCurly(head.next, curly.cmin, curly.cmax,
-                        curly.type, ((GroupTail) tail).localIndex,
-                        ((GroupTail) tail).groupIndex, capturingGroup);
+                head = root = new GroupCurly(head.next, curly.cmin, curly.cmax, curly.type,
+                        ((GroupTail) tail).localIndex, ((GroupTail) tail).groupIndex, capturingGroup);
                 return head;
             } else { // Non-deterministic
                 int temp = ((GroupHead) head).localIndex;
@@ -3699,8 +3521,7 @@ public final class Pattern implements java.io.Serializable {
             int m = read();
             if (((m - '0') | ('7' - m)) >= 0) {
                 int o = read();
-                if ((((o - '0') | ('7' - o)) >= 0) && (((n - '0') | ('3'
-                        - n)) >= 0)) {
+                if ((((o - '0') | ('7' - o)) >= 0) && (((n - '0') | ('3' - n)) >= 0)) {
                     return (n - '0') * 64 + (m - '0') * 8 + (o - '0');
                 }
                 unread();
@@ -3777,11 +3598,9 @@ public final class Pattern implements java.io.Serializable {
     // Utility methods for code point support
     //
 
-    private static final int countChars(CharSequence seq, int index,
-            int lengthInCodePoints) {
+    private static final int countChars(CharSequence seq, int index, int lengthInCodePoints) {
         // optimization
-        if (lengthInCodePoints == 1 && !Character.isHighSurrogate(seq.charAt(
-                index))) {
+        if (lengthInCodePoints == 1 && !Character.isHighSurrogate(seq.charAt(index))) {
             assert (index >= 0 && index < seq.length());
             return 1;
         }
@@ -3895,8 +3714,7 @@ public final class Pattern implements java.io.Serializable {
         if (has(CASE_INSENSITIVE)) {
             if (has(UNICODE_CASE)) {
                 for (int i = 0; i < count; i++) {
-                    tmp[i] = Character.toLowerCase(Character.toUpperCase(
-                            buf[i]));
+                    tmp[i] = Character.toLowerCase(Character.toUpperCase(buf[i]));
                 }
                 return hasSupplementary ? new SliceUS(tmp) : new SliceU(tmp);
             }
@@ -4037,8 +3855,7 @@ public final class Pattern implements java.io.Serializable {
                 // Optimization to move to the next character. This is
                 // faster than countChars(seq, i, 1).
                 if (Character.isHighSurrogate(seq.charAt(i++))) {
-                    if (i < seq.length() && Character.isLowSurrogate(seq.charAt(
-                            i))) {
+                    if (i < seq.length() && Character.isLowSurrogate(seq.charAt(i))) {
                         i++;
                     }
                 }
@@ -4073,8 +3890,7 @@ public final class Pattern implements java.io.Serializable {
      */
     static final class End extends Node {
         boolean match(Matcher matcher, int i, CharSequence seq) {
-            int endIndex = (matcher.anchoringBounds) ? matcher.to
-                    : matcher.getTextLength();
+            int endIndex = (matcher.anchoringBounds) ? matcher.to : matcher.getTextLength();
             if (i == endIndex) {
                 matcher.hitEnd = true;
                 return next.match(matcher, i, seq);
@@ -4102,8 +3918,7 @@ public final class Pattern implements java.io.Serializable {
             }
             if (i > startIndex) {
                 char ch = seq.charAt(i - 1);
-                if (ch != '\n' && ch != '\r' && (ch | 1) != '\u2029'
-                        && ch != '\u0085') {
+                if (ch != '\n' && ch != '\r' && (ch | 1) != '\u2029' && ch != '\u0085') {
                     return false;
                 }
                 // Should treat /r/n as one newline
@@ -4155,13 +3970,10 @@ public final class Pattern implements java.io.Serializable {
     /**
      * Node to anchor at the end of a line or the end of input based on the
      * multiline mode.
-     *
      * When not in multiline mode, the $ can only match at the very end of the
      * input, unless the input ends in a line terminator in which it matches
      * right before the last line terminator.
-     *
      * Note that \r\n is considered an atomic line terminator.
-     *
      * Like ^ the $ operator matches at a position, it does not match the line
      * terminators themselves.
      */
@@ -4173,8 +3985,7 @@ public final class Pattern implements java.io.Serializable {
         }
 
         boolean match(Matcher matcher, int i, CharSequence seq) {
-            int endIndex = (matcher.anchoringBounds) ? matcher.to
-                    : matcher.getTextLength();
+            int endIndex = (matcher.anchoringBounds) ? matcher.to : matcher.getTextLength();
             if (!multiline) {
                 if (i < endIndex - 2)
                     return false;
@@ -4203,8 +4014,7 @@ public final class Pattern implements java.io.Serializable {
                         return false;
                     if (multiline)
                         return next.match(matcher, i, seq);
-                } else if (ch == '\r' || ch == '\u0085' || (ch
-                        | 1) == '\u2029') {
+                } else if (ch == '\r' || ch == '\u0085' || (ch | 1) == '\u2029') {
                     if (multiline)
                         return next.match(matcher, i, seq);
                 } else { // No line terminator, no match
@@ -4237,8 +4047,7 @@ public final class Pattern implements java.io.Serializable {
         }
 
         boolean match(Matcher matcher, int i, CharSequence seq) {
-            int endIndex = (matcher.anchoringBounds) ? matcher.to
-                    : matcher.getTextLength();
+            int endIndex = (matcher.anchoringBounds) ? matcher.to : matcher.getTextLength();
             if (i < endIndex) {
                 char ch = seq.charAt(i);
                 if (ch == '\n') {
@@ -4277,8 +4086,7 @@ public final class Pattern implements java.io.Serializable {
             // (u+000Du+000A|[u+000Au+000Bu+000Cu+000Du+0085u+2028u+2029])
             if (i < matcher.to) {
                 int ch = seq.charAt(i);
-                if (ch == 0x0A || ch == 0x0B || ch == 0x0C || ch == 0x85
-                        || ch == 0x2028 || ch == 0x2029)
+                if (ch == 0x0A || ch == 0x0B || ch == 0x0C || ch == 0x85 || ch == 0x2028 || ch == 0x2029)
                     return next.match(matcher, i + 1, seq);
                 if (ch == 0x0D) {
                     i++;
@@ -4317,8 +4125,7 @@ public final class Pattern implements java.io.Serializable {
         boolean match(Matcher matcher, int i, CharSequence seq) {
             if (i < matcher.to) {
                 int ch = Character.codePointAt(seq, i);
-                return isSatisfiedBy(ch) && next.match(matcher, i + Character
-                        .charCount(ch), seq);
+                return isSatisfiedBy(ch) && next.match(matcher, i + Character.charCount(ch), seq);
             } else {
                 matcher.hitEnd = true;
                 return false;
@@ -4339,8 +4146,7 @@ public final class Pattern implements java.io.Serializable {
     private static abstract class BmpCharProperty extends CharProperty {
         boolean match(Matcher matcher, int i, CharSequence seq) {
             if (i < matcher.to) {
-                return isSatisfiedBy(seq.charAt(i)) && next.match(matcher, i
-                        + 1, seq);
+                return isSatisfiedBy(seq.charAt(i)) && next.match(matcher, i + 1, seq);
             } else {
                 matcher.hitEnd = true;
                 return false;
@@ -4406,8 +4212,7 @@ public final class Pattern implements java.io.Serializable {
         }
 
         boolean isSatisfiedBy(int ch) {
-            return lower == ch || lower == Character.toLowerCase(Character
-                    .toUpperCase(ch));
+            return lower == ch || lower == Character.toLowerCase(Character.toUpperCase(ch));
         }
     }
 
@@ -4491,8 +4296,7 @@ public final class Pattern implements java.io.Serializable {
      */
     static final class VertWS extends BmpCharProperty {
         boolean isSatisfiedBy(int cp) {
-            return (cp >= 0x0A && cp <= 0x0D) || cp == 0x85 || cp == 0x2028
-                    || cp == 0x2029;
+            return (cp >= 0x0A && cp <= 0x0D) || cp == 0x85 || cp == 0x2028 || cp == 0x2029;
         }
     }
 
@@ -4501,9 +4305,8 @@ public final class Pattern implements java.io.Serializable {
      */
     static final class HorizWS extends BmpCharProperty {
         boolean isSatisfiedBy(int cp) {
-            return cp == 0x09 || cp == 0x20 || cp == 0xa0 || cp == 0x1680
-                    || cp == 0x180e || cp >= 0x2000 && cp <= 0x200a
-                    || cp == 0x202f || cp == 0x205f || cp == 0x3000;
+            return cp == 0x09 || cp == 0x20 || cp == 0xa0 || cp == 0x1680 || cp == 0x180e || cp >= 0x2000
+                    && cp <= 0x200a || cp == 0x202f || cp == 0x205f || cp == 0x3000;
         }
     }
 
@@ -4590,8 +4393,7 @@ public final class Pattern implements java.io.Serializable {
                     return false;
                 }
                 int c = seq.charAt(i + j);
-                if (buf[j] != c && buf[j] != Character.toLowerCase(Character
-                        .toUpperCase(c)))
+                if (buf[j] != c && buf[j] != Character.toLowerCase(Character.toUpperCase(c)))
                     return false;
             }
             return next.match(matcher, i + len, seq);
@@ -4695,23 +4497,20 @@ public final class Pattern implements java.io.Serializable {
      * Returns node for matching characters within an explicit value range in a
      * case insensitive manner.
      */
-    private CharProperty caseInsensitiveRangeFor(final int lower,
-            final int upper) {
+    private CharProperty caseInsensitiveRangeFor(final int lower, final int upper) {
         if (has(UNICODE_CASE))
             return new CharProperty() {
                 boolean isSatisfiedBy(int ch) {
                     if (inRange(lower, ch, upper))
                         return true;
                     int up = Character.toUpperCase(ch);
-                    return inRange(lower, up, upper) || inRange(lower, Character
-                            .toLowerCase(up), upper);
+                    return inRange(lower, up, upper) || inRange(lower, Character.toLowerCase(up), upper);
                 }
             };
         return new CharProperty() {
             boolean isSatisfiedBy(int ch) {
-                return inRange(lower, ch, upper) || ASCII.isAscii(ch)
-                        && (inRange(lower, ASCII.toUpper(ch), upper) || inRange(
-                                lower, ASCII.toLower(ch), upper));
+                return inRange(lower, ch, upper) || ASCII.isAscii(ch) && (inRange(lower, ASCII.toUpper(ch),
+                        upper) || inRange(lower, ASCII.toLower(ch), upper));
             }
         };
     }
@@ -4731,8 +4530,7 @@ public final class Pattern implements java.io.Serializable {
      */
     static final class Dot extends CharProperty {
         boolean isSatisfiedBy(int ch) {
-            return (ch != '\n' && ch != '\r' && (ch | 1) != '\u2029'
-                    && ch != '\u0085');
+            return (ch != '\n' && ch != '\r' && (ch | 1) != '\u2029' && ch != '\u0085');
         }
     }
 
@@ -4761,18 +4559,17 @@ public final class Pattern implements java.io.Serializable {
         boolean match(Matcher matcher, int i, CharSequence seq) {
             switch (type) {
                 case GREEDY:
-                    return (atom.match(matcher, i, seq) && next.match(matcher,
-                            matcher.last, seq)) || next.match(matcher, i, seq);
+                    return (atom.match(matcher, i, seq) && next.match(matcher, matcher.last, seq)) || next
+                            .match(matcher, i, seq);
                 case LAZY:
-                    return next.match(matcher, i, seq) || (atom.match(matcher,
-                            i, seq) && next.match(matcher, matcher.last, seq));
+                    return next.match(matcher, i, seq) || (atom.match(matcher, i, seq) && next.match(matcher,
+                            matcher.last, seq));
                 case POSSESSIVE:
                     if (atom.match(matcher, i, seq))
                         i = matcher.last;
                     return next.match(matcher, i, seq);
                 default:
-                    return atom.match(matcher, i, seq) && next.match(matcher,
-                            matcher.last, seq);
+                    return atom.match(matcher, i, seq) && next.match(matcher, matcher.last, seq);
             }
         }
 
@@ -4952,8 +4749,7 @@ public final class Pattern implements java.io.Serializable {
         int groupIndex;
         boolean capture;
 
-        GroupCurly(Node node, int cmin, int cmax, int type, int local,
-                int group, boolean capture) {
+        GroupCurly(Node node, int cmin, int cmax, int type, int local, int group, boolean capture) {
             this.atom = node;
             this.type = type;
             this.cmin = cmin;
@@ -5239,7 +5035,6 @@ public final class Pattern implements java.io.Serializable {
     /**
      * The GroupHead saves the location where the group begins in the locals and
      * restores them when the match is done.
-     *
      * The matchRef is used when a reference to this group is accessed later in
      * the expression. The locals will have a negative value in them to indicate
      * that we do not want to unset the group if the reference doesn't match.
@@ -5281,8 +5076,7 @@ public final class Pattern implements java.io.Serializable {
         }
 
         boolean match(Matcher matcher, int i, CharSequence seq) {
-            return head.matchRef(matcher, i, seq) && next.match(matcher,
-                    matcher.last, seq);
+            return head.matchRef(matcher, i, seq) && next.match(matcher, matcher.last, seq);
         }
 
         boolean study(TreeInfo info) {
@@ -5296,7 +5090,6 @@ public final class Pattern implements java.io.Serializable {
      * The GroupTail handles the setting of group beginning and ending locations
      * when groups are successfully matched. It must also be able to unset
      * groups that have to be backed off of.
-     *
      * The GroupTail node is also used when a previous group is referenced, and
      * in that case no group information needs to be set.
      */
@@ -5569,8 +5362,7 @@ public final class Pattern implements java.io.Serializable {
                     if (doUnicodeCase) {
                         int cc1 = Character.toUpperCase(c1);
                         int cc2 = Character.toUpperCase(c2);
-                        if (cc1 != cc2 && Character.toLowerCase(
-                                cc1) != Character.toLowerCase(cc2))
+                        if (cc1 != cc2 && Character.toLowerCase(cc1) != Character.toLowerCase(cc2))
                             return false;
                     } else {
                         if (ASCII.toLower(c1) != ASCII.toLower(c2))
@@ -5604,8 +5396,7 @@ public final class Pattern implements java.io.Serializable {
 
         boolean match(Matcher matcher, int i, CharSequence seq) {
             if (atom instanceof BnM) {
-                return atom.match(matcher, i, seq) && next.match(matcher,
-                        matcher.last, seq);
+                return atom.match(matcher, i, seq) && next.match(matcher, matcher.last, seq);
             }
             for (;;) {
                 if (i > matcher.to) {
@@ -5793,8 +5584,8 @@ public final class Pattern implements java.io.Serializable {
             if (matcher.transparentBounds)
                 matcher.from = 0;
 
-            for (int j = i - rminChars; !conditionMatched
-                    && j >= from; j -= j > from ? countChars(seq, j, -1) : 1) {
+            for (int j = i - rminChars; !conditionMatched && j >= from; j -= j > from ? countChars(seq, j, -1)
+                    : 1) {
                 conditionMatched = cond.match(matcher, j, seq);
             }
             matcher.from = savedFrom;
@@ -5857,8 +5648,8 @@ public final class Pattern implements java.io.Serializable {
             // Relax transparent region boundaries for lookbehind
             if (matcher.transparentBounds)
                 matcher.from = 0;
-            for (int j = i - rminChars; !conditionMatched
-                    && j >= from; j -= j > from ? countChars(seq, j, -1) : 1) {
+            for (int j = i - rminChars; !conditionMatched && j >= from; j -= j > from ? countChars(seq, j, -1)
+                    : 1) {
                 conditionMatched = cond.match(matcher, j, seq);
             }
             // Reinstate region boundaries
@@ -5871,8 +5662,7 @@ public final class Pattern implements java.io.Serializable {
     /**
      * Returns the set union of two CharProperty nodes.
      */
-    private static CharProperty union(final CharProperty lhs,
-            final CharProperty rhs) {
+    private static CharProperty union(final CharProperty lhs, final CharProperty rhs) {
         return new CharProperty() {
             boolean isSatisfiedBy(int ch) {
                 return lhs.isSatisfiedBy(ch) || rhs.isSatisfiedBy(ch);
@@ -5883,8 +5673,7 @@ public final class Pattern implements java.io.Serializable {
     /**
      * Returns the set intersection of two CharProperty nodes.
      */
-    private static CharProperty intersection(final CharProperty lhs,
-            final CharProperty rhs) {
+    private static CharProperty intersection(final CharProperty lhs, final CharProperty rhs) {
         return new CharProperty() {
             boolean isSatisfiedBy(int ch) {
                 return lhs.isSatisfiedBy(ch) && rhs.isSatisfiedBy(ch);
@@ -5895,8 +5684,7 @@ public final class Pattern implements java.io.Serializable {
     /**
      * Returns the set difference of two CharProperty nodes.
      */
-    private static CharProperty setDifference(final CharProperty lhs,
-            final CharProperty rhs) {
+    private static CharProperty setDifference(final CharProperty lhs, final CharProperty rhs) {
         return new CharProperty() {
             boolean isSatisfiedBy(int ch) {
                 return !rhs.isSatisfiedBy(ch) && lhs.isSatisfiedBy(ch);
@@ -5925,8 +5713,7 @@ public final class Pattern implements java.io.Serializable {
         }
 
         boolean isWord(int ch) {
-            return useUWORD ? UnicodeProp.WORD.is(ch)
-                    : (ch == '_' || Character.isLetterOrDigit(ch));
+            return useUWORD ? UnicodeProp.WORD.is(ch) : (ch == '_' || Character.isLetterOrDigit(ch));
         }
 
         int check(Matcher matcher, int i, CharSequence seq) {
@@ -5940,16 +5727,14 @@ public final class Pattern implements java.io.Serializable {
             }
             if (i > startIndex) {
                 ch = Character.codePointBefore(seq, i);
-                left = (isWord(ch) || ((Character.getType(
-                        ch) == Character.NON_SPACING_MARK) && hasBaseCharacter(
-                                matcher, i - 1, seq)));
+                left = (isWord(ch) || ((Character.getType(ch) == Character.NON_SPACING_MARK)
+                        && hasBaseCharacter(matcher, i - 1, seq)));
             }
             boolean right = false;
             if (i < endIndex) {
                 ch = Character.codePointAt(seq, i);
-                right = (isWord(ch) || ((Character.getType(
-                        ch) == Character.NON_SPACING_MARK) && hasBaseCharacter(
-                                matcher, i, seq)));
+                right = (isWord(ch) || ((Character.getType(ch) == Character.NON_SPACING_MARK)
+                        && hasBaseCharacter(matcher, i, seq)));
             } else {
                 // Tried to access char past the end
                 matcher.hitEnd = true;
@@ -5960,8 +5745,7 @@ public final class Pattern implements java.io.Serializable {
         }
 
         boolean match(Matcher matcher, int i, CharSequence seq) {
-            return (check(matcher, i, seq) & type) > 0 && next.match(matcher, i,
-                    seq);
+            return (check(matcher, i, seq) & type) > 0 && next.match(matcher, i, seq);
         }
     }
 
@@ -5969,8 +5753,7 @@ public final class Pattern implements java.io.Serializable {
      * Non spacing marks only count as word characters in bounds calculations if
      * they have a base character.
      */
-    private static boolean hasBaseCharacter(Matcher matcher, int i,
-            CharSequence seq) {
+    private static boolean hasBaseCharacter(Matcher matcher, int i, CharSequence seq) {
         int start = (!matcher.transparentBounds) ? matcher.from : 0;
         for (int x = i; x >= start; x--) {
             int ch = Character.codePointAt(seq, x);
@@ -6008,7 +5791,6 @@ public final class Pattern implements java.io.Serializable {
      * pattern can be shifted right by the pattern length if the subset does not
      * occur again in pattern, or by the amount of distance to the next
      * occurrence of the subset in the pattern.
-     *
      * Boyer-Moore search methods adapted from code by Amy Yu.
      */
     static class BnM extends Node {
@@ -6048,7 +5830,8 @@ public final class Pattern implements java.io.Serializable {
             }
             // Precalculate the good suffix shift
             // i is the shift amount being considered
-            NEXT: for (i = patternLength; i > 0; i--) {
+            NEXT:
+            for (i = patternLength; i > 0; i--) {
                 // j is the beginning index of suffix being considered
                 for (j = patternLength - 1; j >= i; j--) {
                     // Testing for good suffix
@@ -6088,7 +5871,8 @@ public final class Pattern implements java.io.Serializable {
             int last = matcher.to - patternLength;
 
             // Loop over all possible match positions in text
-            NEXT: while (i <= last) {
+            NEXT:
+            while (i <= last) {
                 // Loop over pattern from right to left
                 for (int j = patternLength - 1; j >= 0; j--) {
                     int ch = seq.charAt(i + j);
@@ -6144,18 +5928,17 @@ public final class Pattern implements java.io.Serializable {
             int last = matcher.to - lengthInChars;
 
             // Loop over all possible match positions in text
-            NEXT: while (i <= last) {
+            NEXT:
+            while (i <= last) {
                 // Loop over pattern from right to left
                 int ch;
-                for (int j = countChars(seq, i,
-                        patternLength), x = patternLength
-                                - 1; j > 0; j -= Character.charCount(ch), x--) {
+                for (int j = countChars(seq, i, patternLength), x = patternLength - 1; j > 0; j -= Character
+                        .charCount(ch), x--) {
                     ch = Character.codePointBefore(seq, i + j);
                     if (ch != src[x]) {
                         // Shift search to the right by the maximum of the
                         // bad character shift and the good suffix shift
-                        int n = Math.max(x + 1 - lastOcc[ch & 0x7F],
-                                optoSft[x]);
+                        int n = Math.max(x + 1 - lastOcc[ch & 0x7F], optoSft[x]);
                         i += countChars(seq, i, n);
                         continue NEXT;
                     }
@@ -6205,8 +5988,7 @@ public final class Pattern implements java.io.Serializable {
             });
         }
 
-        private static void defRange(String name, final int lower,
-                final int upper) {
+        private static void defRange(String name, final int lower, final int upper) {
             map.put(name, new CharPropertyFactory() {
                 CharProperty make() {
                     return rangeFor(lower, upper);
@@ -6222,8 +6004,7 @@ public final class Pattern implements java.io.Serializable {
             });
         }
 
-        private static abstract class CloneableProperty extends CharProperty
-                implements Cloneable {
+        private static abstract class CloneableProperty extends CharProperty implements Cloneable {
             public CloneableProperty clone() {
                 try {
                     return (CloneableProperty) super.clone();
@@ -6276,43 +6057,28 @@ public final class Pattern implements java.io.Serializable {
             defCategory("So", 1 << Character.OTHER_SYMBOL);
             defCategory("Pi", 1 << Character.INITIAL_QUOTE_PUNCTUATION);
             defCategory("Pf", 1 << Character.FINAL_QUOTE_PUNCTUATION);
-            defCategory("L", ((1 << Character.UPPERCASE_LETTER)
-                    | (1 << Character.LOWERCASE_LETTER)
-                    | (1 << Character.TITLECASE_LETTER)
-                    | (1 << Character.MODIFIER_LETTER)
+            defCategory("L", ((1 << Character.UPPERCASE_LETTER) | (1 << Character.LOWERCASE_LETTER)
+                    | (1 << Character.TITLECASE_LETTER) | (1 << Character.MODIFIER_LETTER)
                     | (1 << Character.OTHER_LETTER)));
-            defCategory("M", ((1 << Character.NON_SPACING_MARK)
-                    | (1 << Character.ENCLOSING_MARK)
+            defCategory("M", ((1 << Character.NON_SPACING_MARK) | (1 << Character.ENCLOSING_MARK)
                     | (1 << Character.COMBINING_SPACING_MARK)));
-            defCategory("N", ((1 << Character.DECIMAL_DIGIT_NUMBER)
-                    | (1 << Character.LETTER_NUMBER)
+            defCategory("N", ((1 << Character.DECIMAL_DIGIT_NUMBER) | (1 << Character.LETTER_NUMBER)
                     | (1 << Character.OTHER_NUMBER)));
-            defCategory("Z", ((1 << Character.SPACE_SEPARATOR)
-                    | (1 << Character.LINE_SEPARATOR)
+            defCategory("Z", ((1 << Character.SPACE_SEPARATOR) | (1 << Character.LINE_SEPARATOR)
                     | (1 << Character.PARAGRAPH_SEPARATOR)));
             defCategory("C", ((1 << Character.CONTROL) | (1 << Character.FORMAT)
-                    | (1 << Character.PRIVATE_USE)
-                    | (1 << Character.SURROGATE))); // Other
-            defCategory("P", ((1 << Character.DASH_PUNCTUATION)
-                    | (1 << Character.START_PUNCTUATION)
-                    | (1 << Character.END_PUNCTUATION)
-                    | (1 << Character.CONNECTOR_PUNCTUATION)
-                    | (1 << Character.OTHER_PUNCTUATION)
-                    | (1 << Character.INITIAL_QUOTE_PUNCTUATION)
+                    | (1 << Character.PRIVATE_USE) | (1 << Character.SURROGATE))); // Other
+            defCategory("P", ((1 << Character.DASH_PUNCTUATION) | (1 << Character.START_PUNCTUATION)
+                    | (1 << Character.END_PUNCTUATION) | (1 << Character.CONNECTOR_PUNCTUATION)
+                    | (1 << Character.OTHER_PUNCTUATION) | (1 << Character.INITIAL_QUOTE_PUNCTUATION)
                     | (1 << Character.FINAL_QUOTE_PUNCTUATION)));
-            defCategory("S", ((1 << Character.MATH_SYMBOL)
-                    | (1 << Character.CURRENCY_SYMBOL)
-                    | (1 << Character.MODIFIER_SYMBOL)
-                    | (1 << Character.OTHER_SYMBOL)));
-            defCategory("LC", ((1 << Character.UPPERCASE_LETTER)
-                    | (1 << Character.LOWERCASE_LETTER)
+            defCategory("S", ((1 << Character.MATH_SYMBOL) | (1 << Character.CURRENCY_SYMBOL)
+                    | (1 << Character.MODIFIER_SYMBOL) | (1 << Character.OTHER_SYMBOL)));
+            defCategory("LC", ((1 << Character.UPPERCASE_LETTER) | (1 << Character.LOWERCASE_LETTER)
                     | (1 << Character.TITLECASE_LETTER)));
-            defCategory("LD", ((1 << Character.UPPERCASE_LETTER)
-                    | (1 << Character.LOWERCASE_LETTER)
-                    | (1 << Character.TITLECASE_LETTER)
-                    | (1 << Character.MODIFIER_LETTER)
-                    | (1 << Character.OTHER_LETTER)
-                    | (1 << Character.DECIMAL_DIGIT_NUMBER)));
+            defCategory("LD", ((1 << Character.UPPERCASE_LETTER) | (1 << Character.LOWERCASE_LETTER)
+                    | (1 << Character.TITLECASE_LETTER) | (1 << Character.MODIFIER_LETTER)
+                    | (1 << Character.OTHER_LETTER) | (1 << Character.DECIMAL_DIGIT_NUMBER)));
             defRange("L1", 0x00, 0xFF); // Latin-1
             map.put("all", new CharPropertyFactory() {
                 CharProperty make() {
@@ -6443,33 +6209,28 @@ public final class Pattern implements java.io.Serializable {
     /**
      * Creates a stream from the given input sequence around matches of this
      * pattern.
-     *
      * <p>
      * The stream returned by this method contains each substring of the input
      * sequence that is terminated by another subsequence that matches this
      * pattern or is terminated by the end of the input sequence. The substrings
      * in the stream are in the order in which they occur in the input. Trailing
      * empty strings will be discarded and not encountered in the stream.
-     *
      * <p>
      * If this pattern does not match any subsequence of the input then the
      * resulting stream has just one element, namely the input sequence in
      * string form.
-     *
      * <p>
      * When there is a positive-width match at the beginning of the input
      * sequence then an empty leading substring is included at the beginning of
      * the stream. A zero-width match at the beginning however never produces
      * such empty leading substring.
-     *
      * <p>
      * If the input sequence is mutable, it must remain constant during the
      * execution of the terminal stream operation. Otherwise, the result of the
      * terminal stream operation is undefined.
      *
      * @param input
-     *              The character sequence to be split
-     *
+     *        The character sequence to be split
      * @return The stream of strings computed by splitting the input around
      *         matches of this pattern
      * @see #split(CharSequence)
@@ -6514,8 +6275,7 @@ public final class Pattern implements java.io.Serializable {
                 // Consume the next matching element
                 // Count sequence of matching empty elements
                 while (matcher.find()) {
-                    nextElement = input.subSequence(current, matcher.start())
-                            .toString();
+                    nextElement = input.subSequence(current, matcher.start()).toString();
                     current = matcher.end();
                     if (!nextElement.isEmpty()) {
                         return true;
@@ -6528,8 +6288,7 @@ public final class Pattern implements java.io.Serializable {
                 }
 
                 // Consume last matching element
-                nextElement = input.subSequence(current, input.length())
-                        .toString();
+                nextElement = input.subSequence(current, input.length()).toString();
                 current = input.length();
                 if (!nextElement.isEmpty()) {
                     return true;
@@ -6541,8 +6300,7 @@ public final class Pattern implements java.io.Serializable {
                 }
             }
         }
-        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(
-                new MatcherIterator(), Spliterator.ORDERED
-                        | Spliterator.NONNULL), false);
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(new MatcherIterator(),
+                Spliterator.ORDERED | Spliterator.NONNULL), false);
     }
 }

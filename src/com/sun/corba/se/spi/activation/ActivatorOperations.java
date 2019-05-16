@@ -25,29 +25,24 @@ public interface ActivatorOperations {
     int[] getActiveServers();
 
     // If the server is not running, start it up.
-    void activate(int serverId)
-            throws com.sun.corba.se.spi.activation.ServerAlreadyActive,
+    void activate(int serverId) throws com.sun.corba.se.spi.activation.ServerAlreadyActive,
             com.sun.corba.se.spi.activation.ServerNotRegistered,
             com.sun.corba.se.spi.activation.ServerHeldDown;
 
     // If the server is running, shut it down
-    void shutdown(int serverId)
-            throws com.sun.corba.se.spi.activation.ServerNotActive,
+    void shutdown(int serverId) throws com.sun.corba.se.spi.activation.ServerNotActive,
             com.sun.corba.se.spi.activation.ServerNotRegistered;
 
     // currently running, this method will activate it.
-    void install(int serverId)
-            throws com.sun.corba.se.spi.activation.ServerNotRegistered,
+    void install(int serverId) throws com.sun.corba.se.spi.activation.ServerNotRegistered,
             com.sun.corba.se.spi.activation.ServerHeldDown,
             com.sun.corba.se.spi.activation.ServerAlreadyInstalled;
 
     // list all registered ORBs for a server
-    String[] getORBNames(int serverId)
-            throws com.sun.corba.se.spi.activation.ServerNotRegistered;
+    String[] getORBNames(int serverId) throws com.sun.corba.se.spi.activation.ServerNotRegistered;
 
     // After this hook completes, the server may still be running.
-    void uninstall(int serverId)
-            throws com.sun.corba.se.spi.activation.ServerNotRegistered,
+    void uninstall(int serverId) throws com.sun.corba.se.spi.activation.ServerNotRegistered,
             com.sun.corba.se.spi.activation.ServerHeldDown,
             com.sun.corba.se.spi.activation.ServerAlreadyUninstalled;
 } // interface ActivatorOperations

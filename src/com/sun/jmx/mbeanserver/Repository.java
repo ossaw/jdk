@@ -103,13 +103,11 @@ public class Repository {
          * Builds a new ObjectNamePattern object from an ObjectName pattern.
          * 
          * @param pattern
-         *                The ObjectName pattern under examination.
+         *        The ObjectName pattern under examination.
          **/
         public ObjectNamePattern(ObjectName pattern) {
-            this(pattern.isPropertyListPattern(), pattern
-                    .isPropertyValuePattern(), pattern
-                            .getCanonicalKeyPropertyListString(), pattern
-                                    .getKeyPropertyList(), pattern);
+            this(pattern.isPropertyListPattern(), pattern.isPropertyValuePattern(), pattern
+                    .getCanonicalKeyPropertyListString(), pattern.getKeyPropertyList(), pattern);
         }
 
         /**
@@ -117,18 +115,17 @@ public class Repository {
          * constituents.
          * 
          * @param propertyListPattern
-         *                             pattern.isPropertyListPattern().
+         *        pattern.isPropertyListPattern().
          * @param propertyValuePattern
-         *                             pattern.isPropertyValuePattern().
+         *        pattern.isPropertyValuePattern().
          * @param canonicalProps
-         *                             pattern.getCanonicalKeyPropertyListString().
+         *        pattern.getCanonicalKeyPropertyListString().
          * @param keyPropertyList
-         *                             pattern.getKeyPropertyList().
+         *        pattern.getKeyPropertyList().
          * @param pattern
-         *                             The ObjectName pattern under examination.
+         *        The ObjectName pattern under examination.
          **/
-        ObjectNamePattern(boolean propertyListPattern,
-                boolean propertyValuePattern, String canonicalProps,
+        ObjectNamePattern(boolean propertyListPattern, boolean propertyValuePattern, String canonicalProps,
                 Map<String, String> keyPropertyList, ObjectName pattern) {
             this.isPropertyListPattern = propertyListPattern;
             this.isPropertyValuePattern = propertyValuePattern;
@@ -152,15 +149,15 @@ public class Repository {
          * called. PropertyList is also supposed not to be zero-length.
          * 
          * @param name
-         *             The ObjectName we want to match against the pattern.
+         *        The ObjectName we want to match against the pattern.
          * @return true if <code>name</code> matches the pattern.
          **/
         public boolean matchKeys(ObjectName name) {
             // If key property value pattern but not key property list
             // pattern, then the number of key properties must be equal
             //
-            if (isPropertyValuePattern && !isPropertyListPattern && (name
-                    .getKeyPropertyList().size() != keys.length))
+            if (isPropertyValuePattern && !isPropertyListPattern && (name.getKeyPropertyList()
+                    .size() != keys.length))
                 return false;
 
             // If key property value pattern or key property list pattern,
@@ -178,8 +175,7 @@ public class Repository {
                         return false;
                     // If this property is ok (same key, same value), go to next
                     //
-                    if (isPropertyValuePattern && pattern
-                            .isPropertyValuePattern(keys[i])) {
+                    if (isPropertyValuePattern && pattern.isPropertyValuePattern(keys[i])) {
                         // wildmatch key property values
                         // values[i] is the pattern;
                         // v is the string
@@ -208,8 +204,8 @@ public class Repository {
      * for the given ObjectNamePattern Do not check whether the domains match
      * (only check for matching key property lists - see <i>matchKeys()</i>)
      **/
-    private void addAllMatching(final Map<String, NamedObject> moiTb,
-            final Set<NamedObject> result, final ObjectNamePattern pattern) {
+    private void addAllMatching(final Map<String, NamedObject> moiTb, final Set<NamedObject> result,
+            final ObjectNamePattern pattern) {
         synchronized (moiTb) {
             for (NamedObject no : moiTb.values()) {
                 final ObjectName on = no.getName();
@@ -220,8 +216,8 @@ public class Repository {
         }
     }
 
-    private void addNewDomMoi(final DynamicMBean object, final String dom,
-            final ObjectName name, final RegistrationContext context) {
+    private void addNewDomMoi(final DynamicMBean object, final String dom, final ObjectName name,
+            final RegistrationContext context) {
         final Map<String, NamedObject> moiTb = new HashMap<String, NamedObject>();
         final String key = name.getCanonicalKeyPropertyListString();
         addMoiToTb(object, name, key, moiTb, context);
@@ -248,14 +244,12 @@ public class Repository {
             context.unregistered();
         } catch (Exception x) {
             // shouldn't come here...
-            MBEANSERVER_LOGGER.log(Level.FINE,
-                    "Unexpected exception while unregistering " + name, x);
+            MBEANSERVER_LOGGER.log(Level.FINE, "Unexpected exception while unregistering " + name, x);
         }
     }
 
-    private void addMoiToTb(final DynamicMBean object, final ObjectName name,
-            final String key, final Map<String, NamedObject> moiTb,
-            final RegistrationContext context) {
+    private void addMoiToTb(final DynamicMBean object, final ObjectName name, final String key,
+            final Map<String, NamedObject> moiTb, final RegistrationContext context) {
         registering(context);
         moiTb.put(key, new NamedObject(name, object));
     }
@@ -320,7 +314,6 @@ public class Repository {
 
     /**
      * Returns the list of domains in which any MBean is currently registered.
-     *
      */
     public String[] getDomains() {
 
@@ -329,8 +322,7 @@ public class Repository {
         try {
             // Temporary list
             result = new ArrayList<String>(domainTb.size());
-            for (Map.Entry<String, Map<String, NamedObject>> entry : domainTb
-                    .entrySet()) {
+            for (Map.Entry<String, Map<String, NamedObject>> entry : domainTb.entrySet()) {
                 // Skip domains that are in the table but have no
                 // MBean registered in them
                 // in particular the default domain may be like this
@@ -350,32 +342,30 @@ public class Repository {
      * Stores an MBean associated with its object name in the repository.
      *
      * @param object
-     *                MBean to be stored in the repository.
+     *        MBean to be stored in the repository.
      * @param name
-     *                MBean object name.
+     *        MBean object name.
      * @param context
-     *                A registration context. If non null, the repository will
-     *                call
-     *                {@link RegistrationContext#registering()
-     *                context.registering()} from within the repository lock,
-     *                when
-     *                it has determined that the {@code object} can be stored in
-     *                the
-     *                repository with that {@code name}. If
-     *                {@link RegistrationContext#registering()
-     *                context.registering()} throws an exception, the operation
-     *                is
-     *                abandonned, the MBean is not added to the repository, and
-     *                a
-     *                {@link RuntimeOperationsException} is thrown.
+     *        A registration context. If non null, the repository will
+     *        call
+     *        {@link RegistrationContext#registering()
+     *        context.registering()} from within the repository lock,
+     *        when
+     *        it has determined that the {@code object} can be stored in
+     *        the
+     *        repository with that {@code name}. If
+     *        {@link RegistrationContext#registering()
+     *        context.registering()} throws an exception, the operation
+     *        is
+     *        abandonned, the MBean is not added to the repository, and
+     *        a
+     *        {@link RuntimeOperationsException} is thrown.
      */
-    public void addMBean(final DynamicMBean object, ObjectName name,
-            final RegistrationContext context)
+    public void addMBean(final DynamicMBean object, ObjectName name, final RegistrationContext context)
             throws InstanceAlreadyExistsException {
 
         if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-            MBEANSERVER_LOGGER.logp(Level.FINER, Repository.class.getName(),
-                    "addMBean", "name = " + name);
+            MBEANSERVER_LOGGER.logp(Level.FINER, Repository.class.getName(), "addMBean", "name = " + name);
         }
 
         // Extract the domain name.
@@ -397,18 +387,16 @@ public class Repository {
         // Validate name for an object
         if (name.isPattern()) {
             throw new RuntimeOperationsException(new IllegalArgumentException(
-                    "Repository: cannot add mbean for " + "pattern name " + name
-                            .toString()));
+                    "Repository: cannot add mbean for " + "pattern name " + name.toString()));
         }
 
         lock.writeLock().lock();
         try {
             // Domain cannot be JMImplementation if entry does not exist
-            if (!to_default_domain && dom.equals("JMImplementation") && domainTb
-                    .containsKey("JMImplementation")) {
-                throw new RuntimeOperationsException(
-                        new IllegalArgumentException(
-                                "Repository: domain name cannot be JMImplementation"));
+            if (!to_default_domain && dom.equals("JMImplementation") && domainTb.containsKey(
+                    "JMImplementation")) {
+                throw new RuntimeOperationsException(new IllegalArgumentException(
+                        "Repository: domain name cannot be JMImplementation"));
             }
 
             // If domain does not already exist, add it to the hash table
@@ -438,14 +426,12 @@ public class Repository {
      * repository.
      *
      * @param name
-     *             name of the MBean to find.
-     *
+     *        name of the MBean to find.
      * @return true if the MBean is stored in the repository, false otherwise.
      */
     public boolean contains(ObjectName name) {
         if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-            MBEANSERVER_LOGGER.logp(Level.FINER, Repository.class.getName(),
-                    "contains", " name = " + name);
+            MBEANSERVER_LOGGER.logp(Level.FINER, Repository.class.getName(), "contains", " name = " + name);
         }
         lock.readLock().lock();
         try {
@@ -460,15 +446,13 @@ public class Repository {
      * name must match exactly.
      *
      * @param name
-     *             name of the MBean to retrieve.
-     *
+     *        name of the MBean to retrieve.
      * @return The retrieved MBean if it is contained in the repository, null
      *         otherwise.
      */
     public DynamicMBean retrieve(ObjectName name) {
         if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-            MBEANSERVER_LOGGER.logp(Level.FINER, Repository.class.getName(),
-                    "retrieve", "name = " + name);
+            MBEANSERVER_LOGGER.logp(Level.FINER, Repository.class.getName(), "retrieve", "name = " + name);
         }
 
         // Calls internal retrieve method to get the named object
@@ -490,15 +474,14 @@ public class Repository {
      * (optionally).
      *
      * @param pattern
-     *                The name of the MBean(s) to retrieve - may be a specific
-     *                object or a name pattern allowing multiple MBeans to be
-     *                selected.
+     *        The name of the MBean(s) to retrieve - may be a specific
+     *        object or a name pattern allowing multiple MBeans to be
+     *        selected.
      * @param query
-     *                query expression to apply when selecting objects - this
-     *                parameter will be ignored when the Repository Service does
-     *                not
-     *                support filtering.
-     *
+     *        query expression to apply when selecting objects - this
+     *        parameter will be ignored when the Repository Service does
+     *        not
+     *        support filtering.
      * @return The list of MBeans selected. There may be zero, one or many
      *         MBeans returned in the set.
      */
@@ -513,8 +496,8 @@ public class Repository {
 
         // Surely one of the most frequent cases ... query on the whole world
         ObjectName name;
-        if (pattern == null || pattern.getCanonicalName().length() == 0
-                || pattern.equals(ObjectName.WILDCARD))
+        if (pattern == null || pattern.getCanonicalName().length() == 0 || pattern.equals(
+                ObjectName.WILDCARD))
             name = ObjectName.WILDCARD;
         else
             name = pattern;
@@ -538,12 +521,9 @@ public class Repository {
                 return result;
             }
 
-            final String canonical_key_property_list_string = name
-                    .getCanonicalKeyPropertyListString();
-            final boolean allNames = (canonical_key_property_list_string
-                    .length() == 0);
-            final ObjectNamePattern namePattern = (allNames ? null
-                    : new ObjectNamePattern(name));
+            final String canonical_key_property_list_string = name.getCanonicalKeyPropertyListString();
+            final boolean allNames = (canonical_key_property_list_string.length() == 0);
+            final ObjectNamePattern namePattern = (allNames ? null : new ObjectNamePattern(name));
 
             // All names in default domain
             if (name.getDomain().length() == 0) {
@@ -556,8 +536,7 @@ public class Repository {
             }
 
             if (!name.isDomainPattern()) {
-                final Map<String, NamedObject> moiTb = domainTb.get(name
-                        .getDomain());
+                final Map<String, NamedObject> moiTb = domainTb.get(name.getDomain());
                 if (moiTb == null)
                     return Collections.emptySet();
                 if (allNames)
@@ -588,32 +567,30 @@ public class Repository {
      * Removes an MBean from the repository.
      *
      * @param name
-     *                name of the MBean to remove.
+     *        name of the MBean to remove.
      * @param context
-     *                A registration context. If non null, the repository will
-     *                call
-     *                {@link RegistrationContext#unregistered()
-     *                context.unregistered()} from within the repository lock,
-     *                just
-     *                after the mbean associated with {@code name} is removed
-     *                from
-     *                the repository. If
-     *                {@link RegistrationContext#unregistered()
-     *                context.unregistered()} is not expected to throw any
-     *                exception. If it does, the exception is logged and
-     *                swallowed.
-     *
+     *        A registration context. If non null, the repository will
+     *        call
+     *        {@link RegistrationContext#unregistered()
+     *        context.unregistered()} from within the repository lock,
+     *        just
+     *        after the mbean associated with {@code name} is removed
+     *        from
+     *        the repository. If
+     *        {@link RegistrationContext#unregistered()
+     *        context.unregistered()} is not expected to throw any
+     *        exception. If it does, the exception is logged and
+     *        swallowed.
      * @exception InstanceNotFoundException
-     *                                      The MBean does not exist in the
-     *                                      repository.
+     *            The MBean does not exist in the
+     *            repository.
      */
     public void remove(final ObjectName name, final RegistrationContext context)
             throws InstanceNotFoundException {
 
         // Debugging stuff
         if (MBEANSERVER_LOGGER.isLoggable(Level.FINER)) {
-            MBEANSERVER_LOGGER.logp(Level.FINER, Repository.class.getName(),
-                    "remove", "name = " + name);
+            MBEANSERVER_LOGGER.logp(Level.FINER, Repository.class.getName(), "remove", "name = " + name);
         }
 
         // Extract domain name.
@@ -632,8 +609,7 @@ public class Repository {
             }
 
             // Remove the corresponding element
-            if (moiTb.remove(name
-                    .getCanonicalKeyPropertyListString()) == null) {
+            if (moiTb.remove(name.getCanonicalKeyPropertyListString()) == null) {
                 throw new InstanceNotFoundException(name.toString());
             }
 

@@ -31,8 +31,7 @@ import javax.xml.validation.ValidatorHandler;
  * @author Michael Glavassevich, IBM
  * @version $Id: AbstractXMLSchema.java,v 1.6 2010-11-01 04:40:07 joehw Exp $
  */
-abstract class AbstractXMLSchema extends Schema implements
-        XSGrammarPoolContainer {
+abstract class AbstractXMLSchema extends Schema implements XSGrammarPoolContainer {
 
     /**
      * Map containing the initial values of features for validators created

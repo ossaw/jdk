@@ -15,22 +15,18 @@ import sun.security.util.SecurityConstants;
  * class can be registered with the system by doing
  * ResponseCache.setDefault(ResponseCache), and the system will call this object
  * in order to:
- *
  * <ul>
  * <li>store resource data which has been retrieved from an external source into
  * the cache</li>
  * <li>try to fetch a requested resource that may have been stored in the cache
  * </li>
  * </ul>
- *
  * The ResponseCache implementation decides which resources should be cached,
  * and for how long they should be cached. If a request resource cannot be
  * retrieved from the cache, then the protocol handlers will fetch the resource
  * from its original location.
- *
  * The settings for URLConnection#useCaches controls whether the protocol is
  * allowed to use a cached response.
- *
  * For more information on HTTP caching, see
  * <a href="http://www.ietf.org/rfc/rfc2616.txt"><i>RFC&nbsp;2616: Hypertext
  * Transfer Protocol -- HTTP/1.1</i></a>
@@ -52,10 +48,9 @@ public abstract class ResponseCache {
      * Gets the system-wide response cache.
      *
      * @throws SecurityException
-     *                           If a security manager has been installed and it
-     *                           denies
-     *                           {@link NetPermission}{@code ("getResponseCache")}
-     *
+     *         If a security manager has been installed and it
+     *         denies
+     *         {@link NetPermission}{@code ("getResponseCache")}
      * @see #setDefault(ResponseCache)
      * @return the system-wide {@code ResponseCache}
      * @since 1.5
@@ -70,18 +65,15 @@ public abstract class ResponseCache {
 
     /**
      * Sets (or unsets) the system-wide cache.
-     *
      * Note: non-standard procotol handlers may ignore this setting.
      *
      * @param responseCache
-     *                      The response cache, or {@code null} to unset the
-     *                      cache.
-     *
+     *        The response cache, or {@code null} to unset the
+     *        cache.
      * @throws SecurityException
-     *                           If a security manager has been installed and it
-     *                           denies
-     *                           {@link NetPermission}{@code ("setResponseCache")}
-     *
+     *         If a security manager has been installed and it
+     *         denies
+     *         {@link NetPermission}{@code ("setResponseCache")}
      * @see #getDefault()
      * @since 1.5
      */
@@ -100,28 +92,27 @@ public abstract class ResponseCache {
      * cached response is returned, that resource is used instead.
      *
      * @param uri
-     *                    a {@code URI} used to reference the requested network
-     *                    resource
+     *        a {@code URI} used to reference the requested network
+     *        resource
      * @param rqstMethod
-     *                    a {@code String} representing the request method
+     *        a {@code String} representing the request method
      * @param rqstHeaders
-     *                    - a Map from request header field names to lists of
-     *                    field
-     *                    values representing the current request headers
+     *        - a Map from request header field names to lists of
+     *        field
+     *        values representing the current request headers
      * @return a {@code CacheResponse} instance if available from cache, or null
      *         otherwise
      * @throws IOException
-     *                                  if an I/O error occurs
+     *         if an I/O error occurs
      * @throws IllegalArgumentException
-     *                                  if any one of the arguments is null
-     *
+     *         if any one of the arguments is null
      * @see java.net.URLConnection#setUseCaches(boolean)
      * @see java.net.URLConnection#getUseCaches()
      * @see java.net.URLConnection#setDefaultUseCaches(boolean)
      * @see java.net.URLConnection#getDefaultUseCaches()
      */
-    public abstract CacheResponse get(URI uri, String rqstMethod,
-            Map<String, List<String>> rqstHeaders) throws IOException;
+    public abstract CacheResponse get(URI uri, String rqstMethod, Map<String, List<String>> rqstHeaders)
+            throws IOException;
 
     /**
      * The protocol handler calls this method after a resource has been
@@ -132,19 +123,18 @@ public abstract class ResponseCache {
      * resource is not to be cached, then put must return null.
      *
      * @param uri
-     *             a {@code URI} used to reference the requested network
-     *             resource
+     *        a {@code URI} used to reference the requested network
+     *        resource
      * @param conn
-     *             - a URLConnection instance that is used to fetch the response
-     *             to be cached
+     *        - a URLConnection instance that is used to fetch the response
+     *        to be cached
      * @return a {@code CacheRequest} for recording the response to be cached.
      *         Null return indicates that the caller does not intend to cache
      *         the response.
      * @throws IOException
-     *                                  if an I/O error occurs
+     *         if an I/O error occurs
      * @throws IllegalArgumentException
-     *                                  if any one of the arguments is null
+     *         if any one of the arguments is null
      */
-    public abstract CacheRequest put(URI uri, URLConnection conn)
-            throws IOException;
+    public abstract CacheRequest put(URI uri, URLConnection conn) throws IOException;
 }

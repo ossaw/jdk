@@ -29,7 +29,6 @@ public class W3CDomHandler implements DomHandler<Element, DOMResult> {
 
     /**
      * Default constructor.
-     *
      * It is up to a JAXB provider to decide which DOM implementation to use or
      * how that is configured.
      */
@@ -42,9 +41,9 @@ public class W3CDomHandler implements DomHandler<Element, DOMResult> {
      * to be used.
      *
      * @param builder
-     *                must not be null. JAXB uses this {@link DocumentBuilder}
-     *                to
-     *                create a new element.
+     *        must not be null. JAXB uses this {@link DocumentBuilder}
+     *        to
+     *        create a new element.
      */
     public W3CDomHandler(DocumentBuilder builder) {
         if (builder == null)
@@ -85,8 +84,7 @@ public class W3CDomHandler implements DomHandler<Element, DOMResult> {
         throw new IllegalStateException(n.toString());
     }
 
-    public Source marshal(Element element,
-            ValidationEventHandler errorHandler) {
+    public Source marshal(Element element, ValidationEventHandler errorHandler) {
         return new DOMSource(element);
     }
 }

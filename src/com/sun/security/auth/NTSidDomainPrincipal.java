@@ -9,12 +9,10 @@ package com.sun.security.auth;
  * <p>
  * This class extends <code>NTSid</code> and represents a Windows NT user's
  * domain SID.
- *
  * <p>
  * An NT user only has a domain SID if in fact they are logged into an NT
  * domain. If the user is logged into a workgroup or just a standalone
  * configuration, they will NOT have a domain SID.
- *
  * <p>
  * Principals such as this <code>NTSidDomainPrincipal</code> may be associated
  * with a particular <code>Subject</code> to augment that <code>Subject</code>
@@ -32,17 +30,15 @@ public class NTSidDomainPrincipal extends NTSid {
 
     /**
      * Create an <code>NTSidDomainPrincipal</code> with a Windows NT SID.
-     *
      * <p>
      *
      * @param name
-     *             a string version of the Windows NT SID for this user's
-     *             domain.
-     *             <p>
-     *
+     *        a string version of the Windows NT SID for this user's
+     *        domain.
+     *        <p>
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public NTSidDomainPrincipal(String name) {
         super(name);
@@ -50,17 +46,14 @@ public class NTSidDomainPrincipal extends NTSid {
 
     /**
      * Return a string representation of this <code>NTSidDomainPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this <code>NTSidDomainPrincipal</code>
      *         .
      */
     public String toString() {
-        java.text.MessageFormat form = new java.text.MessageFormat(
-                sun.security.util.ResourcesMgr.getString(
-                        "NTSidDomainPrincipal.name",
-                        "sun.security.util.AuthResources"));
+        java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr.getString(
+                "NTSidDomainPrincipal.name", "sun.security.util.AuthResources"));
         Object[] source = { getName() };
         return form.format(source);
     }
@@ -70,13 +63,11 @@ public class NTSidDomainPrincipal extends NTSid {
      * for equality. Returns true if the given object is also a
      * <code>NTSidDomainPrincipal</code> and the two NTSidDomainPrincipals have
      * the same SID.
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>NTSidDomainPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>NTSidDomainPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>NTSidDomainPrincipal</code>.
      */

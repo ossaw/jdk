@@ -64,7 +64,7 @@ public abstract class StackInstruction extends Instruction {
 
     /**
      * @param opcode
-     *               instruction opcode
+     *        instruction opcode
      */
     protected StackInstruction(short opcode) {
         super(opcode, (short) 1);

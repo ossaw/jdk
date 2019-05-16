@@ -49,15 +49,13 @@ import java.util.StringTokenizer;
 public class MBeanServerPermission extends BasicPermission {
     private static final long serialVersionUID = -5661980843569388590L;
 
-    private final static int CREATE = 0, FIND = 1, NEW = 2, RELEASE = 3,
-            N_NAMES = 4;
+    private final static int CREATE = 0, FIND = 1, NEW = 2, RELEASE = 3, N_NAMES = 4;
 
-    private final static String[] names = { "createMBeanServer",
-            "findMBeanServer", "newMBeanServer", "releaseMBeanServer", };
+    private final static String[] names = { "createMBeanServer", "findMBeanServer", "newMBeanServer",
+            "releaseMBeanServer", };
 
-    private final static int CREATE_MASK = 1 << CREATE, FIND_MASK = 1 << FIND,
-            NEW_MASK = 1 << NEW, RELEASE_MASK = 1 << RELEASE,
-            ALL_MASK = CREATE_MASK | FIND_MASK | NEW_MASK | RELEASE_MASK;
+    private final static int CREATE_MASK = 1 << CREATE, FIND_MASK = 1 << FIND, NEW_MASK = 1 << NEW,
+            RELEASE_MASK = 1 << RELEASE, ALL_MASK = CREATE_MASK | FIND_MASK | NEW_MASK | RELEASE_MASK;
 
     /*
      * Map from permission masks to canonical names. This array is filled in on
@@ -85,16 +83,16 @@ public class MBeanServerPermission extends BasicPermission {
      * </p>
      * 
      * @param name
-     *             the name of the granted permission. It must respect the
-     *             constraints spelt out in the description of the
-     *             {@link MBeanServerPermission} class.
+     *        the name of the granted permission. It must respect the
+     *        constraints spelt out in the description of the
+     *        {@link MBeanServerPermission} class.
      * @exception NullPointerException
-     *                                     if the name is null.
+     *            if the name is null.
      * @exception IllegalArgumentException
-     *                                     if the name is not <code>*</code> or
-     *                                     one of the allowed
-     *                                     names or a comma-separated list of
-     *                                     the allowed names.
+     *            if the name is not <code>*</code> or
+     *            one of the allowed
+     *            names or a comma-separated list of
+     *            the allowed names.
      */
     public MBeanServerPermission(String name) {
         this(name, null);
@@ -106,29 +104,28 @@ public class MBeanServerPermission extends BasicPermission {
      * </p>
      * 
      * @param name
-     *                the name of the granted permission. It must respect the
-     *                constraints spelt out in the description of the
-     *                {@link MBeanServerPermission} class.
+     *        the name of the granted permission. It must respect the
+     *        constraints spelt out in the description of the
+     *        {@link MBeanServerPermission} class.
      * @param actions
-     *                the associated actions. This parameter is not currently
-     *                used
-     *                and must be null or the empty string.
+     *        the associated actions. This parameter is not currently
+     *        used
+     *        and must be null or the empty string.
      * @exception NullPointerException
-     *                                     if the name is null.
+     *            if the name is null.
      * @exception IllegalArgumentException
-     *                                     if the name is not <code>*</code> or
-     *                                     one of the allowed
-     *                                     names or a comma-separated list of
-     *                                     the allowed names, or
-     *                                     if <code>actions</code> is a non-null
-     *                                     non-empty string.
-     *
+     *            if the name is not <code>*</code> or
+     *            one of the allowed
+     *            names or a comma-separated list of
+     *            the allowed names, or
+     *            if <code>actions</code> is a non-null
+     *            non-empty string.
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty or if
-     *                                  arguments are invalid.
+     *         if <code>name</code> is empty or if
+     *         arguments are invalid.
      */
     public MBeanServerPermission(String name, String actions) {
         super(getCanonicalName(parseMask(name)), actions);
@@ -144,8 +141,7 @@ public class MBeanServerPermission extends BasicPermission {
 
         /* Check that actions is a null empty string */
         if (actions != null && actions.length() > 0)
-            throw new IllegalArgumentException("MBeanServerPermission "
-                    + "actions must be null: " + actions);
+            throw new IllegalArgumentException("MBeanServerPermission " + "actions must be null: " + actions);
     }
 
     MBeanServerPermission(int mask) {
@@ -153,8 +149,7 @@ public class MBeanServerPermission extends BasicPermission {
         this.mask = impliedMask(mask);
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
         mask = parseMask(getName());
     }
@@ -208,8 +203,7 @@ public class MBeanServerPermission extends BasicPermission {
     private static int parseMask(String name) {
         /* Check that target name is a non-null non-empty string */
         if (name == null) {
-            throw new NullPointerException("MBeanServerPermission: "
-                    + "target name can't be null");
+            throw new NullPointerException("MBeanServerPermission: " + "target name can't be null");
         }
 
         name = name.trim();
@@ -237,8 +231,7 @@ public class MBeanServerPermission extends BasicPermission {
             if (names[i].equals(name))
                 return i;
         }
-        final String msg = "Invalid MBeanServerPermission name: \"" + name
-                + "\"";
+        final String msg = "Invalid MBeanServerPermission name: \"" + name + "\"";
         throw new IllegalArgumentException(msg);
     }
 
@@ -251,24 +244,21 @@ public class MBeanServerPermission extends BasicPermission {
      * Checks if this MBeanServerPermission object "implies" the specified
      * permission.
      * </p>
-     *
      * <p>
      * More specifically, this method returns true if:
      * </p>
-     *
      * <ul>
      * <li><i>p</i> is an instance of MBeanServerPermission,</li>
      * <li><i>p</i>'s target names are a subset of this object's target names
      * </li>
      * </ul>
-     *
      * <p>
      * The <code>createMBeanServer</code> permission implies the
      * <code>newMBeanServer</code> permission.
      * </p>
      *
      * @param p
-     *          the permission to check against.
+     *        the permission to check against.
      * @return true if the specified permission is implied by this object, false
      *         if not.
      */
@@ -288,7 +278,7 @@ public class MBeanServerPermission extends BasicPermission {
      * <P>
      * 
      * @param obj
-     *            the object we are testing for equality with this object.
+     *        the object we are testing for equality with this object.
      * @return true if the objects are equal.
      */
     public boolean equals(Object obj) {
@@ -342,8 +332,7 @@ class MBeanServerPermissionCollection extends PermissionCollection {
 
     public synchronized void add(Permission permission) {
         if (!(permission instanceof MBeanServerPermission)) {
-            final String msg = "Permission not an MBeanServerPermission: "
-                    + permission;
+            final String msg = "Permission not an MBeanServerPermission: " + permission;
             throw new IllegalArgumentException(msg);
         }
         if (isReadOnly())
@@ -358,8 +347,7 @@ class MBeanServerPermissionCollection extends PermissionCollection {
     }
 
     public synchronized boolean implies(Permission permission) {
-        return (collectionPermission != null && collectionPermission.implies(
-                permission));
+        return (collectionPermission != null && collectionPermission.implies(permission));
     }
 
     public synchronized Enumeration<Permission> elements() {

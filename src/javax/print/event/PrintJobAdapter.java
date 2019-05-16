@@ -13,7 +13,6 @@ package javax.print.event;
  * {@link java.awt.event.ComponentListener ComponentListener} interface, this
  * abstract interface provides null methods so that you only need to define the
  * methods you need, rather than all of the methods.
- *
  */
 
 public abstract class PrintJobAdapter implements PrintJobListener {
@@ -25,7 +24,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
      * completely printed after receiving this event.
      *
      * @param pje
-     *            the event being notified
+     *        the event being notified
      */
     public void printDataTransferCompleted(PrintJobEvent pje) {}
 
@@ -33,7 +32,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
      * Called to notify the client that the job completed successfully.
      *
      * @param pje
-     *            the event being notified
+     *        the event being notified
      */
     public void printJobCompleted(PrintJobEvent pje) {}
 
@@ -42,7 +41,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
      * and will have to be resubmitted.
      *
      * @param pje
-     *            the event being notified
+     *        the event being notified
      */
     public void printJobFailed(PrintJobEvent pje) {}
 
@@ -50,7 +49,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
      * Called to notify the client that the job was canceled by user or program.
      *
      * @param pje
-     *            the event being notified
+     *        the event being notified
      */
     public void printJobCanceled(PrintJobEvent pje) {}
 
@@ -62,7 +61,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
      * terminal events (completed/failed/canceled) are delivered.
      *
      * @param pje
-     *            the event being notified
+     *        the event being notified
      */
     public void printJobNoMoreEvents(PrintJobEvent pje) {}
 
@@ -71,7 +70,7 @@ public abstract class PrintJobAdapter implements PrintJobListener {
      * occurs (eg printer out of paper).
      *
      * @param pje
-     *            the event being notified
+     *        the event being notified
      */
     public void printJobRequiresAttention(PrintJobEvent pje) {}
 

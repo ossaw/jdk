@@ -18,17 +18,15 @@ public interface URIResolver {
      * document() function.
      *
      * @param href
-     *             An href attribute, which may be relative or absolute.
+     *        An href attribute, which may be relative or absolute.
      * @param base
-     *             The base URI against which the first argument will be made
-     *             absolute if the absolute URI is required.
-     *
+     *        The base URI against which the first argument will be made
+     *        absolute if the absolute URI is required.
      * @return A Source object, or null if the href cannot be resolved, and the
      *         processor should try to resolve the URI itself.
-     *
      * @throws TransformerException
-     *                              if an error occurs when trying to resolve
-     *                              the URI.
+     *         if an error occurs when trying to resolve
+     *         the URI.
      */
     public Source resolve(String href, String base) throws TransformerException;
 }

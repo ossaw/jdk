@@ -8,8 +8,7 @@ package com.sun.corba.se.impl.oa.poa;
 import org.omg.CORBA.*;
 import org.omg.PortableServer.*;
 
-final class ServantRetentionPolicyImpl extends org.omg.CORBA.LocalObject
-        implements ServantRetentionPolicy {
+final class ServantRetentionPolicyImpl extends org.omg.CORBA.LocalObject implements ServantRetentionPolicy {
 
     public ServantRetentionPolicyImpl(ServantRetentionPolicyValue value) {
         this.value = value;
@@ -34,8 +33,7 @@ final class ServantRetentionPolicyImpl extends org.omg.CORBA.LocalObject
     private ServantRetentionPolicyValue value;
 
     public String toString() {
-        return "ServantRetentionPolicy[" + ((value
-                .value() == ServantRetentionPolicyValue._RETAIN) ? "RETAIN"
-                        : "NON_RETAIN" + "]");
+        return "ServantRetentionPolicy[" + ((value.value() == ServantRetentionPolicyValue._RETAIN) ? "RETAIN"
+                : "NON_RETAIN" + "]");
     }
 }

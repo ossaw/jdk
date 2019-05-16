@@ -28,7 +28,6 @@ import java.util.EventListener;
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/containerlistener.html">
  *      Tutorial: Writing a Container Listener</a>
- *
  * @author Tim Prinzing
  * @author Amy Fowler
  * @since 1.1

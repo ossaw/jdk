@@ -13,11 +13,9 @@ import static java.lang.annotation.ElementType.METHOD;
 
 /**
  * Maps a factory method to a XML element.
- *
  * <p>
  * <b>Usage</b>
  * </p>
- *
  * The annotation creates a mapping between an XML schema element declaration
  * and a <i> element factory method </i> that returns a JAXBElement instance
  * representing the element declaration. Typically, the element factory method
@@ -26,16 +24,13 @@ import static java.lang.annotation.ElementType.METHOD;
  * namespace. Thus, while the annotation syntax allows &#64;XmlElementDecl to be
  * used on any method, semantically its use is restricted to annotation of
  * element factory method.
- *
  * The usage is subject to the following constraints:
- *
  * <ul>
  * <li>The class containing the element factory method annotated with
  * &#64;XmlElementDecl must be marked with {@link XmlRegistry}.</li>
  * <li>The element factory method must take one parameter assignable to
  * {@link Object}.</li>
  * </ul>
- *
  * <p>
  * <b>Example 1: </b>Annotation on a factory method
  * 
@@ -63,7 +58,6 @@ import static java.lang.annotation.ElementType.METHOD;
  *     &lt;!-- Example: XML schema definition -->
  *     &lt;xs:element name="foo" type="xs:string"/>
  * </pre>
- *
  * <p>
  * <b>Example 2: </b> Element declaration with non local scope
  * <p>
@@ -106,7 +100,6 @@ import static java.lang.annotation.ElementType.METHOD;
  *         &#64;XmlElementDecl(name="foo")
  *         JAXBElement<Integer> createFoo(Integer i);
  *     }
- *
  * </pre>
  * 
  * Without scope createFoo and createPeaFoo would become ambiguous since both of
@@ -120,7 +113,6 @@ import static java.lang.annotation.ElementType.METHOD;
 public @interface XmlElementDecl {
     /**
      * scope of the mapping.
-     *
      * <p>
      * If this is not {@link XmlElementDecl.GLOBAL}, then this element
      * declaration mapping is only active within the specified class.
@@ -139,7 +131,6 @@ public @interface XmlElementDecl {
 
     /**
      * local name of the XML element.
-     *
      * <p>
      * <b> Note to reviewers: </b> There is no default name; since the
      * annotation is on a factory method, it is not clear that the method name
@@ -184,7 +175,6 @@ public @interface XmlElementDecl {
 
     /**
      * Default value of this element.
-     *
      * <p>
      * The
      * 

@@ -69,7 +69,6 @@ public class MonitoringFactories {
      * Gets the MonitoredManagerFactory. The user is not expected to use this
      * Factory, since the ORB will be automatically initialized with the
      * MonitoringManager.
-     *
      * User can get hold of MonitoringManager associated with ORB by calling
      * orb.getMonitoringManager( )
      * </p>

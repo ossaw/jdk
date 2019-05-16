@@ -14,7 +14,6 @@ import javax.lang.model.SourceVersion;
  * Common interface for tools that can be invoked from a program. A tool is
  * traditionally a command line program such as a compiler. The set of tools
  * available with a platform is defined by the vendor.
- *
  * <p>
  * Tools can be located using {@link java.util.ServiceLoader#load(Class)}.
  *
@@ -32,20 +31,19 @@ public interface Tool {
      * unspecified format.
      *
      * @param in
-     *                  "standard" input; use System.in if null
+     *        "standard" input; use System.in if null
      * @param out
-     *                  "standard" output; use System.out if null
+     *        "standard" output; use System.out if null
      * @param err
-     *                  "standard" error; use System.err if null
+     *        "standard" error; use System.err if null
      * @param arguments
-     *                  arguments to pass to the tool
+     *        arguments to pass to the tool
      * @return 0 for success; nonzero otherwise
      * @throws NullPointerException
-     *                              if the array of arguments contains any
-     *                              {@code null} elements.
+     *         if the array of arguments contains any
+     *         {@code null} elements.
      */
-    int run(InputStream in, OutputStream out, OutputStream err,
-            String... arguments);
+    int run(InputStream in, OutputStream out, OutputStream err, String... arguments);
 
     /**
      * Gets the source versions of the Java&trade; programming language

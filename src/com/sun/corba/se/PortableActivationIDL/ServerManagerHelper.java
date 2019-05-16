@@ -24,8 +24,7 @@ abstract public class ServerManagerHelper {
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static com.sun.corba.se.PortableActivationIDL.ServerManager extract(
-            org.omg.CORBA.Any a) {
+    public static com.sun.corba.se.PortableActivationIDL.ServerManager extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -34,8 +33,7 @@ abstract public class ServerManagerHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    com.sun.corba.se.PortableActivationIDL.ServerManagerHelper
-                            .id(), "ServerManager");
+                    com.sun.corba.se.PortableActivationIDL.ServerManagerHelper.id(), "ServerManager");
         }
         return __typeCode;
     }
@@ -54,8 +52,7 @@ abstract public class ServerManagerHelper {
         ostream.write_Object((org.omg.CORBA.Object) value);
     }
 
-    public static com.sun.corba.se.PortableActivationIDL.ServerManager narrow(
-            org.omg.CORBA.Object obj) {
+    public static com.sun.corba.se.PortableActivationIDL.ServerManager narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof com.sun.corba.se.PortableActivationIDL.ServerManager)

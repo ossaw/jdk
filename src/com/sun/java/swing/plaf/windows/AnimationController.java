@@ -31,7 +31,6 @@ import sun.awt.AppContext;
  * another one in some period of time. According to
  * https://connect.microsoft.com/feedback/ViewFeedback.aspx?FeedbackID=86852&
  * SiteID=4 The animations are all linear.
- *
  * This class has a number of responsibilities.
  * <ul>
  * <li>It trigger rapaint for the UI components involved in the animation
@@ -45,18 +44,16 @@ import sun.awt.AppContext;
  */
 class AnimationController implements ActionListener, PropertyChangeListener {
 
-    private final static boolean VISTA_ANIMATION_DISABLED = AccessController
-            .doPrivileged(new GetBooleanAction("swing.disablevistaanimation"));
+    private final static boolean VISTA_ANIMATION_DISABLED = AccessController.doPrivileged(
+            new GetBooleanAction("swing.disablevistaanimation"));
 
-    private final static Object ANIMATION_CONTROLLER_KEY = new StringBuilder(
-            "ANIMATION_CONTROLLER_KEY");
+    private final static Object ANIMATION_CONTROLLER_KEY = new StringBuilder("ANIMATION_CONTROLLER_KEY");
 
     private final Map<JComponent, Map<Part, AnimationState>> animationStateMap = new WeakHashMap<JComponent, Map<Part, AnimationState>>();
 
     // this timer is used to cause repaint on animated components
     // 30 repaints per second should give smooth animation affect
-    private final javax.swing.Timer timer = new javax.swing.Timer(1000 / 30,
-            this);
+    private final javax.swing.Timer timer = new javax.swing.Timer(1000 / 30, this);
 
     private static synchronized AnimationController getAnimationController() {
         AppContext appContext = AppContext.getAppContext();
@@ -75,8 +72,7 @@ class AnimationController implements ActionListener, PropertyChangeListener {
         UIManager.addPropertyChangeListener(this);
     }
 
-    private static void triggerAnimation(JComponent c, Part part,
-            State newState) {
+    private static void triggerAnimation(JComponent c, Part part, State newState) {
         if (c instanceof javax.swing.JTabbedPane || part == Part.TP_BUTTON) {
             // idk: we can not handle tabs animation because
             // the same (component,part) is used to handle all the tabs
@@ -85,8 +81,7 @@ class AnimationController implements ActionListener, PropertyChangeListener {
             // but native application does not seem to animate them
             return;
         }
-        AnimationController controller = AnimationController
-                .getAnimationController();
+        AnimationController controller = AnimationController.getAnimationController();
         State oldState = controller.getState(c, part);
         if (oldState != newState) {
             controller.putState(c, part, newState);
@@ -104,12 +99,10 @@ class AnimationController implements ActionListener, PropertyChangeListener {
                     duration = 1000;
                 } else {
                     XPStyle xp = XPStyle.getXP();
-                    duration = (xp != null) ? xp.getThemeTransitionDuration(c,
-                            part, normalizeState(oldState), normalizeState(
-                                    newState), Prop.TRANSITIONDURATIONS) : 1000;
+                    duration = (xp != null) ? xp.getThemeTransitionDuration(c, part, normalizeState(oldState),
+                            normalizeState(newState), Prop.TRANSITIONDURATIONS) : 1000;
                 }
-                controller.startAnimation(c, part, oldState, newState,
-                        duration);
+                controller.startAnimation(c, part, oldState, newState, duration);
             }
         }
     }
@@ -161,22 +154,19 @@ class AnimationController implements ActionListener, PropertyChangeListener {
 
     private synchronized State getState(JComponent component, Part part) {
         State rv = null;
-        Object tmpObject = component.getClientProperty(PartUIClientPropertyKey
-                .getKey(part));
+        Object tmpObject = component.getClientProperty(PartUIClientPropertyKey.getKey(part));
         if (tmpObject instanceof State) {
             rv = (State) tmpObject;
         }
         return rv;
     }
 
-    private synchronized void putState(JComponent component, Part part,
-            State state) {
-        component.putClientProperty(PartUIClientPropertyKey.getKey(part),
-                state);
+    private synchronized void putState(JComponent component, Part part, State state) {
+        component.putClientProperty(PartUIClientPropertyKey.getKey(part), state);
     }
 
-    private synchronized void startAnimation(JComponent component, Part part,
-            State startState, State endState, long millis) {
+    private synchronized void startAnimation(JComponent component, Part part, State startState,
+            State endState, long millis) {
         boolean isForwardAndReverse = false;
         if (endState == State.DEFAULTED) {
             isForwardAndReverse = true;
@@ -195,15 +185,14 @@ class AnimationController implements ActionListener, PropertyChangeListener {
             map = new EnumMap<Part, AnimationState>(Part.class);
             animationStateMap.put(component, map);
         }
-        map.put(part, new AnimationState(startState, millis,
-                isForwardAndReverse));
+        map.put(part, new AnimationState(startState, millis, isForwardAndReverse));
         if (!timer.isRunning()) {
             timer.start();
         }
     }
 
-    static void paintSkin(JComponent component, Skin skin, Graphics g, int dx,
-            int dy, int dw, int dh, State state) {
+    static void paintSkin(JComponent component, Skin skin, Graphics g, int dx, int dy, int dw, int dh,
+            State state) {
         if (VISTA_ANIMATION_DISABLED) {
             skin.paintSkinRaw(g, dx, dy, dw, dh, state);
             return;
@@ -212,8 +201,7 @@ class AnimationController implements ActionListener, PropertyChangeListener {
         AnimationController controller = getAnimationController();
         synchronized (controller) {
             AnimationState animationState = null;
-            Map<Part, AnimationState> map = controller.animationStateMap.get(
-                    component);
+            Map<Part, AnimationState> map = controller.animationStateMap.get(component);
             if (map != null) {
                 animationState = map.get(skin.part);
             }
@@ -226,8 +214,7 @@ class AnimationController implements ActionListener, PropertyChangeListener {
     }
 
     public synchronized void propertyChange(PropertyChangeEvent e) {
-        if ("lookAndFeel" == e.getPropertyName() && !(e
-                .getNewValue() instanceof WindowsLookAndFeel)) {
+        if ("lookAndFeel" == e.getPropertyName() && !(e.getNewValue() instanceof WindowsLookAndFeel)) {
             dispose();
         }
     }
@@ -309,8 +296,7 @@ class AnimationController implements ActionListener, PropertyChangeListener {
 
         private float progress;
 
-        AnimationState(final State startState, final long milliseconds,
-                boolean isForwardAndReverse) {
+        AnimationState(final State startState, final long milliseconds, boolean isForwardAndReverse) {
             assert startState != null && milliseconds > 0;
             assert SwingUtilities.isEventDispatchThread();
 
@@ -341,8 +327,7 @@ class AnimationController implements ActionListener, PropertyChangeListener {
             }
         }
 
-        void paintSkin(Skin skin, Graphics _g, int dx, int dy, int dw, int dh,
-                State state) {
+        void paintSkin(Skin skin, Graphics _g, int dx, int dy, int dw, int dh, State state) {
             assert SwingUtilities.isEventDispatchThread();
 
             updateProgress();
@@ -370,8 +355,7 @@ class AnimationController implements ActionListener, PropertyChangeListener {
         }
     }
 
-    private static class PartUIClientPropertyKey implements
-            UIClientPropertyKey {
+    private static class PartUIClientPropertyKey implements UIClientPropertyKey {
 
         private static final Map<Part, PartUIClientPropertyKey> map = new EnumMap<Part, PartUIClientPropertyKey>(
                 Part.class);

@@ -24,20 +24,17 @@ import javax.swing.plaf.basic.*;
  * @author Ralph kar
  */
 class MetalSplitPaneDivider extends BasicSplitPaneDivider {
-    private MetalBumps bumps = new MetalBumps(10, 10, MetalLookAndFeel
-            .getControlHighlight(), MetalLookAndFeel.getControlDarkShadow(),
-            MetalLookAndFeel.getControl());
+    private MetalBumps bumps = new MetalBumps(10, 10, MetalLookAndFeel.getControlHighlight(), MetalLookAndFeel
+            .getControlDarkShadow(), MetalLookAndFeel.getControl());
 
-    private MetalBumps focusBumps = new MetalBumps(10, 10, MetalLookAndFeel
-            .getPrimaryControlHighlight(), MetalLookAndFeel
-                    .getPrimaryControlDarkShadow(), UIManager.getColor(
-                            "SplitPane.dividerFocusColor"));
+    private MetalBumps focusBumps = new MetalBumps(10, 10, MetalLookAndFeel.getPrimaryControlHighlight(),
+            MetalLookAndFeel.getPrimaryControlDarkShadow(), UIManager.getColor(
+                    "SplitPane.dividerFocusColor"));
 
     private int inset = 2;
 
     private Color controlColor = MetalLookAndFeel.getControl();
-    private Color primaryControlColor = UIManager.getColor(
-            "SplitPane.dividerFocusColor");
+    private Color primaryControlColor = UIManager.getColor("SplitPane.dividerFocusColor");
 
     public MetalSplitPaneDivider(BasicSplitPaneUI ui) {
         super(ui);
@@ -78,9 +75,8 @@ class MetalSplitPaneDivider extends BasicSplitPaneDivider {
     protected JButton createLeftOneTouchButton() {
         JButton b = new JButton() {
             // Sprite buffer for the arrow image of the left button
-            int[][] buffer = { { 0, 0, 0, 2, 2, 0, 0, 0, 0 }, { 0, 0, 2, 1, 1,
-                    1, 0, 0, 0 }, { 0, 2, 1, 1, 1, 1, 1, 0, 0 }, { 2, 1, 1, 1,
-                            1, 1, 1, 1, 0 }, { 0, 3, 3, 3, 3, 3, 3, 3, 3 } };
+            int[][] buffer = { { 0, 0, 0, 2, 2, 0, 0, 0, 0 }, { 0, 0, 2, 1, 1, 1, 0, 0, 0 }, { 0, 2, 1, 1, 1,
+                    1, 1, 0, 0 }, { 2, 1, 1, 1, 1, 1, 1, 1, 0 }, { 0, 3, 3, 3, 3, 3, 3, 3, 3 } };
 
             public void setBorder(Border b) {}
 
@@ -92,10 +88,9 @@ class MetalSplitPaneDivider extends BasicSplitPaneDivider {
                     int blockSize = Math.min(getDividerSize(), oneTouchSize);
 
                     // Initialize the color array
-                    Color[] colors = { this.getBackground(), MetalLookAndFeel
-                            .getPrimaryControlDarkShadow(), MetalLookAndFeel
-                                    .getPrimaryControlInfo(), MetalLookAndFeel
-                                            .getPrimaryControlHighlight() };
+                    Color[] colors = { this.getBackground(), MetalLookAndFeel.getPrimaryControlDarkShadow(),
+                            MetalLookAndFeel.getPrimaryControlInfo(), MetalLookAndFeel
+                                    .getPrimaryControlHighlight() };
 
                     // Fill the background first ...
                     g.setColor(this.getBackground());
@@ -176,9 +171,8 @@ class MetalSplitPaneDivider extends BasicSplitPaneDivider {
     protected JButton createRightOneTouchButton() {
         JButton b = new JButton() {
             // Sprite buffer for the arrow image of the right button
-            int[][] buffer = { { 2, 2, 2, 2, 2, 2, 2, 2 }, { 0, 1, 1, 1, 1, 1,
-                    1, 3 }, { 0, 0, 1, 1, 1, 1, 3, 0 }, { 0, 0, 0, 1, 1, 3, 0,
-                            0 }, { 0, 0, 0, 0, 3, 0, 0, 0 } };
+            int[][] buffer = { { 2, 2, 2, 2, 2, 2, 2, 2 }, { 0, 1, 1, 1, 1, 1, 1, 3 }, { 0, 0, 1, 1, 1, 1, 3,
+                    0 }, { 0, 0, 0, 1, 1, 3, 0, 0 }, { 0, 0, 0, 0, 3, 0, 0, 0 } };
 
             public void setBorder(Border border) {}
 
@@ -190,10 +184,9 @@ class MetalSplitPaneDivider extends BasicSplitPaneDivider {
                     int blockSize = Math.min(getDividerSize(), oneTouchSize);
 
                     // Initialize the color array
-                    Color[] colors = { this.getBackground(), MetalLookAndFeel
-                            .getPrimaryControlDarkShadow(), MetalLookAndFeel
-                                    .getPrimaryControlInfo(), MetalLookAndFeel
-                                            .getPrimaryControlHighlight() };
+                    Color[] colors = { this.getBackground(), MetalLookAndFeel.getPrimaryControlDarkShadow(),
+                            MetalLookAndFeel.getPrimaryControlInfo(), MetalLookAndFeel
+                                    .getPrimaryControlHighlight() };
 
                     // Fill the background first ...
                     g.setColor(this.getBackground());
@@ -284,8 +277,7 @@ class MetalSplitPaneDivider extends BasicSplitPaneDivider {
             // It does not center justify the oneTouchExpadable buttons.
             // This was necessary in order to meet the spec of the Metal
             // splitpane divider.
-            if (leftButton != null && rightButton != null
-                    && c == MetalSplitPaneDivider.this) {
+            if (leftButton != null && rightButton != null && c == MetalSplitPaneDivider.this) {
                 if (splitPane.isOneTouchExpandable()) {
                     if (orientation == JSplitPane.VERTICAL_SPLIT) {
                         int extraY = (insets != null) ? insets.top : 0;
@@ -295,10 +287,9 @@ class MetalSplitPaneDivider extends BasicSplitPaneDivider {
                             blockSize -= (insets.top + insets.bottom);
                         }
                         blockSize = Math.min(blockSize, oneTouchSize);
-                        leftButton.setBounds(oneTouchOffset, extraY, blockSize
-                                * 2, blockSize);
-                        rightButton.setBounds(oneTouchOffset + oneTouchSize * 2,
-                                extraY, blockSize * 2, blockSize);
+                        leftButton.setBounds(oneTouchOffset, extraY, blockSize * 2, blockSize);
+                        rightButton.setBounds(oneTouchOffset + oneTouchSize * 2, extraY, blockSize * 2,
+                                blockSize);
                     } else {
                         int blockSize = getDividerSize();
                         int extraX = (insets != null) ? insets.left : 0;
@@ -307,10 +298,9 @@ class MetalSplitPaneDivider extends BasicSplitPaneDivider {
                             blockSize -= (insets.left + insets.right);
                         }
                         blockSize = Math.min(blockSize, oneTouchSize);
-                        leftButton.setBounds(extraX, oneTouchOffset, blockSize,
-                                blockSize * 2);
-                        rightButton.setBounds(extraX, oneTouchOffset
-                                + oneTouchSize * 2, blockSize, blockSize * 2);
+                        leftButton.setBounds(extraX, oneTouchOffset, blockSize, blockSize * 2);
+                        rightButton.setBounds(extraX, oneTouchOffset + oneTouchSize * 2, blockSize, blockSize
+                                * 2);
                     }
                 } else {
                     leftButton.setBounds(-5, -5, 1, 1);

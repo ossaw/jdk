@@ -35,12 +35,11 @@ public interface Doc extends Comparable<Object> {
     /**
      * Return tags of the specified {@linkplain Tag#kind() kind} in this Doc
      * item.
-     *
      * For example, if 'tagname' has value "@serial", all tags in this Doc item
      * of kind "@serial" will be returned.
      *
      * @param tagname
-     *                name of the tag kind to search for.
+     *        name of the tag kind to search for.
      * @return an array of Tag containing all tags whose 'kind()' matches
      *         'tagname'.
      */
@@ -113,13 +112,13 @@ public interface Doc extends Comparable<Object> {
      * This method satisfies the {@link java.lang.Comparable} interface.
      *
      * @param obj
-     *            the <code>Object</code> to be compared.
+     *        the <code>Object</code> to be compared.
      * @return a negative integer, zero, or a positive integer as this Object is
      *         less than, equal to, or greater than the given Object.
      * @exception ClassCastException
-     *                               the specified Object's type prevents it
-     *                               from being
-     *                               compared to this Object.
+     *            the specified Object's type prevents it
+     *            from being
+     *            compared to this Object.
      */
     int compareTo(Object obj);
 

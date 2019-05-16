@@ -173,8 +173,7 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 
             { ER_FUNCTION_NOT_SUPPORTED, "Funkcia nie je podporovan\u00e1!" },
 
-            { ER_CANNOT_OVERWRITE_CAUSE,
-                    "Nie je mo\u017en\u00e9 prep\u00edsa\u0165 pr\u00ed\u010dinu" },
+            { ER_CANNOT_OVERWRITE_CAUSE, "Nie je mo\u017en\u00e9 prep\u00edsa\u0165 pr\u00ed\u010dinu" },
 
             { ER_NO_DEFAULT_IMPL,
                     "Nebola n\u00e1jden\u00e1 \u017eiadna predvolen\u00e1 implement\u00e1cia " },
@@ -182,13 +181,11 @@ public class XMLErrorResources_sk extends ListResourceBundle {
             { ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
                     "ChunkedIntArray({0}) nie je moment\u00e1lne podporovan\u00fd" },
 
-            { ER_OFFSET_BIGGER_THAN_SLOT,
-                    "Offset v\u00e4\u010d\u0161\u00ed, ne\u017e z\u00e1suvka" },
+            { ER_OFFSET_BIGGER_THAN_SLOT, "Offset v\u00e4\u010d\u0161\u00ed, ne\u017e z\u00e1suvka" },
 
             { ER_COROUTINE_NOT_AVAIL, "Korutina nie je dostupn\u00e1, id={0}" },
 
-            { ER_COROUTINE_CO_EXIT,
-                    "CoroutineManager obdr\u017eal po\u017eiadavku co_exit()" },
+            { ER_COROUTINE_CO_EXIT, "CoroutineManager obdr\u017eal po\u017eiadavku co_exit()" },
 
             { ER_COJOINROUTINESET_FAILED, "zlyhal co_joinCoroutineSet()" },
 
@@ -206,48 +203,38 @@ public class XMLErrorResources_sk extends ListResourceBundle {
             { ER_ITERATOR_AXIS_NOT_IMPLEMENTED,
                     "Chyba: iter\u00e1tor pre os {0} nie je implementovan\u00fd " },
 
-            { ER_ITERATOR_CLONE_NOT_SUPPORTED,
-                    "Klon iter\u00e1tora nie je podporovan\u00fd" },
+            { ER_ITERATOR_CLONE_NOT_SUPPORTED, "Klon iter\u00e1tora nie je podporovan\u00fd" },
 
-            { ER_UNKNOWN_AXIS_TYPE,
-                    "Nezn\u00e1my typ pret\u00ednania os\u00ed: {0}" },
+            { ER_UNKNOWN_AXIS_TYPE, "Nezn\u00e1my typ pret\u00ednania os\u00ed: {0}" },
 
-            { ER_AXIS_NOT_SUPPORTED,
-                    "Pret\u00ednanie os\u00ed nie je podporovan\u00e9: {0}" },
+            { ER_AXIS_NOT_SUPPORTED, "Pret\u00ednanie os\u00ed nie je podporovan\u00e9: {0}" },
 
-            { ER_NO_DTMIDS_AVAIL,
-                    "\u017diadne \u010fal\u0161ie DTM ID nie s\u00fa dostupn\u00e9" },
+            { ER_NO_DTMIDS_AVAIL, "\u017diadne \u010fal\u0161ie DTM ID nie s\u00fa dostupn\u00e9" },
 
             { ER_NOT_SUPPORTED, "Nie je podporovan\u00e9: {0}" },
 
-            { ER_NODE_NON_NULL,
-                    "Pre getDTMHandleFromNode mus\u00ed by\u0165 uzol nenulov\u00fd" },
+            { ER_NODE_NON_NULL, "Pre getDTMHandleFromNode mus\u00ed by\u0165 uzol nenulov\u00fd" },
 
-            { ER_COULD_NOT_RESOLVE_NODE,
-                    "Nebolo mo\u017en\u00e9 ur\u010di\u0165 uzol na spracovanie" },
+            { ER_COULD_NOT_RESOLVE_NODE, "Nebolo mo\u017en\u00e9 ur\u010di\u0165 uzol na spracovanie" },
 
             { ER_STARTPARSE_WHILE_PARSING,
                     "startParse nem\u00f4\u017ee by\u0165 volan\u00fd po\u010das vykon\u00e1vania anal\u00fdzy" },
 
-            { ER_STARTPARSE_NEEDS_SAXPARSER,
-                    "startParse potrebuje nenulov\u00fd SAXParser" },
+            { ER_STARTPARSE_NEEDS_SAXPARSER, "startParse potrebuje nenulov\u00fd SAXParser" },
 
             { ER_COULD_NOT_INIT_PARSER,
                     "nebolo mo\u017en\u00e9 inicializova\u0165 syntaktick\u00fd analyz\u00e1tor pomocou" },
 
-            { ER_EXCEPTION_CREATING_POOL,
-                    "v\u00fdnimka vytv\u00e1rania novej in\u0161tancie oblasti" },
+            { ER_EXCEPTION_CREATING_POOL, "v\u00fdnimka vytv\u00e1rania novej in\u0161tancie oblasti" },
 
             { ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
                     "Cesta obsahuje neplatn\u00fa \u00fanikov\u00fa sekvenciu" },
 
             { ER_SCHEME_REQUIRED, "Je po\u017eadovan\u00e1 sch\u00e9ma!" },
 
-            { ER_NO_SCHEME_IN_URI,
-                    "V URI sa nena\u0161la \u017eiadna sch\u00e9ma: {0}" },
+            { ER_NO_SCHEME_IN_URI, "V URI sa nena\u0161la \u017eiadna sch\u00e9ma: {0}" },
 
-            { ER_NO_SCHEME_INURI,
-                    "V URI nebola n\u00e1jden\u00e1 \u017eiadna sch\u00e9ma" },
+            { ER_NO_SCHEME_INURI, "V URI nebola n\u00e1jden\u00e1 \u017eiadna sch\u00e9ma" },
 
             { ER_PATH_INVALID_CHAR, "Cesta obsahuje neplatn\u00fd znak: {0}" },
 
@@ -272,14 +259,12 @@ public class XMLErrorResources_sk extends ListResourceBundle {
 
             { ER_FRAG_INVALID_CHAR, "Fragment obsahuje neplatn\u00fd znak" },
 
-            { ER_PARSER_IN_USE,
-                    "Syntaktick\u00fd analyz\u00e1tor je u\u017e pou\u017e\u00edvan\u00fd" },
+            { ER_PARSER_IN_USE, "Syntaktick\u00fd analyz\u00e1tor je u\u017e pou\u017e\u00edvan\u00fd" },
 
             { ER_CANNOT_CHANGE_WHILE_PARSING,
                     "Nie je mo\u017en\u00e9 zmeni\u0165 {0} {1} po\u010das vykon\u00e1vania anal\u00fdzy" },
 
-            { ER_SELF_CAUSATION_NOT_PERMITTED,
-                    "Samozapr\u00ed\u010dinenie nie je povolen\u00e9" },
+            { ER_SELF_CAUSATION_NOT_PERMITTED, "Samozapr\u00ed\u010dinenie nie je povolen\u00e9" },
 
             { ER_NO_USERINFO_IF_NO_HOST,
                     "Ak nebol zadan\u00fd hostite\u013e, mo\u017eno nebolo zadan\u00e9 userinfo" },
@@ -296,17 +281,14 @@ public class XMLErrorResources_sk extends ListResourceBundle {
             { ER_CANNOT_INIT_URI_EMPTY_PARMS,
                     "Nie je mo\u017en\u00e9 inicializova\u0165 URI s pr\u00e1zdnymi parametrami" },
 
-            { ER_METHOD_NOT_SUPPORTED,
-                    "Met\u00f3da e\u0161te nie je podporovan\u00e1 " },
+            { ER_METHOD_NOT_SUPPORTED, "Met\u00f3da e\u0161te nie je podporovan\u00e1 " },
 
             { ER_INCRSAXSRCFILTER_NOT_RESTARTABLE,
                     "IncrementalSAXSource_Filter nie je moment\u00e1lne re\u0161tartovate\u013en\u00fd" },
 
-            { ER_XMLRDR_NOT_BEFORE_STARTPARSE,
-                    "XMLReader nepredch\u00e1dza po\u017eiadavke na startParse" },
+            { ER_XMLRDR_NOT_BEFORE_STARTPARSE, "XMLReader nepredch\u00e1dza po\u017eiadavke na startParse" },
 
-            { ER_AXIS_TRAVERSER_NOT_SUPPORTED,
-                    "Pret\u00ednanie os\u00ed nie je podporovan\u00e9: {0}" },
+            { ER_AXIS_TRAVERSER_NOT_SUPPORTED, "Pret\u00ednanie os\u00ed nie je podporovan\u00e9: {0}" },
 
             { ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
                     "ListingErrorHandler vytvoren\u00fd s nulov\u00fdm PrintWriter!" },
@@ -318,11 +300,9 @@ public class XMLErrorResources_sk extends ListResourceBundle {
             { ER_PREFIX_MUST_RESOLVE,
                     "Predpona sa mus\u00ed rozl\u00ed\u0161i\u0165 do n\u00e1zvov\u00e9ho priestoru: {0}" },
 
-            { ER_CREATEDOCUMENT_NOT_SUPPORTED,
-                    "createDocument() nie je podporovan\u00e9 XPathContext!" },
+            { ER_CREATEDOCUMENT_NOT_SUPPORTED, "createDocument() nie je podporovan\u00e9 XPathContext!" },
 
-            { ER_CHILD_HAS_NO_OWNER_DOCUMENT,
-                    "Potomok atrib\u00fatu nem\u00e1 dokument vlastn\u00edka!" },
+            { ER_CHILD_HAS_NO_OWNER_DOCUMENT, "Potomok atrib\u00fatu nem\u00e1 dokument vlastn\u00edka!" },
 
             { ER_CHILD_HAS_NO_OWNER_DOCUMENT_ELEMENT,
                     "Potomok atrib\u00fatu nem\u00e1 s\u00fa\u010das\u0165 dokumentu vlastn\u00edka!" },
@@ -348,30 +328,23 @@ public class XMLErrorResources_sk extends ListResourceBundle {
             // The prefix is the portion before the optional colon; the message
             // indicates
             // that there is a problem with that part of the QNAME.
-            { ER_ARG_PREFIX_INVALID,
-                    "Predpona v QNAME by mala by\u0165 platn\u00fdm NCName" },
+            { ER_ARG_PREFIX_INVALID, "Predpona v QNAME by mala by\u0165 platn\u00fdm NCName" },
 
-            { "BAD_CODE",
-                    "Parameter na createMessage bol mimo ohrani\u010denia" }, {
-                            "FORMAT_FAILED",
-                            "V\u00fdnimka po\u010das volania messageFormat" }, {
-                                    "line", "Riadok #" }, { "column",
-                                            "St\u013apec #" },
+            { "BAD_CODE", "Parameter na createMessage bol mimo ohrani\u010denia" }, { "FORMAT_FAILED",
+                    "V\u00fdnimka po\u010das volania messageFormat" }, { "line", "Riadok #" }, { "column",
+                            "St\u013apec #" },
 
             { ER_SERIALIZER_NOT_CONTENTHANDLER,
                     "Trieda serializ\u00e1tora ''{0}'' neimplementuje org.xml.sax.ContentHandler." },
 
-            { ER_RESOURCE_COULD_NOT_FIND,
-                    "Prostriedok [ {0} ] nemohol by\u0165 n\u00e1jden\u00fd.\n {1}" },
+            { ER_RESOURCE_COULD_NOT_FIND, "Prostriedok [ {0} ] nemohol by\u0165 n\u00e1jden\u00fd.\n {1}" },
 
             { ER_RESOURCE_COULD_NOT_LOAD,
                     "Prostriedok [ {0} ] sa nedal na\u010d\u00edta\u0165: {1} \n {2} \t {3}" },
 
-            { ER_BUFFER_SIZE_LESSTHAN_ZERO,
-                    "Ve\u013ekos\u0165 vyrovn\u00e1vacej pam\u00e4te <=0" },
+            { ER_BUFFER_SIZE_LESSTHAN_ZERO, "Ve\u013ekos\u0165 vyrovn\u00e1vacej pam\u00e4te <=0" },
 
-            { ER_INVALID_UTF16_SURROGATE,
-                    "Bolo zisten\u00e9 neplatn\u00e9 nahradenie UTF-16: {0} ?" },
+            { ER_INVALID_UTF16_SURROGATE, "Bolo zisten\u00e9 neplatn\u00e9 nahradenie UTF-16: {0} ?" },
 
             { ER_OIERROR, "chyba IO" },
 

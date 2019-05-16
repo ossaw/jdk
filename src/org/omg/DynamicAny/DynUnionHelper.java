@@ -22,8 +22,7 @@ package org.omg.DynamicAny;
 abstract public class DynUnionHelper {
     private static String _id = "IDL:omg.org/DynamicAny/DynUnion:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.DynamicAny.DynUnion that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.DynamicAny.DynUnion that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -38,8 +37,8 @@ abstract public class DynUnionHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.DynamicAny.DynUnionHelper.id(), "DynUnion");
+            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(org.omg.DynamicAny.DynUnionHelper.id(),
+                    "DynUnion");
         }
         return __typeCode;
     }
@@ -48,13 +47,11 @@ abstract public class DynUnionHelper {
         return _id;
     }
 
-    public static org.omg.DynamicAny.DynUnion read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.DynamicAny.DynUnion read(org.omg.CORBA.portable.InputStream istream) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.DynamicAny.DynUnion value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.DynamicAny.DynUnion value) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
@@ -74,8 +71,7 @@ abstract public class DynUnionHelper {
         }
     }
 
-    public static org.omg.DynamicAny.DynUnion unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.DynamicAny.DynUnion unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.DynamicAny.DynUnion)

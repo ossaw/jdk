@@ -25,7 +25,6 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLGrammarPool;
  * Stores grammars in a pool associated to a specific key. This grammar pool
  * implementation stores two types of grammars: those keyed by the root element
  * name, and those keyed by the grammar's target namespace.
- *
  * This is the default implementation of the GrammarPool interface. As we move
  * forward, this will become more function-rich and robust.
  *
@@ -34,7 +33,6 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLGrammarPool;
  * @author Neil Graham, IBM
  * @author Pavani Mukthipudi, Sun Microsystems
  * @author Neeraj Bajaj, SUN Microsystems
- *
  */
 public class XMLGrammarPoolImpl implements XMLGrammarPool {
 
@@ -145,8 +143,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      */
     public Grammar retrieveGrammar(XMLGrammarDescription desc) {
         if (DEBUG) {
-            System.out.println(
-                    "RETRIEVING GRAMMAR FROM THE APPLICATION WITH FOLLOWING DESCRIPTION :");
+            System.out.println("RETRIEVING GRAMMAR FROM THE APPLICATION WITH FOLLOWING DESCRIPTION :");
             // print(desc);
         }
         return getGrammar(desc);
@@ -161,7 +158,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * root element name or its target namespace.
      *
      * @param grammar
-     *                The Grammar.
+     *        The Grammar.
      */
     public void putGrammar(Grammar grammar) {
         if (!fPoolIsLocked) {
@@ -189,7 +186,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * the target namespace is used as the key for Schema grammars.
      *
      * @param desc
-     *             The Grammar Description.
+     *        The Grammar Description.
      */
     public Grammar getGrammar(XMLGrammarDescription desc) {
         synchronized (fGrammars) {
@@ -211,7 +208,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * is used as the key for Schema grammars.
      *
      * @param desc
-     *             The Grammar Description.
+     *        The Grammar Description.
      * @return The removed grammar.
      */
     public Grammar removeGrammar(XMLGrammarDescription desc) {
@@ -242,7 +239,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * for Schema grammars.
      *
      * @param desc
-     *             The Grammar Description.
+     *        The Grammar Description.
      */
     public boolean containsGrammar(XMLGrammarDescription desc) {
         synchronized (fGrammars) {
@@ -294,13 +291,12 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * its own logic.
      *
      * @param desc1
-     *              The grammar description
+     *        The grammar description
      * @param desc2
-     *              The grammar description of the grammar to be compared to
+     *        The grammar description of the grammar to be compared to
      * @return True if the grammars are equal, otherwise false
      */
-    public boolean equals(XMLGrammarDescription desc1,
-            XMLGrammarDescription desc2) {
+    public boolean equals(XMLGrammarDescription desc1, XMLGrammarDescription desc2) {
         return desc1.equals(desc2);
     }
 
@@ -308,7 +304,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
      * Returns the hash code value for the given grammar description.
      *
      * @param desc
-     *             The grammar description
+     *        The grammar description
      * @return The hash code value
      */
     public int hashCode(XMLGrammarDescription desc) {
@@ -325,8 +321,7 @@ public class XMLGrammarPoolImpl implements XMLGrammarPool {
         public Grammar grammar;
         public Entry next;
 
-        protected Entry(int hash, XMLGrammarDescription desc, Grammar grammar,
-                Entry next) {
+        protected Entry(int hash, XMLGrammarDescription desc, Grammar grammar, Entry next) {
             this.hash = hash;
             this.desc = desc;
             this.grammar = grammar;

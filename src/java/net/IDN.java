@@ -21,7 +21,6 @@ import sun.text.normalizer.UCharacterIterator;
  * ASCII characters. ACE is an encoding of Unicode strings that uses only ASCII
  * characters and can be used with software (such as the Domain Name System)
  * that only understands traditional domain names.
- *
  * <p>
  * Internationalized domain names are defined in
  * <a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>. RFC 3490 defines
@@ -30,7 +29,6 @@ import sun.text.normalizer.UCharacterIterator;
  * is a profile of <a href="http://www.ietf.org/rfc/rfc3454.txt">Stringprep</a>,
  * and <a href="http://www.ietf.org/rfc/rfc3492.txt">Punycode</a> algorithm to
  * convert domain name string back and forth.
- *
  * <p>
  * The behavior of aforementioned conversion process can be adjusted by various
  * flags:
@@ -45,7 +43,6 @@ import sun.text.normalizer.UCharacterIterator;
  * they don't meet the requirements.
  * </ul>
  * These flags can be logically OR'ed together.
- *
  * <p>
  * The security consideration is important with respect to internationalization
  * domain name support. For example, English domain names may be
@@ -57,7 +54,6 @@ import sun.text.normalizer.UCharacterIterator;
  *
  * @author Edward Wang
  * @since 1.6
- *
  */
 public final class IDN {
     /**
@@ -74,13 +70,11 @@ public final class IDN {
      * Translates a string from Unicode to ASCII Compatible Encoding (ACE), as
      * defined by the ToASCII operation of
      * <a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>.
-     *
      * <p>
      * ToASCII operation can fail. ToASCII fails if any step of it fails. If
      * ToASCII operation fails, an IllegalArgumentException will be thrown. In
      * this case, the input string should not be used in an internationalized
      * domain name.
-     *
      * <p>
      * A label is an individual part of a domain name. The original ToASCII
      * operation, as defined in RFC 3490, only operates on a single label. This
@@ -93,15 +87,13 @@ public final class IDN {
      * stop) in output translated string.
      *
      * @param input
-     *              the string to be processed
+     *        the string to be processed
      * @param flag
-     *              process flag; can be 0 or any logical OR of possible flags
-     *
+     *        process flag; can be 0 or any logical OR of possible flags
      * @return the translated {@code String}
-     *
      * @throws IllegalArgumentException
-     *                                  if the input string doesn't conform to
-     *                                  RFC 3490 specification
+     *         if the input string doesn't conform to
+     *         RFC 3490 specification
      */
     public static String toASCII(String input, int flag) {
         int p = 0, q = 0;
@@ -128,20 +120,17 @@ public final class IDN {
      * Translates a string from Unicode to ASCII Compatible Encoding (ACE), as
      * defined by the ToASCII operation of
      * <a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>.
-     *
      * <p>
      * This convenience method works as if by invoking the two-argument
      * counterpart as follows: <blockquote> {@link #toASCII(String, int)
      * toASCII}(input,&nbsp;0); </blockquote>
      *
      * @param input
-     *              the string to be processed
-     *
+     *        the string to be processed
      * @return the translated {@code String}
-     *
      * @throws IllegalArgumentException
-     *                                  if the input string doesn't conform to
-     *                                  RFC 3490 specification
+     *         if the input string doesn't conform to
+     *         RFC 3490 specification
      */
     public static String toASCII(String input) {
         return toASCII(input, 0);
@@ -151,11 +140,9 @@ public final class IDN {
      * Translates a string from ASCII Compatible Encoding (ACE) to Unicode, as
      * defined by the ToUnicode operation of
      * <a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>.
-     *
      * <p>
      * ToUnicode never fails. In case of any error, the input string is returned
      * unmodified.
-     *
      * <p>
      * A label is an individual part of a domain name. The original ToUnicode
      * operation, as defined in RFC 3490, only operates on a single label. This
@@ -166,10 +153,9 @@ public final class IDN {
      * &#0092;uFF61 (halfwidth ideographic full stop).
      *
      * @param input
-     *              the string to be processed
+     *        the string to be processed
      * @param flag
-     *              process flag; can be 0 or any logical OR of possible flags
-     *
+     *        process flag; can be 0 or any logical OR of possible flags
      * @return the translated {@code String}
      */
     public static String toUnicode(String input, int flag) {
@@ -197,15 +183,13 @@ public final class IDN {
      * Translates a string from ASCII Compatible Encoding (ACE) to Unicode, as
      * defined by the ToUnicode operation of
      * <a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>.
-     *
      * <p>
      * This convenience method works as if by invoking the two-argument
      * counterpart as follows: <blockquote> {@link #toUnicode(String, int)
      * toUnicode}(input,&nbsp;0); </blockquote>
      *
      * @param input
-     *              the string to be processed
-     *
+     *        the string to be processed
      * @return the translated {@code String}
      */
     public static String toUnicode(String input) {
@@ -229,13 +213,11 @@ public final class IDN {
         try {
             final String IDN_PROFILE = "uidna.spp";
             if (System.getSecurityManager() != null) {
-                stream = AccessController.doPrivileged(
-                        new PrivilegedAction<InputStream>() {
-                            public InputStream run() {
-                                return StringPrep.class.getResourceAsStream(
-                                        IDN_PROFILE);
-                            }
-                        });
+                stream = AccessController.doPrivileged(new PrivilegedAction<InputStream>() {
+                    public InputStream run() {
+                        return StringPrep.class.getResourceAsStream(IDN_PROFILE);
+                    }
+                });
             } else {
                 stream = StringPrep.class.getResourceAsStream(IDN_PROFILE);
             }
@@ -281,8 +263,7 @@ public final class IDN {
         // step 8, move forward to check the smallest number of the code points
         // the length must be inside 1..63
         if (dest.length() == 0) {
-            throw new IllegalArgumentException(
-                    "Empty label is not a legal name");
+            throw new IllegalArgumentException("Empty label is not a legal name");
         }
 
         // step 3
@@ -294,16 +275,13 @@ public final class IDN {
             for (int i = 0; i < dest.length(); i++) {
                 int c = dest.charAt(i);
                 if (isNonLDHAsciiCodePoint(c)) {
-                    throw new IllegalArgumentException(
-                            "Contains non-LDH ASCII characters");
+                    throw new IllegalArgumentException("Contains non-LDH ASCII characters");
                 }
             }
 
-            if (dest.charAt(0) == '-' || dest.charAt(dest.length()
-                    - 1) == '-') {
+            if (dest.charAt(0) == '-' || dest.charAt(dest.length() - 1) == '-') {
 
-                throw new IllegalArgumentException(
-                        "Has leading or trailing hyphen");
+                throw new IllegalArgumentException("Has leading or trailing hyphen");
             }
         }
 
@@ -329,8 +307,7 @@ public final class IDN {
                     // prepend the ACE prefix
                     dest.insert(0, ACE_PREFIX);
                 } else {
-                    throw new IllegalArgumentException(
-                            "The input starts with the ACE Prefix");
+                    throw new IllegalArgumentException("The input starts with the ACE Prefix");
                 }
 
             }
@@ -339,8 +316,7 @@ public final class IDN {
         // step 8
         // the length must be inside 1..63
         if (dest.length() > MAX_LABEL_LENGTH) {
-            throw new IllegalArgumentException(
-                    "The label in the input is too long");
+            throw new IllegalArgumentException("The label in the input is too long");
         }
 
         return dest.toString();
@@ -384,8 +360,7 @@ public final class IDN {
             try {
                 // step 5
                 // Decode using punycode
-                StringBuffer decodeOut = Punycode.decode(new StringBuffer(temp),
-                        null);
+                StringBuffer decodeOut = Punycode.decode(new StringBuffer(temp), null);
 
                 // step 6
                 // Apply toASCII
@@ -417,9 +392,8 @@ public final class IDN {
     // non-LDH = 0..0x2C, 0x2E..0x2F, 0x3A..0x40, 0x5B..0x60, 0x7B..0x7F
     //
     private static boolean isNonLDHAsciiCodePoint(int ch) {
-        return (0x0000 <= ch && ch <= 0x002C) || (0x002E <= ch && ch <= 0x002F)
-                || (0x003A <= ch && ch <= 0x0040) || (0x005B <= ch
-                        && ch <= 0x0060) || (0x007B <= ch && ch <= 0x007F);
+        return (0x0000 <= ch && ch <= 0x002C) || (0x002E <= ch && ch <= 0x002F) || (0x003A <= ch
+                && ch <= 0x0040) || (0x005B <= ch && ch <= 0x0060) || (0x007B <= ch && ch <= 0x007F);
     }
 
     //

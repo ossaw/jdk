@@ -111,12 +111,11 @@ public interface DynAnyOperations {
      *
      * @param dyn_any
      * @exception TypeMismatch
-     *                         if the type of the passed DynAny is not
-     *                         equivalent to the
-     *                         type of target DynAny
+     *            if the type of the passed DynAny is not
+     *            equivalent to the
+     *            type of target DynAny
      */
-    void assign(org.omg.DynamicAny.DynAny dyn_any)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
+    void assign(org.omg.DynamicAny.DynAny dyn_any) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
 
     /**
      * Initializes the value associated with a DynAny object with the value
@@ -125,16 +124,15 @@ public interface DynAnyOperations {
      * have components.
      *
      * @exception TypeMismatch
-     *                         if the type of the passed Any is not equivalent
-     *                         to the
-     *                         type of target DynAny
+     *            if the type of the passed Any is not equivalent
+     *            to the
+     *            type of target DynAny
      * @exception InvalidValue
-     *                         if the passed Any does not contain a legal value
-     *                         (such as
-     *                         a null string)
+     *            if the passed Any does not contain a legal value
+     *            (such as
+     *            a null string)
      */
-    void from_any(org.omg.CORBA.Any value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void from_any(org.omg.CORBA.Any value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -187,16 +185,15 @@ public interface DynAnyOperations {
      * Inserts a boolean value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_boolean(boolean value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_boolean(boolean value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -204,48 +201,45 @@ public interface DynAnyOperations {
      * to the Java byte data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_octet(byte value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_octet(byte value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Inserts a char value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_char(char value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_char(char value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Inserts a short value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_short(short value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_short(short value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -253,16 +247,15 @@ public interface DynAnyOperations {
      * to the Java short data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_ushort(short value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_ushort(short value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -270,16 +263,15 @@ public interface DynAnyOperations {
      * mapped to the Java int data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_long(int value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_long(int value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -287,48 +279,45 @@ public interface DynAnyOperations {
      * mapped to the Java int data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_ulong(int value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_ulong(int value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Inserts a float value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_float(float value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_float(float value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Inserts a double value into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_double(double value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_double(double value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -336,52 +325,49 @@ public interface DynAnyOperations {
      * strings are inserted using this method.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception InvalidValue
-     *                         if the string inserted is longer than the bound
-     *                         of a
-     *                         bounded string
+     *            if the string inserted is longer than the bound
+     *            of a
+     *            bounded string
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_string(String value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_string(String value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Inserts a reference to a CORBA object into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_reference(org.omg.CORBA.Object value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_reference(org.omg.CORBA.Object value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Inserts a TypeCode object into the DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_typecode(org.omg.CORBA.TypeCode value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_typecode(org.omg.CORBA.TypeCode value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -389,16 +375,15 @@ public interface DynAnyOperations {
      * mapped to the Java long data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_longlong(long value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_longlong(long value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -406,16 +391,15 @@ public interface DynAnyOperations {
      * type is mapped to the Java long data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_ulonglong(long value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_ulonglong(long value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -423,16 +407,15 @@ public interface DynAnyOperations {
      * to the Java char data type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_wchar(char value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_wchar(char value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -440,32 +423,30 @@ public interface DynAnyOperations {
      * strings are inserted using this method.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception InvalidValue
-     *                         if the string inserted is longer than the bound
-     *                         of a
-     *                         bounded string
+     *            if the string inserted is longer than the bound
+     *            of a
+     *            bounded string
      */
-    void insert_wstring(String value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_wstring(String value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Inserts an Any value into the Any represented by this DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_any(org.omg.CORBA.Any value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_any(org.omg.CORBA.Any value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -473,16 +454,15 @@ public interface DynAnyOperations {
      * represented by this DynAny.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_dyn_any(org.omg.DynamicAny.DynAny value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_dyn_any(org.omg.DynamicAny.DynAny value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -490,33 +470,32 @@ public interface DynAnyOperations {
      * ValueBase type is mapped to the Java Serializable type.
      *
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
-    void insert_val(java.io.Serializable value)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    void insert_val(java.io.Serializable value) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Extracts the boolean value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     boolean get_boolean() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -526,17 +505,17 @@ public interface DynAnyOperations {
      * mapped to the Java byte data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     byte get_octet() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -545,17 +524,17 @@ public interface DynAnyOperations {
      * Extracts the char value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     char get_char() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -564,17 +543,17 @@ public interface DynAnyOperations {
      * Extracts the short value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     short get_short() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -584,17 +563,17 @@ public interface DynAnyOperations {
      * mapped to the Java short data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     short get_ushort() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -604,17 +583,17 @@ public interface DynAnyOperations {
      * mapped to the Java int data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     int get_long() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -624,17 +603,17 @@ public interface DynAnyOperations {
      * mapped to the Java int data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     int get_ulong() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -643,17 +622,17 @@ public interface DynAnyOperations {
      * Extracts the float value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     float get_float() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -662,17 +641,17 @@ public interface DynAnyOperations {
      * Extracts the double value from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     double get_double() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -682,17 +661,17 @@ public interface DynAnyOperations {
      * strings are extracted using this method.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     String get_string() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -701,40 +680,38 @@ public interface DynAnyOperations {
      * Extracts the reference to a CORBA Object from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    org.omg.CORBA.Object get_reference()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    org.omg.CORBA.Object get_reference() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Extracts the TypeCode object from this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    org.omg.CORBA.TypeCode get_typecode()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    org.omg.CORBA.TypeCode get_typecode() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -742,17 +719,17 @@ public interface DynAnyOperations {
      * mapped to the Java long data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     long get_longlong() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -762,17 +739,17 @@ public interface DynAnyOperations {
      * type is mapped to the Java long data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     long get_ulonglong() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -782,17 +759,17 @@ public interface DynAnyOperations {
      * mapped to the Java char data type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
     char get_wchar() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -802,13 +779,13 @@ public interface DynAnyOperations {
      * strings are extracted using this method.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      */
     String get_wstring() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -817,20 +794,19 @@ public interface DynAnyOperations {
      * Extracts an Any value contained in the Any represented by this DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    org.omg.CORBA.Any get_any()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    org.omg.CORBA.Any get_any() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -838,20 +814,19 @@ public interface DynAnyOperations {
      * and returns it wrapped into a new DynAny.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    org.omg.DynamicAny.DynAny get_dyn_any()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    org.omg.DynamicAny.DynAny get_dyn_any() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -859,20 +834,19 @@ public interface DynAnyOperations {
      * is mapped to the Java Serializable type.
      *
      * @exception TypeMismatch
-     *                         if the accessed component in the DynAny is of a
-     *                         type that
-     *                         is not equivalent to the requested type.
+     *            if the accessed component in the DynAny is of a
+     *            type that
+     *            is not equivalent to the requested type.
      * @exception TypeMismatch
-     *                         if called on a DynAny whose current component
-     *                         itself has
-     *                         components
+     *            if called on a DynAny whose current component
+     *            itself has
+     *            components
      * @exception InvalidValue
-     *                         if this DynAny has components but has a current
-     *                         position
-     *                         of -1
+     *            if this DynAny has components but has a current
+     *            position
+     *            of -1
      */
-    java.io.Serializable get_val()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    java.io.Serializable get_val() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -938,10 +912,9 @@ public interface DynAnyOperations {
      * completely initialized, to_any creates the corresponding any value.
      *
      * @exception TypeMismatch
-     *                         If called on a DynAny that cannot have
-     *                         components, such as
-     *                         a DynEnum or an empty exception
+     *            If called on a DynAny that cannot have
+     *            components, such as
+     *            a DynEnum or an empty exception
      */
-    org.omg.DynamicAny.DynAny current_component()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
+    org.omg.DynamicAny.DynAny current_component() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
 } // interface DynAnyOperations

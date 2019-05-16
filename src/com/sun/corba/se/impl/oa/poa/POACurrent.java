@@ -23,8 +23,7 @@ import com.sun.corba.se.impl.logging.POASystemException;
 
 // XXX Needs to be turned into LocalObjectImpl.
 
-public class POACurrent extends org.omg.CORBA.portable.ObjectImpl implements
-        org.omg.PortableServer.Current {
+public class POACurrent extends org.omg.CORBA.portable.ObjectImpl implements org.omg.PortableServer.Current {
     private ORB orb;
     private POASystemException wrapper;
 

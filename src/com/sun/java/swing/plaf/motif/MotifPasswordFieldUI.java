@@ -26,7 +26,7 @@ public class MotifPasswordFieldUI extends BasicPasswordFieldUI {
      * Creates a UI for a JPasswordField.
      *
      * @param c
-     *          the JPasswordField
+     *        the JPasswordField
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {

@@ -14,7 +14,6 @@ import java.lang.annotation.*;
  * warnings about a <i>non-reifiable</i> variable arity (vararg) type and
  * suppresses unchecked warnings about parameterized array creation at call
  * sites.
- *
  * <p>
  * In addition to the usage restrictions imposed by its {@link Target @Target}
  * meta-annotation, compilers are required to implement additional usage
@@ -23,28 +22,21 @@ import java.lang.annotation.*;
  * annotation, and either:
  * <ul>
  * <li>the declaration is a fixed arity method or constructor
- *
  * <li>the declaration is a variable arity method that is neither {@code static}
  * nor {@code final}.
- *
  * </ul>
- *
  * <p>
  * Compilers are encouraged to issue warnings when this annotation type is
  * applied to a method or constructor declaration where:
- *
  * <ul>
- *
  * <li>The variable arity parameter has a reifiable element type, which includes
  * primitive types, {@code Object}, and {@code String}. (The unchecked warnings
  * this annotation type suppresses already do not occur for a reifiable element
  * type.)
- *
  * <li>The body of the method or constructor declaration performs potentially
  * unsafe operations, such as an assignment to an element of the variable arity
  * parameter's array that generates an unchecked warning. Some unsafe operations
  * do not trigger an unchecked warning. For example, the aliasing in
- *
  * <blockquote>
  * 
  * <pre>
@@ -60,13 +52,10 @@ import java.lang.annotation.*;
  * </pre>
  * 
  * </blockquote>
- *
  * leads to a {@code ClassCastException} at runtime.
- *
  * <p>
  * Future versions of the platform may mandate compiler errors for such unsafe
  * operations.
- *
  * </ul>
  *
  * @since 1.7
@@ -77,5 +66,4 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.CONSTRUCTOR, ElementType.METHOD })
-public @interface SafeVarargs {
-}
+public @interface SafeVarargs {}

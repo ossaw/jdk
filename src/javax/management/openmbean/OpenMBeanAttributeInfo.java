@@ -15,14 +15,12 @@ package javax.management.openmbean;
  * <p>
  * Describes an attribute of an open MBean.
  * </p>
- *
  * <p>
  * This interface declares the same methods as the class
  * {@link javax.management.MBeanAttributeInfo}. A class implementing this
  * interface (typically {@link OpenMBeanAttributeInfoSupport}) should extend
  * {@link javax.management.MBeanAttributeInfo}.
  * </p>
- *
  *
  * @since 1.5
  */
@@ -85,9 +83,8 @@ public interface OpenMBeanAttributeInfo extends OpenMBeanParameterInfo {
      * &nbsp;
      * 
      * @param obj
-     *            the object to be compared for equality with this
-     *            <code>OpenMBeanAttributeInfo</code> instance;
-     *
+     *        the object to be compared for equality with this
+     *        <code>OpenMBeanAttributeInfo</code> instance;
      * @return <code>true</code> if the specified object is equal to this
      *         <code>OpenMBeanAttributeInfo</code> instance.
      */

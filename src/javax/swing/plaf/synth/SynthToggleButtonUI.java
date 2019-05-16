@@ -25,7 +25,7 @@ public class SynthToggleButtonUI extends SynthButtonUI {
      * Creates a new UI object for the given component.
      *
      * @param b
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent b) {
@@ -53,8 +53,7 @@ public class SynthToggleButtonUI extends SynthButtonUI {
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintToggleButtonBorder(context, g, x, y, w, h);
     }
 }

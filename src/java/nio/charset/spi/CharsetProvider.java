@@ -10,7 +10,6 @@ import java.util.Iterator;
 
 /**
  * Charset service-provider class.
- *
  * <p>
  * A charset provider is a concrete subclass of this class that has a
  * zero-argument constructor and some number of associated charset
@@ -21,7 +20,6 @@ import java.util.Iterator;
  * platform-specific means. Charset providers are looked up via the current
  * thread's {@link java.lang.Thread#getContextClassLoader() context class
  * loader}.
- *
  * <p>
  * A charset provider identifies itself with a provider-configuration file named
  * <tt>java.nio.charset.spi.CharsetProvider</tt> in the resource directory
@@ -33,7 +31,6 @@ import java.util.Iterator;
  * comment character is <tt>'#'</tt> (<tt>'&#92;u0023'</tt>); on each line all
  * characters following the first comment character are ignored. The file must
  * be encoded in UTF-8.
- *
  * <p>
  * If a particular concrete charset provider class is named in more than one
  * configuration file, or is named in the same configuration file more than
@@ -44,11 +41,9 @@ import java.util.Iterator;
  * this is not necessarily the class loader that loaded the file.
  * </p>
  *
- *
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
  * @since 1.4
- *
  * @see java.nio.charset.Charset
  */
 
@@ -58,9 +53,9 @@ public abstract class CharsetProvider {
      * Initializes a new charset provider.
      *
      * @throws SecurityException
-     *                           If a security manager has been installed and it
-     *                           denies
-     *                           {@link RuntimePermission}<tt>("charsetProvider")</tt>
+     *         If a security manager has been installed and it
+     *         denies
+     *         {@link RuntimePermission}<tt>("charsetProvider")</tt>
      */
     protected CharsetProvider() {
         SecurityManager sm = System.getSecurityManager();
@@ -82,10 +77,9 @@ public abstract class CharsetProvider {
      * Retrieves a charset for the given charset name.
      *
      * @param charsetName
-     *                    The name of the requested charset; may be either a
-     *                    canonical
-     *                    name or an alias
-     *
+     *        The name of the requested charset; may be either a
+     *        canonical
+     *        name or an alias
      * @return A charset object for the named charset, or <tt>null</tt> if the
      *         named charset is not supported by this provider
      */

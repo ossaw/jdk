@@ -13,7 +13,6 @@ import static javax.lang.model.SourceVersion.*;
 /**
  * A skeletal visitor of program elements with default behavior appropriate for
  * the {@link SourceVersion#RELEASE_6 RELEASE_6} source version.
- *
  * <p>
  * <b>WARNING:</b> The {@code ElementVisitor} interface implemented by this
  * class may have methods added to it in the future to accommodate new,
@@ -22,7 +21,6 @@ import static javax.lang.model.SourceVersion.*;
  * {@code "visit"} may be added to this class in the future; to avoid
  * incompatibilities, classes which extend this class should not declare any
  * instance methods with names beginning with {@code "visit"}.
- *
  * <p>
  * When such a new visit method is added, the default implementation in this
  * class will be to call the {@link #visitUnknown visitUnknown} method. A new
@@ -30,7 +28,6 @@ import static javax.lang.model.SourceVersion.*;
  * new language level; this visitor will have different default behavior for the
  * visit method in question. When the new visitor is introduced, all or portions
  * of this visitor may be deprecated.
- *
  * <p>
  * Note that adding a default implementation of a new visit method in a visitor
  * class will occur instead of adding a <em>default
@@ -47,18 +44,15 @@ import static javax.lang.model.SourceVersion.*;
  *        the type of the additional parameter to this visitor's methods.
  *        Use {@code Void} for visitors that do not need an additional
  *        parameter.
- *
  * @author Joseph D. Darcy
  * @author Scott Seligman
  * @author Peter von der Ah&eacute;
- *
  * @see AbstractElementVisitor7
  * @see AbstractElementVisitor8
  * @since 1.6
  */
 @SupportedSourceVersion(RELEASE_6)
-public abstract class AbstractElementVisitor6<R, P> implements
-        ElementVisitor<R, P> {
+public abstract class AbstractElementVisitor6<R, P> implements ElementVisitor<R, P> {
     /**
      * Constructor for concrete subclasses to call.
      */
@@ -71,9 +65,9 @@ public abstract class AbstractElementVisitor6<R, P> implements
      * p)}.
      *
      * @param e
-     *          the element to visit
+     *        the element to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      */
     public final R visit(Element e, P p) {
@@ -88,7 +82,7 @@ public abstract class AbstractElementVisitor6<R, P> implements
      * null)}.
      *
      * @param e
-     *          the element to visit
+     *        the element to visit
      * @return a visitor-specified result
      */
     public final R visit(Element e) {
@@ -97,7 +91,6 @@ public abstract class AbstractElementVisitor6<R, P> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * The default implementation of this method in
      * {@code AbstractElementVisitor6} will always throw
@@ -105,13 +98,13 @@ public abstract class AbstractElementVisitor6<R, P> implements
      * subclass.
      *
      * @param e
-     *          the element to visit
+     *        the element to visit
      * @param p
-     *          a visitor-specified parameter
+     *        a visitor-specified parameter
      * @return a visitor-specified result
      * @throws UnknownElementException
-     *                                 a visitor implementation may optionally
-     *                                 throw this exception
+     *         a visitor implementation may optionally
+     *         throw this exception
      */
     public R visitUnknown(Element e, P p) {
         throw new UnknownElementException(e, p);

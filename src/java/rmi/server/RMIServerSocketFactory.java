@@ -15,17 +15,14 @@ import java.net.*;
  * created/exported via the constructors or <code>exportObject</code> methods of
  * <code>java.rmi.server.UnicastRemoteObject</code> and
  * <code>java.rmi.activation.Activatable</code> .
- *
  * <p>
  * An <code>RMIServerSocketFactory</code> instance associated with a remote
  * object is used to obtain the <code>ServerSocket</code> used to accept
  * incoming calls from clients.
- *
  * <p>
  * An <code>RMIServerSocketFactory</code> instance can also be associated with a
  * remote object registry so that clients can use custom socket communication
  * with a remote object registry.
- *
  * <p>
  * An implementation of this interface should implement {@link Object#equals} to
  * return <code>true</code> when passed an instance that represents the same
@@ -47,11 +44,11 @@ public interface RMIServerSocketFactory {
      * anonymous port).
      * 
      * @param port
-     *             the port number
+     *        the port number
      * @return the server socket on the specified port
      * @exception IOException
-     *                        if an I/O error occurs during server socket
-     *                        creation
+     *            if an I/O error occurs during server socket
+     *            creation
      * @since 1.2
      */
     public ServerSocket createServerSocket(int port) throws IOException;

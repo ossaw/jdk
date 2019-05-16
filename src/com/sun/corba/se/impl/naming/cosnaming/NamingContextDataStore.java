@@ -29,17 +29,16 @@ public interface NamingContextDataStore {
      * binding type.
      * 
      * @param n
-     *            a NameComponent which is the name under which the object will
-     *            be bound.
+     *        a NameComponent which is the name under which the object will
+     *        be bound.
      * @param obj
-     *            the object reference to be bound.
+     *        the object reference to be bound.
      * @param bt
-     *            Type of binding (as object or as context).
+     *        Type of binding (as object or as context).
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
      */
-    void Bind(NameComponent n, org.omg.CORBA.Object obj, BindingType bt)
-            throws org.omg.CORBA.SystemException;
+    void Bind(NameComponent n, org.omg.CORBA.Object obj, BindingType bt) throws org.omg.CORBA.SystemException;
 
     /**
      * Method which implements resolving the specified name, returning the type
@@ -48,15 +47,14 @@ public interface NamingContextDataStore {
      * root) must be returned.
      * 
      * @param n
-     *            a NameComponent which is the name to be resolved.
+     *        a NameComponent which is the name to be resolved.
      * @param bth
-     *            the BindingType as an out parameter.
+     *        the BindingType as an out parameter.
      * @return the object reference bound under the supplied name.
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
      */
-    org.omg.CORBA.Object Resolve(NameComponent n, BindingTypeHolder bth)
-            throws org.omg.CORBA.SystemException;
+    org.omg.CORBA.Object Resolve(NameComponent n, BindingTypeHolder bth) throws org.omg.CORBA.SystemException;
 
     /**
      * Method which implements unbinding a name.
@@ -65,19 +63,18 @@ public interface NamingContextDataStore {
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
      */
-    org.omg.CORBA.Object Unbind(NameComponent n)
-            throws org.omg.CORBA.SystemException;
+    org.omg.CORBA.Object Unbind(NameComponent n) throws org.omg.CORBA.SystemException;
 
     /**
      * Method which implements listing the contents of this NamingContext and
      * return a binding list and a binding iterator.
      * 
      * @param how_many
-     *                 The number of requested bindings in the BindingList.
+     *        The number of requested bindings in the BindingList.
      * @param bl
-     *                 The BindingList as an out parameter.
+     *        The BindingList as an out parameter.
      * @param bi
-     *                 The BindingIterator as an out parameter.
+     *        The BindingIterator as an out parameter.
      * @exception org.omg.CORBA.SystemException
      *            One of a fixed set of CORBA system exceptions.
      */

@@ -9,7 +9,6 @@ import javax.xml.bind.DatatypeConverter;
 
 /**
  * {@link XmlAdapter} for <tt>xs:hexBinary</tt>.
- *
  * <p>
  * This {@link XmlAdapter} binds <tt>byte[]</tt> to the hexBinary representation
  * in XML.

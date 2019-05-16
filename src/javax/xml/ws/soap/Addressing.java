@@ -65,18 +65,15 @@ public @interface Addressing {
      * If addressing is enabled, this property determines whether endpoint
      * requires the use of anonymous responses, or non-anonymous responses, or
      * all.
-     *
      * <p>
      * {@link Responses#ALL} supports all response types and this is the default
      * value.
-     *
      * <p>
      * {@link Responses#ANONYMOUS} requires the use of only anonymous responses.
      * It will result into wsam:AnonymousResponses nested assertion as specified
      * in
      * <a href="http://www.w3.org/TR/ws-addr-metadata/#wspolicyanonresponses"> 3
      * .1.2 AnonymousResponses Assertion</a> in the generated WSDL.
-     *
      * <p>
      * {@link Responses#NON_ANONYMOUS} requires the use of only non-anonymous
      * responses. It will result into wsam:NonAnonymousResponses nested

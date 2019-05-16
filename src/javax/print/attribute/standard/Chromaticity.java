@@ -51,8 +51,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class Chromaticity extends EnumSyntax implements DocAttribute,
-        PrintRequestAttribute, PrintJobAttribute {
+public final class Chromaticity extends EnumSyntax implements DocAttribute, PrintRequestAttribute,
+        PrintJobAttribute {
 
     private static final long serialVersionUID = 4660543931355214012L;
 
@@ -71,7 +71,7 @@ public final class Chromaticity extends EnumSyntax implements DocAttribute,
      * value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected Chromaticity(int value) {
         super(value);
@@ -79,8 +79,7 @@ public final class Chromaticity extends EnumSyntax implements DocAttribute,
 
     private static final String[] myStringTable = { "monochrome", "color" };
 
-    private static final Chromaticity[] myEnumValueTable = { MONOCHROME,
-            COLOR };
+    private static final Chromaticity[] myEnumValueTable = { MONOCHROME, COLOR };
 
     /**
      * Returns the string table for class Chromaticity.

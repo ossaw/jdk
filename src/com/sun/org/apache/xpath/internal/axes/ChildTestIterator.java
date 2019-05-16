@@ -44,12 +44,11 @@ public class ChildTestIterator extends BasicTestIterator {
      * Create a ChildTestIterator object.
      *
      * @param compiler
-     *                 A reference to the Compiler that contains the op map.
+     *        A reference to the Compiler that contains the op map.
      * @param opPos
-     *                 The position within the op map, which contains the
-     *                 location
-     *                 path expression for this itterator.
-     *
+     *        The position within the op map, which contains the
+     *        location
+     *        path expression for this itterator.
      * @throws javax.xml.transform.TransformerException
      */
     ChildTestIterator(Compiler compiler, int opPos, int analysis)
@@ -61,9 +60,8 @@ public class ChildTestIterator extends BasicTestIterator {
      * Create a ChildTestIterator object.
      *
      * @param traverser
-     *                  Traverser that tells how the KeyIterator is to be
-     *                  handled.
-     *
+     *        Traverser that tells how the KeyIterator is to be
+     *        handled.
      * @throws javax.xml.transform.TransformerException
      */
     public ChildTestIterator(DTMAxisTraverser traverser) {
@@ -81,8 +79,8 @@ public class ChildTestIterator extends BasicTestIterator {
      */
     protected int getNextNode() {
         if (true /* 0 == m_extendedTypeID */) {
-            m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(
-                    m_context) : m_traverser.next(m_context, m_lastFetched);
+            m_lastFetched = (DTM.NULL == m_lastFetched) ? m_traverser.first(m_context)
+                    : m_traverser.next(m_context, m_lastFetched);
         }
         // else
         // {
@@ -99,7 +97,6 @@ public class ChildTestIterator extends BasicTestIterator {
      * Get a cloned Iterator that is reset to the beginning of the query.
      *
      * @return A cloned NodeIterator set of the start of the query.
-     *
      * @throws CloneNotSupportedException
      */
     public DTMIterator cloneWithReset() throws CloneNotSupportedException {
@@ -114,7 +111,7 @@ public class ChildTestIterator extends BasicTestIterator {
      * Initialize the context values for this expression after it is cloned.
      *
      * @param context
-     *                The XPath runtime context for this transformation.
+     *        The XPath runtime context for this transformation.
      */
     public void setRoot(int context, Object environment) {
         super.setRoot(context, environment);

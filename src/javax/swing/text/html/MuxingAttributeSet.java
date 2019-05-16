@@ -11,7 +11,6 @@ import java.util.*;
 /**
  * An implementation of <code>AttributeSet</code> that can multiplex across a
  * set of <code>AttributeSet</code>s.
- *
  */
 class MuxingAttributeSet implements AttributeSet, Serializable {
     /**
@@ -49,15 +48,13 @@ class MuxingAttributeSet implements AttributeSet, Serializable {
      * Inserts <code>as</code> at <code>index</code>. This assumes the value of
      * <code>index</code> is between 0 and attrs.length, inclusive.
      */
-    protected synchronized void insertAttributeSetAt(AttributeSet as,
-            int index) {
+    protected synchronized void insertAttributeSetAt(AttributeSet as, int index) {
         int numAttrs = attrs.length;
         AttributeSet newAttrs[] = new AttributeSet[numAttrs + 1];
         if (index < numAttrs) {
             if (index > 0) {
                 System.arraycopy(attrs, 0, newAttrs, 0, index);
-                System.arraycopy(attrs, index, newAttrs, index + 1, numAttrs
-                        - index);
+                System.arraycopy(attrs, index, newAttrs, index + 1, numAttrs - index);
             } else {
                 System.arraycopy(attrs, 0, newAttrs, 1, numAttrs);
             }
@@ -83,8 +80,7 @@ class MuxingAttributeSet implements AttributeSet, Serializable {
             } else if (index < (numAttrs - 1)) {
                 // MIDDLE
                 System.arraycopy(attrs, 0, newAttrs, 0, index);
-                System.arraycopy(attrs, index + 1, newAttrs, index, numAttrs
-                        - index - 1);
+                System.arraycopy(attrs, index + 1, newAttrs, index, numAttrs - index - 1);
             } else {
                 // END
                 System.arraycopy(attrs, 0, newAttrs, 0, numAttrs - 1);
@@ -115,7 +111,7 @@ class MuxingAttributeSet implements AttributeSet, Serializable {
      * over to CSS if the key is a StyleConstants key that has a CSS mapping.
      *
      * @param key
-     *            the attribute key
+     *        the attribute key
      * @return true if the attribute is defined
      * @see AttributeSet#isDefined
      */
@@ -133,13 +129,12 @@ class MuxingAttributeSet implements AttributeSet, Serializable {
      * Checks whether two attribute sets are equal.
      *
      * @param attr
-     *             the attribute set to check against
+     *        the attribute set to check against
      * @return true if the same
      * @see AttributeSet#isEqual
      */
     public boolean isEqual(AttributeSet attr) {
-        return ((getAttributeCount() == attr.getAttributeCount())
-                && containsAttributes(attr));
+        return ((getAttributeCount() == attr.getAttributeCount()) && containsAttributes(attr));
     }
 
     /**
@@ -164,7 +159,7 @@ class MuxingAttributeSet implements AttributeSet, Serializable {
      * converted.
      *
      * @param key
-     *            the attribute name
+     *        the attribute name
      * @return the attribute value
      * @see AttributeSet#getAttribute
      */
@@ -194,9 +189,9 @@ class MuxingAttributeSet implements AttributeSet, Serializable {
      * Checks whether a given attribute name/value is defined.
      *
      * @param name
-     *              the attribute name
+     *        the attribute name
      * @param value
-     *              the attribute value
+     *        the attribute value
      * @return true if the name/value is defined
      * @see AttributeSet#containsAttribute
      */
@@ -208,7 +203,7 @@ class MuxingAttributeSet implements AttributeSet, Serializable {
      * Checks whether the attribute set contains all of the given attributes.
      *
      * @param attrs
-     *              the attributes to check
+     *        the attributes to check
      * @return true if the element contains all the attributes
      * @see AttributeSet#containsAttributes
      */

@@ -7,7 +7,6 @@ package com.sun.source.doctree;
 
 /**
  * A tree node to a reference to a Java language element.
- *
  * <p>
  * package.class#field
  *

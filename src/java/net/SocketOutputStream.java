@@ -32,7 +32,7 @@ class SocketOutputStream extends FileOutputStream {
      * closed.
      * 
      * @param impl
-     *             the socket output stream inplemented
+     *        the socket output stream inplemented
      */
     SocketOutputStream(AbstractPlainSocketImpl impl) throws IOException {
         super(impl.getFileDescriptor());
@@ -44,13 +44,11 @@ class SocketOutputStream extends FileOutputStream {
      * Returns the unique {@link java.nio.channels.FileChannel FileChannel}
      * object associated with this file output stream.
      * </p>
-     *
      * The {@code getChannel} method of {@code SocketOutputStream} returns
      * {@code null} since it is a socket based stream.
      * </p>
      *
      * @return the file channel associated with this file output stream
-     *
      * @since 1.4
      * @spec JSR-51
      */
@@ -62,30 +60,29 @@ class SocketOutputStream extends FileOutputStream {
      * Writes to the socket.
      * 
      * @param fd
-     *            the FileDescriptor
+     *        the FileDescriptor
      * @param b
-     *            the data to be written
+     *        the data to be written
      * @param off
-     *            the start offset in the data
+     *        the start offset in the data
      * @param len
-     *            the number of bytes that are written
+     *        the number of bytes that are written
      * @exception IOException
-     *                        If an I/O error has occurred.
+     *            If an I/O error has occurred.
      */
-    private native void socketWrite0(FileDescriptor fd, byte[] b, int off,
-            int len) throws IOException;
+    private native void socketWrite0(FileDescriptor fd, byte[] b, int off, int len) throws IOException;
 
     /**
      * Writes to the socket with appropriate locking of the FileDescriptor.
      * 
      * @param b
-     *            the data to be written
+     *        the data to be written
      * @param off
-     *            the start offset in the data
+     *        the start offset in the data
      * @param len
-     *            the number of bytes that are written
+     *        the number of bytes that are written
      * @exception IOException
-     *                        If an I/O error has occurred.
+     *            If an I/O error has occurred.
      */
     private void socketWrite(byte b[], int off, int len) throws IOException {
 
@@ -93,8 +90,8 @@ class SocketOutputStream extends FileOutputStream {
             if (len == 0) {
                 return;
             }
-            throw new ArrayIndexOutOfBoundsException("len == " + len
-                    + " off == " + off + " buffer length == " + b.length);
+            throw new ArrayIndexOutOfBoundsException("len == " + len + " off == " + off + " buffer length == "
+                    + b.length);
         }
 
         FileDescriptor fd = impl.acquireFD();
@@ -119,9 +116,9 @@ class SocketOutputStream extends FileOutputStream {
      * Writes a byte to the socket.
      * 
      * @param b
-     *          the data to be written
+     *        the data to be written
      * @exception IOException
-     *                        If an I/O error has occurred.
+     *            If an I/O error has occurred.
      */
     public void write(int b) throws IOException {
         temp[0] = (byte) b;
@@ -132,9 +129,9 @@ class SocketOutputStream extends FileOutputStream {
      * Writes the contents of the buffer <i>b</i> to the socket.
      * 
      * @param b
-     *          the data to be written
+     *        the data to be written
      * @exception SocketException
-     *                            If an I/O error has occurred.
+     *            If an I/O error has occurred.
      */
     public void write(byte b[]) throws IOException {
         socketWrite(b, 0, b.length);
@@ -145,13 +142,13 @@ class SocketOutputStream extends FileOutputStream {
      * <i>len</i>.
      * 
      * @param b
-     *            the data to be written
+     *        the data to be written
      * @param off
-     *            the start offset in the data
+     *        the start offset in the data
      * @param len
-     *            the number of bytes that are written
+     *        the number of bytes that are written
      * @exception SocketException
-     *                            If an I/O error has occurred.
+     *            If an I/O error has occurred.
      */
     public void write(byte b[], int off, int len) throws IOException {
         socketWrite(b, off, len);

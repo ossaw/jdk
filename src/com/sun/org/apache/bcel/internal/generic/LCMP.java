@@ -61,8 +61,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class LCMP extends Instruction implements TypedInstruction,
-        StackProducer, StackConsumer {
+public class LCMP extends Instruction implements TypedInstruction, StackProducer, StackConsumer {
     public LCMP() {
         super(com.sun.org.apache.bcel.internal.Constants.LCMP, (short) 1);
     }
@@ -81,7 +80,7 @@ public class LCMP extends Instruction implements TypedInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitTypedInstruction(this);

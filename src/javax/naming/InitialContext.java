@@ -41,7 +41,6 @@ import com.sun.naming.internal.ResourceManager;
  * JNDI factories (see <a href=Context.html#LISTPROPS><tt>Context</tt></a>), all
  * of the values are concatenated into a single colon-separated list. For other
  * properties, only the first value found is used.
- *
  * <p>
  * The initial context implementation is determined at runtime. The default
  * policy uses the environment property
@@ -88,7 +87,6 @@ import com.sun.naming.internal.ResourceManager;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see Context
  * @see NamingManager#setInitialContextFactoryBuilder
  *      NamingManager.setInitialContextFactoryBuilder
@@ -134,11 +132,10 @@ public class InitialContext implements Context {
      * then call <tt>init()</tt> before returning.
      *
      * @param lazy
-     *             true means do not initialize the initial context; false is
-     *             equivalent to calling <tt>new InitialContext()</tt>
+     *        true means do not initialize the initial context; false is
+     *        equivalent to calling <tt>new InitialContext()</tt>
      * @throws NamingException
-     *                         if a naming exception is encountered
-     *
+     *         if a naming exception is encountered
      * @see #init(Hashtable)
      * @since 1.3
      */
@@ -153,8 +150,7 @@ public class InitialContext implements Context {
      * Equivalent to <tt>new InitialContext(null)</tt>.
      *
      * @throws NamingException
-     *                         if a naming exception is encountered
-     *
+     *         if a naming exception is encountered
      * @see #InitialContext(Hashtable)
      */
     public InitialContext() throws NamingException {
@@ -164,7 +160,6 @@ public class InitialContext implements Context {
     /**
      * Constructs an initial context using the supplied environment. Environment
      * properties are discussed in the class description.
-     *
      * <p>
      * This constructor will not modify <tt>environment</tt> or save a reference
      * to it, but may save a clone. Caller should not modify mutable keys and
@@ -172,12 +167,11 @@ public class InitialContext implements Context {
      * constructor.
      *
      * @param environment
-     *                    environment used to create the initial context. Null
-     *                    indicates
-     *                    an empty environment.
-     *
+     *        environment used to create the initial context. Null
+     *        indicates
+     *        an empty environment.
      * @throws NamingException
-     *                         if a naming exception is encountered
+     *         if a naming exception is encountered
      */
     public InitialContext(Hashtable<?, ?> environment) throws NamingException {
         if (environment != null) {
@@ -189,26 +183,22 @@ public class InitialContext implements Context {
     /**
      * Initializes the initial context using the supplied environment.
      * Environment properties are discussed in the class description.
-     *
      * <p>
      * This method will modify <tt>environment</tt> and save a reference to it.
      * The caller may no longer modify it.
      *
      * @param environment
-     *                    environment used to create the initial context. Null
-     *                    indicates
-     *                    an empty environment.
-     *
+     *        environment used to create the initial context. Null
+     *        indicates
+     *        an empty environment.
      * @throws NamingException
-     *                         if a naming exception is encountered
-     *
+     *         if a naming exception is encountered
      * @see #InitialContext(boolean)
      * @since 1.3
      */
     @SuppressWarnings("unchecked")
     protected void init(Hashtable<?, ?> environment) throws NamingException {
-        myProps = (Hashtable<Object, Object>) ResourceManager
-                .getInitialEnvironment(environment);
+        myProps = (Hashtable<Object, Object>) ResourceManager.getInitialEnvironment(environment);
 
         if (myProps.get(Context.INITIAL_CONTEXT_FACTORY) != null) {
             // user has specified initial context factory; try to get it
@@ -229,14 +219,13 @@ public class InitialContext implements Context {
      * represents the same naming context as this context, but its environment
      * may be modified independently and it may be accessed concurrently).
      *
-     * @param      <T>
-     *             the type of the returned object
+     * @param <T>
+     *        the type of the returned object
      * @param name
-     *             the name of the object to look up
+     *        the name of the object to look up
      * @return the object bound to <tt>name</tt>
      * @throws NamingException
-     *                         if a naming exception is encountered
-     *
+     *         if a naming exception is encountered
      * @see #doLookup(String)
      * @see #lookup(Name)
      * @since 1.6
@@ -250,13 +239,13 @@ public class InitialContext implements Context {
      * A static method to retrieve the named object. See {@link #doLookup(Name)}
      * for details.
      * 
-     * @param      <T>
-     *             the type of the returned object
+     * @param <T>
+     *        the type of the returned object
      * @param name
-     *             the name of the object to look up
+     *        the name of the object to look up
      * @return the object bound to <tt>name</tt>
      * @throws NamingException
-     *                         if a naming exception is encountered
+     *         if a naming exception is encountered
      * @since 1.6
      */
     @SuppressWarnings("unchecked")
@@ -281,10 +270,10 @@ public class InitialContext implements Context {
      * 
      * @return The non-null cached initial context.
      * @exception NoInitialContextException
-     *                                      If cannot find an initial context.
+     *            If cannot find an initial context.
      * @exception NamingException
-     *                                      If a naming exception was
-     *                                      encountered.
+     *            If a naming exception was
+     *            encountered.
      */
     protected Context getDefaultInitCtx() throws NamingException {
         if (!gotDefault) {
@@ -307,18 +296,17 @@ public class InitialContext implements Context {
      * use this method.
      * 
      * @param name
-     *             The non-null name for which to get the context.
+     *        The non-null name for which to get the context.
      * @return A URL context for <code>name</code> or the cached initial
      *         context. The result cannot be null.
      * @exception NoInitialContextException
-     *                                      If cannot find an initial context.
+     *            If cannot find an initial context.
      * @exception NamingException
-     *                                      In a naming exception is
-     *                                      encountered.
+     *            In a naming exception is
+     *            encountered.
      * @see javax.naming.spi.NamingManager#getURLContext
      */
-    protected Context getURLOrDefaultInitCtx(String name)
-            throws NamingException {
+    protected Context getURLOrDefaultInitCtx(String name) throws NamingException {
         if (NamingManager.hasInitialContextFactoryBuilder()) {
             return getDefaultInitCtx();
         }
@@ -344,8 +332,7 @@ public class InitialContext implements Context {
      * the desired subclass. <blockquote>
      * 
      * <pre>
-     * protected XXXContext getURLOrDefaultInitXXXCtx(Name name)
-     *         throws NamingException {
+     * protected XXXContext getURLOrDefaultInitXXXCtx(Name name) throws NamingException {
      *     Context answer = getURLOrDefaultInitCtx(name);
      *     if (!(answer instanceof XXXContext)) {
      *         if (answer == null) {
@@ -372,15 +359,14 @@ public class InitialContext implements Context {
      * </blockquote>
      *
      * @param name
-     *             The non-null name for which to get the context.
+     *        The non-null name for which to get the context.
      * @return A URL context for <code>name</code> or the cached initial
      *         context. The result cannot be null.
      * @exception NoInitialContextException
-     *                                      If cannot find an initial context.
+     *            If cannot find an initial context.
      * @exception NamingException
-     *                                      In a naming exception is
-     *                                      encountered.
-     *
+     *            In a naming exception is
+     *            encountered.
      * @see javax.naming.spi.NamingManager#getURLContext
      */
     protected Context getURLOrDefaultInitCtx(Name name) throws NamingException {
@@ -443,23 +429,19 @@ public class InitialContext implements Context {
         getURLOrDefaultInitCtx(oldName).rename(oldName, newName);
     }
 
-    public NamingEnumeration<NameClassPair> list(String name)
-            throws NamingException {
+    public NamingEnumeration<NameClassPair> list(String name) throws NamingException {
         return (getURLOrDefaultInitCtx(name).list(name));
     }
 
-    public NamingEnumeration<NameClassPair> list(Name name)
-            throws NamingException {
+    public NamingEnumeration<NameClassPair> list(Name name) throws NamingException {
         return (getURLOrDefaultInitCtx(name).list(name));
     }
 
-    public NamingEnumeration<Binding> listBindings(String name)
-            throws NamingException {
+    public NamingEnumeration<Binding> listBindings(String name) throws NamingException {
         return getURLOrDefaultInitCtx(name).listBindings(name);
     }
 
-    public NamingEnumeration<Binding> listBindings(Name name)
-            throws NamingException {
+    public NamingEnumeration<Binding> listBindings(Name name) throws NamingException {
         return getURLOrDefaultInitCtx(name).listBindings(name);
     }
 
@@ -501,8 +483,7 @@ public class InitialContext implements Context {
      * than itself, the value of the <tt>prefix</tt> parameter must be an empty
      * name (<tt>""</tt>).
      */
-    public String composeName(String name, String prefix)
-            throws NamingException {
+    public String composeName(String name, String prefix) throws NamingException {
         return name;
     }
 
@@ -516,14 +497,12 @@ public class InitialContext implements Context {
         return (Name) name.clone();
     }
 
-    public Object addToEnvironment(String propName, Object propVal)
-            throws NamingException {
+    public Object addToEnvironment(String propName, Object propVal) throws NamingException {
         myProps.put(propName, propVal);
         return getDefaultInitCtx().addToEnvironment(propName, propVal);
     }
 
-    public Object removeFromEnvironment(String propName)
-            throws NamingException {
+    public Object removeFromEnvironment(String propName) throws NamingException {
         myProps.remove(propName);
         return getDefaultInitCtx().removeFromEnvironment(propName);
     }

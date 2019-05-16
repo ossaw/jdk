@@ -63,8 +63,8 @@ final class VariableRef extends VariableRefBase {
 
                 if (variableClosure != null) {
                     il.append(ALOAD_0);
-                    il.append(new GETFIELD(cpg.addFieldref(variableClosure
-                            .getInnerClassName(), name, signature)));
+                    il.append(new GETFIELD(cpg.addFieldref(variableClosure.getInnerClassName(), name,
+                            signature)));
                 } else {
                     il.append(_variable.loadInstruction());
                 }
@@ -77,14 +77,13 @@ final class VariableRef extends VariableRefBase {
             if (classGen.isExternal()) {
                 il.append(new CHECKCAST(cpg.addClass(className)));
             }
-            il.append(new GETFIELD(cpg.addFieldref(className, name,
-                    signature)));
+            il.append(new GETFIELD(cpg.addFieldref(className, name, signature)));
         }
 
         if (_variable.getType() instanceof NodeSetType) {
             // The method cloneIterator() also does resetting
-            final int clone = cpg.addInterfaceMethodref(NODE_ITERATOR,
-                    "cloneIterator", "()" + NODE_ITERATOR_SIG);
+            final int clone = cpg.addInterfaceMethodref(NODE_ITERATOR, "cloneIterator", "()"
+                    + NODE_ITERATOR_SIG);
             il.append(new INVOKEINTERFACE(clone, 1));
         }
     }

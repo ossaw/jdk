@@ -11,7 +11,6 @@ package javax.sound.midi;
  * include sequencers and MIDI input ports.
  *
  * @see Receiver
- *
  * @author Kara Kytle
  */
 public interface Transmitter extends AutoCloseable {
@@ -21,7 +20,7 @@ public interface Transmitter extends AutoCloseable {
      * If a receiver is currently set, it is replaced with this one.
      * 
      * @param receiver
-     *                 the desired receiver.
+     *        the desired receiver.
      */
     public void setReceiver(Receiver receiver);
 
@@ -37,7 +36,6 @@ public interface Transmitter extends AutoCloseable {
     /**
      * Indicates that the application has finished using the transmitter, and
      * that limited resources it requires may be released or made available.
-     *
      * <p>
      * If the creation of this <code>Transmitter</code> resulted in implicitly
      * opening the underlying device, the device is implicitly closed by this

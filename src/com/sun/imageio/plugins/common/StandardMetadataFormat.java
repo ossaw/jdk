@@ -13,8 +13,7 @@ import javax.imageio.metadata.IIOMetadataFormatImpl;
 public class StandardMetadataFormat extends IIOMetadataFormatImpl {
 
     // Utility method for nodes with a single attribute named "value"
-    private void addSingleAttributeElement(String elementName,
-            String parentName, int dataType) {
+    private void addSingleAttributeElement(String elementName, String parentName, int dataType) {
         addElement(elementName, parentName, CHILD_POLICY_EMPTY);
         addAttribute(elementName, "value", dataType, true, null);
     }
@@ -57,13 +56,11 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         values.add("DCLR");
         values.add("ECLR");
         values.add("FCLR");
-        addAttribute("ColorSpaceType", "name", DATATYPE_STRING, true, null,
-                values);
+        addAttribute("ColorSpaceType", "name", DATATYPE_STRING, true, null, values);
 
         // root -> Chroma -> NumChannels
         addElement("NumChannels", "Chroma", CHILD_POLICY_EMPTY);
-        addAttribute("NumChannels", "value", DATATYPE_INTEGER, true, 0,
-                Integer.MAX_VALUE);
+        addAttribute("NumChannels", "value", DATATYPE_INTEGER, true, 0, Integer.MAX_VALUE);
 
         // root -> Chroma -> Gamma
         addElement("Gamma", "Chroma", CHILD_POLICY_EMPTY);
@@ -95,20 +92,17 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         addAttribute("BackgroundColor", "blue", DATATYPE_INTEGER, true, null);
 
         // root -> Compression
-        addElement("Compression", standardMetadataFormatName,
-                CHILD_POLICY_SOME);
+        addElement("Compression", standardMetadataFormatName, CHILD_POLICY_SOME);
 
         // root -> Compression -> CompressionTypeName
-        addSingleAttributeElement("CompressionTypeName", "Compression",
-                DATATYPE_STRING);
+        addSingleAttributeElement("CompressionTypeName", "Compression", DATATYPE_STRING);
 
         // root -> Compression -> Lossless
         addElement("Lossless", "Compression", CHILD_POLICY_EMPTY);
         addBooleanAttribute("Lossless", "value", true, true);
 
         // root -> Compression -> NumProgressiveScans
-        addSingleAttributeElement("NumProgressiveScans", "Compression",
-                DATATYPE_INTEGER);
+        addSingleAttributeElement("NumProgressiveScans", "Compression", DATATYPE_INTEGER);
 
         // root -> Compression -> BitRate
         addSingleAttributeElement("BitRate", "Compression", DATATYPE_FLOAT);
@@ -124,8 +118,7 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         values.add("PlaneInterleaved");
         values.add("LineInterleaved");
         values.add("TileInterleaved");
-        addAttribute("PlanarConfiguration", "value", DATATYPE_STRING, true,
-                null, values);
+        addAttribute("PlanarConfiguration", "value", DATATYPE_STRING, true, null, values);
 
         // root -> Data -> SampleFormat
         addElement("SampleFormat", "Data", CHILD_POLICY_EMPTY);
@@ -135,30 +128,25 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         values.add("UnsignedIntegral");
         values.add("Real");
         values.add("Index");
-        addAttribute("SampleFormat", "value", DATATYPE_STRING, true, null,
-                values);
+        addAttribute("SampleFormat", "value", DATATYPE_STRING, true, null, values);
 
         // root -> Data -> BitsPerSample
         addElement("BitsPerSample", "Data", CHILD_POLICY_EMPTY);
-        addAttribute("BitsPerSample", "value", DATATYPE_INTEGER, true, 1,
-                Integer.MAX_VALUE);
+        addAttribute("BitsPerSample", "value", DATATYPE_INTEGER, true, 1, Integer.MAX_VALUE);
 
         // root -> Data -> SignificantBitsPerSample
         addElement("SignificantBitsPerSample", "Data", CHILD_POLICY_EMPTY);
-        addAttribute("SignificantBitsPerSample", "value", DATATYPE_INTEGER,
-                true, 1, Integer.MAX_VALUE);
+        addAttribute("SignificantBitsPerSample", "value", DATATYPE_INTEGER, true, 1, Integer.MAX_VALUE);
 
         // root -> Data -> SampleMSB
         addElement("SampleMSB", "Data", CHILD_POLICY_EMPTY);
-        addAttribute("SampleMSB", "value", DATATYPE_INTEGER, true, 1,
-                Integer.MAX_VALUE);
+        addAttribute("SampleMSB", "value", DATATYPE_INTEGER, true, 1, Integer.MAX_VALUE);
 
         // root -> Dimension
         addElement("Dimension", standardMetadataFormatName, CHILD_POLICY_SOME);
 
         // root -> Dimension -> PixelAspectRatio
-        addSingleAttributeElement("PixelAspectRatio", "Dimension",
-                DATATYPE_FLOAT);
+        addSingleAttributeElement("PixelAspectRatio", "Dimension", DATATYPE_FLOAT);
 
         // root -> Dimension -> ImageOrientation
         addElement("ImageOrientation", "Dimension", CHILD_POLICY_EMPTY);
@@ -172,48 +160,37 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         values.add("FlipV");
         values.add("FlipHRotate90");
         values.add("FlipVRotate90");
-        addAttribute("ImageOrientation", "value", DATATYPE_STRING, true, null,
-                values);
+        addAttribute("ImageOrientation", "value", DATATYPE_STRING, true, null, values);
 
         // root -> Dimension -> HorizontalPixelSize
-        addSingleAttributeElement("HorizontalPixelSize", "Dimension",
-                DATATYPE_FLOAT);
+        addSingleAttributeElement("HorizontalPixelSize", "Dimension", DATATYPE_FLOAT);
 
         // root -> Dimension -> VerticalPixelSize
-        addSingleAttributeElement("VerticalPixelSize", "Dimension",
-                DATATYPE_FLOAT);
+        addSingleAttributeElement("VerticalPixelSize", "Dimension", DATATYPE_FLOAT);
 
         // root -> Dimension -> HorizontalPhysicalPixelSpacing
-        addSingleAttributeElement("HorizontalPhysicalPixelSpacing", "Dimension",
-                DATATYPE_FLOAT);
+        addSingleAttributeElement("HorizontalPhysicalPixelSpacing", "Dimension", DATATYPE_FLOAT);
 
         // root -> Dimension -> VerticalPhysicalPixelSpacing
-        addSingleAttributeElement("VerticalPhysicalPixelSpacing", "Dimension",
-                DATATYPE_FLOAT);
+        addSingleAttributeElement("VerticalPhysicalPixelSpacing", "Dimension", DATATYPE_FLOAT);
 
         // root -> Dimension -> HorizontalPosition
-        addSingleAttributeElement("HorizontalPosition", "Dimension",
-                DATATYPE_FLOAT);
+        addSingleAttributeElement("HorizontalPosition", "Dimension", DATATYPE_FLOAT);
 
         // root -> Dimension -> VerticalPosition
-        addSingleAttributeElement("VerticalPosition", "Dimension",
-                DATATYPE_FLOAT);
+        addSingleAttributeElement("VerticalPosition", "Dimension", DATATYPE_FLOAT);
 
         // root -> Dimension -> HorizontalPixelOffset
-        addSingleAttributeElement("HorizontalPixelOffset", "Dimension",
-                DATATYPE_INTEGER);
+        addSingleAttributeElement("HorizontalPixelOffset", "Dimension", DATATYPE_INTEGER);
 
         // root -> Dimension -> VerticalPixelOffset
-        addSingleAttributeElement("VerticalPixelOffset", "Dimension",
-                DATATYPE_INTEGER);
+        addSingleAttributeElement("VerticalPixelOffset", "Dimension", DATATYPE_INTEGER);
 
         // root -> Dimension -> HorizontalScreenSize
-        addSingleAttributeElement("HorizontalScreenSize", "Dimension",
-                DATATYPE_INTEGER);
+        addSingleAttributeElement("HorizontalScreenSize", "Dimension", DATATYPE_INTEGER);
 
         // root -> Dimension -> VerticalScreenSize
-        addSingleAttributeElement("VerticalScreenSize", "Dimension",
-                DATATYPE_INTEGER);
+        addSingleAttributeElement("VerticalScreenSize", "Dimension", DATATYPE_INTEGER);
 
         // root -> Document
         addElement("Document", standardMetadataFormatName, CHILD_POLICY_SOME);
@@ -239,39 +216,27 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         values.add("CompositingLayer");
         values.add("SpectralSlice");
         values.add("Unknown");
-        addAttribute("SubimageInterpretation", "value", DATATYPE_STRING, true,
-                null, values);
+        addAttribute("SubimageInterpretation", "value", DATATYPE_STRING, true, null, values);
 
         // root -> Document -> ImageCreationTime
         addElement("ImageCreationTime", "Document", CHILD_POLICY_EMPTY);
         addAttribute("ImageCreationTime", "year", DATATYPE_INTEGER, true, null);
-        addAttribute("ImageCreationTime", "month", DATATYPE_INTEGER, true, null,
-                "1", "12", true, true);
-        addAttribute("ImageCreationTime", "day", DATATYPE_INTEGER, true, null,
-                "1", "31", true, true);
-        addAttribute("ImageCreationTime", "hour", DATATYPE_INTEGER, false, "0",
-                "0", "23", true, true);
-        addAttribute("ImageCreationTime", "minute", DATATYPE_INTEGER, false,
-                "0", "0", "59", true, true);
+        addAttribute("ImageCreationTime", "month", DATATYPE_INTEGER, true, null, "1", "12", true, true);
+        addAttribute("ImageCreationTime", "day", DATATYPE_INTEGER, true, null, "1", "31", true, true);
+        addAttribute("ImageCreationTime", "hour", DATATYPE_INTEGER, false, "0", "0", "23", true, true);
+        addAttribute("ImageCreationTime", "minute", DATATYPE_INTEGER, false, "0", "0", "59", true, true);
         // second = 60 denotes leap second
-        addAttribute("ImageCreationTime", "second", DATATYPE_INTEGER, false,
-                "0", "0", "60", true, true);
+        addAttribute("ImageCreationTime", "second", DATATYPE_INTEGER, false, "0", "0", "60", true, true);
 
         // root -> Document -> ImageModificationTime
         addElement("ImageModificationTime", "Document", CHILD_POLICY_EMPTY);
-        addAttribute("ImageModificationTime", "year", DATATYPE_INTEGER, true,
-                null);
-        addAttribute("ImageModificationTime", "month", DATATYPE_INTEGER, true,
-                null, "1", "12", true, true);
-        addAttribute("ImageModificationTime", "day", DATATYPE_INTEGER, true,
-                null, "1", "31", true, true);
-        addAttribute("ImageModificationTime", "hour", DATATYPE_INTEGER, false,
-                "0", "0", "23", true, true);
-        addAttribute("ImageModificationTime", "minute", DATATYPE_INTEGER, false,
-                "0", "0", "59", true, true);
+        addAttribute("ImageModificationTime", "year", DATATYPE_INTEGER, true, null);
+        addAttribute("ImageModificationTime", "month", DATATYPE_INTEGER, true, null, "1", "12", true, true);
+        addAttribute("ImageModificationTime", "day", DATATYPE_INTEGER, true, null, "1", "31", true, true);
+        addAttribute("ImageModificationTime", "hour", DATATYPE_INTEGER, false, "0", "0", "23", true, true);
+        addAttribute("ImageModificationTime", "minute", DATATYPE_INTEGER, false, "0", "0", "59", true, true);
         // second = 60 denotes leap second
-        addAttribute("ImageModificationTime", "second", DATATYPE_INTEGER, false,
-                "0", "0", "60", true, true);
+        addAttribute("ImageModificationTime", "second", DATATYPE_INTEGER, false, "0", "0", "60", true, true);
 
         // root -> Text
         addElement("Text", standardMetadataFormatName, 0, Integer.MAX_VALUE);
@@ -289,12 +254,10 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         values.add("zip");
         values.add("bzip");
         values.add("other");
-        addAttribute("TextEntry", "compression", DATATYPE_STRING, false, "none",
-                values);
+        addAttribute("TextEntry", "compression", DATATYPE_STRING, false, "none", values);
 
         // root -> Transparency
-        addElement("Transparency", standardMetadataFormatName,
-                CHILD_POLICY_SOME);
+        addElement("Transparency", standardMetadataFormatName, CHILD_POLICY_SOME);
 
         // root -> Transparency -> Alpha
         addElement("Alpha", "Transparency", CHILD_POLICY_EMPTY);
@@ -306,13 +269,11 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         addAttribute("Alpha", "value", DATATYPE_STRING, false, "none", values);
 
         // root -> Transparency -> TransparentIndex
-        addSingleAttributeElement("TransparentIndex", "Transparency",
-                DATATYPE_INTEGER);
+        addSingleAttributeElement("TransparentIndex", "Transparency", DATATYPE_INTEGER);
 
         // root -> Transparency -> TransparentColor
         addElement("TransparentColor", "Transparency", CHILD_POLICY_EMPTY);
-        addAttribute("TransparentColor", "value", DATATYPE_INTEGER, true, 0,
-                Integer.MAX_VALUE);
+        addAttribute("TransparentColor", "value", DATATYPE_INTEGER, true, 0, Integer.MAX_VALUE);
 
         // root -> Transparency -> TileTransparencies
         addElement("TileTransparencies", "Transparency", 0, Integer.MAX_VALUE);
@@ -331,8 +292,7 @@ public class StandardMetadataFormat extends IIOMetadataFormatImpl {
         addAttribute("OpaqueTile", "y", DATATYPE_INTEGER, true, null);
     }
 
-    public boolean canNodeAppear(String elementName,
-            ImageTypeSpecifier imageType) {
+    public boolean canNodeAppear(String elementName, ImageTypeSpecifier imageType) {
         return true;
     }
 }

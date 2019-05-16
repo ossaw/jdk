@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -57,7 +55,7 @@ public interface EncryptedKey extends EncryptedType {
      * Sets the recipient for this <code>EncryptedKey</code>.
      *
      * @param recipient
-     *                  the recipient for this <code>EncryptedKey</code>.
+     *        the recipient for this <code>EncryptedKey</code>.
      */
     void setRecipient(String recipient);
 
@@ -77,7 +75,7 @@ public interface EncryptedKey extends EncryptedType {
      * Sets the <code>ReferenceList</code> to the <code>EncryptedKey</code>.
      *
      * @param list
-     *             a list of pointers to data elements encrypted using this key.
+     *        a list of pointers to data elements encrypted using this key.
      */
     void setReferenceList(ReferenceList list);
 
@@ -102,7 +100,7 @@ public interface EncryptedKey extends EncryptedType {
      * Sets the carried name.
      *
      * @param name
-     *             the carried name.
+     *        the carried name.
      */
     void setCarriedName(String name);
 }

@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -64,8 +62,8 @@ public class Manifest extends SignatureElementProxy {
     public static final int MAXIMUM_REFERENCE_COUNT = 30;
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(Manifest.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(Manifest.class
+            .getName());
 
     /** Field references */
     private List<Reference> references;
@@ -86,8 +84,8 @@ public class Manifest extends SignatureElementProxy {
      * Constructs {@link Manifest}
      *
      * @param doc
-     *            the {@link Document} in which <code>XMLsignature</code> is
-     *            placed
+     *        the {@link Document} in which <code>XMLsignature</code> is
+     *        placed
      */
     public Manifest(Document doc) {
         super(doc);
@@ -104,8 +102,7 @@ public class Manifest extends SignatureElementProxy {
      * @param baseURI
      * @throws XMLSecurityException
      */
-    public Manifest(Element element, String baseURI)
-            throws XMLSecurityException {
+    public Manifest(Element element, String baseURI) throws XMLSecurityException {
         this(element, baseURI, false);
 
     }
@@ -118,8 +115,7 @@ public class Manifest extends SignatureElementProxy {
      * @param secureValidation
      * @throws XMLSecurityException
      */
-    public Manifest(Element element, String baseURI, boolean secureValidation)
-            throws XMLSecurityException {
+    public Manifest(Element element, String baseURI, boolean secureValidation) throws XMLSecurityException {
         super(element, baseURI);
 
         Attr attr = element.getAttributeNodeNS(null, "Id");
@@ -129,23 +125,21 @@ public class Manifest extends SignatureElementProxy {
         this.secureValidation = secureValidation;
 
         // check out Reference children
-        this.referencesEl = XMLUtils.selectDsNodes(this.constructionElement
-                .getFirstChild(), Constants._TAG_REFERENCE);
+        this.referencesEl = XMLUtils.selectDsNodes(this.constructionElement.getFirstChild(),
+                Constants._TAG_REFERENCE);
         int le = this.referencesEl.length;
         if (le == 0) {
             // At least one Reference must be present. Bad.
-            Object exArgs[] = { Constants._TAG_REFERENCE,
-                    Constants._TAG_MANIFEST };
+            Object exArgs[] = { Constants._TAG_REFERENCE, Constants._TAG_MANIFEST };
 
-            throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, I18n
-                    .translate("xml.WrongContent", exArgs));
+            throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, I18n.translate("xml.WrongContent",
+                    exArgs));
         }
 
         if (secureValidation && le > MAXIMUM_REFERENCE_COUNT) {
             Object exArgs[] = { le, MAXIMUM_REFERENCE_COUNT };
 
-            throw new XMLSecurityException("signature.tooManyReferences",
-                    exArgs);
+            throw new XMLSecurityException("signature.tooManyReferences", exArgs);
         }
 
         // create List
@@ -168,28 +162,26 @@ public class Manifest extends SignatureElementProxy {
      * built from the supplied values.
      *
      * @param baseURI
-     *                      the URI of the resource where the XML instance was
-     *                      stored
+     *        the URI of the resource where the XML instance was
+     *        stored
      * @param referenceURI
-     *                      <code>URI</code> attribute in <code>Reference</code>
-     *                      for
-     *                      specifying where data is
+     *        <code>URI</code> attribute in <code>Reference</code>
+     *        for
+     *        specifying where data is
      * @param transforms
-     *                      com.sun.org.apache.xml.internal.security.signature.Transforms
-     *                      object with an ordered list of transformations to be
-     *                      performed.
+     *        com.sun.org.apache.xml.internal.security.signature.Transforms
+     *        object with an ordered list of transformations to be
+     *        performed.
      * @param digestURI
-     *                      The digest algorithm URI to be used.
+     *        The digest algorithm URI to be used.
      * @param referenceId
      * @param referenceType
      * @throws XMLSignatureException
      */
-    public void addDocument(String baseURI, String referenceURI,
-            Transforms transforms, String digestURI, String referenceId,
-            String referenceType) throws XMLSignatureException {
+    public void addDocument(String baseURI, String referenceURI, Transforms transforms, String digestURI,
+            String referenceId, String referenceType) throws XMLSignatureException {
         // the this.doc is handed implicitly by the this.getOwnerDocument()
-        Reference ref = new Reference(this.doc, baseURI, referenceURI, this,
-                transforms, digestURI);
+        Reference ref = new Reference(this.doc, baseURI, referenceURI, this, transforms, digestURI);
 
         if (referenceId != null) {
             ref.setId(referenceId);
@@ -215,8 +207,7 @@ public class Manifest extends SignatureElementProxy {
      * @throws ReferenceNotInitializedException
      * @throws XMLSignatureException
      */
-    public void generateDigestValues() throws XMLSignatureException,
-            ReferenceNotInitializedException {
+    public void generateDigestValues() throws XMLSignatureException, ReferenceNotInitializedException {
         for (int i = 0; i < this.getLength(); i++) {
             // update the cached Reference object, the Element content is
             // automatically updated
@@ -239,15 +230,14 @@ public class Manifest extends SignatureElementProxy {
      * are 0 to <code>{link@ getSize}-1</code>.
      *
      * @param i
-     *          Index of the requested {@link Reference}
+     *        Index of the requested {@link Reference}
      * @return the <it>i</it><sup>th</sup> reference
      * @throws XMLSecurityException
      */
     public Reference item(int i) throws XMLSecurityException {
         if (this.references.get(i) == null) {
             // not yet constructed, so _we_ have to
-            Reference ref = new Reference(referencesEl[i], this.baseURI, this,
-                    secureValidation);
+            Reference ref = new Reference(referencesEl[i], this.baseURI, this, secureValidation);
 
             this.references.set(i, ref);
         }
@@ -259,14 +249,12 @@ public class Manifest extends SignatureElementProxy {
      * Sets the <code>Id</code> attribute
      *
      * @param Id
-     *           the <code>Id</code> attribute in <code>ds:Manifest</code>
+     *        the <code>Id</code> attribute in <code>ds:Manifest</code>
      */
     public void setId(String Id) {
         if (Id != null) {
-            this.constructionElement.setAttributeNS(null, Constants._ATT_ID,
-                    Id);
-            this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID,
-                    true);
+            this.constructionElement.setAttributeNS(null, Constants._ATT_ID, Id);
+            this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID, true);
         }
     }
 
@@ -284,7 +272,6 @@ public class Manifest extends SignatureElementProxy {
      * <A HREF="http://www.w3.org/TR/xmldsig-core/#def-ValidationReference">
      * reference validation</A> of all enclosed references using the
      * {@link Reference#verify} method.
-     *
      * <p>
      * This step loops through all {@link Reference}s and does verify the hash
      * values. If one or more verifications fail, the method returns
@@ -296,18 +283,17 @@ public class Manifest extends SignatureElementProxy {
      * @return true if all References verify, false if one or more do not
      *         verify.
      * @throws MissingResourceFailureException
-     *                                         if a {@link Reference} does not
-     *                                         verify (throws a
-     *                                         {@link com.sun.org.apache.xml.internal.security.signature.ReferenceNotInitializedException}
-     *                                         because of an uninitialized
-     *                                         {@link XMLSignatureInput}
+     *         if a {@link Reference} does not
+     *         verify (throws a
+     *         {@link com.sun.org.apache.xml.internal.security.signature.ReferenceNotInitializedException}
+     *         because of an uninitialized
+     *         {@link XMLSignatureInput}
      * @see com.sun.org.apache.xml.internal.security.signature.Reference#verify
      * @see com.sun.org.apache.xml.internal.security.signature.SignedInfo#verify()
      * @see com.sun.org.apache.xml.internal.security.signature.MissingResourceFailureException
      * @throws XMLSecurityException
      */
-    public boolean verifyReferences() throws MissingResourceFailureException,
-            XMLSecurityException {
+    public boolean verifyReferences() throws MissingResourceFailureException, XMLSecurityException {
         return this.verifyReferences(false);
     }
 
@@ -316,7 +302,6 @@ public class Manifest extends SignatureElementProxy {
      * <A HREF="http://www.w3.org/TR/xmldsig-core/#def-ValidationReference">
      * reference validation</A> of all enclosed references using the
      * {@link Reference#verify} method.
-     *
      * <p>
      * This step loops through all {@link Reference}s and does verify the hash
      * values. If one or more verifications fail, the method returns
@@ -329,28 +314,26 @@ public class Manifest extends SignatureElementProxy {
      * @return true if all References verify, false if one or more do not
      *         verify.
      * @throws MissingResourceFailureException
-     *                                         if a {@link Reference} does not
-     *                                         verify (throws a
-     *                                         {@link com.sun.org.apache.xml.internal.security.signature.ReferenceNotInitializedException}
-     *                                         because of an uninitialized
-     *                                         {@link XMLSignatureInput}
+     *         if a {@link Reference} does not
+     *         verify (throws a
+     *         {@link com.sun.org.apache.xml.internal.security.signature.ReferenceNotInitializedException}
+     *         because of an uninitialized
+     *         {@link XMLSignatureInput}
      * @see com.sun.org.apache.xml.internal.security.signature.Reference#verify
      * @see com.sun.org.apache.xml.internal.security.signature.SignedInfo#verify(boolean)
      * @see com.sun.org.apache.xml.internal.security.signature.MissingResourceFailureException
      * @throws XMLSecurityException
      */
-    public boolean verifyReferences(boolean followManifests)
-            throws MissingResourceFailureException, XMLSecurityException {
+    public boolean verifyReferences(boolean followManifests) throws MissingResourceFailureException,
+            XMLSecurityException {
         if (referencesEl == null) {
-            this.referencesEl = XMLUtils.selectDsNodes(this.constructionElement
-                    .getFirstChild(), Constants._TAG_REFERENCE);
+            this.referencesEl = XMLUtils.selectDsNodes(this.constructionElement.getFirstChild(),
+                    Constants._TAG_REFERENCE);
         }
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE, "verify "
-                    + referencesEl.length + " References");
-            log.log(java.util.logging.Level.FINE, "I am " + (followManifests
-                    ? ""
-                    : "not") + " requested to follow nested Manifests");
+            log.log(java.util.logging.Level.FINE, "verify " + referencesEl.length + " References");
+            log.log(java.util.logging.Level.FINE, "I am " + (followManifests ? "" : "not")
+                    + " requested to follow nested Manifests");
         }
         if (referencesEl.length == 0) {
             throw new XMLSecurityException("empty");
@@ -358,15 +341,13 @@ public class Manifest extends SignatureElementProxy {
         if (secureValidation && referencesEl.length > MAXIMUM_REFERENCE_COUNT) {
             Object exArgs[] = { referencesEl.length, MAXIMUM_REFERENCE_COUNT };
 
-            throw new XMLSecurityException("signature.tooManyReferences",
-                    exArgs);
+            throw new XMLSecurityException("signature.tooManyReferences", exArgs);
         }
 
         this.verificationResults = new boolean[referencesEl.length];
         boolean verify = true;
         for (int i = 0; i < this.referencesEl.length; i++) {
-            Reference currentRef = new Reference(referencesEl[i], this.baseURI,
-                    this, secureValidation);
+            Reference currentRef = new Reference(referencesEl[i], this.baseURI, this, secureValidation);
 
             this.references.set(i, currentRef);
 
@@ -380,45 +361,37 @@ public class Manifest extends SignatureElementProxy {
                     verify = false;
                 }
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "The Reference has Type " + currentRef.getType());
+                    log.log(java.util.logging.Level.FINE, "The Reference has Type " + currentRef.getType());
                 }
 
                 // was verification successful till now and do we want to verify
                 // the Manifest?
-                if (verify && followManifests && currentRef
-                        .typeIsReferenceToManifest()) {
+                if (verify && followManifests && currentRef.typeIsReferenceToManifest()) {
                     if (log.isLoggable(java.util.logging.Level.FINE)) {
-                        log.log(java.util.logging.Level.FINE,
-                                "We have to follow a nested Manifest");
+                        log.log(java.util.logging.Level.FINE, "We have to follow a nested Manifest");
                     }
 
                     try {
-                        XMLSignatureInput signedManifestNodes = currentRef
-                                .dereferenceURIandPerformTransforms(null);
+                        XMLSignatureInput signedManifestNodes = currentRef.dereferenceURIandPerformTransforms(
+                                null);
                         Set<Node> nl = signedManifestNodes.getNodeSet();
                         Manifest referencedManifest = null;
                         Iterator<Node> nlIterator = nl.iterator();
 
-                        findManifest: while (nlIterator.hasNext()) {
+                        findManifest:
+                        while (nlIterator.hasNext()) {
                             Node n = nlIterator.next();
 
-                            if ((n.getNodeType() == Node.ELEMENT_NODE)
-                                    && ((Element) n).getNamespaceURI().equals(
-                                            Constants.SignatureSpecNS)
-                                    && ((Element) n).getLocalName().equals(
+                            if ((n.getNodeType() == Node.ELEMENT_NODE) && ((Element) n).getNamespaceURI()
+                                    .equals(Constants.SignatureSpecNS) && ((Element) n).getLocalName().equals(
                                             Constants._TAG_MANIFEST)) {
                                 try {
-                                    referencedManifest = new Manifest(
-                                            (Element) n, signedManifestNodes
-                                                    .getSourceURI(),
-                                            secureValidation);
+                                    referencedManifest = new Manifest((Element) n, signedManifestNodes
+                                            .getSourceURI(), secureValidation);
                                     break findManifest;
                                 } catch (XMLSecurityException ex) {
-                                    if (log.isLoggable(
-                                            java.util.logging.Level.FINE)) {
-                                        log.log(java.util.logging.Level.FINE, ex
-                                                .getMessage(), ex);
+                                    if (log.isLoggable(java.util.logging.Level.FINE)) {
+                                        log.log(java.util.logging.Level.FINE, ex.getMessage(), ex);
                                     }
                                     // Hm, seems not to be a ds:Manifest
                                 }
@@ -430,25 +403,22 @@ public class Manifest extends SignatureElementProxy {
                             // ds:Manifest
                             // but we did not find a ds:Manifest in the signed
                             // area
-                            throw new MissingResourceFailureException("empty",
-                                    currentRef);
+                            throw new MissingResourceFailureException("empty", currentRef);
                         }
 
                         referencedManifest.perManifestResolvers = this.perManifestResolvers;
                         referencedManifest.resolverProperties = this.resolverProperties;
 
-                        boolean referencedManifestValid = referencedManifest
-                                .verifyReferences(followManifests);
+                        boolean referencedManifestValid = referencedManifest.verifyReferences(
+                                followManifests);
 
                         if (!referencedManifestValid) {
                             verify = false;
 
-                            log.log(java.util.logging.Level.WARNING,
-                                    "The nested Manifest was invalid (bad)");
+                            log.log(java.util.logging.Level.WARNING, "The nested Manifest was invalid (bad)");
                         } else {
                             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                                log.log(java.util.logging.Level.FINE,
-                                        "The nested Manifest was valid (good)");
+                                log.log(java.util.logging.Level.FINE, "The nested Manifest was valid (good)");
                             }
                         }
                     } catch (IOException ex) {
@@ -462,9 +432,8 @@ public class Manifest extends SignatureElementProxy {
             } catch (ReferenceNotInitializedException ex) {
                 Object exArgs[] = { currentRef.getURI() };
 
-                throw new MissingResourceFailureException(
-                        "signature.Verification.Reference.NoInput", exArgs, ex,
-                        currentRef);
+                throw new MissingResourceFailureException("signature.Verification.Reference.NoInput", exArgs,
+                        ex, currentRef);
             }
         }
 
@@ -491,15 +460,13 @@ public class Manifest extends SignatureElementProxy {
      * methods, the individual results can be retrieved with this method.
      *
      * @param index
-     *              an index of into a {@link Manifest} or a {@link SignedInfo}
+     *        an index of into a {@link Manifest} or a {@link SignedInfo}
      * @return the results of reference validation at the specified index
      * @throws XMLSecurityException
      */
-    public boolean getVerificationResult(int index)
-            throws XMLSecurityException {
+    public boolean getVerificationResult(int index) throws XMLSecurityException {
         if ((index < 0) || (index > this.getLength() - 1)) {
-            Object exArgs[] = { Integer.toString(index), Integer.toString(this
-                    .getLength()) };
+            Object exArgs[] = { Integer.toString(index), Integer.toString(this.getLength()) };
             Exception e = new IndexOutOfBoundsException(I18n.translate(
                     "signature.Verification.IndexOutOfBounds", exArgs));
 
@@ -522,9 +489,9 @@ public class Manifest extends SignatureElementProxy {
      * <code>URI</code> attribute in <code>reference</code> element
      *
      * @param resolver
-     *                 {@link ResourceResolver} can provide the implemenatin
-     *                 subclass
-     *                 of {@link ResourceResolverSpi} for retrieving resource.
+     *        {@link ResourceResolver} can provide the implemenatin
+     *        subclass
+     *        of {@link ResourceResolverSpi} for retrieving resource.
      */
     public void addResourceResolver(ResourceResolver resolver) {
         if (resolver == null) {
@@ -541,9 +508,9 @@ public class Manifest extends SignatureElementProxy {
      * <code>URI</code> attribute in <code>reference</code> element
      *
      * @param resolverSpi
-     *                    the implementation subclass of
-     *                    {@link ResourceResolverSpi} for
-     *                    retrieving the resource.
+     *        the implementation subclass of
+     *        {@link ResourceResolverSpi} for
+     *        retrieving the resource.
      */
     public void addResourceResolver(ResourceResolverSpi resolverSpi) {
         if (resolverSpi == null) {
@@ -578,9 +545,9 @@ public class Manifest extends SignatureElementProxy {
      * implementation.
      *
      * @param key
-     *              the key
+     *        the key
      * @param value
-     *              the value
+     *        the value
      */
     public void setResolverProperty(String key, String value) {
         if (resolverProperties == null) {
@@ -593,7 +560,7 @@ public class Manifest extends SignatureElementProxy {
      * Returns the value at specified key
      *
      * @param key
-     *            the key
+     *        the key
      * @return the value
      */
     public String getResolverProperty(String key) {
@@ -605,7 +572,6 @@ public class Manifest extends SignatureElementProxy {
      *
      * @param i
      * @return The signed content of the i reference.
-     *
      * @throws XMLSignatureException
      */
     public byte[] getSignedContentItem(int i) throws XMLSignatureException {
@@ -629,8 +595,7 @@ public class Manifest extends SignatureElementProxy {
      * @return The contents before transformation of the reference i.
      * @throws XMLSecurityException
      */
-    public XMLSignatureInput getReferencedContentBeforeTransformsItem(int i)
-            throws XMLSecurityException {
+    public XMLSignatureInput getReferencedContentBeforeTransformsItem(int i) throws XMLSecurityException {
         return this.item(i).getContentsBeforeTransformation();
     }
 
@@ -641,8 +606,7 @@ public class Manifest extends SignatureElementProxy {
      * @return The contents after transformation of the reference i.
      * @throws XMLSecurityException
      */
-    public XMLSignatureInput getReferencedContentAfterTransformsItem(int i)
-            throws XMLSecurityException {
+    public XMLSignatureInput getReferencedContentAfterTransformsItem(int i) throws XMLSecurityException {
         return this.item(i).getContentsAfterTransformation();
     }
 

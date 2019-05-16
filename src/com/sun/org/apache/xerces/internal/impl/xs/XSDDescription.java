@@ -27,14 +27,11 @@ import com.sun.org.apache.xerces.internal.xni.grammars.XMLSchemaDescription;
  * All information specific to XML Schema grammars.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
  * @author Neeraj Bajaj, SUN Microsystems.
- *
  * @version $Id: XSDDescription.java,v 1.6 2010-11-01 04:39:55 joehw Exp $
  */
-public class XSDDescription extends XMLResourceIdentifierImpl implements
-        XMLSchemaDescription {
+public class XSDDescription extends XMLResourceIdentifierImpl implements XMLSchemaDescription {
     // used to indicate what triggered the call
     /**
      * Indicate that this description was just initialized.
@@ -172,22 +169,17 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements
     }
 
     public boolean fromInstance() {
-        return fContextType == CONTEXT_ATTRIBUTE
-                || fContextType == CONTEXT_ELEMENT
-                || fContextType == CONTEXT_INSTANCE
-                || fContextType == CONTEXT_XSITYPE;
+        return fContextType == CONTEXT_ATTRIBUTE || fContextType == CONTEXT_ELEMENT
+                || fContextType == CONTEXT_INSTANCE || fContextType == CONTEXT_XSITYPE;
     }
 
     /**
      * @return true is the schema is external
      */
     public boolean isExternal() {
-        return fContextType == CONTEXT_INCLUDE
-                || fContextType == CONTEXT_REDEFINE
-                || fContextType == CONTEXT_IMPORT
-                || fContextType == CONTEXT_ELEMENT
-                || fContextType == CONTEXT_ATTRIBUTE
-                || fContextType == CONTEXT_XSITYPE;
+        return fContextType == CONTEXT_INCLUDE || fContextType == CONTEXT_REDEFINE
+                || fContextType == CONTEXT_IMPORT || fContextType == CONTEXT_ELEMENT
+                || fContextType == CONTEXT_ATTRIBUTE || fContextType == CONTEXT_XSITYPE;
     }
 
     /**
@@ -195,7 +187,7 @@ public class XSDDescription extends XMLResourceIdentifierImpl implements
      * target namespaces.
      *
      * @param descObj
-     *                The description of the grammar to be compared with
+     *        The description of the grammar to be compared with
      * @return True if they are equal, else false
      */
     public boolean equals(Object descObj) {

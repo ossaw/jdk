@@ -71,12 +71,12 @@ public abstract class GraphicAttribute {
      * the alignment of the graphic.
      * 
      * @param alignment
-     *                  an int representing one of the
-     *                  <code>GraphicAttribute</code>
-     *                  alignment fields
+     *        an int representing one of the
+     *        <code>GraphicAttribute</code>
+     *        alignment fields
      * @throws IllegalArgumentException
-     *                                  if alignment is not one of the five
-     *                                  defined values.
+     *         if alignment is not one of the five
+     *         defined values.
      */
     protected GraphicAttribute(int alignment) {
         if (alignment < BOTTOM_ALIGNMENT || alignment > HANGING_BASELINE) {
@@ -128,8 +128,7 @@ public abstract class GraphicAttribute {
      */
     public Rectangle2D getBounds() {
         float ascent = getAscent();
-        return new Rectangle2D.Float(0, -ascent, getAdvance(), ascent
-                + getDescent());
+        return new Rectangle2D.Float(0, -ascent, getAdvance(), ascent + getDescent());
     }
 
     /**
@@ -142,8 +141,8 @@ public abstract class GraphicAttribute {
      * {@link AffineTransform} if present.
      * 
      * @param tx
-     *           an optional {@link AffineTransform} to apply to the outline of
-     *           this <code>GraphicAttribute</code>. This can be null.
+     *        an optional {@link AffineTransform} to apply to the outline of
+     *        this <code>GraphicAttribute</code>. This can be null.
      * @return a <code>Shape</code> representing this graphic attribute,
      *         suitable for stroking or filling.
      * @since 1.6
@@ -160,11 +159,11 @@ public abstract class GraphicAttribute {
      * Renders this <code>GraphicAttribute</code> at the specified location.
      * 
      * @param graphics
-     *                 the {@link Graphics2D} into which to render the graphic
+     *        the {@link Graphics2D} into which to render the graphic
      * @param x
-     *                 the user-space X coordinate where the graphic is rendered
+     *        the user-space X coordinate where the graphic is rendered
      * @param y
-     *                 the user-space Y coordinate where the graphic is rendered
+     *        the user-space Y coordinate where the graphic is rendered
      */
     public abstract void draw(Graphics2D graphics, float x, float y);
 

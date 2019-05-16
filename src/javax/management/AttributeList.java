@@ -18,7 +18,6 @@ import java.util.Map;
  * {@link MBeanServerConnection#setAttributes setAttributes} methods of
  * {@link MBeanServer} and {@link MBeanServerConnection}.
  * </p>
- *
  * <p id="type-safe">
  * For compatibility reasons, it is possible, though highly discouraged, to add
  * objects to an {@code AttributeList} that are not instances of
@@ -64,9 +63,9 @@ public class AttributeList extends ArrayList<Object> {
      * specified.
      *
      * @param initialCapacity
-     *                        the initial capacity of the
-     *                        <code>AttributeList</code>, as
-     *                        specified by {@link ArrayList#ArrayList(int)}.
+     *        the initial capacity of the
+     *        <code>AttributeList</code>, as
+     *        specified by {@link ArrayList#ArrayList(int)}.
      */
     public AttributeList(int initialCapacity) {
         super(initialCapacity);
@@ -80,9 +79,8 @@ public class AttributeList extends ArrayList<Object> {
      * the size of the <CODE>AttributeList</CODE> specified.
      *
      * @param list
-     *             the <code>AttributeList</code> that defines the initial
-     *             contents of the new <code>AttributeList</code>.
-     *
+     *        the <code>AttributeList</code> that defines the initial
+     *        contents of the new <code>AttributeList</code>.
      * @see ArrayList#ArrayList(java.util.Collection)
      */
     public AttributeList(AttributeList list) {
@@ -95,17 +93,14 @@ public class AttributeList extends ArrayList<Object> {
      * {@code List}'s iterator.
      *
      * @param list
-     *             the {@code List} that defines the initial contents of the new
-     *             {@code AttributeList}.
-     *
+     *        the {@code List} that defines the initial contents of the new
+     *        {@code AttributeList}.
      * @exception IllegalArgumentException
-     *                                     if the {@code list} parameter is
-     *                                     {@code null} or if the
-     *                                     {@code list} parameter contains any
-     *                                     non-Attribute objects.
-     *
+     *            if the {@code list} parameter is
+     *            {@code null} or if the
+     *            {@code list} parameter contains any
+     *            non-Attribute objects.
      * @see ArrayList#ArrayList(java.util.Collection)
-     *
      * @since 1.6
      */
     public AttributeList(List<Attribute> list) {
@@ -130,7 +125,6 @@ public class AttributeList extends ArrayList<Object> {
      *
      * @return a {@code List<Attribute>} whose contents reflect the contents of
      *         this {@code AttributeList}.
-     *
      *         <p>
      *         If this method has ever been called on a given
      *         {@code AttributeList} instance, a subsequent attempt to add an
@@ -140,12 +134,10 @@ public class AttributeList extends ArrayList<Object> {
      *         been called does allow objects other than {@code Attribute}s to
      *         be added.
      *         </p>
-     *
      * @throws IllegalArgumentException
-     *                                  if this {@code AttributeList} contains
-     *                                  an element that is not
-     *                                  an {@code Attribute}.
-     *
+     *         if this {@code AttributeList} contains
+     *         an element that is not
+     *         an {@code Attribute}.
      * @since 1.6
      */
     @SuppressWarnings("unchecked")
@@ -160,7 +152,7 @@ public class AttributeList extends ArrayList<Object> {
      * Adds the {@code Attribute} specified as the last element of the list.
      *
      * @param object
-     *               The attribute to be added.
+     *        The attribute to be added.
      */
     public void add(Attribute object) {
         super.add(object);
@@ -174,17 +166,16 @@ public class AttributeList extends ArrayList<Object> {
      * java.lang.IndexOutOfBoundsException thrown.
      *
      * @param object
-     *               The <CODE>Attribute</CODE> object to be inserted.
+     *        The <CODE>Attribute</CODE> object to be inserted.
      * @param index
-     *               The position in the list where the new {@code Attribute}
-     *               object is to be inserted.
+     *        The position in the list where the new {@code Attribute}
+     *        object is to be inserted.
      */
     public void add(int index, Attribute object) {
         try {
             super.add(index, object);
         } catch (IndexOutOfBoundsException e) {
-            throw new RuntimeOperationsException(e,
-                    "The specified index is out of range");
+            throw new RuntimeOperationsException(e, "The specified index is out of range");
         }
     }
 
@@ -196,16 +187,15 @@ public class AttributeList extends ArrayList<Object> {
      * java.lang.IndexOutOfBoundsException thrown.
      *
      * @param object
-     *               The value to which the attribute element should be set.
+     *        The value to which the attribute element should be set.
      * @param index
-     *               The position specified.
+     *        The position specified.
      */
     public void set(int index, Attribute object) {
         try {
             super.set(index, object);
         } catch (IndexOutOfBoundsException e) {
-            throw new RuntimeOperationsException(e,
-                    "The specified index is out of range");
+            throw new RuntimeOperationsException(e, "The specified index is out of range");
         }
     }
 
@@ -215,10 +205,8 @@ public class AttributeList extends ArrayList<Object> {
      * Iterator of the <CODE>AttributeList</CODE> specified.
      *
      * @param list
-     *             Elements to be inserted into the list.
-     *
+     *        Elements to be inserted into the list.
      * @return true if this list changed as a result of the call.
-     *
      * @see ArrayList#addAll(java.util.Collection)
      */
     public boolean addAll(AttributeList list) {
@@ -234,21 +222,18 @@ public class AttributeList extends ArrayList<Object> {
      * java.lang.IndexOutOfBoundsException thrown.
      *
      * @param list
-     *              Elements to be inserted into the list.
+     *        Elements to be inserted into the list.
      * @param index
-     *              Position at which to insert the first element from the
-     *              <CODE>AttributeList</CODE> specified.
-     *
+     *        Position at which to insert the first element from the
+     *        <CODE>AttributeList</CODE> specified.
      * @return true if this list changed as a result of the call.
-     *
      * @see ArrayList#addAll(int, java.util.Collection)
      */
     public boolean addAll(int index, AttributeList list) {
         try {
             return super.addAll(index, list);
         } catch (IndexOutOfBoundsException e) {
-            throw new RuntimeOperationsException(e,
-                    "The specified index is out of range");
+            throw new RuntimeOperationsException(e, "The specified index is out of range");
         }
     }
 
@@ -262,10 +247,10 @@ public class AttributeList extends ArrayList<Object> {
      * {@inheritDoc}
      * 
      * @throws IllegalArgumentException
-     *                                  if this {@code AttributeList} is
-     *                                  <a href="#type-safe">type-safe</a> and
-     *                                  {@code element} is not
-     *                                  an {@code Attribute}.
+     *         if this {@code AttributeList} is
+     *         <a href="#type-safe">type-safe</a> and
+     *         {@code element} is not
+     *         an {@code Attribute}.
      */
     @Override
     public boolean add(Object element) {
@@ -277,10 +262,10 @@ public class AttributeList extends ArrayList<Object> {
      * {@inheritDoc}
      * 
      * @throws IllegalArgumentException
-     *                                  if this {@code AttributeList} is
-     *                                  <a href="#type-safe">type-safe</a> and
-     *                                  {@code element} is not
-     *                                  an {@code Attribute}.
+     *         if this {@code AttributeList} is
+     *         <a href="#type-safe">type-safe</a> and
+     *         {@code element} is not
+     *         an {@code Attribute}.
      */
     @Override
     public void add(int index, Object element) {
@@ -292,11 +277,11 @@ public class AttributeList extends ArrayList<Object> {
      * {@inheritDoc}
      * 
      * @throws IllegalArgumentException
-     *                                  if this {@code AttributeList} is
-     *                                  <a href="#type-safe">type-safe</a> and
-     *                                  {@code c} contains an
-     *                                  element that is not an
-     *                                  {@code Attribute}.
+     *         if this {@code AttributeList} is
+     *         <a href="#type-safe">type-safe</a> and
+     *         {@code c} contains an
+     *         element that is not an
+     *         {@code Attribute}.
      */
     @Override
     public boolean addAll(Collection<?> c) {
@@ -308,11 +293,11 @@ public class AttributeList extends ArrayList<Object> {
      * {@inheritDoc}
      * 
      * @throws IllegalArgumentException
-     *                                  if this {@code AttributeList} is
-     *                                  <a href="#type-safe">type-safe</a> and
-     *                                  {@code c} contains an
-     *                                  element that is not an
-     *                                  {@code Attribute}.
+     *         if this {@code AttributeList} is
+     *         <a href="#type-safe">type-safe</a> and
+     *         {@code c} contains an
+     *         element that is not an
+     *         {@code Attribute}.
      */
     @Override
     public boolean addAll(int index, Collection<?> c) {
@@ -324,10 +309,10 @@ public class AttributeList extends ArrayList<Object> {
      * {@inheritDoc}
      * 
      * @throws IllegalArgumentException
-     *                                  if this {@code AttributeList} is
-     *                                  <a href="#type-safe">type-safe</a> and
-     *                                  {@code element} is not
-     *                                  an {@code Attribute}.
+     *         if this {@code AttributeList} is
+     *         <a href="#type-safe">type-safe</a> and
+     *         {@code element} is not
+     *         an {@code Attribute}.
      */
     @Override
     public Object set(int index, Object element) {

@@ -7,12 +7,10 @@ package java.nio.file.attribute;
 
 /**
  * Basic attributes associated with a file in a file system.
- *
  * <p>
  * Basic file attributes are attributes that are common to many file systems and
  * consist of mandatory and optional file attributes as defined by this
  * interface.
- *
  * <p>
  * <b>Usage Example:</b>
  * 
@@ -22,7 +20,6 @@ package java.nio.file.attribute;
  * </pre>
  *
  * @since 1.7
- *
  * @see BasicFileAttributeView
  */
 
@@ -30,7 +27,6 @@ public interface BasicFileAttributes {
 
     /**
      * Returns the time of last modification.
-     *
      * <p>
      * If the file system implementation does not support a time stamp to
      * indicate the time of last modification then this method returns an
@@ -44,7 +40,6 @@ public interface BasicFileAttributes {
 
     /**
      * Returns the time of last access.
-     *
      * <p>
      * If the file system implementation does not support a time stamp to
      * indicate the time of last access then this method returns an
@@ -59,7 +54,6 @@ public interface BasicFileAttributes {
     /**
      * Returns the creation time. The creation time is the time that the file
      * was created.
-     *
      * <p>
      * If the file system implementation does not support a time stamp to
      * indicate the time when the file was created then this method returns an
@@ -122,13 +116,11 @@ public interface BasicFileAttributes {
      * systems that allow a file to be an entry in more than one directory. On
      * UNIX file systems, for example, the <em>device ID</em> and <em>inode</em>
      * are commonly used for such purposes.
-     *
      * <p>
      * The file key returned by this method can only be guaranteed to be unique
      * if the file system and files remain static. Whether a file system re-uses
      * identifiers after a file is deleted is implementation dependent and
      * therefore unspecified.
-     *
      * <p>
      * File keys returned by this method can be compared for equality and are
      * suitable for use in collections. If the file system and files remain
@@ -137,7 +129,6 @@ public interface BasicFileAttributes {
      *
      * @return an object that uniquely identifies the given file, or
      *         {@code null}
-     *
      * @see java.nio.file.Files#walkFileTree
      */
     Object fileKey();

@@ -24,13 +24,12 @@ import java.lang.ref.ReferenceQueue;
  * the purpose of this class.
  *
  * @param T
- *          the type of JComponent the underlying Action is attached to
- *
+ *        the type of JComponent the underlying Action is attached to
  * @author Georges Saab
  * @see AbstractButton
  */
-abstract class ActionPropertyChangeListener<T extends JComponent> implements
-        PropertyChangeListener, Serializable {
+abstract class ActionPropertyChangeListener<T extends JComponent> implements PropertyChangeListener,
+        Serializable {
     private static ReferenceQueue<JComponent> queue;
 
     // WeakReference's aren't serializable.
@@ -72,8 +71,7 @@ abstract class ActionPropertyChangeListener<T extends JComponent> implements
      * Invoked when a property changes on the Action and the target still
      * exists.
      */
-    protected abstract void actionPropertyChanged(T target, Action action,
-            PropertyChangeEvent e);
+    protected abstract void actionPropertyChanged(T target, Action action, PropertyChangeEvent e);
 
     private void setTarget(T c) {
         ReferenceQueue<JComponent> queue = getQueue();
@@ -109,8 +107,7 @@ abstract class ActionPropertyChangeListener<T extends JComponent> implements
     }
 
     @SuppressWarnings("unchecked")
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         T target = (T) s.readObject();
         if (target != null) {
@@ -118,12 +115,10 @@ abstract class ActionPropertyChangeListener<T extends JComponent> implements
         }
     }
 
-    private static class OwnedWeakReference<U extends JComponent> extends
-            WeakReference<U> {
+    private static class OwnedWeakReference<U extends JComponent> extends WeakReference<U> {
         private ActionPropertyChangeListener<?> owner;
 
-        OwnedWeakReference(U target, ReferenceQueue<? super U> queue,
-                ActionPropertyChangeListener<?> owner) {
+        OwnedWeakReference(U target, ReferenceQueue<? super U> queue, ActionPropertyChangeListener<?> owner) {
             super(target, queue);
             this.owner = owner;
         }

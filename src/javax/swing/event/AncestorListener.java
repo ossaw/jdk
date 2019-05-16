@@ -12,7 +12,6 @@ import javax.swing.*;
 
 /**
  * AncestorListener
- *
  * Interface to support notification when changes occur to a JComponent or one
  * of its ancestors. These include movement and when the component becomes
  * visible or invisible, either by the setVisible() method or by being added or

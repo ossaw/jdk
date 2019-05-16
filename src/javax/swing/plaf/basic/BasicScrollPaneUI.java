@@ -29,8 +29,7 @@ import java.awt.event.*;
  *
  * @author Hans Muller
  */
-public class BasicScrollPaneUI extends ScrollPaneUI implements
-        ScrollPaneConstants {
+public class BasicScrollPaneUI extends ScrollPaneUI implements ScrollPaneConstants {
     protected JScrollPane scrollpane;
     protected ChangeListener vsbChangeListener;
     protected ChangeListener hsbChangeListener;
@@ -92,8 +91,8 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
 
     protected void installDefaults(JScrollPane scrollpane) {
         LookAndFeel.installBorder(scrollpane, "ScrollPane.border");
-        LookAndFeel.installColorsAndFont(scrollpane, "ScrollPane.background",
-                "ScrollPane.foreground", "ScrollPane.font");
+        LookAndFeel.installColorsAndFont(scrollpane, "ScrollPane.background", "ScrollPane.foreground",
+                "ScrollPane.font");
 
         Border vpBorder = scrollpane.getViewportBorder();
         if ((vpBorder == null) || (vpBorder instanceof UIResource)) {
@@ -135,26 +134,20 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
     }
 
     protected void installKeyboardActions(JScrollPane c) {
-        InputMap inputMap = getInputMap(
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        InputMap inputMap = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        SwingUtilities.replaceUIInputMap(c,
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, inputMap);
+        SwingUtilities.replaceUIInputMap(c, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, inputMap);
 
-        LazyActionMap.installLazyActionMap(c, BasicScrollPaneUI.class,
-                "ScrollPane.actionMap");
+        LazyActionMap.installLazyActionMap(c, BasicScrollPaneUI.class, "ScrollPane.actionMap");
     }
 
     InputMap getInputMap(int condition) {
         if (condition == JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT) {
-            InputMap keyMap = (InputMap) DefaultLookup.get(scrollpane, this,
-                    "ScrollPane.ancestorInputMap");
+            InputMap keyMap = (InputMap) DefaultLookup.get(scrollpane, this, "ScrollPane.ancestorInputMap");
             InputMap rtlKeyMap;
 
-            if (scrollpane.getComponentOrientation().isLeftToRight()
-                    || ((rtlKeyMap = (InputMap) DefaultLookup.get(scrollpane,
-                            this,
-                            "ScrollPane.ancestorInputMap.RightToLeft")) == null)) {
+            if (scrollpane.getComponentOrientation().isLeftToRight() || ((rtlKeyMap = (InputMap) DefaultLookup
+                    .get(scrollpane, this, "ScrollPane.ancestorInputMap.RightToLeft")) == null)) {
                 return keyMap;
             } else {
                 rtlKeyMap.setParent(keyMap);
@@ -212,8 +205,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
 
     protected void uninstallKeyboardActions(JScrollPane c) {
         SwingUtilities.replaceUIActionMap(c, null);
-        SwingUtilities.replaceUIInputMap(c,
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, null);
+        SwingUtilities.replaceUIInputMap(c, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, null);
     }
 
     public void uninstallUI(JComponent c) {
@@ -264,10 +256,8 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                      * Use a particular formula to calculate "value" until
                      * effective x coordinate is calculated.
                      */
-                    if (setValueCalled && ((max
-                            - currentValue) == viewPosition.x)) {
-                        value = Math.max(0, Math.min(max - extent,
-                                currentValue));
+                    if (setValueCalled && ((max - currentValue) == viewPosition.x)) {
+                        value = Math.max(0, Math.min(max - extent, currentValue));
                         /*
                          * After "extent" is set, turn setValueCalled flag off.
                          */
@@ -292,8 +282,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                              * often-called method slow, so I'll leave it until
                              * someone claims.
                              */
-                            value = Math.max(0, Math.min(max - extent, max
-                                    - extent - viewPosition.x));
+                            value = Math.max(0, Math.min(max - extent, max - extent - viewPosition.x));
                             if (oldExtent > extent) {
                                 value -= oldExtent - extent;
                             }
@@ -328,9 +317,9 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
      * Returns the baseline.
      *
      * @throws NullPointerException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
@@ -354,8 +343,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
             if (header != null && header.isVisible()) {
                 // Header is always given it's preferred size.
                 Dimension headerPref = header.getPreferredSize();
-                int baseline = header.getBaseline(headerPref.width,
-                        headerPref.height);
+                int baseline = header.getBaseline(headerPref.width, headerPref.height);
                 if (baseline >= 0) {
                     return y + baseline;
                 }
@@ -394,12 +382,11 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
      * the size changes.
      *
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
-    public Component.BaselineResizeBehavior getBaselineResizeBehavior(
-            JComponent c) {
+    public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
         super.getBaselineResizeBehavior(c);
         // Baseline is either from the header, in which case it's always
         // the same size and therefor can be created as CONSTANT_ASCENT.
@@ -506,7 +493,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
          * Called when the mouse wheel is rotated while over a JScrollPane.
          *
          * @param e
-         *          MouseWheelEvent to be handled
+         *        MouseWheelEvent to be handled
          * @since 1.4
          */
         public void mouseWheelMoved(MouseWheelEvent e) {
@@ -597,8 +584,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
         updateScrollBar(pce, vsbChangeListener, vsbPropertyChangeListener);
     }
 
-    private void updateScrollBar(PropertyChangeEvent pce, ChangeListener cl,
-            PropertyChangeListener pcl) {
+    private void updateScrollBar(PropertyChangeEvent pce, ChangeListener cl, PropertyChangeListener pcl) {
         JScrollBar sb = (JScrollBar) pce.getOldValue();
         if (sb != null) {
             if (cl != null) {
@@ -693,17 +679,13 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
             } else if (key == UNIT_SCROLL_DOWN) {
                 scroll(scrollPane, SwingConstants.VERTICAL, 1, false);
             } else if (key == SCROLL_LEFT) {
-                scroll(scrollPane, SwingConstants.HORIZONTAL, ltr ? -1 : 1,
-                        true);
+                scroll(scrollPane, SwingConstants.HORIZONTAL, ltr ? -1 : 1, true);
             } else if (key == SCROLL_RIGHT) {
-                scroll(scrollPane, SwingConstants.HORIZONTAL, ltr ? 1 : -1,
-                        true);
+                scroll(scrollPane, SwingConstants.HORIZONTAL, ltr ? 1 : -1, true);
             } else if (key == UNIT_SCROLL_LEFT) {
-                scroll(scrollPane, SwingConstants.HORIZONTAL, ltr ? -1 : 1,
-                        false);
+                scroll(scrollPane, SwingConstants.HORIZONTAL, ltr ? -1 : 1, false);
             } else if (key == UNIT_SCROLL_RIGHT) {
-                scroll(scrollPane, SwingConstants.HORIZONTAL, ltr ? 1 : -1,
-                        false);
+                scroll(scrollPane, SwingConstants.HORIZONTAL, ltr ? 1 : -1, false);
             }
         }
 
@@ -714,11 +696,10 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                 Rectangle visRect = vp.getViewRect();
                 Rectangle bounds = view.getBounds();
                 if (scrollpane.getComponentOrientation().isLeftToRight()) {
-                    vp.setViewPosition(new Point(bounds.width - visRect.width,
-                            bounds.height - visRect.height));
-                } else {
-                    vp.setViewPosition(new Point(0, bounds.height
+                    vp.setViewPosition(new Point(bounds.width - visRect.width, bounds.height
                             - visRect.height));
+                } else {
+                    vp.setViewPosition(new Point(0, bounds.height - visRect.height));
                 }
             }
         }
@@ -732,14 +713,12 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                 } else {
                     Rectangle visRect = vp.getViewRect();
                     Rectangle bounds = view.getBounds();
-                    vp.setViewPosition(new Point(bounds.width - visRect.width,
-                            0));
+                    vp.setViewPosition(new Point(bounds.width - visRect.width, 0));
                 }
             }
         }
 
-        private void scroll(JScrollPane scrollpane, int orientation,
-                int direction, boolean block) {
+        private void scroll(JScrollPane scrollpane, int orientation, int direction, boolean block) {
             JViewport vp = scrollpane.getViewport();
             Component view;
             if (vp != null && (view = vp.getView()) != null) {
@@ -749,12 +728,11 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
 
                 if (view instanceof Scrollable) {
                     if (block) {
-                        amount = ((Scrollable) view)
-                                .getScrollableBlockIncrement(visRect,
-                                        orientation, direction);
+                        amount = ((Scrollable) view).getScrollableBlockIncrement(visRect, orientation,
+                                direction);
                     } else {
-                        amount = ((Scrollable) view).getScrollableUnitIncrement(
-                                visRect, orientation, direction);
+                        amount = ((Scrollable) view).getScrollableUnitIncrement(visRect, orientation,
+                                direction);
                     }
                 } else {
                     if (block) {
@@ -778,8 +756,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                     if (scrollpane.getComponentOrientation().isLeftToRight()) {
                         visRect.x += (amount * direction);
                         if ((visRect.x + visRect.width) > vSize.width) {
-                            visRect.x = Math.max(0, vSize.width
-                                    - visRect.width);
+                            visRect.x = Math.max(0, vSize.width - visRect.width);
                         } else if (visRect.x < 0) {
                             visRect.x = 0;
                         }
@@ -788,8 +765,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                         if (visRect.width > vSize.width) {
                             visRect.x = vSize.width - visRect.width;
                         } else {
-                            visRect.x = Math.max(0, Math.min(vSize.width
-                                    - visRect.width, visRect.x));
+                            visRect.x = Math.max(0, Math.min(vSize.width - visRect.width, visRect.x));
                         }
                     }
                 }
@@ -798,21 +774,18 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
         }
     }
 
-    class Handler implements ChangeListener, PropertyChangeListener,
-            MouseWheelListener {
+    class Handler implements ChangeListener, PropertyChangeListener, MouseWheelListener {
         //
         // MouseWheelListener
         //
         public void mouseWheelMoved(MouseWheelEvent e) {
-            if (scrollpane.isWheelScrollingEnabled() && e
-                    .getWheelRotation() != 0) {
+            if (scrollpane.isWheelScrollingEnabled() && e.getWheelRotation() != 0) {
                 JScrollBar toScroll = scrollpane.getVerticalScrollBar();
                 int direction = e.getWheelRotation() < 0 ? -1 : 1;
                 int orientation = SwingConstants.VERTICAL;
 
                 // find which scrollbar to scroll, or return if none
-                if (toScroll == null || !toScroll.isVisible() || e
-                        .isShiftDown()) {
+                if (toScroll == null || !toScroll.isVisible() || e.isShiftDown()) {
                     toScroll = scrollpane.getHorizontalScrollBar();
                     if (toScroll == null || !toScroll.isVisible()) {
                         return;
@@ -840,10 +813,8 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                     boolean limitScroll = Math.abs(e.getWheelRotation()) == 1;
 
                     // Check if we should use the visibleRect trick
-                    Object fastWheelScroll = toScroll.getClientProperty(
-                            "JScrollBar.fastWheelScrolling");
-                    if (Boolean.TRUE == fastWheelScroll
-                            && comp instanceof Scrollable) {
+                    Object fastWheelScroll = toScroll.getClientProperty("JScrollBar.fastWheelScrolling");
+                    if (Boolean.TRUE == fastWheelScroll && comp instanceof Scrollable) {
                         // 5078454: Under maximum acceleration, we may scroll
                         // by many 100s of units in ~1 second.
                         //
@@ -857,29 +828,23 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                         Scrollable scrollComp = (Scrollable) comp;
                         Rectangle viewRect = vp.getViewRect();
                         int startingX = viewRect.x;
-                        boolean leftToRight = comp.getComponentOrientation()
-                                .isLeftToRight();
+                        boolean leftToRight = comp.getComponentOrientation().isLeftToRight();
                         int scrollMin = toScroll.getMinimum();
-                        int scrollMax = toScroll.getMaximum() - toScroll
-                                .getModel().getExtent();
+                        int scrollMax = toScroll.getMaximum() - toScroll.getModel().getExtent();
 
                         if (limitScroll) {
-                            int blockIncr = scrollComp
-                                    .getScrollableBlockIncrement(viewRect,
-                                            orientation, direction);
+                            int blockIncr = scrollComp.getScrollableBlockIncrement(viewRect, orientation,
+                                    direction);
                             if (direction < 0) {
-                                scrollMin = Math.max(scrollMin, toScroll
-                                        .getValue() - blockIncr);
+                                scrollMin = Math.max(scrollMin, toScroll.getValue() - blockIncr);
                             } else {
-                                scrollMax = Math.min(scrollMax, toScroll
-                                        .getValue() + blockIncr);
+                                scrollMax = Math.min(scrollMax, toScroll.getValue() + blockIncr);
                             }
                         }
 
                         for (int i = 0; i < units; i++) {
-                            int unitIncr = scrollComp
-                                    .getScrollableUnitIncrement(viewRect,
-                                            orientation, direction);
+                            int unitIncr = scrollComp.getScrollableUnitIncrement(viewRect, orientation,
+                                    direction);
                             // Modify the visible rect for the next unit, and
                             // check to see if we're at the end already.
                             if (orientation == SwingConstants.VERTICAL) {
@@ -898,8 +863,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                                 }
                             } else {
                                 // Scroll left
-                                if ((leftToRight && direction < 0)
-                                        || (!leftToRight && direction > 0)) {
+                                if ((leftToRight && direction < 0) || (!leftToRight && direction > 0)) {
                                     viewRect.x -= unitIncr;
                                     if (leftToRight) {
                                         if (viewRect.x < scrollMin) {
@@ -909,8 +873,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                                     }
                                 }
                                 // Scroll right
-                                else if ((leftToRight && direction > 0)
-                                        || (!leftToRight && direction < 0)) {
+                                else if ((leftToRight && direction > 0) || (!leftToRight && direction < 0)) {
                                     viewRect.x += unitIncr;
                                     if (leftToRight) {
                                         if (viewRect.x > scrollMax) {
@@ -933,8 +896,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                                 // rightToLeft scrollbars are oriented with
                                 // minValue on the right and maxValue on the
                                 // left.
-                                int newPos = toScroll.getValue() - (viewRect.x
-                                        - startingX);
+                                int newPos = toScroll.getValue() - (viewRect.x - startingX);
                                 if (newPos < scrollMin) {
                                     newPos = scrollMin;
                                 } else if (newPos > scrollMax) {
@@ -946,11 +908,9 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                     } else {
                         // Viewport's view is not a Scrollable, or fast wheel
                         // scrolling is not enabled.
-                        BasicScrollBarUI.scrollByUnits(toScroll, direction,
-                                units, limitScroll);
+                        BasicScrollBarUI.scrollByUnits(toScroll, direction, units, limitScroll);
                     }
-                } else if (e
-                        .getScrollType() == MouseWheelEvent.WHEEL_BLOCK_SCROLL) {
+                } else if (e.getScrollType() == MouseWheelEvent.WHEEL_BLOCK_SCROLL) {
                     BasicScrollBarUI.scrollByBlock(toScroll, direction);
                 }
             }
@@ -1067,8 +1027,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
 
             if ("model" == propertyName) {
                 JScrollBar sb = scrollpane.getVerticalScrollBar();
-                BoundedRangeModel oldModel = (BoundedRangeModel) e
-                        .getOldValue();
+                BoundedRangeModel oldModel = (BoundedRangeModel) e.getOldValue();
                 ChangeListener cl = null;
 
                 if (source == sb) {
@@ -1093,8 +1052,7 @@ public class BasicScrollPaneUI extends ScrollPaneUI implements
                     if (scrollpane.getComponentOrientation().isLeftToRight()) {
                         p.x = hsb.getValue();
                     } else {
-                        p.x = viewport.getViewSize().width - viewport
-                                .getExtentSize().width - hsb.getValue();
+                        p.x = viewport.getViewSize().width - viewport.getExtentSize().width - hsb.getValue();
                     }
                     viewport.setViewPosition(p);
                 }

@@ -26,11 +26,11 @@ public abstract class HttpHandler {
      * request.
      *
      * @param exchange
-     *                 the exchange containing the request from the client and
-     *                 used
-     *                 to send the response
+     *        the exchange containing the request from the client and
+     *        used
+     *        to send the response
      * @throws IOException
-     *                     when an I/O error happens during request handling
+     *         when an I/O error happens during request handling
      */
     public abstract void handle(HttpExchange exchange) throws IOException;
 }

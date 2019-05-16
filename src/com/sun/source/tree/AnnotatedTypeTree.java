@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for an annotated type
- *
  * For example:
  * 
  * <pre>
@@ -18,7 +17,6 @@ import java.util.List;
  * </pre>
  *
  * @see "JSR 308: Annotations on Java Types"
- *
  * @author Mahmood Ali
  * @since 1.8
  */

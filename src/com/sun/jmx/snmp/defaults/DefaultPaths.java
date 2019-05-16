@@ -15,7 +15,6 @@ import java.util.StringTokenizer;
 
 /**
  * This class represents a set of default directories used by Java DMK.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -36,7 +35,6 @@ public class DefaultPaths {
 
     /**
      * Returns the installation directory for Java DMK.
-     *
      * The default value of the installation directory is:
      * <CODE>&lt;base_dir&gt; + File.separator + SUNWjdmk + File.separator + jdmk5.0 </CODE>
      *
@@ -52,13 +50,11 @@ public class DefaultPaths {
     /**
      * Returns the installation directory for Java DMK concatenated with
      * dirname.
-     *
      * The default value of the installation directory is:
      * <CODE>&lt;base_dir&gt; + File.separator + SUNWjdmk + File.separator + jdmk5.0 </CODE>
      *
      * @param dirname
-     *                The directory to be appended.
-     *
+     *        The directory to be appended.
      * @return Java DMK installation directory + <CODE>File.separator</CODE> +
      *         <CODE>dirname</CODE>.
      */
@@ -82,7 +78,7 @@ public class DefaultPaths {
      * Sets the installation directory for Java DMK.
      *
      * @param dirname
-     *                The directory where Java DMK resides.
+     *        The directory where Java DMK resides.
      */
     public static void setInstallDir(String dirname) {
         installDir = dirname;
@@ -115,8 +111,7 @@ public class DefaultPaths {
      * </UL>
      *
      * @param dirname
-     *                The directory to be appended.
-     *
+     *        The directory to be appended.
      * @return Java DMK <CODE>etc</CODE> directory + <CODE>File.separator</CODE>
      *         + <CODE>dirname</CODE>.
      */
@@ -140,7 +135,7 @@ public class DefaultPaths {
      * Sets the <CODE>etc</CODE> directory for Java DMK.
      *
      * @param dirname
-     *                The <CODE>etc</CODE> directory for Java DMK.
+     *        The <CODE>etc</CODE> directory for Java DMK.
      */
     public static void setEtcDir(String dirname) {
         etcDir = dirname;
@@ -173,8 +168,7 @@ public class DefaultPaths {
      * </UL>
      *
      * @param dirname
-     *                The directory to be appended.
-     *
+     *        The directory to be appended.
      * @return Java DMK <CODE>tmp</CODE> directory + <CODE>File.separator</CODE>
      *         + <CODE>dirname</CODE>.
      */
@@ -198,7 +192,7 @@ public class DefaultPaths {
      * Sets the <CODE>tmp</CODE> directory for the product
      *
      * @param dirname
-     *                The <CODE>tmp</CODE> directory for Java DMK.
+     *        The <CODE>tmp</CODE> directory for Java DMK.
      */
     public static void setTmpDir(String dirname) {
         tmpDir = dirname;
@@ -211,21 +205,18 @@ public class DefaultPaths {
         InputStream in = null;
         BufferedReader r = null;
         try {
-            in = DefaultPaths.class.getClassLoader().getResourceAsStream(
-                    INSTALL_PATH_RESOURCE_NAME);
+            in = DefaultPaths.class.getClassLoader().getResourceAsStream(INSTALL_PATH_RESOURCE_NAME);
             if (in == null)
                 return null;
             r = new BufferedReader(new InputStreamReader(in));
             installDir = r.readLine();
-        } catch (Exception e) {
-        } finally {
+        } catch (Exception e) {} finally {
             try {
                 if (in != null)
                     in.close();
                 if (r != null)
                     r.close();
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
         return installDir;
     }

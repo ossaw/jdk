@@ -21,8 +21,7 @@ import com.sun.corba.se.impl.encoding.MarshalInputStream;
 /**
  * @author
  */
-public class CodeSetsComponentImpl extends TaggedComponentBase implements
-        CodeSetsComponent {
+public class CodeSetsComponentImpl extends TaggedComponentBase implements CodeSetsComponent {
     CodeSetComponentInfo csci;
 
     public boolean equals(Object obj) {

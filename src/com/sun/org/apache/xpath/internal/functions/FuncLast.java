@@ -48,14 +48,11 @@ public class FuncLast extends Function {
      * Get the position in the current context node list.
      *
      * @param xctxt
-     *              non-null reference to XPath runtime context.
-     *
+     *        non-null reference to XPath runtime context.
      * @return The number of nodes in the list.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public int getCountOfContextNodeList(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public int getCountOfContextNodeList(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         // assert(null != m_contextNodeList, "m_contextNodeList must be
         // non-null");
@@ -80,13 +77,11 @@ public class FuncLast extends Function {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         XNumber xnum = new XNumber((double) getCountOfContextNodeList(xctxt));
         // System.out.println("last: "+xnum.num());
         return xnum;

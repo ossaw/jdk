@@ -40,23 +40,22 @@ class DropShadowEffect extends ShadowEffect {
      * effect type is.
      *
      * @param src
-     *            The source image for applying the effect to
+     *        The source image for applying the effect to
      * @param dst
-     *            The destination image to paint effect result into. If this is
-     *            null then a new image will be created
+     *        The destination image to paint effect result into. If this is
+     *        null then a new image will be created
      * @param w
-     *            The width of the src image to apply effect to, this allow the
-     *            src and dst buffers to be bigger than the area the need effect
-     *            applied to it
+     *        The width of the src image to apply effect to, this allow the
+     *        src and dst buffers to be bigger than the area the need effect
+     *        applied to it
      * @param h
-     *            The height of the src image to apply effect to, this allow the
-     *            src and dst buffers to be bigger than the area the need effect
-     *            applied to it
+     *        The height of the src image to apply effect to, this allow the
+     *        src and dst buffers to be bigger than the area the need effect
+     *        applied to it
      * @return Image with the result of the effect
      */
     @Override
-    BufferedImage applyEffect(BufferedImage src, BufferedImage dst, int w,
-            int h) {
+    BufferedImage applyEffect(BufferedImage src, BufferedImage dst, int w, int h) {
         if (src == null || src.getType() != BufferedImage.TYPE_INT_ARGB) {
             throw new IllegalArgumentException("Effect only works with "
                     + "source images of type BufferedImage.TYPE_INT_ARGB.");
@@ -87,8 +86,7 @@ class DropShadowEffect extends ShadowEffect {
             srcRaster.getDataElements(0, y, w, 1, lineBuf);
             for (int x = 0; x < w; x++) {
                 int dx = x + tmpOffX;
-                tmpBuf1[offset + dx] = (byte) ((lineBuf[x]
-                        & 0xFF000000) >>> 24);
+                tmpBuf1[offset + dx] = (byte) ((lineBuf[x] & 0xFF000000) >>> 24);
             }
         }
         // blur
@@ -107,15 +105,13 @@ class DropShadowEffect extends ShadowEffect {
         if (dst == null)
             dst = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         WritableRaster shadowRaster = dst.getRaster();
-        int red = color.getRed(), green = color.getGreen(), blue = color
-                .getBlue();
+        int red = color.getRed(), green = color.getGreen(), blue = color.getBlue();
         for (int y = 0; y < h; y++) {
             int srcY = y + tmpOffY;
             int shadowOffset = (srcY - offsetY) * tmpW;
             for (int x = 0; x < w; x++) {
                 int srcX = x + tmpOffX;
-                lineBuf[x] = tmpBuf1[shadowOffset + (srcX - offsetX)] << 24
-                        | red << 16 | green << 8 | blue;
+                lineBuf[x] = tmpBuf1[shadowOffset + (srcX - offsetX)] << 24 | red << 16 | green << 8 | blue;
             }
             shadowRaster.setDataElements(0, y, w, 1, lineBuf);
         }

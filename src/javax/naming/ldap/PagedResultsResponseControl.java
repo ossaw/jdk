@@ -20,7 +20,6 @@ import com.sun.jndi.ldap.BerDecoder;
  * <p>
  * This class implements the LDAPv3 Response Control for paged-results as
  * defined in <a href="http://www.ietf.org/rfc/rfc2696">RFC 2696</a>.
- *
  * The control's value has the following ASN.1 definition:
  * 
  * <pre>
@@ -31,7 +30,6 @@ import com.sun.jndi.ldap.BerDecoder;
  *                           -- result set size estimate from server
  *         cookie    OCTET STRING
  *     }
- *
  * </pre>
  *
  * @since 1.5
@@ -66,21 +64,20 @@ final public class PagedResultsResponseControl extends BasicControl {
      * Constructs a paged-results response control.
      *
      * @param id
-     *                    The control's object identifier string.
+     *        The control's object identifier string.
      * @param criticality
-     *                    The control's criticality.
+     *        The control's criticality.
      * @param value
-     *                    The control's ASN.1 BER encoded value. It is not
-     *                    cloned - any
-     *                    changes to value will affect the contents of the
-     *                    control.
+     *        The control's ASN.1 BER encoded value. It is not
+     *        cloned - any
+     *        changes to value will affect the contents of the
+     *        control.
      * @exception IOException
-     *                        If an error was encountered while decoding the
-     *                        control's
-     *                        value.
+     *            If an error was encountered while decoding the
+     *            control's
+     *            value.
      */
-    public PagedResultsResponseControl(String id, boolean criticality,
-            byte[] value) throws IOException {
+    public PagedResultsResponseControl(String id, boolean criticality, byte[] value) throws IOException {
 
         super(id, criticality, value);
 

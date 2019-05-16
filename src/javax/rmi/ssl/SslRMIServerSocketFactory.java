@@ -21,12 +21,10 @@ import javax.net.ssl.SSLSocketFactory;
  * An <code>SslRMIServerSocketFactory</code> instance is used by the RMI runtime
  * in order to obtain server sockets for RMI calls via SSL.
  * </p>
- *
  * <p>
  * This class implements <code>RMIServerSocketFactory</code> over the Secure
  * Sockets Layer (SSL) or Transport Layer Security (TLS) protocols.
  * </p>
- *
  * <p>
  * This class creates SSL sockets using the default
  * <code>SSLSocketFactory</code> (see {@link SSLSocketFactory#getDefault}) or
@@ -37,7 +35,6 @@ import javax.net.ssl.SSLSocketFactory;
  * {@link SSLContext#getSocketFactory} or the
  * <code>SSLServerSocketFactory</code> returned by
  * {@link SSLContext#getServerSocketFactory}.
- *
  * When an <code>SSLContext</code> is not supplied all the instances of this
  * class share the same keystore, and the same truststore (when client
  * authentication is required by the server). This behavior can be modified by
@@ -55,7 +52,6 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      * Creates a new <code>SslRMIServerSocketFactory</code> with the default SSL
      * socket configuration.
      * </p>
-     *
      * <p>
      * SSL connections accepted by server sockets created by this factory have
      * the default cipher suites and protocol versions enabled and do not
@@ -73,54 +69,49 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      * </p>
      *
      * @param enabledCipherSuites
-     *                            names of all the cipher suites to enable on
-     *                            SSL connections
-     *                            accepted by server sockets created by this
-     *                            factory, or
-     *                            <code>null</code> to use the cipher suites
-     *                            that are enabled by
-     *                            default
-     *
+     *        names of all the cipher suites to enable on
+     *        SSL connections
+     *        accepted by server sockets created by this
+     *        factory, or
+     *        <code>null</code> to use the cipher suites
+     *        that are enabled by
+     *        default
      * @param enabledProtocols
-     *                            names of all the protocol versions to enable
-     *                            on SSL
-     *                            connections accepted by server sockets created
-     *                            by this
-     *                            factory, or <code>null</code> to use the
-     *                            protocol versions
-     *                            that are enabled by default
-     *
+     *        names of all the protocol versions to enable
+     *        on SSL
+     *        connections accepted by server sockets created
+     *        by this
+     *        factory, or <code>null</code> to use the
+     *        protocol versions
+     *        that are enabled by default
      * @param needClientAuth
-     *                            <code>true</code> to require client
-     *                            authentication on SSL
-     *                            connections accepted by server sockets created
-     *                            by this
-     *                            factory; <code>false</code> to not require
-     *                            client
-     *                            authentication
-     *
+     *        <code>true</code> to require client
+     *        authentication on SSL
+     *        connections accepted by server sockets created
+     *        by this
+     *        factory; <code>false</code> to not require
+     *        client
+     *        authentication
      * @exception IllegalArgumentException
-     *                                     when one or more of the cipher suites
-     *                                     named by the
-     *                                     <code>enabledCipherSuites</code>
-     *                                     parameter is not
-     *                                     supported, when one or more of the
-     *                                     protocols named by the
-     *                                     <code>enabledProtocols</code>
-     *                                     parameter is not supported
-     *                                     or when a problem is encountered
-     *                                     while trying to check if
-     *                                     the supplied cipher suites and
-     *                                     protocols to be enabled are
-     *                                     supported.
-     *
+     *            when one or more of the cipher suites
+     *            named by the
+     *            <code>enabledCipherSuites</code>
+     *            parameter is not
+     *            supported, when one or more of the
+     *            protocols named by the
+     *            <code>enabledProtocols</code>
+     *            parameter is not supported
+     *            or when a problem is encountered
+     *            while trying to check if
+     *            the supplied cipher suites and
+     *            protocols to be enabled are
+     *            supported.
      * @see SSLSocket#setEnabledCipherSuites
      * @see SSLSocket#setEnabledProtocols
      * @see SSLSocket#setNeedClientAuth
      */
-    public SslRMIServerSocketFactory(String[] enabledCipherSuites,
-            String[] enabledProtocols, boolean needClientAuth)
-            throws IllegalArgumentException {
+    public SslRMIServerSocketFactory(String[] enabledCipherSuites, String[] enabledProtocols,
+            boolean needClientAuth) throws IllegalArgumentException {
         this(null, enabledCipherSuites, enabledProtocols, needClientAuth);
     }
 
@@ -131,75 +122,67 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      * </p>
      *
      * @param context
-     *                            the SSL context to be used for creating SSL
-     *                            sockets. If
-     *                            <code>context</code> is null the default
-     *                            <code>SSLSocketFactory</code> or the default
-     *                            <code>SSLServerSocketFactory</code> will be
-     *                            used to create SSL
-     *                            sockets. Otherwise, the socket factory
-     *                            returned by
-     *                            <code>SSLContext.getSocketFactory()</code> or
-     *                            <code>SSLContext.getServerSocketFactory()</code>
-     *                            will be used
-     *                            instead.
-     *
+     *        the SSL context to be used for creating SSL
+     *        sockets. If
+     *        <code>context</code> is null the default
+     *        <code>SSLSocketFactory</code> or the default
+     *        <code>SSLServerSocketFactory</code> will be
+     *        used to create SSL
+     *        sockets. Otherwise, the socket factory
+     *        returned by
+     *        <code>SSLContext.getSocketFactory()</code> or
+     *        <code>SSLContext.getServerSocketFactory()</code>
+     *        will be used
+     *        instead.
      * @param enabledCipherSuites
-     *                            names of all the cipher suites to enable on
-     *                            SSL connections
-     *                            accepted by server sockets created by this
-     *                            factory, or
-     *                            <code>null</code> to use the cipher suites
-     *                            that are enabled by
-     *                            default
-     *
+     *        names of all the cipher suites to enable on
+     *        SSL connections
+     *        accepted by server sockets created by this
+     *        factory, or
+     *        <code>null</code> to use the cipher suites
+     *        that are enabled by
+     *        default
      * @param enabledProtocols
-     *                            names of all the protocol versions to enable
-     *                            on SSL
-     *                            connections accepted by server sockets created
-     *                            by this
-     *                            factory, or <code>null</code> to use the
-     *                            protocol versions
-     *                            that are enabled by default
-     *
+     *        names of all the protocol versions to enable
+     *        on SSL
+     *        connections accepted by server sockets created
+     *        by this
+     *        factory, or <code>null</code> to use the
+     *        protocol versions
+     *        that are enabled by default
      * @param needClientAuth
-     *                            <code>true</code> to require client
-     *                            authentication on SSL
-     *                            connections accepted by server sockets created
-     *                            by this
-     *                            factory; <code>false</code> to not require
-     *                            client
-     *                            authentication
-     *
+     *        <code>true</code> to require client
+     *        authentication on SSL
+     *        connections accepted by server sockets created
+     *        by this
+     *        factory; <code>false</code> to not require
+     *        client
+     *        authentication
      * @exception IllegalArgumentException
-     *                                     when one or more of the cipher suites
-     *                                     named by the
-     *                                     <code>enabledCipherSuites</code>
-     *                                     parameter is not
-     *                                     supported, when one or more of the
-     *                                     protocols named by the
-     *                                     <code>enabledProtocols</code>
-     *                                     parameter is not supported
-     *                                     or when a problem is encountered
-     *                                     while trying to check if
-     *                                     the supplied cipher suites and
-     *                                     protocols to be enabled are
-     *                                     supported.
-     *
+     *            when one or more of the cipher suites
+     *            named by the
+     *            <code>enabledCipherSuites</code>
+     *            parameter is not
+     *            supported, when one or more of the
+     *            protocols named by the
+     *            <code>enabledProtocols</code>
+     *            parameter is not supported
+     *            or when a problem is encountered
+     *            while trying to check if
+     *            the supplied cipher suites and
+     *            protocols to be enabled are
+     *            supported.
      * @see SSLSocket#setEnabledCipherSuites
      * @see SSLSocket#setEnabledProtocols
      * @see SSLSocket#setNeedClientAuth
      * @since 1.7
      */
-    public SslRMIServerSocketFactory(SSLContext context,
-            String[] enabledCipherSuites, String[] enabledProtocols,
-            boolean needClientAuth) throws IllegalArgumentException {
+    public SslRMIServerSocketFactory(SSLContext context, String[] enabledCipherSuites,
+            String[] enabledProtocols, boolean needClientAuth) throws IllegalArgumentException {
         // Initialize the configuration parameters.
         //
-        this.enabledCipherSuites = enabledCipherSuites == null ? null
-                : enabledCipherSuites.clone();
-        this.enabledProtocols = enabledProtocols == null ? null
-                : enabledProtocols.clone();
+        this.enabledCipherSuites = enabledCipherSuites == null ? null : enabledCipherSuites.clone();
+        this.enabledProtocols = enabledProtocols == null ? null : enabledProtocols.clone();
         this.needClientAuth = needClientAuth;
 
         // Force the initialization of the default at construction time,
@@ -207,8 +190,7 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
         // is called.
         //
         this.context = context;
-        final SSLSocketFactory sslSocketFactory = context == null
-                ? getDefaultSSLSocketFactory()
+        final SSLSocketFactory sslSocketFactory = context == null ? getDefaultSSLSocketFactory()
                 : context.getSocketFactory();
         SSLSocket sslSocket = null;
         if (this.enabledCipherSuites != null || this.enabledProtocols != null) {
@@ -217,8 +199,7 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
             } catch (Exception e) {
                 final String msg = "Unable to check if the cipher suites "
                         + "and protocols to enable are supported";
-                throw (IllegalArgumentException) new IllegalArgumentException(
-                        msg).initCause(e);
+                throw (IllegalArgumentException) new IllegalArgumentException(msg).initCause(e);
             }
         }
 
@@ -244,7 +225,6 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      * </p>
      *
      * @return an array of cipher suites enabled, or <code>null</code>
-     *
      * @see SSLSocket#setEnabledCipherSuites
      */
     public final String[] getEnabledCipherSuites() {
@@ -259,7 +239,6 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      * </p>
      *
      * @return an array of protocol versions enabled, or <code>null</code>
-     *
      * @see SSLSocket#setEnabledProtocols
      */
     public final String[] getEnabledProtocols() {
@@ -273,7 +252,6 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      * </p>
      *
      * @return <code>true</code> if client authentication is required
-     *
      * @see SSLSocket#setNeedClientAuth
      */
     public final boolean getNeedClientAuth() {
@@ -287,15 +265,13 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      * </p>
      */
     public ServerSocket createServerSocket(int port) throws IOException {
-        final SSLSocketFactory sslSocketFactory = context == null
-                ? getDefaultSSLSocketFactory()
+        final SSLSocketFactory sslSocketFactory = context == null ? getDefaultSSLSocketFactory()
                 : context.getSocketFactory();
         return new ServerSocket(port) {
             public Socket accept() throws IOException {
                 Socket socket = super.accept();
-                SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(
-                        socket, socket.getInetAddress().getHostName(), socket
-                                .getPort(), true);
+                SSLSocket sslSocket = (SSLSocket) sslSocketFactory.createSocket(socket, socket
+                        .getInetAddress().getHostName(), socket.getPort(), true);
                 sslSocket.setUseClientMode(false);
                 if (enabledCipherSuites != null) {
                     sslSocket.setEnabledCipherSuites(enabledCipherSuites);
@@ -313,13 +289,11 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      * <p>
      * Indicates whether some other object is "equal to" this one.
      * </p>
-     *
      * <p>
      * Two <code>SslRMIServerSocketFactory</code> objects are equal if they have
      * been constructed with the same SSL context and SSL socket configuration
      * parameters.
      * </p>
-     *
      * <p>
      * A subclass should override this method (as well as {@link #hashCode()})
      * if it adds instance state that affects equality.
@@ -339,8 +313,7 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
     private boolean checkParameters(SslRMIServerSocketFactory that) {
         // SSL context
         //
-        if (context == null ? that.context != null
-                : !context.equals(that.context))
+        if (context == null ? that.context != null : !context.equals(that.context))
             return false;
 
         // needClientAuth flag
@@ -350,25 +323,22 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
 
         // enabledCipherSuites
         //
-        if ((enabledCipherSuites == null && that.enabledCipherSuites != null)
-                || (enabledCipherSuites != null
-                        && that.enabledCipherSuites == null))
+        if ((enabledCipherSuites == null && that.enabledCipherSuites != null) || (enabledCipherSuites != null
+                && that.enabledCipherSuites == null))
             return false;
         if (enabledCipherSuites != null && that.enabledCipherSuites != null) {
-            List<String> thatEnabledCipherSuitesList = Arrays.asList(
-                    that.enabledCipherSuites);
+            List<String> thatEnabledCipherSuitesList = Arrays.asList(that.enabledCipherSuites);
             if (!enabledCipherSuitesList.equals(thatEnabledCipherSuitesList))
                 return false;
         }
 
         // enabledProtocols
         //
-        if ((enabledProtocols == null && that.enabledProtocols != null)
-                || (enabledProtocols != null && that.enabledProtocols == null))
+        if ((enabledProtocols == null && that.enabledProtocols != null) || (enabledProtocols != null
+                && that.enabledProtocols == null))
             return false;
         if (enabledProtocols != null && that.enabledProtocols != null) {
-            List<String> thatEnabledProtocolsList = Arrays.asList(
-                    that.enabledProtocols);
+            List<String> thatEnabledProtocolsList = Arrays.asList(that.enabledProtocols);
             if (!enabledProtocolsList.equals(thatEnabledProtocolsList))
                 return false;
         }
@@ -386,13 +356,10 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
      *         .
      */
     public int hashCode() {
-        return getClass().hashCode() + (context == null ? 0
-                : context.hashCode()) + (needClientAuth ? Boolean.TRUE
-                        .hashCode() : Boolean.FALSE.hashCode())
-                + (enabledCipherSuites == null ? 0
-                        : enabledCipherSuitesList.hashCode())
-                + (enabledProtocols == null ? 0
-                        : enabledProtocolsList.hashCode());
+        return getClass().hashCode() + (context == null ? 0 : context.hashCode()) + (needClientAuth
+                ? Boolean.TRUE.hashCode() : Boolean.FALSE.hashCode()) + (enabledCipherSuites == null ? 0
+                        : enabledCipherSuitesList.hashCode()) + (enabledProtocols == null ? 0
+                                : enabledProtocolsList.hashCode());
     }
 
     // We use a static field because:
@@ -410,8 +377,7 @@ public class SslRMIServerSocketFactory implements RMIServerSocketFactory {
 
     private static synchronized SSLSocketFactory getDefaultSSLSocketFactory() {
         if (defaultSSLSocketFactory == null)
-            defaultSSLSocketFactory = (SSLSocketFactory) SSLSocketFactory
-                    .getDefault();
+            defaultSSLSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
         return defaultSSLSocketFactory;
     }
 

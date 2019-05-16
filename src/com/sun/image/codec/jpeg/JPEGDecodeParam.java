@@ -4,26 +4,20 @@
  */
 
 /**********************************************************************
- **********************************************************************
- **********************************************************************
- *** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
+ ********************************************************************** COPYRIGHT (c) 1997-1998 Eastman Kodak Company. ***
  *** As an unpublished work pursuant to Title 17 of the United ***
  *** States Code. All rights reserved. ***
- **********************************************************************
- **********************************************************************
  **********************************************************************/
 
 package com.sun.image.codec.jpeg;
 
 /**
- * 
  * JPEGDecodeParam encapsulates tables and options necessary to control decoding
  * JPEG datastreams. Parameters are either set explicitly by the application for
  * encoding, or read from the JPEG header for decoding. In the case of decoding
  * abbreviated data streams the application may need to set some/all of the
  * values it's self.
  * <p>
- * 
  * When working with BufferedImages (
  * {@link com.sun.image.codec.jpeg.JPEGImageDecoder#decodeAsBufferedImage}), the
  * codec will attempt to generate an appropriate ColorModel for the JPEG
@@ -33,18 +27,15 @@ package com.sun.image.codec.jpeg;
  * the transformations themselves. When decoding into a raster (
  * {@link com.sun.image.codec.jpeg.JPEGImageDecoder#decodeAsRaster}) no
  * ColorSpace adjustments are made.
- * 
  * Note: The color ids described herein are simply enumerated values that
  * influence data processing by the JPEG codec. JPEG compression is by
  * definition color blind. These values are used as hints when decompressing
  * JPEG data. Of particular interest is the default conversion from YCbCr to
  * sRGB when decoding buffered Images.
  * <P>
- * 
  * Note: because JPEG is mostly color-blind color fidelity can not be garunteed.
  * This will hopefully be rectified in the near future by the wide spread
  * inclusion of ICC-profiles in the JPEG data stream (as a special marker).
- * 
  * The following is an example of the conversions that take place. This is only
  * a guide to the types of conversions that are allowed. This list is likely to
  * change in the future so it is <B>strongly</B> recommended that you check for
@@ -73,7 +64,6 @@ package com.sun.image.codec.jpeg;
  * If the user needs better control over conversion, the user must request the
  * data as a Raster and handle the conversion of the image data themselves.
  * <p>
- * 
  * When decoding JFIF files the encoded COLOR_ID will always be one of:
  * COLOR_ID_UNKNOWN, COLOR_ID_GRAY, COLOR_ID_RGB, COLOR_ID_YCbCr, COLOR_ID_CMYK,
  * or COLOR_ID_YCCK
@@ -200,9 +190,9 @@ public interface JPEGDecodeParam extends Cloneable {
      * was felt
      * 
      * @param component
-     *                  The component of the encoded image to return the
-     *                  subsampling
-     *                  factor for.
+     *        The component of the encoded image to return the
+     *        subsampling
+     *        factor for.
      * @return The subsample factor.
      */
     public int getHorizontalSubsampling(int component);
@@ -216,9 +206,9 @@ public interface JPEGDecodeParam extends Cloneable {
      * was felt
      * 
      * @param component
-     *                  The component of the encoded image to return the
-     *                  subsampling
-     *                  factor for.
+     *        The component of the encoded image to return the
+     *        subsampling
+     *        factor for.
      * @return The subsample factor.
      */
     public int getVerticalSubsampling(int component);
@@ -228,7 +218,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * tableNum must range in value from 0 - 3.
      * 
      * @param tableNum
-     *                 the index of the table to be returned.
+     *        the index of the table to be returned.
      * @return Quantization table stored at index tableNum.
      */
     public JPEGQTable getQTable(int tableNum);
@@ -237,7 +227,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * Returns the Quantization table for the requested component.
      * 
      * @param component
-     *                  the image component of interest.
+     *        the image component of interest.
      * @return Quantization table associated with component
      */
     public JPEGQTable getQTableForComponent(int component);
@@ -246,7 +236,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * Returns the DC Huffman coding table requested or null if not defined
      * 
      * @param tableNum
-     *                 the index of the table to be returned.
+     *        the index of the table to be returned.
      * @return Huffman table stored at index tableNum.
      */
     public JPEGHuffmanTable getDCHuffmanTable(int tableNum);
@@ -255,7 +245,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * Returns the DC Huffman coding table for the requested component.
      * 
      * @param component
-     *                  the image component of interest.
+     *        the image component of interest.
      * @return Huffman table associated with component
      */
     public JPEGHuffmanTable getDCHuffmanTableForComponent(int component);
@@ -264,7 +254,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * Returns the AC Huffman coding table requested or null if not defined
      * 
      * @param tableNum
-     *                 the index of the table to be returned.
+     *        the index of the table to be returned.
      * @return Huffman table stored at index tableNum.
      */
     public JPEGHuffmanTable getACHuffmanTable(int tableNum);
@@ -273,7 +263,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * Returns the AC Huffman coding table for the requested component.
      * 
      * @param component
-     *                  the image component of interest.
+     *        the image component of interest.
      * @return Huffman table associated with component
      */
     public JPEGHuffmanTable getACHuffmanTableForComponent(int component);
@@ -283,7 +273,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * component.
      * 
      * @param component
-     *                  The Component of interest.
+     *        The Component of interest.
      * @return The table number of the DC Huffman table for component.
      */
     public int getDCHuffmanComponentMapping(int component);
@@ -293,7 +283,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * component.
      * 
      * @param component
-     *                  The Component of interest.
+     *        The Component of interest.
      * @return The table number of the AC Huffman table for component.
      */
     public int getACHuffmanComponentMapping(int component);
@@ -303,7 +293,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * particular component.
      * 
      * @param component
-     *                  The Component of interest.
+     *        The Component of interest.
      * @return The table number of the Quantization table for component.
      */
     public int getQTableComponentMapping(int component);
@@ -328,7 +318,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * instance of the marker to be written.
      * 
      * @param marker
-     *               The marker of interest.
+     *        The marker of interest.
      */
     public boolean getMarker(int marker);
 
@@ -339,7 +329,7 @@ public interface JPEGDecodeParam extends Cloneable {
      * number of times in a stream).
      * 
      * @param marker
-     *               The marker of interest.
+     *        The marker of interest.
      * @return The 'byte[][]' for this marker or null if none available.
      */
     public byte[][] getMarkerData(int marker);

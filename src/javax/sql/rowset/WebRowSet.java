@@ -15,7 +15,6 @@ import org.xml.sax.*;
 /**
  * The standard interface that all implementations of a {@code WebRowSet} must
  * implement.
- *
  * <h3>1.0 Overview</h3> The {@code WebRowSetImpl} provides the standard
  * reference implementation, which may be extended if required.
  * <P>
@@ -52,12 +51,10 @@ import org.xml.sax.*;
  * current data, a {@code WebRowSet} maintains the ability to synchronize
  * changes in its data back to the originating data source.</li>
  * </ul>
- *
  * <h3>2.0 WebRowSet States</h3> The following sections demonstrates how a
  * {@code WebRowSet} implementation should use the XML Schema to describe
  * update, insert, and delete operations and to describe the state of a
  * {@code WebRowSet} object in XML.
- *
  * <h4>2.1 State 1 - Outputting a {@code WebRowSet} Object to XML</h4> In this
  * example, a {@code WebRowSet} object is created and populated with a simple 2
  * column, 5 row table from a data source. Having the 5 rows in a
@@ -417,11 +414,10 @@ public interface WebRowSet extends CachedRowSet {
      * {@code Reader} object.
      *
      * @param reader
-     *               the {@code java.io.Reader} stream from which this
-     *               {@code WebRowSet} object will be populated
-     * 
+     *        the {@code java.io.Reader} stream from which this
+     *        {@code WebRowSet} object will be populated
      * @throws SQLException
-     *                      if a database access error occurs
+     *         if a database access error occurs
      */
     public void readXml(java.io.Reader reader) throws SQLException;
 
@@ -429,15 +425,14 @@ public interface WebRowSet extends CachedRowSet {
      * Reads a stream based XML input to populate this {@code WebRowSet} object.
      *
      * @param iStream
-     *                the {@code java.io.InputStream} from which this
-     *                {@code WebRowSet} object will be populated
+     *        the {@code java.io.InputStream} from which this
+     *        {@code WebRowSet} object will be populated
      * @throws SQLException
-     *                      if a data source access error occurs
+     *         if a data source access error occurs
      * @throws IOException
-     *                      if an IO exception occurs
+     *         if an IO exception occurs
      */
-    public void readXml(java.io.InputStream iStream) throws SQLException,
-            IOException;
+    public void readXml(java.io.InputStream iStream) throws SQLException, IOException;
 
     /**
      * Populates this {@code WebRowSet} object with the contents of the given
@@ -450,17 +445,16 @@ public interface WebRowSet extends CachedRowSet {
      * {@code writeXml()} call.
      *
      * @param rs
-     *               the {@code ResultSet} object with which to populate this
-     *               {@code WebRowSet} object
+     *        the {@code ResultSet} object with which to populate this
+     *        {@code WebRowSet} object
      * @param writer
-     *               the {@code java.io.Writer} object to write to.
+     *        the {@code java.io.Writer} object to write to.
      * @throws SQLException
-     *                      if an error occurs writing out the rowset contents
-     *                      in XML
-     *                      format
+     *         if an error occurs writing out the rowset contents
+     *         in XML
+     *         format
      */
-    public void writeXml(ResultSet rs, java.io.Writer writer)
-            throws SQLException;
+    public void writeXml(ResultSet rs, java.io.Writer writer) throws SQLException;
 
     /**
      * Populates this {@code WebRowSet} object with the contents of the given
@@ -473,27 +467,26 @@ public interface WebRowSet extends CachedRowSet {
      * {@code writeXml()} call.
      *
      * @param rs
-     *                the {@code ResultSet} object with which to populate this
-     *                {@code WebRowSet} object
+     *        the {@code ResultSet} object with which to populate this
+     *        {@code WebRowSet} object
      * @param oStream
-     *                the {@code java.io.OutputStream} to write to
+     *        the {@code java.io.OutputStream} to write to
      * @throws SQLException
-     *                      if a data source access error occurs
+     *         if a data source access error occurs
      * @throws IOException
-     *                      if a IO exception occurs
+     *         if a IO exception occurs
      */
-    public void writeXml(ResultSet rs, java.io.OutputStream oStream)
-            throws SQLException, IOException;
+    public void writeXml(ResultSet rs, java.io.OutputStream oStream) throws SQLException, IOException;
 
     /**
      * Writes the data, properties, and metadata for this {@code WebRowSet}
      * object to the given {@code Writer} object in XML format.
      *
      * @param writer
-     *               the {@code java.io.Writer} stream to write to
+     *        the {@code java.io.Writer} stream to write to
      * @throws SQLException
-     *                      if an error occurs writing out the rowset contents
-     *                      to XML
+     *         if an error occurs writing out the rowset contents
+     *         to XML
      */
     public void writeXml(java.io.Writer writer) throws SQLException;
 
@@ -502,14 +495,13 @@ public interface WebRowSet extends CachedRowSet {
      * object to the given {@code OutputStream} object in XML format.
      *
      * @param oStream
-     *                the {@code java.io.OutputStream} stream to write to
+     *        the {@code java.io.OutputStream} stream to write to
      * @throws SQLException
-     *                      if a data source access error occurs
+     *         if a data source access error occurs
      * @throws IOException
-     *                      if a IO exception occurs
+     *         if a IO exception occurs
      */
-    public void writeXml(java.io.OutputStream oStream) throws SQLException,
-            IOException;
+    public void writeXml(java.io.OutputStream oStream) throws SQLException, IOException;
 
     /**
      * The public identifier for the XML Schema definition that defines the XML

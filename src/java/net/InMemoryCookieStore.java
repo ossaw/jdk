@@ -216,8 +216,7 @@ class InMemoryCookieStore implements CookieStore {
         if (embeddedDotInDomain == 0) {
             embeddedDotInDomain = domain.indexOf('.', 1);
         }
-        if (!isLocalDomain && (embeddedDotInDomain == -1
-                || embeddedDotInDomain == domain.length() - 1)) {
+        if (!isLocalDomain && (embeddedDotInDomain == -1 || embeddedDotInDomain == domain.length() - 1)) {
             return false;
         }
 
@@ -241,34 +240,29 @@ class InMemoryCookieStore implements CookieStore {
             return (D.equalsIgnoreCase(domain));
         } else if (lengthDiff == -1) {
             // if domain is actually .host
-            return (domain.charAt(0) == '.' && host.equalsIgnoreCase(domain
-                    .substring(1)));
+            return (domain.charAt(0) == '.' && host.equalsIgnoreCase(domain.substring(1)));
         }
 
         return false;
     }
 
-    private void getInternal1(List<HttpCookie> cookies,
-            Map<String, List<HttpCookie>> cookieIndex, String host,
-            boolean secureLink) {
+    private void getInternal1(List<HttpCookie> cookies, Map<String, List<HttpCookie>> cookieIndex,
+            String host, boolean secureLink) {
         // Use a separate list to handle cookies that need to be removed so
         // that there is no conflict with iterators.
         ArrayList<HttpCookie> toRemove = new ArrayList<HttpCookie>();
-        for (Map.Entry<String, List<HttpCookie>> entry : cookieIndex
-                .entrySet()) {
+        for (Map.Entry<String, List<HttpCookie>> entry : cookieIndex.entrySet()) {
             String domain = entry.getKey();
             List<HttpCookie> lst = entry.getValue();
             for (HttpCookie c : lst) {
-                if ((c.getVersion() == 0 && netscapeDomainMatches(domain, host))
-                        || (c.getVersion() == 1 && HttpCookie.domainMatches(
-                                domain, host))) {
+                if ((c.getVersion() == 0 && netscapeDomainMatches(domain, host)) || (c.getVersion() == 1
+                        && HttpCookie.domainMatches(domain, host))) {
                     if ((cookieJar.indexOf(c) != -1)) {
                         // the cookie still in main cookie store
                         if (!c.hasExpired()) {
                             // don't add twice and make sure it's the proper
                             // security level
-                            if ((secureLink || !c.getSecure()) && !cookies
-                                    .contains(c)) {
+                            if ((secureLink || !c.getSecure()) && !cookies.contains(c)) {
                                 cookies.add(c);
                             }
                         } else {
@@ -295,9 +289,8 @@ class InMemoryCookieStore implements CookieStore {
     // @param cookieIndex the index
     // @param comparator the prediction to decide whether or not
     // a cookie in index should be returned
-    private <T> void getInternal2(List<HttpCookie> cookies,
-            Map<T, List<HttpCookie>> cookieIndex, Comparable<T> comparator,
-            boolean secureLink) {
+    private <T> void getInternal2(List<HttpCookie> cookies, Map<T, List<HttpCookie>> cookieIndex,
+            Comparable<T> comparator, boolean secureLink) {
         for (T index : cookieIndex.keySet()) {
             if (comparator.compareTo(index) == 0) {
                 List<HttpCookie> indexedCookies = cookieIndex.get(index);
@@ -310,8 +303,7 @@ class InMemoryCookieStore implements CookieStore {
                             // the cookie still in main cookie store
                             if (!ck.hasExpired()) {
                                 // don't add twice
-                                if ((secureLink || !ck.getSecure()) && !cookies
-                                        .contains(ck))
+                                if ((secureLink || !ck.getSecure()) && !cookies.contains(ck))
                                     cookies.add(ck);
                             } else {
                                 it.remove();
@@ -329,8 +321,7 @@ class InMemoryCookieStore implements CookieStore {
     }
 
     // add 'cookie' indexed by 'index' into 'indexStore'
-    private <T> void addIndex(Map<T, List<HttpCookie>> indexStore, T index,
-            HttpCookie cookie) {
+    private <T> void addIndex(Map<T, List<HttpCookie>> indexStore, T index, HttpCookie cookie) {
         if (index != null) {
             List<HttpCookie> cookies = indexStore.get(index);
             if (cookies != null) {

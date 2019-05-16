@@ -29,7 +29,7 @@ public class NoSuchProviderException extends GeneralSecurityException {
      * detail message is a String that describes this particular exception.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public NoSuchProviderException(String msg) {
         super(msg);

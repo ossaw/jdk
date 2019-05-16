@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,8 +33,7 @@ import org.w3c.dom.Element;
  *
  * @author Brent Putman (putmanb@georgetown.edu)
  */
-public class KeyInfoReference extends Signature11ElementProxy implements
-        KeyInfoContent {
+public class KeyInfoReference extends Signature11ElementProxy implements KeyInfoContent {
 
     /**
      * Constructor RetrievalMethod
@@ -45,8 +42,7 @@ public class KeyInfoReference extends Signature11ElementProxy implements
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    public KeyInfoReference(Element element, String baseURI)
-            throws XMLSecurityException {
+    public KeyInfoReference(Element element, String baseURI) throws XMLSecurityException {
         super(element, baseURI);
     }
 
@@ -68,8 +64,7 @@ public class KeyInfoReference extends Signature11ElementProxy implements
      * @return the URI attribute
      */
     public Attr getURIAttr() {
-        return this.constructionElement.getAttributeNodeNS(null,
-                Constants._ATT_URI);
+        return this.constructionElement.getAttributeNodeNS(null, Constants._ATT_URI);
     }
 
     /**
@@ -85,14 +80,12 @@ public class KeyInfoReference extends Signature11ElementProxy implements
      * Sets the <code>Id</code> attribute
      *
      * @param Id
-     *           ID
+     *        ID
      */
     public void setId(String id) {
         if (id != null) {
-            this.constructionElement.setAttributeNS(null, Constants._ATT_ID,
-                    id);
-            this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID,
-                    true);
+            this.constructionElement.setAttributeNS(null, Constants._ATT_ID, id);
+            this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID, true);
         } else {
             this.constructionElement.removeAttributeNS(null, Constants._ATT_ID);
         }

@@ -22,7 +22,7 @@ public class ProtocolException extends IOException {
      * message.
      *
      * @param host
-     *             the detail message.
+     *        the detail message.
      */
     public ProtocolException(String host) {
         super(host);

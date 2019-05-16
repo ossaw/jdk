@@ -22,8 +22,7 @@ public class ProxyRef implements RemoteRef {
         this.ref = ref;
     }
 
-    public void readExternal(ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         ref.readExternal(in);
     }
 
@@ -39,8 +38,7 @@ public class ProxyRef implements RemoteRef {
         ref.invoke(call);
     }
 
-    public Object invoke(Remote obj, Method method, Object[] params, long opnum)
-            throws Exception {
+    public Object invoke(Remote obj, Method method, Object[] params, long opnum) throws Exception {
         return ref.invoke(obj, method, params, opnum);
     }
 
@@ -60,9 +58,8 @@ public class ProxyRef implements RemoteRef {
      * @deprecated
      */
     @Deprecated
-    public java.rmi.server.RemoteCall newCall(RemoteObject obj,
-            java.rmi.server.Operation[] op, int opnum, long hash)
-            throws RemoteException {
+    public java.rmi.server.RemoteCall newCall(RemoteObject obj, java.rmi.server.Operation[] op, int opnum,
+            long hash) throws RemoteException {
         return ref.newCall(obj, op, opnum, hash);
     }
 

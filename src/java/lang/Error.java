@@ -16,7 +16,6 @@ package java.lang;
  * subclasses of {@code Error} that might be thrown during the execution of the
  * method but not caught, since these errors are abnormal conditions that should
  * never occur.
- *
  * That is, {@code Error} and its subclasses are regarded as unchecked
  * exceptions for the purposes of compile-time checking of exceptions.
  *
@@ -43,8 +42,8 @@ public class Error extends Throwable {
      * {@link #initCause}.
      *
      * @param message
-     *                the detail message. The detail message is saved for later
-     *                retrieval by the {@link #getMessage()} method.
+     *        the detail message. The detail message is saved for later
+     *        retrieval by the {@link #getMessage()} method.
      */
     public Error(String message) {
         super(message);
@@ -57,14 +56,14 @@ public class Error extends Throwable {
      * automatically incorporated in this error's detail message.
      *
      * @param message
-     *                the detail message (which is saved for later retrieval by
-     *                the
-     *                {@link #getMessage()} method).
+     *        the detail message (which is saved for later retrieval by
+     *        the
+     *        {@link #getMessage()} method).
      * @param cause
-     *                the cause (which is saved for later retrieval by the
-     *                {@link #getCause()} method). (A {@code null} value is
-     *                permitted, and indicates that the cause is nonexistent or
-     *                unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause()} method). (A {@code null} value is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      * @since 1.4
      */
     public Error(String message, Throwable cause) {
@@ -79,10 +78,10 @@ public class Error extends Throwable {
      * throwables.
      *
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              {@link #getCause()} method). (A {@code null} value is
-     *              permitted, and indicates that the cause is nonexistent or
-     *              unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause()} method). (A {@code null} value is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      * @since 1.4
      */
     public Error(Throwable cause) {
@@ -95,22 +94,20 @@ public class Error extends Throwable {
      * disabled.
      *
      * @param message
-     *                           the detail message.
+     *        the detail message.
      * @param cause
-     *                           the cause. (A {@code null} value is permitted,
-     *                           and indicates
-     *                           that the cause is nonexistent or unknown.)
+     *        the cause. (A {@code null} value is permitted,
+     *        and indicates
+     *        that the cause is nonexistent or unknown.)
      * @param enableSuppression
-     *                           whether or not suppression is enabled or
-     *                           disabled
+     *        whether or not suppression is enabled or
+     *        disabled
      * @param writableStackTrace
-     *                           whether or not the stack trace should be
-     *                           writable
-     *
+     *        whether or not the stack trace should be
+     *        writable
      * @since 1.7
      */
-    protected Error(String message, Throwable cause, boolean enableSuppression,
-            boolean writableStackTrace) {
+    protected Error(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

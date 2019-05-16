@@ -66,8 +66,7 @@ final class BooleanExpr extends Expression {
         il.append(new PUSH(cpg, _value));
     }
 
-    public void translateDesynthesized(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateDesynthesized(ClassGenerator classGen, MethodGenerator methodGen) {
         final InstructionList il = methodGen.getInstructionList();
         if (_value) {
             il.append(NOP); // true list falls through

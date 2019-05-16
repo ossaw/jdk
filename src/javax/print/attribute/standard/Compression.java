@@ -53,17 +53,15 @@ public class Compression extends EnumSyntax implements DocAttribute {
      * value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected Compression(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "none", "deflate", "gzip",
-            "compress" };
+    private static final String[] myStringTable = { "none", "deflate", "gzip", "compress" };
 
-    private static final Compression[] myEnumValueTable = { NONE, DEFLATE, GZIP,
-            COMPRESS };
+    private static final Compression[] myEnumValueTable = { NONE, DEFLATE, GZIP, COMPRESS };
 
     /**
      * Returns the string table for class Compression.

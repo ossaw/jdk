@@ -12,14 +12,12 @@ package com.sun.jmx.snmp.tasks;
  * This interface is implemented by objects that are able to execute tasks.
  * Whether the task is executed in the client thread or in another thread
  * depends on the TaskServer implementation.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
  * </p>
  * 
  * @see com.sun.jmx.snmp.tasks.Task
- *
  * @since 1.5
  **/
 public interface TaskServer {
@@ -36,7 +34,7 @@ public interface TaskServer {
      * depends on the TaskServer implementation.
      * 
      * @param task
-     *             The task to be executed.
+     *        The task to be executed.
      **/
     public void submitTask(Task task);
 }

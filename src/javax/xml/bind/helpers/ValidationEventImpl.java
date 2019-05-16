@@ -12,7 +12,6 @@ import javax.xml.bind.ValidationEventLocator;
 
 /**
  * Default implementation of the ValidationEvent interface.
- *
  * <p>
  * JAXB providers are allowed to use whatever class that implements the
  * ValidationEvent interface. This class is just provided for a convenience.
@@ -33,18 +32,17 @@ public class ValidationEventImpl implements ValidationEvent {
      * Create a new ValidationEventImpl.
      *
      * @param _severity
-     *                  The severity value for this event. Must be one of
-     *                  ValidationEvent.WARNING, ValidationEvent.ERROR, or
-     *                  ValidationEvent.FATAL_ERROR
+     *        The severity value for this event. Must be one of
+     *        ValidationEvent.WARNING, ValidationEvent.ERROR, or
+     *        ValidationEvent.FATAL_ERROR
      * @param _message
-     *                  The text message for this event - may be null.
+     *        The text message for this event - may be null.
      * @param _locator
-     *                  The locator object for this event - may be null.
+     *        The locator object for this event - may be null.
      * @throws IllegalArgumentException
-     *                                  if an illegal severity field is supplied
+     *         if an illegal severity field is supplied
      */
-    public ValidationEventImpl(int _severity, String _message,
-            ValidationEventLocator _locator) {
+    public ValidationEventImpl(int _severity, String _message, ValidationEventLocator _locator) {
 
         this(_severity, _message, _locator, null);
     }
@@ -53,23 +51,23 @@ public class ValidationEventImpl implements ValidationEvent {
      * Create a new ValidationEventImpl.
      *
      * @param _severity
-     *                         The severity value for this event. Must be one of
-     *                         ValidationEvent.WARNING, ValidationEvent.ERROR,
-     *                         or
-     *                         ValidationEvent.FATAL_ERROR
+     *        The severity value for this event. Must be one of
+     *        ValidationEvent.WARNING, ValidationEvent.ERROR,
+     *        or
+     *        ValidationEvent.FATAL_ERROR
      * @param _message
-     *                         The text message for this event - may be null.
+     *        The text message for this event - may be null.
      * @param _locator
-     *                         The locator object for this event - may be null.
+     *        The locator object for this event - may be null.
      * @param _linkedException
-     *                         An optional linked exception that may provide
-     *                         additional
-     *                         information about the event - may be null.
+     *        An optional linked exception that may provide
+     *        additional
+     *        information about the event - may be null.
      * @throws IllegalArgumentException
-     *                                  if an illegal severity field is supplied
+     *         if an illegal severity field is supplied
      */
-    public ValidationEventImpl(int _severity, String _message,
-            ValidationEventLocator _locator, Throwable _linkedException) {
+    public ValidationEventImpl(int _severity, String _message, ValidationEventLocator _locator,
+            Throwable _linkedException) {
 
         setSeverity(_severity);
         this.message = _message;
@@ -90,19 +88,17 @@ public class ValidationEventImpl implements ValidationEvent {
      * Set the severity field of this event.
      *
      * @param _severity
-     *                  Must be one of ValidationEvent.WARNING,
-     *                  ValidationEvent.ERROR,
-     *                  or ValidationEvent.FATAL_ERROR.
+     *        Must be one of ValidationEvent.WARNING,
+     *        ValidationEvent.ERROR,
+     *        or ValidationEvent.FATAL_ERROR.
      * @throws IllegalArgumentException
-     *                                  if an illegal severity field is supplied
+     *         if an illegal severity field is supplied
      */
     public void setSeverity(int _severity) {
 
-        if (_severity != ValidationEvent.WARNING
-                && _severity != ValidationEvent.ERROR
+        if (_severity != ValidationEvent.WARNING && _severity != ValidationEvent.ERROR
                 && _severity != ValidationEvent.FATAL_ERROR) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.ILLEGAL_SEVERITY));
+            throw new IllegalArgumentException(Messages.format(Messages.ILLEGAL_SEVERITY));
         }
 
         this.severity = _severity;
@@ -116,7 +112,7 @@ public class ValidationEventImpl implements ValidationEvent {
      * Set the message field of this event.
      *
      * @param _message
-     *                 String message - may be null.
+     *        String message - may be null.
      */
     public void setMessage(String _message) {
         this.message = _message;
@@ -130,7 +126,7 @@ public class ValidationEventImpl implements ValidationEvent {
      * Set the linked exception field of this event.
      *
      * @param _linkedException
-     *                         Optional linked exception - may be null.
+     *        Optional linked exception - may be null.
      */
     public void setLinkedException(Throwable _linkedException) {
         this.linkedException = _linkedException;
@@ -144,7 +140,7 @@ public class ValidationEventImpl implements ValidationEvent {
      * Set the locator object for this event.
      *
      * @param _locator
-     *                 The locator - may be null.
+     *        The locator - may be null.
      */
     public void setLocator(ValidationEventLocator _locator) {
         this.locator = _locator;
@@ -172,7 +168,7 @@ public class ValidationEventImpl implements ValidationEvent {
                 s = String.valueOf(getSeverity());
                 break;
         }
-        return MessageFormat.format("[severity={0},message={1},locator={2}]",
-                new Object[] { s, getMessage(), getLocator() });
+        return MessageFormat.format("[severity={0},message={1},locator={2}]", new Object[] { s, getMessage(),
+                getLocator() });
     }
 }

@@ -46,7 +46,6 @@ import sun.font.LayoutPathImpl;
 import sun.text.CodePointIterator;
 
 /**
- *
  * <code>TextLayout</code> is an immutable graphical representation of styled
  * character data.
  * <p>
@@ -309,18 +308,17 @@ public final class TextLayout implements Cloneable {
          * strong caret in the specified <code>TextLayout</code>.
          * 
          * @param hit1
-         *               a valid hit in <code>layout</code>
+         *        a valid hit in <code>layout</code>
          * @param hit2
-         *               a valid hit in <code>layout</code>
+         *        a valid hit in <code>layout</code>
          * @param layout
-         *               the <code>TextLayout</code> in which <code>hit1</code>
-         *               and
-         *               <code>hit2</code> are used
+         *        the <code>TextLayout</code> in which <code>hit1</code>
+         *        and
+         *        <code>hit2</code> are used
          * @return <code>hit1</code> or <code>hit2</code> (or an equivalent
          *         <code>TextHitInfo</code>), indicating the strong caret.
          */
-        public TextHitInfo getStrongCaret(TextHitInfo hit1, TextHitInfo hit2,
-                TextLayout layout) {
+        public TextHitInfo getStrongCaret(TextHitInfo hit1, TextHitInfo hit2, TextLayout layout) {
 
             // default implementation just calls private method on layout
             return layout.getStrongHit(hit1, hit2);
@@ -346,33 +344,30 @@ public final class TextLayout implements Cloneable {
      * an entire paragraph is required for the bidirectional algorithm.
      * 
      * @param string
-     *               the text to display
+     *        the text to display
      * @param font
-     *               a <code>Font</code> used to style the text
+     *        a <code>Font</code> used to style the text
      * @param frc
-     *               contains information about a graphics device which is
-     *               needed
-     *               to measure the text correctly. Text measurements can vary
-     *               slightly depending on the device resolution, and attributes
-     *               such as antialiasing. This parameter does not specify a
-     *               translation between the <code>TextLayout</code> and user
-     *               space.
+     *        contains information about a graphics device which is
+     *        needed
+     *        to measure the text correctly. Text measurements can vary
+     *        slightly depending on the device resolution, and attributes
+     *        such as antialiasing. This parameter does not specify a
+     *        translation between the <code>TextLayout</code> and user
+     *        space.
      */
     public TextLayout(String string, Font font, FontRenderContext frc) {
 
         if (font == null) {
-            throw new IllegalArgumentException(
-                    "Null font passed to TextLayout constructor.");
+            throw new IllegalArgumentException("Null font passed to TextLayout constructor.");
         }
 
         if (string == null) {
-            throw new IllegalArgumentException(
-                    "Null string passed to TextLayout constructor.");
+            throw new IllegalArgumentException("Null string passed to TextLayout constructor.");
         }
 
         if (string.length() == 0) {
-            throw new IllegalArgumentException(
-                    "Zero length string passed to TextLayout constructor.");
+            throw new IllegalArgumentException("Zero length string passed to TextLayout constructor.");
         }
 
         Map<? extends Attribute, ?> attributes = null;
@@ -384,8 +379,8 @@ public final class TextLayout implements Cloneable {
         if (sameBaselineUpTo(font, text, 0, text.length) == text.length) {
             fastInit(text, font, attributes, frc);
         } else {
-            AttributedString as = attributes == null ? new AttributedString(
-                    string) : new AttributedString(string, attributes);
+            AttributedString as = attributes == null ? new AttributedString(string)
+                    : new AttributedString(string, attributes);
             as.addAttribute(TextAttribute.FONT, font);
             standardInit(as.getIterator(), text, frc);
         }
@@ -401,36 +396,32 @@ public final class TextLayout implements Cloneable {
      * entire paragraph is required for the bidirectional algorithm.
      * 
      * @param string
-     *                   the text to display
+     *        the text to display
      * @param attributes
-     *                   the attributes used to style the text
+     *        the attributes used to style the text
      * @param frc
-     *                   contains information about a graphics device which is
-     *                   needed
-     *                   to measure the text correctly. Text measurements can
-     *                   vary
-     *                   slightly depending on the device resolution, and
-     *                   attributes
-     *                   such as antialiasing. This parameter does not specify a
-     *                   translation between the <code>TextLayout</code> and
-     *                   user
-     *                   space.
+     *        contains information about a graphics device which is
+     *        needed
+     *        to measure the text correctly. Text measurements can
+     *        vary
+     *        slightly depending on the device resolution, and
+     *        attributes
+     *        such as antialiasing. This parameter does not specify a
+     *        translation between the <code>TextLayout</code> and
+     *        user
+     *        space.
      */
-    public TextLayout(String string, Map<? extends Attribute, ?> attributes,
-            FontRenderContext frc) {
+    public TextLayout(String string, Map<? extends Attribute, ?> attributes, FontRenderContext frc) {
         if (string == null) {
-            throw new IllegalArgumentException(
-                    "Null string passed to TextLayout constructor.");
+            throw new IllegalArgumentException("Null string passed to TextLayout constructor.");
         }
 
         if (attributes == null) {
-            throw new IllegalArgumentException(
-                    "Null map passed to TextLayout constructor.");
+            throw new IllegalArgumentException("Null map passed to TextLayout constructor.");
         }
 
         if (string.length() == 0) {
-            throw new IllegalArgumentException(
-                    "Zero length string passed to TextLayout constructor.");
+            throw new IllegalArgumentException("Zero length string passed to TextLayout constructor.");
         }
 
         char[] text = string.toCharArray();
@@ -459,8 +450,7 @@ public final class TextLayout implements Cloneable {
         Font font = null;
         try {
             font = (Font) attributes.get(TextAttribute.FONT);
-        } catch (ClassCastException e) {
-        }
+        } catch (ClassCastException e) {}
         if (font == null) {
             if (attributes.get(TextAttribute.FAMILY) != null) {
                 font = Font.getFont(attributes);
@@ -469,8 +459,7 @@ public final class TextLayout implements Cloneable {
                 }
             } else {
                 FontResolver resolver = FontResolver.getInstance();
-                CodePointIterator iter = CodePointIterator.create(text, start,
-                        limit);
+                CodePointIterator iter = CodePointIterator.create(text, start, limit);
                 int fontIndex = resolver.nextFontRunIndex(iter);
                 if (iter.charIndex() == limit) {
                     font = resolver.getFont(fontIndex, attributes);
@@ -492,35 +481,32 @@ public final class TextLayout implements Cloneable {
      * paragraph is required for the bidirectional algorithm.
      * 
      * @param text
-     *             the styled text to display
+     *        the styled text to display
      * @param frc
-     *             contains information about a graphics device which is needed
-     *             to measure the text correctly. Text measurements can vary
-     *             slightly depending on the device resolution, and attributes
-     *             such as antialiasing. This parameter does not specify a
-     *             translation between the <code>TextLayout</code> and user
-     *             space.
+     *        contains information about a graphics device which is needed
+     *        to measure the text correctly. Text measurements can vary
+     *        slightly depending on the device resolution, and attributes
+     *        such as antialiasing. This parameter does not specify a
+     *        translation between the <code>TextLayout</code> and user
+     *        space.
      */
     public TextLayout(AttributedCharacterIterator text, FontRenderContext frc) {
 
         if (text == null) {
-            throw new IllegalArgumentException(
-                    "Null iterator passed to TextLayout constructor.");
+            throw new IllegalArgumentException("Null iterator passed to TextLayout constructor.");
         }
 
         int start = text.getBeginIndex();
         int limit = text.getEndIndex();
         if (start == limit) {
-            throw new IllegalArgumentException(
-                    "Zero length iterator passed to TextLayout constructor.");
+            throw new IllegalArgumentException("Zero length iterator passed to TextLayout constructor.");
         }
 
         int len = limit - start;
         text.first();
         char[] chars = new char[len];
         int n = 0;
-        for (char c = text.first(); c != CharacterIterator.DONE; c = text
-                .next()) {
+        for (char c = text.first(); c != CharacterIterator.DONE; c = text.next()) {
             chars[n++] = c;
         }
 
@@ -543,23 +529,22 @@ public final class TextLayout implements Cloneable {
      * paragraph data. This method is used by {@link TextMeasurer}.
      * 
      * @param textLine
-     *                        the line measurement attributes to apply to the
-     *                        the resulting
-     *                        <code>TextLayout</code>
+     *        the line measurement attributes to apply to the
+     *        the resulting
+     *        <code>TextLayout</code>
      * @param baseline
-     *                        the baseline of the text
+     *        the baseline of the text
      * @param baselineOffsets
-     *                        the baseline offsets for this
-     *                        <code>TextLayout</code>. This
-     *                        should already be normalized to
-     *                        <code>baseline</code>
+     *        the baseline offsets for this
+     *        <code>TextLayout</code>. This
+     *        should already be normalized to
+     *        <code>baseline</code>
      * @param justifyRatio
-     *                        <code>0</code> if the <code>TextLayout</code>
-     *                        cannot be
-     *                        justified; <code>1</code> otherwise.
+     *        <code>0</code> if the <code>TextLayout</code>
+     *        cannot be
+     *        justified; <code>1</code> otherwise.
      */
-    TextLayout(TextLine textLine, byte baseline, float[] baselineOffsets,
-            float justifyRatio) {
+    TextLayout(TextLine textLine, byte baseline, float[] baselineOffsets, float justifyRatio) {
 
         this.characterCount = textLine.characterCount();
         this.baseline = baseline;
@@ -571,18 +556,16 @@ public final class TextLayout implements Cloneable {
     /**
      * Initialize the paragraph-specific data.
      */
-    private void paragraphInit(byte aBaseline, CoreMetrics lm,
-            Map<? extends Attribute, ?> paragraphAttrs, char[] text) {
+    private void paragraphInit(byte aBaseline, CoreMetrics lm, Map<? extends Attribute, ?> paragraphAttrs,
+            char[] text) {
 
         baseline = aBaseline;
 
         // normalize to current baseline
-        baselineOffsets = TextLine.getNormalizedOffsets(lm.baselineOffsets,
-                baseline);
+        baselineOffsets = TextLine.getNormalizedOffsets(lm.baselineOffsets, baseline);
 
         justifyRatio = AttributeValues.getJustification(paragraphAttrs);
-        NumericShaper shaper = AttributeValues.getNumericShaping(
-                paragraphAttrs);
+        NumericShaper shaper = AttributeValues.getNumericShaping(paragraphAttrs);
         if (shaper != null) {
             shaper.shape(text, 0, text.length);
         }
@@ -592,8 +575,7 @@ public final class TextLayout implements Cloneable {
      * the fast init generates a single glyph set. This requires: all one style
      * all renderable by one font (ie no embedded graphics) all on one baseline
      */
-    private void fastInit(char[] chars, Font font,
-            Map<? extends Attribute, ?> attrs, FontRenderContext frc) {
+    private void fastInit(char[] chars, Font font, Map<? extends Attribute, ?> attrs, FontRenderContext frc) {
 
         // Object vf = attrs.get(TextAttribute.ORIENTATION);
         // isVerticalLine = TextAttribute.ORIENTATION_VERTICAL.equals(vf);
@@ -621,8 +603,7 @@ public final class TextLayout implements Cloneable {
      * renderable, and baseline runs.
      * @param chars the text in the iterator, extracted into a char array
      */
-    private void standardInit(AttributedCharacterIterator text, char[] chars,
-            FontRenderContext frc) {
+    private void standardInit(AttributedCharacterIterator text, char[] chars, FontRenderContext frc) {
 
         characterCount = chars.length;
 
@@ -640,25 +621,22 @@ public final class TextLayout implements Cloneable {
             if (haveFont) {
                 Font defaultFont = TextLine.getFontAtCurrentPos(text);
                 int charsStart = text.getIndex() - text.getBeginIndex();
-                LineMetrics lm = defaultFont.getLineMetrics(chars, charsStart,
-                        charsStart + 1, frc);
+                LineMetrics lm = defaultFont.getLineMetrics(chars, charsStart, charsStart + 1, frc);
                 CoreMetrics cm = CoreMetrics.get(lm);
-                paragraphInit((byte) cm.baselineIndex, cm, paragraphAttrs,
-                        chars);
+                paragraphInit((byte) cm.baselineIndex, cm, paragraphAttrs, chars);
             } else {
                 // hmmm what to do here? Just try to supply reasonable
                 // values I guess.
 
-                GraphicAttribute graphic = (GraphicAttribute) paragraphAttrs
-                        .get(TextAttribute.CHAR_REPLACEMENT);
+                GraphicAttribute graphic = (GraphicAttribute) paragraphAttrs.get(
+                        TextAttribute.CHAR_REPLACEMENT);
                 byte defaultBaseline = getBaselineFromGraphic(graphic);
                 CoreMetrics cm = GraphicComponent.createCoreMetrics(graphic);
                 paragraphInit(defaultBaseline, cm, paragraphAttrs, chars);
             }
         }
 
-        textLine = TextLine.standardCreateTextLine(frc, text, chars,
-                baselineOffsets);
+        textLine = TextLine.standardCreateTextLine(frc, text, chars, baselineOffsets);
     }
 
     /*
@@ -693,8 +671,7 @@ public final class TextLayout implements Cloneable {
                 visibleAdvance = 0;
             } else {
                 int logIndex = textLine.visualToLogical(lastNonSpace);
-                visibleAdvance = textLine.getCharLinePosition(logIndex)
-                        + textLine.getCharAdvance(logIndex);
+                visibleAdvance = textLine.getCharLinePosition(logIndex) + textLine.getCharAdvance(logIndex);
             }
         } else {
 
@@ -730,7 +707,6 @@ public final class TextLayout implements Cloneable {
 
     /**
      * The 'natural bounds' encloses all the carets the layout can draw.
-     *
      */
     private Rectangle2D getNaturalBounds() {
         ensureCache();
@@ -774,8 +750,7 @@ public final class TextLayout implements Cloneable {
             throw new IllegalArgumentException("TextHitInfo is null.");
         }
 
-        if (hit.getInsertionIndex() < 0 || hit
-                .getInsertionIndex() > characterCount) {
+        if (hit.getInsertionIndex() < 0 || hit.getInsertionIndex() > characterCount) {
             throw new IllegalArgumentException("TextHitInfo is out of range");
         }
     }
@@ -790,15 +765,15 @@ public final class TextLayout implements Cloneable {
      * <code>TextLayout</code> is returned.
      * 
      * @param justificationWidth
-     *                           the width to use when justifying the line. For
-     *                           best results,
-     *                           it should not be too different from the current
-     *                           advance of the
-     *                           line.
+     *        the width to use when justifying the line. For
+     *        best results,
+     *        it should not be too different from the current
+     *        advance of the
+     *        line.
      * @return a <code>TextLayout</code> justified to the specified width.
      * @exception Error
-     *                  if this layout has already been justified, an Error is
-     *                  thrown.
+     *            if this layout has already been justified, an Error is
+     *            thrown.
      */
     public TextLayout getJustifiedLayout(float justificationWidth) {
 
@@ -819,11 +794,9 @@ public final class TextLayout implements Cloneable {
             --limit;
         }
 
-        TextLine newLine = textLine.getJustifiedLine(justificationWidth,
-                justifyRatio, 0, limit);
+        TextLine newLine = textLine.getJustifiedLine(justificationWidth, justifyRatio, 0, limit);
         if (newLine != null) {
-            return new TextLayout(newLine, baseline, baselineOffsets,
-                    ALREADY_JUSTIFIED);
+            return new TextLayout(newLine, baseline, baselineOffsets, ALREADY_JUSTIFIED);
         }
 
         return this;
@@ -832,7 +805,6 @@ public final class TextLayout implements Cloneable {
     /**
      * Justify this layout. Overridden by subclassers to control justification
      * (if there were subclassers, that is...)
-     *
      * The layout will only justify if the paragraph attributes (from the source
      * text, possibly defaulted by the layout attributes) indicate a non-zero
      * justification ratio. The text will be justified to the indicated width.
@@ -845,11 +817,11 @@ public final class TextLayout implements Cloneable {
      * call this method on a clone of this layout, preserving the original.
      *
      * @param justificationWidth
-     *                           the width to use when justifying the line. For
-     *                           best results,
-     *                           it should not be too different from the current
-     *                           advance of the
-     *                           line.
+     *        the width to use when justifying the line. For
+     *        best results,
+     *        it should not be too different from the current
+     *        advance of the
+     *        line.
      * @see #getJustifiedLayout(float)
      */
     protected void handleJustify(float justificationWidth) {
@@ -997,8 +969,7 @@ public final class TextLayout implements Cloneable {
         if (boundsRect == null) {
             Rectangle2D vb = textLine.getVisualBounds();
             if (dx != 0 || dy != 0) {
-                vb.setRect(vb.getX() - dx, vb.getY() - dy, vb.getWidth(), vb
-                        .getHeight());
+                vb.setRect(vb.getX() - dx, vb.getY() - dy, vb.getWidth(), vb.getHeight());
             }
             boundsRect = vb;
         }
@@ -1018,14 +989,14 @@ public final class TextLayout implements Cloneable {
      * <code>FontRenderContext</code> of this <code>TextLayout</code> is used.
      * 
      * @param frc
-     *            the <code>FontRenderContext</code> of the
-     *            <code>Graphics</code>.
+     *        the <code>FontRenderContext</code> of the
+     *        <code>Graphics</code>.
      * @param x
-     *            the x-coordinate at which to render this
-     *            <code>TextLayout</code>.
+     *        the x-coordinate at which to render this
+     *        <code>TextLayout</code>.
      * @param y
-     *            the y-coordinate at which to render this
-     *            <code>TextLayout</code>.
+     *        the y-coordinate at which to render this
+     *        <code>TextLayout</code>.
      * @return a <code>Rectangle</code> bounding the pixels that would be
      *         affected.
      * @see GlyphVector#getPixelBounds
@@ -1136,8 +1107,7 @@ public final class TextLayout implements Cloneable {
             int logIndex;
             if (caret == characterCount) {
                 logIndex = textLine.visualToLogical(characterCount - 1);
-                pos = textLine.getCharLinePosition(logIndex) + textLine
-                        .getCharAdvance(logIndex);
+                pos = textLine.getCharLinePosition(logIndex) + textLine.getCharAdvance(logIndex);
             } else {
                 logIndex = textLine.visualToLogical(caret);
                 pos = textLine.getCharLinePosition(logIndex);
@@ -1146,20 +1116,17 @@ public final class TextLayout implements Cloneable {
             float shift = textLine.getCharShift(logIndex);
             pos += angle * shift;
             top1X = top2X = pos + angle * textLine.getCharAscent(logIndex);
-            bottom1X = bottom2X = pos - angle * textLine.getCharDescent(
-                    logIndex);
+            bottom1X = bottom2X = pos - angle * textLine.getCharDescent(logIndex);
         } else {
 
             {
                 int logIndex = textLine.visualToLogical(caret - 1);
                 float angle1 = textLine.getCharAngle(logIndex);
-                float pos1 = textLine.getCharLinePosition(logIndex) + textLine
-                        .getCharAdvance(logIndex);
+                float pos1 = textLine.getCharLinePosition(logIndex) + textLine.getCharAdvance(logIndex);
                 if (angle1 != 0) {
                     pos1 += angle1 * textLine.getCharShift(logIndex);
                     top1X = pos1 + angle1 * textLine.getCharAscent(logIndex);
-                    bottom1X = pos1 - angle1 * textLine.getCharDescent(
-                            logIndex);
+                    bottom1X = pos1 - angle1 * textLine.getCharDescent(logIndex);
                 } else {
                     top1X = bottom1X = pos1;
                 }
@@ -1171,8 +1138,7 @@ public final class TextLayout implements Cloneable {
                 if (angle2 != 0) {
                     pos2 += angle2 * textLine.getCharShift(logIndex);
                     top2X = pos2 + angle2 * textLine.getCharAscent(logIndex);
-                    bottom2X = pos2 - angle2 * textLine.getCharDescent(
-                            logIndex);
+                    bottom2X = pos2 - angle2 * textLine.getCharDescent(logIndex);
                 } else {
                     top2X = bottom2X = pos2;
                 }
@@ -1208,11 +1174,11 @@ public final class TextLayout implements Cloneable {
      * better to use <code>getCaretShapes</code>.
      * 
      * @param hit
-     *               a hit on a character in this <code>TextLayout</code>
+     *        a hit on a character in this <code>TextLayout</code>
      * @param bounds
-     *               the bounds to which the caret info is constructed. The
-     *               bounds
-     *               is in baseline-relative coordinates.
+     *        the bounds to which the caret info is constructed. The
+     *        bounds
+     *        is in baseline-relative coordinates.
      * @return a two-element array containing the position and slope of the
      *         caret. The returned caret info is in baseline-relative
      *         coordinates.
@@ -1233,8 +1199,7 @@ public final class TextLayout implements Cloneable {
     // natural ascent and descent.
     // these values are trimmed to the bounds where required to fit,
     // but otherwise independent of it.
-    private float[] getCaretInfoTestInternal(TextHitInfo hit,
-            Rectangle2D bounds) {
+    private float[] getCaretInfoTestInternal(TextHitInfo hit, Rectangle2D bounds) {
         ensureCache();
         checkTextHit(hit);
 
@@ -1322,7 +1287,7 @@ public final class TextLayout implements Cloneable {
      * uses the natural bounds of this <code>TextLayout</code>.
      * 
      * @param hit
-     *            a hit on a character in this <code>TextLayout</code>
+     *        a hit on a character in this <code>TextLayout</code>
      * @return the information about a caret corresponding to a hit. The
      *         returned caret info is in baseline-relative coordinates.
      */
@@ -1338,7 +1303,7 @@ public final class TextLayout implements Cloneable {
      * the character.
      * 
      * @param hit
-     *            a hit on a character in this <code>TextLayout</code>
+     *        a hit on a character in this <code>TextLayout</code>
      * @return a caret index corresponding to the specified hit.
      */
     private int hitToCaret(TextHitInfo hit) {
@@ -1365,7 +1330,7 @@ public final class TextLayout implements Cloneable {
      * NOT guaranteed to be strong!!!
      *
      * @param caret
-     *              a caret index.
+     *        a caret index.
      * @return a hit on this layout whose strong caret is at the requested
      *         index.
      */
@@ -1383,8 +1348,7 @@ public final class TextLayout implements Cloneable {
             int charIndex = textLine.visualToLogical(caret);
             boolean leading = textLine.isCharLTR(charIndex);
 
-            return leading ? TextHitInfo.leading(charIndex)
-                    : TextHitInfo.trailing(charIndex);
+            return leading ? TextHitInfo.leading(charIndex) : TextHitInfo.trailing(charIndex);
         }
     }
 
@@ -1415,7 +1379,7 @@ public final class TextLayout implements Cloneable {
      * bounds, an {@link IllegalArgumentException} is thrown.
      * 
      * @param hit
-     *            a hit on a character in this layout
+     *        a hit on a character in this layout
      * @return a hit whose caret appears at the next position to the right
      *         (bottom) of the caret of the provided hit or <code>null</code>.
      */
@@ -1444,32 +1408,29 @@ public final class TextLayout implements Cloneable {
      * specified policy.
      * 
      * @param offset
-     *               an insertion offset in this <code>TextLayout</code>. Cannot
-     *               be
-     *               less than 0 or greater than this <code>TextLayout</code>
-     *               object's character count.
+     *        an insertion offset in this <code>TextLayout</code>. Cannot
+     *        be
+     *        less than 0 or greater than this <code>TextLayout</code>
+     *        object's character count.
      * @param policy
-     *               the policy used to select the strong caret
+     *        the policy used to select the strong caret
      * @return a hit whose caret appears at the next position to the right
      *         (bottom) of the caret of the provided hit, or <code>null</code>.
      */
     public TextHitInfo getNextRightHit(int offset, CaretPolicy policy) {
 
         if (offset < 0 || offset > characterCount) {
-            throw new IllegalArgumentException(
-                    "Offset out of bounds in TextLayout.getNextRightHit()");
+            throw new IllegalArgumentException("Offset out of bounds in TextLayout.getNextRightHit()");
         }
 
         if (policy == null) {
-            throw new IllegalArgumentException(
-                    "Null CaretPolicy passed to TextLayout.getNextRightHit()");
+            throw new IllegalArgumentException("Null CaretPolicy passed to TextLayout.getNextRightHit()");
         }
 
         TextHitInfo hit1 = TextHitInfo.afterOffset(offset);
         TextHitInfo hit2 = hit1.getOtherHit();
 
-        TextHitInfo nextHit = getNextRightHit(policy.getStrongCaret(hit1, hit2,
-                this));
+        TextHitInfo nextHit = getNextRightHit(policy.getStrongCaret(hit1, hit2, this));
 
         if (nextHit != null) {
             TextHitInfo otherHit = getVisualOtherHit(nextHit);
@@ -1487,10 +1448,10 @@ public final class TextLayout implements Cloneable {
      * default policy.
      * 
      * @param offset
-     *               an insertion offset in this <code>TextLayout</code>. Cannot
-     *               be
-     *               less than 0 or greater than the <code>TextLayout</code>
-     *               object's character count.
+     *        an insertion offset in this <code>TextLayout</code>. Cannot
+     *        be
+     *        less than 0 or greater than the <code>TextLayout</code>
+     *        object's character count.
      * @return a hit whose caret appears at the next position to the right
      *         (bottom) of the caret of the provided hit, or <code>null</code>.
      */
@@ -1505,7 +1466,7 @@ public final class TextLayout implements Cloneable {
      * an <code>IllegalArgumentException</code> is thrown.
      * 
      * @param hit
-     *            a hit on a character in this <code>TextLayout</code>.
+     *        a hit on a character in this <code>TextLayout</code>.
      * @return a hit whose caret appears at the next position to the left (top)
      *         of the caret of the provided hit, or <code>null</code>.
      */
@@ -1534,32 +1495,29 @@ public final class TextLayout implements Cloneable {
      * specified policy.
      * 
      * @param offset
-     *               an insertion offset in this <code>TextLayout</code>. Cannot
-     *               be
-     *               less than 0 or greater than this <code>TextLayout</code>
-     *               object's character count.
+     *        an insertion offset in this <code>TextLayout</code>. Cannot
+     *        be
+     *        less than 0 or greater than this <code>TextLayout</code>
+     *        object's character count.
      * @param policy
-     *               the policy used to select the strong caret
+     *        the policy used to select the strong caret
      * @return a hit whose caret appears at the next position to the left (top)
      *         of the caret of the provided hit, or <code>null</code>.
      */
     public TextHitInfo getNextLeftHit(int offset, CaretPolicy policy) {
 
         if (policy == null) {
-            throw new IllegalArgumentException(
-                    "Null CaretPolicy passed to TextLayout.getNextLeftHit()");
+            throw new IllegalArgumentException("Null CaretPolicy passed to TextLayout.getNextLeftHit()");
         }
 
         if (offset < 0 || offset > characterCount) {
-            throw new IllegalArgumentException(
-                    "Offset out of bounds in TextLayout.getNextLeftHit()");
+            throw new IllegalArgumentException("Offset out of bounds in TextLayout.getNextLeftHit()");
         }
 
         TextHitInfo hit1 = TextHitInfo.afterOffset(offset);
         TextHitInfo hit2 = hit1.getOtherHit();
 
-        TextHitInfo nextHit = getNextLeftHit(policy.getStrongCaret(hit1, hit2,
-                this));
+        TextHitInfo nextHit = getNextLeftHit(policy.getStrongCaret(hit1, hit2, this));
 
         if (nextHit != null) {
             TextHitInfo otherHit = getVisualOtherHit(nextHit);
@@ -1577,10 +1535,10 @@ public final class TextLayout implements Cloneable {
      * default policy.
      * 
      * @param offset
-     *               an insertion offset in this <code>TextLayout</code>. Cannot
-     *               be
-     *               less than 0 or greater than this <code>TextLayout</code>
-     *               object's character count.
+     *        an insertion offset in this <code>TextLayout</code>. Cannot
+     *        be
+     *        less than 0 or greater than this <code>TextLayout</code>
+     *        object's character count.
      * @return a hit whose caret appears at the next position to the left (top)
      *         of the caret of the provided hit, or <code>null</code>.
      */
@@ -1593,7 +1551,7 @@ public final class TextLayout implements Cloneable {
      * Returns the hit on the opposite side of the specified hit's caret.
      * 
      * @param hit
-     *            the specified hit
+     *        the specified hit
      * @return a hit that is on the opposite side of the specified hit's caret.
      */
     public TextHitInfo getVisualOtherHit(TextHitInfo hit) {
@@ -1641,15 +1599,12 @@ public final class TextLayout implements Cloneable {
                 charIndex = textLine.visualToLogical(visIndex);
                 leading = movedToRight == textLine.isCharLTR(charIndex);
             } else {
-                charIndex = (movedToRight == textLine.isDirectionLTR())
-                        ? characterCount
-                        : -1;
+                charIndex = (movedToRight == textLine.isDirectionLTR()) ? characterCount : -1;
                 leading = charIndex == characterCount;
             }
         }
 
-        return leading ? TextHitInfo.leading(charIndex)
-                : TextHitInfo.trailing(charIndex);
+        return leading ? TextHitInfo.leading(charIndex) : TextHitInfo.trailing(charIndex);
     }
 
     private double[] getCaretPath(TextHitInfo hit, Rectangle2D bounds) {
@@ -1660,13 +1615,11 @@ public final class TextLayout implements Cloneable {
     /**
      * Return an array of four floats corresponding the endpoints of the caret
      * x0, y0, x1, y1.
-     *
      * This creates a line along the slope of the caret intersecting the
      * baseline at the caret position, and extending from ascent above the
      * baseline to descent below it.
      */
-    private double[] getCaretPath(int caret, Rectangle2D bounds,
-            boolean clipToBounds) {
+    private double[] getCaretPath(int caret, Rectangle2D bounds, boolean clipToBounds) {
 
         float[] info = getCaretInfo(caret, bounds, null);
 
@@ -1765,14 +1718,11 @@ public final class TextLayout implements Cloneable {
             }
         }
 
-        return threePoints ? new double[] { x0, y0, x2, y2, x1, y1 }
-                : new double[] { x0, y0, x1, y1 };
+        return threePoints ? new double[] { x0, y0, x2, y2, x1, y1 } : new double[] { x0, y0, x1, y1 };
     }
 
-    private static GeneralPath pathToShape(double[] path, boolean close,
-            LayoutPathImpl lp) {
-        GeneralPath result = new GeneralPath(GeneralPath.WIND_EVEN_ODD,
-                path.length);
+    private static GeneralPath pathToShape(double[] path, boolean close, LayoutPathImpl lp) {
+        GeneralPath result = new GeneralPath(GeneralPath.WIND_EVEN_ODD, path.length);
         result.moveTo((float) path[0], (float) path[1]);
         for (int i = 2; i < path.length; i += 2) {
             result.lineTo((float) path[i], (float) path[i + 1]);
@@ -1792,11 +1742,11 @@ public final class TextLayout implements Cloneable {
      * inside the specified bounds.
      * 
      * @param hit
-     *               the hit at which to generate the caret
+     *        the hit at which to generate the caret
      * @param bounds
-     *               the bounds of the <code>TextLayout</code> to use in
-     *               generating
-     *               the caret. The bounds is in baseline-relative coordinates.
+     *        the bounds of the <code>TextLayout</code> to use in
+     *        generating
+     *        the caret. The bounds is in baseline-relative coordinates.
      * @return a <code>Shape</code> representing the caret. The returned shape
      *         is in standard coordinates.
      */
@@ -1805,12 +1755,10 @@ public final class TextLayout implements Cloneable {
         checkTextHit(hit);
 
         if (bounds == null) {
-            throw new IllegalArgumentException(
-                    "Null Rectangle2D passed to TextLayout.getCaret()");
+            throw new IllegalArgumentException("Null Rectangle2D passed to TextLayout.getCaret()");
         }
 
-        return pathToShape(getCaretPath(hit, bounds), false, textLine
-                .getLayoutPath());
+        return pathToShape(getCaretPath(hit, bounds), false, textLine.getLayoutPath());
     }
 
     /**
@@ -1818,7 +1766,7 @@ public final class TextLayout implements Cloneable {
      * inside the natural bounds of this <code>TextLayout</code>.
      * 
      * @param hit
-     *            the hit at which to generate the caret
+     *        the hit at which to generate the caret
      * @return a <code>Shape</code> representing the caret. The returned shape
      *         is in standard coordinates.
      */
@@ -1860,15 +1808,14 @@ public final class TextLayout implements Cloneable {
      * <code>TextLayout</code>.
      * 
      * @param index
-     *              the index of the character from which to get the level
+     *        the index of the character from which to get the level
      * @return the level of the character at the specified index.
      */
     public byte getCharacterLevel(int index) {
 
         // hmm, allow indices at endpoints? For now, yes.
         if (index < -1 || index > characterCount) {
-            throw new IllegalArgumentException(
-                    "Index is out of range in getCharacterLevel.");
+            throw new IllegalArgumentException("Index is out of range in getCharacterLevel.");
         }
 
         ensureCache();
@@ -1883,35 +1830,31 @@ public final class TextLayout implements Cloneable {
      * Returns two paths corresponding to the strong and weak caret.
      * 
      * @param offset
-     *               an offset in this <code>TextLayout</code>
+     *        an offset in this <code>TextLayout</code>
      * @param bounds
-     *               the bounds to which to extend the carets. The bounds is in
-     *               baseline-relative coordinates.
+     *        the bounds to which to extend the carets. The bounds is in
+     *        baseline-relative coordinates.
      * @param policy
-     *               the specified <code>CaretPolicy</code>
+     *        the specified <code>CaretPolicy</code>
      * @return an array of two paths. Element zero is the strong caret. If there
      *         are two carets, element one is the weak caret, otherwise it is
      *         <code>null</code>. The returned shapes are in standard
      *         coordinates.
      */
-    public Shape[] getCaretShapes(int offset, Rectangle2D bounds,
-            CaretPolicy policy) {
+    public Shape[] getCaretShapes(int offset, Rectangle2D bounds, CaretPolicy policy) {
 
         ensureCache();
 
         if (offset < 0 || offset > characterCount) {
-            throw new IllegalArgumentException(
-                    "Offset out of bounds in TextLayout.getCaretShapes()");
+            throw new IllegalArgumentException("Offset out of bounds in TextLayout.getCaretShapes()");
         }
 
         if (bounds == null) {
-            throw new IllegalArgumentException(
-                    "Null Rectangle2D passed to TextLayout.getCaretShapes()");
+            throw new IllegalArgumentException("Null Rectangle2D passed to TextLayout.getCaretShapes()");
         }
 
         if (policy == null) {
-            throw new IllegalArgumentException(
-                    "Null CaretPolicy passed to TextLayout.getCaretShapes()");
+            throw new IllegalArgumentException("Null CaretPolicy passed to TextLayout.getCaretShapes()");
         }
 
         Shape[] result = new Shape[2];
@@ -1928,8 +1871,7 @@ public final class TextLayout implements Cloneable {
         if (hitCaret == otherCaret) {
             result[0] = hitShape;
         } else { // more than one caret
-            Shape otherShape = pathToShape(getCaretPath(otherHit, bounds),
-                    false, lp);
+            Shape otherShape = pathToShape(getCaretPath(otherHit, bounds), false, lp);
 
             TextHitInfo strongHit = policy.getStrongCaret(hit, otherHit, this);
             boolean hitIsStrong = strongHit.equals(hit);
@@ -1952,10 +1894,10 @@ public final class TextLayout implements Cloneable {
      * default caret policy.
      * 
      * @param offset
-     *               an offset in this <code>TextLayout</code>
+     *        an offset in this <code>TextLayout</code>
      * @param bounds
-     *               the bounds to which to extend the carets. This is in
-     *               baseline-relative coordinates.
+     *        the bounds to which to extend the carets. This is in
+     *        baseline-relative coordinates.
      * @return two paths corresponding to the strong and weak caret as defined
      *         by the <code>DEFAULT_CARET_POLICY</code>. These are in standard
      *         coordinates.
@@ -1972,7 +1914,7 @@ public final class TextLayout implements Cloneable {
      * bounds.
      * 
      * @param offset
-     *               an offset in this <code>TextLayout</code>
+     *        an offset in this <code>TextLayout</code>
      * @return two paths corresponding to the strong and weak caret as defined
      *         by the <code>DEFAULT_CARET_POLICY</code>. These are in standard
      *         coordinates.
@@ -1999,11 +1941,9 @@ public final class TextLayout implements Cloneable {
         boolean sameDirection;
 
         if (isVerticalLine) {
-            sameDirection = (path0[1] > path0[path0.length
-                    - 1]) == (path1[1] > path1[path1.length - 1]);
+            sameDirection = (path0[1] > path0[path0.length - 1]) == (path1[1] > path1[path1.length - 1]);
         } else {
-            sameDirection = (path0[0] > path0[path0.length
-                    - 2]) == (path1[0] > path1[path1.length - 2]);
+            sameDirection = (path0[0] > path0[path0.length - 2]) == (path1[0] > path1[path1.length - 2]);
         }
 
         int start;
@@ -2031,8 +1971,7 @@ public final class TextLayout implements Cloneable {
 
     // A utility to convert a pair of carets into a bounding path
     // {jbr} Shape is never outside of bounds.
-    private GeneralPath caretBoundingShape(int caret0, int caret1,
-            Rectangle2D bounds) {
+    private GeneralPath caretBoundingShape(int caret0, int caret1, Rectangle2D bounds) {
 
         if (caret0 > caret1) {
             int temp = caret0;
@@ -2040,8 +1979,7 @@ public final class TextLayout implements Cloneable {
             caret1 = temp;
         }
 
-        return boundingShape(getCaretPath(caret0, bounds, true), getCaretPath(
-                caret1, bounds, true));
+        return boundingShape(getCaretPath(caret0, bounds, true), getCaretPath(caret1, bounds, true));
     }
 
     /*
@@ -2052,11 +1990,11 @@ public final class TextLayout implements Cloneable {
 
         double[] path0;
         if (isVerticalLine) {
-            path0 = new double[] { bounds.getX(), bounds.getY(), bounds.getX()
-                    + bounds.getWidth(), bounds.getY() };
+            path0 = new double[] { bounds.getX(), bounds.getY(), bounds.getX() + bounds.getWidth(), bounds
+                    .getY() };
         } else {
-            path0 = new double[] { bounds.getX(), bounds.getY() + bounds
-                    .getHeight(), bounds.getX(), bounds.getY() };
+            path0 = new double[] { bounds.getX(), bounds.getY() + bounds.getHeight(), bounds.getX(), bounds
+                    .getY() };
         }
 
         double[] path1 = getCaretPath(0, bounds, true);
@@ -2071,13 +2009,11 @@ public final class TextLayout implements Cloneable {
     private GeneralPath rightShape(Rectangle2D bounds) {
         double[] path1;
         if (isVerticalLine) {
-            path1 = new double[] { bounds.getX(), bounds.getY() + bounds
-                    .getHeight(), bounds.getX() + bounds.getWidth(), bounds
-                            .getY() + bounds.getHeight() };
+            path1 = new double[] { bounds.getX(), bounds.getY() + bounds.getHeight(), bounds.getX() + bounds
+                    .getWidth(), bounds.getY() + bounds.getHeight() };
         } else {
-            path1 = new double[] { bounds.getX() + bounds.getWidth(), bounds
-                    .getY() + bounds.getHeight(), bounds.getX() + bounds
-                            .getWidth(), bounds.getY() };
+            path1 = new double[] { bounds.getX() + bounds.getWidth(), bounds.getY() + bounds.getHeight(),
+                    bounds.getX() + bounds.getWidth(), bounds.getY() };
         }
 
         double[] path0 = getCaretPath(characterCount, bounds, true);
@@ -2089,17 +2025,16 @@ public final class TextLayout implements Cloneable {
      * Returns the logical ranges of text corresponding to a visual selection.
      * 
      * @param firstEndpoint
-     *                       an endpoint of the visual range
+     *        an endpoint of the visual range
      * @param secondEndpoint
-     *                       the other endpoint of the visual range. This
-     *                       endpoint can be
-     *                       less than <code>firstEndpoint</code>.
+     *        the other endpoint of the visual range. This
+     *        endpoint can be
+     *        less than <code>firstEndpoint</code>.
      * @return an array of integers representing start/limit pairs for the
      *         selected ranges.
      * @see #getVisualHighlightShape(TextHitInfo, TextHitInfo, Rectangle2D)
      */
-    public int[] getLogicalRangesForVisualSelection(TextHitInfo firstEndpoint,
-            TextHitInfo secondEndpoint) {
+    public int[] getLogicalRangesForVisualSelection(TextHitInfo firstEndpoint, TextHitInfo secondEndpoint) {
         ensureCache();
 
         checkTextHit(firstEndpoint);
@@ -2193,20 +2128,20 @@ public final class TextLayout implements Cloneable {
      * selection is extended to the right of the bounds.
      * 
      * @param firstEndpoint
-     *                       one end of the visual selection
+     *        one end of the visual selection
      * @param secondEndpoint
-     *                       the other end of the visual selection
+     *        the other end of the visual selection
      * @param bounds
-     *                       the bounding rectangle to which to extend the
-     *                       selection. This
-     *                       is in baseline-relative coordinates.
+     *        the bounding rectangle to which to extend the
+     *        selection. This
+     *        is in baseline-relative coordinates.
      * @return a <code>Shape</code> enclosing the selection. This is in standard
      *         coordinates.
      * @see #getLogicalRangesForVisualSelection(TextHitInfo, TextHitInfo)
      * @see #getLogicalHighlightShape(int, int, Rectangle2D)
      */
-    public Shape getVisualHighlightShape(TextHitInfo firstEndpoint,
-            TextHitInfo secondEndpoint, Rectangle2D bounds) {
+    public Shape getVisualHighlightShape(TextHitInfo firstEndpoint, TextHitInfo secondEndpoint,
+            Rectangle2D bounds) {
         ensureCache();
 
         checkTextHit(firstEndpoint);
@@ -2222,8 +2157,7 @@ public final class TextLayout implements Cloneable {
         int firstCaret = hitToCaret(firstEndpoint);
         int secondCaret = hitToCaret(secondEndpoint);
 
-        result.append(caretBoundingShape(firstCaret, secondCaret, bounds),
-                false);
+        result.append(caretBoundingShape(firstCaret, secondCaret, bounds), false);
 
         if (firstCaret == 0 || secondCaret == 0) {
             GeneralPath ls = leftShape(bounds);
@@ -2253,16 +2187,14 @@ public final class TextLayout implements Cloneable {
      * bounds of this <code>TextLayout</code>.
      * 
      * @param firstEndpoint
-     *                       one end of the visual selection
+     *        one end of the visual selection
      * @param secondEndpoint
-     *                       the other end of the visual selection
+     *        the other end of the visual selection
      * @return a <code>Shape</code> enclosing the selection. This is in standard
      *         coordinates.
      */
-    public Shape getVisualHighlightShape(TextHitInfo firstEndpoint,
-            TextHitInfo secondEndpoint) {
-        return getVisualHighlightShape(firstEndpoint, secondEndpoint,
-                getNaturalBounds());
+    public Shape getVisualHighlightShape(TextHitInfo firstEndpoint, TextHitInfo secondEndpoint) {
+        return getVisualHighlightShape(firstEndpoint, secondEndpoint, getNaturalBounds());
     }
 
     /**
@@ -2296,24 +2228,23 @@ public final class TextLayout implements Cloneable {
      * right-to-left line) is the right portion of the <code>bounds</code>.
      * 
      * @param firstEndpoint
-     *                       an endpoint in the range of characters to select
+     *        an endpoint in the range of characters to select
      * @param secondEndpoint
-     *                       the other endpoint of the range of characters to
-     *                       select. Can
-     *                       be less than <code>firstEndpoint</code>. The range
-     *                       includes
-     *                       the character at min(firstEndpoint,
-     *                       secondEndpoint), but
-     *                       excludes max(firstEndpoint, secondEndpoint).
+     *        the other endpoint of the range of characters to
+     *        select. Can
+     *        be less than <code>firstEndpoint</code>. The range
+     *        includes
+     *        the character at min(firstEndpoint,
+     *        secondEndpoint), but
+     *        excludes max(firstEndpoint, secondEndpoint).
      * @param bounds
-     *                       the bounding rectangle to which to extend the
-     *                       selection. This
-     *                       is in baseline-relative coordinates.
+     *        the bounding rectangle to which to extend the
+     *        selection. This
+     *        is in baseline-relative coordinates.
      * @return an area enclosing the selection. This is in standard coordinates.
      * @see #getVisualHighlightShape(TextHitInfo, TextHitInfo, Rectangle2D)
      */
-    public Shape getLogicalHighlightShape(int firstEndpoint, int secondEndpoint,
-            Rectangle2D bounds) {
+    public Shape getLogicalHighlightShape(int firstEndpoint, int secondEndpoint, Rectangle2D bounds) {
         if (bounds == null) {
             throw new IllegalArgumentException(
                     "Null Rectangle2D passed to TextLayout.getLogicalHighlightShape()");
@@ -2328,8 +2259,7 @@ public final class TextLayout implements Cloneable {
         }
 
         if (firstEndpoint < 0 || secondEndpoint > characterCount) {
-            throw new IllegalArgumentException(
-                    "Range is invalid in TextLayout.getLogicalHighlightShape()");
+            throw new IllegalArgumentException("Range is invalid in TextLayout.getLogicalHighlightShape()");
         }
 
         GeneralPath result = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
@@ -2345,8 +2275,7 @@ public final class TextLayout implements Cloneable {
 
                 do {
                     logIndex++;
-                } while (logIndex < secondEndpoint && textLine.isCharLTR(
-                        logIndex) == ltr);
+                } while (logIndex < secondEndpoint && textLine.isCharLTR(logIndex) == ltr);
 
                 int hitCh = logIndex;
                 carets[count++] = hitToCaret(TextHitInfo.trailing(hitCh - 1));
@@ -2359,28 +2288,26 @@ public final class TextLayout implements Cloneable {
             } while (logIndex < secondEndpoint);
         } else {
             count = 2;
-            carets[0] = carets[1] = hitToCaret(TextHitInfo.leading(
-                    firstEndpoint));
+            carets[0] = carets[1] = hitToCaret(TextHitInfo.leading(firstEndpoint));
         }
 
         // now create paths for pairs of carets
 
         for (int i = 0; i < count; i += 2) {
-            result.append(caretBoundingShape(carets[i], carets[i + 1], bounds),
-                    false);
+            result.append(caretBoundingShape(carets[i], carets[i + 1], bounds), false);
         }
 
         if (firstEndpoint != secondEndpoint) {
-            if ((textLine.isDirectionLTR() && firstEndpoint == 0) || (!textLine
-                    .isDirectionLTR() && secondEndpoint == characterCount)) {
+            if ((textLine.isDirectionLTR() && firstEndpoint == 0) || (!textLine.isDirectionLTR()
+                    && secondEndpoint == characterCount)) {
                 GeneralPath ls = leftShape(bounds);
                 if (!ls.getBounds().isEmpty()) {
                     result.append(ls, false);
                 }
             }
 
-            if ((textLine.isDirectionLTR() && secondEndpoint == characterCount)
-                    || (!textLine.isDirectionLTR() && firstEndpoint == 0)) {
+            if ((textLine.isDirectionLTR() && secondEndpoint == characterCount) || (!textLine.isDirectionLTR()
+                    && firstEndpoint == 0)) {
 
                 GeneralPath rs = rightShape(bounds);
                 if (!rs.getBounds().isEmpty()) {
@@ -2404,23 +2331,21 @@ public final class TextLayout implements Cloneable {
      * this <code>TextLayout</code>.
      * 
      * @param firstEndpoint
-     *                       an endpoint in the range of characters to select
+     *        an endpoint in the range of characters to select
      * @param secondEndpoint
-     *                       the other endpoint of the range of characters to
-     *                       select. Can
-     *                       be less than <code>firstEndpoint</code>. The range
-     *                       includes
-     *                       the character at min(firstEndpoint,
-     *                       secondEndpoint), but
-     *                       excludes max(firstEndpoint, secondEndpoint).
+     *        the other endpoint of the range of characters to
+     *        select. Can
+     *        be less than <code>firstEndpoint</code>. The range
+     *        includes
+     *        the character at min(firstEndpoint,
+     *        secondEndpoint), but
+     *        excludes max(firstEndpoint, secondEndpoint).
      * @return a <code>Shape</code> enclosing the selection. This is in standard
      *         coordinates.
      */
-    public Shape getLogicalHighlightShape(int firstEndpoint,
-            int secondEndpoint) {
+    public Shape getLogicalHighlightShape(int firstEndpoint, int secondEndpoint) {
 
-        return getLogicalHighlightShape(firstEndpoint, secondEndpoint,
-                getNaturalBounds());
+        return getLogicalHighlightShape(firstEndpoint, secondEndpoint, getNaturalBounds());
     }
 
     /**
@@ -2430,11 +2355,11 @@ public final class TextLayout implements Cloneable {
      * limit. This area can be disjoint.
      * 
      * @param firstEndpoint
-     *                       one end of the character range
+     *        one end of the character range
      * @param secondEndpoint
-     *                       the other end of the character range. Can be less
-     *                       than
-     *                       <code>firstEndpoint</code>.
+     *        the other end of the character range. Can be less
+     *        than
+     *        <code>firstEndpoint</code>.
      * @return a <code>Shape</code> enclosing the black box bounds. This is in
      *         standard coordinates.
      */
@@ -2448,8 +2373,7 @@ public final class TextLayout implements Cloneable {
         }
 
         if (firstEndpoint < 0 || secondEndpoint > characterCount) {
-            throw new IllegalArgumentException(
-                    "Invalid range passed to TextLayout.getBlackBoxBounds()");
+            throw new IllegalArgumentException("Invalid range passed to TextLayout.getBlackBoxBounds()");
         }
 
         /*
@@ -2494,8 +2418,7 @@ public final class TextLayout implements Cloneable {
         float lineDistance = isVerticalLine ? y : x;
         float distanceOffBaseline = isVerticalLine ? -x : y;
 
-        return lineDistance - caretInfo[0] + (distanceOffBaseline
-                * caretInfo[1]);
+        return lineDistance - caretInfo[0] + (distanceOffBaseline * caretInfo[1]);
     }
 
     /**
@@ -2507,16 +2430,16 @@ public final class TextLayout implements Cloneable {
      * used to make this evaluation.
      * 
      * @param x
-     *               the x offset from the origin of this
-     *               <code>TextLayout</code>.
-     *               This is in standard coordinates.
+     *        the x offset from the origin of this
+     *        <code>TextLayout</code>.
+     *        This is in standard coordinates.
      * @param y
-     *               the y offset from the origin of this
-     *               <code>TextLayout</code>.
-     *               This is in standard coordinates.
+     *        the y offset from the origin of this
+     *        <code>TextLayout</code>.
+     *        This is in standard coordinates.
      * @param bounds
-     *               the bounds of the <code>TextLayout</code>. This is in
-     *               baseline-relative coordinates.
+     *        the bounds of the <code>TextLayout</code>. This is in
+     *        baseline-relative coordinates.
      * @return a hit describing the character and edge (leading or trailing)
      *         under the specified point.
      */
@@ -2540,11 +2463,9 @@ public final class TextLayout implements Cloneable {
             }
         } else {
             if (x < bounds.getMinX()) {
-                return isLeftToRight() ? TextHitInfo.leading(0)
-                        : TextHitInfo.trailing(characterCount - 1);
+                return isLeftToRight() ? TextHitInfo.leading(0) : TextHitInfo.trailing(characterCount - 1);
             } else if (x >= bounds.getMaxX()) {
-                return isLeftToRight() ? TextHitInfo.trailing(characterCount
-                        - 1) : TextHitInfo.leading(0);
+                return isLeftToRight() ? TextHitInfo.trailing(characterCount - 1) : TextHitInfo.leading(0);
             }
         }
 
@@ -2579,14 +2500,11 @@ public final class TextLayout implements Cloneable {
                 lcm = cm;
                 // just work around baseline mess for now
                 if (cm.baselineIndex == GraphicAttribute.TOP_ALIGNMENT) {
-                    cy = -(textLine.getMetrics().ascent - cm.ascent)
-                            + cm.ssOffset;
+                    cy = -(textLine.getMetrics().ascent - cm.ascent) + cm.ssOffset;
                 } else if (cm.baselineIndex == GraphicAttribute.BOTTOM_ALIGNMENT) {
-                    cy = textLine.getMetrics().descent - cm.descent
-                            + cm.ssOffset;
+                    cy = textLine.getMetrics().descent - cm.descent + cm.ssOffset;
                 } else {
-                    cy = cm.effectiveBaselineOffset(baselineOffsets)
-                            + cm.ssOffset;
+                    cy = cm.effectiveBaselineOffset(baselineOffsets) + cm.ssOffset;
                 }
                 float dy = (cm.descent - cm.ascent) / 2 - cy;
                 dya = dy * cm.italicAngle;
@@ -2615,8 +2533,7 @@ public final class TextLayout implements Cloneable {
         if (trail == -1) {
             trail = characterCount;
         }
-        TextHitInfo result = leading ? TextHitInfo.leading(index)
-                : TextHitInfo.trailing(trail - 1);
+        TextHitInfo result = leading ? TextHitInfo.leading(index) : TextHitInfo.trailing(trail - 1);
         return result;
     }
 
@@ -2626,11 +2543,11 @@ public final class TextLayout implements Cloneable {
      * uses the natural bounds of this <code>TextLayout</code>.
      * 
      * @param x
-     *          the x offset from the origin of this <code>TextLayout</code>.
-     *          This is in standard coordinates.
+     *        the x offset from the origin of this <code>TextLayout</code>.
+     *        This is in standard coordinates.
      * @param y
-     *          the y offset from the origin of this <code>TextLayout</code>.
-     *          This is in standard coordinates.
+     *        the y offset from the origin of this <code>TextLayout</code>.
+     *        This is in standard coordinates.
      * @return a hit describing the character and edge (leading or trailing)
      *         under the specified point.
      */
@@ -2658,7 +2575,7 @@ public final class TextLayout implements Cloneable {
      * equals this <code>TextLayout</code>.
      * 
      * @param obj
-     *            an <code>Object</code> to test for equality
+     *        an <code>Object</code> to test for equality
      * @return <code>true</code> if the specified <code>Object</code> equals
      *         this <code>TextLayout</code>; <code>false</code> otherwise.
      */
@@ -2671,11 +2588,10 @@ public final class TextLayout implements Cloneable {
      * equal if they contain equal glyphvectors in the same order.
      * 
      * @param rhs
-     *            the <code>TextLayout</code> to compare to this
-     *            <code>TextLayout</code>
+     *        the <code>TextLayout</code> to compare to this
+     *        <code>TextLayout</code>
      * @return <code>true</code> if the specified <code>TextLayout</code> equals
      *         this <code>TextLayout</code>.
-     *
      */
     public boolean equals(TextLayout rhs) {
 
@@ -2709,19 +2625,18 @@ public final class TextLayout implements Cloneable {
      * <code>g2</code> unchanged. Text is rendered along the baseline path.
      * 
      * @param g2
-     *           the <code>Graphics2D</code> context into which to render the
-     *           layout
+     *        the <code>Graphics2D</code> context into which to render the
+     *        layout
      * @param x
-     *           the X coordinate of the origin of this <code>TextLayout</code>
+     *        the X coordinate of the origin of this <code>TextLayout</code>
      * @param y
-     *           the Y coordinate of the origin of this <code>TextLayout</code>
+     *        the Y coordinate of the origin of this <code>TextLayout</code>
      * @see #getBounds()
      */
     public void draw(Graphics2D g2, float x, float y) {
 
         if (g2 == null) {
-            throw new IllegalArgumentException(
-                    "Null Graphics2D passed to TextLayout.draw()");
+            throw new IllegalArgumentException("Null Graphics2D passed to TextLayout.draw()");
         }
 
         textLine.draw(g2, x - dx, y - dy);
@@ -2736,13 +2651,11 @@ public final class TextLayout implements Cloneable {
     }
 
     /**
-     *
      * Return the index of the first character with a different baseline from
      * the character at start, or limit if all characters between start and
      * limit have the same baseline.
      */
-    private static int sameBaselineUpTo(Font font, char[] text, int start,
-            int limit) {
+    private static int sameBaselineUpTo(Font font, char[] text, int start, int limit) {
         // current implementation doesn't support multiple baselines
         return limit;
         /*
@@ -2755,8 +2668,7 @@ public final class TextLayout implements Cloneable {
 
         byte alignment = (byte) graphic.getAlignment();
 
-        if (alignment == GraphicAttribute.BOTTOM_ALIGNMENT
-                || alignment == GraphicAttribute.TOP_ALIGNMENT) {
+        if (alignment == GraphicAttribute.BOTTOM_ALIGNMENT || alignment == GraphicAttribute.TOP_ALIGNMENT) {
 
             return (byte) GraphicAttribute.ROMAN_BASELINE;
         } else {
@@ -2769,8 +2681,8 @@ public final class TextLayout implements Cloneable {
      * <code>TextLayout</code>.
      * 
      * @param tx
-     *           an optional {@link AffineTransform} to apply to the outline of
-     *           this <code>TextLayout</code>.
+     *        an optional {@link AffineTransform} to apply to the outline of
+     *        this <code>TextLayout</code>.
      * @return a <code>Shape</code> that is the outline of this
      *         <code>TextLayout</code>. This is in standard coordinates.
      */
@@ -2803,21 +2715,20 @@ public final class TextLayout implements Cloneable {
      * character.
      * 
      * @param hit
-     *              the hit to check. This must be a valid hit on the
-     *              TextLayout.
+     *        the hit to check. This must be a valid hit on the
+     *        TextLayout.
      * @param point
-     *              the returned point. The point is in standard coordinates.
+     *        the returned point. The point is in standard coordinates.
      * @throws IllegalArgumentException
-     *                                  if the hit is not valid for the
-     *                                  TextLayout.
+     *         if the hit is not valid for the
+     *         TextLayout.
      * @throws NullPointerException
-     *                                  if hit or point is null.
+     *         if hit or point is null.
      * @since 1.6
      */
     public void hitToPoint(TextHitInfo hit, Point2D point) {
         if (hit == null || point == null) {
-            throw new NullPointerException((hit == null ? "hit" : "point")
-                    + " can't be null");
+            throw new NullPointerException((hit == null ? "hit" : "point") + " can't be null");
         }
         ensureCache();
         checkTextHit(hit);

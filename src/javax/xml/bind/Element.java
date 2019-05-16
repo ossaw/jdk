@@ -7,7 +7,6 @@ package javax.xml.bind;
 
 /**
  * This is an element marker interface.
- *
  * Under certain circumstances, it is necessary for the binding compiler to
  * generate derived java content classes that implement this interface. In those
  * cases, client applications must supply element instances rather than types of

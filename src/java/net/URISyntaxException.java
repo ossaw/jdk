@@ -25,21 +25,19 @@ public class URISyntaxException extends Exception {
      * index.
      *
      * @param input
-     *               The input string
+     *        The input string
      * @param reason
-     *               A string explaining why the input could not be parsed
+     *        A string explaining why the input could not be parsed
      * @param index
-     *               The index at which the parse error occurred, or {@code -1}
-     *               if
-     *               the index is not known
-     *
+     *        The index at which the parse error occurred, or {@code -1}
+     *        if
+     *        the index is not known
      * @throws NullPointerException
-     *                                  If either the input or reason strings
-     *                                  are {@code null}
-     *
+     *         If either the input or reason strings
+     *         are {@code null}
      * @throws IllegalArgumentException
-     *                                  If the error index is less than
-     *                                  {@code -1}
+     *         If the error index is less than
+     *         {@code -1}
      */
     public URISyntaxException(String input, String reason, int index) {
         super(reason);
@@ -56,13 +54,12 @@ public class URISyntaxException extends Exception {
      * resulting object will have an error index of {@code -1}.
      *
      * @param input
-     *               The input string
+     *        The input string
      * @param reason
-     *               A string explaining why the input could not be parsed
-     *
+     *        A string explaining why the input could not be parsed
      * @throws NullPointerException
-     *                              If either the input or reason strings are
-     *                              {@code null}
+     *         If either the input or reason strings are
+     *         {@code null}
      */
     public URISyntaxException(String input, String reason) {
         this(input, reason, -1);

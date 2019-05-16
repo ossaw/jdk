@@ -34,7 +34,6 @@ import java.util.function.Consumer;
  * other threads. Iterators rely on unchanging snapshots of the array at the
  * time the iterators were constructed.
  * </ul>
- *
  * <p>
  * <b>Sample Usage.</b> The following code sketch uses a copy-on-write set to
  * maintain a set of Handler objects that perform some action upon state
@@ -59,7 +58,6 @@ import java.util.function.Consumer;
  *   }
  * }}
  * </pre>
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -71,8 +69,7 @@ import java.util.function.Consumer;
  * @param <E>
  *        the type of elements held in this collection
  */
-public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
-        java.io.Serializable {
+public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements java.io.Serializable {
     private static final long serialVersionUID = 5457747651344034263L;
 
     private final CopyOnWriteArrayList<E> al;
@@ -88,9 +85,9 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * Creates a set containing all of the elements of the specified collection.
      *
      * @param c
-     *          the collection of elements to initially contain
+     *        the collection of elements to initially contain
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public CopyOnWriteArraySet(Collection<? extends E> c) {
         if (c.getClass() == CopyOnWriteArraySet.class) {
@@ -128,7 +125,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
      *
      * @param o
-     *          element whose presence in this set is to be tested
+     *        element whose presence in this set is to be tested
      * @return {@code true} if this set contains the specified element
      */
     public boolean contains(Object o) {
@@ -139,13 +136,11 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * Returns an array containing all of the elements in this set. If this set
      * makes any guarantees as to what order its elements are returned by its
      * iterator, this method must return the elements in the same order.
-     *
      * <p>
      * The returned array will be "safe" in that no references to it are
      * maintained by this set. (In other words, this method must allocate a new
      * array even if this set is backed by an array). The caller is thus free to
      * modify the returned array.
-     *
      * <p>
      * This method acts as bridge between array-based and collection-based APIs.
      *
@@ -161,25 +156,21 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * fits in the specified array, it is returned therein. Otherwise, a new
      * array is allocated with the runtime type of the specified array and the
      * size of this set.
-     *
      * <p>
      * If this set fits in the specified array with room to spare (i.e., the
      * array has more elements than this set), the element in the array
      * immediately following the end of the set is set to {@code null}. (This is
      * useful in determining the length of this set <i>only</i> if the caller
      * knows that this set does not contain any null elements.)
-     *
      * <p>
      * If this set makes any guarantees as to what order its elements are
      * returned by its iterator, this method must return the elements in the
      * same order.
-     *
      * <p>
      * Like the {@link #toArray()} method, this method acts as bridge between
      * array-based and collection-based APIs. Further, this method allows
      * precise control over the runtime type of the output array, and may, under
      * certain circumstances, be used to save allocation costs.
-     *
      * <p>
      * Suppose {@code x} is a set known to contain only strings. The following
      * code can be used to dump the set into a newly allocated array of
@@ -196,17 +187,17 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * {@code toArray()}.
      *
      * @param a
-     *          the array into which the elements of this set are to be
-     *          stored, if it is big enough; otherwise, a new array of the
-     *          same runtime type is allocated for this purpose.
+     *        the array into which the elements of this set are to be
+     *        stored, if it is big enough; otherwise, a new array of the
+     *        same runtime type is allocated for this purpose.
      * @return an array containing all the elements in this set
      * @throws ArrayStoreException
-     *                              if the runtime type of the specified array
-     *                              is not a supertype
-     *                              of the runtime type of every element in this
-     *                              set
+     *         if the runtime type of the specified array
+     *         is not a supertype
+     *         of the runtime type of every element in this
+     *         set
      * @throws NullPointerException
-     *                              if the specified array is null
+     *         if the specified array is null
      */
     public <T> T[] toArray(T[] a) {
         return al.toArray(a);
@@ -229,7 +220,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * call). (This set will not contain the element once the call returns.)
      *
      * @param o
-     *          object to be removed from this set, if present
+     *        object to be removed from this set, if present
      * @return {@code true} if this set contained the specified element
      */
     public boolean remove(Object o) {
@@ -245,7 +236,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * returns {@code false}.
      *
      * @param e
-     *          element to be added to this set
+     *        element to be added to this set
      * @return {@code true} if this set did not already contain the specified
      *         element
      */
@@ -259,11 +250,11 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * method returns {@code true} if it is a <i>subset</i> of this set.
      *
      * @param c
-     *          collection to be checked for containment in this set
+     *        collection to be checked for containment in this set
      * @return {@code true} if this set contains all of the elements of the
      *         specified collection
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      * @see #contains(Object)
      */
     public boolean containsAll(Collection<?> c) {
@@ -279,10 +270,10 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * is in progress.
      *
      * @param c
-     *          collection containing elements to be added to this set
+     *        collection containing elements to be added to this set
      * @return {@code true} if this set changed as a result of the call
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      * @see #add(Object)
      */
     public boolean addAll(Collection<? extends E> c) {
@@ -296,18 +287,18 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * <i>asymmetric set difference</i> of the two sets.
      *
      * @param c
-     *          collection containing elements to be removed from this set
+     *        collection containing elements to be removed from this set
      * @return {@code true} if this set changed as a result of the call
      * @throws ClassCastException
-     *                              if the class of an element of this set is
-     *                              incompatible with
-     *                              the specified collection (optional)
+     *         if the class of an element of this set is
+     *         incompatible with
+     *         the specified collection (optional)
      * @throws NullPointerException
-     *                              if this set contains a null element and the
-     *                              specified
-     *                              collection does not permit null elements
-     *                              (optional), or if
-     *                              the specified collection is null
+     *         if this set contains a null element and the
+     *         specified
+     *         collection does not permit null elements
+     *         (optional), or if
+     *         the specified collection is null
      * @see #remove(Object)
      */
     public boolean removeAll(Collection<?> c) {
@@ -322,18 +313,18 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * that its value is the <i>intersection</i> of the two sets.
      *
      * @param c
-     *          collection containing elements to be retained in this set
+     *        collection containing elements to be retained in this set
      * @return {@code true} if this set changed as a result of the call
      * @throws ClassCastException
-     *                              if the class of an element of this set is
-     *                              incompatible with
-     *                              the specified collection (optional)
+     *         if the class of an element of this set is
+     *         incompatible with
+     *         the specified collection (optional)
      * @throws NullPointerException
-     *                              if this set contains a null element and the
-     *                              specified
-     *                              collection does not permit null elements
-     *                              (optional), or if
-     *                              the specified collection is null
+     *         if this set contains a null element and the
+     *         specified
+     *         collection does not permit null elements
+     *         (optional), or if
+     *         the specified collection is null
      * @see #remove(Object)
      */
     public boolean retainAll(Collection<?> c) {
@@ -343,7 +334,6 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
     /**
      * Returns an iterator over the elements contained in this set in the order
      * in which these elements were added.
-     *
      * <p>
      * The returned iterator provides a snapshot of the state of the set when
      * the iterator was constructed. No synchronization is needed while
@@ -369,7 +359,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * {@code (e1==null ? e2==null : e1.equals(e2))}.
      *
      * @param o
-     *          object to be compared for equality with this set
+     *        object to be compared for equality with this set
      * @return {@code true} if the specified object is equal to this set
      */
     public boolean equals(Object o) {
@@ -389,7 +379,8 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
         // Mark matched elements to avoid re-checking
         boolean[] matched = new boolean[len];
         int k = 0;
-        outer: while (it.hasNext()) {
+        outer:
+        while (it.hasNext()) {
             if (++k > len)
                 return false;
             Object x = it.next();
@@ -415,12 +406,10 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
     /**
      * Returns a {@link Spliterator} over the elements in this set in the order
      * in which these elements were added.
-     *
      * <p>
      * The {@code Spliterator} reports {@link Spliterator#IMMUTABLE},
      * {@link Spliterator#DISTINCT}, {@link Spliterator#SIZED}, and
      * {@link Spliterator#SUBSIZED}.
-     *
      * <p>
      * The spliterator provides a snapshot of the state of the set when the
      * spliterator was constructed. No synchronization is needed while operating
@@ -430,8 +419,7 @@ public class CopyOnWriteArraySet<E> extends AbstractSet<E> implements
      * @since 1.8
      */
     public Spliterator<E> spliterator() {
-        return Spliterators.spliterator(al.getArray(), Spliterator.IMMUTABLE
-                | Spliterator.DISTINCT);
+        return Spliterators.spliterator(al.getArray(), Spliterator.IMMUTABLE | Spliterator.DISTINCT);
     }
 
     /**

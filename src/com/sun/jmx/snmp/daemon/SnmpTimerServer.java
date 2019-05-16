@@ -58,26 +58,24 @@ final class SnmpTimerServer extends Thread {
         Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
 
         if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-            SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpTimerServer.class
-                    .getName(), "run", "Timer Thread started");
+            SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpTimerServer.class.getName(), "run",
+                    "Timer Thread started");
         }
 
         while (true) {
 
             try {
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpTimerServer.class
-                            .getName(), "run", "Blocking for inform requests");
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpTimerServer.class.getName(), "run",
+                            "Blocking for inform requests");
                 }
                 if (req == null) {
                     req = snmpq.getTimeoutRequests();
                 }
                 if (req != null && req.inProgress()) {
                     if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-                        SNMP_ADAPTOR_LOGGER.logp(Level.FINER,
-                                SnmpTimerServer.class.getName(), "run",
-                                "Handle timeout inform request " + req
-                                        .getRequestId());
+                        SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpTimerServer.class.getName(), "run",
+                                "Handle timeout inform request " + req.getRequestId());
                     }
                     req.action();
                     req = null;
@@ -86,27 +84,25 @@ final class SnmpTimerServer extends Thread {
                     break;
             } catch (Exception e) {
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpTimerServer.class
-                            .getName(), "run", "Got unexpected exception", e);
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpTimerServer.class.getName(), "run",
+                            "Got unexpected exception", e);
                 }
             } catch (ThreadDeath d) {
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpTimerServer.class
-                            .getName(), "run",
-                            "ThreadDeath, timer server unexpectedly shutting down",
-                            d);
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpTimerServer.class.getName(), "run",
+                            "ThreadDeath, timer server unexpectedly shutting down", d);
                 }
                 throw d;
             } catch (OutOfMemoryError ome) {
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpTimerServer.class
-                            .getName(), "run", "OutOfMemoryError", ome);
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpTimerServer.class.getName(), "run",
+                            "OutOfMemoryError", ome);
                 }
                 yield();
             } catch (Error err) {
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpTimerServer.class
-                            .getName(), "run", "Received Internal error", err);
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpTimerServer.class.getName(), "run",
+                            "Received Internal error", err);
                 }
             }
         }

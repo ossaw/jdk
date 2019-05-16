@@ -11,7 +11,6 @@ import java.util.Objects;
  * returns no result. This is the primitive type specialization of
  * {@link Consumer} for {@code int}. Unlike most other functional interfaces,
  * {@code IntConsumer} is expected to operate via side-effects.
- *
  * <p>
  * This is a <a href="package-summary.html">functional interface</a> whose
  * functional method is {@link #accept(int)}.
@@ -26,7 +25,7 @@ public interface IntConsumer {
      * Performs this operation on the given argument.
      *
      * @param value
-     *              the input argument
+     *        the input argument
      */
     void accept(int value);
 
@@ -38,11 +37,11 @@ public interface IntConsumer {
      * {@code after} operation will not be performed.
      *
      * @param after
-     *              the operation to perform after this operation
+     *        the operation to perform after this operation
      * @return a composed {@code IntConsumer} that performs in sequence this
      *         operation followed by the {@code after} operation
      * @throws NullPointerException
-     *                              if {@code after} is null
+     *         if {@code after} is null
      */
     default IntConsumer andThen(IntConsumer after) {
         Objects.requireNonNull(after);

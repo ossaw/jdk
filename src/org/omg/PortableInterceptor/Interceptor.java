@@ -11,5 +11,5 @@ package org.omg.PortableInterceptor;
 /**
  * All Portable Interceptors implement Interceptor.
  */
-public interface Interceptor extends InterceptorOperations,
-        org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity {} // interface Interceptor
+public interface Interceptor extends InterceptorOperations, org.omg.CORBA.Object,
+        org.omg.CORBA.portable.IDLEntity {} // interface Interceptor

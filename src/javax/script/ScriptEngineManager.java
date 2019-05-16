@@ -60,7 +60,7 @@ public class ScriptEngineManager {
      * <br>
      *
      * @param loader
-     *               ClassLoader used to discover script engine factories.
+     *        ClassLoader used to discover script engine factories.
      */
     public ScriptEngineManager(ClassLoader loader) {
         init(loader);
@@ -75,8 +75,7 @@ public class ScriptEngineManager {
         initEngines(loader);
     }
 
-    private ServiceLoader<ScriptEngineFactory> getServiceLoader(
-            final ClassLoader loader) {
+    private ServiceLoader<ScriptEngineFactory> getServiceLoader(final ClassLoader loader) {
         if (loader != null) {
             return ServiceLoader.load(ScriptEngineFactory.class, loader);
         } else {
@@ -87,19 +86,17 @@ public class ScriptEngineManager {
     private void initEngines(final ClassLoader loader) {
         Iterator<ScriptEngineFactory> itr = null;
         try {
-            ServiceLoader<ScriptEngineFactory> sl = AccessController
-                    .doPrivileged(
-                            new PrivilegedAction<ServiceLoader<ScriptEngineFactory>>() {
-                                @Override
-                                public ServiceLoader<ScriptEngineFactory> run() {
-                                    return getServiceLoader(loader);
-                                }
-                            });
+            ServiceLoader<ScriptEngineFactory> sl = AccessController.doPrivileged(
+                    new PrivilegedAction<ServiceLoader<ScriptEngineFactory>>() {
+                        @Override
+                        public ServiceLoader<ScriptEngineFactory> run() {
+                            return getServiceLoader(loader);
+                        }
+                    });
 
             itr = sl.iterator();
         } catch (ServiceConfigurationError err) {
-            System.err.println("Can't find ScriptEngineFactory providers: "
-                    + err.getMessage());
+            System.err.println("Can't find ScriptEngineFactory providers: " + err.getMessage());
             if (DEBUG) {
                 err.printStackTrace();
             }
@@ -115,8 +112,7 @@ public class ScriptEngineManager {
                     ScriptEngineFactory fact = itr.next();
                     engineSpis.add(fact);
                 } catch (ServiceConfigurationError err) {
-                    System.err.println("ScriptEngineManager providers.next(): "
-                            + err.getMessage());
+                    System.err.println("ScriptEngineManager providers.next(): " + err.getMessage());
                     if (DEBUG) {
                         err.printStackTrace();
                     }
@@ -125,8 +121,7 @@ public class ScriptEngineManager {
                 }
             }
         } catch (ServiceConfigurationError err) {
-            System.err.println("ScriptEngineManager providers.hasNext(): " + err
-                    .getMessage());
+            System.err.println("ScriptEngineManager providers.hasNext(): " + err.getMessage());
             if (DEBUG) {
                 err.printStackTrace();
             }
@@ -144,9 +139,9 @@ public class ScriptEngineManager {
      * objects created by it.
      *
      * @param bindings
-     *                 The specified <code>Bindings</code>
+     *        The specified <code>Bindings</code>
      * @throws IllegalArgumentException
-     *                                  if bindings is null.
+     *         if bindings is null.
      */
     public void setBindings(Bindings bindings) {
         if (bindings == null) {
@@ -172,13 +167,13 @@ public class ScriptEngineManager {
      * Sets the specified key/value pair in the Global Scope.
      * 
      * @param key
-     *              Key to set
+     *        Key to set
      * @param value
-     *              Value to set.
+     *        Value to set.
      * @throws NullPointerException
-     *                                  if key is null.
+     *         if key is null.
      * @throws IllegalArgumentException
-     *                                  if key is empty string.
+     *         if key is empty string.
      */
     public void put(String key, Object value) {
         globalScope.put(key, value);
@@ -188,7 +183,7 @@ public class ScriptEngineManager {
      * Gets the value for the specified key in the Global Scope
      * 
      * @param key
-     *            The key whose value is to be returned.
+     *        The key whose value is to be returned.
      * @return The value for the specified key.
      */
     public Object get(String key) {
@@ -208,10 +203,10 @@ public class ScriptEngineManager {
      * <code>ScriptEngine</code>.
      * 
      * @param shortName
-     *                  The short name of the <code>ScriptEngine</code>
-     *                  implementation. returned by the <code>getNames</code>
-     *                  method
-     *                  of its <code>ScriptEngineFactory</code>.
+     *        The short name of the <code>ScriptEngine</code>
+     *        implementation. returned by the <code>getNames</code>
+     *        method
+     *        of its <code>ScriptEngineFactory</code>.
      * @return A <code>ScriptEngine</code> created by the factory located in the
      *         search. Returns null if no such factory was found. The
      *         <code>ScriptEngineManager</code> sets its own
@@ -219,7 +214,7 @@ public class ScriptEngineManager {
      *         <code>GLOBAL_SCOPE</code> <code>Bindings</code> of the newly
      *         created <code>ScriptEngine</code>.
      * @throws NullPointerException
-     *                              if shortName is null.
+     *         if shortName is null.
      */
     public ScriptEngine getEngineByName(String shortName) {
         if (shortName == null)
@@ -252,8 +247,7 @@ public class ScriptEngineManager {
                     if (shortName.equals(name)) {
                         try {
                             ScriptEngine engine = spi.getScriptEngine();
-                            engine.setBindings(getBindings(),
-                                    ScriptContext.GLOBAL_SCOPE);
+                            engine.setBindings(getBindings(), ScriptContext.GLOBAL_SCOPE);
                             return engine;
                         } catch (Exception exp) {
                             if (DEBUG)
@@ -275,11 +269,11 @@ public class ScriptEngineManager {
      * <code>registerEngineExtension</code>.
      * 
      * @param extension
-     *                  The given extension
+     *        The given extension
      * @return The engine to handle scripts with this extension. Returns
      *         <code>null</code> if not found.
      * @throws NullPointerException
-     *                              if extension is null.
+     *         if extension is null.
      */
     public ScriptEngine getEngineByExtension(String extension) {
         if (extension == null)
@@ -312,8 +306,7 @@ public class ScriptEngineManager {
                 if (extension.equals(ext)) {
                     try {
                         ScriptEngine engine = spi.getScriptEngine();
-                        engine.setBindings(getBindings(),
-                                ScriptContext.GLOBAL_SCOPE);
+                        engine.setBindings(getBindings(), ScriptContext.GLOBAL_SCOPE);
                         return engine;
                     } catch (Exception exp) {
                         if (DEBUG)
@@ -333,11 +326,11 @@ public class ScriptEngineManager {
      * <code>registerEngineMimeType</code>.
      * 
      * @param mimeType
-     *                 The given mime type
+     *        The given mime type
      * @return The engine to handle scripts with this mime type. Returns
      *         <code>null</code> if not found.
      * @throws NullPointerException
-     *                              if mimeType is null.
+     *         if mimeType is null.
      */
     public ScriptEngine getEngineByMimeType(String mimeType) {
         if (mimeType == null)
@@ -370,8 +363,7 @@ public class ScriptEngineManager {
                 if (mimeType.equals(type)) {
                     try {
                         ScriptEngine engine = spi.getScriptEngine();
-                        engine.setBindings(getBindings(),
-                                ScriptContext.GLOBAL_SCOPE);
+                        engine.setBindings(getBindings(), ScriptContext.GLOBAL_SCOPE);
                         return engine;
                     } catch (Exception exp) {
                         if (DEBUG)
@@ -391,8 +383,7 @@ public class ScriptEngineManager {
      * @return List of all discovered <code>ScriptEngineFactory</code>s.
      */
     public List<ScriptEngineFactory> getEngineFactories() {
-        List<ScriptEngineFactory> res = new ArrayList<ScriptEngineFactory>(
-                engineSpis.size());
+        List<ScriptEngineFactory> res = new ArrayList<ScriptEngineFactory>(engineSpis.size());
         for (ScriptEngineFactory spi : engineSpis) {
             res.add(spi);
         }
@@ -404,12 +395,12 @@ public class ScriptEngineManager {
      * Overrides any such association found using the Discovery mechanism.
      * 
      * @param name
-     *                The name to be associated with the
-     *                <code>ScriptEngineFactory</code>.
+     *        The name to be associated with the
+     *        <code>ScriptEngineFactory</code>.
      * @param factory
-     *                The class to associate with the given name.
+     *        The class to associate with the given name.
      * @throws NullPointerException
-     *                              if any of the parameters is null.
+     *         if any of the parameters is null.
      */
     public void registerEngineName(String name, ScriptEngineFactory factory) {
         if (name == null || factory == null)
@@ -422,16 +413,14 @@ public class ScriptEngineManager {
      * Overrides any such association found using the Discovery mechanism.
      *
      * @param type
-     *                The mime type to be associated with the
-     *                <code>ScriptEngineFactory</code>.
-     *
+     *        The mime type to be associated with the
+     *        <code>ScriptEngineFactory</code>.
      * @param factory
-     *                The class to associate with the given mime type.
+     *        The class to associate with the given mime type.
      * @throws NullPointerException
-     *                              if any of the parameters is null.
+     *         if any of the parameters is null.
      */
-    public void registerEngineMimeType(String type,
-            ScriptEngineFactory factory) {
+    public void registerEngineMimeType(String type, ScriptEngineFactory factory) {
         if (type == null || factory == null)
             throw new NullPointerException();
         mimeTypeAssociations.put(type, factory);
@@ -442,15 +431,14 @@ public class ScriptEngineManager {
      * Overrides any such association found using the Discovery mechanism.
      *
      * @param extension
-     *                  The extension type to be associated with the
-     *                  <code>ScriptEngineFactory</code>.
+     *        The extension type to be associated with the
+     *        <code>ScriptEngineFactory</code>.
      * @param factory
-     *                  The class to associate with the given extension.
+     *        The class to associate with the given extension.
      * @throws NullPointerException
-     *                              if any of the parameters is null.
+     *         if any of the parameters is null.
      */
-    public void registerEngineExtension(String extension,
-            ScriptEngineFactory factory) {
+    public void registerEngineExtension(String extension, ScriptEngineFactory factory) {
         if (extension == null || factory == null)
             throw new NullPointerException();
         extensionAssociations.put(extension, factory);

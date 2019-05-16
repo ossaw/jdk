@@ -7,9 +7,7 @@
  * Defines channels, which represent connections to entities that are capable of
  * performing I/O operations, such as files and sockets; defines selectors, for
  * multiplexed, non-blocking I/O operations.
- *
  * <a name="channels"></a>
- *
  * <blockquote>
  * <table cellspacing=1 cellpadding=0 summary=
  * "Lists channels and their descriptions">
@@ -86,7 +84,6 @@
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * A <i>channel</i> represents an open connection to an entity such as a
  * hardware device, a file, a network socket, or a program component that is
@@ -94,11 +91,9 @@
  * reading or writing. As specified in the {@link java.nio.channels.Channel}
  * interface, channels are either open or closed, and they are both
  * <i>asynchronously closeable</i> and <i>interruptible</i>.
- *
  * <p>
  * The {@link java.nio.channels.Channel} interface is extended by several other
  * interfaces.
- *
  * <p>
  * The {@link java.nio.channels.ReadableByteChannel} interface specifies a
  * {@link java.nio.channels.ReadableByteChannel#read read} method that reads
@@ -114,7 +109,6 @@
  * {@link java.nio.channels.SeekableByteChannel#position(long) modify} the
  * channel's current position, and its
  * {@link java.nio.channels.SeekableByteChannel#size size}.
- *
  * <p>
  * The {@link java.nio.channels.ScatteringByteChannel} and
  * {@link java.nio.channels.GatheringByteChannel} interfaces extend the
@@ -123,7 +117,6 @@
  * adding {@link java.nio.channels.ScatteringByteChannel#read read} and
  * {@link java.nio.channels.GatheringByteChannel#write write} methods that take
  * a sequence of buffers rather than a single buffer.
- *
  * <p>
  * The {@link java.nio.channels.NetworkChannel} interface specifies methods to
  * {@link java.nio.channels.NetworkChannel#bind bind} the channel's socket,
@@ -132,7 +125,6 @@
  * {@link java.nio.channels.NetworkChannel#setOption set} socket options. The
  * {@link java.nio.channels.MulticastChannel} interface specifies methods to
  * join Internet Protocol (IP) multicast groups.
- *
  * <p>
  * The {@link java.nio.channels.Channels} utility class defines static methods
  * that support the interoperation of the stream classes of the <tt>{@link
@@ -145,7 +137,6 @@
  * conversely a {@link java.io.Writer} can be constructed that uses a given
  * charset to encode characters into bytes and write them to a given writable
  * byte channel.
- *
  * <blockquote>
  * <table cellspacing=1 cellpadding=0 summary=
  * "Lists file channels and their descriptions">
@@ -167,7 +158,6 @@
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * The {@link java.nio.channels.FileChannel} class supports the usual operations
  * of reading bytes from, and writing bytes to, a channel connected to a file,
@@ -179,7 +169,6 @@
  * device that contains it, for efficiently transferring bytes between the file
  * and other channels, and for mapping a region of the file directly into
  * memory.
- *
  * <p>
  * A {@code FileChannel} is created by invoking one of its static
  * {@link java.nio.channels.FileChannel#open open} methods, or by invoking the
@@ -188,7 +177,6 @@
  * {@link java.io.FileOutputStream}, or {@link java.io.RandomAccessFile} to
  * return a file channel connected to the same underlying file as the
  * <tt>{@link java.io}</tt> class.
- *
  * <a name="multiplex"></a> <blockquote>
  * <table cellspacing=1 cellpadding=0 summary=
  * "Lists multiplexed, non-blocking channels and their descriptions">
@@ -243,12 +231,10 @@
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * Multiplexed, non-blocking I/O, which is much more scalable than
  * thread-oriented, blocking I/O, is provided by <i>selectors</i>, <i>selectable
  * channels</i>, and <i>selection keys</i>.
- *
  * <p>
  * A <a href="Selector.html"><i>selector</i></a> is a multiplexor of
  * <a href="SelectableChannel.html"><i>selectable channels</i></a>, which in
@@ -261,7 +247,6 @@
  * be tested for readiness by the selector, and returns a
  * <a href="SelectionKey.html"><i>selection key</i></a> that represents the
  * registration.
- *
  * <p>
  * Once some channels have been registered with a selector, a
  * <a href="Selector.html#selop"><i>selection operation</i></a> can be performed
@@ -272,14 +257,12 @@
  * it, can be examined in order to determine the operations for which each
  * channel is ready. From each key one can retrieve the corresponding channel in
  * order to perform whatever I/O operations are required.
- *
  * <p>
  * That a selection key indicates that its channel is ready for some operation
  * is a hint, but not a guarantee, that such an operation can be performed by a
  * thread without causing the thread to block. It is imperative that code that
  * performs multiplexed I/O be written so as to ignore these hints when they
  * prove to be incorrect.
- *
  * <p>
  * This package defines selectable-channel classes corresponding to the
  * {@link java.net.DatagramSocket}, {@link java.net.ServerSocket}, and
@@ -290,7 +273,6 @@
  * channel is created by invoking the static <tt>open</tt> method of the
  * corresponding class. If a channel needs an associated socket then a socket
  * will be created as a side effect of this operation.
- *
  * <p>
  * The implementation of selectors, selectable channels, and selection keys can
  * be replaced by "plugging in" an alternative definition or instance of the
@@ -300,7 +282,6 @@
  * will actually make use of this facility; it is provided primarily so that
  * sophisticated users can take advantage of operating-system-specific
  * I/O-multiplexing mechanisms when very high performance is required.
- *
  * <p>
  * Much of the bookkeeping and synchronization required to implement the
  * multiplexed-I/O abstractions is performed by the
@@ -314,9 +295,7 @@
  * subclassed directly; custom channel classes should extend the appropriate
  * {@link java.nio.channels.SelectableChannel} subclasses defined in this
  * package.
- *
  * <a name="async"></a>
- *
  * <blockquote>
  * <table cellspacing=1 cellpadding=0 summary=
  * "Lists asynchronous channels and their descriptions">
@@ -353,7 +332,6 @@
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * {@link java.nio.channels.AsynchronousChannel Asynchronous channels} are a
  * special type of channel capable of asynchronous I/O operations. Asynchronous
@@ -364,7 +342,6 @@
  * specify a {@link java.nio.channels.CompletionHandler} to invoke when the
  * operation completes. A completion handler is user provided code that is
  * executed to consume the result of I/O operation.
- *
  * <p>
  * This package defines asynchronous-channel classes that are connected to a
  * stream-oriented connecting or listening socket, or a datagram-oriented
@@ -376,7 +353,6 @@
  * the file. Unlike the {@code FileChannel} it does not define methods for
  * mapping a region of the file directly into memory. Where memory mapped I/O is
  * required, then a {@code FileChannel} can be used.
- *
  * <p>
  * Asynchronous channels are bound to an asynchronous channel group for the
  * purpose of resource sharing. A group has an associated
@@ -387,7 +363,6 @@
  * to a <em>default group</em>. Sophisticated users may wish to create their own
  * asynchronous channel groups or configure the {@code ExecutorService} that
  * will be used for the default group.
- *
  * <p>
  * As with selectors, the implementation of asynchronous channels can be
  * replaced by "plugging in" an alternative definition or instance of the
@@ -397,7 +372,6 @@
  * primarily so that sophisticated users can take advantage of
  * operating-system-specific asynchronous I/O mechanisms when very high
  * performance is required.
- *
  * <hr width="80%">
  * <p>
  * Unless otherwise noted, passing a <tt>null</tt> argument to a constructor or

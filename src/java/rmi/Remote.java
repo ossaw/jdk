@@ -11,7 +11,6 @@ package java.rmi;
  * object must directly or indirectly implement this interface. Only those
  * methods specified in a "remote interface", an interface that extends
  * <code>java.rmi.Remote</code> are available remotely.
- *
  * <p>
  * Implementation classes can implement any number of remote interfaces and can
  * extend other remote implementation classes. RMI provides some convenience
@@ -19,7 +18,6 @@ package java.rmi;
  * object creation. These classes are
  * <code>java.rmi.server.UnicastRemoteObject</code> and
  * <code>java.rmi.activation.Activatable</code>.
- *
  * <p>
  * For complete details on RMI, see the <a
  * href=../../../platform/rmi/spec/rmiTOC.html>RMI Specification</a> which

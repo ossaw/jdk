@@ -26,28 +26,24 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin;
  * Represent the schema type "hexBinary"
  *
  * @xerces.internal
- *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
- *
  * @version $Id: HexBinaryDV.java,v 1.7 2010-11-01 04:39:47 joehw Exp $
  */
 public class HexBinaryDV extends TypeValidator {
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH
-                | XSSimpleTypeDecl.FACET_MAXLENGTH
-                | XSSimpleTypeDecl.FACET_PATTERN
-                | XSSimpleTypeDecl.FACET_ENUMERATION
-                | XSSimpleTypeDecl.FACET_WHITESPACE);
+                | XSSimpleTypeDecl.FACET_MAXLENGTH | XSSimpleTypeDecl.FACET_PATTERN
+                | XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_WHITESPACE);
     }
 
     public Object getActualValue(String content, ValidationContext context)
             throws InvalidDatatypeValueException {
         byte[] decoded = HexBin.decode(content);
         if (decoded == null)
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "hexBinary" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "hexBinary" });
 
         return new XHex(decoded);
     }

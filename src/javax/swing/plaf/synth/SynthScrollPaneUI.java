@@ -26,8 +26,7 @@ import java.awt.event.FocusEvent;
  * @author Scott Violet
  * @since 1.7
  */
-public class SynthScrollPaneUI extends BasicScrollPaneUI implements
-        PropertyChangeListener, SynthUI {
+public class SynthScrollPaneUI extends BasicScrollPaneUI implements PropertyChangeListener, SynthUI {
     private SynthStyle style;
     private boolean viewportViewHasFocus = false;
     private ViewportViewFocusHandler viewportViewFocusHandler;
@@ -36,7 +35,7 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
      * Creates a new UI object for the given component.
      *
      * @param x
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent x) {
@@ -47,15 +46,14 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -63,8 +61,7 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintScrollPaneBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+        context.getPainter().paintScrollPaneBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
         paint(context, g);
         context.dispose();
     }
@@ -76,9 +73,9 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -93,9 +90,9 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
      * Paints the specified component.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
@@ -110,8 +107,7 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintScrollPaneBorder(context, g, x, y, w, h);
     }
 
@@ -184,8 +180,7 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
             JViewport viewport = ((JScrollPane) c).getViewport();
             viewport.removeContainerListener(viewportViewFocusHandler);
             if (viewport.getView() != null) {
-                viewport.getView().removeFocusListener(
-                        viewportViewFocusHandler);
+                viewport.getView().removeFocusListener(viewportViewFocusHandler);
             }
             viewportViewFocusHandler = null;
         }
@@ -221,34 +216,29 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
         private Insets insets;
 
         ViewportBorder(SynthContext context) {
-            this.insets = (Insets) context.getStyle().get(context,
-                    "ScrollPane.viewportBorderInsets");
+            this.insets = (Insets) context.getStyle().get(context, "ScrollPane.viewportBorderInsets");
             if (this.insets == null) {
                 this.insets = SynthLookAndFeel.EMPTY_UIRESOURCE_INSETS;
             }
         }
 
         @Override
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                int width, int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             JComponent jc = (JComponent) c;
             SynthContext context = getContext(jc);
             SynthStyle style = context.getStyle();
             if (style == null) {
-                assert false : "SynthBorder is being used outside after the "
-                        + " UI has been uninstalled";
+                assert false : "SynthBorder is being used outside after the " + " UI has been uninstalled";
                 return;
             }
-            context.getPainter().paintViewportBorder(context, g, x, y, width,
-                    height);
+            context.getPainter().paintViewportBorder(context, g, x, y, width, height);
             context.dispose();
         }
 
         @Override
         public Insets getBorderInsets(Component c, Insets insets) {
             if (insets == null) {
-                return new Insets(this.insets.top, this.insets.left,
-                        this.insets.bottom, this.insets.right);
+                return new Insets(this.insets.top, this.insets.left, this.insets.bottom, this.insets.right);
             }
             insets.top = this.insets.top;
             insets.bottom = this.insets.bottom;
@@ -266,8 +256,7 @@ public class SynthScrollPaneUI extends BasicScrollPaneUI implements
     /**
      * Handle keeping track of the viewport's view's focus
      */
-    private class ViewportViewFocusHandler implements ContainerListener,
-            FocusListener {
+    private class ViewportViewFocusHandler implements ContainerListener, FocusListener {
         public void componentAdded(ContainerEvent e) {
             if (e.getChild() instanceof JTextComponent) {
                 e.getChild().addFocusListener(this);

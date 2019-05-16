@@ -64,13 +64,11 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  * returned by ClassPath.getClassPath(). <br>
  * It is designed to be used as a singleton, however it can also be used with
  * custom classpaths.
- *
  * /** Abstract definition of a class repository. Instances may be used to load
  * classes from different sources and may be used in the
  * Repository.setRepository method.
  *
  * @see com.sun.org.apache.bcel.internal.Repository
- *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  * @author David Dixon-Peugh
  */
@@ -91,8 +89,7 @@ public class SyntheticRepository implements Repository {
     }
 
     public static SyntheticRepository getInstance(ClassPath classPath) {
-        SyntheticRepository rep = (SyntheticRepository) _instances.get(
-                classPath);
+        SyntheticRepository rep = (SyntheticRepository) _instances.get(classPath);
 
         if (rep == null) {
             rep = new SyntheticRepository(classPath);
@@ -130,8 +127,7 @@ public class SyntheticRepository implements Repository {
      */
     public JavaClass loadClass(String className) throws ClassNotFoundException {
         if (className == null || className.equals("")) {
-            throw new IllegalArgumentException("Invalid class name "
-                    + className);
+            throw new IllegalArgumentException("Invalid class name " + className);
         }
 
         className = className.replace('/', '.'); // Just in case, canonical form
@@ -139,9 +135,8 @@ public class SyntheticRepository implements Repository {
         try {
             return loadClass(_path.getInputStream(className), className);
         } catch (IOException e) {
-            throw new ClassNotFoundException(
-                    "Exception while looking for class " + className + ": " + e
-                            .toString());
+            throw new ClassNotFoundException("Exception while looking for class " + className + ": " + e
+                    .toString());
         }
     }
 
@@ -163,8 +158,7 @@ public class SyntheticRepository implements Repository {
         return loadClass(clazz.getResourceAsStream(name + ".class"), className);
     }
 
-    private JavaClass loadClass(InputStream is, String className)
-            throws ClassNotFoundException {
+    private JavaClass loadClass(InputStream is, String className) throws ClassNotFoundException {
         JavaClass clazz = findClass(className);
 
         if (clazz != null) {
@@ -181,13 +175,11 @@ public class SyntheticRepository implements Repository {
                 return clazz;
             }
         } catch (IOException e) {
-            throw new ClassNotFoundException(
-                    "Exception while looking for class " + className + ": " + e
-                            .toString());
+            throw new ClassNotFoundException("Exception while looking for class " + className + ": " + e
+                    .toString());
         }
 
-        throw new ClassNotFoundException("SyntheticRepository could not load "
-                + className);
+        throw new ClassNotFoundException("SyntheticRepository could not load " + className);
     }
 
     /**

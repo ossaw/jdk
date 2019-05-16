@@ -109,9 +109,9 @@ public interface TreeWalker {
      * changed.
      * 
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: Raised if an attempt is made
-     *                         to set
-     *                         <code>currentNode</code> to <code>null</code>.
+     *            NOT_SUPPORTED_ERR: Raised if an attempt is made
+     *            to set
+     *            <code>currentNode</code> to <code>null</code>.
      */
     public void setCurrentNode(Node currentNode) throws DOMException;
 

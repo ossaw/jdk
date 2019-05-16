@@ -69,8 +69,7 @@ final class TransletOutput extends Instruction {
         // Save filename as an attribute value template
         _filename = AttributeValue.create(this, filename, parser);
 
-        if (append != null && (append.toLowerCase().equals("yes") || append
-                .toLowerCase().equals("true"))) {
+        if (append != null && (append.toLowerCase().equals("yes") || append.toLowerCase().equals("true"))) {
             _append = true;
         } else
             _append = false;
@@ -97,12 +96,11 @@ final class TransletOutput extends Instruction {
     public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
-        final boolean isSecureProcessing = classGen.getParser().getXSLTC()
-                .isSecureProcessing();
+        final boolean isSecureProcessing = classGen.getParser().getXSLTC().isSecureProcessing();
 
         if (isSecureProcessing) {
-            int index = cpg.addMethodref(BASIS_LIBRARY_CLASS,
-                    "unallowed_extension_elementF", "(Ljava/lang/String;)V");
+            int index = cpg.addMethodref(BASIS_LIBRARY_CLASS, "unallowed_extension_elementF",
+                    "(Ljava/lang/String;)V");
             il.append(new PUSH(cpg, "redirect"));
             il.append(new INVOKESTATIC(index));
             return;
@@ -111,11 +109,11 @@ final class TransletOutput extends Instruction {
         // Save the current output handler on the stack
         il.append(methodGen.loadHandler());
 
-        final int open = cpg.addMethodref(TRANSLET_CLASS, "openOutputHandler",
-                "(" + STRING_SIG + "Z)" + TRANSLET_OUTPUT_SIG);
+        final int open = cpg.addMethodref(TRANSLET_CLASS, "openOutputHandler", "(" + STRING_SIG + "Z)"
+                + TRANSLET_OUTPUT_SIG);
 
-        final int close = cpg.addMethodref(TRANSLET_CLASS, "closeOutputHandler",
-                "(" + TRANSLET_OUTPUT_SIG + ")V");
+        final int close = cpg.addMethodref(TRANSLET_CLASS, "closeOutputHandler", "(" + TRANSLET_OUTPUT_SIG
+                + ")V");
 
         // Create the new output handler (leave it on stack)
         il.append(classGen.loadTranslet());

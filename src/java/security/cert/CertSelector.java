@@ -21,7 +21,6 @@ package java.security.cert;
  * @see Certificate
  * @see CertStore
  * @see CertStore#getCertificates
- *
  * @author Steve Hanna
  * @since 1.4
  */
@@ -31,7 +30,7 @@ public interface CertSelector extends Cloneable {
      * Decides whether a {@code Certificate} should be selected.
      *
      * @param cert
-     *             the {@code Certificate} to be checked
+     *        the {@code Certificate} to be checked
      * @return {@code true} if the {@code Certificate} should be selected,
      *         {@code false} otherwise
      */

@@ -22,5 +22,4 @@ package org.omg.PortableServer;
  * the POA and ObjectId that identify the object on which that operation was
  * invoked.
  */
-public interface Current extends CurrentOperations, org.omg.CORBA.Current,
-        org.omg.CORBA.portable.IDLEntity {} // interface Current
+public interface Current extends CurrentOperations, org.omg.CORBA.Current, org.omg.CORBA.portable.IDLEntity {} // interface Current

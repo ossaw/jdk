@@ -27,9 +27,7 @@ import com.sun.org.apache.xerces.internal.xs.StringList;
  * Containts a list of Object's.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  * @version $Id: StringListImpl.java,v 1.7 2010-11-01 04:40:06 joehw Exp $
  */
 public final class StringListImpl extends AbstractList implements StringList {
@@ -37,8 +35,7 @@ public final class StringListImpl extends AbstractList implements StringList {
     /**
      * An immutable empty list.
      */
-    public static final StringListImpl EMPTY_LIST = new StringListImpl(
-            new String[0], 0);
+    public static final StringListImpl EMPTY_LIST = new StringListImpl(new String[0], 0);
 
     // The array to hold all data
     private final String[] fArray;
@@ -59,9 +56,9 @@ public final class StringListImpl extends AbstractList implements StringList {
      * Construct an XSObjectList implementation
      *
      * @param array
-     *               the data array
+     *        the data array
      * @param length
-     *               the number of elements
+     *        the number of elements
      */
     public StringListImpl(String[] array, int length) {
         fArray = array;
@@ -82,8 +79,8 @@ public final class StringListImpl extends AbstractList implements StringList {
      * this list.
      * 
      * @param item
-     *             <code>GenericString</code> whose presence in this list is to
-     *             be tested.
+     *        <code>GenericString</code> whose presence in this list is to
+     *        be tested.
      * @return True if this list contains the <code>GenericString</code>
      *         <code>item</code>.
      */

@@ -140,8 +140,7 @@ public class PageFormat implements Cloneable {
         switch (getOrientation()) {
 
             case LANDSCAPE:
-                x = mPaper.getHeight() - (mPaper.getImageableY() + mPaper
-                        .getImageableHeight());
+                x = mPaper.getHeight() - (mPaper.getImageableY() + mPaper.getImageableHeight());
                 break;
 
             case PORTRAIT:
@@ -189,8 +188,7 @@ public class PageFormat implements Cloneable {
                 break;
 
             case REVERSE_LANDSCAPE:
-                y = mPaper.getWidth() - (mPaper.getImageableX() + mPaper
-                        .getImageableWidth());
+                y = mPaper.getWidth() - (mPaper.getImageableX() + mPaper.getImageableWidth());
                 break;
 
             default:
@@ -263,11 +261,11 @@ public class PageFormat implements Cloneable {
      * Sets the <code>Paper</code> object for this <code>PageFormat</code>.
      * 
      * @param paper
-     *              the <code>Paper</code> object to which to set the
-     *              <code>Paper</code> object for this <code>PageFormat</code>.
+     *        the <code>Paper</code> object to which to set the
+     *        <code>Paper</code> object for this <code>PageFormat</code>.
      * @exception NullPointerException
-     *                                 a null paper instance was passed as a
-     *                                 parameter.
+     *            a null paper instance was passed as a
+     *            parameter.
      * @see #getPaper
      */
     public void setPaper(Paper paper) {
@@ -279,13 +277,12 @@ public class PageFormat implements Cloneable {
      * constants: PORTRAIT, LANDSCAPE, or REVERSE_LANDSCAPE.
      * 
      * @param orientation
-     *                    the new orientation for the page
+     *        the new orientation for the page
      * @throws IllegalArgumentException
-     *                                  if an unknown orientation was requested
+     *         if an unknown orientation was requested
      * @see #getOrientation
      */
-    public void setOrientation(int orientation)
-            throws IllegalArgumentException {
+    public void setOrientation(int orientation) throws IllegalArgumentException {
         if (0 <= orientation && orientation <= REVERSE_LANDSCAPE) {
             mOrientation = orientation;
         } else {

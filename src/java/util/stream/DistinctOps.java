@@ -27,39 +27,32 @@ final class DistinctOps {
      * Appends a "distinct" operation to the provided stream, and returns the
      * new stream.
      *
-     * @param          <T>
-     *                 the type of both input and output elements
+     * @param <T>
+     *        the type of both input and output elements
      * @param upstream
-     *                 a reference stream with element type T
+     *        a reference stream with element type T
      * @return the new stream
      */
-    static <T> ReferencePipeline<T, T> makeRef(
-            AbstractPipeline<?, T, ?> upstream) {
-        return new ReferencePipeline.StatefulOp<T, T>(upstream,
-                StreamShape.REFERENCE, StreamOpFlag.IS_DISTINCT
-                        | StreamOpFlag.NOT_SIZED) {
+    static <T> ReferencePipeline<T, T> makeRef(AbstractPipeline<?, T, ?> upstream) {
+        return new ReferencePipeline.StatefulOp<T, T>(upstream, StreamShape.REFERENCE,
+                StreamOpFlag.IS_DISTINCT | StreamOpFlag.NOT_SIZED) {
 
-            <P_IN> Node<T> reduce(PipelineHelper<T> helper,
-                    Spliterator<P_IN> spliterator) {
+            <P_IN> Node<T> reduce(PipelineHelper<T> helper, Spliterator<P_IN> spliterator) {
                 // If the stream is SORTED then it should also be ORDERED so the
                 // following will also
                 // preserve the sort order
-                TerminalOp<T, LinkedHashSet<T>> reduceOp = ReduceOps
-                        .<T, LinkedHashSet<T>>makeRef(LinkedHashSet::new,
-                                LinkedHashSet::add, LinkedHashSet::addAll);
-                return Nodes.node(reduceOp.evaluateParallel(helper,
-                        spliterator));
+                TerminalOp<T, LinkedHashSet<T>> reduceOp = ReduceOps.<T, LinkedHashSet<T>>makeRef(
+                        LinkedHashSet::new, LinkedHashSet::add, LinkedHashSet::addAll);
+                return Nodes.node(reduceOp.evaluateParallel(helper, spliterator));
             }
 
             @Override
-            <P_IN> Node<T> opEvaluateParallel(PipelineHelper<T> helper,
-                    Spliterator<P_IN> spliterator, IntFunction<T[]> generator) {
-                if (StreamOpFlag.DISTINCT.isKnown(helper
-                        .getStreamAndOpFlags())) {
+            <P_IN> Node<T> opEvaluateParallel(PipelineHelper<T> helper, Spliterator<P_IN> spliterator,
+                    IntFunction<T[]> generator) {
+                if (StreamOpFlag.DISTINCT.isKnown(helper.getStreamAndOpFlags())) {
                     // No-op
                     return helper.evaluate(spliterator, false, generator);
-                } else if (StreamOpFlag.ORDERED.isKnown(helper
-                        .getStreamAndOpFlags())) {
+                } else if (StreamOpFlag.ORDERED.isKnown(helper.getStreamAndOpFlags())) {
                     return reduce(helper, spliterator);
                 } else {
                     // Holder of null state since ConcurrentHashMap does not
@@ -89,20 +82,17 @@ final class DistinctOps {
             }
 
             @Override
-            <P_IN> Spliterator<T> opEvaluateParallelLazy(
-                    PipelineHelper<T> helper, Spliterator<P_IN> spliterator) {
-                if (StreamOpFlag.DISTINCT.isKnown(helper
-                        .getStreamAndOpFlags())) {
+            <P_IN> Spliterator<T> opEvaluateParallelLazy(PipelineHelper<T> helper,
+                    Spliterator<P_IN> spliterator) {
+                if (StreamOpFlag.DISTINCT.isKnown(helper.getStreamAndOpFlags())) {
                     // No-op
                     return helper.wrapSpliterator(spliterator);
-                } else if (StreamOpFlag.ORDERED.isKnown(helper
-                        .getStreamAndOpFlags())) {
+                } else if (StreamOpFlag.ORDERED.isKnown(helper.getStreamAndOpFlags())) {
                     // Not lazy, barrier required to preserve order
                     return reduce(helper, spliterator).spliterator();
                 } else {
                     // Lazy
-                    return new StreamSpliterators.DistinctSpliterator<>(helper
-                            .wrapSpliterator(spliterator));
+                    return new StreamSpliterators.DistinctSpliterator<>(helper.wrapSpliterator(spliterator));
                 }
             }
 
@@ -138,8 +128,7 @@ final class DistinctOps {
                                     seenNull = true;
                                     downstream.accept(lastSeen = null);
                                 }
-                            } else if (lastSeen == null || !t.equals(
-                                    lastSeen)) {
+                            } else if (lastSeen == null || !t.equals(lastSeen)) {
                                 downstream.accept(lastSeen = t);
                             }
                         }

@@ -16,15 +16,13 @@ public class ORBVersionImpl implements ORBVersion {
         this.orbType = orbType;
     }
 
-    public static final ORBVersion FOREIGN = new ORBVersionImpl(
-            ORBVersion.FOREIGN);
+    public static final ORBVersion FOREIGN = new ORBVersionImpl(ORBVersion.FOREIGN);
 
     public static final ORBVersion OLD = new ORBVersionImpl(ORBVersion.OLD);
 
     public static final ORBVersion NEW = new ORBVersionImpl(ORBVersion.NEW);
 
-    public static final ORBVersion JDK1_3_1_01 = new ORBVersionImpl(
-            ORBVersion.JDK1_3_1_01);
+    public static final ORBVersion JDK1_3_1_01 = new ORBVersionImpl(ORBVersion.JDK1_3_1_01);
 
     public static final ORBVersion NEWER = new ORBVersionImpl(ORBVersion.NEWER);
 

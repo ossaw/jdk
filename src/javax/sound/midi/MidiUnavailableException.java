@@ -33,7 +33,7 @@ public class MidiUnavailableException extends Exception {
      * detail message.
      *
      * @param message
-     *                the string to display as an error detail message
+     *        the string to display as an error detail message
      */
     public MidiUnavailableException(String message) {
 

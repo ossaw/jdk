@@ -9,7 +9,6 @@ package javax.swing;
  *
  * @param <E>
  *        the type of the elements of this model
- *
  * @author Tom Santos
  */
 
@@ -21,7 +20,7 @@ public interface MutableComboBoxModel<E> extends ComboBoxModel<E> {
      * has been added.
      *
      * @param item
-     *             the item to be added
+     *        the item to be added
      */
     public void addElement(E item);
 
@@ -31,7 +30,7 @@ public interface MutableComboBoxModel<E> extends ComboBoxModel<E> {
      * has been removed.
      *
      * @param obj
-     *            the <code>Object</code> to be removed
+     *        the <code>Object</code> to be removed
      */
     public void removeElement(Object obj);
 
@@ -41,9 +40,9 @@ public interface MutableComboBoxModel<E> extends ComboBoxModel<E> {
      * has been added.
      *
      * @param item
-     *              the item to be added
+     *        the item to be added
      * @param index
-     *              location to add the object
+     *        location to add the object
      */
     public void insertElementAt(E item, int index);
 
@@ -53,7 +52,7 @@ public interface MutableComboBoxModel<E> extends ComboBoxModel<E> {
      * has been removed.
      *
      * @param index
-     *              location of the item to be removed
+     *        location of the item to be removed
      */
     public void removeElementAt(int index);
 }

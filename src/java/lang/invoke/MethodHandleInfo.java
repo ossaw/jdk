@@ -39,7 +39,6 @@ import static java.lang.invoke.MethodHandleStatics.*;
  * Lookup.unreflectGetter} or {@link Lookup#unreflectSetter
  * Lookup.unreflectSetter} to convert a {@link Field} into a method handle.
  * </ul>
- *
  * <h1>Restrictions on Cracking</h1> Given a suitable {@code Lookup} object, it
  * is possible to crack any direct method handle to recover a symbolic reference
  * for the underlying method, constructor, or field. Cracking must be done via a
@@ -59,7 +58,6 @@ import static java.lang.invoke.MethodHandleStatics.*;
  * programs which may otherwise trust erroneous revelation of a method handle
  * with symbolic information (or caller binding) from an unexpected scope. Use
  * {@link java.lang.invoke.MethodHandles#reflectAs} to override this limitation.
- *
  * <h1><a name="refkinds"></a>Reference kinds</h1> The
  * <a href="MethodHandles.Lookup.html#lookups">Lookup Factory Methods</a>
  * correspond to all major use cases for methods, constructors, and fields.
@@ -147,12 +145,9 @@ public interface MethodHandleInfo {
      * A direct method handle reference kind, as defined in the
      * <a href="MethodHandleInfo.html#refkinds">table above</a>.
      */
-    public static final int REF_getField = Constants.REF_getField,
-            REF_getStatic = Constants.REF_getStatic,
-            REF_putField = Constants.REF_putField,
-            REF_putStatic = Constants.REF_putStatic,
-            REF_invokeVirtual = Constants.REF_invokeVirtual,
-            REF_invokeStatic = Constants.REF_invokeStatic,
+    public static final int REF_getField = Constants.REF_getField, REF_getStatic = Constants.REF_getStatic,
+            REF_putField = Constants.REF_putField, REF_putStatic = Constants.REF_putStatic,
+            REF_invokeVirtual = Constants.REF_invokeVirtual, REF_invokeStatic = Constants.REF_invokeStatic,
             REF_invokeSpecial = Constants.REF_invokeSpecial,
             REF_newInvokeSpecial = Constants.REF_newInvokeSpecial,
             REF_invokeInterface = Constants.REF_invokeInterface;
@@ -218,27 +213,27 @@ public interface MethodHandleInfo {
      * {@code getDeclaredConstructor}, or {@code getDeclaredField}. The
      * underlying member must be accessible to the given lookup object.
      * 
-     * @param          <T>
-     *                 the desired type of the result, either {@link Member} or
-     *                 a
-     *                 subtype
+     * @param <T>
+     *        the desired type of the result, either {@link Member} or
+     *        a
+     *        subtype
      * @param expected
-     *                 a class object representing the desired result type
-     *                 {@code T}
+     *        a class object representing the desired result type
+     *        {@code T}
      * @param lookup
-     *                 the lookup object that created this MethodHandleInfo, or
-     *                 one
-     *                 with equivalent access privileges
+     *        the lookup object that created this MethodHandleInfo, or
+     *        one
+     *        with equivalent access privileges
      * @return a reference to the method, constructor, or field object
      * @exception ClassCastException
-     *                                     if the member is not of the expected
-     *                                     type
+     *            if the member is not of the expected
+     *            type
      * @exception NullPointerException
-     *                                     if either argument is {@code null}
+     *            if either argument is {@code null}
      * @exception IllegalArgumentException
-     *                                     if the underlying member is not
-     *                                     accessible to the given
-     *                                     lookup object
+     *            if the underlying member is not
+     *            accessible to the given
+     *            lookup object
      */
     public <T extends Member> T reflectAs(Class<T> expected, Lookup lookup);
 
@@ -265,7 +260,6 @@ public interface MethodHandleInfo {
      * }
      *           </pre>
      *
-     *
      * @return {@code true} if and only if the underlying member was declared
      *         with variable arity.
      */
@@ -287,21 +281,20 @@ public interface MethodHandleInfo {
      * conventional prefix "REF_" is omitted.
      * 
      * @param referenceKind
-     *                      an integer code for a kind of reference used to
-     *                      access a class
-     *                      member
+     *        an integer code for a kind of reference used to
+     *        access a class
+     *        member
      * @return a mixed-case string such as {@code "getField"}
      * @exception IllegalArgumentException
-     *                                     if the argument is not a valid
-     *                                     <a href=
-     *                                     "MethodHandleInfo.html#refkinds">reference
-     *                                     kind
-     *                                     number</a>
+     *            if the argument is not a valid
+     *            <a href=
+     *            "MethodHandleInfo.html#refkinds">reference
+     *            kind
+     *            number</a>
      */
     public static String referenceKindToString(int referenceKind) {
         if (!MethodHandleNatives.refKindIsValid(referenceKind))
-            throw newIllegalArgumentException("invalid reference kind",
-                    referenceKind);
+            throw newIllegalArgumentException("invalid reference kind", referenceKind);
         return MethodHandleNatives.refKindName((byte) referenceKind);
     }
 
@@ -327,33 +320,31 @@ public interface MethodHandleInfo {
      *           </pre>
      *
      * @param kind
-     *             the {@linkplain #getReferenceKind reference kind} part of the
-     *             symbolic reference
+     *        the {@linkplain #getReferenceKind reference kind} part of the
+     *        symbolic reference
      * @param defc
-     *             the {@linkplain #getDeclaringClass declaring class} part of
-     *             the symbolic reference
+     *        the {@linkplain #getDeclaringClass declaring class} part of
+     *        the symbolic reference
      * @param name
-     *             the {@linkplain #getName member name} part of the symbolic
-     *             reference
+     *        the {@linkplain #getName member name} part of the symbolic
+     *        reference
      * @param type
-     *             the {@linkplain #getMethodType method type} part of the
-     *             symbolic reference
+     *        the {@linkplain #getMethodType method type} part of the
+     *        symbolic reference
      * @return a string of the form {@code "RK C.N:MT"}
      * @exception IllegalArgumentException
-     *                                     if the first argument is not a valid
-     *                                     <a href=
-     *                                     "MethodHandleInfo.html#refkinds">reference
-     *                                     kind
-     *                                     number</a>
+     *            if the first argument is not a valid
+     *            <a href=
+     *            "MethodHandleInfo.html#refkinds">reference
+     *            kind
+     *            number</a>
      * @exception NullPointerException
-     *                                     if any reference argument is
-     *                                     {@code null}
+     *            if any reference argument is
+     *            {@code null}
      */
-    public static String toString(int kind, Class<?> defc, String name,
-            MethodType type) {
+    public static String toString(int kind, Class<?> defc, String name, MethodType type) {
         Objects.requireNonNull(name);
         Objects.requireNonNull(type);
-        return String.format("%s %s.%s:%s", referenceKindToString(kind), defc
-                .getName(), name, type);
+        return String.format("%s %s.%s:%s", referenceKindToString(kind), defc.getName(), name, type);
     }
 }

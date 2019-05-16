@@ -30,16 +30,13 @@ import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 
 /**
  * This is delegates to the real implementation.
- *
  * NOTE:
- *
  * Before using the stream for valuetype unmarshaling, one must call
  * performORBVersionSpecificInit().
  */
-public abstract class CDRInputStream extends
-        org.omg.CORBA_2_3.portable.InputStream implements
-        com.sun.corba.se.impl.encoding.MarshalInputStream,
-        org.omg.CORBA.DataInputStream, org.omg.CORBA.portable.ValueInputStream {
+public abstract class CDRInputStream extends org.omg.CORBA_2_3.portable.InputStream implements
+        com.sun.corba.se.impl.encoding.MarshalInputStream, org.omg.CORBA.DataInputStream,
+        org.omg.CORBA.portable.ValueInputStream {
     protected CorbaMessageMediator messageMediator;
     private CDRInputStreamBase impl;
 
@@ -47,8 +44,7 @@ public abstract class CDRInputStream extends
     // to create a concrete CDR delegate based on the GIOP version.
     private static class InputStreamFactory {
 
-        public static CDRInputStreamBase newInputStream(ORB orb,
-                GIOPVersion version, byte encodingVersion) {
+        public static CDRInputStreamBase newInputStream(ORB orb, GIOPVersion version, byte encodingVersion) {
             switch (version.intValue()) {
                 case GIOPVersion.VERSION_1_0:
                     return new CDRInputStream_1_0();
@@ -56,14 +52,13 @@ public abstract class CDRInputStream extends
                     return new CDRInputStream_1_1();
                 case GIOPVersion.VERSION_1_2:
                     if (encodingVersion != Message.CDR_ENC_VERSION) {
-                        return new IDLJavaSerializationInputStream(
-                                encodingVersion);
+                        return new IDLJavaSerializationInputStream(encodingVersion);
                     }
                     return new CDRInputStream_1_2();
                 // else fall through and report exception.
                 default:
-                    ORBUtilSystemException wrapper = ORBUtilSystemException.get(
-                            orb, CORBALogDomains.RPC_ENCODING);
+                    ORBUtilSystemException wrapper = ORBUtilSystemException.get(orb,
+                            CORBALogDomains.RPC_ENCODING);
                     throw wrapper.unsupportedGiopVersion(version);
             }
         }
@@ -84,11 +79,9 @@ public abstract class CDRInputStream extends
         impl.setParent(this);
     }
 
-    public CDRInputStream(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer,
-            int size, boolean littleEndian, GIOPVersion version,
-            byte encodingVersion, BufferManagerRead bufMgr) {
-        impl = InputStreamFactory.newInputStream((ORB) orb, version,
-                encodingVersion);
+    public CDRInputStream(org.omg.CORBA.ORB orb, ByteBuffer byteBuffer, int size, boolean littleEndian,
+            GIOPVersion version, byte encodingVersion, BufferManagerRead bufMgr) {
+        impl = InputStreamFactory.newInputStream((ORB) orb, version, encodingVersion);
 
         impl.init(orb, byteBuffer, size, littleEndian, bufMgr);
 
@@ -152,8 +145,7 @@ public abstract class CDRInputStream extends
         return impl.read_wstring();
     }
 
-    public final void read_boolean_array(boolean[] value, int offset,
-            int length) {
+    public final void read_boolean_array(boolean[] value, int offset, int length) {
         impl.read_boolean_array(value, offset, length);
     }
 
@@ -185,13 +177,11 @@ public abstract class CDRInputStream extends
         impl.read_ulong_array(value, offset, length);
     }
 
-    public final void read_longlong_array(long[] value, int offset,
-            int length) {
+    public final void read_longlong_array(long[] value, int offset, int length) {
         impl.read_longlong_array(value, offset, length);
     }
 
-    public final void read_ulonglong_array(long[] value, int offset,
-            int length) {
+    public final void read_ulonglong_array(long[] value, int offset, int length) {
         impl.read_ulonglong_array(value, offset, length);
     }
 
@@ -199,8 +189,7 @@ public abstract class CDRInputStream extends
         impl.read_float_array(value, offset, length);
     }
 
-    public final void read_double_array(double[] value, int offset,
-            int length) {
+    public final void read_double_array(double[] value, int offset, int length) {
         impl.read_double_array(value, offset, length);
     }
 
@@ -249,8 +238,7 @@ public abstract class CDRInputStream extends
         return impl.read_value(clz);
     }
 
-    public final java.io.Serializable read_value(
-            org.omg.CORBA.portable.BoxedValueHelper factory) {
+    public final java.io.Serializable read_value(org.omg.CORBA.portable.BoxedValueHelper factory) {
         return impl.read_value(factory);
     }
 
@@ -289,68 +277,55 @@ public abstract class CDRInputStream extends
         return impl.read_Value();
     }
 
-    public final void read_any_array(org.omg.CORBA.AnySeqHolder seq, int offset,
-            int length) {
+    public final void read_any_array(org.omg.CORBA.AnySeqHolder seq, int offset, int length) {
         impl.read_any_array(seq, offset, length);
     }
 
-    public final void read_boolean_array(org.omg.CORBA.BooleanSeqHolder seq,
-            int offset, int length) {
+    public final void read_boolean_array(org.omg.CORBA.BooleanSeqHolder seq, int offset, int length) {
         impl.read_boolean_array(seq, offset, length);
     }
 
-    public final void read_char_array(org.omg.CORBA.CharSeqHolder seq,
-            int offset, int length) {
+    public final void read_char_array(org.omg.CORBA.CharSeqHolder seq, int offset, int length) {
         impl.read_char_array(seq, offset, length);
     }
 
-    public final void read_wchar_array(org.omg.CORBA.WCharSeqHolder seq,
-            int offset, int length) {
+    public final void read_wchar_array(org.omg.CORBA.WCharSeqHolder seq, int offset, int length) {
         impl.read_wchar_array(seq, offset, length);
     }
 
-    public final void read_octet_array(org.omg.CORBA.OctetSeqHolder seq,
-            int offset, int length) {
+    public final void read_octet_array(org.omg.CORBA.OctetSeqHolder seq, int offset, int length) {
         impl.read_octet_array(seq, offset, length);
     }
 
-    public final void read_short_array(org.omg.CORBA.ShortSeqHolder seq,
-            int offset, int length) {
+    public final void read_short_array(org.omg.CORBA.ShortSeqHolder seq, int offset, int length) {
         impl.read_short_array(seq, offset, length);
     }
 
-    public final void read_ushort_array(org.omg.CORBA.UShortSeqHolder seq,
-            int offset, int length) {
+    public final void read_ushort_array(org.omg.CORBA.UShortSeqHolder seq, int offset, int length) {
         impl.read_ushort_array(seq, offset, length);
     }
 
-    public final void read_long_array(org.omg.CORBA.LongSeqHolder seq,
-            int offset, int length) {
+    public final void read_long_array(org.omg.CORBA.LongSeqHolder seq, int offset, int length) {
         impl.read_long_array(seq, offset, length);
     }
 
-    public final void read_ulong_array(org.omg.CORBA.ULongSeqHolder seq,
-            int offset, int length) {
+    public final void read_ulong_array(org.omg.CORBA.ULongSeqHolder seq, int offset, int length) {
         impl.read_ulong_array(seq, offset, length);
     }
 
-    public final void read_ulonglong_array(org.omg.CORBA.ULongLongSeqHolder seq,
-            int offset, int length) {
+    public final void read_ulonglong_array(org.omg.CORBA.ULongLongSeqHolder seq, int offset, int length) {
         impl.read_ulonglong_array(seq, offset, length);
     }
 
-    public final void read_longlong_array(org.omg.CORBA.LongLongSeqHolder seq,
-            int offset, int length) {
+    public final void read_longlong_array(org.omg.CORBA.LongLongSeqHolder seq, int offset, int length) {
         impl.read_longlong_array(seq, offset, length);
     }
 
-    public final void read_float_array(org.omg.CORBA.FloatSeqHolder seq,
-            int offset, int length) {
+    public final void read_float_array(org.omg.CORBA.FloatSeqHolder seq, int offset, int length) {
         impl.read_float_array(seq, offset, length);
     }
 
-    public final void read_double_array(org.omg.CORBA.DoubleSeqHolder seq,
-            int offset, int length) {
+    public final void read_double_array(org.omg.CORBA.DoubleSeqHolder seq, int offset, int length) {
         impl.read_double_array(seq, offset, length);
     }
 
@@ -460,8 +435,7 @@ public abstract class CDRInputStream extends
     // Use Latin-1 for GIOP 1.0 or when code set negotiation was not
     // performed.
     protected CodeSetConversion.BTCConverter createCharBTCConverter() {
-        return CodeSetConversion.impl().getBTCConverter(
-                OSFCodeSetRegistry.ISO_8859_1, impl.isLittleEndian());
+        return CodeSetConversion.impl().getBTCConverter(OSFCodeSetRegistry.ISO_8859_1, impl.isLittleEndian());
     }
 
     // Subclasses must decide what to do here. It's inconvenient to
@@ -492,7 +466,6 @@ public abstract class CDRInputStream extends
      * it on the stream's ORB instance. It can be called after reading the
      * service contexts, since that is the only place we can get the ORB version
      * info.
-     *
      * Trying to unmarshal things requiring repository IDs before calling this
      * will result in NullPtrExceptions.
      */

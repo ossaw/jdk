@@ -58,9 +58,9 @@ public class ZoneView extends BoxView {
      * Constructs a ZoneView.
      *
      * @param elem
-     *             the element this view is responsible for
+     *        the element this view is responsible for
      * @param axis
-     *             either View.X_AXIS or View.Y_AXIS
+     *        either View.X_AXIS or View.Y_AXIS
      */
     public ZoneView(Element elem, int axis) {
         super(elem, axis);
@@ -80,8 +80,8 @@ public class ZoneView extends BoxView {
      * child view boundaries.
      *
      * @param size
-     *             the number of characters the zone may represent before
-     *             attempting to break the zone into a smaller size.
+     *        the number of characters the zone may represent before
+     *        attempting to break the zone into a smaller size.
      */
     public void setMaximumZoneSize(int size) {
         maxZoneSize = size;
@@ -101,15 +101,14 @@ public class ZoneView extends BoxView {
      * if <code>mzl</code> is less than 1.
      *
      * @param mzl
-     *            the desired maximum number of zones to be actively loaded,
-     *            must be greater than 0
+     *        the desired maximum number of zones to be actively loaded,
+     *        must be greater than 0
      * @exception IllegalArgumentException
-     *                                     if <code>mzl</code> is &lt; 1
+     *            if <code>mzl</code> is &lt; 1
      */
     public void setMaxZonesLoaded(int mzl) {
         if (mzl < 1) {
-            throw new IllegalArgumentException(
-                    "ZoneView.setMaxZonesLoaded must be greater than 0.");
+            throw new IllegalArgumentException("ZoneView.setMaxZonesLoaded must be greater than 0.");
         }
         maxZonesLoaded = mzl;
         unloadOldZones();
@@ -122,7 +121,7 @@ public class ZoneView extends BoxView {
      * zones was reached and to unload the oldest zone if so.
      *
      * @param zone
-     *             the child view that was just loaded.
+     *        the child view that was just loaded.
      */
     protected void zoneWasLoaded(View zone) {
         // System.out.println("loading: " + zone.getStartOffset() + "," +
@@ -146,7 +145,7 @@ public class ZoneView extends BoxView {
      * simple remove all the children.
      *
      * @param zone
-     *             the child view desired to be set to an unloaded state.
+     *        the child view desired to be set to an unloaded state.
      */
     protected void unloadZone(View zone) {
         // System.out.println("unloading: " + zone.getStartOffset() + "," +
@@ -172,20 +171,19 @@ public class ZoneView extends BoxView {
      * method.
      *
      * @param p0
-     *           the start of the desired zone. This should be &gt;=
-     *           getStartOffset() and &lt; getEndOffset(). This value should
-     *           also be &lt; p1.
+     *        the start of the desired zone. This should be &gt;=
+     *        getStartOffset() and &lt; getEndOffset(). This value should
+     *        also be &lt; p1.
      * @param p1
-     *           the end of the desired zone. This should be &gt;
-     *           getStartOffset() and &lt;= getEndOffset(). This value should
-     *           also be &gt; p0.
+     *        the end of the desired zone. This should be &gt;
+     *        getStartOffset() and &lt;= getEndOffset(). This value should
+     *        also be &gt; p0.
      */
     protected View createZone(int p0, int p1) {
         Document doc = getDocument();
         View zone;
         try {
-            zone = new Zone(getElement(), doc.createPosition(p0), doc
-                    .createPosition(p1));
+            zone = new Zone(getElement(), doc.createPosition(p0), doc.createPosition(p1));
         } catch (BadLocationException ble) {
             // this should puke in some way.
             throw new StateInvariantError(ble.getMessage());
@@ -202,7 +200,7 @@ public class ZoneView extends BoxView {
      * translation.
      *
      * @param f
-     *          the view factory
+     *        the view factory
      */
     protected void loadChildren(ViewFactory f) {
         // build the first zone.
@@ -218,7 +216,7 @@ public class ZoneView extends BoxView {
      * model.
      *
      * @param pos
-     *            the position &gt;= 0
+     *        the position &gt;= 0
      * @return index of the view representing the given position, or -1 if no
      *         view represents that position
      */
@@ -299,8 +297,7 @@ public class ZoneView extends BoxView {
      * effected by the changes to the associated element. This is reimplemented
      * to do nothing and return false.
      */
-    protected boolean updateChildren(DocumentEvent.ElementChange ec,
-            DocumentEvent e, ViewFactory f) {
+    protected boolean updateChildren(DocumentEvent.ElementChange ec, DocumentEvent e, ViewFactory f) {
         return false;
     }
 
@@ -311,11 +308,11 @@ public class ZoneView extends BoxView {
      * determine if a zone needs to be split into a set of 2 or more zones).
      *
      * @param changes
-     *                the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *                the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *                the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @see View#insertUpdate
      */
     public void insertUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
@@ -330,11 +327,11 @@ public class ZoneView extends BoxView {
      * determine if zones need to be removed or joined with another zone).
      *
      * @param changes
-     *                the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *                the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *                the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @see View#removeUpdate
      */
     public void removeUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
@@ -451,7 +448,7 @@ public class ZoneView extends BoxView {
          * position given.
          *
          * @param pos
-         *            the position >= 0
+         *        the position >= 0
          * @return index of the view representing the given position, or -1 if
          *         no view represents that position
          * @since 1.3
@@ -465,8 +462,7 @@ public class ZoneView extends BoxView {
             return index1 - index0;
         }
 
-        protected boolean updateChildren(DocumentEvent.ElementChange ec,
-                DocumentEvent e, ViewFactory f) {
+        protected boolean updateChildren(DocumentEvent.ElementChange ec, DocumentEvent e, ViewFactory f) {
             // the structure of this element changed.
             Element[] removedElems = ec.getChildrenRemoved();
             Element[] addedElems = ec.getChildrenAdded();
@@ -478,8 +474,7 @@ public class ZoneView extends BoxView {
                 // The change is in this zone
                 int replaceIndex = index - index0;
                 int nadd = Math.min(index1 - index0 + 1, addedElems.length);
-                int nremove = Math.min(index1 - index0 + 1,
-                        removedElems.length);
+                int nremove = Math.min(index1 - index0 + 1, removedElems.length);
                 View[] added = new View[nadd];
                 for (int i = 0; i < nadd; i++) {
                     added[i] = f.create(addedElems[i]);
@@ -506,9 +501,9 @@ public class ZoneView extends BoxView {
          * then perform the superclass behavior.
          *
          * @param g
-         *          the rendering surface to use
+         *        the rendering surface to use
          * @param a
-         *          the allocated region to render into
+         *        the allocated region to render into
          * @see View#paint
          */
         public void paint(Graphics g, Shape a) {
@@ -522,17 +517,16 @@ public class ZoneView extends BoxView {
          * the zone is loaded before providing the superclass behavior.
          *
          * @param x
-         *          x coordinate of the view location to convert >= 0
+         *        x coordinate of the view location to convert >= 0
          * @param y
-         *          y coordinate of the view location to convert >= 0
+         *        y coordinate of the view location to convert >= 0
          * @param a
-         *          the allocated region to render into
+         *        the allocated region to render into
          * @return the location within the model that best represents the given
          *         point in the view >= 0
          * @see View#viewToModel
          */
-        public int viewToModel(float x, float y, Shape a,
-                Position.Bias[] bias) {
+        public int viewToModel(float x, float y, Shape a, Position.Bias[] bias) {
             load();
             return super.viewToModel(x, y, a, bias);
         }
@@ -544,18 +538,17 @@ public class ZoneView extends BoxView {
          * loaded (The zone must be loaded to make this calculation).
          *
          * @param pos
-         *            the position to convert
+         *        the position to convert
          * @param a
-         *            the allocated region to render into
+         *        the allocated region to render into
          * @return the bounding box of the given position
          * @exception BadLocationException
-         *                                 if the given position does not
-         *                                 represent a valid
-         *                                 location in the associated document
+         *            if the given position does not
+         *            represent a valid
+         *            location in the associated document
          * @see View#modelToView
          */
-        public Shape modelToView(int pos, Shape a, Position.Bias b)
-                throws BadLocationException {
+        public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
             load();
             return super.modelToView(pos, a, b);
         }
@@ -583,11 +576,11 @@ public class ZoneView extends BoxView {
          * nothing.
          *
          * @param e
-         *          the change information from the associated document
+         *        the change information from the associated document
          * @param a
-         *          the current allocation of the view
+         *        the current allocation of the view
          * @param f
-         *          the factory to use to rebuild if the view has children
+         *        the factory to use to rebuild if the view has children
          * @see View#insertUpdate
          */
         public void insertUpdate(DocumentEvent e, Shape a, ViewFactory f) {
@@ -603,11 +596,11 @@ public class ZoneView extends BoxView {
          * nothing.
          *
          * @param e
-         *          the change information from the associated document
+         *        the change information from the associated document
          * @param a
-         *          the current allocation of the view
+         *        the current allocation of the view
          * @param f
-         *          the factory to use to rebuild if the view has children
+         *        the factory to use to rebuild if the view has children
          * @see View#removeUpdate
          */
         public void removeUpdate(DocumentEvent e, Shape a, ViewFactory f) {
@@ -623,11 +616,11 @@ public class ZoneView extends BoxView {
          * nothing.
          *
          * @param e
-         *          the change information from the associated document
+         *        the change information from the associated document
          * @param a
-         *          the current allocation of the view
+         *        the current allocation of the view
          * @param f
-         *          the factory to use to rebuild if the view has children
+         *        the factory to use to rebuild if the view has children
          * @see View#removeUpdate
          */
         public void changedUpdate(DocumentEvent e, Shape a, ViewFactory f) {

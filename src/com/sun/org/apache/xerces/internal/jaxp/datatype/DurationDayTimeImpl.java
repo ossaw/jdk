@@ -19,37 +19,31 @@ import javax.xml.datatype.DatatypeConstants;
  * <a href="http://www.w3.org/TR/xpath-datamodel#dayTimeDuration"> XQuery 1.0
  * and XPath 2.0 Data Model, xdt:dayTimeDuration</a>.
  * </p>
- *
- *
  * <p>
  * The DurationYearMonth object represents a period of Gregorian time, with a
  * lexical representation, "<em>PnDTnHnMnS</em>" that contains only year and
  * month components.
  * </p>
  *
- *
  * @author <a href="mailto:Vikram.Aroskar@Sun.COM">Vikram Aroskar</a>
  * @author <a href="mailto:Huizhe.wang@oracle.com">Joe Wang</a>
  * @version $Revision: 1.2 $, $Date: 2010/05/19 23:20:06 $
- * 
  * @see XMLGregorianCalendar#add(Duration)
  */
 
 class DurationDayTimeImpl extends DurationImpl {
 
-    public DurationDayTimeImpl(boolean isPositive, BigInteger days,
-            BigInteger hours, BigInteger minutes, BigDecimal seconds) {
+    public DurationDayTimeImpl(boolean isPositive, BigInteger days, BigInteger hours, BigInteger minutes,
+            BigDecimal seconds) {
 
         super(isPositive, null, null, days, hours, minutes, seconds);
         convertToCanonicalDayTime();
     }
 
-    public DurationDayTimeImpl(boolean isPositive, int days, int hours,
-            int minutes, int seconds) {
+    public DurationDayTimeImpl(boolean isPositive, int days, int hours, int minutes, int seconds) {
 
-        this(isPositive, wrap(days), wrap(hours), wrap(minutes),
-                (seconds != DatatypeConstants.FIELD_UNDEFINED ? new BigDecimal(
-                        String.valueOf(seconds)) : null));
+        this(isPositive, wrap(days), wrap(hours), wrap(minutes), (seconds != DatatypeConstants.FIELD_UNDEFINED
+                ? new BigDecimal(String.valueOf(seconds)) : null));
     }
 
     /**
@@ -60,18 +54,15 @@ class DurationDayTimeImpl extends DurationImpl {
      * <a href="http://www.w3.org/TR/xpath-datamodel#dayTimeDuration"> XQuery
      * 1.0 and XPath 2.0 Data Model, xdt:dayTimeDuration</a>.
      * </p>
-     *
      * <p>
      * The datatype <code>xdt:dayTimeDuration</code> is a subtype of
      * <code>xs:duration</code> whose lexical representation contains only day,
      * hour, minute, and second components. This datatype resides in the
      * namespace <code>http://www.w3.org/2003/11/xpath-datatypes</code>.
      * </p>
-     *
      * <p>
      * All four values are set and availabe from the created {@link Duration}
      * </p>
-     *
      * <p>
      * The XML Schema specification states that values can be of an arbitrary
      * size. Implementations may chose not to or be incapable of supporting
@@ -82,33 +73,30 @@ class DurationDayTimeImpl extends DurationImpl {
      * </p>
      *
      * @param lexicalRepresentation
-     *                              Lexical representation of a duration.
-     *
+     *        Lexical representation of a duration.
      * @throws IllegalArgumentException
-     *                                       If
-     *                                       <code>lexicalRepresentation</code>
-     *                                       is not a valid
-     *                                       representation of a
-     *                                       <code>Duration</code> expressed
-     *                                       only in
-     *                                       terms of days and time.
+     *         If
+     *         <code>lexicalRepresentation</code>
+     *         is not a valid
+     *         representation of a
+     *         <code>Duration</code> expressed
+     *         only in
+     *         terms of days and time.
      * @throws UnsupportedOperationException
-     *                                       If implementation cannot support
-     *                                       requested values.
+     *         If implementation cannot support
+     *         requested values.
      * @throws NullPointerException
-     *                                       If
-     *                                       <code>lexicalRepresentation</code>
-     *                                       is <code>null</code>.
+     *         If
+     *         <code>lexicalRepresentation</code>
+     *         is <code>null</code>.
      */
     protected DurationDayTimeImpl(String lexicalRepresentation) {
         super(lexicalRepresentation);
 
         if (getYears() > 0 || getMonths() > 0) {
-            throw new IllegalArgumentException(
-                    "Trying to create an xdt:dayTimeDuration with an invalid"
-                            + " lexical representation of \""
-                            + lexicalRepresentation
-                            + "\", data model requires a format PnDTnHnMnS.");
+            throw new IllegalArgumentException("Trying to create an xdt:dayTimeDuration with an invalid"
+                    + " lexical representation of \"" + lexicalRepresentation
+                    + "\", data model requires a format PnDTnHnMnS.");
         }
 
         convertToCanonicalDayTime();
@@ -121,14 +109,12 @@ class DurationDayTimeImpl extends DurationImpl {
      * <a href="http://www.w3.org/TR/xpath-datamodel#dayTimeDuration"> XQuery
      * 1.0 and XPath 2.0 Data Model, xdt:dayTimeDuration</a>.
      * </p>
-     *
      * <p>
      * The datatype <code>xdt:dayTimeDuration</code> is a subtype of
      * <code>xs:duration</code> whose lexical representation contains only day,
      * hour, minute, and second components. This datatype resides in the
      * namespace <code>http://www.w3.org/2003/11/xpath-datatypes</code>.
      * </p>
-     *
      * <p>
      * All four values are set by computing their values from the specified
      * milliseconds and are availabe using the <code>get</code> methods of the
@@ -141,7 +127,6 @@ class DurationDayTimeImpl extends DurationImpl {
      * <li>{@link XMLGregorianCalendar} Date/Time Datatype Field Mapping Between
      * XML Schema 1.0 and Java Representation</li>
      * </ul>
-     *
      * <p>
      * The default start instance is defined by {@link GregorianCalendar}'s use
      * of the start of the epoch: i.e., {@link java.util.Calendar#YEAR} = 1970,
@@ -151,19 +136,16 @@ class DurationDayTimeImpl extends DurationImpl {
      * in the month = {@link java.util.Calendar#FEBRUARY} so the result of
      * {@link Duration#getDays()} can be influenced.
      * </p>
-     *
      * <p>
      * Any remaining milliseconds after determining the day, hour, minute and
      * second are discarded.
      * </p>
      *
      * @param durationInMilliseconds
-     *                               Milliseconds of <code>Duration</code> to
-     *                               create.
-     *
+     *        Milliseconds of <code>Duration</code> to
+     *        create.
      * @return New <code>Duration</code> created with the specified
      *         <code>durationInMilliseconds</code>.
-     *
      * @see <a href="http://www.w3.org/TR/xpath-datamodel#dayTimeDuration">
      *      XQuery 1.0 and XPath 2.0 Data Model, xdt:dayTimeDuration</a>
      */
@@ -183,16 +165,14 @@ class DurationDayTimeImpl extends DurationImpl {
      */
     public float getValue() {
         float sec = (seconds == null) ? 0 : seconds.floatValue();
-        return (((((getDays() * 24) + getHours()) * 60) + getMinutes()) * 60)
-                + sec;
+        return (((((getDays() * 24) + getHours()) * 60) + getMinutes()) * 60) + sec;
     }
 
     private void convertToCanonicalDayTime() {
 
         while (getSeconds() >= 60) {
             seconds = seconds.subtract(BigDecimal.valueOf(60));
-            minutes = BigInteger.valueOf((long) getMinutes()).add(
-                    BigInteger.ONE);
+            minutes = BigInteger.valueOf((long) getMinutes()).add(BigInteger.ONE);
         }
 
         while (getMinutes() >= 60) {

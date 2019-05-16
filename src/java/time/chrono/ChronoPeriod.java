@@ -56,7 +56,6 @@ import java.util.Objects;
  *           classes operate correctly. All implementations that can be
  *           instantiated must be final, immutable and thread-safe. Subclasses
  *           should be Serializable wherever possible.
- *
  * @since 1.8
  */
 public interface ChronoPeriod extends TemporalAmount {
@@ -78,17 +77,16 @@ public interface ChronoPeriod extends TemporalAmount {
      * each of the supported fields.
      *
      * @param startDateInclusive
-     *                           the start date, inclusive, specifying the
-     *                           chronology of the
-     *                           calculation, not null
+     *        the start date, inclusive, specifying the
+     *        chronology of the
+     *        calculation, not null
      * @param endDateExclusive
-     *                           the end date, exclusive, in any chronology, not
-     *                           null
+     *        the end date, exclusive, in any chronology, not
+     *        null
      * @return the period between this date and the end date, not null
      * @see ChronoLocalDate#until(ChronoLocalDate)
      */
-    public static ChronoPeriod between(ChronoLocalDate startDateInclusive,
-            ChronoLocalDate endDateExclusive) {
+    public static ChronoPeriod between(ChronoLocalDate startDateInclusive, ChronoLocalDate endDateExclusive) {
         Objects.requireNonNull(startDateInclusive, "startDateInclusive");
         Objects.requireNonNull(endDateExclusive, "endDateExclusive");
         return startDateInclusive.until(endDateExclusive);
@@ -104,12 +102,12 @@ public interface ChronoPeriod extends TemporalAmount {
      * an exception.
      *
      * @param unit
-     *             the {@code TemporalUnit} for which to return the value
+     *        the {@code TemporalUnit} for which to return the value
      * @return the long value of the unit
      * @throws DateTimeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      */
     @Override
     long get(TemporalUnit unit);
@@ -181,11 +179,11 @@ public interface ChronoPeriod extends TemporalAmount {
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToAdd
-     *                    the period to add, not null
+     *        the period to add, not null
      * @return a {@code ChronoPeriod} based on this period with the requested
      *         period added, not null
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     ChronoPeriod plus(TemporalAmount amountToAdd);
 
@@ -199,11 +197,11 @@ public interface ChronoPeriod extends TemporalAmount {
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToSubtract
-     *                         the period to subtract, not null
+     *        the period to subtract, not null
      * @return a {@code ChronoPeriod} based on this period with the requested
      *         period subtracted, not null
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     ChronoPeriod minus(TemporalAmount amountToSubtract);
 
@@ -218,11 +216,11 @@ public interface ChronoPeriod extends TemporalAmount {
      * performed.
      *
      * @param scalar
-     *               the scalar to multiply by, not null
+     *        the scalar to multiply by, not null
      * @return a {@code ChronoPeriod} based on this period with the amounts
      *         multiplied by the scalar, not null
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     ChronoPeriod multipliedBy(int scalar);
 
@@ -236,9 +234,9 @@ public interface ChronoPeriod extends TemporalAmount {
      * @return a {@code ChronoPeriod} based on this period with the amounts
      *         negated, not null
      * @throws ArithmeticException
-     *                             if numeric overflow occurs, which only
-     *                             happens if one of the
-     *                             units has the value {@code Long.MIN_VALUE}
+     *         if numeric overflow occurs, which only
+     *         happens if one of the
+     *         units has the value {@code Long.MIN_VALUE}
      */
     default ChronoPeriod negated() {
         return multipliedBy(-1);
@@ -258,7 +256,7 @@ public interface ChronoPeriod extends TemporalAmount {
      * @return a {@code ChronoPeriod} based on this period with the amounts of
      *         each unit normalized, not null
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     ChronoPeriod normalized();
 
@@ -284,12 +282,12 @@ public interface ChronoPeriod extends TemporalAmount {
      * This instance is immutable and unaffected by this method call.
      *
      * @param temporal
-     *                 the temporal object to adjust, not null
+     *        the temporal object to adjust, not null
      * @return an object of the same type with the adjustment made, not null
      * @throws DateTimeException
-     *                             if unable to add
+     *         if unable to add
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     Temporal addTo(Temporal temporal);
@@ -315,12 +313,12 @@ public interface ChronoPeriod extends TemporalAmount {
      * This instance is immutable and unaffected by this method call.
      *
      * @param temporal
-     *                 the temporal object to adjust, not null
+     *        the temporal object to adjust, not null
      * @return an object of the same type with the adjustment made, not null
      * @throws DateTimeException
-     *                             if unable to subtract
+     *         if unable to subtract
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     Temporal subtractFrom(Temporal temporal);
@@ -335,7 +333,7 @@ public interface ChronoPeriod extends TemporalAmount {
      * "15 Months" is not equal to a period of "1 Year and 3 Months".
      *
      * @param obj
-     *            the object to check, null returns false
+     *        the object to check, null returns false
      * @return true if this is equal to the other period
      */
     @Override

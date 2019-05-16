@@ -39,23 +39,22 @@ public interface RemoteRef extends java.io.Externalizable {
      * the remote invocation throws an exception.
      *
      * @param obj
-     *               the object that contains the RemoteRef (e.g., the
-     *               RemoteStub
-     *               for the object.
+     *        the object that contains the RemoteRef (e.g., the
+     *        RemoteStub
+     *        for the object.
      * @param method
-     *               the method to be invoked
+     *        the method to be invoked
      * @param params
-     *               the parameter list
+     *        the parameter list
      * @param opnum
-     *               a hash that may be used to represent the method
+     *        a hash that may be used to represent the method
      * @return result of remote method invocation
      * @exception Exception
-     *                      if any exception occurs during remote method
-     *                      invocation
+     *            if any exception occurs during remote method
+     *            invocation
      * @since 1.2
      */
-    Object invoke(Remote obj, java.lang.reflect.Method method, Object[] params,
-            long opnum) throws Exception;
+    Object invoke(Remote obj, java.lang.reflect.Method method, Object[] params, long opnum) throws Exception;
 
     /**
      * Creates an appropriate call object for a new remote method invocation on
@@ -72,27 +71,24 @@ public interface RemoteRef extends java.io.Externalizable {
      * int)</code>, on the remote reference to carry out parameter marshalling,
      *             remote method executing and unmarshalling of the return
      *             value.
-     *
      * @param obj
-     *              remote stub through which to make call
+     *        remote stub through which to make call
      * @param op
-     *              array of stub operations
+     *        array of stub operations
      * @param opnum
-     *              operation number
+     *        operation number
      * @param hash
-     *              stub/skeleton interface hash
+     *        stub/skeleton interface hash
      * @return call object representing remote call
      * @throws RemoteException
-     *                         if failed to initiate new remote call
+     *         if failed to initiate new remote call
      * @see #invoke(Remote,java.lang.reflect.Method,Object[],long)
      */
     @Deprecated
-    RemoteCall newCall(RemoteObject obj, Operation[] op, int opnum, long hash)
-            throws RemoteException;
+    RemoteCall newCall(RemoteObject obj, Operation[] op, int opnum, long hash) throws RemoteException;
 
     /**
      * Executes the remote call.
-     *
      * Invoke will raise any "user" exceptions which should pass through and not
      * be caught by the stub. If any exception is raised during the remote
      * invocation, invoke should take care of cleaning up the connection before
@@ -107,11 +103,10 @@ public interface RemoteRef extends java.io.Externalizable {
      * int)</code>, on the remote reference to carry out parameter marshalling,
      *             remote method executing and unmarshalling of the return
      *             value.
-     *
      * @param call
-     *             object representing remote call
+     *        object representing remote call
      * @throws Exception
-     *                   if any exception occurs during remote method
+     *         if any exception occurs during remote method
      * @see #invoke(Remote,java.lang.reflect.Method,Object[],long)
      */
     @Deprecated
@@ -131,11 +126,10 @@ public interface RemoteRef extends java.io.Externalizable {
      * int)</code>, on the remote reference to carry out parameter marshalling,
      *             remote method executing and unmarshalling of the return
      *             value.
-     *
      * @param call
-     *             object representing remote call
+     *        object representing remote call
      * @throws RemoteException
-     *                         if remote error occurs during call cleanup
+     *         if remote error occurs during call cleanup
      * @see #invoke(Remote,java.lang.reflect.Method,Object[],long)
      */
     @Deprecated
@@ -146,7 +140,7 @@ public interface RemoteRef extends java.io.Externalizable {
      * 'out'.
      * 
      * @param out
-     *            the output stream to which the reference will be serialized
+     *        the output stream to which the reference will be serialized
      * @return the class name (without package qualification) of the reference
      *         type
      * @since JDK1.1
@@ -171,7 +165,7 @@ public interface RemoteRef extends java.io.Externalizable {
      * hashtable.
      * 
      * @param obj
-     *            the Object to compare with
+     *        the Object to compare with
      * @return true if these Objects are equal; false otherwise.
      * @see java.util.Hashtable
      * @since JDK1.1

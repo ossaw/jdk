@@ -8,11 +8,9 @@ package javax.print.event;
 import javax.print.DocPrintJob;
 
 /**
- *
  * Class <code>PrintJobEvent</code> encapsulates common events a print job
  * reports to let a listener know of progress in the processing of the
  * {@link DocPrintJob}.
- *
  */
 
 public class PrintJobEvent extends PrintEvent {
@@ -70,12 +68,12 @@ public class PrintJobEvent extends PrintEvent {
      * Constructs a <code>PrintJobEvent</code> object.
      *
      * @param source
-     *               a <code>DocPrintJob</code> object
+     *        a <code>DocPrintJob</code> object
      * @param reason
-     *               an int specifying the reason.
+     *        an int specifying the reason.
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is
-     *                                  <code>null</code>.
+     *         if <code>source</code> is
+     *         <code>null</code>.
      */
 
     public PrintJobEvent(DocPrintJob source, int reason) {
@@ -100,7 +98,6 @@ public class PrintJobEvent extends PrintEvent {
      * @return the <code>DocPrintJob</code> object that represents the print job
      *         that reports the events encapsulated by this
      *         <code>PrintJobEvent</code>.
-     *
      */
     public DocPrintJob getPrintJob() {
         return (DocPrintJob) getSource();

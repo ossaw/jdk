@@ -14,8 +14,7 @@ public class SplitLocalResolverImpl implements LocalResolver {
     private Resolver resolver;
     private LocalResolver localResolver;
 
-    public SplitLocalResolverImpl(Resolver resolver,
-            LocalResolver localResolver) {
+    public SplitLocalResolverImpl(Resolver resolver, LocalResolver localResolver) {
         this.resolver = resolver;
         this.localResolver = localResolver;
     }

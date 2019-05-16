@@ -37,8 +37,8 @@ import javax.xml.crypto.XMLStructure;
  * 
  * <pre>
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
- * X509IssuerSerial issuer = factory.newX509IssuerSerial(cert
- *         .getIssuerX500Principal().getName(), cert.getSerialNumber());
+ * X509IssuerSerial issuer = factory.newX509IssuerSerial(cert.getIssuerX500Principal().getName(), cert
+ *         .getSerialNumber());
  * </pre>
  *
  * @author Sean Mullan

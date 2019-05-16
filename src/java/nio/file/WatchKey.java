@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * A token representing the registration of a {@link Watchable watchable} object
  * with a {@link WatchService}.
- *
  * <p>
  * A watch key is created when a watchable object is registered with a watch
  * service. The key remains {@link #isValid valid} until:
@@ -20,7 +19,6 @@ import java.util.List;
  * <li>Cancelled implicitly, because the object is no longer accessible, or</li>
  * <li>By {@link WatchService#close closing} the watch service.</li>
  * </ol>
- *
  * <p>
  * A watch key has a state. When initially created the key is said to be
  * <em>ready</em>. When an event is detected then the key is <em>signalled</em>
@@ -52,7 +50,6 @@ import java.util.List;
  *         }
  *     }
  * </pre>
- *
  * <p>
  * Watch keys are safe for use by multiple concurrent threads. Where there are
  * several threads retrieving signalled keys from a watch service then care
@@ -67,7 +64,6 @@ public interface WatchKey {
 
     /**
      * Tells whether or not this watch key is valid.
-     *
      * <p>
      * A watch key is valid upon creation and remains until it is cancelled, or
      * its watch service is closed.
@@ -79,7 +75,6 @@ public interface WatchKey {
     /**
      * Retrieves and removes all pending events for this watch key, returning a
      * {@code List} of the events that were retrieved.
-     *
      * <p>
      * Note that this method does not wait if there are no events pending.
      *
@@ -89,7 +84,6 @@ public interface WatchKey {
 
     /**
      * Resets this watch key.
-     *
      * <p>
      * If this watch key has been cancelled or this watch key is already in the
      * ready state then invoking this method has no effect. Otherwise if there
@@ -111,7 +105,6 @@ public interface WatchKey {
      * it is removed. Pending events, if any, remain pending and may be
      * retrieved by invoking the {@link #pollEvents pollEvents} method after the
      * key is cancelled.
-     *
      * <p>
      * If this watch key has already been cancelled then invoking this method
      * has no effect. Once cancelled, a watch key remains forever invalid.
@@ -121,7 +114,6 @@ public interface WatchKey {
     /**
      * Returns the object for which this watch key was created. This method will
      * continue to return the object even after the key is cancelled.
-     *
      * <p>
      * As the {@code WatchService} is intended to map directly on to the native
      * file event notification facility (where available) then many of details

@@ -10,7 +10,6 @@ package java.sql;
  * reported as a <code>DataTruncation</code> warning (on reads) when a data
  * values is unexpectedly truncated for reasons other than its having exceeded
  * <code>MaxFieldSize</code>.
- *
  * <P>
  * The SQLstate for a <code>DataTruncation</code> during read is
  * <code>01004</code>.
@@ -32,18 +31,17 @@ public class DataTruncation extends SQLWarning {
      * <p>
      *
      * @param index
-     *                     The index of the parameter or column value
+     *        The index of the parameter or column value
      * @param parameter
-     *                     true if a parameter value was truncated
+     *        true if a parameter value was truncated
      * @param read
-     *                     true if a read was truncated
+     *        true if a read was truncated
      * @param dataSize
-     *                     the original size of the data
+     *        the original size of the data
      * @param transferSize
-     *                     the size after truncation
+     *        the size after truncation
      */
-    public DataTruncation(int index, boolean parameter, boolean read,
-            int dataSize, int transferSize) {
+    public DataTruncation(int index, boolean parameter, boolean read, int dataSize, int transferSize) {
         super("Data truncation", read == true ? "01004" : "22001");
         this.index = index;
         this.parameter = parameter;
@@ -62,27 +60,26 @@ public class DataTruncation extends SQLWarning {
      * <p>
      *
      * @param index
-     *                     The index of the parameter or column value
+     *        The index of the parameter or column value
      * @param parameter
-     *                     true if a parameter value was truncated
+     *        true if a parameter value was truncated
      * @param read
-     *                     true if a read was truncated
+     *        true if a read was truncated
      * @param dataSize
-     *                     the original size of the data
+     *        the original size of the data
      * @param transferSize
-     *                     the size after truncation
+     *        the size after truncation
      * @param cause
-     *                     the underlying reason for this
-     *                     <code>DataTruncation</code>
-     *                     (which is saved for later retrieval by the
-     *                     <code>getCause()</code> method); may be null
-     *                     indicating the
-     *                     cause is non-existent or unknown.
-     *
+     *        the underlying reason for this
+     *        <code>DataTruncation</code>
+     *        (which is saved for later retrieval by the
+     *        <code>getCause()</code> method); may be null
+     *        indicating the
+     *        cause is non-existent or unknown.
      * @since 1.6
      */
-    public DataTruncation(int index, boolean parameter, boolean read,
-            int dataSize, int transferSize, Throwable cause) {
+    public DataTruncation(int index, boolean parameter, boolean read, int dataSize, int transferSize,
+            Throwable cause) {
         super("Data truncation", read == true ? "01004" : "22001", cause);
         this.index = index;
         this.parameter = parameter;
@@ -93,7 +90,6 @@ public class DataTruncation extends SQLWarning {
 
     /**
      * Retrieves the index of the column or parameter that was truncated.
-     *
      * <P>
      * This may be -1 if the column or parameter index is unknown, in which case
      * the <code>parameter</code> and <code>read</code> fields should be

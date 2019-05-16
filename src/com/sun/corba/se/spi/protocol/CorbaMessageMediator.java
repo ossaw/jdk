@@ -92,8 +92,7 @@ public interface CorbaMessageMediator extends MessageMediator, ResponseHandler {
 
     public boolean isDIIRequest();
 
-    public Exception unmarshalDIIUserException(String repoId,
-            InputStream inputStream);
+    public Exception unmarshalDIIUserException(String repoId, InputStream inputStream);
 
     public void setDIIException(Exception exception);
 

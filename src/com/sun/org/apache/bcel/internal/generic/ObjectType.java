@@ -63,7 +63,7 @@ public final class ObjectType extends ReferenceType {
 
     /**
      * @param class_name
-     *                   fully qualified class name, e.g. java.lang.String
+     *        fully qualified class name, e.g. java.lang.String
      */
     public ObjectType(String class_name) {
         super(Constants.T_REFERENCE, "L" + class_name.replace('.', '/') + ";");
@@ -88,8 +88,7 @@ public final class ObjectType extends ReferenceType {
      * @return true if both type objects refer to the same class.
      */
     public boolean equals(Object type) {
-        return (type instanceof ObjectType) ? ((ObjectType) type).class_name
-                .equals(class_name) : false;
+        return (type instanceof ObjectType) ? ((ObjectType) type).class_name.equals(class_name) : false;
     }
 
     /**

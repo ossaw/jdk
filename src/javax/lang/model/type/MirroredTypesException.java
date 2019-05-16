@@ -43,7 +43,7 @@ public class MirroredTypesException extends RuntimeException {
      * Constructs a new MirroredTypesException for the specified types.
      *
      * @param types
-     *              the types being accessed
+     *        the types being accessed
      */
     public MirroredTypesException(List<? extends TypeMirror> types) {
         super("Attempt to access Class objects for TypeMirrors " + (types = // defensive
@@ -67,8 +67,7 @@ public class MirroredTypesException extends RuntimeException {
     /**
      * Explicitly set all transient fields.
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         types = null;
     }

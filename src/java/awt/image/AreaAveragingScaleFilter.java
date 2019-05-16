@@ -34,13 +34,11 @@ import java.awt.Rectangle;
  * @see FilteredImageSource
  * @see ReplicateScaleFilter
  * @see ImageFilter
- *
  * @author Jim Graham
  */
 public class AreaAveragingScaleFilter extends ReplicateScaleFilter {
     private static final ColorModel rgbmodel = ColorModel.getRGBdefault();
-    private static final int neededHints = (TOPDOWNLEFTRIGHT
-            | COMPLETESCANLINES);
+    private static final int neededHints = (TOPDOWNLEFTRIGHT | COMPLETESCANLINES);
 
     private boolean passthrough;
     private float reds[], greens[], blues[], alphas[];
@@ -52,9 +50,9 @@ public class AreaAveragingScaleFilter extends ReplicateScaleFilter {
      * source Image as specified by the width and height parameters.
      * 
      * @param width
-     *               the target width to scale the image
+     *        the target width to scale the image
      * @param height
-     *               the target height to scale the image
+     *        the target height to scale the image
      */
     public AreaAveragingScaleFilter(int width, int height) {
         super(width, height);
@@ -126,8 +124,8 @@ public class AreaAveragingScaleFilter extends ReplicateScaleFilter {
         return outpix;
     }
 
-    private void accumPixels(int x, int y, int w, int h, ColorModel model,
-            Object pixels, int off, int scansize) {
+    private void accumPixels(int x, int y, int w, int h, ColorModel model, Object pixels, int off,
+            int scansize) {
         if (reds == null) {
             makeAccumBuffers();
         }
@@ -204,8 +202,7 @@ public class AreaAveragingScaleFilter extends ReplicateScaleFilter {
             if ((dyrem -= amty) == 0) {
                 int outpix[] = calcRow();
                 do {
-                    consumer.setPixels(0, dy, destWidth, 1, rgbmodel, outpix, 0,
-                            destWidth);
+                    consumer.setPixels(0, dy, destWidth, 1, rgbmodel, outpix, 0, destWidth);
                     dy++;
                 } while ((syrem -= amty) >= amty && amty == srcHeight);
             } else {
@@ -236,8 +233,8 @@ public class AreaAveragingScaleFilter extends ReplicateScaleFilter {
      * 
      * @see ReplicateScaleFilter
      */
-    public void setPixels(int x, int y, int w, int h, ColorModel model,
-            byte pixels[], int off, int scansize) {
+    public void setPixels(int x, int y, int w, int h, ColorModel model, byte pixels[], int off,
+            int scansize) {
         if (passthrough) {
             super.setPixels(x, y, w, h, model, pixels, off, scansize);
         } else {
@@ -260,8 +257,7 @@ public class AreaAveragingScaleFilter extends ReplicateScaleFilter {
      * 
      * @see ReplicateScaleFilter
      */
-    public void setPixels(int x, int y, int w, int h, ColorModel model,
-            int pixels[], int off, int scansize) {
+    public void setPixels(int x, int y, int w, int h, ColorModel model, int pixels[], int off, int scansize) {
         if (passthrough) {
             super.setPixels(x, y, w, h, model, pixels, off, scansize);
         } else {

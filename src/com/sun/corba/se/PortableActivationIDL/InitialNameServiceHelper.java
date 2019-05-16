@@ -22,8 +22,7 @@ abstract public class InitialNameServiceHelper {
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static com.sun.corba.se.PortableActivationIDL.InitialNameService extract(
-            org.omg.CORBA.Any a) {
+    public static com.sun.corba.se.PortableActivationIDL.InitialNameService extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -32,8 +31,8 @@ abstract public class InitialNameServiceHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    com.sun.corba.se.PortableActivationIDL.InitialNameServiceHelper
-                            .id(), "InitialNameService");
+                    com.sun.corba.se.PortableActivationIDL.InitialNameServiceHelper.id(),
+                    "InitialNameService");
         }
         return __typeCode;
     }
@@ -52,8 +51,7 @@ abstract public class InitialNameServiceHelper {
         ostream.write_Object((org.omg.CORBA.Object) value);
     }
 
-    public static com.sun.corba.se.PortableActivationIDL.InitialNameService narrow(
-            org.omg.CORBA.Object obj) {
+    public static com.sun.corba.se.PortableActivationIDL.InitialNameService narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof com.sun.corba.se.PortableActivationIDL.InitialNameService)

@@ -22,7 +22,6 @@ import org.omg.CORBA.ORB;
  * replacement implementation for all the methods of
  * <code>javax.rmi.CORBA.Stub</code>. If delegation is enabled, each stub has an
  * associated delegate.
- *
  * Delegates are enabled by providing the delegate's class name as the value of
  * the <code>javax.rmi.CORBA.StubClass</code> system property.
  *
@@ -56,8 +55,7 @@ public interface StubDelegate {
      * "{@docRoot}/serialized-form.html#javax.rmi.CORBA.Stub">
      * <code>Stub.readObject(java.io.ObjectInputStream)</code></a>.
      */
-    void readObject(Stub self, ObjectInputStream s) throws IOException,
-            ClassNotFoundException;
+    void readObject(Stub self, ObjectInputStream s) throws IOException, ClassNotFoundException;
 
     // _REVISIT_ cannot link to Stub.writeObject directly... why not?
     /**

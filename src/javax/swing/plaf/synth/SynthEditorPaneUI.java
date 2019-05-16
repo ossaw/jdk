@@ -30,7 +30,7 @@ public class SynthEditorPaneUI extends BasicEditorPaneUI implements SynthUI {
      * Creates a new UI object for the given component.
      *
      * @param c
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent c) {
@@ -45,11 +45,9 @@ public class SynthEditorPaneUI extends BasicEditorPaneUI implements SynthUI {
         // Installs the text cursor on the component
         super.installDefaults();
         JComponent c = getComponent();
-        Object clientProperty = c.getClientProperty(
-                JEditorPane.HONOR_DISPLAY_PROPERTIES);
+        Object clientProperty = c.getClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES);
         if (clientProperty == null) {
-            c.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES,
-                    localTrue);
+            c.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, localTrue);
         }
         updateStyle(getComponent());
     }
@@ -67,11 +65,9 @@ public class SynthEditorPaneUI extends BasicEditorPaneUI implements SynthUI {
         context.dispose();
         style = null;
 
-        Object clientProperty = c.getClientProperty(
-                JEditorPane.HONOR_DISPLAY_PROPERTIES);
+        Object clientProperty = c.getClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES);
         if (clientProperty == localTrue) {
-            c.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES,
-                    Boolean.FALSE);
+            c.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.FALSE);
         }
         super.uninstallDefaults();
     }
@@ -84,7 +80,7 @@ public class SynthEditorPaneUI extends BasicEditorPaneUI implements SynthUI {
      * EditorKit change.
      *
      * @param evt
-     *            the property change event
+     *        the property change event
      */
     @Override
     protected void propertyChange(PropertyChangeEvent evt) {
@@ -131,15 +127,14 @@ public class SynthEditorPaneUI extends BasicEditorPaneUI implements SynthUI {
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -156,9 +151,9 @@ public class SynthEditorPaneUI extends BasicEditorPaneUI implements SynthUI {
      * Paints the specified component.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
@@ -174,16 +169,14 @@ public class SynthEditorPaneUI extends BasicEditorPaneUI implements SynthUI {
     }
 
     void paintBackground(SynthContext context, Graphics g, JComponent c) {
-        context.getPainter().paintEditorPaneBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+        context.getPainter().paintEditorPaneBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintEditorPaneBorder(context, g, x, y, w, h);
     }
 }

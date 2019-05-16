@@ -26,7 +26,7 @@ public class VerifyError extends LinkageError {
      * Constructs an <code>VerifyError</code> with the specified detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public VerifyError(String s) {
         super(s);

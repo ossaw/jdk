@@ -42,7 +42,6 @@ import java.util.Enumeration;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see RefAddr
  * @see StringRefAddr
  * @see BinaryRefAddr
@@ -94,9 +93,9 @@ public class Reference implements Cloneable, java.io.Serializable {
      * created reference contains zero addresses.
      *
      * @param className
-     *                  The non-null class name of the object to which this
-     *                  reference
-     *                  refers.
+     *        The non-null class name of the object to which this
+     *        reference
+     *        refers.
      */
     public Reference(String className) {
         this.className = className;
@@ -108,11 +107,11 @@ public class Reference implements Cloneable, java.io.Serializable {
      * an address. Class factory and class factory location are set to null.
      *
      * @param className
-     *                  The non-null class name of the object to which this
-     *                  reference
-     *                  refers.
+     *        The non-null class name of the object to which this
+     *        reference
+     *        refers.
      * @param addr
-     *                  The non-null address of the object.
+     *        The non-null address of the object.
      */
     public Reference(String className, RefAddr addr) {
         this.className = className;
@@ -125,16 +124,16 @@ public class Reference implements Cloneable, java.io.Serializable {
      * the class name and location of the object's factory.
      *
      * @param className
-     *                        The non-null class name of the object to which
-     *                        this reference
-     *                        refers.
+     *        The non-null class name of the object to which
+     *        this reference
+     *        refers.
      * @param factory
-     *                        The possibly null class name of the object's
-     *                        factory.
+     *        The possibly null class name of the object's
+     *        factory.
      * @param factoryLocation
-     *                        The possibly null location from which to load the
-     *                        factory
-     *                        (e.g. URL)
+     *        The possibly null location from which to load the
+     *        factory
+     *        (e.g. URL)
      * @see javax.naming.spi.ObjectFactory
      * @see javax.naming.spi.NamingManager#getObjectInstance
      */
@@ -150,23 +149,22 @@ public class Reference implements Cloneable, java.io.Serializable {
      * object.
      *
      * @param className
-     *                        The non-null class name of the object to which
-     *                        this reference
-     *                        refers.
+     *        The non-null class name of the object to which
+     *        this reference
+     *        refers.
      * @param factory
-     *                        The possibly null class name of the object's
-     *                        factory.
+     *        The possibly null class name of the object's
+     *        factory.
      * @param factoryLocation
-     *                        The possibly null location from which to load the
-     *                        factory
-     *                        (e.g. URL)
+     *        The possibly null location from which to load the
+     *        factory
+     *        (e.g. URL)
      * @param addr
-     *                        The non-null address of the object.
+     *        The non-null address of the object.
      * @see javax.naming.spi.ObjectFactory
      * @see javax.naming.spi.NamingManager#getObjectInstance
      */
-    public Reference(String className, RefAddr addr, String factory,
-            String factoryLocation) {
+    public Reference(String className, RefAddr addr, String factory, String factoryLocation) {
         this(className, addr);
         classFactory = factory;
         classFactoryLocation = factoryLocation;
@@ -211,7 +209,7 @@ public class Reference implements Cloneable, java.io.Serializable {
      * String.compareTo() is used to test the equality of the address types.
      *
      * @param addrType
-     *                 The non-null address type for which to find the address.
+     *        The non-null address type for which to find the address.
      * @return The address in this reference with address type 'addrType; null
      *         if no such address exist.
      */
@@ -230,12 +228,12 @@ public class Reference implements Cloneable, java.io.Serializable {
      * Retrieves the address at index posn.
      * 
      * @param posn
-     *             The index of the address to retrieve.
+     *        The index of the address to retrieve.
      * @return The address at the 0-based index posn. It must be in the range
      *         [0,getAddressCount()).
      * @exception ArrayIndexOutOfBoundsException
-     *                                           If posn not in the specified
-     *                                           range.
+     *            If posn not in the specified
+     *            range.
      */
     public RefAddr get(int posn) {
         return addrs.elementAt(posn);
@@ -267,7 +265,7 @@ public class Reference implements Cloneable, java.io.Serializable {
      * Adds an address to the end of the list of addresses.
      *
      * @param addr
-     *             The non-null address to add.
+     *        The non-null address to add.
      */
     public void add(RefAddr addr) {
         addrs.addElement(addr);
@@ -278,12 +276,12 @@ public class Reference implements Cloneable, java.io.Serializable {
      * index posn or greater are shifted up the list by one (away from index 0).
      *
      * @param posn
-     *             The 0-based index of the list to insert addr.
+     *        The 0-based index of the list to insert addr.
      * @param addr
-     *             The non-null address to add.
+     *        The non-null address to add.
      * @exception ArrayIndexOutOfBoundsException
-     *                                           If posn not in the specified
-     *                                           range.
+     *            If posn not in the specified
+     *            range.
      */
     public void add(int posn, RefAddr addr) {
         addrs.insertElementAt(addr, posn);
@@ -295,11 +293,11 @@ public class Reference implements Cloneable, java.io.Serializable {
      * (towards index 0).
      *
      * @param posn
-     *             The 0-based index of in address to delete.
+     *        The 0-based index of in address to delete.
      * @return The address removed.
      * @exception ArrayIndexOutOfBoundsException
-     *                                           If posn not in the specified
-     *                                           range.
+     *            If posn not in the specified
+     *            range.
      */
     public Object remove(int posn) {
         Object r = addrs.elementAt(posn);
@@ -323,15 +321,14 @@ public class Reference implements Cloneable, java.io.Serializable {
      * an instance of Reference, null is returned.
      *
      * @param obj
-     *            The possibly null object to check.
+     *        The possibly null object to check.
      * @return true if obj is equal to this reference; false otherwise.
      */
     public boolean equals(Object obj) {
         if ((obj != null) && (obj instanceof Reference)) {
             Reference target = (Reference) obj;
             // ignore factory information
-            if (target.className.equals(this.className) && target.size() == this
-                    .size()) {
+            if (target.className.equals(this.className) && target.size() == this.size()) {
                 Enumeration<RefAddr> mycomps = getAll();
                 Enumeration<RefAddr> comps = target.getAll();
                 while (mycomps.hasMoreElements())
@@ -365,8 +362,7 @@ public class Reference implements Cloneable, java.io.Serializable {
      * @return The non-null string representation of this reference.
      */
     public String toString() {
-        StringBuffer buf = new StringBuffer("Reference Class Name: " + className
-                + "\n");
+        StringBuffer buf = new StringBuffer("Reference Class Name: " + className + "\n");
         int len = addrs.size();
         for (int i = 0; i < len; i++)
             buf.append(get(i).toString());
@@ -380,8 +376,7 @@ public class Reference implements Cloneable, java.io.Serializable {
      * created copy does not affect this Reference and vice versa.
      */
     public Object clone() {
-        Reference r = new Reference(className, classFactory,
-                classFactoryLocation);
+        Reference r = new Reference(className, classFactory, classFactoryLocation);
         Enumeration<RefAddr> a = getAll();
         r.addrs = new Vector<>();
 

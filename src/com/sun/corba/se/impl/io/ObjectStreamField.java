@@ -22,15 +22,13 @@ import java.security.PrivilegedAction;
 /**
  * A description of a field in a serializable class. A array of these is used to
  * declare the persistent fields of a class.
- *
  */
 public class ObjectStreamField implements Comparable {
-    private static final Bridge bridge = (Bridge) AccessController.doPrivileged(
-            new PrivilegedAction() {
-                public Object run() {
-                    return Bridge.get();
-                }
-            });
+    private static final Bridge bridge = (Bridge) AccessController.doPrivileged(new PrivilegedAction() {
+        public Object run() {
+            return Bridge.get();
+        }
+    });
 
     /**
      * Create a named field with the specified type.
@@ -200,8 +198,7 @@ public class ObjectStreamField implements Comparable {
         if (typeString == null && other.typeString == null)
             return true;
 
-        return ObjectStreamClass.compareClassNames(typeString, other.typeString,
-                '/');
+        return ObjectStreamClass.compareClassNames(typeString, other.typeString, '/');
     }
 
     /*

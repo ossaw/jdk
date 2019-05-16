@@ -36,21 +36,18 @@ public class PasswordCallback implements Callback, java.io.Serializable {
     /**
      * Construct a {@code PasswordCallback} with a prompt and a boolean
      * specifying whether the password should be displayed as it is being typed.
-     *
      * <p>
      *
      * @param prompt
-     *               the prompt used to request the password.
-     *               <p>
-     *
+     *        the prompt used to request the password.
+     *        <p>
      * @param echoOn
-     *               true if the password should be displayed as it is being
-     *               typed.
-     *
+     *        true if the password should be displayed as it is being
+     *        typed.
      * @exception IllegalArgumentException
-     *                                     if {@code prompt} is null or if
-     *                                     {@code prompt} has a
-     *                                     length of 0.
+     *            if {@code prompt} is null or if
+     *            {@code prompt} has a
+     *            length of 0.
      */
     public PasswordCallback(String prompt, boolean echoOn) {
         if (prompt == null || prompt.length() == 0)
@@ -62,7 +59,6 @@ public class PasswordCallback implements Callback, java.io.Serializable {
 
     /**
      * Get the prompt.
-     *
      * <p>
      *
      * @return the prompt.
@@ -73,7 +69,6 @@ public class PasswordCallback implements Callback, java.io.Serializable {
 
     /**
      * Return whether the password should be displayed as it is being typed.
-     *
      * <p>
      *
      * @return the whether the password should be displayed as it is being
@@ -85,15 +80,12 @@ public class PasswordCallback implements Callback, java.io.Serializable {
 
     /**
      * Set the retrieved password.
-     *
      * <p>
      * This method makes a copy of the input <i>password</i> before storing it.
-     *
      * <p>
      *
      * @param password
-     *                 the retrieved password, which may be null.
-     *
+     *        the retrieved password, which may be null.
      * @see #getPassword
      */
     public void setPassword(char[] password) {
@@ -102,14 +94,11 @@ public class PasswordCallback implements Callback, java.io.Serializable {
 
     /**
      * Get the retrieved password.
-     *
      * <p>
      * This method returns a copy of the retrieved password.
-     *
      * <p>
      *
      * @return the retrieved password, which may be null.
-     *
      * @see #setPassword
      */
     public char[] getPassword() {

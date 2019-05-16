@@ -36,24 +36,21 @@ public final class Version {
      * Get the basic version string for the current Serializer. Version String
      * formatted like
      * <CODE>"<B>Serializer</B> <B>Java</B> v.r[.dd| <B>D</B>nn]"</CODE>.
-     *
      * Futurework: have this read version info from jar manifest.
      *
      * @return String denoting our current version
      */
     public static String getVersion() {
-        return getProduct() + " " + getImplementationLanguage() + " "
-                + getMajorVersionNum() + "." + getReleaseVersionNum() + "."
-                + ((getDevelopmentVersionNum() > 0) ? ("D"
-                        + getDevelopmentVersionNum())
-                        : ("" + getMaintenanceVersionNum()));
+        return getProduct() + " " + getImplementationLanguage() + " " + getMajorVersionNum() + "."
+                + getReleaseVersionNum() + "." + ((getDevelopmentVersionNum() > 0) ? ("D"
+                        + getDevelopmentVersionNum()) : ("" + getMaintenanceVersionNum()));
     }
 
     /**
      * Print the processor version to the command line.
      *
      * @param argv
-     *             command line arguments, unused.
+     *        command line arguments, unused.
      */
     public static void _main(String argv[]) {
         System.out.println(getVersion());
@@ -77,7 +74,6 @@ public final class Version {
      * Major version number. Version number. This changes only when there is a
      * significant, externally apparent enhancement from the previous release.
      * 'n' represents the n'th version.
-     *
      * Clients should carefully consider the implications of new versions as
      * external interfaces and behaviour may have changed.
      */
@@ -111,13 +107,11 @@ public final class Version {
      * Development Drop Number. Optional identifier designates development drop
      * of a specific release. D01 is the first development drop of a new
      * release.
-     *
      * Development drops are works in progress towards a compeleted, final
      * release. A specific development drop may not completely implement all
      * aspects of a new feature, which may take several development drops to
      * complete. At the point of the final drop for the release, the D suffix
      * will be omitted.
-     *
      * Each 'D' drops can contain functional enhancements as well as defect
      * fixes. 'D' drops may not be as stable as the final releases.
      */

@@ -12,7 +12,6 @@
  * standard arithmetic operations, {@code BigInteger} provides modular
  * arithmetic, GCD calculation, primality testing, prime generation, bit
  * manipulation, and a few other miscellaneous operations.
- *
  * {@code BigDecimal} provides arbitrary-precision signed decimal numbers
  * suitable for currency calculations and the like. {@code
  * BigDecimal} gives the user complete control over rounding behavior, allowing

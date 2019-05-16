@@ -30,12 +30,10 @@ package java.awt.dnd;
  * @see DragSourceEvent
  * @see DragSourceListener
  * @see DragSourceMotionListener
- *
  * @author David Mendenhall
  * @since 1.4
  */
-public abstract class DragSourceAdapter implements DragSourceListener,
-        DragSourceMotionListener {
+public abstract class DragSourceAdapter implements DragSourceListener, DragSourceMotionListener {
 
     /**
      * Called as the cursor's hotspot enters a platform-dependent drop site.
@@ -48,7 +46,7 @@ public abstract class DragSourceAdapter implements DragSourceListener,
      * </UL>
      *
      * @param dsde
-     *             the <code>DragSourceDragEvent</code>
+     *        the <code>DragSourceDragEvent</code>
      */
     public void dragEnter(DragSourceDragEvent dsde) {}
 
@@ -64,7 +62,7 @@ public abstract class DragSourceAdapter implements DragSourceListener,
      * </UL>
      *
      * @param dsde
-     *             the <code>DragSourceDragEvent</code>
+     *        the <code>DragSourceDragEvent</code>
      */
     public void dragOver(DragSourceDragEvent dsde) {}
 
@@ -72,7 +70,7 @@ public abstract class DragSourceAdapter implements DragSourceListener,
      * Called whenever the mouse is moved during a drag operation.
      *
      * @param dsde
-     *             the <code>DragSourceDragEvent</code>
+     *        the <code>DragSourceDragEvent</code>
      */
     public void dragMouseMoved(DragSourceDragEvent dsde) {}
 
@@ -83,7 +81,7 @@ public abstract class DragSourceAdapter implements DragSourceListener,
      * keyboard modifiers that the user is interacting with.
      *
      * @param dsde
-     *             the <code>DragSourceDragEvent</code>
+     *        the <code>DragSourceDragEvent</code>
      */
     public void dropActionChanged(DragSourceDragEvent dsde) {}
 
@@ -106,7 +104,7 @@ public abstract class DragSourceAdapter implements DragSourceListener,
      * </UL>
      *
      * @param dse
-     *            the <code>DragSourceEvent</code>
+     *        the <code>DragSourceEvent</code>
      */
     public void dragExit(DragSourceEvent dse) {}
 
@@ -120,7 +118,7 @@ public abstract class DragSourceAdapter implements DragSourceListener,
      * resources become invalid.
      *
      * @param dsde
-     *             the <code>DragSourceDropEvent</code>
+     *        the <code>DragSourceDropEvent</code>
      */
     public void dragDropEnd(DragSourceDropEvent dsde) {}
 }

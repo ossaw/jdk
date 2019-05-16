@@ -27,7 +27,6 @@ package com.sun.jmx.snmp;
  * <LI>"TA" for <CODE>Table</CODE>
  * <LI>"U" for <CODE>Unsigned32</CODE>
  * </UL>
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -43,11 +42,11 @@ public class SnmpOidRecord {
      * name, OID and type.
      * 
      * @param name
-     *             The logical name of the MIB variable.
+     *        The logical name of the MIB variable.
      * @param oid
-     *             The OID of the MIB variable.
+     *        The OID of the MIB variable.
      * @param type
-     *             The type of the MIB variable.
+     *        The type of the MIB variable.
      */
     public SnmpOidRecord(String name, String oid, String type) {
         this.name = name;

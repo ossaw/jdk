@@ -15,8 +15,7 @@ package org.omg.PortableServer;
  * POA. If the POA also has the PERSISTENT policy, assigned Object Ids must be
  * unique across all instantiations of the same POA.
  */
-public class IdAssignmentPolicyValue implements
-        org.omg.CORBA.portable.IDLEntity {
+public class IdAssignmentPolicyValue implements org.omg.CORBA.portable.IDLEntity {
     private int __value;
     private static int __size = 2;
     private static org.omg.PortableServer.IdAssignmentPolicyValue[] __array = new org.omg.PortableServer.IdAssignmentPolicyValue[__size];
@@ -32,8 +31,7 @@ public class IdAssignmentPolicyValue implements
         return __value;
     }
 
-    public static org.omg.PortableServer.IdAssignmentPolicyValue from_int(
-            int value) {
+    public static org.omg.PortableServer.IdAssignmentPolicyValue from_int(int value) {
         if (value >= 0 && value < __size)
             return __array[value];
         else

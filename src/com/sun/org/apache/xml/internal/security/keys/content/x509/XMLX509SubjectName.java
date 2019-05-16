@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -34,8 +32,7 @@ import org.w3c.dom.Element;
 /**
  * @author $Author: coheigea $
  */
-public class XMLX509SubjectName extends SignatureElementProxy implements
-        XMLX509DataContent {
+public class XMLX509SubjectName extends SignatureElementProxy implements XMLX509DataContent {
 
     /**
      * Constructor X509SubjectName
@@ -44,8 +41,7 @@ public class XMLX509SubjectName extends SignatureElementProxy implements
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    public XMLX509SubjectName(Element element, String BaseURI)
-            throws XMLSecurityException {
+    public XMLX509SubjectName(Element element, String BaseURI) throws XMLSecurityException {
         super(element, BaseURI);
     }
 
@@ -73,7 +69,6 @@ public class XMLX509SubjectName extends SignatureElementProxy implements
 
     /**
      * Method getSubjectName
-     *
      *
      * @return the subject name
      */

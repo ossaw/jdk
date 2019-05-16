@@ -129,7 +129,6 @@ public class SnmpV3Message extends SnmpMsg {
 
     /**
      * Constructor.
-     *
      */
     public SnmpV3Message() {}
 
@@ -138,17 +137,15 @@ public class SnmpV3Message extends SnmpMsg {
      * internal use only.
      *
      * @param outputBytes
-     *                    An array to receive the resulting encoding.
-     *
+     *        An array to receive the resulting encoding.
      * @exception ArrayIndexOutOfBoundsException
-     *                                           If the result does not fit into
-     *                                           the specified array.
+     *            If the result does not fit into
+     *            the specified array.
      */
     public int encodeMessage(byte[] outputBytes) throws SnmpTooBigException {
         int encodingLength = 0;
         if (SNMP_LOGGER.isLoggable(Level.FINER)) {
-            SNMP_LOGGER.logp(Level.FINER, SnmpV3Message.class.getName(),
-                    "encodeMessage",
+            SNMP_LOGGER.logp(Level.FINER, SnmpV3Message.class.getName(), "encodeMessage",
                     "Can't encode directly V3Message! Need a SecuritySubSystem");
         }
         throw new IllegalArgumentException("Can't encode");
@@ -159,14 +156,12 @@ public class SnmpV3Message extends SnmpMsg {
      * use only.
      *
      * @param inputBytes
-     *                   The bytes to be decoded.
-     *
+     *        The bytes to be decoded.
      * @exception SnmpStatusException
-     *                                If the specified bytes are not a valid
-     *                                encoding.
+     *            If the specified bytes are not a valid
+     *            encoding.
      */
-    public void decodeMessage(byte[] inputBytes, int byteCount)
-            throws SnmpStatusException {
+    public void decodeMessage(byte[] inputBytes, int byteCount) throws SnmpStatusException {
 
         try {
             BerDecoder bdec = new BerDecoder(inputBytes);
@@ -196,25 +191,16 @@ public class SnmpV3Message extends SnmpMsg {
         }
 
         if (SNMP_LOGGER.isLoggable(Level.FINER)) {
-            final StringBuilder strb = new StringBuilder().append(
-                    "Unmarshalled message : \n").append("version : ").append(
-                            version).append("\n").append("msgId : ").append(
-                                    msgId).append("\n").append("msgMaxSize : ")
-                    .append(msgMaxSize).append("\n").append("msgFlags : ")
-                    .append(msgFlags).append("\n").append("msgSecurityModel : ")
-                    .append(msgSecurityModel).append("\n").append(
-                            "contextEngineId : ").append(contextEngineId == null
-                                    ? null
-                                    : SnmpEngineId.createEngineId(
-                                            contextEngineId)).append("\n")
-                    .append("contextName : ").append(contextName).append("\n")
-                    .append("data : ").append(data).append("\n").append(
-                            "dat len : ").append((data == null) ? 0
-                                    : data.length).append("\n").append(
-                                            "encryptedPdu : ").append(
-                                                    encryptedPdu).append("\n");
-            SNMP_LOGGER.logp(Level.FINER, SnmpV3Message.class.getName(),
-                    "decodeMessage", strb.toString());
+            final StringBuilder strb = new StringBuilder().append("Unmarshalled message : \n").append(
+                    "version : ").append(version).append("\n").append("msgId : ").append(msgId).append("\n")
+                    .append("msgMaxSize : ").append(msgMaxSize).append("\n").append("msgFlags : ").append(
+                            msgFlags).append("\n").append("msgSecurityModel : ").append(msgSecurityModel)
+                    .append("\n").append("contextEngineId : ").append(contextEngineId == null ? null
+                            : SnmpEngineId.createEngineId(contextEngineId)).append("\n").append(
+                                    "contextName : ").append(contextName).append("\n").append("data : ")
+                    .append(data).append("\n").append("dat len : ").append((data == null) ? 0 : data.length)
+                    .append("\n").append("encryptedPdu : ").append(encryptedPdu).append("\n");
+            SNMP_LOGGER.logp(Level.FINER, SnmpV3Message.class.getName(), "decodeMessage", strb.toString());
         }
     }
 
@@ -222,7 +208,7 @@ public class SnmpV3Message extends SnmpMsg {
      * Returns the associated request Id.
      * 
      * @param data
-     *             The flat message.
+     *        The flat message.
      * @return The request Id.
      */
     public int getRequestId(byte[] data) throws SnmpStatusException {
@@ -239,8 +225,7 @@ public class SnmpV3Message extends SnmpMsg {
         }
         try {
             bdec.closeSequence();
-        } catch (BerException x) {
-        }
+        } catch (BerException x) {}
 
         return msgId;
     }
@@ -257,45 +242,36 @@ public class SnmpV3Message extends SnmpMsg {
      * throws an exception.
      *
      * @param p
-     *                      The PDU to be encoded.
+     *        The PDU to be encoded.
      * @param maxDataLength
-     *                      The maximum length permitted for the data field.
-     *
+     *        The maximum length permitted for the data field.
      * @exception SnmpStatusException
-     *                                           If the specified
-     *                                           <CODE>pdu</CODE> is not valid.
+     *            If the specified
+     *            <CODE>pdu</CODE> is not valid.
      * @exception SnmpTooBigException
-     *                                           If the resulting encoding does
-     *                                           not fit into
-     *                                           <CODE>maxDataLength</CODE>
-     *                                           bytes.
+     *            If the resulting encoding does
+     *            not fit into
+     *            <CODE>maxDataLength</CODE>
+     *            bytes.
      * @exception ArrayIndexOutOfBoundsException
-     *                                           If the encoding exceeds
-     *                                           <CODE>maxDataLength</CODE>.
+     *            If the encoding exceeds
+     *            <CODE>maxDataLength</CODE>.
      */
-    public void encodeSnmpPdu(SnmpPdu p, int maxDataLength)
-            throws SnmpStatusException, SnmpTooBigException {
+    public void encodeSnmpPdu(SnmpPdu p, int maxDataLength) throws SnmpStatusException, SnmpTooBigException {
 
         SnmpScopedPduPacket pdu = (SnmpScopedPduPacket) p;
 
         if (SNMP_LOGGER.isLoggable(Level.FINER)) {
-            final StringBuilder strb = new StringBuilder().append(
-                    "PDU to marshall: \n").append("security parameters : ")
-                    .append(pdu.securityParameters).append("\n").append(
-                            "type : ").append(pdu.type).append("\n").append(
-                                    "version : ").append(pdu.version).append(
-                                            "\n").append("requestId : ").append(
-                                                    pdu.requestId).append("\n")
-                    .append("msgId : ").append(pdu.msgId).append("\n").append(
-                            "msgMaxSize : ").append(pdu.msgMaxSize).append("\n")
-                    .append("msgFlags : ").append(pdu.msgFlags).append("\n")
-                    .append("msgSecurityModel : ").append(pdu.msgSecurityModel)
-                    .append("\n").append("contextEngineId : ").append(
-                            pdu.contextEngineId).append("\n").append(
-                                    "contextName : ").append(pdu.contextName)
-                    .append("\n");
-            SNMP_LOGGER.logp(Level.FINER, SnmpV3Message.class.getName(),
-                    "encodeSnmpPdu", strb.toString());
+            final StringBuilder strb = new StringBuilder().append("PDU to marshall: \n").append(
+                    "security parameters : ").append(pdu.securityParameters).append("\n").append("type : ")
+                    .append(pdu.type).append("\n").append("version : ").append(pdu.version).append("\n")
+                    .append("requestId : ").append(pdu.requestId).append("\n").append("msgId : ").append(
+                            pdu.msgId).append("\n").append("msgMaxSize : ").append(pdu.msgMaxSize).append(
+                                    "\n").append("msgFlags : ").append(pdu.msgFlags).append("\n").append(
+                                            "msgSecurityModel : ").append(pdu.msgSecurityModel).append("\n")
+                    .append("contextEngineId : ").append(pdu.contextEngineId).append("\n").append(
+                            "contextName : ").append(pdu.contextName).append("\n");
+            SNMP_LOGGER.logp(Level.FINER, SnmpV3Message.class.getName(), "encodeSnmpPdu", strb.toString());
         }
 
         version = pdu.version;
@@ -349,8 +325,7 @@ public class SnmpV3Message extends SnmpMsg {
                     break;
 
                 default:
-                    throw new SnmpStatusException("Invalid pdu type " + String
-                            .valueOf(pdu.type));
+                    throw new SnmpStatusException("Invalid pdu type " + String.valueOf(pdu.type));
             }
             benc.closeSequence(pdu.type);
             dataLength = benc.trim();
@@ -366,7 +341,7 @@ public class SnmpV3Message extends SnmpMsg {
      *
      * @return The resulting PDU.
      * @exception SnmpStatusException
-     *                                If the encoding is not valid.
+     *            If the encoding is not valid.
      */
 
     public SnmpPdu decodeSnmpPdu() throws SnmpStatusException {
@@ -408,8 +383,8 @@ public class SnmpV3Message extends SnmpMsg {
             bdec.closeSequence();
         } catch (BerException e) {
             if (SNMP_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_LOGGER.logp(Level.FINEST, SnmpV3Message.class.getName(),
-                        "decodeSnmpPdu", "BerException", e);
+                SNMP_LOGGER.logp(Level.FINEST, SnmpV3Message.class.getName(), "decodeSnmpPdu", "BerException",
+                        e);
             }
             throw new SnmpStatusException(snmpRspWrongEncoding);
         }
@@ -430,21 +405,15 @@ public class SnmpV3Message extends SnmpMsg {
         pdu.securityParameters = securityParameters;
 
         if (SNMP_LOGGER.isLoggable(Level.FINER)) {
-            final StringBuilder strb = new StringBuilder().append(
-                    "Unmarshalled PDU : \n").append("type : ").append(pdu.type)
-                    .append("\n").append("version : ").append(pdu.version)
-                    .append("\n").append("requestId : ").append(pdu.requestId)
-                    .append("\n").append("msgId : ").append(pdu.msgId).append(
-                            "\n").append("msgMaxSize : ").append(pdu.msgMaxSize)
-                    .append("\n").append("msgFlags : ").append(pdu.msgFlags)
-                    .append("\n").append("msgSecurityModel : ").append(
-                            pdu.msgSecurityModel).append("\n").append(
-                                    "contextEngineId : ").append(
-                                            pdu.contextEngineId).append("\n")
-                    .append("contextName : ").append(pdu.contextName).append(
-                            "\n");
-            SNMP_LOGGER.logp(Level.FINER, SnmpV3Message.class.getName(),
-                    "decodeSnmpPdu", strb.toString());
+            final StringBuilder strb = new StringBuilder().append("Unmarshalled PDU : \n").append("type : ")
+                    .append(pdu.type).append("\n").append("version : ").append(pdu.version).append("\n")
+                    .append("requestId : ").append(pdu.requestId).append("\n").append("msgId : ").append(
+                            pdu.msgId).append("\n").append("msgMaxSize : ").append(pdu.msgMaxSize).append(
+                                    "\n").append("msgFlags : ").append(pdu.msgFlags).append("\n").append(
+                                            "msgSecurityModel : ").append(pdu.msgSecurityModel).append("\n")
+                    .append("contextEngineId : ").append(pdu.contextEngineId).append("\n").append(
+                            "contextName : ").append(pdu.contextName).append("\n");
+            SNMP_LOGGER.logp(Level.FINER, SnmpV3Message.class.getName(), "decodeSnmpPdu", strb.toString());
         }
         return pdu;
     }
@@ -465,8 +434,7 @@ public class SnmpV3Message extends SnmpMsg {
             sb.append("contextEngineId : null");
         } else {
             sb.append("contextEngineId : {\n");
-            sb.append(dumpHexBuffer(contextEngineId, 0,
-                    contextEngineId.length));
+            sb.append(dumpHexBuffer(contextEngineId, 0, contextEngineId.length));
             sb.append("\n}\n");
         }
 

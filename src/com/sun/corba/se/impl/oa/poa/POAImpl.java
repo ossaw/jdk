@@ -219,9 +219,8 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     // This includes the most important information for debugging
     // POA problems.
     public String toString() {
-        return "POA[" + poaId.toString() + ", uniquePOAId=" + uniquePOAId
-                + ", state=" + stateToString() + ", invocationCount="
-                + invocationCount + "]";
+        return "POA[" + poaId.toString() + ", uniquePOAId=" + uniquePOAId + ", state=" + stateToString()
+                + ", invocationCount=" + invocationCount + "]";
     }
 
     // package private for mediator implementations.
@@ -231,17 +230,15 @@ public class POAImpl extends ObjectAdapterBase implements POA {
 
     // package private for access to servant to POA map
     static POAFactory getPOAFactory(ORB orb) {
-        return (POAFactory) orb.getRequestDispatcherRegistry()
-                .getObjectAdapterFactory(ORBConstants.TRANSIENT_SCID);
+        return (POAFactory) orb.getRequestDispatcherRegistry().getObjectAdapterFactory(
+                ORBConstants.TRANSIENT_SCID);
     }
 
     // package private so that POAFactory can access it.
     static POAImpl makeRootPOA(ORB orb) {
-        POAManagerImpl poaManager = new POAManagerImpl(getPOAFactory(orb), orb
-                .getPIHandler());
+        POAManagerImpl poaManager = new POAManagerImpl(getPOAFactory(orb), orb.getPIHandler());
 
-        POAImpl result = new POAImpl(ORBConstants.ROOT_POA_NAME, null, orb,
-                STATE_START);
+        POAImpl result = new POAImpl(ORBConstants.ROOT_POA_NAME, null, orb, STATE_START);
         result.initialize(poaManager, Policies.rootPOAPolicies);
 
         return result;
@@ -282,8 +279,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
         debug = orb.poaDebugFlag;
 
         if (debug) {
-            ORBUtility.dprint(this, "Creating POA with name=" + name
-                    + " parent=" + parent);
+            ORBUtility.dprint(this, "Creating POA with name=" + name + " parent=" + parent);
         }
 
         this.state = initialState;
@@ -336,8 +332,8 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     // The POA lock must be held when this method is called.
     private void initialize(POAManagerImpl manager, Policies policies) {
         if (debug) {
-            ORBUtility.dprint(this, "Initializing poa " + this
-                    + " with POAManager=" + manager + " policies=" + policies);
+            ORBUtility.dprint(this, "Initializing poa " + this + " with POAManager=" + manager + " policies="
+                    + policies);
         }
 
         this.manager = manager;
@@ -350,8 +346,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
         int scid = mediator.getScid();
         String orbId = getORB().getORBData().getORBId();
 
-        ObjectKeyTemplate oktemp = new POAObjectKeyTemplate(getORB(), scid,
-                serverid, orbId, poaId);
+        ObjectKeyTemplate oktemp = new POAObjectKeyTemplate(getORB(), scid, serverid, orbId, poaId);
 
         if (debug) {
             ORBUtility.dprint(this, "Initializing poa: oktemp=" + oktemp);
@@ -415,8 +410,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling destroyIfNotInitDone on poa "
-                        + this);
+                ORBUtility.dprint(this, "Calling destroyIfNotInitDone on poa " + this);
             }
 
             boolean success = (state == STATE_INIT_DONE);
@@ -436,16 +430,14 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             adapterActivatorCV.broadcast();
 
             if (debug) {
-                ORBUtility.dprint(this, "Exiting destroyIfNotInitDone on poa "
-                        + this);
+                ORBUtility.dprint(this, "Exiting destroyIfNotInitDone on poa " + this);
             }
 
             unlock();
         }
     }
 
-    private byte[] internalReferenceToId(org.omg.CORBA.Object reference)
-            throws WrongAdapter {
+    private byte[] internalReferenceToId(org.omg.CORBA.Object reference) throws WrongAdapter {
         IOR ior = ORBUtility.getIOR(reference);
         IORTemplateList thisTemplate = ior.getIORTemplates();
 
@@ -483,9 +475,8 @@ public class POAImpl extends ObjectAdapterBase implements POA {
 
         public void doIt(POAImpl thePoa, boolean wait) {
             if (debug) {
-                ORBUtility.dprint(this, "Calling DestroyThread.doIt(thePOA="
-                        + thePoa + " wait=" + wait + " etherealize="
-                        + etherealize);
+                ORBUtility.dprint(this, "Calling DestroyThread.doIt(thePOA=" + thePoa + " wait=" + wait
+                        + " etherealize=" + etherealize);
             }
 
             this.thePoa = thePoa;
@@ -499,8 +490,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
                 // in the Applet mode
                 try {
                     setDaemon(true);
-                } catch (Exception e) {
-                }
+                } catch (Exception e) {}
                 start();
             }
         }
@@ -511,21 +501,18 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             performDestroy(thePoa, destroyedPOATemplates);
 
             Iterator iter = destroyedPOATemplates.iterator();
-            ObjectReferenceTemplate[] orts = new ObjectReferenceTemplate[destroyedPOATemplates
-                    .size()];
+            ObjectReferenceTemplate[] orts = new ObjectReferenceTemplate[destroyedPOATemplates.size()];
             int index = 0;
             while (iter.hasNext())
                 orts[index++] = (ObjectReferenceTemplate) iter.next();
 
-            thePoa.getORB().getPIHandler().adapterStateChanged(orts,
-                    NON_EXISTENT.value);
+            thePoa.getORB().getPIHandler().adapterStateChanged(orts, NON_EXISTENT.value);
         }
 
         // Returns true if destruction must be completed, false
         // if not, which means that another thread is already
         // destroying poa.
-        private boolean prepareForDestruction(POAImpl poa,
-                Set destroyedPOATemplates) {
+        private boolean prepareForDestruction(POAImpl poa, Set destroyedPOATemplates) {
             POAImpl[] childPoas = null;
 
             // Note that we do not synchronize on this, since this is
@@ -534,8 +521,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
                 poa.lock();
 
                 if (debug) {
-                    ORBUtility.dprint(this, "Calling performDestroy on poa "
-                            + poa);
+                    ORBUtility.dprint(this, "Calling performDestroy on poa " + poa);
                 }
 
                 if (poa.state <= STATE_RUN) {
@@ -565,8 +551,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
 
                 // Make a copy since we can't hold the lock while destroying
                 // the children, and an iterator is not deletion-safe.
-                childPoas = (POAImpl[]) poa.children.values().toArray(
-                        new POAImpl[0]);
+                childPoas = (POAImpl[]) poa.children.values().toArray(new POAImpl[0]);
             } finally {
                 poa.unlock();
             }
@@ -624,11 +609,9 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             }
         }
 
-        private void completeDestruction(POAImpl poa, POAImpl parent,
-                Set destroyedPOATemplates) {
+        private void completeDestruction(POAImpl poa, POAImpl parent, Set destroyedPOATemplates) {
             if (debug) {
-                ORBUtility.dprint(this, "Calling completeDestruction on poa "
-                        + poa);
+                ORBUtility.dprint(this, "Calling completeDestruction on poa " + poa);
             }
 
             try {
@@ -665,8 +648,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
                 poa.isDestroying.set(Boolean.FALSE);
 
                 if (debug) {
-                    ORBUtility.dprint(this,
-                            "Exiting completeDestruction on poa " + poa);
+                    ORBUtility.dprint(this, "Exiting completeDestruction on poa " + poa);
                 }
             }
         }
@@ -697,15 +679,14 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>create_POA</code> <b>Section 3.3.8.2</b>
      */
-    public POA create_POA(String name, POAManager theManager, Policy[] policies)
-            throws AdapterAlreadyExists, InvalidPolicy {
+    public POA create_POA(String name, POAManager theManager, Policy[] policies) throws AdapterAlreadyExists,
+            InvalidPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling create_POA(name=" + name
-                        + " theManager=" + theManager + " policies=" + policies
-                        + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling create_POA(name=" + name + " theManager=" + theManager
+                        + " policies=" + policies + ") on poa " + this);
             }
 
             // We cannot create children of a POA that is (being) destroyed.
@@ -723,8 +704,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
                 poa.lock();
 
                 if (debug) {
-                    ORBUtility.dprint(this, "Calling create_POA: new poa is "
-                            + poa);
+                    ORBUtility.dprint(this, "Calling create_POA: new poa is " + poa);
                 }
 
                 if ((poa.state != STATE_START) && (poa.state != STATE_INIT))
@@ -732,11 +712,9 @@ public class POAImpl extends ObjectAdapterBase implements POA {
 
                 POAManagerImpl newManager = (POAManagerImpl) theManager;
                 if (newManager == null)
-                    newManager = new POAManagerImpl(manager.getFactory(),
-                            manager.getPIHandler());
+                    newManager = new POAManagerImpl(manager.getFactory(), manager.getPIHandler());
 
-                int defaultCopierId = getORB().getCopierManager()
-                        .getDefaultId();
+                int defaultCopierId = getORB().getCopierManager().getDefaultId();
                 Policies POAPolicies = new Policies(policies, defaultCopierId);
 
                 poa.initialize(newManager, POAPolicies);
@@ -753,16 +731,15 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>find_POA</code> <b>Section 3.3.8.3</b>
      */
-    public POA find_POA(String name, boolean activate)
-            throws AdapterNonExistent {
+    public POA find_POA(String name, boolean activate) throws AdapterNonExistent {
         POAImpl found = null;
         AdapterActivator act = null;
 
         lock();
 
         if (debug) {
-            ORBUtility.dprint(this, "Calling find_POA(name=" + name
-                    + " activate=" + activate + ") on poa " + this);
+            ORBUtility.dprint(this, "Calling find_POA(name=" + name + " activate=" + activate + ") on poa "
+                    + this);
         }
 
         found = (POAImpl) children.get(name);
@@ -815,8 +792,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
                     found = new POAImpl(name, this, getORB(), STATE_INIT);
 
                     if (debug) {
-                        ORBUtility.dprint(this, "Calling find_POA: created poa "
-                                + found);
+                        ORBUtility.dprint(this, "Calling find_POA: created poa " + found);
                     }
 
                     act = activator;
@@ -840,8 +816,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             boolean adapterResult = false;
 
             if (debug) {
-                ORBUtility.dprint(this,
-                        "Calling find_POA: calling AdapterActivator");
+                ORBUtility.dprint(this, "Calling find_POA: calling AdapterActivator");
             }
 
             try {
@@ -851,8 +826,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
                     status = act.unknown_adapter(this, name);
                 }
             } catch (SystemException exc) {
-                throw omgLifecycleWrapper().adapterActivatorException(exc, name,
-                        poaId.toString());
+                throw omgLifecycleWrapper().adapterActivatorException(exc, name, poaId.toString());
             } catch (Throwable thr) {
                 // ignore most non-system exceptions, but log them for
                 // diagnostic purposes.
@@ -872,12 +846,10 @@ public class POAImpl extends ObjectAdapterBase implements POA {
 
             if (status) {
                 if (!adapterResult)
-                    throw omgLifecycleWrapper().adapterActivatorException(name,
-                            poaId.toString());
+                    throw omgLifecycleWrapper().adapterActivatorException(name, poaId.toString());
             } else {
                 if (debug) {
-                    ORBUtility.dprint(this,
-                            "Calling find_POA: AdapterActivator returned false");
+                    ORBUtility.dprint(this, "Calling find_POA: AdapterActivator returned false");
                 }
 
                 // OMG Issue 3740 is resolved to throw AdapterNonExistent if
@@ -919,40 +891,35 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>create_id_uniqueness_policy</code> <b>Section 3.3.8.5</b>
      */
-    public IdUniquenessPolicy create_id_uniqueness_policy(
-            IdUniquenessPolicyValue value) {
+    public IdUniquenessPolicy create_id_uniqueness_policy(IdUniquenessPolicyValue value) {
         return new IdUniquenessPolicyImpl(value);
     }
 
     /**
      * <code>create_id_assignment_policy</code> <b>Section 3.3.8.5</b>
      */
-    public IdAssignmentPolicy create_id_assignment_policy(
-            IdAssignmentPolicyValue value) {
+    public IdAssignmentPolicy create_id_assignment_policy(IdAssignmentPolicyValue value) {
         return new IdAssignmentPolicyImpl(value);
     }
 
     /**
      * <code>create_implicit_activation_policy</code> <b>Section 3.3.8.5</b>
      */
-    public ImplicitActivationPolicy create_implicit_activation_policy(
-            ImplicitActivationPolicyValue value) {
+    public ImplicitActivationPolicy create_implicit_activation_policy(ImplicitActivationPolicyValue value) {
         return new ImplicitActivationPolicyImpl(value);
     }
 
     /**
      * <code>create_servant_retention_policy</code> <b>Section 3.3.8.5</b>
      */
-    public ServantRetentionPolicy create_servant_retention_policy(
-            ServantRetentionPolicyValue value) {
+    public ServantRetentionPolicy create_servant_retention_policy(ServantRetentionPolicyValue value) {
         return new ServantRetentionPolicyImpl(value);
     }
 
     /**
      * <code>create_request_processing_policy</code> <b>Section 3.3.8.5</b>
      */
-    public RequestProcessingPolicy create_request_processing_policy(
-            RequestProcessingPolicyValue value) {
+    public RequestProcessingPolicy create_request_processing_policy(RequestProcessingPolicyValue value) {
         return new RequestProcessingPolicyImpl(value);
     }
 
@@ -1039,8 +1006,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling the_activator on poa " + this
-                        + " activator=" + activator);
+                ORBUtility.dprint(this, "Calling the_activator on poa " + this + " activator=" + activator);
             }
 
             this.activator = activator;
@@ -1065,14 +1031,13 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>set_servant_manager</code> <b>Section 3.3.8.10</b>
      */
-    public void set_servant_manager(ServantManager servantManager)
-            throws WrongPolicy {
+    public void set_servant_manager(ServantManager servantManager) throws WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling set_servant_manager on poa "
-                        + this + " servantManager=" + servantManager);
+                ORBUtility.dprint(this, "Calling set_servant_manager on poa " + this + " servantManager="
+                        + servantManager);
             }
 
             mediator.setServantManager(servantManager);
@@ -1102,8 +1067,8 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling set_servant on poa " + this
-                        + " defaultServant=" + defaultServant);
+                ORBUtility.dprint(this, "Calling set_servant on poa " + this + " defaultServant="
+                        + defaultServant);
             }
 
             mediator.setDefaultServant(defaultServant);
@@ -1115,14 +1080,13 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>activate_object</code> <b>Section 3.3.8.14</b>
      */
-    public byte[] activate_object(Servant servant) throws ServantAlreadyActive,
-            WrongPolicy {
+    public byte[] activate_object(Servant servant) throws ServantAlreadyActive, WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling activate_object on poa " + this
-                        + " (servant=" + servant + ")");
+                ORBUtility.dprint(this, "Calling activate_object on poa " + this + " (servant=" + servant
+                        + ")");
             }
 
             // Allocate a new system-generated object-id.
@@ -1141,8 +1105,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             return id;
         } finally {
             if (debug) {
-                ORBUtility.dprint(this, "Exiting activate_object on poa "
-                        + this);
+                ORBUtility.dprint(this, "Exiting activate_object on poa " + this);
             }
 
             unlock();
@@ -1152,15 +1115,14 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>activate_object_with_id</code> <b>Section 3.3.8.15</b>
      */
-    public void activate_object_with_id(byte[] id, Servant servant)
-            throws ObjectAlreadyActive, ServantAlreadyActive, WrongPolicy {
+    public void activate_object_with_id(byte[] id, Servant servant) throws ObjectAlreadyActive,
+            ServantAlreadyActive, WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this,
-                        "Calling activate_object_with_id on poa " + this
-                                + " (servant=" + servant + " id=" + id + ")");
+                ORBUtility.dprint(this, "Calling activate_object_with_id on poa " + this + " (servant="
+                        + servant + " id=" + id + ")");
             }
 
             // Clone the id to avoid possible errors due to aliasing
@@ -1170,8 +1132,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             mediator.activateObject(idClone, servant);
         } finally {
             if (debug) {
-                ORBUtility.dprint(this,
-                        "Exiting activate_object_with_id on poa " + this);
+                ORBUtility.dprint(this, "Exiting activate_object_with_id on poa " + this);
             }
 
             unlock();
@@ -1181,21 +1142,18 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>deactivate_object</code> <b>3.3.8.16</b>
      */
-    public void deactivate_object(byte[] id) throws ObjectNotActive,
-            WrongPolicy {
+    public void deactivate_object(byte[] id) throws ObjectNotActive, WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling deactivate_object on poa "
-                        + this + " (id=" + id + ")");
+                ORBUtility.dprint(this, "Calling deactivate_object on poa " + this + " (id=" + id + ")");
             }
 
             mediator.deactivateObject(id);
         } finally {
             if (debug) {
-                ORBUtility.dprint(this, "Exiting deactivate_object on poa "
-                        + this);
+                ORBUtility.dprint(this, "Exiting deactivate_object on poa " + this);
             }
 
             unlock();
@@ -1205,14 +1163,12 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>create_reference</code> <b>3.3.8.17</b>
      */
-    public org.omg.CORBA.Object create_reference(String repId)
-            throws WrongPolicy {
+    public org.omg.CORBA.Object create_reference(String repId) throws WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling create_reference(repId="
-                        + repId + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling create_reference(repId=" + repId + ") on poa " + this);
             }
 
             return makeObject(repId, mediator.newSystemId());
@@ -1224,14 +1180,13 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>create_reference_with_id</code> <b>3.3.8.18</b>
      */
-    public org.omg.CORBA.Object create_reference_with_id(byte[] oid,
-            String repId) {
+    public org.omg.CORBA.Object create_reference_with_id(byte[] oid, String repId) {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling create_reference_with_id(oid="
-                        + oid + " repId=" + repId + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling create_reference_with_id(oid=" + oid + " repId=" + repId
+                        + ") on poa " + this);
             }
 
             // Clone the id to avoid possible errors due to aliasing
@@ -1247,14 +1202,12 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>servant_to_id</code> <b>3.3.8.19</b>
      */
-    public byte[] servant_to_id(Servant servant) throws ServantNotActive,
-            WrongPolicy {
+    public byte[] servant_to_id(Servant servant) throws ServantNotActive, WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling servant_to_id(servant="
-                        + servant + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling servant_to_id(servant=" + servant + ") on poa " + this);
             }
 
             return mediator.servantToId(servant);
@@ -1266,14 +1219,13 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>servant_to_reference</code> <b>3.3.8.20</b>
      */
-    public org.omg.CORBA.Object servant_to_reference(Servant servant)
-            throws ServantNotActive, WrongPolicy {
+    public org.omg.CORBA.Object servant_to_reference(Servant servant) throws ServantNotActive, WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling servant_to_reference(servant="
-                        + servant + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling servant_to_reference(servant=" + servant + ") on poa "
+                        + this);
             }
 
             byte[] oid = mediator.servantToId(servant);
@@ -1287,15 +1239,14 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>reference_to_servant</code> <b>3.3.8.21</b>
      */
-    public Servant reference_to_servant(org.omg.CORBA.Object reference)
-            throws ObjectNotActive, WrongPolicy, WrongAdapter {
+    public Servant reference_to_servant(org.omg.CORBA.Object reference) throws ObjectNotActive, WrongPolicy,
+            WrongAdapter {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this,
-                        "Calling reference_to_servant(reference=" + reference
-                                + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling reference_to_servant(reference=" + reference + ") on poa "
+                        + this);
             }
 
             if (state >= STATE_DESTROYING) {
@@ -1315,14 +1266,13 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>reference_to_id</code> <b>3.3.8.22</b>
      */
-    public byte[] reference_to_id(org.omg.CORBA.Object reference)
-            throws WrongAdapter, WrongPolicy {
+    public byte[] reference_to_id(org.omg.CORBA.Object reference) throws WrongAdapter, WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling reference_to_id(reference="
-                        + reference + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling reference_to_id(reference=" + reference + ") on poa "
+                        + this);
             }
 
             if (state >= STATE_DESTROYING) {
@@ -1338,14 +1288,12 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>id_to_servant</code> <b>3.3.8.23</b>
      */
-    public Servant id_to_servant(byte[] id) throws ObjectNotActive,
-            WrongPolicy {
+    public Servant id_to_servant(byte[] id) throws ObjectNotActive, WrongPolicy {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling id_to_servant(id=" + id
-                        + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling id_to_servant(id=" + id + ") on poa " + this);
             }
 
             if (state >= STATE_DESTROYING) {
@@ -1360,16 +1308,14 @@ public class POAImpl extends ObjectAdapterBase implements POA {
     /**
      * <code>id_to_reference</code> <b>3.3.8.24</b>
      */
-    public org.omg.CORBA.Object id_to_reference(byte[] id)
-            throws ObjectNotActive, WrongPolicy
+    public org.omg.CORBA.Object id_to_reference(byte[] id) throws ObjectNotActive, WrongPolicy
 
     {
         try {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling id_to_reference(id=" + id
-                        + ") on poa " + this);
+                ORBUtility.dprint(this, "Calling id_to_reference(id=" + id + ") on poa " + this);
             }
 
             if (state >= STATE_DESTROYING) {
@@ -1437,8 +1383,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             // waiters on beingDestroyedCV. This can happen if an
             // etherealize upcall invokes a method on a colocated object
             // served by this POA.
-            while ((state == STATE_DESTROYING) && (isDestroying
-                    .get() == Boolean.FALSE)) {
+            while ((state == STATE_DESTROYING) && (isDestroying.get() == Boolean.FALSE)) {
                 try {
                     beingDestroyedCV.await();
                 } catch (InterruptedException ex) {
@@ -1490,15 +1435,13 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             lock();
 
             if (debug) {
-                ORBUtility.dprint(this, "Calling getInvocationServant on poa "
-                        + this);
+                ORBUtility.dprint(this, "Calling getInvocationServant on poa " + this);
             }
 
             java.lang.Object servant = null;
 
             try {
-                servant = mediator.getInvocationServant(info.id(), info
-                        .getOperation());
+                servant = mediator.getInvocationServant(info.id(), info.getOperation());
             } catch (ForwardRequest freq) {
                 throw new ForwardException(getORB(), freq.forward_reference);
             }
@@ -1506,8 +1449,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             info.setServant(servant);
         } finally {
             if (debug) {
-                ORBUtility.dprint(this, "Exiting getInvocationServant on poa "
-                        + this);
+                ORBUtility.dprint(this, "Exiting getInvocationServant on poa " + this);
             }
 
             unlock();
@@ -1535,8 +1477,7 @@ public class POAImpl extends ObjectAdapterBase implements POA {
             mediator.returnServant();
         } catch (Throwable thr) {
             if (debug) {
-                ORBUtility.dprint(this, "Exception " + thr
-                        + " in returnServant on poa " + this);
+                ORBUtility.dprint(this, "Exception " + thr + " in returnServant on poa " + this);
             }
 
             if (thr instanceof Error)

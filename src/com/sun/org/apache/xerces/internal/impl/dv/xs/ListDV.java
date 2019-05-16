@@ -27,20 +27,16 @@ import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
  * Represent the schema list types
  *
  * @xerces.internal
- *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
- *
  * @version $Id: ListDV.java,v 1.7 2010-11-01 04:39:47 joehw Exp $
  */
 public class ListDV extends TypeValidator {
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH
-                | XSSimpleTypeDecl.FACET_MAXLENGTH
-                | XSSimpleTypeDecl.FACET_PATTERN
-                | XSSimpleTypeDecl.FACET_ENUMERATION
-                | XSSimpleTypeDecl.FACET_WHITESPACE);
+                | XSSimpleTypeDecl.FACET_MAXLENGTH | XSSimpleTypeDecl.FACET_PATTERN
+                | XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_WHITESPACE);
     }
 
     // this method should never be called: XSSimpleTypeDecl is responsible for

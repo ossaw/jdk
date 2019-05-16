@@ -34,7 +34,7 @@ public interface DOMStringList {
      * <code>DOMString</code>s in the list, this returns <code>null</code>.
      * 
      * @param index
-     *              Index into the collection.
+     *        Index into the collection.
      * @return The <code>DOMString</code> at the <code>index</code>th position
      *         in the <code>DOMStringList</code>, or <code>null</code> if that
      *         is not a valid index.
@@ -51,7 +51,7 @@ public interface DOMStringList {
      * Test if a string is part of this <code>DOMStringList</code>.
      * 
      * @param str
-     *            The string to look for.
+     *        The string to look for.
      * @return <code>true</code> if the string has been found,
      *         <code>false</code> otherwise.
      */

@@ -42,9 +42,9 @@ public interface InputMethodDescriptor {
      *
      * @return the locales supported by the input method
      * @exception AWTException
-     *                         if it can be determined that the input method is
-     *                         inoperable, for example, because of incomplete
-     *                         installation.
+     *            if it can be determined that the input method is
+     *            inoperable, for example, because of incomplete
+     *            installation.
      */
     Locale[] getAvailableLocales() throws AWTException;
 
@@ -68,13 +68,12 @@ public interface InputMethodDescriptor {
      * may fall back to some other language.
      *
      * @param inputLocale
-     *                        the locale for which text input is supported, or
-     *                        null
+     *        the locale for which text input is supported, or
+     *        null
      * @param displayLanguage
-     *                        the language in which the name will be displayed
+     *        the language in which the name will be displayed
      */
-    String getInputMethodDisplayName(Locale inputLocale,
-            Locale displayLanguage);
+    String getInputMethodDisplayName(Locale inputLocale, Locale displayLanguage);
 
     /**
      * Returns an icon for the corresponding input method. The icon may be used
@@ -88,7 +87,7 @@ public interface InputMethodDescriptor {
      * The icon's size should be 16&times;16 pixels.
      *
      * @param inputLocale
-     *                    the locale for which text input is supported, or null
+     *        the locale for which text input is supported, or null
      * @return an icon for the corresponding input method, or null
      */
     Image getInputMethodIcon(Locale inputLocale);
@@ -98,9 +97,9 @@ public interface InputMethodDescriptor {
      *
      * @return a new instance of the corresponding input method
      * @exception Exception
-     *                      any exception that may occur while creating the
-     *                      input
-     *                      method instance
+     *            any exception that may occur while creating the
+     *            input
+     *            method instance
      */
     InputMethod createInputMethod() throws Exception;
 }

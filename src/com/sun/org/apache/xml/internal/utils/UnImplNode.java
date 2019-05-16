@@ -50,7 +50,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
 
     /**
      * Constructor UnImplNode
-     *
      */
     public UnImplNode() {}
 
@@ -58,7 +57,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Throw an error.
      *
      * @param msg
-     *            Message Key for the error
+     *        Message Key for the error
      */
     public void error(String msg) {
 
@@ -71,9 +70,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Throw an error.
      *
      * @param msg
-     *             Message Key for the error
+     *        Message Key for the error
      * @param args
-     *             Array of arguments to be used in the error message
+     *        Array of arguments to be used in the error message
      */
     public void error(String msg, Object[] args) {
 
@@ -88,10 +87,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @param newChild
-     *                 New node to append to the list of this node's children
-     *
+     *        New node to append to the list of this node's children
      * @return null
-     *
      * @throws DOMException
      */
     public Node appendChild(Node newChild) throws DOMException {
@@ -210,8 +207,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.NodeList
      *
      * @param index
-     *              index of a child of this node in its list of children
-     *
+     *        index of a child of this node in its list of children
      * @return null
      */
     public Node item(int index) {
@@ -271,8 +267,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param name
-     *             Name of the element
-     *
+     *        Name of the element
      * @return null
      */
     public NodeList getElementsByTagName(String name) {
@@ -287,11 +282,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param oldAttr
-     *                Attribute to be removed from this node's list of
-     *                attributes
-     *
+     *        Attribute to be removed from this node's list of
+     *        attributes
      * @return null
-     *
      * @throws DOMException
      */
     public Attr removeAttributeNode(Attr oldAttr) throws DOMException {
@@ -306,11 +299,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param newAttr
-     *                Attribute node to be added to this node's list of
-     *                attributes
-     *
+     *        Attribute node to be added to this node's list of
+     *        attributes
      * @return null
-     *
      * @throws DOMException
      */
     public Attr setAttributeNode(Attr newAttr) throws DOMException {
@@ -324,10 +315,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
     /**
      * Unimplemented. See org.w3c.dom.Element
      *
-     *
      * @param name
-     *             Name of an attribute
-     *
+     *        Name of an attribute
      * @return false
      */
     public boolean hasAttribute(String name) {
@@ -341,10 +330,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
     /**
      * Unimplemented. See org.w3c.dom.Element
      *
-     *
      * @param name
      * @param x
-     *
      * @return false
      */
     public boolean hasAttributeNS(String name, String x) {
@@ -358,10 +345,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
     /**
      * Unimplemented. See org.w3c.dom.Element
      *
-     *
      * @param name
-     *             Attribute node name
-     *
+     *        Attribute node name
      * @return null
      */
     public Attr getAttributeNode(String name) {
@@ -376,8 +361,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param name
-     *             Attribute node name to remove from list of attributes
-     *
+     *        Attribute node name to remove from list of attributes
      * @throws DOMException
      */
     public void removeAttribute(String name) throws DOMException {
@@ -389,10 +373,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param name
-     *              Name of attribute to set
+     *        Name of attribute to set
      * @param value
-     *              Value of attribute
-     *
+     *        Value of attribute
      * @throws DOMException
      */
     public void setAttribute(String name, String value) throws DOMException {
@@ -404,8 +387,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param name
-     *             Name of attribute to get
-     *
+     *        Name of attribute to get
      * @return null
      */
     public String getAttribute(String name) {
@@ -433,14 +415,12 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param namespaceURI
-     *                     Namespace URI of the element
+     *        Namespace URI of the element
      * @param localName
-     *                     Local part of qualified name of the element
-     *
+     *        Local part of qualified name of the element
      * @return null
      */
-    public NodeList getElementsByTagNameNS(String namespaceURI,
-            String localName) {
+    public NodeList getElementsByTagNameNS(String namespaceURI, String localName) {
 
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED); // "getElementsByTagNameNS
                                                             // not supported!");
@@ -452,10 +432,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param newAttr
-     *                Attribute to set
-     *
+     *        Attribute to set
      * @return null
-     *
      * @throws DOMException
      */
     public Attr setAttributeNodeNS(Attr newAttr) throws DOMException {
@@ -470,10 +448,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param namespaceURI
-     *                     Namespace URI of attribute node to get
+     *        Namespace URI of attribute node to get
      * @param localName
-     *                     Local part of qualified name of attribute node to get
-     *
+     *        Local part of qualified name of attribute node to get
      * @return null
      */
     public Attr getAttributeNodeNS(String namespaceURI, String localName) {
@@ -488,15 +465,13 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param namespaceURI
-     *                     Namespace URI of attribute node to remove
+     *        Namespace URI of attribute node to remove
      * @param localName
-     *                     Local part of qualified name of attribute node to
-     *                     remove
-     *
+     *        Local part of qualified name of attribute node to
+     *        remove
      * @throws DOMException
      */
-    public void removeAttributeNS(String namespaceURI, String localName)
-            throws DOMException {
+    public void removeAttributeNS(String namespaceURI, String localName) throws DOMException {
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED); // "removeAttributeNS
                                                             // not supported!");
     }
@@ -505,16 +480,14 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param namespaceURI
-     *                      Namespace URI of attribute node to set
+     *        Namespace URI of attribute node to set
      * @param qualifiedName
-     *                      qualified name of attribute
+     *        qualified name of attribute
      * @param value
-     *                      value of attribute
-     *
+     *        value of attribute
      * @throws DOMException
      */
-    public void setAttributeNS(String namespaceURI, String qualifiedName,
-            String value) throws DOMException {
+    public void setAttributeNS(String namespaceURI, String qualifiedName, String value) throws DOMException {
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED); // "setAttributeNS
                                                             // not supported!");
     }
@@ -523,10 +496,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Element
      *
      * @param namespaceURI
-     *                     Namespace URI of attribute node to get
+     *        Namespace URI of attribute node to get
      * @param localName
-     *                     Local part of qualified name of attribute node to get
-     *
+     *        Local part of qualified name of attribute node to get
      * @return null
      */
     public String getAttributeNS(String namespaceURI, String localName) {
@@ -554,9 +526,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @param deep
-     *             Flag indicating whether to clone deep (clone member
-     *             variables)
-     *
+     *        Flag indicating whether to clone deep (clone member
+     *        variables)
      * @return null
      */
     public Node cloneNode(boolean deep) {
@@ -571,7 +542,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @return null
-     *
      * @throws DOMException
      */
     public String getNodeValue() throws DOMException {
@@ -586,8 +556,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @param nodeValue
-     *                  Value to set this node to
-     *
+     *        Value to set this node to
      * @throws DOMException
      */
     public void setNodeValue(String nodeValue) throws DOMException {
@@ -597,12 +566,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
 
     /**
      * Unimplemented. See org.w3c.dom.Node
-     *
-     *
      * NEEDSDOC @param value
      * 
      * @return value Node value
-     *
      * @throws DOMException
      */
 
@@ -617,8 +583,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @param value
-     *              Value to set this node to
-     *
+     *        Value to set this node to
      * @throws DOMException
      */
     public void setValue(String value) throws DOMException {
@@ -680,12 +645,10 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @param newChild
-     *                 New child node to insert
+     *        New child node to insert
      * @param refChild
-     *                 Insert in front of this child
-     *
+     *        Insert in front of this child
      * @return null
-     *
      * @throws DOMException
      */
     public Node insertBefore(Node newChild, Node refChild) throws DOMException {
@@ -700,12 +663,10 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @param newChild
-     *                 Replace existing child with this one
+     *        Replace existing child with this one
      * @param oldChild
-     *                 Existing child to be replaced
-     *
+     *        Existing child to be replaced
      * @return null
-     *
      * @throws DOMException
      */
     public Node replaceChild(Node newChild, Node oldChild) throws DOMException {
@@ -720,10 +681,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @param oldChild
-     *                 Child to be removed
-     *
+     *        Child to be removed
      * @return null
-     *
      * @throws DOMException
      */
     public Node removeChild(Node oldChild) throws DOMException {
@@ -739,18 +698,17 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * that feature is supported by this node.
      * 
      * @param feature
-     *                The name of the feature to test. This is the same name
-     *                which
-     *                can be passed to the method <code>hasFeature</code> on
-     *                <code>DOMImplementation</code>.
+     *        The name of the feature to test. This is the same name
+     *        which
+     *        can be passed to the method <code>hasFeature</code> on
+     *        <code>DOMImplementation</code>.
      * @param version
-     *                This is the version number of the feature to test. In
-     *                Level 2,
-     *                version 1, this is the string "2.0". If the version is not
-     *                specified, supporting any version of the feature will
-     *                cause
-     *                the method to return <code>true</code>.
-     *
+     *        This is the version number of the feature to test. In
+     *        Level 2,
+     *        version 1, this is the string "2.0". If the version is not
+     *        specified, supporting any version of the feature will
+     *        cause
+     *        the method to return <code>true</code>.
      * @return Returns <code>false</code>
      * @since DOM Level 2
      */
@@ -788,8 +746,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Node
      *
      * @param prefix
-     *               Prefix to set for this node
-     *
+     *        Prefix to set for this node
      * @throws DOMException
      */
     public void setPrefix(String prefix) throws DOMException {
@@ -850,10 +807,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param tagName
-     *                Element tag name
-     *
+     *        Element tag name
      * @return null
-     *
      * @throws DOMException
      */
     public Element createElement(String tagName) throws DOMException {
@@ -879,8 +834,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param data
-     *             Data for text node
-     *
+     *        Data for text node
      * @return null
      */
     public Text createTextNode(String data) {
@@ -894,8 +848,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param data
-     *             Data for comment
-     *
+     *        Data for comment
      * @return null
      */
     public Comment createComment(String data) {
@@ -909,10 +862,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param data
-     *             Data for CDATA section
-     *
+     *        Data for CDATA section
      * @return null
-     *
      * @throws DOMException
      */
     public CDATASection createCDATASection(String data) throws DOMException {
@@ -926,16 +877,13 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param target
-     *               Target for Processing instruction
+     *        Target for Processing instruction
      * @param data
-     *               Data for Processing instruction
-     *
+     *        Data for Processing instruction
      * @return null
-     *
      * @throws DOMException
      */
-    public ProcessingInstruction createProcessingInstruction(String target,
-            String data) throws DOMException {
+    public ProcessingInstruction createProcessingInstruction(String target, String data) throws DOMException {
 
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED);
 
@@ -946,10 +894,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param name
-     *             Attribute name
-     *
+     *        Attribute name
      * @return null
-     *
      * @throws DOMException
      */
     public Attr createAttribute(String name) throws DOMException {
@@ -963,14 +909,11 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param name
-     *             Entity Reference name
-     *
+     *        Entity Reference name
      * @return null
-     *
      * @throws DOMException
      */
-    public EntityReference createEntityReference(String name)
-            throws DOMException {
+    public EntityReference createEntityReference(String name) throws DOMException {
 
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED);
 
@@ -981,22 +924,19 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param importedNode
-     *                     The node to import.
+     *        The node to import.
      * @param deep
-     *                     If <code>true</code>, recursively import the subtree
-     *                     under the
-     *                     specified node; if <code>false</code>, import only
-     *                     the node
-     *                     itself, as explained above. This has no effect on
-     *                     <code>Attr</code> , <code>EntityReference</code>, and
-     *                     <code>Notation</code> nodes.
-     *
+     *        If <code>true</code>, recursively import the subtree
+     *        under the
+     *        specified node; if <code>false</code>, import only
+     *        the node
+     *        itself, as explained above. This has no effect on
+     *        <code>Attr</code> , <code>EntityReference</code>, and
+     *        <code>Notation</code> nodes.
      * @return null
-     *
      * @throws DOMException
      */
-    public Node importNode(Node importedNode, boolean deep)
-            throws DOMException {
+    public Node importNode(Node importedNode, boolean deep) throws DOMException {
 
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED);
 
@@ -1007,16 +947,13 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param namespaceURI
-     *                      Namespace URI for the element
+     *        Namespace URI for the element
      * @param qualifiedName
-     *                      Qualified name of the element
-     *
+     *        Qualified name of the element
      * @return null
-     *
      * @throws DOMException
      */
-    public Element createElementNS(String namespaceURI, String qualifiedName)
-            throws DOMException {
+    public Element createElementNS(String namespaceURI, String qualifiedName) throws DOMException {
 
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED);
 
@@ -1027,16 +964,13 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param namespaceURI
-     *                      Namespace URI of the attribute
+     *        Namespace URI of the attribute
      * @param qualifiedName
-     *                      Qualified name of the attribute
-     *
+     *        Qualified name of the attribute
      * @return null
-     *
      * @throws DOMException
      */
-    public Attr createAttributeNS(String namespaceURI, String qualifiedName)
-            throws DOMException {
+    public Attr createAttributeNS(String namespaceURI, String qualifiedName) throws DOMException {
 
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED);
 
@@ -1047,8 +981,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented. See org.w3c.dom.Document
      *
      * @param elementId
-     *                  ID of the element to get
-     *
+     *        ID of the element to get
      * @return null
      */
     public Element getElementById(String elementId) {
@@ -1061,10 +994,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
     /**
      * Set Node data
      *
-     *
      * @param data
-     *             data to set for this node
-     *
+     *        data to set for this node
      * @throws DOMException
      */
     public void setData(String data) throws DOMException {
@@ -1075,12 +1006,10 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented.
      *
      * @param offset
-     *               Start offset of substring to extract.
+     *        Start offset of substring to extract.
      * @param count
-     *               The length of the substring to extract.
-     *
+     *        The length of the substring to extract.
      * @return null
-     *
      * @throws DOMException
      */
     public String substringData(int offset, int count) throws DOMException {
@@ -1094,8 +1023,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented.
      *
      * @param arg
-     *            String data to append
-     *
+     *        String data to append
      * @throws DOMException
      */
     public void appendData(String arg) throws DOMException {
@@ -1106,10 +1034,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented.
      *
      * @param offset
-     *               Start offset of substring to insert.
+     *        Start offset of substring to insert.
      * @param arg
-     *               The (sub)string to insert.
-     *
+     *        The (sub)string to insert.
      * @throws DOMException
      */
     public void insertData(int offset, String arg) throws DOMException {
@@ -1120,10 +1047,9 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented.
      *
      * @param offset
-     *               Start offset of substring to delete.
+     *        Start offset of substring to delete.
      * @param count
-     *               The length of the substring to delete.
-     *
+     *        The length of the substring to delete.
      * @throws DOMException
      */
     public void deleteData(int offset, int count) throws DOMException {
@@ -1134,16 +1060,14 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented.
      *
      * @param offset
-     *               Start offset of substring to replace.
+     *        Start offset of substring to replace.
      * @param count
-     *               The length of the substring to replace.
+     *        The length of the substring to replace.
      * @param arg
-     *               substring to replace with
-     *
+     *        substring to replace with
      * @throws DOMException
      */
-    public void replaceData(int offset, int count, String arg)
-            throws DOMException {
+    public void replaceData(int offset, int count, String arg) throws DOMException {
         error(XMLErrorResources.ER_FUNCTION_NOT_SUPPORTED);
     }
 
@@ -1151,10 +1075,8 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * Unimplemented.
      *
      * @param offset
-     *               Offset into text to split
-     *
+     *        Offset into text to split
      * @return null, unimplemented
-     *
      * @throws DOMException
      */
     public Text splitText(int offset) throws DOMException {
@@ -1166,10 +1088,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
 
     /**
      * NEEDSDOC Method adoptNode
-     *
-     *
      * NEEDSDOC @param source
-     *
      * NEEDSDOC (adoptNode) @return
      *
      * @throws DOMException
@@ -1191,7 +1110,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * this document. This is <code>null</code> when unspecified.
      * 
      * @since DOM Level 3
-     *
      *        NEEDSDOC ($objectName$) @return
      */
     public String getInputEncoding() {
@@ -1211,7 +1129,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * this document. This is <code>null</code> when unspecified.
      * 
      * @since DOM Level 3
-     *
      *        NEEDSDOC @param encoding
      */
     public void setInputEncoding(String encoding) {
@@ -1228,7 +1145,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * document is standalone.
      * 
      * @since DOM Level 3
-     *
      *        NEEDSDOC ($objectName$) @return
      */
     public boolean getStandalone() {
@@ -1248,7 +1164,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * document is standalone.
      * 
      * @since DOM Level 3
-     *
      *        NEEDSDOC @param standalone
      */
     public void setStandalone(boolean standalone) {
@@ -1268,7 +1183,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * This attribute is <code>true</code> by defaults.
      * 
      * @since DOM Level 3
-     *
      *        NEEDSDOC ($objectName$) @return
      */
     public boolean getStrictErrorChecking() {
@@ -1291,7 +1205,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * This attribute is <code>true</code> by defaults.
      * 
      * @since DOM Level 3
-     *
      *        NEEDSDOC @param strictErrorChecking
      */
     public void setStrictErrorChecking(boolean strictErrorChecking) {
@@ -1308,7 +1221,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * number of this document. This is <code>null</code> when unspecified.
      * 
      * @since DOM Level 3
-     *
      *        NEEDSDOC ($objectName$) @return
      */
     public String getVersion() {
@@ -1328,7 +1240,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * number of this document. This is <code>null</code> when unspecified.
      * 
      * @since DOM Level 3
-     *
      *        NEEDSDOC @param version
      */
     public void setVersion(String version) {
@@ -1337,8 +1248,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
 
     // RAMESH : Pending proper implementation of DOM Level 3
 
-    public Object setUserData(String key, Object data,
-            UserDataHandler handler) {
+    public Object setUserData(String key, Object data, UserDataHandler handler) {
         return getOwnerDocument().setUserData(key, data, handler);
     }
 
@@ -1348,7 +1258,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * the same key.
      * 
      * @param key
-     *            The key the object is associated to.
+     *        The key the object is associated to.
      * @return Returns the <code>DOMObject</code> associated to the given key on
      *         this node, or <code>null</code> if there was none.
      * @since DOM Level 3
@@ -1364,14 +1274,14 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * necessarily expected to, as discussed in Mixed DOM implementations.
      * 
      * @param feature
-     *                The name of the feature requested (case-insensitive).
+     *        The name of the feature requested (case-insensitive).
      * @param version
-     *                This is the version number of the feature to test. If the
-     *                version is <code>null</code> or the empty string,
-     *                supporting
-     *                any version of the feature will cause the method to return
-     *                an
-     *                object that supports at least one version of the feature.
+     *        This is the version number of the feature to test. If the
+     *        version is <code>null</code> or the empty string,
+     *        supporting
+     *        any version of the feature will cause the method to return
+     *        an
+     *        object that supports at least one version of the feature.
      * @return Returns an object which implements the specialized APIs of the
      *         specified feature and version, if any, or <code>null</code> if
      *         there is no object which implements interfaces associated with
@@ -1424,7 +1334,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * nodes.
      *
      * @param arg
-     *            The node to compare equality with.
+     *        The node to compare equality with.
      * @return If the nodes, and possibly subtrees are equal, <code>true</code>
      *         otherwise <code>false</code>.
      * @since DOM Level 3
@@ -1507,8 +1417,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
                     if (specifiedPrefix == null && prefix == specifiedPrefix) {
                         // looking for default namespace
                         return namespace;
-                    } else if (prefix != null && prefix.equals(
-                            specifiedPrefix)) {
+                    } else if (prefix != null && prefix.equals(specifiedPrefix)) {
                         // non default namespace
                         return namespace;
                     }
@@ -1521,17 +1430,14 @@ public class UnImplNode implements Node, Element, NodeList, Document {
                         String attrPrefix = attr.getPrefix();
                         String value = attr.getNodeValue();
                         namespace = attr.getNamespaceURI();
-                        if (namespace != null && namespace.equals(
-                                "http://www.w3.org/2000/xmlns/")) {
+                        if (namespace != null && namespace.equals("http://www.w3.org/2000/xmlns/")) {
                             // at this point we are dealing with DOM Level 2 nodes
                             // only
-                            if (specifiedPrefix == null && attr.getNodeName()
-                                    .equals("xmlns")) {
+                            if (specifiedPrefix == null && attr.getNodeName().equals("xmlns")) {
                                 // default namespace
                                 return value;
-                            } else if (attrPrefix != null && attrPrefix.equals(
-                                    "xmlns") && attr.getLocalName().equals(
-                                            specifiedPrefix)) {
+                            } else if (attrPrefix != null && attrPrefix.equals("xmlns") && attr.getLocalName()
+                                    .equals(specifiedPrefix)) {
                                 // non default namespace
                                 return value;
                             }
@@ -1560,8 +1466,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
                 return null;
             case Node.ATTRIBUTE_NODE: {
                 if (this.getOwnerElement().getNodeType() == Node.ELEMENT_NODE) {
-                    return getOwnerElement().lookupNamespaceURI(
-                            specifiedPrefix);
+                    return getOwnerElement().lookupNamespaceURI(specifiedPrefix);
 
                 }
                 return null;
@@ -1583,7 +1488,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * <code>namespaceURI</code> is the default namespace or not.
      * 
      * @param namespaceURI
-     *                     The namespace URI to look for.
+     *        The namespace URI to look for.
      * @return <code>true</code> if the specified <code>namespaceURI</code> is
      *         the default namespace, <code>false</code> otherwise.
      * @since DOM Level 3
@@ -1622,7 +1527,6 @@ public class UnImplNode implements Node, Element, NodeList, Document {
     }
 
     /**
-     *
      * DOM Level 3 - Experimental: Look up the prefix associated to the given
      * namespace URI, starting from this node.
      *
@@ -1685,7 +1589,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * method on either reference always has exactly the same effect.
      * 
      * @param other
-     *              The node to test against.
+     *        The node to test against.
      * @return Returns <code>true</code> if the nodes are the same,
      *         <code>false</code> otherwise.
      * @since DOM Level 3
@@ -1732,15 +1636,15 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * </table>
      * 
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
-     *                         is
-     *                         readonly.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+     *            is
+     *            readonly.
      * @exception DOMException
-     *                         DOMSTRING_SIZE_ERR: Raised when it would return
-     *                         more
-     *                         characters than fit in a <code>DOMString</code>
-     *                         variable
-     *                         on the implementation platform.
+     *            DOMSTRING_SIZE_ERR: Raised when it would return
+     *            more
+     *            characters than fit in a <code>DOMString</code>
+     *            variable
+     *            on the implementation platform.
      * @since DOM Level 3
      */
     public void setTextContent(String textContent) throws DOMException {
@@ -1784,15 +1688,15 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * </table>
      * 
      * @exception DOMException
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised when the node
-     *                         is
-     *                         readonly.
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised when the node
+     *            is
+     *            readonly.
      * @exception DOMException
-     *                         DOMSTRING_SIZE_ERR: Raised when it would return
-     *                         more
-     *                         characters than fit in a <code>DOMString</code>
-     *                         variable
-     *                         on the implementation platform.
+     *            DOMSTRING_SIZE_ERR: Raised when it would return
+     *            more
+     *            characters than fit in a <code>DOMString</code>
+     *            variable
+     *            on the implementation platform.
      * @since DOM Level 3
      */
     public String getTextContent() throws DOMException {
@@ -1804,7 +1708,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
      * document.
      * 
      * @param other
-     *              The node to compare against this node.
+     *        The node to compare against this node.
      * @return Returns how the given node is positioned relatively to this node.
      * @since DOM Level 3
      */
@@ -1843,8 +1747,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
     /**
      * DOM Level 3 WD - Experimental. Renaming node
      */
-    public Node renameNode(Node n, String namespaceURI, String name)
-            throws DOMException {
+    public Node renameNode(Node n, String namespaceURI, String name) throws DOMException {
         return n;
     }
 
@@ -1996,8 +1899,7 @@ public class UnImplNode implements Node, Element, NodeList, Document {
     /**
      * DOM Level 3: register the given attribute node as an ID attribute
      */
-    public void setIdAttributeNS(String namespaceURI, String localName,
-            boolean makeId) {
+    public void setIdAttributeNS(String namespaceURI, String localName, boolean makeId) {
         // PENDING
     }
 

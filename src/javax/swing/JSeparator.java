@@ -20,9 +20,7 @@ import java.io.IOException;
  * <code>JPopupMenu</code> <code>addSeparator</code> method to create and add a
  * separator. <code>JSeparator</code>s may also be used elsewhere in a GUI
  * wherever a visual divider is useful.
- *
  * <p>
- *
  * For more information and examples see <a href=
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html">How to
  * Use Menus</a>, a section in <em>The Java Tutorial.</em>
@@ -39,13 +37,11 @@ import java.io.IOException;
  *
  * @beaninfo attribute: isContainer false description: A divider between menu
  *           items.
- *
  * @author Georges Saab
  * @author Jeff Shapiro
  */
 @SuppressWarnings("serial")
-public class JSeparator extends JComponent implements SwingConstants,
-        Accessible {
+public class JSeparator extends JComponent implements SwingConstants, Accessible {
     /**
      * @see #getUIClassID
      * @see #readObject
@@ -64,15 +60,15 @@ public class JSeparator extends JComponent implements SwingConstants,
      * orientation.
      *
      * @param orientation
-     *                    an integer specifying
-     *                    <code>SwingConstants.HORIZONTAL</code>
-     *                    or <code>SwingConstants.VERTICAL</code>
+     *        an integer specifying
+     *        <code>SwingConstants.HORIZONTAL</code>
+     *        or <code>SwingConstants.VERTICAL</code>
      * @exception IllegalArgumentException
-     *                                     if <code>orientation</code> is
-     *                                     neither
-     *                                     <code>SwingConstants.HORIZONTAL</code>
-     *                                     nor
-     *                                     <code>SwingConstants.VERTICAL</code>
+     *            if <code>orientation</code> is
+     *            neither
+     *            <code>SwingConstants.HORIZONTAL</code>
+     *            nor
+     *            <code>SwingConstants.VERTICAL</code>
      */
     public JSeparator(int orientation) {
         checkOrientation(orientation);
@@ -94,7 +90,7 @@ public class JSeparator extends JComponent implements SwingConstants,
      * Sets the L&amp;F object that renders this component.
      *
      * @param ui
-     *           the SeparatorUI L&amp;F object
+     *        the SeparatorUI L&amp;F object
      * @see UIDefaults#getUI
      * @beaninfo bound: true hidden: true attribute: visualUpdate true
      *           description: The UI object that implements the Component's
@@ -146,7 +142,6 @@ public class JSeparator extends JComponent implements SwingConstants,
      * @return The value of the orientation property, one of the following
      *         constants defined in <code>SwingConstants</code>:
      *         <code>VERTICAL</code>, or <code>HORIZONTAL</code>.
-     *
      * @see SwingConstants
      * @see #setOrientation
      */
@@ -159,15 +154,14 @@ public class JSeparator extends JComponent implements SwingConstants,
      * is HORIZONTAL.
      * 
      * @param orientation
-     *                    either <code>SwingConstants.HORIZONTAL</code> or
-     *                    <code>SwingConstants.VERTICAL</code>
+     *        either <code>SwingConstants.HORIZONTAL</code> or
+     *        <code>SwingConstants.VERTICAL</code>
      * @exception IllegalArgumentException
-     *                                     if <code>orientation</code> is
-     *                                     neither
-     *                                     <code>SwingConstants.HORIZONTAL</code>
-     *                                     nor
-     *                                     <code>SwingConstants.VERTICAL</code>
-     *
+     *            if <code>orientation</code> is
+     *            neither
+     *            <code>SwingConstants.HORIZONTAL</code>
+     *            nor
+     *            <code>SwingConstants.VERTICAL</code>
      * @see SwingConstants
      * @see #getOrientation
      * @beaninfo bound: true preferred: true enum: HORIZONTAL
@@ -193,8 +187,7 @@ public class JSeparator extends JComponent implements SwingConstants,
             case HORIZONTAL:
                 break;
             default:
-                throw new IllegalArgumentException(
-                        "orientation must be one of: VERTICAL, HORIZONTAL");
+                throw new IllegalArgumentException("orientation must be one of: VERTICAL, HORIZONTAL");
         }
     }
 
@@ -208,8 +201,7 @@ public class JSeparator extends JComponent implements SwingConstants,
      * @return a string representation of this <code>JSeparator</code>
      */
     protected String paramString() {
-        String orientationString = (orientation == HORIZONTAL ? "HORIZONTAL"
-                : "VERTICAL");
+        String orientationString = (orientation == HORIZONTAL ? "HORIZONTAL" : "VERTICAL");
 
         return super.paramString() + ",orientation=" + orientationString;
     }

@@ -15,7 +15,6 @@ import com.sun.corba.se.pept.protocol.MessageMediator;
  * to give programming language typed data to the encoding block to be encoded
  * and sent in a message.
  * </p>
- *
  * <p>
  * The implementation of an <code>OutputObject</code> contains the encoded data.
  * When the presentation block gives programming language typed data to
@@ -23,14 +22,12 @@ import com.sun.corba.se.pept.protocol.MessageMediator;
  * responsible for converting that data to the encoded representation of the
  * data for a particular encoding.
  * </p>
- *
  * <p>
  * A particular <em>encoding</em> would subclass <code>OutputObject</code>. The
  * subclass would provide methods to set the data types appropriate to the
  * presentation block (e.g., simple types such as int or boolean, all the way to
  * any type derived from <code>java.io.Serializable</code>.).
  * </p>
- *
  * <p>
  * Note: the protocol block may also use the <code>OutputObject</code> to set
  * header metadata.

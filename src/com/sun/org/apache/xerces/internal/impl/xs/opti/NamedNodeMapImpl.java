@@ -25,9 +25,7 @@ import org.w3c.dom.DOMException;
 
 /**
  * @xerces.internal
- *
  * @author Rahul Srivastava, Sun Microsystems Inc.
- *
  */
 public class NamedNodeMapImpl implements NamedNodeMap {
 
@@ -59,8 +57,7 @@ public class NamedNodeMapImpl implements NamedNodeMap {
 
     public Node getNamedItemNS(String namespaceURI, String localName) {
         for (int i = 0; i < attrs.length; i++) {
-            if (attrs[i].getName().equals(localName) && attrs[i]
-                    .getNamespaceURI().equals(namespaceURI)) {
+            if (attrs[i].getName().equals(localName) && attrs[i].getNamespaceURI().equals(namespaceURI)) {
                 return attrs[i];
             }
         }
@@ -68,23 +65,18 @@ public class NamedNodeMapImpl implements NamedNodeMap {
     }
 
     public Node setNamedItemNS(Node arg) throws DOMException {
-        throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
-                "Method not supported");
+        throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
     }
 
     public Node setNamedItem(Node arg) throws DOMException {
-        throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
-                "Method not supported");
+        throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
     }
 
     public Node removeNamedItem(String name) throws DOMException {
-        throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
-                "Method not supported");
+        throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
     }
 
-    public Node removeNamedItemNS(String namespaceURI, String localName)
-            throws DOMException {
-        throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
-                "Method not supported");
+    public Node removeNamedItemNS(String namespaceURI, String localName) throws DOMException {
+        throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Method not supported");
     }
 }

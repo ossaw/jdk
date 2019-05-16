@@ -59,10 +59,10 @@ abstract class MarkerInstruction extends Instruction {
      * entries.
      * 
      * @param cpg
-     *            The
-     *            {@link com.sun.org.apache.bcel.internal.generic.ConstantPoolGen}
-     *            for the current
-     *            {@link com.sun.org.apache.bcel.internal.generic.ClassGen}
+     *        The
+     *        {@link com.sun.org.apache.bcel.internal.generic.ConstantPoolGen}
+     *        for the current
+     *        {@link com.sun.org.apache.bcel.internal.generic.ClassGen}
      * @return <code>0</code> always
      */
     final public int consumeStack(ConstantPoolGen cpg) {
@@ -75,10 +75,10 @@ abstract class MarkerInstruction extends Instruction {
      * entries.
      * 
      * @param cpg
-     *            The
-     *            {@link com.sun.org.apache.bcel.internal.generic.ConstantPoolGen}
-     *            for the current
-     *            {@link com.sun.org.apache.bcel.internal.generic.ClassGen}
+     *        The
+     *        {@link com.sun.org.apache.bcel.internal.generic.ConstantPoolGen}
+     *        for the current
+     *        {@link com.sun.org.apache.bcel.internal.generic.ClassGen}
      * @return <code>0</code> always
      */
     final public int produceStack(ConstantPoolGen cpg) {
@@ -102,7 +102,7 @@ abstract class MarkerInstruction extends Instruction {
      * output stream.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     final public void dump(DataOutputStream out) throws IOException {}
 }

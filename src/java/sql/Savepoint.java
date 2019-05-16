@@ -25,7 +25,7 @@ public interface Savepoint {
      * 
      * @return the numeric ID of this savepoint
      * @exception SQLException
-     *                         if this is a named savepoint
+     *            if this is a named savepoint
      * @since 1.4
      */
     int getSavepointId() throws SQLException;
@@ -36,7 +36,7 @@ public interface Savepoint {
      * 
      * @return the name of this savepoint
      * @exception SQLException
-     *                         if this is an un-named savepoint
+     *            if this is an un-named savepoint
      * @since 1.4
      */
     String getSavepointName() throws SQLException;

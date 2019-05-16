@@ -22,9 +22,7 @@ package com.sun.org.apache.xerces.internal.impl.dv;
  * datatypes.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  */
 public class InvalidDatatypeFacetException extends DatatypeException {
 
@@ -36,9 +34,9 @@ public class InvalidDatatypeFacetException extends DatatypeException {
      * error message substitution arguments.
      *
      * @param key
-     *             error code
+     *        error code
      * @param args
-     *             error arguments
+     *        error arguments
      */
     public InvalidDatatypeFacetException(String key, Object[] args) {
         super(key, args);

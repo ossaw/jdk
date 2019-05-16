@@ -29,7 +29,6 @@ public interface DocSourcePositions extends SourcePositions {
      * tree under the given file. The returned position must be at the start of
      * the yield of this tree, that is for any sub-tree of this tree, the
      * following must hold:
-     *
      * <p>
      * {@code tree.getStartPosition() <= subtree.getStartPosition()} or <br>
      * {@code tree.getStartPosition() == NOPOS} or <br>
@@ -37,17 +36,16 @@ public interface DocSourcePositions extends SourcePositions {
      * </p>
      *
      * @param file
-     *                CompilationUnit in which to find tree.
+     *        CompilationUnit in which to find tree.
      * @param comment
-     *                the comment tree that encloses the tree for which the
-     *                position
-     *                is being sought
+     *        the comment tree that encloses the tree for which the
+     *        position
+     *        is being sought
      * @param tree
-     *                tree for which a position is sought.
+     *        tree for which a position is sought.
      * @return the start position of tree.
      */
-    long getStartPosition(CompilationUnitTree file, DocCommentTree comment,
-            DocTree tree);
+    long getStartPosition(CompilationUnitTree file, DocCommentTree comment, DocTree tree);
 
     /**
      * Gets the ending position of the tree within the comment within the file.
@@ -59,15 +57,12 @@ public interface DocSourcePositions extends SourcePositions {
      * tree under the given file. The returned position must be at the end of
      * the yield of this tree, that is for any sub-tree of this tree, the
      * following must hold:
-     *
      * <p>
      * {@code tree.getEndPosition() >= subtree.getEndPosition()} or <br>
      * {@code tree.getEndPosition() == NOPOS} or <br>
      * {@code subtree.getEndPosition() == NOPOS}
      * </p>
-     *
      * In addition, the following must hold:
-     *
      * <p>
      * {@code tree.getStartPosition() <= tree.getEndPosition()} or <br>
      * {@code tree.getStartPosition() == NOPOS} or <br>
@@ -75,16 +70,15 @@ public interface DocSourcePositions extends SourcePositions {
      * </p>
      *
      * @param file
-     *                CompilationUnit in which to find tree.
+     *        CompilationUnit in which to find tree.
      * @param comment
-     *                the comment tree that encloses the tree for which the
-     *                position
-     *                is being sought
+     *        the comment tree that encloses the tree for which the
+     *        position
+     *        is being sought
      * @param tree
-     *                tree for which a position is sought.
+     *        tree for which a position is sought.
      * @return the start position of tree.
      */
-    long getEndPosition(CompilationUnitTree file, DocCommentTree comment,
-            DocTree tree);
+    long getEndPosition(CompilationUnitTree file, DocCommentTree comment, DocTree tree);
 
 }

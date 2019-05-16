@@ -21,7 +21,6 @@ package java.text;
  * its subclasses to keep track of the current position during parsing. The
  * <code>parseObject</code> method in the various <code>Format</code> classes
  * requires a <code>ParsePosition</code> object as an argument.
- *
  * <p>
  * By design, as you parse through a string with different formats, you can use
  * the same <code>ParsePosition</code>, since the index parameter records the
@@ -56,7 +55,7 @@ public class ParsePosition {
      * Set the current parse position.
      *
      * @param index
-     *              the current parse position
+     *        the current parse position
      */
     public void setIndex(int index) {
         this.index = index;
@@ -66,7 +65,7 @@ public class ParsePosition {
      * Create a new ParsePosition with the given initial index.
      *
      * @param index
-     *              initial index
+     *        initial index
      */
     public ParsePosition(int index) {
         this.index = index;
@@ -78,7 +77,7 @@ public class ParsePosition {
      * value is -1 if this is not set.
      *
      * @param ei
-     *           the index at which an error occurred
+     *        the index at which an error occurred
      * @since 1.2
      */
     public void setErrorIndex(int ei) {
@@ -123,7 +122,6 @@ public class ParsePosition {
      * @return a string representation of this object
      */
     public String toString() {
-        return getClass().getName() + "[index=" + index + ",errorIndex="
-                + errorIndex + ']';
+        return getClass().getName() + "[index=" + index + ",errorIndex=" + errorIndex + ']';
     }
 }

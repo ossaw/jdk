@@ -57,8 +57,8 @@ import com.sun.org.apache.bcel.internal.ExceptionConstants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class ReturnInstruction extends Instruction implements
-        ExceptionThrower, TypedInstruction, StackConsumer {
+public abstract class ReturnInstruction extends Instruction implements ExceptionThrower, TypedInstruction,
+        StackConsumer {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -67,7 +67,7 @@ public abstract class ReturnInstruction extends Instruction implements
 
     /**
      * @param opcode
-     *               of instruction
+     *        of instruction
      */
     protected ReturnInstruction(short opcode) {
         super(opcode, (short) 1);

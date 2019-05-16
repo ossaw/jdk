@@ -56,18 +56,16 @@ class DefaultSynthStyleFactory extends SynthStyleFactory {
         _resolvedStyles = new HashMap<BakedArrayList, SynthStyle>();
     }
 
-    public synchronized void addStyle(DefaultSynthStyle style, String path,
-            int type) throws PatternSyntaxException {
+    public synchronized void addStyle(DefaultSynthStyle style, String path, int type)
+            throws PatternSyntaxException {
         if (path == null) {
             // Make an empty path match all.
             path = ".*";
         }
         if (type == NAME) {
-            _styles.add(StyleAssociation.createStyleAssociation(path, style,
-                    type));
+            _styles.add(StyleAssociation.createStyleAssociation(path, style, type));
         } else if (type == REGION) {
-            _styles.add(StyleAssociation.createStyleAssociation(path
-                    .toLowerCase(), style, type));
+            _styles.add(StyleAssociation.createStyleAssociation(path.toLowerCase(), style, type));
         }
     }
 
@@ -75,9 +73,9 @@ class DefaultSynthStyleFactory extends SynthStyleFactory {
      * Returns the style for the specified Component.
      *
      * @param c
-     *           Component asking for
+     *        Component asking for
      * @param id
-     *           ID of the Component
+     *        ID of the Component
      */
     public synchronized SynthStyle getStyle(JComponent c, Region id) {
         BakedArrayList matches = _tmpList;
@@ -108,8 +106,7 @@ class DefaultSynthStyleFactory extends SynthStyleFactory {
     private SynthStyle getDefaultStyle() {
         if (_defaultStyle == null) {
             _defaultStyle = new DefaultSynthStyle();
-            ((DefaultSynthStyle) _defaultStyle).setFont(new FontUIResource(
-                    Font.DIALOG, Font.PLAIN, 12));
+            ((DefaultSynthStyle) _defaultStyle).setFont(new FontUIResource(Font.DIALOG, Font.PLAIN, 12));
         }
         return _defaultStyle;
     }

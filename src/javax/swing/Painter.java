@@ -14,7 +14,6 @@ import java.awt.Graphics2D;
  * the component. It is also generically useful when doing any form of painting
  * delegation.
  * </p>
- *
  * <p>
  * <code>Painter</code>s are simply encapsulations of Java2D code and make it
  * fairly trivial to reuse existing <code>Painter</code>s or to combine them
@@ -23,7 +22,6 @@ import java.awt.Graphics2D;
  * can write one with minimal effort. Writing a <code>Painter</code> requires
  * knowledge of Java2D.
  * </p>
- *
  * <p>
  * A <code>Painter</code> may be created with a type parameter. This type will
  * be expected in the <code>paint</code> method. For example, you may wish to
@@ -42,7 +40,6 @@ import java.awt.Graphics2D;
  * }
  * }
  * </pre>
- *
  * <p>
  * This interface makes no guarantees of threadsafety.
  * </p>
@@ -58,14 +55,12 @@ public interface Painter<T> {
      * cases, it is recommended that the caller pass in a scratch graphics
      * object. The <code>Graphics2D</code> must never be null.
      * </p>
-     *
      * <p>
      * State on the graphics object may be honored by the <code>paint</code>
      * method, but may not be. For instance, setting the antialiasing rendering
      * hint on the graphics may or may not be respected by the
      * <code>Painter</code> implementation.
      * </p>
-     *
      * <p>
      * The supplied object parameter acts as an optional configuration argument.
      * For example, it could be of type <code>Component</code>. A
@@ -73,14 +68,12 @@ public interface Painter<T> {
      * <code>Component</code> and use the state for painting. For example, an
      * implementation may read the backgroundColor and use that.
      * </p>
-     *
      * <p>
      * Generally, to enhance reusability, most standard <code>Painter</code>s
      * ignore this parameter. They can thus be reused in any context. The
      * <code>object</code> may be null. Implementations must not throw a
      * NullPointerException if the object parameter is null.
      * </p>
-     *
      * <p>
      * Finally, the <code>width</code> and <code>height</code> arguments specify
      * the width and height that the <code>Painter</code> should paint into.
@@ -88,7 +81,6 @@ public interface Painter<T> {
      * that it should paint fully within this width and height. Any specified
      * clip on the <code>g</code> param will further constrain the region.
      * </p>
-     *
      * <p>
      * For example, suppose I have a <code>Painter</code> implementation that
      * draws a gradient. The gradient goes from white to black. It "stretches"
@@ -101,13 +93,13 @@ public interface Painter<T> {
      * </p>
      *
      * @param g
-     *               The Graphics2D to render to. This must not be null.
+     *        The Graphics2D to render to. This must not be null.
      * @param object
-     *               an optional configuration parameter. This may be null.
+     *        an optional configuration parameter. This may be null.
      * @param width
-     *               width of the area to paint.
+     *        width of the area to paint.
      * @param height
-     *               height of the area to paint.
+     *        height of the area to paint.
      */
     public void paint(Graphics2D g, T object, int width, int height);
 }

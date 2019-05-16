@@ -14,44 +14,38 @@ public interface RepositoryOperations {
      * register server definition. This returns the serverId of the server. A
      * newly created server is always uninstalled.
      */
-    String registerServer(
-            com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef serverDef)
+    String registerServer(com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef serverDef)
             throws com.sun.corba.se.PortableActivationIDL.ServerAlreadyRegistered,
             com.sun.corba.se.PortableActivationIDL.BadServerDefinition;
 
     /**
      * unregister server definition
      */
-    void unregisterServer(String serverId)
-            throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered;
+    void unregisterServer(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered;
 
     /**
      * get server definition
      */
-    com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef getServer(
-            String serverId)
+    com.sun.corba.se.PortableActivationIDL.RepositoryPackage.ServerDef getServer(String serverId)
             throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered;
 
     /**
      * Return whether the server has been installed
      */
-    boolean isInstalled(String serverId)
-            throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered;
+    boolean isInstalled(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered;
 
     /**
      * Mark the server as being installed. Raises ServerAlreadyInstalled if the
      * server is currently marked as installed.
      */
-    void install(String serverId)
-            throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
+    void install(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
             com.sun.corba.se.PortableActivationIDL.ServerAlreadyInstalled;
 
     /**
      * Mark the server as being uninstalled. Raises ServerAlreadyUninstalled if
      * the server is currently marked as uninstalled.
      */
-    void uninstall(String serverId)
-            throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
+    void uninstall(String serverId) throws com.sun.corba.se.PortableActivationIDL.ServerNotRegistered,
             com.sun.corba.se.PortableActivationIDL.ServerAlreadyUninstalled;
 
     /**

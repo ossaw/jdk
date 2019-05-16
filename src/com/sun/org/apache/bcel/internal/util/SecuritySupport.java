@@ -50,48 +50,42 @@ public final class SecuritySupport {
     }
 
     static ClassLoader getContextClassLoader() {
-        return (ClassLoader) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        ClassLoader cl = null;
-                        try {
-                            cl = Thread.currentThread().getContextClassLoader();
-                        } catch (SecurityException ex) {
-                        }
-                        return cl;
-                    }
-                });
+        return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                ClassLoader cl = null;
+                try {
+                    cl = Thread.currentThread().getContextClassLoader();
+                } catch (SecurityException ex) {}
+                return cl;
+            }
+        });
     }
 
     static ClassLoader getSystemClassLoader() {
-        return (ClassLoader) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        ClassLoader cl = null;
-                        try {
-                            cl = ClassLoader.getSystemClassLoader();
-                        } catch (SecurityException ex) {
-                        }
-                        return cl;
-                    }
-                });
+        return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                ClassLoader cl = null;
+                try {
+                    cl = ClassLoader.getSystemClassLoader();
+                } catch (SecurityException ex) {}
+                return cl;
+            }
+        });
     }
 
     static ClassLoader getParentClassLoader(final ClassLoader cl) {
-        return (ClassLoader) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        ClassLoader parent = null;
-                        try {
-                            parent = cl.getParent();
-                        } catch (SecurityException ex) {
-                        }
+        return (ClassLoader) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                ClassLoader parent = null;
+                try {
+                    parent = cl.getParent();
+                } catch (SecurityException ex) {}
 
-                        // eliminate loops in case of the boot
-                        // ClassLoader returning itself as a parent
-                        return (parent == cl) ? null : parent;
-                    }
-                });
+                // eliminate loops in case of the boot
+                // ClassLoader returning itself as a parent
+                return (parent == cl) ? null : parent;
+            }
+        });
     }
 
     public static String getSystemProperty(final String propName) {
@@ -102,15 +96,13 @@ public final class SecuritySupport {
         });
     }
 
-    static FileInputStream getFileInputStream(final File file)
-            throws FileNotFoundException {
+    static FileInputStream getFileInputStream(final File file) throws FileNotFoundException {
         try {
-            return (FileInputStream) AccessController.doPrivileged(
-                    new PrivilegedExceptionAction() {
-                        public Object run() throws FileNotFoundException {
-                            return new FileInputStream(file);
-                        }
-                    });
+            return (FileInputStream) AccessController.doPrivileged(new PrivilegedExceptionAction() {
+                public Object run() throws FileNotFoundException {
+                    return new FileInputStream(file);
+                }
+            });
         } catch (PrivilegedActionException e) {
             throw (FileNotFoundException) e.getException();
         }
@@ -128,20 +120,18 @@ public final class SecuritySupport {
         }
     }
 
-    public static InputStream getResourceAsStream(final ClassLoader cl,
-            final String name) {
-        return (InputStream) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        InputStream ris;
-                        if (cl == null) {
-                            ris = Object.class.getResourceAsStream("/" + name);
-                        } else {
-                            ris = cl.getResourceAsStream(name);
-                        }
-                        return ris;
-                    }
-                });
+    public static InputStream getResourceAsStream(final ClassLoader cl, final String name) {
+        return (InputStream) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                InputStream ris;
+                if (cl == null) {
+                    ris = Object.class.getResourceAsStream("/" + name);
+                } else {
+                    ris = cl.getResourceAsStream(name);
+                }
+                return ris;
+            }
+        });
     }
 
     /**
@@ -149,9 +139,9 @@ public final class SecuritySupport {
      * and the caller's class loader.
      *
      * @param bundle
-     *               the base name of the resource bundle, a fully qualified
-     *               class
-     *               name
+     *        the base name of the resource bundle, a fully qualified
+     *        class
+     *        name
      * @return a resource bundle for the given base name and the default locale
      */
     public static ListResourceBundle getResourceBundle(String bundle) {
@@ -163,44 +153,36 @@ public final class SecuritySupport {
      * caller's class loader.
      *
      * @param bundle
-     *               the base name of the resource bundle, a fully qualified
-     *               class
-     *               name
+     *        the base name of the resource bundle, a fully qualified
+     *        class
+     *        name
      * @param locale
-     *               the locale for which a resource bundle is desired
+     *        the locale for which a resource bundle is desired
      * @return a resource bundle for the given base name and locale
      */
-    public static ListResourceBundle getResourceBundle(final String bundle,
-            final Locale locale) {
-        return AccessController.doPrivileged(
-                new PrivilegedAction<ListResourceBundle>() {
-                    public ListResourceBundle run() {
-                        try {
-                            return (ListResourceBundle) ResourceBundle
-                                    .getBundle(bundle, locale);
-                        } catch (MissingResourceException e) {
-                            try {
-                                return (ListResourceBundle) ResourceBundle
-                                        .getBundle(bundle, new Locale("en",
-                                                "US"));
-                            } catch (MissingResourceException e2) {
-                                throw new MissingResourceException(
-                                        "Could not load any resource bundle by "
-                                                + bundle, bundle, "");
-                            }
-                        }
+    public static ListResourceBundle getResourceBundle(final String bundle, final Locale locale) {
+        return AccessController.doPrivileged(new PrivilegedAction<ListResourceBundle>() {
+            public ListResourceBundle run() {
+                try {
+                    return (ListResourceBundle) ResourceBundle.getBundle(bundle, locale);
+                } catch (MissingResourceException e) {
+                    try {
+                        return (ListResourceBundle) ResourceBundle.getBundle(bundle, new Locale("en", "US"));
+                    } catch (MissingResourceException e2) {
+                        throw new MissingResourceException("Could not load any resource bundle by " + bundle,
+                                bundle, "");
                     }
-                });
+                }
+            }
+        });
     }
 
-    public static String[] getFileList(final File f,
-            final FilenameFilter filter) {
-        return ((String[]) AccessController.doPrivileged(
-                new PrivilegedAction() {
-                    public Object run() {
-                        return f.list(filter);
-                    }
-                }));
+    public static String[] getFileList(final File f, final FilenameFilter filter) {
+        return ((String[]) AccessController.doPrivileged(new PrivilegedAction() {
+            public Object run() {
+                return f.list(filter);
+            }
+        }));
     }
 
     public static boolean getFileExists(final File f) {

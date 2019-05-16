@@ -9,7 +9,6 @@ package com.sun.security.auth;
  * An object that implements the <code>java.security.Principal</code> interface
  * typically also implements this interface to provide a means for comparing
  * that object to a specified <code>Subject</code>.
- *
  * <p>
  * The comparison is achieved via the <code>implies</code> method. The
  * implementation of the <code>implies</code> method determines whether this
@@ -19,7 +18,6 @@ package com.sun.security.auth;
  * Another example application of this method would be for "role" object to
  * imply a particular <code>Subject</code> if that <code>Subject</code> is
  * currently acting in that role.
- *
  * <p>
  * Although classes that implement this interface typically also implement the
  * <code>java.security.Principal</code> interface, it is not required. In other
@@ -34,7 +32,6 @@ package com.sun.security.auth;
 public interface PrincipalComparator {
     /**
      * Check if the specified <code>Subject</code> is implied by this object.
-     *
      * <p>
      *
      * @return true if the specified <code>Subject</code> is implied by this

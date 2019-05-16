@@ -105,23 +105,22 @@ public class SysexMessage extends MidiMessage {
      * one of the {@code setMessage} methods.
      *
      * @param data
-     *               the system exclusive message data including the status byte
+     *        the system exclusive message data including the status byte
      * @param length
-     *               the length of the valid message data in the array,
-     *               including
-     *               the status byte; it should be non-negative and less than or
-     *               equal to {@code data.length}
+     *        the length of the valid message data in the array,
+     *        including
+     *        the status byte; it should be non-negative and less than or
+     *        equal to {@code data.length}
      * @throws InvalidMidiDataException
-     *                                  if the parameter values do not specify a
-     *                                  valid MIDI meta
-     *                                  message.
+     *         if the parameter values do not specify a
+     *         valid MIDI meta
+     *         message.
      * @see #setMessage(byte[], int)
      * @see #setMessage(int, byte[], int)
      * @see #getData()
      * @since 1.7
      */
-    public SysexMessage(byte[] data, int length)
-            throws InvalidMidiDataException {
+    public SysexMessage(byte[] data, int length) throws InvalidMidiDataException {
         super(null);
         setMessage(data, length);
     }
@@ -132,26 +131,25 @@ public class SysexMessage extends MidiMessage {
      * {@code setMessage} methods.
      *
      * @param status
-     *               the status byte for the message; it must be a valid system
-     *               exclusive status byte (0xF0 or 0xF7)
+     *        the status byte for the message; it must be a valid system
+     *        exclusive status byte (0xF0 or 0xF7)
      * @param data
-     *               the system exclusive message data (without the status byte)
+     *        the system exclusive message data (without the status byte)
      * @param length
-     *               the length of the valid message data in the array; it
-     *               should
-     *               be non-negative and less than or equal to
-     *               {@code data.length}
+     *        the length of the valid message data in the array; it
+     *        should
+     *        be non-negative and less than or equal to
+     *        {@code data.length}
      * @throws InvalidMidiDataException
-     *                                  if the parameter values do not specify a
-     *                                  valid MIDI meta
-     *                                  message.
+     *         if the parameter values do not specify a
+     *         valid MIDI meta
+     *         message.
      * @see #setMessage(byte[], int)
      * @see #setMessage(int, byte[], int)
      * @see #getData()
      * @since 1.7
      */
-    public SysexMessage(int status, byte[] data, int length)
-            throws InvalidMidiDataException {
+    public SysexMessage(int status, byte[] data, int length) throws InvalidMidiDataException {
         super(null);
         setMessage(status, data, length);
     }
@@ -160,9 +158,9 @@ public class SysexMessage extends MidiMessage {
      * Constructs a new <code>SysexMessage</code>.
      * 
      * @param data
-     *             an array of bytes containing the complete message. The
-     *             message
-     *             data may be changed using the <code>setMessage</code> method.
+     *        an array of bytes containing the complete message. The
+     *        message
+     *        data may be changed using the <code>setMessage</code> method.
      * @see #setMessage
      */
     protected SysexMessage(byte[] data) {
@@ -174,19 +172,17 @@ public class SysexMessage extends MidiMessage {
      * data array must be a valid system exclusive status byte (0xF0 or 0xF7).
      * 
      * @param data
-     *               the system exclusive message data
+     *        the system exclusive message data
      * @param length
-     *               the length of the valid message data in the array,
-     *               including
-     *               the status byte.
+     *        the length of the valid message data in the array,
+     *        including
+     *        the status byte.
      */
-    public void setMessage(byte[] data, int length)
-            throws InvalidMidiDataException {
+    public void setMessage(byte[] data, int length) throws InvalidMidiDataException {
         int status = (data[0] & 0xFF);
         if ((status != 0xF0) && (status != 0xF7)) {
-            throw new InvalidMidiDataException(
-                    "Invalid status byte for sysex message: 0x" + Integer
-                            .toHexString(status));
+            throw new InvalidMidiDataException("Invalid status byte for sysex message: 0x" + Integer
+                    .toHexString(status));
         }
         super.setMessage(data, length);
     }
@@ -195,25 +191,22 @@ public class SysexMessage extends MidiMessage {
      * Sets the data for the system exclusive message.
      * 
      * @param status
-     *               the status byte for the message (0xF0 or 0xF7)
+     *        the status byte for the message (0xF0 or 0xF7)
      * @param data
-     *               the system exclusive message data
+     *        the system exclusive message data
      * @param length
-     *               the length of the valid message data in the array
+     *        the length of the valid message data in the array
      * @throws InvalidMidiDataException
-     *                                  if the status byte is invalid for a
-     *                                  sysex message
+     *         if the status byte is invalid for a
+     *         sysex message
      */
-    public void setMessage(int status, byte[] data, int length)
-            throws InvalidMidiDataException {
+    public void setMessage(int status, byte[] data, int length) throws InvalidMidiDataException {
         if ((status != 0xF0) && (status != 0xF7)) {
-            throw new InvalidMidiDataException(
-                    "Invalid status byte for sysex message: 0x" + Integer
-                            .toHexString(status));
+            throw new InvalidMidiDataException("Invalid status byte for sysex message: 0x" + Integer
+                    .toHexString(status));
         }
         if (length < 0 || length > data.length) {
-            throw new IndexOutOfBoundsException("length out of bounds: "
-                    + length);
+            throw new IndexOutOfBoundsException("length out of bounds: " + length);
         }
         this.length = length + 1;
 

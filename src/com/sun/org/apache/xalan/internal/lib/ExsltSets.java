@@ -51,13 +51,12 @@ public class ExsltSets extends ExsltBase {
      * returned.
      *
      * @param nl1
-     *            NodeList for first node-set.
+     *        NodeList for first node-set.
      * @param nl2
-     *            NodeList for second node-set.
+     *        NodeList for second node-set.
      * @return a NodeList containing the nodes in nl1 that precede in document
      *         order the first node in nl2; an empty node-set if the first node
      *         in nl2 is not in nl1; all of nl1 if nl2 is empty.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static NodeList leading(NodeList nl1, NodeList nl2) {
@@ -72,8 +71,7 @@ public class ExsltSets extends ExsltBase {
 
         for (int i = 0; i < nl1.getLength(); i++) {
             Node testNode = nl1.item(i);
-            if (DOMHelper.isNodeAfter(testNode, endNode) && !DOMHelper
-                    .isNodeTheSame(testNode, endNode))
+            if (DOMHelper.isNodeAfter(testNode, endNode) && !DOMHelper.isNodeTheSame(testNode, endNode))
                 leadNodes.addElement(testNode);
         }
         return leadNodes;
@@ -88,13 +86,12 @@ public class ExsltSets extends ExsltBase {
      * returned.
      *
      * @param nl1
-     *            NodeList for first node-set.
+     *        NodeList for first node-set.
      * @param nl2
-     *            NodeList for second node-set.
+     *        NodeList for second node-set.
      * @return a NodeList containing the nodes in nl1 that follow in document
      *         order the first node in nl2; an empty node-set if the first node
      *         in nl2 is not in nl1; all of nl1 if nl2 is empty.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static NodeList trailing(NodeList nl1, NodeList nl2) {
@@ -109,8 +106,7 @@ public class ExsltSets extends ExsltBase {
 
         for (int i = 0; i < nl1.getLength(); i++) {
             Node testNode = nl1.item(i);
-            if (DOMHelper.isNodeAfter(startNode, testNode) && !DOMHelper
-                    .isNodeTheSame(startNode, testNode))
+            if (DOMHelper.isNodeAfter(startNode, testNode) && !DOMHelper.isNodeTheSame(startNode, testNode))
                 trailNodes.addElement(testNode);
         }
         return trailNodes;
@@ -121,11 +117,10 @@ public class ExsltSets extends ExsltBase {
      * that are within both the node sets passed as arguments to it.
      *
      * @param nl1
-     *            NodeList for first node-set.
+     *        NodeList for first node-set.
      * @param nl2
-     *            NodeList for second node-set.
+     *        NodeList for second node-set.
      * @return a NodeList containing the nodes in nl1 that are also in nl2.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static NodeList intersection(NodeList nl1, NodeList nl2) {
@@ -151,11 +146,10 @@ public class ExsltSets extends ExsltBase {
      * are not in the node set passed as the second argument.
      *
      * @param nl1
-     *            NodeList for first node-set.
+     *        NodeList for first node-set.
      * @param nl2
-     *            NodeList for second node-set.
+     *        NodeList for second node-set.
      * @return a NodeList containing the nodes in nl1 that are not in nl2.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static NodeList difference(NodeList nl1, NodeList nl2) {
@@ -183,11 +177,10 @@ public class ExsltSets extends ExsltBase {
      * precedes N in document order.
      *
      * @param nl
-     *           NodeList for the node-set.
+     *        NodeList for the node-set.
      * @return a NodeList with nodes from nl containing distinct string values.
      *         In other words, if more than one node in nl contains the same
      *         string value, only include the first such node found.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static NodeList distinct(NodeList nl) {
@@ -216,10 +209,8 @@ public class ExsltSets extends ExsltBase {
      * first argument shares any nodes with the node set passed as the second
      * argument. If there are no nodes that are in both node sets, then it
      * returns false.
-     *
      * The Xalan extensions MethodResolver converts 'has-same-node' to
      * 'hasSameNode'.
-     *
      * Note: Not to be confused with hasSameNodes in the Xalan namespace, which
      * returns true if the two node sets contain the exactly the same nodes
      * (perhaps in a different order), otherwise false.

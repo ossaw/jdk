@@ -27,8 +27,7 @@ import javax.swing.event.*;
  * @see ListSelectionModel
  */
 
-public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
-        Serializable {
+public class DefaultListSelectionModel implements ListSelectionModel, Cloneable, Serializable {
     private static final int MIN = -1;
     private static final int MAX = Integer.MAX_VALUE;
     private int selectionMode = MULTIPLE_INTERVAL_SELECTION;
@@ -72,7 +71,7 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * {@inheritDoc}
      * 
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      */
     public void setSelectionMode(int selectionMode) {
         switch (selectionMode) {
@@ -88,8 +87,7 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
 
     /** {@inheritDoc} */
     public boolean isSelectedIndex(int index) {
-        return ((index < minIndex) || (index > maxIndex)) ? false
-                : value.get(index);
+        return ((index < minIndex) || (index > maxIndex)) ? false : value.get(index);
     }
 
     /** {@inheritDoc} */
@@ -114,10 +112,8 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * @return all of this model's <code>ListSelectionListener</code>s or an
      *         empty array if no list selection listeners are currently
      *         registered
-     *
      * @see #addListSelectionListener
      * @see #removeListSelectionListener
-     *
      * @since 1.4
      */
     public ListSelectionListener[] getListSelectionListeners() {
@@ -139,8 +135,7 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
         int oldLastChangedIndex = lastChangedIndex;
         firstChangedIndex = MAX;
         lastChangedIndex = MIN;
-        fireValueChanged(oldFirstChangedIndex, oldLastChangedIndex,
-                isAdjusting);
+        fireValueChanged(oldFirstChangedIndex, oldLastChangedIndex, isAdjusting);
     }
 
     /**
@@ -154,24 +149,22 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
 
     /**
      * @param firstIndex
-     *                    the first index in the interval
+     *        the first index in the interval
      * @param lastIndex
-     *                    the last index in the interval
+     *        the last index in the interval
      * @param isAdjusting
-     *                    true if this is the final change in a series of
-     *                    adjustments
+     *        true if this is the final change in a series of
+     *        adjustments
      * @see EventListenerList
      */
-    protected void fireValueChanged(int firstIndex, int lastIndex,
-            boolean isAdjusting) {
+    protected void fireValueChanged(int firstIndex, int lastIndex, boolean isAdjusting) {
         Object[] listeners = listenerList.getListenerList();
         ListSelectionEvent e = null;
 
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == ListSelectionListener.class) {
                 if (e == null) {
-                    e = new ListSelectionEvent(this, firstIndex, lastIndex,
-                            isAdjusting);
+                    e = new ListSelectionEvent(this, firstIndex, lastIndex, isAdjusting);
                 }
                 ((ListSelectionListener) listeners[i + 1]).valueChanged(e);
             }
@@ -216,28 +209,25 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * <code>m</code> for its list selection listeners with the following code:
      *
      * <pre>
-     * ListSelectionListener[] lsls = (ListSelectionListener[]) (m.getListeners(
-     *         ListSelectionListener.class));
+     * ListSelectionListener[] lsls = (ListSelectionListener[]) (m.getListeners(ListSelectionListener.class));
      * </pre>
      *
      * If no such listeners exist, this method returns an empty array.
      *
      * @param listenerType
-     *                     the type of listeners requested; this parameter
-     *                     should specify
-     *                     an interface that descends from
-     *                     <code>java.util.EventListener</code>
+     *        the type of listeners requested; this parameter
+     *        should specify
+     *        an interface that descends from
+     *        <code>java.util.EventListener</code>
      * @return an array of all objects registered as <code><em>Foo</em>
      *         Listener</code>s on this model, or an empty array if no such
      *         listeners have been added
      * @exception ClassCastException
-     *                               if <code>listenerType</code> doesn't
-     *                               specify a class or
-     *                               interface that implements
-     *                               <code>java.util.EventListener</code>
-     *
+     *            if <code>listenerType</code> doesn't
+     *            specify a class or
+     *            interface that implements
+     *            <code>java.util.EventListener</code>
      * @see #getListSelectionListeners
-     *
      * @since 1.3
      */
     public <T extends EventListener> T[] getListeners(Class<T> listenerType) {
@@ -373,10 +363,8 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
         return (i >= a) && (i <= b);
     }
 
-    private void changeSelection(int clearMin, int clearMax, int setMin,
-            int setMax, boolean clearFirst) {
-        for (int i = Math.min(setMin, clearMin); i <= Math.max(setMax,
-                clearMax); i++) {
+    private void changeSelection(int clearMin, int clearMax, int setMin, int setMax, boolean clearFirst) {
+        for (int i = Math.min(setMin, clearMin); i <= Math.max(setMax, clearMax); i++) {
 
             boolean shouldClear = contains(clearMin, clearMax, i);
             boolean shouldSet = contains(setMin, setMax, i);
@@ -405,8 +393,7 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * inclusive range [setMin, setMax]. Do this in one pass so that no values
      * are cleared if they would later be set.
      */
-    private void changeSelection(int clearMin, int clearMax, int setMin,
-            int setMax) {
+    private void changeSelection(int clearMin, int clearMax, int setMin, int setMax) {
         changeSelection(clearMin, clearMax, setMin, setMax, true);
     }
 
@@ -431,13 +418,13 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * {@code IndexOutOfBoundsException} is thrown.
      *
      * @param index0
-     *               one end of the interval.
+     *        one end of the interval.
      * @param index1
-     *               other end of the interval
+     *        other end of the interval
      * @throws IndexOutOfBoundsException
-     *                                   if either index is less than {@code -1}
-     *                                   (and neither index is
-     *                                   {@code -1})
+     *         if either index is less than {@code -1}
+     *         (and neither index is
+     *         {@code -1})
      * @see #addListSelectionListener
      */
     public void setSelectionInterval(int index0, int index1) {
@@ -478,13 +465,13 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * {@code IndexOutOfBoundsException} is thrown.
      *
      * @param index0
-     *               one end of the interval.
+     *        one end of the interval.
      * @param index1
-     *               other end of the interval
+     *        other end of the interval
      * @throws IndexOutOfBoundsException
-     *                                   if either index is less than {@code -1}
-     *                                   (and neither index is
-     *                                   {@code -1})
+     *         if either index is less than {@code -1}
+     *         (and neither index is
+     *         {@code -1})
      * @see #addListSelectionListener
      * @see #setSelectionInterval
      */
@@ -510,8 +497,8 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
         // If we only allow a single interval and this would result
         // in multiple intervals, then set the selection to be just
         // the new range.
-        if (getSelectionMode() == SINGLE_INTERVAL_SELECTION
-                && (setMax < minIndex - 1 || setMin > maxIndex + 1)) {
+        if (getSelectionMode() == SINGLE_INTERVAL_SELECTION && (setMax < minIndex - 1 || setMin > maxIndex
+                + 1)) {
 
             setSelectionInterval(index0, index1);
             return;
@@ -539,13 +526,13 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * {@code IndexOutOfBoundsException} is thrown.
      *
      * @param index0
-     *               one end of the interval
+     *        one end of the interval
      * @param index1
-     *               other end of the interval
+     *        other end of the interval
      * @throws IndexOutOfBoundsException
-     *                                   if either index is less than {@code -1}
-     *                                   (and neither index is
-     *                                   {@code -1})
+     *         if either index is less than {@code -1}
+     *         (and neither index is
+     *         {@code -1})
      * @see #addListSelectionListener
      */
     public void removeSelectionInterval(int index0, int index1) {
@@ -554,8 +541,7 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
 
     // private implementation allowing the selection interval
     // to be removed without affecting the lead and anchor
-    private void removeSelectionIntervalImpl(int index0, int index1,
-            boolean changeLeadAnchor) {
+    private void removeSelectionIntervalImpl(int index0, int index1, boolean changeLeadAnchor) {
 
         if (index0 == -1 || index1 == -1) {
             return;
@@ -572,8 +558,7 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
 
         // If the removal would produce to two disjoint selections in a mode
         // that only allows one, extend the removal to the end of the selection.
-        if (getSelectionMode() != MULTIPLE_INTERVAL_SELECTION
-                && clearMin > minIndex && clearMax < maxIndex) {
+        if (getSelectionMode() != MULTIPLE_INTERVAL_SELECTION && clearMin > minIndex && clearMax < maxIndex) {
             clearMax = maxIndex;
         }
 
@@ -614,9 +599,7 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
         /*
          * Initialize the newly inserted indices.
          */
-        boolean setInsertedValues = ((getSelectionMode() == SINGLE_SELECTION)
-                ? false
-                : value.get(index));
+        boolean setInsertedValues = ((getSelectionMode() == SINGLE_SELECTION) ? false : value.get(index));
         for (int i = insMinIndex; i <= insMaxIndex; i++) {
             setState(i, setInsertedValues);
         }
@@ -694,8 +677,7 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      */
     public String toString() {
         String s = ((getValueIsAdjusting()) ? "~" : "=") + value.toString();
-        return getClass().getName() + " " + Integer.toString(hashCode()) + " "
-                + s;
+        return getClass().getName() + " " + Integer.toString(hashCode()) + " " + s;
     }
 
     /**
@@ -703,11 +685,11 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * <code>listenerLists</code> are not duplicated.
      *
      * @exception CloneNotSupportedException
-     *                                       if the selection model does not
-     *                                       both (a) implement the
-     *                                       Cloneable interface and (b) define
-     *                                       a <code>clone</code>
-     *                                       method.
+     *            if the selection model does not
+     *            both (a) implement the
+     *            Cloneable interface and (b) define
+     *            a <code>clone</code>
+     *            method.
      */
     public Object clone() throws CloneNotSupportedException {
         DefaultListSelectionModel clone = (DefaultListSelectionModel) super.clone();
@@ -747,12 +729,10 @@ public class DefaultListSelectionModel implements ListSelectionModel, Cloneable,
      * old and new lead cells.
      *
      * @param leadIndex
-     *                  the new lead selection index
-     *
+     *        the new lead selection index
      * @see #setAnchorSelectionIndex
      * @see #setLeadSelectionIndex
      * @see #getLeadSelectionIndex
-     *
      * @since 1.5
      */
     public void moveLeadSelectionIndex(int leadIndex) {

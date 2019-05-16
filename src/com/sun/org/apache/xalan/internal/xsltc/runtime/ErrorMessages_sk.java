@@ -76,8 +76,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * message is a class name. Used for internal errors in the
                  * processor.
                  */
-                { BasisLibrary.RUN_TIME_INTERNAL_ERR,
-                        "Intern\u00e1 chyba \u010dasu spustenia v ''{0}''" },
+                { BasisLibrary.RUN_TIME_INTERNAL_ERR, "Intern\u00e1 chyba \u010dasu spustenia v ''{0}''" },
 
                 /*
                  * Note to translators: <xsl:copy> is a keyword that should not
@@ -92,24 +91,21 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * context needs to be converted to type {1}, but that's not
                  * possible for a value of type {0}.
                  */
-                { BasisLibrary.DATA_CONVERSION_ERR,
-                        "Neplatn\u00e1 konverzia z ''{0}'' na ''{1}''." },
+                { BasisLibrary.DATA_CONVERSION_ERR, "Neplatn\u00e1 konverzia z ''{0}'' na ''{1}''." },
 
                 /*
                  * Note to translators: This message is displayed if the
                  * function named by the substitution text is not a function
                  * that is supported. XSLTC is the acronym naming the product.
                  */
-                { BasisLibrary.EXTERNAL_FUNC_ERR,
-                        "XSLTC nepodporuje extern\u00fa funkciu ''{0}''." },
+                { BasisLibrary.EXTERNAL_FUNC_ERR, "XSLTC nepodporuje extern\u00fa funkciu ''{0}''." },
 
                 /*
                  * Note to translators: This message is displayed if two values
                  * are compared for equality, but the data type of one of the
                  * values is unknown.
                  */
-                { BasisLibrary.EQUALITY_EXPR_ERR,
-                        "Nezn\u00e1my typ argumentu je v\u00fdrazom rovnosti." },
+                { BasisLibrary.EQUALITY_EXPR_ERR, "Nezn\u00e1my typ argumentu je v\u00fdrazom rovnosti." },
 
                 /*
                  * Note to translators: The substitution text for {0} will be a
@@ -143,8 +139,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.AXIS_SUPPORT_ERR,
-                        "Iter\u00e1tor pre os ''{0}'' nie je podporovan\u00fd." },
+                { BasisLibrary.AXIS_SUPPORT_ERR, "Iter\u00e1tor pre os ''{0}'' nie je podporovan\u00fd." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -162,8 +157,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { BasisLibrary.STRAY_ATTRIBUTE_ERR,
-                        "Atrib\u00fat ''{0}'' je mimo elementu." },
+                { BasisLibrary.STRAY_ATTRIBUTE_ERR, "Atrib\u00fat ''{0}'' je mimo elementu." },
 
                 /*
                  * Note to translators: As with the preceding message, a

@@ -29,23 +29,17 @@ import java.util.Objects;
  * Represent the schema type "decimal"
  *
  * @xerces.internal
- *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
- *
  */
 public class DecimalDV extends TypeValidator {
 
     @Override
     public final short getAllowedFacets() {
-        return (XSSimpleTypeDecl.FACET_PATTERN
-                | XSSimpleTypeDecl.FACET_WHITESPACE
-                | XSSimpleTypeDecl.FACET_ENUMERATION
-                | XSSimpleTypeDecl.FACET_MAXINCLUSIVE
-                | XSSimpleTypeDecl.FACET_MININCLUSIVE
-                | XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
-                | XSSimpleTypeDecl.FACET_MINEXCLUSIVE
-                | XSSimpleTypeDecl.FACET_TOTALDIGITS
+        return (XSSimpleTypeDecl.FACET_PATTERN | XSSimpleTypeDecl.FACET_WHITESPACE
+                | XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_MAXINCLUSIVE
+                | XSSimpleTypeDecl.FACET_MININCLUSIVE | XSSimpleTypeDecl.FACET_MAXEXCLUSIVE
+                | XSSimpleTypeDecl.FACET_MINEXCLUSIVE | XSSimpleTypeDecl.FACET_TOTALDIGITS
                 | XSSimpleTypeDecl.FACET_FRACTIONDIGITS);
     }
 
@@ -55,8 +49,8 @@ public class DecimalDV extends TypeValidator {
         try {
             return new XDecimal(content);
         } catch (NumberFormatException nfe) {
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "decimal" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "decimal" });
         }
     }
 
@@ -124,14 +118,13 @@ public class DecimalDV extends TypeValidator {
 
             // skip leading zeroes in integer part
             int actualIntStart = intStart;
-            while (actualIntStart < len && content.charAt(
-                    actualIntStart) == '0') {
+            while (actualIntStart < len && content.charAt(actualIntStart) == '0') {
                 actualIntStart++;
             }
 
             // Find the ending position of the integer part
-            for (intEnd = actualIntStart; intEnd < len && TypeValidator.isDigit(
-                    content.charAt(intEnd)); intEnd++)
+            for (intEnd = actualIntStart; intEnd < len && TypeValidator.isDigit(content.charAt(
+                    intEnd)); intEnd++)
                 ;
 
             // Not reached the end yet
@@ -200,14 +193,13 @@ public class DecimalDV extends TypeValidator {
 
             // skip leading zeroes in integer part
             int actualIntStart = intStart;
-            while (actualIntStart < len && content.charAt(
-                    actualIntStart) == '0') {
+            while (actualIntStart < len && content.charAt(actualIntStart) == '0') {
                 actualIntStart++;
             }
 
             // Find the ending position of the integer part
-            for (intEnd = actualIntStart; intEnd < len && TypeValidator.isDigit(
-                    content.charAt(intEnd)); intEnd++)
+            for (intEnd = actualIntStart; intEnd < len && TypeValidator.isDigit(content.charAt(
+                    intEnd)); intEnd++)
                 ;
 
             // Not reached the end yet, error
@@ -246,8 +238,8 @@ public class DecimalDV extends TypeValidator {
             if (sign == 0)
                 return true;
 
-            return intDigits == oval.intDigits && fracDigits == oval.fracDigits
-                    && ivalue.equals(oval.ivalue) && fvalue.equals(oval.fvalue);
+            return intDigits == oval.intDigits && fracDigits == oval.fracDigits && ivalue.equals(oval.ivalue)
+                    && fvalue.equals(oval.fvalue);
         }
 
         @Override

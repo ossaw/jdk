@@ -26,11 +26,10 @@ public interface DynArray extends org.omg.CORBA.Object, org.omg.CORBA.DynAny {
      * Sets the value of this <code>DynArray</code> object to the given array.
      *
      * @param value
-     *              the array of <code>Any</code> objects
+     *        the array of <code>Any</code> objects
      * @exception InvalidSeq
-     *                       if the sequence is bad
+     *            if the sequence is bad
      * @see #get_elements
      */
-    public void set_elements(org.omg.CORBA.Any[] value)
-            throws org.omg.CORBA.DynAnyPackage.InvalidSeq;
+    public void set_elements(org.omg.CORBA.Any[] value) throws org.omg.CORBA.DynAnyPackage.InvalidSeq;
 }

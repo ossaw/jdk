@@ -16,7 +16,6 @@ import java.util.Set;
  * <code>Set</code>s of nodes which are pointed to by the current node
  * (available from <code>getOutNodes</code>). The in-degree of the node (that
  * is, number of nodes that point to the current node) may be queried.
- *
  */
 class DigraphNode implements Cloneable, Serializable {
 
@@ -58,8 +57,7 @@ class DigraphNode implements Cloneable, Serializable {
      * updated and the in-degree of the other node is incremented.
      *
      * @param node
-     *             a <code>DigraphNode</code>.
-     *
+     *        a <code>DigraphNode</code>.
      * @return <code>true</code> if the node was not previously the target of an
      *         edge.
      */
@@ -79,8 +77,7 @@ class DigraphNode implements Cloneable, Serializable {
      * given node.
      *
      * @param node
-     *             a <code>DigraphNode</code>.
-     *
+     *        a <code>DigraphNode</code>.
      * @return <code>true</code> if the node is the target of an edge.
      */
     public boolean hasEdge(DigraphNode node) {

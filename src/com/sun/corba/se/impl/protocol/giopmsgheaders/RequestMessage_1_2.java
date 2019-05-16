@@ -25,8 +25,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class RequestMessage_1_2 extends Message_1_2 implements
-        RequestMessage {
+public final class RequestMessage_1_2 extends Message_1_2 implements RequestMessage {
 
     // Instance variables
 
@@ -43,18 +42,14 @@ public final class RequestMessage_1_2 extends Message_1_2 implements
 
     RequestMessage_1_2(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
     }
 
-    RequestMessage_1_2(ORB orb, int _request_id, byte _response_flags,
-            byte[] _reserved, TargetAddress _target, String _operation,
-            ServiceContexts _service_contexts) {
-        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN,
-                Message.GIOPRequest, 0);
+    RequestMessage_1_2(ORB orb, int _request_id, byte _response_flags, byte[] _reserved,
+            TargetAddress _target, String _operation, ServiceContexts _service_contexts) {
+        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPRequest, 0);
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
         request_id = _request_id;
         response_flags = _response_flags;
         reserved = _reserved;
@@ -78,8 +73,7 @@ public final class RequestMessage_1_2 extends Message_1_2 implements
          * exception response.
          */
 
-        if ((this.response_flags
-                & RESPONSE_EXPECTED_BIT) == RESPONSE_EXPECTED_BIT) {
+        if ((this.response_flags & RESPONSE_EXPECTED_BIT) == RESPONSE_EXPECTED_BIT) {
             return true;
         }
 
@@ -125,8 +119,7 @@ public final class RequestMessage_1_2 extends Message_1_2 implements
         this.target = TargetAddressHelper.read(istream);
         getObjectKey(); // this does AddressingDisposition check
         this.operation = istream.read_string();
-        this.service_contexts = new ServiceContexts(
-                (org.omg.CORBA_2_3.portable.InputStream) istream);
+        this.service_contexts = new ServiceContexts((org.omg.CORBA_2_3.portable.InputStream) istream);
 
         // CORBA formal 00-11-0 15.4.2.2 GIOP 1.2 body must be
         // aligned on an 8 octet boundary.
@@ -143,8 +136,7 @@ public final class RequestMessage_1_2 extends Message_1_2 implements
         ostream.write_octet(this.response_flags);
         nullCheck(this.reserved);
         if (this.reserved.length != (3)) {
-            throw wrapper.badReservedLength(
-                    org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+            throw wrapper.badReservedLength(org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
         }
         for (int _i0 = 0; _i0 < (3); ++_i0) {
             ostream.write_octet(this.reserved[_i0]);
@@ -153,12 +145,9 @@ public final class RequestMessage_1_2 extends Message_1_2 implements
         TargetAddressHelper.write(ostream, this.target);
         ostream.write_string(this.operation);
         if (this.service_contexts != null) {
-            service_contexts.write(
-                    (org.omg.CORBA_2_3.portable.OutputStream) ostream,
-                    GIOPVersion.V1_2);
+            service_contexts.write((org.omg.CORBA_2_3.portable.OutputStream) ostream, GIOPVersion.V1_2);
         } else {
-            ServiceContexts.writeNullServiceContext(
-                    (org.omg.CORBA_2_3.portable.OutputStream) ostream);
+            ServiceContexts.writeNullServiceContext((org.omg.CORBA_2_3.portable.OutputStream) ostream);
         }
 
         // CORBA formal 00-11-0 15.4.2.2 GIOP 1.2 body must be

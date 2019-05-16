@@ -6,11 +6,9 @@
 package java.lang;
 
 /**
- *
  * The {@code Byte} class wraps a value of primitive type {@code byte} in an
  * object. An object of type {@code Byte} contains a single field whose type is
  * {@code byte}.
- *
  * <p>
  * In addition, this class provides several methods for converting a
  * {@code byte} to a {@code String} and a {@code String} to a {@code
@@ -40,15 +38,14 @@ public final class Byte extends Number implements Comparable<Byte> {
      * The {@code Class} instance representing the primitive type {@code byte}.
      */
     @SuppressWarnings("unchecked")
-    public static final Class<Byte> TYPE = (Class<Byte>) Class
-            .getPrimitiveClass("byte");
+    public static final Class<Byte> TYPE = (Class<Byte>) Class.getPrimitiveClass("byte");
 
     /**
      * Returns a new {@code String} object representing the specified
      * {@code byte}. The radix is assumed to be 10.
      *
      * @param b
-     *          the {@code byte} to be converted
+     *        the {@code byte} to be converted
      * @return the string representation of the specified {@code byte}
      * @see java.lang.Integer#toString(int)
      */
@@ -75,7 +72,7 @@ public final class Byte extends Number implements Comparable<Byte> {
      * performance since all byte values are cached.
      *
      * @param b
-     *          a byte value.
+     *        a byte value.
      * @return a {@code Byte} instance representing {@code b}.
      * @since 1.5
      */
@@ -93,44 +90,38 @@ public final class Byte extends Number implements Comparable<Byte> {
      * {@code '\u005Cu002D'}) to indicate a negative value or an ASCII plus sign
      * {@code '+'} ({@code '\u005Cu002B'}) to indicate a positive value. The
      * resulting {@code byte} value is returned.
-     *
      * <p>
      * An exception of type {@code NumberFormatException} is thrown if any of
      * the following situations occurs:
      * <ul>
      * <li>The first argument is {@code null} or is a string of length zero.
-     *
      * <li>The radix is either smaller than
      * {@link java.lang.Character#MIN_RADIX} or larger than
      * {@link java.lang.Character#MAX_RADIX}.
-     *
      * <li>Any character of the string is not a digit of the specified radix,
      * except that the first character may be a minus sign {@code '-'} (
      * {@code '\u005Cu002D'}) or plus sign {@code '+'} ({@code '\u005Cu002B'})
      * provided that the string is longer than length 1.
-     *
      * <li>The value represented by the string is not a value of type
      * {@code byte}.
      * </ul>
      *
      * @param s
-     *              the {@code String} containing the {@code byte}
-     *              representation
-     *              to be parsed
+     *        the {@code String} containing the {@code byte}
+     *        representation
+     *        to be parsed
      * @param radix
-     *              the radix to be used while parsing {@code s}
+     *        the radix to be used while parsing {@code s}
      * @return the {@code byte} value represented by the string argument in the
      *         specified radix
      * @throws NumberFormatException
-     *                               If the string does not contain a parsable
-     *                               {@code byte}.
+     *         If the string does not contain a parsable
+     *         {@code byte}.
      */
-    public static byte parseByte(String s, int radix)
-            throws NumberFormatException {
+    public static byte parseByte(String s, int radix) throws NumberFormatException {
         int i = Integer.parseInt(s, radix);
         if (i < MIN_VALUE || i > MAX_VALUE)
-            throw new NumberFormatException("Value out of range. Value:\"" + s
-                    + "\" Radix:" + radix);
+            throw new NumberFormatException("Value out of range. Value:\"" + s + "\" Radix:" + radix);
         return (byte) i;
     }
 
@@ -145,12 +136,12 @@ public final class Byte extends Number implements Comparable<Byte> {
      * {@link #parseByte(java.lang.String, int)} method.
      *
      * @param s
-     *          a {@code String} containing the {@code byte} representation to
-     *          be parsed
+     *        a {@code String} containing the {@code byte} representation to
+     *        be parsed
      * @return the {@code byte} value represented by the argument in decimal
      * @throws NumberFormatException
-     *                               if the string does not contain a parsable
-     *                               {@code byte}.
+     *         if the string does not contain a parsable
+     *         {@code byte}.
      */
     public static byte parseByte(String s) throws NumberFormatException {
         return parseByte(s, 10);
@@ -164,26 +155,23 @@ public final class Byte extends Number implements Comparable<Byte> {
      * the argument were given to the {@link #parseByte(java.lang.String, int)}
      * method. The result is a {@code Byte} object that represents the
      * {@code byte} value specified by the string.
-     *
      * <p>
      * In other words, this method returns a {@code Byte} object equal to the
      * value of:
-     *
      * <blockquote> {@code new Byte(Byte.parseByte(s, radix))} </blockquote>
      *
      * @param s
-     *              the string to be parsed
+     *        the string to be parsed
      * @param radix
-     *              the radix to be used in interpreting {@code s}
+     *        the radix to be used in interpreting {@code s}
      * @return a {@code Byte} object holding the value represented by the string
      *         argument in the specified radix.
      * @throws NumberFormatException
-     *                               If the {@code String} does not contain a
-     *                               parsable
-     *                               {@code byte}.
+     *         If the {@code String} does not contain a
+     *         parsable
+     *         {@code byte}.
      */
-    public static Byte valueOf(String s, int radix)
-            throws NumberFormatException {
+    public static Byte valueOf(String s, int radix) throws NumberFormatException {
         return valueOf(parseByte(s, radix));
     }
 
@@ -193,21 +181,19 @@ public final class Byte extends Number implements Comparable<Byte> {
      * decimal {@code byte}, exactly as if the argument were given to the
      * {@link #parseByte(java.lang.String)} method. The result is a {@code Byte}
      * object that represents the {@code byte} value specified by the string.
-     *
      * <p>
      * In other words, this method returns a {@code Byte} object equal to the
      * value of:
-     *
      * <blockquote> {@code new Byte(Byte.parseByte(s))} </blockquote>
      *
      * @param s
-     *          the string to be parsed
+     *        the string to be parsed
      * @return a {@code Byte} object holding the value represented by the string
      *         argument
      * @throws NumberFormatException
-     *                               If the {@code String} does not contain a
-     *                               parsable
-     *                               {@code byte}.
+     *         If the {@code String} does not contain a
+     *         parsable
+     *         {@code byte}.
      */
     public static Byte valueOf(String s) throws NumberFormatException {
         return valueOf(s, 10);
@@ -216,7 +202,6 @@ public final class Byte extends Number implements Comparable<Byte> {
     /**
      * Decodes a {@code String} into a {@code Byte}. Accepts decimal,
      * hexadecimal, and octal numbers given by the following grammar:
-     *
      * <blockquote>
      * <dl>
      * <dt><i>DecodableString:</i>
@@ -225,18 +210,15 @@ public final class Byte extends Number implements Comparable<Byte> {
      * <dd><i>Sign<sub>opt</sub></i> {@code 0X} <i>HexDigits</i>
      * <dd><i>Sign<sub>opt</sub></i> {@code #} <i>HexDigits</i>
      * <dd><i>Sign<sub>opt</sub></i> {@code 0} <i>OctalDigits</i>
-     *
      * <dt><i>Sign:</i>
      * <dd>{@code -}
      * <dd>{@code +}
      * </dl>
      * </blockquote>
-     *
      * <i>DecimalNumeral</i>, <i>HexDigits</i>, and <i>OctalDigits</i> are as
      * defined in section 3.10.1 of <cite>The Java&trade; Language
      * Specification</cite>, except that underscores are not accepted between
      * digits.
-     *
      * <p>
      * The sequence of characters following an optional sign and/or radix
      * specifier ("{@code 0x}", "{@code 0X}", "{@code #}", or leading zero) is
@@ -248,20 +230,19 @@ public final class Byte extends Number implements Comparable<Byte> {
      * whitespace characters are permitted in the {@code String}.
      *
      * @param nm
-     *           the {@code String} to decode.
+     *        the {@code String} to decode.
      * @return a {@code Byte} object holding the {@code byte} value represented
      *         by {@code nm}
      * @throws NumberFormatException
-     *                               if the {@code String} does not contain a
-     *                               parsable
-     *                               {@code byte}.
+     *         if the {@code String} does not contain a
+     *         parsable
+     *         {@code byte}.
      * @see java.lang.Byte#parseByte(java.lang.String, int)
      */
     public static Byte decode(String nm) throws NumberFormatException {
         int i = Integer.decode(nm);
         if (i < MIN_VALUE || i > MAX_VALUE)
-            throw new NumberFormatException("Value " + i
-                    + " out of range from input " + nm);
+            throw new NumberFormatException("Value " + i + " out of range from input " + nm);
         return valueOf((byte) i);
     }
 
@@ -277,7 +258,7 @@ public final class Byte extends Number implements Comparable<Byte> {
      * specified {@code byte} value.
      *
      * @param value
-     *              the value to be represented by the {@code Byte}.
+     *        the value to be represented by the {@code Byte}.
      */
     public Byte(byte value) {
         this.value = value;
@@ -290,11 +271,11 @@ public final class Byte extends Number implements Comparable<Byte> {
      * {@code parseByte} method for radix 10.
      *
      * @param s
-     *          the {@code String} to be converted to a {@code Byte}
+     *        the {@code String} to be converted to a {@code Byte}
      * @throws NumberFormatException
-     *                               If the {@code String} does not contain a
-     *                               parsable
-     *                               {@code byte}.
+     *         If the {@code String} does not contain a
+     *         parsable
+     *         {@code byte}.
      * @see java.lang.Byte#parseByte(java.lang.String, int)
      */
     public Byte(String s) throws NumberFormatException {
@@ -387,7 +368,7 @@ public final class Byte extends Number implements Comparable<Byte> {
      * {@code Byte.hashCode()}.
      *
      * @param value
-     *              the value to hash
+     *        the value to hash
      * @return a hash code value for a {@code byte} value.
      * @since 1.8
      */
@@ -401,7 +382,7 @@ public final class Byte extends Number implements Comparable<Byte> {
      * object that contains the same {@code byte} value as this object.
      *
      * @param obj
-     *            the object to compare with
+     *        the object to compare with
      * @return {@code true} if the objects are the same; {@code false}
      *         otherwise.
      */
@@ -416,7 +397,7 @@ public final class Byte extends Number implements Comparable<Byte> {
      * Compares two {@code Byte} objects numerically.
      *
      * @param anotherByte
-     *                    the {@code Byte} to be compared.
+     *        the {@code Byte} to be compared.
      * @return the value {@code 0} if this {@code Byte} is equal to the argument
      *         {@code Byte}; a value less than {@code 0} if this {@code Byte} is
      *         numerically less than the argument {@code Byte}; and a value
@@ -437,9 +418,9 @@ public final class Byte extends Number implements Comparable<Byte> {
      * </pre>
      *
      * @param x
-     *          the first {@code byte} to compare
+     *        the first {@code byte} to compare
      * @param y
-     *          the second {@code byte} to compare
+     *        the second {@code byte} to compare
      * @return the value {@code 0} if {@code x == y}; a value less than
      *         {@code 0} if {@code x < y}; and a value greater than {@code 0} if
      *         {@code x > y}
@@ -454,14 +435,13 @@ public final class Byte extends Number implements Comparable<Byte> {
      * unsigned conversion to an {@code int}, the high-order 24 bits of the
      * {@code int} are zero and the low-order 8 bits are equal to the bits of
      * the {@code byte} argument.
-     *
      * Consequently, zero and positive {@code byte} values are mapped to a
      * numerically equal {@code int} value and negative {@code
      * byte} values are mapped to an {@code int} value equal to the input plus 2
      * <sup>8</sup>.
      *
      * @param x
-     *          the value to convert to an unsigned {@code int}
+     *        the value to convert to an unsigned {@code int}
      * @return the argument converted to {@code int} by an unsigned conversion
      * @since 1.8
      */
@@ -474,14 +454,13 @@ public final class Byte extends Number implements Comparable<Byte> {
      * unsigned conversion to a {@code long}, the high-order 56 bits of the
      * {@code long} are zero and the low-order 8 bits are equal to the bits of
      * the {@code byte} argument.
-     *
      * Consequently, zero and positive {@code byte} values are mapped to a
      * numerically equal {@code long} value and negative {@code
      * byte} values are mapped to a {@code long} value equal to the input plus 2
      * <sup>8</sup>.
      *
      * @param x
-     *          the value to convert to an unsigned {@code long}
+     *        the value to convert to an unsigned {@code long}
      * @return the argument converted to {@code long} by an unsigned conversion
      * @since 1.8
      */

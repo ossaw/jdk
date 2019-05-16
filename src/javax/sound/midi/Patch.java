@@ -29,7 +29,6 @@ package javax.sound.midi;
  * @see Synthesizer#loadInstruments(Soundbank, Patch[])
  * @see Soundbank
  * @see Sequence#getPatchList()
- *
  * @author Kara Kytle
  */
 
@@ -50,9 +49,9 @@ public class Patch {
      * numbers.
      * 
      * @param bank
-     *                the bank index (in the range from 0 to 16383)
+     *        the bank index (in the range from 0 to 16383)
      * @param program
-     *                the program index (in the range from 0 to 127)
+     *        the program index (in the range from 0 to 127)
      */
     public Patch(int bank, int program) {
 
@@ -77,7 +76,6 @@ public class Patch {
      * <code>Patch</code> specifies.
      * 
      * @return the instrument's program number, whose range is from 0 to 127
-     *
      * @see MidiChannel#getProgram
      * @see MidiChannel#programChange(int)
      * @see MidiChannel#programChange(int, int)

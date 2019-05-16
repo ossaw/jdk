@@ -46,7 +46,6 @@ import org.xml.sax.SAXException;
  * an exception directly, but only throw it at the end of serializing (either
  * DOM or SAX's {@link org.xml.sax.DocumentHandler#endDocument}.
  *
- *
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @see Serializer
  */
@@ -62,21 +61,19 @@ public class TextSerializer extends BaseMarkupSerializer {
     }
 
     public void setOutputFormat(OutputFormat format) {
-        super.setOutputFormat(format != null ? format
-                : new OutputFormat(Method.TEXT, null, false));
+        super.setOutputFormat(format != null ? format : new OutputFormat(Method.TEXT, null, false));
     }
 
     // -----------------------------------------//
     // SAX content handler serializing methods //
     // -----------------------------------------//
 
-    public void startElement(String namespaceURI, String localName,
-            String rawName, Attributes attrs) throws SAXException {
+    public void startElement(String namespaceURI, String localName, String rawName, Attributes attrs)
+            throws SAXException {
         startElement(rawName == null ? localName : rawName, null);
     }
 
-    public void endElement(String namespaceURI, String localName,
-            String rawName) throws SAXException {
+    public void endElement(String namespaceURI, String localName, String rawName) throws SAXException {
         endElement(rawName == null ? localName : rawName);
     }
 
@@ -84,8 +81,7 @@ public class TextSerializer extends BaseMarkupSerializer {
     // SAX document handler serializing methods //
     // ------------------------------000---------//
 
-    public void startElement(String tagName, AttributeList attrs)
-            throws SAXException {
+    public void startElement(String tagName, AttributeList attrs) throws SAXException {
         boolean preserveSpace;
         ElementState state;
 
@@ -142,15 +138,13 @@ public class TextSerializer extends BaseMarkupSerializer {
             _printer.flush();
     }
 
-    public void processingInstructionIO(String target, String code)
-            throws IOException {}
+    public void processingInstructionIO(String target, String code) throws IOException {}
 
     public void comment(String text) {}
 
     public void comment(char[] chars, int start, int length) {}
 
-    public void characters(char[] chars, int start, int length)
-            throws SAXException {
+    public void characters(char[] chars, int start, int length) throws SAXException {
         ElementState state;
 
         try {
@@ -162,8 +156,7 @@ public class TextSerializer extends BaseMarkupSerializer {
         }
     }
 
-    protected void characters(String text, boolean unescaped)
-            throws IOException {
+    protected void characters(String text, boolean unescaped) throws IOException {
         ElementState state;
 
         state = content();
@@ -250,7 +243,7 @@ public class TextSerializer extends BaseMarkupSerializer {
      * Serialize the DOM node. This method is unique to the Text serializer.
      *
      * @param node
-     *             The node to serialize
+     *        The node to serialize
      */
     protected void serializeNode(Node node) throws IOException {
         // Based on the node type call the suitable SAX handler.

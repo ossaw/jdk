@@ -19,11 +19,9 @@ import org.xml.sax.Locator;
  * ContentHandler.setDocumentLocator() } will implement this interface, and the
  * <em>http://xml.org/sax/features/use-locator2</em> feature flag will have the
  * value <em>true</em>.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
  * </blockquote>
- *
  * <p>
  * XMLReader implementations are not required to support this information, and
  * it is not part of core-only SAX2 distributions.
@@ -53,18 +51,15 @@ public interface Locator2 extends Locator {
      * the document, that encoding name will be returned. Otherwise the encoding
      * will been inferred (normally to be UTF-8, or some UTF-16 variant), and
      * that inferred name will be returned.
-     *
      * <p>
      * When an {@link org.xml.sax.InputSource InputSource} is used to provide an
      * entity's character stream, this method returns the encoding provided in
      * that input stream.
-     *
      * <p>
      * Note that some recent W3C specifications require that text in some
      * encodings be normalized, using Unicode Normalization Form C, before
      * processing. Such normalization must be performed by applications, and
      * would normally be triggered based on the value returned by this method.
-     *
      * <p>
      * Encoding names may be those used by the underlying JVM, and comparisons
      * should be case-insensitive.

@@ -92,13 +92,11 @@ final class LiteralElement extends Instruction {
      * literal element and its attributes. The output must contain a definition
      * for each namespace, so we stuff them in a map.
      */
-    public void registerNamespace(String prefix, String uri, SymbolTable stable,
-            boolean declared) {
+    public void registerNamespace(String prefix, String uri, SymbolTable stable, boolean declared) {
 
         // Check if the parent has a declaration for this namespace
         if (_literalElemParent != null) {
-            final String parentUri = _literalElemParent.accessedNamespace(
-                    prefix);
+            final String parentUri = _literalElemParent.accessedNamespace(prefix);
             if (parentUri != null && parentUri.equals(uri)) {
                 return;
             }
@@ -203,8 +201,7 @@ final class LiteralElement extends Instruction {
      * assembles a list of all prefixes that (for the given node) maps to _ANY_
      * namespace URI. Used by literal result elements to determine
      */
-    public Set<Map.Entry<String, String>> getNamespaceScope(
-            SyntaxTreeNode node) {
+    public Set<Map.Entry<String, String>> getNamespaceScope(SyntaxTreeNode node) {
         Map<String, String> all = new HashMap<>();
 
         while (node != null) {
@@ -249,8 +246,7 @@ final class LiteralElement extends Instruction {
             // attributes can override an attributes in the set.
             if (qname.equals(parser.getUseAttributeSets())) {
                 if (!Util.isValidQNames(val)) {
-                    ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, val,
-                            this);
+                    ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, val, this);
                     parser.reportError(Constants.ERROR, err);
                 }
                 setFirstAttribute(new UseAttributeSets(val, parser));
@@ -265,17 +261,14 @@ final class LiteralElement extends Instruction {
             } else {
                 // Ignore special attributes (e.g. xmlns:prefix and xmlns)
                 final String prefix = qname.getPrefix();
-                if (prefix != null && prefix.equals(XMLNS_PREFIX)
-                        || prefix == null && qname.getLocalPart().equals(
-                                "xmlns") || uri != null && uri.equals(
-                                        XSLT_URI)) {
+                if (prefix != null && prefix.equals(XMLNS_PREFIX) || prefix == null && qname.getLocalPart()
+                        .equals("xmlns") || uri != null && uri.equals(XSLT_URI)) {
                     continue;
                 }
 
                 // Handle all other literal attributes
                 final String name = translateQName(qname, stable);
-                LiteralAttribute attr = new LiteralAttribute(name, val, parser,
-                        this);
+                LiteralAttribute attr = new LiteralAttribute(name, val, parser, this);
                 addAttribute(attr);
                 attr.setParent(this);
                 attr.parseContents(parser);
@@ -352,13 +345,11 @@ final class LiteralElement extends Instruction {
         if (_accessedPrefixes != null) {
             boolean declaresDefaultNS = false;
 
-            for (Map.Entry<String, String> entry : _accessedPrefixes
-                    .entrySet()) {
+            for (Map.Entry<String, String> entry : _accessedPrefixes.entrySet()) {
                 final String prefix = entry.getKey();
                 final String uri = entry.getValue();
 
-                if (uri != Constants.EMPTYSTRING
-                        || prefix != Constants.EMPTYSTRING) {
+                if (uri != Constants.EMPTYSTRING || prefix != Constants.EMPTYSTRING) {
                     if (prefix == Constants.EMPTYSTRING) {
                         declaresDefaultNS = true;
                     }
@@ -373,8 +364,8 @@ final class LiteralElement extends Instruction {
              * If our XslElement parent redeclares the default NS, and this
              * element doesn't, it must be redeclared one more time.
              */
-            if (!declaresDefaultNS && (_parent instanceof XslElement)
-                    && ((XslElement) _parent).declaresDefaultNS()) {
+            if (!declaresDefaultNS && (_parent instanceof XslElement) && ((XslElement) _parent)
+                    .declaresDefaultNS()) {
                 il.append(methodGen.loadHandler());
                 il.append(new PUSH(cpg, Constants.EMPTYSTRING));
                 il.append(new PUSH(cpg, Constants.EMPTYSTRING));
@@ -446,8 +437,7 @@ final class LiteralElement extends Instruction {
                             SyntaxTreeNode n = _attributeElements.get(k);
                             if (n instanceof LiteralAttribute) {
                                 LiteralAttribute literalAttr = (LiteralAttribute) n;
-                                attrsTable.put(literalAttr.getName(),
-                                        literalAttr);
+                                attrsTable.put(literalAttr.getName(), literalAttr);
                             }
                         }
                     }
@@ -478,8 +468,7 @@ final class LiteralElement extends Instruction {
      * the flag ignoreXslAttribute is true, the direct <xsl:attribute> children
      * of the current node are not included in the check.
      */
-    private boolean canProduceAttributeNodes(SyntaxTreeNode node,
-            boolean ignoreXslAttribute) {
+    private boolean canProduceAttributeNodes(SyntaxTreeNode node, boolean ignoreXslAttribute) {
         List<SyntaxTreeNode> contents = node.getContents();
         for (SyntaxTreeNode child : contents) {
             if (child instanceof Text) {
@@ -494,8 +483,7 @@ final class LiteralElement extends Instruction {
             // We can safely return false when the instruction can produce an
             // output node.
             else if (child instanceof LiteralElement || child instanceof ValueOf
-                    || child instanceof XslElement || child instanceof Comment
-                    || child instanceof Number
+                    || child instanceof XslElement || child instanceof Comment || child instanceof Number
                     || child instanceof ProcessingInstruction)
                 return false;
             else if (child instanceof XslAttribute) {
@@ -509,18 +497,16 @@ final class LiteralElement extends Instruction {
             // <xsl:apply-templates> can produce attribute nodes. <xsl:copy> and
             // <xsl:copy-of> can also copy attribute nodes to an element. Return
             // true in those cases to be safe.
-            else if (child instanceof CallTemplate
-                    || child instanceof ApplyTemplates || child instanceof Copy
+            else if (child instanceof CallTemplate || child instanceof ApplyTemplates || child instanceof Copy
                     || child instanceof CopyOf)
                 return true;
-            else if ((child instanceof If || child instanceof ForEach)
-                    && canProduceAttributeNodes(child, false)) {
+            else if ((child instanceof If || child instanceof ForEach) && canProduceAttributeNodes(child,
+                    false)) {
                 return true;
             } else if (child instanceof Choose) {
                 List<SyntaxTreeNode> chooseContents = child.getContents();
                 for (SyntaxTreeNode chooseChild : chooseContents) {
-                    if (chooseChild instanceof When
-                            || chooseChild instanceof Otherwise) {
+                    if (chooseChild instanceof When || chooseChild instanceof Otherwise) {
                         if (canProduceAttributeNodes(chooseChild, false))
                             return true;
                     }

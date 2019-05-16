@@ -66,9 +66,8 @@ class EllipseIterator implements PathIterator {
      */
     private static final double pcv = 0.5 + CtrlVal * 0.5;
     private static final double ncv = 0.5 - CtrlVal * 0.5;
-    private static double ctrlpts[][] = { { 1.0, pcv, pcv, 1.0, 0.5, 1.0 }, {
-            ncv, 1.0, 0.0, pcv, 0.0, 0.5 }, { 0.0, ncv, ncv, 0.0, 0.5, 0.0 }, {
-                    pcv, 0.0, 1.0, ncv, 1.0, 0.5 } };
+    private static double ctrlpts[][] = { { 1.0, pcv, pcv, 1.0, 0.5, 1.0 }, { ncv, 1.0, 0.0, pcv, 0.0, 0.5 },
+            { 0.0, ncv, ncv, 0.0, 0.5, 0.0 }, { pcv, 0.0, 1.0, ncv, 1.0, 0.5 } };
 
     /**
      * Returns the coordinates and type of the current path segment in the

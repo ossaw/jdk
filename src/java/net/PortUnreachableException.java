@@ -19,7 +19,7 @@ public class PortUnreachableException extends SocketException {
      * Constructs a new {@code PortUnreachableException} with a detail message.
      * 
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public PortUnreachableException(String msg) {
         super(msg);

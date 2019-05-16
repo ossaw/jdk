@@ -8,14 +8,12 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ActivatorHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ActivatorHolder implements org.omg.CORBA.portable.Streamable {
     public com.sun.corba.se.spi.activation.Activator value = null;
 
     public ActivatorHolder() {}
 
-    public ActivatorHolder(
-            com.sun.corba.se.spi.activation.Activator initialValue) {
+    public ActivatorHolder(com.sun.corba.se.spi.activation.Activator initialValue) {
         value = initialValue;
     }
 

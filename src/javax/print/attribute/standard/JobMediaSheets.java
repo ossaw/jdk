@@ -43,11 +43,9 @@ import javax.print.attribute.PrintJobAttribute;
  * @see JobMediaSheetsCompleted
  * @see JobKOctets
  * @see JobImpressions
- *
  * @author Alan Kaminsky
  */
-public class JobMediaSheets extends IntegerSyntax implements
-        PrintRequestAttribute, PrintJobAttribute {
+public class JobMediaSheets extends IntegerSyntax implements PrintRequestAttribute, PrintJobAttribute {
 
     private static final long serialVersionUID = 408871131531979741L;
 
@@ -55,12 +53,11 @@ public class JobMediaSheets extends IntegerSyntax implements
      * Construct a new job media sheets attribute with the given integer value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 0.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 0.
      */
     public JobMediaSheets(int value) {
         super(value, 0, Integer.MAX_VALUE);
@@ -78,8 +75,7 @@ public class JobMediaSheets extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this job media
      *         sheets attribute, false otherwise.
      */

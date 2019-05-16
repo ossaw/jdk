@@ -29,8 +29,7 @@ public abstract class PresentationDefaults {
         return new StubFactoryFactoryProxyImpl();
     }
 
-    public static PresentationManager.StubFactory makeStaticStubFactory(
-            Class stubClass) {
+    public static PresentationManager.StubFactory makeStaticStubFactory(Class stubClass) {
         return new StubFactoryStaticImpl(stubClass);
     }
 }

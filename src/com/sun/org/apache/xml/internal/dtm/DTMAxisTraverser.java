@@ -25,12 +25,10 @@ package com.sun.org.apache.xml.internal.dtm;
  * iterator, because it does not need to hold state, and, in fact, must not hold
  * any iteration-based state. It is meant to be implemented as an inner class of
  * a DTM, and returned by the getAxisTraverser(final int axis) function.
- *
  * <p>
  * A DTMAxisTraverser can probably not traverse a reverse axis in document
  * order.
  * </p>
- *
  * <p>
  * Typical usage:
  * </p>
@@ -52,15 +50,14 @@ public abstract class DTMAxisTraverser {
      * By the nature of the stateless traversal, the context node can not be
      * returned or the iteration will go into an infinate loop. So to traverse
      * an axis, the first function must be used to get the first node.
-     *
      * <p>
      * This method needs to be overloaded only by those axis that process the
      * self node. <\p>
      *
      * @param context
-     *                The context node of this traversal. This is the point that
-     *                the
-     *                traversal starts from.
+     *        The context node of this traversal. This is the point that
+     *        the
+     *        traversal starts from.
      * @return the first node in the traversal.
      */
     public int first(int context) {
@@ -71,19 +68,17 @@ public abstract class DTMAxisTraverser {
      * By the nature of the stateless traversal, the context node can not be
      * returned or the iteration will go into an infinate loop. So to traverse
      * an axis, the first function must be used to get the first node.
-     *
      * <p>
      * This method needs to be overloaded only by those axis that process the
      * self node. <\p>
      *
      * @param context
-     *                       The context node of this traversal. This is the
-     *                       point of
-     *                       origin for the traversal -- its "root node" or
-     *                       starting point.
+     *        The context node of this traversal. This is the
+     *        point of
+     *        origin for the traversal -- its "root node" or
+     *        starting point.
      * @param extendedTypeID
-     *                       The extended type ID that must match.
-     *
+     *        The extended type ID that must match.
      * @return the first node in the traversal.
      */
     public int first(int context, int extendedTypeID) {
@@ -94,21 +89,20 @@ public abstract class DTMAxisTraverser {
      * Traverse to the next node after the current node.
      *
      * @param context
-     *                The context node of this traversal. This is the point of
-     *                origin for the traversal -- its "root node" or starting
-     *                point.
+     *        The context node of this traversal. This is the point of
+     *        origin for the traversal -- its "root node" or starting
+     *        point.
      * @param current
-     *                The current node of the traversal. This is the last known
-     *                location in the traversal, typically the node-handle
-     *                returned
-     *                by the previous traversal step. For the first traversal
-     *                step,
-     *                context should be set equal to current. Note that in order
-     *                to
-     *                test whether context is in the set, you must use the
-     *                first()
-     *                method instead.
-     *
+     *        The current node of the traversal. This is the last known
+     *        location in the traversal, typically the node-handle
+     *        returned
+     *        by the previous traversal step. For the first traversal
+     *        step,
+     *        context should be set equal to current. Note that in order
+     *        to
+     *        test whether context is in the set, you must use the
+     *        first()
+     *        method instead.
      * @return the next node in the iteration, or DTM.NULL.
      * @see #first(int)
      */
@@ -119,25 +113,24 @@ public abstract class DTMAxisTraverser {
      * extended type ID.
      *
      * @param context
-     *                       The context node of this traversal. This is the
-     *                       point of
-     *                       origin for the traversal -- its "root node" or
-     *                       starting point.
+     *        The context node of this traversal. This is the
+     *        point of
+     *        origin for the traversal -- its "root node" or
+     *        starting point.
      * @param current
-     *                       The current node of the traversal. This is the last
-     *                       known
-     *                       location in the traversal, typically the
-     *                       node-handle returned
-     *                       by the previous traversal step. For the first
-     *                       traversal step,
-     *                       context should be set equal to current. Note that
-     *                       in order to
-     *                       test whether context is in the set, you must use
-     *                       the first()
-     *                       method instead.
+     *        The current node of the traversal. This is the last
+     *        known
+     *        location in the traversal, typically the
+     *        node-handle returned
+     *        by the previous traversal step. For the first
+     *        traversal step,
+     *        context should be set equal to current. Note that
+     *        in order to
+     *        test whether context is in the set, you must use
+     *        the first()
+     *        method instead.
      * @param extendedTypeID
-     *                       The extended type ID that must match.
-     *
+     *        The extended type ID that must match.
      * @return the next node in the iteration, or DTM.NULL.
      * @see #first(int,int)
      */

@@ -60,8 +60,7 @@ public class Paper implements Cloneable {
     public Paper() {
         mHeight = LETTER_HEIGHT;
         mWidth = LETTER_WIDTH;
-        mImageableArea = new Rectangle2D.Double(INCH, INCH, mWidth - 2 * INCH,
-                mHeight - 2 * INCH);
+        mImageableArea = new Rectangle2D.Double(INCH, INCH, mWidth - 2 * INCH, mHeight - 2 * INCH);
     }
 
     /* Instance Methods */
@@ -107,11 +106,11 @@ public class Paper implements Cloneable {
      * dimensions are supplied in 1/72nds of an inch.
      * 
      * @param width
-     *               the value to which to set this <code>Paper</code> object's
-     *               width
+     *        the value to which to set this <code>Paper</code> object's
+     *        width
      * @param height
-     *               the value to which to set this <code>Paper</code> object's
-     *               height
+     *        the value to which to set this <code>Paper</code> object's
+     *        height
      */
     public void setSize(double width, double height) {
         mWidth = width;
@@ -132,24 +131,23 @@ public class Paper implements Cloneable {
      * the area on the page in which printing occurs.
      * 
      * @param x
-     *               the X coordinate to which to set the upper-left corner of
-     *               the
-     *               imageable area of this <code>Paper</code>
+     *        the X coordinate to which to set the upper-left corner of
+     *        the
+     *        imageable area of this <code>Paper</code>
      * @param y
-     *               the Y coordinate to which to set the upper-left corner of
-     *               the
-     *               imageable area of this <code>Paper</code>
+     *        the Y coordinate to which to set the upper-left corner of
+     *        the
+     *        imageable area of this <code>Paper</code>
      * @param width
-     *               the value to which to set the width of the imageable area
-     *               of
-     *               this <code>Paper</code>
+     *        the value to which to set the width of the imageable area
+     *        of
+     *        this <code>Paper</code>
      * @param height
-     *               the value to which to set the height of the imageable area
-     *               of
-     *               this <code>Paper</code>
+     *        the value to which to set the height of the imageable area
+     *        of
+     *        this <code>Paper</code>
      */
-    public void setImageableArea(double x, double y, double width,
-            double height) {
+    public void setImageableArea(double x, double y, double width, double height) {
         mImageableArea = new Rectangle2D.Double(x, y, width, height);
     }
 

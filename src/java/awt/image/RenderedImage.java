@@ -42,7 +42,7 @@ public interface RenderedImage {
      * specified property is not defined for this RenderedImage.
      * 
      * @param name
-     *             the name of the property
+     *        the name of the property
      * @return the property indicated by the specified name.
      * @see java.awt.Image#UndefinedProperty
      */
@@ -169,9 +169,9 @@ public interface RenderedImage {
      * and will be updated if the image is changed.
      * 
      * @param tileX
-     *              the X index of the requested tile in the tile array
+     *        the X index of the requested tile in the tile array
      * @param tileY
-     *              the Y index of the requested tile in the tile array
+     *        the Y index of the requested tile in the tile array
      * @return the tile given the specified indices.
      */
     Raster getTile(int tileX, int tileY);
@@ -192,7 +192,7 @@ public interface RenderedImage {
      * is changed.
      * 
      * @param rect
-     *             the region of the RenderedImage to be returned.
+     *        the region of the RenderedImage to be returned.
      * @return the region of the <code>RenderedImage</code> indicated by the
      *         specified <code>Rectangle</code>.
      */
@@ -206,9 +206,9 @@ public interface RenderedImage {
      * image. If raster is null, an appropriate WritableRaster is created.
      * 
      * @param raster
-     *               a WritableRaster to hold the returned portion of the image,
-     *               or
-     *               null.
+     *        a WritableRaster to hold the returned portion of the image,
+     *        or
+     *        null.
      * @return a reference to the supplied or created WritableRaster.
      */
     WritableRaster copyData(WritableRaster raster);

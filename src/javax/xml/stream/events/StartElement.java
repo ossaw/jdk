@@ -50,22 +50,18 @@ public interface StartElement extends XMLEvent {
      * namespaces and duplicate namespace declarations. Use the
      * getNamespaceContext() method to get the current context of namespace
      * declarations.
-     *
      * <p>
      * The iterator must contain only implementations of the
      * javax.xml.stream.Namespace interface.
-     *
      * <p>
      * A Namespace isA Attribute. One can iterate over a list of namespaces as a
      * list of attributes. However this method returns only the list of
      * namespaces declared on this START_ELEMENT and does not include the
      * attributes declared on this START_ELEMENT.
-     *
      * Returns an empty iterator if there are no namespaces.
      *
      * @return a readonly Iterator over Namespace interfaces, or an empty
      *         iterator
-     *
      */
     public Iterator getNamespaces();
 
@@ -73,7 +69,7 @@ public interface StartElement extends XMLEvent {
      * Returns the attribute referred to by this name
      * 
      * @param name
-     *             the qname of the desired name
+     *        the qname of the desired name
      * @return the attribute corresponding to the name value or null
      */
     public Attribute getAttributeByName(QName name);
@@ -92,7 +88,7 @@ public interface StartElement extends XMLEvent {
      * element. Returns null if the prefix is not bound in this context
      * 
      * @param prefix
-     *               the prefix to lookup
+     *        the prefix to lookup
      * @return the uri bound to the prefix or null
      */
     public String getNamespaceURI(String prefix);

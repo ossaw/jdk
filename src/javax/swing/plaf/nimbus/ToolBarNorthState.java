@@ -15,8 +15,8 @@ class ToolBarNorthState extends State {
     @Override
     protected boolean isInState(JComponent c) {
 
-        return (c instanceof JToolBar) && NimbusLookAndFeel
-                .resolveToolbarConstraint((JToolBar) c) == BorderLayout.NORTH;
+        return (c instanceof JToolBar) && NimbusLookAndFeel.resolveToolbarConstraint(
+                (JToolBar) c) == BorderLayout.NORTH;
 
     }
 }

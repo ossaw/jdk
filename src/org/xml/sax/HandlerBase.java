@@ -12,12 +12,10 @@ package org.xml.sax;
 
 /**
  * Default base class for handlers.
- *
  * <blockquote> <em>This module, both source code and documentation, is in the
  * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See
  * <a href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
  * information. </blockquote>
- *
  * <p>
  * This class implements the default behaviour for four SAX1 interfaces:
  * EntityResolver, DTDHandler, DocumentHandler, and ErrorHandler. It is now
@@ -25,13 +23,11 @@ package org.xml.sax;
  * applications should use the {@link org.xml.sax.helpers.DefaultHandler
  * DefaultHandler} class instead.
  * </p>
- *
  * <p>
  * Application writers can extend this class when they need to implement only
  * part of an interface; parser writers can instantiate this class to provide
  * default handlers when the application has not supplied its own.
  * </p>
- *
  * <p>
  * Note that the use of this class is optional.
  * </p>
@@ -47,8 +43,7 @@ package org.xml.sax;
  * @see org.xml.sax.DocumentHandler
  * @see org.xml.sax.ErrorHandler
  */
-public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
-        ErrorHandler {
+public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler, ErrorHandler {
 
     ////////////////////////////////////////////////////////////////////
     // Default implementation of the EntityResolver interface.
@@ -56,7 +51,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Resolve an external entity.
-     *
      * <p>
      * Always return null, so that the parser will use the system identifier
      * provided in the XML document. This method implements the SAX default
@@ -65,16 +59,15 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param publicId
-     *                 The public identifer, or null if none is available.
+     *        The public identifer, or null if none is available.
      * @param systemId
-     *                 The system identifier provided in the XML document.
+     *        The system identifier provided in the XML document.
      * @return The new input source, or null to require the default behaviour.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.EntityResolver#resolveEntity
      */
-    public InputSource resolveEntity(String publicId, String systemId)
-            throws SAXException {
+    public InputSource resolveEntity(String publicId, String systemId) throws SAXException {
         return null;
     }
 
@@ -84,7 +77,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive notification of a notation declaration.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method in a
      * subclass if they wish to keep track of the notations declared in a
@@ -92,11 +84,11 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param name
-     *                 The notation name.
+     *        The notation name.
      * @param publicId
-     *                 The notation public identifier, or null if not available.
+     *        The notation public identifier, or null if not available.
      * @param systemId
-     *                 The notation system identifier.
+     *        The notation system identifier.
      * @see org.xml.sax.DTDHandler#notationDecl
      */
     public void notationDecl(String name, String publicId, String systemId) {
@@ -105,25 +97,23 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive notification of an unparsed entity declaration.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method in a
      * subclass to keep track of the unparsed entities declared in a document.
      * </p>
      *
      * @param name
-     *                     The entity name.
+     *        The entity name.
      * @param publicId
-     *                     The entity public identifier, or null if not
-     *                     available.
+     *        The entity public identifier, or null if not
+     *        available.
      * @param systemId
-     *                     The entity system identifier.
+     *        The entity system identifier.
      * @param notationName
-     *                     The name of the associated notation.
+     *        The name of the associated notation.
      * @see org.xml.sax.DTDHandler#unparsedEntityDecl
      */
-    public void unparsedEntityDecl(String name, String publicId,
-            String systemId, String notationName) {
+    public void unparsedEntityDecl(String name, String publicId, String systemId, String notationName) {
         // no op
     }
 
@@ -133,7 +123,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive a Locator object for document events.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method in a
      * subclass if they wish to store the locator for use with other document
@@ -141,7 +130,7 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param locator
-     *                A locator for all SAX document events.
+     *        A locator for all SAX document events.
      * @see org.xml.sax.DocumentHandler#setDocumentLocator
      * @see org.xml.sax.Locator
      */
@@ -151,7 +140,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive notification of the beginning of the document.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method in a
      * subclass to take specific actions at the beginning of a document (such as
@@ -168,7 +156,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive notification of the end of the document.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method in a
      * subclass to take specific actions at the end of a document (such as
@@ -185,7 +172,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive notification of the start of an element.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method in a
      * subclass to take specific actions at the start of each element (such as
@@ -193,21 +179,19 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param name
-     *                   The element type name.
+     *        The element type name.
      * @param attributes
-     *                   The specified or defaulted attributes.
+     *        The specified or defaulted attributes.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.DocumentHandler#startElement
      */
-    public void startElement(String name, AttributeList attributes)
-            throws SAXException {
+    public void startElement(String name, AttributeList attributes) throws SAXException {
         // no op
     }
 
     /**
      * Receive notification of the end of an element.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method in a
      * subclass to take specific actions at the end of each element (such as
@@ -215,7 +199,7 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param name
-     *             the element name
+     *        the element name
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.DocumentHandler#endElement
@@ -226,7 +210,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive notification of character data inside an element.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method to
      * take specific actions for each chunk of character data (such as adding
@@ -234,23 +217,21 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param ch
-     *               The characters.
+     *        The characters.
      * @param start
-     *               The start position in the character array.
+     *        The start position in the character array.
      * @param length
-     *               The number of characters to use from the character array.
+     *        The number of characters to use from the character array.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.DocumentHandler#characters
      */
-    public void characters(char ch[], int start, int length)
-            throws SAXException {
+    public void characters(char ch[], int start, int length) throws SAXException {
         // no op
     }
 
     /**
      * Receive notification of ignorable whitespace in element content.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method to
      * take specific actions for each chunk of ignorable whitespace (such as
@@ -258,23 +239,21 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param ch
-     *               The whitespace characters.
+     *        The whitespace characters.
      * @param start
-     *               The start position in the character array.
+     *        The start position in the character array.
      * @param length
-     *               The number of characters to use from the character array.
+     *        The number of characters to use from the character array.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.DocumentHandler#ignorableWhitespace
      */
-    public void ignorableWhitespace(char ch[], int start, int length)
-            throws SAXException {
+    public void ignorableWhitespace(char ch[], int start, int length) throws SAXException {
         // no op
     }
 
     /**
      * Receive notification of a processing instruction.
-     *
      * <p>
      * By default, do nothing. Application writers may override this method in a
      * subclass to take specific actions for each processing instruction, such
@@ -282,16 +261,15 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param target
-     *               The processing instruction target.
+     *        The processing instruction target.
      * @param data
-     *               The processing instruction data, or null if none is
-     *               supplied.
+     *        The processing instruction data, or null if none is
+     *        supplied.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.DocumentHandler#processingInstruction
      */
-    public void processingInstruction(String target, String data)
-            throws SAXException {
+    public void processingInstruction(String target, String data) throws SAXException {
         // no op
     }
 
@@ -301,7 +279,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive notification of a parser warning.
-     *
      * <p>
      * The default implementation does nothing. Application writers may override
      * this method in a subclass to take specific actions for each warning, such
@@ -309,7 +286,7 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param e
-     *          The warning information encoded as an exception.
+     *        The warning information encoded as an exception.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.ErrorHandler#warning
@@ -321,7 +298,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Receive notification of a recoverable parser error.
-     *
      * <p>
      * The default implementation does nothing. Application writers may override
      * this method in a subclass to take specific actions for each error, such
@@ -329,7 +305,7 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param e
-     *          The warning information encoded as an exception.
+     *        The warning information encoded as an exception.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.ErrorHandler#warning
@@ -341,7 +317,6 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
 
     /**
      * Report a fatal XML parsing error.
-     *
      * <p>
      * The default implementation throws a SAXParseException. Application
      * writers may override this method in a subclass if they need to take
@@ -352,7 +327,7 @@ public class HandlerBase implements EntityResolver, DTDHandler, DocumentHandler,
      * </p>
      *
      * @param e
-     *          The error information encoded as an exception.
+     *        The error information encoded as an exception.
      * @exception org.xml.sax.SAXException
      *            Any SAX exception, possibly wrapping another exception.
      * @see org.xml.sax.ErrorHandler#fatalError

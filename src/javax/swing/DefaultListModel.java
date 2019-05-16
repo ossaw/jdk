@@ -26,7 +26,6 @@ import javax.swing.event.*;
  *
  * @param <E>
  *        the type of the elements of this model
- *
  * @author Hans Muller
  */
 public class DefaultListModel<E> extends AbstractListModel<E> {
@@ -54,12 +53,12 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * defined in the 1.2 Collections framework. </blockquote>
      * 
      * @param index
-     *              an index into this list
+     *        an index into this list
      * @return the component at the specified index
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if the <code>index</code> is
-     *                                           negative or greater than the
-     *                                           current size of this list
+     *            if the <code>index</code> is
+     *            negative or greater than the
+     *            current size of this list
      * @see #get(int)
      */
     public E getElementAt(int index) {
@@ -72,7 +71,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * <code>IndexOutOfBoundsException</code> is thrown.
      *
      * @param anArray
-     *                the array into which the components get copied
+     *        the array into which the components get copied
      * @see Vector#copyInto(Object[])
      */
     public void copyInto(Object anArray[]) {
@@ -94,7 +93,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * argument.
      *
      * @param minCapacity
-     *                    the desired minimum capacity
+     *        the desired minimum capacity
      * @see Vector#ensureCapacity(int)
      */
     public void ensureCapacity(int minCapacity) {
@@ -105,7 +104,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * Sets the size of this list.
      *
      * @param newSize
-     *                the new size of this list
+     *        the new size of this list
      * @see Vector#setSize(int)
      */
     public void setSize(int newSize) {
@@ -163,7 +162,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * Tests whether the specified object is a component in this list.
      *
      * @param elem
-     *             an object
+     *        an object
      * @return <code>true</code> if the specified object is the same as a
      *         component in this list
      * @see Vector#contains(Object)
@@ -176,7 +175,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * Searches for the first occurrence of <code>elem</code>.
      *
      * @param elem
-     *             an object
+     *        an object
      * @return the index of the first occurrence of the argument in this list;
      *         returns <code>-1</code> if the object is not found
      * @see Vector#indexOf(Object)
@@ -190,9 +189,9 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * search at <code>index</code>.
      *
      * @param elem
-     *              an desired component
+     *        an desired component
      * @param index
-     *              the index from which to begin searching
+     *        the index from which to begin searching
      * @return the index where the first occurrence of <code>elem</code> is
      *         found after <code>index</code>; returns <code>-1</code> if the
      *         <code>elem</code> is not found in the list
@@ -206,7 +205,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * Returns the index of the last occurrence of <code>elem</code>.
      *
      * @param elem
-     *             the desired component
+     *        the desired component
      * @return the index of the last occurrence of <code>elem</code> in the
      *         list; returns <code>-1</code> if the object is not found
      * @see Vector#lastIndexOf(Object)
@@ -220,9 +219,9 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * index, and returns an index to it.
      *
      * @param elem
-     *              the desired component
+     *        the desired component
      * @param index
-     *              the index to start searching from
+     *        the index to start searching from
      * @return the index of the last occurrence of the <code>elem</code> in this
      *         list at position less than <code>index</code>; returns
      *         <code>-1</code> if the object is not found
@@ -241,7 +240,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * defined in the 1.2 Collections framework. </blockquote>
      *
      * @param index
-     *              an index into this list
+     *        an index into this list
      * @return the component at the specified index
      * @see #get(int)
      * @see Vector#elementAt(int)
@@ -284,9 +283,9 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * Collections framework. </blockquote>
      *
      * @param element
-     *                what the component is to be set to
+     *        what the component is to be set to
      * @param index
-     *                the specified index
+     *        the specified index
      * @see #set(int,Object)
      * @see Vector#setElementAt(Object,int)
      */
@@ -305,7 +304,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * Collections framework. </blockquote>
      *
      * @param index
-     *              the index of the object to remove
+     *        the index of the object to remove
      * @see #remove(int)
      * @see Vector#removeElementAt(int)
      */
@@ -325,11 +324,11 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * Collections framework. </blockquote>
      *
      * @param element
-     *                the component to insert
+     *        the component to insert
      * @param index
-     *                where to insert the new component
+     *        where to insert the new component
      * @exception ArrayIndexOutOfBoundsException
-     *                                           if the index was invalid
+     *            if the index was invalid
      * @see #add(int,Object)
      * @see Vector#insertElementAt(Object,int)
      */
@@ -342,7 +341,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * Adds the specified component to the end of this list.
      *
      * @param element
-     *                the component to be added
+     *        the component to be added
      * @see Vector#addElement(Object)
      */
     public void addElement(E element) {
@@ -356,7 +355,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * list.
      *
      * @param obj
-     *            the component to be removed
+     *        the component to be removed
      * @return <code>true</code> if the argument was a component of this list;
      *         <code>false</code> otherwise
      * @see Vector#removeElement(Object)
@@ -422,7 +421,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * of range (<code>index &lt; 0 || index &gt;= size()</code>).
      *
      * @param index
-     *              index of element to return
+     *        index of element to return
      */
     public E get(int index) {
         return delegate.elementAt(index);
@@ -436,9 +435,9 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * of range (<code>index &lt; 0 || index &gt;= size()</code>).
      *
      * @param index
-     *                index of element to replace
+     *        index of element to replace
      * @param element
-     *                element to be stored at the specified position
+     *        element to be stored at the specified position
      * @return the element previously at the specified position
      */
     public E set(int index, E element) {
@@ -455,9 +454,9 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * of range (<code>index &lt; 0 || index &gt; size()</code>).
      *
      * @param index
-     *                index at which the specified element is to be inserted
+     *        index at which the specified element is to be inserted
      * @param element
-     *                element to be inserted
+     *        element to be inserted
      */
     public void add(int index, E element) {
         delegate.insertElementAt(element, index);
@@ -472,7 +471,7 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * of range (<code>index &lt; 0 || index &gt;= size()</code>).
      *
      * @param index
-     *              the index of the element to removed
+     *        the index of the element to removed
      * @return the element previously at the specified position
      */
     public E remove(int index) {
@@ -504,9 +503,9 @@ public class DefaultListModel<E> extends AbstractListModel<E> {
      * <code>fromIndex &gt; toIndex</code>.
      *
      * @param fromIndex
-     *                  the index of the lower end of the range
+     *        the index of the lower end of the range
      * @param toIndex
-     *                  the index of the upper end of the range
+     *        the index of the upper end of the range
      * @see #remove(int)
      */
     public void removeRange(int fromIndex, int toIndex) {

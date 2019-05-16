@@ -58,10 +58,8 @@ import org.xml.sax.SAXException;
  * Xerces XNI doesn't allow {@link SAXException} to be thrown. So when the
  * user-supplied error handler throws it, it needs to be tunneled through
  * Xerces.
- *
  * <p>
  * It is a bug if this exception "leaks" to the application.
- *
  * FIXME: use XNIException for this purpose. It's already doing this kind of
  * SAXException tunneling.
  *

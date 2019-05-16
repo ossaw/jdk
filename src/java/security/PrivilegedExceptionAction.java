@@ -30,10 +30,10 @@ public interface PrivilegedExceptionAction<T> {
      *         {@code PrivilegedExceptionAction} should document what (if
      *         anything) this value represents.
      * @throws Exception
-     *                   an exceptional condition has occurred. Each class that
-     *                   implements {@code PrivilegedExceptionAction} should
-     *                   document
-     *                   the exceptions that its run method can throw.
+     *         an exceptional condition has occurred. Each class that
+     *         implements {@code PrivilegedExceptionAction} should
+     *         document
+     *         the exceptions that its run method can throw.
      * @see AccessController#doPrivileged(PrivilegedExceptionAction)
      * @see AccessController#doPrivileged(PrivilegedExceptionAction,AccessControlContext)
      */

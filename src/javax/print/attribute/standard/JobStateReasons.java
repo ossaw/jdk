@@ -46,8 +46,7 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class JobStateReasons extends HashSet<JobStateReason> implements
-        PrintJobAttribute {
+public final class JobStateReasons extends HashSet<JobStateReason> implements PrintJobAttribute {
 
     private static final long serialVersionUID = 8849088261264331812L;
 
@@ -64,10 +63,10 @@ public final class JobStateReasons extends HashSet<JobStateReason> implements
      * set has the given initial capacity and the default load factor.
      *
      * @param initialCapacity
-     *                        Initial capacity.
+     *        Initial capacity.
      * @throws IllegalArgumentException
-     *                                  if the initial capacity is less than
-     *                                  zero.
+     *         if the initial capacity is less than
+     *         zero.
      */
     public JobStateReasons(int initialCapacity) {
         super(initialCapacity);
@@ -78,12 +77,12 @@ public final class JobStateReasons extends HashSet<JobStateReason> implements
      * set has the given initial capacity and load factor.
      *
      * @param initialCapacity
-     *                        Initial capacity.
+     *        Initial capacity.
      * @param loadFactor
-     *                        Load factor.
+     *        Load factor.
      * @throws IllegalArgumentException
-     *                                  if the initial capacity is less than
-     *                                  zero.
+     *         if the initial capacity is less than
+     *         zero.
      */
     public JobStateReasons(int initialCapacity, float loadFactor) {
         super(initialCapacity, loadFactor);
@@ -98,18 +97,17 @@ public final class JobStateReasons extends HashSet<JobStateReason> implements
      * HashSet(Collection)}.
      *
      * @param collection
-     *                   Collection to copy.
-     *
+     *        Collection to copy.
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if
-     *                                 <CODE>collection</CODE> is
-     *                                 null or if any element in
-     *                                 <CODE>collection</CODE> is null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>collection</CODE> is
+     *            null or if any element in
+     *            <CODE>collection</CODE> is null.
      * @throws ClassCastException
-     *                            (unchecked exception) Thrown if any element in
-     *                            <CODE>collection</CODE> is not an instance of
-     *                            class
-     *                            {@link JobStateReason JobStateReason}.
+     *         (unchecked exception) Thrown if any element in
+     *         <CODE>collection</CODE> is not an instance of
+     *         class
+     *         {@link JobStateReason JobStateReason}.
      */
     public JobStateReasons(Collection<JobStateReason> collection) {
         super(collection);
@@ -123,20 +121,18 @@ public final class JobStateReasons extends HashSet<JobStateReason> implements
      * job state reasons attribute unchanged and returns <tt>false</tt>.
      *
      * @param o
-     *          Element to be added to this job state reasons attribute.
-     *
+     *        Element to be added to this job state reasons attribute.
      * @return <tt>true</tt> if this job state reasons attribute did not already
      *         contain the specified element.
-     *
      * @throws NullPointerException
-     *                              (unchecked exception) Thrown if the
-     *                              specified element is
-     *                              null.
+     *         (unchecked exception) Thrown if the
+     *         specified element is
+     *         null.
      * @throws ClassCastException
-     *                              (unchecked exception) Thrown if the
-     *                              specified element is not
-     *                              an instance of class {@link JobStateReason
-     *                              JobStateReason}.
+     *         (unchecked exception) Thrown if the
+     *         specified element is not
+     *         an instance of class {@link JobStateReason
+     *         JobStateReason}.
      * @since 1.5
      */
     public boolean add(JobStateReason o) {

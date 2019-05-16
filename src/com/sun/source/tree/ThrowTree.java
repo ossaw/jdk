@@ -7,7 +7,6 @@ package com.sun.source.tree;
 
 /**
  * A tree node for a 'throw' statement.
- *
  * For example:
  * 
  * <pre>
@@ -15,7 +14,6 @@ package com.sun.source.tree;
  * </pre>
  *
  * @jls section 14.18
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

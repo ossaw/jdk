@@ -19,8 +19,7 @@ import javax.swing.plaf.basic.*;
  * @author Scott Violet
  * @since 1.7
  */
-public class SynthSplitPaneUI extends BasicSplitPaneUI implements
-        PropertyChangeListener, SynthUI {
+public class SynthSplitPaneUI extends BasicSplitPaneUI implements PropertyChangeListener, SynthUI {
     /**
      * Keys to use for forward focus traversal when the JComponent is managing
      * focus.
@@ -46,7 +45,7 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
      * Creates a new SynthSplitPaneUI instance
      *
      * @param x
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent x) {
@@ -70,8 +69,7 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
          * add/remove everything later.
          */
         if (nonContinuousLayoutDivider == null) {
-            setNonContinuousLayoutDivider(
-                    createDefaultNonContinuousLayoutDivider(), true);
+            setNonContinuousLayoutDivider(createDefaultNonContinuousLayoutDivider(), true);
         } else {
             setNonContinuousLayoutDivider(nonContinuousLayoutDivider, true);
         }
@@ -79,26 +77,22 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
         // focus forward traversal key
         if (managingFocusForwardTraversalKeys == null) {
             managingFocusForwardTraversalKeys = new HashSet<KeyStroke>();
-            managingFocusForwardTraversalKeys.add(KeyStroke.getKeyStroke(
-                    KeyEvent.VK_TAB, 0));
+            managingFocusForwardTraversalKeys.add(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0));
         }
-        splitPane.setFocusTraversalKeys(
-                KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
+        splitPane.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
                 managingFocusForwardTraversalKeys);
         // focus backward traversal key
         if (managingFocusBackwardTraversalKeys == null) {
             managingFocusBackwardTraversalKeys = new HashSet<KeyStroke>();
-            managingFocusBackwardTraversalKeys.add(KeyStroke.getKeyStroke(
-                    KeyEvent.VK_TAB, InputEvent.SHIFT_MASK));
+            managingFocusBackwardTraversalKeys.add(KeyStroke.getKeyStroke(KeyEvent.VK_TAB,
+                    InputEvent.SHIFT_MASK));
         }
-        splitPane.setFocusTraversalKeys(
-                KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
+        splitPane.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
                 managingFocusBackwardTraversalKeys);
     }
 
     private void updateStyle(JSplitPane splitPane) {
-        SynthContext context = getContext(splitPane, Region.SPLIT_PANE_DIVIDER,
-                ENABLED);
+        SynthContext context = getContext(splitPane, Region.SPLIT_PANE_DIVIDER, ENABLED);
         SynthStyle oldDividerStyle = dividerStyle;
         dividerStyle = SynthLookAndFeel.updateStyle(context, this);
         context.dispose();
@@ -117,8 +111,7 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
 
             value = style.get(context, "SplitPane.oneTouchExpandable");
             if (value != null) {
-                LookAndFeel.installProperty(splitPane, "oneTouchExpandable",
-                        value);
+                LookAndFeel.installProperty(splitPane, "oneTouchExpandable", value);
             }
 
             if (divider != null) {
@@ -249,15 +242,14 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -265,8 +257,7 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintSplitPaneBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+        context.getPainter().paintSplitPaneBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
         paint(context, g);
         context.dispose();
     }
@@ -278,9 +269,9 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -295,9 +286,9 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
      * Paints the specified component. This implementation does nothing.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {
@@ -310,19 +301,16 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintSplitPaneBorder(context, g, x, y, w, h);
     }
 
     private void paintDragDivider(Graphics g, int x, int y, int w, int h) {
         SynthContext context = getContext(splitPane, Region.SPLIT_PANE_DIVIDER);
-        context.setComponentState(((context.getComponentState() | MOUSE_OVER)
-                ^ MOUSE_OVER) | PRESSED);
+        context.setComponentState(((context.getComponentState() | MOUSE_OVER) ^ MOUSE_OVER) | PRESSED);
         Shape oldClip = g.getClip();
         g.clipRect(x, y, w, h);
-        context.getPainter().paintSplitPaneDragDivider(context, g, x, y, w, h,
-                splitPane.getOrientation());
+        context.getPainter().paintSplitPaneDragDivider(context, g, x, y, w, h, splitPane.getOrientation());
         g.setClip(oldClip);
         context.dispose();
     }
@@ -332,14 +320,11 @@ public class SynthSplitPaneUI extends BasicSplitPaneUI implements
      */
     @Override
     public void finishedPaintingChildren(JSplitPane jc, Graphics g) {
-        if (jc == splitPane && getLastDragLocation() != -1
-                && !isContinuousLayout() && !draggingHW) {
+        if (jc == splitPane && getLastDragLocation() != -1 && !isContinuousLayout() && !draggingHW) {
             if (jc.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
-                paintDragDivider(g, getLastDragLocation(), 0, dividerSize - 1,
-                        splitPane.getHeight() - 1);
+                paintDragDivider(g, getLastDragLocation(), 0, dividerSize - 1, splitPane.getHeight() - 1);
             } else {
-                paintDragDivider(g, 0, getLastDragLocation(), splitPane
-                        .getWidth() - 1, dividerSize - 1);
+                paintDragDivider(g, 0, getLastDragLocation(), splitPane.getWidth() - 1, dividerSize - 1);
             }
         }
     }

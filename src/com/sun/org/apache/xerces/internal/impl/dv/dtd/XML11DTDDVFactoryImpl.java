@@ -27,9 +27,7 @@ import java.util.Map;
  * the factory to create/return built-in XML 1.1 DVs and create user-defined DVs
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
- *
  */
 public class XML11DTDDVFactoryImpl extends DTDDVFactoryImpl {
 
@@ -42,8 +40,7 @@ public class XML11DTDDVFactoryImpl extends DTDDVFactoryImpl {
         xml11BuiltInTypes.put("XML11IDREFS", new ListDatatypeValidator(dvTemp));
         dvTemp = new XML11NMTOKENDatatypeValidator();
         xml11BuiltInTypes.put("XML11NMTOKEN", dvTemp);
-        xml11BuiltInTypes.put("XML11NMTOKENS", new ListDatatypeValidator(
-                dvTemp));
+        xml11BuiltInTypes.put("XML11NMTOKENS", new ListDatatypeValidator(dvTemp));
         XML11BUILTINTYPES = Collections.unmodifiableMap(xml11BuiltInTypes);
     } // <clinit>
 
@@ -52,7 +49,7 @@ public class XML11DTDDVFactoryImpl extends DTDDVFactoryImpl {
      * only if it does not recognize the passed-in name.
      *
      * @param name
-     *             the name of the datatype
+     *        the name of the datatype
      * @return the datatype validator of the given name
      */
     @Override
@@ -71,8 +68,7 @@ public class XML11DTDDVFactoryImpl extends DTDDVFactoryImpl {
      */
     @Override
     public Map<String, DatatypeValidator> getBuiltInTypes() {
-        final HashMap<String, DatatypeValidator> toReturn = new HashMap<>(
-                fBuiltInTypes);
+        final HashMap<String, DatatypeValidator> toReturn = new HashMap<>(fBuiltInTypes);
         toReturn.putAll(XML11BUILTINTYPES);
         return toReturn;
     }

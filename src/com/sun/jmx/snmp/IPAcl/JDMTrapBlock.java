@@ -38,6 +38,5 @@ class JDMTrapBlock extends SimpleNode {
      * Do no need to go through this part of the tree for building InformEntry.
      */
     @Override
-    public void buildInformEntries(
-            Hashtable<InetAddress, Vector<String>> dest) {}
+    public void buildInformEntries(Hashtable<InetAddress, Vector<String>> dest) {}
 }

@@ -21,9 +21,7 @@ package com.sun.org.apache.xerces.internal.impl.xpath;
  * XPath exception.
  *
  * @xerces.internal
- *
  * @author Andy Clark, IBM
- *
  */
 public class XPathException extends Exception {
 

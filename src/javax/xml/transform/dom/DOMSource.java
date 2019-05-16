@@ -14,7 +14,6 @@ import org.w3c.dom.Node;
  * Acts as a holder for a transformation Source tree in the form of a Document
  * Object Model (DOM) tree.
  * </p>
- *
  * <p>
  * Note that XSLT requires namespace support. Attempting to transform a DOM that
  * was not contructed with a namespace-aware parser may result in errors.
@@ -71,7 +70,7 @@ public class DOMSource implements Source {
      * variables and parameters is done from the root node also.
      *
      * @param n
-     *          The DOM node that will contain the Source tree.
+     *        The DOM node that will contain the Source tree.
      */
     public DOMSource(Node n) {
         setNode(n);
@@ -82,9 +81,9 @@ public class DOMSource implements Source {
      * passed in as the base URI.
      *
      * @param node
-     *                 The DOM node that will contain the Source tree.
+     *        The DOM node that will contain the Source tree.
      * @param systemID
-     *                 Specifies the base URI associated with node.
+     *        Specifies the base URI associated with node.
      */
     public DOMSource(Node node, String systemID) {
         setNode(node);
@@ -95,7 +94,7 @@ public class DOMSource implements Source {
      * Set the node that will represents a Source DOM tree.
      *
      * @param node
-     *             The node that is to be transformed.
+     *        The node that is to be transformed.
      */
     public void setNode(Node node) {
         this.node = node;
@@ -114,7 +113,7 @@ public class DOMSource implements Source {
      * Set the base ID (URL or system ID) from where URLs will be resolved.
      *
      * @param systemID
-     *                 Base URL for this DOM tree.
+     *        Base URL for this DOM tree.
      */
     public void setSystemId(String systemID) {
         this.systemID = systemID;

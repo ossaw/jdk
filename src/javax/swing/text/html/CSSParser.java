@@ -66,8 +66,7 @@ class CSSParser {
     private static final int PAREN_CLOSE = 7;
     private static final int END = -1;
 
-    private static final char[] charMapping = { 0, 0, '[', ']', '{', '}', '(',
-            ')', 0 };
+    private static final char[] charMapping = { 0, 0, '[', ']', '{', '}', '(', ')', 0 };
 
     /** Set to true if one character has been read ahead. */
     private boolean didPushChar;
@@ -120,8 +119,7 @@ class CSSParser {
         unitBuffer = new StringBuffer();
     }
 
-    void parse(Reader reader, CSSParserCallback callback, boolean inRule)
-            throws IOException {
+    void parse(Reader reader, CSSParserCallback callback, boolean inRule) throws IOException {
         this.callback = callback;
         stackCount = tokenBufferLength = 0;
         this.reader = reader;
@@ -183,9 +181,8 @@ class CSSParser {
     private void parseAtRule() throws IOException {
         // PENDING: make this more effecient.
         boolean done = false;
-        boolean isImport = (tokenBufferLength == 7 && tokenBuffer[0] == '@'
-                && tokenBuffer[1] == 'i' && tokenBuffer[2] == 'm'
-                && tokenBuffer[3] == 'p' && tokenBuffer[4] == 'o'
+        boolean isImport = (tokenBufferLength == 7 && tokenBuffer[0] == '@' && tokenBuffer[1] == 'i'
+                && tokenBuffer[2] == 'm' && tokenBuffer[3] == 'p' && tokenBuffer[4] == 'o'
                 && tokenBuffer[5] == 'r' && tokenBuffer[6] == 't');
 
         unitBuffer.setLength(0);
@@ -194,8 +191,7 @@ class CSSParser {
 
             switch (nextToken) {
                 case IDENTIFIER:
-                    if (tokenBufferLength > 0 && tokenBuffer[tokenBufferLength
-                            - 1] == ';') {
+                    if (tokenBufferLength > 0 && tokenBuffer[tokenBufferLength - 1] == ';') {
                         --tokenBufferLength;
                         done = true;
                     }
@@ -265,16 +261,14 @@ class CSSParser {
         int nextToken;
 
         if (tokenBufferLength > 0) {
-            callback.handleSelector(new String(tokenBuffer, 0,
-                    tokenBufferLength));
+            callback.handleSelector(new String(tokenBuffer, 0, tokenBufferLength));
         }
 
         unitBuffer.setLength(0);
         for (;;) {
             while ((nextToken = nextToken((char) 0)) == IDENTIFIER) {
                 if (tokenBufferLength > 0) {
-                    callback.handleSelector(new String(tokenBuffer, 0,
-                            tokenBufferLength));
+                    callback.handleSelector(new String(tokenBuffer, 0, tokenBufferLength));
                 }
             }
             switch (nextToken) {
@@ -292,8 +286,7 @@ class CSSParser {
                 case BRACKET_CLOSE:
                 case BRACE_CLOSE:
                 case PAREN_CLOSE:
-                    throw new RuntimeException(
-                            "Unexpected block close in selector");
+                    throw new RuntimeException("Unexpected block close in selector");
 
                 case END:
                     // Prematurely hit end.
@@ -317,8 +310,7 @@ class CSSParser {
                 case BRACKET_CLOSE:
                 case PAREN_CLOSE:
                     // Bail
-                    throw new RuntimeException(
-                            "Unexpected close in declaration block");
+                    throw new RuntimeException("Unexpected close in declaration block");
                 case IDENTIFIER:
                     break;
             }
@@ -338,8 +330,7 @@ class CSSParser {
         }
         // Make the property name to lowercase
         for (int counter = unitBuffer.length() - 1; counter >= 0; counter--) {
-            unitBuffer.setCharAt(counter, Character.toLowerCase(unitBuffer
-                    .charAt(counter)));
+            unitBuffer.setCharAt(counter, Character.toLowerCase(unitBuffer.charAt(counter)));
         }
         callback.handleProperty(unitBuffer.toString());
 
@@ -352,8 +343,7 @@ class CSSParser {
      * Parses identifiers until <code>extraChar</code> is encountered, returning
      * the ending token, which will be IDENTIFIER if extraChar is found.
      */
-    private int parseIdentifiers(char extraChar, boolean wantsBlocks)
-            throws IOException {
+    private int parseIdentifiers(char extraChar, boolean wantsBlocks) throws IOException {
         int nextToken;
         int ubl;
 
@@ -369,8 +359,7 @@ class CSSParser {
                                 if (readWS && unitBuffer.length() > 0) {
                                     unitBuffer.append(' ');
                                 }
-                                unitBuffer.append(tokenBuffer, 0,
-                                        tokenBufferLength);
+                                unitBuffer.append(tokenBuffer, 0, tokenBufferLength);
                             }
                             return IDENTIFIER;
                         }
@@ -835,8 +824,7 @@ class CSSParser {
      */
     private int readWS() throws IOException {
         int nextChar;
-        while ((nextChar = readChar()) != -1 && Character.isWhitespace(
-                (char) nextChar)) {
+        while ((nextChar = readChar()) != -1 && Character.isWhitespace((char) nextChar)) {
             readWS = true;
         }
         return nextChar;
@@ -865,8 +853,7 @@ class CSSParser {
     private void pushChar(int tempChar) {
         if (didPushChar) {
             // Should never happen.
-            throw new RuntimeException(
-                    "Can not handle look ahead of more than one character");
+            throw new RuntimeException("Can not handle look ahead of more than one character");
         }
         didPushChar = true;
         pushedChar = tempChar;

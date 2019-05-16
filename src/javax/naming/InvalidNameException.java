@@ -16,7 +16,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see Context
  * @see javax.naming.directory.DirContext
  * @see CompositeName
@@ -31,7 +30,7 @@ public class InvalidNameException extends NamingException {
      * the problem. All other fields are initialized to null.
      * 
      * @param explanation
-     *                    A possibly null message explaining the problem.
+     *        A possibly null message explaining the problem.
      * @see java.lang.Throwable#getMessage
      */
     public InvalidNameException(String explanation) {

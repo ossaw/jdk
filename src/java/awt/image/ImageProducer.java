@@ -12,7 +12,6 @@ package java.awt.image;
  * or when the width or height of the Image is being requested.
  *
  * @see ImageConsumer
- *
  * @author Jim Graham
  */
 public interface ImageProducer {
@@ -26,7 +25,7 @@ public interface ImageProducer {
      * <code>startProduction</code> method.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      * @see #startProduction
      */
     public void addConsumer(ImageConsumer ic);
@@ -36,7 +35,7 @@ public interface ImageProducer {
      * registered with this <code>ImageProducer</code> as one of its consumers.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      * @return <code>true</code> if the specified <code>ImageConsumer</code> is
      *         registered with this <code>ImageProducer</code>;
      *         <code>false</code> otherwise.
@@ -51,7 +50,7 @@ public interface ImageProducer {
      * this consumer as soon as is feasible.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      */
     public void removeConsumer(ImageConsumer ic);
 
@@ -64,7 +63,7 @@ public interface ImageProducer {
      * triggered as soon as possible.
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      * @see #addConsumer
      */
     public void startProduction(ImageConsumer ic);
@@ -88,7 +87,7 @@ public interface ImageProducer {
      * </pre>
      * 
      * @param ic
-     *           the specified <code>ImageConsumer</code>
+     *        the specified <code>ImageConsumer</code>
      * @see ImageConsumer#setHints
      */
     public void requestTopDownLeftRightResend(ImageConsumer ic);

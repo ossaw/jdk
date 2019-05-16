@@ -8,7 +8,6 @@ package java.util;
 /**
  * Unchecked exception thrown when the argument corresponding to the format
  * specifier is of an incompatible type.
- *
  * <p>
  * Unless otherwise specified, passing a <tt>null</tt> argument to any method or
  * constructor in this class will cause a {@link NullPointerException} to be
@@ -28,10 +27,9 @@ public class IllegalFormatConversionException extends IllegalFormatException {
      * the corresponding argument class.
      *
      * @param c
-     *            Inapplicable conversion
-     *
+     *        Inapplicable conversion
      * @param arg
-     *            Class of the mismatched argument
+     *        Class of the mismatched argument
      */
     public IllegalFormatConversionException(char c, Class<?> arg) {
         if (arg == null)

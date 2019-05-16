@@ -14,7 +14,6 @@ import java.security.AccessController;
  * This class represents a Network Interface made up of a name, and a list of IP
  * addresses assigned to this interface. It is used to identify the local
  * interface on which a multicast group is joined.
- *
  * Interfaces are normally known by names such as "le0".
  *
  * @since 1.4
@@ -32,13 +31,12 @@ public final class NetworkInterface {
     private static final int defaultIndex; /* index of defaultInterface */
 
     static {
-        AccessController.doPrivileged(
-                new java.security.PrivilegedAction<Void>() {
-                    public Void run() {
-                        System.loadLibrary("net");
-                        return null;
-                    }
-                });
+        AccessController.doPrivileged(new java.security.PrivilegedAction<Void>() {
+            public Void run() {
+                System.loadLibrary("net");
+                return null;
+            }
+        });
 
         init();
         defaultInterface = DefaultInterface.getDefault();
@@ -53,7 +51,6 @@ public final class NetworkInterface {
      * Returns an NetworkInterface object with index set to 0 and name to null.
      * Setting such an interface on a MulticastSocket will cause the kernel to
      * choose one interface for sending multicast packets.
-     *
      */
     NetworkInterface() {}
 
@@ -100,8 +97,7 @@ public final class NetworkInterface {
                 SecurityManager sec = System.getSecurityManager();
                 if (sec != null) {
                     try {
-                        sec.checkPermission(new NetPermission(
-                                "getNetworkInformation"));
+                        sec.checkPermission(new NetPermission("getNetworkInformation"));
                     } catch (SecurityException e) {
                         trusted = false;
                     }
@@ -112,8 +108,7 @@ public final class NetworkInterface {
                             sec.checkConnect(addrs[j].getHostAddress(), -1);
                         }
                         local_addrs[count++] = addrs[j];
-                    } catch (SecurityException e) {
-                    }
+                    } catch (SecurityException e) {}
                 }
 
             }
@@ -148,18 +143,15 @@ public final class NetworkInterface {
      * @since 1.6
      */
     public java.util.List<InterfaceAddress> getInterfaceAddresses() {
-        java.util.List<InterfaceAddress> lst = new java.util.ArrayList<InterfaceAddress>(
-                1);
+        java.util.List<InterfaceAddress> lst = new java.util.ArrayList<InterfaceAddress>(1);
         SecurityManager sec = System.getSecurityManager();
         for (int j = 0; j < bindings.length; j++) {
             try {
                 if (sec != null) {
-                    sec.checkConnect(bindings[j].getAddress().getHostAddress(),
-                            -1);
+                    sec.checkConnect(bindings[j].getAddress().getHostAddress(), -1);
                 }
                 lst.add(bindings[j]);
-            } catch (SecurityException e) {
-            }
+            } catch (SecurityException e) {}
         }
         return lst;
     }
@@ -240,20 +232,16 @@ public final class NetworkInterface {
      * Searches for the network interface with the specified name.
      *
      * @param name
-     *             The name of the network interface.
-     *
+     *        The name of the network interface.
      * @return A {@code NetworkInterface} with the specified name, or
      *         {@code null} if there is no network interface with the specified
      *         name.
-     *
      * @throws SocketException
-     *                              If an I/O error occurs.
-     *
+     *         If an I/O error occurs.
      * @throws NullPointerException
-     *                              If the specified name is {@code null}.
+     *         If the specified name is {@code null}.
      */
-    public static NetworkInterface getByName(String name)
-            throws SocketException {
+    public static NetworkInterface getByName(String name) throws SocketException {
         if (name == null)
             throw new NullPointerException();
         return getByName0(name);
@@ -263,21 +251,19 @@ public final class NetworkInterface {
      * Get a network interface given its index.
      *
      * @param index
-     *              an integer, the index of the interface
+     *        an integer, the index of the interface
      * @return the NetworkInterface obtained from its index, or {@code null} if
      *         there is no interface with such an index on the system
      * @throws SocketException
-     *                                  if an I/O error occurs.
+     *         if an I/O error occurs.
      * @throws IllegalArgumentException
-     *                                  if index has a negative value
+     *         if index has a negative value
      * @see #getIndex()
      * @since 1.7
      */
-    public static NetworkInterface getByIndex(int index)
-            throws SocketException {
+    public static NetworkInterface getByIndex(int index) throws SocketException {
         if (index < 0)
-            throw new IllegalArgumentException(
-                    "Interface index can't be negative");
+            throw new IllegalArgumentException("Interface index can't be negative");
         return getByIndex0(index);
     }
 
@@ -289,19 +275,15 @@ public final class NetworkInterface {
      * not defined which network interface is returned.
      *
      * @param addr
-     *             The {@code InetAddress} to search with.
-     *
+     *        The {@code InetAddress} to search with.
      * @return A {@code NetworkInterface} or {@code null} if there is no network
      *         interface with the specified IP address.
-     *
      * @throws SocketException
-     *                              If an I/O error occurs.
-     *
+     *         If an I/O error occurs.
      * @throws NullPointerException
-     *                              If the specified address is {@code null}.
+     *         If the specified address is {@code null}.
      */
-    public static NetworkInterface getByInetAddress(InetAddress addr)
-            throws SocketException {
+    public static NetworkInterface getByInetAddress(InetAddress addr) throws SocketException {
         if (addr == null) {
             throw new NullPointerException();
         }
@@ -315,17 +297,15 @@ public final class NetworkInterface {
      * Returns all the interfaces on this machine. The {@code Enumeration}
      * contains at least one element, possibly representing a loopback interface
      * that only supports communication between entities on this machine.
-     *
      * NOTE: can use getNetworkInterfaces()+getInetAddresses() to obtain all IP
      * addresses for this node
      *
      * @return an Enumeration of NetworkInterfaces found on this machine
      * @exception SocketException
-     *                            if an I/O error occurs.
+     *            if an I/O error occurs.
      */
 
-    public static Enumeration<NetworkInterface> getNetworkInterfaces()
-            throws SocketException {
+    public static Enumeration<NetworkInterface> getNetworkInterfaces() throws SocketException {
         final NetworkInterface[] netifs = getAll();
 
         // specified to return null if no network interfaces
@@ -352,21 +332,18 @@ public final class NetworkInterface {
 
     private native static NetworkInterface[] getAll() throws SocketException;
 
-    private native static NetworkInterface getByName0(String name)
-            throws SocketException;
+    private native static NetworkInterface getByName0(String name) throws SocketException;
 
-    private native static NetworkInterface getByIndex0(int index)
-            throws SocketException;
+    private native static NetworkInterface getByIndex0(int index) throws SocketException;
 
-    private native static NetworkInterface getByInetAddress0(InetAddress addr)
-            throws SocketException;
+    private native static NetworkInterface getByInetAddress0(InetAddress addr) throws SocketException;
 
     /**
      * Returns whether a network interface is up and running.
      *
      * @return {@code true} if the interface is up and running.
      * @exception SocketException
-     *                            if an I/O error occurs.
+     *            if an I/O error occurs.
      * @since 1.6
      */
 
@@ -379,7 +356,7 @@ public final class NetworkInterface {
      *
      * @return {@code true} if the interface is a loopback interface.
      * @exception SocketException
-     *                            if an I/O error occurs.
+     *            if an I/O error occurs.
      * @since 1.6
      */
 
@@ -394,7 +371,7 @@ public final class NetworkInterface {
      *
      * @return {@code true} if the interface is a point to point interface.
      * @exception SocketException
-     *                            if an I/O error occurs.
+     *            if an I/O error occurs.
      * @since 1.6
      */
 
@@ -407,7 +384,7 @@ public final class NetworkInterface {
      *
      * @return {@code true} if the interface supports Multicasting.
      * @exception SocketException
-     *                            if an I/O error occurs.
+     *            if an I/O error occurs.
      * @since 1.6
      */
 
@@ -425,9 +402,8 @@ public final class NetworkInterface {
      *         address doesn't exist, is not accessible or a security manager is
      *         set and the caller does not have the permission
      *         NetPermission("getNetworkInformation")
-     *
      * @exception SocketException
-     *                            if an I/O error occurs.
+     *            if an I/O error occurs.
      * @since 1.6
      */
     public byte[] getHardwareAddress() throws SocketException {
@@ -444,8 +420,7 @@ public final class NetworkInterface {
         }
         for (InetAddress addr : addrs) {
             if (addr instanceof Inet4Address) {
-                return getMacAddr0(((Inet4Address) addr).getAddress(), name,
-                        index);
+                return getMacAddr0(((Inet4Address) addr).getAddress(), name, index);
             }
         }
         return getMacAddr0(null, name, index);
@@ -456,7 +431,7 @@ public final class NetworkInterface {
      *
      * @return the value of the MTU for that interface.
      * @exception SocketException
-     *                            if an I/O error occurs.
+     *            if an I/O error occurs.
      * @since 1.6
      */
     public int getMTU() throws SocketException {
@@ -479,23 +454,17 @@ public final class NetworkInterface {
         return virtual;
     }
 
-    private native static boolean isUp0(String name, int ind)
-            throws SocketException;
+    private native static boolean isUp0(String name, int ind) throws SocketException;
 
-    private native static boolean isLoopback0(String name, int ind)
-            throws SocketException;
+    private native static boolean isLoopback0(String name, int ind) throws SocketException;
 
-    private native static boolean supportsMulticast0(String name, int ind)
-            throws SocketException;
+    private native static boolean supportsMulticast0(String name, int ind) throws SocketException;
 
-    private native static boolean isP2P0(String name, int ind)
-            throws SocketException;
+    private native static boolean isP2P0(String name, int ind) throws SocketException;
 
-    private native static byte[] getMacAddr0(byte[] inAddr, String name,
-            int ind) throws SocketException;
+    private native static byte[] getMacAddr0(byte[] inAddr, String name, int ind) throws SocketException;
 
-    private native static int getMTU0(String name, int ind)
-            throws SocketException;
+    private native static int getMTU0(String name, int ind) throws SocketException;
 
     /**
      * Compares this object against the specified object. The result is
@@ -506,7 +475,7 @@ public final class NetworkInterface {
      * NetworkInterface if both name and addrs are the same for both.
      *
      * @param obj
-     *            the object to compare against.
+     *        the object to compare against.
      * @return {@code true} if the objects are the same; {@code false}
      *         otherwise.
      * @see java.net.InetAddress#getAddress()

@@ -20,7 +20,7 @@ public interface SnmpPduBulkType extends SnmpAckPdu {
      * The <CODE>max-repetitions</CODE> setter.
      * 
      * @param max
-     *            Maximum repetition.
+     *        Maximum repetition.
      */
     public void setMaxRepetitions(int max);
 
@@ -28,7 +28,7 @@ public interface SnmpPduBulkType extends SnmpAckPdu {
      * The <CODE>non-repeaters</CODE> setter.
      * 
      * @param nr
-     *           Non repeaters.
+     *        Non repeaters.
      */
     public void setNonRepeaters(int nr);
 

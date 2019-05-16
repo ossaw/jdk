@@ -8,7 +8,6 @@ package java.nio.file.attribute;
 /**
  * File attributes associated with a file in a file system that supports legacy
  * "DOS" attributes.
- *
  * <p>
  * <b>Usage Example:</b>
  * 
@@ -23,7 +22,6 @@ package java.nio.file.attribute;
 public interface DosFileAttributes extends BasicFileAttributes {
     /**
      * Returns the value of the read-only attribute.
-     *
      * <p>
      * This attribute is often used as a simple access control mechanism to
      * prevent files from being deleted or updated. Whether the file system or
@@ -36,7 +34,6 @@ public interface DosFileAttributes extends BasicFileAttributes {
 
     /**
      * Returns the value of the hidden attribute.
-     *
      * <p>
      * This attribute is often used to indicate if the file is visible to users.
      *
@@ -46,7 +43,6 @@ public interface DosFileAttributes extends BasicFileAttributes {
 
     /**
      * Returns the value of the archive attribute.
-     *
      * <p>
      * This attribute is typically used by backup programs.
      *
@@ -56,7 +52,6 @@ public interface DosFileAttributes extends BasicFileAttributes {
 
     /**
      * Returns the value of the system attribute.
-     *
      * <p>
      * This attribute is often used to indicate that the file is a component of
      * the operating system.

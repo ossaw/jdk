@@ -11,16 +11,14 @@ package com.sun.corba.se.PortableActivationIDL;
 abstract public class ActivatorHelper {
     private static String _id = "IDL:PortableActivationIDL/Activator:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            com.sun.corba.se.PortableActivationIDL.Activator that) {
+    public static void insert(org.omg.CORBA.Any a, com.sun.corba.se.PortableActivationIDL.Activator that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static com.sun.corba.se.PortableActivationIDL.Activator extract(
-            org.omg.CORBA.Any a) {
+    public static com.sun.corba.se.PortableActivationIDL.Activator extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -29,8 +27,7 @@ abstract public class ActivatorHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    com.sun.corba.se.PortableActivationIDL.ActivatorHelper.id(),
-                    "Activator");
+                    com.sun.corba.se.PortableActivationIDL.ActivatorHelper.id(), "Activator");
         }
         return __typeCode;
     }
@@ -49,8 +46,7 @@ abstract public class ActivatorHelper {
         ostream.write_Object((org.omg.CORBA.Object) value);
     }
 
-    public static com.sun.corba.se.PortableActivationIDL.Activator narrow(
-            org.omg.CORBA.Object obj) {
+    public static com.sun.corba.se.PortableActivationIDL.Activator narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof com.sun.corba.se.PortableActivationIDL.Activator)

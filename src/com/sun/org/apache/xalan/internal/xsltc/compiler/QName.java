@@ -37,9 +37,8 @@ final class QName {
         _prefix = prefix;
         _localname = localname;
 
-        _stringRep = (namespace != null && !namespace.equals(
-                Constants.EMPTYSTRING)) ? (namespace + ':' + localname)
-                        : localname;
+        _stringRep = (namespace != null && !namespace.equals(Constants.EMPTYSTRING)) ? (namespace + ':'
+                + localname) : localname;
 
         _hashCode = _stringRep.hashCode() + 19; // cached for speed
     }
@@ -57,8 +56,8 @@ final class QName {
     }
 
     public boolean equals(Object other) {
-        return (this == other) || (other instanceof QName && _stringRep.equals(
-                ((QName) other).getStringRep()));
+        return (this == other) || (other instanceof QName && _stringRep.equals(((QName) other)
+                .getStringRep()));
     }
 
     public String getLocalPart() {

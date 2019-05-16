@@ -43,7 +43,6 @@ public interface ValidationEvent {
 
     /**
      * Retrieve the severity code for this warning/error.
-     *
      * <p>
      * Must be one of <tt>ValidationError.WARNING</tt>,
      * <tt>ValidationError.ERROR</tt>, or <tt>ValidationError.FATAL_ERROR</tt>.

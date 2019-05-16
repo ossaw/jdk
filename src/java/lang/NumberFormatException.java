@@ -29,7 +29,7 @@ public class NumberFormatException extends IllegalArgumentException {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public NumberFormatException(String s) {
         super(s);
@@ -40,7 +40,7 @@ public class NumberFormatException extends IllegalArgumentException {
      * specified input which caused the error.
      *
      * @param s
-     *          the input causing the error
+     *        the input causing the error
      */
     static NumberFormatException forInputString(String s) {
         return new NumberFormatException("For input string: \"" + s + "\"");

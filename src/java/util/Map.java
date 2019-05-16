@@ -13,11 +13,9 @@ import java.io.Serializable;
 /**
  * An object that maps keys to values. A map cannot contain duplicate keys; each
  * key can map to at most one value.
- *
  * <p>
  * This interface takes the place of the <tt>Dictionary</tt> class, which was a
  * totally abstract class rather than an interface.
- *
  * <p>
  * The <tt>Map</tt> interface provides three <i>collection views</i>, which
  * allow a map's contents to be viewed as a set of keys, collection of values,
@@ -26,7 +24,6 @@ import java.io.Serializable;
  * elements. Some map implementations, like the <tt>TreeMap</tt> class, make
  * specific guarantees as to their order; others, like the <tt>HashMap</tt>
  * class, do not.
- *
  * <p>
  * Note: great care must be exercised if mutable objects are used as map keys.
  * The behavior of a map is not specified if the value of an object is changed
@@ -36,7 +33,6 @@ import java.io.Serializable;
  * a map to contain itself as a value, extreme caution is advised: the
  * <tt>equals</tt> and <tt>hashCode</tt> methods are no longer well defined on
  * such a map.
- *
  * <p>
  * All general-purpose map implementation classes should provide two "standard"
  * constructors: a void (no arguments) constructor which creates an empty map,
@@ -46,7 +42,6 @@ import java.io.Serializable;
  * map of the desired class. There is no way to enforce this recommendation (as
  * interfaces cannot contain constructors) but all of the general-purpose map
  * implementations in the JDK comply.
- *
  * <p>
  * The "destructive" methods contained in this interface, that is, the methods
  * that modify the map on which they operate, are specified to throw
@@ -56,7 +51,6 @@ import java.io.Serializable;
  * no effect on the map. For example, invoking the {@link #putAll(Map)} method
  * on an unmodifiable map may, but is not required to, throw the exception if
  * the map whose mappings are to be "superimposed" is empty.
- *
  * <p>
  * Some map implementations have restrictions on the keys and values they may
  * contain. For example, some implementations prohibit null keys and values, and
@@ -70,7 +64,6 @@ import java.io.Serializable;
  * the insertion of an ineligible element into the map may throw an exception or
  * it may succeed, at the option of the implementation. Such exceptions are
  * marked as "optional" in the specification for this interface.
- *
  * <p>
  * Many methods in Collections Framework interfaces are defined in terms of the
  * {@link Object#equals(Object) equals} method. For example, the specification
@@ -87,7 +80,6 @@ import java.io.Serializable;
  * various Collections Framework interfaces are free to take advantage of the
  * specified behavior of underlying {@link Object} methods wherever the
  * implementor deems it appropriate.
- *
  * <p>
  * Some map operations which perform recursive traversal of the map may fail
  * with an exception for self-referential instances where the map directly or
@@ -95,7 +87,6 @@ import java.io.Serializable;
  * {@code equals()}, {@code hashCode()} and {@code toString()} methods.
  * Implementations may optionally handle the self-referential scenario, however
  * most current implementations do not do so.
- *
  * <p>
  * This interface is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -105,7 +96,6 @@ import java.io.Serializable;
  *        the type of keys maintained by this map
  * @param <V>
  *        the type of mapped values
- *
  * @author Josh Bloch
  * @see HashMap
  * @see TreeMap
@@ -142,20 +132,20 @@ public interface Map<K, V> {
      * such mapping.)
      *
      * @param key
-     *            key whose presence in this map is to be tested
+     *        key whose presence in this map is to be tested
      * @return <tt>true</tt> if this map contains a mapping for the specified
      *         key
      * @throws ClassCastException
-     *                              if the key is of an inappropriate type for
-     *                              this map (<a href=
-     *                              "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                              >optional</a>)
+     *         if the key is of an inappropriate type for
+     *         this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                              if the specified key is null and this map
-     *                              does not permit
-     *                              null keys (<a href=
-     *                              "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                              >optional</a>)
+     *         if the specified key is null and this map
+     *         does not permit
+     *         null keys (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      */
     boolean containsKey(Object key);
 
@@ -168,34 +158,32 @@ public interface Map<K, V> {
      * the <tt>Map</tt> interface.
      *
      * @param value
-     *              value whose presence in this map is to be tested
+     *        value whose presence in this map is to be tested
      * @return <tt>true</tt> if this map maps one or more keys to the specified
      *         value
      * @throws ClassCastException
-     *                              if the value is of an inappropriate type for
-     *                              this map (
-     *                              <a href=
-     *                              "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                              >optional</a>)
+     *         if the value is of an inappropriate type for
+     *         this map (
+     *         <a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                              if the specified value is null and this map
-     *                              does not permit
-     *                              null values (<a href=
-     *                              "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                              >optional</a>)
+     *         if the specified value is null and this map
+     *         does not permit
+     *         null values (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      */
     boolean containsValue(Object value);
 
     /**
      * Returns the value to which the specified key is mapped, or {@code null}
      * if this map contains no mapping for the key.
-     *
      * <p>
      * More formally, if this map contains a mapping from a key {@code k} to a
      * value {@code v} such that {@code (key==null ? k==null :
      * key.equals(k))}, then this method returns {@code v}; otherwise it returns
      * {@code null}. (There can be at most one such mapping.)
-     *
      * <p>
      * If this map permits null values, then a return value of {@code null} does
      * not <i>necessarily</i> indicate that the map contains no mapping for the
@@ -204,20 +192,20 @@ public interface Map<K, V> {
      * to distinguish these two cases.
      *
      * @param key
-     *            the key whose associated value is to be returned
+     *        the key whose associated value is to be returned
      * @return the value to which the specified key is mapped, or {@code null}
      *         if this map contains no mapping for the key
      * @throws ClassCastException
-     *                              if the key is of an inappropriate type for
-     *                              this map (<a href=
-     *                              "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                              >optional</a>)
+     *         if the key is of an inappropriate type for
+     *         this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                              if the specified key is null and this map
-     *                              does not permit
-     *                              null keys (<a href=
-     *                              "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                              >optional</a>)
+     *         if the specified key is null and this map
+     *         does not permit
+     *         null keys (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      */
     V get(Object key);
 
@@ -232,29 +220,29 @@ public interface Map<K, V> {
      * .)
      *
      * @param key
-     *              key with which the specified value is to be associated
+     *        key with which the specified value is to be associated
      * @param value
-     *              value to be associated with the specified key
+     *        value to be associated with the specified key
      * @return the previous value associated with <tt>key</tt>, or <tt>null</tt>
      *         if there was no mapping for <tt>key</tt>. (A <tt>null</tt> return
      *         can also indicate that the map previously associated
      *         <tt>null</tt> with <tt>key</tt>, if the implementation supports
      *         <tt>null</tt> values.)
      * @throws UnsupportedOperationException
-     *                                       if the <tt>put</tt> operation is
-     *                                       not supported by this map
+     *         if the <tt>put</tt> operation is
+     *         not supported by this map
      * @throws ClassCastException
-     *                                       if the class of the specified key
-     *                                       or value prevents it from
-     *                                       being stored in this map
+     *         if the class of the specified key
+     *         or value prevents it from
+     *         being stored in this map
      * @throws NullPointerException
-     *                                       if the specified key or value is
-     *                                       null and this map does not
-     *                                       permit null keys or values
+     *         if the specified key or value is
+     *         null and this map does not
+     *         permit null keys or values
      * @throws IllegalArgumentException
-     *                                       if some property of the specified
-     *                                       key or value prevents it
-     *                                       from being stored in this map
+     *         if some property of the specified
+     *         key or value prevents it
+     *         from being stored in this map
      */
     V put(K key, V value);
 
@@ -264,39 +252,36 @@ public interface Map<K, V> {
      * <tt>k</tt> to value <tt>v</tt> such that
      * <code>(key==null ?  k==null : key.equals(k))</code>, that mapping is
      * removed. (The map can contain at most one such mapping.)
-     *
      * <p>
      * Returns the value to which this map previously associated the key, or
      * <tt>null</tt> if the map contained no mapping for the key.
-     *
      * <p>
      * If this map permits null values, then a return value of <tt>null</tt>
      * does not <i>necessarily</i> indicate that the map contained no mapping
      * for the key; it's also possible that the map explicitly mapped the key to
      * <tt>null</tt>.
-     *
      * <p>
      * The map will not contain a mapping for the specified key once the call
      * returns.
      *
      * @param key
-     *            key whose mapping is to be removed from the map
+     *        key whose mapping is to be removed from the map
      * @return the previous value associated with <tt>key</tt>, or <tt>null</tt>
      *         if there was no mapping for <tt>key</tt>.
      * @throws UnsupportedOperationException
-     *                                       if the <tt>remove</tt> operation is
-     *                                       not supported by this map
+     *         if the <tt>remove</tt> operation is
+     *         not supported by this map
      * @throws ClassCastException
-     *                                       if the key is of an inappropriate
-     *                                       type for this map (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the key is of an inappropriate
+     *         type for this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                                       if the specified key is null and
-     *                                       this map does not permit
-     *                                       null keys (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the specified key is null and
+     *         this map does not permit
+     *         null keys (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      */
     V remove(Object key);
 
@@ -311,25 +296,25 @@ public interface Map<K, V> {
      * while the operation is in progress.
      *
      * @param m
-     *          mappings to be stored in this map
+     *        mappings to be stored in this map
      * @throws UnsupportedOperationException
-     *                                       if the <tt>putAll</tt> operation is
-     *                                       not supported by this map
+     *         if the <tt>putAll</tt> operation is
+     *         not supported by this map
      * @throws ClassCastException
-     *                                       if the class of a key or value in
-     *                                       the specified map prevents
-     *                                       it from being stored in this map
+     *         if the class of a key or value in
+     *         the specified map prevents
+     *         it from being stored in this map
      * @throws NullPointerException
-     *                                       if the specified map is null, or if
-     *                                       this map does not permit
-     *                                       null keys or values, and the
-     *                                       specified map contains null keys
-     *                                       or values
+     *         if the specified map is null, or if
+     *         this map does not permit
+     *         null keys or values, and the
+     *         specified map contains null keys
+     *         or values
      * @throws IllegalArgumentException
-     *                                       if some property of a key or value
-     *                                       in the specified map
-     *                                       prevents it from being stored in
-     *                                       this map
+     *         if some property of a key or value
+     *         in the specified map
+     *         prevents it from being stored in
+     *         this map
      */
     void putAll(Map<? extends K, ? extends V> m);
 
@@ -338,8 +323,8 @@ public interface Map<K, V> {
      * will be empty after this call returns.
      *
      * @throws UnsupportedOperationException
-     *                                       if the <tt>clear</tt> operation is
-     *                                       not supported by this map
+     *         if the <tt>clear</tt> operation is
+     *         not supported by this map
      */
     void clear();
 
@@ -411,11 +396,11 @@ public interface Map<K, V> {
          *
          * @return the key corresponding to this entry
          * @throws IllegalStateException
-         *                               implementations may, but are not
-         *                               required to, throw this
-         *                               exception if the entry has been removed
-         *                               from the backing
-         *                               map.
+         *         implementations may, but are not
+         *         required to, throw this
+         *         exception if the entry has been removed
+         *         from the backing
+         *         map.
          */
         K getKey();
 
@@ -426,11 +411,11 @@ public interface Map<K, V> {
          *
          * @return the value corresponding to this entry
          * @throws IllegalStateException
-         *                               implementations may, but are not
-         *                               required to, throw this
-         *                               exception if the entry has been removed
-         *                               from the backing
-         *                               map.
+         *         implementations may, but are not
+         *         required to, throw this
+         *         exception if the entry has been removed
+         *         from the backing
+         *         map.
          */
         V getValue();
 
@@ -441,30 +426,30 @@ public interface Map<K, V> {
          * from the map (by the iterator's <tt>remove</tt> operation).
          *
          * @param value
-         *              new value to be stored in this entry
+         *        new value to be stored in this entry
          * @return old value corresponding to the entry
          * @throws UnsupportedOperationException
-         *                                       if the <tt>put</tt> operation
-         *                                       is not supported by the
-         *                                       backing map
+         *         if the <tt>put</tt> operation
+         *         is not supported by the
+         *         backing map
          * @throws ClassCastException
-         *                                       if the class of the specified
-         *                                       value prevents it from
-         *                                       being stored in the backing map
+         *         if the class of the specified
+         *         value prevents it from
+         *         being stored in the backing map
          * @throws NullPointerException
-         *                                       if the backing map does not
-         *                                       permit null values, and the
-         *                                       specified value is null
+         *         if the backing map does not
+         *         permit null values, and the
+         *         specified value is null
          * @throws IllegalArgumentException
-         *                                       if some property of this value
-         *                                       prevents it from being
-         *                                       stored in the backing map
+         *         if some property of this value
+         *         prevents it from being
+         *         stored in the backing map
          * @throws IllegalStateException
-         *                                       implementations may, but are
-         *                                       not required to, throw this
-         *                                       exception if the entry has been
-         *                                       removed from the backing
-         *                                       map.
+         *         implementations may, but are
+         *         not required to, throw this
+         *         exception if the entry has been
+         *         removed from the backing
+         *         map.
          */
         V setValue(V value);
 
@@ -475,17 +460,15 @@ public interface Map<K, V> {
          * <tt>e1</tt> and <tt>e2</tt> represent the same mapping if
          * 
          * <pre>
-         * (e1.getKey() == null ? e2.getKey() == null
-         *         : e1.getKey().equals(e2.getKey())) &amp;&amp; (e1.getValue() == null
-         *                 ? e2.getValue() == null
-         *                 : e1.getValue().equals(e2.getValue()))
+         * (e1.getKey() == null ? e2.getKey() == null : e1.getKey().equals(e2.getKey())) &amp;&amp; (e1
+         *         .getValue() == null ? e2.getValue() == null : e1.getValue().equals(e2.getValue()))
          * </pre>
          * 
          * This ensures that the <tt>equals</tt> method works properly across
          * different implementations of the <tt>Map.Entry</tt> interface.
          *
          * @param o
-         *          object to be compared for equality with this map entry
+         *        object to be compared for equality with this map entry
          * @return <tt>true</tt> if the specified object is equal to this map
          *         entry
          */
@@ -496,8 +479,8 @@ public interface Map<K, V> {
          * map entry <tt>e</tt> is defined to be:
          * 
          * <pre>
-         * (e.getKey() == null ? 0 : e.getKey().hashCode()) ^ (e
-         *         .getValue() == null ? 0 : e.getValue().hashCode())
+         * (e.getKey() == null ? 0 : e.getKey().hashCode()) ^ (e.getValue() == null ? 0
+         *         : e.getValue().hashCode())
          * </pre>
          * 
          * This ensures that <tt>e1.equals(e2)</tt> implies that
@@ -515,7 +498,6 @@ public interface Map<K, V> {
         /**
          * Returns a comparator that compares {@link Map.Entry} in natural order
          * on key.
-         *
          * <p>
          * The returned comparator is serializable and throws
          * {@link NullPointerException} when comparing an entry with a null key.
@@ -530,14 +512,13 @@ public interface Map<K, V> {
          * @since 1.8
          */
         public static <K extends Comparable<? super K>, V> Comparator<Map.Entry<K, V>> comparingByKey() {
-            return (Comparator<Map.Entry<K, V>> & Serializable) (c1, c2) -> c1
-                    .getKey().compareTo(c2.getKey());
+            return (Comparator<Map.Entry<K, V>> & Serializable) (c1, c2) -> c1.getKey().compareTo(c2
+                    .getKey());
         }
 
         /**
          * Returns a comparator that compares {@link Map.Entry} in natural order
          * on value.
-         *
          * <p>
          * The returned comparator is serializable and throws
          * {@link NullPointerException} when comparing an entry with null
@@ -553,56 +534,52 @@ public interface Map<K, V> {
          * @since 1.8
          */
         public static <K, V extends Comparable<? super V>> Comparator<Map.Entry<K, V>> comparingByValue() {
-            return (Comparator<Map.Entry<K, V>> & Serializable) (c1, c2) -> c1
-                    .getValue().compareTo(c2.getValue());
+            return (Comparator<Map.Entry<K, V>> & Serializable) (c1, c2) -> c1.getValue().compareTo(c2
+                    .getValue());
         }
 
         /**
          * Returns a comparator that compares {@link Map.Entry} by key using the
          * given {@link Comparator}.
-         *
          * <p>
          * The returned comparator is serializable if the specified comparator
          * is also serializable.
          *
-         * @param     <K>
-         *            the type of the map keys
-         * @param     <V>
-         *            the type of the map values
+         * @param <K>
+         *        the type of the map keys
+         * @param <V>
+         *        the type of the map values
          * @param cmp
-         *            the key {@link Comparator}
+         *        the key {@link Comparator}
          * @return a comparator that compares {@link Map.Entry} by the key.
          * @since 1.8
          */
-        public static <K, V> Comparator<Map.Entry<K, V>> comparingByKey(
-                Comparator<? super K> cmp) {
+        public static <K, V> Comparator<Map.Entry<K, V>> comparingByKey(Comparator<? super K> cmp) {
             Objects.requireNonNull(cmp);
-            return (Comparator<Map.Entry<K, V>> & Serializable) (c1, c2) -> cmp
-                    .compare(c1.getKey(), c2.getKey());
+            return (Comparator<Map.Entry<K, V>> & Serializable) (c1, c2) -> cmp.compare(c1.getKey(), c2
+                    .getKey());
         }
 
         /**
          * Returns a comparator that compares {@link Map.Entry} by value using
          * the given {@link Comparator}.
-         *
          * <p>
          * The returned comparator is serializable if the specified comparator
          * is also serializable.
          *
-         * @param     <K>
-         *            the type of the map keys
-         * @param     <V>
-         *            the type of the map values
+         * @param <K>
+         *        the type of the map keys
+         * @param <V>
+         *        the type of the map values
          * @param cmp
-         *            the value {@link Comparator}
+         *        the value {@link Comparator}
          * @return a comparator that compares {@link Map.Entry} by the value.
          * @since 1.8
          */
-        public static <K, V> Comparator<Map.Entry<K, V>> comparingByValue(
-                Comparator<? super V> cmp) {
+        public static <K, V> Comparator<Map.Entry<K, V>> comparingByValue(Comparator<? super V> cmp) {
             Objects.requireNonNull(cmp);
-            return (Comparator<Map.Entry<K, V>> & Serializable) (c1, c2) -> cmp
-                    .compare(c1.getValue(), c2.getValue());
+            return (Comparator<Map.Entry<K, V>> & Serializable) (c1, c2) -> cmp.compare(c1.getValue(), c2
+                    .getValue());
         }
     }
 
@@ -618,7 +595,7 @@ public interface Map<K, V> {
      * the <tt>Map</tt> interface.
      *
      * @param o
-     *          object to be compared for equality with this map
+     *        object to be compared for equality with this map
      * @return <tt>true</tt> if the specified object is equal to this map
      */
     boolean equals(Object o);
@@ -648,30 +625,28 @@ public interface Map<K, V> {
      *           synchronization or atomicity properties of this method. Any
      *           implementation providing atomicity guarantees must override
      *           this method and document its concurrency properties.
-     *
      * @param key
-     *                     the key whose associated value is to be returned
+     *        the key whose associated value is to be returned
      * @param defaultValue
-     *                     the default mapping of the key
+     *        the default mapping of the key
      * @return the value to which the specified key is mapped, or
      *         {@code defaultValue} if this map contains no mapping for the key
      * @throws ClassCastException
-     *                              if the key is of an inappropriate type for
-     *                              this map (<a href=
-     *                              "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                              >optional</a>)
+     *         if the key is of an inappropriate type for
+     *         this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                              if the specified key is null and this map
-     *                              does not permit
-     *                              null keys (<a href=
-     *                              "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                              >optional</a>)
+     *         if the specified key is null and this map
+     *         does not permit
+     *         null keys (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @since 1.8
      */
     default V getOrDefault(Object key, V defaultValue) {
         V v;
-        return (((v = get(key)) != null) || containsKey(key)) ? v
-                : defaultValue;
+        return (((v = get(key)) != null) || containsKey(key)) ? v : defaultValue;
     }
 
     /**
@@ -695,14 +670,13 @@ public interface Map<K, V> {
      *           synchronization or atomicity properties of this method. Any
      *           implementation providing atomicity guarantees must override
      *           this method and document its concurrency properties.
-     *
      * @param action
-     *               The action to be performed for each entry
+     *        The action to be performed for each entry
      * @throws NullPointerException
-     *                                         if the specified action is null
+     *         if the specified action is null
      * @throws ConcurrentModificationException
-     *                                         if an entry is found to be
-     *                                         removed during iteration
+     *         if an entry is found to be
+     *         removed during iteration
      * @since 1.8
      */
     default void forEach(BiConsumer<? super K, ? super V> action) {
@@ -738,56 +712,53 @@ public interface Map<K, V> {
      *     entry.setValue(function.apply(entry.getKey(), entry.getValue()));
      * }
      *           </pre>
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
      *           implementation providing atomicity guarantees must override
      *           this method and document its concurrency properties.
-     *
      * @param function
-     *                 the function to apply to each entry
+     *        the function to apply to each entry
      * @throws UnsupportedOperationException
-     *                                         if the {@code set} operation is
-     *                                         not supported by this map's
-     *                                         entry set iterator.
+     *         if the {@code set} operation is
+     *         not supported by this map's
+     *         entry set iterator.
      * @throws ClassCastException
-     *                                         if the class of a replacement
-     *                                         value prevents it from being
-     *                                         stored in this map
+     *         if the class of a replacement
+     *         value prevents it from being
+     *         stored in this map
      * @throws NullPointerException
-     *                                         if the specified function is
-     *                                         null, or the specified
-     *                                         replacement value is null, and
-     *                                         this map does not permit null
-     *                                         values
+     *         if the specified function is
+     *         null, or the specified
+     *         replacement value is null, and
+     *         this map does not permit null
+     *         values
      * @throws ClassCastException
-     *                                         if a replacement value is of an
-     *                                         inappropriate type for this
-     *                                         map (<a href=
-     *                                         "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                         >optional</a>)
+     *         if a replacement value is of an
+     *         inappropriate type for this
+     *         map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                                         if function or a replacement
-     *                                         value is null, and this map does
-     *                                         not permit null keys or values
-     *                                         (<a href=
-     *                                         "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                         >optional</a>)
+     *         if function or a replacement
+     *         value is null, and this map does
+     *         not permit null keys or values
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws IllegalArgumentException
-     *                                         if some property of a replacement
-     *                                         value prevents it from
-     *                                         being stored in this map
-     *                                         (<a href=
-     *                                         "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                         >optional</a>)
+     *         if some property of a replacement
+     *         value prevents it from
+     *         being stored in this map
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ConcurrentModificationException
-     *                                         if an entry is found to be
-     *                                         removed during iteration
+     *         if an entry is found to be
+     *         removed during iteration
      * @since 1.8
      */
-    default void replaceAll(
-            BiFunction<? super K, ? super V, ? extends V> function) {
+    default void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
         Objects.requireNonNull(function);
         for (Map.Entry<K, V> entry : entrySet()) {
             K k;
@@ -818,7 +789,7 @@ public interface Map<K, V> {
      * {@code null}, else returns the current value.
      *
      * @implSpec The default implementation is equivalent to, for this {@code
-     * map}   :
+     * map} :
      *
      *           <pre>
      * {@code
@@ -829,48 +800,46 @@ public interface Map<K, V> {
      * return v;
      * }
      *           </pre>
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
      *           implementation providing atomicity guarantees must override
      *           this method and document its concurrency properties.
-     *
      * @param key
-     *              key with which the specified value is to be associated
+     *        key with which the specified value is to be associated
      * @param value
-     *              value to be associated with the specified key
+     *        value to be associated with the specified key
      * @return the previous value associated with the specified key, or
      *         {@code null} if there was no mapping for the key. (A {@code null}
      *         return can also indicate that the map previously associated
      *         {@code null} with the key, if the implementation supports null
      *         values.)
      * @throws UnsupportedOperationException
-     *                                       if the {@code put} operation is not
-     *                                       supported by this map (
-     *                                       <a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the {@code put} operation is not
+     *         supported by this map (
+     *         <a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ClassCastException
-     *                                       if the key or value is of an
-     *                                       inappropriate type for this map
-     *                                       (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the key or value is of an
+     *         inappropriate type for this map
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                                       if the specified key or value is
-     *                                       null, and this map does not
-     *                                       permit null keys or values
-     *                                       (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the specified key or value is
+     *         null, and this map does not
+     *         permit null keys or values
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws IllegalArgumentException
-     *                                       if some property of the specified
-     *                                       key or value prevents it
-     *                                       from being stored in this map
-     *                                       (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if some property of the specified
+     *         key or value prevents it
+     *         from being stored in this map
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @since 1.8
      */
     default V putIfAbsent(K key, V value) {
@@ -898,43 +867,40 @@ public interface Map<K, V> {
      *     return false;
      * }
      *           </pre>
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
      *           implementation providing atomicity guarantees must override
      *           this method and document its concurrency properties.
-     *
      * @param key
-     *              key with which the specified value is associated
+     *        key with which the specified value is associated
      * @param value
-     *              value expected to be associated with the specified key
+     *        value expected to be associated with the specified key
      * @return {@code true} if the value was removed
      * @throws UnsupportedOperationException
-     *                                       if the {@code remove} operation is
-     *                                       not supported by this map
-     *                                       (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the {@code remove} operation is
+     *         not supported by this map
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ClassCastException
-     *                                       if the key or value is of an
-     *                                       inappropriate type for this map
-     *                                       (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the key or value is of an
+     *         inappropriate type for this map
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                                       if the specified key or value is
-     *                                       null, and this map does not
-     *                                       permit null keys or values
-     *                                       (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the specified key or value is
+     *         null, and this map does not
+     *         permit null keys or values
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @since 1.8
      */
     default boolean remove(Object key, Object value) {
         Object curValue = get(key);
-        if (!Objects.equals(curValue, value) || (curValue == null
-                && !containsKey(key))) {
+        if (!Objects.equals(curValue, value) || (curValue == null && !containsKey(key))) {
             return false;
         }
         remove(key);
@@ -961,50 +927,47 @@ public interface Map<K, V> {
      *           The default implementation does not throw NullPointerException
      *           for maps that do not support null values if oldValue is null
      *           unless newValue is also null.
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
      *           implementation providing atomicity guarantees must override
      *           this method and document its concurrency properties.
-     *
      * @param key
-     *                 key with which the specified value is associated
+     *        key with which the specified value is associated
      * @param oldValue
-     *                 value expected to be associated with the specified key
+     *        value expected to be associated with the specified key
      * @param newValue
-     *                 value to be associated with the specified key
+     *        value to be associated with the specified key
      * @return {@code true} if the value was replaced
      * @throws UnsupportedOperationException
-     *                                       if the {@code put} operation is not
-     *                                       supported by this map (
-     *                                       <a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the {@code put} operation is not
+     *         supported by this map (
+     *         <a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ClassCastException
-     *                                       if the class of a specified key or
-     *                                       value prevents it from
-     *                                       being stored in this map
+     *         if the class of a specified key or
+     *         value prevents it from
+     *         being stored in this map
      * @throws NullPointerException
-     *                                       if a specified key or newValue is
-     *                                       null, and this map does not
-     *                                       permit null keys or values
+     *         if a specified key or newValue is
+     *         null, and this map does not
+     *         permit null keys or values
      * @throws NullPointerException
-     *                                       if oldValue is null and this map
-     *                                       does not permit null values
-     *                                       (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if oldValue is null and this map
+     *         does not permit null values
+     *         (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws IllegalArgumentException
-     *                                       if some property of a specified key
-     *                                       or value prevents it from
-     *                                       being stored in this map
+     *         if some property of a specified key
+     *         or value prevents it from
+     *         being stored in this map
      * @since 1.8
      */
     default boolean replace(K key, V oldValue, V newValue) {
         Object curValue = get(key);
-        if (!Objects.equals(curValue, oldValue) || (curValue == null
-                && !containsKey(key))) {
+        if (!Objects.equals(curValue, oldValue) || (curValue == null && !containsKey(key))) {
             return false;
         }
         put(key, newValue);
@@ -1026,42 +989,40 @@ public interface Map<K, V> {
      *     return null;
      * }
      *           </pre>
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
      *           implementation providing atomicity guarantees must override
      *           this method and document its concurrency properties.
-     *
      * @param key
-     *              key with which the specified value is associated
+     *        key with which the specified value is associated
      * @param value
-     *              value to be associated with the specified key
+     *        value to be associated with the specified key
      * @return the previous value associated with the specified key, or
      *         {@code null} if there was no mapping for the key. (A {@code null}
      *         return can also indicate that the map previously associated
      *         {@code null} with the key, if the implementation supports null
      *         values.)
      * @throws UnsupportedOperationException
-     *                                       if the {@code put} operation is not
-     *                                       supported by this map (
-     *                                       <a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the {@code put} operation is not
+     *         supported by this map (
+     *         <a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ClassCastException
-     *                                       if the class of the specified key
-     *                                       or value prevents it from
-     *                                       being stored in this map (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the class of the specified key
+     *         or value prevents it from
+     *         being stored in this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                                       if the specified key or value is
-     *                                       null, and this map does not
-     *                                       permit null keys or values
+     *         if the specified key or value is
+     *         null, and this map does not
+     *         permit null keys or values
      * @throws IllegalArgumentException
-     *                                       if some property of the specified
-     *                                       key or value prevents it
-     *                                       from being stored in this map
+     *         if some property of the specified
+     *         key or value prevents it
+     *         from being stored in this map
      * @since 1.8
      */
     default V replace(K key, V value) {
@@ -1076,7 +1037,6 @@ public interface Map<K, V> {
      * If the specified key is not already associated with a value (or is mapped
      * to {@code null}), attempts to compute its value using the given mapping
      * function and enters it into this map unless {@code null}.
-     *
      * <p>
      * If the function returns {@code null} no mapping is recorded. If the
      * function itself throws an (unchecked) exception, the exception is
@@ -1089,7 +1049,6 @@ public interface Map<K, V> {
      * map.computeIfAbsent(key, k -> new Value(f(k)));
      * }
      * </pre>
-     *
      * <p>
      * Or to implement a multi-value map, {@code Map<K,Collection<V>>},
      * supporting multiple values per key:
@@ -1099,7 +1058,6 @@ public interface Map<K, V> {
      * map.computeIfAbsent(key, k -> new HashSet<V>()).add(v);
      * }
      * </pre>
-     *
      *
      * @implSpec The default implementation is equivalent to the following steps
      *           for this {@code map}, then returning the current value or
@@ -1114,7 +1072,6 @@ public interface Map<K, V> {
      * }
      * }
      *           </pre>
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
@@ -1124,35 +1081,33 @@ public interface Map<K, V> {
      *           {@link java.util.concurrent.ConcurrentMap} must document
      *           whether the function is applied once atomically only if the
      *           value is not present.
-     *
      * @param key
-     *                        key with which the specified value is to be
-     *                        associated
+     *        key with which the specified value is to be
+     *        associated
      * @param mappingFunction
-     *                        the function to compute a value
+     *        the function to compute a value
      * @return the current (existing or computed) value associated with the
      *         specified key, or null if the computed value is null
      * @throws NullPointerException
-     *                                       if the specified key is null and
-     *                                       this map does not support
-     *                                       null keys, or the mappingFunction
-     *                                       is null
+     *         if the specified key is null and
+     *         this map does not support
+     *         null keys, or the mappingFunction
+     *         is null
      * @throws UnsupportedOperationException
-     *                                       if the {@code put} operation is not
-     *                                       supported by this map (
-     *                                       <a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the {@code put} operation is not
+     *         supported by this map (
+     *         <a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ClassCastException
-     *                                       if the class of the specified key
-     *                                       or value prevents it from
-     *                                       being stored in this map (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the class of the specified key
+     *         or value prevents it from
+     *         being stored in this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @since 1.8
      */
-    default V computeIfAbsent(K key,
-            Function<? super K, ? extends V> mappingFunction) {
+    default V computeIfAbsent(K key, Function<? super K, ? extends V> mappingFunction) {
         Objects.requireNonNull(mappingFunction);
         V v;
         if ((v = get(key)) == null) {
@@ -1169,7 +1124,6 @@ public interface Map<K, V> {
     /**
      * If the value for the specified key is present and non-null, attempts to
      * compute a new mapping given the key and its current mapped value.
-     *
      * <p>
      * If the function returns {@code null}, the mapping is removed. If the
      * function itself throws an (unchecked) exception, the exception is
@@ -1191,7 +1145,6 @@ public interface Map<K, V> {
      * }
      * }
      *           </pre>
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
@@ -1201,34 +1154,32 @@ public interface Map<K, V> {
      *           {@link java.util.concurrent.ConcurrentMap} must document
      *           whether the function is applied once atomically only if the
      *           value is not present.
-     *
      * @param key
-     *                          key with which the specified value is to be
-     *                          associated
+     *        key with which the specified value is to be
+     *        associated
      * @param remappingFunction
-     *                          the function to compute a value
+     *        the function to compute a value
      * @return the new value associated with the specified key, or null if none
      * @throws NullPointerException
-     *                                       if the specified key is null and
-     *                                       this map does not support
-     *                                       null keys, or the remappingFunction
-     *                                       is null
+     *         if the specified key is null and
+     *         this map does not support
+     *         null keys, or the remappingFunction
+     *         is null
      * @throws UnsupportedOperationException
-     *                                       if the {@code put} operation is not
-     *                                       supported by this map (
-     *                                       <a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the {@code put} operation is not
+     *         supported by this map (
+     *         <a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ClassCastException
-     *                                       if the class of the specified key
-     *                                       or value prevents it from
-     *                                       being stored in this map (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the class of the specified key
+     *         or value prevents it from
+     *         being stored in this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @since 1.8
      */
-    default V computeIfPresent(K key,
-            BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
+    default V computeIfPresent(K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
         Objects.requireNonNull(remappingFunction);
         V oldValue;
         if ((oldValue = get(key)) != null) {
@@ -1258,7 +1209,6 @@ public interface Map<K, V> {
      * 
      * (Method {@link #merge merge()} is often simpler to use for such
      * purposes.)
-     *
      * <p>
      * If the function returns {@code null}, the mapping is removed (or remains
      * absent if initially absent). If the function itself throws an (unchecked)
@@ -1273,11 +1223,11 @@ public interface Map<K, V> {
      * {@code
      * V oldValue = map.get(key);
      * V newValue = remappingFunction.apply(key, oldValue);
-     *           	if (oldValue != null) {
-     *           		if (newValue != null)
-     *           			map.put(key, newValue);
-     *           		else
-     *           			map.remove(key);
+     *               if (oldValue != null) {
+     *                   if (newValue != null)
+     *                       map.put(key, newValue);
+     *                   else
+     *                       map.remove(key);
      *               } else {
      *                   if (newValue != null)
      *                       map.put(key, newValue);
@@ -1286,7 +1236,6 @@ public interface Map<K, V> {
      *               }
      *           }
      *           </pre>
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
@@ -1296,34 +1245,32 @@ public interface Map<K, V> {
      *           {@link java.util.concurrent.ConcurrentMap} must document
      *           whether the function is applied once atomically only if the
      *           value is not present.
-     *
      * @param key
-     *                          key with which the specified value is to be
-     *                          associated
+     *        key with which the specified value is to be
+     *        associated
      * @param remappingFunction
-     *                          the function to compute a value
+     *        the function to compute a value
      * @return the new value associated with the specified key, or null if none
      * @throws NullPointerException
-     *                                       if the specified key is null and
-     *                                       this map does not support
-     *                                       null keys, or the remappingFunction
-     *                                       is null
+     *         if the specified key is null and
+     *         this map does not support
+     *         null keys, or the remappingFunction
+     *         is null
      * @throws UnsupportedOperationException
-     *                                       if the {@code put} operation is not
-     *                                       supported by this map (
-     *                                       <a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the {@code put} operation is not
+     *         supported by this map (
+     *         <a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ClassCastException
-     *                                       if the class of the specified key
-     *                                       or value prevents it from
-     *                                       being stored in this map (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the class of the specified key
+     *         or value prevents it from
+     *         being stored in this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @since 1.8
      */
-    default V compute(K key,
-            BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
+    default V compute(K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
         Objects.requireNonNull(remappingFunction);
         V oldValue = get(key);
 
@@ -1359,7 +1306,6 @@ public interface Map<K, V> {
      * map.merge(key, msg, String::concat)
      * }
      * </pre>
-     *
      * <p>
      * If the function returns {@code null} the mapping is removed. If the
      * function itself throws an (unchecked) exception, the exception is
@@ -1380,7 +1326,6 @@ public interface Map<K, V> {
      *     map.put(key, newValue);
      * }
      *           </pre>
-     *
      *           <p>
      *           The default implementation makes no guarantees about
      *           synchronization or atomicity properties of this method. Any
@@ -1390,48 +1335,45 @@ public interface Map<K, V> {
      *           {@link java.util.concurrent.ConcurrentMap} must document
      *           whether the function is applied once atomically only if the
      *           value is not present.
-     *
      * @param key
-     *                          key with which the resulting value is to be
-     *                          associated
+     *        key with which the resulting value is to be
+     *        associated
      * @param value
-     *                          the non-null value to be merged with the
-     *                          existing value
-     *                          associated with the key or, if no existing value
-     *                          or a null
-     *                          value is associated with the key, to be
-     *                          associated with the
-     *                          key
+     *        the non-null value to be merged with the
+     *        existing value
+     *        associated with the key or, if no existing value
+     *        or a null
+     *        value is associated with the key, to be
+     *        associated with the
+     *        key
      * @param remappingFunction
-     *                          the function to recompute a value if present
+     *        the function to recompute a value if present
      * @return the new value associated with the specified key, or null if no
      *         value is associated with the key
      * @throws UnsupportedOperationException
-     *                                       if the {@code put} operation is not
-     *                                       supported by this map (
-     *                                       <a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the {@code put} operation is not
+     *         supported by this map (
+     *         <a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws ClassCastException
-     *                                       if the class of the specified key
-     *                                       or value prevents it from
-     *                                       being stored in this map (<a href=
-     *                                       "{@docRoot}/java/util/Collection.html#optional-restrictions"
-     *                                       >optional</a>)
+     *         if the class of the specified key
+     *         or value prevents it from
+     *         being stored in this map (<a href=
+     *         "{@docRoot}/java/util/Collection.html#optional-restrictions"
+     *         >optional</a>)
      * @throws NullPointerException
-     *                                       if the specified key is null and
-     *                                       this map does not support
-     *                                       null keys or the value or
-     *                                       remappingFunction is null
+     *         if the specified key is null and
+     *         this map does not support
+     *         null keys or the value or
+     *         remappingFunction is null
      * @since 1.8
      */
-    default V merge(K key, V value,
-            BiFunction<? super V, ? super V, ? extends V> remappingFunction) {
+    default V merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction) {
         Objects.requireNonNull(remappingFunction);
         Objects.requireNonNull(value);
         V oldValue = get(key);
-        V newValue = (oldValue == null) ? value
-                : remappingFunction.apply(oldValue, value);
+        V newValue = (oldValue == null) ? value : remappingFunction.apply(oldValue, value);
         if (newValue == null) {
             remove(key);
         } else {

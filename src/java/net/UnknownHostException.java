@@ -21,7 +21,7 @@ public class UnknownHostException extends IOException {
      * message.
      *
      * @param host
-     *             the detail message.
+     *        the detail message.
      */
     public UnknownHostException(String host) {
         super(host);

@@ -75,15 +75,13 @@ public class ErrorMessages extends ListResourceBundle {
                  * message is a class name. Used for internal errors in the
                  * processor.
                  */
-                { BasisLibrary.RUN_TIME_INTERNAL_ERR,
-                        "Run-time internal error in ''{0}''" },
+                { BasisLibrary.RUN_TIME_INTERNAL_ERR, "Run-time internal error in ''{0}''" },
 
                 /*
                  * Note to translators: <xsl:copy> is a keyword that should not
                  * be translated.
                  */
-                { BasisLibrary.RUN_TIME_COPY_ERR,
-                        "Run-time error when executing <xsl:copy>." },
+                { BasisLibrary.RUN_TIME_COPY_ERR, "Run-time error when executing <xsl:copy>." },
 
                 /*
                  * Note to translators: The substitution text refers to data
@@ -91,24 +89,21 @@ public class ErrorMessages extends ListResourceBundle {
                  * context needs to be converted to type {1}, but that's not
                  * possible for a value of type {0}.
                  */
-                { BasisLibrary.DATA_CONVERSION_ERR,
-                        "Invalid conversion from ''{0}'' to ''{1}''." },
+                { BasisLibrary.DATA_CONVERSION_ERR, "Invalid conversion from ''{0}'' to ''{1}''." },
 
                 /*
                  * Note to translators: This message is displayed if the
                  * function named by the substitution text is not a function
                  * that is supported. XSLTC is the acronym naming the product.
                  */
-                { BasisLibrary.EXTERNAL_FUNC_ERR,
-                        "External function ''{0}'' not supported by XSLTC." },
+                { BasisLibrary.EXTERNAL_FUNC_ERR, "External function ''{0}'' not supported by XSLTC." },
 
                 /*
                  * Note to translators: This message is displayed if two values
                  * are compared for equality, but the data type of one of the
                  * values is unknown.
                  */
-                { BasisLibrary.EQUALITY_EXPR_ERR,
-                        "Unknown argument type in equality expression." },
+                { BasisLibrary.EQUALITY_EXPR_ERR, "Unknown argument type in equality expression." },
 
                 /*
                  * Note to translators: The substitution text for {0} will be a
@@ -117,8 +112,7 @@ public class ErrorMessages extends ListResourceBundle {
                  * particular data type is not permitted for a call to this
                  * function.
                  */
-                { BasisLibrary.INVALID_ARGUMENT_ERR,
-                        "Invalid argument type ''{0}'' in call to ''{1}''" },
+                { BasisLibrary.INVALID_ARGUMENT_ERR, "Invalid argument type ''{0}'' in call to ''{1}''" },
 
                 /*
                  * Note to translators: There is way of specifying a format for
@@ -133,8 +127,7 @@ public class ErrorMessages extends ListResourceBundle {
                  * error situation in XSLTC. The processor was unable to create
                  * a copy of an iterator. (See definition of iterator above.)
                  */
-                { BasisLibrary.ITERATOR_CLONE_ERR,
-                        "Cannot clone iterator ''{0}''." },
+                { BasisLibrary.ITERATOR_CLONE_ERR, "Cannot clone iterator ''{0}''." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -142,8 +135,7 @@ public class ErrorMessages extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.AXIS_SUPPORT_ERR,
-                        "Iterator for axis ''{0}'' not supported." },
+                { BasisLibrary.AXIS_SUPPORT_ERR, "Iterator for axis ''{0}'' not supported." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -151,8 +143,7 @@ public class ErrorMessages extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.TYPED_AXIS_SUPPORT_ERR,
-                        "Iterator for typed axis ''{0}'' not supported." },
+                { BasisLibrary.TYPED_AXIS_SUPPORT_ERR, "Iterator for typed axis ''{0}'' not supported." },
 
                 /*
                  * Note to translators: This message is reported if the
@@ -161,8 +152,7 @@ public class ErrorMessages extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { BasisLibrary.STRAY_ATTRIBUTE_ERR,
-                        "Attribute ''{0}'' outside of element." },
+                { BasisLibrary.STRAY_ATTRIBUTE_ERR, "Attribute ''{0}'' outside of element." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -179,15 +169,13 @@ public class ErrorMessages extends ListResourceBundle {
                  * a namespace prefix that was undefined. The value of the
                  * substitution text is the name of the prefix.
                  */
-                { BasisLibrary.NAMESPACE_PREFIX_ERR,
-                        "Namespace for prefix ''{0}'' has not been declared." },
+                { BasisLibrary.NAMESPACE_PREFIX_ERR, "Namespace for prefix ''{0}'' has not been declared." },
 
                 /*
                  * Note to translators: The following represents an internal
                  * error. DOMAdapter is a Java class in XSLTC.
                  */
-                { BasisLibrary.DOM_ADAPTER_INIT_ERR,
-                        "DOMAdapter created using wrong type of source DOM." },
+                { BasisLibrary.DOM_ADAPTER_INIT_ERR, "DOMAdapter created using wrong type of source DOM." },
 
                 /*
                  * Note to translators: The following message indicates that the
@@ -219,8 +207,7 @@ public class ErrorMessages extends ListResourceBundle {
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { BasisLibrary.UNSUPPORTED_XSL_ERR,
-                        "Unsupported XSL element ''{0}''" },
+                { BasisLibrary.UNSUPPORTED_XSL_ERR, "Unsupported XSL element ''{0}''" },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -228,8 +215,7 @@ public class ErrorMessages extends ListResourceBundle {
                  * but XSLTC does not recognize the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { BasisLibrary.UNSUPPORTED_EXT_ERR,
-                        "Unrecognized XSLTC extension ''{0}''" },
+                { BasisLibrary.UNSUPPORTED_EXT_ERR, "Unrecognized XSLTC extension ''{0}''" },
 
                 /*
                  * Note to translators: This error message is produced if the

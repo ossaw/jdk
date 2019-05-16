@@ -71,32 +71,28 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param ds
-     *            the <code>DragSource</code> this
-     *            <code>DragGestureRecognizer</code> will use to process the
-     *            Drag and Drop operation
-     *
+     *        the <code>DragSource</code> this
+     *        <code>DragGestureRecognizer</code> will use to process the
+     *        Drag and Drop operation
      * @param c
-     *            the <code>Component</code> this
-     *            <code>DragGestureRecognizer</code> should "observe" the event
-     *            stream to, in order to detect a drag initiating gesture. If
-     *            this value is <code>null</code>, the
-     *            <code>DragGestureRecognizer</code> is not associated with any
-     *            <code>Component</code>.
-     *
+     *        the <code>Component</code> this
+     *        <code>DragGestureRecognizer</code> should "observe" the event
+     *        stream to, in order to detect a drag initiating gesture. If
+     *        this value is <code>null</code>, the
+     *        <code>DragGestureRecognizer</code> is not associated with any
+     *        <code>Component</code>.
      * @param sa
-     *            the set (logical OR) of the <code>DnDConstants</code> that
-     *            this Drag and Drop operation will support
-     *
+     *        the set (logical OR) of the <code>DnDConstants</code> that
+     *        this Drag and Drop operation will support
      * @param dgl
-     *            the <code>DragGestureRecognizer</code> to notify when a drag
-     *            gesture is detected
-     *            <P>
+     *        the <code>DragGestureRecognizer</code> to notify when a drag
+     *        gesture is detected
+     *        <P>
      * @throws IllegalArgumentException
-     *                                  if ds is <code>null</code>.
+     *         if ds is <code>null</code>.
      */
 
-    protected DragGestureRecognizer(DragSource ds, Component c, int sa,
-            DragGestureListener dgl) {
+    protected DragGestureRecognizer(DragSource ds, Component c, int sa, DragGestureListener dgl) {
         super();
 
         if (ds == null)
@@ -104,8 +100,7 @@ public abstract class DragGestureRecognizer implements Serializable {
 
         dragSource = ds;
         component = c;
-        sourceActions = sa & (DnDConstants.ACTION_COPY_OR_MOVE
-                | DnDConstants.ACTION_LINK);
+        sourceActions = sa & (DnDConstants.ACTION_COPY_OR_MOVE | DnDConstants.ACTION_LINK);
 
         try {
             if (dgl != null)
@@ -124,24 +119,22 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param ds
-     *           the <code>DragSource</code> this
-     *           <code>DragGestureRecognizer</code> will use to process the
-     *           Drag and Drop operation
-     *
+     *        the <code>DragSource</code> this
+     *        <code>DragGestureRecognizer</code> will use to process the
+     *        Drag and Drop operation
      * @param c
-     *           the <code>Component</code> this
-     *           <code>DragGestureRecognizer</code> should "observe" the event
-     *           stream to, in order to detect a drag initiating gesture. If
-     *           this value is <code>null</code>, the
-     *           <code>DragGestureRecognizer</code> is not associated with any
-     *           <code>Component</code>.
-     *
+     *        the <code>Component</code> this
+     *        <code>DragGestureRecognizer</code> should "observe" the event
+     *        stream to, in order to detect a drag initiating gesture. If
+     *        this value is <code>null</code>, the
+     *        <code>DragGestureRecognizer</code> is not associated with any
+     *        <code>Component</code>.
      * @param sa
-     *           the set (logical OR) of the <code>DnDConstants</code> that
-     *           this Drag and Drop operation will support
-     *           <P>
+     *        the set (logical OR) of the <code>DnDConstants</code> that
+     *        this Drag and Drop operation will support
+     *        <P>
      * @throws IllegalArgumentException
-     *                                  if ds is <code>null</code>.
+     *         if ds is <code>null</code>.
      */
 
     protected DragGestureRecognizer(DragSource ds, Component c, int sa) {
@@ -156,20 +149,19 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param ds
-     *           the <code>DragSource</code> this
-     *           <code>DragGestureRecognizer</code> will use to process the
-     *           Drag and Drop operation
-     *
+     *        the <code>DragSource</code> this
+     *        <code>DragGestureRecognizer</code> will use to process the
+     *        Drag and Drop operation
      * @param c
-     *           the <code>Component</code> this
-     *           <code>DragGestureRecognizer</code> should "observe" the event
-     *           stream to, in order to detect a drag initiating gesture. If
-     *           this value is <code>null</code>, the
-     *           <code>DragGestureRecognizer</code> is not associated with any
-     *           <code>Component</code>.
-     *           <P>
+     *        the <code>Component</code> this
+     *        <code>DragGestureRecognizer</code> should "observe" the event
+     *        stream to, in order to detect a drag initiating gesture. If
+     *        this value is <code>null</code>, the
+     *        <code>DragGestureRecognizer</code> is not associated with any
+     *        <code>Component</code>.
+     *        <P>
      * @throws IllegalArgumentException
-     *                                  if ds is <code>null</code>.
+     *         if ds is <code>null</code>.
      */
 
     protected DragGestureRecognizer(DragSource ds, Component c) {
@@ -182,12 +174,12 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param ds
-     *           the <code>DragSource</code> this
-     *           <code>DragGestureRecognizer</code> will use to process the
-     *           Drag and Drop operation
-     *           <P>
+     *        the <code>DragSource</code> this
+     *        <code>DragGestureRecognizer</code> will use to process the
+     *        Drag and Drop operation
+     *        <P>
      * @throws IllegalArgumentException
-     *                                  if ds is <code>null</code>.
+     *         if ds is <code>null</code>.
      */
 
     protected DragGestureRecognizer(DragSource ds) {
@@ -196,7 +188,6 @@ public abstract class DragGestureRecognizer implements Serializable {
 
     /**
      * register this DragGestureRecognizer's Listeners with the Component
-     *
      * subclasses must override this method
      */
 
@@ -204,7 +195,6 @@ public abstract class DragGestureRecognizer implements Serializable {
 
     /**
      * unregister this DragGestureRecognizer's Listeners with the Component
-     *
      * subclasses must override this method
      */
 
@@ -237,13 +227,12 @@ public abstract class DragGestureRecognizer implements Serializable {
 
     /**
      * set the Component that the DragGestureRecognizer is associated with
-     *
      * registerListeners() and unregisterListeners() are called as a side effect
      * as appropriate.
      * <P>
      * 
      * @param c
-     *          The <code>Component</code> or <code>null</code>
+     *        The <code>Component</code> or <code>null</code>
      */
 
     public synchronized void setComponent(Component c) {
@@ -274,12 +263,11 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param actions
-     *                the permitted source drag action(s)
+     *        the permitted source drag action(s)
      */
 
     public synchronized void setSourceActions(int actions) {
-        sourceActions = actions & (DnDConstants.ACTION_COPY_OR_MOVE
-                | DnDConstants.ACTION_LINK);
+        sourceActions = actions & (DnDConstants.ACTION_COPY_OR_MOVE | DnDConstants.ACTION_LINK);
     }
 
     /**
@@ -307,9 +295,9 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param dgl
-     *            the <code>DragGestureListener</code> to register with this
-     *            <code>DragGestureRecognizer</code>.
-     *            <P>
+     *        the <code>DragGestureListener</code> to register with this
+     *        <code>DragGestureRecognizer</code>.
+     *        <P>
      * @throws java.util.TooManyListenersException
      *         if a <code>DragGestureListener</code> has already been added.
      */
@@ -331,17 +319,16 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param dgl
-     *            the <code>DragGestureListener</code> to unregister from this
-     *            <code>DragGestureRecognizer</code>
-     *            <P>
+     *        the <code>DragGestureListener</code> to unregister from this
+     *        <code>DragGestureRecognizer</code>
+     *        <P>
      * @throws IllegalArgumentException
-     *                                  if dgl is not (equal to) the currently
-     *                                  registered
-     *                                  <code>DragGestureListener</code>.
+     *         if dgl is not (equal to) the currently
+     *         registered
+     *         <code>DragGestureListener</code>.
      */
 
-    public synchronized void removeDragGestureListener(
-            DragGestureListener dgl) {
+    public synchronized void removeDragGestureListener(DragGestureListener dgl) {
         if (dragGestureListener == null || !dragGestureListener.equals(dgl))
             throw new IllegalArgumentException();
         else {
@@ -358,17 +345,15 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param dragAction
-     *                   The action initially selected by the users gesture
+     *        The action initially selected by the users gesture
      * @param p
-     *                   The point (in Component coords) where the gesture
-     *                   originated
+     *        The point (in Component coords) where the gesture
+     *        originated
      */
-    protected synchronized void fireDragGestureRecognized(int dragAction,
-            Point p) {
+    protected synchronized void fireDragGestureRecognized(int dragAction, Point p) {
         try {
             if (dragGestureListener != null) {
-                dragGestureListener.dragGestureRecognized(new DragGestureEvent(
-                        this, dragAction, p, events));
+                dragGestureListener.dragGestureRecognized(new DragGestureEvent(this, dragAction, p, events));
             }
         } finally {
             events.clear();
@@ -388,12 +373,12 @@ public abstract class DragGestureRecognizer implements Serializable {
      * <P>
      * 
      * @param awtie
-     *              the <code>InputEvent</code> to add to this
-     *              <code>DragGestureRecognizer</code>'s internal array of
-     *              events.
-     *              Note that <code>null</code> is not a valid value, and will
-     *              be
-     *              ignored.
+     *        the <code>InputEvent</code> to add to this
+     *        <code>DragGestureRecognizer</code>'s internal array of
+     *        events.
+     *        Note that <code>null</code> is not a valid value, and will
+     *        be
+     *        ignored.
      */
 
     protected synchronized void appendEvent(InputEvent awtie) {
@@ -414,9 +399,7 @@ public abstract class DragGestureRecognizer implements Serializable {
     private void writeObject(ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
 
-        s.writeObject(SerializationTester.test(dragGestureListener)
-                ? dragGestureListener
-                : null);
+        s.writeObject(SerializationTester.test(dragGestureListener) ? dragGestureListener : null);
     }
 
     /**
@@ -428,8 +411,7 @@ public abstract class DragGestureRecognizer implements Serializable {
      * @since 1.4
      */
     @SuppressWarnings("unchecked")
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         ObjectInputStream.GetField f = s.readFields();
 
         DragSource newDragSource = (DragSource) f.get("dragSource", null);
@@ -439,8 +421,8 @@ public abstract class DragGestureRecognizer implements Serializable {
         dragSource = newDragSource;
 
         component = (Component) f.get("component", null);
-        sourceActions = f.get("sourceActions", 0)
-                & (DnDConstants.ACTION_COPY_OR_MOVE | DnDConstants.ACTION_LINK);
+        sourceActions = f.get("sourceActions", 0) & (DnDConstants.ACTION_COPY_OR_MOVE
+                | DnDConstants.ACTION_LINK);
         events = (ArrayList<InputEvent>) f.get("events", new ArrayList<>(1));
 
         dragGestureListener = (DragGestureListener) s.readObject();

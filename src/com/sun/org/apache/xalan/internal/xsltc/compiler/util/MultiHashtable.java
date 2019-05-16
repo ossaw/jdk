@@ -43,10 +43,10 @@ public final class MultiHashtable<K, V> {
      * contained a mapping for the key, the value is added to the set.
      * 
      * @param key
-     *              key with which the specified value is to be associated
+     *        key with which the specified value is to be associated
      * @param value
-     *              value to be added to a set that is associated with the
-     *              specified key
+     *        value to be added to a set that is associated with the
+     *        specified key
      * @return the set that is associated with the specified key.
      * @throw UnsupportedOperationException is the MultiHashtable is not
      *        modifiable.
@@ -61,8 +61,7 @@ public final class MultiHashtable<K, V> {
             set.add(value);
             return set;
         }
-        throw new UnsupportedOperationException(
-                "The MultiHashtable instance is not modifiable.");
+        throw new UnsupportedOperationException("The MultiHashtable instance is not modifiable.");
     }
 
     /**
@@ -71,9 +70,9 @@ public final class MultiHashtable<K, V> {
      * the specified value.
      *
      * @param key
-     *              key with which the specified value is to be associated
+     *        key with which the specified value is to be associated
      * @param value
-     *              value in a set that is associated with the specified key
+     *        value in a set that is associated with the specified key
      * @return the item in the set if a match is found.
      */
     public V maps(K key, V value) {

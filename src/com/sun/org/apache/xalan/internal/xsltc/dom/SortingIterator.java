@@ -39,8 +39,7 @@ public final class SortingIterator extends DTMAxisIteratorBase {
     private int _free = 0;
     private int _current; // index in _nodes of the next node to try
 
-    public SortingIterator(DTMAxisIterator source,
-            NodeSortRecordFactory factory) {
+    public SortingIterator(DTMAxisIterator source, NodeSortRecordFactory factory) {
         _source = source;
         _factory = factory;
     }
@@ -102,8 +101,7 @@ public final class SortingIterator extends DTMAxisIteratorBase {
             clone.setRestartable(false);
             return clone.reset();
         } catch (CloneNotSupportedException e) {
-            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-                    .toString());
+            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
             return null;
         }
     }

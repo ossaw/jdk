@@ -15,7 +15,6 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 /**
  * Maps a JavaBean property to a XML element derived from property name.
- *
  * <p>
  * <b>Usage</b>
  * </p>
@@ -27,9 +26,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <li>non static, non transient field</li>
  * <li>within {@link XmlElements}
  * <p>
- *
  * </ul>
- *
  * The usage is subject to the following constraints:
  * <ul>
  * <li>This annotation can be used with following annotations: {@link XmlID},
@@ -41,12 +38,10 @@ import static java.lang.annotation.RetentionPolicy.*;
  * {@link XmlElements} then, <tt>@XmlElement.type()</tt> must be DEFAULT.class
  * since the collection item type is already known.</li>
  * </ul>
- *
  * <p>
  * A JavaBean property, when annotated with @XmlElement annotation is mapped to
  * a local element in the XML Schema complex type to which the containing class
  * is mapped.
- *
  * <p>
  * <b>Example 1: </b> Map a public non static non final field to local element
  * 
@@ -65,7 +60,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  *     &lt;/xs:complexType>
  * </pre>
  * <p>
- *
  * <b> Example 2: </b> Map a field to a nillable element.
  * 
  * <pre>
@@ -102,14 +96,12 @@ import static java.lang.annotation.RetentionPolicy.*;
  *     &lt;/xs:complexType>
  * </pre>
  * <p>
- *
  * <p>
  * <b>Example 4: </b>Map a JavaBean property to an XML element with anonymous
  * type.
  * </p>
  * <p>
  * See Example 6 in @{@link XmlType}.
- *
  * <p>
  * 
  * @author Sekhar Vajjhala, Sun Microsystems, Inc.
@@ -158,7 +150,6 @@ public @interface XmlElement {
      * {@link XmlSchema#elementFormDefault() elementFormDefault} is
      * {@link XmlNsForm#QUALIFIED QUALIFIED}, then the namespace of the
      * enclosing class.
-     *
      * <li>Otherwise &#39;&#39; (which produces unqualified element in the
      * default namespace.
      * </ol>
@@ -167,7 +158,6 @@ public @interface XmlElement {
 
     /**
      * Default value of this element.
-     *
      * <p>
      * The
      * 

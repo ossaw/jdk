@@ -8,7 +8,6 @@ package java.rmi.server;
 /**
  * A <code>ServerCloneException</code> is thrown if a remote exception occurs
  * during the cloning of a <code>UnicastRemoteObject</code>.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "nested exception" that may
@@ -16,7 +15,6 @@ package java.rmi.server;
  * field is now known as the <i>cause</i>, and may be accessed via the
  * {@link Throwable#getCause()} method, as well as the aforementioned
  * "legacy field."
- *
  * <p>
  * Invoking the method {@link Throwable#initCause(Throwable)} on an instance of
  * <code>ServerCloneException</code> always throws {@link IllegalStateException}
@@ -30,7 +28,6 @@ public class ServerCloneException extends CloneNotSupportedException {
 
     /**
      * The cause of the exception.
-     *
      * <p>
      * This field predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of
@@ -48,7 +45,7 @@ public class ServerCloneException extends CloneNotSupportedException {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public ServerCloneException(String s) {
         super(s);
@@ -60,9 +57,9 @@ public class ServerCloneException extends CloneNotSupportedException {
      * message and cause.
      *
      * @param s
-     *              the detail message.
+     *        the detail message.
      * @param cause
-     *              the cause
+     *        the cause
      */
     public ServerCloneException(String s, Exception cause) {
         super(s);
@@ -80,8 +77,7 @@ public class ServerCloneException extends CloneNotSupportedException {
         if (detail == null)
             return super.getMessage();
         else
-            return super.getMessage() + "; nested exception is: \n\t" + detail
-                    .toString();
+            return super.getMessage() + "; nested exception is: \n\t" + detail.toString();
     }
 
     /**

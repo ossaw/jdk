@@ -153,32 +153,31 @@ public class HierarchyEvent extends AWTEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *                      The <code>Component</code> object that originated
-     *                      the event
+     *        The <code>Component</code> object that originated
+     *        the event
      * @param id
-     *                      An integer indicating the type of event. For
-     *                      information on
-     *                      allowable values, see the class description for
-     *                      {@link HierarchyEvent}
+     *        An integer indicating the type of event. For
+     *        information on
+     *        allowable values, see the class description for
+     *        {@link HierarchyEvent}
      * @param changed
-     *                      The <code>Component</code> at the top of the
-     *                      hierarchy which
-     *                      was changed
+     *        The <code>Component</code> at the top of the
+     *        hierarchy which
+     *        was changed
      * @param changedParent
-     *                      The parent of the <code>changed</code> component.
-     *                      This may be
-     *                      the parent before or after the change, depending on
-     *                      the type
-     *                      of change
+     *        The parent of the <code>changed</code> component.
+     *        This may be
+     *        the parent before or after the change, depending on
+     *        the type
+     *        of change
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is {@code null}
+     *         if <code>source</code> is {@code null}
      * @see #getSource()
      * @see #getID()
      * @see #getChanged()
      * @see #getChangedParent()
      */
-    public HierarchyEvent(Component source, int id, Component changed,
-            Container changedParent) {
+    public HierarchyEvent(Component source, int id, Component changed, Container changedParent) {
         super(source, id);
         this.changed = changed;
         this.changedParent = changedParent;
@@ -192,40 +191,40 @@ public class HierarchyEvent extends AWTEvent {
      * <code>source</code> is <code>null</code>.
      *
      * @param source
-     *                      The <code>Component</code> object that originated
-     *                      the event
+     *        The <code>Component</code> object that originated
+     *        the event
      * @param id
-     *                      An integer indicating the type of event. For
-     *                      information on
-     *                      allowable values, see the class description for
-     *                      {@link HierarchyEvent}
+     *        An integer indicating the type of event. For
+     *        information on
+     *        allowable values, see the class description for
+     *        {@link HierarchyEvent}
      * @param changed
-     *                      The <code>Component</code> at the top of the
-     *                      hierarchy which
-     *                      was changed
+     *        The <code>Component</code> at the top of the
+     *        hierarchy which
+     *        was changed
      * @param changedParent
-     *                      The parent of the <code>changed</code> component.
-     *                      This may be
-     *                      the parent before or after the change, depending on
-     *                      the type
-     *                      of change
+     *        The parent of the <code>changed</code> component.
+     *        This may be
+     *        the parent before or after the change, depending on
+     *        the type
+     *        of change
      * @param changeFlags
-     *                      A bitmask which indicates the type(s) of the
-     *                      <code>HIERARCHY_CHANGED</code> events represented in
-     *                      this
-     *                      event object. For information on allowable values,
-     *                      see the
-     *                      class description for {@link HierarchyEvent}
+     *        A bitmask which indicates the type(s) of the
+     *        <code>HIERARCHY_CHANGED</code> events represented in
+     *        this
+     *        event object. For information on allowable values,
+     *        see the
+     *        class description for {@link HierarchyEvent}
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is null
+     *         if <code>source</code> is null
      * @see #getSource()
      * @see #getID()
      * @see #getChanged()
      * @see #getChangedParent()
      * @see #getChangeFlags()
      */
-    public HierarchyEvent(Component source, int id, Component changed,
-            Container changedParent, long changeFlags) {
+    public HierarchyEvent(Component source, int id, Component changed, Container changedParent,
+            long changeFlags) {
         super(source, id);
         this.changed = changed;
         this.changedParent = changedParent;
@@ -289,12 +288,10 @@ public class HierarchyEvent extends AWTEvent {
         String typeStr;
         switch (id) {
             case ANCESTOR_MOVED:
-                typeStr = "ANCESTOR_MOVED (" + changed + "," + changedParent
-                        + ")";
+                typeStr = "ANCESTOR_MOVED (" + changed + "," + changedParent + ")";
                 break;
             case ANCESTOR_RESIZED:
-                typeStr = "ANCESTOR_RESIZED (" + changed + "," + changedParent
-                        + ")";
+                typeStr = "ANCESTOR_RESIZED (" + changed + "," + changedParent + ")";
                 break;
             case HIERARCHY_CHANGED: {
                 typeStr = "HIERARCHY_CHANGED (";

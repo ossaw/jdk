@@ -61,9 +61,7 @@ class VariableRefBase extends Expression {
      * If this variable reference is in a top-level element like another
      * variable, param or key, add a dependency between that top-level element
      * and the referenced variable. For example,
-     *
      * <xsl:variable name="x" .../> <xsl:variable name="y" select="$x + 1"/>
-     *
      * and assuming this class represents "$x", add a reference between variable
      * y and variable x.
      */
@@ -78,8 +76,7 @@ class VariableRefBase extends Expression {
             VariableBase var = _variable;
             if (_variable._ignore) {
                 if (_variable instanceof Variable) {
-                    var = parent.getSymbolTable().lookupVariable(
-                            _variable._name);
+                    var = parent.getSymbolTable().lookupVariable(_variable._name);
                 } else if (_variable instanceof Param) {
                     var = parent.getSymbolTable().lookupParam(_variable._name);
                 }
@@ -112,8 +109,7 @@ class VariableRefBase extends Expression {
      */
     @Override
     public String toString() {
-        return "variable-ref(" + _variable.getName() + '/' + _variable.getType()
-                + ')';
+        return "variable-ref(" + _variable.getName() + '/' + _variable.getType() + ')';
     }
 
     @Override

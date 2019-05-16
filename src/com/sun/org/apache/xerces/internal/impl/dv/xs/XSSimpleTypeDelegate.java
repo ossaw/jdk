@@ -36,7 +36,6 @@ import com.sun.org.apache.xerces.internal.xs.XSTypeDefinition;
  * Base class for XSSimpleType wrapper implementations.
  *
  * @xerces.internal
- *
  * @version $Id: XSSimpleTypeDelegate.java,v 1.3 2010-11-01 04:39:47 joehw Exp $
  */
 public class XSSimpleTypeDelegate implements XSSimpleType {
@@ -130,13 +129,11 @@ public class XSSimpleTypeDelegate implements XSSimpleType {
         return type.isFixedFacet(facetName);
     }
 
-    public boolean derivedFrom(String namespace, String name,
-            short derivationMethod) {
+    public boolean derivedFrom(String namespace, String name, short derivationMethod) {
         return type.derivedFrom(namespace, name, derivationMethod);
     }
 
-    public boolean derivedFromType(XSTypeDefinition ancestorType,
-            short derivationMethod) {
+    public boolean derivedFromType(XSTypeDefinition ancestorType, short derivationMethod) {
         return type.derivedFromType(ancestorType, derivationMethod);
     }
 
@@ -176,8 +173,7 @@ public class XSSimpleTypeDelegate implements XSSimpleType {
         return type.getType();
     }
 
-    public void applyFacets(XSFacets facets, short presentFacet,
-            short fixedFacet, ValidationContext context)
+    public void applyFacets(XSFacets facets, short presentFacet, short fixedFacet, ValidationContext context)
             throws InvalidDatatypeFacetException {
         type.applyFacets(facets, presentFacet, fixedFacet, context);
     }
@@ -203,13 +199,13 @@ public class XSSimpleTypeDelegate implements XSSimpleType {
         type.validate(context, validatedInfo);
     }
 
-    public Object validate(String content, ValidationContext context,
-            ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
+    public Object validate(String content, ValidationContext context, ValidatedInfo validatedInfo)
+            throws InvalidDatatypeValueException {
         return type.validate(content, context, validatedInfo);
     }
 
-    public Object validate(Object content, ValidationContext context,
-            ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
+    public Object validate(Object content, ValidationContext context, ValidatedInfo validatedInfo)
+            throws InvalidDatatypeValueException {
         return type.validate(content, context, validatedInfo);
     }
 

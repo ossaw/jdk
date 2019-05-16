@@ -15,7 +15,6 @@ package java.nio.file.attribute;
  * therefore not specified.
  *
  * @since 1.7
- *
  * @see UserPrincipalLookupService#lookupPrincipalByGroupName
  */
 

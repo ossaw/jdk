@@ -14,7 +14,6 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * Used to annotate the <code>get<em>PortName</em>()</code> methods of a
  * generated service interface.
- *
  * <p>
  * The information specified in this annotation is sufficient to uniquely
  * identify a <code>wsdl:port</code> element inside a <code>wsdl:service</code>.
@@ -23,7 +22,6 @@ import java.lang.annotation.RetentionPolicy;
  * itself.
  *
  * @since JAX-WS 2.0
- *
  * @see javax.xml.ws.WebServiceClient
  **/
 @Target({ ElementType.METHOD })

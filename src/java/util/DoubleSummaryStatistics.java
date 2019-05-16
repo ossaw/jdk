@@ -10,7 +10,6 @@ import java.util.stream.Collector;
 /**
  * A state object for collecting statistics such as count, min, max, sum, and
  * average.
- *
  * <p>
  * This class is designed to work with (though does not require)
  * {@linkplain java.util.stream streams}. For example, you can compute summary
@@ -19,12 +18,10 @@ import java.util.stream.Collector;
  * <pre>
  * {
  *     &#64;code
- *     DoubleSummaryStatistics stats = doubleStream.collect(
- *             DoubleSummaryStatistics::new, DoubleSummaryStatistics::accept,
- *             DoubleSummaryStatistics::combine);
+ *     DoubleSummaryStatistics stats = doubleStream.collect(DoubleSummaryStatistics::new,
+ *             DoubleSummaryStatistics::accept, DoubleSummaryStatistics::combine);
  * }
  * </pre>
- *
  * <p>
  * {@code DoubleSummaryStatistics} can be used as a
  * {@linkplain java.util.stream.Stream#collect(Collector) reduction} target for
@@ -33,8 +30,8 @@ import java.util.stream.Collector;
  * <pre>
  * {
  *     &#64;code
- *     DoubleSummaryStatistics stats = people.stream().collect(Collectors
- *             .summarizingDouble(Person::getWeight));
+ *     DoubleSummaryStatistics stats = people.stream().collect(Collectors.summarizingDouble(
+ *             Person::getWeight));
  * }
  * </pre>
  *
@@ -68,7 +65,7 @@ public class DoubleSummaryStatistics implements DoubleConsumer {
      * Records another value into the summary information.
      *
      * @param value
-     *              the input value
+     *        the input value
      */
     @Override
     public void accept(double value) {
@@ -84,9 +81,9 @@ public class DoubleSummaryStatistics implements DoubleConsumer {
      * one.
      *
      * @param other
-     *              another {@code DoubleSummaryStatistics}
+     *        another {@code DoubleSummaryStatistics}
      * @throws NullPointerException
-     *                              if {@code other} is null
+     *         if {@code other} is null
      */
     public void combine(DoubleSummaryStatistics other) {
         count += other.count;
@@ -120,24 +117,20 @@ public class DoubleSummaryStatistics implements DoubleConsumer {
     /**
      * Returns the sum of values recorded, or zero if no values have been
      * recorded.
-     *
      * If any recorded value is a NaN or the sum is at any point a NaN then the
      * sum will be NaN.
-     *
      * <p>
      * The value of a floating-point sum is a function both of the input values
      * as well as the order of addition operations. The order of addition
      * operations of this method is intentionally not defined to allow for
      * implementation flexibility to improve the speed and accuracy of the
      * computed result.
-     *
      * In particular, this method may be implemented using compensated summation
      * or other technique to reduce the error bound in the numerical sum
      * compared to a simple summation of {@code double} values.
      *
      * @apiNote Values sorted by increasing absolute magnitude tend to yield
      *          more accurate results.
-     *
      * @return the sum of values, or zero if none
      */
     public final double getSum() {
@@ -184,21 +177,17 @@ public class DoubleSummaryStatistics implements DoubleConsumer {
     /**
      * Returns the arithmetic mean of values recorded, or zero if no values have
      * been recorded.
-     *
      * If any recorded value is a NaN or the sum is at any point a NaN then the
      * average will be code NaN.
-     *
      * <p>
      * The average returned can vary depending upon the order in which values
      * are recorded.
-     *
      * This method may be implemented using compensated summation or other
      * technique to reduce the error bound in the {@link #getSum numerical sum}
      * used to compute the average.
      *
      * @apiNote Values sorted by increasing absolute magnitude tend to yield
      *          more accurate results.
-     *
      * @return the arithmetic mean of values, or zero if none
      */
     public final double getAverage() {
@@ -207,15 +196,13 @@ public class DoubleSummaryStatistics implements DoubleConsumer {
 
     /**
      * {@inheritDoc}
-     *
      * Returns a non-empty string representation of this object suitable for
      * debugging. The exact presentation format is unspecified and may vary
      * between implementations and versions.
      */
     @Override
     public String toString() {
-        return String.format("%s{count=%d, sum=%f, min=%f, average=%f, max=%f}",
-                this.getClass().getSimpleName(), getCount(), getSum(), getMin(),
-                getAverage(), getMax());
+        return String.format("%s{count=%d, sum=%f, min=%f, average=%f, max=%f}", this.getClass()
+                .getSimpleName(), getCount(), getSum(), getMin(), getAverage(), getMax());
     }
 }

@@ -14,7 +14,6 @@ import javax.annotation.processing.SupportedSourceVersion;
 /**
  * A skeletal visitor for annotation values with default behavior appropriate
  * for the {@link SourceVersion#RELEASE_6 RELEASE_6} source version.
- *
  * <p>
  * <b>WARNING:</b> The {@code AnnotationValueVisitor} interface implemented by
  * this class may have methods added to it in the future to accommodate new,
@@ -23,7 +22,6 @@ import javax.annotation.processing.SupportedSourceVersion;
  * {@code "visit"} may be added to this class in the future; to avoid
  * incompatibilities, classes which extend this class should not declare any
  * instance methods with names beginning with {@code "visit"}.
- *
  * <p>
  * When such a new visit method is added, the default implementation in this
  * class will be to call the {@link #visitUnknown visitUnknown} method. A new
@@ -31,7 +29,6 @@ import javax.annotation.processing.SupportedSourceVersion;
  * to the new language level; this visitor will have different default behavior
  * for the visit method in question. When the new visitor is introduced, all or
  * portions of this visitor may be deprecated.
- *
  * <p>
  * Note that adding a default implementation of a new visit method in a visitor
  * class will occur instead of adding a <em>default
@@ -45,18 +42,15 @@ import javax.annotation.processing.SupportedSourceVersion;
  *        the return type of this visitor's methods
  * @param <P>
  *        the type of the additional parameter to this visitor's methods.
- *
  * @author Joseph D. Darcy
  * @author Scott Seligman
  * @author Peter von der Ah&eacute;
- *
  * @see AbstractAnnotationValueVisitor7
  * @see AbstractAnnotationValueVisitor8
  * @since 1.6
  */
 @SupportedSourceVersion(RELEASE_6)
-public abstract class AbstractAnnotationValueVisitor6<R, P> implements
-        AnnotationValueVisitor<R, P> {
+public abstract class AbstractAnnotationValueVisitor6<R, P> implements AnnotationValueVisitor<R, P> {
 
     /**
      * Constructor for concrete subclasses to call.
@@ -69,9 +63,9 @@ public abstract class AbstractAnnotationValueVisitor6<R, P> implements
      * is equivalent to {@code av.accept(v, p)}.
      * 
      * @param av
-     *           {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *           {@inheritDoc}
+     *        {@inheritDoc}
      */
     public final R visit(AnnotationValue av, P p) {
         return av.accept(this, p);
@@ -85,7 +79,7 @@ public abstract class AbstractAnnotationValueVisitor6<R, P> implements
      * null)}.
      * 
      * @param av
-     *           {@inheritDoc}
+     *        {@inheritDoc}
      */
     public final R visit(AnnotationValue av) {
         return av.accept(this, null);
@@ -93,7 +87,6 @@ public abstract class AbstractAnnotationValueVisitor6<R, P> implements
 
     /**
      * {@inheritDoc}
-     *
      * <p>
      * The default implementation of this method in {@code
      * AbstractAnnotationValueVisitor6} will always throw {@code
@@ -101,9 +94,9 @@ public abstract class AbstractAnnotationValueVisitor6<R, P> implements
      * subclass.
      *
      * @param av
-     *           {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *           {@inheritDoc}
+     *        {@inheritDoc}
      */
     public R visitUnknown(AnnotationValue av, P p) {
         throw new UnknownAnnotationValueException(av, p);

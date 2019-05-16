@@ -27,7 +27,7 @@ public class RoleInfoNotFoundException extends RelationException {
      * Constructor with given message put in exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public RoleInfoNotFoundException(String message) {
         super(message);

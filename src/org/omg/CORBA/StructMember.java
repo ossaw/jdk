@@ -57,20 +57,19 @@ public final class StructMember implements org.omg.CORBA.portable.IDLEntity {
      * values.
      * 
      * @param __name
-     *                   a <code>String</code> object with the name of the
-     *                   struct
-     *                   member
+     *        a <code>String</code> object with the name of the
+     *        struct
+     *        member
      * @param __type
-     *                   a <code>TypeCode</code> object describing the type of
-     *                   the
-     *                   struct member
+     *        a <code>TypeCode</code> object describing the type of
+     *        the
+     *        struct member
      * @param __type_def
-     *                   an <code>IDLType</code> object representing the IDL
-     *                   type of
-     *                   the struct member
+     *        an <code>IDLType</code> object representing the IDL
+     *        type of
+     *        the struct member
      */
-    public StructMember(String __name, org.omg.CORBA.TypeCode __type,
-            org.omg.CORBA.IDLType __type_def) {
+    public StructMember(String __name, org.omg.CORBA.TypeCode __type, org.omg.CORBA.IDLType __type_def) {
         name = __name;
         type = __type;
         type_def = __type_def;

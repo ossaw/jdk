@@ -25,13 +25,11 @@ package java.text;
  * <code>Collator.compare</code>. Thus, when the <code>String</code>s must be
  * compared multiple times, for example when sorting a list of
  * <code>String</code>s. It's more efficient to use <code>CollationKey</code>s.
- *
  * <p>
  * You can not create <code>CollationKey</code>s directly. Rather, generate them
  * by calling <code>Collator.getCollationKey</code>. You can only compare
  * <code>CollationKey</code>s generated from the same <code>Collator</code>
  * object.
- *
  * <p>
  * Generating a <code>CollationKey</code> for a <code>String</code> involves
  * examining the entire <code>String</code> and converting it to series of bits
@@ -87,7 +85,7 @@ public abstract class CollationKey implements Comparable<CollationKey> {
      * not be compared.
      * 
      * @param target
-     *               target CollationKey
+     *        target CollationKey
      * @return Returns an integer value. Value is less than zero if this is less
      *         than target, value is zero if this and target are equal and value
      *         is greater than zero if this is greater than target.
@@ -118,9 +116,9 @@ public abstract class CollationKey implements Comparable<CollationKey> {
      * CollationKey constructor.
      *
      * @param source
-     *               the source string
+     *        the source string
      * @exception NullPointerException
-     *                                 if {@code source} is null
+     *            if {@code source} is null
      * @since 1.6
      */
     protected CollationKey(String source) {

@@ -51,7 +51,6 @@ import java.awt.Image;
  * </pre>
  *
  * @see ColorModel#getRGBdefault
- *
  * @author Jim Graham
  */
 public class PixelGrabber implements ImageConsumer {
@@ -71,8 +70,7 @@ public class PixelGrabber implements ImageConsumer {
     private boolean grabbing;
     private int flags;
 
-    private static final int GRABBEDBITS = (ImageObserver.FRAMEBITS
-            | ImageObserver.ALLBITS);
+    private static final int GRABBEDBITS = (ImageObserver.FRAMEBITS | ImageObserver.ALLBITS);
     private static final int DONEBITS = (GRABBEDBITS | ImageObserver.ERROR);
 
     /**
@@ -84,34 +82,33 @@ public class PixelGrabber implements ImageConsumer {
      * 
      * @see ColorModel#getRGBdefault
      * @param img
-     *                 the image to retrieve pixels from
+     *        the image to retrieve pixels from
      * @param x
-     *                 the x coordinate of the upper left corner of the
-     *                 rectangle of
-     *                 pixels to retrieve from the image, relative to the
-     *                 default
-     *                 (unscaled) size of the image
+     *        the x coordinate of the upper left corner of the
+     *        rectangle of
+     *        pixels to retrieve from the image, relative to the
+     *        default
+     *        (unscaled) size of the image
      * @param y
-     *                 the y coordinate of the upper left corner of the
-     *                 rectangle of
-     *                 pixels to retrieve from the image
+     *        the y coordinate of the upper left corner of the
+     *        rectangle of
+     *        pixels to retrieve from the image
      * @param w
-     *                 the width of the rectangle of pixels to retrieve
+     *        the width of the rectangle of pixels to retrieve
      * @param h
-     *                 the height of the rectangle of pixels to retrieve
+     *        the height of the rectangle of pixels to retrieve
      * @param pix
-     *                 the array of integers which are to be used to hold the
-     *                 RGB
-     *                 pixels retrieved from the image
+     *        the array of integers which are to be used to hold the
+     *        RGB
+     *        pixels retrieved from the image
      * @param off
-     *                 the offset into the array of where to store the first
-     *                 pixel
+     *        the offset into the array of where to store the first
+     *        pixel
      * @param scansize
-     *                 the distance from one row of pixels to the next in the
-     *                 array
+     *        the distance from one row of pixels to the next in the
+     *        array
      */
-    public PixelGrabber(Image img, int x, int y, int w, int h, int[] pix,
-            int off, int scansize) {
+    public PixelGrabber(Image img, int x, int y, int w, int h, int[] pix, int off, int scansize) {
         this(img.getSource(), x, y, w, h, pix, off, scansize);
     }
 
@@ -124,37 +121,36 @@ public class PixelGrabber implements ImageConsumer {
      * <tt>pix[(j - y) * scansize + (i - x) + off]</tt>.
      * 
      * @param ip
-     *                 the <code>ImageProducer</code> that produces the image
-     *                 from
-     *                 which to retrieve pixels
+     *        the <code>ImageProducer</code> that produces the image
+     *        from
+     *        which to retrieve pixels
      * @param x
-     *                 the x coordinate of the upper left corner of the
-     *                 rectangle of
-     *                 pixels to retrieve from the image, relative to the
-     *                 default
-     *                 (unscaled) size of the image
+     *        the x coordinate of the upper left corner of the
+     *        rectangle of
+     *        pixels to retrieve from the image, relative to the
+     *        default
+     *        (unscaled) size of the image
      * @param y
-     *                 the y coordinate of the upper left corner of the
-     *                 rectangle of
-     *                 pixels to retrieve from the image
+     *        the y coordinate of the upper left corner of the
+     *        rectangle of
+     *        pixels to retrieve from the image
      * @param w
-     *                 the width of the rectangle of pixels to retrieve
+     *        the width of the rectangle of pixels to retrieve
      * @param h
-     *                 the height of the rectangle of pixels to retrieve
+     *        the height of the rectangle of pixels to retrieve
      * @param pix
-     *                 the array of integers which are to be used to hold the
-     *                 RGB
-     *                 pixels retrieved from the image
+     *        the array of integers which are to be used to hold the
+     *        RGB
+     *        pixels retrieved from the image
      * @param off
-     *                 the offset into the array of where to store the first
-     *                 pixel
+     *        the offset into the array of where to store the first
+     *        pixel
      * @param scansize
-     *                 the distance from one row of pixels to the next in the
-     *                 array
+     *        the distance from one row of pixels to the next in the
+     *        array
      * @see ColorModel#getRGBdefault
      */
-    public PixelGrabber(ImageProducer ip, int x, int y, int w, int h, int[] pix,
-            int off, int scansize) {
+    public PixelGrabber(ImageProducer ip, int x, int y, int w, int h, int[] pix, int off, int scansize) {
         producer = ip;
         dstX = x;
         dstY = y;
@@ -178,28 +174,27 @@ public class PixelGrabber implements ImageConsumer {
      * height of the source data when that information is delivered.
      * 
      * @param img
-     *                 the image to retrieve the image data from
+     *        the image to retrieve the image data from
      * @param x
-     *                 the x coordinate of the upper left corner of the
-     *                 rectangle of
-     *                 pixels to retrieve from the image, relative to the
-     *                 default
-     *                 (unscaled) size of the image
+     *        the x coordinate of the upper left corner of the
+     *        rectangle of
+     *        pixels to retrieve from the image, relative to the
+     *        default
+     *        (unscaled) size of the image
      * @param y
-     *                 the y coordinate of the upper left corner of the
-     *                 rectangle of
-     *                 pixels to retrieve from the image
+     *        the y coordinate of the upper left corner of the
+     *        rectangle of
+     *        pixels to retrieve from the image
      * @param w
-     *                 the width of the rectangle of pixels to retrieve
+     *        the width of the rectangle of pixels to retrieve
      * @param h
-     *                 the height of the rectangle of pixels to retrieve
+     *        the height of the rectangle of pixels to retrieve
      * @param forceRGB
-     *                 true if the pixels should always be converted to the
-     *                 default
-     *                 RGB ColorModel
+     *        true if the pixels should always be converted to the
+     *        default
+     *        RGB ColorModel
      */
-    public PixelGrabber(Image img, int x, int y, int w, int h,
-            boolean forceRGB) {
+    public PixelGrabber(Image img, int x, int y, int w, int h, boolean forceRGB) {
         producer = img.getSource();
         dstX = x;
         dstY = y;
@@ -238,8 +233,8 @@ public class PixelGrabber implements ImageConsumer {
      * @return true if the pixels were successfully grabbed, false on abort,
      *         error or timeout
      * @exception InterruptedException
-     *                                 Another thread has interrupted this
-     *                                 thread.
+     *            Another thread has interrupted this
+     *            thread.
      */
     public boolean grabPixels() throws InterruptedException {
         return grabPixels(0);
@@ -259,16 +254,15 @@ public class PixelGrabber implements ImageConsumer {
      * </ul>
      * 
      * @param ms
-     *           the number of milliseconds to wait for the image pixels to
-     *           arrive before timing out
+     *        the number of milliseconds to wait for the image pixels to
+     *        arrive before timing out
      * @return true if the pixels were successfully grabbed, false on abort,
      *         error or timeout
      * @exception InterruptedException
-     *                                 Another thread has interrupted this
-     *                                 thread.
+     *            Another thread has interrupted this
+     *            thread.
      */
-    public synchronized boolean grabPixels(long ms)
-            throws InterruptedException {
+    public synchronized boolean grabPixels(long ms) throws InterruptedException {
         if ((flags & DONEBITS) != 0) {
             return (flags & GRABBEDBITS) != 0;
         }
@@ -347,8 +341,7 @@ public class PixelGrabber implements ImageConsumer {
      * @see #setPixels(int, int, int, int, ColorModel, int[], int, int)
      */
     public synchronized Object getPixels() {
-        return (bytePixels == null) ? ((Object) intPixels)
-                : ((Object) bytePixels);
+        return (bytePixels == null) ? ((Object) intPixels) : ((Object) bytePixels);
     }
 
     /**
@@ -383,9 +376,9 @@ public class PixelGrabber implements ImageConsumer {
      * requested pixels.
      * 
      * @param width
-     *               the width of the dimension
+     *        the width of the dimension
      * @param height
-     *               the height of the dimension
+     *        the height of the dimension
      */
     public void setDimensions(int width, int height) {
         if (dstW < 0) {
@@ -396,8 +389,7 @@ public class PixelGrabber implements ImageConsumer {
         }
         if (dstW <= 0 || dstH <= 0) {
             imageComplete(STATICIMAGEDONE);
-        } else if (intPixels == null && imageModel == ColorModel
-                .getRGBdefault()) {
+        } else if (intPixels == null && imageModel == ColorModel.getRGBdefault()) {
             intPixels = new int[dstW * dstH];
             dstScan = dstW;
             dstOff = 0;
@@ -416,7 +408,7 @@ public class PixelGrabber implements ImageConsumer {
      * requested pixels.
      * 
      * @param hints
-     *              a set of hints used to process the pixels
+     *        a set of hints used to process the pixels
      */
     public void setHints(int hints) {
         return;
@@ -433,7 +425,7 @@ public class PixelGrabber implements ImageConsumer {
      * requested pixels.
      * 
      * @param props
-     *              the list of properties
+     *        the list of properties
      */
     public void setProperties(Hashtable<?, ?> props) {
         return;
@@ -450,7 +442,7 @@ public class PixelGrabber implements ImageConsumer {
      * requested pixels.
      * 
      * @param model
-     *              the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @see #getColorModel
      */
     public void setColorModel(ColorModel model) {
@@ -487,29 +479,29 @@ public class PixelGrabber implements ImageConsumer {
      * requested pixels.
      * 
      * @param srcX
-     *                the X coordinate of the upper-left corner of the area of
-     *                pixels to be set
+     *        the X coordinate of the upper-left corner of the area of
+     *        pixels to be set
      * @param srcY
-     *                the Y coordinate of the upper-left corner of the area of
-     *                pixels to be set
+     *        the Y coordinate of the upper-left corner of the area of
+     *        pixels to be set
      * @param srcW
-     *                the width of the area of pixels
+     *        the width of the area of pixels
      * @param srcH
-     *                the height of the area of pixels
+     *        the height of the area of pixels
      * @param model
-     *                the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param pixels
-     *                the array of pixels
+     *        the array of pixels
      * @param srcOff
-     *                the offset into the pixels array
+     *        the offset into the pixels array
      * @param srcScan
-     *                the distance from one row of pixels to the next in the
-     *                pixels
-     *                array
+     *        the distance from one row of pixels to the next in the
+     *        pixels
+     *        array
      * @see #getPixels
      */
-    public void setPixels(int srcX, int srcY, int srcW, int srcH,
-            ColorModel model, byte pixels[], int srcOff, int srcScan) {
+    public void setPixels(int srcX, int srcY, int srcW, int srcH, ColorModel model, byte pixels[], int srcOff,
+            int srcScan) {
         if (srcY < dstY) {
             int diff = dstY - srcY;
             if (diff >= srcH) {
@@ -583,29 +575,29 @@ public class PixelGrabber implements ImageConsumer {
      * requested pixels.
      * 
      * @param srcX
-     *                the X coordinate of the upper-left corner of the area of
-     *                pixels to be set
+     *        the X coordinate of the upper-left corner of the area of
+     *        pixels to be set
      * @param srcY
-     *                the Y coordinate of the upper-left corner of the area of
-     *                pixels to be set
+     *        the Y coordinate of the upper-left corner of the area of
+     *        pixels to be set
      * @param srcW
-     *                the width of the area of pixels
+     *        the width of the area of pixels
      * @param srcH
-     *                the height of the area of pixels
+     *        the height of the area of pixels
      * @param model
-     *                the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param pixels
-     *                the array of pixels
+     *        the array of pixels
      * @param srcOff
-     *                the offset into the pixels array
+     *        the offset into the pixels array
      * @param srcScan
-     *                the distance from one row of pixels to the next in the
-     *                pixels
-     *                array
+     *        the distance from one row of pixels to the next in the
+     *        pixels
+     *        array
      * @see #getPixels
      */
-    public void setPixels(int srcX, int srcY, int srcW, int srcH,
-            ColorModel model, int pixels[], int srcOff, int srcScan) {
+    public void setPixels(int srcX, int srcY, int srcW, int srcH, ColorModel model, int pixels[], int srcOff,
+            int srcScan) {
         if (srcY < dstY) {
             int diff = dstY - srcY;
             if (diff >= srcH) {
@@ -681,7 +673,7 @@ public class PixelGrabber implements ImageConsumer {
      * requested pixels.
      * 
      * @param status
-     *               the status of image loading
+     *        the status of image loading
      */
     public synchronized void imageComplete(int status) {
         grabbing = false;

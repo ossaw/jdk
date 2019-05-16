@@ -63,7 +63,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLDTDContentModelHandler;
  * is able to emit them.
  *
  * @author Andy Clark, IBM
- *
  */
 public interface XMLDTDContentModelSource {
 

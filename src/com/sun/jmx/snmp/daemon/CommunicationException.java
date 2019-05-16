@@ -14,15 +14,13 @@ import java.io.PrintWriter;
  * Represents exceptions raised due to communications problems, for example when
  * a managed object server is out of reach.
  * <p>
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
  * </p>
  */
 
-public class CommunicationException extends
-        javax.management.JMRuntimeException {
+public class CommunicationException extends javax.management.JMRuntimeException {
 
     /* Serial version */
     private static final long serialVersionUID = -2499186113233316177L;

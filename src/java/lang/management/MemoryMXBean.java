@@ -9,7 +9,6 @@ import javax.management.openmbean.CompositeData;
 
 /**
  * The management interface for the memory system of the Java virtual machine.
- *
  * <p>
  * A Java virtual machine has a single instance of the implementation class of
  * this interface. This instance implementing this interface is an
@@ -17,73 +16,59 @@ import javax.management.openmbean.CompositeData;
  * calling the {@link ManagementFactory#getMemoryMXBean} method or from the
  * {@link ManagementFactory#getPlatformMBeanServer platform <tt>MBeanServer</tt>
  * } method.
- *
  * <p>
  * The <tt>ObjectName</tt> for uniquely identifying the MXBean for the memory
  * system within an MBeanServer is:
  * <blockquote> {@link ManagementFactory#MEMORY_MXBEAN_NAME
  * <tt>java.lang:type=Memory</tt>} </blockquote>
- *
  * It can be obtained by calling the {@link PlatformManagedObject#getObjectName}
  * method.
- *
  * <h3>Memory</h3> The memory system of the Java virtual machine manages the
  * following kinds of memory:
- *
  * <h3>1. Heap</h3> The Java virtual machine has a <i>heap</i> that is the
  * runtime data area from which memory for all class instances and arrays are
  * allocated. It is created at the Java virtual machine start-up. Heap memory
  * for objects is reclaimed by an automatic memory management system which is
  * known as a <i>garbage collector</i>.
- *
  * <p>
  * The heap may be of a fixed size or may be expanded and shrunk. The memory for
  * the heap does not need to be contiguous.
- *
  * <h3>2. Non-Heap Memory</h3> The Java virtual machine manages memory other
  * than the heap (referred as <i>non-heap memory</i>).
- *
  * <p>
  * The Java virtual machine has a <i>method area</i> that is shared among all
  * threads. The method area belongs to non-heap memory. It stores per-class
  * structures such as a runtime constant pool, field and method data, and the
  * code for methods and constructors. It is created at the Java virtual machine
  * start-up.
- *
  * <p>
  * The method area is logically part of the heap but a Java virtual machine
  * implementation may choose not to either garbage collect or compact it.
  * Similar to the heap, the method area may be of a fixed size or may be
  * expanded and shrunk. The memory for the method area does not need to be
  * contiguous.
- *
  * <p>
  * In addition to the method area, a Java virtual machine implementation may
  * require memory for internal processing or optimization which also belongs to
  * non-heap memory. For example, the JIT compiler requires memory for storing
  * the native machine code translated from the Java virtual machine code for
  * high performance.
- *
  * <h3>Memory Pools and Memory Managers</h3> {@link MemoryPoolMXBean Memory
  * pools} and {@link MemoryManagerMXBean memory managers} are the abstract
  * entities that monitor and manage the memory system of the Java virtual
  * machine.
- *
  * <p>
  * A memory pool represents a memory area that the Java virtual machine manages.
  * The Java virtual machine has at least one memory pool and it may create or
  * remove memory pools during execution. A memory pool can belong to either the
  * heap or the non-heap memory.
- *
  * <p>
  * A memory manager is responsible for managing one or more memory pools. The
  * garbage collector is one type of memory manager responsible for reclaiming
  * memory occupied by unreachable objects. A Java virtual machine may have one
  * or more memory managers. It may add or remove memory managers during
  * execution. A memory pool can be managed by more than one memory manager.
- *
  * <h3>Memory Usage Monitoring</h3>
- *
  * Memory usage is a very important monitoring attribute for the memory system.
  * The memory usage, for example, could indicate:
  * <ul>
@@ -92,7 +77,6 @@ import javax.management.openmbean.CompositeData;
  * </li>
  * <li>potential memory leakage.</li>
  * </ul>
- *
  * <p>
  * The memory usage can be monitored in three ways:
  * <ul>
@@ -100,18 +84,14 @@ import javax.management.openmbean.CompositeData;
  * <li>Usage Threshold Notification</li>
  * <li>Collection Usage Threshold Notification</li>
  * </ul>
- *
  * Details are specified in the {@link MemoryPoolMXBean} interface.
- *
  * <p>
  * The memory usage monitoring mechanism is intended for load-balancing or
  * workload distribution use. For example, an application would stop receiving
  * any new workload when its memory usage exceeds a certain threshold. It is not
  * intended for an application to detect and recover from a low memory
  * condition.
- *
  * <h3>Notifications</h3>
- *
  * <p>
  * This <tt>MemoryMXBean</tt> is a {@link javax.management.NotificationEmitter
  * NotificationEmitter} that emits two types of memory
@@ -135,7 +115,6 @@ import javax.management.openmbean.CompositeData;
  * threshold</a> after the Java virtual machine has expended effort in recycling
  * unused objects in that memory pool.</li>
  * </ul>
- *
  * <p>
  * The notification emitted is a {@link javax.management.Notification} instance
  * whose {@link javax.management.Notification#setUserData user data} is set to a
@@ -144,17 +123,14 @@ import javax.management.openmbean.CompositeData;
  * pool when the notification was constructed. The <tt>CompositeData</tt>
  * contains the attributes as described in {@link MemoryNotificationInfo#from
  * MemoryNotificationInfo}.
- *
  * <hr>
  * <h3>NotificationEmitter</h3> The <tt>MemoryMXBean</tt> object returned by
  * {@link ManagementFactory#getMemoryMXBean} implements the
  * {@link javax.management.NotificationEmitter NotificationEmitter} interface
  * that allows a listener to be registered within the <tt>MemoryMXBean</tt> as a
  * notification listener.
- *
  * Below is an example code that registers a <tt>MyListener</tt> to handle
  * notification emitted by the <tt>MemoryMXBean</tt>.
- *
  * <blockquote>
  * 
  * <pre>
@@ -177,7 +153,6 @@ import javax.management.openmbean.CompositeData;
  * @see <a href="../../../javax/management/package-summary.html"> JMX
  *      Specification.</a>
  * @see <a href="package-summary.html#examples"> Ways to Access MXBeans</a>
- *
  * @author Mandy Chung
  * @since 1.5
  */
@@ -202,7 +177,6 @@ public interface MemoryMXBean extends PlatformManagedObject {
      * The amount of used memory in the returned memory usage is the amount of
      * memory occupied by both live objects and garbage objects that have not
      * been collected, if any.
-     *
      * <p>
      * <b>MBeanServer access</b>:<br>
      * The mapped type of <tt>MemoryUsage</tt> is <tt>CompositeData</tt> with
@@ -220,7 +194,6 @@ public interface MemoryMXBean extends PlatformManagedObject {
      * whereas the <tt>init</tt> and <tt>max</tt> size of the returned memory
      * usage represents the setting of the non-heap memory which may not be the
      * sum of those of all non-heap memory pools.
-     *
      * <p>
      * <b>MBeanServer access</b>:<br>
      * The mapped type of <tt>MemoryUsage</tt> is <tt>CompositeData</tt> with
@@ -245,15 +218,13 @@ public interface MemoryMXBean extends PlatformManagedObject {
      * is emitted are implementation dependent. Typically, a Java virtual
      * machine implementation prints a message whenever it frees memory at
      * garbage collection.
-     *
      * <p>
      * Each invocation of this method enables or disables verbose output
      * globally.
      *
      * @param value
-     *              <tt>true</tt> to enable verbose output; <tt>false</tt> to
-     *              disable.
-     *
+     *        <tt>true</tt> to enable verbose output; <tt>false</tt> to
+     *        disable.
      * @exception java.lang.SecurityException
      *            if a security manager exists and the caller does not have
      *            ManagementPermission("control").

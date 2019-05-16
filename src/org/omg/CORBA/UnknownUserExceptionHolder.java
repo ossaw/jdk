@@ -14,14 +14,12 @@ package org.omg.CORBA;
  * 5:52:22 PM PDT
  */
 
-public final class UnknownUserExceptionHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class UnknownUserExceptionHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CORBA.UnknownUserException value = null;
 
     public UnknownUserExceptionHolder() {}
 
-    public UnknownUserExceptionHolder(
-            org.omg.CORBA.UnknownUserException initialValue) {
+    public UnknownUserExceptionHolder(org.omg.CORBA.UnknownUserException initialValue) {
         value = initialValue;
     }
 

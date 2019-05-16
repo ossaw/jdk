@@ -13,7 +13,6 @@ package com.sun.javadoc;
  * @author Robert Field
  * @author Atul M Dambalkar
  * @see ExecutableMemberDoc#throwsTags()
- *
  */
 public interface ThrowsTag extends Tag {
 
@@ -36,7 +35,6 @@ public interface ThrowsTag extends Tag {
      * Return a <code>ClassDoc</code> that represents the exception. If the type
      * of the exception is a type variable, return the <code>ClassDoc</code> of
      * its erasure.
-     *
      * <p>
      * <i>This method cannot accommodate certain generic type constructs. The
      * <code>exceptionType</code> method should be used instead.</i>

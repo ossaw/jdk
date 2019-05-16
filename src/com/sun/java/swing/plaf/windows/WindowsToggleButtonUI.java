@@ -40,8 +40,8 @@ public class WindowsToggleButtonUI extends BasicToggleButtonUI {
 
     public static ComponentUI createUI(JComponent b) {
         AppContext appContext = AppContext.getAppContext();
-        WindowsToggleButtonUI windowsToggleButtonUI = (WindowsToggleButtonUI) appContext
-                .get(WINDOWS_TOGGLE_BUTTON_UI_KEY);
+        WindowsToggleButtonUI windowsToggleButtonUI = (WindowsToggleButtonUI) appContext.get(
+                WINDOWS_TOGGLE_BUTTON_UI_KEY);
         if (windowsToggleButtonUI == null) {
             windowsToggleButtonUI = new WindowsToggleButtonUI();
             appContext.put(WINDOWS_TOGGLE_BUTTON_UI_KEY, windowsToggleButtonUI);
@@ -56,14 +56,10 @@ public class WindowsToggleButtonUI extends BasicToggleButtonUI {
         super.installDefaults(b);
         if (!defaults_initialized) {
             String pp = getPropertyPrefix();
-            dashedRectGapX = ((Integer) UIManager.get("Button.dashedRectGapX"))
-                    .intValue();
-            dashedRectGapY = ((Integer) UIManager.get("Button.dashedRectGapY"))
-                    .intValue();
-            dashedRectGapWidth = ((Integer) UIManager.get(
-                    "Button.dashedRectGapWidth")).intValue();
-            dashedRectGapHeight = ((Integer) UIManager.get(
-                    "Button.dashedRectGapHeight")).intValue();
+            dashedRectGapX = ((Integer) UIManager.get("Button.dashedRectGapX")).intValue();
+            dashedRectGapY = ((Integer) UIManager.get("Button.dashedRectGapY")).intValue();
+            dashedRectGapWidth = ((Integer) UIManager.get("Button.dashedRectGapWidth")).intValue();
+            dashedRectGapHeight = ((Integer) UIManager.get("Button.dashedRectGapHeight")).intValue();
             focusColor = UIManager.getColor(pp + "focus");
             defaults_initialized = true;
         }
@@ -102,9 +98,8 @@ public class WindowsToggleButtonUI extends BasicToggleButtonUI {
                 int r1 = c1.getRed(), r2 = c2.getRed();
                 int g1 = c1.getGreen(), g2 = c2.getGreen();
                 int b1 = c1.getBlue(), b2 = c2.getBlue();
-                cachedSelectedColor = new Color(Math.min(r1, r2) + Math.abs(r1
-                        - r2) / 2, Math.min(g1, g2) + Math.abs(g1 - g2) / 2,
-                        Math.min(b1, b2) + Math.abs(b1 - b2) / 2);
+                cachedSelectedColor = new Color(Math.min(r1, r2) + Math.abs(r1 - r2) / 2, Math.min(g1, g2)
+                        + Math.abs(g1 - g2) / 2, Math.min(b1, b2) + Math.abs(b1 - b2) / 2);
                 cachedBackgroundColor = c1;
                 cachedHighlightColor = c2;
             }
@@ -124,18 +119,15 @@ public class WindowsToggleButtonUI extends BasicToggleButtonUI {
     /**
      * Overridden method to render the text without the mnemonic
      */
-    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect,
-            String text) {
-        WindowsGraphicsUtils.paintText(g, b, textRect, text,
-                getTextShiftOffset());
+    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
+        WindowsGraphicsUtils.paintText(g, b, textRect, text, getTextShiftOffset());
     }
 
-    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect,
-            Rectangle textRect, Rectangle iconRect) {
+    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
+            Rectangle iconRect) {
         g.setColor(getFocusColor());
-        BasicGraphicsUtils.drawDashedRect(g, dashedRectGapX, dashedRectGapY, b
-                .getWidth() - dashedRectGapWidth, b.getHeight()
-                        - dashedRectGapHeight);
+        BasicGraphicsUtils.drawDashedRect(g, dashedRectGapX, dashedRectGapY, b.getWidth()
+                - dashedRectGapWidth, b.getHeight() - dashedRectGapHeight);
     }
 
     // ********************************

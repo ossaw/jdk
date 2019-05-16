@@ -55,9 +55,7 @@ package com.sun.org.apache.xerces.internal.impl.dv;
  * Datatype exception for invalid values.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  */
 public class InvalidDatatypeValueException extends DatatypeException {
 
@@ -69,9 +67,9 @@ public class InvalidDatatypeValueException extends DatatypeException {
      * error message substitution arguments.
      *
      * @param key
-     *             error code
+     *        error code
      * @param args
-     *             error arguments
+     *        error arguments
      */
     public InvalidDatatypeValueException(String key, Object[] args) {
         super(key, args);

@@ -40,16 +40,15 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class OrientationRequested extends EnumSyntax implements
-        DocAttribute, PrintRequestAttribute, PrintJobAttribute {
+public final class OrientationRequested extends EnumSyntax implements DocAttribute, PrintRequestAttribute,
+        PrintJobAttribute {
 
     private static final long serialVersionUID = -4447437289862822276L;
 
     /**
      * The content will be imaged across the short edge of the medium.
      */
-    public static final OrientationRequested PORTRAIT = new OrientationRequested(
-            3);
+    public static final OrientationRequested PORTRAIT = new OrientationRequested(3);
 
     /**
      * The content will be imaged across the long edge of the medium. Landscape
@@ -59,8 +58,7 @@ public final class OrientationRequested extends EnumSyntax implements
      * simple finishing on the long edge is the same edge whether portrait or
      * landscape.
      */
-    public static final OrientationRequested LANDSCAPE = new OrientationRequested(
-            4);
+    public static final OrientationRequested LANDSCAPE = new OrientationRequested(4);
 
     /**
      * The content will be imaged across the long edge of the medium, but in the
@@ -71,8 +69,7 @@ public final class OrientationRequested extends EnumSyntax implements
      * applications rotate landscape -90 degrees from portrait, rather than +90
      * degrees.
      */
-    public static final OrientationRequested REVERSE_LANDSCAPE = new OrientationRequested(
-            5);
+    public static final OrientationRequested REVERSE_LANDSCAPE = new OrientationRequested(5);
 
     /**
      * The content will be imaged across the short edge of the medium, but in
@@ -86,25 +83,24 @@ public final class OrientationRequested extends EnumSyntax implements
      * document can be stapled "on the right" by a simple finishing device as is
      * common use with some Middle Eastern languages such as Hebrew.
      */
-    public static final OrientationRequested REVERSE_PORTRAIT = new OrientationRequested(
-            6);
+    public static final OrientationRequested REVERSE_PORTRAIT = new OrientationRequested(6);
 
     /**
      * Construct a new orientation requested enumeration value with the given
      * integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected OrientationRequested(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "portrait", "landscape",
-            "reverse-landscape", "reverse-portrait" };
+    private static final String[] myStringTable = { "portrait", "landscape", "reverse-landscape",
+            "reverse-portrait" };
 
-    private static final OrientationRequested[] myEnumValueTable = { PORTRAIT,
-            LANDSCAPE, REVERSE_LANDSCAPE, REVERSE_PORTRAIT };
+    private static final OrientationRequested[] myEnumValueTable = { PORTRAIT, LANDSCAPE, REVERSE_LANDSCAPE,
+            REVERSE_PORTRAIT };
 
     /**
      * Returns the string table for class OrientationRequested.

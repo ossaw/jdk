@@ -27,8 +27,8 @@ public class WebServiceException extends java.lang.RuntimeException {
      * is not initialized.
      * 
      * @param message
-     *                The detail message which is later retrieved using the
-     *                getMessage method
+     *        The detail message which is later retrieved using the
+     *        getMessage method
      **/
     public WebServiceException(String message) {
         super(message);
@@ -38,12 +38,12 @@ public class WebServiceException extends java.lang.RuntimeException {
      * Constructs a new exception with the specified detail message and cause.
      *
      * @param message
-     *                The detail message which is later retrieved using the
-     *                getMessage method
+     *        The detail message which is later retrieved using the
+     *        getMessage method
      * @param cause
-     *                The cause which is saved for the later retrieval throw by
-     *                the
-     *                getCause method
+     *        The cause which is saved for the later retrieval throw by
+     *        the
+     *        getCause method
      **/
     public WebServiceException(String message, Throwable cause) {
         super(message, cause);
@@ -56,10 +56,10 @@ public class WebServiceException extends java.lang.RuntimeException {
      * message of <tt>cause</tt>).
      *
      * @param cause
-     *              The cause which is saved for the later retrieval throw by
-     *              the
-     *              getCause method. (A <tt>null</tt> value is permitted, and
-     *              indicates that the cause is nonexistent or unknown.)
+     *        The cause which is saved for the later retrieval throw by
+     *        the
+     *        getCause method. (A <tt>null</tt> value is permitted, and
+     *        indicates that the cause is nonexistent or unknown.)
      **/
     public WebServiceException(Throwable cause) {
         super(cause);

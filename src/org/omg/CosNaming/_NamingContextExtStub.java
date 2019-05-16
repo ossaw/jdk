@@ -15,45 +15,38 @@ package org.omg.CosNaming;
  * object in the same or different contexts at the same time. Using
  * <tt>NamingContextExt</tt>, you can use URL-based names to bind and resolve.
  * <p>
- * 
  * See
  * <a href="http://www.omg.org/technology/documents/formal/naming_service.htm">
  * CORBA COS Naming Specification.</a>
  */
-public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
-        implements org.omg.CosNaming.NamingContextExt {
+public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl implements
+        org.omg.CosNaming.NamingContextExt {
 
     /**
      * This operation creates a stringified name from the array of Name
      * components.
      * 
      * @param n
-     *          Name of the object
-     *          <p>
-     * 
+     *        Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextExtPackage.InvalidName
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      */
     public String to_string(org.omg.CosNaming.NameComponent[] n)
             throws org.omg.CosNaming.NamingContextPackage.InvalidName {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("to_string",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("to_string", true);
             org.omg.CosNaming.NameHelper.write($out, n);
             $in = _invoke($out);
-            String $result = org.omg.CosNaming.NamingContextExtPackage.StringNameHelper
-                    .read($in);
+            String $result = org.omg.CosNaming.NamingContextExtPackage.StringNameHelper.read($in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
             String _id = $ex.getId();
-            if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+            if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -68,33 +61,26 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * Name Components.
      * 
      * @param sn
-     *           Stringified Name of the object
-     *           <p>
-     * 
+     *        Stringified Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextExtPackage.InvalidName
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      */
     public org.omg.CosNaming.NameComponent[] to_name(String sn)
             throws org.omg.CosNaming.NamingContextPackage.InvalidName {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("to_name",
-                    true);
-            org.omg.CosNaming.NamingContextExtPackage.StringNameHelper.write(
-                    $out, sn);
+            org.omg.CORBA.portable.OutputStream $out = _request("to_name", true);
+            org.omg.CosNaming.NamingContextExtPackage.StringNameHelper.write($out, sn);
             $in = _invoke($out);
-            org.omg.CosNaming.NameComponent $result[] = org.omg.CosNaming.NameHelper
-                    .read($in);
+            org.omg.CosNaming.NameComponent $result[] = org.omg.CosNaming.NameHelper.read($in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
             String _id = $ex.getId();
-            if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+            if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -109,13 +95,12 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * Stringified Name of the object.
      * 
      * @param addr
-     *             internet based address of the host machine where Name Service
-     *             is running
-     *             <p>
+     *        internet based address of the host machine where Name Service
+     *        is running
+     *        <p>
      * @param sn
-     *             Stringified Name of the object
-     *             <p>
-     * 
+     *        Stringified Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextExtPackage.InvalidName
      *            Indicates the name does not identify a binding.
      *            <p>
@@ -123,7 +108,6 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      *            Indicates the internet based address of the host machine
      *            is incorrect
      *            <p>
-     * 
      */
     public String to_url(String addr, String sn)
             throws org.omg.CosNaming.NamingContextExtPackage.InvalidAddress,
@@ -131,25 +115,18 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
         org.omg.CORBA.portable.InputStream $in = null;
         try {
             org.omg.CORBA.portable.OutputStream $out = _request("to_url", true);
-            org.omg.CosNaming.NamingContextExtPackage.AddressHelper.write($out,
-                    addr);
-            org.omg.CosNaming.NamingContextExtPackage.StringNameHelper.write(
-                    $out, sn);
+            org.omg.CosNaming.NamingContextExtPackage.AddressHelper.write($out, addr);
+            org.omg.CosNaming.NamingContextExtPackage.StringNameHelper.write($out, sn);
             $in = _invoke($out);
-            String $result = org.omg.CosNaming.NamingContextExtPackage.URLStringHelper
-                    .read($in);
+            String $result = org.omg.CosNaming.NamingContextExtPackage.URLStringHelper.read($in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
             String _id = $ex.getId();
-            if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContextExt/InvalidAddress:1.0"))
-                throw org.omg.CosNaming.NamingContextExtPackage.InvalidAddressHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+            if (_id.equals("IDL:omg.org/CosNaming/NamingContextExt/InvalidAddress:1.0"))
+                throw org.omg.CosNaming.NamingContextExtPackage.InvalidAddressHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -163,9 +140,8 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * This operation resolves the Stringified name into the object reference.
      * 
      * @param sn
-     *           Stringified Name of the object
-     *           <p>
-     * 
+     *        Stringified Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates there is no object reference for the given name.
      *            <p>
@@ -175,18 +151,14 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * @exception org.omg.CosNaming.NamingContextExtPackage.InvalidName
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      */
-    public org.omg.CORBA.Object resolve_str(String sn)
-            throws org.omg.CosNaming.NamingContextPackage.NotFound,
+    public org.omg.CORBA.Object resolve_str(String sn) throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("resolve_str",
-                    true);
-            org.omg.CosNaming.NamingContextExtPackage.StringNameHelper.write(
-                    $out, sn);
+            org.omg.CORBA.portable.OutputStream $out = _request("resolve_str", true);
+            org.omg.CosNaming.NamingContextExtPackage.StringNameHelper.write($out, sn);
             $in = _invoke($out);
             org.omg.CORBA.Object $result = org.omg.CORBA.ObjectHelper.read($in);
             return $result;
@@ -194,16 +166,11 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotFound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -219,34 +186,28 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * when compound names are passed to be resolved.
      * 
      * @param n
-     *            Name of the object
-     *            <p>
-     * 
+     *        Name of the object
+     *        <p>
      * @param obj
-     *            The Object to bind with the given name
-     *            <p>
-     * 
+     *        The Object to bind with the given name
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
      *            Indicates that the implementation has given up for some
      *            reason. The client, however, may be able to continue the
      *            operation at the returned naming context.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
      *            Indicates that the name is invalid.
      *            <p>
-     *
      * @exception org.omg.CosNaming.NamingContextPackage.AlreadyBound
      *            Indicates an object is already bound to the specified
      *            name.
      *            <p>
      */
-    public void bind(org.omg.CosNaming.NameComponent[] n,
-            org.omg.CORBA.Object obj)
+    public void bind(org.omg.CosNaming.NameComponent[] n, org.omg.CORBA.Object obj)
             throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName,
@@ -262,20 +223,13 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotFound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/AlreadyBound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/AlreadyBound:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -291,42 +245,35 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * are passed to be resolved.
      * 
      * @param n
-     *           Name of the object
-     *           <p>
-     * 
+     *        Name of the object
+     *        <p>
      * @param nc
-     *           NamingContect object to bind with the given name
-     *           <p>
-     * 
+     *        NamingContect object to bind with the given name
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
      *            Indicates that the implementation has given up for some
      *            reason. The client, however, may be able to continue the
      *            operation at the returned naming context.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
      *            Indicates that the name is invalid.
      *            <p>
-     *
      * @exception org.omg.CosNaming.NamingContextPackage.AlreadyBound
      *            Indicates an object is already bound to the specified
      *            name.
      *            <p>
      */
-    public void bind_context(org.omg.CosNaming.NameComponent[] n,
-            org.omg.CosNaming.NamingContext nc)
+    public void bind_context(org.omg.CosNaming.NameComponent[] n, org.omg.CosNaming.NamingContext nc)
             throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName,
             org.omg.CosNaming.NamingContextPackage.AlreadyBound {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("bind_context",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("bind_context", true);
             org.omg.CosNaming.NameHelper.write($out, n);
             org.omg.CosNaming.NamingContextHelper.write($out, nc);
             $in = _invoke($out);
@@ -335,20 +282,13 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotFound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/AlreadyBound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/AlreadyBound:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -365,29 +305,24 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * are passed to be resolved.
      * 
      * @param n
-     *            Name of the object
-     *            <p>
-     * 
+     *        Name of the object
+     *        <p>
      * @param obj
-     *            The Object to rebind with the given name
-     *            <p>
-     * 
+     *        The Object to rebind with the given name
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
      *            Indicates that the implementation has given up for some
      *            reason. The client, however, may be able to continue the
      *            operation at the returned naming context.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
      *            Indicates that the name is invalid.
      *            <p>
      */
-    public void rebind(org.omg.CosNaming.NameComponent[] n,
-            org.omg.CORBA.Object obj)
+    public void rebind(org.omg.CosNaming.NameComponent[] n, org.omg.CORBA.Object obj)
             throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName {
@@ -402,16 +337,11 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotFound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -428,36 +358,30 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * compound names are passed to be resolved.
      * 
      * @param n
-     *           Name of the object
-     *           <p>
-     * 
+     *        Name of the object
+     *        <p>
      * @param nc
-     *           NamingContect object to rebind with the given name
-     *           <p>
-     * 
+     *        NamingContect object to rebind with the given name
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
      *            Indicates that the implementation has given up for some
      *            reason. The client, however, may be able to continue the
      *            operation at the returned naming context.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
      *            Indicates that the name is invalid.
      *            <p>
      */
-    public void rebind_context(org.omg.CosNaming.NameComponent[] n,
-            org.omg.CosNaming.NamingContext nc)
+    public void rebind_context(org.omg.CosNaming.NameComponent[] n, org.omg.CosNaming.NamingContext nc)
             throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request(
-                    "rebind_context", true);
+            org.omg.CORBA.portable.OutputStream $out = _request("rebind_context", true);
             org.omg.CosNaming.NameHelper.write($out, n);
             org.omg.CosNaming.NamingContextHelper.write($out, nc);
             $in = _invoke($out);
@@ -466,16 +390,11 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotFound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -494,19 +413,16 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * specialized interface.
      * 
      * @param n
-     *          Name of the object
-     *          <p>
-     * 
+     *        Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
      *            Indicates that the implementation has given up for some
      *            reason. The client, however, may be able to continue the
      *            operation at the returned naming context.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
      *            Indicates that the name is invalid.
      *            <p>
@@ -517,8 +433,7 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
             org.omg.CosNaming.NamingContextPackage.InvalidName {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("resolve",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("resolve", true);
             org.omg.CosNaming.NameHelper.write($out, n);
             $in = _invoke($out);
             org.omg.CORBA.Object $result = org.omg.CORBA.ObjectHelper.read($in);
@@ -527,16 +442,11 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotFound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -550,19 +460,16 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * The unbind operation removes a name binding from a context.
      * 
      * @param n
-     *          Name of the object
-     *          <p>
-     * 
+     *        Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
      *            Indicates that the implementation has given up for some
      *            reason. The client, however, may be able to continue the
      *            operation at the returned naming context.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
      *            Indicates that the name is invalid.
      *            <p>
@@ -581,16 +488,11 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotFound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -604,7 +506,6 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * The list operation allows a client to iterate through a set of bindings
      * in a naming context.
      * <p>
-     * 
      * The list operation returns at most the requested number of bindings in
      * BindingList bl.
      * <ul>
@@ -615,16 +516,14 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * </ul>
      * 
      * @param how_many
-     *                 the maximum number of bindings to return
-     *                 <p>
-     * 
+     *        the maximum number of bindings to return
+     *        <p>
      * @param bl
-     *                 the returned list of bindings
-     *                 <p>
-     * 
+     *        the returned list of bindings
+     *        <p>
      * @param bi
-     *                 the returned binding iterator
-     *                 <p>
+     *        the returned binding iterator
+     *        <p>
      */
     public void list(int how_many, org.omg.CosNaming.BindingListHolder bl,
             org.omg.CosNaming.BindingIteratorHolder bi) {
@@ -655,11 +554,9 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
     public org.omg.CosNaming.NamingContext new_context() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("new_context",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("new_context", true);
             $in = _invoke($out);
-            org.omg.CosNaming.NamingContext $result = org.omg.CosNaming.NamingContextHelper
-                    .read($in);
+            org.omg.CosNaming.NamingContext $result = org.omg.CosNaming.NamingContextHelper.read($in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
@@ -680,61 +577,47 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * last component).
      * 
      * @param n
-     *          Name of the object
-     *          <p>
-     * 
+     *        Name of the object
+     *        <p>
      * @exception org.omg.CosNaming.NamingContextPackage.NotFound
      *            Indicates the name does not identify a binding.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.AlreadyBound
      *            Indicates an object is already bound to the specified
      *            name.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.CannotProceed
      *            Indicates that the implementation has given up for some
      *            reason. The client, however, may be able to continue the
      *            operation at the returned naming context.
      *            <p>
-     * 
      * @exception org.omg.CosNaming.NamingContextPackage.InvalidName
      *            Indicates that the name is invalid.
      *            <p>
      */
-    public org.omg.CosNaming.NamingContext bind_new_context(
-            org.omg.CosNaming.NameComponent[] n)
+    public org.omg.CosNaming.NamingContext bind_new_context(org.omg.CosNaming.NameComponent[] n)
             throws org.omg.CosNaming.NamingContextPackage.NotFound,
             org.omg.CosNaming.NamingContextPackage.AlreadyBound,
             org.omg.CosNaming.NamingContextPackage.CannotProceed,
             org.omg.CosNaming.NamingContextPackage.InvalidName {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request(
-                    "bind_new_context", true);
+            org.omg.CORBA.portable.OutputStream $out = _request("bind_new_context", true);
             org.omg.CosNaming.NameHelper.write($out, n);
             $in = _invoke($out);
-            org.omg.CosNaming.NamingContext $result = org.omg.CosNaming.NamingContextHelper
-                    .read($in);
+            org.omg.CosNaming.NamingContext $result = org.omg.CosNaming.NamingContextHelper.read($in);
             return $result;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotFound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/AlreadyBound:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                        .read($in);
-            else if (_id.equals(
-                    "IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotFoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/AlreadyBound:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/CannotProceed:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.read($in);
+            else if (_id.equals("IDL:omg.org/CosNaming/NamingContext/InvalidName:1.0"))
+                throw org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -751,20 +634,17 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
      * @exception org.omg.CosNaming.NamingContextPackage.NotEmpty
      *            Indicates that the Naming Context contains bindings.
      */
-    public void destroy()
-            throws org.omg.CosNaming.NamingContextPackage.NotEmpty {
+    public void destroy() throws org.omg.CosNaming.NamingContextPackage.NotEmpty {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("destroy",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("destroy", true);
             $in = _invoke($out);
             return;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
             $in = $ex.getInputStream();
             String _id = $ex.getId();
             if (_id.equals("IDL:omg.org/CosNaming/NamingContext/NotEmpty:1.0"))
-                throw org.omg.CosNaming.NamingContextPackage.NotEmptyHelper
-                        .read($in);
+                throw org.omg.CosNaming.NamingContextPackage.NotEmptyHelper.read($in);
             else
                 throw new org.omg.CORBA.MARSHAL(_id);
         } catch (org.omg.CORBA.portable.RemarshalException $rm) {
@@ -775,16 +655,14 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
     } // destroy
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:omg.org/CosNaming/NamingContextExt:1.0",
+    private static String[] __ids = { "IDL:omg.org/CosNaming/NamingContextExt:1.0",
             "IDL:omg.org/CosNaming/NamingContext:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -799,8 +677,7 @@ public class _NamingContextExtStub extends org.omg.CORBA.portable.ObjectImpl
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

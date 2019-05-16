@@ -115,17 +115,16 @@ public interface HTMLSelectElement extends HTMLElement {
      * in all other cases.
      * 
      * @param element
-     *                The element to add.
+     *        The element to add.
      * @param before
-     *                The element to insert before, or <code>null</code> for the
-     *                tail of the list.
+     *        The element to insert before, or <code>null</code> for the
+     *        tail of the list.
      * @exception DOMException
-     *                         NOT_FOUND_ERR: Raised if <code>before</code> is
-     *                         not a
-     *                         descendant of the <code>SELECT</code> element.
+     *            NOT_FOUND_ERR: Raised if <code>before</code> is
+     *            not a
+     *            descendant of the <code>SELECT</code> element.
      */
-    public void add(HTMLElement element, HTMLElement before)
-            throws DOMException;
+    public void add(HTMLElement element, HTMLElement before) throws DOMException;
 
     /**
      * Remove an element from the collection of <code>OPTION</code> elements for
@@ -133,7 +132,7 @@ public interface HTMLSelectElement extends HTMLElement {
      * index.
      * 
      * @param index
-     *              The index of the item to remove, starting from 0.
+     *        The index of the item to remove, starting from 0.
      */
     public void remove(int index);
 

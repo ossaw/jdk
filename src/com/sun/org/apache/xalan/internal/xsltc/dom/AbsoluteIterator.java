@@ -30,7 +30,6 @@ import com.sun.org.apache.xml.internal.dtm.ref.DTMDefaultBase;
  * they always start from the root node. The node passed to setStartNode() is
  * not totally useless, though. It is needed to obtain the DOM mask, i.e. the
  * index into the MultiDOM table that corresponds to the DOM "owning" the node.
- *
  * The DOM mask is cached, so successive calls to setStartNode() passing nodes
  * from other DOMs will have no effect (i.e. this iterator cannot migrate
  * between DOMs).
@@ -76,8 +75,7 @@ public final class AbsoluteIterator extends DTMAxisIteratorBase {
             clone._isRestartable = false;
             return clone;
         } catch (CloneNotSupportedException e) {
-            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-                    .toString());
+            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
             return null;
         }
     }

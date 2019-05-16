@@ -29,7 +29,7 @@ public final class BAD_QOS extends SystemException {
      * Constructs an <code>BAD_QOS</code> exception with the specified message.
      *
      * @param detailMessage
-     *                      string containing a detailed message.
+     *        string containing a detailed message.
      */
     public BAD_QOS(String detailMessage) {
         this(detailMessage, 0, CompletionStatus.COMPLETED_NO);
@@ -40,9 +40,9 @@ public final class BAD_QOS extends SystemException {
      * code and completion status.
      *
      * @param minorCode
-     *                         minor code.
+     *        minor code.
      * @param completionStatus
-     *                         completion status.
+     *        completion status.
      */
     public BAD_QOS(int minorCode, CompletionStatus completionStatus) {
         this("", minorCode, completionStatus);
@@ -53,14 +53,13 @@ public final class BAD_QOS extends SystemException {
      * minor code, and completion status.
      *
      * @param detailMessage
-     *                         string containing a detailed message.
+     *        string containing a detailed message.
      * @param minorCode
-     *                         minor code.
+     *        minor code.
      * @param completionStatus
-     *                         completion status.
+     *        completion status.
      */
-    public BAD_QOS(String detailMessage, int minorCode,
-            CompletionStatus completionStatus) {
+    public BAD_QOS(String detailMessage, int minorCode, CompletionStatus completionStatus) {
         super(detailMessage, minorCode, completionStatus);
     }
 }

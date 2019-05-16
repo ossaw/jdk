@@ -14,7 +14,6 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * <p>
  * Maps a JavaBean property to a XML attribute.
- *
  * <p>
  * <b>Usage</b>
  * </p>
@@ -25,15 +24,12 @@ import static java.lang.annotation.RetentionPolicy.*;
  * <li>JavaBean property</li>
  * <li>field</li>
  * </ul>
- *
  * <p>
  * A static final field is mapped to a XML fixed attribute.
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
  * </p>
- *
  * The usage is subject to the following constraints:
  * <ul>
  * <li>If type of the field or the property is a collection type, then the
@@ -66,7 +62,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  * {@link javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter}.</li>
  * </ul>
  * </p>
- *
  * <p>
  * <b>Example 1: </b>Map a JavaBean property to an XML attribute.
  * </p>
@@ -86,13 +81,11 @@ import static java.lang.annotation.RetentionPolicy.*;
  *       &lt;xs:attribute name="price" type="xs:decimal"/>
  *     &lt;/xs:complexType>
  * </pre>
- *
  * <p>
  * <b>Example 2: </b>Map a JavaBean property to an XML attribute with anonymous
  * type.
  * </p>
  * See Example 7 in @{@link XmlType}.
- *
  * <p>
  * <b>Example 3: </b>Map a JavaBean collection property to an XML attribute.
  * </p>
@@ -112,7 +105,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  *           &lt;xs:list itemType="xs:int"/>
  *         &lt;/xs:simpleType>
  *     &lt;/xs:complexType>
- *
  * </pre>
  * 
  * @author Sekhar Vajjhala, Sun Microsystems, Inc.
@@ -126,7 +118,6 @@ public @interface XmlAttribute {
     /**
      * Name of the XML Schema attribute. By default, the XML Schema attribute
      * name is derived from the JavaBean property name.
-     *
      */
     String name() default "##default";
 
@@ -135,13 +126,11 @@ public @interface XmlAttribute {
      * then the JavaBean property is mapped to a XML Schema attribute that is
      * required. Otherwise it is mapped to a XML Schema attribute that is
      * optional.
-     *
      */
     boolean required() default false;
 
     /**
      * Specifies the XML target namespace of the XML Schema attribute.
-     *
      */
     String namespace() default "##default";
 }

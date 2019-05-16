@@ -12,7 +12,6 @@ import javax.security.auth.callback.TextInputCallback;
  * retrieve realm information.
  *
  * @since 1.5
- *
  * @author Rosanna Lee
  * @author Rob Weltman
  */
@@ -22,11 +21,11 @@ public class RealmCallback extends TextInputCallback {
      * Constructs a {@code RealmCallback} with a prompt.
      *
      * @param prompt
-     *               The non-null prompt to use to request the realm
-     *               information.
+     *        The non-null prompt to use to request the realm
+     *        information.
      * @throws IllegalArgumentException
-     *                                  If {@code prompt} is null or the empty
-     *                                  string.
+     *         If {@code prompt} is null or the empty
+     *         string.
      */
     public RealmCallback(String prompt) {
         super(prompt);
@@ -37,14 +36,14 @@ public class RealmCallback extends TextInputCallback {
      * information.
      *
      * @param prompt
-     *                         The non-null prompt to use to request the realm
-     *                         information.
+     *        The non-null prompt to use to request the realm
+     *        information.
      * @param defaultRealmInfo
-     *                         The non-null default realm information to use.
+     *        The non-null default realm information to use.
      * @throws IllegalArgumentException
-     *                                  If {@code prompt} is null or the empty
-     *                                  string, or if
-     *                                  {@code defaultRealm} is empty or null.
+     *         If {@code prompt} is null or the empty
+     *         string, or if
+     *         {@code defaultRealm} is empty or null.
      */
     public RealmCallback(String prompt, String defaultRealmInfo) {
         super(prompt, defaultRealmInfo);

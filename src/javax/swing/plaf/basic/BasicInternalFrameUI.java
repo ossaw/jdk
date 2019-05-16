@@ -88,8 +88,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
 
     public void uninstallUI(JComponent c) {
         if (c != frame)
-            throw new IllegalComponentStateException(this
-                    + " was asked to deinstall() " + c
+            throw new IllegalComponentStateException(this + " was asked to deinstall() " + c
                     + " when it only knows about " + frame + ".");
 
         uninstallKeyboardActions();
@@ -116,8 +115,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 contentPane.setBackground(null);
         }
         frame.setLayout(internalFrameLayout = createLayoutManager());
-        frame.setBackground(UIManager.getLookAndFeelDefaults().getColor(
-                "control"));
+        frame.setBackground(UIManager.getLookAndFeelDefaults().getColor("control"));
 
         LookAndFeel.installBorder(frame, "InternalFrame.border");
 
@@ -129,8 +127,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
             frame.addInternalFrameListener(internalFrameListener);
         }
 
-        LazyActionMap.installLazyActionMap(frame, BasicInternalFrameUI.class,
-                "InternalFrame.actionMap");
+        LazyActionMap.installLazyActionMap(frame, BasicInternalFrameUI.class, "InternalFrame.actionMap");
     }
 
     static void loadActionMap(LazyActionMap map) {
@@ -138,8 +135,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
             public void actionPerformed(ActionEvent evt) {
                 JInternalFrame iFrame = (JInternalFrame) evt.getSource();
                 if (iFrame.getUI() instanceof BasicInternalFrameUI) {
-                    JComponent comp = ((BasicInternalFrameUI) iFrame.getUI())
-                            .getNorthPane();
+                    JComponent comp = ((BasicInternalFrameUI) iFrame.getUI()).getNorthPane();
                     if (comp instanceof BasicInternalFrameTitlePane) {
                         ((BasicInternalFrameTitlePane) comp).showSystemMenu();
                     }
@@ -150,8 +146,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 if (sender instanceof JInternalFrame) {
                     JInternalFrame iFrame = (JInternalFrame) sender;
                     if (iFrame.getUI() instanceof BasicInternalFrameUI) {
-                        return ((BasicInternalFrameUI) iFrame.getUI())
-                                .isKeyBindingActive();
+                        return ((BasicInternalFrameUI) iFrame.getUI()).isKeyBindingActive();
                     }
                 }
                 return false;
@@ -225,8 +220,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
 
     InputMap createInputMap(int condition) {
         if (condition == JComponent.WHEN_IN_FOCUSED_WINDOW) {
-            Object[] bindings = (Object[]) DefaultLookup.get(frame, this,
-                    "InternalFrame.windowBindings");
+            Object[] bindings = (Object[]) DefaultLookup.get(frame, this, "InternalFrame.windowBindings");
 
             if (bindings != null) {
                 return LookAndFeel.makeComponentInputMap(frame, bindings);
@@ -282,8 +276,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
         }
         internalFrameListener = null;
 
-        SwingUtilities.replaceUIInputMap(frame,
-                JComponent.WHEN_IN_FOCUSED_WINDOW, null);
+        SwingUtilities.replaceUIInputMap(frame, JComponent.WHEN_IN_FOCUSED_WINDOW, null);
         SwingUtilities.replaceUIActionMap(frame, null);
 
     }
@@ -396,8 +389,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
         // Also, no longer registering on the desktopicon, the previous
         // action did nothing.
         InputMap map = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        SwingUtilities.replaceUIInputMap(frame,
-                JComponent.WHEN_IN_FOCUSED_WINDOW, map);
+        SwingUtilities.replaceUIInputMap(frame, JComponent.WHEN_IN_FOCUSED_WINDOW, map);
         // ActionMap actionMap = getActionMap();
         // SwingUtilities.replaceUIActionMap(frame, actionMap);
     }
@@ -409,8 +401,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
     }
 
     public void setNorthPane(JComponent c) {
-        if (northPane != null
-                && northPane instanceof BasicInternalFrameTitlePane) {
+        if (northPane != null && northPane instanceof BasicInternalFrameTitlePane) {
             ((BasicInternalFrameTitlePane) northPane).uninstallListeners();
         }
         replacePane(northPane, c);
@@ -444,8 +435,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
         eastPane = c;
     }
 
-    public class InternalFramePropertyChangeListener implements
-            PropertyChangeListener {
+    public class InternalFramePropertyChangeListener implements PropertyChangeListener {
         // NOTE: This class exists only for backward compatibility. All
         // its functionality has been moved into Handler. If you need to add
         // new functionality add it to the Handler, but make sure this
@@ -492,8 +482,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
      * parents.
      */
     protected DesktopManager getDesktopManager() {
-        if (frame.getDesktopPane() != null && frame.getDesktopPane()
-                .getDesktopManager() != null)
+        if (frame.getDesktopPane() != null && frame.getDesktopPane().getDesktopManager() != null)
             return frame.getDesktopPane().getDesktopManager();
         if (sharedDesktopManager == null)
             sharedDesktopManager = createDesktopManager();
@@ -594,8 +583,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
     /**
      * Listens for border adjustments.
      */
-    protected class BorderListener extends MouseInputAdapter implements
-            SwingConstants {
+    protected class BorderListener extends MouseInputAdapter implements SwingConstants {
         // _x & _y are the mousePressed location in absolute coordinate system
         int _x, _y;
         // __x & __y are the mousePressed location in source view's coordinate
@@ -614,19 +602,16 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 if (frame.isIconifiable() && frame.isIcon()) {
                     try {
                         frame.setIcon(false);
-                    } catch (PropertyVetoException e2) {
-                    }
+                    } catch (PropertyVetoException e2) {}
                 } else if (frame.isMaximizable()) {
                     if (!frame.isMaximum())
                         try {
                             frame.setMaximum(true);
-                        } catch (PropertyVetoException e2) {
-                        }
+                        } catch (PropertyVetoException e2) {}
                     else
                         try {
                             frame.setMaximum(false);
-                        } catch (PropertyVetoException e3) {
-                        }
+                        } catch (PropertyVetoException e3) {}
                 }
             }
         }
@@ -647,15 +632,12 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 // WINDOW_LOST_FOCUS event with a cancelResize().
                 Window windowAncestor = SwingUtilities.getWindowAncestor(frame);
                 if (windowAncestor != null) {
-                    windowAncestor.removeWindowFocusListener(
-                            getWindowFocusListener());
+                    windowAncestor.removeWindowFocusListener(getWindowFocusListener());
                 }
                 Container c = frame.getTopLevelAncestor();
                 if (c instanceof RootPaneContainer) {
-                    Component glassPane = ((RootPaneContainer) c)
-                            .getGlassPane();
-                    glassPane.setCursor(Cursor.getPredefinedCursor(
-                            Cursor.DEFAULT_CURSOR));
+                    Component glassPane = ((RootPaneContainer) c).getGlassPane();
+                    glassPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                     glassPane.setVisible(false);
                 }
                 getDesktopManager().endResizingFrame(frame);
@@ -679,8 +661,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
         }
 
         public void mousePressed(MouseEvent e) {
-            Point p = SwingUtilities.convertPoint((Component) e.getSource(), e
-                    .getX(), e.getY(), null);
+            Point p = SwingUtilities.convertPoint((Component) e.getSource(), e.getX(), e.getY(), null);
             __x = e.getX();
             __y = e.getY();
             _x = p.x;
@@ -691,8 +672,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
 
             try {
                 frame.setSelected(true);
-            } catch (PropertyVetoException e1) {
-            }
+            } catch (PropertyVetoException e1) {}
 
             Insets i = frame.getInsets();
 
@@ -704,8 +684,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
             }
 
             if (e.getSource() == getNorthPane()) {
-                if (ep.x > i.left && ep.y > i.top && ep.x < frame.getWidth()
-                        - i.right) {
+                if (ep.x > i.left && ep.y > i.top && ep.x < frame.getWidth() - i.right) {
                     getDesktopManager().beginDraggingFrame(frame);
                     dragging = true;
                     return;
@@ -719,8 +698,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 if (ep.x <= i.left) {
                     if (ep.y < resizeCornerSize + i.top) {
                         resizeDir = NORTH_WEST;
-                    } else if (ep.y > frame.getHeight() - resizeCornerSize
-                            - i.bottom) {
+                    } else if (ep.y > frame.getHeight() - resizeCornerSize - i.bottom) {
                         resizeDir = SOUTH_WEST;
                     } else {
                         resizeDir = WEST;
@@ -728,8 +706,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 } else if (ep.x >= frame.getWidth() - i.right) {
                     if (ep.y < resizeCornerSize + i.top) {
                         resizeDir = NORTH_EAST;
-                    } else if (ep.y > frame.getHeight() - resizeCornerSize
-                            - i.bottom) {
+                    } else if (ep.y > frame.getHeight() - resizeCornerSize - i.bottom) {
                         resizeDir = SOUTH_EAST;
                     } else {
                         resizeDir = EAST;
@@ -737,8 +714,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 } else if (ep.y <= i.top) {
                     if (ep.x < resizeCornerSize + i.left) {
                         resizeDir = NORTH_WEST;
-                    } else if (ep.x > frame.getWidth() - resizeCornerSize
-                            - i.right) {
+                    } else if (ep.x > frame.getWidth() - resizeCornerSize - i.right) {
                         resizeDir = NORTH_EAST;
                     } else {
                         resizeDir = NORTH;
@@ -746,8 +722,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 } else if (ep.y >= frame.getHeight() - i.bottom) {
                     if (ep.x < resizeCornerSize + i.left) {
                         resizeDir = SOUTH_WEST;
-                    } else if (ep.x > frame.getWidth() - resizeCornerSize
-                            - i.right) {
+                    } else if (ep.x > frame.getWidth() - resizeCornerSize - i.right) {
                         resizeDir = SOUTH_EAST;
                     } else {
                         resizeDir = SOUTH;
@@ -789,8 +764,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 }
                 Container c = frame.getTopLevelAncestor();
                 if (c instanceof RootPaneContainer) {
-                    Component glassPane = ((RootPaneContainer) c)
-                            .getGlassPane();
+                    Component glassPane = ((RootPaneContainer) c).getGlassPane();
                     glassPane.setVisible(true);
                     glassPane.setCursor(s);
                 }
@@ -800,8 +774,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 // WINDOW_LOST_FOCUS event with a cancelResize().
                 Window windowAncestor = SwingUtilities.getWindowAncestor(frame);
                 if (windowAncestor != null) {
-                    windowAncestor.addWindowFocusListener(
-                            getWindowFocusListener());
+                    windowAncestor.addWindowFocusListener(getWindowFocusListener());
                 }
                 return;
             }
@@ -814,8 +787,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 return;
             }
 
-            Point p = SwingUtilities.convertPoint((Component) e.getSource(), e
-                    .getX(), e.getY(), null);
+            Point p = SwingUtilities.convertPoint((Component) e.getSource(), e.getX(), e.getY(), null);
             int deltaX = _x - p.x;
             int deltaY = _y - p.y;
             Dimension min = frame.getMinimumSize();
@@ -894,10 +866,8 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                         deltaX = startingBounds.width - min.width;
                     else if (startingBounds.width - deltaX > max.width)
                         deltaX = -(max.width - startingBounds.width);
-                    if (startingBounds.x + startingBounds.width
-                            - deltaX > parentBounds.width) {
-                        deltaX = startingBounds.x + startingBounds.width
-                                - parentBounds.width;
+                    if (startingBounds.x + startingBounds.width - deltaX > parentBounds.width) {
+                        deltaX = startingBounds.x + startingBounds.width - parentBounds.width;
                     }
 
                     newX = startingBounds.x;
@@ -910,10 +880,8 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                         deltaX = startingBounds.width - min.width;
                     else if (startingBounds.width - deltaX > max.width)
                         deltaX = -(max.width - startingBounds.width);
-                    if (startingBounds.x + startingBounds.width
-                            - deltaX > parentBounds.width) {
-                        deltaX = startingBounds.x + startingBounds.width
-                                - parentBounds.width;
+                    if (startingBounds.x + startingBounds.width - deltaX > parentBounds.width) {
+                        deltaX = startingBounds.x + startingBounds.width - parentBounds.width;
                     }
 
                     newW = startingBounds.width - deltaX;
@@ -924,20 +892,16 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                         deltaX = startingBounds.width - min.width;
                     else if (startingBounds.width - deltaX > max.width)
                         deltaX = -(max.width - startingBounds.width);
-                    if (startingBounds.x + startingBounds.width
-                            - deltaX > parentBounds.width) {
-                        deltaX = startingBounds.x + startingBounds.width
-                                - parentBounds.width;
+                    if (startingBounds.x + startingBounds.width - deltaX > parentBounds.width) {
+                        deltaX = startingBounds.x + startingBounds.width - parentBounds.width;
                     }
 
                     if (startingBounds.height - deltaY < min.height)
                         deltaY = startingBounds.height - min.height;
                     else if (startingBounds.height - deltaY > max.height)
                         deltaY = -(max.height - startingBounds.height);
-                    if (startingBounds.y + startingBounds.height
-                            - deltaY > parentBounds.height) {
-                        deltaY = startingBounds.y + startingBounds.height
-                                - parentBounds.height;
+                    if (startingBounds.y + startingBounds.height - deltaY > parentBounds.height) {
+                        deltaY = startingBounds.y + startingBounds.height - parentBounds.height;
                     }
 
                     newW = startingBounds.width - deltaX;
@@ -948,10 +912,8 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                         deltaY = startingBounds.height - min.height;
                     else if (startingBounds.height - deltaY > max.height)
                         deltaY = -(max.height - startingBounds.height);
-                    if (startingBounds.y + startingBounds.height
-                            - deltaY > parentBounds.height) {
-                        deltaY = startingBounds.y + startingBounds.height
-                                - parentBounds.height;
+                    if (startingBounds.y + startingBounds.height - deltaY > parentBounds.height) {
+                        deltaY = startingBounds.y + startingBounds.height - parentBounds.height;
                     }
 
                     newW = startingBounds.width;
@@ -962,10 +924,8 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                         deltaY = startingBounds.height - min.height;
                     else if (startingBounds.height - deltaY > max.height)
                         deltaY = -(max.height - startingBounds.height);
-                    if (startingBounds.y + startingBounds.height
-                            - deltaY > parentBounds.height) {
-                        deltaY = startingBounds.y + startingBounds.height
-                                - parentBounds.height;
+                    if (startingBounds.y + startingBounds.height - deltaY > parentBounds.height) {
+                        deltaY = startingBounds.y + startingBounds.height - parentBounds.height;
                     }
 
                     if (startingBounds.width + deltaX < min.width)
@@ -1038,48 +998,32 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 }
                 if (ep.x <= i.left) {
                     if (ep.y < resizeCornerSize + i.top)
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.NW_RESIZE_CURSOR));
-                    else if (ep.y > frame.getHeight() - resizeCornerSize
-                            - i.bottom)
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.SW_RESIZE_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
+                    else if (ep.y > frame.getHeight() - resizeCornerSize - i.bottom)
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
                     else
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.W_RESIZE_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
                 } else if (ep.x >= frame.getWidth() - i.right) {
                     if (e.getY() < resizeCornerSize + i.top)
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.NE_RESIZE_CURSOR));
-                    else if (ep.y > frame.getHeight() - resizeCornerSize
-                            - i.bottom)
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.SE_RESIZE_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
+                    else if (ep.y > frame.getHeight() - resizeCornerSize - i.bottom)
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
                     else
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.E_RESIZE_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
                 } else if (ep.y <= i.top) {
                     if (ep.x < resizeCornerSize + i.left)
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.NW_RESIZE_CURSOR));
-                    else if (ep.x > frame.getWidth() - resizeCornerSize
-                            - i.right)
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.NE_RESIZE_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
+                    else if (ep.x > frame.getWidth() - resizeCornerSize - i.right)
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
                     else
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.N_RESIZE_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
                 } else if (ep.y >= frame.getHeight() - i.bottom) {
                     if (ep.x < resizeCornerSize + i.left)
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.SW_RESIZE_CURSOR));
-                    else if (ep.x > frame.getWidth() - resizeCornerSize
-                            - i.right)
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.SE_RESIZE_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
+                    else if (ep.x > frame.getWidth() - resizeCornerSize - i.right)
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
                     else
-                        frame.setCursor(Cursor.getPredefinedCursor(
-                                Cursor.S_RESIZE_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
                 } else
                     updateFrameCursor();
                 return;
@@ -1163,8 +1107,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
         return null;
     }
 
-    protected class BasicInternalFrameListener implements
-            InternalFrameListener {
+    protected class BasicInternalFrameListener implements InternalFrameListener {
         // NOTE: This class exists only for backward compatibility. All
         // its functionality has been moved into Handler. If you need to add
         // new functionality add it to the Handler, but make sure this
@@ -1198,9 +1141,8 @@ public class BasicInternalFrameUI extends InternalFrameUI {
         }
     }
 
-    private class Handler implements ComponentListener, InternalFrameListener,
-            LayoutManager, MouseInputListener, PropertyChangeListener,
-            WindowFocusListener, SwingConstants {
+    private class Handler implements ComponentListener, InternalFrameListener, LayoutManager,
+            MouseInputListener, PropertyChangeListener, WindowFocusListener, SwingConstants {
 
         public void windowGainedFocus(WindowEvent e) {}
 
@@ -1223,18 +1165,15 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                 // Resize the internal frame if it is maximized and relocate
                 // the associated icon as well.
                 if (frame.isMaximum()) {
-                    frame.setBounds(0, 0, parentNewBounds.width,
-                            parentNewBounds.height);
+                    frame.setBounds(0, 0, parentNewBounds.width, parentNewBounds.height);
                 }
             }
 
             // Relocate the icon base on the new parent bounds.
             if (icon != null) {
                 Rectangle iconBounds = icon.getBounds();
-                int y = iconBounds.y + (parentNewBounds.height
-                        - parentBounds.height);
-                icon.setBounds(iconBounds.x, y, iconBounds.width,
-                        iconBounds.height);
+                int y = iconBounds.y + (parentNewBounds.height - parentBounds.height);
+                icon.setBounds(iconBounds.x, y, iconBounds.width, iconBounds.height);
             }
 
             // Update the new parent bounds for next resize.
@@ -1324,8 +1263,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
             // account the title pane since you are allowed to resize
             // the frames to the point where just the title pane is visible.
             Dimension result = new Dimension();
-            if (getNorthPane() != null
-                    && getNorthPane() instanceof BasicInternalFrameTitlePane) {
+            if (getNorthPane() != null && getNorthPane() instanceof BasicInternalFrameTitlePane) {
                 result = new Dimension(getNorthPane().getMinimumSize());
             }
             Insets i = frame.getInsets();
@@ -1350,8 +1288,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                         "InternalFrame.layoutTitlePaneAtOrigin", false)) {
                     cy = 0;
                     ch += i.top;
-                    getNorthPane().setBounds(0, 0, frame.getWidth(),
-                            size.height);
+                    getNorthPane().setBounds(0, 0, frame.getWidth(), size.height);
                 } else {
                     getNorthPane().setBounds(cx, cy, cw, size.height);
                 }
@@ -1361,8 +1298,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
 
             if (getSouthPane() != null) {
                 Dimension size = getSouthPane().getPreferredSize();
-                getSouthPane().setBounds(cx, frame.getHeight() - i.bottom
-                        - size.height, cw, size.height);
+                getSouthPane().setBounds(cx, frame.getHeight() - i.bottom - size.height, cw, size.height);
                 ch -= size.height;
             }
 
@@ -1412,8 +1348,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                     // gets a setClosed(true) or dispose().
                     cancelResize();
                     if ((frame.getParent() != null) && componentListenerAdded) {
-                        frame.getParent().removeComponentListener(
-                                componentListener);
+                        frame.getParent().removeComponentListener(componentListener);
                     }
                     closeFrame(f);
                 }
@@ -1432,8 +1367,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
             } else if (JInternalFrame.IS_SELECTED_PROPERTY == prop) {
                 if (newValue == Boolean.TRUE && oldValue == Boolean.FALSE) {
                     activateFrame(f);
-                } else if (newValue == Boolean.FALSE
-                        && oldValue == Boolean.TRUE) {
+                } else if (newValue == Boolean.FALSE && oldValue == Boolean.TRUE) {
                     deactivateFrame(f);
                 }
             } else if (prop == "ancestor") {
@@ -1451,8 +1385,7 @@ public class BasicInternalFrameUI extends InternalFrameUI {
                     f.getParent().addComponentListener(componentListener);
                     componentListenerAdded = true;
                 }
-            } else if (JInternalFrame.TITLE_PROPERTY == prop
-                    || prop == "closable" || prop == "iconable"
+            } else if (JInternalFrame.TITLE_PROPERTY == prop || prop == "closable" || prop == "iconable"
                     || prop == "maximizable") {
                 Dimension dim = frame.getMinimumSize();
                 Dimension frame_dim = frame.getSize();

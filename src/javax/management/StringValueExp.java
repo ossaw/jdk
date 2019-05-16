@@ -31,7 +31,7 @@ public class StringValueExp implements ValueExp {
      * Creates a new <CODE>StringValueExp</CODE> representing the given string.
      *
      * @param val
-     *            the string that will be the value of this expression
+     *        the string that will be the value of this expression
      */
     public StringValueExp(String val) {
         this.val = val;
@@ -58,7 +58,7 @@ public class StringValueExp implements ValueExp {
      * Sets the MBean server on which the query is to be performed.
      *
      * @param s
-     *          The MBean server on which the query is to be performed.
+     *        The MBean server on which the query is to be performed.
      */
     /*
      * There is no need for this method, because if a query is being evaluated a
@@ -72,18 +72,15 @@ public class StringValueExp implements ValueExp {
      * Applies the ValueExp on a MBean.
      *
      * @param name
-     *             The name of the MBean on which the ValueExp will be applied.
-     *
+     *        The name of the MBean on which the ValueExp will be applied.
      * @return The <CODE>ValueExp</CODE>.
-     *
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
-    public ValueExp apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public ValueExp apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         return this;
     }
 }

@@ -18,8 +18,7 @@ public interface Permission {
      * this interface.
      *
      * @param another
-     *                the Permission object to compare with.
-     *
+     *        the Permission object to compare with.
      * @return true if the Permission objects are equal, false otherwise
      */
     public boolean equals(Object another);

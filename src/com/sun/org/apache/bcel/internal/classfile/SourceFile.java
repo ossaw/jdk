@@ -70,53 +70,51 @@ public final class SourceFile extends Attribute {
      * references (shallow copy). Use clone() for a physical copy.
      */
     public SourceFile(SourceFile c) {
-        this(c.getNameIndex(), c.getLength(), c.getSourceFileIndex(), c
-                .getConstantPool());
+        this(c.getNameIndex(), c.getLength(), c.getSourceFileIndex(), c.getConstantPool());
     }
 
     /**
      * Construct object from file stream.
      * 
      * @param name_index
-     *                      Index in constant pool to CONSTANT_Utf8
+     *        Index in constant pool to CONSTANT_Utf8
      * @param length
-     *                      Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                      Input stream
+     *        Input stream
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      * @throws IOException
      */
-    SourceFile(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    SourceFile(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
+            throws IOException {
         this(name_index, length, file.readUnsignedShort(), constant_pool);
     }
 
     /**
      * @param name_index
-     *                         Index in constant pool to CONSTANT_Utf8, which
-     *                         should
-     *                         represent the string "SourceFile".
+     *        Index in constant pool to CONSTANT_Utf8, which
+     *        should
+     *        represent the string "SourceFile".
      * @param length
-     *                         Content length in bytes, the value should be 2.
+     *        Content length in bytes, the value should be 2.
      * @param constant_pool
-     *                         The constant pool that this attribute is
-     *                         associated with.
+     *        The constant pool that this attribute is
+     *        associated with.
      * @param sourcefile_index
-     *                         Index in constant pool to CONSTANT_Utf8. This
-     *                         string will be
-     *                         interpreted as the name of the file from which
-     *                         this class was
-     *                         compiled. It will not be interpreted as
-     *                         indicating the name of
-     *                         the directory contqining the file or an absolute
-     *                         path; this
-     *                         information has to be supplied the consumer of
-     *                         this attribute
-     *                         - in many cases, the JVM.
+     *        Index in constant pool to CONSTANT_Utf8. This
+     *        string will be
+     *        interpreted as the name of the file from which
+     *        this class was
+     *        compiled. It will not be interpreted as
+     *        indicating the name of
+     *        the directory contqining the file or an absolute
+     *        path; this
+     *        information has to be supplied the consumer of
+     *        this attribute
+     *        - in many cases, the JVM.
      */
-    public SourceFile(int name_index, int length, int sourcefile_index,
-            ConstantPool constant_pool) {
+    public SourceFile(int name_index, int length, int sourcefile_index, ConstantPool constant_pool) {
         super(Constants.ATTR_SOURCE_FILE, name_index, length, constant_pool);
         this.sourcefile_index = sourcefile_index;
     }
@@ -127,7 +125,7 @@ public final class SourceFile extends Attribute {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitSourceFile(this);
@@ -137,7 +135,7 @@ public final class SourceFile extends Attribute {
      * Dump source file attribute to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -163,8 +161,7 @@ public final class SourceFile extends Attribute {
      * @return Source file name.
      */
     public final String getSourceFileName() {
-        ConstantUtf8 c = (ConstantUtf8) constant_pool.getConstant(
-                sourcefile_index, Constants.CONSTANT_Utf8);
+        ConstantUtf8 c = (ConstantUtf8) constant_pool.getConstant(sourcefile_index, Constants.CONSTANT_Utf8);
         return c.getBytes();
     }
 

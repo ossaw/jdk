@@ -13,17 +13,14 @@ import static javax.lang.model.SourceVersion.*;
 /**
  * A simple visitor of program elements with default behavior appropriate for
  * the {@link SourceVersion#RELEASE_7 RELEASE_7} source version.
- *
  * Visit methods corresponding to {@code RELEASE_7} and earlier language
  * constructs call {@link #defaultAction defaultAction}, passing their arguments
  * to {@code defaultAction}'s corresponding parameters.
- *
  * <p>
  * Methods in this class may be overridden subject to their general contract.
  * Note that annotating methods in concrete subclasses with
  * {@link java.lang.Override @Override} will help ensure that methods are
  * overridden as intended.
- *
  * <p>
  * <b>WARNING:</b> The {@code ElementVisitor} interface implemented by this
  * class may have methods added to it in the future to accommodate new,
@@ -32,7 +29,6 @@ import static javax.lang.model.SourceVersion.*;
  * {@code "visit"} may be added to this class in the future; to avoid
  * incompatibilities, classes which extend this class should not declare any
  * instance methods with names beginning with {@code "visit"}.
- *
  * <p>
  * When such a new visit method is added, the default implementation in this
  * class will be to call the {@link #visitUnknown visitUnknown} method. A new
@@ -40,7 +36,6 @@ import static javax.lang.model.SourceVersion.*;
  * language level; this visitor will have different default behavior for the
  * visit method in question. When the new visitor is introduced, all or portions
  * of this visitor may be deprecated.
- *
  * <p>
  * Note that adding a default implementation of a new visit method in a visitor
  * class will occur instead of adding a <em>default
@@ -57,7 +52,6 @@ import static javax.lang.model.SourceVersion.*;
  *        the type of the additional parameter to this visitor's methods.
  *        Use {@code Void} for visitors that do not need an additional
  *        parameter.
- *
  * @see SimpleElementVisitor6
  * @see SimpleElementVisitor8
  * @since 1.7
@@ -77,7 +71,7 @@ public class SimpleElementVisitor7<R, P> extends SimpleElementVisitor6<R, P> {
      * value.
      *
      * @param defaultValue
-     *                     the value to assign to {@link #DEFAULT_VALUE}
+     *        the value to assign to {@link #DEFAULT_VALUE}
      */
     protected SimpleElementVisitor7(R defaultValue) {
         super(defaultValue);
@@ -87,9 +81,9 @@ public class SimpleElementVisitor7<R, P> extends SimpleElementVisitor6<R, P> {
      * This implementation calls {@code defaultAction}.
      *
      * @param e
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @param p
-     *          {@inheritDoc}
+     *        {@inheritDoc}
      * @return the result of {@code defaultAction}
      */
     @Override

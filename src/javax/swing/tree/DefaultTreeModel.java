@@ -52,7 +52,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * Creates a tree in which any node can have children.
      *
      * @param root
-     *             a TreeNode object that is the root of the tree
+     *        a TreeNode object that is the root of the tree
      * @see #DefaultTreeModel(TreeNode, boolean)
      */
     @ConstructorProperties({ "root" })
@@ -65,11 +65,11 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * only certain nodes can have children.
      *
      * @param root
-     *                           a TreeNode object that is the root of the tree
+     *        a TreeNode object that is the root of the tree
      * @param asksAllowsChildren
-     *                           a boolean, false if any node can have children,
-     *                           true if each
-     *                           node is asked to see if it can have children
+     *        a boolean, false if any node can have children,
+     *        true if each
+     *        node is asked to see if it can have children
      * @see #asksAllowsChildren
      */
     public DefaultTreeModel(TreeNode root, boolean asksAllowsChildren) {
@@ -127,9 +127,9 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * <code>null</code>, returns -1.
      * 
      * @param parent
-     *               a note in the tree, obtained from this data source
+     *        a note in the tree, obtained from this data source
      * @param child
-     *               the node we are interested in
+     *        the node we are interested in
      * @return the index of the child in the parent, or -1 if either the parent
      *         or the child is <code>null</code>
      */
@@ -147,7 +147,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * &lt; getChildCount(<i>parent</i>)).
      *
      * @param parent
-     *               a node in the tree, obtained from this data source
+     *        a node in the tree, obtained from this data source
      * @return the child of <I>parent</I> at index <I>index</I>
      */
     public Object getChild(Object parent, int index) {
@@ -160,7 +160,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * obtained from this data source.
      *
      * @param parent
-     *               a node in the tree, obtained from this data source
+     *        a node in the tree, obtained from this data source
      * @return the number of children of the node <I>parent</I>
      */
     public int getChildCount(Object parent) {
@@ -172,9 +172,8 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * performed depends on the <code>askAllowsChildren</code> setting.
      *
      * @param node
-     *             the node to check
+     *        the node to check
      * @return true if the node is a leaf node
-     *
      * @see #asksAllowsChildren
      * @see TreeModel#isLeaf
      */
@@ -212,8 +211,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * This is the preferred way to add children as it will create the
      * appropriate event.
      */
-    public void insertNodeInto(MutableTreeNode newChild, MutableTreeNode parent,
-            int index) {
+    public void insertNodeInto(MutableTreeNode newChild, MutableTreeNode parent, int index) {
         parent.insert(newChild, index);
 
         int[] newIndexs = new int[1];
@@ -270,7 +268,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * model has changed below the given node.
      *
      * @param node
-     *             the node below which the model has changed
+     *        the node below which the model has changed
      */
     public void reload(TreeNode node) {
         if (node != null) {
@@ -284,15 +282,13 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * in ascending order.
      */
     public void nodesWereInserted(TreeNode node, int[] childIndices) {
-        if (listenerList != null && node != null && childIndices != null
-                && childIndices.length > 0) {
+        if (listenerList != null && node != null && childIndices != null && childIndices.length > 0) {
             int cCount = childIndices.length;
             Object[] newChildren = new Object[cCount];
 
             for (int counter = 0; counter < cCount; counter++)
                 newChildren[counter] = node.getChildAt(childIndices[counter]);
-            fireTreeNodesInserted(this, getPathToRoot(node), childIndices,
-                    newChildren);
+            fireTreeNodesInserted(this, getPathToRoot(node), childIndices, newChildren);
         }
     }
 
@@ -302,11 +298,9 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * sorted in ascending order. And removedChildren should be the array of the
      * children objects that were removed.
      */
-    public void nodesWereRemoved(TreeNode node, int[] childIndices,
-            Object[] removedChildren) {
+    public void nodesWereRemoved(TreeNode node, int[] childIndices, Object[] removedChildren) {
         if (node != null && childIndices != null) {
-            fireTreeNodesRemoved(this, getPathToRoot(node), childIndices,
-                    removedChildren);
+            fireTreeNodesRemoved(this, getPathToRoot(node), childIndices, removedChildren);
         }
     }
 
@@ -323,10 +317,8 @@ public class DefaultTreeModel implements Serializable, TreeModel {
                     Object[] cChildren = new Object[cCount];
 
                     for (int counter = 0; counter < cCount; counter++)
-                        cChildren[counter] = node.getChildAt(
-                                childIndices[counter]);
-                    fireTreeNodesChanged(this, getPathToRoot(node),
-                            childIndices, cChildren);
+                        cChildren[counter] = node.getChildAt(childIndices[counter]);
+                    fireTreeNodesChanged(this, getPathToRoot(node), childIndices, cChildren);
                 }
             } else if (node == getRoot()) {
                 fireTreeNodesChanged(this, getPathToRoot(node), null, null);
@@ -350,7 +342,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * the returned array gives the node's depth in the tree.
      *
      * @param aNode
-     *              the TreeNode to get the path for
+     *        the TreeNode to get the path for
      */
     public TreeNode[] getPathToRoot(TreeNode aNode) {
         return getPathToRoot(aNode, 0);
@@ -362,10 +354,10 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * the returned array gives the node's depth in the tree.
      *
      * @param aNode
-     *              the TreeNode to get the path for
+     *        the TreeNode to get the path for
      * @param depth
-     *              an int giving the number of steps already taken towards the
-     *              root (on recursive calls), used to size the returned array
+     *        an int giving the number of steps already taken towards the
+     *        root (on recursive calls), used to size the returned array
      * @return an array of TreeNodes giving the path from the root to the
      *         specified node
      */
@@ -404,7 +396,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      *
      * @see #removeTreeModelListener
      * @param l
-     *          the listener to add
+     *        the listener to add
      */
     public void addTreeModelListener(TreeModelListener l) {
         listenerList.add(TreeModelListener.class, l);
@@ -415,7 +407,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      *
      * @see #addTreeModelListener
      * @param l
-     *          the listener to remove
+     *        the listener to remove
      */
     public void removeTreeModelListener(TreeModelListener l) {
         listenerList.remove(TreeModelListener.class, l);
@@ -427,10 +419,8 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      *
      * @return all of this model's <code>TreeModelListener</code>s or an empty
      *         array if no tree model listeners are currently registered
-     *
      * @see #addTreeModelListener
      * @see #removeTreeModelListener
-     *
      * @since 1.4
      */
     public TreeModelListener[] getTreeModelListeners() {
@@ -443,18 +433,17 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * parameters passed into the fire method.
      *
      * @param source
-     *                     the source of the {@code TreeModelEvent}; typically
-     *                     {@code this}
+     *        the source of the {@code TreeModelEvent}; typically
+     *        {@code this}
      * @param path
-     *                     the path to the parent of the nodes that changed; use
-     *                     {@code null} to identify the root has changed
+     *        the path to the parent of the nodes that changed; use
+     *        {@code null} to identify the root has changed
      * @param childIndices
-     *                     the indices of the changed elements
+     *        the indices of the changed elements
      * @param children
-     *                     the changed elements
+     *        the changed elements
      */
-    protected void fireTreeNodesChanged(Object source, Object[] path,
-            int[] childIndices, Object[] children) {
+    protected void fireTreeNodesChanged(Object source, Object[] path, int[] childIndices, Object[] children) {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
@@ -464,8 +453,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
                 if (e == null)
-                    e = new TreeModelEvent(source, path, childIndices,
-                            children);
+                    e = new TreeModelEvent(source, path, childIndices, children);
                 ((TreeModelListener) listeners[i + 1]).treeNodesChanged(e);
             }
         }
@@ -477,17 +465,17 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * parameters passed into the fire method.
      *
      * @param source
-     *                     the source of the {@code TreeModelEvent}; typically
-     *                     {@code this}
+     *        the source of the {@code TreeModelEvent}; typically
+     *        {@code this}
      * @param path
-     *                     the path to the parent the nodes were added to
+     *        the path to the parent the nodes were added to
      * @param childIndices
-     *                     the indices of the new elements
+     *        the indices of the new elements
      * @param children
-     *                     the new elements
+     *        the new elements
      */
-    protected void fireTreeNodesInserted(Object source, Object[] path,
-            int[] childIndices, Object[] children) {
+    protected void fireTreeNodesInserted(Object source, Object[] path, int[] childIndices,
+            Object[] children) {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
@@ -497,8 +485,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
                 if (e == null)
-                    e = new TreeModelEvent(source, path, childIndices,
-                            children);
+                    e = new TreeModelEvent(source, path, childIndices, children);
                 ((TreeModelListener) listeners[i + 1]).treeNodesInserted(e);
             }
         }
@@ -510,17 +497,16 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * parameters passed into the fire method.
      *
      * @param source
-     *                     the source of the {@code TreeModelEvent}; typically
-     *                     {@code this}
+     *        the source of the {@code TreeModelEvent}; typically
+     *        {@code this}
      * @param path
-     *                     the path to the parent the nodes were removed from
+     *        the path to the parent the nodes were removed from
      * @param childIndices
-     *                     the indices of the removed elements
+     *        the indices of the removed elements
      * @param children
-     *                     the removed elements
+     *        the removed elements
      */
-    protected void fireTreeNodesRemoved(Object source, Object[] path,
-            int[] childIndices, Object[] children) {
+    protected void fireTreeNodesRemoved(Object source, Object[] path, int[] childIndices, Object[] children) {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
@@ -530,8 +516,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
                 if (e == null)
-                    e = new TreeModelEvent(source, path, childIndices,
-                            children);
+                    e = new TreeModelEvent(source, path, childIndices, children);
                 ((TreeModelListener) listeners[i + 1]).treeNodesRemoved(e);
             }
         }
@@ -543,19 +528,19 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * parameters passed into the fire method.
      *
      * @param source
-     *                     the source of the {@code TreeModelEvent}; typically
-     *                     {@code this}
+     *        the source of the {@code TreeModelEvent}; typically
+     *        {@code this}
      * @param path
-     *                     the path to the parent of the structure that has
-     *                     changed; use
-     *                     {@code null} to identify the root has changed
+     *        the path to the parent of the structure that has
+     *        changed; use
+     *        {@code null} to identify the root has changed
      * @param childIndices
-     *                     the indices of the affected elements
+     *        the indices of the affected elements
      * @param children
-     *                     the affected elements
+     *        the affected elements
      */
-    protected void fireTreeStructureChanged(Object source, Object[] path,
-            int[] childIndices, Object[] children) {
+    protected void fireTreeStructureChanged(Object source, Object[] path, int[] childIndices,
+            Object[] children) {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         TreeModelEvent e = null;
@@ -565,8 +550,7 @@ public class DefaultTreeModel implements Serializable, TreeModel {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
                 if (e == null)
-                    e = new TreeModelEvent(source, path, childIndices,
-                            children);
+                    e = new TreeModelEvent(source, path, childIndices, children);
                 ((TreeModelListener) listeners[i + 1]).treeStructureChanged(e);
             }
         }
@@ -578,12 +562,12 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * parameters passed into the fire method.
      *
      * @param source
-     *               the source of the {@code TreeModelEvent}; typically
-     *               {@code this}
+     *        the source of the {@code TreeModelEvent}; typically
+     *        {@code this}
      * @param path
-     *               the path to the parent of the structure that has changed;
-     *               use
-     *               {@code null} to identify the root has changed
+     *        the path to the parent of the structure that has changed;
+     *        use
+     *        {@code null} to identify the root has changed
      */
     private void fireTreeStructureChanged(Object source, TreePath path) {
         // Guaranteed to return a non-null array
@@ -606,37 +590,32 @@ public class DefaultTreeModel implements Serializable, TreeModel {
      * <code><em>Foo</em>Listener</code>s upon this model. <code><em>Foo</em>
      * Listener</code>s are registered using the <code>add<em>Foo</em>
      * Listener</code> method.
-     *
      * <p>
-     *
      * You can specify the <code>listenerType</code> argument with a class
      * literal, such as <code><em>Foo</em>Listener.class</code>. For example,
      * you can query a <code>DefaultTreeModel</code> <code>m</code> for its tree
      * model listeners with the following code:
      *
      * <pre>
-     * TreeModelListener[] tmls = (TreeModelListener[]) (m.getListeners(
-     *         TreeModelListener.class));
+     * TreeModelListener[] tmls = (TreeModelListener[]) (m.getListeners(TreeModelListener.class));
      * </pre>
      *
      * If no such listeners exist, this method returns an empty array.
      *
      * @param listenerType
-     *                     the type of listeners requested; this parameter
-     *                     should specify
-     *                     an interface that descends from
-     *                     <code>java.util.EventListener</code>
+     *        the type of listeners requested; this parameter
+     *        should specify
+     *        an interface that descends from
+     *        <code>java.util.EventListener</code>
      * @return an array of all objects registered as <code><em>Foo</em>
      *         Listener</code>s on this component, or an empty array if no such
      *         listeners have been added
      * @exception ClassCastException
-     *                               if <code>listenerType</code> doesn't
-     *                               specify a class or
-     *                               interface that implements
-     *                               <code>java.util.EventListener</code>
-     *
+     *            if <code>listenerType</code> doesn't
+     *            specify a class or
+     *            interface that implements
+     *            <code>java.util.EventListener</code>
      * @see #getTreeModelListeners
-     *
      * @since 1.3
      */
     public <T extends EventListener> T[] getListeners(Class<T> listenerType) {
@@ -656,16 +635,14 @@ public class DefaultTreeModel implements Serializable, TreeModel {
         s.writeObject(values);
     }
 
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
 
         Vector values = (Vector) s.readObject();
         int indexCounter = 0;
         int maxCounter = values.size();
 
-        if (indexCounter < maxCounter && values.elementAt(indexCounter).equals(
-                "root")) {
+        if (indexCounter < maxCounter && values.elementAt(indexCounter).equals("root")) {
             root = (TreeNode) values.elementAt(++indexCounter);
             indexCounter++;
         }

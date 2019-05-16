@@ -33,7 +33,7 @@ public interface Caret {
      * being navigated by the implementation of this interface.
      *
      * @param c
-     *          the JTextComponent
+     *        the JTextComponent
      */
     public void install(JTextComponent c);
 
@@ -43,7 +43,7 @@ public interface Caret {
      * attached.
      *
      * @param c
-     *          the JTextComponent
+     *        the JTextComponent
      */
     public void deinstall(JTextComponent c);
 
@@ -51,7 +51,7 @@ public interface Caret {
      * Renders the caret. This method is called by UI classes.
      *
      * @param g
-     *          the graphics context
+     *        the graphics context
      */
     public void paint(Graphics g);
 
@@ -59,7 +59,7 @@ public interface Caret {
      * Adds a listener to track whenever the caret position has been changed.
      *
      * @param l
-     *          the change listener
+     *        the change listener
      */
     public void addChangeListener(ChangeListener l);
 
@@ -67,7 +67,7 @@ public interface Caret {
      * Removes a listener that was tracking caret position changes.
      *
      * @param l
-     *          the change listener
+     *        the change listener
      */
     public void removeChangeListener(ChangeListener l);
 
@@ -82,8 +82,8 @@ public interface Caret {
      * Sets the visibility of the caret.
      *
      * @param v
-     *          true if the caret should be shown, and false if the caret
-     *          should be hidden
+     *        true if the caret should be shown, and false if the caret
+     *        should be hidden
      */
     public void setVisible(boolean v);
 
@@ -98,8 +98,8 @@ public interface Caret {
      * Sets the visibility of the selection
      *
      * @param v
-     *          true if the caret should be shown, and false if the caret
-     *          should be hidden
+     *        true if the caret should be shown, and false if the caret
+     *        should be hidden
      */
     public void setSelectionVisible(boolean v);
 
@@ -112,8 +112,8 @@ public interface Caret {
      * indicate the desired navigation location for horizontal movement.
      *
      * @param p
-     *          the Point to use for the saved position. This can be null to
-     *          indicate there is no visual location.
+     *        the Point to use for the saved position. This can be null to
+     *        indicate there is no visual location.
      */
     public void setMagicCaretPosition(Point p);
 
@@ -130,8 +130,8 @@ public interface Caret {
      * caret blinks, commonly used as one way to attract attention to the caret.
      *
      * @param rate
-     *             the delay in milliseconds &gt;=0. If this is zero the caret
-     *             will not blink.
+     *        the delay in milliseconds &gt;=0. If this is zero the caret
+     *        will not blink.
      */
     public void setBlinkRate(int rate);
 
@@ -167,7 +167,7 @@ public interface Caret {
      * caret is placed at the beginning or at the end, respectively.
      *
      * @param dot
-     *            the new position to set the caret to
+     *        the new position to set the caret to
      */
     public void setDot(int dot);
 
@@ -176,7 +176,7 @@ public interface Caret {
      * mark. This is useful for making selections.
      *
      * @param dot
-     *            the new position to move the caret to &gt;=0
+     *        the new position to move the caret to &gt;=0
      */
     public void moveDot(int dot);
 

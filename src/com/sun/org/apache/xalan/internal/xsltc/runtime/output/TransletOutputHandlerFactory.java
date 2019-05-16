@@ -76,8 +76,7 @@ public class TransletOutputHandlerFactory {
         return new TransletOutputHandlerFactory(true);
     }
 
-    static public TransletOutputHandlerFactory newInstance(
-            boolean useServicesMechanism) {
+    static public TransletOutputHandlerFactory newInstance(boolean useServicesMechanism) {
         return new TransletOutputHandlerFactory(useServicesMechanism);
     }
 
@@ -120,8 +119,7 @@ public class TransletOutputHandlerFactory {
     }
 
     public Node getNode() {
-        return (_handler instanceof SAX2DOM) ? ((SAX2DOM) _handler).getDOM()
-                : null;
+        return (_handler instanceof SAX2DOM) ? ((SAX2DOM) _handler).getDOM() : null;
     }
 
     public void setNextSibling(Node nextSibling) {
@@ -129,8 +127,7 @@ public class TransletOutputHandlerFactory {
     }
 
     public XMLEventWriter getXMLEventWriter() {
-        return (_handler instanceof SAX2StAXEventWriter)
-                ? ((SAX2StAXEventWriter) _handler).getEventWriter()
+        return (_handler instanceof SAX2StAXEventWriter) ? ((SAX2StAXEventWriter) _handler).getEventWriter()
                 : null;
     }
 
@@ -139,9 +136,8 @@ public class TransletOutputHandlerFactory {
     }
 
     public XMLStreamWriter getXMLStreamWriter() {
-        return (_handler instanceof SAX2StAXStreamWriter)
-                ? ((SAX2StAXStreamWriter) _handler).getStreamWriter()
-                : null;
+        return (_handler instanceof SAX2StAXStreamWriter) ? ((SAX2StAXStreamWriter) _handler)
+                .getStreamWriter() : null;
     }
 
     public void setXMLStreamWriter(XMLStreamWriter streamWriter) {
@@ -152,8 +148,7 @@ public class TransletOutputHandlerFactory {
         _indentNumber = value;
     }
 
-    public SerializationHandler getSerializationHandler() throws IOException,
-            ParserConfigurationException {
+    public SerializationHandler getSerializationHandler() throws IOException, ParserConfigurationException {
         SerializationHandler result = null;
         switch (_outputType) {
             case STREAM:
@@ -188,8 +183,7 @@ public class TransletOutputHandlerFactory {
                 return result;
 
             case DOM:
-                _handler = (_node != null) ? new SAX2DOM(_node, _nextSibling,
-                        _useServicesMechanism)
+                _handler = (_node != null) ? new SAX2DOM(_node, _nextSibling, _useServicesMechanism)
                         : new SAX2DOM(_useServicesMechanism);
                 _lexHandler = (LexicalHandler) _handler;
                 // falls through
@@ -211,8 +205,7 @@ public class TransletOutputHandlerFactory {
                     if (_lexHandler == null) {
                         result = new ToXMLSAXHandler(_handler, _encoding);
                     } else {
-                        result = new ToXMLSAXHandler(_handler, _lexHandler,
-                                _encoding);
+                        result = new ToXMLSAXHandler(_handler, _lexHandler, _encoding);
                     }
 
                 } else if (_method.equalsIgnoreCase("html")) {
@@ -220,8 +213,7 @@ public class TransletOutputHandlerFactory {
                     if (_lexHandler == null) {
                         result = new ToHTMLSAXHandler(_handler, _encoding);
                     } else {
-                        result = new ToHTMLSAXHandler(_handler, _lexHandler,
-                                _encoding);
+                        result = new ToHTMLSAXHandler(_handler, _lexHandler, _encoding);
                     }
 
                 } else if (_method.equalsIgnoreCase("text")) {
@@ -229,8 +221,7 @@ public class TransletOutputHandlerFactory {
                     if (_lexHandler == null) {
                         result = new ToTextSAXHandler(_handler, _encoding);
                     } else {
-                        result = new ToTextSAXHandler(_handler, _lexHandler,
-                                _encoding);
+                        result = new ToTextSAXHandler(_handler, _lexHandler, _encoding);
                     }
 
                 }

@@ -27,7 +27,7 @@ public class JMException extends java.lang.Exception {
      * Constructor that allows a specific error message to be specified.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public JMException(String msg) {
         super(msg);

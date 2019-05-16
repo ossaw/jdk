@@ -11,7 +11,6 @@ import java.lang.*;
  * <b>RTFParser</b> is a subclass of <b>AbstractFilter</b> which understands
  * basic RTF syntax and passes a stream of control words, text, and begin/end
  * group indications to its subclass.
- *
  * Normally programmers will only use <b>RTFFilter</b>, a subclass of this class
  * that knows what to do with the tokens this class parses.
  *
@@ -60,9 +59,9 @@ abstract class RTFParser extends AbstractFilter {
      * Implemented by subclasses to interpret a keyword with a parameter.
      * 
      * @param keyword
-     *                  The keyword, as with <code>handleKeyword(String)</code>.
+     *        The keyword, as with <code>handleKeyword(String)</code>.
      * @param parameter
-     *                  The parameter following the keyword.
+     *        The parameter following the keyword.
      */
     public abstract boolean handleKeyword(String keyword, int parameter);
 
@@ -158,8 +157,7 @@ abstract class RTFParser extends AbstractFilter {
                         currentCharacters = new StringBuffer();
                     }
                     if (level == 0)
-                        throw new IOException(
-                                "Too many close-groups in RTF text");
+                        throw new IOException("Too many close-groups in RTF text");
                     endgroup();
                     level--;
                 } else if (ch == '\\') {
@@ -181,8 +179,7 @@ abstract class RTFParser extends AbstractFilter {
                     char newstring[] = new char[1];
                     newstring[0] = ch;
                     if (!handleKeyword(new String(newstring))) {
-                        warning("Unknown keyword: " + newstring + " ("
-                                + (byte) ch + ")");
+                        warning("Unknown keyword: " + newstring + " (" + (byte) ch + ")");
                     }
                     state = S_text;
                     pendingKeyword = null;
@@ -225,28 +222,23 @@ abstract class RTFParser extends AbstractFilter {
                                                          * magic layer-breaking
                                                          * kwd
                                                          */
-                        long parameter = Long.parseLong(currentCharacters
-                                .toString());
+                        long parameter = Long.parseLong(currentCharacters.toString());
                         pendingKeyword = null;
                         state = S_inblob;
                         binaryBytesLeft = parameter;
                         if (binaryBytesLeft > Integer.MAX_VALUE)
-                            binaryBuf = new ByteArrayOutputStream(
-                                    Integer.MAX_VALUE);
+                            binaryBuf = new ByteArrayOutputStream(Integer.MAX_VALUE);
                         else
-                            binaryBuf = new ByteArrayOutputStream(
-                                    (int) binaryBytesLeft);
+                            binaryBuf = new ByteArrayOutputStream((int) binaryBytesLeft);
                         savedSpecials = specialsTable;
                         specialsTable = allSpecialsTable;
                         break;
                     }
 
-                    int parameter = Integer.parseInt(currentCharacters
-                            .toString());
+                    int parameter = Integer.parseInt(currentCharacters.toString());
                     ok = handleKeyword(pendingKeyword, parameter);
                     if (!ok)
-                        warning("Unknown keyword: " + pendingKeyword
-                                + " (param " + currentCharacters + ")");
+                        warning("Unknown keyword: " + pendingKeyword + " (param " + currentCharacters + ")");
                     pendingKeyword = null;
                     currentCharacters = new StringBuffer();
                     state = S_text;
@@ -267,8 +259,7 @@ abstract class RTFParser extends AbstractFilter {
             case S_aftertickc:
                 state = S_text;
                 if (Character.digit(ch, 16) != -1) {
-                    pendingCharacter = pendingCharacter * 16 + Character.digit(
-                            ch, 16);
+                    pendingCharacter = pendingCharacter * 16 + Character.digit(ch, 16);
                     ch = translationTable[pendingCharacter];
                     if (ch != 0)
                         handleText(ch);

@@ -49,7 +49,7 @@ public interface Tie extends org.omg.CORBA.portable.InvokeHandler {
      * Sets the ORB for this tie.
      * 
      * @param orb
-     *            the ORB.
+     *        the ORB.
      */
     void orb(ORB orb);
 
@@ -57,7 +57,7 @@ public interface Tie extends org.omg.CORBA.portable.InvokeHandler {
      * Called by {@link Util#registerTarget} to set the target for this tie.
      * 
      * @param target
-     *               the object to use as the target for this tie.
+     *        the object to use as the target for this tie.
      */
     void setTarget(java.rmi.Remote target);
 

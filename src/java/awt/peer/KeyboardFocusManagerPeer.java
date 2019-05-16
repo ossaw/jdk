@@ -17,8 +17,7 @@ public interface KeyboardFocusManagerPeer {
      * Sets the window that should become the focused window.
      *
      * @param win
-     *            the window that should become the focused window
-     *
+     *        the window that should become the focused window
      */
     void setCurrentFocusedWindow(Window win);
 
@@ -26,7 +25,6 @@ public interface KeyboardFocusManagerPeer {
      * Returns the currently focused window.
      *
      * @return the currently focused window
-     *
      * @see KeyboardFocusManager#getNativeFocusedWindow()
      */
     Window getCurrentFocusedWindow();
@@ -35,8 +33,7 @@ public interface KeyboardFocusManagerPeer {
      * Sets the component that should become the focus owner.
      *
      * @param comp
-     *             the component to become the focus owner
-     *
+     *        the component to become the focus owner
      * @see KeyboardFocusManager#setNativeFocusOwner(Component)
      */
     void setCurrentFocusOwner(Component comp);
@@ -45,7 +42,6 @@ public interface KeyboardFocusManagerPeer {
      * Returns the component that currently owns the input focus.
      *
      * @return the component that currently owns the input focus
-     *
      * @see KeyboardFocusManager#getNativeFocusOwner()
      */
     Component getCurrentFocusOwner();
@@ -54,7 +50,6 @@ public interface KeyboardFocusManagerPeer {
      * Clears the current global focus owner.
      *
      * @param activeWindow
-     *
      * @see KeyboardFocusManager#clearGlobalFocusOwner()
      */
     void clearGlobalFocusOwner(Window activeWindow);

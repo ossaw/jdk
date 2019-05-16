@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node to declare a new instance of a class.
- *
  * For example:
  * 
  * <pre>
@@ -24,7 +23,6 @@ import java.util.List;
  * </pre>
  *
  * @jls section 15.9
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

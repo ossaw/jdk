@@ -19,8 +19,7 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
  * @Author Hemanth
  */
 class Utility {
-    private static NamingSystemException wrapper = NamingSystemException.get(
-            CORBALogDomains.NAMING);
+    private static NamingSystemException wrapper = NamingSystemException.get(CORBALogDomains.NAMING);
 
     /**
      * cleanEscapes removes URL escapes as per IETF 2386 RFP.
@@ -71,8 +70,8 @@ class Utility {
      * If GIOP Version is not correct, This method throws a BAD_PARAM Exception.
      **/
     static void validateGIOPVersion(IIOPEndpointInfo endpointInfo) {
-        if ((endpointInfo.getMajor() > NamingConstants.MAJORNUMBER_SUPPORTED)
-                || (endpointInfo.getMinor() > NamingConstants.MINORNUMBERMAX)) {
+        if ((endpointInfo.getMajor() > NamingConstants.MAJORNUMBER_SUPPORTED) || (endpointInfo
+                .getMinor() > NamingConstants.MINORNUMBERMAX)) {
             throw wrapper.insBadAddress();
         }
     }

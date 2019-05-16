@@ -54,7 +54,7 @@ public class StringVector implements java.io.Serializable {
      * Construct a StringVector, using the given block size.
      *
      * @param blocksize
-     *                  Size of the blocks to allocate
+     *        Size of the blocks to allocate
      */
     public StringVector(int blocksize) {
 
@@ -85,7 +85,7 @@ public class StringVector implements java.io.Serializable {
      * Append a string onto the vector.
      *
      * @param value
-     *              Sting to add to the vector
+     *        Sting to add to the vector
      */
     public final void addElement(String value) {
 
@@ -108,8 +108,7 @@ public class StringVector implements java.io.Serializable {
      * Get the nth element.
      *
      * @param i
-     *          Index of string to find
-     *
+     *        Index of string to find
      * @return String at given index
      */
     public final String elementAt(int i) {
@@ -120,8 +119,7 @@ public class StringVector implements java.io.Serializable {
      * Tell if the table contains the given string.
      *
      * @param s
-     *          String to look for
-     *
+     *        String to look for
      * @return True if the string is in this table
      */
     public final boolean contains(String s) {
@@ -141,8 +139,7 @@ public class StringVector implements java.io.Serializable {
      * Tell if the table contains the given string. Ignore case.
      *
      * @param s
-     *          String to find
-     *
+     *        String to find
      * @return True if the String is in this vector
      */
     public final boolean containsIgnoreCase(String s) {
@@ -162,7 +159,7 @@ public class StringVector implements java.io.Serializable {
      * Tell if the table contains the given string.
      *
      * @param s
-     *          String to push into the vector
+     *        String to push into the vector
      */
     public final void push(String s) {
 

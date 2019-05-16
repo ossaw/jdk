@@ -35,7 +35,7 @@ public final class IMP_LIMIT extends SystemException {
      * message, a minor code of 0, and a completion state of COMPLETED_NO.
      *
      * @param s
-     *          the String containing a detail message
+     *        the String containing a detail message
      */
     public IMP_LIMIT(String s) {
         this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -46,9 +46,9 @@ public final class IMP_LIMIT extends SystemException {
      * code and completion status.
      * 
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  the completion status
+     *        the completion status
      */
     public IMP_LIMIT(int minor, CompletionStatus completed) {
         this("", minor, completed);
@@ -60,11 +60,11 @@ public final class IMP_LIMIT extends SystemException {
      * that describes this particular exception.
      * 
      * @param s
-     *                  the String containing a detail message
+     *        the String containing a detail message
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  the completion status
+     *        the completion status
      */
     public IMP_LIMIT(String s, int minor, CompletionStatus completed) {
         super(s, minor, completed);

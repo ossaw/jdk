@@ -39,8 +39,8 @@ import com.sun.corba.se.spi.orb.ORB;
  * The best way to define the state is to use internal data structures that can
  * be written to and read from CORBA streams.
  */
-public class ObjectReferenceTemplateImpl extends ObjectReferenceProducerBase
-        implements ObjectReferenceTemplate, StreamableValue {
+public class ObjectReferenceTemplateImpl extends ObjectReferenceProducerBase implements
+        ObjectReferenceTemplate, StreamableValue {
     transient private IORTemplate iorTemplate;
 
     public ObjectReferenceTemplateImpl(InputStream is) {
@@ -110,8 +110,7 @@ public class ObjectReferenceTemplateImpl extends ObjectReferenceProducerBase
     }
 
     public String[] adapter_name() {
-        ObjectAdapterId poaid = iorTemplate.getObjectKeyTemplate()
-                .getObjectAdapterId();
+        ObjectAdapterId poaid = iorTemplate.getObjectKeyTemplate().getObjectAdapterId();
 
         return poaid.getAdapterName();
     }

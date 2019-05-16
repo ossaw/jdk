@@ -30,9 +30,7 @@ import java.util.Vector;
  * @see <a href=
  *      "../../../../../xerces2/com/sun/org/apache/xerces/internal/util/SymbolTable.html">
  *      com.sun.org.apache.xerces.internal.util.SymbolTable</a>
- *
  * @author Andy Clark, IBM
- *
  */
 public interface NamespaceContext {
 
@@ -44,16 +42,14 @@ public interface NamespaceContext {
      * The XML Namespace ("http://www.w3.org/XML/1998/namespace"). This is the
      * Namespace URI that is automatically mapped to the "xml" prefix.
      */
-    public final static String XML_URI = "http://www.w3.org/XML/1998/namespace"
-            .intern();
+    public final static String XML_URI = "http://www.w3.org/XML/1998/namespace".intern();
 
     /**
      * XML Information Set REC all namespace attributes (including those named
      * xmlns, whose [prefix] property has no value) have a namespace URI of
      * http://www.w3.org/2000/xmlns/
      */
-    public final static String XMLNS_URI = "http://www.w3.org/2000/xmlns/"
-            .intern();
+    public final static String XMLNS_URI = "http://www.w3.org/2000/xmlns/".intern();
 
     //
     // NamespaceContext methods
@@ -100,12 +96,10 @@ public interface NamespaceContext {
      * popped another Namespace.
      *
      * @param prefix
-     *               The prefix to declare, or null for the empty string.
+     *        The prefix to declare, or null for the empty string.
      * @param uri
-     *               The Namespace URI to associate with the prefix.
-     *
+     *        The Namespace URI to associate with the prefix.
      * @return true if the prefix was legal, false otherwise
-     *
      * @see #getURI
      * @see #getDeclaredPrefixAt
      */
@@ -119,8 +113,7 @@ public interface NamespaceContext {
      * the empty string ("") for the default Namespace.
      *
      * @param prefix
-     *               The prefix to look up.
-     *
+     *        The prefix to look up.
      * @return The associated Namespace URI, or null if the prefix is undeclared
      *         in this context.
      */
@@ -135,11 +128,9 @@ public interface NamespaceContext {
      * continue lookup in the parent context(s).
      *
      * @param uri
-     *            The namespace URI to look up.
-     *
+     *        The namespace URI to look up.
      * @return One of the associated prefixes, or null if the uri does not map
      *         to any prefix.
-     *
      * @see #getPrefix
      */
     public String getPrefix(String uri);
@@ -166,12 +157,10 @@ public interface NamespaceContext {
 
     /**
      * Reset this Namespace support object for reuse.
-     *
      * <p>
      * It is necessary to invoke this method before reusing the Namespace
      * support object for a new session.
      * </p>
-     *
      * <p>
      * Note that implementations of this method need to ensure that the
      * declaration of the prefixes "xmlns" and "xml" are available.

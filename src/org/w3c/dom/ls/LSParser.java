@@ -325,30 +325,30 @@ public interface LSParser {
      * <code>LSInput</code>.
      * 
      * @param input
-     *              The <code>LSInput</code> from which the source of the
-     *              document
-     *              is to be read.
+     *        The <code>LSInput</code> from which the source of the
+     *        document
+     *        is to be read.
      * @return If the <code>LSParser</code> is a synchronous
      *         <code>LSParser</code>, the newly created and populated
      *         <code>Document</code> is returned. If the <code>LSParser</code>
      *         is asynchronous, <code>null</code> is returned since the document
      *         object may not yet be constructed when this method returns.
      * @exception DOMException
-     *                         INVALID_STATE_ERR: Raised if the
-     *                         <code>LSParser</code>'s
-     *                         <code>LSParser.busy</code> attribute is
-     *                         <code>true</code>.
+     *            INVALID_STATE_ERR: Raised if the
+     *            <code>LSParser</code>'s
+     *            <code>LSParser.busy</code> attribute is
+     *            <code>true</code>.
      * @exception LSException
-     *                         PARSE_ERR: Raised if the <code>LSParser</code>
-     *                         was unable
-     *                         to load the XML document. DOM applications should
-     *                         attach a
-     *                         <code>DOMErrorHandler</code> using the parameter
-     *                         "<a href=
-     *                         'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
-     *                         error-handler</a>" if they wish to get details on
-     *                         the
-     *                         error.
+     *            PARSE_ERR: Raised if the <code>LSParser</code>
+     *            was unable
+     *            to load the XML document. DOM applications should
+     *            attach a
+     *            <code>DOMErrorHandler</code> using the parameter
+     *            "<a href=
+     *            'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
+     *            error-handler</a>" if they wish to get details on
+     *            the
+     *            error.
      */
     public Document parse(LSInput input) throws DOMException, LSException;
 
@@ -361,7 +361,7 @@ public interface LSParser {
      * specification may define the behavior.
      * 
      * @param uri
-     *            The location of the XML document to be read.
+     *        The location of the XML document to be read.
      * @return If the <code>LSParser</code> is a synchronous
      *         <code>LSParser</code>, the newly created and populated
      *         <code>Document</code> is returned, or <code>null</code> if an
@@ -369,20 +369,20 @@ public interface LSParser {
      *         <code>null</code> is returned since the document object may not
      *         yet be constructed when this method returns.
      * @exception DOMException
-     *                         INVALID_STATE_ERR: Raised if the
-     *                         <code>LSParser.busy</code> attribute is
-     *                         <code>true</code>.
+     *            INVALID_STATE_ERR: Raised if the
+     *            <code>LSParser.busy</code> attribute is
+     *            <code>true</code>.
      * @exception LSException
-     *                         PARSE_ERR: Raised if the <code>LSParser</code>
-     *                         was unable
-     *                         to load the XML document. DOM applications should
-     *                         attach a
-     *                         <code>DOMErrorHandler</code> using the parameter
-     *                         "<a href=
-     *                         'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
-     *                         error-handler</a>" if they wish to get details on
-     *                         the
-     *                         error.
+     *            PARSE_ERR: Raised if the <code>LSParser</code>
+     *            was unable
+     *            to load the XML document. DOM applications should
+     *            attach a
+     *            <code>DOMErrorHandler</code> using the parameter
+     *            "<a href=
+     *            'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
+     *            error-handler</a>" if they wish to get details on
+     *            the
+     *            error.
      */
     public Document parseURI(String uri) throws DOMException, LSException;
 
@@ -460,85 +460,85 @@ public interface LSParser {
      * <code>LSParserFilter</code> just as if a whole document was parsed.
      * 
      * @param input
-     *                   The <code>LSInput</code> from which the source document
-     *                   is to
-     *                   be read. The source document must be an XML fragment,
-     *                   i.e.
-     *                   anything except a complete XML document (except in the
-     *                   case
-     *                   where the context node of type
-     *                   <code>DOCUMENT_NODE</code>, and
-     *                   the action is <code>ACTION_REPLACE_CHILDREN</code>), a
-     *                   DOCTYPE
-     *                   (internal subset), entity declaration(s), notation
-     *                   declaration(s), or XML or text declaration(s).
+     *        The <code>LSInput</code> from which the source document
+     *        is to
+     *        be read. The source document must be an XML fragment,
+     *        i.e.
+     *        anything except a complete XML document (except in the
+     *        case
+     *        where the context node of type
+     *        <code>DOCUMENT_NODE</code>, and
+     *        the action is <code>ACTION_REPLACE_CHILDREN</code>), a
+     *        DOCTYPE
+     *        (internal subset), entity declaration(s), notation
+     *        declaration(s), or XML or text declaration(s).
      * @param contextArg
-     *                   The node that is used as the context for the data that
-     *                   is
-     *                   being parsed. This node must be a <code>Document</code>
-     *                   node,
-     *                   a <code>DocumentFragment</code> node, or a node of a
-     *                   type that
-     *                   is allowed as a child of an <code>Element</code> node,
-     *                   e.g. it
-     *                   cannot be an <code>Attribute</code> node.
+     *        The node that is used as the context for the data that
+     *        is
+     *        being parsed. This node must be a <code>Document</code>
+     *        node,
+     *        a <code>DocumentFragment</code> node, or a node of a
+     *        type that
+     *        is allowed as a child of an <code>Element</code> node,
+     *        e.g. it
+     *        cannot be an <code>Attribute</code> node.
      * @param action
-     *                   This parameter describes which action should be taken
-     *                   between
-     *                   the new set of nodes being inserted and the existing
-     *                   children
-     *                   of the context node. The set of possible actions is
-     *                   defined in
-     *                   <code>ACTION_TYPES</code> above.
+     *        This parameter describes which action should be taken
+     *        between
+     *        the new set of nodes being inserted and the existing
+     *        children
+     *        of the context node. The set of possible actions is
+     *        defined in
+     *        <code>ACTION_TYPES</code> above.
      * @return Return the node that is the result of the parse operation. If the
      *         result is more than one top-level node, the first one is
      *         returned.
      * @exception DOMException
-     *                         HIERARCHY_REQUEST_ERR: Raised if the content
-     *                         cannot
-     *                         replace, be inserted before, after, or as a child
-     *                         of the
-     *                         context node (see also
-     *                         <code>Node.insertBefore</code> or
-     *                         <code>Node.replaceChild</code> in [<a href=
-     *                         'http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407'>
-     *                         DOM Level 3 Core</a>] ). <br>
-     *                         NOT_SUPPORTED_ERR: Raised if the
-     *                         <code>LSParser</code>
-     *                         doesn't support this method, or if the context
-     *                         node is of
-     *                         type <code>Document</code> and the DOM
-     *                         implementation
-     *                         doesn't support the replacement of the
-     *                         <code>DocumentType</code> child or
-     *                         <code>Element</code>
-     *                         child. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if the
-     *                         context node is
-     *                         a read only node and the content is being
-     *                         appended to its
-     *                         child list, or if the parent node of the context
-     *                         node is
-     *                         read only node and the content is being inserted
-     *                         in its
-     *                         child list. <br>
-     *                         INVALID_STATE_ERR: Raised if the
-     *                         <code>LSParser.busy</code> attribute is
-     *                         <code>true</code>.
+     *            HIERARCHY_REQUEST_ERR: Raised if the content
+     *            cannot
+     *            replace, be inserted before, after, or as a child
+     *            of the
+     *            context node (see also
+     *            <code>Node.insertBefore</code> or
+     *            <code>Node.replaceChild</code> in [<a href=
+     *            'http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407'>
+     *            DOM Level 3 Core</a>] ). <br>
+     *            NOT_SUPPORTED_ERR: Raised if the
+     *            <code>LSParser</code>
+     *            doesn't support this method, or if the context
+     *            node is of
+     *            type <code>Document</code> and the DOM
+     *            implementation
+     *            doesn't support the replacement of the
+     *            <code>DocumentType</code> child or
+     *            <code>Element</code>
+     *            child. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if the
+     *            context node is
+     *            a read only node and the content is being
+     *            appended to its
+     *            child list, or if the parent node of the context
+     *            node is
+     *            read only node and the content is being inserted
+     *            in its
+     *            child list. <br>
+     *            INVALID_STATE_ERR: Raised if the
+     *            <code>LSParser.busy</code> attribute is
+     *            <code>true</code>.
      * @exception LSException
-     *                         PARSE_ERR: Raised if the <code>LSParser</code>
-     *                         was unable
-     *                         to load the XML fragment. DOM applications should
-     *                         attach a
-     *                         <code>DOMErrorHandler</code> using the parameter
-     *                         "<a href=
-     *                         'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
-     *                         error-handler</a>" if they wish to get details on
-     *                         the
-     *                         error.
+     *            PARSE_ERR: Raised if the <code>LSParser</code>
+     *            was unable
+     *            to load the XML fragment. DOM applications should
+     *            attach a
+     *            <code>DOMErrorHandler</code> using the parameter
+     *            "<a href=
+     *            'http://www.w3.org/TR/DOM-Level-3-Core/core.html#parameter-error-handler'>
+     *            error-handler</a>" if they wish to get details on
+     *            the
+     *            error.
      */
-    public Node parseWithContext(LSInput input, Node contextArg, short action)
-            throws DOMException, LSException;
+    public Node parseWithContext(LSInput input, Node contextArg, short action) throws DOMException,
+            LSException;
 
     /**
      * Abort the loading of the document that is currently being loaded by the

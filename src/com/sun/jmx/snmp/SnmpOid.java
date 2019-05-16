@@ -13,7 +13,6 @@ import java.util.NoSuchElementException;
 
 /**
  * Represents an SNMP Object Identifier (OID).
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -36,7 +35,7 @@ public class SnmpOid extends SnmpValue {
      * Constructs a new <CODE>SnmpOid</CODE> from the specified component array.
      * 
      * @param oidComponents
-     *                      The initialization component array.
+     *        The initialization component array.
      */
     public SnmpOid(long[] oidComponents) {
         components = oidComponents.clone();
@@ -48,7 +47,7 @@ public class SnmpOid extends SnmpValue {
      * specified value.
      * 
      * @param id
-     *           The initialization component value.
+     *        The initialization component value.
      */
     public SnmpOid(long id) {
         components = new long[1];
@@ -61,13 +60,13 @@ public class SnmpOid extends SnmpValue {
      * specified values.
      * 
      * @param id1
-     *            The first component value.
+     *        The first component value.
      * @param id2
-     *            The second component values.
+     *        The second component values.
      * @param id3
-     *            The third component values.
+     *        The third component values.
      * @param id4
-     *            The fourth component values.
+     *        The fourth component values.
      */
     public SnmpOid(long id1, long id2, long id3, long id4) {
         components = new long[4];
@@ -87,13 +86,13 @@ public class SnmpOid extends SnmpValue {
      * or <CODE>ifInOctets</CODE> or <CODE>ifInOctets</CODE>.0.
      * 
      * @param s
-     *          <CODE>String</CODE> or MIB variable of the form .1.2.3 or
-     *          1.2.3 or <CODE>ifInOctets</CODE>.
+     *        <CODE>String</CODE> or MIB variable of the form .1.2.3 or
+     *        1.2.3 or <CODE>ifInOctets</CODE>.
      * @exception IllegalArgumentException
-     *                                     The subidentifier is neither a
-     *                                     numeric <CODE>String</CODE>
-     *                                     nor a <CODE>String</CODE> of the MIB
-     *                                     database.
+     *            The subidentifier is neither a
+     *            numeric <CODE>String</CODE>
+     *            nor a <CODE>String</CODE> of the MIB
+     *            database.
      */
     public SnmpOid(String s) throws IllegalArgumentException {
         String dotString = s;
@@ -119,8 +118,7 @@ public class SnmpOid extends SnmpValue {
                 for (int i = 0; i < componentCount; i++) {
                     try {
                         components[i] = Long.parseLong(st.nextToken());
-                    } catch (NoSuchElementException e) {
-                    }
+                    } catch (NoSuchElementException e) {}
                 }
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(s);
@@ -159,12 +157,12 @@ public class SnmpOid extends SnmpValue {
      * components array.
      *
      * @param duplicate
-     *                  Indicates whether a copy or a reference must be
-     *                  returned:
-     *                  <li><code>true</code> if a copy must be returned,</li>
-     *                  <li><code>false</code> if a reference on the internal
-     *                  data can
-     *                  be returned.</li>
+     *        Indicates whether a copy or a reference must be
+     *        returned:
+     *        <li><code>true</code> if a copy must be returned,</li>
+     *        <li><code>false</code> if a reference on the internal
+     *        data can
+     *        be returned.</li>
      * @return A copy of (or a reference on) the components array.
      * @Deprecated use {@link #longValue()}
      */
@@ -178,13 +176,11 @@ public class SnmpOid extends SnmpValue {
      * <code>0</code>.
      *
      * @param pos
-     *            The position at which the OID arc should be peeked.
-     *
+     *        The position at which the OID arc should be peeked.
      * @return The OID arc found at the requested position.
-     *
      * @exception SnmpStatusException
-     *                                No OID arc was found at the requested
-     *                                position.
+     *            No OID arc was found at the requested
+     *            position.
      */
     public final long getOidArc(int pos) throws SnmpStatusException {
         try {
@@ -240,8 +236,7 @@ public class SnmpOid extends SnmpValue {
      * @return The <CODE>Boolean</CODE> representation of the value.
      */
     public Boolean toBoolean() {
-        if ((componentCount != 1) && (components[0] != 1)
-                && (components[0] != 2)) {
+        if ((componentCount != 1) && (components[0] != 1) && (components[0] != 2)) {
             throw new IllegalArgumentException();
         }
         return Boolean.valueOf(components[0] == 1);
@@ -281,16 +276,15 @@ public class SnmpOid extends SnmpValue {
      * <CODE>SnmpOid</CODE>.
      * 
      * @param index
-     *              The index array.
+     *        The index array.
      * @param start
-     *              The position in the index array.
+     *        The position in the index array.
      * @return The OID representing the OID value.
      * @exception SnmpStatusException
-     *                                There is no OID value available at the
-     *                                start position.
+     *            There is no OID value available at the
+     *            start position.
      */
-    public static SnmpOid toOid(long[] index, int start)
-            throws SnmpStatusException {
+    public static SnmpOid toOid(long[] index, int start) throws SnmpStatusException {
         try {
             if (index[start] > Integer.MAX_VALUE) {
                 throw new SnmpStatusException(SnmpStatusException.noSuchName);
@@ -311,16 +305,15 @@ public class SnmpOid extends SnmpValue {
      * next value.
      * 
      * @param index
-     *              The index array.
+     *        The index array.
      * @param start
-     *              The position in the index array.
+     *        The position in the index array.
      * @return The position of the next value.
      * @exception SnmpStatusException
-     *                                There is no OID value available at the
-     *                                start position.
+     *            There is no OID value available at the
+     *            start position.
      */
-    public static int nextOid(long[] index, int start)
-            throws SnmpStatusException {
+    public static int nextOid(long[] index, int start) throws SnmpStatusException {
         try {
             if (index[start] > Integer.MAX_VALUE) {
                 throw new SnmpStatusException(SnmpStatusException.noSuchName);
@@ -342,9 +335,9 @@ public class SnmpOid extends SnmpValue {
      * another OID.
      * 
      * @param source
-     *               An OID representing an <CODE>SnmpOid</CODE> value.
+     *        An OID representing an <CODE>SnmpOid</CODE> value.
      * @param dest
-     *               Where source should be appended.
+     *        Where source should be appended.
      */
     public static void appendToOid(SnmpOid source, SnmpOid dest) {
         dest.append(source.getLength());
@@ -371,8 +364,7 @@ public class SnmpOid extends SnmpValue {
             SnmpOid obj = (SnmpOid) super.clone();
             obj.components = new long[this.componentCount];
 
-            System.arraycopy(this.components, 0, obj.components, 0,
-                    this.componentCount);
+            System.arraycopy(this.components, 0, obj.components, 0, this.componentCount);
             return obj;
         } catch (CloneNotSupportedException e) {
             throw new InternalError(); // should never happen. VM bug.
@@ -383,7 +375,7 @@ public class SnmpOid extends SnmpValue {
      * Inserts a subid at the beginning of this <CODE>SnmpOid</CODE>.
      * 
      * @param id
-     *           The long subid to insert.
+     *        The long subid to insert.
      */
     public void insert(long id) {
         enlargeIfNeeded(1);
@@ -398,7 +390,7 @@ public class SnmpOid extends SnmpValue {
      * Inserts a subid at the beginning of this <CODE>SnmpOid</CODE>.
      * 
      * @param id
-     *           The integer subid to insert.
+     *        The integer subid to insert.
      */
     public void insert(int id) {
         insert((long) id);
@@ -409,7 +401,7 @@ public class SnmpOid extends SnmpValue {
      * <CODE>SnmpOid</CODE>.
      * 
      * @param oid
-     *            The OID to append.
+     *        The OID to append.
      */
     public void append(SnmpOid oid) {
         enlargeIfNeeded(oid.componentCount);
@@ -423,7 +415,7 @@ public class SnmpOid extends SnmpValue {
      * Appends the specified long to the end of this <CODE>SnmpOid</CODE>.
      * 
      * @param id
-     *           The long to append.
+     *        The long to append.
      */
     public void append(long id) {
         enlargeIfNeeded(1);
@@ -437,11 +429,11 @@ public class SnmpOid extends SnmpValue {
      * dot-formatted <CODE>String</CODE> or a MIB variable name.
      * 
      * @param s
-     *          Variable name of the form .1.2.3 or 1.2.3 or
-     *          <CODE>ifInOctets</CODE>.
+     *        Variable name of the form .1.2.3 or 1.2.3 or
+     *        <CODE>ifInOctets</CODE>.
      * @exception SnmpStatusException
-     *                                An error occurred while accessing a MIB
-     *                                node.
+     *            An error occurred while accessing a MIB
+     *            node.
      */
     public void addToOid(String s) throws SnmpStatusException {
         SnmpOid suffix = new SnmpOid(s);
@@ -453,10 +445,10 @@ public class SnmpOid extends SnmpValue {
      * .
      * 
      * @param oid
-     *            An array of longs.
+     *        An array of longs.
      * @exception SnmpStatusException
-     *                                An error occurred while accessing a MIB
-     *                                node.
+     *            An error occurred while accessing a MIB
+     *            node.
      */
     public void addToOid(long[] oid) throws SnmpStatusException {
         SnmpOid suffix = new SnmpOid(oid);
@@ -470,9 +462,8 @@ public class SnmpOid extends SnmpValue {
      *         otherwise.
      */
     public boolean isValid() {
-        return ((componentCount >= 2) && ((0 <= components[0])
-                && (components[0] < 3)) && ((0 <= components[1])
-                        && (components[1] < 40)));
+        return ((componentCount >= 2) && ((0 <= components[0]) && (components[0] < 3))
+                && ((0 <= components[1]) && (components[1] < 40)));
     }
 
     /**
@@ -480,7 +471,7 @@ public class SnmpOid extends SnmpValue {
      * <CODE>SnmpOid</CODE>.
      * 
      * @param o
-     *          The <CODE>Object</CODE> to be compared.
+     *        The <CODE>Object</CODE> to be compared.
      * @return <CODE>true</CODE> if <CODE>o</CODE> is an <CODE>SnmpOid</CODE>
      *         instance and equal to this, <CODE>false</CODE> otherwise.
      */
@@ -517,7 +508,7 @@ public class SnmpOid extends SnmpValue {
      * Compares two OIDs lexicographically.
      * 
      * @param other
-     *              The OID to be compared.
+     *        The OID to be compared.
      * @return The value 0 if the parameter <CODE>other</CODE> is equal to this
      *         <CODE>SnmpOid</CODE>. A value smaller than 0 if this
      *         <CODE>SnmpOid</CODE> is lexicographically smaller than
@@ -552,10 +543,10 @@ public class SnmpOid extends SnmpValue {
      * Resolves a MIB variable <CODE>String</CODE> with the MIB database.
      * 
      * @param s
-     *          The variable name to resolve.
+     *        The variable name to resolve.
      * @exception SnmpStatusException
-     *                                If the variable is not found in the MIB
-     *                                database.
+     *            If the variable is not found in the MIB
+     *            database.
      */
     public String resolveVarName(String s) throws SnmpStatusException {
         int index = s.indexOf('.');
@@ -564,8 +555,7 @@ public class SnmpOid extends SnmpValue {
         //
         try {
             return handleLong(s, index);
-        } catch (NumberFormatException e) {
-        }
+        } catch (NumberFormatException e) {}
 
         SnmpOidTable table = getSnmpOidTable();
         // if we are here, it means we have something to resolve..
@@ -610,10 +600,10 @@ public class SnmpOid extends SnmpValue {
      * in the Object Identifier.
      * 
      * @param db
-     *           The MIB table to use.
+     *        The MIB table to use.
      * @throws SecurityException
-     *                           if the security manager is present and denies
-     *                           the access.
+     *         if the security manager is present and denies
+     *         the access.
      */
     public static void setSnmpOidTable(SnmpOidTable db) {
         final SecurityManager sm = System.getSecurityManager();
@@ -626,7 +616,6 @@ public class SnmpOid extends SnmpValue {
 
     /**
      * Converts an OID index converted string back to a DisplayString
-     *
      **/
     public String toOctetString() {
         return new String(tobyte());
@@ -655,7 +644,7 @@ public class SnmpOid extends SnmpValue {
      * reallocates a new array and copy the old one into the new one.
      * 
      * @param n
-     *          The number of subids to insert.
+     *        The number of subids to insert.
      */
     private void enlargeIfNeeded(int n) {
         int neededSize = components.length;
@@ -673,8 +662,7 @@ public class SnmpOid extends SnmpValue {
 
     // PRIVATE METHODS
     // ----------------
-    private String handleLong(String oid, int index)
-            throws NumberFormatException, SnmpStatusException {
+    private String handleLong(String oid, int index) throws NumberFormatException, SnmpStatusException {
         String str;
         if (index > 0) {
             str = oid.substring(0, index);
@@ -717,7 +705,6 @@ public class SnmpOid extends SnmpValue {
 
     /**
      * Ensure serialization compatibility with version 4.1 FCS
-     *
      */
     static final long serialVersionUID = 8956237235607885096L;
 }

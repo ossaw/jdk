@@ -66,7 +66,7 @@ public interface AttributeSet {
      * without resolving through another attribute set.
      *
      * @param attrName
-     *                 the attribute name
+     *        the attribute name
      * @return true if the attribute has a value specified
      */
     public boolean isDefined(Object attrName);
@@ -75,7 +75,7 @@ public interface AttributeSet {
      * Determines if the two attribute sets are equivalent.
      *
      * @param attr
-     *             an attribute set
+     *        an attribute set
      * @return true if the sets are equivalent
      */
     public boolean isEqual(AttributeSet attr);
@@ -94,7 +94,7 @@ public interface AttributeSet {
      * If the value is not found, null is returned.
      *
      * @param key
-     *            the non-null key of the attribute binding
+     *        the non-null key of the attribute binding
      * @return the value of the attribute, or {@code null} if not found
      */
     public Object getAttribute(Object key);
@@ -119,14 +119,14 @@ public interface AttributeSet {
      * searched through in the resolving parent hierarchy.
      *
      * @param name
-     *              the non-null attribute name
+     *        the non-null attribute name
      * @param value
-     *              the value
+     *        the value
      * @return {@code true} if the set defines the attribute with an equal
      *         value, either locally or through its resolving parent
      * @throws NullPointerException
-     *                              if either {@code name} or {@code value} is
-     *                              {@code null}
+     *         if either {@code name} or {@code value} is
+     *         {@code null}
      */
     public boolean containsAttribute(Object name, Object value);
 
@@ -136,11 +136,11 @@ public interface AttributeSet {
      * searched through in the resolving parent hierarchy.
      *
      * @param attributes
-     *                   the set of attributes to check against
+     *        the set of attributes to check against
      * @return {@code true} if this set defines all the attributes with equal
      *         values, either locally or through its resolving parent
      * @throws NullPointerException
-     *                              if {@code attributes} is {@code null}
+     *         if {@code attributes} is {@code null}
      */
     public boolean containsAttributes(AttributeSet attributes);
 

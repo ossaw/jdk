@@ -11,18 +11,15 @@ import java.nio.channels.spi.SelectorProvider;
 
 /**
  * A channel that can be multiplexed via a {@link Selector}.
- *
  * <p>
  * In order to be used with a selector, an instance of this class must first be
  * <i>registered</i> via the {@link #register(Selector,int,Object) register}
  * method. This method returns a new {@link SelectionKey} object that represents
  * the channel's registration with the selector.
- *
  * <p>
  * Once registered with a selector, a channel remains registered until it is
  * <i>deregistered</i>. This involves deallocating whatever resources were
  * allocated to the channel by the selector.
- *
  * <p>
  * A channel cannot be deregistered directly; instead, the key representing its
  * registration must be <i>cancelled</i>. Cancelling a key requests that the
@@ -31,34 +28,26 @@ import java.nio.channels.spi.SelectorProvider;
  * cancel} method. All of a channel's keys are cancelled implicitly when the
  * channel is closed, whether by invoking its {@link Channel#close close} method
  * or by interrupting a thread blocked in an I/O operation upon the channel.
- *
  * <p>
  * If the selector itself is closed then the channel will be deregistered, and
  * the key representing its registration will be invalidated, without further
  * delay.
- *
  * <p>
  * A channel may be registered at most once with any particular selector.
- *
  * <p>
  * Whether or not a channel is registered with one or more selectors may be
  * determined by invoking the {@link #isRegistered isRegistered} method.
- *
  * <p>
  * Selectable channels are safe for use by multiple concurrent threads.
  * </p>
- *
- *
  * <a name="bm"></a>
  * <h2>Blocking mode</h2>
- *
  * A selectable channel is either in <i>blocking</i> mode or in
  * <i>non-blocking</i> mode. In blocking mode, every I/O operation invoked upon
  * the channel will block until it completes. In non-blocking mode an I/O
  * operation will never block and may transfer fewer bytes than were requested
  * or possibly no bytes at all. The blocking mode of a selectable channel may be
  * determined by invoking its {@link #isBlocking isBlocking} method.
- *
  * <p>
  * Newly-created selectable channels are always in blocking mode. Non-blocking
  * mode is most useful in conjunction with selector-based multiplexing. A
@@ -66,17 +55,14 @@ import java.nio.channels.spi.SelectorProvider;
  * selector, and may not be returned to blocking mode until it has been
  * deregistered.
  *
- *
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
  * @since 1.4
- *
  * @see SelectionKey
  * @see Selector
  */
 
-public abstract class SelectableChannel extends AbstractInterruptibleChannel
-        implements Channel {
+public abstract class SelectableChannel extends AbstractInterruptibleChannel implements Channel {
 
     /**
      * Initializes a new instance of this class.
@@ -110,7 +96,6 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
     /**
      * Tells whether or not this channel is currently registered with any
      * selectors. A newly-created channel is not registered.
-     *
      * <p>
      * Due to the inherent delay between key cancellation and channel
      * deregistration, a channel may remain registered for some time after all
@@ -129,8 +114,7 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
      * selector.
      *
      * @param sel
-     *            The selector
-     *
+     *        The selector
      * @return The key returned when this channel was last registered with the
      *         given selector, or <tt>null</tt> if this channel is not currently
      *         registered with that selector
@@ -142,7 +126,6 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
     /**
      * Registers this channel with the given selector, returning a selection
      * key.
-     *
      * <p>
      * If this channel is currently registered with the given selector then the
      * selection key representing that registration is returned. The key's
@@ -151,13 +134,11 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
      * <tt>att</tt> argument is not <tt>null</tt> then the key's attachment will
      * have been set to that value. A {@link CancelledKeyException} will be
      * thrown if the key has already been cancelled.
-     *
      * <p>
      * Otherwise this channel has not yet been registered with the given
      * selector, so it is registered and the resulting new key is returned. The
      * key's initial interest set will be <tt>ops</tt> and its attachment will
      * be <tt>att</tt>.
-     *
      * <p>
      * This method may be invoked at any time. If this method is invoked while
      * another invocation of this method or of the
@@ -167,7 +148,6 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
      * may block if invoked concurrently with another registration or selection
      * operation involving the same selector.
      * </p>
-     *
      * <p>
      * If this channel is closed while this operation is in progress then the
      * key returned by this method will have been cancelled and will therefore
@@ -175,46 +155,36 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
      * </p>
      *
      * @param sel
-     *            The selector with which this channel is to be registered
-     *
+     *        The selector with which this channel is to be registered
      * @param ops
-     *            The interest set for the resulting key
-     *
+     *        The interest set for the resulting key
      * @param att
-     *            The attachment for the resulting key; may be <tt>null</tt>
-     *
+     *        The attachment for the resulting key; may be <tt>null</tt>
      * @throws ClosedChannelException
-     *                                      If this channel is closed
-     *
+     *         If this channel is closed
      * @throws ClosedSelectorException
-     *                                      If the selector is closed
-     *
+     *         If the selector is closed
      * @throws IllegalBlockingModeException
-     *                                      If this channel is in blocking mode
-     *
+     *         If this channel is in blocking mode
      * @throws IllegalSelectorException
-     *                                      If this channel was not created by
-     *                                      the same provider as the
-     *                                      given selector
-     *
+     *         If this channel was not created by
+     *         the same provider as the
+     *         given selector
      * @throws CancelledKeyException
-     *                                      If this channel is currently
-     *                                      registered with the given
-     *                                      selector but the corresponding key
-     *                                      has already been cancelled
-     *
+     *         If this channel is currently
+     *         registered with the given
+     *         selector but the corresponding key
+     *         has already been cancelled
      * @throws IllegalArgumentException
-     *                                      If a bit in the <tt>ops</tt> set
-     *                                      does not correspond to an
-     *                                      operation that is supported by this
-     *                                      channel, that is, if
-     *                                      {@code set & ~validOps() != 0}
-     *
+     *         If a bit in the <tt>ops</tt> set
+     *         does not correspond to an
+     *         operation that is supported by this
+     *         channel, that is, if
+     *         {@code set & ~validOps() != 0}
      * @return A key representing the registration of this channel with the
      *         given selector
      */
-    public abstract SelectionKey register(Selector sel, int ops, Object att)
-            throws ClosedChannelException;
+    public abstract SelectionKey register(Selector sel, int ops, Object att) throws ClosedChannelException;
     //
     // sync(regLock) {
     // sync(keySet) { look for selector }
@@ -229,73 +199,57 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
     /**
      * Registers this channel with the given selector, returning a selection
      * key.
-     *
      * <p>
      * An invocation of this convenience method of the form
-     *
      * <blockquote><tt>sc.register(sel, ops)</tt></blockquote>
-     *
      * behaves in exactly the same way as the invocation
-     *
      * <blockquote><tt>sc.{@link
      * #register(java.nio.channels.Selector,int,java.lang.Object)
      * register}(sel, ops, null)</tt></blockquote>
      *
      * @param sel
-     *            The selector with which this channel is to be registered
-     *
+     *        The selector with which this channel is to be registered
      * @param ops
-     *            The interest set for the resulting key
-     *
+     *        The interest set for the resulting key
      * @throws ClosedChannelException
-     *                                      If this channel is closed
-     *
+     *         If this channel is closed
      * @throws ClosedSelectorException
-     *                                      If the selector is closed
-     *
+     *         If the selector is closed
      * @throws IllegalBlockingModeException
-     *                                      If this channel is in blocking mode
-     *
+     *         If this channel is in blocking mode
      * @throws IllegalSelectorException
-     *                                      If this channel was not created by
-     *                                      the same provider as the
-     *                                      given selector
-     *
+     *         If this channel was not created by
+     *         the same provider as the
+     *         given selector
      * @throws CancelledKeyException
-     *                                      If this channel is currently
-     *                                      registered with the given
-     *                                      selector but the corresponding key
-     *                                      has already been cancelled
-     *
+     *         If this channel is currently
+     *         registered with the given
+     *         selector but the corresponding key
+     *         has already been cancelled
      * @throws IllegalArgumentException
-     *                                      If a bit in <tt>ops</tt> does not
-     *                                      correspond to an operation
-     *                                      that is supported by this channel,
-     *                                      that is, if {@code set &
+     *         If a bit in <tt>ops</tt> does not
+     *         correspond to an operation
+     *         that is supported by this channel,
+     *         that is, if {@code set &
      *          ~validOps() != 0}
-     *
      * @return A key representing the registration of this channel with the
      *         given selector
      */
-    public final SelectionKey register(Selector sel, int ops)
-            throws ClosedChannelException {
+    public final SelectionKey register(Selector sel, int ops) throws ClosedChannelException {
         return register(sel, ops, null);
     }
 
     /**
      * Adjusts this channel's blocking mode.
-     *
      * <p>
      * If this channel is registered with one or more selectors then an attempt
      * to place it into blocking mode will cause an
      * {@link IllegalBlockingModeException} to be thrown.
-     *
      * <p>
      * This method may be invoked at any time. The new blocking mode will only
      * affect I/O operations that are initiated after this method returns. For
      * some implementations this may require blocking until all pending I/O
      * operations are complete.
-     *
      * <p>
      * If this method is invoked while another invocation of this method or of
      * the {@link #register(Selector, int) register} method is in progress then
@@ -303,27 +257,22 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
      * </p>
      *
      * @param block
-     *              If <tt>true</tt> then this channel will be placed in
-     *              blocking
-     *              mode; if <tt>false</tt> then it will be placed non-blocking
-     *              mode
-     *
+     *        If <tt>true</tt> then this channel will be placed in
+     *        blocking
+     *        mode; if <tt>false</tt> then it will be placed non-blocking
+     *        mode
      * @return This selectable channel
-     *
      * @throws ClosedChannelException
-     *                                      If this channel is closed
-     *
+     *         If this channel is closed
      * @throws IllegalBlockingModeException
-     *                                      If <tt>block</tt> is <tt>true</tt>
-     *                                      and this channel is
-     *                                      registered with one or more
-     *                                      selectors
-     *
+     *         If <tt>block</tt> is <tt>true</tt>
+     *         and this channel is
+     *         registered with one or more
+     *         selectors
      * @throws IOException
-     *                                      If an I/O error occurs
+     *         If an I/O error occurs
      */
-    public abstract SelectableChannel configureBlocking(boolean block)
-            throws IOException;
+    public abstract SelectableChannel configureBlocking(boolean block) throws IOException;
     //
     // sync(regLock) {
     // sync(keySet) { throw IBME if block && isRegistered; }
@@ -333,7 +282,6 @@ public abstract class SelectableChannel extends AbstractInterruptibleChannel
     /**
      * Tells whether or not every I/O operation on this channel will block until
      * it completes. A newly-created channel is always in blocking mode.
-     *
      * <p>
      * If this channel is closed then the value returned by this method is not
      * specified.

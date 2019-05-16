@@ -141,8 +141,8 @@ public class MenuItem extends MenuComponent implements Accessible {
      * Constructs a new MenuItem with an empty label and no keyboard shortcut.
      * 
      * @exception HeadlessException
-     *                              if GraphicsEnvironment.isHeadless() returns
-     *                              true.
+     *            if GraphicsEnvironment.isHeadless() returns
+     *            true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @since JDK1.1
      */
@@ -157,10 +157,10 @@ public class MenuItem extends MenuComponent implements Accessible {
      * separators are enabled.
      * 
      * @param label
-     *              the label for this menu item.
+     *        the label for this menu item.
      * @exception HeadlessException
-     *                              if GraphicsEnvironment.isHeadless() returns
-     *                              true.
+     *            if GraphicsEnvironment.isHeadless() returns
+     *            true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @since JDK1.0
      */
@@ -174,14 +174,14 @@ public class MenuItem extends MenuComponent implements Accessible {
      * default, all menu items except for separators are enabled.
      * 
      * @param label
-     *              the label for this menu item.
+     *        the label for this menu item.
      * @param s
-     *              the instance of <code>MenuShortcut</code> associated with
-     *              this
-     *              menu item.
+     *        the instance of <code>MenuShortcut</code> associated with
+     *        this
+     *        menu item.
      * @exception HeadlessException
-     *                              if GraphicsEnvironment.isHeadless() returns
-     *                              true.
+     *            if GraphicsEnvironment.isHeadless() returns
+     *            true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      * @since JDK1.1
      */
@@ -227,7 +227,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * Sets the label for this menu item to the specified label.
      * 
      * @param label
-     *              the new label, or <code>null</code> for no label.
+     *        the new label, or <code>null</code> for no label.
      * @see java.awt.MenuItem#getLabel
      * @since JDK1.0
      */
@@ -253,8 +253,8 @@ public class MenuItem extends MenuComponent implements Accessible {
      * Sets whether or not this menu item can be chosen.
      * 
      * @param b
-     *          if <code>true</code>, enables this menu item; if
-     *          <code>false</code>, disables it.
+     *        if <code>true</code>, enables this menu item; if
+     *        <code>false</code>, disables it.
      * @see java.awt.MenuItem#isEnabled
      * @since JDK1.1
      */
@@ -319,7 +319,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * replaced.
      * 
      * @param s
-     *          the menu shortcut to associate with this menu item.
+     *        the menu shortcut to associate with this menu item.
      * @see java.awt.MenuItem#getShortcut
      * @since JDK1.1
      */
@@ -365,9 +365,8 @@ public class MenuItem extends MenuComponent implements Accessible {
      * may do more than just posting an event.
      */
     void doMenuEvent(long when, int modifiers) {
-        Toolkit.getEventQueue().postEvent(new ActionEvent(this,
-                ActionEvent.ACTION_PERFORMED, getActionCommand(), when,
-                modifiers));
+        Toolkit.getEventQueue().postEvent(new ActionEvent(this, ActionEvent.ACTION_PERFORMED,
+                getActionCommand(), when, modifiers));
     }
 
     /*
@@ -399,10 +398,9 @@ public class MenuItem extends MenuComponent implements Accessible {
      * Returns true if there is an associated shortcut.
      */
     boolean handleShortcut(KeyEvent e) {
-        MenuShortcut s = new MenuShortcut(e.getKeyCode(), (e.getModifiers()
+        MenuShortcut s = new MenuShortcut(e.getKeyCode(), (e.getModifiers() & InputEvent.SHIFT_MASK) > 0);
+        MenuShortcut sE = new MenuShortcut(e.getExtendedKeyCode(), (e.getModifiers()
                 & InputEvent.SHIFT_MASK) > 0);
-        MenuShortcut sE = new MenuShortcut(e.getExtendedKeyCode(), (e
-                .getModifiers() & InputEvent.SHIFT_MASK) > 0);
         // Fix For 6185151: Menu shortcuts of all menuitems within a menu
         // should be disabled when the menu itself is disabled
         if ((s.equals(shortcut) || sE.equals(shortcut)) && isItemEnabled()) {
@@ -432,7 +430,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * a listener is registered.
      *
      * @param eventsToEnable
-     *                       the event mask defining the event types
+     *        the event mask defining the event types
      * @see java.awt.MenuItem#processEvent
      * @see java.awt.MenuItem#disableEvents
      * @see java.awt.Component#enableEvents
@@ -448,7 +446,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * specified event mask parameter.
      *
      * @param eventsToDisable
-     *                        the event mask defining the event types
+     *        the event mask defining the event types
      * @see java.awt.MenuItem#processEvent
      * @see java.awt.MenuItem#enableEvents
      * @see java.awt.Component#disableEvents
@@ -465,7 +463,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * By default, the action command is set to the label of the menu item.
      * 
      * @param command
-     *                the action command to be set for this menu item.
+     *        the action command to be set for this menu item.
      * @see java.awt.MenuItem#getActionCommand
      * @since JDK1.1
      */
@@ -498,7 +496,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * Threading Issues</a> for details on AWT's threading model.
      *
      * @param l
-     *          the action listener.
+     *        the action listener.
      * @see #removeActionListener
      * @see #getActionListeners
      * @see java.awt.event.ActionEvent
@@ -522,7 +520,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * Threading Issues</a> for details on AWT's threading model.
      *
      * @param l
-     *          the action listener.
+     *        the action listener.
      * @see #addActionListener
      * @see #getActionListeners
      * @see java.awt.event.ActionEvent
@@ -542,7 +540,6 @@ public class MenuItem extends MenuComponent implements Accessible {
      *
      * @return all of this menu item's <code>ActionListener</code>s or an empty
      *         array if no action listeners are currently registered
-     *
      * @see #addActionListener
      * @see #removeActionListener
      * @see java.awt.event.ActionEvent
@@ -558,7 +555,6 @@ public class MenuItem extends MenuComponent implements Accessible {
      * <code><em>Foo</em>Listener</code>s upon this <code>MenuItem</code>.
      * <code><em>Foo</em>Listener</code>s are registered using the
      * <code>add<em>Foo</em>Listener</code> method.
-     *
      * <p>
      * You can specify the <code>listenerType</code> argument with a class
      * literal, such as <code><em>Foo</em>Listener.class</code>. For example,
@@ -566,26 +562,24 @@ public class MenuItem extends MenuComponent implements Accessible {
      * listeners with the following code:
      *
      * <pre>
-     * ActionListener[] als = (ActionListener[]) (m.getListeners(
-     *         ActionListener.class));
+     * ActionListener[] als = (ActionListener[]) (m.getListeners(ActionListener.class));
      * </pre>
      *
      * If no such listeners exist, this method returns an empty array.
      *
      * @param listenerType
-     *                     the type of listeners requested; this parameter
-     *                     should specify
-     *                     an interface that descends from
-     *                     <code>java.util.EventListener</code>
+     *        the type of listeners requested; this parameter
+     *        should specify
+     *        an interface that descends from
+     *        <code>java.util.EventListener</code>
      * @return an array of all objects registered as <code><em>Foo</em>
      *         Listener</code>s on this menu item, or an empty array if no such
      *         listeners have been added
      * @exception ClassCastException
-     *                               if <code>listenerType</code> doesn't
-     *                               specify a class or
-     *                               interface that implements
-     *                               <code>java.util.EventListener</code>
-     *
+     *            if <code>listenerType</code> doesn't
+     *            specify a class or
+     *            interface that implements
+     *            <code>java.util.EventListener</code>
      * @see #getActionListeners
      * @since 1.3
      */
@@ -608,7 +602,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * unspecified and may result in an exception.
      *
      * @param e
-     *          the event
+     *        the event
      * @see java.awt.MenuItem#processActionEvent
      * @since JDK1.1
      */
@@ -621,8 +615,7 @@ public class MenuItem extends MenuComponent implements Accessible {
     // REMIND: remove when filtering is done at lower level
     boolean eventEnabled(AWTEvent e) {
         if (e.id == ActionEvent.ACTION_PERFORMED) {
-            if ((eventMask & AWTEvent.ACTION_EVENT_MASK) != 0
-                    || actionListener != null) {
+            if ((eventMask & AWTEvent.ACTION_EVENT_MASK) != 0 || actionListener != null) {
                 return true;
             }
             return false;
@@ -645,7 +638,7 @@ public class MenuItem extends MenuComponent implements Accessible {
      * unspecified and may result in an exception.
      *
      * @param e
-     *          the action event
+     *        the action event
      * @see java.awt.event.ActionEvent
      * @see java.awt.event.ActionListener
      * @see java.awt.MenuItem#enableEvents
@@ -693,14 +686,13 @@ public class MenuItem extends MenuComponent implements Accessible {
      * serialize them.
      *
      * @param s
-     *          the <code>ObjectOutputStream</code> to write
+     *        the <code>ObjectOutputStream</code> to write
      * @serialData <code>null</code> terminated sequence of 0 or more pairs; the
      *             pair consists of a <code>String</code> and an
      *             <code>Object</code>; the <code>String</code> indicates the
      *             type of object and is one of the following:
      *             <code>actionListenerK</code> indicating an
      *             <code>ActionListener</code> object
-     *
      * @see AWTEventMulticaster#save(ObjectOutputStream, String, EventListener)
      * @see #readObject(ObjectInputStream)
      */
@@ -717,18 +709,18 @@ public class MenuItem extends MenuComponent implements Accessible {
      * <code>Menu</code> Item. Unrecognized keys or values will be ignored.
      *
      * @param s
-     *          the <code>ObjectInputStream</code> to read
+     *        the <code>ObjectInputStream</code> to read
      * @exception HeadlessException
-     *                              if
-     *                              <code>GraphicsEnvironment.isHeadless</code>
-     *                              returns
-     *                              <code>true</code>
+     *            if
+     *            <code>GraphicsEnvironment.isHeadless</code>
+     *            returns
+     *            <code>true</code>
      * @see #removeActionListener(ActionListener)
      * @see #addActionListener(ActionListener)
      * @see #writeObject(ObjectOutputStream)
      */
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException, HeadlessException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException,
+            HeadlessException {
         // HeadlessException will be thrown from MenuComponent's readObject
         s.defaultReadObject();
 
@@ -781,8 +773,8 @@ public class MenuItem extends MenuComponent implements Accessible {
      * 
      * @since 1.3
      */
-    protected class AccessibleAWTMenuItem extends AccessibleAWTMenuComponent
-            implements AccessibleAction, AccessibleValue {
+    protected class AccessibleAWTMenuItem extends AccessibleAWTMenuComponent implements AccessibleAction,
+            AccessibleValue {
         /*
          * JDK 1.3 serialVersionUID
          */
@@ -854,7 +846,7 @@ public class MenuItem extends MenuComponent implements Accessible {
          * Return a description of the specified action of the object.
          *
          * @param i
-         *          zero-based index of the actions
+         *        zero-based index of the actions
          */
         public String getAccessibleActionDescription(int i) {
             if (i == 0) {
@@ -869,16 +861,14 @@ public class MenuItem extends MenuComponent implements Accessible {
          * Perform the specified Action on the object
          *
          * @param i
-         *          zero-based index of actions
+         *        zero-based index of actions
          * @return true if the action was performed; otherwise false.
          */
         public boolean doAccessibleAction(int i) {
             if (i == 0) {
                 // Simulate a button click
-                Toolkit.getEventQueue().postEvent(new ActionEvent(MenuItem.this,
-                        ActionEvent.ACTION_PERFORMED, MenuItem.this
-                                .getActionCommand(), EventQueue
-                                        .getMostRecentEventTime(), 0));
+                Toolkit.getEventQueue().postEvent(new ActionEvent(MenuItem.this, ActionEvent.ACTION_PERFORMED,
+                        MenuItem.this.getActionCommand(), EventQueue.getMostRecentEventTime(), 0));
                 return true;
             } else {
                 return false;

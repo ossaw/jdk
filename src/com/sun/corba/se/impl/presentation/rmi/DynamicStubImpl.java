@@ -35,8 +35,7 @@ import com.sun.corba.se.impl.util.JDKBridge;
 import com.sun.corba.se.impl.util.Utility;
 
 // XXX Do we need _get_codebase?
-public class DynamicStubImpl extends ObjectImpl implements DynamicStub,
-        Serializable {
+public class DynamicStubImpl extends ObjectImpl implements DynamicStub, Serializable {
     private static final long serialVersionUID = 4852612040012087675L;
 
     private String[] typeIds;
@@ -89,8 +88,7 @@ public class DynamicStubImpl extends ObjectImpl implements DynamicStub,
         return _request(operation, responseExpected);
     }
 
-    private void readObject(ObjectInputStream stream) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
         ior = new StubIORImpl();
         ior.doRead(stream);
     }
@@ -113,8 +111,7 @@ public class DynamicStubImpl extends ObjectImpl implements DynamicStub,
             // XXX log this
         }
 
-        PresentationManager pm = com.sun.corba.se.spi.orb.ORB
-                .getPresentationManager();
+        PresentationManager pm = com.sun.corba.se.spi.orb.ORB.getPresentationManager();
         PresentationManager.ClassData classData = pm.getClassData(cls);
         InvocationHandlerFactoryImpl ihfactory = (InvocationHandlerFactoryImpl) classData
                 .getInvocationHandlerFactory();

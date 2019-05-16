@@ -22,7 +22,7 @@ public class BindException extends SocketException {
      * specific description of this error.
      * 
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public BindException(String msg) {
         super(msg);

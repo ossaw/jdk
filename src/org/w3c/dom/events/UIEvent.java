@@ -50,20 +50,20 @@ public interface UIEvent extends Event {
      * multiple times, the final invocation takes precedence.
      * 
      * @param typeArg
-     *                      Specifies the event type.
+     *        Specifies the event type.
      * @param canBubbleArg
-     *                      Specifies whether or not the event can bubble.
+     *        Specifies whether or not the event can bubble.
      * @param cancelableArg
-     *                      Specifies whether or not the event's default action
-     *                      can be
-     *                      prevented.
+     *        Specifies whether or not the event's default action
+     *        can be
+     *        prevented.
      * @param viewArg
-     *                      Specifies the <code>Event</code>'s
-     *                      <code>AbstractView</code>.
+     *        Specifies the <code>Event</code>'s
+     *        <code>AbstractView</code>.
      * @param detailArg
-     *                      Specifies the <code>Event</code>'s detail.
+     *        Specifies the <code>Event</code>'s detail.
      */
-    public void initUIEvent(String typeArg, boolean canBubbleArg,
-            boolean cancelableArg, AbstractView viewArg, int detailArg);
+    public void initUIEvent(String typeArg, boolean canBubbleArg, boolean cancelableArg, AbstractView viewArg,
+            int detailArg);
 
 }

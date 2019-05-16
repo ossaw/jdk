@@ -10,7 +10,6 @@ import java.util.concurrent.Future;
 
 /**
  * An asynchronous channel that can read and write bytes.
- *
  * <p>
  * Some channels may not allow more than one read or write to be outstanding at
  * any given time. If a thread invokes a read method before a previous read
@@ -19,7 +18,6 @@ import java.util.concurrent.Future;
  * then {@link WritePendingException} is thrown. Whether or not other kinds of
  * I/O operations may proceed concurrently with a read operation depends upon
  * the type of the channel.
- *
  * <p>
  * Note that {@link java.nio.ByteBuffer ByteBuffers} are not safe for use by
  * multiple concurrent threads. When a read or write operation is initiated then
@@ -28,14 +26,12 @@ import java.util.concurrent.Future;
  *
  * @see Channels#newInputStream(AsynchronousByteChannel)
  * @see Channels#newOutputStream(AsynchronousByteChannel)
- *
  * @since 1.7
  */
 
 public interface AsynchronousByteChannel extends AsynchronousChannel {
     /**
      * Reads a sequence of bytes from this channel into the given buffer.
-     *
      * <p>
      * This method initiates an asynchronous read operation to read a sequence
      * of bytes from this channel into the given buffer. The {@code
@@ -43,14 +39,12 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
      * operation completes (or fails). The result passed to the completion
      * handler is the number of bytes read or {@code -1} if no bytes could be
      * read because the channel has reached end-of-stream.
-     *
      * <p>
      * The read operation may read up to <i>r</i> bytes from the channel, where
      * <i>r</i> is the number of bytes remaining in the buffer, that is,
      * {@code dst.remaining()} at the time that the read is attempted. Where
      * <i>r</i> is 0, the read operation completes immediately with a result of
      * {@code 0} without initiating an I/O operation.
-     *
      * <p>
      * Suppose that a byte sequence of length <i>n</i> is read, where <tt>0</tt>
      * &nbsp;<tt>&lt;</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;<i>r</i>. This
@@ -60,46 +54,41 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
      * where <i>p</i> is the buffer's position at the moment the read is
      * performed. Upon completion the buffer's position will be equal to
      * <i>p</i>&nbsp;<tt>+</tt>&nbsp;<i>n</i>; its limit will not have changed.
-     *
      * <p>
      * Buffers are not safe for use by multiple concurrent threads so care
      * should be taken to not access the buffer until the operation has
      * completed.
-     *
      * <p>
      * This method may be invoked at any time. Some channel types may not allow
      * more than one read to be outstanding at any given time. If a thread
      * initiates a read operation before a previous read operation has completed
      * then a {@link ReadPendingException} will be thrown.
      *
-     * @param            <A>
-     *                   The type of the attachment
+     * @param <A>
+     *        The type of the attachment
      * @param dst
-     *                   The buffer into which bytes are to be transferred
+     *        The buffer into which bytes are to be transferred
      * @param attachment
-     *                   The object to attach to the I/O operation; can be
-     *                   {@code null}
+     *        The object to attach to the I/O operation; can be
+     *        {@code null}
      * @param handler
-     *                   The completion handler
-     *
+     *        The completion handler
      * @throws IllegalArgumentException
-     *                                       If the buffer is read-only
+     *         If the buffer is read-only
      * @throws ReadPendingException
-     *                                       If the channel does not allow more
-     *                                       than one read to be
-     *                                       outstanding and a previous read has
-     *                                       not completed
+     *         If the channel does not allow more
+     *         than one read to be
+     *         outstanding and a previous read has
+     *         not completed
      * @throws ShutdownChannelGroupException
-     *                                       If the channel is associated with a
-     *                                       {@link AsynchronousChannelGroup
-     *                                       group} that has terminated
+     *         If the channel is associated with a
+     *         {@link AsynchronousChannelGroup
+     *         group} that has terminated
      */
-    <A> void read(ByteBuffer dst, A attachment,
-            CompletionHandler<Integer, ? super A> handler);
+    <A> void read(ByteBuffer dst, A attachment, CompletionHandler<Integer, ? super A> handler);
 
     /**
      * Reads a sequence of bytes from this channel into the given buffer.
-     *
      * <p>
      * This method initiates an asynchronous read operation to read a sequence
      * of bytes from this channel into the given buffer. The method behaves in
@@ -112,37 +101,32 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
      * could be read because the channel has reached end-of-stream.
      *
      * @param dst
-     *            The buffer into which bytes are to be transferred
-     *
+     *        The buffer into which bytes are to be transferred
      * @return A Future representing the result of the operation
-     *
      * @throws IllegalArgumentException
-     *                                  If the buffer is read-only
+     *         If the buffer is read-only
      * @throws ReadPendingException
-     *                                  If the channel does not allow more than
-     *                                  one read to be
-     *                                  outstanding and a previous read has not
-     *                                  completed
+     *         If the channel does not allow more than
+     *         one read to be
+     *         outstanding and a previous read has not
+     *         completed
      */
     Future<Integer> read(ByteBuffer dst);
 
     /**
      * Writes a sequence of bytes to this channel from the given buffer.
-     *
      * <p>
      * This method initiates an asynchronous write operation to write a sequence
      * of bytes to this channel from the given buffer. The {@code
      * handler} parameter is a completion handler that is invoked when the write
      * operation completes (or fails). The result passed to the completion
      * handler is the number of bytes written.
-     *
      * <p>
      * The write operation may write up to <i>r</i> bytes to the channel, where
      * <i>r</i> is the number of bytes remaining in the buffer, that is,
      * {@code src.remaining()} at the time that the write is attempted. Where
      * <i>r</i> is 0, the write operation completes immediately with a result of
      * {@code 0} without initiating an I/O operation.
-     *
      * <p>
      * Suppose that a byte sequence of length <i>n</i> is written, where
      * <tt>0</tt>&nbsp;<tt>&lt;</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;
@@ -152,44 +136,39 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
      * <i>p</i>&nbsp;<tt>+</tt>&nbsp;<i>n</i>&nbsp;<tt>-</tt>&nbsp;<tt>1</tt>.
      * Upon completion the buffer's position will be equal to <i>p</i>&nbsp;
      * <tt>+</tt>&nbsp;<i>n</i>; its limit will not have changed.
-     *
      * <p>
      * Buffers are not safe for use by multiple concurrent threads so care
      * should be taken to not access the buffer until the operation has
      * completed.
-     *
      * <p>
      * This method may be invoked at any time. Some channel types may not allow
      * more than one write to be outstanding at any given time. If a thread
      * initiates a write operation before a previous write operation has
      * completed then a {@link WritePendingException} will be thrown.
      *
-     * @param            <A>
-     *                   The type of the attachment
+     * @param <A>
+     *        The type of the attachment
      * @param src
-     *                   The buffer from which bytes are to be retrieved
+     *        The buffer from which bytes are to be retrieved
      * @param attachment
-     *                   The object to attach to the I/O operation; can be
-     *                   {@code null}
+     *        The object to attach to the I/O operation; can be
+     *        {@code null}
      * @param handler
-     *                   The completion handler object
-     *
+     *        The completion handler object
      * @throws WritePendingException
-     *                                       If the channel does not allow more
-     *                                       than one write to be
-     *                                       outstanding and a previous write
-     *                                       has not completed
+     *         If the channel does not allow more
+     *         than one write to be
+     *         outstanding and a previous write
+     *         has not completed
      * @throws ShutdownChannelGroupException
-     *                                       If the channel is associated with a
-     *                                       {@link AsynchronousChannelGroup
-     *                                       group} that has terminated
+     *         If the channel is associated with a
+     *         {@link AsynchronousChannelGroup
+     *         group} that has terminated
      */
-    <A> void write(ByteBuffer src, A attachment,
-            CompletionHandler<Integer, ? super A> handler);
+    <A> void write(ByteBuffer src, A attachment, CompletionHandler<Integer, ? super A> handler);
 
     /**
      * Writes a sequence of bytes to this channel from the given buffer.
-     *
      * <p>
      * This method initiates an asynchronous write operation to write a sequence
      * of bytes to this channel from the given buffer. The method behaves in
@@ -201,15 +180,13 @@ public interface AsynchronousByteChannel extends AsynchronousChannel {
      * get} method returns the number of bytes written.
      *
      * @param src
-     *            The buffer from which bytes are to be retrieved
-     *
+     *        The buffer from which bytes are to be retrieved
      * @return A Future representing the result of the operation
-     *
      * @throws WritePendingException
-     *                               If the channel does not allow more than one
-     *                               write to be
-     *                               outstanding and a previous write has not
-     *                               completed
+     *         If the channel does not allow more than one
+     *         write to be
+     *         outstanding and a previous write has not
+     *         completed
      */
     Future<Integer> write(ByteBuffer src);
 }

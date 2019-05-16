@@ -26,7 +26,6 @@ import org.w3c.dom.traversal.TreeWalker;
  * This class implements the TreeWalker interface.
  *
  * @xerces.internal
- *
  */
 
 public class TreeWalkerImpl implements TreeWalker {
@@ -102,8 +101,8 @@ public class TreeWalkerImpl implements TreeWalker {
     /** Return the current Node. */
     public void setCurrentNode(Node node) {
         if (node == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "NOT_SUPPORTED_ERR", null);
             throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
         }
 
@@ -416,8 +415,7 @@ public class TreeWalkerImpl implements TreeWalker {
         if (node == null)
             return null;
 
-        if (!fEntityReferenceExpansion && node
-                .getNodeType() == Node.ENTITY_REFERENCE_NODE)
+        if (!fEntityReferenceExpansion && node.getNodeType() == Node.ENTITY_REFERENCE_NODE)
             return null;
         Node newNode = node.getFirstChild();
         if (newNode == null)
@@ -450,8 +448,7 @@ public class TreeWalkerImpl implements TreeWalker {
         if (node == null)
             return null;
 
-        if (!fEntityReferenceExpansion && node
-                .getNodeType() == Node.ENTITY_REFERENCE_NODE)
+        if (!fEntityReferenceExpansion && node.getNodeType() == Node.ENTITY_REFERENCE_NODE)
             return null;
 
         Node newNode = node.getLastChild();
@@ -483,7 +480,6 @@ public class TreeWalkerImpl implements TreeWalker {
     short acceptNode(Node node) {
         /***
          * 7.1.2.4. Filters and whatToShow flags
-         * 
          * Iterator and TreeWalker apply whatToShow flags before applying
          * Filters. If a node is rejected by the active whatToShow flags, a
          * Filter will not be called to evaluate that node. When a node is

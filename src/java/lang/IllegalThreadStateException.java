@@ -31,7 +31,7 @@ public class IllegalThreadStateException extends IllegalArgumentException {
      * detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public IllegalThreadStateException(String s) {
         super(s);

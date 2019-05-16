@@ -14,7 +14,6 @@ import sun.management.MemoryUsageCompositeData;
  * methods that are used to obtain memory usage information about individual
  * memory pool of the Java virtual machine or the heap or non-heap memory of the
  * Java virtual machine as a whole.
- *
  * <p>
  * A <tt>MemoryUsage</tt> object contains four values:
  * <table summary="Describes the MemoryUsage object content">
@@ -52,7 +51,6 @@ import sun.management.MemoryUsageCompositeData;
  * </td>
  * </tr>
  * </table>
- *
  * Below is a picture showing an example of a memory pool:
  *
  * <pre>
@@ -88,60 +86,53 @@ public class MemoryUsage {
      * Constructs a <tt>MemoryUsage</tt> object.
      *
      * @param init
-     *                  the initial amount of memory in bytes that the Java
-     *                  virtual
-     *                  machine allocates; or <tt>-1</tt> if undefined.
+     *        the initial amount of memory in bytes that the Java
+     *        virtual
+     *        machine allocates; or <tt>-1</tt> if undefined.
      * @param used
-     *                  the amount of used memory in bytes.
+     *        the amount of used memory in bytes.
      * @param committed
-     *                  the amount of committed memory in bytes.
+     *        the amount of committed memory in bytes.
      * @param max
-     *                  the maximum amount of memory in bytes that can be used;
-     *                  or
-     *                  <tt>-1</tt> if undefined.
-     *
+     *        the maximum amount of memory in bytes that can be used;
+     *        or
+     *        <tt>-1</tt> if undefined.
      * @throws IllegalArgumentException
-     *                                  if
-     *                                  <ul>
-     *                                  <li>the value of <tt>init</tt> or
-     *                                  <tt>max</tt> is negative
-     *                                  but not <tt>-1</tt>; or</li>
-     *                                  <li>the value of <tt>used</tt> or
-     *                                  <tt>committed</tt> is
-     *                                  negative; or</li>
-     *                                  <li><tt>used</tt> is greater than the
-     *                                  value of
-     *                                  <tt>committed</tt>; or</li>
-     *                                  <li><tt>committed</tt> is greater than
-     *                                  the value of
-     *                                  <tt>max</tt> <tt>max</tt> if
-     *                                  defined.</li>
-     *                                  </ul>
+     *         if
+     *         <ul>
+     *         <li>the value of <tt>init</tt> or
+     *         <tt>max</tt> is negative
+     *         but not <tt>-1</tt>; or</li>
+     *         <li>the value of <tt>used</tt> or
+     *         <tt>committed</tt> is
+     *         negative; or</li>
+     *         <li><tt>used</tt> is greater than the
+     *         value of
+     *         <tt>committed</tt>; or</li>
+     *         <li><tt>committed</tt> is greater than
+     *         the value of
+     *         <tt>max</tt> <tt>max</tt> if
+     *         defined.</li>
+     *         </ul>
      */
     public MemoryUsage(long init, long used, long committed, long max) {
         if (init < -1) {
-            throw new IllegalArgumentException("init parameter = " + init
-                    + " is negative but not -1.");
+            throw new IllegalArgumentException("init parameter = " + init + " is negative but not -1.");
         }
         if (max < -1) {
-            throw new IllegalArgumentException("max parameter = " + max
-                    + " is negative but not -1.");
+            throw new IllegalArgumentException("max parameter = " + max + " is negative but not -1.");
         }
         if (used < 0) {
-            throw new IllegalArgumentException("used parameter = " + used
-                    + " is negative.");
+            throw new IllegalArgumentException("used parameter = " + used + " is negative.");
         }
         if (committed < 0) {
-            throw new IllegalArgumentException("committed parameter = "
-                    + committed + " is negative.");
+            throw new IllegalArgumentException("committed parameter = " + committed + " is negative.");
         }
         if (used > committed) {
-            throw new IllegalArgumentException("used = " + used
-                    + " should be <= committed = " + committed);
+            throw new IllegalArgumentException("used = " + used + " should be <= committed = " + committed);
         }
         if (max >= 0 && committed > max) {
-            throw new IllegalArgumentException("committed = " + committed
-                    + " should be < max = " + max);
+            throw new IllegalArgumentException("committed = " + committed + " should be < max = " + max);
         }
 
         this.init = init;
@@ -179,7 +170,6 @@ public class MemoryUsage {
      * Returns the amount of used memory in bytes.
      *
      * @return the amount of used memory in bytes.
-     *
      */
     public long getUsed() {
         return used;
@@ -191,7 +181,6 @@ public class MemoryUsage {
      * virtual machine to use.
      *
      * @return the amount of committed memory in bytes.
-     *
      */
     public long getCommitted() {
         return committed;
@@ -201,7 +190,6 @@ public class MemoryUsage {
      * Returns the maximum amount of memory in bytes that can be used for memory
      * management. This method returns <tt>-1</tt> if the maximum memory size is
      * undefined.
-     *
      * <p>
      * This amount of memory is not guaranteed to be available for memory
      * management if it is greater than the amount of committed memory. The Java
@@ -221,8 +209,7 @@ public class MemoryUsage {
         StringBuffer buf = new StringBuffer();
         buf.append("init = " + init + "(" + (init >> 10) + "K) ");
         buf.append("used = " + used + "(" + (used >> 10) + "K) ");
-        buf.append("committed = " + committed + "(" + (committed >> 10)
-                + "K) ");
+        buf.append("committed = " + committed + "(" + (committed >> 10) + "K) ");
         buf.append("max = " + max + "(" + (max >> 10) + "K)");
         return buf.toString();
     }
@@ -231,7 +218,6 @@ public class MemoryUsage {
      * Returns a <tt>MemoryUsage</tt> object represented by the given
      * <tt>CompositeData</tt>. The given <tt>CompositeData</tt> must contain the
      * following attributes:
-     *
      * <blockquote> <table border summary=
      * "The attributes and the types the given CompositeData contains">
      * <tr>
@@ -258,13 +244,11 @@ public class MemoryUsage {
      * </blockquote>
      *
      * @param cd
-     *           <tt>CompositeData</tt> representing a <tt>MemoryUsage</tt>
-     *
+     *        <tt>CompositeData</tt> representing a <tt>MemoryUsage</tt>
      * @throws IllegalArgumentException
-     *                                  if <tt>cd</tt> does not represent a
-     *                                  <tt>MemoryUsage</tt> with
-     *                                  the attributes described above.
-     *
+     *         if <tt>cd</tt> does not represent a
+     *         <tt>MemoryUsage</tt> with
+     *         the attributes described above.
      * @return a <tt>MemoryUsage</tt> object represented by <tt>cd</tt> if
      *         <tt>cd</tt> is not <tt>null</tt>; <tt>null</tt> otherwise.
      */

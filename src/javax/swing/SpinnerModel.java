@@ -25,11 +25,9 @@ import javax.swing.event.*;
  * <dl>
  * <dt><code>value</code>
  * <dd>The current element of the sequence.
- *
  * <dt><code>nextValue</code>
  * <dd>The following element or null if <code>value</code> is the last element
  * of the sequence.
- *
  * <dt><code>previousValue</code>
  * <dd>The preceding element or null if <code>value</code> is the first element
  * of the sequence.
@@ -43,7 +41,6 @@ import javax.swing.event.*;
  * @see SpinnerListModel
  * @see SpinnerNumberModel
  * @see SpinnerDateModel
- *
  * @author Hans Muller
  * @since 1.4
  */
@@ -67,7 +64,7 @@ public interface SpinnerModel {
      * <code>model.setValue(new Number(11))</code> would throw an exception.
      *
      * @throws IllegalArgumentException
-     *                                  if <code>value</code> isn't allowed
+     *         if <code>value</code> isn't allowed
      * @see #getValue
      */
     void setValue(Object value);
@@ -100,7 +97,7 @@ public interface SpinnerModel {
      * <code>value</code> changes.
      *
      * @param l
-     *          the ChangeListener to add
+     *        the ChangeListener to add
      * @see #removeChangeListener
      */
     void addChangeListener(ChangeListener l);
@@ -109,7 +106,7 @@ public interface SpinnerModel {
      * Removes a <code>ChangeListener</code> from the model's listener list.
      *
      * @param l
-     *          the ChangeListener to remove
+     *        the ChangeListener to remove
      * @see #addChangeListener
      */
     void removeChangeListener(ChangeListener l);

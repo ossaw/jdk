@@ -35,8 +35,7 @@ class CharBufferSpliterator implements Spliterator.OfInt {
     @Override
     public OfInt trySplit() {
         int lo = index, mid = (lo + limit) >>> 1;
-        return (lo >= mid) ? null
-                : new CharBufferSpliterator(buffer, lo, index = mid);
+        return (lo >= mid) ? null : new CharBufferSpliterator(buffer, lo, index = mid);
     }
 
     @Override

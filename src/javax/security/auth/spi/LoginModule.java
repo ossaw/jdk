@@ -16,7 +16,6 @@ import java.util.Map;
  * {@code LoginModule} describes the interface implemented by authentication
  * technology providers. LoginModules are plugged in under applications to
  * provide a particular type of authentication.
- *
  * <p>
  * While applications write to the {@code LoginContext} API, authentication
  * technology providers implement the {@code LoginModule} interface. A
@@ -24,13 +23,11 @@ import java.util.Map;
  * particular login application. Therefore different LoginModules can be plugged
  * in under the application without requiring any modifications to the
  * application itself.
- *
  * <p>
  * The {@code LoginContext} is responsible for reading the {@code Configuration}
  * and instantiating the appropriate LoginModules. Each {@code LoginModule} is
  * initialized with a {@code Subject}, a {@code CallbackHandler}, shared
  * {@code LoginModule} state, and LoginModule-specific options.
- *
  * The {@code Subject} represents the {@code Subject} currently being
  * authenticated and is updated with relevant Credentials if authentication
  * succeeds. LoginModules use the {@code CallbackHandler} to communicate with
@@ -40,7 +37,6 @@ import java.util.Map;
  * authenticate the {@code Subject} may throw a {@code LoginException}.
  * LoginModules optionally use the shared state to share information or data
  * among themselves.
- *
  * <p>
  * The LoginModule-specific options represent the options configured for this
  * {@code LoginModule} by an administrator or user in the login
@@ -51,7 +47,6 @@ import java.util.Map;
  * {@code LoginModule} stores the options as a {@code Map} so that the values
  * may be retrieved using the key. Note that there is no limit to the number of
  * options a {@code LoginModule} chooses to define.
- *
  * <p>
  * The calling application sees the authentication process as a single
  * operation. However, the authentication process within the {@code LoginModule}
@@ -67,7 +62,6 @@ import java.util.Map;
  * The responsibility of such tasks belongs to the application. If the
  * application attempts to retry the authentication, the LoginModule's
  * {@code login} method will be called again.
- *
  * <p>
  * In the second phase, if the LoginContext's overall authentication succeeded
  * (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL LoginModules
@@ -79,21 +73,18 @@ import java.util.Map;
  * relevant Principals (authenticated identities) and Credentials
  * (authentication data such as cryptographic keys) with the {@code Subject}
  * located within the {@code LoginModule}.
- *
  * <p>
  * If the LoginContext's overall authentication failed (the relevant REQUIRED,
  * REQUISITE, SUFFICIENT and OPTIONAL LoginModules did not succeed), then the
  * {@code abort} method for each {@code LoginModule} gets invoked. In this case,
  * the {@code LoginModule} removes/destroys any authentication state originally
  * saved.
- *
  * <p>
  * Logging out a {@code Subject} involves only one phase. The
  * {@code LoginContext} invokes the LoginModule's {@code logout} method. The
  * {@code logout} method for the {@code LoginModule} then performs the logout
  * procedures, such as removing Principals or Credentials from the
  * {@code Subject} or logging session information.
- *
  * <p>
  * A {@code LoginModule} implementation must have a constructor with no
  * arguments. This allows classes which load the {@code LoginModule} to
@@ -106,54 +97,46 @@ public interface LoginModule {
 
     /**
      * Initialize this LoginModule.
-     *
      * <p>
      * This method is called by the {@code LoginContext} after this
      * {@code LoginModule} has been instantiated. The purpose of this method is
      * to initialize this {@code LoginModule} with the relevant information. If
      * this {@code LoginModule} does not understand any of the data stored in
      * {@code sharedState} or {@code options} parameters, they can be ignored.
-     *
      * <p>
      *
      * @param subject
-     *                        the {@code Subject} to be authenticated.
-     *                        <p>
-     *
+     *        the {@code Subject} to be authenticated.
+     *        <p>
      * @param callbackHandler
-     *                        a {@code CallbackHandler} for communicating with
-     *                        the end user
-     *                        (prompting for usernames and passwords, for
-     *                        example).
-     *                        <p>
-     *
+     *        a {@code CallbackHandler} for communicating with
+     *        the end user
+     *        (prompting for usernames and passwords, for
+     *        example).
+     *        <p>
      * @param sharedState
-     *                        state shared with other configured LoginModules.
-     *                        <p>
-     *
+     *        state shared with other configured LoginModules.
+     *        <p>
      * @param options
-     *                        options specified in the login
-     *                        {@code Configuration} for this
-     *                        particular {@code LoginModule}.
+     *        options specified in the login
+     *        {@code Configuration} for this
+     *        particular {@code LoginModule}.
      */
-    void initialize(Subject subject, CallbackHandler callbackHandler,
-            Map<String, ?> sharedState, Map<String, ?> options);
+    void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> sharedState,
+            Map<String, ?> options);
 
     /**
      * Method to authenticate a {@code Subject} (phase 1).
-     *
      * <p>
      * The implementation of this method authenticates a {@code Subject}. For
      * example, it may prompt for {@code Subject} information such as a username
      * and password and then attempt to verify the password. This method saves
      * the result of the authentication attempt as private state within the
      * LoginModule.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the authentication fails
-     *
+     *            if the authentication fails
      * @return true if the authentication succeeded, or false if this
      *         {@code LoginModule} should be ignored.
      */
@@ -161,12 +144,10 @@ public interface LoginModule {
 
     /**
      * Method to commit the authentication process (phase 2).
-     *
      * <p>
      * This method is called if the LoginContext's overall authentication
      * succeeded (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL
      * LoginModules succeeded).
-     *
      * <p>
      * If this LoginModule's own authentication attempt succeeded (checked by
      * retrieving the private state saved by the {@code login} method), then
@@ -174,12 +155,10 @@ public interface LoginModule {
      * {@code Subject} located in the {@code LoginModule}. If this LoginModule's
      * own authentication attempted failed, then this method removes/destroys
      * any state that was originally saved.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the commit fails
-     *
+     *            if the commit fails
      * @return true if this method succeeded, or false if this
      *         {@code LoginModule} should be ignored.
      */
@@ -187,22 +166,18 @@ public interface LoginModule {
 
     /**
      * Method to abort the authentication process (phase 2).
-     *
      * <p>
      * This method is called if the LoginContext's overall authentication
      * failed. (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL
      * LoginModules did not succeed).
-     *
      * <p>
      * If this LoginModule's own authentication attempt succeeded (checked by
      * retrieving the private state saved by the {@code login} method), then
      * this method cleans up any state that was originally saved.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the abort fails
-     *
+     *            if the abort fails
      * @return true if this method succeeded, or false if this
      *         {@code LoginModule} should be ignored.
      */
@@ -210,16 +185,13 @@ public interface LoginModule {
 
     /**
      * Method which logs out a {@code Subject}.
-     *
      * <p>
      * An implementation of this method might remove/destroy a Subject's
      * Principals and Credentials.
-     *
      * <p>
      *
      * @exception LoginException
-     *                           if the logout fails
-     *
+     *            if the logout fails
      * @return true if this method succeeded, or false if this
      *         {@code LoginModule} should be ignored.
      */

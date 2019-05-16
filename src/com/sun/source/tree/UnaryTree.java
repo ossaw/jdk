@@ -8,7 +8,6 @@ package com.sun.source.tree;
 /**
  * A tree node for postfix and unary expressions. Use {@link #getKind getKind}
  * to determine the kind of operator.
- *
  * For example:
  * 
  * <pre>
@@ -18,7 +17,6 @@ package com.sun.source.tree;
  * </pre>
  *
  * @jls sections 15.14 and 15.15
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

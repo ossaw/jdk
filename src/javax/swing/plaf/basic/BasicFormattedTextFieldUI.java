@@ -18,7 +18,7 @@ public class BasicFormattedTextFieldUI extends BasicTextFieldUI {
      * Creates a UI for a JFormattedTextField.
      *
      * @param c
-     *          the formatted text field
+     *        the formatted text field
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {

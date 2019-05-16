@@ -10,14 +10,12 @@ import java.io.IOException;
 /**
  * An exception class used for signaling run-time failure of reading and writing
  * operations.
- *
  * <p>
  * In addition to a message string, a reference to another
  * <code>Throwable</code> (<code>Error</code> or <code>Exception</code>) is
  * maintained. This reference, if non-<code>null</code>, refers to the event
  * that caused this exception to occur. For example, an <code>IOException</code>
  * while reading from a <code>File</code> would be stored there.
- *
  */
 public class IIOException extends IOException {
 
@@ -27,8 +25,7 @@ public class IIOException extends IOException {
      * will return <code>null</code>.
      *
      * @param message
-     *                the error message.
-     *
+     *        the error message.
      * @see #getMessage
      */
     public IIOException(String message) {
@@ -41,12 +38,11 @@ public class IIOException extends IOException {
      * cause.
      *
      * @param message
-     *                the error message.
+     *        the error message.
      * @param cause
-     *                the <code>Throwable</code> (<code>Error</code> or
-     *                <code>Exception</code>) that caused this exception to
-     *                occur.
-     *
+     *        the <code>Throwable</code> (<code>Error</code> or
+     *        <code>Exception</code>) that caused this exception to
+     *        occur.
      * @see #getCause
      * @see #getMessage
      */

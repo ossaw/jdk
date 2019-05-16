@@ -31,7 +31,7 @@ public interface IORInfoOperations {
      * of 2.
      * 
      * @param type
-     *             an int specifying the type of policy to return.
+     *        an int specifying the type of policy to return.
      * @return The effective <code>CORBA.Policy</code> object of the requested
      *         type. If the given policy type is known, but no policy of that
      *         type is in effect, then this operation will return a nil object
@@ -49,7 +49,7 @@ public interface IORInfoOperations {
      * Any number of components may exist with the same component ID.
      * 
      * @param tagged_component
-     *                         The IOP.TaggedComponent to add.
+     *        The IOP.TaggedComponent to add.
      */
     void add_ior_component(org.omg.IOP.TaggedComponent tagged_component);
 
@@ -63,19 +63,18 @@ public interface IORInfoOperations {
      * Any number of components may exist with the same component ID.
      * 
      * @param tagged_component
-     *                         The <code>IOP.TaggedComponent</code> to add.
+     *        The <code>IOP.TaggedComponent</code> to add.
      * @param profile_id
-     *                         The profile id of the profile to which this
-     *                         component will be
-     *                         added.
+     *        The profile id of the profile to which this
+     *        component will be
+     *        added.
      * @exception BAD_PARAM
-     *                      thrown, with a standard minor code of 29, if the
-     *                      given
-     *                      profile ID does not define a known profile or it is
-     *                      impossible to add components to that profile.
+     *            thrown, with a standard minor code of 29, if the
+     *            given
+     *            profile ID does not define a known profile or it is
+     *            impossible to add components to that profile.
      */
-    void add_ior_component_to_profile(
-            org.omg.IOP.TaggedComponent tagged_component, int profile_id);
+    void add_ior_component_to_profile(org.omg.IOP.TaggedComponent tagged_component, int profile_id);
 
     /**
      * Return the adapter manager id of the object adapter that was just created
@@ -111,6 +110,5 @@ public interface IORInfoOperations {
      * the adapter_template attribute. The current_factory may also be set to
      * another object reference template inside an IORInterceptor_3_0.
      */
-    void current_factory(
-            org.omg.PortableInterceptor.ObjectReferenceFactory newCurrent_factory);
+    void current_factory(org.omg.PortableInterceptor.ObjectReferenceFactory newCurrent_factory);
 } // interface IORInfoOperations

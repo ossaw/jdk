@@ -22,12 +22,10 @@ import sun.awt.SunToolkit;
  * are fully traversed before proceeding to the next row.
  *
  * @author David Mendenhall
- *
  * @see java.awt.ComponentOrientation
  * @since 1.4
  */
-public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
-        implements Serializable {
+public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy implements Serializable {
     // Delegate most of our fitness test to Default so that we only have to
     // code the algorithm once.
     private static final SwingDefaultFocusTraversalPolicy fitnessTestPolicy = new SwingDefaultFocusTraversalPolicy();
@@ -63,32 +61,29 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
      * down-cycle.
      *
      * @param aContainer
-     *                   a focus cycle root of aComponent or a focus traversal
-     *                   policy
-     *                   provider
+     *        a focus cycle root of aComponent or a focus traversal
+     *        policy
+     *        provider
      * @param aComponent
-     *                   a (possibly indirect) child of aContainer, or
-     *                   aContainer
-     *                   itself
+     *        a (possibly indirect) child of aContainer, or
+     *        aContainer
+     *        itself
      * @return the Component that should receive the focus after aComponent, or
      *         null if no suitable Component can be found
      * @throws IllegalArgumentException
-     *                                  if aContainer is not a focus cycle root
-     *                                  of aComponent or a
-     *                                  focus traversal policy provider, or if
-     *                                  either aContainer or
-     *                                  aComponent is null
+     *         if aContainer is not a focus cycle root
+     *         of aComponent or a
+     *         focus traversal policy provider, or if
+     *         either aContainer or
+     *         aComponent is null
      */
-    public Component getComponentAfter(Container aContainer,
-            Component aComponent) {
+    public Component getComponentAfter(Container aContainer, Component aComponent) {
         if (aContainer == null || aComponent == null) {
-            throw new IllegalArgumentException(
-                    "aContainer and aComponent cannot be null");
+            throw new IllegalArgumentException("aContainer and aComponent cannot be null");
         }
         Comparator comparator = getComparator();
         if (comparator instanceof LayoutComparator) {
-            ((LayoutComparator) comparator).setComponentOrientation(aContainer
-                    .getComponentOrientation());
+            ((LayoutComparator) comparator).setComponentOrientation(aContainer.getComponentOrientation());
         }
         return super.getComponentAfter(aContainer, aComponent);
     }
@@ -109,32 +104,29 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
      * down-cycle.
      *
      * @param aContainer
-     *                   a focus cycle root of aComponent or a focus traversal
-     *                   policy
-     *                   provider
+     *        a focus cycle root of aComponent or a focus traversal
+     *        policy
+     *        provider
      * @param aComponent
-     *                   a (possibly indirect) child of aContainer, or
-     *                   aContainer
-     *                   itself
+     *        a (possibly indirect) child of aContainer, or
+     *        aContainer
+     *        itself
      * @return the Component that should receive the focus before aComponent, or
      *         null if no suitable Component can be found
      * @throws IllegalArgumentException
-     *                                  if aContainer is not a focus cycle root
-     *                                  of aComponent or a
-     *                                  focus traversal policy provider, or if
-     *                                  either aContainer or
-     *                                  aComponent is null
+     *         if aContainer is not a focus cycle root
+     *         of aComponent or a
+     *         focus traversal policy provider, or if
+     *         either aContainer or
+     *         aComponent is null
      */
-    public Component getComponentBefore(Container aContainer,
-            Component aComponent) {
+    public Component getComponentBefore(Container aContainer, Component aComponent) {
         if (aContainer == null || aComponent == null) {
-            throw new IllegalArgumentException(
-                    "aContainer and aComponent cannot be null");
+            throw new IllegalArgumentException("aContainer and aComponent cannot be null");
         }
         Comparator comparator = getComparator();
         if (comparator instanceof LayoutComparator) {
-            ((LayoutComparator) comparator).setComponentOrientation(aContainer
-                    .getComponentOrientation());
+            ((LayoutComparator) comparator).setComponentOrientation(aContainer.getComponentOrientation());
         }
         return super.getComponentBefore(aContainer, aComponent);
     }
@@ -145,13 +137,13 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
      * forward direction.
      *
      * @param aContainer
-     *                   a focus cycle root of aComponent or a focus traversal
-     *                   policy
-     *                   provider whose first Component is to be returned
+     *        a focus cycle root of aComponent or a focus traversal
+     *        policy
+     *        provider whose first Component is to be returned
      * @return the first Component in the traversal cycle of aContainer, or null
      *         if no suitable Component can be found
      * @throws IllegalArgumentException
-     *                                  if aContainer is null
+     *         if aContainer is null
      */
     public Component getFirstComponent(Container aContainer) {
         if (aContainer == null) {
@@ -159,8 +151,7 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
         }
         Comparator comparator = getComparator();
         if (comparator instanceof LayoutComparator) {
-            ((LayoutComparator) comparator).setComponentOrientation(aContainer
-                    .getComponentOrientation());
+            ((LayoutComparator) comparator).setComponentOrientation(aContainer.getComponentOrientation());
         }
         return super.getFirstComponent(aContainer);
     }
@@ -171,13 +162,13 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
      * direction.
      *
      * @param aContainer
-     *                   a focus cycle root of aComponent or a focus traversal
-     *                   policy
-     *                   provider whose last Component is to be returned
+     *        a focus cycle root of aComponent or a focus traversal
+     *        policy
+     *        provider whose last Component is to be returned
      * @return the last Component in the traversal cycle of aContainer, or null
      *         if no suitable Component can be found
      * @throws IllegalArgumentException
-     *                                  if aContainer is null
+     *         if aContainer is null
      */
     public Component getLastComponent(Container aContainer) {
         if (aContainer == null) {
@@ -185,8 +176,7 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
         }
         Comparator comparator = getComparator();
         if (comparator instanceof LayoutComparator) {
-            ((LayoutComparator) comparator).setComponentOrientation(aContainer
-                    .getComponentOrientation());
+            ((LayoutComparator) comparator).setComponentOrientation(aContainer.getComponentOrientation());
         }
         return super.getLastComponent(aContainer);
     }
@@ -212,9 +202,9 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
      * </ol>
      *
      * @param aComponent
-     *                   the <code>Component</code> whose fitness as a focus
-     *                   owner is
-     *                   to be tested
+     *        the <code>Component</code> whose fitness as a focus
+     *        owner is
+     *        to be tested
      * @see java.awt.Component#isVisible
      * @see java.awt.Component#isDisplayable
      * @see java.awt.Component#isEnabled
@@ -232,14 +222,12 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
             // JTable only has ancestor focus bindings, we thus force it
             // to be focusable by returning true here.
             return true;
-        } else if (SunToolkit.isInstanceOf(aComponent,
-                "javax.swing.JComboBox")) {
+        } else if (SunToolkit.isInstanceOf(aComponent, "javax.swing.JComboBox")) {
             JComboBox box = (JComboBox) aComponent;
             return box.getUI().isFocusTraversable(box);
         } else if (aComponent instanceof JComponent) {
             JComponent jComponent = (JComponent) aComponent;
-            InputMap inputMap = jComponent.getInputMap(JComponent.WHEN_FOCUSED,
-                    false);
+            InputMap inputMap = jComponent.getInputMap(JComponent.WHEN_FOCUSED, false);
             while (inputMap != null && inputMap.size() == 0) {
                 inputMap = inputMap.getParent();
             }
@@ -258,8 +246,7 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
         out.writeBoolean(getImplicitDownCycleTraversal());
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         setComparator((Comparator) in.readObject());
         setImplicitDownCycleTraversal(in.readBoolean());
     }
@@ -267,8 +254,7 @@ public class LayoutFocusTraversalPolicy extends SortingFocusTraversalPolicy
 
 // Create our own subclass and change accept to public so that we can call
 // accept.
-class SwingDefaultFocusTraversalPolicy extends
-        java.awt.DefaultFocusTraversalPolicy {
+class SwingDefaultFocusTraversalPolicy extends java.awt.DefaultFocusTraversalPolicy {
     public boolean accept(Component aComponent) {
         return super.accept(aComponent);
     }

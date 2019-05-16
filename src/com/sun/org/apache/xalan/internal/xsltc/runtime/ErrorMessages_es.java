@@ -91,16 +91,14 @@ public class ErrorMessages_es extends ListResourceBundle {
                  * context needs to be converted to type {1}, but that's not
                  * possible for a value of type {0}.
                  */
-                { BasisLibrary.DATA_CONVERSION_ERR,
-                        "Conversi\u00F3n no v\u00E1lida de ''{0}'' a ''{1}''." },
+                { BasisLibrary.DATA_CONVERSION_ERR, "Conversi\u00F3n no v\u00E1lida de ''{0}'' a ''{1}''." },
 
                 /*
                  * Note to translators: This message is displayed if the
                  * function named by the substitution text is not a function
                  * that is supported. XSLTC is the acronym naming the product.
                  */
-                { BasisLibrary.EXTERNAL_FUNC_ERR,
-                        "Funci\u00F3n externa ''{0}'' no soportada por XSLTC." },
+                { BasisLibrary.EXTERNAL_FUNC_ERR, "Funci\u00F3n externa ''{0}'' no soportada por XSLTC." },
 
                 /*
                  * Note to translators: This message is displayed if two values
@@ -133,8 +131,7 @@ public class ErrorMessages_es extends ListResourceBundle {
                  * error situation in XSLTC. The processor was unable to create
                  * a copy of an iterator. (See definition of iterator above.)
                  */
-                { BasisLibrary.ITERATOR_CLONE_ERR,
-                        "No se puede clonar el iterador ''{0}''." },
+                { BasisLibrary.ITERATOR_CLONE_ERR, "No se puede clonar el iterador ''{0}''." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -142,8 +139,7 @@ public class ErrorMessages_es extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.AXIS_SUPPORT_ERR,
-                        "El iterador para el eje ''{0}'' no est\u00E1 soportado." },
+                { BasisLibrary.AXIS_SUPPORT_ERR, "El iterador para el eje ''{0}'' no est\u00E1 soportado." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -161,8 +157,7 @@ public class ErrorMessages_es extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { BasisLibrary.STRAY_ATTRIBUTE_ERR,
-                        "El atributo ''{0}'' est\u00E1 fuera del elemento." },
+                { BasisLibrary.STRAY_ATTRIBUTE_ERR, "El atributo ''{0}'' est\u00E1 fuera del elemento." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -219,8 +214,7 @@ public class ErrorMessages_es extends ListResourceBundle {
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { BasisLibrary.UNSUPPORTED_XSL_ERR,
-                        "Elemento ''{0}'' de XSL no soportado" },
+                { BasisLibrary.UNSUPPORTED_XSL_ERR, "Elemento ''{0}'' de XSL no soportado" },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -228,8 +222,7 @@ public class ErrorMessages_es extends ListResourceBundle {
                  * but XSLTC does not recognize the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { BasisLibrary.UNSUPPORTED_EXT_ERR,
-                        "Extensi\u00F3n ''{0}'' de XSLTC no reconocida" },
+                { BasisLibrary.UNSUPPORTED_EXT_ERR, "Extensi\u00F3n ''{0}'' de XSLTC no reconocida" },
 
                 /*
                  * Note to translators: This error message is produced if the

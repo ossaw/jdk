@@ -31,7 +31,7 @@ public class InsufficientResourcesException extends NamingException {
      * explanation. All other fields default to null.
      *
      * @param explanation
-     *                    Possibly null additional detail about this exception.
+     *        Possibly null additional detail about this exception.
      * @see java.lang.Throwable#getMessage
      */
     public InsufficientResourcesException(String explanation) {

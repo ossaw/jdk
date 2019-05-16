@@ -42,8 +42,7 @@ import org.xml.sax.ContentHandler;
  * walkers, which must be cloned in order to be used -- the original must still
  * be immutable.
  */
-public abstract class Expression implements java.io.Serializable,
-        ExpressionNode, XPathVisitable {
+public abstract class Expression implements java.io.Serializable, ExpressionNode, XPathVisitable {
     static final long serialVersionUID = 565665869777906902L;
     /**
      * The location where this expression was built from. Need for diagnostic
@@ -80,15 +79,12 @@ public abstract class Expression implements java.io.Serializable,
      * Execute an expression in the XPath runtime context, and return the result
      * of the expression.
      *
-     *
      * @param xctxt
-     *                    The XPath runtime context.
+     *        The XPath runtime context.
      * @param currentNode
-     *                    The currentNode.
-     *
+     *        The currentNode.
      * @return The result of the expression in the form of a
      *         <code>XObject</code>.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if a runtime exception occurs.
      */
@@ -103,24 +99,21 @@ public abstract class Expression implements java.io.Serializable,
      * Execute an expression in the XPath runtime context, and return the result
      * of the expression.
      *
-     *
      * @param xctxt
-     *                    The XPath runtime context.
+     *        The XPath runtime context.
      * @param currentNode
-     *                    The currentNode.
+     *        The currentNode.
      * @param dtm
-     *                    The DTM of the current node.
+     *        The DTM of the current node.
      * @param expType
-     *                    The expanded type ID of the current node.
-     *
+     *        The expanded type ID of the current node.
      * @return The result of the expression in the form of a
      *         <code>XObject</code>.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if a runtime exception occurs.
      */
-    public XObject execute(XPathContext xctxt, int currentNode, DTM dtm,
-            int expType) throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt, int currentNode, DTM dtm, int expType)
+            throws javax.xml.transform.TransformerException {
 
         // For now, the current node is already pushed.
         return execute(xctxt);
@@ -130,33 +123,26 @@ public abstract class Expression implements java.io.Serializable,
      * Execute an expression in the XPath runtime context, and return the result
      * of the expression.
      *
-     *
      * @param xctxt
-     *              The XPath runtime context.
-     *
+     *        The XPath runtime context.
      * @return The result of the expression in the form of a
      *         <code>XObject</code>.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if a runtime exception occurs.
      */
-    public abstract XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException;
+    public abstract XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException;
 
     /**
      * Execute an expression in the XPath runtime context, and return the result
      * of the expression, but tell that a "safe" object doesn't have to be
      * returned. The default implementation just calls execute(xctxt).
      *
-     *
      * @param xctxt
-     *                      The XPath runtime context.
+     *        The XPath runtime context.
      * @param destructiveOK
-     *                      true if a "safe" object doesn't need to be returned.
-     *
+     *        true if a "safe" object doesn't need to be returned.
      * @return The result of the expression in the form of a
      *         <code>XObject</code>.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if a runtime exception occurs.
      */
@@ -168,45 +154,36 @@ public abstract class Expression implements java.io.Serializable,
     /**
      * Evaluate expression to a number.
      *
-     *
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @return The expression evaluated as a double.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public double num(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public double num(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         return execute(xctxt).num();
     }
 
     /**
      * Evaluate expression to a boolean.
      *
-     *
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @return false
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public boolean bool(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public boolean bool(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         return execute(xctxt).bool();
     }
 
     /**
      * Cast result object to a string.
      *
-     *
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @return The string this wraps or the empty string if null
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XMLString xstr(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XMLString xstr(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         return execute(xctxt).xstr();
     }
 
@@ -226,13 +203,11 @@ public abstract class Expression implements java.io.Serializable,
      * expression.
      * 
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @return the first node out of the nodeset, or DTM.NULL.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public int asNode(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public int asNode(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         DTMIterator iter = execute(xctxt).iter();
         return iter.nextNode();
     }
@@ -242,19 +217,16 @@ public abstract class Expression implements java.io.Serializable,
      * the resulting iterator.
      *
      * @param xctxt
-     *                    The execution context.
+     *        The execution context.
      * @param contextNode
-     *                    The node that "." expresses.
-     *
-     *
+     *        The node that "." expresses.
      * @return A valid DTMIterator.
      * @throws TransformerException
-     *                              thrown if the active ProblemListener decides
-     *                              the error
-     *                              condition is severe enough to halt
-     *                              processing.
-     *
-     * @throws                      javax.xml.transform.TransformerException
+     *         thrown if the active ProblemListener decides
+     *         the error
+     *         condition is severe enough to halt
+     *         processing.
+     * @throws javax.xml.transform.TransformerException
      * @xsl.usage experimental
      */
     public DTMIterator asIterator(XPathContext xctxt, int contextNode)
@@ -274,19 +246,16 @@ public abstract class Expression implements java.io.Serializable,
      * the resulting iterator, but do not clone.
      *
      * @param xctxt
-     *                    The execution context.
+     *        The execution context.
      * @param contextNode
-     *                    The node that "." expresses.
-     *
-     *
+     *        The node that "." expresses.
      * @return A valid DTMIterator.
      * @throws TransformerException
-     *                              thrown if the active ProblemListener decides
-     *                              the error
-     *                              condition is severe enough to halt
-     *                              processing.
-     *
-     * @throws                      javax.xml.transform.TransformerException
+     *         thrown if the active ProblemListener decides
+     *         the error
+     *         condition is severe enough to halt
+     *         processing.
+     * @throws javax.xml.transform.TransformerException
      * @xsl.usage experimental
      */
     public DTMIterator asIteratorRaw(XPathContext xctxt, int contextNode)
@@ -306,21 +275,16 @@ public abstract class Expression implements java.io.Serializable,
      * Execute an expression in the XPath runtime context, and return the result
      * of the expression.
      *
-     *
      * @param xctxt
-     *              The XPath runtime context. NEEDSDOC @param handler
-     *
+     *        The XPath runtime context. NEEDSDOC @param handler
      * @return The result of the expression in the form of a
      *         <code>XObject</code>.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if a runtime exception occurs.
      * @throws org.xml.sax.SAXException
      */
-    public void executeCharsToContentHandler(XPathContext xctxt,
-            ContentHandler handler)
-            throws javax.xml.transform.TransformerException,
-            org.xml.sax.SAXException {
+    public void executeCharsToContentHandler(XPathContext xctxt, ContentHandler handler)
+            throws javax.xml.transform.TransformerException, org.xml.sax.SAXException {
 
         XObject obj = execute(xctxt);
 
@@ -334,7 +298,6 @@ public abstract class Expression implements java.io.Serializable,
      * proximity position predicate can indicate that no more searching has to
      * occur.
      *
-     *
      * @return true if the expression represents a stable number.
      */
     public boolean isStableNumber() {
@@ -346,13 +309,13 @@ public abstract class Expression implements java.io.Serializable,
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame). NEEDSDOC @param globalsSize
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame). NEEDSDOC @param globalsSize
      */
     public abstract void fixupVariables(java.util.Vector vars, int globalsSize);
 
@@ -361,7 +324,7 @@ public abstract class Expression implements java.io.Serializable,
      * include the sub heararchy.
      *
      * @param expr
-     *             Another expression object.
+     *        Another expression object.
      * @return true if this objects class and the expr object's class are the
      *         same, and the data contained within both objects are considered
      *         equal.
@@ -388,23 +351,21 @@ public abstract class Expression implements java.io.Serializable,
      * Warn the user of an problem.
      *
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @param msg
-     *              An error msgkey that corresponds to one of the conststants
-     *              found in
-     *              {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
-     *              , which is a key for a format string.
+     *        An error msgkey that corresponds to one of the conststants
+     *        found in
+     *        {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
+     *        , which is a key for a format string.
      * @param args
-     *              An array of arguments represented in the format string,
-     *              which
-     *              may be null.
-     *
+     *        An array of arguments represented in the format string,
+     *        which
+     *        may be null.
      * @throws TransformerException
-     *                              if the current ErrorListoner determines to
-     *                              throw an
-     *                              exception.
-     *
-     * @throws                      javax.xml.transform.TransformerException
+     *         if the current ErrorListoner determines to
+     *         throw an
+     *         exception.
+     * @throws javax.xml.transform.TransformerException
      */
     public void warn(XPathContext xctxt, String msg, Object[] args)
             throws javax.xml.transform.TransformerException {
@@ -423,21 +384,18 @@ public abstract class Expression implements java.io.Serializable,
      * Tell the user of an assertion error, and probably throw an exception.
      *
      * @param b
-     *            If false, a runtime exception will be thrown.
+     *        If false, a runtime exception will be thrown.
      * @param msg
-     *            The assertion message, which should be informative.
-     *
+     *        The assertion message, which should be informative.
      * @throws RuntimeException
-     *                          if the b argument is false.
-     *
-     * @throws                  javax.xml.transform.TransformerException
+     *         if the b argument is false.
+     * @throws javax.xml.transform.TransformerException
      */
     public void assertion(boolean b, java.lang.String msg) {
 
         if (!b) {
             java.lang.String fMsg = XSLMessages.createXPATHMessage(
-                    XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION,
-                    new Object[] { msg });
+                    XPATHErrorResources.ER_INCORRECT_PROGRAMMER_ASSERTION, new Object[] { msg });
 
             throw new RuntimeException(fMsg);
         }
@@ -447,24 +405,22 @@ public abstract class Expression implements java.io.Serializable,
      * Tell the user of an error, and probably throw an exception.
      *
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @param msg
-     *              An error msgkey that corresponds to one of the constants
-     *              found
-     *              in
-     *              {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
-     *              , which is a key for a format string.
+     *        An error msgkey that corresponds to one of the constants
+     *        found
+     *        in
+     *        {@link com.sun.org.apache.xpath.internal.res.XPATHErrorResources}
+     *        , which is a key for a format string.
      * @param args
-     *              An array of arguments represented in the format string,
-     *              which
-     *              may be null.
-     *
+     *        An array of arguments represented in the format string,
+     *        which
+     *        may be null.
      * @throws TransformerException
-     *                              if the current ErrorListoner determines to
-     *                              throw an
-     *                              exception.
-     *
-     * @throws                      javax.xml.transform.TransformerException
+     *         if the current ErrorListoner determines to
+     *         throw an
+     *         exception.
+     * @throws javax.xml.transform.TransformerException
      */
     public void error(XPathContext xctxt, String msg, Object[] args)
             throws javax.xml.transform.TransformerException {
@@ -530,7 +486,6 @@ public abstract class Expression implements java.io.Serializable,
 
     /**
      * Return the public identifier for the current document event.
-     *
      * <p>
      * The return value is the public identifier of the document entity or of
      * the external parsed entity in which the markup that triggered the event
@@ -549,13 +504,11 @@ public abstract class Expression implements java.io.Serializable,
 
     /**
      * Return the system identifier for the current document event.
-     *
      * <p>
      * The return value is the system identifier of the document entity or of
      * the external parsed entity in which the markup that triggered the event
      * appears.
      * </p>
-     *
      * <p>
      * If the system identifier is a URL, the parser must resolve it fully
      * before passing it to the application.
@@ -573,14 +526,12 @@ public abstract class Expression implements java.io.Serializable,
 
     /**
      * Return the line number where the current document event ends.
-     *
      * <p>
      * <strong>Warning:</strong> The return value from the method is intended
      * only as an approximation for the sake of error reporting; it is not
      * intended to provide sufficient information to edit the character content
      * of the original XML document.
      * </p>
-     *
      * <p>
      * The return value is an approximation of the line number in the document
      * entity or external parsed entity where the markup that triggered the
@@ -598,14 +549,12 @@ public abstract class Expression implements java.io.Serializable,
 
     /**
      * Return the character position where the current document event ends.
-     *
      * <p>
      * <strong>Warning:</strong> The return value from the method is intended
      * only as an approximation for the sake of error reporting; it is not
      * intended to provide sufficient information to edit the character content
      * of the original XML document.
      * </p>
-     *
      * <p>
      * The return value is an approximation of the column number in the document
      * entity or external parsed entity where the markup that triggered the

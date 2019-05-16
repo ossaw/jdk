@@ -31,9 +31,7 @@ import java.util.Hashtable;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @since 1.3
- *
  */
 
 public abstract class ReferralException extends NamingException {
@@ -42,7 +40,7 @@ public abstract class ReferralException extends NamingException {
      * supplied. All other fields are set to null.
      *
      * @param explanation
-     *                    Additional detail about this exception. Can be null.
+     *        Additional detail about this exception. Can be null.
      * @see java.lang.Throwable#getMessage
      */
     protected ReferralException(String explanation) {
@@ -74,18 +72,17 @@ public abstract class ReferralException extends NamingException {
      * exception should provide a context at which to continue the operation.
      * The referral context is created using the environment properties of the
      * context that threw the ReferralException.
-     *
      * <p>
      * To continue the operation, the client program should re-invoke the method
      * using the same arguments as the original invocation.
      *
      * @return The non-null context at which to continue the method.
      * @exception NamingException
-     *                            If a naming exception was encountered. Call
-     *                            either
-     *                            <tt>retryReferral()</tt> or
-     *                            <tt>skipReferral()</tt> to
-     *                            continue processing referrals.
+     *            If a naming exception was encountered. Call
+     *            either
+     *            <tt>retryReferral()</tt> or
+     *            <tt>skipReferral()</tt> to
+     *            continue processing referrals.
      */
     public abstract Context getReferralContext() throws NamingException;
 
@@ -107,20 +104,18 @@ public abstract class ReferralException extends NamingException {
      * using the same arguments as the original invocation.
      *
      * @param env
-     *            The possibly null environment to use when retrieving the
-     *            referral context. If null, no environment properties will be
-     *            used.
-     *
+     *        The possibly null environment to use when retrieving the
+     *        referral context. If null, no environment properties will be
+     *        used.
      * @return The non-null context at which to continue the method.
      * @exception NamingException
-     *                            If a naming exception was encountered. Call
-     *                            either
-     *                            <tt>retryReferral()</tt> or
-     *                            <tt>skipReferral()</tt> to
-     *                            continue processing referrals.
+     *            If a naming exception was encountered. Call
+     *            either
+     *            <tt>retryReferral()</tt> or
+     *            <tt>skipReferral()</tt> to
+     *            continue processing referrals.
      */
-    public abstract Context getReferralContext(Hashtable<?, ?> env)
-            throws NamingException;
+    public abstract Context getReferralContext(Hashtable<?, ?> env) throws NamingException;
 
     /**
      * Discards the referral about to be processed. A call to this method should
@@ -169,7 +164,6 @@ public abstract class ReferralException extends NamingException {
      * </pre>
      * 
      * </blockquote>
-     *
      */
     public abstract void retryReferral();
 

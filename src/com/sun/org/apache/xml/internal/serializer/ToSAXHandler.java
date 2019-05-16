@@ -31,7 +31,6 @@ import org.xml.sax.ext.LexicalHandler;
 /**
  * This class is used to provide a base behavior to be inherited by other
  * To...SAXHandler serializers.
- *
  * This class is not a public API.
  *
  * @xsl.usage internal
@@ -39,8 +38,7 @@ import org.xml.sax.ext.LexicalHandler;
 public abstract class ToSAXHandler extends SerializerBase {
     public ToSAXHandler() {}
 
-    public ToSAXHandler(ContentHandler hdlr, LexicalHandler lex,
-            String encoding) {
+    public ToSAXHandler(ContentHandler hdlr, LexicalHandler lex, String encoding) {
         setContentHandler(hdlr);
         setLexHandler(lex);
         setEncoding(encoding);
@@ -96,8 +94,7 @@ public abstract class ToSAXHandler extends SerializerBase {
      * 
      * @see org.xml.sax.ext.LexicalHandler#startDTD(String, String, String)
      */
-    public void startDTD(String arg0, String arg1, String arg2)
-            throws SAXException {
+    public void startDTD(String arg0, String arg1, String arg2) throws SAXException {
         // do nothing for now
     }
 
@@ -105,10 +102,8 @@ public abstract class ToSAXHandler extends SerializerBase {
      * Receive notification of character data.
      *
      * @param characters
-     *                   The string of characters to process.
-     *
+     *        The string of characters to process.
      * @throws org.xml.sax.SAXException
-     *
      * @see ExtendedContentHandler#characters(String)
      */
     public void characters(String characters) throws SAXException {
@@ -149,8 +144,7 @@ public abstract class ToSAXHandler extends SerializerBase {
      * 
      * @see org.xml.sax.ContentHandler#processingInstruction(String, String)
      */
-    public void processingInstruction(String target, String data)
-            throws SAXException {
+    public void processingInstruction(String target, String data) throws SAXException {
         // Redefined in SAXXMLOutput
     }
 
@@ -170,13 +164,10 @@ public abstract class ToSAXHandler extends SerializerBase {
      * @see org.xml.sax.ContentHandler#startElement
      * @see org.xml.sax.ContentHandler#endElement
      * @see org.xml.sax.AttributeList
-     *
      * @throws org.xml.sax.SAXException
-     *
      * @see org.xml.sax.ContentHandler#startElement(String,String,String,Attributes)
      */
-    public void startElement(String arg0, String arg1, String arg2,
-            Attributes arg3) throws SAXException {
+    public void startElement(String arg0, String arg1, String arg2, Attributes arg3) throws SAXException {
         if (m_state != null) {
             m_state.resetState(getTransformer());
         }
@@ -190,7 +181,7 @@ public abstract class ToSAXHandler extends SerializerBase {
      * Sets the LexicalHandler.
      * 
      * @param _lexHandler
-     *                    The LexicalHandler to set
+     *        The LexicalHandler to set
      */
     public void setLexHandler(LexicalHandler _lexHandler) {
         this.m_lexHandler = _lexHandler;
@@ -200,7 +191,7 @@ public abstract class ToSAXHandler extends SerializerBase {
      * Sets the SAX ContentHandler.
      * 
      * @param _saxHandler
-     *                    The ContentHandler to set
+     *        The ContentHandler to set
      */
     public void setContentHandler(ContentHandler _saxHandler) {
         this.m_saxHandler = _saxHandler;
@@ -227,9 +218,9 @@ public abstract class ToSAXHandler extends SerializerBase {
      * as attributes of elements
      * 
      * @param doOutputNSAttr
-     *                       whether or not namespace declarations should appear
-     *                       as
-     *                       attributes
+     *        whether or not namespace declarations should appear
+     *        as
+     *        attributes
      */
     public void setShouldOutputNSAttr(boolean doOutputNSAttr) {
         m_shouldGenerateNSAttribute = doOutputNSAttr;
@@ -275,7 +266,7 @@ public abstract class ToSAXHandler extends SerializerBase {
      * event.
      *
      * @param ts
-     *           A reference to a TransformState object
+     *        A reference to a TransformState object
      */
     public void setTransformState(TransformStateSetter ts) {
         this.m_state = ts;
@@ -286,16 +277,14 @@ public abstract class ToSAXHandler extends SerializerBase {
      * fully known yet.
      *
      * @param uri
-     *                  the URI of the namespace of the element (optional)
+     *        the URI of the namespace of the element (optional)
      * @param localName
-     *                  the element name, but without prefix (optional)
+     *        the element name, but without prefix (optional)
      * @param qName
-     *                  the element name, with prefix, if any (required)
-     *
+     *        the element name, with prefix, if any (required)
      * @see ExtendedContentHandler#startElement(String, String, String)
      */
-    public void startElement(String uri, String localName, String qName)
-            throws SAXException {
+    public void startElement(String uri, String localName, String qName) throws SAXException {
 
         if (m_state != null) {
             m_state.resetState(getTransformer());
@@ -310,8 +299,7 @@ public abstract class ToSAXHandler extends SerializerBase {
      * An element starts, but attributes are not fully known yet.
      *
      * @param qName
-     *              the element name, with prefix (if any).
-     * 
+     *        the element name, with prefix (if any).
      * @see ExtendedContentHandler#startElement(String)
      */
     public void startElement(String qName) throws SAXException {
@@ -328,11 +316,10 @@ public abstract class ToSAXHandler extends SerializerBase {
      * it were an input character notification.
      * 
      * @param node
-     *             the Node to serialize
+     *        the Node to serialize
      * @throws org.xml.sax.SAXException
      */
-    public void characters(org.w3c.dom.Node node)
-            throws org.xml.sax.SAXException {
+    public void characters(org.w3c.dom.Node node) throws org.xml.sax.SAXException {
         // remember the current node
         if (m_state != null) {
             m_state.setCurrentNode(node);
@@ -399,7 +386,6 @@ public abstract class ToSAXHandler extends SerializerBase {
 
     /**
      * Reset all of the fields owned by ToSAXHandler class
-     *
      */
     private void resetToSAXHandler() {
         this.m_lexHandler = null;
@@ -411,8 +397,7 @@ public abstract class ToSAXHandler extends SerializerBase {
     /**
      * Add a unique attribute
      */
-    public void addUniqueAttribute(String qName, String value, int flags)
-            throws SAXException {
+    public void addUniqueAttribute(String qName, String value, int flags) throws SAXException {
         addAttribute(qName, value);
     }
 }

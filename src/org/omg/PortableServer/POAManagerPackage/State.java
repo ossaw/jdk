@@ -33,8 +33,7 @@ public class State implements org.omg.CORBA.portable.IDLEntity {
         return __value;
     }
 
-    public static org.omg.PortableServer.POAManagerPackage.State from_int(
-            int value) {
+    public static org.omg.PortableServer.POAManagerPackage.State from_int(int value) {
         if (value >= 0 && value < __size)
             return __array[value];
         else

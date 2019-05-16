@@ -43,7 +43,6 @@ public class ExsltCommon {
      * The exsl:object-type function returns a string giving the type of the
      * object passed as the argument. The possible object types are: 'string',
      * 'number', 'boolean', 'node-set', 'RTF', or 'external'.
-     *
      * Most XSLT object types can be coerced to each other without error.
      * However, there are certain coercions that raise errors, most importantly
      * treating anything other than a node set as a node set. Authors of
@@ -51,15 +50,13 @@ public class ExsltCommon {
      * wish to give some flexibility in the parameter and argument values that
      * are accepted by the utility; the exsl:object-type function enables them
      * to do so.
-     *
      * The Xalan extensions MethodResolver converts 'object-type' to
      * 'objectType'.
      *
      * @param obj
-     *            The object to be typed.
+     *        The object to be typed.
      * @return objectType 'string', 'number', 'boolean', 'node-set', 'RTF', or
      *         'external'.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static String objectType(Object obj) {
@@ -85,23 +82,18 @@ public class ExsltCommon {
      * attribute to give a variable value) into a node set. This enables you to
      * process the XML that you create within a variable, and therefore do
      * multi-step processing.
-     *
      * You can also use this function to turn a string into a text node, which
      * is helpful if you want to pass a string to a function that only accepts a
      * node set.
-     *
      * The Xalan extensions MethodResolver converts 'node-set' to 'nodeSet'.
      *
      * @param myProcessor
-     *                    is passed in by the Xalan extension processor
+     *        is passed in by the Xalan extension processor
      * @param rtf
-     *                    The result tree fragment to be converted to a
-     *                    node-set.
-     *
+     *        The result tree fragment to be converted to a
+     *        node-set.
      * @return node-set with the contents of the result tree fragment.
-     *
      *         Note: Already implemented in the xalan namespace as nodeset.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static NodeSet nodeSet(ExpressionContext myProcessor, Object rtf) {

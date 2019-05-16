@@ -26,7 +26,7 @@ public class InvalidRelationServiceException extends RelationException {
      * Constructor with given message put in exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public InvalidRelationServiceException(String message) {
         super(message);

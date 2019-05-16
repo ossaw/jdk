@@ -23,7 +23,7 @@ public class IconView extends View {
      * Creates a new icon view that represents an element.
      *
      * @param elem
-     *             the element to create a view for
+     *        the element to create a view for
      */
     public IconView(Element elem) {
         super(elem);
@@ -41,9 +41,9 @@ public class IconView extends View {
      * view is simply the parent containers, positioning the child icon is easy.
      *
      * @param g
-     *          the rendering surface to use
+     *        the rendering surface to use
      * @param a
-     *          the allocated region to render into
+     *        the allocated region to render into
      * @see View#paint
      */
     public void paint(Graphics g, Shape a) {
@@ -55,13 +55,13 @@ public class IconView extends View {
      * Determines the preferred span for this view along an axis.
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the span the view would like to be rendered into Typically the
      *         view is told to render into the span that is returned, although
      *         there is no guarantee. The parent may choose to resize or break
      *         the view.
      * @exception IllegalArgumentException
-     *                                     for an invalid axis
+     *            for an invalid axis
      */
     public float getPreferredSpan(int axis) {
         switch (axis) {
@@ -80,7 +80,7 @@ public class IconView extends View {
      * axis, and the default along the x axis.
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the desired alignment &gt;= 0.0f &amp;&amp; &lt;= 1.0f. This
      *         should be a value between 0.0 and 1.0 where 0 indicates alignment
      *         at the origin and 1.0 indicates alignment to the full span away
@@ -101,18 +101,17 @@ public class IconView extends View {
      * coordinate space of the view mapped to it.
      *
      * @param pos
-     *            the position to convert &gt;= 0
+     *        the position to convert &gt;= 0
      * @param a
-     *            the allocated region to render into
+     *        the allocated region to render into
      * @return the bounding box of the given position
      * @exception BadLocationException
-     *                                 if the given position does not represent
-     *                                 a valid location
-     *                                 in the associated document
+     *            if the given position does not represent
+     *            a valid location
+     *            in the associated document
      * @see View#modelToView
      */
-    public Shape modelToView(int pos, Shape a, Position.Bias b)
-            throws BadLocationException {
+    public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
         int p0 = getStartOffset();
         int p1 = getEndOffset();
         if ((pos >= p0) && (pos <= p1)) {
@@ -123,8 +122,7 @@ public class IconView extends View {
             r.width = 0;
             return r;
         }
-        throw new BadLocationException(pos + " not in range " + p0 + "," + p1,
-                pos);
+        throw new BadLocationException(pos + " not in range " + p0 + "," + p1, pos);
     }
 
     /**
@@ -132,11 +130,11 @@ public class IconView extends View {
      * coordinate space of the model.
      *
      * @param x
-     *          the X coordinate &gt;= 0
+     *        the X coordinate &gt;= 0
      * @param y
-     *          the Y coordinate &gt;= 0
+     *        the Y coordinate &gt;= 0
      * @param a
-     *          the allocated region to render into
+     *        the allocated region to render into
      * @return the location within the model that best represents the given
      *         point of view &gt;= 0
      * @see View#viewToModel

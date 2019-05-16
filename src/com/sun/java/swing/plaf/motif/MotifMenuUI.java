@@ -81,8 +81,7 @@ public class MotifMenuUI extends BasicMenuUI {
         public void mouseClicked(MouseEvent e) {}
 
         public void mousePressed(MouseEvent e) {
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             JMenu menu = (JMenu) e.getComponent();
             if (menu.isEnabled()) {
                 if (menu.isTopLevelMenu()) {
@@ -110,12 +109,10 @@ public class MotifMenuUI extends BasicMenuUI {
         }
 
         public void mouseReleased(MouseEvent e) {
-            MenuSelectionManager manager = MenuSelectionManager
-                    .defaultManager();
+            MenuSelectionManager manager = MenuSelectionManager.defaultManager();
             JMenuItem menuItem = (JMenuItem) e.getComponent();
             Point p = e.getPoint();
-            if (!(p.x >= 0 && p.x < menuItem.getWidth() && p.y >= 0
-                    && p.y < menuItem.getHeight())) {
+            if (!(p.x >= 0 && p.x < menuItem.getWidth() && p.y >= 0 && p.y < menuItem.getHeight())) {
                 manager.processMouseEvent(e);
             }
         }

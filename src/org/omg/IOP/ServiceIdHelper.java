@@ -27,10 +27,9 @@ abstract public class ServiceIdHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
-                    org.omg.CORBA.TCKind.tk_ulong);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.IOP.ServiceIdHelper.id(), "ServiceId", __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_ulong);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.IOP.ServiceIdHelper.id(),
+                    "ServiceId", __typeCode);
         }
         return __typeCode;
     }
@@ -45,8 +44,7 @@ abstract public class ServiceIdHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            int value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, int value) {
         ostream.write_ulong(value);
     }
 

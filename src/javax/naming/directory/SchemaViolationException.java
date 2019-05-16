@@ -19,7 +19,6 @@ import javax.naming.NamingException;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see javax.naming.Context#bind
  * @see DirContext#bind
  * @see javax.naming.Context#rebind
@@ -43,7 +42,7 @@ public class SchemaViolationException extends NamingException {
      * explanation supplied. All other fields are set to null.
      * 
      * @param explanation
-     *                    Detail about this exception. Can be null.
+     *        Detail about this exception. Can be null.
      * @see java.lang.Throwable#getMessage
      */
     public SchemaViolationException(String explanation) {

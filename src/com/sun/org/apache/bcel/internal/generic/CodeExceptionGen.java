@@ -66,8 +66,7 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  * @see CodeException
  * @see InstructionHandle
  */
-public final class CodeExceptionGen implements InstructionTargeter, Cloneable,
-        java.io.Serializable {
+public final class CodeExceptionGen implements InstructionTargeter, Cloneable, java.io.Serializable {
     private InstructionHandle start_pc;
     private InstructionHandle end_pc;
     private InstructionHandle handler_pc;
@@ -78,17 +77,16 @@ public final class CodeExceptionGen implements InstructionTargeter, Cloneable,
      * and an instruction where the actual handling is done.
      *
      * @param start_pc
-     *                   Start of handled region (inclusive)
+     *        Start of handled region (inclusive)
      * @param end_pc
-     *                   End of handled region (inclusive)
+     *        End of handled region (inclusive)
      * @param handler_pc
-     *                   Where handling is done
+     *        Where handling is done
      * @param catch_type
-     *                   which exception is handled, null for ANY
+     *        which exception is handled, null for ANY
      */
-    public CodeExceptionGen(InstructionHandle start_pc,
-            InstructionHandle end_pc, InstructionHandle handler_pc,
-            ObjectType catch_type) {
+    public CodeExceptionGen(InstructionHandle start_pc, InstructionHandle end_pc,
+            InstructionHandle handler_pc, ObjectType catch_type) {
         setStartPC(start_pc);
         setEndPC(end_pc);
         setHandlerPC(handler_pc);
@@ -97,18 +95,16 @@ public final class CodeExceptionGen implements InstructionTargeter, Cloneable,
 
     /**
      * Get CodeException object.<BR>
-     *
      * This relies on that the instruction list has already been dumped to byte
      * code or or that the `setPositions' methods has been called for the
      * instruction list.
      *
      * @param cp
-     *           constant pool
+     *        constant pool
      */
     public CodeException getCodeException(ConstantPoolGen cp) {
-        return new CodeException(start_pc.getPosition(), end_pc.getPosition()
-                + end_pc.getInstruction().getLength(), handler_pc.getPosition(),
-                (catch_type == null) ? 0 : cp.addClass(catch_type));
+        return new CodeException(start_pc.getPosition(), end_pc.getPosition() + end_pc.getInstruction()
+                .getLength(), handler_pc.getPosition(), (catch_type == null) ? 0 : cp.addClass(catch_type));
     }
 
     /*
@@ -143,13 +139,12 @@ public final class CodeExceptionGen implements InstructionTargeter, Cloneable,
 
     /**
      * @param old_ih
-     *               old target, either start or end
+     *        old target, either start or end
      * @param new_ih
-     *               new target
+     *        new target
      */
     @Override
-    public void updateTarget(InstructionHandle old_ih,
-            InstructionHandle new_ih) {
+    public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
         boolean targeted = false;
 
         if (start_pc == old_ih) {
@@ -168,8 +163,8 @@ public final class CodeExceptionGen implements InstructionTargeter, Cloneable,
         }
 
         if (!targeted)
-            throw new ClassGenException("Not targeting " + old_ih + ", but {"
-                    + start_pc + ", " + end_pc + ", " + handler_pc + "}");
+            throw new ClassGenException("Not targeting " + old_ih + ", but {" + start_pc + ", " + end_pc
+                    + ", " + handler_pc + "}");
     }
 
     /**
@@ -213,8 +208,7 @@ public final class CodeExceptionGen implements InstructionTargeter, Cloneable,
 
     @Override
     public String toString() {
-        return "CodeExceptionGen(" + start_pc + ", " + end_pc + ", "
-                + handler_pc + ")";
+        return "CodeExceptionGen(" + start_pc + ", " + end_pc + ", " + handler_pc + ")";
     }
 
     @Override

@@ -30,7 +30,6 @@ public interface TreeModelListener extends EventListener {
      * <p>
      * To indicate the root has changed, childIndices and children will be null.
      * </p>
-     *
      * <p>
      * Use <code>e.getPath()</code> to get the parent of the changed node(s).
      * <code>e.getChildIndices()</code> returns the index(es) of the changed
@@ -43,7 +42,6 @@ public interface TreeModelListener extends EventListener {
      * <p>
      * Invoked after nodes have been inserted into the tree.
      * </p>
-     *
      * <p>
      * Use <code>e.getPath()</code> to get the parent of the new node(s).
      * <code>e.getChildIndices()</code> returns the index(es) of the new node(s)
@@ -59,7 +57,6 @@ public interface TreeModelListener extends EventListener {
      * for the root of the removed subtree, not once for each individual set of
      * siblings removed.
      * </p>
-     *
      * <p>
      * Use <code>e.getPath()</code> to get the former parent of the deleted
      * node(s). <code>e.getChildIndices()</code> returns, in ascending order,
@@ -74,7 +71,6 @@ public interface TreeModelListener extends EventListener {
      * node down. If the path returned by e.getPath() is of length one and the
      * first element does not identify the current root node the first element
      * should become the new root of the tree.
-     *
      * <p>
      * Use <code>e.getPath()</code> to get the path to the node.
      * <code>e.getChildIndices()</code> returns null.

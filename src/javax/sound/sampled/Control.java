@@ -17,7 +17,6 @@ package javax.sound.sampled;
  * kind of control.
  *
  * @author Kara Kytle
- *
  * @see Line#getControls
  * @see Line#isControlSupported
  * @since 1.3
@@ -37,7 +36,7 @@ public abstract class Control {
      * Constructs a Control with the specified type.
      * 
      * @param type
-     *             the kind of control desired
+     *        the kind of control desired
      */
     protected Control(Type type) {
         this.type = type;
@@ -88,7 +87,7 @@ public abstract class Control {
          * in an application, such as "Gain" or "Balance."
          * 
          * @param name
-         *             the name of the new control type.
+         *        the name of the new control type.
          */
         protected Type(String name) {
             this.name = name;

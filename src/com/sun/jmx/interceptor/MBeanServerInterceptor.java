@@ -24,7 +24,6 @@ import javax.management.loading.ClassLoaderRepository;
  * {@link com.sun.jmx.mbeanserver.SunJmxMBeanServer#setMBeanServerInterceptor}
  * method.
  * </p>
- *
  * <p>
  * The initial default interceptor provides the standard MBean Server behavior.
  * It handles a collection of named MBeans, each represented by a Java object. A
@@ -34,7 +33,6 @@ import javax.management.loading.ClassLoaderRepository;
  * sub-interceptors, for instance based on the {@link ObjectName} in the
  * request.
  * </p>
- *
  * <p>
  * An interceptor, default or not, need not implement MBeans as Java objects, in
  * the way that the initial default interceptor does. It may instead implement
@@ -51,57 +49,52 @@ public interface MBeanServerInterceptor extends MBeanServer {
      * This method should never be called. Usually hrows
      * UnsupportedOperationException.
      */
-    public Object instantiate(String className) throws ReflectionException,
-            MBeanException;
+    public Object instantiate(String className) throws ReflectionException, MBeanException;
 
     /**
      * This method should never be called. Usually throws
      * UnsupportedOperationException.
      */
-    public Object instantiate(String className, ObjectName loaderName)
-            throws ReflectionException, MBeanException,
-            InstanceNotFoundException;
-
-    /**
-     * This method should never be called. Usually throws
-     * UnsupportedOperationException.
-     */
-    public Object instantiate(String className, Object[] params,
-            String[] signature) throws ReflectionException, MBeanException;
-
-    /**
-     * This method should never be called. Usually throws
-     * UnsupportedOperationException.
-     */
-    public Object instantiate(String className, ObjectName loaderName,
-            Object[] params, String[] signature) throws ReflectionException,
+    public Object instantiate(String className, ObjectName loaderName) throws ReflectionException,
             MBeanException, InstanceNotFoundException;
 
     /**
      * This method should never be called. Usually throws
      * UnsupportedOperationException.
      */
-    @Deprecated
-    public ObjectInputStream deserialize(ObjectName name, byte[] data)
-            throws InstanceNotFoundException, OperationsException;
+    public Object instantiate(String className, Object[] params, String[] signature)
+            throws ReflectionException, MBeanException;
+
+    /**
+     * This method should never be called. Usually throws
+     * UnsupportedOperationException.
+     */
+    public Object instantiate(String className, ObjectName loaderName, Object[] params, String[] signature)
+            throws ReflectionException, MBeanException, InstanceNotFoundException;
 
     /**
      * This method should never be called. Usually throws
      * UnsupportedOperationException.
      */
     @Deprecated
-    public ObjectInputStream deserialize(String className, byte[] data)
-            throws OperationsException, ReflectionException;
+    public ObjectInputStream deserialize(ObjectName name, byte[] data) throws InstanceNotFoundException,
+            OperationsException;
+
+    /**
+     * This method should never be called. Usually throws
+     * UnsupportedOperationException.
+     */
+    @Deprecated
+    public ObjectInputStream deserialize(String className, byte[] data) throws OperationsException,
+            ReflectionException;
 
     /**
      * This method should never be called. Usually hrows
      * UnsupportedOperationException.
      */
     @Deprecated
-    public ObjectInputStream deserialize(String className,
-            ObjectName loaderName, byte[] data)
-            throws InstanceNotFoundException, OperationsException,
-            ReflectionException;
+    public ObjectInputStream deserialize(String className, ObjectName loaderName, byte[] data)
+            throws InstanceNotFoundException, OperationsException, ReflectionException;
 
     /**
      * This method should never be called. Usually throws

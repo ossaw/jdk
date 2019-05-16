@@ -31,11 +31,9 @@ import java.util.Vector;
 
 /**
  * A test sequence is a sequence of patterns that
- *
  * (1) occured in templates in the same mode (2) share the same kernel node type
  * (e.g. A/B and C/C/B) (3) may also contain patterns matching "*" and "node()"
  * (element sequence only) or matching "@*" (attribute sequence only).
- *
  * A test sequence may have a default template, which will be instantiated if
  * none of the other patterns match.
  * 
@@ -100,15 +98,12 @@ final class TestSeq {
         final StringBuffer result = new StringBuffer();
 
         for (int i = 0; i < count; i++) {
-            final LocationPathPattern pattern = (LocationPathPattern) _patterns
-                    .elementAt(i);
+            final LocationPathPattern pattern = (LocationPathPattern) _patterns.elementAt(i);
 
             if (i == 0) {
-                result.append("Testseq for kernel ").append(_kernelType).append(
-                        '\n');
+                result.append("Testseq for kernel ").append(_kernelType).append('\n');
             }
-            result.append("   pattern ").append(i).append(": ").append(pattern
-                    .toString()).append('\n');
+            result.append("   pattern ").append(i).append(": ").append(pattern.toString()).append('\n');
         }
         return result.toString();
     }
@@ -150,8 +145,7 @@ final class TestSeq {
 
         final int count = _patterns.size();
         for (int i = 0; i < count; i++) {
-            final LocationPathPattern pattern = (LocationPathPattern) _patterns
-                    .elementAt(i);
+            final LocationPathPattern pattern = (LocationPathPattern) _patterns.elementAt(i);
 
             // Reduce this pattern
             pattern.reduceKernelPattern();
@@ -177,8 +171,7 @@ final class TestSeq {
             templates.put(_default, this);
         }
         for (int i = 0; i < _patterns.size(); i++) {
-            final LocationPathPattern pattern = (LocationPathPattern) _patterns
-                    .elementAt(i);
+            final LocationPathPattern pattern = (LocationPathPattern) _patterns.elementAt(i);
             templates.put(pattern.getTemplate(), this);
         }
     }
@@ -204,8 +197,8 @@ final class TestSeq {
      * lowest priority. Note that since patterns can be share by multiple test
      * sequences, instruction lists must be copied before backpatching.
      */
-    public InstructionHandle compile(ClassGenerator classGen,
-            MethodGenerator methodGen, InstructionHandle continuation) {
+    public InstructionHandle compile(ClassGenerator classGen, MethodGenerator methodGen,
+            InstructionHandle continuation) {
         // Returned cached value if already compiled
         if (_start != null) {
             return _start;
@@ -218,8 +211,7 @@ final class TestSeq {
         }
 
         // Init handle to jump when all patterns failed
-        InstructionHandle fail = (_default == null) ? continuation
-                : getTemplateHandle(_default);
+        InstructionHandle fail = (_default == null) ? continuation : getTemplateHandle(_default);
 
         // Compile all patterns in reverse order
         for (int n = count - 1; n >= 0; n--) {

@@ -27,7 +27,6 @@ import javax.swing.text.*;
  * @see AccessibleContext
  * @see AccessibleText
  * @see AccessibleContext#getAccessibleText
- *
  * @author Peter Korn
  */
 public interface AccessibleHypertext extends AccessibleText {
@@ -43,7 +42,7 @@ public interface AccessibleHypertext extends AccessibleText {
      * Returns the nth Link of this Hypertext document.
      *
      * @param linkIndex
-     *                  within the links of this Hypertext
+     *        within the links of this Hypertext
      * @return Link object encapsulating the nth link(s)
      */
     public abstract AccessibleHyperlink getLink(int linkIndex);
@@ -54,7 +53,7 @@ public interface AccessibleHypertext extends AccessibleText {
      * index.
      *
      * @param charIndex
-     *                  index within the text
+     *        index within the text
      * @return index into the set of hyperlinks for this hypertext doc.
      */
     public abstract int getLinkIndex(int charIndex);

@@ -15,7 +15,6 @@ import java.util.Set;
  * sharing this context. If multiple endpoints share different ports of a WSDL,
  * then the multiple port addresses can be patched when the WSDL is accessed. It
  * also allows all endpoints to share any other runtime information.
- *
  * <p>
  * This needs to be set by using {@link Endpoint#setEndpointContext} before
  * {@link Endpoint#publish} methods.

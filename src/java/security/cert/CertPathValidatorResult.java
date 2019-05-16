@@ -14,7 +14,6 @@ package java.security.cert;
  * implement this interface.
  *
  * @see CertPathValidator
- *
  * @since 1.4
  * @author Yassir Elley
  */

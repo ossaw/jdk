@@ -35,7 +35,6 @@ import com.sun.org.apache.xerces.internal.xni.NamespaceContext;
  * </p>
  *
  * @author Michael Glavassevich, IBM
- *
  * @version $Id: JAXPNamespaceContextWrapper.java,v 1.2 2010-10-26 23:01:13
  *          joehw Exp $
  */
@@ -53,8 +52,7 @@ public final class JAXPNamespaceContextWrapper implements NamespaceContext {
         setSymbolTable(symbolTable);
     }
 
-    public void setNamespaceContext(
-            javax.xml.namespace.NamespaceContext context) {
+    public void setNamespaceContext(javax.xml.namespace.NamespaceContext context) {
         fNamespaceContext = context;
     }
 
@@ -86,8 +84,7 @@ public final class JAXPNamespaceContextWrapper implements NamespaceContext {
         if (fNamespaceContext != null) {
             String uri = fNamespaceContext.getNamespaceURI(prefix);
             if (uri != null && !XMLConstants.NULL_NS_URI.equals(uri)) {
-                return (fSymbolTable != null) ? fSymbolTable.addSymbol(uri)
-                        : uri.intern();
+                return (fSymbolTable != null) ? fSymbolTable.addSymbol(uri) : uri.intern();
             }
         }
         return null;
@@ -102,8 +99,7 @@ public final class JAXPNamespaceContextWrapper implements NamespaceContext {
             if (prefix == null) {
                 prefix = XMLConstants.DEFAULT_NS_PREFIX;
             }
-            return (fSymbolTable != null) ? fSymbolTable.addSymbol(prefix)
-                    : prefix.intern();
+            return (fSymbolTable != null) ? fSymbolTable.addSymbol(prefix) : prefix.intern();
         }
         return null;
     }

@@ -79,7 +79,6 @@ import java.util.Set;
  * <p>
  * More complex formatters are provided by {@link DateTimeFormatterBuilder
  * DateTimeFormatterBuilder}.
- *
  * <p>
  * The main date-time classes provide two methods - one for formatting,
  * {@code format(DateTimeFormatter formatter)}, and one for parsing,
@@ -120,7 +119,6 @@ import java.util.Set;
  * Some applications may need to use the older {@link Format java.text.Format}
  * class for formatting. The {@link #toFormat()} method returns an
  * implementation of {@code java.text.Format}.
- *
  * <h3 id="predefined">Predefined Formatters</h3>
  * <table summary=
  * "Predefined Formatters" cellpadding="2" cellspacing="3" border="0" >
@@ -229,7 +227,6 @@ import java.util.Set;
  * </tr>
  * </tbody>
  * </table>
- *
  * <h3 id="patterns">Patterns for Formatting and Parsing</h3> Patterns are based
  * on a simple sequence of letters and symbols. A pattern is used to create a
  * Formatter using the {@link #ofPattern(String)} and
@@ -394,7 +391,6 @@ import java.util.Set;
  * this, it is recommended to use single quotes around all characters that you
  * want to output directly to ensure that future changes do not break your
  * application.
- *
  * <h3 id="resolving">Resolving</h3> Parsing is implemented as a two-phase
  * operation. First, the text is parsed using the layout defined by the
  * formatter, producing a {@code Map} of field to value, a {@code ZoneId} and a
@@ -455,7 +451,6 @@ import java.util.Set;
  * </ol>
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
 public final class DateTimeFormatter {
@@ -508,15 +503,14 @@ public final class DateTimeFormatter {
      * {@link ResolverStyle#SMART SMART} resolver style.
      *
      * @param pattern
-     *                the pattern to use, not null
+     *        the pattern to use, not null
      * @return the formatter based on the pattern, not null
      * @throws IllegalArgumentException
-     *                                  if the pattern is invalid
+     *         if the pattern is invalid
      * @see DateTimeFormatterBuilder#appendPattern(String)
      */
     public static DateTimeFormatter ofPattern(String pattern) {
-        return new DateTimeFormatterBuilder().appendPattern(pattern)
-                .toFormatter();
+        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();
     }
 
     /**
@@ -534,17 +528,16 @@ public final class DateTimeFormatter {
      * {@link ResolverStyle#SMART SMART} resolver style.
      *
      * @param pattern
-     *                the pattern to use, not null
+     *        the pattern to use, not null
      * @param locale
-     *                the locale to use, not null
+     *        the locale to use, not null
      * @return the formatter based on the pattern, not null
      * @throws IllegalArgumentException
-     *                                  if the pattern is invalid
+     *         if the pattern is invalid
      * @see DateTimeFormatterBuilder#appendPattern(String)
      */
     public static DateTimeFormatter ofPattern(String pattern, Locale locale) {
-        return new DateTimeFormatterBuilder().appendPattern(pattern)
-                .toFormatter(locale);
+        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter(locale);
     }
 
     // -----------------------------------------------------------------------
@@ -570,13 +563,13 @@ public final class DateTimeFormatter {
      * and uses the {@link ResolverStyle#SMART SMART} resolver style.
      *
      * @param dateStyle
-     *                  the formatter style to obtain, not null
+     *        the formatter style to obtain, not null
      * @return the date formatter, not null
      */
     public static DateTimeFormatter ofLocalizedDate(FormatStyle dateStyle) {
         Objects.requireNonNull(dateStyle, "dateStyle");
-        return new DateTimeFormatterBuilder().appendLocalized(dateStyle, null)
-                .toFormatter(ResolverStyle.SMART, IsoChronology.INSTANCE);
+        return new DateTimeFormatterBuilder().appendLocalized(dateStyle, null).toFormatter(
+                ResolverStyle.SMART, IsoChronology.INSTANCE);
     }
 
     /**
@@ -601,13 +594,13 @@ public final class DateTimeFormatter {
      * and uses the {@link ResolverStyle#SMART SMART} resolver style.
      *
      * @param timeStyle
-     *                  the formatter style to obtain, not null
+     *        the formatter style to obtain, not null
      * @return the time formatter, not null
      */
     public static DateTimeFormatter ofLocalizedTime(FormatStyle timeStyle) {
         Objects.requireNonNull(timeStyle, "timeStyle");
-        return new DateTimeFormatterBuilder().appendLocalized(null, timeStyle)
-                .toFormatter(ResolverStyle.SMART, IsoChronology.INSTANCE);
+        return new DateTimeFormatterBuilder().appendLocalized(null, timeStyle).toFormatter(
+                ResolverStyle.SMART, IsoChronology.INSTANCE);
     }
 
     /**
@@ -632,15 +625,13 @@ public final class DateTimeFormatter {
      * and uses the {@link ResolverStyle#SMART SMART} resolver style.
      *
      * @param dateTimeStyle
-     *                      the formatter style to obtain, not null
+     *        the formatter style to obtain, not null
      * @return the date-time formatter, not null
      */
-    public static DateTimeFormatter ofLocalizedDateTime(
-            FormatStyle dateTimeStyle) {
+    public static DateTimeFormatter ofLocalizedDateTime(FormatStyle dateTimeStyle) {
         Objects.requireNonNull(dateTimeStyle, "dateTimeStyle");
-        return new DateTimeFormatterBuilder().appendLocalized(dateTimeStyle,
-                dateTimeStyle).toFormatter(ResolverStyle.SMART,
-                        IsoChronology.INSTANCE);
+        return new DateTimeFormatterBuilder().appendLocalized(dateTimeStyle, dateTimeStyle).toFormatter(
+                ResolverStyle.SMART, IsoChronology.INSTANCE);
     }
 
     /**
@@ -664,18 +655,16 @@ public final class DateTimeFormatter {
      * and uses the {@link ResolverStyle#SMART SMART} resolver style.
      *
      * @param dateStyle
-     *                  the date formatter style to obtain, not null
+     *        the date formatter style to obtain, not null
      * @param timeStyle
-     *                  the time formatter style to obtain, not null
+     *        the time formatter style to obtain, not null
      * @return the date, time or date-time formatter, not null
      */
-    public static DateTimeFormatter ofLocalizedDateTime(FormatStyle dateStyle,
-            FormatStyle timeStyle) {
+    public static DateTimeFormatter ofLocalizedDateTime(FormatStyle dateStyle, FormatStyle timeStyle) {
         Objects.requireNonNull(dateStyle, "dateStyle");
         Objects.requireNonNull(timeStyle, "timeStyle");
-        return new DateTimeFormatterBuilder().appendLocalized(dateStyle,
-                timeStyle).toFormatter(ResolverStyle.SMART,
-                        IsoChronology.INSTANCE);
+        return new DateTimeFormatterBuilder().appendLocalized(dateStyle, timeStyle).toFormatter(
+                ResolverStyle.SMART, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -704,12 +693,9 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_LOCAL_DATE;
     static {
-        ISO_LOCAL_DATE = new DateTimeFormatterBuilder().appendValue(YEAR, 4, 10,
-                SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(
-                        MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(
-                                DAY_OF_MONTH, 2).toFormatter(
-                                        ResolverStyle.STRICT,
-                                        IsoChronology.INSTANCE);
+        ISO_LOCAL_DATE = new DateTimeFormatterBuilder().appendValue(YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+                .appendLiteral('-').appendValue(MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(DAY_OF_MONTH,
+                        2).toFormatter(ResolverStyle.STRICT, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -732,9 +718,8 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_OFFSET_DATE;
     static {
-        ISO_OFFSET_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .append(ISO_LOCAL_DATE).appendOffsetId().toFormatter(
-                        ResolverStyle.STRICT, IsoChronology.INSTANCE);
+        ISO_OFFSET_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive().append(ISO_LOCAL_DATE)
+                .appendOffsetId().toFormatter(ResolverStyle.STRICT, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -761,9 +746,8 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_DATE;
     static {
-        ISO_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive().append(
-                ISO_LOCAL_DATE).optionalStart().appendOffsetId().toFormatter(
-                        ResolverStyle.STRICT, IsoChronology.INSTANCE);
+        ISO_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive().append(ISO_LOCAL_DATE)
+                .optionalStart().appendOffsetId().toFormatter(ResolverStyle.STRICT, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -795,12 +779,10 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_LOCAL_TIME;
     static {
-        ISO_LOCAL_TIME = new DateTimeFormatterBuilder().appendValue(HOUR_OF_DAY,
-                2).appendLiteral(':').appendValue(MINUTE_OF_HOUR, 2)
-                .optionalStart().appendLiteral(':').appendValue(
-                        SECOND_OF_MINUTE, 2).optionalStart().appendFraction(
-                                NANO_OF_SECOND, 0, 9, true).toFormatter(
-                                        ResolverStyle.STRICT, null);
+        ISO_LOCAL_TIME = new DateTimeFormatterBuilder().appendValue(HOUR_OF_DAY, 2).appendLiteral(':')
+                .appendValue(MINUTE_OF_HOUR, 2).optionalStart().appendLiteral(':').appendValue(
+                        SECOND_OF_MINUTE, 2).optionalStart().appendFraction(NANO_OF_SECOND, 0, 9, true)
+                .toFormatter(ResolverStyle.STRICT, null);
     }
 
     // -----------------------------------------------------------------------
@@ -822,9 +804,8 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_OFFSET_TIME;
     static {
-        ISO_OFFSET_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .append(ISO_LOCAL_TIME).appendOffsetId().toFormatter(
-                        ResolverStyle.STRICT, null);
+        ISO_OFFSET_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(ISO_LOCAL_TIME)
+                .appendOffsetId().toFormatter(ResolverStyle.STRICT, null);
     }
 
     // -----------------------------------------------------------------------
@@ -850,9 +831,8 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_TIME;
     static {
-        ISO_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(
-                ISO_LOCAL_TIME).optionalStart().appendOffsetId().toFormatter(
-                        ResolverStyle.STRICT, null);
+        ISO_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(ISO_LOCAL_TIME)
+                .optionalStart().appendOffsetId().toFormatter(ResolverStyle.STRICT, null);
     }
 
     // -----------------------------------------------------------------------
@@ -874,10 +854,9 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_LOCAL_DATE_TIME;
     static {
-        ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder()
-                .parseCaseInsensitive().append(ISO_LOCAL_DATE).appendLiteral(
-                        'T').append(ISO_LOCAL_TIME).toFormatter(
-                                ResolverStyle.STRICT, IsoChronology.INSTANCE);
+        ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(ISO_LOCAL_DATE)
+                .appendLiteral('T').append(ISO_LOCAL_TIME).toFormatter(ResolverStyle.STRICT,
+                        IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -900,9 +879,8 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_OFFSET_DATE_TIME;
     static {
-        ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder()
-                .parseCaseInsensitive().append(ISO_LOCAL_DATE_TIME)
-                .appendOffsetId().toFormatter(ResolverStyle.STRICT,
+        ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(
+                ISO_LOCAL_DATE_TIME).appendOffsetId().toFormatter(ResolverStyle.STRICT,
                         IsoChronology.INSTANCE);
     }
 
@@ -931,10 +909,9 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_ZONED_DATE_TIME;
     static {
-        ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder().append(
-                ISO_OFFSET_DATE_TIME).optionalStart().appendLiteral('[')
-                .parseCaseSensitive().appendZoneRegionId().appendLiteral(']')
-                .toFormatter(ResolverStyle.STRICT, IsoChronology.INSTANCE);
+        ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder().append(ISO_OFFSET_DATE_TIME).optionalStart()
+                .appendLiteral('[').parseCaseSensitive().appendZoneRegionId().appendLiteral(']').toFormatter(
+                        ResolverStyle.STRICT, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -970,11 +947,9 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_DATE_TIME;
     static {
-        ISO_DATE_TIME = new DateTimeFormatterBuilder().append(
-                ISO_LOCAL_DATE_TIME).optionalStart().appendOffsetId()
-                .optionalStart().appendLiteral('[').parseCaseSensitive()
-                .appendZoneRegionId().appendLiteral(']').toFormatter(
-                        ResolverStyle.STRICT, IsoChronology.INSTANCE);
+        ISO_DATE_TIME = new DateTimeFormatterBuilder().append(ISO_LOCAL_DATE_TIME).optionalStart()
+                .appendOffsetId().optionalStart().appendLiteral('[').parseCaseSensitive().appendZoneRegionId()
+                .appendLiteral(']').toFormatter(ResolverStyle.STRICT, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -1008,11 +983,9 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_ORDINAL_DATE;
     static {
-        ISO_ORDINAL_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .appendValue(YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral(
-                        '-').appendValue(DAY_OF_YEAR, 3).optionalStart()
-                .appendOffsetId().toFormatter(ResolverStyle.STRICT,
-                        IsoChronology.INSTANCE);
+        ISO_ORDINAL_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive().appendValue(YEAR, 4, 10,
+                SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(DAY_OF_YEAR, 3).optionalStart()
+                .appendOffsetId().toFormatter(ResolverStyle.STRICT, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -1051,13 +1024,10 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_WEEK_DATE;
     static {
-        ISO_WEEK_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .appendValue(IsoFields.WEEK_BASED_YEAR, 4, 10,
-                        SignStyle.EXCEEDS_PAD).appendLiteral("-W").appendValue(
-                                IsoFields.WEEK_OF_WEEK_BASED_YEAR, 2)
-                .appendLiteral('-').appendValue(DAY_OF_WEEK, 1).optionalStart()
-                .appendOffsetId().toFormatter(ResolverStyle.STRICT,
-                        IsoChronology.INSTANCE);
+        ISO_WEEK_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive().appendValue(
+                IsoFields.WEEK_BASED_YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral("-W").appendValue(
+                        IsoFields.WEEK_OF_WEEK_BASED_YEAR, 2).appendLiteral('-').appendValue(DAY_OF_WEEK, 1)
+                .optionalStart().appendOffsetId().toFormatter(ResolverStyle.STRICT, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -1094,8 +1064,8 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter ISO_INSTANT;
     static {
-        ISO_INSTANT = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .appendInstant().toFormatter(ResolverStyle.STRICT, null);
+        ISO_INSTANT = new DateTimeFormatterBuilder().parseCaseInsensitive().appendInstant().toFormatter(
+                ResolverStyle.STRICT, null);
     }
 
     // -----------------------------------------------------------------------
@@ -1128,11 +1098,9 @@ public final class DateTimeFormatter {
      */
     public static final DateTimeFormatter BASIC_ISO_DATE;
     static {
-        BASIC_ISO_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .appendValue(YEAR, 4).appendValue(MONTH_OF_YEAR, 2).appendValue(
-                        DAY_OF_MONTH, 2).optionalStart().appendOffset("+HHMMss",
-                                "Z").toFormatter(ResolverStyle.STRICT,
-                                        IsoChronology.INSTANCE);
+        BASIC_ISO_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive().appendValue(YEAR, 4)
+                .appendValue(MONTH_OF_YEAR, 2).appendValue(DAY_OF_MONTH, 2).optionalStart().appendOffset(
+                        "+HHMMss", "Z").toFormatter(ResolverStyle.STRICT, IsoChronology.INSTANCE);
     }
 
     // -----------------------------------------------------------------------
@@ -1207,20 +1175,17 @@ public final class DateTimeFormatter {
         moy.put(10L, "Oct");
         moy.put(11L, "Nov");
         moy.put(12L, "Dec");
-        RFC_1123_DATE_TIME = new DateTimeFormatterBuilder()
-                .parseCaseInsensitive().parseLenient().optionalStart()
-                .appendText(DAY_OF_WEEK, dow).appendLiteral(", ").optionalEnd()
-                .appendValue(DAY_OF_MONTH, 1, 2, SignStyle.NOT_NEGATIVE)
-                .appendLiteral(' ').appendText(MONTH_OF_YEAR, moy)
-                .appendLiteral(' ').appendValue(YEAR, 4) // 2
+        RFC_1123_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().parseLenient()
+                .optionalStart().appendText(DAY_OF_WEEK, dow).appendLiteral(", ").optionalEnd().appendValue(
+                        DAY_OF_MONTH, 1, 2, SignStyle.NOT_NEGATIVE).appendLiteral(' ').appendText(
+                                MONTH_OF_YEAR, moy).appendLiteral(' ').appendValue(YEAR, 4) // 2
                 // digit
                 // year
                 // not
                 // handled
-                .appendLiteral(' ').appendValue(HOUR_OF_DAY, 2).appendLiteral(
-                        ':').appendValue(MINUTE_OF_HOUR, 2).optionalStart()
-                .appendLiteral(':').appendValue(SECOND_OF_MINUTE, 2)
-                .optionalEnd().appendLiteral(' ').appendOffset("+HHMM", "GMT") // should handle
+                .appendLiteral(' ').appendValue(HOUR_OF_DAY, 2).appendLiteral(':').appendValue(MINUTE_OF_HOUR,
+                        2).optionalStart().appendLiteral(':').appendValue(SECOND_OF_MINUTE, 2).optionalEnd()
+                .appendLiteral(' ').appendOffset("+HHMM", "GMT") // should handle
                 // UT/Z/EST/EDT/CST/CDT/MST/MDT/PST/MDT
                 .toFormatter(ResolverStyle.SMART, IsoChronology.INSTANCE);
     }
@@ -1238,7 +1203,6 @@ public final class DateTimeFormatter {
      * <li>If the {@code ResolverStyle} is {@code LENIENT} and a time is parsed
      * without a date, then the complete result of the parse consists of a
      * {@code LocalTime} and an excess {@code Period} in days.
-     *
      * <li>If the {@code ResolverStyle} is {@code SMART} and a time is parsed
      * without a date where the time is 24:00:00, then the complete result of
      * the parse consists of a {@code LocalTime} of 00:00:00 and an excess
@@ -1331,32 +1295,28 @@ public final class DateTimeFormatter {
      * Constructor.
      *
      * @param printerParser
-     *                       the printer/parser to use, not null
+     *        the printer/parser to use, not null
      * @param locale
-     *                       the locale to use, not null
+     *        the locale to use, not null
      * @param decimalStyle
-     *                       the DecimalStyle to use, not null
+     *        the DecimalStyle to use, not null
      * @param resolverStyle
-     *                       the resolver style to use, not null
+     *        the resolver style to use, not null
      * @param resolverFields
-     *                       the fields to use during resolving, null for all
-     *                       fields
+     *        the fields to use during resolving, null for all
+     *        fields
      * @param chrono
-     *                       the chronology to use, null for no override
+     *        the chronology to use, null for no override
      * @param zone
-     *                       the zone to use, null for no override
+     *        the zone to use, null for no override
      */
-    DateTimeFormatter(CompositePrinterParser printerParser, Locale locale,
-            DecimalStyle decimalStyle, ResolverStyle resolverStyle,
-            Set<TemporalField> resolverFields, Chronology chrono, ZoneId zone) {
-        this.printerParser = Objects.requireNonNull(printerParser,
-                "printerParser");
+    DateTimeFormatter(CompositePrinterParser printerParser, Locale locale, DecimalStyle decimalStyle,
+            ResolverStyle resolverStyle, Set<TemporalField> resolverFields, Chronology chrono, ZoneId zone) {
+        this.printerParser = Objects.requireNonNull(printerParser, "printerParser");
         this.resolverFields = resolverFields;
         this.locale = Objects.requireNonNull(locale, "locale");
-        this.decimalStyle = Objects.requireNonNull(decimalStyle,
-                "decimalStyle");
-        this.resolverStyle = Objects.requireNonNull(resolverStyle,
-                "resolverStyle");
+        this.decimalStyle = Objects.requireNonNull(decimalStyle, "decimalStyle");
+        this.resolverStyle = Objects.requireNonNull(resolverStyle, "resolverStyle");
         this.chrono = chrono;
         this.zone = zone;
     }
@@ -1383,7 +1343,7 @@ public final class DateTimeFormatter {
      * This instance is immutable and unaffected by this method call.
      *
      * @param locale
-     *               the new locale, not null
+     *        the new locale, not null
      * @return a formatter based on this formatter with the requested locale,
      *         not null
      */
@@ -1391,8 +1351,8 @@ public final class DateTimeFormatter {
         if (this.locale.equals(locale)) {
             return this;
         }
-        return new DateTimeFormatter(printerParser, locale, decimalStyle,
-                resolverStyle, resolverFields, chrono, zone);
+        return new DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields,
+                chrono, zone);
     }
 
     // -----------------------------------------------------------------------
@@ -1411,7 +1371,7 @@ public final class DateTimeFormatter {
      * This instance is immutable and unaffected by this method call.
      *
      * @param decimalStyle
-     *                     the new DecimalStyle, not null
+     *        the new DecimalStyle, not null
      * @return a formatter based on this formatter with the requested
      *         DecimalStyle, not null
      */
@@ -1419,8 +1379,8 @@ public final class DateTimeFormatter {
         if (this.decimalStyle.equals(decimalStyle)) {
             return this;
         }
-        return new DateTimeFormatter(printerParser, locale, decimalStyle,
-                resolverStyle, resolverFields, chrono, zone);
+        return new DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields,
+                chrono, zone);
     }
 
     // -----------------------------------------------------------------------
@@ -1470,7 +1430,7 @@ public final class DateTimeFormatter {
      * This instance is immutable and unaffected by this method call.
      *
      * @param chrono
-     *               the new chronology, null if no override
+     *        the new chronology, null if no override
      * @return a formatter based on this formatter with the requested override
      *         chronology, not null
      */
@@ -1478,8 +1438,8 @@ public final class DateTimeFormatter {
         if (Objects.equals(this.chrono, chrono)) {
             return this;
         }
-        return new DateTimeFormatter(printerParser, locale, decimalStyle,
-                resolverStyle, resolverFields, chrono, zone);
+        return new DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields,
+                chrono, zone);
     }
 
     // -----------------------------------------------------------------------
@@ -1531,7 +1491,7 @@ public final class DateTimeFormatter {
      * This instance is immutable and unaffected by this method call.
      *
      * @param zone
-     *             the new override zone, null if no override
+     *        the new override zone, null if no override
      * @return a formatter based on this formatter with the requested override
      *         zone, not null
      */
@@ -1539,8 +1499,8 @@ public final class DateTimeFormatter {
         if (Objects.equals(this.zone, zone)) {
             return this;
         }
-        return new DateTimeFormatter(printerParser, locale, decimalStyle,
-                resolverStyle, resolverFields, chrono, zone);
+        return new DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields,
+                chrono, zone);
     }
 
     // -----------------------------------------------------------------------
@@ -1575,7 +1535,7 @@ public final class DateTimeFormatter {
      * This instance is immutable and unaffected by this method call.
      *
      * @param resolverStyle
-     *                      the new resolver style, not null
+     *        the new resolver style, not null
      * @return a formatter based on this formatter with the requested resolver
      *         style, not null
      */
@@ -1584,8 +1544,8 @@ public final class DateTimeFormatter {
         if (Objects.equals(this.resolverStyle, resolverStyle)) {
             return this;
         }
-        return new DateTimeFormatter(printerParser, locale, decimalStyle,
-                resolverStyle, resolverFields, chrono, zone);
+        return new DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields,
+                chrono, zone);
     }
 
     // -----------------------------------------------------------------------
@@ -1643,22 +1603,20 @@ public final class DateTimeFormatter {
      * This instance is immutable and unaffected by this method call.
      *
      * @param resolverFields
-     *                       the new set of resolver fields, null if no fields
+     *        the new set of resolver fields, null if no fields
      * @return a formatter based on this formatter with the requested resolver
      *         style, not null
      */
-    public DateTimeFormatter withResolverFields(
-            TemporalField... resolverFields) {
+    public DateTimeFormatter withResolverFields(TemporalField... resolverFields) {
         Set<TemporalField> fields = null;
         if (resolverFields != null) {
-            fields = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                    resolverFields)));
+            fields = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(resolverFields)));
         }
         if (Objects.equals(this.resolverFields, fields)) {
             return this;
         }
-        return new DateTimeFormatter(printerParser, locale, decimalStyle,
-                resolverStyle, fields, chrono, zone);
+        return new DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, fields, chrono,
+                zone);
     }
 
     /**
@@ -1700,21 +1658,19 @@ public final class DateTimeFormatter {
      * This instance is immutable and unaffected by this method call.
      *
      * @param resolverFields
-     *                       the new set of resolver fields, null if no fields
+     *        the new set of resolver fields, null if no fields
      * @return a formatter based on this formatter with the requested resolver
      *         style, not null
      */
-    public DateTimeFormatter withResolverFields(
-            Set<TemporalField> resolverFields) {
+    public DateTimeFormatter withResolverFields(Set<TemporalField> resolverFields) {
         if (Objects.equals(this.resolverFields, resolverFields)) {
             return this;
         }
         if (resolverFields != null) {
-            resolverFields = Collections.unmodifiableSet(new HashSet<>(
-                    resolverFields));
+            resolverFields = Collections.unmodifiableSet(new HashSet<>(resolverFields));
         }
-        return new DateTimeFormatter(printerParser, locale, decimalStyle,
-                resolverStyle, resolverFields, chrono, zone);
+        return new DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields,
+                chrono, zone);
     }
 
     // -----------------------------------------------------------------------
@@ -1724,10 +1680,10 @@ public final class DateTimeFormatter {
      * This formats the date-time to a String using the rules of the formatter.
      *
      * @param temporal
-     *                 the temporal object to format, not null
+     *        the temporal object to format, not null
      * @return the formatted string, not null
      * @throws DateTimeException
-     *                           if an error occurs during formatting
+     *         if an error occurs during formatting
      */
     public String format(TemporalAccessor temporal) {
         StringBuilder buf = new StringBuilder(32);
@@ -1749,18 +1705,17 @@ public final class DateTimeFormatter {
      * exception.
      *
      * @param temporal
-     *                   the temporal object to format, not null
+     *        the temporal object to format, not null
      * @param appendable
-     *                   the appendable to format to, not null
+     *        the appendable to format to, not null
      * @throws DateTimeException
-     *                           if an error occurs during formatting
+     *         if an error occurs during formatting
      */
     public void formatTo(TemporalAccessor temporal, Appendable appendable) {
         Objects.requireNonNull(temporal, "temporal");
         Objects.requireNonNull(appendable, "appendable");
         try {
-            DateTimePrintContext context = new DateTimePrintContext(temporal,
-                    this);
+            DateTimePrintContext context = new DateTimePrintContext(temporal, this);
             if (appendable instanceof StringBuilder) {
                 printerParser.format(context, (StringBuilder) appendable);
             } else {
@@ -1788,10 +1743,10 @@ public final class DateTimeFormatter {
      * a problem occurs during parsing or merging, then an exception is thrown.
      *
      * @param text
-     *             the text to parse, not null
+     *        the text to parse, not null
      * @return the parsed temporal object, not null
      * @throws DateTimeParseException
-     *                                if unable to parse the requested result
+     *         if unable to parse the requested result
      */
     public TemporalAccessor parse(CharSequence text) {
         Objects.requireNonNull(text, "text");
@@ -1830,16 +1785,16 @@ public final class DateTimeFormatter {
      * values, the result will be an error.
      *
      * @param text
-     *                 the text to parse, not null
+     *        the text to parse, not null
      * @param position
-     *                 the position to parse from, updated with length parsed
-     *                 and the
-     *                 index of any error, not null
+     *        the position to parse from, updated with length parsed
+     *        and the
+     *        index of any error, not null
      * @return the parsed temporal object, not null
      * @throws DateTimeParseException
-     *                                   if unable to parse the requested result
+     *         if unable to parse the requested result
      * @throws IndexOutOfBoundsException
-     *                                   if the position is invalid
+     *         if the position is invalid
      */
     public TemporalAccessor parse(CharSequence text, ParsePosition position) {
         Objects.requireNonNull(text, "text");
@@ -1868,15 +1823,15 @@ public final class DateTimeFormatter {
      * If the parse completes without reading the entire length of the text, or
      * a problem occurs during parsing or merging, then an exception is thrown.
      *
-     * @param       <T>
-     *              the type of the parsed date-time
+     * @param <T>
+     *        the type of the parsed date-time
      * @param text
-     *              the text to parse, not null
+     *        the text to parse, not null
      * @param query
-     *              the query defining the type to parse to, not null
+     *        the query defining the type to parse to, not null
      * @return the parsed date-time, not null
      * @throws DateTimeParseException
-     *                                if unable to parse the requested result
+     *         if unable to parse the requested result
      */
     public <T> T parse(CharSequence text, TemporalQuery<T> query) {
         Objects.requireNonNull(text, "text");
@@ -1918,24 +1873,22 @@ public final class DateTimeFormatter {
      * a problem occurs during parsing or merging, then an exception is thrown.
      *
      * @param text
-     *                the text to parse, not null
+     *        the text to parse, not null
      * @param queries
-     *                the queries defining the types to attempt to parse to,
-     *                must
-     *                implement {@code TemporalAccessor}, not null
+     *        the queries defining the types to attempt to parse to,
+     *        must
+     *        implement {@code TemporalAccessor}, not null
      * @return the parsed date-time, not null
      * @throws IllegalArgumentException
-     *                                  if less than 2 types are specified
+     *         if less than 2 types are specified
      * @throws DateTimeParseException
-     *                                  if unable to parse the requested result
+     *         if unable to parse the requested result
      */
-    public TemporalAccessor parseBest(CharSequence text,
-            TemporalQuery<?>... queries) {
+    public TemporalAccessor parseBest(CharSequence text, TemporalQuery<?>... queries) {
         Objects.requireNonNull(text, "text");
         Objects.requireNonNull(queries, "queries");
         if (queries.length < 2) {
-            throw new IllegalArgumentException(
-                    "At least two queries must be specified");
+            throw new IllegalArgumentException("At least two queries must be specified");
         }
         try {
             TemporalAccessor resolved = parseResolved0(text, null);
@@ -1946,8 +1899,7 @@ public final class DateTimeFormatter {
                     // continue
                 }
             }
-            throw new DateTimeException(
-                    "Unable to convert parsed text using any of the specified queries");
+            throw new DateTimeException("Unable to convert parsed text using any of the specified queries");
         } catch (DateTimeParseException ex) {
             throw ex;
         } catch (RuntimeException ex) {
@@ -1955,16 +1907,15 @@ public final class DateTimeFormatter {
         }
     }
 
-    private DateTimeParseException createError(CharSequence text,
-            RuntimeException ex) {
+    private DateTimeParseException createError(CharSequence text, RuntimeException ex) {
         String abbr;
         if (text.length() > 64) {
             abbr = text.subSequence(0, 64).toString() + "...";
         } else {
             abbr = text.toString();
         }
-        return new DateTimeParseException("Text '" + abbr
-                + "' could not be parsed: " + ex.getMessage(), text, 0, ex);
+        return new DateTimeParseException("Text '" + abbr + "' could not be parsed: " + ex.getMessage(), text,
+                0, ex);
     }
 
     // -----------------------------------------------------------------------
@@ -1975,27 +1926,25 @@ public final class DateTimeFormatter {
      * parsed.
      *
      * @param text
-     *                 the text to parse, not null
+     *        the text to parse, not null
      * @param position
-     *                 the position to parse from, updated with length parsed
-     *                 and the
-     *                 index of any error, null if parsing whole string
+     *        the position to parse from, updated with length parsed
+     *        and the
+     *        index of any error, null if parsing whole string
      * @return the resolved result of the parse, not null
      * @throws DateTimeParseException
-     *                                   if the parse fails
+     *         if the parse fails
      * @throws DateTimeException
-     *                                   if an error occurs while resolving the
-     *                                   date or time
+     *         if an error occurs while resolving the
+     *         date or time
      * @throws IndexOutOfBoundsException
-     *                                   if the position is invalid
+     *         if the position is invalid
      */
-    private TemporalAccessor parseResolved0(final CharSequence text,
-            final ParsePosition position) {
-        ParsePosition pos = (position != null ? position
-                : new ParsePosition(0));
+    private TemporalAccessor parseResolved0(final CharSequence text, final ParsePosition position) {
+        ParsePosition pos = (position != null ? position : new ParsePosition(0));
         DateTimeParseContext context = parseUnresolved0(text, pos);
-        if (context == null || pos.getErrorIndex() >= 0 || (position == null
-                && pos.getIndex() < text.length())) {
+        if (context == null || pos.getErrorIndex() >= 0 || (position == null && pos.getIndex() < text
+                .length())) {
             String abbr;
             if (text.length() > 64) {
                 abbr = text.subSequence(0, 64).toString() + "...";
@@ -2003,13 +1952,12 @@ public final class DateTimeFormatter {
                 abbr = text.toString();
             }
             if (pos.getErrorIndex() >= 0) {
-                throw new DateTimeParseException("Text '" + abbr
-                        + "' could not be parsed at index " + pos
-                                .getErrorIndex(), text, pos.getErrorIndex());
+                throw new DateTimeParseException("Text '" + abbr + "' could not be parsed at index " + pos
+                        .getErrorIndex(), text, pos.getErrorIndex());
             } else {
                 throw new DateTimeParseException("Text '" + abbr
-                        + "' could not be parsed, unparsed text found at index "
-                        + pos.getIndex(), text, pos.getIndex());
+                        + "' could not be parsed, unparsed text found at index " + pos.getIndex(), text, pos
+                                .getIndex());
             }
         }
         return context.toResolved(resolverStyle, resolverFields);
@@ -2050,19 +1998,18 @@ public final class DateTimeFormatter {
      * target type.
      *
      * @param text
-     *                 the text to parse, not null
+     *        the text to parse, not null
      * @param position
-     *                 the position to parse from, updated with length parsed
-     *                 and the
-     *                 index of any error, not null
+     *        the position to parse from, updated with length parsed
+     *        and the
+     *        index of any error, not null
      * @return the parsed text, null if the parse results in an error
      * @throws DateTimeException
-     *                                   if some problem occurs during parsing
+     *         if some problem occurs during parsing
      * @throws IndexOutOfBoundsException
-     *                                   if the position is invalid
+     *         if the position is invalid
      */
-    public TemporalAccessor parseUnresolved(CharSequence text,
-            ParsePosition position) {
+    public TemporalAccessor parseUnresolved(CharSequence text, ParsePosition position) {
         DateTimeParseContext context = parseUnresolved0(text, position);
         if (context == null) {
             return null;
@@ -2070,8 +2017,7 @@ public final class DateTimeFormatter {
         return context.toUnresolved();
     }
 
-    private DateTimeParseContext parseUnresolved0(CharSequence text,
-            ParsePosition position) {
+    private DateTimeParseContext parseUnresolved0(CharSequence text, ParsePosition position) {
         Objects.requireNonNull(text, "text");
         Objects.requireNonNull(position, "position");
         DateTimeParseContext context = new DateTimeParseContext(this);
@@ -2090,7 +2036,7 @@ public final class DateTimeFormatter {
      * Returns the formatter as a composite printer parser.
      *
      * @param optional
-     *                 whether the printer/parser should be optional
+     *        whether the printer/parser should be optional
      * @return the printer/parser, not null
      */
     CompositePrinterParser toPrinterParser(boolean optional) {
@@ -2129,7 +2075,7 @@ public final class DateTimeFormatter {
      * does not support attributing of the returned format string.
      *
      * @param parseQuery
-     *                   the query defining the type to parse to, not null
+     *        the query defining the type to parse to, not null
      * @return this formatter as a classic format instance, not null
      */
     public Format toFormat(TemporalQuery<?> parseQuery) {
@@ -2146,8 +2092,7 @@ public final class DateTimeFormatter {
     @Override
     public String toString() {
         String pattern = printerParser.toString();
-        pattern = pattern.startsWith("[") ? pattern
-                : pattern.substring(1, pattern.length() - 1);
+        pattern = pattern.startsWith("[") ? pattern : pattern.substring(1, pattern.length() - 1);
         return pattern;
         // TODO: Fix tests to not depend on toString()
         // return "DateTimeFormatter[" + locale +
@@ -2170,21 +2115,18 @@ public final class DateTimeFormatter {
         private final TemporalQuery<?> parseType;
 
         /** Constructor. */
-        public ClassicFormat(DateTimeFormatter formatter,
-                TemporalQuery<?> parseType) {
+        public ClassicFormat(DateTimeFormatter formatter, TemporalQuery<?> parseType) {
             this.formatter = formatter;
             this.parseType = parseType;
         }
 
         @Override
-        public StringBuffer format(Object obj, StringBuffer toAppendTo,
-                FieldPosition pos) {
+        public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
             Objects.requireNonNull(obj, "obj");
             Objects.requireNonNull(toAppendTo, "toAppendTo");
             Objects.requireNonNull(pos, "pos");
             if (obj instanceof TemporalAccessor == false) {
-                throw new IllegalArgumentException(
-                        "Format target must implement TemporalAccessor");
+                throw new IllegalArgumentException("Format target must implement TemporalAccessor");
             }
             pos.setBeginIndex(0);
             pos.setEndIndex(0);
@@ -2207,8 +2149,7 @@ public final class DateTimeFormatter {
             } catch (DateTimeParseException ex) {
                 throw new ParseException(ex.getMessage(), ex.getErrorIndex());
             } catch (RuntimeException ex) {
-                throw (ParseException) new ParseException(ex.getMessage(), 0)
-                        .initCause(ex);
+                throw (ParseException) new ParseException(ex.getMessage(), 0).initCause(ex);
             }
         }
 
@@ -2231,8 +2172,8 @@ public final class DateTimeFormatter {
                 return null;
             }
             try {
-                TemporalAccessor resolved = context.toResolved(
-                        formatter.resolverStyle, formatter.resolverFields);
+                TemporalAccessor resolved = context.toResolved(formatter.resolverStyle,
+                        formatter.resolverFields);
                 if (parseType == null) {
                     return resolved;
                 }

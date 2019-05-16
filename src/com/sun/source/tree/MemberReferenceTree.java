@@ -11,7 +11,6 @@ import javax.lang.model.element.Name;
 
 /**
  * A tree node for a member reference expression.
- *
  * For example:
  * 
  * <pre>
@@ -29,10 +28,10 @@ public interface MemberReferenceTree extends ExpressionTree {
      */
     @jdk.Exported
     public enum ReferenceMode {
-    /** enum constant for method references */
-    INVOKE,
-    /** enum constant for constructor references */
-    NEW
+        /** enum constant for method references */
+        INVOKE,
+        /** enum constant for constructor references */
+        NEW
     }
 
     ReferenceMode getMode();

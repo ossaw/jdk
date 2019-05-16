@@ -31,8 +31,7 @@ abstract public class Servant {
      */
     final public Delegate _get_delegate() {
         if (_delegate == null) {
-            throw new org.omg.CORBA.BAD_INV_ORDER(
-                    "The Servant has not been associated with an ORB instance");
+            throw new org.omg.CORBA.BAD_INV_ORDER("The Servant has not been associated with an ORB instance");
         }
         return _delegate;
     }
@@ -43,8 +42,8 @@ abstract public class Servant {
      * delegate.
      * 
      * @param delegate
-     *                 ORB vendor-specific implementation of the
-     *                 <code>PortableServer::Servant</code>.
+     *        ORB vendor-specific implementation of the
+     *        <code>PortableServer::Servant</code>.
      */
     final public void _set_delegate(Delegate delegate) {
         _delegate = delegate;
@@ -66,15 +65,14 @@ abstract public class Servant {
      * Object it is incarnating for that request.
      * 
      * @param orb
-     *            ORB with which the servant is associated.
+     *        ORB with which the servant is associated.
      * @return <code>_this_object</code> reference associated with the request.
      */
     final public org.omg.CORBA.Object _this_object(ORB orb) {
         try {
             ((org.omg.CORBA_2_3.ORB) orb).set_delegate(this);
         } catch (ClassCastException e) {
-            throw new org.omg.CORBA.BAD_PARAM(
-                    "POA Servant requires an instance of org.omg.CORBA_2_3.ORB");
+            throw new org.omg.CORBA.BAD_PARAM("POA Servant requires an instance of org.omg.CORBA_2_3.ORB");
         }
         return _this_object();
     }
@@ -128,9 +126,9 @@ abstract public class Servant {
      * <code>repository_id</code> for the generic CORBA Object.
      * 
      * @param repository_id
-     *                      the <code>repository_id</code> to be checked in the
-     *                      repository
-     *                      list or against the id of generic CORBA objects.
+     *        the <code>repository_id</code> to be checked in the
+     *        repository
+     *        list or against the id of generic CORBA objects.
      * @return <code>is_a</code> boolean indicating whether the specified
      *         <code>repository_id</code> is in the repository list or is same
      *         as a generic CORBA object.
@@ -212,8 +210,7 @@ abstract public class Servant {
             // Call "InterfaceDef get_interface(..)" method using reflection.
             try {
                 Class[] argc = { org.omg.PortableServer.Servant.class };
-                java.lang.reflect.Method meth = delegate.getClass().getMethod(
-                        "get_interface", argc);
+                java.lang.reflect.Method meth = delegate.getClass().getMethod("get_interface", argc);
                 Object[] argx = { this };
                 return (org.omg.CORBA.Object) meth.invoke(delegate, argx);
             } catch (java.lang.reflect.InvocationTargetException exs) {
@@ -239,11 +236,11 @@ abstract public class Servant {
      * Used by the ORB to obtain complete type information from the servant.
      * 
      * @param poa
-     *                 POA with which the servant is associated.
+     *        POA with which the servant is associated.
      * @param objectId
-     *                 is the id corresponding to the object associated with
-     *                 this
-     *                 servant.
+     *        is the id corresponding to the object associated with
+     *        this
+     *        servant.
      * @return list of type information for the object.
      */
     abstract public String[] _all_interfaces(POA poa, byte[] objectId);

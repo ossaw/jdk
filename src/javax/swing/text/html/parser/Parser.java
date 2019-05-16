@@ -109,7 +109,6 @@ public class Parser implements DTDConstants {
      * enforcing SGML compatibility. If false, it will be lenient with certain
      * common classes of erroneous HTML constructs. Strict or not, in either
      * case an error will be recorded.
-     *
      */
     protected boolean strict = false;
 
@@ -259,8 +258,7 @@ public class Parser implements DTDConstants {
     /**
      * Called when an empty tag is encountered.
      */
-    protected void handleEmptyTag(TagElement tag)
-            throws ChangedCharSetException {}
+    protected void handleEmptyTag(TagElement tag) throws ChangedCharSetException {}
 
     /**
      * Called when a start tag is encountered.
@@ -294,8 +292,7 @@ public class Parser implements DTDConstants {
             }
         }
         if (textpos == 0) {
-            if ((!space) || (stack == null) || last.breaksFlow() || !stack
-                    .advance(dtd.pcdata)) {
+            if ((!space) || (stack == null) || last.breaksFlow() || !stack.advance(dtd.pcdata)) {
                 last = tag;
                 space = false;
                 lastBlockStartPos = currentBlockStartPos;
@@ -365,8 +362,7 @@ public class Parser implements DTDConstants {
         // start tag that needs to be processed before
         // handling the tag.
         //
-        if (!elem.isEmpty() || ((last != null) && !last.breaksFlow())
-                || (textpos != 0)) {
+        if (!elem.isEmpty() || ((last != null) && !last.breaksFlow()) || (textpos != 0)) {
             handleText(tag);
         } else {
             // this variable gets updated in handleText().
@@ -382,9 +378,8 @@ public class Parser implements DTDConstants {
 
         // check required attributes
         for (AttributeList a = elem.atts; a != null; a = a.next) {
-            if ((a.modifier == REQUIRED) && ((attributes.isEmpty())
-                    || ((!attributes.isDefined(a.name)) && (!attributes
-                            .isDefined(HTML.getAttributeKey(a.name)))))) {
+            if ((a.modifier == REQUIRED) && ((attributes.isEmpty()) || ((!attributes.isDefined(a.name))
+                    && (!attributes.isDefined(HTML.getAttributeKey(a.name)))))) {
                 error("req.att ", a.getName(), elem.getName());
             }
         }
@@ -430,8 +425,8 @@ public class Parser implements DTDConstants {
          * <ol> We additonally ignore the <meta> and the <style> tag if the body
          * tag has been seen.
          **/
-        if ((elemName.equals("html") && seenHtml) || (elemName.equals("head")
-                && seenHead) || (elemName.equals("body") && seenBody)) {
+        if ((elemName.equals("html") && seenHtml) || (elemName.equals("head") && seenHead) || (elemName
+                .equals("body") && seenBody)) {
             return true;
         }
         if (elemName.equals("dt") || elemName.equals("dd")) {
@@ -444,12 +439,9 @@ public class Parser implements DTDConstants {
             }
         }
 
-        if (((stackElement.equals("table")) && (!elemName.equals("#pcdata"))
-                && (!elemName.equals("input"))) || ((elemName.equals("font"))
-                        && (stackElement.equals("ul") || stackElement.equals(
-                                "ol"))) || (elemName.equals("meta")
-                                        && stack != null) || (elemName.equals(
-                                                "style") && seenBody)
+        if (((stackElement.equals("table")) && (!elemName.equals("#pcdata")) && (!elemName.equals("input")))
+                || ((elemName.equals("font")) && (stackElement.equals("ul") || stackElement.equals("ol")))
+                || (elemName.equals("meta") && stack != null) || (elemName.equals("style") && seenBody)
                 || (stackElement.equals("table") && elemName.equals("a"))) {
             return true;
         }
@@ -532,14 +524,14 @@ public class Parser implements DTDConstants {
         String stackElemName = stack.elem.getName();
         String elemName = elem.getName();
 
-        if (!strict && ((stackElemName.equals("table") && elemName.equals("td"))
-                || (stackElemName.equals("table") && elemName.equals("th"))
-                || (stackElemName.equals("tr") && !elemName.equals("tr")))) {
+        if (!strict && ((stackElemName.equals("table") && elemName.equals("td")) || (stackElemName.equals(
+                "table") && elemName.equals("th")) || (stackElemName.equals("tr") && !elemName.equals(
+                        "tr")))) {
             insertTag = true;
         }
 
-        if (!strict && !insertTag && (stack.elem.getName() != elem.getName()
-                || elem.getName().equals("body"))) {
+        if (!strict && !insertTag && (stack.elem.getName() != elem.getName() || elem.getName().equals(
+                "body"))) {
             if (skipTag = ignoreElement(elem)) {
                 error("tag.ignore", elem.getName());
                 return skipTag;
@@ -549,9 +541,8 @@ public class Parser implements DTDConstants {
         // Check for anything after the start of the table besides tr, td, th
         // or caption, and if those aren't there, insert the <tr> and call
         // legalElementContext again.
-        if (!strict && stackElemName.equals("table") && !elemName.equals("tr")
-                && !elemName.equals("td") && !elemName.equals("th") && !elemName
-                        .equals("caption")) {
+        if (!strict && stackElemName.equals("table") && !elemName.equals("tr") && !elemName.equals("td")
+                && !elemName.equals("th") && !elemName.equals("caption")) {
             Element e = dtd.getElement("tr");
             TagElement t = makeTag(e, true);
             legalTagContext(t);
@@ -568,8 +559,7 @@ public class Parser implements DTDConstants {
         // specification in the DTD then an html error is
         // reported.
         //
-        if (!insertTag && stack.terminate() && (!strict || stack.elem
-                .omitEnd())) {
+        if (!insertTag && stack.terminate() && (!strict || stack.elem.omitEnd())) {
             for (TagStack s = stack.next; s != null; s = s.next) {
                 if (s.advance(elem)) {
                     while (stack != s) {
@@ -588,8 +578,7 @@ public class Parser implements DTDConstants {
         // tag does not have its start tag spec in the DTD as optional.
         //
         Element next = stack.first();
-        if (next != null && (!strict || next.omitStart()) && !(next == dtd.head
-                && elem == dtd.pcdata)) {
+        if (next != null && (!strict || next.omitStart()) && !(next == dtd.head && elem == dtd.pcdata)) {
             // System.out.println("-- omitting start tag: " + next);
             TagElement t = makeTag(next, true);
             legalTagContext(t);
@@ -619,8 +608,7 @@ public class Parser implements DTDConstants {
 
                     boolean reqAtts = false;
 
-                    for (AttributeList a = e
-                            .getAttributes(); a != null; a = a.next) {
+                    for (AttributeList a = e.getAttributes(); a != null; a = a.next) {
                         if (a.modifier == REQUIRED) {
                             reqAtts = true;
                             break;
@@ -650,8 +638,7 @@ public class Parser implements DTDConstants {
         // end tag. Report an error if the tag being ended does not have its
         // end tag spec in the DTD as optional.
         //
-        if (stack.terminate() && (stack.elem != dtd.body) && (!strict
-                || stack.elem.omitEnd())) {
+        if (stack.terminate() && (stack.elem != dtd.body) && (!strict || stack.elem.omitEnd())) {
             // System.out.println("-- omitting end tag: " + stack.elem);
             if (!stack.elem.omitEnd()) {
                 error("end.missing", elem.getName());
@@ -702,8 +689,7 @@ public class Parser implements DTDConstants {
      * body context
      */
     void errorContext() throws ChangedCharSetException {
-        for (; (stack != null) && (stack.tag
-                .getElement() != dtd.body); stack = stack.next) {
+        for (; (stack != null) && (stack.tag.getElement() != dtd.body); stack = stack.next) {
             handleEndTag(stack.tag);
         }
         if (stack == null) {
@@ -968,8 +954,7 @@ public class Parser implements DTDConstants {
                     // parse hexadecimal reference
                     ch = readCh();
                     char lch = (char) Character.toLowerCase(ch);
-                    while ((lch >= '0') && (lch <= '9') || (lch >= 'a')
-                            && (lch <= 'f')) {
+                    while ((lch >= '0') && (lch <= '9') || (lch >= 'a') && (lch <= 'f')) {
                         if (lch >= '0' && lch <= '9') {
                             n = (n * 16) + lch - '0';
                         } else {
@@ -1069,7 +1054,6 @@ public class Parser implements DTDConstants {
 
     /**
      * Converts numeric character reference to char array.
-     *
      * Normally the code in a reference should be always converted to the
      * Unicode character with the same code, but due to wide usage of Cp1252
      * charset most browsers map numeric references in the range 130-159 (which
@@ -1077,7 +1061,7 @@ public class Parser implements DTDConstants {
      * codes.
      *
      * @param c
-     *          the code of numeric character reference.
+     *        the code of numeric character reference.
      * @return a char array corresponding to the reference code.
      */
     private char[] mapNumericReference(int c) {
@@ -1210,8 +1194,8 @@ public class Parser implements DTDConstants {
 
                     // match end tag
                     if ((i >= 0) && (text[i++] == '<') && (text[i] == '/')) {
-                        while ((++i < textpos) && (Character.toLowerCase(
-                                text[i]) == stack.elem.name.charAt(j++)))
+                        while ((++i < textpos) && (Character.toLowerCase(text[i]) == stack.elem.name.charAt(
+                                j++)))
                             ;
                         if (i == textpos) {
                             textpos -= (stack.elem.name.length() + 2);
@@ -1227,8 +1211,7 @@ public class Parser implements DTDConstants {
                 case '&':
                     char data[] = parseEntityReference();
                     if (textpos + data.length > text.length) {
-                        char newtext[] = new char[Math.max(textpos + data.length
-                                + 128, text.length * 2)];
+                        char newtext[] = new char[Math.max(textpos + data.length + 128, text.length * 2)];
                         System.arraycopy(text, 0, newtext, 0, text.length);
                         text = newtext;
                     }
@@ -1377,8 +1360,7 @@ public class Parser implements DTDConstants {
                     char data[] = parseEntityReference();
                     for (int i = 0; i < data.length; i++) {
                         c = data[i];
-                        addString((lower && (c >= 'A') && (c <= 'Z')) ? 'a' + c
-                                - 'A' : c);
+                        addString((lower && (c >= 'A') && (c <= 'Z')) ? 'a' + c - 'A' : c);
                     }
                     continue;
 
@@ -1438,9 +1420,8 @@ public class Parser implements DTDConstants {
                     // Load the NAME of an Attribute Case Sensitive
                     // The case of the NAME must be intact
                     // MG 021898
-                    attvalue = parseAttributeValue((att != null)
-                            && (att.type != CDATA) && (att.type != NOTATION)
-                            && (att.type != NAME));
+                    attvalue = parseAttributeValue((att != null) && (att.type != CDATA)
+                            && (att.type != NOTATION) && (att.type != NAME));
                     // attvalue = parseAttributeValue((att != null) && (att.type
                     // != CDATA) && (att.type != NOTATION));
                 } else {
@@ -1474,8 +1455,7 @@ public class Parser implements DTDConstants {
                         ch = readCh();
                         skipSpace();
                         att = elem.getAttribute(attname);
-                        attvalue = parseAttributeValue((att != null)
-                                && (att.type != CDATA)
+                        attvalue = parseAttributeValue((att != null) && (att.type != CDATA)
                                 && (att.type != NOTATION));
                     } else {
                         attvalue = attname;
@@ -1498,8 +1478,8 @@ public class Parser implements DTDConstants {
                 skipSpace();
                 attname = elem.getName();
                 att = elem.getAttribute(attname);
-                attvalue = parseAttributeValue((att != null)
-                        && (att.type != CDATA) && (att.type != NOTATION));
+                attvalue = parseAttributeValue((att != null) && (att.type != CDATA)
+                        && (att.type != NOTATION));
             } else if (!strict && (ch == '=')) {
                 ch = readCh();
                 skipSpace();
@@ -1528,10 +1508,8 @@ public class Parser implements DTDConstants {
                 error("multi.tagatt", attname, elem.getName());
             }
             if (attvalue == null) {
-                attvalue = ((att != null) && (att.value != null)) ? att.value
-                        : HTML.NULL_ATTRIBUTE_VALUE;
-            } else if ((att != null) && (att.values != null) && !att.values
-                    .contains(attvalue)) {
+                attvalue = ((att != null) && (att.value != null)) ? att.value : HTML.NULL_ATTRIBUTE_VALUE;
+            } else if ((att != null) && (att.values != null) && !att.values.contains(attvalue)) {
                 error("invalid.tagattval", attname, elem.getName());
             }
             HTML.Attribute attkey = HTML.getAttributeKey(attname);
@@ -1589,12 +1567,11 @@ public class Parser implements DTDConstants {
      * Declaration markup. Returns true if it is a markup declaration false
      * otherwise.
      */
-    protected boolean parseMarkupDeclarations(StringBuffer strBuff)
-            throws IOException {
+    protected boolean parseMarkupDeclarations(StringBuffer strBuff) throws IOException {
 
         /* Currently handles only the DOCTYPE */
-        if ((strBuff.length() == "DOCTYPE".length()) && (strBuff.toString()
-                .toUpperCase().equals("DOCTYPE"))) {
+        if ((strBuff.length() == "DOCTYPE".length()) && (strBuff.toString().toUpperCase().equals(
+                "DOCTYPE"))) {
             parseDTDMarkup();
             return true;
         }
@@ -1648,15 +1625,13 @@ public class Parser implements DTDConstants {
                                     // comment
                                     if (textpos != 0) {
                                         char newtext[] = new char[textpos];
-                                        System.arraycopy(text, 0, newtext, 0,
-                                                textpos);
+                                        System.arraycopy(text, 0, newtext, 0, textpos);
                                         handleText(newtext);
                                         lastBlockStartPos = currentBlockStartPos;
                                         textpos = 0;
                                     }
                                     parseComment();
-                                    last = makeTag(dtd.getElement("comment"),
-                                            true);
+                                    last = makeTag(dtd.getElement("comment"), true);
                                     handleComment(getChars(0));
                                     continue;
                                 } else if (!warned) {
@@ -1676,8 +1651,7 @@ public class Parser implements DTDConstants {
                                     ch = readCh();
                                     if (!warned) {
                                         warned = true;
-                                        error("invalid.commentchar", String
-                                                .valueOf((char) ch));
+                                        error("invalid.commentchar", String.valueOf((char) ch));
                                     }
                                     break;
                             }
@@ -1747,8 +1721,7 @@ public class Parser implements DTDConstants {
 
                             default:
                                 error("expected", "'>'");
-                                while ((ch != -1) && (ch != '\n')
-                                        && (ch != '>')) {
+                                while ((ch != -1) && (ch != '\n') && (ch != '>')) {
                                     ch = readCh();
                                 }
                                 if (ch == '>') {
@@ -1840,8 +1813,7 @@ public class Parser implements DTDConstants {
                     }
 
                     if (stackElem.equals("tr") || stackElem.equals("td")) {
-                        if ((!elem.getName().equals("table")) && (!elem
-                                .getName().equals(stackElem))) {
+                        if ((!elem.getName().equals("table")) && (!elem.getName().equals(stackElem))) {
                             error("tag.ignore", elem.getName());
                             return;
                         }
@@ -1863,8 +1835,7 @@ public class Parser implements DTDConstants {
                 // ignore the end tag like it doesn't exist and allow the end
                 // of the document to close us out.
                 String elemName = elem.getName();
-                if (stack != sp && (elemName.equals("font") || elemName.equals(
-                        "center"))) {
+                if (stack != sp && (elemName.equals("font") || elemName.equals("center"))) {
 
                     // Since closing out a center tag can have real wierd
                     // effects on the formatting, make sure that tags
@@ -2025,8 +1996,7 @@ public class Parser implements DTDConstants {
     private static final String START_COMMENT = "<!--";
     private static final String END_COMMENT = "-->";
     private static final char[] SCRIPT_END_TAG = "</script>".toCharArray();
-    private static final char[] SCRIPT_END_TAG_UPPER_CASE = "</SCRIPT>"
-            .toCharArray();
+    private static final char[] SCRIPT_END_TAG_UPPER_CASE = "</SCRIPT>".toCharArray();
 
     void parseScript() throws IOException {
         char[] charsToAdd = new char[SCRIPT_END_TAG.length];
@@ -2035,9 +2005,8 @@ public class Parser implements DTDConstants {
         /* Here, ch should be the first character after <script> */
         while (true) {
             int i = 0;
-            while (!insideComment && i < SCRIPT_END_TAG.length
-                    && (SCRIPT_END_TAG[i] == ch
-                            || SCRIPT_END_TAG_UPPER_CASE[i] == ch)) {
+            while (!insideComment && i < SCRIPT_END_TAG.length && (SCRIPT_END_TAG[i] == ch
+                    || SCRIPT_END_TAG_UPPER_CASE[i] == ch)) {
                 charsToAdd[i] = (char) ch;
                 ch = readCh();
                 i++;
@@ -2046,11 +2015,9 @@ public class Parser implements DTDConstants {
                 return;
             }
 
-            if (!insideComment && i == 1 && charsToAdd[0] == START_COMMENT
-                    .charAt(0)) {
+            if (!insideComment && i == 1 && charsToAdd[0] == START_COMMENT.charAt(0)) {
                 // it isn't end script tag, but may be it's start comment tag?
-                while (i < START_COMMENT.length() && START_COMMENT.charAt(
-                        i) == ch) {
+                while (i < START_COMMENT.length() && START_COMMENT.charAt(i) == ch) {
                     charsToAdd[i] = (char) ch;
                     ch = readCh();
                     i++;
@@ -2060,8 +2027,7 @@ public class Parser implements DTDConstants {
                 }
             }
             if (insideComment) {
-                while (i < END_COMMENT.length() && END_COMMENT.charAt(
-                        i) == ch) {
+                while (i < END_COMMENT.length() && END_COMMENT.charAt(i) == ch) {
                     charsToAdd[i] = (char) ch;
                     ch = readCh();
                     i++;
@@ -2127,10 +2093,9 @@ public class Parser implements DTDConstants {
                 /* Remove leading and trailing HTML comment declarations */
                 String str = new String(getChars(0)).trim();
                 int minLength = START_COMMENT.length() + END_COMMENT.length();
-                if (str.startsWith(START_COMMENT) && str.endsWith(END_COMMENT)
-                        && str.length() >= (minLength)) {
-                    str = str.substring(START_COMMENT.length(), str.length()
-                            - END_COMMENT.length());
+                if (str.startsWith(START_COMMENT) && str.endsWith(END_COMMENT) && str
+                        .length() >= (minLength)) {
+                    str = str.substring(START_COMMENT.length(), str.length() - END_COMMENT.length());
                 }
 
                 /* Handle resulting chars as comment */
@@ -2176,8 +2141,7 @@ public class Parser implements DTDConstants {
                         }
                         char data[] = parseEntityReference();
                         if (textpos + data.length + 1 > text.length) {
-                            char newtext[] = new char[Math.max(textpos
-                                    + data.length + 128, text.length * 2)];
+                            char newtext[] = new char[Math.max(textpos + data.length + 128, text.length * 2)];
                             System.arraycopy(text, 0, newtext, 0, text.length);
                             text = newtext;
                         }

@@ -187,32 +187,31 @@ public interface CSSPrimitiveValue extends CSSValue {
      * be raised.
      * 
      * @param unitType
-     *                   A unit code as defined above. The unit code can only be
-     *                   a
-     *                   float unit type (i.e. <code>CSS_NUMBER</code>,
-     *                   <code>CSS_PERCENTAGE</code>, <code>CSS_EMS</code>,
-     *                   <code>CSS_EXS</code>, <code>CSS_PX</code>,
-     *                   <code>CSS_CM</code>
-     *                   , <code>CSS_MM</code>, <code>CSS_IN</code>,
-     *                   <code>CSS_PT</code>, <code>CSS_PC</code>,
-     *                   <code>CSS_DEG</code>
-     *                   , <code>CSS_RAD</code>, <code>CSS_GRAD</code>,
-     *                   <code>CSS_MS</code>, <code>CSS_S</code>,
-     *                   <code>CSS_HZ</code>,
-     *                   <code>CSS_KHZ</code>, <code>CSS_DIMENSION</code>).
+     *        A unit code as defined above. The unit code can only be
+     *        a
+     *        float unit type (i.e. <code>CSS_NUMBER</code>,
+     *        <code>CSS_PERCENTAGE</code>, <code>CSS_EMS</code>,
+     *        <code>CSS_EXS</code>, <code>CSS_PX</code>,
+     *        <code>CSS_CM</code>
+     *        , <code>CSS_MM</code>, <code>CSS_IN</code>,
+     *        <code>CSS_PT</code>, <code>CSS_PC</code>,
+     *        <code>CSS_DEG</code>
+     *        , <code>CSS_RAD</code>, <code>CSS_GRAD</code>,
+     *        <code>CSS_MS</code>, <code>CSS_S</code>,
+     *        <code>CSS_HZ</code>,
+     *        <code>CSS_KHZ</code>, <code>CSS_DIMENSION</code>).
      * @param floatValue
-     *                   The new float value.
+     *        The new float value.
      * @exception DOMException
-     *                         INVALID_ACCESS_ERR: Raised if the attached
-     *                         property
-     *                         doesn't support the float value or the unit type.
-     *                         <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            INVALID_ACCESS_ERR: Raised if the attached
+     *            property
+     *            doesn't support the float value or the unit type.
+     *            <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setFloatValue(short unitType, float floatValue)
-            throws DOMException;
+    public void setFloatValue(short unitType, float floatValue) throws DOMException;
 
     /**
      * This method is used to get a float value in a specified unit. If this CSS
@@ -220,26 +219,26 @@ public interface CSSPrimitiveValue extends CSSValue {
      * specified unit, a <code>DOMException</code> is raised.
      * 
      * @param unitType
-     *                 A unit code to get the float value. The unit code can
-     *                 only be
-     *                 a float unit type (i.e. <code>CSS_NUMBER</code>,
-     *                 <code>CSS_PERCENTAGE</code>, <code>CSS_EMS</code>,
-     *                 <code>CSS_EXS</code>, <code>CSS_PX</code>,
-     *                 <code>CSS_CM</code>
-     *                 , <code>CSS_MM</code>, <code>CSS_IN</code>,
-     *                 <code>CSS_PT</code>, <code>CSS_PC</code>,
-     *                 <code>CSS_DEG</code>
-     *                 , <code>CSS_RAD</code>, <code>CSS_GRAD</code>,
-     *                 <code>CSS_MS</code>, <code>CSS_S</code>,
-     *                 <code>CSS_HZ</code>,
-     *                 <code>CSS_KHZ</code>, <code>CSS_DIMENSION</code>).
+     *        A unit code to get the float value. The unit code can
+     *        only be
+     *        a float unit type (i.e. <code>CSS_NUMBER</code>,
+     *        <code>CSS_PERCENTAGE</code>, <code>CSS_EMS</code>,
+     *        <code>CSS_EXS</code>, <code>CSS_PX</code>,
+     *        <code>CSS_CM</code>
+     *        , <code>CSS_MM</code>, <code>CSS_IN</code>,
+     *        <code>CSS_PT</code>, <code>CSS_PC</code>,
+     *        <code>CSS_DEG</code>
+     *        , <code>CSS_RAD</code>, <code>CSS_GRAD</code>,
+     *        <code>CSS_MS</code>, <code>CSS_S</code>,
+     *        <code>CSS_HZ</code>,
+     *        <code>CSS_KHZ</code>, <code>CSS_DIMENSION</code>).
      * @return The float value in the specified unit.
      * @exception DOMException
-     *                         INVALID_ACCESS_ERR: Raised if the CSS value
-     *                         doesn't
-     *                         contain a float value or if the float value can't
-     *                         be
-     *                         converted into the specified unit.
+     *            INVALID_ACCESS_ERR: Raised if the CSS value
+     *            doesn't
+     *            contain a float value or if the float value can't
+     *            be
+     *            converted into the specified unit.
      */
     public float getFloatValue(short unitType) throws DOMException;
 
@@ -250,25 +249,24 @@ public interface CSSPrimitiveValue extends CSSValue {
      * be raised.
      * 
      * @param stringType
-     *                    A string code as defined above. The string code can
-     *                    only be a
-     *                    string unit type (i.e. <code>CSS_STRING</code>,
-     *                    <code>CSS_URI</code>, <code>CSS_IDENT</code>, and
-     *                    <code>CSS_ATTR</code>).
+     *        A string code as defined above. The string code can
+     *        only be a
+     *        string unit type (i.e. <code>CSS_STRING</code>,
+     *        <code>CSS_URI</code>, <code>CSS_IDENT</code>, and
+     *        <code>CSS_ATTR</code>).
      * @param stringValue
-     *                    The new string value.
+     *        The new string value.
      * @exception DOMException
-     *                         INVALID_ACCESS_ERR: Raised if the CSS value
-     *                         doesn't
-     *                         contain a string value or if the string value
-     *                         can't be
-     *                         converted into the specified unit. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this
-     *                         property is
-     *                         readonly.
+     *            INVALID_ACCESS_ERR: Raised if the CSS value
+     *            doesn't
+     *            contain a string value or if the string value
+     *            can't be
+     *            converted into the specified unit. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this
+     *            property is
+     *            readonly.
      */
-    public void setStringValue(short stringType, String stringValue)
-            throws DOMException;
+    public void setStringValue(short stringType, String stringValue) throws DOMException;
 
     /**
      * This method is used to get the string value. If the CSS value doesn't
@@ -281,9 +279,9 @@ public interface CSSPrimitiveValue extends CSSValue {
      *         <code>CSS_STRING</code>, <code>CSS_URI</code>,
      *         <code>CSS_IDENT</code> and <code>CSS_ATTR</code>).
      * @exception DOMException
-     *                         INVALID_ACCESS_ERR: Raised if the CSS value
-     *                         doesn't
-     *                         contain a string value.
+     *            INVALID_ACCESS_ERR: Raised if the CSS value
+     *            doesn't
+     *            contain a string value.
      */
     public String getStringValue() throws DOMException;
 
@@ -295,10 +293,10 @@ public interface CSSPrimitiveValue extends CSSValue {
      * 
      * @return The Counter value.
      * @exception DOMException
-     *                         INVALID_ACCESS_ERR: Raised if the CSS value
-     *                         doesn't
-     *                         contain a Counter value (e.g. this is not
-     *                         <code>CSS_COUNTER</code>).
+     *            INVALID_ACCESS_ERR: Raised if the CSS value
+     *            doesn't
+     *            contain a Counter value (e.g. this is not
+     *            <code>CSS_COUNTER</code>).
      */
     public Counter getCounterValue() throws DOMException;
 
@@ -310,10 +308,10 @@ public interface CSSPrimitiveValue extends CSSValue {
      * 
      * @return The Rect value.
      * @exception DOMException
-     *                         INVALID_ACCESS_ERR: Raised if the CSS value
-     *                         doesn't
-     *                         contain a Rect value. (e.g. this is not
-     *                         <code>CSS_RECT</code>).
+     *            INVALID_ACCESS_ERR: Raised if the CSS value
+     *            doesn't
+     *            contain a Rect value. (e.g. this is not
+     *            <code>CSS_RECT</code>).
      */
     public Rect getRectValue() throws DOMException;
 
@@ -325,10 +323,10 @@ public interface CSSPrimitiveValue extends CSSValue {
      * 
      * @return the RGB color value.
      * @exception DOMException
-     *                         INVALID_ACCESS_ERR: Raised if the attached
-     *                         property can't
-     *                         return a RGB color value (e.g. this is not
-     *                         <code>CSS_RGBCOLOR</code>).
+     *            INVALID_ACCESS_ERR: Raised if the attached
+     *            property can't
+     *            return a RGB color value (e.g. this is not
+     *            <code>CSS_RGBCOLOR</code>).
      */
     public RGBColor getRGBColorValue() throws DOMException;
 

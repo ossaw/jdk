@@ -8,7 +8,6 @@
  * authentication protocol. They do not provide much Kerberos support
  * themselves.
  * <p>
- *
  * The Kerberos network authentication protocol is defined in <a
  * href=http://www.ietf.org/rfc/rfc4120.txt>RFC 4120</a>. The Java platform
  * contains support for the client side of Kerberos via the
@@ -16,7 +15,6 @@
  * implements {@link javax.security.auth.spi.LoginModule LoginModule} to
  * authenticate Kerberos principals.
  * <p>
- *
  * You can provide the name of your default realm and Key Distribution Center
  * (KDC) host for that realm using the system properties
  * {@code java.security.krb5.realm} and {@code java.security.krb5.kdc}. Both

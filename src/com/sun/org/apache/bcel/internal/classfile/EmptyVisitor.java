@@ -56,11 +56,9 @@ import com.sun.org.apache.bcel.internal.*;
 /**
  * Visitor with empty method bodies, can be extended and used in conjunction
  * with the DescendingVisitor class, e.g.
- *
  * By courtesy of David Spencer.
  *
  * @see DescendingVisitor
- *
  */
 public class EmptyVisitor implements Visitor {
     protected EmptyVisitor() {}
@@ -79,8 +77,7 @@ public class EmptyVisitor implements Visitor {
 
     public void visitConstantInteger(ConstantInteger obj) {}
 
-    public void visitConstantInterfaceMethodref(
-            ConstantInterfaceMethodref obj) {}
+    public void visitConstantInterfaceMethodref(ConstantInterfaceMethodref obj) {}
 
     public void visitConstantLong(ConstantLong obj) {}
 

@@ -36,8 +36,7 @@ public class GuardedAction {
     }
 
     public String toString() {
-        return "GuardedAction[action=" + action + " guard=" + guard
-                + " nextState=" + nextState + "]";
+        return "GuardedAction[action=" + action + " guard=" + guard + " nextState=" + nextState + "]";
     }
 
     public Action getAction() {

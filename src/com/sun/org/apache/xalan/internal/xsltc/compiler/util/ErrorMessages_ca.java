@@ -109,8 +109,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * variable or parameter. A reference to the variable or
                  * parameter was found, but it was never defined.
                  */
-                { ErrorMsg.VARIABLE_UNDEF_ERR,
-                        "La variable o el par\u00e0metre ''{0}'' no s''ha definit." },
+                { ErrorMsg.VARIABLE_UNDEF_ERR, "La variable o el par\u00e0metre ''{0}'' no s''ha definit." },
 
                 /*
                  * Note to translators: The word "class" here refers to a Java
@@ -118,8 +117,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * loaded, but it could not be found. The substitution text is
                  * the name of the class.
                  */
-                { ErrorMsg.CLASS_NOT_FOUND_ERR,
-                        "No s''ha trobat la classe ''{0}''." },
+                { ErrorMsg.CLASS_NOT_FOUND_ERR, "No s''ha trobat la classe ''{0}''." },
 
                 /*
                  * Note to translators: The word "method" here refers to a Java
@@ -143,38 +141,33 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * Note to translators: The file or URI named in the
                  * substitution text is missing.
                  */
-                { ErrorMsg.FILE_NOT_FOUND_ERR,
-                        "No s''ha trobat el fitxer o URI ''{0}''." },
+                { ErrorMsg.FILE_NOT_FOUND_ERR, "No s''ha trobat el fitxer o URI ''{0}''." },
 
                 /*
                  * Note to translators: This message is displayed when the URI
                  * mentioned in the substitution text is not well-formed
                  * syntactically.
                  */
-                { ErrorMsg.INVALID_URI_ERR,
-                        "L''URI ''{0}'' no \u00e9s v\u00e0lid." },
+                { ErrorMsg.INVALID_URI_ERR, "L''URI ''{0}'' no \u00e9s v\u00e0lid." },
 
                 /*
                  * Note to translators: The file or URI named in the
                  * substitution text exists but could not be opened.
                  */
-                { ErrorMsg.FILE_ACCESS_ERR,
-                        "No es pot obrir el fitxer o l''URI ''{0}''." },
+                { ErrorMsg.FILE_ACCESS_ERR, "No es pot obrir el fitxer o l''URI ''{0}''." },
 
                 /*
                  * Note to translators: <xsl:stylesheet> and <xsl:transform> are
                  * keywords that should not be translated.
                  */
-                { ErrorMsg.MISSING_ROOT_ERR,
-                        "S''esperava l''element <xsl:stylesheet> o <xsl:transform>." },
+                { ErrorMsg.MISSING_ROOT_ERR, "S''esperava l''element <xsl:stylesheet> o <xsl:transform>." },
 
                 /*
                  * Note to translators: The stylesheet contained a reference to
                  * a namespace prefix that was undefined. The value of the
                  * substitution text is the name of the prefix.
                  */
-                { ErrorMsg.NAMESPACE_UNDEF_ERR,
-                        "El prefix d''espai de noms ''{0}'' no s''ha declarat." },
+                { ErrorMsg.NAMESPACE_UNDEF_ERR, "El prefix d''espai de noms ''{0}'' no s''ha declarat." },
 
                 /*
                  * Note to translators: The Java function named in the
@@ -188,8 +181,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * function. A literal string here means a constant string
                  * value.
                  */
-                { ErrorMsg.NEED_LITERAL_ERR,
-                        "L''argument de ''{0}'' ha de ser una cadena de literals." },
+                { ErrorMsg.NEED_LITERAL_ERR, "L''argument de ''{0}'' ha de ser una cadena de literals." },
 
                 /*
                  * Note to translators: This message indicates there was a
@@ -204,8 +196,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * particular attribute named by the substitution text, but that
                  * attribute was not specified in the stylesheet.
                  */
-                { ErrorMsg.REQUIRED_ATTR_ERR,
-                        "No s''ha especificat l''atribut obligatori ''{0}''." },
+                { ErrorMsg.REQUIRED_ATTR_ERR, "No s''ha especificat l''atribut obligatori ''{0}''." },
 
                 /*
                  * Note to translators: This message indicates that a character
@@ -231,16 +222,14 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { ErrorMsg.STRAY_ATTRIBUTE_ERR,
-                        "L''atribut ''{0}'' es troba fora de l''element." },
+                { ErrorMsg.STRAY_ATTRIBUTE_ERR, "L''atribut ''{0}'' es troba fora de l''element." },
 
                 /*
                  * Note to translators: An attribute that wasn't recognized was
                  * specified on an element in the stylesheet. The attribute is
                  * named by the substitution text.
                  */
-                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
-                        "No es permet l''atribut ''{0}''." },
+                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "No es permet l''atribut ''{0}''." },
 
                 /*
                  * Note to translators: "import" and "include" are keywords that
@@ -265,15 +254,13 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * text gives the name of such a style for which more than one
                  * declaration was encountered.
                  */
-                { ErrorMsg.SYMBOLS_REDEF_ERR,
-                        "El formatatge decimal ''{0}'' ja est\u00e0 definit." },
+                { ErrorMsg.SYMBOLS_REDEF_ERR, "El formatatge decimal ''{0}'' ja est\u00e0 definit." },
 
                 /*
                  * Note to translators: The stylesheet version named in the
                  * substitution text is not supported.
                  */
-                { ErrorMsg.XSL_VERSION_ERR,
-                        "XSLTC no d\u00f3na suport a la versi\u00f3 XSL ''{0}''." },
+                { ErrorMsg.XSL_VERSION_ERR, "XSLTC no d\u00f3na suport a la versi\u00f3 XSL ''{0}''." },
 
                 /*
                  * Note to translators: The definitions of one or more variables
@@ -293,8 +280,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * Note to translators: This message is produced if a reference
                  * to a function has too many or too few arguments.
                  */
-                { ErrorMsg.ILLEGAL_ARG_ERR,
-                        "La crida de funci\u00f3 t\u00e9 arguments no permesos." },
+                { ErrorMsg.ILLEGAL_ARG_ERR, "La crida de funci\u00f3 t\u00e9 arguments no permesos." },
 
                 /*
                  * Note to translators: "document()" is the name of function and
@@ -333,8 +319,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * keywords and should not be translated. This message describes
                  * a syntax error in the stylesheet.
                  */
-                { ErrorMsg.STRAY_WHEN_ERR,
-                        "<xsl:when> nom\u00e9s es pot utilitzar dins de <xsl:choose>." },
+                { ErrorMsg.STRAY_WHEN_ERR, "<xsl:when> nom\u00e9s es pot utilitzar dins de <xsl:choose>." },
 
                 /*
                  * Note to translators: "<xsl:when>", "<xsl:otherwise>" and
@@ -348,31 +333,27 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * Note to translators: "<xsl:attribute-set>" and "name" are
                  * keywords that should not be translated.
                  */
-                { ErrorMsg.UNNAMED_ATTRIBSET_ERR,
-                        "L'atribut 'name' falta a <xsl:attribute-set>." },
+                { ErrorMsg.UNNAMED_ATTRIBSET_ERR, "L'atribut 'name' falta a <xsl:attribute-set>." },
 
                 /*
                  * Note to translators: An element in the stylesheet contained
                  * an element of a type that it was not permitted to contain.
                  */
-                { ErrorMsg.ILLEGAL_CHILD_ERR,
-                        "L'element subordinat no \u00e9s perm\u00e8s." },
+                { ErrorMsg.ILLEGAL_CHILD_ERR, "L'element subordinat no \u00e9s perm\u00e8s." },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
                  * element with a name that was not a valid XML name. The
                  * substitution text contains the name.
                  */
-                { ErrorMsg.ILLEGAL_ELEM_NAME_ERR,
-                        "No podeu cridar un element ''{0}''" },
+                { ErrorMsg.ILLEGAL_ELEM_NAME_ERR, "No podeu cridar un element ''{0}''" },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
                  * attribute with a name that was not a valid XML name. The
                  * substitution text contains the name.
                  */
-                { ErrorMsg.ILLEGAL_ATTR_NAME_ERR,
-                        "No podeu cridar un atribut ''{0}''" },
+                { ErrorMsg.ILLEGAL_ATTR_NAME_ERR, "No podeu cridar un atribut ''{0}''" },
 
                 /*
                  * Note to translators: The children of the outermost element of
@@ -391,8 +372,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * provided to XSLTC to process the XML input document had a
                  * configuration problem.
                  */
-                { ErrorMsg.SAX_PARSER_CONFIG_ERR,
-                        "L'analitzador JAXP no s'ha configurat correctament" },
+                { ErrorMsg.SAX_PARSER_CONFIG_ERR, "L'analitzador JAXP no s'ha configurat correctament" },
 
                 /*
                  * Note to translators: The substitution text names the internal
@@ -406,8 +386,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { ErrorMsg.UNSUPPORTED_XSL_ERR,
-                        "L''element d''XSL ''{0}'' no t\u00e9 suport." },
+                { ErrorMsg.UNSUPPORTED_XSL_ERR, "L''element d''XSL ''{0}'' no t\u00e9 suport." },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -415,8 +394,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * but XSTLC does not recognized the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { ErrorMsg.UNSUPPORTED_EXT_ERR,
-                        "No es reconeix l''extensi\u00f3 d''XSLTC ''{0}''." },
+                { ErrorMsg.UNSUPPORTED_EXT_ERR, "No es reconeix l''extensi\u00f3 d''XSLTC ''{0}''." },
 
                 /*
                  * Note to translators: The XML document given to XSLTC as a
@@ -448,22 +426,19 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * error in condition in XSLTC. The substitution text is the
                  * class name in XSLTC that is missing some functionality.
                  */
-                { ErrorMsg.NOT_IMPLEMENTED_ERR,
-                        "No s''ha implementat ''{0}''." },
+                { ErrorMsg.NOT_IMPLEMENTED_ERR, "No s''ha implementat ''{0}''." },
 
                 /*
                  * Note to translators: The XML document given to XSLTC as a
                  * stylesheet was not, in fact, a stylesheet.
                  */
-                { ErrorMsg.NOT_STYLESHEET_ERR,
-                        "El document d'entrada no cont\u00e9 cap full d'estils XSL." },
+                { ErrorMsg.NOT_STYLESHEET_ERR, "El document d'entrada no cont\u00e9 cap full d'estils XSL." },
 
                 /*
                  * Note to translators: The element named in the substitution
                  * text was encountered in the stylesheet but is not recognized.
                  */
-                { ErrorMsg.ELEMENT_PARSE_ERR,
-                        "No s''ha pogut analitzar l''element ''{0}''" },
+                { ErrorMsg.ELEMENT_PARSE_ERR, "No s''ha pogut analitzar l''element ''{0}''" },
 
                 /*
                  * Note to translators: "use", "<key>", "node", "node-set",
@@ -480,8 +455,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * indicates that the version specified for the output document
                  * was not valid.
                  */
-                { ErrorMsg.OUTPUT_VERSION_ERR,
-                        "La versi\u00f3 del document XML de sortida ha de ser 1.0" },
+                { ErrorMsg.OUTPUT_VERSION_ERR, "La versi\u00f3 del document XML de sortida ha de ser 1.0" },
 
                 /*
                  * Note to translators: The operator in a comparison operation
@@ -523,8 +497,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * context needs to be converted to type {1}, but that's not
                  * possible for a value of type {0}.
                  */
-                { ErrorMsg.DATA_CONVERSION_ERR,
-                        "No es pot convertir el tipus de dades ''{0}'' en ''{1}''." },
+                { ErrorMsg.DATA_CONVERSION_ERR, "No es pot convertir el tipus de dades ''{0}'' en ''{1}''." },
 
                 /*
                  * Note to translators: "Templates" is a Java class name that
@@ -537,15 +510,13 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * Note to translators: "Templates" is a Java class name that
                  * should not be translated.
                  */
-                { ErrorMsg.NO_MAIN_TRANSLET_ERR,
-                        "Templates no cont\u00e9 cap classe amb el nom ''{0}''." },
+                { ErrorMsg.NO_MAIN_TRANSLET_ERR, "Templates no cont\u00e9 cap classe amb el nom ''{0}''." },
 
                 /*
                  * Note to translators: The substitution text is the name of a
                  * class.
                  */
-                { ErrorMsg.TRANSLET_CLASS_ERR,
-                        "No s''ha pogut carregar la classe translet ''{0}''." },
+                { ErrorMsg.TRANSLET_CLASS_ERR, "No s''ha pogut carregar la classe translet ''{0}''." },
 
                 { ErrorMsg.TRANSLET_OBJECT_ERR,
                         "La classe translet s''ha carregat, per\u00f2 no es pot crear la inst\u00e0ncia translet." },
@@ -571,15 +542,13 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * should not be translated. The substitution text is the name
                  * of Java method.
                  */
-                { ErrorMsg.JAXP_NO_SOURCE_ERR,
-                        "L''objecte source donat a ''{0}'' no t\u00e9 contingut." },
+                { ErrorMsg.JAXP_NO_SOURCE_ERR, "L''objecte source donat a ''{0}'' no t\u00e9 contingut." },
 
                 /*
                  * Note to translators: The message indicates that XSLTC failed
                  * to compile the stylesheet into a translet (class file).
                  */
-                { ErrorMsg.JAXP_COMPILE_ERR,
-                        "No s'ha pogut compilar el full d'estils." },
+                { ErrorMsg.JAXP_COMPILE_ERR, "No s'ha pogut compilar el full d'estils." },
 
                 /*
                  * Note to translators: "TransformerFactory" is a class name. In
@@ -589,15 +558,13 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * the attribute is "getAttribute", so it's not clear whether it
                  * would be best to translate the term "attribute".
                  */
-                { ErrorMsg.JAXP_INVALID_ATTR_ERR,
-                        "TransformerFactory no reconeix l''atribut ''{0}''." },
+                { ErrorMsg.JAXP_INVALID_ATTR_ERR, "TransformerFactory no reconeix l''atribut ''{0}''." },
 
                 /*
                  * Note to translators: "setResult()" and "startDocument()" are
                  * Java method names that should not be translated.
                  */
-                { ErrorMsg.JAXP_SET_RESULT_ERR,
-                        "setResult() s'ha de cridar abans de startDocument()." },
+                { ErrorMsg.JAXP_SET_RESULT_ERR, "setResult() s'ha de cridar abans de startDocument()." },
 
                 /*
                  * Note to translators: "Transformer" is a Java interface name
@@ -606,8 +573,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * used for transformations; this message is produced if that
                  * requirement is not met.
                  */
-                { ErrorMsg.JAXP_NO_TRANSLET_ERR,
-                        "Transformer no cont\u00e9 cap objecte translet." },
+                { ErrorMsg.JAXP_NO_TRANSLET_ERR, "Transformer no cont\u00e9 cap objecte translet." },
 
                 /*
                  * Note to translators: The XML document that results from a
@@ -621,8 +587,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * Note to translators: "Result" is a Java interface name in
                  * this context. The substitution text is a method name.
                  */
-                { ErrorMsg.JAXP_NO_RESULT_ERR,
-                        "L''objecte result donat a ''{0}'' no \u00e9s v\u00e0lid." },
+                { ErrorMsg.JAXP_NO_RESULT_ERR, "L''objecte result donat a ''{0}'' no \u00e9s v\u00e0lid." },
 
                 /*
                  * Note to translators: "Transformer" is a Java interface name.
@@ -641,8 +606,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * that it takes a DOM object and converts it to something that
                  * uses the SAX API.
                  */
-                { ErrorMsg.SAX2DOM_ADAPTER_ERR,
-                        "No s''ha pogut crear l''adaptador SAX2DOM ''{0}''." },
+                { ErrorMsg.SAX2DOM_ADAPTER_ERR, "No s''ha pogut crear l''adaptador SAX2DOM ''{0}''." },
 
                 /*
                  * Note to translators: "XSLTCSource.build()" is a Java method
@@ -652,8 +616,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                 { ErrorMsg.XSLTC_SOURCE_ERR,
                         "S'ha cridat XSLTCSource.build() sense que s'hagu\u00e9s establert la identificaci\u00f3 del sistema." },
 
-                { ErrorMsg.COMPILE_STDIN_ERR,
-                        "L'opci\u00f3 -i s'ha d'utilitzar amb l'opci\u00f3 -o." },
+                { ErrorMsg.COMPILE_STDIN_ERR, "L'opci\u00f3 -i s'ha d'utilitzar amb l'opci\u00f3 -o." },
 
                 /*
                  * Note to translators: This message contains usage information
@@ -703,8 +666,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * expression named in the substitution text was not well formed
                  * syntactically.
                  */
-                { ErrorMsg.SYNTAX_ERR,
-                        "S''ha produ\u00eft un error de sintaxi a ''{0}''." },
+                { ErrorMsg.SYNTAX_ERR, "S''ha produ\u00eft un error de sintaxi a ''{0}''." },
 
                 /*
                  * Note to translators: The substitution text is the name of a
@@ -712,8 +674,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * message is displayed if XSLTC could not find a constructor
                  * for the specified class.
                  */
-                { ErrorMsg.CONSTRUCTOR_NOT_FOUND,
-                        "No s''ha trobat el constructor extern ''{0}''." },
+                { ErrorMsg.CONSTRUCTOR_NOT_FOUND, "No s''ha trobat el constructor extern ''{0}''." },
 
                 /*
                  * Note to translators: "static" is the Java keyword. The
@@ -760,8 +721,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
-                        "AV\u00cdS: ''{0}''\n       :{1}" },
+                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "AV\u00cdS: ''{0}''\n       :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -777,8 +737,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG,
-                        "ERROR MOLT GREU: ''{0}''\n           :{1}" },
+                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG, "ERROR MOLT GREU: ''{0}''\n           :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -794,8 +753,7 @@ public class ErrorMessages_ca extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
-                        "ERROR:  ''{0}''\n     :{1}" },
+                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "ERROR:  ''{0}''\n     :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the

@@ -15,8 +15,7 @@ import com.sun.corba.se.impl.protocol.giopmsgheaders.FragmentMessage;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import java.util.*;
 
-public class BufferManagerReadStream implements BufferManagerRead,
-        MarkAndResetHandler {
+public class BufferManagerReadStream implements BufferManagerRead, MarkAndResetHandler {
     private boolean receivedCancel = false;
     private int cancelReqId = 0;
 
@@ -35,8 +34,7 @@ public class BufferManagerReadStream implements BufferManagerRead,
 
     BufferManagerReadStream(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_ENCODING);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_ENCODING);
         debug = orb.transportDebugFlag;
     }
 
@@ -49,8 +47,7 @@ public class BufferManagerReadStream implements BufferManagerRead,
     }
 
     public void processFragment(ByteBuffer byteBuffer, FragmentMessage msg) {
-        ByteBufferWithInfo bbwi = new ByteBufferWithInfo(orb, byteBuffer, msg
-                .getHeaderLength());
+        ByteBufferWithInfo bbwi = new ByteBufferWithInfo(orb, byteBuffer, msg.getHeaderLength());
 
         synchronized (fragmentQueue) {
             if (debug) {
@@ -119,14 +116,12 @@ public class BufferManagerReadStream implements BufferManagerRead,
                 // VERY IMPORTANT
                 // Release bbwi.byteBuffer to the ByteBufferPool only if
                 // this BufferManagerStream is not marked for potential restore.
-                if (markEngaged == false && bbwi != null
-                        && bbwi.byteBuffer != null) {
+                if (markEngaged == false && bbwi != null && bbwi.byteBuffer != null) {
                     ByteBufferPool byteBufferPool = getByteBufferPool();
 
                     if (debug) {
                         // print address of ByteBuffer being released
-                        int bbAddress = System.identityHashCode(
-                                bbwi.byteBuffer);
+                        int bbAddress = System.identityHashCode(bbwi.byteBuffer);
                         StringBuffer sb = new StringBuffer(80);
                         sb.append("underflow() - releasing ByteBuffer id (");
                         sb.append(bbAddress).append(") to ByteBufferPool.");
@@ -174,16 +169,13 @@ public class BufferManagerReadStream implements BufferManagerRead,
                 while (fragmentQueue.size() != 0) {
                     abbwi = fragmentQueue.dequeue();
                     if (abbwi != null && abbwi.byteBuffer != null) {
-                        int bbAddress = System.identityHashCode(
-                                abbwi.byteBuffer);
+                        int bbAddress = System.identityHashCode(abbwi.byteBuffer);
                         if (inputBbAddress != bbAddress) {
                             if (debug) {
                                 // print address of ByteBuffer released
                                 StringBuffer sb = new StringBuffer(80);
-                                sb.append("close() - fragmentQueue is ").append(
-                                        "releasing ByteBuffer id (").append(
-                                                bbAddress).append(") to ")
-                                        .append("ByteBufferPool.");
+                                sb.append("close() - fragmentQueue is ").append("releasing ByteBuffer id (")
+                                        .append(bbAddress).append(") to ").append("ByteBufferPool.");
                                 String msg = sb.toString();
                                 dprint(msg);
                             }
@@ -220,10 +212,8 @@ public class BufferManagerReadStream implements BufferManagerRead,
                         if (debug) {
                             // print address of ByteBuffer being released
                             StringBuffer sb = new StringBuffer(80);
-                            sb.append("close() - fragmentStack - releasing ")
-                                    .append("ByteBuffer id (" + bbAddress
-                                            + ") to ").append(
-                                                    "ByteBufferPool.");
+                            sb.append("close() - fragmentStack - releasing ").append("ByteBuffer id ("
+                                    + bbAddress + ") to ").append("ByteBufferPool.");
                             String msg = sb.toString();
                             dprint(msg);
                         }

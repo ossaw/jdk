@@ -36,11 +36,9 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Stylesheet;
 public final class NodeCounterGenerator extends ClassGenerator {
     private Instruction _aloadTranslet;
 
-    public NodeCounterGenerator(String className, String superClassName,
-            String fileName, int accessFlags, String[] interfaces,
-            Stylesheet stylesheet) {
-        super(className, superClassName, fileName, accessFlags, interfaces,
-                stylesheet);
+    public NodeCounterGenerator(String className, String superClassName, String fileName, int accessFlags,
+            String[] interfaces, Stylesheet stylesheet) {
+        super(className, superClassName, fileName, accessFlags, interfaces, stylesheet);
     }
 
     /**

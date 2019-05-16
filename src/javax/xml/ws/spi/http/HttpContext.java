@@ -30,7 +30,7 @@ public abstract class HttpContext {
      * requests.
      *
      * @param handler
-     *                the handler to set for this context
+     *        the handler to set for this context
      */
     public void setHandler(HttpHandler handler) {
         this.handler = handler;
@@ -41,10 +41,8 @@ public abstract class HttpContext {
      * endpoint inside an application and the path is relative to application's
      * context path. Container should give this path based on how it matches
      * request URIs to this HttpContext object.
-     *
      * <p>
      * For servlet container, this is typically a url-pattern for an endpoint.
-     *
      * <p>
      * Endpoint's address for this context can be computed as follows:
      * 
@@ -66,7 +64,7 @@ public abstract class HttpContext {
      * that can be used by jax-ws runtime.
      *
      * @param name
-     *             attribute name
+     *        attribute name
      * @return attribute value
      */
     public abstract Object getAttribute(String name);

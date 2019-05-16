@@ -12,7 +12,6 @@ import javax.management.loading.ClassLoaderRepository;
  * Keeps the list of Class Loaders registered in the MBean Server. It provides
  * the necessary methods to load classes using the registered Class Loaders.
  * </p>
- *
  * <p>
  * This deprecated class is maintained for compatibility. In previous versions
  * of the JMX API, there was one <code>DefaultLoaderRepository</code> shared by
@@ -26,7 +25,6 @@ import javax.management.loading.ClassLoaderRepository;
  * @deprecated Use
  *             {@link javax.management.MBeanServer#getClassLoaderRepository()}
  *             instead.
- *
  * @since 1.5
  */
 @Deprecated
@@ -38,17 +36,13 @@ public class DefaultLoaderRepository {
      * exception.
      *
      * @param className
-     *                  The name of the class to be loaded.
-     *
+     *        The name of the class to be loaded.
      * @return the loaded class.
-     *
      * @exception ClassNotFoundException
-     *                                   The specified class could not be found.
+     *            The specified class could not be found.
      */
-    public static Class<?> loadClass(String className)
-            throws ClassNotFoundException {
-        return javax.management.loading.DefaultLoaderRepository.loadClass(
-                className);
+    public static Class<?> loadClass(String className) throws ClassNotFoundException {
+        return javax.management.loading.DefaultLoaderRepository.loadClass(className);
     }
 
     /**
@@ -58,19 +52,16 @@ public class DefaultLoaderRepository {
      * <CODE>ClassNotFoundException</CODE> exception.
      *
      * @param className
-     *                  The name of the class to be loaded.
+     *        The name of the class to be loaded.
      * @param loader
-     *                  The class loader to be excluded.
-     *
+     *        The class loader to be excluded.
      * @return the loaded class.
-     *
      * @exception ClassNotFoundException
-     *                                   The specified class could not be found.
+     *            The specified class could not be found.
      */
-    public static Class<?> loadClassWithout(ClassLoader loader,
-            String className) throws ClassNotFoundException {
-        return javax.management.loading.DefaultLoaderRepository
-                .loadClassWithout(loader, className);
+    public static Class<?> loadClassWithout(ClassLoader loader, String className)
+            throws ClassNotFoundException {
+        return javax.management.loading.DefaultLoaderRepository.loadClassWithout(loader, className);
     }
 
 }

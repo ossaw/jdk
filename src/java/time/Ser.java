@@ -60,7 +60,6 @@ import java.io.StreamCorruptedException;
  *           serialized as one object.
  *           <p>
  *           This class is mutable and should be created once per serialization.
- *
  * @serial include
  * @since 1.8
  */
@@ -100,9 +99,9 @@ final class Ser implements Externalizable {
      * Creates an instance for serialization.
      *
      * @param type
-     *               the type
+     *        the type
      * @param object
-     *               the object
+     *        the object
      */
     Ser(byte type, Object object) {
         this.type = type;
@@ -114,7 +113,6 @@ final class Ser implements Externalizable {
      * Implements the {@code Externalizable} interface to write the object.
      * 
      * @serialData
-     *
      *             Each serializable class is mapped to a type that is the first
      *             byte in the stream. Refer to each class {@code writeReplace}
      *             serialized form for the value of the type and sequence of
@@ -154,17 +152,15 @@ final class Ser implements Externalizable {
      *             "../../serialized-form.html#java.time.ZonedDateTime">
      *             ZonedDateTime.writeReplace</a>
      *             </ul>
-     *
      * @param out
-     *            the data stream to write to, not null
+     *        the data stream to write to, not null
      */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         writeInternal(type, object, out);
     }
 
-    static void writeInternal(byte type, Object object, ObjectOutput out)
-            throws IOException {
+    static void writeInternal(byte type, Object object, ObjectOutput out) throws IOException {
         out.writeByte(type);
         switch (type) {
             case DURATION_TYPE:
@@ -219,13 +215,11 @@ final class Ser implements Externalizable {
      * Implements the {@code Externalizable} interface to read the object.
      * 
      * @serialData
-     *
      *             The streamed type and parameters defined by the type's
      *             {@code writeReplace} method are read and passed to the
      *             corresponding static factory for the type to create a new
      *             instance. That instance is returned as the de-serialized
      *             {@code Ser} object.
-     *
      *             <ul>
      *             <li><a href="../../serialized-form.html#java.time.Duration">
      *             Duration</a> - {@code Duration.ofSeconds(seconds, nanos);}
@@ -265,24 +259,20 @@ final class Ser implements Externalizable {
      *             </a> -
      *             {@code (offsetByte == 127 ? ZoneOffset.ofTotalSeconds(in.readInt()) : ZoneOffset.ofTotalSeconds(offsetByte * 900));}
      *             </ul>
-     *
      * @param in
-     *           the data to read, not null
+     *        the data to read, not null
      */
-    public void readExternal(ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         type = in.readByte();
         object = readInternal(type, in);
     }
 
-    static Object read(ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    static Object read(ObjectInput in) throws IOException, ClassNotFoundException {
         byte type = in.readByte();
         return readInternal(type, in);
     }
 
-    private static Object readInternal(byte type, ObjectInput in)
-            throws IOException, ClassNotFoundException {
+    private static Object readInternal(byte type, ObjectInput in) throws IOException, ClassNotFoundException {
         switch (type) {
             case DURATION_TYPE:
                 return Duration.readExternal(in);

@@ -20,7 +20,7 @@ public class InlineView extends LabelView {
      * Constructs a new view wrapped on an element.
      *
      * @param elem
-     *             the element
+     *        the element
      */
     public InlineView(Element elem) {
         super(elem);
@@ -34,11 +34,11 @@ public class InlineView extends LabelView {
      * <code>null</code>, behavior of this method is implementation dependent.
      *
      * @param e
-     *          the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *          the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *          the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @since 1.5
      * @see View#insertUpdate
      */
@@ -52,11 +52,11 @@ public class InlineView extends LabelView {
      * <code>null</code>, behavior of this method is implementation dependent.
      *
      * @param e
-     *          the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *          the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *          the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @since 1.5
      * @see View#removeUpdate
      */
@@ -69,11 +69,11 @@ public class InlineView extends LabelView {
      * location that this view is responsible for.
      *
      * @param e
-     *          the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *          the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *          the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @see View#changedUpdate
      */
     public void changedUpdate(DocumentEvent e, Shape a, ViewFactory f) {
@@ -110,13 +110,13 @@ public class InlineView extends LabelView {
      * uses break weight is <code>ParagraphView</code>.
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @param pos
-     *             the potential location of the start of the broken view &gt;=
-     *             0. This may be useful for calculating tab positions.
+     *        the potential location of the start of the broken view &gt;=
+     *        0. This may be useful for calculating tab positions.
      * @param len
-     *             specifies the relative length from <em>pos</em> where a
-     *             potential break is desired &gt;= 0.
+     *        specifies the relative length from <em>pos</em> where a
+     *        potential break is desired &gt;= 0.
      * @return the weight, which should be a value between ForcedBreakWeight and
      *         BadBreakWeight.
      * @see LabelView
@@ -143,22 +143,22 @@ public class InlineView extends LabelView {
      * case <code>offset</code>, <code>pos</code>, or <code>len</code> is null.
      *
      * @param axis
-     *               may be either <code>View.X_AXIS</code> or
-     *               <code>View.Y_AXIS</code>
+     *        may be either <code>View.X_AXIS</code> or
+     *        <code>View.Y_AXIS</code>
      * @param offset
-     *               the location in the document model that a broken fragment
-     *               would occupy &gt;= 0. This would be the starting offset of
-     *               the
-     *               fragment returned
+     *        the location in the document model that a broken fragment
+     *        would occupy &gt;= 0. This would be the starting offset of
+     *        the
+     *        fragment returned
      * @param pos
-     *               the position along the axis that the broken view would
-     *               occupy
-     *               &gt;= 0. This may be useful for things like tab
-     *               calculations
+     *        the position along the axis that the broken view would
+     *        occupy
+     *        &gt;= 0. This may be useful for things like tab
+     *        calculations
      * @param len
-     *               specifies the distance along the axis where a potential
-     *               break
-     *               is desired &gt;= 0
+     *        specifies the distance along the axis where a potential
+     *        break
+     *        is desired &gt;= 0
      * @return the fragment of the view that represents the given span.
      * @since 1.5
      * @see javax.swing.text.View#breakView
@@ -174,11 +174,9 @@ public class InlineView extends LabelView {
         super.setPropertiesFromAttributes();
         AttributeSet a = getAttributes();
         Object decor = a.getAttribute(CSS.Attribute.TEXT_DECORATION);
-        boolean u = (decor != null) ? (decor.toString().indexOf(
-                "underline") >= 0) : false;
+        boolean u = (decor != null) ? (decor.toString().indexOf("underline") >= 0) : false;
         setUnderline(u);
-        boolean s = (decor != null) ? (decor.toString().indexOf(
-                "line-through") >= 0) : false;
+        boolean s = (decor != null) ? (decor.toString().indexOf("line-through") >= 0) : false;
         setStrikeThrough(s);
         Object vAlign = a.getAttribute(CSS.Attribute.VERTICAL_ALIGN);
         s = (vAlign != null) ? (vAlign.toString().indexOf("sup") >= 0) : false;

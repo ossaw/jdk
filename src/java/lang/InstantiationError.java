@@ -31,7 +31,7 @@ public class InstantiationError extends IncompatibleClassChangeError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public InstantiationError(String s) {
         super(s);

@@ -71,7 +71,7 @@ public class DNEG extends ArithmeticInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitTypedInstruction(this);

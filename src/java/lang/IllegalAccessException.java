@@ -50,7 +50,7 @@ public class IllegalAccessException extends ReflectiveOperationException {
      * Constructs an <code>IllegalAccessException</code> with a detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public IllegalAccessException(String s) {
         super(s);

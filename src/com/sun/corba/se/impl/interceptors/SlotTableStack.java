@@ -89,8 +89,7 @@ public class SlotTableStack {
      */
     SlotTableStack(ORB orb, SlotTable table) {
         this.orb = orb;
-        wrapper = InterceptorsSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        wrapper = InterceptorsSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
 
         currentIndex = 0;
         tableContainer = new java.util.ArrayList();
@@ -106,7 +105,6 @@ public class SlotTableStack {
      * pushSlotTable pushes a fresh Slot Table on to the stack by doing the
      * following, 1: Checks to see if there is any SlotTable in SlotTablePool If
      * present then use that instance to push into the SlotTableStack
-     *
      * 2: If there is no SlotTable in the pool, then creates a new one and
      * pushes that into the SlotTableStack
      */
@@ -122,8 +120,7 @@ public class SlotTableStack {
             // Add will cause the table to grow.
             tableContainer.add(currentIndex, table);
         } else if (currentIndex > tableContainer.size()) {
-            throw wrapper.slotTableInvariant(new Integer(currentIndex),
-                    new Integer(tableContainer.size()));
+            throw wrapper.slotTableInvariant(new Integer(currentIndex), new Integer(tableContainer.size()));
         } else {
             // Set will override unused slots.
             tableContainer.set(currentIndex, table);
@@ -134,10 +131,8 @@ public class SlotTableStack {
     /**
      * popSlotTable does the following 1: pops the top SlotTable in the
      * SlotTableStack
-     *
      * 2: resets the slots in the SlotTable which resets the slotvalues to null
      * if there are any previous sets.
-     *
      * 3: puts the reset SlotTable into the SlotTablePool to reuse
      */
     void popSlotTable() {

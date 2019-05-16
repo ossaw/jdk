@@ -35,18 +35,15 @@ import sun.reflect.misc.ReflectUtil;
 
 /**
  * CatalogManager provides an interface to the catalog properties.
- *
  * <p>
  * Properties can come from two places: from system properties or from a
  * <i>CatalogManager.properties</i> file. This class provides a transparent
  * interface to both, with system properties preferred over property file
  * values.
  * </p>
- *
  * <p>
  * The following table summarizes the properties:
  * </p>
- *
  * <table border="1">
  * <thead>
  * <tr>
@@ -63,13 +60,11 @@ import sun.reflect.misc.ReflectUtil;
  * properties within that file will not generate warning messages. See also the
  * <i>ignoreMissingProperties</i> method.</td>
  * </tr>
- *
  * <tr>
  * <td>xml.catalog.files</td>
  * <td>catalogs</td>
  * <td>The <emph>semicolon-delimited</emph> list of catalog files.</td>
  * </tr>
- *
  * <tr>
  * <td>&#160;</td>
  * <td>relative-catalogs</td>
@@ -78,34 +73,29 @@ import sun.reflect.misc.ReflectUtil;
  * applies to catalog URIs obtained from the <i>catalogs</i> property <emph>in
  * the</emph> <i>CatalogManager.properties</i> file</td>
  * </tr>
- *
  * <tr>
  * <td>xml.catalog.verbosity</td>
  * <td>verbosity</td>
  * <td>If non-zero, the Catalog classes will print informative and debugging
  * messages. The higher the number, the more messages.</td>
  * </tr>
- *
  * <tr>
  * <td>xml.catalog.prefer</td>
  * <td>prefer</td>
  * <td>Which identifier is preferred, "public" or "system"?</td>
  * </tr>
- *
  * <tr>
  * <td>xml.catalog.staticCatalog</td>
  * <td>static-catalog</td>
  * <td>Should a single catalog be constructed for all parsing, or should a
  * different catalog be created for each parser?</td>
  * </tr>
- *
  * <tr>
  * <td>xml.catalog.allowPI</td>
  * <td>allow-oasis-xml-catalog-pi</td>
  * <td>If the source document contains "oasis-xml-catalog" processing
  * instructions, should they be used?</td>
  * </tr>
- *
  * <tr>
  * <td>xml.catalog.className</td>
  * <td>catalog-class-name</td>
@@ -118,10 +108,8 @@ import sun.reflect.misc.ReflectUtil;
  * </table>
  *
  * @see Catalog
- *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  * @version 1.0
  */
 
@@ -141,9 +129,8 @@ public class CatalogManager {
     private BootstrapResolver bResolver = new BootstrapResolver();
 
     /** Flag to ignore missing property files and/or properties */
-    private boolean ignoreMissingProperties = (SecuritySupport
-            .getSystemProperty(pIgnoreMissing) != null || SecuritySupport
-                    .getSystemProperty(pFiles) != null);
+    private boolean ignoreMissingProperties = (SecuritySupport.getSystemProperty(pIgnoreMissing) != null
+            || SecuritySupport.getSystemProperty(pFiles) != null);
 
     /** Holds the resources after they are loaded from the file. */
     private ResourceBundle resources;
@@ -206,7 +193,6 @@ public class CatalogManager {
 
     /**
      * The manager's debug object. Used for printing debugging messages.
-     *
      * <p>
      * This field is public so that objects that have access to this
      * CatalogManager can use this debug object.
@@ -253,10 +239,8 @@ public class CatalogManager {
      */
     private synchronized void readProperties() {
         try {
-            propertyFileURI = CatalogManager.class.getResource("/"
-                    + propertyFile);
-            InputStream in = CatalogManager.class.getResourceAsStream("/"
-                    + propertyFile);
+            propertyFileURI = CatalogManager.class.getResource("/" + propertyFile);
+            InputStream in = CatalogManager.class.getResourceAsStream("/" + propertyFile);
             if (in == null) {
                 if (!ignoreMissingProperties) {
                     System.err.println("Cannot find " + propertyFile);
@@ -302,7 +286,6 @@ public class CatalogManager {
 
     /**
      * How are missing properties handled?
-     *
      * <p>
      * If true, missing or unreadable property files will not be reported.
      * Otherwise, a message will be sent to System.err.
@@ -314,7 +297,6 @@ public class CatalogManager {
 
     /**
      * How should missing properties be handled?
-     *
      * <p>
      * If ignore is true, missing or unreadable property files will not be
      * reported. Otherwise, a message will be sent to System.err.
@@ -326,7 +308,6 @@ public class CatalogManager {
 
     /**
      * How are missing properties handled?
-     *
      * <p>
      * If ignore is true, missing or unreadable property files will not be
      * reported. Otherwise, a message will be sent to System.err.
@@ -425,8 +406,8 @@ public class CatalogManager {
 
         try {
             String allow = resources.getString("relative-catalogs");
-            return (allow.equalsIgnoreCase("true") || allow.equalsIgnoreCase(
-                    "yes") || allow.equalsIgnoreCase("1"));
+            return (allow.equalsIgnoreCase("true") || allow.equalsIgnoreCase("yes") || allow.equalsIgnoreCase(
+                    "1"));
         } catch (MissingResourceException e) {
             return defaultRelativeCatalogs;
         }
@@ -434,21 +415,18 @@ public class CatalogManager {
 
     /**
      * Get the relativeCatalogs setting.
-     *
      * <p>
      * This property is used when the catalogFiles property is interrogated. If
      * true, then relative catalog entry file names are returned. If false,
      * relative catalog entry file names are made absolute with respect to the
      * properties file before returning them.
      * </p>
-     *
      * <p>
      * This property <emph>only applies</emph> when the catalog files come from
      * a properties file. If they come from a system property or the default
      * list, they are never considered relative. (What would they be relative
      * to?)
      * </p>
-     *
      * <p>
      * In the properties, a value of 'yes', 'true', or '1' is considered true,
      * anything else is false.
@@ -558,7 +536,6 @@ public class CatalogManager {
      *
      * @return A vector of the catalog file names or null if no catalogs are
      *         available in the properties.
-     *
      * @deprecated No longer static; use get/set methods.
      */
     public Vector catalogFiles() {
@@ -567,7 +544,6 @@ public class CatalogManager {
 
     /**
      * Obtain the preferPublic setting from the properties.
-     *
      * <p>
      * In the properties, a value of 'public' is true, anything else is false.
      * </p>
@@ -619,7 +595,6 @@ public class CatalogManager {
      * Return the current prefer public setting.
      *
      * @return True if public identifiers are preferred.
-     *
      * @deprecated No longer static; use get/set methods.
      */
     public boolean preferPublic() {
@@ -628,7 +603,6 @@ public class CatalogManager {
 
     /**
      * Obtain the static-catalog setting from the properties.
-     *
      * <p>
      * In the properties, a value of 'yes', 'true', or '1' is considered true,
      * anything else is false.
@@ -656,9 +630,8 @@ public class CatalogManager {
             return defaultUseStaticCatalog;
         }
 
-        return (staticCatalog.equalsIgnoreCase("true") || staticCatalog
-                .equalsIgnoreCase("yes") || staticCatalog.equalsIgnoreCase(
-                        "1"));
+        return (staticCatalog.equalsIgnoreCase("true") || staticCatalog.equalsIgnoreCase("yes")
+                || staticCatalog.equalsIgnoreCase("1"));
     }
 
     /**
@@ -690,7 +663,6 @@ public class CatalogManager {
 
     /**
      * Get a new catalog instance.
-     *
      * This method always returns a new instance of the underlying catalog
      * class.
      */
@@ -710,11 +682,9 @@ public class CatalogManager {
                     catalog = new Catalog();
                 } else {
                     try {
-                        catalog = (Catalog) ReflectUtil.forName(
-                                catalogClassName).newInstance();
+                        catalog = (Catalog) ReflectUtil.forName(catalogClassName).newInstance();
                     } catch (ClassNotFoundException cnfe) {
-                        debug.message(1, "Catalog class named '"
-                                + catalogClassName
+                        debug.message(1, "Catalog class named '" + catalogClassName
                                 + "' could not be found. Using default.");
                         catalog = new Catalog();
                     } catch (ClassCastException cnfe) {
@@ -741,7 +711,6 @@ public class CatalogManager {
 
     /**
      * Get a catalog instance.
-     *
      * If this manager uses static catalogs, the same static catalog will always
      * be returned. Otherwise a new catalog will be returned.
      */
@@ -766,7 +735,6 @@ public class CatalogManager {
      * <p>
      * Obtain the oasisXMLCatalogPI setting from the properties.
      * </p>
-     *
      * <p>
      * In the properties, a value of 'yes', 'true', or '1' is considered true,
      * anything else is false.
@@ -794,8 +762,8 @@ public class CatalogManager {
             return defaultOasisXMLCatalogPI;
         }
 
-        return (allow.equalsIgnoreCase("true") || allow.equalsIgnoreCase("yes")
-                || allow.equalsIgnoreCase("1"));
+        return (allow.equalsIgnoreCase("true") || allow.equalsIgnoreCase("yes") || allow.equalsIgnoreCase(
+                "1"));
     }
 
     /**
@@ -831,7 +799,6 @@ public class CatalogManager {
 
     /**
      * Obtain the Catalog class name setting from the properties.
-     *
      */
     public String queryCatalogClassName() {
         String className = SecuritySupport.getSystemProperty(pClassname);

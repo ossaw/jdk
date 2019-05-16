@@ -24,7 +24,7 @@ public class BasicPasswordFieldUI extends BasicTextFieldUI {
      * Creates a UI for a JPasswordField.
      *
      * @param c
-     *          the JPasswordField
+     *        the JPasswordField
      * @return the UI
      */
     public static ComponentUI createUI(JComponent c) {
@@ -49,8 +49,7 @@ public class BasicPasswordFieldUI extends BasicTextFieldUI {
     protected void installDefaults() {
         super.installDefaults();
         String prefix = getPropertyPrefix();
-        Character echoChar = (Character) UIManager.getDefaults().get(prefix
-                + ".echoChar");
+        Character echoChar = (Character) UIManager.getDefaults().get(prefix + ".echoChar");
         if (echoChar != null) {
             LookAndFeel.installProperty(getComponent(), "echoChar", echoChar);
         }
@@ -60,7 +59,7 @@ public class BasicPasswordFieldUI extends BasicTextFieldUI {
      * Creates a view (PasswordView) for an element.
      *
      * @param elem
-     *             the element
+     *        the element
      * @return the view
      */
     public View create(Element elem) {

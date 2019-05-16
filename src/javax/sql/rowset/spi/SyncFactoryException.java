@@ -28,7 +28,7 @@ public class SyncFactoryException extends java.sql.SQLException {
      * message.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public SyncFactoryException(String msg) {
         super(msg);

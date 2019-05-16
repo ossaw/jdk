@@ -297,7 +297,7 @@ public interface OpenType {
      * <code>byte</code> array returned is a copy of the font data in memory.
      * 
      * @param sfntTag
-     *                a four-character code as a 32-bit integer
+     *        a four-character code as a 32-bit integer
      * @return a <code>byte</code> array that is the table that contains the
      *         font data corresponding to the specified tag.
      */
@@ -309,7 +309,7 @@ public interface OpenType {
      * byte array returned is a copy of the font data in memory.
      * 
      * @param strSfntTag
-     *                   a four-character code as a <code>String</code>
+     *        a four-character code as a <code>String</code>
      * @return a <code>byte</code> array that is the table that contains the
      *         font data corresponding to the specified tag.
      */
@@ -322,11 +322,11 @@ public interface OpenType {
      * memory.
      * 
      * @param sfntTag
-     *                a four-character code as a 32-bit integer
+     *        a four-character code as a 32-bit integer
      * @param offset
-     *                index of first byte to return from table
+     *        index of first byte to return from table
      * @param count
-     *                number of bytes to return from table
+     *        number of bytes to return from table
      * @return a subset of the table corresponding to <code>sfntTag</code> and
      *         containing the bytes starting at <code>offset</code> byte and
      *         including <code>count</code> bytes.
@@ -340,11 +340,11 @@ public interface OpenType {
      * data in memory.
      * 
      * @param strSfntTag
-     *                   a four-character code as a <code>String</code>
+     *        a four-character code as a <code>String</code>
      * @param offset
-     *                   index of first byte to return from table
+     *        index of first byte to return from table
      * @param count
-     *                   number of bytes to return from table
+     *        number of bytes to return from table
      * @return a subset of the table corresponding to <code>strSfntTag</code>
      *         and containing the bytes starting at <code>offset</code> byte and
      *         including <code>count</code> bytes.
@@ -356,7 +356,7 @@ public interface OpenType {
      * include items like <i>cmap</i>, <i>name</i> and <i>head</i>.
      * 
      * @param sfntTag
-     *                a four-character code as a 32-bit integer
+     *        a four-character code as a 32-bit integer
      * @return the size of the table corresponding to the specified tag.
      */
     public int getFontTableSize(int sfntTag);
@@ -366,7 +366,7 @@ public interface OpenType {
      * include items like <i>cmap</i>, <i>name</i> and <i>head</i>.
      * 
      * @param strSfntTag
-     *                   a four-character code as a <code>String</code>
+     *        a four-character code as a <code>String</code>
      * @return the size of the table corresponding to the specified tag.
      */
     public int getFontTableSize(String strSfntTag);

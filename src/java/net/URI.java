@@ -25,7 +25,6 @@ import java.lang.NullPointerException; // for javadoc
 
 /**
  * Represents a Uniform Resource Identifier (URI) reference.
- *
  * <p>
  * Aside from some minor deviations noted below, an instance of this class
  * represents a URI reference as defined by
@@ -39,29 +38,21 @@ import java.lang.NullPointerException; // for javadoc
  * forms, methods for accessing the various components of an instance, and
  * methods for normalizing, resolving, and relativizing URI instances. Instances
  * of this class are immutable.
- *
- *
  * <h3>URI syntax and components</h3>
- *
  * At the highest level a URI reference (hereinafter simply "URI") in string
  * form has the syntax
- *
  * <blockquote> [<i>scheme</i><b>{@code :}</b>]<i>scheme-specific-part</i>[
  * <b>{@code #}</b><i>fragment</i>] </blockquote>
- *
  * where square brackets [...] delineate optional components and the characters
  * <b>{@code :}</b> and <b>{@code #}</b> stand for themselves.
- *
  * <p>
  * An <i>absolute</i> URI specifies a scheme; a URI that is not absolute is said
  * to be <i>relative</i>. URIs are also classified according to whether they are
  * <i>opaque</i> or <i>hierarchical</i>.
- *
  * <p>
  * An <i>opaque</i> URI is an absolute URI whose scheme-specific part does not
  * begin with a slash character ({@code '/'}). Opaque URIs are not subject to
  * further parsing. Some examples of opaque URIs are:
- *
  * <blockquote>
  * <table cellpadding=0 cellspacing=0 summary="layout">
  * <tr>
@@ -77,51 +68,40 @@ import java.lang.NullPointerException; // for javadoc
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * A <i>hierarchical</i> URI is either an absolute URI whose scheme-specific
  * part begins with a slash character, or a relative URI, that is, a URI that
  * does not specify a scheme. Some examples of hierarchical URIs are:
- *
  * <blockquote> {@code http://java.sun.com/j2se/1.3/}<br>
  * {@code docs/guide/collections/designfaq.html#28}<br>
  * {@code ../../../demo/jfc/SwingSet2/src/SwingSet2.java}<br>
  * {@code file:///~/calendar} </blockquote>
- *
  * <p>
  * A hierarchical URI is subject to further parsing according to the syntax
- *
  * <blockquote> [<i>scheme</i><b>{@code :}</b>][<b>{@code //}</b>
  * <i>authority</i>][<i>path</i>][<b>{@code ?}</b><i>query</i>][<b>{@code #}</b>
  * <i>fragment</i>] </blockquote>
- *
  * where the characters <b>{@code :}</b>, <b>{@code /}</b>, <b>{@code ?}</b>,
  * and <b>{@code #}</b> stand for themselves. The scheme-specific part of a
  * hierarchical URI consists of the characters between the scheme and fragment
  * components.
- *
  * <p>
  * The authority component of a hierarchical URI is, if specified, either
  * <i>server-based</i> or <i>registry-based</i>. A server-based authority parses
  * according to the familiar syntax
- *
  * <blockquote> [<i>user-info</i><b>{@code @}</b>]<i>host</i>[<b>{@code :}</b>
  * <i>port</i>] </blockquote>
- *
  * where the characters <b>{@code @}</b> and <b>{@code :}</b> stand for
  * themselves. Nearly all URI schemes currently in use are server-based. An
  * authority component that does not parse in this way is considered to be
  * registry-based.
- *
  * <p>
  * The path component of a hierarchical URI is itself said to be absolute if it
  * begins with a slash character ({@code '/'}); otherwise it is relative. The
  * path of a hierarchical URI that is either absolute or specifies an authority
  * is always absolute.
- *
  * <p>
  * All told, then, a URI instance has the following nine components:
- *
  * <blockquote>
  * <table summary=
  * "Describes the components of a
@@ -169,14 +149,12 @@ import java.lang.NullPointerException; // for javadoc
  * </tr>
  * </table>
  * </blockquote>
- *
  * In a given instance any particular component is either <i>undefined</i> or
  * <i>defined</i> with a distinct value. Undefined string components are
  * represented by {@code null}, while undefined integer components are
  * represented by {@code -1}. A string component may be defined to have the
  * empty string as its value; this is not equivalent to that component being
  * undefined.
- *
  * <p>
  * Whether a particular component is or is not defined in an instance depends
  * upon the type of the URI being represented. An absolute URI has a scheme
@@ -186,20 +164,15 @@ import java.lang.NullPointerException; // for javadoc
  * the path), and may have any of the other components. If the authority
  * component is present and is server-based then the host component will be
  * defined and the user-information and port components may be defined.
- *
- *
  * <h4>Operations on URI instances</h4>
- *
  * The key operations supported by this class are those of <i>normalization</i>,
  * <i>resolution</i>, and <i>relativization</i>.
- *
  * <p>
  * <i>Normalization</i> is the process of removing unnecessary {@code "."} and
  * {@code ".."} segments from the path component of a hierarchical URI. Each
  * {@code "."} segment is simply removed. A {@code ".."} segment is removed only
  * if it is preceded by a non-{@code ".."} segment. Normalization has no effect
  * upon opaque URIs.
- *
  * <p>
  * <i>Resolution</i> is the process of resolving one URI against another,
  * <i>base</i> URI. The resulting URI is constructed from components of both
@@ -207,68 +180,48 @@ import java.lang.NullPointerException; // for javadoc
  * base URI for those not specified in the original. For hierarchical URIs, the
  * path of the original is resolved against the path of the base and then
  * normalized. The result, for example, of resolving
- *
  * <blockquote> {@code docs/guide/collections/designfaq.html#28}
  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  * &nbsp;&nbsp;&nbsp;&nbsp;(1) </blockquote>
- *
  * against the base URI {@code http://java.sun.com/j2se/1.3/} is the result URI
- *
  * <blockquote>
  * {@code https://docs.oracle.com/javase/1.3/docs/guide/collections/designfaq.html#28}
  * </blockquote>
- *
  * Resolving the relative URI
- *
  * <blockquote> {@code ../../../demo/jfc/SwingSet2/src/SwingSet2.java}
  * &nbsp;&nbsp;&nbsp;&nbsp;(2) </blockquote>
- *
  * against this result yields, in turn,
- *
  * <blockquote>
  * {@code http://java.sun.com/j2se/1.3/demo/jfc/SwingSet2/src/SwingSet2.java}
  * </blockquote>
- *
  * Resolution of both absolute and relative URIs, and of both absolute and
  * relative paths in the case of hierarchical URIs, is supported. Resolving the
  * URI {@code file:///~calendar} against any other URI simply yields the
  * original URI, since it is absolute. Resolving the relative URI (2) above
  * against the relative base URI (1) yields the normalized, but still relative,
  * URI
- *
  * <blockquote> {@code demo/jfc/SwingSet2/src/SwingSet2.java} </blockquote>
- *
  * <p>
  * <i>Relativization</i>, finally, is the inverse of resolution: For any two
  * normalized URIs <i>u</i> and&nbsp;<i>v</i>,
- *
  * <blockquote> <i>u</i>{@code .relativize(}<i>u</i>{@code .resolve(}<i>v</i>
  * {@code )).equals(}<i>v</i>{@code )}&nbsp;&nbsp;and<br>
  * <i>u</i>{@code .resolve(}<i>u</i>{@code .relativize(}<i>v</i>
  * {@code )).equals(}<i>v</i>{@code )}&nbsp;&nbsp;.<br>
  * </blockquote>
- *
  * This operation is often useful when constructing a document containing URIs
  * that must be made relative to the base URI of the document wherever possible.
  * For example, relativizing the URI
- *
  * <blockquote> {@code https://docs.oracle.com/javase/1.3/docs/guide/index.html}
  * </blockquote>
- *
  * against the base URI
- *
  * <blockquote> {@code http://java.sun.com/j2se/1.3} </blockquote>
- *
  * yields the relative URI {@code docs/guide/index.html}.
- *
- *
  * <h4>Character categories</h4>
- *
  * RFC&nbsp;2396 specifies precisely which characters are permitted in the
  * various components of a URI reference. The following categories, most of
  * which are taken from that specification, are used below to describe these
  * constraints:
- *
  * <blockquote>
  * <table cellspacing=2 summary=
  * "Describes categories
@@ -320,27 +273,20 @@ import java.lang.NullPointerException; // for javadoc
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * <a name="legal-chars"></a> The set of all legal URI characters consists of
  * the <i>unreserved</i>, <i>reserved</i>, <i>escaped</i>, and <i>other</i>
  * characters.
- *
- *
  * <h4>Escaped octets, quotation, encoding, and decoding</h4>
- *
  * RFC 2396 allows escaped octets to appear in the user-info, path, query, and
  * fragment components. Escaping serves two purposes in URIs:
- *
  * <ul>
- *
  * <li>
  * <p>
  * To <i>encode</i> non-US-ASCII characters when a URI is required to conform
  * strictly to RFC&nbsp;2396 by not containing any <i>other</i> characters.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * To <i>quote</i> characters that are otherwise illegal in a component. The
@@ -348,13 +294,9 @@ import java.lang.NullPointerException; // for javadoc
  * which characters are considered legal and illegal.
  * </p>
  * </li>
- *
  * </ul>
- *
  * These purposes are served in this class by three related operations:
- *
  * <ul>
- *
  * <li>
  * <p>
  * <a name="encode"></a> A character is <i>encoded</i> by replacing it with the
@@ -364,7 +306,6 @@ import java.lang.NullPointerException; // for javadoc
  * which does not specify any particular character set.)</i>
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * <a name="quote"></a> An illegal character is <i>quoted</i> simply by encoding
@@ -373,7 +314,6 @@ import java.lang.NullPointerException; // for javadoc
  * transformation has exactly the effect required by RFC&nbsp;2396.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * <a name="decode"></a> A sequence of escaped octets is <i>decoded</i> by
@@ -386,14 +326,10 @@ import java.lang.NullPointerException; // for javadoc
  * {@code '\u005CuFFFD'}, the Unicode replacement character.
  * </p>
  * </li>
- *
  * </ul>
- *
  * These operations are exposed in the constructors and methods of this class as
  * follows:
- *
  * <ul>
- *
  * <li>
  * <p>
  * The {@linkplain #URI(java.lang.String) single-argument constructor} requires
@@ -401,7 +337,6 @@ import java.lang.NullPointerException; // for javadoc
  * octets and <i>other</i> characters that are present.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The
@@ -412,7 +347,6 @@ import java.lang.NullPointerException; // for javadoc
  * preserved.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #getRawUserInfo() getRawUserInfo}, {@link #getRawPath()
@@ -425,7 +359,6 @@ import java.lang.NullPointerException; // for javadoc
  * any illegal characters.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #getUserInfo() getUserInfo}, {@link #getPath() getPath},
@@ -437,31 +370,23 @@ import java.lang.NullPointerException; // for javadoc
  * escaped octets.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #toString() toString} method returns a URI string with all
  * necessary quotation but which may contain <i>other</i> characters.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #toASCIIString() toASCIIString} method returns a fully quoted and
  * encoded URI string that does not contain any <i>other</i> characters.
  * </p>
  * </li>
- *
  * </ul>
- *
- *
  * <h4>Identities</h4>
- *
  * For any URI <i>u</i>, it is always the case that
- *
  * <blockquote> {@code new URI(}<i>u</i>{@code .toString()).equals(}<i>u</i>
  * {@code )}&nbsp;. </blockquote>
- *
  * For any URI <i>u</i> that does not contain redundant syntax such as two
  * slashes before an empty authority (as in {@code file:///tmp/}&nbsp;) or a
  * colon following a host name but no port (as in {@code http://java.sun.com:}
@@ -497,21 +422,16 @@ import java.lang.NullPointerException; // for javadoc
  * 
  * if <i>u</i> is hierarchical and has either no authority or a server-based
  * authority.
- *
- *
  * <h4>URIs, URLs, and URNs</h4>
- *
  * A URI is a uniform resource <i>identifier</i> while a URL is a uniform
  * resource <i>locator</i>. Hence every URL is a URI, abstractly speaking, but
  * not every URI is a URL. This is because there is another subcategory of URIs,
  * uniform resource <i>names</i> (URNs), which name resources but do not specify
  * how to locate them. The {@code mailto}, {@code news}, and {@code isbn} URIs
  * shown above are examples of URNs.
- *
  * <p>
  * The conceptual distinction between URIs and URLs is reflected in the
  * differences between this class and the {@link URL} class.
- *
  * <p>
  * An instance of this class represents a URI reference in the syntactic sense
  * defined by RFC&nbsp;2396. A URI may be either absolute or relative. A URI
@@ -522,7 +442,6 @@ import java.lang.NullPointerException; // for javadoc
  * content of the instance. In other words, a URI instance is little more than a
  * structured string that supports the syntactic, scheme-independent operations
  * of comparison, normalization, resolution, and relativization.
- *
  * <p>
  * An instance of the {@link URL} class, by contrast, represents the syntactic
  * components of a URL together with some of the information required to access
@@ -536,10 +455,8 @@ import java.lang.NullPointerException; // for javadoc
  * as the network I/O operations of looking up the host and opening a connection
  * to the specified resource.
  *
- *
  * @author Mark Reinhold
  * @since 1.4
- *
  * @see <a href="http://www.ietf.org/rfc/rfc2279.txt"><i>RFC&nbsp;2279: UTF-8, a
  *      transformation format of ISO 10646</i></a>, <br>
  *      <a href="http://www.ietf.org/rfc/rfc2373.txt"><i>RFC&nbsp;2373: IPv6
@@ -602,16 +519,13 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Constructs a URI by parsing the given string.
-     *
      * <p>
      * This constructor parses the given string exactly as specified by the
      * grammar in
      * <a href="http://www.ietf.org/rfc/rfc2396.txt">RFC&nbsp;2396</a>,
      * Appendix&nbsp;A, <b><i>except for the following deviations:</i></b>
      * </p>
-     *
      * <ul>
-     *
      * <li>
      * <p>
      * An empty authority component is permitted as long as it is followed by a
@@ -622,7 +536,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * port components are undefined.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Empty relative paths are permitted; this seems to be the intent of
@@ -631,7 +544,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * {@code "#foo"} parses as a relative URI with an empty path and the given
      * fragment, and can be usefully <a href="#resolve-frag">resolved</a>
      * against a base URI.
-     *
      * <li>
      * <p>
      * IPv4 addresses in host components are parsed rigorously, as specified by
@@ -641,7 +553,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * than 255.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Hostnames in host components that comprise only a single domain label are
@@ -654,7 +565,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * authority.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * IPv6 addresses are permitted for the host component. An IPv6 address must
@@ -667,7 +577,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * expressible in the grammar.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Characters in the <i>other</i> category are permitted wherever
@@ -677,19 +586,16 @@ public final class URI implements Comparable<URI>, Serializable {
      * to contain Unicode characters beyond those in the US-ASCII character set.
      * </p>
      * </li>
-     *
      * </ul>
      *
      * @param str
-     *            The string to be parsed into a URI
-     *
+     *        The string to be parsed into a URI
      * @throws NullPointerException
-     *                              If {@code str} is {@code null}
-     *
+     *         If {@code str} is {@code null}
      * @throws URISyntaxException
-     *                              If the given string violates RFC&nbsp;2396,
-     *                              as augmented by
-     *                              the above deviations
+     *         If the given string violates RFC&nbsp;2396,
+     *         as augmented by
+     *         the above deviations
      */
     public URI(String str) throws URISyntaxException {
         new Parser(str).parse(false);
@@ -697,43 +603,36 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Constructs a hierarchical URI from the given components.
-     *
      * <p>
      * If a scheme is given then the path, if also given, must either be empty
      * or begin with a slash character ({@code '/'}). Otherwise a component of
      * the new URI may be left undefined by passing {@code null} for the
      * corresponding parameter or, in the case of the {@code port} parameter, by
      * passing {@code -1}.
-     *
      * <p>
      * This constructor first builds a URI string from the given components
      * according to the rules specified in
      * <a href="http://www.ietf.org/rfc/rfc2396.txt">RFC&nbsp;2396</a>,
      * section&nbsp;5.2, step&nbsp;7:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * Initially, the result string is empty.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a scheme is given then it is appended to the result, followed by a
      * colon character ({@code ':'}).
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If user information, a host, or a port are given then the string
      * {@code "//"} is appended.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If user information is given then it is appended, followed by a
@@ -742,7 +641,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * categories is <a href="#quote">quoted</a>.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a host is given then it is appended. If the host is a literal IPv6
@@ -750,14 +648,12 @@ public final class URI implements Comparable<URI>, Serializable {
      * {@code ']'}) then the square brackets are added.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a port number is given then a colon character ({@code ':'}) is
      * appended, followed by the port number in decimal.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a path is given then it is appended. Any character not in the
@@ -766,7 +662,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * commercial-at character ({@code '@'}), is quoted.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a query is given then a question-mark character ({@code '?'}) is
@@ -774,7 +669,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * <a href="#legal-chars">legal URI character</a> is quoted.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Finally, if a fragment is given then a hash character ({@code '#'}) is
@@ -782,9 +676,7 @@ public final class URI implements Comparable<URI>, Serializable {
      * character is quoted.
      * </p>
      * </li>
-     *
      * </ol>
-     *
      * <p>
      * The resulting URI string is then parsed as if by invoking the
      * {@link #URI(String)} constructor and then invoking the
@@ -793,71 +685,62 @@ public final class URI implements Comparable<URI>, Serializable {
      * </p>
      *
      * @param scheme
-     *                 Scheme name
+     *        Scheme name
      * @param userInfo
-     *                 User name and authorization information
+     *        User name and authorization information
      * @param host
-     *                 Host name
+     *        Host name
      * @param port
-     *                 Port number
+     *        Port number
      * @param path
-     *                 Path
+     *        Path
      * @param query
-     *                 Query
+     *        Query
      * @param fragment
-     *                 Fragment
-     *
+     *        Fragment
      * @throws URISyntaxException
-     *                            If both a scheme and a path are given but the
-     *                            path is
-     *                            relative, if the URI string constructed from
-     *                            the given
-     *                            components violates RFC&nbsp;2396, or if the
-     *                            authority
-     *                            component of the string is present but cannot
-     *                            be parsed as a
-     *                            server-based authority
+     *         If both a scheme and a path are given but the
+     *         path is
+     *         relative, if the URI string constructed from
+     *         the given
+     *         components violates RFC&nbsp;2396, or if the
+     *         authority
+     *         component of the string is present but cannot
+     *         be parsed as a
+     *         server-based authority
      */
-    public URI(String scheme, String userInfo, String host, int port,
-            String path, String query, String fragment)
-            throws URISyntaxException {
-        String s = toString(scheme, null, null, userInfo, host, port, path,
-                query, fragment);
+    public URI(String scheme, String userInfo, String host, int port, String path, String query,
+            String fragment) throws URISyntaxException {
+        String s = toString(scheme, null, null, userInfo, host, port, path, query, fragment);
         checkPath(s, scheme, path);
         new Parser(s).parse(true);
     }
 
     /**
      * Constructs a hierarchical URI from the given components.
-     *
      * <p>
      * If a scheme is given then the path, if also given, must either be empty
      * or begin with a slash character ({@code '/'}). Otherwise a component of
      * the new URI may be left undefined by passing {@code null} for the
      * corresponding parameter.
-     *
      * <p>
      * This constructor first builds a URI string from the given components
      * according to the rules specified in
      * <a href="http://www.ietf.org/rfc/rfc2396.txt">RFC&nbsp;2396</a>,
      * section&nbsp;5.2, step&nbsp;7:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * Initially, the result string is empty.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a scheme is given then it is appended to the result, followed by a
      * colon character ({@code ':'}).
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If an authority is given then the string {@code "//"} is appended,
@@ -869,7 +752,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * <a href="#quote">quoted</a>.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a path is given then it is appended. Any character not in the
@@ -878,7 +760,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * commercial-at character ({@code '@'}), is quoted.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a query is given then a question-mark character ({@code '?'}) is
@@ -886,7 +767,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * <a href="#legal-chars">legal URI character</a> is quoted.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Finally, if a fragment is given then a hash character ({@code '#'}) is
@@ -894,9 +774,7 @@ public final class URI implements Comparable<URI>, Serializable {
      * character is quoted.
      * </p>
      * </li>
-     *
      * </ol>
-     *
      * <p>
      * The resulting URI string is then parsed as if by invoking the
      * {@link #URI(String)} constructor and then invoking the
@@ -905,94 +783,81 @@ public final class URI implements Comparable<URI>, Serializable {
      * </p>
      *
      * @param scheme
-     *                  Scheme name
+     *        Scheme name
      * @param authority
-     *                  Authority
+     *        Authority
      * @param path
-     *                  Path
+     *        Path
      * @param query
-     *                  Query
+     *        Query
      * @param fragment
-     *                  Fragment
-     *
+     *        Fragment
      * @throws URISyntaxException
-     *                            If both a scheme and a path are given but the
-     *                            path is
-     *                            relative, if the URI string constructed from
-     *                            the given
-     *                            components violates RFC&nbsp;2396, or if the
-     *                            authority
-     *                            component of the string is present but cannot
-     *                            be parsed as a
-     *                            server-based authority
+     *         If both a scheme and a path are given but the
+     *         path is
+     *         relative, if the URI string constructed from
+     *         the given
+     *         components violates RFC&nbsp;2396, or if the
+     *         authority
+     *         component of the string is present but cannot
+     *         be parsed as a
+     *         server-based authority
      */
-    public URI(String scheme, String authority, String path, String query,
-            String fragment) throws URISyntaxException {
-        String s = toString(scheme, null, authority, null, null, -1, path,
-                query, fragment);
+    public URI(String scheme, String authority, String path, String query, String fragment)
+            throws URISyntaxException {
+        String s = toString(scheme, null, authority, null, null, -1, path, query, fragment);
         checkPath(s, scheme, path);
         new Parser(s).parse(false);
     }
 
     /**
      * Constructs a hierarchical URI from the given components.
-     *
      * <p>
      * A component may be left undefined by passing {@code null}.
-     *
      * <p>
      * This convenience constructor works as if by invoking the seven-argument
      * constructor as follows:
-     *
      * <blockquote> {@code new}
      * {@link #URI(String, String, String, int, String, String, String) URI}
      * {@code (scheme, null, host, -1, path, null, fragment);} </blockquote>
      *
      * @param scheme
-     *                 Scheme name
+     *        Scheme name
      * @param host
-     *                 Host name
+     *        Host name
      * @param path
-     *                 Path
+     *        Path
      * @param fragment
-     *                 Fragment
-     *
+     *        Fragment
      * @throws URISyntaxException
-     *                            If the URI string constructed from the given
-     *                            components
-     *                            violates RFC&nbsp;2396
+     *         If the URI string constructed from the given
+     *         components
+     *         violates RFC&nbsp;2396
      */
-    public URI(String scheme, String host, String path, String fragment)
-            throws URISyntaxException {
+    public URI(String scheme, String host, String path, String fragment) throws URISyntaxException {
         this(scheme, null, host, -1, path, null, fragment);
     }
 
     /**
      * Constructs a URI from the given components.
-     *
      * <p>
      * A component may be left undefined by passing {@code null}.
-     *
      * <p>
      * This constructor first builds a URI in string form using the given
      * components as follows:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * Initially, the result string is empty.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a scheme is given then it is appended to the result, followed by a
      * colon character ({@code ':'}).
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a scheme-specific part is given then it is appended. Any character
@@ -1000,7 +865,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * <a href="#quote">quoted</a>.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Finally, if a fragment is given then a hash character ({@code '#'}) is
@@ -1008,9 +872,7 @@ public final class URI implements Comparable<URI>, Serializable {
      * not a legal URI character is quoted.
      * </p>
      * </li>
-     *
      * </ol>
-     *
      * <p>
      * The resulting URI string is then parsed in order to create the new URI
      * instance as if by invoking the {@link #URI(String)} constructor; this may
@@ -1018,32 +880,27 @@ public final class URI implements Comparable<URI>, Serializable {
      * </p>
      *
      * @param scheme
-     *                 Scheme name
+     *        Scheme name
      * @param ssp
-     *                 Scheme-specific part
+     *        Scheme-specific part
      * @param fragment
-     *                 Fragment
-     *
+     *        Fragment
      * @throws URISyntaxException
-     *                            If the URI string constructed from the given
-     *                            components
-     *                            violates RFC&nbsp;2396
+     *         If the URI string constructed from the given
+     *         components
+     *         violates RFC&nbsp;2396
      */
-    public URI(String scheme, String ssp, String fragment)
-            throws URISyntaxException {
-        new Parser(toString(scheme, ssp, null, null, null, -1, null, null,
-                fragment)).parse(false);
+    public URI(String scheme, String ssp, String fragment) throws URISyntaxException {
+        new Parser(toString(scheme, ssp, null, null, null, -1, null, null, fragment)).parse(false);
     }
 
     /**
      * Creates a URI by parsing the given string.
-     *
      * <p>
      * This convenience factory method works as if by invoking the
      * {@link #URI(String)} constructor; any {@link URISyntaxException} thrown
      * by the constructor is caught and wrapped in a new
      * {@link IllegalArgumentException} object, which is then thrown.
-     *
      * <p>
      * This method is provided for use in situations where it is known that the
      * given string is a legal URI, for example for URI constants declared
@@ -1055,15 +912,13 @@ public final class URI implements Comparable<URI>, Serializable {
      * </p>
      *
      * @param str
-     *            The string to be parsed into a URI
+     *        The string to be parsed into a URI
      * @return The new URI
-     *
      * @throws NullPointerException
-     *                                  If {@code str} is {@code null}
-     *
+     *         If {@code str} is {@code null}
      * @throws IllegalArgumentException
-     *                                  If the given string violates
-     *                                  RFC&nbsp;2396
+     *         If the given string violates
+     *         RFC&nbsp;2396
      */
     public static URI create(String str) {
         try {
@@ -1078,18 +933,15 @@ public final class URI implements Comparable<URI>, Serializable {
     /**
      * Attempts to parse this URI's authority component, if defined, into
      * user-information, host, and port components.
-     *
      * <p>
      * If this URI's authority component has already been recognized as being
      * server-based then it will already have been parsed into user-information,
      * host, and port components. In this case, or if this URI has no authority
      * component, this method simply returns this URI.
-     *
      * <p>
      * Otherwise this method attempts once more to parse the authority component
      * into user-information, host, and port components, and throws an exception
      * describing why the authority component could not be parsed in that way.
-     *
      * <p>
      * This method is provided because the generic URI syntax specified in
      * <a href="http://www.ietf.org/rfc/rfc2396.txt">RFC&nbsp;2396</a> cannot
@@ -1098,16 +950,13 @@ public final class URI implements Comparable<URI>, Serializable {
      * former as instances of the latter. The authority component in the URI
      * string {@code "//foo:bar"}, for example, is not a legal server-based
      * authority but it is legal as a registry-based authority.
-     *
      * <p>
      * In many common situations, for example when working URIs that are known
      * to be either URNs or URLs, the hierarchical URIs being used will always
      * be server-based. They therefore must either be parsed as such or treated
      * as an error. In these cases a statement such as
-     *
      * <blockquote> {@code URI }<i>u</i>
      * {@code  = new URI(str).parseServerAuthority();} </blockquote>
-     *
      * <p>
      * can be used to ensure that <i>u</i> always refers to a URI that, if it
      * has an authority component, has a server-based authority with proper
@@ -1119,13 +968,12 @@ public final class URI implements Comparable<URI>, Serializable {
      *
      * @return A URI whose authority field has been parsed as a server-based
      *         authority
-     *
      * @throws URISyntaxException
-     *                            If the authority component of this URI is
-     *                            defined but cannot
-     *                            be parsed as a server-based authority
-     *                            according to
-     *                            RFC&nbsp;2396
+     *         If the authority component of this URI is
+     *         defined but cannot
+     *         be parsed as a server-based authority
+     *         according to
+     *         RFC&nbsp;2396
      */
     public URI parseServerAuthority() throws URISyntaxException {
         // We could be clever and cache the error message and index from the
@@ -1140,7 +988,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Normalizes this URI's path.
-     *
      * <p>
      * If this URI is opaque, or if its path is already in normal form, then
      * this URI is returned. Otherwise a new URI is constructed that is
@@ -1149,15 +996,12 @@ public final class URI implements Comparable<URI>, Serializable {
      * <a href="http://www.ietf.org/rfc/rfc2396.txt">RFC&nbsp;2396</a>,
      * section&nbsp;5.2, step&nbsp;6, sub-steps&nbsp;c through&nbsp;f; that is:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * All {@code "."} segments are removed.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If a {@code ".."} segment is preceded by a non-{@code ".."} segment then
@@ -1165,7 +1009,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * longer applicable.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If the path is relative, and if its first segment contains a colon
@@ -1176,9 +1019,7 @@ public final class URI implements Comparable<URI>, Serializable {
      * RFC&nbsp;2396)</i></b>
      * </p>
      * </li>
-     *
      * </ol>
-     *
      * <p>
      * A normalized path will begin with one or more {@code ".."} segments if
      * there were insufficient non-{@code ".."} segments preceding them to allow
@@ -1195,11 +1036,9 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Resolves the given URI against this URI.
-     *
      * <p>
      * If the given URI is already absolute, or if this URI is opaque, then the
      * given URI is returned.
-     *
      * <p>
      * <a name="resolve-frag"></a> If the given URI's fragment component is
      * defined, its path component is empty, and its scheme, authority, and
@@ -1207,45 +1046,37 @@ public final class URI implements Comparable<URI>, Serializable {
      * with all other components equal to those of this URI is returned. This
      * allows a URI representing a standalone fragment reference, such as
      * {@code "#foo"}, to be usefully resolved against a base URI.
-     *
      * <p>
      * Otherwise this method constructs a new hierarchical URI in a manner
      * consistent with
      * <a href="http://www.ietf.org/rfc/rfc2396.txt">RFC&nbsp;2396</a>,
      * section&nbsp;5.2; that is:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * A new URI is constructed with this URI's scheme and the given URI's query
      * and fragment components.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If the given URI has an authority component then the new URI's authority
      * and path are taken from the given URI.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Otherwise the new URI's authority component is copied from this URI, and
      * its path is computed as follows:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * If the given URI's path is absolute then the new URI's path is taken from
      * the given URI.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Otherwise the given URI's path is relative, and so the new URI's path is
@@ -1255,23 +1086,19 @@ public final class URI implements Comparable<URI>, Serializable {
      * as if by invoking the {@link #normalize() normalize} method.
      * </p>
      * </li>
-     *
      * </ol>
      * </li>
-     *
      * </ol>
-     *
      * <p>
      * The result of this method is absolute if, and only if, either this URI is
      * absolute or the given URI is absolute.
      * </p>
      *
      * @param uri
-     *            The URI to be resolved against this URI
+     *        The URI to be resolved against this URI
      * @return The resulting URI
-     *
      * @throws NullPointerException
-     *                              If {@code uri} is {@code null}
+     *         If {@code uri} is {@code null}
      */
     public URI resolve(URI uri) {
         return resolve(this, uri);
@@ -1280,7 +1107,6 @@ public final class URI implements Comparable<URI>, Serializable {
     /**
      * Constructs a new URI by parsing the given string and then resolving it
      * against this URI.
-     *
      * <p>
      * This convenience method works as if invoking it were equivalent to
      * evaluating the expression {@link #resolve(java.net.URI) resolve}
@@ -1288,15 +1114,13 @@ public final class URI implements Comparable<URI>, Serializable {
      * </p>
      *
      * @param str
-     *            The string to be parsed into a URI
+     *        The string to be parsed into a URI
      * @return The resulting URI
-     *
      * @throws NullPointerException
-     *                                  If {@code str} is {@code null}
-     *
+     *         If {@code str} is {@code null}
      * @throws IllegalArgumentException
-     *                                  If the given string violates
-     *                                  RFC&nbsp;2396
+     *         If the given string violates
+     *         RFC&nbsp;2396
      */
     public URI resolve(String str) {
         return resolve(URI.create(str));
@@ -1304,14 +1128,11 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Relativizes the given URI against this URI.
-     *
      * <p>
      * The relativization of the given URI against this URI is computed as
      * follows:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * If either this URI or the given URI are opaque, or if the scheme and
@@ -1320,7 +1141,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * is returned.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Otherwise a new relative hierarchical URI is constructed with query and
@@ -1329,15 +1149,13 @@ public final class URI implements Comparable<URI>, Serializable {
      * URI's path.
      * </p>
      * </li>
-     *
      * </ol>
      *
      * @param uri
-     *            The URI to be relativized against this URI
+     *        The URI to be relativized against this URI
      * @return The resulting URI
-     *
      * @throws NullPointerException
-     *                              If {@code uri} is {@code null}
+     *         If {@code uri} is {@code null}
      */
     public URI relativize(URI uri) {
         return relativize(this, uri);
@@ -1345,7 +1163,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Constructs a URL from this URI.
-     *
      * <p>
      * This convenience method works as if invoking it were equivalent to
      * evaluating the expression {@code new URL(this.toString())} after first
@@ -1353,15 +1170,13 @@ public final class URI implements Comparable<URI>, Serializable {
      * </p>
      *
      * @return A URL constructed from this URI
-     *
      * @throws IllegalArgumentException
-     *                                  If this URL is not absolute
-     *
+     *         If this URL is not absolute
      * @throws MalformedURLException
-     *                                  If a protocol handler for the URL could
-     *                                  not be found, or if
-     *                                  some other error occurred while
-     *                                  constructing the URL
+     *         If a protocol handler for the URL could
+     *         not be found, or if
+     *         some other error occurred while
+     *         constructing the URL
      */
     public URL toURL() throws MalformedURLException {
         if (!isAbsolute())
@@ -1373,13 +1188,11 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the scheme component of this URI.
-     *
      * <p>
      * The scheme component of a URI, if defined, only contains characters in
      * the <i>alphanum</i> category and in the string {@code "-.+"}. A scheme
      * always starts with an <i>alpha</i> character.
      * <p>
-     *
      * The scheme component of a URI cannot contain escaped octets, hence this
      * method does not perform any decoding.
      *
@@ -1392,7 +1205,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Tells whether or not this URI is absolute.
-     *
      * <p>
      * A URI is absolute if, and only if, it has a scheme component.
      * </p>
@@ -1405,7 +1217,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Tells whether or not this URI is opaque.
-     *
      * <p>
      * A URI is opaque if, and only if, it is absolute and its scheme-specific
      * part does not begin with a slash character ('/'). An opaque URI has a
@@ -1422,7 +1233,6 @@ public final class URI implements Comparable<URI>, Serializable {
     /**
      * Returns the raw scheme-specific part of this URI. The scheme-specific
      * part is never undefined, though it may be empty.
-     *
      * <p>
      * The scheme-specific part of a URI only contains legal URI characters.
      * </p>
@@ -1436,7 +1246,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the decoded scheme-specific part of this URI.
-     *
      * <p>
      * The string returned by this method is equal to that returned by the
      * {@link #getRawSchemeSpecificPart() getRawSchemeSpecificPart} method
@@ -1454,7 +1263,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the raw authority component of this URI.
-     *
      * <p>
      * The authority component of a URI, if defined, only contains the
      * commercial-at character ({@code '@'}) and characters in the
@@ -1472,7 +1280,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the decoded authority component of this URI.
-     *
      * <p>
      * The string returned by this method is equal to that returned by the
      * {@link #getRawAuthority() getRawAuthority} method except that all
@@ -1490,7 +1297,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the raw user-information component of this URI.
-     *
      * <p>
      * The user-information component of a URI, if defined, only contains
      * characters in the <i>unreserved</i>, <i>punct</i>, <i>escaped</i>, and
@@ -1506,7 +1312,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the decoded user-information component of this URI.
-     *
      * <p>
      * The string returned by this method is equal to that returned by the
      * {@link #getRawUserInfo() getRawUserInfo} method except that all sequences
@@ -1524,14 +1329,11 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the host component of this URI.
-     *
      * <p>
      * The host component of a URI, if defined, will have one of the following
      * forms:
      * </p>
-     *
      * <ul>
-     *
      * <li>
      * <p>
      * A domain name consisting of one or more <i>labels</i> separated by period
@@ -1540,7 +1342,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * ({@code '-'}), though hyphens never occur as the first or last characters
      * in a label. The rightmost label of a domain name consisting of two or
      * more labels, begins with an <i>alpha</i> character.</li>
-     *
      * <li>
      * <p>
      * A dotted-quad IPv4 address of the form <i>digit</i>{@code +.}<i>digit</i>
@@ -1549,7 +1350,6 @@ public final class URI implements Comparable<URI>, Serializable {
      * a value larger than 255.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * An IPv6 address enclosed in square brackets ({@code '['} and {@code ']'})
@@ -1560,9 +1360,7 @@ public final class URI implements Comparable<URI>, Serializable {
      * Addressing Architecture</i></a>.
      * </p>
      * </li>
-     *
      * </ul>
-     *
      * The host component of a URI cannot contain escaped octets, hence this
      * method does not perform any decoding.
      *
@@ -1575,7 +1373,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the port number of this URI.
-     *
      * <p>
      * The port component of a URI, if defined, is a non-negative integer.
      * </p>
@@ -1589,7 +1386,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the raw path component of this URI.
-     *
      * <p>
      * The path component of a URI, if defined, only contains the slash
      * character ({@code '/'}), the commercial-at character ({@code '@'}), and
@@ -1606,7 +1402,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the decoded path component of this URI.
-     *
      * <p>
      * The string returned by this method is equal to that returned by the
      * {@link #getRawPath() getRawPath} method except that all sequences of
@@ -1624,7 +1419,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the raw query component of this URI.
-     *
      * <p>
      * The query component of a URI, if defined, only contains legal URI
      * characters.
@@ -1639,7 +1433,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the decoded query component of this URI.
-     *
      * <p>
      * The string returned by this method is equal to that returned by the
      * {@link #getRawQuery() getRawQuery} method except that all sequences of
@@ -1657,7 +1450,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the raw fragment component of this URI.
-     *
      * <p>
      * The fragment component of a URI, if defined, only contains legal URI
      * characters.
@@ -1672,7 +1464,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the decoded fragment component of this URI.
-     *
      * <p>
      * The string returned by this method is equal to that returned by the
      * {@link #getRawFragment() getRawFragment} method except that all sequences
@@ -1692,21 +1483,17 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Tests this URI for equality with another object.
-     *
      * <p>
      * If the given object is not a URI then this method immediately returns
      * {@code false}.
-     *
      * <p>
      * For two URIs to be considered equal requires that either both are opaque
      * or both are hierarchical. Their schemes must either both be undefined or
      * else be equal without regard to case. Their fragments must either both be
      * undefined or else be equal.
-     *
      * <p>
      * For two opaque URIs to be considered equal, their scheme-specific parts
      * must be equal.
-     *
      * <p>
      * For two hierarchical URIs to be considered equal, their paths must be
      * equal and their queries must either both be undefined or else be equal.
@@ -1716,21 +1503,18 @@ public final class URI implements Comparable<URI>, Serializable {
      * defined and are server-based, then their hosts must be equal without
      * regard to case, their port numbers must be equal, and their
      * user-information components must be equal.
-     *
      * <p>
      * When testing the user-information, path, query, fragment, authority, or
      * scheme-specific parts of two URIs for equality, the raw forms rather than
      * the encoded forms of these components are compared and the hexadecimal
      * digits of escaped octets are compared without regard to case.
-     *
      * <p>
      * This method satisfies the general contract of the
      * {@link java.lang.Object#equals(Object) Object.equals} method.
      * </p>
      *
      * @param ob
-     *           The object to which this object is to be compared
-     *
+     *        The object to which this object is to be compared
      * @return {@code true} if, and only if, the given object is a URI that is
      *         identical to this URI
      */
@@ -1810,7 +1594,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Compares this URI to another object, which must be a URI.
-     *
      * <p>
      * When comparing corresponding components of two URIs, if one component is
      * undefined but the other is defined then the first is considered to be
@@ -1819,49 +1602,40 @@ public final class URI implements Comparable<URI>, Serializable {
      * the {@link java.lang.String#compareTo(Object) String.compareTo} method.
      * String components that are subject to encoding are compared by comparing
      * their raw forms rather than their encoded forms.
-     *
      * <p>
      * The ordering of URIs is defined as follows:
      * </p>
-     *
      * <ul>
-     *
      * <li>
      * <p>
      * Two URIs with different schemes are ordered according the ordering of
      * their schemes, without regard to case.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * A hierarchical URI is considered to be less than an opaque URI with an
      * identical scheme.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Two opaque URIs with identical schemes are ordered according to the
      * ordering of their scheme-specific parts.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Two opaque URIs with identical schemes and scheme-specific parts are
      * ordered according to the ordering of their fragments.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * Two hierarchical URIs with identical schemes are ordered according to the
      * ordering of their authority components:
      * </p>
-     *
      * <ul>
-     *
      * <li>
      * <p>
      * If both authority components are server-based then the URIs are ordered
@@ -1871,17 +1645,14 @@ public final class URI implements Comparable<URI>, Serializable {
      * are ordered according to the ordering of their ports.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * If one or both authority components are registry-based then the URIs are
      * ordered according to the ordering of their authority components.
      * </p>
      * </li>
-     *
      * </ul>
      * </li>
-     *
      * <li>
      * <p>
      * Finally, two hierarchical URIs with identical schemes and authority
@@ -1891,9 +1662,7 @@ public final class URI implements Comparable<URI>, Serializable {
      * according to the order of their fragments.
      * </p>
      * </li>
-     *
      * </ul>
-     *
      * <p>
      * This method satisfies the general contract of the
      * {@link java.lang.Comparable#compareTo(Object) Comparable.compareTo}
@@ -1901,13 +1670,11 @@ public final class URI implements Comparable<URI>, Serializable {
      * </p>
      *
      * @param that
-     *             The object to which this URI is to be compared
-     *
+     *        The object to which this URI is to be compared
      * @return A negative integer, zero, or a positive integer as this URI is
      *         less than, equal to, or greater than the given URI
-     *
      * @throws ClassCastException
-     *                            If the given object is not a URI
+     *         If the given object is not a URI
      */
     public int compareTo(URI that) {
         int c;
@@ -1918,8 +1685,7 @@ public final class URI implements Comparable<URI>, Serializable {
         if (this.isOpaque()) {
             if (that.isOpaque()) {
                 // Both opaque
-                if ((c = compare(this.schemeSpecificPart,
-                        that.schemeSpecificPart)) != 0)
+                if ((c = compare(this.schemeSpecificPart, that.schemeSpecificPart)) != 0)
                     return c;
                 return compare(this.fragment, that.fragment);
             }
@@ -1957,7 +1723,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the content of this URI as a string.
-     *
      * <p>
      * If this URI was created by invoking one of the constructors in this class
      * then a string equivalent to the original input string, or to the string
@@ -1978,7 +1743,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Returns the content of this URI as a US-ASCII string.
-     *
      * <p>
      * If this URI does not contain any characters in the <i>other</i> category
      * then an invocation of this method will return the same value as an
@@ -1999,7 +1763,6 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Saves the content of this URI to the given serial stream.
-     *
      * <p>
      * The only serializable field of a URI instance is its {@code string}
      * field. That field is given a value, if it does not have one already, and
@@ -2008,7 +1771,7 @@ public final class URI implements Comparable<URI>, Serializable {
      * </p>
      *
      * @param os
-     *           The object-output stream to which this object is to be written
+     *        The object-output stream to which this object is to be written
      */
     private void writeObject(ObjectOutputStream os) throws IOException {
         defineString();
@@ -2017,17 +1780,15 @@ public final class URI implements Comparable<URI>, Serializable {
 
     /**
      * Reconstitutes a URI from the given serial stream.
-     *
      * <p>
      * The {@link java.io.ObjectInputStream#defaultReadObject()} method is
      * invoked to read the value of the {@code string} field. The result is then
      * parsed in the usual way.
      *
      * @param is
-     *           The object-input stream from which this object is being read
+     *        The object-input stream from which this object is being read
      */
-    private void readObject(ObjectInputStream is) throws ClassNotFoundException,
-            IOException {
+    private void readObject(ObjectInputStream is) throws ClassNotFoundException, IOException {
         port = -1; // Argh
         is.defaultReadObject();
         try {
@@ -2117,8 +1878,7 @@ public final class URI implements Comparable<URI>, Serializable {
     private static int hash(int hash, String s) {
         if (s == null)
             return hash;
-        return s.indexOf('%') < 0 ? hash * 127 + s.hashCode()
-                : normalizedHash(hash, s);
+        return s.indexOf('%') < 0 ? hash * 127 + s.hashCode() : normalizedHash(hash, s);
     }
 
     private static int normalizedHash(int hash, String s) {
@@ -2188,26 +1948,21 @@ public final class URI implements Comparable<URI>, Serializable {
 
     // If a scheme is given then the path, if given, must be absolute
     //
-    private static void checkPath(String s, String scheme, String path)
-            throws URISyntaxException {
+    private static void checkPath(String s, String scheme, String path) throws URISyntaxException {
         if (scheme != null) {
-            if ((path != null) && ((path.length() > 0) && (path.charAt(
-                    0) != '/')))
-                throw new URISyntaxException(s,
-                        "Relative path in absolute URI");
+            if ((path != null) && ((path.length() > 0) && (path.charAt(0) != '/')))
+                throw new URISyntaxException(s, "Relative path in absolute URI");
         }
     }
 
-    private void appendAuthority(StringBuffer sb, String authority,
-            String userInfo, String host, int port) {
+    private void appendAuthority(StringBuffer sb, String authority, String userInfo, String host, int port) {
         if (host != null) {
             sb.append("//");
             if (userInfo != null) {
                 sb.append(quote(userInfo, L_USERINFO, H_USERINFO));
                 sb.append('@');
             }
-            boolean needBrackets = ((host.indexOf(':') >= 0) && !host
-                    .startsWith("[") && !host.endsWith("]"));
+            boolean needBrackets = ((host.indexOf(':') >= 0) && !host.startsWith("[") && !host.endsWith("]"));
             if (needBrackets)
                 sb.append('[');
             sb.append(host);
@@ -2235,18 +1990,15 @@ public final class URI implements Comparable<URI>, Serializable {
                     }
                 }
                 sb.append(dontquote);
-                sb.append(quote(doquote, L_REG_NAME | L_SERVER, H_REG_NAME
-                        | H_SERVER));
+                sb.append(quote(doquote, L_REG_NAME | L_SERVER, H_REG_NAME | H_SERVER));
             } else {
-                sb.append(quote(authority, L_REG_NAME | L_SERVER, H_REG_NAME
-                        | H_SERVER));
+                sb.append(quote(authority, L_REG_NAME | L_SERVER, H_REG_NAME | H_SERVER));
             }
         }
     }
 
-    private void appendSchemeSpecificPart(StringBuffer sb, String opaquePart,
-            String authority, String userInfo, String host, int port,
-            String path, String query) {
+    private void appendSchemeSpecificPart(StringBuffer sb, String opaquePart, String authority,
+            String userInfo, String host, int port, String path, String query) {
         if (opaquePart != null) {
             /*
              * check if SSP begins with an IPv6 address because we must not
@@ -2287,16 +2039,14 @@ public final class URI implements Comparable<URI>, Serializable {
         }
     }
 
-    private String toString(String scheme, String opaquePart, String authority,
-            String userInfo, String host, int port, String path, String query,
-            String fragment) {
+    private String toString(String scheme, String opaquePart, String authority, String userInfo, String host,
+            int port, String path, String query, String fragment) {
         StringBuffer sb = new StringBuffer();
         if (scheme != null) {
             sb.append(scheme);
             sb.append(':');
         }
-        appendSchemeSpecificPart(sb, opaquePart, authority, userInfo, host,
-                port, path, query);
+        appendSchemeSpecificPart(sb, opaquePart, authority, userInfo, host, port, path, query);
         appendFragment(sb, fragment);
         return sb.toString();
     }
@@ -2305,8 +2055,7 @@ public final class URI implements Comparable<URI>, Serializable {
         if (schemeSpecificPart != null)
             return;
         StringBuffer sb = new StringBuffer();
-        appendSchemeSpecificPart(sb, null, getAuthority(), getUserInfo(), host,
-                port, getPath(), getQuery());
+        appendSchemeSpecificPart(sb, null, getAuthority(), getUserInfo(), host, port, getPath(), getQuery());
         if (sb.length() == 0)
             return;
         schemeSpecificPart = sb.toString();
@@ -2330,8 +2079,8 @@ public final class URI implements Comparable<URI>, Serializable {
                     sb.append(userInfo);
                     sb.append('@');
                 }
-                boolean needBrackets = ((host.indexOf(':') >= 0) && !host
-                        .startsWith("[") && !host.endsWith("]"));
+                boolean needBrackets = ((host.indexOf(':') >= 0) && !host.startsWith("[") && !host.endsWith(
+                        "]"));
                 if (needBrackets)
                     sb.append('[');
                 sb.append(host);
@@ -2362,8 +2111,7 @@ public final class URI implements Comparable<URI>, Serializable {
     // -- Normalization, resolution, and relativization --
 
     // RFC2396 5.2 (6)
-    private static String resolvePath(String base, String child,
-            boolean absolute) {
+    private static String resolvePath(String base, String child, boolean absolute) {
         int i = base.lastIndexOf('/');
         int cn = child.length();
         String path = "";
@@ -2399,11 +2147,9 @@ public final class URI implements Comparable<URI>, Serializable {
             return child;
 
         // 5.2 (2): Reference to current document (lone fragment)
-        if ((child.scheme == null) && (child.authority == null) && child.path
-                .equals("") && (child.fragment != null)
-                && (child.query == null)) {
-            if ((base.fragment != null) && child.fragment.equals(
-                    base.fragment)) {
+        if ((child.scheme == null) && (child.authority == null) && child.path.equals("")
+                && (child.fragment != null) && (child.query == null)) {
+            if ((base.fragment != null) && child.fragment.equals(base.fragment)) {
                 return base;
             }
             URI ru = new URI();
@@ -2488,8 +2234,7 @@ public final class URI implements Comparable<URI>, Serializable {
         // if child is null.
         if (child.isOpaque() || base.isOpaque())
             return child;
-        if (!equalIgnoringCase(base.scheme, child.scheme) || !equal(
-                base.authority, child.authority))
+        if (!equalIgnoringCase(base.scheme, child.scheme) || !equal(base.authority, child.authority))
             return child;
 
         String bp = normalize(base.path);
@@ -2549,9 +2294,8 @@ public final class URI implements Comparable<URI>, Serializable {
         while (p <= end) {
 
             // Looking at "." or ".." ?
-            if ((path.charAt(p) == '.') && ((p == end) || ((path.charAt(p
-                    + 1) == '/') || ((path.charAt(p + 1) == '.') && ((p
-                            + 1 == end) || (path.charAt(p + 2) == '/')))))) {
+            if ((path.charAt(p) == '.') && ((p == end) || ((path.charAt(p + 1) == '/') || ((path.charAt(p
+                    + 1) == '.') && ((p + 1 == end) || (path.charAt(p + 2) == '/')))))) {
                 normal = false;
             }
             ns++;
@@ -2695,8 +2439,7 @@ public final class URI implements Comparable<URI>, Serializable {
                     } else if (path[p + 1] == '\0') {
                         dots = 1;
                         break;
-                    } else if ((path[p + 1] == '.') && ((p + 1 == end)
-                            || (path[p + 2] == '\0'))) {
+                    } else if ((path[p + 1] == '.') && ((p + 1 == end) || (path[p + 2] == '\0'))) {
                         dots = 2;
                         break;
                     }
@@ -2720,8 +2463,7 @@ public final class URI implements Comparable<URI>, Serializable {
                 }
                 if (j >= 0) {
                     int q = segs[j];
-                    if (!((path[q] == '.') && (path[q + 1] == '.') && (path[q
-                            + 2] == '\0'))) {
+                    if (!((path[q] == '.') && (path[q + 1] == '.') && (path[q + 2] == '\0'))) {
                         segs[i] = -1;
                         segs[j] = -1;
                     }
@@ -2930,10 +2672,8 @@ public final class URI implements Comparable<URI>, Serializable {
 
     // pchar = unreserved | escaped |
     // ":" | "@" | "&" | "=" | "+" | "$" | ","
-    private static final long L_PCHAR = L_UNRESERVED | L_ESCAPED | lowMask(
-            ":@&=+$,");
-    private static final long H_PCHAR = H_UNRESERVED | H_ESCAPED | highMask(
-            ":@&=+$,");
+    private static final long L_PCHAR = L_UNRESERVED | L_ESCAPED | lowMask(":@&=+$,");
+    private static final long H_PCHAR = H_UNRESERVED | H_ESCAPED | highMask(":@&=+$,");
 
     // All valid path characters
     private static final long L_PATH = L_PCHAR | lowMask(";/");
@@ -2949,23 +2689,17 @@ public final class URI implements Comparable<URI>, Serializable {
 
     // userinfo = *( unreserved | escaped |
     // ";" | ":" | "&" | "=" | "+" | "$" | "," )
-    private static final long L_USERINFO = L_UNRESERVED | L_ESCAPED | lowMask(
-            ";:&=+$,");
-    private static final long H_USERINFO = H_UNRESERVED | H_ESCAPED | highMask(
-            ";:&=+$,");
+    private static final long L_USERINFO = L_UNRESERVED | L_ESCAPED | lowMask(";:&=+$,");
+    private static final long H_USERINFO = H_UNRESERVED | H_ESCAPED | highMask(";:&=+$,");
 
     // reg_name = 1*( unreserved | escaped | "$" | "," |
     // ";" | ":" | "@" | "&" | "=" | "+" )
-    private static final long L_REG_NAME = L_UNRESERVED | L_ESCAPED | lowMask(
-            "$,;:@&=+");
-    private static final long H_REG_NAME = H_UNRESERVED | H_ESCAPED | highMask(
-            "$,;:@&=+");
+    private static final long L_REG_NAME = L_UNRESERVED | L_ESCAPED | lowMask("$,;:@&=+");
+    private static final long H_REG_NAME = H_UNRESERVED | H_ESCAPED | highMask("$,;:@&=+");
 
     // All valid characters for server-based authorities
-    private static final long L_SERVER = L_USERINFO | L_ALPHANUM | L_DASH
-            | lowMask(".:@[]");
-    private static final long H_SERVER = H_USERINFO | H_ALPHANUM | H_DASH
-            | highMask(".:@[]");
+    private static final long L_SERVER = L_USERINFO | L_ALPHANUM | L_DASH | lowMask(".:@[]");
+    private static final long H_SERVER = H_USERINFO | H_ALPHANUM | H_DASH | highMask(".:@[]");
 
     // Special case of server authority that represents an IPv6 address
     // In this case, a % does not signify an escape sequence
@@ -2980,15 +2714,13 @@ public final class URI implements Comparable<URI>, Serializable {
 
     // uric_no_slash = unreserved | escaped | ";" | "?" | ":" | "@" |
     // "&" | "=" | "+" | "$" | ","
-    private static final long L_URIC_NO_SLASH = L_UNRESERVED | L_ESCAPED
-            | lowMask(";?:@&=+$,");
-    private static final long H_URIC_NO_SLASH = H_UNRESERVED | H_ESCAPED
-            | highMask(";?:@&=+$,");
+    private static final long L_URIC_NO_SLASH = L_UNRESERVED | L_ESCAPED | lowMask(";?:@&=+$,");
+    private static final long H_URIC_NO_SLASH = H_UNRESERVED | H_ESCAPED | highMask(";?:@&=+$,");
 
     // -- Escaping and encoding --
 
-    private final static char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6',
-            '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+    private final static char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C',
+            'D', 'E', 'F' };
 
     private static void appendEscape(StringBuffer sb, byte b) {
         sb.append('%');
@@ -2999,8 +2731,7 @@ public final class URI implements Comparable<URI>, Serializable {
     private static void appendEncoded(StringBuffer sb, char c) {
         ByteBuffer bb = null;
         try {
-            bb = ThreadLocalCoders.encoderFor("UTF-8").encode(CharBuffer.wrap(""
-                    + c));
+            bb = ThreadLocalCoders.encoderFor("UTF-8").encode(CharBuffer.wrap("" + c));
         } catch (CharacterCodingException x) {
             assert false;
         }
@@ -3033,8 +2764,7 @@ public final class URI implements Comparable<URI>, Serializable {
                     if (sb != null)
                         sb.append(c);
                 }
-            } else if (allowNonASCII && (Character.isSpaceChar(c) || Character
-                    .isISOControl(c))) {
+            } else if (allowNonASCII && (Character.isSpaceChar(c) || Character.isISOControl(c))) {
                 if (sb == null) {
                     sb = new StringBuffer();
                     sb.append(s.substring(0, i));
@@ -3067,8 +2797,7 @@ public final class URI implements Comparable<URI>, Serializable {
         String ns = Normalizer.normalize(s, Normalizer.Form.NFC);
         ByteBuffer bb = null;
         try {
-            bb = ThreadLocalCoders.encoderFor("UTF-8").encode(CharBuffer.wrap(
-                    ns));
+            bb = ThreadLocalCoders.encoderFor("UTF-8").encode(CharBuffer.wrap(ns));
         } catch (CharacterCodingException x) {
             assert false;
         }
@@ -3119,8 +2848,7 @@ public final class URI implements Comparable<URI>, Serializable {
         StringBuffer sb = new StringBuffer(n);
         ByteBuffer bb = ByteBuffer.allocate(n);
         CharBuffer cb = CharBuffer.allocate(n);
-        CharsetDecoder dec = ThreadLocalCoders.decoderFor("UTF-8")
-                .onMalformedInput(CodingErrorAction.REPLACE)
+        CharsetDecoder dec = ThreadLocalCoders.decoderFor("UTF-8").onMalformedInput(CodingErrorAction.REPLACE)
                 .onUnmappableCharacter(CodingErrorAction.REPLACE);
 
         // This is not horribly efficient, but it will do for now
@@ -3191,13 +2919,11 @@ public final class URI implements Comparable<URI>, Serializable {
             throw new URISyntaxException(input, reason, p);
         }
 
-        private void failExpecting(String expected, int p)
-                throws URISyntaxException {
+        private void failExpecting(String expected, int p) throws URISyntaxException {
             fail("Expected " + expected, p);
         }
 
-        private void failExpecting(String expected, String prior, int p)
-                throws URISyntaxException {
+        private void failExpecting(String expected, String prior, int p) throws URISyntaxException {
             fail("Expected " + expected + " following " + prior, p);
         }
 
@@ -3301,19 +3027,17 @@ public final class URI implements Comparable<URI>, Serializable {
         // This method assumes that if escapes are allowed then visible
         // non-US-ASCII chars are also allowed.
         //
-        private int scanEscape(int start, int n, char first)
-                throws URISyntaxException {
+        private int scanEscape(int start, int n, char first) throws URISyntaxException {
             int p = start;
             char c = first;
             if (c == '%') {
                 // Process escape pair
-                if ((p + 3 <= n) && match(charAt(p + 1), L_HEX, H_HEX) && match(
-                        charAt(p + 2), L_HEX, H_HEX)) {
+                if ((p + 3 <= n) && match(charAt(p + 1), L_HEX, H_HEX) && match(charAt(p + 2), L_HEX,
+                        H_HEX)) {
                     return p + 3;
                 }
                 fail("Malformed escape pair", p);
-            } else if ((c > 128) && !Character.isSpaceChar(c) && !Character
-                    .isISOControl(c)) {
+            } else if ((c > 128) && !Character.isSpaceChar(c) && !Character.isISOControl(c)) {
                 // Allow unescaped but visible non-US-ASCII chars
                 return p + 1;
             }
@@ -3322,8 +3046,7 @@ public final class URI implements Comparable<URI>, Serializable {
 
         // Scan chars that match the given mask pair
         //
-        private int scan(int start, int n, long lowMask, long highMask)
-                throws URISyntaxException {
+        private int scan(int start, int n, long lowMask, long highMask) throws URISyntaxException {
             int p = start;
             while (p < n) {
                 char c = charAt(p);
@@ -3345,8 +3068,8 @@ public final class URI implements Comparable<URI>, Serializable {
 
         // Check that each of the chars in [start, end) matches the given mask
         //
-        private void checkChars(int start, int end, long lowMask, long highMask,
-                String what) throws URISyntaxException {
+        private void checkChars(int start, int end, long lowMask, long highMask, String what)
+                throws URISyntaxException {
             int p = scan(start, end, lowMask, highMask);
             if (p < end)
                 fail("Illegal character in " + what, p);
@@ -3354,8 +3077,7 @@ public final class URI implements Comparable<URI>, Serializable {
 
         // Check that the char at position p matches the given mask
         //
-        private void checkChar(int p, long lowMask, long highMask, String what)
-                throws URISyntaxException {
+        private void checkChar(int p, long lowMask, long highMask, String what) throws URISyntaxException {
             checkChars(p, p + 1, lowMask, highMask, what);
         }
 
@@ -3413,8 +3135,7 @@ public final class URI implements Comparable<URI>, Serializable {
         // The primary consequence of this deviation is that "#f" parses as a
         // relative URI with an empty path.
         //
-        private int parseHierarchical(int start, int n)
-                throws URISyntaxException {
+        private int parseHierarchical(int start, int n) throws URISyntaxException {
             int p = start;
             if (at(p, n, '/') && at(p + 1, n, '/')) {
                 p += 2;
@@ -3459,8 +3180,7 @@ public final class URI implements Comparable<URI>, Serializable {
 
             if (scan(p, n, "", "]") > p) {
                 // contains a literal IPv6 address, therefore % is allowed
-                serverChars = (scan(p, n, L_SERVER_PERCENT,
-                        H_SERVER_PERCENT) == n);
+                serverChars = (scan(p, n, L_SERVER_PERCENT, H_SERVER_PERCENT) == n);
             } else {
                 serverChars = (scan(p, n, L_SERVER, H_SERVER) == n);
             }
@@ -3542,8 +3262,7 @@ public final class URI implements Comparable<URI>, Serializable {
                         if (r + 1 == q) {
                             fail("scope id expected");
                         }
-                        checkChars(r + 1, q, L_ALPHANUM, H_ALPHANUM,
-                                "scope id");
+                        checkChars(r + 1, q, L_ALPHANUM, H_ALPHANUM, "scope id");
                     } else {
                         parseIPv6Reference(p, q);
                     }
@@ -3606,8 +3325,7 @@ public final class URI implements Comparable<URI>, Serializable {
         // address. It won't parse as a hostname anyway, so making that
         // assumption here allows more meaningful exceptions to be thrown.
         //
-        private int scanIPv4Address(int start, int n, boolean strict)
-                throws URISyntaxException {
+        private int scanIPv4Address(int start, int n, boolean strict) throws URISyntaxException {
             int p = start;
             int q;
             int m = scan(p, n, L_DIGIT | L_DOT, H_DIGIT | H_DOT);
@@ -3648,8 +3366,7 @@ public final class URI implements Comparable<URI>, Serializable {
         // Take an IPv4 address: Throw an exception if the given interval
         // contains anything except an IPv4 address
         //
-        private int takeIPv4Address(int start, int n, String expected)
-                throws URISyntaxException {
+        private int takeIPv4Address(int start, int n, String expected) throws URISyntaxException {
             int p = scanIPv4Address(start, n, true);
             if (p <= start)
                 failExpecting(expected, start);
@@ -3776,8 +3493,7 @@ public final class URI implements Comparable<URI>, Serializable {
 
         private int ipv6byteCount = 0;
 
-        private int parseIPv6Reference(int start, int n)
-                throws URISyntaxException {
+        private int parseIPv6Reference(int start, int n) throws URISyntaxException {
             int p = start;
             int q;
             boolean compressedZeros = false;

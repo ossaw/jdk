@@ -11,11 +11,9 @@ import javax.lang.model.element.Modifier;
 /**
  * File abstraction for tools operating on Java&trade; programming language
  * source and class files.
- *
  * <p>
  * All methods in this interface might throw a SecurityException if a security
  * exception occurs.
- *
  * <p>
  * Unless explicitly allowed, all methods in this interface might throw a
  * NullPointerException if given a {@code null} argument.
@@ -31,28 +29,28 @@ public interface JavaFileObject extends FileObject {
      * Kinds of JavaFileObjects.
      */
     enum Kind {
-    /**
-     * Source files written in the Java programming language. For example,
-     * regular files ending with {@code .java}.
-     */
-    SOURCE(".java"),
+        /**
+         * Source files written in the Java programming language. For example,
+         * regular files ending with {@code .java}.
+         */
+        SOURCE(".java"),
 
-    /**
-     * Class files for the Java Virtual Machine. For example, regular files
-     * ending with {@code .class}.
-     */
-    CLASS(".class"),
+        /**
+         * Class files for the Java Virtual Machine. For example, regular files
+         * ending with {@code .class}.
+         */
+        CLASS(".class"),
 
-    /**
-     * HTML files. For example, regular files ending with {@code
-     * .html}.
-     */
-    HTML(".html"),
+        /**
+         * HTML files. For example, regular files ending with {@code
+         * .html}.
+         */
+        HTML(".html"),
 
-    /**
-     * Any other kind.
-     */
-    OTHER("");
+        /**
+         * Any other kind.
+         */
+        OTHER("");
         /**
          * The extension which (by convention) is normally used for this kind of
          * file object. If no convention exists, the empty string ({@code ""})
@@ -80,9 +78,9 @@ public interface JavaFileObject extends FileObject {
      * "Names and Identifiers".
      *
      * @param simpleName
-     *                   a simple name of a class
+     *        a simple name of a class
      * @param kind
-     *                   a kind
+     *        a kind
      * @return {@code true} if this file object is compatible; false otherwise
      */
     boolean isNameCompatible(String simpleName, Kind kind);

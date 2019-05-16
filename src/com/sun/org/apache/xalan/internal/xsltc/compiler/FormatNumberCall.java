@@ -70,8 +70,7 @@ final class FormatNumberCall extends FunctionCall {
 
             if (_name instanceof LiteralExpr) {
                 final LiteralExpr literal = (LiteralExpr) _name;
-                _resolvedQName = getParser().getQNameIgnoreDefaultNs(literal
-                        .getValue());
+                _resolvedQName = getParser().getQNameIgnoreDefaultNs(literal.getValue());
             } else if (tname instanceof StringType == false) {
                 _name = new CastExpr(_name, Type.String);
             }
@@ -86,11 +85,10 @@ final class FormatNumberCall extends FunctionCall {
         _value.translate(classGen, methodGen);
         _format.translate(classGen, methodGen);
 
-        final int fn3arg = cpg.addMethodref(BASIS_LIBRARY_CLASS, "formatNumber",
-                "(DLjava/lang/String;" + "Ljava/text/DecimalFormat;)"
-                        + "Ljava/lang/String;");
-        final int get = cpg.addMethodref(TRANSLET_CLASS, "getDecimalFormat",
-                "(Ljava/lang/String;)" + "Ljava/text/DecimalFormat;");
+        final int fn3arg = cpg.addMethodref(BASIS_LIBRARY_CLASS, "formatNumber", "(DLjava/lang/String;"
+                + "Ljava/text/DecimalFormat;)" + "Ljava/lang/String;");
+        final int get = cpg.addMethodref(TRANSLET_CLASS, "getDecimalFormat", "(Ljava/lang/String;)"
+                + "Ljava/text/DecimalFormat;");
 
         il.append(classGen.loadTranslet());
         if (_name == null) {

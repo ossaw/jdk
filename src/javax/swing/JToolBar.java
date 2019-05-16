@@ -33,7 +33,6 @@ import java.util.Hashtable;
  * on using tool bars see <a href=
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/toolbar.html">How
  * to Use Tool Bars</a>, a section in <em>The Java Tutorial</em>.
- *
  * <p>
  * With most look and feels, the user can drag out a tool bar into a separate
  * window (unless the <code>floatable</code> property is set to
@@ -54,7 +53,6 @@ import java.util.Hashtable;
  *
  * @beaninfo attribute: isContainer true description: A component which displays
  *           commonly used controls or Actions.
- *
  * @author Georges Saab
  * @author Jeff Shapiro
  * @see Action
@@ -84,7 +82,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * <code>VERTICAL</code>.
      *
      * @param orientation
-     *                    the orientation desired
+     *        the orientation desired
      */
     public JToolBar(int orientation) {
         this(null, orientation);
@@ -96,7 +94,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * <code>HORIZONTAL</code>.
      *
      * @param name
-     *             the name of the tool bar
+     *        the name of the tool bar
      * @since 1.3
      */
     public JToolBar(String name) {
@@ -110,14 +108,14 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * thrown.
      *
      * @param name
-     *                    the name of the tool bar
+     *        the name of the tool bar
      * @param orientation
-     *                    the initial orientation -- it must be either
-     *                    <code>HORIZONTAL</code> or <code>VERTICAL</code>
+     *        the initial orientation -- it must be either
+     *        <code>HORIZONTAL</code> or <code>VERTICAL</code>
      * @exception IllegalArgumentException
-     *                                     if orientation is neither
-     *                                     <code>HORIZONTAL</code> nor
-     *                                     <code>VERTICAL</code>
+     *            if orientation is neither
+     *            <code>HORIZONTAL</code> nor
+     *            <code>VERTICAL</code>
      * @since 1.3
      */
     public JToolBar(String name, int orientation) {
@@ -146,7 +144,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * Sets the L&amp;F object that renders this component.
      *
      * @param ui
-     *           the <code>ToolBarUI</code> L&amp;F object
+     *        the <code>ToolBarUI</code> L&amp;F object
      * @see UIDefaults#getUI
      * @beaninfo bound: true hidden: true attribute: visualUpdate true
      *           description: The UI object that implements the Component's
@@ -190,7 +188,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * index positions.)
      *
      * @param c
-     *          the <code>Component</code> to find
+     *        the <code>Component</code> to find
      * @return an integer indicating the component's position, where 0 is first
      */
     public int getComponentIndex(Component c) {
@@ -208,10 +206,9 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * Returns the component at the specified index.
      *
      * @param i
-     *          the component's position, where 0 is first
+     *        the component's position, where 0 is first
      * @return the <code>Component</code> at that position, or <code>null</code>
      *         for an invalid index
-     *
      */
     public Component getComponentAtIndex(int i) {
         int ncomponents = this.getComponentCount();
@@ -232,8 +229,8 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * ignored).
      *
      * @param m
-     *          an <code>Insets</code> object that defines the space between
-     *          the border and the buttons
+     *        an <code>Insets</code> object that defines the space between
+     *        the border and the buttons
      * @see Insets
      * @beaninfo description: The margin between the tool bar's border and
      *           contents bound: true expert: true
@@ -277,7 +274,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * borders; they will ignore this property.
      *
      * @param b
-     *          if true, the border is painted
+     *        if true, the border is painted
      * @see #isBorderPainted
      * @beaninfo description: Does the tool bar paint its borders? bound: true
      *           expert: true
@@ -297,8 +294,8 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * is <code>true</code>.
      *
      * @param g
-     *          the <code>Graphics</code> context in which the painting is
-     *          done
+     *        the <code>Graphics</code> context in which the painting is
+     *        done
      * @see JComponent#paint
      * @see JComponent#setBorder
      */
@@ -312,7 +309,6 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * Gets the <code>floatable</code> property.
      *
      * @return the value of the <code>floatable</code> property
-     *
      * @see #setFloatable
      */
     public boolean isFloatable() {
@@ -328,8 +324,8 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * ignore this property.
      *
      * @param b
-     *          if <code>true</code>, the tool bar can be moved;
-     *          <code>false</code> otherwise
+     *        if <code>true</code>, the tool bar can be moved;
+     *        <code>false</code> otherwise
      * @see #isFloatable
      * @beaninfo description: Can the tool bar be made to float by the user?
      *           bound: true preferred: true
@@ -364,12 +360,12 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * thrown.
      *
      * @param o
-     *          the new orientation -- either <code>HORIZONTAL</code> or
-     *          <code>VERTICAL</code>
+     *        the new orientation -- either <code>HORIZONTAL</code> or
+     *        <code>VERTICAL</code>
      * @exception IllegalArgumentException
-     *                                     if orientation is neither
-     *                                     <code>HORIZONTAL</code> nor
-     *                                     <code>VERTICAL</code>
+     *            if orientation is neither
+     *            <code>HORIZONTAL</code> nor
+     *            <code>VERTICAL</code>
      * @see #getOrientation
      * @beaninfo description: The current orientation of the tool bar bound:
      *           true preferred: true enum: HORIZONTAL SwingConstants.HORIZONTAL
@@ -396,14 +392,13 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * The implementation of a look and feel may choose to ignore this property.
      *
      * @param rollover
-     *                 true for rollover toolbar buttons; otherwise false
+     *        true for rollover toolbar buttons; otherwise false
      * @since 1.4
      * @beaninfo bound: true preferred: true attribute: visualUpdate true
      *           description: Will draw rollover button borders in the toolbar.
      */
     public void setRollover(boolean rollover) {
-        putClientProperty("JToolBar.isRollover", rollover ? Boolean.TRUE
-                : Boolean.FALSE);
+        putClientProperty("JToolBar.isRollover", rollover ? Boolean.TRUE : Boolean.FALSE);
     }
 
     /**
@@ -427,8 +422,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
             case HORIZONTAL:
                 break;
             default:
-                throw new IllegalArgumentException(
-                        "orientation must be one of: VERTICAL, HORIZONTAL");
+                throw new IllegalArgumentException("orientation must be one of: VERTICAL, HORIZONTAL");
         }
     }
 
@@ -444,7 +438,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * Appends a separator of a specified size to the end of the tool bar.
      *
      * @param size
-     *             the <code>Dimension</code> of the separator
+     *        the <code>Dimension</code> of the separator
      */
     public void addSeparator(Dimension size) {
         JToolBar.Separator s = new JToolBar.Separator(size);
@@ -455,7 +449,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * Adds a new <code>JButton</code> which dispatches the action.
      *
      * @param a
-     *          the <code>Action</code> object to add as a new menu item
+     *        the <code>Action</code> object to add as a new menu item
      * @return the new button which dispatches the action
      */
     public JButton add(Action a) {
@@ -471,15 +465,14 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * is empty if a <code>null</code> action is passed.
      *
      * @param a
-     *          the <code>Action</code> for the button to be added
+     *        the <code>Action</code> for the button to be added
      * @return the newly created button
      * @see Action
      * @since 1.3
      */
     protected JButton createActionComponent(Action a) {
         JButton b = new JButton() {
-            protected PropertyChangeListener createActionPropertyChangeListener(
-                    Action a) {
+            protected PropertyChangeListener createActionPropertyChangeListener(Action a) {
                 PropertyChangeListener pcl = createActionChangeListener(this);
                 if (pcl == null) {
                     pcl = super.createActionPropertyChangeListener(a);
@@ -513,12 +506,11 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
      * disabled.
      *
      * @param comp
-     *                    the component to be enhanced
+     *        the component to be enhanced
      * @param constraints
-     *                    the constraints to be enforced on the component
+     *        the constraints to be enforced on the component
      * @param index
-     *                    the index of the component
-     *
+     *        the index of the component
      */
     protected void addImpl(Component comp, Object constraints, int index) {
         if (comp instanceof Separator) {
@@ -553,7 +545,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
          * Creates a new toolbar separator with the specified size.
          *
          * @param size
-         *             the <code>Dimension</code> of the separator
+         *        the <code>Dimension</code> of the separator
          */
         public Separator(Dimension size) {
             super(JSeparator.HORIZONTAL);
@@ -575,7 +567,7 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
          * Sets the size of the separator.
          *
          * @param size
-         *             the new <code>Dimension</code> of the separator
+         *        the new <code>Dimension</code> of the separator
          */
         public void setSeparatorSize(Dimension size) {
             if (size != null) {
@@ -668,16 +660,14 @@ public class JToolBar extends JComponent implements SwingConstants, Accessible {
         String paintBorderString = (paintBorder ? "true" : "false");
         String marginString = (margin != null ? margin.toString() : "");
         String floatableString = (floatable ? "true" : "false");
-        String orientationString = (orientation == HORIZONTAL ? "HORIZONTAL"
-                : "VERTICAL");
+        String orientationString = (orientation == HORIZONTAL ? "HORIZONTAL" : "VERTICAL");
 
-        return super.paramString() + ",floatable=" + floatableString
-                + ",margin=" + marginString + ",orientation="
-                + orientationString + ",paintBorder=" + paintBorderString;
+        return super.paramString() + ",floatable=" + floatableString + ",margin=" + marginString
+                + ",orientation=" + orientationString + ",paintBorder=" + paintBorderString;
     }
 
-    private class DefaultToolBarLayout implements LayoutManager2, Serializable,
-            PropertyChangeListener, UIResource {
+    private class DefaultToolBarLayout implements LayoutManager2, Serializable, PropertyChangeListener,
+            UIResource {
 
         BoxLayout lm;
 

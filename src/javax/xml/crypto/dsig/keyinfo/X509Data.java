@@ -49,8 +49,7 @@ import java.util.List;
  * 
  * <pre>
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
- * X509Data x509Data = factory.newX509Data(Collections.singletonList(
- *         "cn=Alice"));
+ * X509Data x509Data = factory.newX509Data(Collections.singletonList("cn=Alice"));
  * </pre>
  *
  * @author Sean Mullan

@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -55,13 +53,12 @@ public class SignatureProperties extends SignatureElementProxy {
      * Constructs {@link SignatureProperties} from {@link Element}
      * 
      * @param element
-     *                <code>SignatureProperties</code> element
+     *        <code>SignatureProperties</code> element
      * @param BaseURI
-     *                the URI of the resource where the XML instance was stored
+     *        the URI of the resource where the XML instance was stored
      * @throws XMLSecurityException
      */
-    public SignatureProperties(Element element, String BaseURI)
-            throws XMLSecurityException {
+    public SignatureProperties(Element element, String BaseURI) throws XMLSecurityException {
         super(element, BaseURI);
 
         Attr attr = element.getAttributeNodeNS(null, "Id");
@@ -71,9 +68,8 @@ public class SignatureProperties extends SignatureElementProxy {
 
         int length = getLength();
         for (int i = 0; i < length; i++) {
-            Element propertyElem = XMLUtils.selectDsNode(
-                    this.constructionElement, Constants._TAG_SIGNATUREPROPERTY,
-                    i);
+            Element propertyElem = XMLUtils.selectDsNode(this.constructionElement,
+                    Constants._TAG_SIGNATUREPROPERTY, i);
             Attr propertyAttr = propertyElem.getAttributeNodeNS(null, "Id");
             if (propertyAttr != null) {
                 propertyElem.setIdAttributeNode(propertyAttr, true);
@@ -87,8 +83,8 @@ public class SignatureProperties extends SignatureElementProxy {
      * @return the number of SignatureProperty elements
      */
     public int getLength() {
-        Element[] propertyElems = XMLUtils.selectDsNodes(
-                this.constructionElement, Constants._TAG_SIGNATUREPROPERTY);
+        Element[] propertyElems = XMLUtils.selectDsNodes(this.constructionElement,
+                Constants._TAG_SIGNATUREPROPERTY);
 
         return propertyElems.length;
     }
@@ -98,15 +94,14 @@ public class SignatureProperties extends SignatureElementProxy {
      * <code>i</code> values are 0 to <code>{link@ getSize}-1</code>.
      *
      * @param i
-     *          Index of the requested {@link SignatureProperty}
+     *        Index of the requested {@link SignatureProperty}
      * @return the <it>i</it><sup>th</sup> SignatureProperty
      * @throws XMLSignatureException
      */
     public SignatureProperty item(int i) throws XMLSignatureException {
         try {
-            Element propertyElem = XMLUtils.selectDsNode(
-                    this.constructionElement, Constants._TAG_SIGNATUREPROPERTY,
-                    i);
+            Element propertyElem = XMLUtils.selectDsNode(this.constructionElement,
+                    Constants._TAG_SIGNATUREPROPERTY, i);
 
             if (propertyElem == null) {
                 return null;
@@ -121,14 +116,12 @@ public class SignatureProperties extends SignatureElementProxy {
      * Sets the <code>Id</code> attribute
      *
      * @param Id
-     *           the <code>Id</code> attribute
+     *        the <code>Id</code> attribute
      */
     public void setId(String Id) {
         if (Id != null) {
-            this.constructionElement.setAttributeNS(null, Constants._ATT_ID,
-                    Id);
-            this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID,
-                    true);
+            this.constructionElement.setAttributeNS(null, Constants._ATT_ID, Id);
+            this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID, true);
         }
     }
 

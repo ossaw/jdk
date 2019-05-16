@@ -97,8 +97,8 @@ public abstract class NodeSortRecord {
      * This method allows the caller to set the values that could not be passed
      * to the default constructor.
      */
-    public final void initialize(int node, int last, DOM dom,
-            SortSettings settings) throws TransletException {
+    public final void initialize(int node, int last, DOM dom, SortSettings settings)
+            throws TransletException {
         _dom = dom;
         _node = node;
         _last = last;
@@ -118,8 +118,7 @@ public abstract class NodeSortRecord {
 
         if (colFactClassname != null) {
             try {
-                Object candObj = ObjectFactory.findProviderClass(
-                        colFactClassname, true);
+                Object candObj = ObjectFactory.findProviderClass(colFactClassname, true);
                 _collatorFactory = (CollatorFactory) candObj;
             } catch (ClassNotFoundException e) {
                 throw new TransletException(e);
@@ -163,10 +162,9 @@ public abstract class NodeSortRecord {
             String[] caseOrder = _settings.getCaseOrders();
 
             // Get value from DOM if accessed for the first time
-            final String str = extractValueFromDOM(_dom, _node, level, translet,
-                    _last);
-            final Comparable key = StringComparable.getComparator(str,
-                    locales[level], _collators[level], caseOrder[level]);
+            final String str = extractValueFromDOM(_dom, _node, level, translet, _last);
+            final Comparable key = StringComparable.getComparator(str, locales[level], _collators[level],
+                    caseOrder[level]);
             _values[_scanned++] = key;
             return (key);
         }
@@ -179,8 +177,7 @@ public abstract class NodeSortRecord {
             AbstractTranslet translet = _settings.getTranslet();
 
             // Get value from DOM if accessed for the first time
-            final String str = extractValueFromDOM(_dom, _node, level, translet,
-                    _last);
+            final String str = extractValueFromDOM(_dom, _node, level, translet, _last);
             Double num;
             try {
                 num = new Double(str);
@@ -199,7 +196,6 @@ public abstract class NodeSortRecord {
      * Compare this sort element to another. The first level is checked first,
      * and we proceed to the next level only if the first level keys are
      * identical (and so the key values may not even be extracted from the DOM)
-     *
      * !!!!MUST OPTIMISE - THIS IS REALLY, REALLY SLOW!!!!
      */
     public int compareTo(NodeSortRecord other) {
@@ -240,7 +236,7 @@ public abstract class NodeSortRecord {
     /**
      * Extract the sort value for a level of this key.
      */
-    public abstract String extractValueFromDOM(DOM dom, int current, int level,
-            AbstractTranslet translet, int last);
+    public abstract String extractValueFromDOM(DOM dom, int current, int level, AbstractTranslet translet,
+            int last);
 
 }

@@ -26,7 +26,6 @@ public interface SOAPFault extends SOAPBodyElement {
 
     /**
      * Sets this <code>SOAPFault</code> object with the given fault code.
-     *
      * <P>
      * Fault codes, which give information about the fault, are defined in the
      * SOAP 1.1 specification. A fault code is mandatory and must be of type
@@ -47,39 +46,33 @@ public interface SOAPFault extends SOAPBodyElement {
      * It is preferable to use this method over {@link #setFaultCode(String)}.
      *
      * @param faultCodeQName
-     *                       a <code>Name</code> object giving the fault code to
-     *                       be set. It
-     *                       must be namespace qualified.
+     *        a <code>Name</code> object giving the fault code to
+     *        be set. It
+     *        must be namespace qualified.
      * @see #getFaultCodeAsName
-     *
      * @exception SOAPException
-     *                          if there was an error in adding the
-     *                          <i>faultcode</i>
-     *                          element to the underlying XML tree.
-     *
+     *            if there was an error in adding the
+     *            <i>faultcode</i>
+     *            element to the underlying XML tree.
      * @since SAAJ 1.2
      */
     public void setFaultCode(Name faultCodeQName) throws SOAPException;
 
     /**
      * Sets this <code>SOAPFault</code> object with the given fault code.
-     *
      * It is preferable to use this method over {@link #setFaultCode(Name)}.
      *
      * @param faultCodeQName
-     *                       a <code>QName</code> object giving the fault code
-     *                       to be set.
-     *                       It must be namespace qualified.
+     *        a <code>QName</code> object giving the fault code
+     *        to be set.
+     *        It must be namespace qualified.
      * @see #getFaultCodeAsQName
-     *
      * @exception SOAPException
-     *                          if there was an error in adding the
-     *                          <code>faultcode</code>
-     *                          element to the underlying XML tree.
-     *
+     *            if there was an error in adding the
+     *            <code>faultcode</code>
+     *            element to the underlying XML tree.
      * @see #setFaultCode(Name)
      * @see #getFaultCodeAsQName()
-     *
      * @since SAAJ 1.3
      */
     public void setFaultCode(QName faultCodeQName) throws SOAPException;
@@ -93,19 +86,18 @@ public interface SOAPFault extends SOAPBodyElement {
      * {@link #setFaultCode(Name)} form of this method.
      *
      * @param faultCode
-     *                  a <code>String</code> giving the fault code to be set.
-     *                  It must
-     *                  be of the form "prefix:localName" where the prefix has
-     *                  been
-     *                  defined in a namespace declaration.
+     *        a <code>String</code> giving the fault code to be set.
+     *        It must
+     *        be of the form "prefix:localName" where the prefix has
+     *        been
+     *        defined in a namespace declaration.
      * @see #setFaultCode(Name)
      * @see #getFaultCode
      * @see SOAPElement#addNamespaceDeclaration
-     *
      * @exception SOAPException
-     *                          if there was an error in adding the
-     *                          <code>faultCode</code>
-     *                          to the underlying XML tree.
+     *            if there was an error in adding the
+     *            <code>faultCode</code>
+     *            to the underlying XML tree.
      */
     public void setFaultCode(String faultCode) throws SOAPException;
 
@@ -120,7 +112,6 @@ public interface SOAPFault extends SOAPBodyElement {
      *
      * @return a <code>Name</code> representing the faultcode
      * @see #setFaultCode(Name)
-     *
      * @since SAAJ 1.2
      */
     public Name getFaultCodeAsName();
@@ -130,9 +121,7 @@ public interface SOAPFault extends SOAPBodyElement {
      * <code>QName</code> object.
      *
      * @return a <code>QName</code> representing the faultcode
-     *
      * @see #setFaultCode(QName)
-     *
      * @since SAAJ 1.3
      */
     public QName getFaultCodeAsQName();
@@ -146,12 +135,10 @@ public interface SOAPFault extends SOAPBodyElement {
      *         support the optional <code>remove</code> method. The order in
      *         which the Subcodes are returned reflects the hierarchy of
      *         Subcodes present in the fault from top to bottom.
-     *
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Subcode.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Subcode.
      * @since SAAJ 1.3
      */
     public Iterator getFaultSubcodes();
@@ -162,10 +149,9 @@ public interface SOAPFault extends SOAPBodyElement {
      * iterator until a call to <code>appendFaultSubcode</code> is made.
      *
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Subcode.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Subcode.
      * @since SAAJ 1.3
      */
     public void removeAllFaultSubcodes();
@@ -177,16 +163,14 @@ public interface SOAPFault extends SOAPBodyElement {
      * mandatory Code subelement of a SOAP Fault.
      *
      * @param subcode
-     *                a QName containing the Value of the Subcode.
-     *
+     *        a QName containing the Value of the Subcode.
      * @exception SOAPException
-     *                                          if there was an error in setting
-     *                                          the Subcode
+     *            if there was an error in setting
+     *            the Subcode
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Subcode.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Subcode.
      * @since SAAJ 1.3
      */
     public void appendFaultSubcode(QName subcode) throws SOAPException;
@@ -210,15 +194,14 @@ public interface SOAPFault extends SOAPBodyElement {
      * equivalent to {@link #setFaultRole(String)}
      *
      * @param faultActor
-     *                   a <code>String</code> identifying the actor that caused
-     *                   this
-     *                   <code>SOAPFault</code> object
+     *        a <code>String</code> identifying the actor that caused
+     *        this
+     *        <code>SOAPFault</code> object
      * @see #getFaultActor
-     *
      * @exception SOAPException
-     *                          if there was an error in adding the
-     *                          <code>faultActor</code> to the underlying XML
-     *                          tree.
+     *            if there was an error in adding the
+     *            <code>faultActor</code> to the underlying XML
+     *            tree.
      */
     public void setFaultActor(String faultActor) throws SOAPException;
 
@@ -246,14 +229,13 @@ public interface SOAPFault extends SOAPBodyElement {
      * </pre>
      *
      * @param faultString
-     *                    a <code>String</code> giving an explanation of the
-     *                    fault
+     *        a <code>String</code> giving an explanation of the
+     *        fault
      * @see #getFaultString
-     *
      * @exception SOAPException
-     *                          if there was an error in adding the
-     *                          <code>faultString</code> to the underlying XML
-     *                          tree.
+     *            if there was an error in adding the
+     *            <code>faultString</code> to the underlying XML
+     *            tree.
      */
     public void setFaultString(String faultString) throws SOAPException;
 
@@ -269,23 +251,20 @@ public interface SOAPFault extends SOAPBodyElement {
      * </pre>
      *
      * @param faultString
-     *                    a <code>String</code> giving an explanation of the
-     *                    fault
+     *        a <code>String</code> giving an explanation of the
+     *        fault
      * @param locale
-     *                    a {@link java.util.Locale Locale} object indicating
-     *                    the native
-     *                    language of the <code>faultString</code>
+     *        a {@link java.util.Locale Locale} object indicating
+     *        the native
+     *        language of the <code>faultString</code>
      * @see #getFaultString
-     *
      * @exception SOAPException
-     *                          if there was an error in adding the
-     *                          <code>faultString</code> to the underlying XML
-     *                          tree.
-     *
+     *            if there was an error in adding the
+     *            <code>faultString</code> to the underlying XML
+     *            tree.
      * @since SAAJ 1.2
      */
-    public void setFaultString(String faultString, Locale locale)
-            throws SOAPException;
+    public void setFaultString(String faultString, Locale locale) throws SOAPException;
 
     /**
      * Gets the fault string for this <code>SOAPFault</code> object.
@@ -297,8 +276,7 @@ public interface SOAPFault extends SOAPBodyElement {
      * String reason = null;
      * try {
      *     reason = (String) getFaultReasonTexts().next();
-     * } catch (SOAPException e) {
-     * }
+     * } catch (SOAPException e) {}
      * return reason;
      * </pre>
      *
@@ -319,15 +297,13 @@ public interface SOAPFault extends SOAPBodyElement {
      * Locale locale = null;
      * try {
      *     locale = (Locale) getFaultReasonLocales().next();
-     * } catch (SOAPException e) {
-     * }
+     * } catch (SOAPException e) {}
      * return locale;
      * </pre>
      *
      * @return a <code>Locale</code> object indicating the native language of
      *         the fault string or <code>null</code> if no locale was specified
      * @see #setFaultString(String, Locale)
-     *
      * @since SAAJ 1.2
      */
     public Locale getFaultStringLocale();
@@ -339,7 +315,6 @@ public interface SOAPFault extends SOAPBodyElement {
      *
      * @return true if this <code>SOAPFault</code> has a <code>Detail</code>
      *         subelement and false otherwise.
-     *
      * @since SAAJ 1.3
      */
     public boolean hasDetail();
@@ -366,11 +341,10 @@ public interface SOAPFault extends SOAPBodyElement {
      * has been removed.
      *
      * @return the new <code>Detail</code> object
-     *
      * @exception SOAPException
-     *                          if this <code>SOAPFault</code> object already
-     *                          contains a
-     *                          valid <code>Detail</code> object
+     *            if this <code>SOAPFault</code> object already
+     *            contains a
+     *            valid <code>Detail</code> object
      */
     public Detail addDetail() throws SOAPException;
 
@@ -383,16 +357,14 @@ public interface SOAPFault extends SOAPBodyElement {
      *
      * @return an <code>Iterator</code> over a sequence of <code>Locale</code>
      *         objects for which there are associated Reason Text items.
-     *
      * @exception SOAPException
-     *                                          if there was an error in
-     *                                          retrieving the fault Reason
-     *                                          locales.
+     *            if there was an error in
+     *            retrieving the fault Reason
+     *            locales.
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Reason.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Reason.
      * @since SAAJ 1.3
      */
     public Iterator getFaultReasonLocales() throws SOAPException;
@@ -404,16 +376,14 @@ public interface SOAPFault extends SOAPBodyElement {
      *
      * @return an <code>Iterator</code> over env:Fault/env:Reason/env:Text
      *         items.
-     *
      * @exception SOAPException
-     *                                          if there was an error in
-     *                                          retrieving the fault Reason
-     *                                          texts.
+     *            if there was an error in
+     *            retrieving the fault Reason
+     *            texts.
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Reason.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Reason.
      * @since SAAJ 1.3
      */
     public Iterator getFaultReasonTexts() throws SOAPException;
@@ -423,23 +393,19 @@ public interface SOAPFault extends SOAPBodyElement {
      * more than one such Reason Text exists the first matching Text is returned
      *
      * @param locale
-     *               -- the <code>Locale</code> for which a localized Reason
-     *               Text
-     *               is desired
-     *
+     *        -- the <code>Locale</code> for which a localized Reason
+     *        Text
+     *        is desired
      * @return the Reason Text associated with <code>locale</code>
-     *
      * @see #getFaultString
-     *
      * @exception SOAPException
-     *                                          if there was an error in
-     *                                          retrieving the fault Reason text
-     *                                          for the specified locale .
+     *            if there was an error in
+     *            retrieving the fault Reason text
+     *            for the specified locale .
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Reason.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Reason.
      * @since SAAJ 1.3
      */
     public String getFaultReasonText(Locale locale) throws SOAPException;
@@ -459,24 +425,21 @@ public interface SOAPFault extends SOAPBodyElement {
      * </PRE>
      *
      * @param text
-     *               -- reason message string
+     *        -- reason message string
      * @param locale
-     *               -- Locale object representing the locale of the message
-     *
+     *        -- Locale object representing the locale of the message
      * @exception SOAPException
-     *                                          if there was an error in adding
-     *                                          the Reason text or the
-     *                                          <code>locale</code> passed was
-     *                                          <code>null</code>.
+     *            if there was an error in adding
+     *            the Reason text or the
+     *            <code>locale</code> passed was
+     *            <code>null</code>.
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Reason.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Reason.
      * @since SAAJ 1.3
      */
-    public void addFaultReasonText(String text, java.util.Locale locale)
-            throws SOAPException;
+    public void addFaultReasonText(String text, java.util.Locale locale) throws SOAPException;
 
     /**
      * Returns the optional Node element value for this <code>SOAPFault</code>
@@ -484,12 +447,10 @@ public interface SOAPFault extends SOAPBodyElement {
      *
      * @return Content of the env:Fault/env:Node element as a String or
      *         <code>null</code> if none
-     *
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Node.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Node.
      * @since SAAJ 1.3
      */
     public String getFaultNode();
@@ -499,15 +460,13 @@ public interface SOAPFault extends SOAPBodyElement {
      * <code>SOAPFault</code> object. The Node element is optional in SOAP 1.2.
      *
      * @exception SOAPException
-     *                                          if there was an error in setting
-     *                                          the Node for this
-     *                                          <code>SOAPFault</code> object.
+     *            if there was an error in setting
+     *            the Node for this
+     *            <code>SOAPFault</code> object.
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Node.
-     *
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Node.
      * @since SAAJ 1.3
      */
     public void setFaultNode(String uri) throws SOAPException;
@@ -518,12 +477,10 @@ public interface SOAPFault extends SOAPBodyElement {
      *
      * @return Content of the env:Fault/env:Role element as a String or
      *         <code>null</code> if none
-     *
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Role.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Role.
      * @since SAAJ 1.3
      */
     public String getFaultRole();
@@ -533,18 +490,15 @@ public interface SOAPFault extends SOAPBodyElement {
      * <code>SOAPFault</code> object. The Role element is optional in SOAP 1.2.
      *
      * @param uri
-     *            - the URI of the Role
-     *
+     *        - the URI of the Role
      * @exception SOAPException
-     *                                          if there was an error in setting
-     *                                          the Role for this
-     *                                          <code>SOAPFault</code> object.
-     *
+     *            if there was an error in setting
+     *            the Role for this
+     *            <code>SOAPFault</code> object.
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Role.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Role.
      * @since SAAJ 1.3
      */
     public void setFaultRole(String uri) throws SOAPException;

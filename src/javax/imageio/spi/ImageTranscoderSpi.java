@@ -14,7 +14,6 @@ import javax.imageio.ImageTranscoder;
  *
  * @see IIORegistry
  * @see javax.imageio.ImageTranscoder
- *
  */
 public abstract class ImageTranscoderSpi extends IIOServiceProvider {
 
@@ -29,9 +28,9 @@ public abstract class ImageTranscoderSpi extends IIOServiceProvider {
      * Constructs an <code>ImageTranscoderSpi</code> with a given set of values.
      *
      * @param vendorName
-     *                   the vendor name.
+     *        the vendor name.
      * @param version
-     *                   a version identifier.
+     *        a version identifier.
      */
     public ImageTranscoderSpi(String vendorName, String version) {
         super(vendorName, version);
@@ -44,7 +43,6 @@ public abstract class ImageTranscoderSpi extends IIOServiceProvider {
      *
      * @return a <code>String</code> containing the fully-qualified class name
      *         of the <code>ImageReaderSpi</code> implementation class.
-     *
      * @see ImageReaderSpi
      */
     public abstract String getReaderServiceProviderName();
@@ -56,7 +54,6 @@ public abstract class ImageTranscoderSpi extends IIOServiceProvider {
      *
      * @return a <code>String</code> containing the fully-qualified class name
      *         of the <code>ImageWriterSpi</code> implementation class.
-     *
      * @see ImageWriterSpi
      */
     public abstract String getWriterServiceProviderName();

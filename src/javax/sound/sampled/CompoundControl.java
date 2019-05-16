@@ -30,10 +30,10 @@ public abstract class CompoundControl extends Control {
      * Constructs a new compound control object with the given parameters.
      *
      * @param type
-     *                       the type of control represented this compound
-     *                       control object
+     *        the type of control represented this compound
+     *        control object
      * @param memberControls
-     *                       the set of member controls
+     *        the set of member controls
      */
     protected CompoundControl(Type type, Control[] memberControls) {
 
@@ -79,8 +79,7 @@ public abstract class CompoundControl extends Control {
             buf.append(controls[i].getType());
         }
 
-        return new String(getType() + " Control containing " + buf
-                + " Controls.");
+        return new String(getType() + " Control containing " + buf + " Controls.");
     }
 
     // INNER CLASSES
@@ -103,7 +102,7 @@ public abstract class CompoundControl extends Control {
          * Constructs a new compound control type.
          * 
          * @param name
-         *             the name of the new compound control type
+         *        the name of the new compound control type
          */
         protected Type(String name) {
             super(name);

@@ -22,7 +22,6 @@ import javax.swing.text.*;
  * Please see {@link java.beans.XMLEncoder}.
  *
  * @see java.text.DateFormat
- *
  * @since 1.4
  */
 public class DateFormatter extends InternationalFormatter {
@@ -39,7 +38,7 @@ public class DateFormatter extends InternationalFormatter {
      * instance.
      *
      * @param format
-     *               Format used to dictate legal values
+     *        Format used to dictate legal values
      */
     public DateFormatter(DateFormat format) {
         super(format);
@@ -55,7 +54,7 @@ public class DateFormatter extends InternationalFormatter {
      * <code>Dateformat.getDateInstance()</code> method.
      *
      * @param format
-     *               DateFormat instance used for converting from/to Strings
+     *        DateFormat instance used for converting from/to Strings
      */
     public void setFormat(DateFormat format) {
         super.setFormat(format);
@@ -92,10 +91,8 @@ public class DateFormatter extends InternationalFormatter {
         while (attrs.hasNext()) {
             Object key = attrs.next();
 
-            if ((key instanceof DateFormat.Field)
-                    && (key == DateFormat.Field.HOUR1
-                            || ((DateFormat.Field) key)
-                                    .getCalendarField() != -1)) {
+            if ((key instanceof DateFormat.Field) && (key == DateFormat.Field.HOUR1
+                    || ((DateFormat.Field) key).getCalendarField() != -1)) {
                 return key;
             }
         }
@@ -105,8 +102,8 @@ public class DateFormatter extends InternationalFormatter {
     /**
      * Adjusts the Date if FieldPosition identifies a known calendar field.
      */
-    Object adjustValue(Object value, Map attributes, Object key, int direction)
-            throws BadLocationException, ParseException {
+    Object adjustValue(Object value, Map attributes, Object key, int direction) throws BadLocationException,
+            ParseException {
         if (key != null) {
             int field;
 

@@ -12,7 +12,6 @@ package javax.imageio;
  * <code>activate</code> method that invokes the controller, without regard for
  * how the controller obtains values (<i>i.e.</i>, whether the controller puts
  * up a GUI or merely computes a set of values is irrelevant to this interface).
- *
  * <p>
  * Within the <code>activate</code> method, a controller obtains initial values
  * by querying the <code>IIOParam</code> object's <code>get</code> methods,
@@ -23,19 +22,16 @@ package javax.imageio;
  * general, applications may expect that when the <code>activate</code> method
  * returns <code>true</code>, the <code>IIOParam</code> object is ready for use
  * in a read or write operation.
- *
  * <p>
  * Vendors may choose to provide GUIs for the <code>IIOParam</code> subclasses
  * they define for a particular plug-in. These can be set up as default
  * controllers in the corresponding <code>IIOParam</code> subclasses.
- *
  * <p>
  * Applications may override any default GUIs and provide their own controllers
  * embedded in their own framework. All that is required is that the
  * <code>activate</code> method behave modally (not returning until either
  * cancelled or committed), though it need not put up an explicitly modal
  * dialog. Such a non-modal GUI component would be coded roughly as follows:
- *
  * <br>
  * 
  * <pre>
@@ -60,7 +56,6 @@ package javax.imageio;
  *        return ret;
  *    }
  * </pre>
- *
  * <p>
  * Alternatively, an algorithmic process such as a database lookup or the
  * parsing of a command line could be used as a controller, in which case the
@@ -72,7 +67,6 @@ package javax.imageio;
  * @see IIOParam#getDefaultController
  * @see IIOParam#hasController
  * @see IIOParam#activateController
- *
  */
 public interface IIOParamController {
 
@@ -84,15 +78,13 @@ public interface IIOParamController {
      * canceled the operation).
      *
      * @param param
-     *              the <code>IIOParam</code> object to be modified.
-     *
+     *        the <code>IIOParam</code> object to be modified.
      * @return <code>true</code> if the <code>IIOParam</code> has been modified,
      *         <code>false</code> otherwise.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>param</code> is
-     *                                     <code>null</code> or is not an
-     *                                     instance of the correct class.
+     *            if <code>param</code> is
+     *            <code>null</code> or is not an
+     *            instance of the correct class.
      */
     boolean activate(IIOParam param);
 }

@@ -122,24 +122,23 @@ public abstract class InputStream extends java.io.InputStream {
      * Reads an array of booleans from this input stream.
      * 
      * @param value
-     *               returned array of booleans.
+     *        returned array of booleans.
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
-    public abstract void read_boolean_array(boolean[] value, int offset,
-            int length);
+    public abstract void read_boolean_array(boolean[] value, int offset, int length);
 
     /**
      * Reads an array of chars from this input stream.
      * 
      * @param value
-     *               returned array of chars.
+     *        returned array of chars.
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
     public abstract void read_char_array(char[] value, int offset, int length);
 
@@ -147,11 +146,11 @@ public abstract class InputStream extends java.io.InputStream {
      * Reads an array of wide chars from this input stream.
      * 
      * @param value
-     *               returned array of wide chars.
+     *        returned array of wide chars.
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
     public abstract void read_wchar_array(char[] value, int offset, int length);
 
@@ -159,11 +158,11 @@ public abstract class InputStream extends java.io.InputStream {
      * Reads an array of octets (that is, bytes) from this input stream.
      * 
      * @param value
-     *               returned array of octets (that is, bytes).
+     *        returned array of octets (that is, bytes).
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
     public abstract void read_octet_array(byte[] value, int offset, int length);
 
@@ -171,38 +170,36 @@ public abstract class InputStream extends java.io.InputStream {
      * Reads an array of shorts from this input stream.
      * 
      * @param value
-     *               returned array of shorts.
+     *        returned array of shorts.
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
-    public abstract void read_short_array(short[] value, int offset,
-            int length);
+    public abstract void read_short_array(short[] value, int offset, int length);
 
     /**
      * Reads an array of unsigned shorts from this input stream.
      * 
      * @param value
-     *               returned array of shorts.
+     *        returned array of shorts.
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
-    public abstract void read_ushort_array(short[] value, int offset,
-            int length);
+    public abstract void read_ushort_array(short[] value, int offset, int length);
 
     /**
      * Reads an array of CORBA longs (that is, Java ints) from this input
      * stream.
      * 
      * @param value
-     *               returned array of CORBA longs (that is, Java ints).
+     *        returned array of CORBA longs (that is, Java ints).
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
     public abstract void read_long_array(int[] value, int offset, int length);
 
@@ -211,11 +208,11 @@ public abstract class InputStream extends java.io.InputStream {
      * input stream.
      * 
      * @param value
-     *               returned array of CORBA longs (that is, Java ints).
+     *        returned array of CORBA longs (that is, Java ints).
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
     public abstract void read_ulong_array(int[] value, int offset, int length);
 
@@ -224,54 +221,50 @@ public abstract class InputStream extends java.io.InputStream {
      * stream.
      * 
      * @param value
-     *               returned array of CORBA longs (that is, Java longs).
+     *        returned array of CORBA longs (that is, Java longs).
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
-    public abstract void read_longlong_array(long[] value, int offset,
-            int length);
+    public abstract void read_longlong_array(long[] value, int offset, int length);
 
     /**
      * Reads an array of unsigned CORBA longlongs (that is, Java longs) from
      * this input stream.
      * 
      * @param value
-     *               returned array of CORBA longs (that is, Java longs).
+     *        returned array of CORBA longs (that is, Java longs).
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
-    public abstract void read_ulonglong_array(long[] value, int offset,
-            int length);
+    public abstract void read_ulonglong_array(long[] value, int offset, int length);
 
     /**
      * Reads an array of floats from this input stream.
      * 
      * @param value
-     *               returned array of floats.
+     *        returned array of floats.
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
-    public abstract void read_float_array(float[] value, int offset,
-            int length);
+    public abstract void read_float_array(float[] value, int offset, int length);
 
     /**
      * Reads an array of doubles from this input stream.
      * 
      * @param value
-     *               returned array of doubles.
+     *        returned array of doubles.
      * @param offset
-     *               offset on the stream.
+     *        offset on the stream.
      * @param length
-     *               length of buffer to read.
+     *        length of buffer to read.
      */
-    public abstract void read_double_array(double[] value, int offset,
-            int length);
+    public abstract void read_double_array(double[] value, int offset, int length);
 
     /**
      * Reads a CORBA object from this input stream.
@@ -343,11 +336,10 @@ public abstract class InputStream extends java.io.InputStream {
      * expected type.
      *
      * @param clz
-     *            The Class object for the stub class which corresponds to the
-     *            type that is statistically expected, or the Class object for
-     *            the RMI/IDL interface type that is statistically expected.
+     *        The Class object for the stub class which corresponds to the
+     *        type that is statistically expected, or the Class object for
+     *        the RMI/IDL interface type that is statistically expected.
      * @return an Object instance of clz read from this stream
-     *
      * @see <a href="package-summary.html#unimpl"><code>portable</code> package
      *      comments for unimplemented features</a>
      */
@@ -359,7 +351,6 @@ public abstract class InputStream extends java.io.InputStream {
      * Returns the ORB that created this InputStream.
      *
      * @return the <code>ORB</code> object that created this stream
-     *
      * @see <a href="package-summary.html#unimpl"><code>portable</code> package
      *      comments for unimplemented features</a>
      */

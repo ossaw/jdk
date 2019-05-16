@@ -26,8 +26,7 @@ final class TextPanePainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -35,10 +34,8 @@ final class TextPanePainter extends AbstractRegionPainter {
     // by a particular instance of TextPanePainter would be created. For the
     // moment at least,
     // however, all are created for each instance.
-    private Color color1 = decodeColor("nimbusBlueGrey", -0.015872955f,
-            -0.07995863f, 0.15294117f, 0);
-    private Color color2 = decodeColor("nimbusLightBackground", 0.0f, 0.0f,
-            0.0f, 0);
+    private Color color1 = decodeColor("nimbusBlueGrey", -0.015872955f, -0.07995863f, 0.15294117f, 0);
+    private Color color2 = decodeColor("nimbusLightBackground", 0.0f, 0.0f, 0.0f, 0);
 
     // Array of current component colors, updated in each paint call
     private Object[] componentColors;
@@ -50,8 +47,7 @@ final class TextPanePainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;

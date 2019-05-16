@@ -61,8 +61,7 @@ import com.sun.org.apache.bcel.internal.util.ByteSequence;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class LDC extends CPInstruction implements PushInstruction,
-        ExceptionThrower, TypedInstruction {
+public class LDC extends CPInstruction implements PushInstruction, ExceptionThrower, TypedInstruction {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -92,7 +91,7 @@ public class LDC extends CPInstruction implements PushInstruction,
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         out.writeByte(opcode);
@@ -114,37 +113,29 @@ public class LDC extends CPInstruction implements PushInstruction,
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         length = 2;
         index = bytes.readUnsignedByte();
     }
 
     public Object getValue(ConstantPoolGen cpg) {
-        com.sun.org.apache.bcel.internal.classfile.Constant c = cpg
-                .getConstantPool().getConstant(index);
+        com.sun.org.apache.bcel.internal.classfile.Constant c = cpg.getConstantPool().getConstant(index);
 
         switch (c.getTag()) {
             case com.sun.org.apache.bcel.internal.Constants.CONSTANT_String:
-                int i = ((com.sun.org.apache.bcel.internal.classfile.ConstantString) c)
-                        .getStringIndex();
+                int i = ((com.sun.org.apache.bcel.internal.classfile.ConstantString) c).getStringIndex();
                 c = cpg.getConstantPool().getConstant(i);
-                return ((com.sun.org.apache.bcel.internal.classfile.ConstantUtf8) c)
-                        .getBytes();
+                return ((com.sun.org.apache.bcel.internal.classfile.ConstantUtf8) c).getBytes();
 
             case com.sun.org.apache.bcel.internal.Constants.CONSTANT_Float:
-                return new Float(
-                        ((com.sun.org.apache.bcel.internal.classfile.ConstantFloat) c)
-                                .getBytes());
+                return new Float(((com.sun.org.apache.bcel.internal.classfile.ConstantFloat) c).getBytes());
 
             case com.sun.org.apache.bcel.internal.Constants.CONSTANT_Integer:
-                return new Integer(
-                        ((com.sun.org.apache.bcel.internal.classfile.ConstantInteger) c)
-                                .getBytes());
+                return new Integer(((com.sun.org.apache.bcel.internal.classfile.ConstantInteger) c)
+                        .getBytes());
 
             default: // Never reached
-                throw new RuntimeException(
-                        "Unknown or invalid constant type at " + index);
+                throw new RuntimeException("Unknown or invalid constant type at " + index);
         }
     }
 
@@ -157,8 +148,7 @@ public class LDC extends CPInstruction implements PushInstruction,
             case com.sun.org.apache.bcel.internal.Constants.CONSTANT_Integer:
                 return Type.INT;
             default: // Never reached
-                throw new RuntimeException(
-                        "Unknown or invalid constant type at " + index);
+                throw new RuntimeException("Unknown or invalid constant type at " + index);
         }
     }
 
@@ -173,7 +163,7 @@ public class LDC extends CPInstruction implements PushInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackProducer(this);

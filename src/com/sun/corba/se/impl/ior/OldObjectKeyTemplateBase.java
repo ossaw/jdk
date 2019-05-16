@@ -19,8 +19,8 @@ import com.sun.corba.se.impl.ior.ObjectKeyFactoryImpl;
  * @author Ken Cavanaugh
  */
 public abstract class OldObjectKeyTemplateBase extends ObjectKeyTemplateBase {
-    public OldObjectKeyTemplateBase(ORB orb, int magic, int scid, int serverid,
-            String orbid, ObjectAdapterId oaid) {
+    public OldObjectKeyTemplateBase(ORB orb, int magic, int scid, int serverid, String orbid,
+            ObjectAdapterId oaid) {
         super(orb, magic, scid, serverid, orbid, oaid);
 
         // set version based on magic

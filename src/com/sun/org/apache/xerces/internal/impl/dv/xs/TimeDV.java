@@ -27,10 +27,8 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * Validator for &lt;time&gt; datatype (W3C Schema Datatypes)
  *
  * @xerces.internal
- *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
- *
  * @version $Id: TimeDV.java,v 1.7 2010-11-01 04:39:47 joehw Exp $
  */
 public class TimeDV extends AbstractDateTimeDV {
@@ -39,7 +37,7 @@ public class TimeDV extends AbstractDateTimeDV {
      * Convert a string to a compiled form
      *
      * @param content
-     *                The lexical representation of time
+     *        The lexical representation of time
      * @return a valid and normalized time object
      */
     public Object getActualValue(String content, ValidationContext context)
@@ -47,8 +45,8 @@ public class TimeDV extends AbstractDateTimeDV {
         try {
             return parse(content);
         } catch (Exception ex) {
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "time" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "time" });
         }
     }
 
@@ -56,12 +54,12 @@ public class TimeDV extends AbstractDateTimeDV {
      * Parses, validates and computes normalized version of time object
      *
      * @param str
-     *            The lexical representation of time object hh:mm:ss.sss with
-     *            possible time zone Z or (-),(+)hh:mm Pattern:
-     *            "(\\d\\d):(\\d\\d):(\\d\\d)(\\.(\\d)*)?(Z|(([-+])(\\d\\d)(:(\\d\\d))?))?")
+     *        The lexical representation of time object hh:mm:ss.sss with
+     *        possible time zone Z or (-),(+)hh:mm Pattern:
+     *        "(\\d\\d):(\\d\\d):(\\d\\d)(\\.(\\d)*)?(Z|(([-+])(\\d\\d)(:(\\d\\d))?))?")
      * @return normalized time representation
      * @exception SchemaDateTimeException
-     *                                    Invalid lexical representation
+     *            Invalid lexical representation
      */
     protected DateTimeData parse(String str) throws SchemaDateTimeException {
         DateTimeData date = new DateTimeData(str, this);
@@ -92,7 +90,7 @@ public class TimeDV extends AbstractDateTimeDV {
      * Converts time object representation to String
      *
      * @param date
-     *             time object
+     *        time object
      * @return lexical representation of time: hh:mm:ss.sss with an optional
      *         time zone sign
      */
@@ -109,13 +107,10 @@ public class TimeDV extends AbstractDateTimeDV {
     }
 
     protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData date) {
-        return datatypeFactory.newXMLGregorianCalendar(null,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED, date.unNormHour,
-                date.unNormMinute, (int) date.unNormSecond,
-                date.unNormSecond != 0 ? getFractionalSecondsAsBigDecimal(date)
-                        : null, date.hasTimeZone() ? (date.timezoneHr * 60
-                                + date.timezoneMin)
+        return datatypeFactory.newXMLGregorianCalendar(null, DatatypeConstants.FIELD_UNDEFINED,
+                DatatypeConstants.FIELD_UNDEFINED, date.unNormHour, date.unNormMinute,
+                (int) date.unNormSecond, date.unNormSecond != 0 ? getFractionalSecondsAsBigDecimal(date)
+                        : null, date.hasTimeZone() ? (date.timezoneHr * 60 + date.timezoneMin)
                                 : DatatypeConstants.FIELD_UNDEFINED);
     }
 }

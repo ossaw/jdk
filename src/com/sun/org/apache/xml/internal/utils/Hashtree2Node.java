@@ -30,7 +30,6 @@ import org.w3c.dom.Node;
 
 /**
  * Simple static utility to convert Hashtable to a Node.
- *
  * Please maintain JDK 1.1.x compatibility; no Collections!
  *
  * @see com.sun.org.apache.xalan.internal.xslt.EnvironmentCheck
@@ -42,14 +41,12 @@ public abstract class Hashtree2Node {
 
     /**
      * Convert a Hashtable into a Node tree.
-     *
      * <p>
      * The hash may have either Hashtables as values (in which case we recurse)
      * or other values, in which case we print them as &lt;item> elements, with
      * a 'key' attribute with the value of the key, and the element contents as
      * the value.
      * </p>
-     *
      * <p>
      * If args are null we simply return without doing anything. If we encounter
      * an error, we will attempt to add an 'ERROR' Element with exception info;
@@ -58,18 +55,17 @@ public abstract class Hashtree2Node {
      * </p>
      *
      * @param hash
-     *                  to get info from (may have sub-hashtables)
+     *        to get info from (may have sub-hashtables)
      * @param name
-     *                  to use as parent element for appended node futurework
-     *                  could
-     *                  have namespace and prefix as well
+     *        to use as parent element for appended node futurework
+     *        could
+     *        have namespace and prefix as well
      * @param container
-     *                  Node to append our report to
+     *        Node to append our report to
      * @param factory
-     *                  Document providing createElement, etc. services
+     *        Document providing createElement, etc. services
      */
-    public static void appendHashToNode(Hashtable hash, String name,
-            Node container, Document factory) {
+    public static void appendHashToNode(Hashtable hash, String name, Node container, Document factory) {
         // Required arguments must not be null
         if ((null == container) || (null == factory) || (null == hash)) {
             return;
@@ -110,9 +106,8 @@ public abstract class Hashtree2Node {
                     } catch (Exception e) {
                         Element node = factory.createElement("item");
                         node.setAttribute("key", keyStr);
-                        node.appendChild(factory.createTextNode(
-                                "ERROR: Reading " + key + " threw: " + e
-                                        .toString()));
+                        node.appendChild(factory.createTextNode("ERROR: Reading " + key + " threw: " + e
+                                .toString()));
                         hashNode.appendChild(node);
                     }
                 }

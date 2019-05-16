@@ -213,8 +213,8 @@ class JPEGBuffer {
      * Prints the contents of the buffer, in hex.
      * 
      * @param count
-     *              the number of bytes to print, starting at the current
-     *              available byte.
+     *        the number of bytes to print, starting at the current
+     *        available byte.
      */
     void print(int count) {
         System.out.print("buffer has ");

@@ -43,8 +43,7 @@ public class InterceptorList {
     // Array of class types for interceptors. This is used to create the
     // appropriate array type for each interceptor type. These must
     // match the indices of the constants declared above.
-    static final Class[] classTypes = {
-            org.omg.PortableInterceptor.ClientRequestInterceptor.class,
+    static final Class[] classTypes = { org.omg.PortableInterceptor.ClientRequestInterceptor.class,
             org.omg.PortableInterceptor.ServerRequestInterceptor.class,
             org.omg.PortableInterceptor.IORInterceptor.class };
 
@@ -78,12 +77,11 @@ public class InterceptorList {
      * </ul>
      *
      * @exception DuplicateName
-     *                          Thrown if an interceptor of the given name
-     *                          already exists
-     *                          for the given type.
+     *            Thrown if an interceptor of the given name
+     *            already exists
+     *            for the given type.
      */
-    void register_interceptor(Interceptor interceptor, int type)
-            throws DuplicateName {
+    void register_interceptor(Interceptor interceptor, int type) throws DuplicateName {
         // If locked, deny any further addition of interceptors.
         if (locked) {
             throw wrapper.interceptorListLocked();
@@ -153,8 +151,7 @@ public class InterceptorList {
             Class classType = classTypes[type];
 
             // Create a zero-length array for each type:
-            interceptors[type] = (Interceptor[]) Array.newInstance(classType,
-                    0);
+            interceptors[type] = (Interceptor[]) Array.newInstance(classType, 0);
         }
     }
 
@@ -168,10 +165,8 @@ public class InterceptorList {
 
         // Create new array to replace the old one. The new array will be
         // one element larger but have the same type as the old one.
-        replacementArray = (Interceptor[]) Array.newInstance(classType,
-                currentLength + 1);
-        System.arraycopy(interceptors[type], 0, replacementArray, 0,
-                currentLength);
+        replacementArray = (Interceptor[]) Array.newInstance(classType, currentLength + 1);
+        System.arraycopy(interceptors[type], 0, replacementArray, 0, currentLength);
         interceptors[type] = replacementArray;
     }
 
@@ -223,11 +218,9 @@ public class InterceptorList {
                 Iterator unsortedIterator = unsorted.iterator();
                 for (int j = 0; j < numInterceptors; j++) {
                     if (sortedIterator.hasNext()) {
-                        interceptors[i][j] = (Interceptor) sortedIterator
-                                .next();
+                        interceptors[i][j] = (Interceptor) sortedIterator.next();
                     } else if (unsortedIterator.hasNext()) {
-                        interceptors[i][j] = (Interceptor) unsortedIterator
-                                .next();
+                        interceptors[i][j] = (Interceptor) unsortedIterator.next();
                     } else {
                         throw wrapper.sortSizeMismatch();
                     }

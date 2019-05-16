@@ -27,14 +27,14 @@ public interface ServerRef extends RemoteRef {
      * incoming calls from clients.
      * 
      * @param obj
-     *             the remote object implementation
+     *        the remote object implementation
      * @param data
-     *             information necessary to export the object
+     *        information necessary to export the object
      * @return the stub for the remote object
      * @exception RemoteException
-     *                            if an exception occurs attempting to export
-     *                            the object
-     *                            (e.g., stub class could not be found)
+     *            if an exception occurs attempting to export
+     *            the object
+     *            (e.g., stub class could not be found)
      * @since JDK1.1
      */
     RemoteStub exportObject(Remote obj, Object data) throws RemoteException;
@@ -46,8 +46,8 @@ public interface ServerRef extends RemoteRef {
      * 
      * @return the client's host name
      * @exception ServerNotActiveException
-     *                                     if called outside of servicing a
-     *                                     remote method invocation
+     *            if called outside of servicing a
+     *            remote method invocation
      * @since JDK1.1
      */
     String getClientHost() throws ServerNotActiveException;

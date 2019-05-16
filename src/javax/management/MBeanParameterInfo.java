@@ -30,11 +30,11 @@ public class MBeanParameterInfo extends MBeanFeatureInfo implements Cloneable {
      * Constructs an <CODE>MBeanParameterInfo</CODE> object.
      *
      * @param name
-     *                    The name of the data
+     *        The name of the data
      * @param type
-     *                    The type or class name of the data
+     *        The type or class name of the data
      * @param description
-     *                    A human readable description of the data. Optional.
+     *        A human readable description of the data. Optional.
      */
     public MBeanParameterInfo(String name, String type, String description) {
         this(name, type, description, (Descriptor) null);
@@ -44,20 +44,18 @@ public class MBeanParameterInfo extends MBeanFeatureInfo implements Cloneable {
      * Constructs an <CODE>MBeanParameterInfo</CODE> object.
      *
      * @param name
-     *                    The name of the data
+     *        The name of the data
      * @param type
-     *                    The type or class name of the data
+     *        The type or class name of the data
      * @param description
-     *                    A human readable description of the data. Optional.
+     *        A human readable description of the data. Optional.
      * @param descriptor
-     *                    The descriptor for the operation. This may be null
-     *                    which is
-     *                    equivalent to an empty descriptor.
-     *
+     *        The descriptor for the operation. This may be null
+     *        which is
+     *        equivalent to an empty descriptor.
      * @since 1.6
      */
-    public MBeanParameterInfo(String name, String type, String description,
-            Descriptor descriptor) {
+    public MBeanParameterInfo(String name, String type, String description, Descriptor descriptor) {
         super(name, description, descriptor);
 
         this.type = type;
@@ -70,7 +68,6 @@ public class MBeanParameterInfo extends MBeanFeatureInfo implements Cloneable {
      * cloning mechanism implemented by <tt>Object.clone()</tt>. No deeper
      * cloning of any internal field is made.
      * </p>
-     *
      * <p>
      * Since this class is immutable, cloning is chiefly of interest to
      * subclasses.
@@ -95,17 +92,15 @@ public class MBeanParameterInfo extends MBeanFeatureInfo implements Cloneable {
     }
 
     public String toString() {
-        return getClass().getName() + "[" + "description=" + getDescription()
-                + ", " + "name=" + getName() + ", " + "type=" + getType() + ", "
-                + "descriptor=" + getDescriptor() + "]";
+        return getClass().getName() + "[" + "description=" + getDescription() + ", " + "name=" + getName()
+                + ", " + "type=" + getType() + ", " + "descriptor=" + getDescriptor() + "]";
     }
 
     /**
      * Compare this MBeanParameterInfo to another.
      *
      * @param o
-     *          the object to compare to.
-     *
+     *        the object to compare to.
      * @return true if and only if <code>o</code> is an MBeanParameterInfo such
      *         that its {@link #getName()}, {@link #getType()},
      *         {@link #getDescriptor()}, and {@link #getDescription()} values
@@ -118,10 +113,9 @@ public class MBeanParameterInfo extends MBeanFeatureInfo implements Cloneable {
         if (!(o instanceof MBeanParameterInfo))
             return false;
         MBeanParameterInfo p = (MBeanParameterInfo) o;
-        return (Objects.equals(p.getName(), getName()) && Objects.equals(p
-                .getType(), getType()) && Objects.equals(p.getDescription(),
-                        getDescription()) && Objects.equals(p.getDescriptor(),
-                                getDescriptor()));
+        return (Objects.equals(p.getName(), getName()) && Objects.equals(p.getType(), getType()) && Objects
+                .equals(p.getDescription(), getDescription()) && Objects.equals(p.getDescriptor(),
+                        getDescriptor()));
     }
 
     public int hashCode() {

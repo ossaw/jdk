@@ -33,13 +33,11 @@ import org.xml.sax.ContentHandler;
  * <li>configure the serializer with key/value properties
  * <li>get an org.xml.sax.ContentHandler or a DOMSerializer to provide input to
  * </ul>
- *
  * <p>
  * Here is an example using the asContentHandler() method:
  * 
  * <pre>
- * java.util.Properties props = OutputPropertiesFactory
- *         .getDefaultMethodProperties(Method.TEXT);
+ * java.util.Properties props = OutputPropertiesFactory.getDefaultMethodProperties(Method.TEXT);
  * Serializer ser = SerializerFactory.getSerializer(props);
  * java.io.PrintStream ostream = System.out;
  * ser.setOutputStream(ostream);
@@ -54,7 +52,6 @@ import org.xml.sax.ContentHandler;
  * ser.reset(); // get ready to use the serializer for another document
  *              // of the same output method (TEXT).
  * </pre>
- *
  * <p>
  * As an alternate to supplying a series of SAX events as input through the
  * ContentHandler interface, the input to serialize may be given as a DOM.
@@ -87,7 +84,6 @@ import org.xml.sax.ContentHandler;
  * @see SerializerFactory
  * @see DOMSerializer
  * @see ContentHandler
- *
  * @xsl.usage general
  */
 public interface Serializer {
@@ -103,7 +99,7 @@ public interface Serializer {
      * Only one of setWriter() or setOutputStream() should be called.
      *
      * @param output
-     *               The output stream
+     *        The output stream
      */
     public void setOutputStream(OutputStream output);
 
@@ -121,12 +117,11 @@ public interface Serializer {
      * <p>
      * The encoding specified for the output {@link Properties} must be
      * identical to the output format used with the writer.
-     *
      * <p>
      * Only one of setWriter() or setOutputStream() should be called.
      *
      * @param writer
-     *               The output writer stream
+     *        The output writer stream
      */
     public void setWriter(Writer writer);
 
@@ -152,7 +147,6 @@ public interface Serializer {
      * <p>
      * The non-standard property keys supported are defined in
      * {@link OutputPropertiesFactory}.
-     *
      * <p>
      * This method can be called multiple times before a document is serialized.
      * Each time it is called more, or over-riding property values, can be
@@ -168,7 +162,7 @@ public interface Serializer {
      * from one call to the next, but it is cumulative across the calls.
      *
      * @param format
-     *               The output format to use, as a set of key/value pairs.
+     *        The output format to use, as a set of key/value pairs.
      */
     public void setOutputFormat(Properties format);
 
@@ -191,7 +185,7 @@ public interface Serializer {
      * @return A {@link ContentHandler} interface into this serializer, or null
      *         if the serializer is not SAX 2 capable
      * @throws IOException
-     *                     An I/O exception occured
+     *         An I/O exception occured
      */
     public ContentHandler asContentHandler() throws IOException;
 
@@ -207,7 +201,7 @@ public interface Serializer {
      * @return A {@link DOMSerializer} interface into this serializer, or null
      *         if the serializer is not DOM capable
      * @throws IOException
-     *                     An I/O exception occured
+     *         An I/O exception occured
      */
     public DOMSerializer asDOMSerializer() throws IOException;
 

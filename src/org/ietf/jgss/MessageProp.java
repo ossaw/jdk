@@ -9,14 +9,12 @@ package org.ietf.jgss;
  * This is a utility class used within the per-message GSSContext methods to
  * convey per-message properties.
  * <p>
- *
  * When used with the GSSContext interface's wrap and getMIC methods, an
  * instance of this class is used to indicate the desired Quality-of-Protection
  * (QOP) and to request if confidentiality services are to be applied to caller
  * supplied data (wrap only). To request default QOP, the value of 0 should be
  * used for QOP.
  * <p>
- *
  * When used with the unwrap and verifyMIC methods of the GSSContext interface,
  * an instance of this class will be used to indicate the applied QOP and
  * confidentiality services over the supplied message. In the case of verifyMIC,
@@ -30,7 +28,6 @@ package org.ietf.jgss;
  * @see GSSContext#unwrap
  * @see GSSContext#getMIC
  * @see GSSContext#verifyMIC
- *
  * @author Mayank Upadhyay
  * @since 1.4
  */
@@ -50,7 +47,7 @@ public class MessageProp {
      * 0.
      *
      * @param privState
-     *                  the privacy (i.e. confidentiality) state
+     *        the privacy (i.e. confidentiality) state
      */
     public MessageProp(boolean privState) {
         this(0, privState);
@@ -60,9 +57,9 @@ public class MessageProp {
      * Constructor which sets the values for the qop and privacy state.
      *
      * @param qop
-     *                  the QOP value
+     *        the QOP value
      * @param privState
-     *                  the privacy (i.e. confidentiality) state
+     *        the privacy (i.e. confidentiality) state
      */
     public MessageProp(int qop, boolean privState) {
         this.qop = qop;
@@ -96,7 +93,7 @@ public class MessageProp {
      * Sets the QOP value.
      *
      * @param qop
-     *            the int value to set the QOP to
+     *        the int value to set the QOP to
      * @see #getQOP
      */
     public void setQOP(int qop) {
@@ -107,9 +104,9 @@ public class MessageProp {
      * Sets the privacy state.
      *
      * @param privState
-     *                  true is the privacy (i.e., confidentiality) state is
-     *                  true,
-     *                  false otherwise.
+     *        true is the privacy (i.e., confidentiality) state is
+     *        true,
+     *        false otherwise.
      * @see #getPrivacy
      */
     public void setPrivacy(boolean privState) {
@@ -185,28 +182,28 @@ public class MessageProp {
      * per-message context method.
      *
      * @param duplicate
-     *                    true if the token was a duplicate of an earlier token,
-     *                    false
-     *                    otherwise
+     *        true if the token was a duplicate of an earlier token,
+     *        false
+     *        otherwise
      * @param old
-     *                    true if the token's validity period has expired, false
-     *                    otherwise
+     *        true if the token's validity period has expired, false
+     *        otherwise
      * @param unseq
-     *                    true if a later token has already been processed,
-     *                    false
-     *                    otherwise
+     *        true if a later token has already been processed,
+     *        false
+     *        otherwise
      * @param gap
-     *                    true if one or more predecessor tokens have not yet
-     *                    been
-     *                    successfully processed, false otherwise
+     *        true if one or more predecessor tokens have not yet
+     *        been
+     *        successfully processed, false otherwise
      * @param minorStatus
-     *                    the int minor status code for the per-message
-     *                    operation
+     *        the int minor status code for the per-message
+     *        operation
      * @param minorString
-     *                    the textual representation of the minorStatus value
+     *        the textual representation of the minorStatus value
      */
-    public void setSupplementaryStates(boolean duplicate, boolean old,
-            boolean unseq, boolean gap, int minorStatus, String minorString) {
+    public void setSupplementaryStates(boolean duplicate, boolean old, boolean unseq, boolean gap,
+            int minorStatus, String minorString) {
         this.dupToken = duplicate;
         this.oldToken = old;
         this.unseqToken = unseq;

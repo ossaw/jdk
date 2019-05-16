@@ -56,11 +56,9 @@ import org.w3c.dom.Text;
  * insertBefore() and appendChild().
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
-public class DocumentFragmentImpl extends ParentNode implements
-        DocumentFragment {
+public class DocumentFragmentImpl extends ParentNode implements DocumentFragment {
 
     //
     // Constants
@@ -128,8 +126,7 @@ public class DocumentFragmentImpl extends ParentNode implements
                     next = kid; // Don't advance; there might be another.
                 } else {
                     // If kid is empty, remove it
-                    if (kid.getNodeValue() == null || kid.getNodeValue()
-                            .length() == 0) {
+                    if (kid.getNodeValue() == null || kid.getNodeValue().length() == 0) {
                         removeChild(kid);
                     }
                 }

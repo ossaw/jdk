@@ -84,7 +84,6 @@ import java.util.Objects;
  * most applications written today, the ISO-8601 rules are entirely suitable.
  * However, any application that makes use of historical dates, and requires
  * them to be accurate will find the ISO-8601 approach unsuitable.
- *
  * <p>
  * This is a <a href="{@docRoot}/java/lang/doc-files/ValueBased.html"
  * >value-based</a> class; use of identity-sensitive operations (including
@@ -93,11 +92,9 @@ import java.util.Objects;
  * avoided. The {@code equals} method should be used for comparisons.
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
-public final class YearMonth implements Temporal, TemporalAdjuster,
-        Comparable<YearMonth>, Serializable {
+public final class YearMonth implements Temporal, TemporalAdjuster, Comparable<YearMonth>, Serializable {
 
     /**
      * Serialization version.
@@ -106,9 +103,8 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
     /**
      * Parser.
      */
-    private static final DateTimeFormatter PARSER = new DateTimeFormatterBuilder()
-            .appendValue(YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-')
-            .appendValue(MONTH_OF_YEAR, 2).toFormatter();
+    private static final DateTimeFormatter PARSER = new DateTimeFormatterBuilder().appendValue(YEAR, 4, 10,
+            SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(MONTH_OF_YEAR, 2).toFormatter();
 
     /**
      * The year.
@@ -149,7 +145,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * testing because the clock is hard-coded.
      *
      * @param zone
-     *             the zone ID to use, not null
+     *        the zone ID to use, not null
      * @return the current year-month using the system clock, not null
      */
     public static YearMonth now(ZoneId zone) {
@@ -165,7 +161,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * injection}.
      *
      * @param clock
-     *              the clock to use, not null
+     *        the clock to use, not null
      * @return the current year-month, not null
      */
     public static YearMonth now(Clock clock) {
@@ -178,12 +174,12 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * Obtains an instance of {@code YearMonth} from a year and month.
      *
      * @param year
-     *              the year to represent, from MIN_YEAR to MAX_YEAR
+     *        the year to represent, from MIN_YEAR to MAX_YEAR
      * @param month
-     *              the month-of-year to represent, not null
+     *        the month-of-year to represent, not null
      * @return the year-month, not null
      * @throws DateTimeException
-     *                           if the year value is invalid
+     *         if the year value is invalid
      */
     public static YearMonth of(int year, Month month) {
         Objects.requireNonNull(month, "month");
@@ -194,13 +190,13 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * Obtains an instance of {@code YearMonth} from a year and month.
      *
      * @param year
-     *              the year to represent, from MIN_YEAR to MAX_YEAR
+     *        the year to represent, from MIN_YEAR to MAX_YEAR
      * @param month
-     *              the month-of-year to represent, from 1 (January) to 12
-     *              (December)
+     *        the month-of-year to represent, from 1 (January) to 12
+     *        (December)
      * @return the year-month, not null
      * @throws DateTimeException
-     *                           if either field value is invalid
+     *         if either field value is invalid
      */
     public static YearMonth of(int year, int month) {
         YEAR.checkValidValue(year);
@@ -227,10 +223,10 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * reference, {@code YearMonth::from}.
      *
      * @param temporal
-     *                 the temporal object to convert, not null
+     *        the temporal object to convert, not null
      * @return the year-month, not null
      * @throws DateTimeException
-     *                           if unable to convert to a {@code YearMonth}
+     *         if unable to convert to a {@code YearMonth}
      */
     public static YearMonth from(TemporalAccessor temporal) {
         if (temporal instanceof YearMonth) {
@@ -238,16 +234,13 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
         }
         Objects.requireNonNull(temporal, "temporal");
         try {
-            if (IsoChronology.INSTANCE.equals(Chronology.from(
-                    temporal)) == false) {
+            if (IsoChronology.INSTANCE.equals(Chronology.from(temporal)) == false) {
                 temporal = LocalDate.from(temporal);
             }
             return of(temporal.get(YEAR), temporal.get(MONTH_OF_YEAR));
         } catch (DateTimeException ex) {
-            throw new DateTimeException(
-                    "Unable to obtain YearMonth from TemporalAccessor: "
-                            + temporal + " of type " + temporal.getClass()
-                                    .getName(), ex);
+            throw new DateTimeException("Unable to obtain YearMonth from TemporalAccessor: " + temporal
+                    + " of type " + temporal.getClass().getName(), ex);
         }
     }
 
@@ -261,10 +254,10 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * the plus or minus symbol.
      *
      * @param text
-     *             the text to parse such as "2007-12", not null
+     *        the text to parse such as "2007-12", not null
      * @return the parsed year-month, not null
      * @throws DateTimeParseException
-     *                                if the text cannot be parsed
+     *         if the text cannot be parsed
      */
     public static YearMonth parse(CharSequence text) {
         return parse(text, PARSER);
@@ -277,15 +270,14 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * The text is parsed using the formatter, returning a year-month.
      *
      * @param text
-     *                  the text to parse, not null
+     *        the text to parse, not null
      * @param formatter
-     *                  the formatter to use, not null
+     *        the formatter to use, not null
      * @return the parsed year-month, not null
      * @throws DateTimeParseException
-     *                                if the text cannot be parsed
+     *         if the text cannot be parsed
      */
-    public static YearMonth parse(CharSequence text,
-            DateTimeFormatter formatter) {
+    public static YearMonth parse(CharSequence text, DateTimeFormatter formatter) {
         Objects.requireNonNull(formatter, "formatter");
         return formatter.parse(text, YearMonth::from);
     }
@@ -295,11 +287,11 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * Constructor.
      *
      * @param year
-     *              the year to represent, validated from MIN_YEAR to MAX_YEAR
+     *        the year to represent, validated from MIN_YEAR to MAX_YEAR
      * @param month
-     *              the month-of-year to represent, validated from 1 (January)
-     *              to
-     *              12 (December)
+     *        the month-of-year to represent, validated from 1 (January)
+     *        to
+     *        12 (December)
      */
     private YearMonth(int year, int month) {
         this.year = year;
@@ -311,10 +303,10 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * to see if a new object is in fact required.
      *
      * @param newYear
-     *                 the year to represent, validated from MIN_YEAR to
-     *                 MAX_YEAR
+     *        the year to represent, validated from MIN_YEAR to
+     *        MAX_YEAR
      * @param newMonth
-     *                 the month-of-year to represent, validated not null
+     *        the month-of-year to represent, validated not null
      * @return the year-month, not null
      */
     private YearMonth with(int newYear, int newMonth) {
@@ -351,14 +343,13 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * determined by the field.
      *
      * @param field
-     *              the field to check, null returns false
+     *        the field to check, null returns false
      * @return true if the field is supported on this year-month, false if not
      */
     @Override
     public boolean isSupported(TemporalField field) {
         if (field instanceof ChronoField) {
-            return field == YEAR || field == MONTH_OF_YEAR
-                    || field == PROLEPTIC_MONTH || field == YEAR_OF_ERA
+            return field == YEAR || field == MONTH_OF_YEAR || field == PROLEPTIC_MONTH || field == YEAR_OF_ERA
                     || field == ERA;
         }
         return field != null && field.isSupportedBy(this);
@@ -390,14 +381,14 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * determined by the unit.
      *
      * @param unit
-     *             the unit to check, null returns false
+     *        the unit to check, null returns false
      * @return true if the unit can be added/subtracted, false if not
      */
     @Override
     public boolean isSupported(TemporalUnit unit) {
         if (unit instanceof ChronoUnit) {
-            return unit == MONTHS || unit == YEARS || unit == DECADES
-                    || unit == CENTURIES || unit == MILLENNIA || unit == ERAS;
+            return unit == MONTHS || unit == YEARS || unit == DECADES || unit == CENTURIES
+                    || unit == MILLENNIA || unit == ERAS;
         }
         return unit != null && unit.isSupportedBy(this);
     }
@@ -423,19 +414,18 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * determined by the field.
      *
      * @param field
-     *              the field to query the range for, not null
+     *        the field to query the range for, not null
      * @return the range of valid values for the field, not null
      * @throws DateTimeException
-     *                                          if the range for the field
-     *                                          cannot be obtained
+     *         if the range for the field
+     *         cannot be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      */
     @Override
     public ValueRange range(TemporalField field) {
         if (field == YEAR_OF_ERA) {
-            return (getYear() <= 0 ? ValueRange.of(1, Year.MAX_VALUE + 1)
-                    : ValueRange.of(1, Year.MAX_VALUE));
+            return (getYear() <= 0 ? ValueRange.of(1, Year.MAX_VALUE + 1) : ValueRange.of(1, Year.MAX_VALUE));
         }
         return Temporal.super.range(field);
     }
@@ -462,19 +452,19 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained or the value is
-     *                                          outside the range of valid
-     *                                          values for the field
+     *         if a value for the field cannot
+     *         be obtained or the value is
+     *         outside the range of valid
+     *         values for the field
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported or
-     *                                          the range of values exceeds
-     *                                          an {@code int}
+     *         if the field is not supported or
+     *         the range of values exceeds
+     *         an {@code int}
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override // override for Javadoc
     public int get(TemporalField field) {
@@ -500,15 +490,15 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained
+     *         if a value for the field cannot
+     *         be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public long getLong(TemporalField field) {
@@ -525,8 +515,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
                 case ERA:
                     return (year < 1 ? 0 : 1);
             }
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         return field.getFrom(this);
     }
@@ -609,9 +598,9 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * valid date.
      *
      * @param dayOfMonth
-     *                   the day-of-month to validate, from 1 to 31, invalid
-     *                   value
-     *                   returns false
+     *        the day-of-month to validate, from 1 to 31, invalid
+     *        value
+     *        returns false
      * @return true if the day is valid for this year-month
      */
     public boolean isValidDay(int dayOfMonth) {
@@ -661,13 +650,13 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param adjuster
-     *                 the adjuster to use, not null
+     *        the adjuster to use, not null
      * @return a {@code YearMonth} based on {@code this} with the adjustment
      *         made, not null
      * @throws DateTimeException
-     *                             if the adjustment cannot be made
+     *         if the adjustment cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public YearMonth with(TemporalAdjuster adjuster) {
@@ -714,17 +703,17 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param field
-     *                 the field to set in the result, not null
+     *        the field to set in the result, not null
      * @param newValue
-     *                 the new value of the field in the result
+     *        the new value of the field in the result
      * @return a {@code YearMonth} based on {@code this} with the specified
      *         field set, not null
      * @throws DateTimeException
-     *                                          if the field cannot be set
+     *         if the field cannot be set
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public YearMonth with(TemporalField field, long newValue) {
@@ -741,11 +730,9 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
                 case YEAR:
                     return withYear((int) newValue);
                 case ERA:
-                    return (getLong(ERA) == newValue ? this
-                            : withYear(1 - year));
+                    return (getLong(ERA) == newValue ? this : withYear(1 - year));
             }
-            throw new UnsupportedTemporalTypeException("Unsupported field: "
-                    + field);
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
         return field.adjustInto(this, newValue);
     }
@@ -757,12 +744,12 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param year
-     *             the year to set in the returned year-month, from MIN_YEAR to
-     *             MAX_YEAR
+     *        the year to set in the returned year-month, from MIN_YEAR to
+     *        MAX_YEAR
      * @return a {@code YearMonth} based on this year-month with the requested
      *         year, not null
      * @throws DateTimeException
-     *                           if the year value is invalid
+     *         if the year value is invalid
      */
     public YearMonth withYear(int year) {
         YEAR.checkValidValue(year);
@@ -775,12 +762,12 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param month
-     *              the month-of-year to set in the returned year-month, from 1
-     *              (January) to 12 (December)
+     *        the month-of-year to set in the returned year-month, from 1
+     *        (January) to 12 (December)
      * @return a {@code YearMonth} based on this year-month with the requested
      *         month, not null
      * @throws DateTimeException
-     *                           if the month-of-year value is invalid
+     *         if the month-of-year value is invalid
      */
     public YearMonth withMonth(int month) {
         MONTH_OF_YEAR.checkValidValue(month);
@@ -805,13 +792,13 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToAdd
-     *                    the amount to add, not null
+     *        the amount to add, not null
      * @return a {@code YearMonth} based on this year-month with the addition
      *         made, not null
      * @throws DateTimeException
-     *                             if the addition cannot be made
+     *         if the addition cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public YearMonth plus(TemporalAmount amountToAdd) {
@@ -859,18 +846,18 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToAdd
-     *                    the amount of the unit to add to the result, may be
-     *                    negative
+     *        the amount of the unit to add to the result, may be
+     *        negative
      * @param unit
-     *                    the unit of the amount to add, not null
+     *        the unit of the amount to add, not null
      * @return a {@code YearMonth} based on this year-month with the specified
      *         amount added, not null
      * @throws DateTimeException
-     *                                          if the addition cannot be made
+     *         if the addition cannot be made
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public YearMonth plus(long amountToAdd, TemporalUnit unit) {
@@ -889,8 +876,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
                 case ERAS:
                     return with(ERA, Math.addExact(getLong(ERA), amountToAdd));
             }
-            throw new UnsupportedTemporalTypeException("Unsupported unit: "
-                    + unit);
+            throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -902,11 +888,11 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param yearsToAdd
-     *                   the years to add, may be negative
+     *        the years to add, may be negative
      * @return a {@code YearMonth} based on this year-month with the years
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported range
+     *         if the result exceeds the supported range
      */
     public YearMonth plusYears(long yearsToAdd) {
         if (yearsToAdd == 0) {
@@ -924,11 +910,11 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param monthsToAdd
-     *                    the months to add, may be negative
+     *        the months to add, may be negative
      * @return a {@code YearMonth} based on this year-month with the months
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported range
+     *         if the result exceeds the supported range
      */
     public YearMonth plusMonths(long monthsToAdd) {
         if (monthsToAdd == 0) {
@@ -959,13 +945,13 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToSubtract
-     *                         the amount to subtract, not null
+     *        the amount to subtract, not null
      * @return a {@code YearMonth} based on this year-month with the subtraction
      *         made, not null
      * @throws DateTimeException
-     *                             if the subtraction cannot be made
+     *         if the subtraction cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public YearMonth minus(TemporalAmount amountToSubtract) {
@@ -987,25 +973,25 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToSubtract
-     *                         the amount of the unit to subtract from the
-     *                         result, may be
-     *                         negative
+     *        the amount of the unit to subtract from the
+     *        result, may be
+     *        negative
      * @param unit
-     *                         the unit of the amount to subtract, not null
+     *        the unit of the amount to subtract, not null
      * @return a {@code YearMonth} based on this year-month with the specified
      *         amount subtracted, not null
      * @throws DateTimeException
-     *                                          if the subtraction cannot be
-     *                                          made
+     *         if the subtraction cannot be
+     *         made
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public YearMonth minus(long amountToSubtract, TemporalUnit unit) {
-        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit)
-                .plus(1, unit) : plus(-amountToSubtract, unit));
+        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit)
+                : plus(-amountToSubtract, unit));
     }
 
     /**
@@ -1015,15 +1001,15 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param yearsToSubtract
-     *                        the years to subtract, may be negative
+     *        the years to subtract, may be negative
      * @return a {@code YearMonth} based on this year-month with the years
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported range
+     *         if the result exceeds the supported range
      */
     public YearMonth minusYears(long yearsToSubtract) {
-        return (yearsToSubtract == Long.MIN_VALUE ? plusYears(Long.MAX_VALUE)
-                .plusYears(1) : plusYears(-yearsToSubtract));
+        return (yearsToSubtract == Long.MIN_VALUE ? plusYears(Long.MAX_VALUE).plusYears(1)
+                : plusYears(-yearsToSubtract));
     }
 
     /**
@@ -1033,15 +1019,15 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param monthsToSubtract
-     *                         the months to subtract, may be negative
+     *        the months to subtract, may be negative
      * @return a {@code YearMonth} based on this year-month with the months
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported range
+     *         if the result exceeds the supported range
      */
     public YearMonth minusMonths(long monthsToSubtract) {
-        return (monthsToSubtract == Long.MIN_VALUE ? plusMonths(Long.MAX_VALUE)
-                .plusMonths(1) : plusMonths(-monthsToSubtract));
+        return (monthsToSubtract == Long.MIN_VALUE ? plusMonths(Long.MAX_VALUE).plusMonths(1)
+                : plusMonths(-monthsToSubtract));
     }
 
     // -----------------------------------------------------------------------
@@ -1057,16 +1043,16 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
      * query passing {@code this} as the argument.
      *
-     * @param       <R>
-     *              the type of the result
+     * @param <R>
+     *        the type of the result
      * @param query
-     *              the query to invoke, not null
+     *        the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException
-     *                             if unable to query (defined by the query)
+     *         if unable to query (defined by the query)
      * @throws ArithmeticException
-     *                             if numeric overflow occurs (defined by the
-     *                             query)
+     *         if numeric overflow occurs (defined by the
+     *         query)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -1103,18 +1089,17 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param temporal
-     *                 the target object to be adjusted, not null
+     *        the target object to be adjusted, not null
      * @return the adjusted object, not null
      * @throws DateTimeException
-     *                             if unable to make the adjustment
+     *         if unable to make the adjustment
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public Temporal adjustInto(Temporal temporal) {
         if (Chronology.from(temporal).equals(IsoChronology.INSTANCE) == false) {
-            throw new DateTimeException(
-                    "Adjustment only supported on ISO date-time");
+            throw new DateTimeException("Adjustment only supported on ISO date-time");
         }
         return temporal.with(PROLEPTIC_MONTH, getProlepticMonth());
     }
@@ -1161,20 +1146,20 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param endExclusive
-     *                     the end date, exclusive, which is converted to a
-     *                     {@code YearMonth}, not null
+     *        the end date, exclusive, which is converted to a
+     *        {@code YearMonth}, not null
      * @param unit
-     *                     the unit to measure the amount in, not null
+     *        the unit to measure the amount in, not null
      * @return the amount of time between this year-month and the end year-month
      * @throws DateTimeException
-     *                                          if the amount cannot be
-     *                                          calculated, or the end temporal
-     *                                          cannot be converted to a
-     *                                          {@code YearMonth}
+     *         if the amount cannot be
+     *         calculated, or the end temporal
+     *         cannot be converted to a
+     *         {@code YearMonth}
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public long until(Temporal endExclusive, TemporalUnit unit) {
@@ -1196,8 +1181,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
                 case ERAS:
                     return end.getLong(ERA) - getLong(ERA);
             }
-            throw new UnsupportedTemporalTypeException("Unsupported unit: "
-                    + unit);
+            throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
         return unit.between(this, end);
     }
@@ -1208,10 +1192,10 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * This year-month will be passed to the formatter to produce a string.
      *
      * @param formatter
-     *                  the formatter to use, not null
+     *        the formatter to use, not null
      * @return the formatted year-month string, not null
      * @throws DateTimeException
-     *                           if an error occurs during printing
+     *         if an error occurs during printing
      */
     public String format(DateTimeFormatter formatter) {
         Objects.requireNonNull(formatter, "formatter");
@@ -1235,11 +1219,11 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * </pre>
      *
      * @param dayOfMonth
-     *                   the day-of-month to use, from 1 to 31
+     *        the day-of-month to use, from 1 to 31
      * @return the date formed from this year-month and the specified day, not
      *         null
      * @throws DateTimeException
-     *                           if the day is invalid for the year-month
+     *         if the day is invalid for the year-month
      * @see #isValidDay(int)
      */
     public LocalDate atDay(int dayOfMonth) {
@@ -1274,7 +1258,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * {@link Comparable}.
      *
      * @param other
-     *              the other year-month to compare to, not null
+     *        the other year-month to compare to, not null
      * @return the comparator value, negative if less, positive if greater
      */
     @Override
@@ -1290,7 +1274,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * Checks if this year-month is after the specified year-month.
      *
      * @param other
-     *              the other year-month to compare to, not null
+     *        the other year-month to compare to, not null
      * @return true if this is after the specified year-month
      */
     public boolean isAfter(YearMonth other) {
@@ -1301,7 +1285,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * Checks if this year-month is before the specified year-month.
      *
      * @param other
-     *              the other year-month to compare to, not null
+     *        the other year-month to compare to, not null
      * @return true if this point is before the specified year-month
      */
     public boolean isBefore(YearMonth other) {
@@ -1315,7 +1299,7 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * The comparison is based on the time-line position of the year-months.
      *
      * @param obj
-     *            the object to check, null returns false
+     *        the object to check, null returns false
      * @return true if this is equal to the other year-month
      */
     @Override
@@ -1388,13 +1372,12 @@ public final class YearMonth implements Temporal, TemporalAdjuster,
      * Defend against malicious streams.
      *
      * @param s
-     *          the stream to read
+     *        the stream to read
      * @throws InvalidObjectException
-     *                                always
+     *         always
      */
     private void readObject(ObjectInputStream s) throws InvalidObjectException {
-        throw new InvalidObjectException(
-                "Deserialization via serialization delegate");
+        throw new InvalidObjectException("Deserialization via serialization delegate");
     }
 
     void writeExternal(DataOutput out) throws IOException {

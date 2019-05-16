@@ -53,7 +53,7 @@ public class ObjectView extends ComponentView {
      * Creates a new ObjectView object.
      *
      * @param elem
-     *             the element to decorate
+     *        the element to decorate
      */
     public ObjectView(Element elem) {
         super(elem);
@@ -68,8 +68,7 @@ public class ObjectView extends ComponentView {
         String classname = (String) attr.getAttribute(HTML.Attribute.CLASSID);
         try {
             ReflectUtil.checkPackageAccess(classname);
-            Class c = Class.forName(classname, true, Thread.currentThread()
-                    .getContextClassLoader());
+            Class c = Class.forName(classname, true, Thread.currentThread().getContextClassLoader());
             Object o = c.newInstance();
             if (o instanceof Component) {
                 Component comp = (Component) o;

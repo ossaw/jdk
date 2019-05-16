@@ -62,8 +62,7 @@ public class ProcessMonitorThread extends java.lang.Thread {
     static void start(HashMap serverTable) {
         int sleepTime = ORBConstants.DEFAULT_SERVER_POLLING_TIME;
 
-        String pollingTime = System.getProperties().getProperty(
-                ORBConstants.SERVER_POLLING_TIME);
+        String pollingTime = System.getProperties().getProperty(ORBConstants.SERVER_POLLING_TIME);
 
         if (pollingTime != null) {
             try {

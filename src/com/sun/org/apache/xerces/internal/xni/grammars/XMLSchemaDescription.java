@@ -24,7 +24,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLAttributes;
  * All information specific to XML Schema grammars.
  *
  * @author Sandy Gao, IBM
- *
  */
 public interface XMLSchemaDescription extends XMLGrammarDescription {
 

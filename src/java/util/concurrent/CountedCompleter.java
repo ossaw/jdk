@@ -37,7 +37,6 @@ package java.util.concurrent;
  * mechanisms, it may be useful to create further abstract subclasses that
  * maintain linkages, fields, and additional support methods appropriate for a
  * set of related usages.
- *
  * <p>
  * A concrete CountedCompleter class must define method {@link #compute}, that
  * should in most cases (as illustrated below), invoke {@code tryComplete()}
@@ -46,7 +45,6 @@ package java.util.concurrent;
  * completion, and method
  * {@link #onExceptionalCompletion(Throwable, CountedCompleter)} to perform an
  * action upon any exception.
- *
  * <p>
  * CountedCompleters most often do not bear results, in which case they are
  * normally declared as {@code CountedCompleter<Void>}, and will always return
@@ -57,7 +55,6 @@ package java.util.concurrent;
  * holds the result upon completion. Method {@link #setRawResult} by default
  * plays no role in CountedCompleters. It is possible, but rarely applicable, to
  * override this method to maintain other objects or fields holding result data.
- *
  * <p>
  * A CountedCompleter that does not itself have a completer (i.e., one for which
  * {@link #getCompleter} returns {@code null}) can be used as a regular
@@ -72,10 +69,8 @@ package java.util.concurrent;
  * on), if one exists and it has not otherwise already completed. Similarly,
  * cancelling an internal CountedCompleter has only a local effect on that
  * completer, so is not often useful.
- *
  * <p>
  * <b>Sample Usages.</b>
- *
  * <p>
  * <b>Parallel recursive decomposition.</b> CountedCompleters may be arranged in
  * trees similar to those often used with {@link RecursiveAction}s, although the
@@ -88,7 +83,6 @@ package java.util.concurrent;
  * others, either because of intrinsic variation (for example I/O) or auxiliary
  * effects such as garbage collection. Because CountedCompleters provide their
  * own continuations, other threads need not block waiting to perform them.
- *
  * <p>
  * For example, here is an initial version of a class that uses divide-by-two
  * recursive decomposition to divide work into single pieces (leaf tasks). Even
@@ -186,7 +180,6 @@ package java.util.concurrent;
  * for leaf steps, subdividing by say, four, instead of two per iteration, and
  * using an adaptive threshold instead of always subdividing down to single
  * elements.
- *
  * <p>
  * <b>Searching.</b> A tree of CountedCompleters can search for a value or
  * property in different parts of a data structure, and report a result in an
@@ -238,7 +231,6 @@ package java.util.concurrent;
  * invocation of {@code tryComplete} could be made conditional (
  * {@code if (result.get() == null) tryComplete();}) because no further
  * bookkeeping is required to manage completions once the root task completes.
- *
  * <p>
  * <b>Recording subtasks.</b> CountedCompleter tasks that combine results of
  * multiple subtasks usually need to access these results in method
@@ -316,7 +308,6 @@ package java.util.concurrent;
  * completion of a task and its subtasks. No additional synchronization is
  * required within this method to ensure thread safety of accesses to fields of
  * this task or other completed tasks.
- *
  * <p>
  * <b>Completion Traversals</b>. If using {@code onCompletion} to process
  * completions is inapplicable or inconvenient, you can use methods
@@ -336,8 +327,8 @@ package java.util.concurrent;
  *         MapReducer<E> forks, next; // record subtask forks in list
  *         E result;
  * 
- *         MapReducer(CountedCompleter<?> p, E[] array, MyMapper<E> mapper,
- *                 MyReducer<E> reducer, int lo, int hi, MapReducer<E> next) {
+ *         MapReducer(CountedCompleter<?> p, E[] array, MyMapper<E> mapper, MyReducer<E> reducer, int lo,
+ *                 int hi, MapReducer<E> next) {
  *             super(p);
  *             this.array = array;
  *             this.mapper = mapper;
@@ -352,16 +343,14 @@ package java.util.concurrent;
  *             while (h - l >= 2) {
  *                 int mid = (l + h) >>> 1;
  *                 addToPendingCount(1);
- *                 (forks = new MapReducer(this, array, mapper, reducer, mid, h,
- *                         forks)).fork();
+ *                 (forks = new MapReducer(this, array, mapper, reducer, mid, h, forks)).fork();
  *                 h = mid;
  *             }
  *             if (h > l)
  *                 result = mapper.apply(array[l]);
  *             // process completions by reducing along and advancing subtask
  *             // links
- *             for (CountedCompleter<?> c = firstComplete(); c != null; c = c
- *                     .nextComplete()) {
+ *             for (CountedCompleter<?> c = firstComplete(); c != null; c = c.nextComplete()) {
  *                 for (MapReducer t = (MapReducer) c, s = t.forks; s != null; s = t.forks = s.next)
  *                     t.result = reducer.apply(t.result, s.result);
  *             }
@@ -371,15 +360,12 @@ package java.util.concurrent;
  *             return result;
  *         }
  *
- *         public static <E> E mapReduce(E[] array, MyMapper<E> mapper,
- *                 MyReducer<E> reducer) {
- *             return new MapReducer<E>(null, array, mapper, reducer, 0,
- *                     array.length, null).invoke();
+ *         public static <E> E mapReduce(E[] array, MyMapper<E> mapper, MyReducer<E> reducer) {
+ *             return new MapReducer<E>(null, array, mapper, reducer, 0, array.length, null).invoke();
  *         }
  *     }
  * }
  * </pre>
- *
  * <p>
  * <b>Triggers.</b> Some CountedCompleters are themselves never forked, but
  * instead serve as bits of plumbing in other designs; including those in which
@@ -418,12 +404,11 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * pending count.
      *
      * @param completer
-     *                            this task's completer, or {@code null} if none
+     *        this task's completer, or {@code null} if none
      * @param initialPendingCount
-     *                            the initial pending count
+     *        the initial pending count
      */
-    protected CountedCompleter(CountedCompleter<?> completer,
-            int initialPendingCount) {
+    protected CountedCompleter(CountedCompleter<?> completer, int initialPendingCount) {
         this.completer = completer;
         this.pending = initialPendingCount;
     }
@@ -433,7 +418,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * pending count of zero.
      *
      * @param completer
-     *                  this task's completer, or {@code null} if none
+     *        this task's completer, or {@code null} if none
      */
     protected CountedCompleter(CountedCompleter<?> completer) {
         this.completer = completer;
@@ -462,8 +447,8 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * links to other results) to combine.
      *
      * @param caller
-     *               the task invoking this method (which may be this task
-     *               itself)
+     *        the task invoking this method (which may be this task
+     *        itself)
      */
     public void onCompletion(CountedCompleter<?> caller) {}
 
@@ -479,15 +464,14 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * {@code true}.
      *
      * @param ex
-     *               the exception
+     *        the exception
      * @param caller
-     *               the task invoking this method (which may be this task
-     *               itself)
+     *        the task invoking this method (which may be this task
+     *        itself)
      * @return {@code true} if this exception should be propagated to this
      *         task's completer, if one exists
      */
-    public boolean onExceptionalCompletion(Throwable ex,
-            CountedCompleter<?> caller) {
+    public boolean onExceptionalCompletion(Throwable ex, CountedCompleter<?> caller) {
         return true;
     }
 
@@ -514,7 +498,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * Sets the pending count to the given value.
      *
      * @param count
-     *              the count
+     *        the count
      */
     public final void setPendingCount(int count) {
         pending = count;
@@ -524,7 +508,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * Adds (atomically) the given value to the pending count.
      *
      * @param delta
-     *              the value to add
+     *        the value to add
      */
     public final void addToPendingCount(int delta) {
         U.getAndAddInt(this, PENDING, delta);
@@ -535,9 +519,9 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * currently holds the given expected value.
      *
      * @param expected
-     *                 the expected value
+     *        the expected value
      * @param count
-     *                 the new value
+     *        the new value
      * @return {@code true} if successful
      */
     public final boolean compareAndSetPendingCount(int expected, int count) {
@@ -552,9 +536,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      */
     public final int decrementPendingCountUnlessZero() {
         int c;
-        do {
-        } while ((c = pending) != 0 && !U.compareAndSwapInt(this, PENDING, c, c
-                - 1));
+        do {} while ((c = pending) != 0 && !U.compareAndSwapInt(this, PENDING, c, c - 1));
         return c;
     }
 
@@ -622,7 +604,6 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * {@link #onCompletion(CountedCompleter)} or marking this task as complete;
      * its value is meaningful only for classes overriding {@code setRawResult}.
      * This method does not modify the pending count.
-     *
      * <p>
      * This method may be useful when forcing completion as soon as any one
      * (versus all) of several subtask results are obtained. However, in the
@@ -631,7 +612,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * using {@code quietlyCompleteRoot();}.
      *
      * @param rawResult
-     *                  the raw result
+     *        the raw result
      */
     public void complete(T rawResult) {
         CountedCompleter<?> p;
@@ -707,17 +688,16 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      * completion path, if any are known to exist.
      *
      * @param maxTasks
-     *                 the maximum number of tasks to process. If less than or
-     *                 equal
-     *                 to zero, then no tasks are processed.
+     *        the maximum number of tasks to process. If less than or
+     *        equal
+     *        to zero, then no tasks are processed.
      */
     public final void helpComplete(int maxTasks) {
         Thread t;
         ForkJoinWorkerThread wt;
         if (maxTasks > 0 && status >= 0) {
             if ((t = Thread.currentThread()) instanceof ForkJoinWorkerThread)
-                (wt = (ForkJoinWorkerThread) t).pool.helpComplete(wt.workQueue,
-                        this, maxTasks);
+                (wt = (ForkJoinWorkerThread) t).pool.helpComplete(wt.workQueue, this, maxTasks);
             else
                 ForkJoinPool.common.externalHelpComplete(this, maxTasks);
         }
@@ -728,9 +708,8 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
      */
     void internalPropagateException(Throwable ex) {
         CountedCompleter<?> a = this, s = a;
-        while (a.onExceptionalCompletion(ex, s)
-                && (a = (s = a).completer) != null && a.status >= 0 && a
-                        .recordExceptionalCompletion(ex) == EXCEPTIONAL)
+        while (a.onExceptionalCompletion(ex, s) && (a = (s = a).completer) != null && a.status >= 0 && a
+                .recordExceptionalCompletion(ex) == EXCEPTIONAL)
             ;
     }
 
@@ -768,8 +747,7 @@ public abstract class CountedCompleter<T> extends ForkJoinTask<T> {
     static {
         try {
             U = sun.misc.Unsafe.getUnsafe();
-            PENDING = U.objectFieldOffset(CountedCompleter.class
-                    .getDeclaredField("pending"));
+            PENDING = U.objectFieldOffset(CountedCompleter.class.getDeclaredField("pending"));
         } catch (Exception e) {
             throw new Error(e);
         }

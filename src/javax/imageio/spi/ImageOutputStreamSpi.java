@@ -13,14 +13,12 @@ import javax.imageio.stream.ImageOutputStream;
  * The service provider interface (SPI) for <code>ImageOutputStream</code>s. For
  * more information on service provider interfaces, see the class comment for
  * the <code>IIORegistry</code> class.
- *
  * <p>
  * This interface allows arbitrary objects to be "wrapped" by instances of
  * <code>ImageOutputStream</code>. For example, a particular
  * <code>ImageOutputStreamSpi</code> might allow a generic
  * <code>OutputStream</code> to be used as a destination; another might output
  * to a <code>File</code> or to a device such as a serial port.
- *
  * <p>
  * By treating the creation of <code>ImageOutputStream</code>s as a pluggable
  * service, it becomes possible to handle future output destinations without
@@ -30,7 +28,6 @@ import javax.imageio.stream.ImageOutputStream;
  *
  * @see IIORegistry
  * @see javax.imageio.stream.ImageOutputStream
- *
  */
 public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
 
@@ -52,24 +49,22 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
      * values.
      *
      * @param vendorName
-     *                    the vendor name.
+     *        the vendor name.
      * @param version
-     *                    a version identifier.
+     *        a version identifier.
      * @param outputClass
-     *                    a <code>Class</code> object indicating the legal
-     *                    object type
-     *                    for use by the <code>createOutputStreamInstance</code>
-     *                    method.
-     *
+     *        a <code>Class</code> object indicating the legal
+     *        object type
+     *        for use by the <code>createOutputStreamInstance</code>
+     *        method.
      * @exception IllegalArgumentException
-     *                                     if <code>vendorName</code> is
-     *                                     <code>null</code>.
+     *            if <code>vendorName</code> is
+     *            <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if <code>version</code> is
-     *                                     <code>null</code>.
+     *            if <code>version</code> is
+     *            <code>null</code>.
      */
-    public ImageOutputStreamSpi(String vendorName, String version,
-            Class<?> outputClass) {
+    public ImageOutputStreamSpi(String vendorName, String version, Class<?> outputClass) {
         super(vendorName, version);
         this.outputClass = outputClass;
     }
@@ -79,13 +74,11 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
      * type that must be implemented by an output destination in order to be
      * "wrapped" in an <code>ImageOutputStream</code> via the
      * <code>createOutputStreamInstance</code> method.
-     *
      * <p>
      * Typical return values might include <code>OutputStream.class</code> or
      * <code>File.class</code>, but any class may be used.
      *
      * @return a <code>Class</code> variable.
-     *
      * @see #createOutputStreamInstance(Object, boolean, File)
      */
     public Class<?> getOutputClass() {
@@ -99,7 +92,6 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
      * footrprint. If <code>false</code>, the value of the
      * <code>cacheFile</code> argument to
      * <code>createOutputStreamInstance</code> will be ignored.
-     *
      * <p>
      * The default implementation returns <code>false</code>.
      *
@@ -114,7 +106,6 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
      * Returns <code>true</code> if the <code>ImageOutputStream</code>
      * implementation associated with this service provider requires the use of
      * a cache <code>File</code>.
-     *
      * <p>
      * The default implementation returns <code>false</code>.
      *
@@ -133,37 +124,34 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
      * will be ignored.
      *
      * @param output
-     *                 an object of the class type returned by
-     *                 <code>getOutputClass</code>.
+     *        an object of the class type returned by
+     *        <code>getOutputClass</code>.
      * @param useCache
-     *                 a <code>boolean</code> indicating whether a cache file
-     *                 should
-     *                 be used, in cases where it is optional.
+     *        a <code>boolean</code> indicating whether a cache file
+     *        should
+     *        be used, in cases where it is optional.
      * @param cacheDir
-     *                 a <code>File</code> indicating where the cache file
-     *                 should be
-     *                 created, or <code>null</code> to use the system
-     *                 directory.
-     *
+     *        a <code>File</code> indicating where the cache file
+     *        should be
+     *        created, or <code>null</code> to use the system
+     *        directory.
      * @return an <code>ImageOutputStream</code> instance.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>output</code> is not an
-     *                                     instance of the correct
-     *                                     class or is <code>null</code>.
+     *            if <code>output</code> is not an
+     *            instance of the correct
+     *            class or is <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if a cache file is needed, but
-     *                                     <code>cacheDir</code> is
-     *                                     non-<code>null</code> and is not a
-     *                                     directory.
+     *            if a cache file is needed, but
+     *            <code>cacheDir</code> is
+     *            non-<code>null</code> and is not a
+     *            directory.
      * @exception IOException
-     *                                     if a cache file is needed but cannot
-     *                                     be created.
-     *
+     *            if a cache file is needed but cannot
+     *            be created.
      * @see #getOutputClass
      */
-    public abstract ImageOutputStream createOutputStreamInstance(Object output,
-            boolean useCache, File cacheDir) throws IOException;
+    public abstract ImageOutputStream createOutputStreamInstance(Object output, boolean useCache,
+            File cacheDir) throws IOException;
 
     /**
      * Returns an instance of the <code>ImageOutputStream</code> implementation
@@ -171,23 +159,19 @@ public abstract class ImageOutputStreamSpi extends IIOServiceProvider {
      * the system-dependent default temporary-file directory, if needed.
      *
      * @param output
-     *               an object of the class type returned by
-     *               <code>getOutputClass</code>.
-     *
+     *        an object of the class type returned by
+     *        <code>getOutputClass</code>.
      * @return an <code>ImageOutputStream</code> instance.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>output</code> is not an
-     *                                     instance of the correct
-     *                                     class or is <code>null</code>.
+     *            if <code>output</code> is not an
+     *            instance of the correct
+     *            class or is <code>null</code>.
      * @exception IOException
-     *                                     if a cache file is needed but cannot
-     *                                     be created.
-     *
+     *            if a cache file is needed but cannot
+     *            be created.
      * @see #getOutputClass()
      */
-    public ImageOutputStream createOutputStreamInstance(Object output)
-            throws IOException {
+    public ImageOutputStream createOutputStreamInstance(Object output) throws IOException {
         return createOutputStreamInstance(output, true, null);
     }
 }

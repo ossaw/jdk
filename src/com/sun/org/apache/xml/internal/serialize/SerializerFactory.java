@@ -29,8 +29,6 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
- *
- *
  * @version $Revision: 1.6 $ $Date: 2010-11-01 04:40:36 $
  * @author <a href="mailto:Scott_Boag/CAM/Lotus@lotus.com">Scott Boag</a>
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
@@ -39,8 +37,8 @@ public abstract class SerializerFactory {
 
     public static final String FactoriesProperty = "com.sun.org.apache.xml.internal.serialize.factories";
 
-    private static final Map<String, SerializerFactory> _factories = Collections
-            .synchronizedMap(new HashMap());
+    private static final Map<String, SerializerFactory> _factories = Collections.synchronizedMap(
+            new HashMap());
 
     static {
         SerializerFactory factory;
@@ -66,12 +64,10 @@ public abstract class SerializerFactory {
             while (token.hasMoreTokens()) {
                 className = token.nextToken();
                 try {
-                    factory = (SerializerFactory) ObjectFactory.newInstance(
-                            className, true);
+                    factory = (SerializerFactory) ObjectFactory.newInstance(className, true);
                     if (_factories.containsKey(factory.getSupportedMethod()))
                         _factories.put(factory.getSupportedMethod(), factory);
-                } catch (Exception except) {
-                }
+                } catch (Exception except) {}
             }
         }
     }
@@ -118,18 +114,17 @@ public abstract class SerializerFactory {
      * writer as the output character stream. If this method is used, the
      * encoding property will be ignored.
      */
-    public abstract Serializer makeSerializer(Writer writer,
-            OutputFormat format);
+    public abstract Serializer makeSerializer(Writer writer, OutputFormat format);
 
     /**
      * Create a new serializer, based on the {@link OutputFormat} and using the
      * output byte stream and the encoding specified in the output format.
      *
      * @throws UnsupportedEncodingException
-     *                                      The specified encoding is not
-     *                                      supported
+     *         The specified encoding is not
+     *         supported
      */
-    public abstract Serializer makeSerializer(OutputStream output,
-            OutputFormat format) throws UnsupportedEncodingException;
+    public abstract Serializer makeSerializer(OutputStream output, OutputFormat format)
+            throws UnsupportedEncodingException;
 
 }

@@ -35,10 +35,10 @@ public class BufferedImageFilter extends ImageFilter implements Cloneable {
      * single-source/single-destination operator.
      * 
      * @param op
-     *           the specified <code>BufferedImageOp</code> to use to filter a
-     *           <code>BufferedImage</code>
+     *        the specified <code>BufferedImageOp</code> to use to filter a
+     *        <code>BufferedImage</code>
      * @throws NullPointerException
-     *                              if op is null
+     *         if op is null
      */
     public BufferedImageFilter(BufferedImageOp op) {
         super();
@@ -70,11 +70,11 @@ public class BufferedImageFilter extends ImageFilter implements Cloneable {
      * <p>
      * 
      * @param width
-     *               the width to which to set the width of this
-     *               <code>BufferedImageFilter</code>
+     *        the width to which to set the width of this
+     *        <code>BufferedImageFilter</code>
      * @param height
-     *               the height to which to set the height of this
-     *               <code>BufferedImageFilter</code>
+     *        the height to which to set the height of this
+     *        <code>BufferedImageFilter</code>
      * @see ImageConsumer#setDimensions
      */
     public void setDimensions(int width, int height) {
@@ -101,9 +101,9 @@ public class BufferedImageFilter extends ImageFilter implements Cloneable {
      * could result in problems with retrieving the requested pixels.
      * 
      * @param model
-     *              the {@link ColorModel} to which to set the
-     *              <code>ColorModel</code> of this
-     *              <code>BufferedImageFilter</code>
+     *        the {@link ColorModel} to which to set the
+     *        <code>ColorModel</code> of this
+     *        <code>BufferedImageFilter</code>
      * @see ImageConsumer#setColorModel
      */
     public void setColorModel(ColorModel model) {
@@ -138,16 +138,15 @@ public class BufferedImageFilter extends ImageFilter implements Cloneable {
      * could result in problems with retrieving the requested pixels.
      * 
      * @throws IllegalArgumentException
-     *                                  if width or height are less than zero.
+     *         if width or height are less than zero.
      * @see ImageConsumer#setPixels(int, int, int, int, ColorModel, byte[], int,
      *      int)
      */
-    public void setPixels(int x, int y, int w, int h, ColorModel model,
-            byte pixels[], int off, int scansize) {
+    public void setPixels(int x, int y, int w, int h, ColorModel model, byte pixels[], int off,
+            int scansize) {
         // Fix 4184230
         if (w < 0 || h < 0) {
-            throw new IllegalArgumentException("Width (" + w + ") and height ("
-                    + h + ") must be > 0");
+            throw new IllegalArgumentException("Width (" + w + ") and height (" + h + ") must be > 0");
         }
         // Nothing to do
         if (w == 0 || h == 0) {
@@ -224,16 +223,14 @@ public class BufferedImageFilter extends ImageFilter implements Cloneable {
      * could result in problems with retrieving the requested pixels.
      * 
      * @throws IllegalArgumentException
-     *                                  if width or height are less than zero.
+     *         if width or height are less than zero.
      * @see ImageConsumer#setPixels(int, int, int, int, ColorModel, int[], int,
      *      int)
      */
-    public void setPixels(int x, int y, int w, int h, ColorModel model,
-            int pixels[], int off, int scansize) {
+    public void setPixels(int x, int y, int w, int h, ColorModel model, int pixels[], int off, int scansize) {
         // Fix 4184230
         if (w < 0 || h < 0) {
-            throw new IllegalArgumentException("Width (" + w + ") and height ("
-                    + h + ") must be > 0");
+            throw new IllegalArgumentException("Width (" + w + ") and height (" + h + ") must be > 0");
         }
         // Nothing to do
         if (w == 0 || h == 0) {
@@ -312,12 +309,12 @@ public class BufferedImageFilter extends ImageFilter implements Cloneable {
      * could result in problems with retrieving the requested pixels.
      * 
      * @param status
-     *               the status of image loading
+     *        the status of image loading
      * @throws ImagingOpException
-     *                            if there was a problem calling the filter
-     *                            method of the
-     *                            <code>BufferedImageOp</code> associated with
-     *                            this instance.
+     *         if there was a problem calling the filter
+     *         method of the
+     *         <code>BufferedImageOp</code> associated with
+     *         this instance.
      * @see ImageConsumer#imageComplete
      */
     public void imageComplete(int status) {
@@ -345,18 +342,15 @@ public class BufferedImageFilter extends ImageFilter implements Cloneable {
                     int[] bandOffsets = { 0 };
                     if (bytePixels == null)
                         break;
-                    DataBufferByte db = new DataBufferByte(bytePixels, width
-                            * height);
-                    wr = Raster.createInterleavedRaster(db, width, height,
-                            width, 1, bandOffsets, null);
+                    DataBufferByte db = new DataBufferByte(bytePixels, width * height);
+                    wr = Raster.createInterleavedRaster(db, width, height, width, 1, bandOffsets, null);
                 } else {
                     convertToRGB();
                     if (intPixels == null)
                         break;
                     wr = createDCMraster();
                 }
-                BufferedImage bi = new BufferedImage(model, wr, model
-                        .isAlphaPremultiplied(), null);
+                BufferedImage bi = new BufferedImage(model, wr, model.isAlphaPremultiplied(), null);
                 bi = bufferedImageOp.filter(bi, null);
                 WritableRaster r = bi.getRaster();
                 ColorModel cm = bi.getColorModel();
@@ -390,8 +384,7 @@ public class BufferedImageFilter extends ImageFilter implements Cloneable {
             bandMasks[3] = dcm.getAlphaMask();
         }
         DataBufferInt db = new DataBufferInt(intPixels, width * height);
-        wr = Raster.createPackedRaster(db, width, height, width, bandMasks,
-                null);
+        wr = Raster.createPackedRaster(db, width, height, width, bandMasks, null);
         return wr;
     }
 

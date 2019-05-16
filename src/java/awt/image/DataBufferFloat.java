@@ -37,7 +37,7 @@ public final class DataBufferFloat extends DataBuffer {
      * specified size.
      *
      * @param size
-     *             The number of elements in the DataBuffer.
+     *        The number of elements in the DataBuffer.
      */
     public DataBufferFloat(int size) {
         super(STABLE, TYPE_FLOAT, size);
@@ -51,10 +51,10 @@ public final class DataBufferFloat extends DataBuffer {
      * specified number of banks, all of which are of a specified size.
      *
      * @param size
-     *                 The number of elements in each bank of the
-     *                 <code>DataBuffer</code>.
+     *        The number of elements in each bank of the
+     *        <code>DataBuffer</code>.
      * @param numBanks
-     *                 The number of banks in the <code>DataBuffer</code>.
+     *        The number of banks in the <code>DataBuffer</code>.
      */
     public DataBufferFloat(int size, int numBanks) {
         super(STABLE, TYPE_FLOAT, size, numBanks);
@@ -77,11 +77,11 @@ public final class DataBufferFloat extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  An array of <code>float</code>s to be used as the first
-     *                  and
-     *                  only bank of this <code>DataBuffer</code>.
+     *        An array of <code>float</code>s to be used as the first
+     *        and
+     *        only bank of this <code>DataBuffer</code>.
      * @param size
-     *                  The number of elements of the array to be used.
+     *        The number of elements of the array to be used.
      */
     public DataBufferFloat(float dataArray[], int size) {
         super(UNTRACKABLE, TYPE_FLOAT, size);
@@ -103,15 +103,15 @@ public final class DataBufferFloat extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  An array of <code>float</code>s to be used as the first
-     *                  and
-     *                  only bank of this <code>DataBuffer</code>.
+     *        An array of <code>float</code>s to be used as the first
+     *        and
+     *        only bank of this <code>DataBuffer</code>.
      * @param size
-     *                  The number of elements of the array to be used.
+     *        The number of elements of the array to be used.
      * @param offset
-     *                  The offset of the first element of the array that will
-     *                  be
-     *                  used.
+     *        The offset of the first element of the array that will
+     *        be
+     *        used.
      */
     public DataBufferFloat(float dataArray[], int size, int offset) {
         super(UNTRACKABLE, TYPE_FLOAT, size, 1, offset);
@@ -132,11 +132,11 @@ public final class DataBufferFloat extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  An array of arrays of <code>float</code>s to be used as
-     *                  the
-     *                  banks of this <code>DataBuffer</code>.
+     *        An array of arrays of <code>float</code>s to be used as
+     *        the
+     *        banks of this <code>DataBuffer</code>.
      * @param size
-     *                  The number of elements of each array to be used.
+     *        The number of elements of each array to be used.
      */
     public DataBufferFloat(float dataArray[][], int size) {
         super(UNTRACKABLE, TYPE_FLOAT, size, dataArray.length);
@@ -157,13 +157,13 @@ public final class DataBufferFloat extends DataBuffer {
      * video memory).
      *
      * @param dataArray
-     *                  An array of arrays of <code>float</code>s to be used as
-     *                  the
-     *                  banks of this <code>DataBuffer</code>.
+     *        An array of arrays of <code>float</code>s to be used as
+     *        the
+     *        banks of this <code>DataBuffer</code>.
      * @param size
-     *                  The number of elements of each array to be used.
+     *        The number of elements of each array to be used.
      * @param offsets
-     *                  An array of integer offsets, one for each bank.
+     *        An array of integer offsets, one for each bank.
      */
     public DataBufferFloat(float dataArray[][], int size, int offsets[]) {
         super(UNTRACKABLE, TYPE_FLOAT, size, dataArray.length, offsets);
@@ -195,7 +195,7 @@ public final class DataBufferFloat extends DataBuffer {
      * associated image in video memory).
      *
      * @param bank
-     *             the data array
+     *        the data array
      * @return the data array specified by <code>bank</code>.
      */
     public float[] getData(int bank) {
@@ -223,8 +223,7 @@ public final class DataBufferFloat extends DataBuffer {
      * an <code>int</code>.
      *
      * @param i
-     *          The desired data array element.
-     *
+     *        The desired data array element.
      * @return The data entry as an <code>int</code>.
      * @see #setElem(int, int)
      * @see #setElem(int, int, int)
@@ -238,10 +237,9 @@ public final class DataBufferFloat extends DataBuffer {
      * <code>int</code>.
      *
      * @param bank
-     *             The bank number.
+     *        The bank number.
      * @param i
-     *             The desired data array element.
-     *
+     *        The desired data array element.
      * @return The data entry as an <code>int</code>.
      * @see #setElem(int, int)
      * @see #setElem(int, int, int)
@@ -255,9 +253,9 @@ public final class DataBufferFloat extends DataBuffer {
      * given <code>int</code>.
      *
      * @param i
-     *            The desired data array element.
+     *        The desired data array element.
      * @param val
-     *            The value to be set.
+     *        The value to be set.
      * @see #getElem(int)
      * @see #getElem(int, int)
      */
@@ -271,11 +269,11 @@ public final class DataBufferFloat extends DataBuffer {
      * <code>int</code>.
      *
      * @param bank
-     *             The bank number.
+     *        The bank number.
      * @param i
-     *             The desired data array element.
+     *        The desired data array element.
      * @param val
-     *             The value to be set.
+     *        The value to be set.
      * @see #getElem(int)
      * @see #getElem(int, int)
      */
@@ -289,8 +287,7 @@ public final class DataBufferFloat extends DataBuffer {
      * a <code>float</code>.
      *
      * @param i
-     *          The desired data array element.
-     *
+     *        The desired data array element.
      * @return The data entry as a <code>float</code>.
      * @see #setElemFloat(int, float)
      * @see #setElemFloat(int, int, float)
@@ -304,10 +301,9 @@ public final class DataBufferFloat extends DataBuffer {
      * <code>float</code>.
      *
      * @param bank
-     *             The bank number.
+     *        The bank number.
      * @param i
-     *             The desired data array element.
-     *
+     *        The desired data array element.
      * @return The data entry as a <code>float</code>.
      * @see #setElemFloat(int, float)
      * @see #setElemFloat(int, int, float)
@@ -321,9 +317,9 @@ public final class DataBufferFloat extends DataBuffer {
      * given <code>float</code>.
      *
      * @param i
-     *            The desired data array element.
+     *        The desired data array element.
      * @param val
-     *            The value to be set.
+     *        The value to be set.
      * @see #getElemFloat(int)
      * @see #getElemFloat(int, int)
      */
@@ -337,11 +333,11 @@ public final class DataBufferFloat extends DataBuffer {
      * <code>float</code>.
      *
      * @param bank
-     *             The bank number.
+     *        The bank number.
      * @param i
-     *             The desired data array element.
+     *        The desired data array element.
      * @param val
-     *             The value to be set.
+     *        The value to be set.
      * @see #getElemFloat(int)
      * @see #getElemFloat(int, int)
      */
@@ -355,8 +351,7 @@ public final class DataBufferFloat extends DataBuffer {
      * a <code>double</code>.
      *
      * @param i
-     *          The desired data array element.
-     *
+     *        The desired data array element.
      * @return The data entry as a <code>double</code>.
      * @see #setElemDouble(int, double)
      * @see #setElemDouble(int, int, double)
@@ -370,10 +365,9 @@ public final class DataBufferFloat extends DataBuffer {
      * <code>double</code>.
      *
      * @param bank
-     *             The bank number.
+     *        The bank number.
      * @param i
-     *             The desired data array element.
-     *
+     *        The desired data array element.
      * @return The data entry as a <code>double</code>.
      * @see #setElemDouble(int, double)
      * @see #setElemDouble(int, int, double)
@@ -387,9 +381,9 @@ public final class DataBufferFloat extends DataBuffer {
      * given <code>double</code>.
      *
      * @param i
-     *            The desired data array element.
+     *        The desired data array element.
      * @param val
-     *            The value to be set.
+     *        The value to be set.
      * @see #getElemDouble(int)
      * @see #getElemDouble(int, int)
      */
@@ -403,11 +397,11 @@ public final class DataBufferFloat extends DataBuffer {
      * <code>double</code>.
      *
      * @param bank
-     *             The bank number.
+     *        The bank number.
      * @param i
-     *             The desired data array element.
+     *        The desired data array element.
      * @param val
-     *             The value to be set.
+     *        The value to be set.
      * @see #getElemDouble(int)
      * @see #getElemDouble(int, int)
      */

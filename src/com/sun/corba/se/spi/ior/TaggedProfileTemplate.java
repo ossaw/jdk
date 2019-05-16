@@ -24,8 +24,7 @@ import com.sun.corba.se.spi.orb.ORB;
  *
  * @author Ken Cavanaugh
  */
-public interface TaggedProfileTemplate extends List, Identifiable,
-        WriteContents, MakeImmutable {
+public interface TaggedProfileTemplate extends List, Identifiable, WriteContents, MakeImmutable {
     /**
      * Return an iterator that iterates over tagged components with identifier
      * id. It is not possible to modify the list through this iterator.

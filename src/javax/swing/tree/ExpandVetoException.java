@@ -23,7 +23,7 @@ public class ExpandVetoException extends Exception {
      * Constructs an ExpandVetoException object with no message.
      *
      * @param event
-     *              a TreeExpansionEvent object
+     *        a TreeExpansionEvent object
      */
 
     public ExpandVetoException(TreeExpansionEvent event) {
@@ -34,9 +34,9 @@ public class ExpandVetoException extends Exception {
      * Constructs an ExpandVetoException object with the specified message.
      *
      * @param event
-     *                a TreeExpansionEvent object
+     *        a TreeExpansionEvent object
      * @param message
-     *                a String containing the message
+     *        a String containing the message
      */
     public ExpandVetoException(TreeExpansionEvent event, String message) {
         super(message);

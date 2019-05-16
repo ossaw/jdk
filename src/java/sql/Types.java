@@ -242,7 +242,6 @@ public class Types {
      * type code, that identifies the generic SQL type <code>ROWID</code>
      *
      * @since 1.6
-     *
      */
     public final static int ROWID = -8;
 

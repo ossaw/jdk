@@ -26,8 +26,7 @@ class ByteBufferAsCharBufferB // package-private
 
     }
 
-    ByteBufferAsCharBufferB(ByteBuffer bb, int mark, int pos, int lim, int cap,
-            int off) {
+    ByteBufferAsCharBufferB(ByteBuffer bb, int mark, int pos, int lim, int cap, int off) {
 
         super(mark, pos, lim, cap);
         this.bb = bb;
@@ -46,14 +45,14 @@ class ByteBufferAsCharBufferB // package-private
     }
 
     public CharBuffer duplicate() {
-        return new ByteBufferAsCharBufferB(bb, this.markValue(), this
-                .position(), this.limit(), this.capacity(), offset);
+        return new ByteBufferAsCharBufferB(bb, this.markValue(), this.position(), this.limit(), this
+                .capacity(), offset);
     }
 
     public CharBuffer asReadOnlyBuffer() {
 
-        return new ByteBufferAsCharBufferRB(bb, this.markValue(), this
-                .position(), this.limit(), this.capacity(), offset);
+        return new ByteBufferAsCharBufferRB(bb, this.markValue(), this.position(), this.limit(), this
+                .capacity(), offset);
 
     }
 
@@ -143,8 +142,7 @@ class ByteBufferAsCharBufferB // package-private
 
         if ((start < 0) || (end > len) || (start > end))
             throw new IndexOutOfBoundsException();
-        return new ByteBufferAsCharBufferB(bb, -1, pos + start, pos + end,
-                capacity(), offset);
+        return new ByteBufferAsCharBufferB(bb, -1, pos + start, pos + end, capacity(), offset);
     }
 
     public ByteOrder order() {

@@ -47,8 +47,7 @@ import sun.reflect.misc.ReflectUtil;
 public class Introspector {
     final public static boolean ALLOW_NONPUBLIC_MBEAN;
     static {
-        String val = AccessController.doPrivileged(new GetPropertyAction(
-                "jdk.jmx.mbeans.allowNonPublic"));
+        String val = AccessController.doPrivileged(new GetPropertyAction("jdk.jmx.mbeans.allowNonPublic"));
         ALLOW_NONPUBLIC_MBEAN = Boolean.parseBoolean(val);
     }
 
@@ -88,10 +87,9 @@ public class Introspector {
      * </ul>
      * 
      * @param c
-     *          The class of the MBean under examination.
+     *        The class of the MBean under examination.
      * @return <code>true</code> if instances of <code>c</code> are Dynamic
      *         MBeans, <code>false</code> otherwise.
-     *
      **/
     public static final boolean isDynamic(final Class<?> c) {
         // Check if the MBean implements the DynamicMBean interface
@@ -110,32 +108,27 @@ public class Introspector {
      * If these conditions are not met, throws a NotCompliantMBeanException.
      * 
      * @param c
-     *          The class of the MBean we want to create.
+     *        The class of the MBean we want to create.
      * @exception NotCompliantMBeanException
-     *                                       if the MBean class makes it
-     *                                       impossible to instantiate the
-     *                                       MBean from within the MBeanServer.
-     *
+     *            if the MBean class makes it
+     *            impossible to instantiate the
+     *            MBean from within the MBeanServer.
      **/
-    public static void testCreation(Class<?> c)
-            throws NotCompliantMBeanException {
+    public static void testCreation(Class<?> c) throws NotCompliantMBeanException {
         // Check if the class is a concrete class
         final int mods = c.getModifiers();
         if (Modifier.isAbstract(mods) || Modifier.isInterface(mods)) {
-            throw new NotCompliantMBeanException(
-                    "MBean class must be concrete");
+            throw new NotCompliantMBeanException("MBean class must be concrete");
         }
 
         // Check if the MBean has a public constructor
         final Constructor<?>[] consList = c.getConstructors();
         if (consList.length == 0) {
-            throw new NotCompliantMBeanException(
-                    "MBean class must have public constructor");
+            throw new NotCompliantMBeanException("MBean class must have public constructor");
         }
     }
 
-    public static void checkCompliance(Class<?> mbeanClass)
-            throws NotCompliantMBeanException {
+    public static void checkCompliance(Class<?> mbeanClass) throws NotCompliantMBeanException {
         // Is DynamicMBean?
         //
         if (DynamicMBean.class.isAssignableFrom(mbeanClass))
@@ -158,16 +151,13 @@ public class Introspector {
         } catch (NotCompliantMBeanException e) {
             mxbeanException = e;
         }
-        final String msg = "MBean class " + mbeanClass.getName()
-                + " does not implement "
-                + "DynamicMBean, and neither follows the Standard MBean conventions ("
-                + mbeanException.toString() + ") nor the MXBean conventions ("
-                + mxbeanException.toString() + ")";
+        final String msg = "MBean class " + mbeanClass.getName() + " does not implement "
+                + "DynamicMBean, and neither follows the Standard MBean conventions (" + mbeanException
+                        .toString() + ") nor the MXBean conventions (" + mxbeanException.toString() + ")";
         throw new NotCompliantMBeanException(msg);
     }
 
-    public static <T> DynamicMBean makeDynamicMBean(T mbean)
-            throws NotCompliantMBeanException {
+    public static <T> DynamicMBean makeDynamicMBean(T mbean) throws NotCompliantMBeanException {
         if (mbean instanceof DynamicMBean)
             return (DynamicMBean) mbean;
         final Class<?> mbeanClass = mbean.getClass();
@@ -198,16 +188,14 @@ public class Introspector {
      * Basic method for testing if a given class is a JMX compliant MBean.
      *
      * @param baseClass
-     *                  The class to be tested
-     *
+     *        The class to be tested
      * @return <code>null</code> if the MBean is a DynamicMBean, the computed
      *         {@link javax.management.MBeanInfo} otherwise.
      * @exception NotCompliantMBeanException
-     *                                       The specified class is not a JMX
-     *                                       compliant MBean
+     *            The specified class is not a JMX
+     *            compliant MBean
      */
-    public static MBeanInfo testCompliance(Class<?> baseClass)
-            throws NotCompliantMBeanException {
+    public static MBeanInfo testCompliance(Class<?> baseClass) throws NotCompliantMBeanException {
 
         // ------------------------------
         // ------------------------------
@@ -226,12 +214,12 @@ public class Introspector {
      * the {@link MXBean} conventions.
      * 
      * @param interfaceClass
-     *                       An interface class to test for the MXBean
-     *                       compliance
+     *        An interface class to test for the MXBean
+     *        compliance
      * @throws NotCompliantMBeanException
-     *                                    Thrown when the tested interface is
-     *                                    not public or contradicts
-     *                                    the {@link MXBean} conventions.
+     *         Thrown when the tested interface is
+     *         not public or contradicts
+     *         the {@link MXBean} conventions.
      */
     public static void testComplianceMXBeanInterface(Class<?> interfaceClass)
             throws NotCompliantMBeanException {
@@ -244,11 +232,11 @@ public class Introspector {
      * the {@code MBean} conventions.
      * 
      * @param interfaceClass
-     *                       An interface class to test for the MBean compliance
+     *        An interface class to test for the MBean compliance
      * @throws NotCompliantMBeanException
-     *                                    Thrown when the tested interface is
-     *                                    not public or contradicts
-     *                                    the {@code MBean} conventions.
+     *         Thrown when the tested interface is
+     *         not public or contradicts
+     *         the {@code MBean} conventions.
      */
     public static void testComplianceMBeanInterface(Class<?> interfaceClass)
             throws NotCompliantMBeanException {
@@ -261,34 +249,28 @@ public class Introspector {
      * com.sun.management.jmx.
      *
      * @param baseClass
-     *                       The class to be tested.
-     *
+     *        The class to be tested.
      * @param mbeanInterface
-     *                       the MBean interface that the class implements, or
-     *                       null if the
-     *                       interface must be determined by introspection.
-     *
+     *        the MBean interface that the class implements, or
+     *        null if the
+     *        interface must be determined by introspection.
      * @return the computed {@link javax.management.MBeanInfo}.
      * @exception NotCompliantMBeanException
-     *                                       The specified class is not a JMX
-     *                                       compliant Standard MBean
+     *            The specified class is not a JMX
+     *            compliant Standard MBean
      */
-    public static synchronized MBeanInfo testCompliance(
-            final Class<?> baseClass, Class<?> mbeanInterface)
+    public static synchronized MBeanInfo testCompliance(final Class<?> baseClass, Class<?> mbeanInterface)
             throws NotCompliantMBeanException {
         if (mbeanInterface == null)
             mbeanInterface = getStandardMBeanInterface(baseClass);
         ReflectUtil.checkPackageAccess(mbeanInterface);
-        MBeanIntrospector<?> introspector = StandardMBeanIntrospector
-                .getInstance();
+        MBeanIntrospector<?> introspector = StandardMBeanIntrospector.getInstance();
         return getClassMBeanInfo(introspector, baseClass, mbeanInterface);
     }
 
-    private static <M> MBeanInfo getClassMBeanInfo(
-            MBeanIntrospector<M> introspector, Class<?> baseClass,
+    private static <M> MBeanInfo getClassMBeanInfo(MBeanIntrospector<M> introspector, Class<?> baseClass,
             Class<?> mbeanInterface) throws NotCompliantMBeanException {
-        PerInterface<M> perInterface = introspector.getPerInterface(
-                mbeanInterface);
+        PerInterface<M> perInterface = introspector.getPerInterface(mbeanInterface);
         return introspector.getClassMBeanInfo(baseClass, perInterface);
     }
 
@@ -297,8 +279,7 @@ public class Introspector {
      * method is only called by the legacy code in "com.sun.management.jmx".
      *
      * @param baseClass
-     *                  The class to be tested.
-     *
+     *        The class to be tested.
      * @return The MBean interface implemented by the MBean. Return
      *         <code>null</code> if the MBean is a DynamicMBean, or if no MBean
      *         interface is found.
@@ -319,16 +300,14 @@ public class Introspector {
      * Get the MBean interface implemented by a JMX Standard MBean class.
      *
      * @param baseClass
-     *                  The class to be tested.
-     *
+     *        The class to be tested.
      * @return The MBean interface implemented by the Standard MBean.
-     *
      * @throws NotCompliantMBeanException
-     *                                    The specified class is not a JMX
-     *                                    compliant Standard MBean.
+     *         The specified class is not a JMX
+     *         compliant Standard MBean.
      */
-    public static <T> Class<? super T> getStandardMBeanInterface(
-            Class<T> baseClass) throws NotCompliantMBeanException {
+    public static <T> Class<? super T> getStandardMBeanInterface(Class<T> baseClass)
+            throws NotCompliantMBeanException {
         Class<? super T> current = baseClass;
         Class<? super T> mbeanInterface = null;
         while (current != null) {
@@ -340,8 +319,7 @@ public class Introspector {
         if (mbeanInterface != null) {
             return mbeanInterface;
         } else {
-            final String msg = "Class " + baseClass.getName()
-                    + " is not a JMX compliant Standard MBean";
+            final String msg = "Class " + baseClass.getName() + " is not a JMX compliant Standard MBean";
             throw new NotCompliantMBeanException(msg);
         }
     }
@@ -350,13 +328,11 @@ public class Introspector {
      * Get the MXBean interface implemented by a JMX MXBean class.
      *
      * @param baseClass
-     *                  The class to be tested.
-     *
+     *        The class to be tested.
      * @return The MXBean interface implemented by the MXBean.
-     *
      * @throws NotCompliantMBeanException
-     *                                    The specified class is not a JMX
-     *                                    compliant MXBean.
+     *         The specified class is not a JMX
+     *         compliant MXBean.
      */
     public static <T> Class<? super T> getMXBeanInterface(Class<T> baseClass)
             throws NotCompliantMBeanException {
@@ -376,8 +352,7 @@ public class Introspector {
      * Try to find the MBean interface corresponding to the class aName - i.e.
      * <i>aName</i>MBean, from within aClass and its superclasses.
      **/
-    private static <T> Class<? super T> findMBeanInterface(Class<T> aClass,
-            String aName) {
+    private static <T> Class<? super T> findMBeanInterface(Class<T> aClass, String aName) {
         Class<? super T> current = aClass;
         while (current != null) {
             final Class<?>[] interfaces = current.getInterfaces();
@@ -434,9 +409,8 @@ public class Introspector {
                     value = annotationToField(value);
                     Object oldValue = descriptorMap.put(name, value);
                     if (oldValue != null && !equals(oldValue, value)) {
-                        final String msg = "Inconsistent values for descriptor field "
-                                + name + " from annotations: " + value + " :: "
-                                + oldValue;
+                        final String msg = "Inconsistent values for descriptor field " + name
+                                + " from annotations: " + value + " :: " + oldValue;
                         throw new IllegalArgumentException(msg);
                     }
                 }
@@ -453,10 +427,10 @@ public class Introspector {
      * Throws a NotCompliantMBeanException or a SecurityException.
      * 
      * @param notCompliant
-     *                     the class which was under examination
+     *        the class which was under examination
      * @param cause
-     *                     the raeson why NotCompliantMBeanException should be
-     *                     thrown.
+     *        the raeson why NotCompliantMBeanException should be
+     *        thrown.
      * @return nothing - this method always throw an exception. The return type
      *         makes it possible to write
      * 
@@ -465,23 +439,19 @@ public class Introspector {
      *         </pre>
      * 
      * @throws SecurityException
-     *                                    - if cause is a SecurityException
+     *         - if cause is a SecurityException
      * @throws NotCompliantMBeanException
-     *                                    otherwise.
+     *         otherwise.
      **/
-    static NotCompliantMBeanException throwException(Class<?> notCompliant,
-            Throwable cause) throws NotCompliantMBeanException,
-            SecurityException {
+    static NotCompliantMBeanException throwException(Class<?> notCompliant, Throwable cause)
+            throws NotCompliantMBeanException, SecurityException {
         if (cause instanceof SecurityException)
             throw (SecurityException) cause;
         if (cause instanceof NotCompliantMBeanException)
             throw (NotCompliantMBeanException) cause;
-        final String classname = (notCompliant == null) ? "null class"
-                : notCompliant.getName();
-        final String reason = (cause == null) ? "Not compliant"
-                : cause.getMessage();
-        final NotCompliantMBeanException res = new NotCompliantMBeanException(
-                classname + ": " + reason);
+        final String classname = (notCompliant == null) ? "null class" : notCompliant.getName();
+        final String reason = (cause == null) ? "Not compliant" : cause.getMessage();
+        final NotCompliantMBeanException res = new NotCompliantMBeanException(classname + ": " + reason);
         res.initCause(cause);
         throw res;
     }
@@ -493,8 +463,8 @@ public class Introspector {
         // An annotation element cannot have a null value but never mind
         if (x == null)
             return null;
-        if (x instanceof Number || x instanceof String || x instanceof Character
-                || x instanceof Boolean || x instanceof String[])
+        if (x instanceof Number || x instanceof String || x instanceof Character || x instanceof Boolean
+                || x instanceof String[])
             return x;
         // Remaining possibilities: array of primitive (e.g. int[]),
         // enum, class, array of enum or class.
@@ -520,8 +490,8 @@ public class Introspector {
         // proxy's interface to use that in the exception message.
         if (Proxy.isProxyClass(c))
             c = c.getInterfaces()[0]; // array "can't be empty"
-        throw new IllegalArgumentException("Illegal type for annotation "
-                + "element using @DescriptorKey: " + c.getName());
+        throw new IllegalArgumentException("Illegal type for annotation " + "element using @DescriptorKey: "
+                + c.getName());
     }
 
     // This must be consistent with the check for duplicate field values in
@@ -535,21 +505,19 @@ public class Introspector {
      * Returns the XXMBean interface or null if no such interface exists
      *
      * @param c
-     *               The interface to be tested
+     *        The interface to be tested
      * @param clName
-     *               The name of the class implementing this interface
+     *        The name of the class implementing this interface
      */
-    private static <T> Class<? super T> implementsMBean(Class<T> c,
-            String clName) {
+    private static <T> Class<? super T> implementsMBean(Class<T> c, String clName) {
         String clMBeanName = clName + "MBean";
         if (c.getName().equals(clMBeanName)) {
             return c;
         }
         Class<?>[] interfaces = c.getInterfaces();
         for (int i = 0; i < interfaces.length; i++) {
-            if (interfaces[i].getName().equals(clMBeanName) && (Modifier
-                    .isPublic(interfaces[i].getModifiers())
-                    || ALLOW_NONPUBLIC_MBEAN)) {
+            if (interfaces[i].getName().equals(clMBeanName) && (Modifier.isPublic(interfaces[i]
+                    .getModifiers()) || ALLOW_NONPUBLIC_MBEAN)) {
                 return Util.cast(interfaces[i]);
             }
         }
@@ -581,27 +549,22 @@ public class Introspector {
                 } else {
                     // Java Beans not available so use simple introspection
                     // to locate method
-                    readMethod = SimpleIntrospector.getReadMethod(clazz,
-                            element);
+                    readMethod = SimpleIntrospector.getReadMethod(clazz, element);
                 }
                 if (readMethod != null) {
-                    ReflectUtil.checkPackageAccess(readMethod
-                            .getDeclaringClass());
+                    ReflectUtil.checkPackageAccess(readMethod.getDeclaringClass());
                     return MethodUtil.invoke(readMethod, complex, new Class[0]);
                 }
 
-                throw new AttributeNotFoundException(
-                        "Could not find the getter method for the property "
-                                + element
-                                + " using the Java Beans introspector");
+                throw new AttributeNotFoundException("Could not find the getter method for the property "
+                        + element + " using the Java Beans introspector");
             }
         } catch (InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         } catch (AttributeNotFoundException e) {
             throw e;
         } catch (Exception e) {
-            throw EnvHelp.initCause(new AttributeNotFoundException(e
-                    .getMessage()), e);
+            throw EnvHelp.initCause(new AttributeNotFoundException(e.getMessage()), e);
         }
     }
 
@@ -618,9 +581,8 @@ public class Introspector {
         private static final String IS_METHOD_PREFIX = "is";
 
         // cache to avoid repeated lookups
-        private static final Map<Class<?>, SoftReference<List<Method>>> cache = Collections
-                .synchronizedMap(
-                        new WeakHashMap<Class<?>, SoftReference<List<Method>>>());
+        private static final Map<Class<?>, SoftReference<List<Method>>> cache = Collections.synchronizedMap(
+                new WeakHashMap<Class<?>, SoftReference<List<Method>>>());
 
         /**
          * Returns the list of methods cached for the given class, or
@@ -676,8 +638,7 @@ public class Introspector {
 
             // get list of public methods, filtering out methods that have
             // been overridden to return a more specific type.
-            List<Method> methods = StandardMBeanIntrospector.getInstance()
-                    .getMethods(clazz);
+            List<Method> methods = StandardMBeanIntrospector.getInstance().getMethods(clazz);
             methods = MBeanAnalyzer.eliminateCovariantMethods(methods);
 
             // filter out the non-getter methods
@@ -705,8 +666,7 @@ public class Introspector {
          */
         static Method getReadMethod(Class<?> clazz, String property) {
             // first character in uppercase (compatibility with JavaBeans)
-            property = property.substring(0, 1).toUpperCase(Locale.ENGLISH)
-                    + property.substring(1);
+            property = property.substring(0, 1).toUpperCase(Locale.ENGLISH) + property.substring(1);
             String getMethod = GET_METHOD_PREFIX + property;
             String isMethod = IS_METHOD_PREFIX + property;
             for (Method m : getReadMethods(clazz)) {
@@ -724,23 +684,17 @@ public class Introspector {
      * PropertyDescriptors without creating a static dependency on java.beans.
      */
     private static class BeansHelper {
-        private static final Class<?> introspectorClass = getClass(
-                "java.beans.Introspector");
-        private static final Class<?> beanInfoClass = (introspectorClass == null)
-                ? null
+        private static final Class<?> introspectorClass = getClass("java.beans.Introspector");
+        private static final Class<?> beanInfoClass = (introspectorClass == null) ? null
                 : getClass("java.beans.BeanInfo");
-        private static final Class<?> getPropertyDescriptorClass = (beanInfoClass == null)
-                ? null
+        private static final Class<?> getPropertyDescriptorClass = (beanInfoClass == null) ? null
                 : getClass("java.beans.PropertyDescriptor");
 
-        private static final Method getBeanInfo = getMethod(introspectorClass,
-                "getBeanInfo", Class.class);
-        private static final Method getPropertyDescriptors = getMethod(
-                beanInfoClass, "getPropertyDescriptors");
-        private static final Method getPropertyName = getMethod(
-                getPropertyDescriptorClass, "getName");
-        private static final Method getReadMethod = getMethod(
-                getPropertyDescriptorClass, "getReadMethod");
+        private static final Method getBeanInfo = getMethod(introspectorClass, "getBeanInfo", Class.class);
+        private static final Method getPropertyDescriptors = getMethod(beanInfoClass,
+                "getPropertyDescriptors");
+        private static final Method getPropertyName = getMethod(getPropertyDescriptorClass, "getName");
+        private static final Method getReadMethod = getMethod(getPropertyDescriptorClass, "getReadMethod");
 
         private static Class<?> getClass(String name) {
             try {
@@ -750,8 +704,7 @@ public class Introspector {
             }
         }
 
-        private static Method getMethod(Class<?> clazz, String name,
-                Class<?>... paramTypes) {
+        private static Method getMethod(Class<?> clazz, String name, Class<?>... paramTypes) {
             if (clazz != null) {
                 try {
                     return clazz.getMethod(name, paramTypes);

@@ -56,7 +56,6 @@ package com.sun.org.apache.bcel.internal.generic;
  * InstructionTargeter has to be notified that (one of) the InstructionHandle it
  * is referencing is being removed from the InstructionList and thus not valid
  * anymore.
- *
  * Making this an exception instead of a return value forces the user to handle
  * these case explicitely in a try { ... } catch. The following code illustrates
  * how this may be done:

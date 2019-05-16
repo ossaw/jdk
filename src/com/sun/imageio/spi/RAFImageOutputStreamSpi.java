@@ -28,8 +28,7 @@ public class RAFImageOutputStreamSpi extends ImageOutputStreamSpi {
         return "Service provider that instantiates a FileImageOutputStream from a RandomAccessFile";
     }
 
-    public ImageOutputStream createOutputStreamInstance(Object output,
-            boolean useCache, File cacheDir) {
+    public ImageOutputStream createOutputStreamInstance(Object output, boolean useCache, File cacheDir) {
         if (output instanceof RandomAccessFile) {
             try {
                 return new FileImageOutputStream((RandomAccessFile) output);

@@ -24,10 +24,10 @@ public class MetalMenuBarUI extends BasicMenuBarUI {
      * component.
      *
      * @param x
-     *          JComponent to create the ComponentUI implementation for
+     *        JComponent to create the ComponentUI implementation for
      * @return ComponentUI implementation for <code>x</code>
      * @throws NullPointerException
-     *                              if <code>x</code> is null
+     *         if <code>x</code> is null
      */
     public static ComponentUI createUI(JComponent x) {
         if (x == null) {
@@ -41,9 +41,9 @@ public class MetalMenuBarUI extends BasicMenuBarUI {
      * feel.
      *
      * @param c
-     *          the component where this UI delegate is being installed
+     *        the component where this UI delegate is being installed
      * @throws NullPointerException
-     *                              if <code>c</code> is null.
+     *         if <code>c</code> is null.
      */
     public void installUI(JComponent c) {
         super.installUI(c);
@@ -55,9 +55,9 @@ public class MetalMenuBarUI extends BasicMenuBarUI {
      * <code>installUI</code>.
      *
      * @param c
-     *          the component where this UI delegate is being installed
+     *        the component where this UI delegate is being installed
      * @throws NullPointerException
-     *                              if <code>c</code> is null.
+     *         if <code>c</code> is null.
      */
     public void uninstallUI(JComponent c) {
         super.uninstallUI(c);
@@ -69,11 +69,11 @@ public class MetalMenuBarUI extends BasicMenuBarUI {
      * <code>paint</code>.
      *
      * @param g
-     *          Graphics to paint to
+     *        Graphics to paint to
      * @param c
-     *          JComponent painting on
+     *        JComponent painting on
      * @throws NullPointerException
-     *                              if <code>g</code> or <code>c</code> is null
+     *         if <code>g</code> or <code>c</code> is null
      * @see javax.swing.plaf.ComponentUI#update
      * @see javax.swing.plaf.ComponentUI#paint
      * @since 1.5
@@ -83,20 +83,18 @@ public class MetalMenuBarUI extends BasicMenuBarUI {
         if (g == null) {
             throw new NullPointerException("Graphics must be non-null");
         }
-        if (isOpaque && (c.getBackground() instanceof UIResource) && UIManager
-                .get("MenuBar.gradient") != null) {
+        if (isOpaque && (c.getBackground() instanceof UIResource) && UIManager.get(
+                "MenuBar.gradient") != null) {
             if (MetalToolBarUI.doesMenuBarBorderToolBar((JMenuBar) c)) {
-                JToolBar tb = (JToolBar) MetalToolBarUI
-                        .findRegisteredComponentOfType(c, JToolBar.class);
+                JToolBar tb = (JToolBar) MetalToolBarUI.findRegisteredComponentOfType(c, JToolBar.class);
                 if (tb.isOpaque() && tb.getBackground() instanceof UIResource) {
-                    MetalUtils.drawGradient(c, g, "MenuBar.gradient", 0, 0, c
-                            .getWidth(), c.getHeight() + tb.getHeight(), true);
+                    MetalUtils.drawGradient(c, g, "MenuBar.gradient", 0, 0, c.getWidth(), c.getHeight() + tb
+                            .getHeight(), true);
                     paint(g, c);
                     return;
                 }
             }
-            MetalUtils.drawGradient(c, g, "MenuBar.gradient", 0, 0, c
-                    .getWidth(), c.getHeight(), true);
+            MetalUtils.drawGradient(c, g, "MenuBar.gradient", 0, 0, c.getWidth(), c.getHeight(), true);
             paint(g, c);
         } else {
             super.update(g, c);

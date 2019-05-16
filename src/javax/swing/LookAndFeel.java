@@ -60,17 +60,13 @@ import java.util.StringTokenizer;
  * that an entry exists for all ui class ids. As such, random exceptions will
  * occur if the current look and feel has not provided a value for a particular
  * ui class id and an instance of the {@code JComponent} subclass is created.
- *
  * <h2>Recommendations for Look and Feels</h2>
- *
  * As noted in {@code UIManager} each {@code LookAndFeel} has the opportunity to
  * provide a set of defaults that are layered in with developer and system
  * defaults. Some of Swing's components require the look and feel to provide a
  * specific set of defaults. These are documented in the classes that require
  * the specific default.
- *
  * <h3><a name="defaultRecommendation">ComponentUIs and defaults</a></h3>
- *
  * All {@code ComponentUIs} typically need to set various properties on the
  * {@code JComponent} the {@code ComponentUI} is providing the look and feel
  * for. This is typically done when the {@code
@@ -97,9 +93,7 @@ import java.util.StringTokenizer;
  * {@code ComponentUI} implementations should use the various install methods
  * provided by this class as they handle the necessary checking and install the
  * property using the recommended guidelines.
- *
  * <h3><a name="exceptions"></a>Exceptions</h3>
- *
  * All of the install methods provided by {@code LookAndFeel} need to access the
  * defaults if the value of the property being changed is {@code null} or a
  * {@code UIResource}. For example, installing the font does the following:
@@ -134,20 +128,18 @@ public abstract class LookAndFeel {
      * set if the current value is either {@code null} or a {@code UIResource}.
      *
      * @param c
-     *                      component to set the colors on
+     *        component to set the colors on
      * @param defaultBgName
-     *                      key for the background
+     *        key for the background
      * @param defaultFgName
-     *                      key for the foreground
-     *
+     *        key for the foreground
      * @see #installColorsAndFont
      * @see UIManager#getColor
      * @throws NullPointerException
-     *                              as described in
-     *                              <a href="#exceptions">exceptions</a>
+     *         as described in
+     *         <a href="#exceptions">exceptions</a>
      */
-    public static void installColors(JComponent c, String defaultBgName,
-            String defaultFgName) {
+    public static void installColors(JComponent c, String defaultBgName, String defaultFgName) {
         Color bg = c.getBackground();
         if (bg == null || bg instanceof UIResource) {
             c.setBackground(UIManager.getColor(defaultBgName));
@@ -165,23 +157,22 @@ public abstract class LookAndFeel {
      * set if the current value is either {@code null} or a {@code UIResource}.
      *
      * @param c
-     *                        component set to the colors and font on
+     *        component set to the colors and font on
      * @param defaultBgName
-     *                        key for the background
+     *        key for the background
      * @param defaultFgName
-     *                        key for the foreground
+     *        key for the foreground
      * @param defaultFontName
-     *                        key for the font
+     *        key for the font
      * @throws NullPointerException
-     *                              as described in
-     *                              <a href="#exceptions">exceptions</a>
-     *
+     *         as described in
+     *         <a href="#exceptions">exceptions</a>
      * @see #installColors
      * @see UIManager#getColor
      * @see UIManager#getFont
      */
-    public static void installColorsAndFont(JComponent c, String defaultBgName,
-            String defaultFgName, String defaultFontName) {
+    public static void installColorsAndFont(JComponent c, String defaultBgName, String defaultFgName,
+            String defaultFontName) {
         Font f = c.getFont();
         if (f == null || f instanceof UIResource) {
             c.setFont(UIManager.getFont(defaultFontName));
@@ -196,12 +187,12 @@ public abstract class LookAndFeel {
      * or an instance of {@code UIResource}.
      *
      * @param c
-     *                          component to set the border on
+     *        component to set the border on
      * @param defaultBorderName
-     *                          key specifying the border
+     *        key specifying the border
      * @throws NullPointerException
-     *                              as described in
-     *                              <a href="#exceptions">exceptions</a>
+     *         as described in
+     *         <a href="#exceptions">exceptions</a>
      */
     public static void installBorder(JComponent c, String defaultBorderName) {
         Border b = c.getBorder();
@@ -216,9 +207,9 @@ public abstract class LookAndFeel {
      * null}.
      *
      * @param c
-     *          component to uninstall the border on
+     *        component to uninstall the border on
      * @throws NullPointerException
-     *                              if {@code c} is {@code null}
+     *         if {@code c} is {@code null}
      */
     public static void uninstallBorder(JComponent c) {
         if (c.getBorder() instanceof UIResource) {
@@ -237,38 +228,36 @@ public abstract class LookAndFeel {
      * whether the property has been set by the client.
      *
      * @throws IllegalArgumentException
-     *                                  if the specified property is not one
-     *                                  which can be set using
-     *                                  this method
+     *         if the specified property is not one
+     *         which can be set using
+     *         this method
      * @throws ClassCastException
-     *                                  if the property value has not been set
-     *                                  by the developer and
-     *                                  the type does not match the property's
-     *                                  type
+     *         if the property value has not been set
+     *         by the developer and
+     *         the type does not match the property's
+     *         type
      * @throws NullPointerException
-     *                                  if {@code c} is {@code null}, or the
-     *                                  named property has not
-     *                                  been set by the developer and
-     *                                  {@code propertyValue} is
-     *                                  {@code null}
+     *         if {@code c} is {@code null}, or the
+     *         named property has not
+     *         been set by the developer and
+     *         {@code propertyValue} is
+     *         {@code null}
      * @param c
-     *                      target component to set the property on
+     *        target component to set the property on
      * @param propertyName
-     *                      name of the property to set
+     *        name of the property to set
      * @param propertyValue
-     *                      value of the property
+     *        value of the property
      * @since 1.5
      */
-    public static void installProperty(JComponent c, String propertyName,
-            Object propertyValue) {
+    public static void installProperty(JComponent c, String propertyName, Object propertyValue) {
         // this is a special case because the JPasswordField's ancestor
         // hierarchy
         // includes a class outside of javax.swing, thus we cannot call
         // setUIProperty
         // directly.
         if (SunToolkit.isInstanceOf(c, "javax.swing.JPasswordField")) {
-            if (!((JPasswordField) c).customSetUIProperty(propertyName,
-                    propertyValue)) {
+            if (!((JPasswordField) c).customSetUIProperty(propertyName, propertyValue)) {
                 c.setUIProperty(propertyName, propertyValue);
             }
         } else {
@@ -294,13 +283,10 @@ public abstract class LookAndFeel {
      * from six alternating {@code key-action} pairs:
      * 
      * <pre>
-     * JTextComponent.KeyBinding[] multilineBindings = makeKeyBindings(
-     *         new Object[] { "UP", DefaultEditorKit.upAction, "DOWN",
-     *                 DefaultEditorKit.downAction, "PAGE_UP",
-     *                 DefaultEditorKit.pageUpAction, "PAGE_DOWN",
-     *                 DefaultEditorKit.pageDownAction, "ENTER",
-     *                 DefaultEditorKit.insertBreakAction, "TAB",
-     *                 DefaultEditorKit.insertTabAction });
+     * JTextComponent.KeyBinding[] multilineBindings = makeKeyBindings(new Object[] { "UP",
+     *         DefaultEditorKit.upAction, "DOWN", DefaultEditorKit.downAction, "PAGE_UP",
+     *         DefaultEditorKit.pageUpAction, "PAGE_DOWN", DefaultEditorKit.pageDownAction, "ENTER",
+     *         DefaultEditorKit.insertBreakAction, "TAB", DefaultEditorKit.insertTabAction });
      * </pre>
      * 
      * If {@code keyBindingList's} length is odd, the last element is ignored.
@@ -313,23 +299,21 @@ public abstract class LookAndFeel {
      * {@code action} part of the {@code key-action} pair.
      *
      * @param keyBindingList
-     *                       an array of {@code key-action} pairs
+     *        an array of {@code key-action} pairs
      * @return an array of {@code KeyBindings}
      * @throws NullPointerException
-     *                              if {@code keyBindingList} is {@code null}
+     *         if {@code keyBindingList} is {@code null}
      * @throws ClassCastException
-     *                              if the {@code key} part of the pair is not a
-     *                              {@code KeyStroke} or {@code String}, or the
-     *                              {@code action}
-     *                              part of the pair is not a {@code String}
+     *         if the {@code key} part of the pair is not a
+     *         {@code KeyStroke} or {@code String}, or the
+     *         {@code action}
+     *         part of the pair is not a {@code String}
      * @see ActionMap
      * @see InputMap
      * @see KeyStroke#getKeyStroke
      */
-    public static JTextComponent.KeyBinding[] makeKeyBindings(
-            Object[] keyBindingList) {
-        JTextComponent.KeyBinding[] rv = new JTextComponent.KeyBinding[keyBindingList.length
-                / 2];
+    public static JTextComponent.KeyBinding[] makeKeyBindings(Object[] keyBindingList) {
+        JTextComponent.KeyBinding[] rv = new JTextComponent.KeyBinding[keyBindingList.length / 2];
 
         for (int i = 0; i < rv.length; i++) {
             Object o = keyBindingList[2 * i];
@@ -349,11 +333,10 @@ public abstract class LookAndFeel {
      * {@code InputMapUIResource}.
      *
      * @param keys
-     *             alternating pairs of {@code keystroke-action key} pairs as
-     *             described in {@link #loadKeyBindings}
+     *        alternating pairs of {@code keystroke-action key} pairs as
+     *        described in {@link #loadKeyBindings}
      * @return newly created and populated {@code InputMapUIResource}
      * @see #loadKeyBindings
-     *
      * @since 1.3
      */
     public static InputMap makeInputMap(Object[] keys) {
@@ -370,22 +353,19 @@ public abstract class LookAndFeel {
      * ComponentInputMapUIResource}.
      *
      * @param c
-     *             component to create the {@code ComponentInputMapUIResource}
-     *             with
+     *        component to create the {@code ComponentInputMapUIResource}
+     *        with
      * @param keys
-     *             alternating pairs of {@code keystroke-action key} pairs as
-     *             described in {@link #loadKeyBindings}
+     *        alternating pairs of {@code keystroke-action key} pairs as
+     *        described in {@link #loadKeyBindings}
      * @return newly created and populated {@code InputMapUIResource}
      * @throws IllegalArgumentException
-     *                                  if {@code c} is {@code null}
-     *
+     *         if {@code c} is {@code null}
      * @see #loadKeyBindings
      * @see ComponentInputMapUIResource
-     *
      * @since 1.3
      */
-    public static ComponentInputMap makeComponentInputMap(JComponent c,
-            Object[] keys) {
+    public static ComponentInputMap makeComponentInputMap(JComponent c, Object[] keys) {
         ComponentInputMap retMap = new ComponentInputMapUIResource(c);
         loadKeyBindings(retMap, keys);
         return retMap;
@@ -404,8 +384,7 @@ public abstract class LookAndFeel {
      * {@code key-action} pairs:
      * 
      * <pre>
-     * LookAndFeel.loadKeyBindings(inputMap, new Object[] { "control X", "cut",
-     *         "control V", "paste" });
+     * LookAndFeel.loadKeyBindings(inputMap, new Object[] { "control X", "cut", "control V", "paste" });
      * </pre>
      * <p>
      * Supplying a {@code null} list of bindings ({@code keys}) does not change
@@ -416,25 +395,22 @@ public abstract class LookAndFeel {
      * {@code keystroke} is ignored.
      *
      * @param retMap
-     *               {@code InputMap} to add the {@code key-action} pairs to
+     *        {@code InputMap} to add the {@code key-action} pairs to
      * @param keys
-     *               bindings to add to {@code retMap}
+     *        bindings to add to {@code retMap}
      * @throws NullPointerException
-     *                              if {@code keys} is {@code non-null}, not
-     *                              empty, and
-     *                              {@code retMap} is {@code null}
-     *
+     *         if {@code keys} is {@code non-null}, not
+     *         empty, and
+     *         {@code retMap} is {@code null}
      * @see KeyStroke#getKeyStroke(String)
      * @see InputMap
-     *
      * @since 1.3
      */
     public static void loadKeyBindings(InputMap retMap, Object[] keys) {
         if (keys != null) {
             for (int counter = 0, maxCounter = keys.length; counter < maxCounter; counter++) {
                 Object keyStrokeO = keys[counter++];
-                KeyStroke ks = (keyStrokeO instanceof KeyStroke)
-                        ? (KeyStroke) keyStrokeO
+                KeyStroke ks = (keyStrokeO instanceof KeyStroke) ? (KeyStroke) keyStrokeO
                         : KeyStroke.getKeyStroke((String) keyStrokeO);
                 retMap.put(ks, keys[counter]);
             }
@@ -455,17 +431,16 @@ public abstract class LookAndFeel {
      * occur when {@code createValue} is invoked on the returned object.
      *
      * @param baseClass
-     *                  {@code Class} used to load the resource
+     *        {@code Class} used to load the resource
      * @param gifFile
-     *                  path to the image to load
+     *        path to the image to load
      * @return a {@code UIDefaults.LazyValue}; when resolved the
      *         {@code LazyValue} loads the specified image
      * @see UIDefaults.LazyValue
      * @see Icon
      * @see Class#getResourceAsStream(String)
      */
-    public static Object makeIcon(final Class<?> baseClass,
-            final String gifFile) {
+    public static Object makeIcon(final Class<?> baseClass, final String gifFile) {
         return SwingUtilities2.makeIcon(baseClass, baseClass, gifFile);
     }
 
@@ -492,9 +467,9 @@ public abstract class LookAndFeel {
      * override this and provide the additional feedback.
      *
      * @param component
-     *                  the <code>Component</code> the error occurred in, may be
-     *                  <code>null</code> indicating the error condition is not
-     *                  directly associated with a <code>Component</code>
+     *        the <code>Component</code> the error occurred in, may be
+     *        <code>null</code> indicating the error condition is not
+     *        directly associated with a <code>Component</code>
      * @since 1.4
      */
     public void provideErrorFeedback(Component component) {
@@ -514,22 +489,18 @@ public abstract class LookAndFeel {
      * returned.
      *
      * @param systemPropertyName
-     *                           the name of the system desktop property being
-     *                           queried
+     *        the name of the system desktop property being
+     *        queried
      * @param fallbackValue
-     *                           the object to be returned as the value if the
-     *                           system value is
-     *                           null
+     *        the object to be returned as the value if the
+     *        system value is
+     *        null
      * @return the current value of the desktop property
-     *
      * @see java.awt.Toolkit#getDesktopProperty
-     *
      * @since 1.4
      */
-    public static Object getDesktopPropertyValue(String systemPropertyName,
-            Object fallbackValue) {
-        Object value = Toolkit.getDefaultToolkit().getDesktopProperty(
-                systemPropertyName);
+    public static Object getDesktopPropertyValue(String systemPropertyName, Object fallbackValue) {
+        Object value = Toolkit.getDefaultToolkit().getDesktopProperty(systemPropertyName);
         if (value == null) {
             return fallbackValue;
         } else if (value instanceof Color) {
@@ -552,19 +523,18 @@ public abstract class LookAndFeel {
      * case they will ignore this.
      *
      * @param component
-     *                  {@code JComponent} that will display the {@code Icon},
-     *                  may be
-     *                  {@code null}
+     *        {@code JComponent} that will display the {@code Icon},
+     *        may be
+     *        {@code null}
      * @param icon
-     *                  {@code Icon} to generate the disabled icon from
+     *        {@code Icon} to generate the disabled icon from
      * @return disabled {@code Icon}, or {@code null} if a suitable {@code Icon}
      *         can not be generated
      * @since 1.5
      */
     public Icon getDisabledIcon(JComponent component, Icon icon) {
         if (icon instanceof ImageIcon) {
-            return new ImageIconUIResource(GrayFilter.createDisabledImage(
-                    ((ImageIcon) icon).getImage()));
+            return new ImageIconUIResource(GrayFilter.createDisabledImage(((ImageIcon) icon).getImage()));
         }
         return null;
     }
@@ -583,11 +553,11 @@ public abstract class LookAndFeel {
      * {@code Icon}, in which case they will ignore this.
      *
      * @param component
-     *                  {@code JComponent} that will display the {@code Icon},
-     *                  may be
-     *                  {@code null}
+     *        {@code JComponent} that will display the {@code Icon},
+     *        may be
+     *        {@code null}
      * @param icon
-     *                  {@code Icon} to generate disabled and selected icon from
+     *        {@code Icon} to generate disabled and selected icon from
      * @return disabled and selected icon, or {@code null} if a suitable
      *         {@code Icon} can not be generated.
      * @since 1.5
@@ -665,7 +635,6 @@ public abstract class LookAndFeel {
      * this look and feel. This method returns {@code false} if the look and
      * feel depends on special resources or legal agreements that aren't defined
      * for the current platform.
-     *
      *
      * @return {@code true} if this is a supported look and feel
      * @see UIManager#setLookAndFeel

@@ -47,10 +47,10 @@ public class RowSorterEvent extends java.util.EventObject {
      * <code>SORT_ORDER_CHANGED</code>.
      *
      * @param source
-     *               the source of the change
+     *        the source of the change
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is
-     *                                  <code>null</code>
+     *         if <code>source</code> is
+     *         <code>null</code>
      */
     public RowSorterEvent(RowSorter source) {
         this(source, Type.SORT_ORDER_CHANGED, null);
@@ -60,19 +60,18 @@ public class RowSorterEvent extends java.util.EventObject {
      * Creates a <code>RowSorterEvent</code>.
      *
      * @param source
-     *                                the source of the change
+     *        the source of the change
      * @param type
-     *                                the type of event
+     *        the type of event
      * @param previousRowIndexToModel
-     *                                the mapping from model indices to view
-     *                                indices prior to the
-     *                                sort, may be <code>null</code>
+     *        the mapping from model indices to view
+     *        indices prior to the
+     *        sort, may be <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if source or <code>type</code> is
-     *                                  <code>null</code>
+     *         if source or <code>type</code> is
+     *         <code>null</code>
      */
-    public RowSorterEvent(RowSorter source, Type type,
-            int[] previousRowIndexToModel) {
+    public RowSorterEvent(RowSorter source, Type type, int[] previousRowIndexToModel) {
         super(source);
         if (type == null) {
             throw new IllegalArgumentException("type must be non-null");
@@ -106,13 +105,12 @@ public class RowSorterEvent extends java.util.EventObject {
      * valid, or the locations prior to the sort have not been provided.
      *
      * @param index
-     *              the index in terms of the view
+     *        the index in terms of the view
      * @return the index in terms of the model prior to the sort, or -1 if the
      *         location is not valid or the mapping was not provided.
      */
     public int convertPreviousRowIndexToModel(int index) {
-        if (oldViewToModel != null && index >= 0
-                && index < oldViewToModel.length) {
+        if (oldViewToModel != null && index >= 0 && index < oldViewToModel.length) {
             return oldViewToModel[index];
         }
         return -1;

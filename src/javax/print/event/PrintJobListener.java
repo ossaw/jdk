@@ -24,7 +24,7 @@ public interface PrintJobListener {
      * (completed/canceled/failed) before freeing the resources.
      * 
      * @param pje
-     *            the job generating this event
+     *        the job generating this event
      */
     public void printDataTransferCompleted(PrintJobEvent pje);
 
@@ -32,7 +32,7 @@ public interface PrintJobListener {
      * Called to notify the client that the job completed successfully.
      * 
      * @param pje
-     *            the job generating this event
+     *        the job generating this event
      */
     public void printJobCompleted(PrintJobEvent pje);
 
@@ -41,7 +41,7 @@ public interface PrintJobListener {
      * and will have to be resubmitted.
      * 
      * @param pje
-     *            the job generating this event
+     *        the job generating this event
      */
     public void printJobFailed(PrintJobEvent pje);
 
@@ -50,7 +50,7 @@ public interface PrintJobListener {
      * program.
      * 
      * @param pje
-     *            the job generating this event
+     *        the job generating this event
      */
     public void printJobCanceled(PrintJobEvent pje);
 
@@ -62,7 +62,7 @@ public interface PrintJobListener {
      * terminal events (completed/failed/canceled) are delivered.
      * 
      * @param pje
-     *            the job generating this event
+     *        the job generating this event
      */
     public void printJobNoMoreEvents(PrintJobEvent pje);
 
@@ -72,7 +72,7 @@ public interface PrintJobListener {
      * event is when the printer runs out of paper.
      * 
      * @param pje
-     *            the job generating this event
+     *        the job generating this event
      */
     public void printJobRequiresAttention(PrintJobEvent pje);
 

@@ -16,7 +16,6 @@ public interface ResponseHandler {
      * this method to create a reply marshal buffer if no exception occurred.
      *
      * @return an OutputStream suitable for marshalling the reply.
-     *
      * @see <a href="package-summary.html#unimpl"><code>portable</code> package
      *      comments for unimplemented features</a>
      */

@@ -68,9 +68,7 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLEntityResolver;
  * anomalous-appearing derivation from XMLDTDLoader).
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
- *
  */
 public class XML11DTDProcessor extends XMLDTDLoader {
 
@@ -84,13 +82,12 @@ public class XML11DTDProcessor extends XMLDTDLoader {
         super(symbolTable);
     } // init(SymbolTable)
 
-    public XML11DTDProcessor(SymbolTable symbolTable,
-            XMLGrammarPool grammarPool) {
+    public XML11DTDProcessor(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         super(symbolTable, grammarPool);
     } // init(SymbolTable, XMLGrammarPool)
 
-    XML11DTDProcessor(SymbolTable symbolTable, XMLGrammarPool grammarPool,
-            XMLErrorReporter errorReporter, XMLEntityResolver entityResolver) {
+    XML11DTDProcessor(SymbolTable symbolTable, XMLGrammarPool grammarPool, XMLErrorReporter errorReporter,
+            XMLEntityResolver entityResolver) {
         super(symbolTable, grammarPool, errorReporter, entityResolver);
     } // init(SymbolTable, XMLGrammarPool, XMLErrorReporter, XMLEntityResolver)
 
@@ -104,10 +101,9 @@ public class XML11DTDProcessor extends XMLDTDLoader {
         return XML11Char.isXML11ValidName(name);
     } // isValidNmtoken(String): boolean
 
-    protected XMLDTDScannerImpl createDTDScanner(SymbolTable symbolTable,
-            XMLErrorReporter errorReporter, XMLEntityManager entityManager) {
-        return new XML11DTDScannerImpl(symbolTable, errorReporter,
-                entityManager);
+    protected XMLDTDScannerImpl createDTDScanner(SymbolTable symbolTable, XMLErrorReporter errorReporter,
+            XMLEntityManager entityManager) {
+        return new XML11DTDScannerImpl(symbolTable, errorReporter, entityManager);
     } // createDTDScanner(SymbolTable, XMLErrorReporter, XMLEntityManager) :
       // XMLDTDScannerImpl
 

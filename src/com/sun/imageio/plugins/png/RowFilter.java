@@ -12,8 +12,8 @@ public class RowFilter {
     }
 
     // Returns the sum of absolute differences
-    protected static int subFilter(byte[] currRow, byte[] subFilteredRow,
-            int bytesPerPixel, int bytesPerRow) {
+    protected static int subFilter(byte[] currRow, byte[] subFilteredRow, int bytesPerPixel,
+            int bytesPerRow) {
         int badness = 0;
         for (int i = bytesPerPixel; i < bytesPerRow + bytesPerPixel; i++) {
             int curr = currRow[i] & 0xff;
@@ -28,8 +28,8 @@ public class RowFilter {
     }
 
     // Returns the sum of absolute differences
-    protected static int upFilter(byte[] currRow, byte[] prevRow,
-            byte[] upFilteredRow, int bytesPerPixel, int bytesPerRow) {
+    protected static int upFilter(byte[] currRow, byte[] prevRow, byte[] upFilteredRow, int bytesPerPixel,
+            int bytesPerRow) {
         int badness = 0;
         for (int i = bytesPerPixel; i < bytesPerRow + bytesPerPixel; i++) {
             int curr = currRow[i] & 0xff;
@@ -58,13 +58,12 @@ public class RowFilter {
         }
     }
 
-    public int filterRow(int colorType, byte[] currRow, byte[] prevRow,
-            byte[][] scratchRows, int bytesPerRow, int bytesPerPixel) {
+    public int filterRow(int colorType, byte[] currRow, byte[] prevRow, byte[][] scratchRows, int bytesPerRow,
+            int bytesPerPixel) {
 
         // Use type 0 for palette images
         if (colorType != PNGImageReader.PNG_COLOR_PALETTE) {
-            System.arraycopy(currRow, bytesPerPixel, scratchRows[0],
-                    bytesPerPixel, bytesPerRow);
+            System.arraycopy(currRow, bytesPerPixel, scratchRows[0], bytesPerPixel, bytesPerRow);
             return 0;
         }
 
@@ -86,16 +85,14 @@ public class RowFilter {
 
         {
             byte[] subFilteredRow = scratchRows[1];
-            int badness = subFilter(currRow, subFilteredRow, bytesPerPixel,
-                    bytesPerRow);
+            int badness = subFilter(currRow, subFilteredRow, bytesPerPixel, bytesPerRow);
 
             filterBadness[1] = badness;
         }
 
         {
             byte[] upFilteredRow = scratchRows[2];
-            int badness = upFilter(currRow, prevRow, upFilteredRow,
-                    bytesPerPixel, bytesPerRow);
+            int badness = upFilter(currRow, prevRow, upFilteredRow, bytesPerPixel, bytesPerRow);
 
             filterBadness[2] = badness;
         }
@@ -148,8 +145,7 @@ public class RowFilter {
         }
 
         if (filterType == 0) {
-            System.arraycopy(currRow, bytesPerPixel, scratchRows[0],
-                    bytesPerPixel, bytesPerRow);
+            System.arraycopy(currRow, bytesPerPixel, scratchRows[0], bytesPerPixel, bytesPerRow);
         }
 
         return filterType;

@@ -37,7 +37,7 @@ public final class StringCharacterIterator implements CharacterIterator {
      * Constructs an iterator with an initial index of 0.
      *
      * @param text
-     *             the {@code String} to be iterated over
+     *        the {@code String} to be iterated over
      */
     public StringCharacterIterator(String text) {
         this(text, 0);
@@ -47,9 +47,9 @@ public final class StringCharacterIterator implements CharacterIterator {
      * Constructs an iterator with the specified initial index.
      *
      * @param text
-     *             The String to be iterated over
+     *        The String to be iterated over
      * @param pos
-     *             Initial iterator position
+     *        Initial iterator position
      */
     public StringCharacterIterator(String text, int pos) {
         this(text, 0, text.length(), pos);
@@ -60,13 +60,13 @@ public final class StringCharacterIterator implements CharacterIterator {
      * index set at the specified position.
      *
      * @param text
-     *              The String to be iterated over
+     *        The String to be iterated over
      * @param begin
-     *              Index of the first character
+     *        Index of the first character
      * @param end
-     *              Index of the character following the last character
+     *        Index of the character following the last character
      * @param pos
-     *              Initial iterator position
+     *        Initial iterator position
      */
     public StringCharacterIterator(String text, int begin, int end, int pos) {
         if (text == null)
@@ -91,7 +91,7 @@ public final class StringCharacterIterator implements CharacterIterator {
      * called.
      *
      * @param text
-     *             The String to be iterated over
+     *        The String to be iterated over
      * @since 1.2
      */
     public void setText(String text) {
@@ -212,7 +212,7 @@ public final class StringCharacterIterator implements CharacterIterator {
      * Compares the equality of two StringCharacterIterator objects.
      * 
      * @param obj
-     *            the StringCharacterIterator object to be compared with.
+     *        the StringCharacterIterator object to be compared with.
      * @return true if the given obj is the same as this StringCharacterIterator
      *         object; false otherwise.
      */

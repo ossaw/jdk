@@ -11,8 +11,6 @@ import java.math.BigInteger;
  * The interface to an RSA private key.
  *
  * @author Jan Luehe
- *
- *
  * @see RSAPrivateCrtKey
  */
 

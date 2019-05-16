@@ -68,8 +68,7 @@ public interface DTMAxisIterator extends Cloneable {
      * next() should return END.
      *
      * @param node
-     *             Sets the root of the iteration.
-     *
+     *        Sets the root of the iteration.
      * @return A DTMAxisIterator set to the start of the iteration.
      */
     public DTMAxisIterator setStartNode(int node);
@@ -102,7 +101,7 @@ public interface DTMAxisIterator extends Cloneable {
      * Return the node at the given position.
      *
      * @param position
-     *                 The position
+     *        The position
      * @return The node at the given position.
      */
     public int getNodeByPosition(int position);

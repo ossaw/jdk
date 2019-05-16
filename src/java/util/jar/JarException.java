@@ -24,7 +24,7 @@ public class JarException extends java.util.zip.ZipException {
      * Constructs a JarException with the specified detail message.
      * 
      * @param s
-     *          the detail message
+     *        the detail message
      */
     public JarException(String s) {
         super(s);

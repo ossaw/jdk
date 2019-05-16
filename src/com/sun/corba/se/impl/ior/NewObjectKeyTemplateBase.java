@@ -23,8 +23,8 @@ import com.sun.corba.se.spi.orb.ORBVersionFactory;
 import com.sun.corba.se.impl.ior.ObjectKeyFactoryImpl;
 
 public abstract class NewObjectKeyTemplateBase extends ObjectKeyTemplateBase {
-    public NewObjectKeyTemplateBase(ORB orb, int magic, int scid, int serverid,
-            String orbid, ObjectAdapterId oaid) {
+    public NewObjectKeyTemplateBase(ORB orb, int magic, int scid, int serverid, String orbid,
+            ObjectAdapterId oaid) {
         super(orb, magic, scid, serverid, orbid, oaid);
         // subclass must set the version, since we don't have the object key
         // here.

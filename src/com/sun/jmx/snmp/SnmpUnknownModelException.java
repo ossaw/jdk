@@ -20,7 +20,7 @@ public class SnmpUnknownModelException extends Exception {
      * Constructor.
      * 
      * @param msg
-     *            The exception msg to display.
+     *        The exception msg to display.
      */
     public SnmpUnknownModelException(String msg) {
         super(msg);

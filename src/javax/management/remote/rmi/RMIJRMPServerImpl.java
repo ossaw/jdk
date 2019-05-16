@@ -36,7 +36,6 @@ import sun.rmi.server.UnicastServerRef2;
  * </p>
  *
  * @see RMIServerImpl
- *
  * @since 1.5
  */
 public class RMIJRMPServerImpl extends RMIServerImpl {
@@ -50,31 +49,26 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
      * </p>
      *
      * @param port
-     *             the port on which this object and the
-     *             {@link RMIConnectionImpl} objects it creates will be
-     *             exported.
-     *             Can be zero, to indicate any available port.
-     *
+     *        the port on which this object and the
+     *        {@link RMIConnectionImpl} objects it creates will be
+     *        exported.
+     *        Can be zero, to indicate any available port.
      * @param csf
-     *             the client socket factory for the created RMI objects. Can be
-     *             null.
-     *
+     *        the client socket factory for the created RMI objects. Can be
+     *        null.
      * @param ssf
-     *             the server socket factory for the created RMI objects. Can be
-     *             null.
-     *
+     *        the server socket factory for the created RMI objects. Can be
+     *        null.
      * @param env
-     *             the environment map. Can be null.
-     *
+     *        the environment map. Can be null.
      * @exception IOException
-     *                                     if the {@link RMIServer} object
-     *                                     cannot be created.
-     *
+     *            if the {@link RMIServer} object
+     *            cannot be created.
      * @exception IllegalArgumentException
-     *                                     if <code>port</code> is negative.
+     *            if <code>port</code> is negative.
      */
-    public RMIJRMPServerImpl(int port, RMIClientSocketFactory csf,
-            RMIServerSocketFactory ssf, Map<String, ?> env) throws IOException {
+    public RMIJRMPServerImpl(int port, RMIClientSocketFactory csf, RMIServerSocketFactory ssf,
+            Map<String, ?> env) throws IOException {
 
         super(env);
 
@@ -86,22 +80,19 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
         this.ssf = ssf;
         this.env = (env == null) ? Collections.<String, Object>emptyMap() : env;
 
-        String[] credentialsTypes = (String[]) this.env.get(
-                EnvHelp.CREDENTIAL_TYPES);
+        String[] credentialsTypes = (String[]) this.env.get(EnvHelp.CREDENTIAL_TYPES);
         List<String> types = null;
         if (credentialsTypes != null) {
             types = new ArrayList<>();
             for (String type : credentialsTypes) {
                 if (type == null) {
-                    throw new IllegalArgumentException(
-                            "A credential type is null.");
+                    throw new IllegalArgumentException("A credential type is null.");
                 }
                 ReflectUtil.checkPackageAccess(type);
                 types.add(type);
             }
         }
-        exportedWrapper = types != null ? new ExportedWrapper(this, types)
-                : null;
+        exportedWrapper = types != null ? new ExportedWrapper(this, types) : null;
     }
 
     protected void export() throws IOException {
@@ -113,22 +104,19 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
     }
 
     private void export(Remote obj) throws RemoteException {
-        final RMIExporter exporter = (RMIExporter) env.get(
-                RMIExporter.EXPORTER_ATTRIBUTE);
+        final RMIExporter exporter = (RMIExporter) env.get(RMIExporter.EXPORTER_ATTRIBUTE);
         final boolean daemon = EnvHelp.isServerDaemon(env);
 
         if (daemon && exporter != null) {
-            throw new IllegalArgumentException("If " + EnvHelp.JMX_SERVER_DAEMON
-                    + " is specified as true, " + RMIExporter.EXPORTER_ATTRIBUTE
-                    + " cannot be used to specify an exporter!");
+            throw new IllegalArgumentException("If " + EnvHelp.JMX_SERVER_DAEMON + " is specified as true, "
+                    + RMIExporter.EXPORTER_ATTRIBUTE + " cannot be used to specify an exporter!");
         }
 
         if (daemon) {
             if (csf == null && ssf == null) {
                 new UnicastServerRef(port).exportObject(obj, null, true);
             } else {
-                new UnicastServerRef2(port, csf, ssf).exportObject(obj, null,
-                        true);
+                new UnicastServerRef2(port, csf, ssf).exportObject(obj, null, true);
             }
         } else if (exporter != null) {
             exporter.exportObject(obj, port, csf, ssf);
@@ -137,10 +125,8 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
         }
     }
 
-    private void unexport(Remote obj, boolean force)
-            throws NoSuchObjectException {
-        RMIExporter exporter = (RMIExporter) env.get(
-                RMIExporter.EXPORTER_ATTRIBUTE);
+    private void unexport(Remote obj, boolean force) throws NoSuchObjectException {
+        RMIExporter exporter = (RMIExporter) env.get(RMIExporter.EXPORTER_ATTRIBUTE);
         if (exporter == null)
             UnicastRemoteObject.unexportObject(obj, force);
         else
@@ -157,11 +143,10 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
      * </p>
      *
      * @return a serializable stub.
-     *
      * @exception IOException
-     *                        if the stub cannot be obtained - e.g the
-     *                        RMIJRMPServerImpl
-     *                        has not been exported yet.
+     *            if the stub cannot be obtained - e.g the
+     *            RMIJRMPServerImpl
+     *            has not been exported yet.
      */
     public Remote toStub() throws IOException {
         if (exportedWrapper != null) {
@@ -179,30 +164,26 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
      * </p>
      *
      * @param connectionId
-     *                     the ID of the new connection. Every connection opened
-     *                     by this
-     *                     connector server will have a different id. The
-     *                     behavior is
-     *                     unspecified if this parameter is null.
-     *
+     *        the ID of the new connection. Every connection opened
+     *        by this
+     *        connector server will have a different id. The
+     *        behavior is
+     *        unspecified if this parameter is null.
      * @param subject
-     *                     the authenticated subject. Can be null.
-     *
+     *        the authenticated subject. Can be null.
      * @return the newly-created <code>RMIConnection</code>.
-     *
      * @exception IOException
-     *                        if the new {@link RMIConnection} object cannot be
-     *                        created
-     *                        or exported.
+     *            if the new {@link RMIConnection} object cannot be
+     *            created
+     *            or exported.
      */
-    protected RMIConnection makeClient(String connectionId, Subject subject)
-            throws IOException {
+    protected RMIConnection makeClient(String connectionId, Subject subject) throws IOException {
 
         if (connectionId == null)
             throw new NullPointerException("Null connectionId");
 
-        RMIConnection client = new RMIConnectionImpl(this, connectionId,
-                getDefaultClassLoader(), subject, env);
+        RMIConnection client = new RMIConnectionImpl(this, connectionId, getDefaultClassLoader(), subject,
+                env);
         export(client);
         return client;
     }
@@ -219,8 +200,8 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
      * </p>
      *
      * @exception IOException
-     *                        if the attempt to close the connector server
-     *                        failed.
+     *            if the attempt to close the connector server
+     *            failed.
      */
     protected void closeServer() throws IOException {
         if (exportedWrapper != null) {
@@ -235,8 +216,7 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
     private final RMIServerSocketFactory ssf;
     private final Map<String, ?> env;
 
-    private static class ExportedWrapper implements RMIServer,
-            DeserializationChecker {
+    private static class ExportedWrapper implements RMIServer, DeserializationChecker {
         private final RMIServer impl;
         private final List<String> allowedTypes;
 
@@ -256,8 +236,7 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
         }
 
         @Override
-        public void check(Method method, ObjectStreamClass descriptor,
-                int paramIndex, int callID) {
+        public void check(Method method, ObjectStreamClass descriptor, int paramIndex, int callID) {
 
             String type = descriptor.getName();
             if (!allowedTypes.contains(type)) {
@@ -266,13 +245,11 @@ public class RMIJRMPServerImpl extends RMIServerImpl {
         }
 
         @Override
-        public void checkProxyClass(Method method, String[] ifaces,
-                int paramIndex, int callID) {
+        public void checkProxyClass(Method method, String[] ifaces, int paramIndex, int callID) {
             if (ifaces != null && ifaces.length > 0) {
                 for (String iface : ifaces) {
                     if (!allowedTypes.contains(iface)) {
-                        throw new ClassCastException("Unsupported type: "
-                                + iface);
+                        throw new ClassCastException("Unsupported type: " + iface);
                     }
                 }
             }

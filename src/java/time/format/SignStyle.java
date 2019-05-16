@@ -37,7 +37,6 @@ package java.time.format;
  * controlled using this enum. See {@link DateTimeFormatterBuilder} for usage.
  *
  * @implSpec This is an immutable and thread-safe enum.
- *
  * @since 1.8
  */
 public enum SignStyle {
@@ -85,11 +84,11 @@ public enum SignStyle {
      * Parse helper.
      *
      * @param positive
-     *                   true if positive sign parsed, false for negative sign
+     *        true if positive sign parsed, false for negative sign
      * @param strict
-     *                   true if strict, false if lenient
+     *        true if strict, false if lenient
      * @param fixedWidth
-     *                   true if fixed width, false if not
+     *        true if fixed width, false if not
      * @return
      */
     boolean parse(boolean positive, boolean strict, boolean fixedWidth) {

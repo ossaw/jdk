@@ -7,7 +7,6 @@ package com.sun.jmx.snmp;
 
 /**
  * Represents an SNMP 64bits counter.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -24,11 +23,11 @@ public class SnmpCounter64 extends SnmpValue {
      * value.
      * 
      * @param v
-     *          The initialization value.
+     *        The initialization value.
      * @exception IllegalArgumentException
-     *                                     The specified value is negative or
-     *                                     larger than
-     *                                     <CODE>Long.MAX_VALUE</CODE>.
+     *            The specified value is negative or
+     *            larger than
+     *            <CODE>Long.MAX_VALUE</CODE>.
      */
     public SnmpCounter64(long v) throws IllegalArgumentException {
 
@@ -48,11 +47,11 @@ public class SnmpCounter64 extends SnmpValue {
      * <CODE>Long</CODE> value.
      * 
      * @param v
-     *          The initialization value.
+     *        The initialization value.
      * @exception IllegalArgumentException
-     *                                     The specified value is negative or
-     *                                     larger than
-     *                                     <CODE>Long.MAX_VALUE</CODE>.
+     *            The specified value is negative or
+     *            larger than
+     *            <CODE>Long.MAX_VALUE</CODE>.
      */
     public SnmpCounter64(Long v) throws IllegalArgumentException {
         this(v.longValue());
@@ -119,16 +118,15 @@ public class SnmpCounter64 extends SnmpValue {
      * an <CODE>SnmpOid</CODE>.
      * 
      * @param index
-     *              The index array.
+     *        The index array.
      * @param start
-     *              The position in the index array.
+     *        The position in the index array.
      * @return The OID representing the counter value.
      * @exception SnmpStatusException
-     *                                There is no counter value available at the
-     *                                start position.
+     *            There is no counter value available at the
+     *            start position.
      */
-    public static SnmpOid toOid(long[] index, int start)
-            throws SnmpStatusException {
+    public static SnmpOid toOid(long[] index, int start) throws SnmpStatusException {
         try {
             return new SnmpOid(index[start]);
         } catch (IndexOutOfBoundsException e) {
@@ -141,16 +139,15 @@ public class SnmpCounter64 extends SnmpValue {
      * the next value.
      * 
      * @param index
-     *              The index array.
+     *        The index array.
      * @param start
-     *              The position in the index array.
+     *        The position in the index array.
      * @return The position of the next value.
      * @exception SnmpStatusException
-     *                                There is no counter value available at the
-     *                                start position.
+     *            There is no counter value available at the
+     *            start position.
      */
-    public static int nextOid(long[] index, int start)
-            throws SnmpStatusException {
+    public static int nextOid(long[] index, int start) throws SnmpStatusException {
         if (start >= index.length) {
             throw new SnmpStatusException(SnmpStatusException.noSuchName);
         } else {
@@ -163,9 +160,9 @@ public class SnmpCounter64 extends SnmpValue {
      * <CODE>SnmpCounter64</CODE> to another OID.
      * 
      * @param source
-     *               An OID representing an <CODE>SnmpCounter64</CODE> value.
+     *        An OID representing an <CODE>SnmpCounter64</CODE> value.
      * @param dest
-     *               Where source should be appended.
+     *        Where source should be appended.
      */
     public static void appendToOid(SnmpOid source, SnmpOid dest) {
         if (source.getLength() != 1) {

@@ -27,7 +27,6 @@ import java.util.*;
  * The <code>RowSet</code> interface supports JavaBeans events, allowing other
  * components in an application to be notified when an event occurs on a rowset,
  * such as a change in its value.
- *
  * <P>
  * The <code>RowSet</code> interface is unique in that it is intended to be
  * implemented using the rest of the JDBC API. In other words, a
@@ -82,7 +81,7 @@ public interface RowSet extends ResultSet {
      *
      * @return a string url
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #setUrl
      */
     String getUrl() throws SQLException;
@@ -90,7 +89,6 @@ public interface RowSet extends ResultSet {
     /**
      * Sets the URL this <code>RowSet</code> object will use when it uses the
      * <code>DriverManager</code> to create a connection.
-     *
      * Setting this property is optional. If a URL is used, a JDBC driver that
      * accepts the URL must be loaded before the rowset is used to connect to a
      * database. The rowset will use the URL internally to create a database
@@ -99,9 +97,9 @@ public interface RowSet extends ResultSet {
      * most recently.
      *
      * @param url
-     *            a string value; may be <code>null</code>
+     *        a string value; may be <code>null</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getUrl
      */
     void setUrl(String url) throws SQLException;
@@ -126,10 +124,10 @@ public interface RowSet extends ResultSet {
      * used to create a connection to the data source that it represents.
      *
      * @param name
-     *             the logical name of the data source for this
-     *             <code>RowSet</code> object; may be <code>null</code>
+     *        the logical name of the data source for this
+     *        <code>RowSet</code> object; may be <code>null</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getDataSourceName
      */
     void setDataSourceName(String name) throws SQLException;
@@ -150,9 +148,9 @@ public interface RowSet extends ResultSet {
      * given <code>String</code>.
      *
      * @param name
-     *             a user name
+     *        a user name
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getUsername
      */
     void setUsername(String name) throws SQLException;
@@ -173,9 +171,9 @@ public interface RowSet extends ResultSet {
      * given <code>String</code>.
      *
      * @param password
-     *                 the password string
+     *        the password string
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getPassword
      */
     void setPassword(String password) throws SQLException;
@@ -197,13 +195,13 @@ public interface RowSet extends ResultSet {
      * Sets the transaction isolation level for this <code>RowSet</code> object.
      *
      * @param level
-     *              the transaction isolation level; one of
-     *              <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
-     *              <code>Connection.TRANSACTION_READ_COMMITTED</code>,
-     *              <code>Connection.TRANSACTION_REPEATABLE_READ</code>, or
-     *              <code>Connection.TRANSACTION_SERIALIZABLE</code>
+     *        the transaction isolation level; one of
+     *        <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
+     *        <code>Connection.TRANSACTION_READ_COMMITTED</code>,
+     *        <code>Connection.TRANSACTION_REPEATABLE_READ</code>, or
+     *        <code>Connection.TRANSACTION_SERIALIZABLE</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getTransactionIsolation
      */
     void setTransactionIsolation(int level) throws SQLException;
@@ -216,9 +214,8 @@ public interface RowSet extends ResultSet {
      * @return a <code>java.util.Map</code> object containing the names of SQL
      *         user-defined types and the Java classes to which they are to be
      *         mapped
-     *
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #setTypeMap
      */
     java.util.Map<String, Class<?>> getTypeMap() throws SQLException;
@@ -229,11 +226,11 @@ public interface RowSet extends ResultSet {
      * unless another type map is supplied as a method parameter.
      *
      * @param map
-     *            a <code>java.util.Map</code> object containing the names of
-     *            SQL user-defined types and the Java classes to which they are
-     *            to be mapped
+     *        a <code>java.util.Map</code> object containing the names of
+     *        SQL user-defined types and the Java classes to which they are
+     *        to be mapped
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getTypeMap
      */
     void setTypeMap(java.util.Map<String, Class<?>> map) throws SQLException;
@@ -244,7 +241,6 @@ public interface RowSet extends ResultSet {
 
     /**
      * Retrieves this <code>RowSet</code> object's command property.
-     *
      * The command property contains a command string, which must be an SQL
      * query, that can be executed to fill the rowset with data. The default
      * value is <code>null</code>.
@@ -257,15 +253,14 @@ public interface RowSet extends ResultSet {
     /**
      * Sets this <code>RowSet</code> object's command property to the given SQL
      * query.
-     *
      * This property is optional when a rowset gets its data from a data source
      * that does not support commands, such as a spreadsheet.
      *
      * @param cmd
-     *            the SQL query that will be used to get the data for this
-     *            <code>RowSet</code> object; may be <code>null</code>
+     *        the SQL query that will be used to get the data for this
+     *        <code>RowSet</code> object; may be <code>null</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getCommand
      */
     void setCommand(String cmd) throws SQLException;
@@ -288,10 +283,10 @@ public interface RowSet extends ResultSet {
      * <code>boolean</code>.
      *
      * @param value
-     *              <code>true</code> if read-only; <code>false</code> if
-     *              updatable
+     *        <code>true</code> if read-only; <code>false</code> if
+     *        updatable
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #isReadOnly
      */
     void setReadOnly(boolean value) throws SQLException;
@@ -307,7 +302,7 @@ public interface RowSet extends ResultSet {
      * @return the current maximum column size limit; zero means that there is
      *         no limit
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #setMaxFieldSize
      */
     int getMaxFieldSize() throws SQLException;
@@ -322,9 +317,9 @@ public interface RowSet extends ResultSet {
      * For maximum portability, use values greater than 256.
      *
      * @param max
-     *            the new max column size limit in bytes; zero means unlimited
+     *        the new max column size limit in bytes; zero means unlimited
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getMaxFieldSize
      */
     void setMaxFieldSize(int max) throws SQLException;
@@ -337,7 +332,7 @@ public interface RowSet extends ResultSet {
      * @return the current maximum number of rows that this <code>RowSet</code>
      *         object can contain; zero means unlimited
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #setMaxRows
      */
     int getMaxRows() throws SQLException;
@@ -348,9 +343,9 @@ public interface RowSet extends ResultSet {
      * rows are silently dropped.
      *
      * @param max
-     *            the new maximum number of rows; zero means unlimited
+     *        the new maximum number of rows; zero means unlimited
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getMaxRows
      */
     void setMaxRows(int max) throws SQLException;
@@ -364,7 +359,7 @@ public interface RowSet extends ResultSet {
      * @return <code>true</code> if escape processing is enabled;
      *         <code>false</code> if it is disabled
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #setEscapeProcessing
      */
     boolean getEscapeProcessing() throws SQLException;
@@ -375,10 +370,10 @@ public interface RowSet extends ResultSet {
      * substitution before sending an SQL statement to the database.
      *
      * @param enable
-     *               <code>true</code> to enable escape processing;
-     *               <code>false</code> to disable it
+     *        <code>true</code> to enable escape processing;
+     *        <code>false</code> to disable it
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getEscapeProcessing
      */
     void setEscapeProcessing(boolean enable) throws SQLException;
@@ -390,7 +385,7 @@ public interface RowSet extends ResultSet {
      *
      * @return the current query timeout limit in seconds; zero means unlimited
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #setQueryTimeout
      */
     int getQueryTimeout() throws SQLException;
@@ -401,11 +396,11 @@ public interface RowSet extends ResultSet {
      * <code>SQLException</code> is thrown.
      *
      * @param seconds
-     *                the new query timeout limit in seconds; zero means that
-     *                there
-     *                is no limit
+     *        the new query timeout limit in seconds; zero means that
+     *        there
+     *        is no limit
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see #getQueryTimeout
      */
     void setQueryTimeout(int seconds) throws SQLException;
@@ -416,13 +411,13 @@ public interface RowSet extends ResultSet {
      * read-only and non-scrollable.
      *
      * @param type
-     *             one of the <code>ResultSet</code> constants specifying a
-     *             type:
-     *             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     *        one of the <code>ResultSet</code> constants specifying a
+     *        type:
+     *        <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+     *        <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *        <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see java.sql.ResultSet#getType
      */
     void setType(int type) throws SQLException;
@@ -433,13 +428,13 @@ public interface RowSet extends ResultSet {
      * a rowset, which is by default <code>ResultSet.CONCUR_READ_ONLY</code>
      *
      * @param concurrency
-     *                    one of the <code>ResultSet</code> constants specifying
-     *                    a
-     *                    concurrency level:
-     *                    <code>ResultSet.CONCUR_READ_ONLY</code> or
-     *                    <code>ResultSet.CONCUR_UPDATABLE</code>
+     *        one of the <code>ResultSet</code> constants specifying
+     *        a
+     *        concurrency level:
+     *        <code>ResultSet.CONCUR_READ_ONLY</code> or
+     *        <code>ResultSet.CONCUR_UPDATABLE</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see ResultSet#getConcurrency
      */
     void setConcurrency(int concurrency) throws SQLException;
@@ -457,40 +452,38 @@ public interface RowSet extends ResultSet {
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's SQL
      * command to SQL <code>NULL</code>.
-     *
      * <P>
      * <B>Note:</B> You must specify the parameter's SQL type.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param sqlType
-     *                       a SQL type code defined by
-     *                       <code>java.sql.Types</code>
+     *        a SQL type code defined by
+     *        <code>java.sql.Types</code>
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setNull(int parameterIndex, int sqlType) throws SQLException;
 
     /**
      * Sets the designated parameter to SQL <code>NULL</code>.
-     *
      * <P>
      * <B>Note:</B> You must specify the parameter's SQL type.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param sqlType
-     *                      the SQL type code defined in
-     *                      <code>java.sql.Types</code>
+     *        the SQL type code defined in
+     *        <code>java.sql.Types</code>
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
     void setNull(String parameterName, int sqlType) throws SQLException;
@@ -502,7 +495,6 @@ public interface RowSet extends ResultSet {
      * <code>REF</code> type parameters. Examples of UDTs include:
      * <code>STRUCT</code>, <code>DISTINCT</code>, <code>JAVA_OBJECT</code>, and
      * named array types.
-     *
      * <P>
      * <B>Note:</B> To be portable, applications must give the SQL type code and
      * the fully qualified SQL type name when specifying a NULL UDT or
@@ -510,36 +502,32 @@ public interface RowSet extends ResultSet {
      * name of the parameter itself. For a <code>REF</code> parameter, the name
      * is the type name of the referenced type. If a JDBC driver does not need
      * the type code or type name information, it may ignore it.
-     *
      * Although it is intended for UDT and <code>REF</code> parameters, this
      * method may be used to set a null parameter of any JDBC type. If the
      * parameter does not have a user-defined or <code>REF</code> type, the
      * typeName parameter is ignored.
      *
-     *
      * @param paramIndex
-     *                   the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param sqlType
-     *                   a value from <code>java.sql.Types</code>
+     *        a value from <code>java.sql.Types</code>
      * @param typeName
-     *                   the fully qualified name of an SQL UDT or the type name
-     *                   of the
-     *                   SQL structured type being referenced by a
-     *                   <code>REF</code>
-     *                   type; ignored if the parameter is not a UDT or
-     *                   <code>REF</code> type
+     *        the fully qualified name of an SQL UDT or the type name
+     *        of the
+     *        SQL structured type being referenced by a
+     *        <code>REF</code>
+     *        type; ignored if the parameter is not a UDT or
+     *        <code>REF</code> type
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setNull(int paramIndex, int sqlType, String typeName)
-            throws SQLException;
+    void setNull(int paramIndex, int sqlType, String typeName) throws SQLException;
 
     /**
      * Sets the designated parameter to SQL <code>NULL</code>. This version of
      * the method <code>setNull</code> should be used for user-defined types and
      * REF type parameters. Examples of user-defined types include: STRUCT,
      * DISTINCT, JAVA_OBJECT, and named array types.
-     *
      * <P>
      * <B>Note:</B> To be portable, applications must give the SQL type code and
      * the fully-qualified SQL type name when specifying a NULL user-defined or
@@ -547,34 +535,31 @@ public interface RowSet extends ResultSet {
      * name of the parameter itself. For a REF parameter, the name is the type
      * name of the referenced type. If a JDBC driver does not need the type code
      * or type name information, it may ignore it.
-     *
      * Although it is intended for user-defined and Ref parameters, this method
      * may be used to set a null parameter of any JDBC type. If the parameter
      * does not have a user-defined or REF type, the given typeName is ignored.
      *
-     *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param sqlType
-     *                      a value from <code>java.sql.Types</code>
+     *        a value from <code>java.sql.Types</code>
      * @param typeName
-     *                      the fully-qualified name of an SQL user-defined
-     *                      type; ignored
-     *                      if the parameter is not a user-defined type or SQL
-     *                      <code>REF</code> value
+     *        the fully-qualified name of an SQL user-defined
+     *        type; ignored
+     *        if the parameter is not a user-defined type or SQL
+     *        <code>REF</code> value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
-    void setNull(String parameterName, int sqlType, String typeName)
-            throws SQLException;
+    void setNull(String parameterName, int sqlType, String typeName) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -582,11 +567,11 @@ public interface RowSet extends ResultSet {
      * this to an SQL <code>BIT</code> value before sending it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setBoolean(int parameterIndex, boolean x) throws SQLException;
 
@@ -596,17 +581,17 @@ public interface RowSet extends ResultSet {
      * <code>BOOLEAN</code> value when it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>CallableStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>CallableStatement</code>
      * @see #getBoolean
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
     void setBoolean(String parameterName, boolean x) throws SQLException;
@@ -618,11 +603,11 @@ public interface RowSet extends ResultSet {
      * database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setByte(int parameterIndex, byte x) throws SQLException;
 
@@ -632,18 +617,18 @@ public interface RowSet extends ResultSet {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getByte
      * @since 1.4
      */
@@ -656,11 +641,11 @@ public interface RowSet extends ResultSet {
      * database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setShort(int parameterIndex, short x) throws SQLException;
 
@@ -670,18 +655,18 @@ public interface RowSet extends ResultSet {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getShort
      * @since 1.4
      */
@@ -694,11 +679,11 @@ public interface RowSet extends ResultSet {
      * database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setInt(int parameterIndex, int x) throws SQLException;
 
@@ -708,18 +693,18 @@ public interface RowSet extends ResultSet {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getInt
      * @since 1.4
      */
@@ -732,11 +717,11 @@ public interface RowSet extends ResultSet {
      * database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setLong(int parameterIndex, long x) throws SQLException;
 
@@ -746,18 +731,18 @@ public interface RowSet extends ResultSet {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getLong
      * @since 1.4
      */
@@ -769,11 +754,11 @@ public interface RowSet extends ResultSet {
      * this to an SQL <code>REAL</code> value before sending it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setFloat(int parameterIndex, float x) throws SQLException;
 
@@ -783,18 +768,18 @@ public interface RowSet extends ResultSet {
      * it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getFloat
      * @since 1.4
      */
@@ -807,11 +792,11 @@ public interface RowSet extends ResultSet {
      * database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setDouble(int parameterIndex, double x) throws SQLException;
 
@@ -821,18 +806,18 @@ public interface RowSet extends ResultSet {
      * it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getDouble
      * @since 1.4
      */
@@ -845,11 +830,11 @@ public interface RowSet extends ResultSet {
      * the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setBigDecimal(int parameterIndex, BigDecimal x) throws SQLException;
 
@@ -859,18 +844,18 @@ public interface RowSet extends ResultSet {
      * SQL <code>NUMERIC</code> value when it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getBigDecimal
      * @since 1.4
      */
@@ -884,11 +869,11 @@ public interface RowSet extends ResultSet {
      * to the driver's limits on <code>VARCHAR</code> values.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setString(int parameterIndex, String x) throws SQLException;
 
@@ -900,18 +885,18 @@ public interface RowSet extends ResultSet {
      * to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getString
      * @since 1.4
      */
@@ -926,11 +911,11 @@ public interface RowSet extends ResultSet {
      * <code>VARBINARY</code> values.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setBytes(int parameterIndex, byte x[]) throws SQLException;
 
@@ -942,18 +927,18 @@ public interface RowSet extends ResultSet {
      * the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getBytes
      * @since 1.4
      */
@@ -967,11 +952,11 @@ public interface RowSet extends ResultSet {
      * the date.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setDate(int parameterIndex, java.sql.Date x) throws SQLException;
 
@@ -983,11 +968,11 @@ public interface RowSet extends ResultSet {
      * it.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setTime(int parameterIndex, java.sql.Time x) throws SQLException;
 
@@ -999,14 +984,13 @@ public interface RowSet extends ResultSet {
      * calculate it.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setTimestamp(int parameterIndex, java.sql.Timestamp x)
-            throws SQLException;
+    void setTimestamp(int parameterIndex, java.sql.Timestamp x) throws SQLException;
 
     /**
      * Sets the designated parameter to the given
@@ -1014,23 +998,22 @@ public interface RowSet extends ResultSet {
      * <code>TIMESTAMP</code> value when it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getTimestamp
      * @since 1.4
      */
-    void setTimestamp(String parameterName, java.sql.Timestamp x)
-            throws SQLException;
+    void setTimestamp(String parameterName, java.sql.Timestamp x) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1039,23 +1022,21 @@ public interface RowSet extends ResultSet {
      * <code>java.io.InputStream</code> rather than as a
      * <code>LONGVARCHAR</code> parameter. The driver will read the data from
      * the stream as needed until it reaches end-of-file.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the Java input stream that contains the ASCII
-     *                       parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @param length
-     *                       the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setAsciiStream(int parameterIndex, java.io.InputStream x, int length)
-            throws SQLException;
+    void setAsciiStream(int parameterIndex, java.io.InputStream x, int length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream, which will have
@@ -1064,31 +1045,29 @@ public interface RowSet extends ResultSet {
      * via a <code>java.io.InputStream</code>. Data will be read from the stream
      * as needed until end-of-file is reached. The JDBC driver will do any
      * necessary conversion from ASCII to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the Java input stream that contains the ASCII
-     *                      parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @param length
-     *                      the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
-    void setAsciiStream(String parameterName, java.io.InputStream x, int length)
-            throws SQLException;
+    void setAsciiStream(String parameterName, java.io.InputStream x, int length) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1097,24 +1076,22 @@ public interface RowSet extends ResultSet {
      * <code>java.io.InputStream</code> rather than as a
      * <code>LONGVARBINARY</code> parameter. The driver will read the data from
      * the stream as needed until it reaches end-of-file.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the java input stream which contains the binary
-     *                       parameter
-     *                       value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @param length
-     *                       the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setBinaryStream(int parameterIndex, java.io.InputStream x, int length)
-            throws SQLException;
+    void setBinaryStream(int parameterIndex, java.io.InputStream x, int length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream, which will have
@@ -1122,32 +1099,30 @@ public interface RowSet extends ResultSet {
      * a <code>LONGVARBINARY</code> parameter, it may be more practical to send
      * it via a <code>java.io.InputStream</code> object. The data will be read
      * from the stream as needed until end-of-file is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the java input stream which contains the binary
-     *                      parameter
-     *                      value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @param length
-     *                      the number of bytes in the stream
+     *        the number of bytes in the stream
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
-    void setBinaryStream(String parameterName, java.io.InputStream x,
-            int length) throws SQLException;
+    void setBinaryStream(String parameterName, java.io.InputStream x, int length) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1156,24 +1131,22 @@ public interface RowSet extends ResultSet {
      * <code>java.io.Reader</code> rather than as a <code>LONGVARCHAR</code>
      * parameter. The driver will read the data from the stream as needed until
      * it reaches end-of-file.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param reader
-     *                       the <code>Reader</code> object that contains the
-     *                       UNICODE data
-     *                       to be set
+     *        the <code>Reader</code> object that contains the
+     *        UNICODE data
+     *        to be set
      * @param length
-     *                       the number of characters in the stream
+     *        the number of characters in the stream
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setCharacterStream(int parameterIndex, Reader reader, int length)
-            throws SQLException;
+    void setCharacterStream(int parameterIndex, Reader reader, int length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>Reader</code> object,
@@ -1183,32 +1156,30 @@ public interface RowSet extends ResultSet {
      * will be read from the stream as needed until end-of-file is reached. The
      * JDBC driver will do any necessary conversion from UNICODE to the database
      * char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param reader
-     *                      the <code>java.io.Reader</code> object that contains
-     *                      the
-     *                      UNICODE data used as the designated parameter
+     *        the <code>java.io.Reader</code> object that contains
+     *        the
+     *        UNICODE data used as the designated parameter
      * @param length
-     *                      the number of characters in the stream
+     *        the number of characters in the stream
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
-    void setCharacterStream(String parameterName, java.io.Reader reader,
-            int length) throws SQLException;
+    void setCharacterStream(String parameterName, java.io.Reader reader, int length) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1217,7 +1188,6 @@ public interface RowSet extends ResultSet {
      * it via a <code>java.io.InputStream</code>. Data will be read from the
      * stream as needed until end-of-file is reached. The JDBC driver will do
      * any necessary conversion from ASCII to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1227,21 +1197,20 @@ public interface RowSet extends ResultSet {
      * which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the Java input stream that contains the ASCII
-     *                       parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setAsciiStream(int parameterIndex, java.io.InputStream x)
-            throws SQLException;
+    void setAsciiStream(int parameterIndex, java.io.InputStream x) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream. When a very
@@ -1250,7 +1219,6 @@ public interface RowSet extends ResultSet {
      * Data will be read from the stream as needed until end-of-file is reached.
      * The JDBC driver will do any necessary conversion from ASCII to the
      * database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1260,21 +1228,20 @@ public interface RowSet extends ResultSet {
      * which takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the Java input stream that contains the ASCII
-     *                      parameter value
+     *        the Java input stream that contains the ASCII
+     *        parameter value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>CallableStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setAsciiStream(String parameterName, java.io.InputStream x)
-            throws SQLException;
+    void setAsciiStream(String parameterName, java.io.InputStream x) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1282,7 +1249,6 @@ public interface RowSet extends ResultSet {
      * input to a <code>LONGVARBINARY</code> parameter, it may be more practical
      * to send it via a <code>java.io.InputStream</code> object. The data will
      * be read from the stream as needed until end-of-file is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1292,22 +1258,21 @@ public interface RowSet extends ResultSet {
      * which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the java input stream which contains the binary
-     *                       parameter
-     *                       value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setBinaryStream(int parameterIndex, java.io.InputStream x)
-            throws SQLException;
+    void setBinaryStream(int parameterIndex, java.io.InputStream x) throws SQLException;
 
     /**
      * Sets the designated parameter to the given input stream. When a very
@@ -1315,7 +1280,6 @@ public interface RowSet extends ResultSet {
      * may be more practical to send it via a <code>java.io.InputStream</code>
      * object. The data will be read from the stream as needed until end-of-file
      * is reached.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1325,22 +1289,21 @@ public interface RowSet extends ResultSet {
      * which takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the java input stream which contains the binary
-     *                      parameter
-     *                      value
+     *        the java input stream which contains the binary
+     *        parameter
+     *        value
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>CallableStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setBinaryStream(String parameterName, java.io.InputStream x)
-            throws SQLException;
+    void setBinaryStream(String parameterName, java.io.InputStream x) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1350,7 +1313,6 @@ public interface RowSet extends ResultSet {
      * data will be read from the stream as needed until end-of-file is reached.
      * The JDBC driver will do any necessary conversion from UNICODE to the
      * database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1360,22 +1322,21 @@ public interface RowSet extends ResultSet {
      * <code>setCharacterStream</code> which takes a length parameter.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param reader
-     *                       the <code>java.io.Reader</code> object that
-     *                       contains the
-     *                       Unicode data
+     *        the <code>java.io.Reader</code> object that
+     *        contains the
+     *        Unicode data
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setCharacterStream(int parameterIndex, java.io.Reader reader)
-            throws SQLException;
+    void setCharacterStream(int parameterIndex, java.io.Reader reader) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>Reader</code> object.
@@ -1384,7 +1345,6 @@ public interface RowSet extends ResultSet {
      * <code>java.io.Reader</code> object. The data will be read from the stream
      * as needed until end-of-file is reached. The JDBC driver will do any
      * necessary conversion from UNICODE to the database char format.
-     *
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1394,22 +1354,21 @@ public interface RowSet extends ResultSet {
      * <code>setCharacterStream</code> which takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param reader
-     *                      the <code>java.io.Reader</code> object that contains
-     *                      the
-     *                      Unicode data
+     *        the <code>java.io.Reader</code> object that contains
+     *        the
+     *        Unicode data
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>CallableStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setCharacterStream(String parameterName, java.io.Reader reader)
-            throws SQLException;
+    void setCharacterStream(String parameterName, java.io.Reader reader) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1417,7 +1376,6 @@ public interface RowSet extends ResultSet {
      * the data till end-of-file is reached. The driver does the necessary
      * conversion from Java character format to the national character set in
      * the database.
-     * 
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -1427,39 +1385,36 @@ public interface RowSet extends ResultSet {
      * <code>setNCharacterStream</code> which takes a length parameter.
      *
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur ; if a database access
-     *                                         error occurs; or this method is
-     *                                         called on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur ; if a database access
+     *         error occurs; or this method is
+     *         called on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setNCharacterStream(int parameterIndex, Reader value)
-            throws SQLException;
+    void setNCharacterStream(int parameterIndex, Reader value) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
      * command with the given Java <code>Object</code>. For integral values, the
      * <code>java.lang</code> equivalent objects should be used (for example, an
      * instance of the class <code>Integer</code> for an <code>int</code>).
-     *
      * If the second argument is an <code>InputStream</code> then the stream
      * must contain the number of bytes specified by scaleOrLength. If the
      * second argument is a <code>Reader</code> then the reader must contain the
      * number of characters specified * by scaleOrLength. If these conditions
      * are not true the driver will generate a <code>SQLException</code> when
      * the prepared statement is executed.
-     *
      * <p>
      * The given Java object will be converted to the targetSqlType before being
      * sent to the database.
@@ -1471,49 +1426,44 @@ public interface RowSet extends ResultSet {
      * <code>Clob</code>, <code>NClob</code>, <code>Struct</code>,
      * <code>java.net.URL</code>, or <code>Array</code>, the driver should pass
      * it to the database as a value of the corresponding SQL type.
-     *
-     *
      * <p>
      * Note that this method may be used to pass datatabase-specific abstract
      * data types.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                       the SQL type (as defined in
-     *                       <code>java.sql.Types</code>) to be
-     *                       sent to the database. The scale argument may
-     *                       further qualify
-     *                       this type.
+     *        the SQL type (as defined in
+     *        <code>java.sql.Types</code>) to be
+     *        sent to the database. The scale argument may
+     *        further qualify
+     *        this type.
      * @param scaleOrLength
-     *                       for <code>java.sql.Types.DECIMAL</code> or
-     *                       <code>java.sql.Types.NUMERIC types</code>, this is
-     *                       the number
-     *                       of digits after the decimal point. For Java Object
-     *                       types
-     *                       <code>InputStream</code> and <code>Reader</code>,
-     *                       this is the
-     *                       length of the data in the stream or reader. For all
-     *                       other
-     *                       types, this value will be ignored.
+     *        for <code>java.sql.Types.DECIMAL</code> or
+     *        <code>java.sql.Types.NUMERIC types</code>, this is
+     *        the number
+     *        of digits after the decimal point. For Java Object
+     *        types
+     *        <code>InputStream</code> and <code>Reader</code>,
+     *        this is the
+     *        length of the data in the stream or reader. For all
+     *        other
+     *        types, this value will be ignored.
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @see java.sql.Types
      */
-    void setObject(int parameterIndex, Object x, int targetSqlType,
-            int scaleOrLength) throws SQLException;
+    void setObject(int parameterIndex, Object x, int targetSqlType, int scaleOrLength) throws SQLException;
 
     /**
      * Sets the value of the designated parameter with the given object. The
      * second argument must be an object type; for integral values, the
      * <code>java.lang</code> equivalent objects should be used.
-     *
      * <p>
      * The given Java object will be converted to the given targetSqlType before
      * being sent to the database.
-     *
      * If the object has a custom mapping (is of a class implementing the
      * interface <code>SQLData</code>), the JDBC driver should call the method
      * <code>SQLData.writeSQL</code> to write it to the SQL data stream. If, on
@@ -1527,49 +1477,48 @@ public interface RowSet extends ResultSet {
      * data types.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                      the SQL type (as defined in java.sql.Types) to be
-     *                      sent to the
-     *                      database. The scale argument may further qualify
-     *                      this type.
+     *        the SQL type (as defined in java.sql.Types) to be
+     *        sent to the
+     *        database. The scale argument may further qualify
+     *        this type.
      * @param scale
-     *                      for java.sql.Types.DECIMAL or java.sql.Types.NUMERIC
-     *                      types,
-     *                      this is the number of digits after the decimal
-     *                      point. For all
-     *                      other types, this value will be ignored.
+     *        for java.sql.Types.DECIMAL or java.sql.Types.NUMERIC
+     *        types,
+     *        this is the number of digits after the decimal
+     *        point. For all
+     *        other types, this value will be ignored.
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if <code>targetSqlType</code>
-     *                                            is a <code>ARRAY</code>,
-     *                                            <code>BLOB</code>,
-     *                                            <code>CLOB</code>,
-     *                                            <code>DATALINK</code>,
-     *                                            <code>JAVA_OBJECT</code>,
-     *                                            <code>NCHAR</code>,
-     *                                            <code>NCLOB</code>,
-     *                                            <code>NVARCHAR</code>,
-     *                                            <code>LONGNVARCHAR</code>,
-     *                                            <code>REF</code>,
-     *                                            <code>ROWID</code>,
-     *                                            <code>SQLXML</code>
-     *                                            or <code>STRUCT</code> data
-     *                                            type and the JDBC driver does
-     *                                            not support this data type
+     *            if <code>targetSqlType</code>
+     *            is a <code>ARRAY</code>,
+     *            <code>BLOB</code>,
+     *            <code>CLOB</code>,
+     *            <code>DATALINK</code>,
+     *            <code>JAVA_OBJECT</code>,
+     *            <code>NCHAR</code>,
+     *            <code>NCLOB</code>,
+     *            <code>NVARCHAR</code>,
+     *            <code>LONGNVARCHAR</code>,
+     *            <code>REF</code>,
+     *            <code>ROWID</code>,
+     *            <code>SQLXML</code>
+     *            or <code>STRUCT</code> data
+     *            type and the JDBC driver does
+     *            not support this data type
      * @see Types
      * @see #getObject
      * @since 1.4
      */
-    void setObject(String parameterName, Object x, int targetSqlType, int scale)
-            throws SQLException;
+    void setObject(String parameterName, Object x, int targetSqlType, int scale) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1583,18 +1532,17 @@ public interface RowSet extends ResultSet {
      * called with floating point input values.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                       the SQL type (as defined in
-     *                       <code>java.sql.Types</code>) to be
-     *                       sent to the database
+     *        the SQL type (as defined in
+     *        <code>java.sql.Types</code>) to be
+     *        sent to the database
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setObject(int parameterIndex, Object x, int targetSqlType)
-            throws SQLException;
+    void setObject(int parameterIndex, Object x, int targetSqlType) throws SQLException;
 
     /**
      * Sets the value of the designated parameter with the given object. This
@@ -1602,58 +1550,54 @@ public interface RowSet extends ResultSet {
      * assumes a scale of zero.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the object containing the input parameter value
+     *        the object containing the input parameter value
      * @param targetSqlType
-     *                      the SQL type (as defined in java.sql.Types) to be
-     *                      sent to the
-     *                      database
+     *        the SQL type (as defined in java.sql.Types) to be
+     *        sent to the
+     *        database
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if <code>targetSqlType</code>
-     *                                            is a <code>ARRAY</code>,
-     *                                            <code>BLOB</code>,
-     *                                            <code>CLOB</code>,
-     *                                            <code>DATALINK</code>,
-     *                                            <code>JAVA_OBJECT</code>,
-     *                                            <code>NCHAR</code>,
-     *                                            <code>NCLOB</code>,
-     *                                            <code>NVARCHAR</code>,
-     *                                            <code>LONGNVARCHAR</code>,
-     *                                            <code>REF</code>,
-     *                                            <code>ROWID</code>,
-     *                                            <code>SQLXML</code>
-     *                                            or <code>STRUCT</code> data
-     *                                            type and the JDBC driver does
-     *                                            not support this data type
+     *            if <code>targetSqlType</code>
+     *            is a <code>ARRAY</code>,
+     *            <code>BLOB</code>,
+     *            <code>CLOB</code>,
+     *            <code>DATALINK</code>,
+     *            <code>JAVA_OBJECT</code>,
+     *            <code>NCHAR</code>,
+     *            <code>NCLOB</code>,
+     *            <code>NVARCHAR</code>,
+     *            <code>LONGNVARCHAR</code>,
+     *            <code>REF</code>,
+     *            <code>ROWID</code>,
+     *            <code>SQLXML</code>
+     *            or <code>STRUCT</code> data
+     *            type and the JDBC driver does
+     *            not support this data type
      * @see #getObject
      * @since 1.4
      */
-    void setObject(String parameterName, Object x, int targetSqlType)
-            throws SQLException;
+    void setObject(String parameterName, Object x, int targetSqlType) throws SQLException;
 
     /**
      * Sets the value of the designated parameter with the given object. The
      * second parameter must be of type <code>Object</code>; therefore, the
      * <code>java.lang</code> equivalent objects should be used for built-in
      * types.
-     *
      * <p>
      * The JDBC specification specifies a standard mapping from Java
      * <code>Object</code> types to SQL types. The given argument will be
      * converted to the corresponding SQL type before being sent to the
      * database.
-     *
      * <p>
      * Note that this method may be used to pass datatabase- specific abstract
      * data types, by using a driver-specific Java type.
-     *
      * If the object is of a class implementing the interface
      * <code>SQLData</code>, the JDBC driver should call the method
      * <code>SQLData.writeSQL</code> to write it to the SQL data stream. If, on
@@ -1668,20 +1612,20 @@ public interface RowSet extends ResultSet {
      * named above.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the object containing the input parameter value
+     *        the object containing the input parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs, this method is called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
-     *                                            or if the given
-     *                                            <code>Object</code> parameter
-     *                                            is ambiguous
+     *            if a database access error
+     *            occurs, this method is called
+     *            on a closed
+     *            <code>CallableStatement</code>
+     *            or if the given
+     *            <code>Object</code> parameter
+     *            is ambiguous
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getObject
      * @since 1.4
      */
@@ -1691,16 +1635,13 @@ public interface RowSet extends ResultSet {
      * Sets the designated parameter in this <code>RowSet</code> object's
      * command with a Java <code>Object</code>. For integral values, the
      * <code>java.lang</code> equivalent objects should be used.
-     *
      * <p>
      * The JDBC specification provides a standard mapping from Java Object types
      * to SQL types. The driver will convert the given Java object to its
      * standard SQL mapping before sending it to the database.
-     *
      * <p>
      * Note that this method may be used to pass datatabase-specific abstract
      * data types by using a driver-specific Java type.
-     *
      * If the object is of a class implementing <code>SQLData</code>, the rowset
      * should call the method <code>SQLData.writeSQL</code> to write the object
      * to an <code>SQLOutput</code> data stream. If, on the other hand, the
@@ -1708,17 +1649,16 @@ public interface RowSet extends ResultSet {
      * <code>Clob</code>, <code>NClob</code>, <code>Struct</code>,
      * <code>java.net.URL</code>, or <code>Array</code>, the driver should pass
      * it to the database as a value of the corresponding SQL type.
-     *
      * <P>
      * An exception is thrown if there is an ambiguity, for example, if the
      * object is of a class implementing more than one of these interfaces.
      *
      * @param parameterIndex
-     *                       The first parameter is 1, the second is 2, ...
+     *        The first parameter is 1, the second is 2, ...
      * @param x
-     *                       The object containing the input parameter value
+     *        The object containing the input parameter value
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setObject(int parameterIndex, Object x) throws SQLException;
 
@@ -1728,11 +1668,11 @@ public interface RowSet extends ResultSet {
      * this to the appropriate <code>REF(&lt;structured-type&gt;)</code> value.
      *
      * @param i
-     *          the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *          an object representing data of an SQL <code>REF</code> type
+     *        an object representing data of an SQL <code>REF</code> type
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setRef(int i, Ref x) throws SQLException;
 
@@ -1743,11 +1683,11 @@ public interface RowSet extends ResultSet {
      * represents before sending it to the database.
      *
      * @param i
-     *          the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *          an object representing a BLOB
+     *        an object representing a BLOB
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setBlob(int i, Blob x) throws SQLException;
 
@@ -1764,35 +1704,33 @@ public interface RowSet extends ResultSet {
      * <code>LONGVARBINARY</code> or a <code>BLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param inputStream
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of bytes in the parameter data.
+     *        the number of bytes in the parameter data.
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed
-     *                                         <code>PreparedStatement</code>,
-     *                                         if parameterIndex does
-     *                                         not correspond to a parameter
-     *                                         marker in the SQL statement, if
-     *                                         the length specified is less than
-     *                                         zero or if the number of
-     *                                         bytes in the inputstream does not
-     *                                         match the specified length.
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed
+     *         <code>PreparedStatement</code>,
+     *         if parameterIndex does
+     *         not correspond to a parameter
+     *         marker in the SQL statement, if
+     *         the length specified is less than
+     *         zero or if the number of
+     *         bytes in the inputstream does not
+     *         match the specified length.
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setBlob(int parameterIndex, InputStream inputStream, long length)
-            throws SQLException;
+    void setBlob(int parameterIndex, InputStream inputStream, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>InputStream</code> object. This
@@ -1802,37 +1740,34 @@ public interface RowSet extends ResultSet {
      * <code>setBinaryStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be sent to the
      * server as a <code>LONGVARBINARY</code> or a <code>BLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setBlob</code> which
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param inputStream
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed
-     *                                         <code>PreparedStatement</code> or
-     *                                         if parameterIndex
-     *                                         does not correspond to a
-     *                                         parameter marker in the SQL
-     *                                         statement,
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed
+     *         <code>PreparedStatement</code> or
+     *         if parameterIndex
+     *         does not correspond to a
+     *         parameter marker in the SQL
+     *         statement,
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setBlob(int parameterIndex, InputStream inputStream)
-            throws SQLException;
+    void setBlob(int parameterIndex, InputStream inputStream) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>InputStream</code> object. The
@@ -1847,34 +1782,31 @@ public interface RowSet extends ResultSet {
      * <code>LONGVARBINARY</code> or a <code>BLOB</code>
      *
      * @param parameterName
-     *                      the name of the parameter to be set the second is 2,
-     *                      ...
-     *
+     *        the name of the parameter to be set the second is 2,
+     *        ...
      * @param inputStream
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                      the number of bytes in the parameter data.
+     *        the number of bytes in the parameter data.
      * @throws SQLException
-     *                      if parameterIndex does not correspond to a parameter
-     *                      marker
-     *                      in the SQL statement, or if the length specified is
-     *                      less than
-     *                      zero; if the number of bytes in the inputstream does
-     *                      not
-     *                      match the specified length; if a database access
-     *                      error occurs
-     *                      or this method is called on a closed
-     *                      <code>CallableStatement</code>
+     *         if parameterIndex does not correspond to a parameter
+     *         marker
+     *         in the SQL statement, or if the length specified is
+     *         less than
+     *         zero; if the number of bytes in the inputstream does
+     *         not
+     *         match the specified length; if a database access
+     *         error occurs
+     *         or this method is called on a closed
+     *         <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
-     *
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
-    void setBlob(String parameterName, InputStream inputStream, long length)
-            throws SQLException;
+    void setBlob(String parameterName, InputStream inputStream, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>java.sql.Blob</code>
@@ -1882,20 +1814,20 @@ public interface RowSet extends ResultSet {
      * it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      a <code>Blob</code> object that maps an SQL
-     *                      <code>BLOB</code>
-     *                      value
+     *        a <code>Blob</code> object that maps an SQL
+     *        <code>BLOB</code>
+     *        value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
     void setBlob(String parameterName, Blob x) throws SQLException;
@@ -1908,31 +1840,28 @@ public interface RowSet extends ResultSet {
      * <code>setBinaryStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be send to the
      * server as a <code>LONGVARBINARY</code> or a <code>BLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setBlob</code> which
      * takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param inputStream
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if a database access error occurs
-     *                                         or this method is called on
-     *                                         a closed
-     *                                         <code>CallableStatement</code>
+     *         if a database access error occurs
+     *         or this method is called on
+     *         a closed
+     *         <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setBlob(String parameterName, InputStream inputStream)
-            throws SQLException;
+    void setBlob(String parameterName, InputStream inputStream) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -1941,11 +1870,11 @@ public interface RowSet extends ResultSet {
      * represents before sending it to the database.
      *
      * @param i
-     *          the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *          an object representing a CLOB
+     *        an object representing a CLOB
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setClob(int i, Clob x) throws SQLException;
 
@@ -1962,33 +1891,31 @@ public interface RowSet extends ResultSet {
      * or a <code>CLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed
-     *                                         <code>PreparedStatement</code>,
-     *                                         if parameterIndex does
-     *                                         not correspond to a parameter
-     *                                         marker in the SQL statement, or
-     *                                         if the length specified is less
-     *                                         than zero.
-     *
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed
+     *         <code>PreparedStatement</code>,
+     *         if parameterIndex does
+     *         not correspond to a parameter
+     *         marker in the SQL statement, or
+     *         if the length specified is less
+     *         than zero.
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setClob(int parameterIndex, Reader reader, long length)
-            throws SQLException;
+    void setClob(int parameterIndex, Reader reader, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. This
@@ -1998,33 +1925,31 @@ public interface RowSet extends ResultSet {
      * <code>setCharacterStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be sent to the
      * server as a <code>LONGVARCHAR</code> or a <code>CLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setClob</code> which
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if a database access error
-     *                                         occurs, this method is called on
-     *                                         a
-     *                                         closed
-     *                                         <code>PreparedStatement</code>or
-     *                                         if parameterIndex
-     *                                         does not correspond to a
-     *                                         parameter marker in the SQL
-     *                                         statement
-     *
+     *         if a database access error
+     *         occurs, this method is called on
+     *         a
+     *         closed
+     *         <code>PreparedStatement</code>or
+     *         if parameterIndex
+     *         does not correspond to a
+     *         parameter marker in the SQL
+     *         statement
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setClob(int parameterIndex, Reader reader) throws SQLException;
@@ -2042,29 +1967,27 @@ public interface RowSet extends ResultSet {
      * or a <code>CLOB</code>
      * 
      * @param parameterName
-     *                      the name of the parameter to be set
+     *        the name of the parameter to be set
      * @param reader
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                      the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                      if parameterIndex does not correspond to a parameter
-     *                      marker
-     *                      in the SQL statement; if the length specified is
-     *                      less than
-     *                      zero; a database access error occurs or this method
-     *                      is called
-     *                      on a closed <code>CallableStatement</code>
+     *         if parameterIndex does not correspond to a parameter
+     *         marker
+     *         in the SQL statement; if the length specified is
+     *         less than
+     *         zero; a database access error occurs or this method
+     *         is called
+     *         on a closed <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
-     *
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
-    void setClob(String parameterName, Reader reader, long length)
-            throws SQLException;
+    void setClob(String parameterName, Reader reader, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>java.sql.Clob</code>
@@ -2072,20 +1995,20 @@ public interface RowSet extends ResultSet {
      * it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      a <code>Clob</code> object that maps an SQL
-     *                      <code>CLOB</code>
-     *                      value
+     *        a <code>Clob</code> object that maps an SQL
+     *        <code>CLOB</code>
+     *        value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
     void setClob(String parameterName, Clob x) throws SQLException;
@@ -2098,27 +2021,25 @@ public interface RowSet extends ResultSet {
      * <code>setCharacterStream</code> method is used, the driver may have to do
      * extra work to determine whether the parameter data should be send to the
      * server as a <code>LONGVARCHAR</code> or a <code>CLOB</code>
-     *
      * <P>
      * <B>Note:</B> Consult your JDBC driver documentation to determine if it
      * might be more efficient to use a version of <code>setClob</code> which
      * takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param reader
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if a database access error occurs
-     *                                         or this method is called on
-     *                                         a closed
-     *                                         <code>CallableStatement</code>
-     *
+     *         if a database access error occurs
+     *         or this method is called on
+     *         a closed
+     *         <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setClob(String parameterName, Reader reader) throws SQLException;
@@ -2130,11 +2051,11 @@ public interface RowSet extends ResultSet {
      * represents before sending it to the database.
      *
      * @param i
-     *          the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *          an object representing an SQL array
+     *        an object representing an SQL array
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void setArray(int i, Array x) throws SQLException;
 
@@ -2145,18 +2066,17 @@ public interface RowSet extends ResultSet {
      * <code>java.util.Calendar</code> object to calculate the date.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @param cal
-     *                       the <code>java.util.Calendar</code> object to use
-     *                       for
-     *                       calculating the date
+     *        the <code>java.util.Calendar</code> object to use
+     *        for
+     *        calculating the date
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setDate(int parameterIndex, java.sql.Date x, Calendar cal)
-            throws SQLException;
+    void setDate(int parameterIndex, java.sql.Date x, Calendar cal) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>java.sql.Date</code>
@@ -2165,18 +2085,18 @@ public interface RowSet extends ResultSet {
      * value when it sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getDate
      * @since 1.4
      */
@@ -2193,27 +2113,26 @@ public interface RowSet extends ResultSet {
      * virtual machine running the application.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @param cal
-     *                      the <code>Calendar</code> object the driver will use
-     *                      to
-     *                      construct the date
+     *        the <code>Calendar</code> object the driver will use
+     *        to
+     *        construct the date
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getDate
      * @since 1.4
      */
-    void setDate(String parameterName, java.sql.Date x, Calendar cal)
-            throws SQLException;
+    void setDate(String parameterName, java.sql.Date x, Calendar cal) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -2223,18 +2142,17 @@ public interface RowSet extends ResultSet {
      * to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @param cal
-     *                       the <code>java.util.Calendar</code> object to use
-     *                       for
-     *                       calculating the time
+     *        the <code>java.util.Calendar</code> object to use
+     *        for
+     *        calculating the time
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setTime(int parameterIndex, java.sql.Time x, Calendar cal)
-            throws SQLException;
+    void setTime(int parameterIndex, java.sql.Time x, Calendar cal) throws SQLException;
 
     /**
      * Sets the designated parameter to the given <code>java.sql.Time</code>
@@ -2242,18 +2160,18 @@ public interface RowSet extends ResultSet {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getTime
      * @since 1.4
      */
@@ -2270,27 +2188,26 @@ public interface RowSet extends ResultSet {
      * virtual machine running the application.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @param cal
-     *                      the <code>Calendar</code> object the driver will use
-     *                      to
-     *                      construct the time
+     *        the <code>Calendar</code> object the driver will use
+     *        to
+     *        construct the time
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getTime
      * @since 1.4
      */
-    void setTime(String parameterName, java.sql.Time x, Calendar cal)
-            throws SQLException;
+    void setTime(String parameterName, java.sql.Time x, Calendar cal) throws SQLException;
 
     /**
      * Sets the designated parameter in this <code>RowSet</code> object's
@@ -2300,18 +2217,17 @@ public interface RowSet extends ResultSet {
      * to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @param cal
-     *                       the <code>java.util.Calendar</code> object to use
-     *                       for
-     *                       calculating the timestamp
+     *        the <code>java.util.Calendar</code> object to use
+     *        for
+     *        calculating the timestamp
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
-    void setTimestamp(int parameterIndex, java.sql.Timestamp x, Calendar cal)
-            throws SQLException;
+    void setTimestamp(int parameterIndex, java.sql.Timestamp x, Calendar cal) throws SQLException;
 
     /**
      * Sets the designated parameter to the given
@@ -2325,27 +2241,26 @@ public interface RowSet extends ResultSet {
      * application.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @param cal
-     *                      the <code>Calendar</code> object the driver will use
-     *                      to
-     *                      construct the timestamp
+     *        the <code>Calendar</code> object the driver will use
+     *        to
+     *        construct the timestamp
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs or this method is
-     *                                            called
-     *                                            on a closed
-     *                                            <code>CallableStatement</code>
+     *            if a database access error
+     *            occurs or this method is
+     *            called
+     *            on a closed
+     *            <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getTimestamp
      * @since 1.4
      */
-    void setTimestamp(String parameterName, java.sql.Timestamp x, Calendar cal)
-            throws SQLException;
+    void setTimestamp(String parameterName, java.sql.Timestamp x, Calendar cal) throws SQLException;
 
     /**
      * Clears the parameters set for this <code>RowSet</code> object's command.
@@ -2357,7 +2272,7 @@ public interface RowSet extends ResultSet {
      * which can be done by calling the method <code>clearParameters</code>.
      *
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     void clearParameters() throws SQLException;
 
@@ -2371,7 +2286,6 @@ public interface RowSet extends ResultSet {
      * The <code>execute</code> method may use the following properties to
      * create a connection for reading data: url, data source name, user name,
      * password, transaction isolation, and type map.
-     *
      * The <code>execute</code> method may use the following properties to
      * create a statement to execute a command: command, read only, maximum
      * field size, maximum rows, escape processing, and query timeout.
@@ -2389,11 +2303,11 @@ public interface RowSet extends ResultSet {
      * <code>readData</code> method as part of its implementation.
      *
      * @exception SQLException
-     *                         if a database access error occurs or any of the
-     *                         properties
-     *                         necessary for making a connection and creating a
-     *                         statement
-     *                         have not been set
+     *            if a database access error occurs or any of the
+     *            properties
+     *            necessary for making a connection and creating a
+     *            statement
+     *            have not been set
      */
     void execute() throws SQLException;
 
@@ -2406,10 +2320,10 @@ public interface RowSet extends ResultSet {
      * occur on this <code>RowSet</code> object.
      *
      * @param listener
-     *                 a component that has implemented the
-     *                 <code>RowSetListener</code> interface and wants to be
-     *                 notified
-     *                 when events occur on this <code>RowSet</code> object
+     *        a component that has implemented the
+     *        <code>RowSetListener</code> interface and wants to be
+     *        notified
+     *        when events occur on this <code>RowSet</code> object
      * @see #removeRowSetListener
      */
     void addRowSetListener(RowSetListener listener);
@@ -2419,9 +2333,9 @@ public interface RowSet extends ResultSet {
      * notified when an event occurs on this <code>RowSet</code> object.
      *
      * @param listener
-     *                 a component that has been registered as a listener for
-     *                 this
-     *                 <code>RowSet</code> object
+     *        a component that has been registered as a listener for
+     *        this
+     *        <code>RowSet</code> object
      * @see #addRowSetListener
      */
     void removeRowSetListener(RowSetListener listener);
@@ -2432,27 +2346,27 @@ public interface RowSet extends ResultSet {
      * sends it to the database.
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param xmlObject
-     *                       a <code>SQLXML</code> object that maps an SQL
-     *                       <code>XML</code>
-     *                       value
+     *        a <code>SQLXML</code> object that maps an SQL
+     *        <code>XML</code>
+     *        value
      * @throws SQLException
-     *                      if a database access error occurs, this method is
-     *                      called on a
-     *                      closed result set, the
-     *                      <code>java.xml.transform.Result</code>
-     *                      , <code>Writer</code> or <code>OutputStream</code>
-     *                      has not
-     *                      been closed for the <code>SQLXML</code> object or if
-     *                      there is
-     *                      an error processing the XML value. The
-     *                      <code>getCause</code>
-     *                      method of the exception may provide a more detailed
-     *                      exception, for example, if the stream does not
-     *                      contain valid
-     *                      XML.
+     *         if a database access error occurs, this method is
+     *         called on a
+     *         closed result set, the
+     *         <code>java.xml.transform.Result</code>
+     *         , <code>Writer</code> or <code>OutputStream</code>
+     *         has not
+     *         been closed for the <code>SQLXML</code> object or if
+     *         there is
+     *         an error processing the XML value. The
+     *         <code>getCause</code>
+     *         method of the exception may provide a more detailed
+     *         exception, for example, if the stream does not
+     *         contain valid
+     *         XML.
      * @since 1.6
      */
     void setSQLXML(int parameterIndex, SQLXML xmlObject) throws SQLException;
@@ -2463,26 +2377,26 @@ public interface RowSet extends ResultSet {
      * sends it to the database.
      * 
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param xmlObject
-     *                      a <code>SQLXML</code> object that maps an
-     *                      <code>SQL XML</code>
-     *                      value
+     *        a <code>SQLXML</code> object that maps an
+     *        <code>SQL XML</code>
+     *        value
      * @throws SQLException
-     *                      if a database access error occurs, this method is
-     *                      called on a
-     *                      closed result set, the
-     *                      <code>java.xml.transform.Result</code>
-     *                      , <code>Writer</code> or <code>OutputStream</code>
-     *                      has not
-     *                      been closed for the <code>SQLXML</code> object or if
-     *                      there is
-     *                      an error processing the XML value. The
-     *                      <code>getCause</code>
-     *                      method of the exception may provide a more detailed
-     *                      exception, for example, if the stream does not
-     *                      contain valid
-     *                      XML.
+     *         if a database access error occurs, this method is
+     *         called on a
+     *         closed result set, the
+     *         <code>java.xml.transform.Result</code>
+     *         , <code>Writer</code> or <code>OutputStream</code>
+     *         has not
+     *         been closed for the <code>SQLXML</code> object or if
+     *         there is
+     *         an error processing the XML value. The
+     *         <code>getCause</code>
+     *         method of the exception may provide a more detailed
+     *         exception, for example, if the stream does not
+     *         contain valid
+     *         XML.
      * @since 1.6
      */
     void setSQLXML(String parameterName, SQLXML xmlObject) throws SQLException;
@@ -2493,12 +2407,11 @@ public interface RowSet extends ResultSet {
      * it sends it to the database
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if a database access error occurs
-     *
+     *         if a database access error occurs
      * @since 1.6
      */
     void setRowId(int parameterIndex, RowId x) throws SQLException;
@@ -2509,11 +2422,11 @@ public interface RowSet extends ResultSet {
      * sends it to the database.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param x
-     *                      the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if a database access error occurs
+     *         if a database access error occurs
      * @since 1.6
      */
     void setRowId(String parameterName, RowId x) throws SQLException;
@@ -2526,15 +2439,15 @@ public interface RowSet extends ResultSet {
      * <code>NVARCHAR</code> values) when it sends it to the database.
      *
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if the driver does not support national character
-     *                      sets; if
-     *                      the driver can detect that a data conversion error
-     *                      could
-     *                      occur ; or if a database access error occurs
+     *         if the driver does not support national character
+     *         sets; if
+     *         the driver can detect that a data conversion error
+     *         could
+     *         occur ; or if a database access error occurs
      * @since 1.6
      */
     void setNString(int parameterIndex, String value) throws SQLException;
@@ -2545,19 +2458,18 @@ public interface RowSet extends ResultSet {
      * <code>NVARCHAR</code> or <code>LONGNVARCHAR</code>
      * 
      * @param parameterName
-     *                      the name of the column to be set
+     *        the name of the column to be set
      * @param value
-     *                      the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if the driver does not support national character
-     *                      sets; if
-     *                      the driver can detect that a data conversion error
-     *                      could
-     *                      occur; or if a database access error occurs
+     *         if the driver does not support national character
+     *         sets; if
+     *         the driver can detect that a data conversion error
+     *         could
+     *         occur; or if a database access error occurs
      * @since 1.6
      */
-    public void setNString(String parameterName, String value)
-            throws SQLException;
+    public void setNString(String parameterName, String value) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. The
@@ -2566,21 +2478,20 @@ public interface RowSet extends ResultSet {
      * national character set in the database.
      * 
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                      if the driver does not support national character
-     *                      sets; if
-     *                      the driver can detect that a data conversion error
-     *                      could
-     *                      occur ; or if a database access error occurs
+     *         if the driver does not support national character
+     *         sets; if
+     *         the driver can detect that a data conversion error
+     *         could
+     *         occur ; or if a database access error occurs
      * @since 1.6
      */
-    void setNCharacterStream(int parameterIndex, Reader value, long length)
-            throws SQLException;
+    void setNCharacterStream(int parameterIndex, Reader value, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. The
@@ -2589,28 +2500,26 @@ public interface RowSet extends ResultSet {
      * national character set in the database.
      * 
      * @param parameterName
-     *                      the name of the column to be set
+     *        the name of the column to be set
      * @param value
-     *                      the parameter value
+     *        the parameter value
      * @param length
-     *                      the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                      if the driver does not support national character
-     *                      sets; if
-     *                      the driver can detect that a data conversion error
-     *                      could
-     *                      occur; or if a database access error occurs
+     *         if the driver does not support national character
+     *         sets; if
+     *         the driver can detect that a data conversion error
+     *         could
+     *         occur; or if a database access error occurs
      * @since 1.6
      */
-    public void setNCharacterStream(String parameterName, Reader value,
-            long length) throws SQLException;
+    public void setNCharacterStream(String parameterName, Reader value, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. The
      * <code>Reader</code> reads the data till end-of-file is reached. The
      * driver does the necessary conversion from Java character format to the
      * national character set in the database.
-     * 
      * <P>
      * <B>Note:</B> This stream object can either be a standard Java stream
      * object or your own subclass that implements the standard interface.
@@ -2620,25 +2529,24 @@ public interface RowSet extends ResultSet {
      * <code>setNCharacterStream</code> which takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param value
-     *                      the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur ; if a database access
-     *                                         error occurs; or this method is
-     *                                         called on a closed
-     *                                         <code>CallableStatement</code>
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur ; if a database access
+     *         error occurs; or this method is
+     *         called on a closed
+     *         <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setNCharacterStream(String parameterName, Reader value)
-            throws SQLException;
+    void setNCharacterStream(String parameterName, Reader value) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>java.sql.NClob</code> object.
@@ -2646,15 +2554,15 @@ public interface RowSet extends ResultSet {
      * <code>NClob</code> object maps to a SQL <code>NCLOB</code>.
      * 
      * @param parameterName
-     *                      the name of the column to be set
+     *        the name of the column to be set
      * @param value
-     *                      the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if the driver does not support national character
-     *                      sets; if
-     *                      the driver can detect that a data conversion error
-     *                      could
-     *                      occur; or if a database access error occurs
+     *         if the driver does not support national character
+     *         sets; if
+     *         the driver can detect that a data conversion error
+     *         could
+     *         occur; or if a database access error occurs
      * @since 1.6
      */
     void setNClob(String parameterName, NClob value) throws SQLException;
@@ -2672,32 +2580,31 @@ public interface RowSet extends ResultSet {
      * <code>LONGNVARCHAR</code> or a <code>NCLOB</code>
      *
      * @param parameterName
-     *                      the name of the parameter to be set
+     *        the name of the parameter to be set
      * @param reader
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                      the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                      if parameterIndex does not correspond to a parameter
-     *                      marker
-     *                      in the SQL statement; if the length specified is
-     *                      less than
-     *                      zero; if the driver does not support national
-     *                      character sets;
-     *                      if the driver can detect that a data conversion
-     *                      error could
-     *                      occur; if a database access error occurs or this
-     *                      method is
-     *                      called on a closed <code>CallableStatement</code>
+     *         if parameterIndex does not correspond to a parameter
+     *         marker
+     *         in the SQL statement; if the length specified is
+     *         less than
+     *         zero; if the driver does not support national
+     *         character sets;
+     *         if the driver can detect that a data conversion
+     *         error could
+     *         occur; if a database access error occurs or this
+     *         method is
+     *         called on a closed <code>CallableStatement</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
-    void setNClob(String parameterName, Reader reader, long length)
-            throws SQLException;
+    void setNClob(String parameterName, Reader reader, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>Reader</code> object. This
@@ -2713,24 +2620,23 @@ public interface RowSet extends ResultSet {
      * takes a length parameter.
      *
      * @param parameterName
-     *                      the name of the parameter
+     *        the name of the parameter
      * @param reader
-     *                      An object that contains the data to set the
-     *                      parameter value
-     *                      to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if the driver does not support
-     *                                         national character sets; if
-     *                                         the driver can detect that a data
-     *                                         conversion error could
-     *                                         occur; if a database access error
-     *                                         occurs or this method is
-     *                                         called on a closed
-     *                                         <code>CallableStatement</code>
+     *         if the driver does not support
+     *         national character sets; if
+     *         the driver can detect that a data
+     *         conversion error could
+     *         occur; if a database access error
+     *         occurs or this method is
+     *         called on a closed
+     *         <code>CallableStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setNClob(String parameterName, Reader reader) throws SQLException;
@@ -2748,35 +2654,33 @@ public interface RowSet extends ResultSet {
      * <code>LONGNVARCHAR</code> or a <code>NCLOB</code>
      * 
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @param length
-     *                       the number of characters in the parameter data.
+     *        the number of characters in the parameter data.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         length specified is less than
-     *                                         zero; if the driver does not
-     *                                         support national character sets;
-     *                                         if the driver can detect that a
-     *                                         data conversion error could
-     *                                         occur; if a database access error
-     *                                         occurs or this method is
-     *                                         called on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         length specified is less than
+     *         zero; if the driver does not
+     *         support national character sets;
+     *         if the driver can detect that a
+     *         data conversion error could
+     *         occur; if a database access error
+     *         occurs or this method is
+     *         called on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
-    void setNClob(int parameterIndex, Reader reader, long length)
-            throws SQLException;
+    void setNClob(int parameterIndex, Reader reader, long length) throws SQLException;
 
     /**
      * Sets the designated parameter to a <code>java.sql.NClob</code> object.
@@ -2784,15 +2688,15 @@ public interface RowSet extends ResultSet {
      * it to the database.
      * 
      * @param parameterIndex
-     *                       of the first parameter is 1, the second is 2, ...
+     *        of the first parameter is 1, the second is 2, ...
      * @param value
-     *                       the parameter value
+     *        the parameter value
      * @throws SQLException
-     *                      if the driver does not support national character
-     *                      sets; if
-     *                      the driver can detect that a data conversion error
-     *                      could
-     *                      occur ; or if a database access error occurs
+     *         if the driver does not support national character
+     *         sets; if
+     *         the driver can detect that a data conversion error
+     *         could
+     *         occur ; or if a database access error occurs
      * @since 1.6
      */
     void setNClob(int parameterIndex, NClob value) throws SQLException;
@@ -2811,28 +2715,27 @@ public interface RowSet extends ResultSet {
      * takes a length parameter.
      *
      * @param parameterIndex
-     *                       index of the first parameter is 1, the second is 2,
-     *                       ...
+     *        index of the first parameter is 1, the second is 2,
+     *        ...
      * @param reader
-     *                       An object that contains the data to set the
-     *                       parameter value
-     *                       to.
+     *        An object that contains the data to set the
+     *        parameter value
+     *        to.
      * @throws SQLException
-     *                                         if parameterIndex does not
-     *                                         correspond to a parameter marker
-     *                                         in the SQL statement; if the
-     *                                         driver does not support national
-     *                                         character sets; if the driver can
-     *                                         detect that a data
-     *                                         conversion error could occur; if
-     *                                         a database access error
-     *                                         occurs or this method is called
-     *                                         on a closed
-     *                                         <code>PreparedStatement</code>
+     *         if parameterIndex does not
+     *         correspond to a parameter marker
+     *         in the SQL statement; if the
+     *         driver does not support national
+     *         character sets; if the driver can
+     *         detect that a data
+     *         conversion error could occur; if
+     *         a database access error
+     *         occurs or this method is called
+     *         on a closed
+     *         <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
-     *
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.6
      */
     void setNClob(int parameterIndex, Reader reader) throws SQLException;
@@ -2843,16 +2746,16 @@ public interface RowSet extends ResultSet {
      * when it sends it to the database.
      *
      * @param parameterIndex
-     *                       the first parameter is 1, the second is 2, ...
+     *        the first parameter is 1, the second is 2, ...
      * @param x
-     *                       the <code>java.net.URL</code> object to be set
+     *        the <code>java.net.URL</code> object to be set
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         is called
-     *                         on a closed <code>PreparedStatement</code>
+     *            if a database access error occurs or this method
+     *            is called
+     *            on a closed <code>PreparedStatement</code>
      * @throws SQLFeatureNotSupportedException
-     *                                         if the JDBC driver does not
-     *                                         support this method
+     *         if the JDBC driver does not
+     *         support this method
      * @since 1.4
      */
     void setURL(int parameterIndex, java.net.URL x) throws SQLException;

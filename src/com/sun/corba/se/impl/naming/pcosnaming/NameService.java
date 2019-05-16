@@ -38,9 +38,9 @@ public class NameService {
      * CosNaming
      * 
      * @param orb
-     *               an ORB object.
+     *        an ORB object.
      * @param logDir
-     *               a File
+     *        a File
      * @exception java.lang.Exception
      *            a Java exception.
      */
@@ -57,8 +57,7 @@ public class NameService {
         // orb.setPersistentServerId( (int) 1000 );
 
         // get and activate the root naming POA
-        POA rootPOA = (POA) orb.resolve_initial_references(
-                ORBConstants.ROOT_POA_NAME);
+        POA rootPOA = (POA) orb.resolve_initial_references(ORBConstants.ROOT_POA_NAME);
         rootPOA.the_POAManager().activate();
 
         // create a new POA for persistent Naming Contexts
@@ -68,14 +67,11 @@ public class NameService {
         // id's will be in the format NC<Index>
         int i = 0;
         Policy[] poaPolicy = new Policy[4];
-        poaPolicy[i++] = rootPOA.create_lifespan_policy(
-                LifespanPolicyValue.PERSISTENT);
+        poaPolicy[i++] = rootPOA.create_lifespan_policy(LifespanPolicyValue.PERSISTENT);
         poaPolicy[i++] = rootPOA.create_request_processing_policy(
                 RequestProcessingPolicyValue.USE_SERVANT_MANAGER);
-        poaPolicy[i++] = rootPOA.create_id_assignment_policy(
-                IdAssignmentPolicyValue.USER_ID);
-        poaPolicy[i++] = rootPOA.create_servant_retention_policy(
-                ServantRetentionPolicyValue.NON_RETAIN);
+        poaPolicy[i++] = rootPOA.create_id_assignment_policy(IdAssignmentPolicyValue.USER_ID);
+        poaPolicy[i++] = rootPOA.create_servant_retention_policy(ServantRetentionPolicyValue.NON_RETAIN);
 
         nsPOA = rootPOA.create_POA("NameService", null, poaPolicy);
         nsPOA.the_POAManager().activate();
@@ -86,16 +82,15 @@ public class NameService {
         // The RootObject key will be NC0
         String rootKey = contextMgr.getRootObjectKey();
         // initialize the root Naming Context
-        NamingContextImpl nc = new NamingContextImpl(orb, rootKey, this,
-                contextMgr);
+        NamingContextImpl nc = new NamingContextImpl(orb, rootKey, this, contextMgr);
         nc = contextMgr.addContext(rootKey, nc);
         nc.setServantManagerImpl(contextMgr);
         nc.setORB(orb);
         nc.setRootNameService(this);
 
         nsPOA.set_servant_manager(contextMgr);
-        rootContext = NamingContextHelper.narrow(nsPOA.create_reference_with_id(
-                rootKey.getBytes(), NamingContextHelper.id()));
+        rootContext = NamingContextHelper.narrow(nsPOA.create_reference_with_id(rootKey.getBytes(),
+                NamingContextHelper.id()));
     }
 
     /**
@@ -126,10 +121,8 @@ public class NameService {
             String newKey = contextMgr.getNewObjectKey();
             // Create the new Naming context and create the Persistent
             // reference
-            NamingContextImpl theContext = new NamingContextImpl(theorb, newKey,
-                    this, contextMgr);
-            NamingContextImpl tempContext = contextMgr.addContext(newKey,
-                    theContext);
+            NamingContextImpl theContext = new NamingContextImpl(theorb, newKey, this, contextMgr);
+            NamingContextImpl tempContext = contextMgr.addContext(newKey, theContext);
             if (tempContext != null) {
                 theContext = tempContext;
             }
@@ -138,9 +131,8 @@ public class NameService {
             theContext.setServantManagerImpl(contextMgr);
             theContext.setORB(theorb);
             theContext.setRootNameService(this);
-            NamingContext theNewContext = NamingContextHelper.narrow(nsPOA
-                    .create_reference_with_id(newKey.getBytes(),
-                            NamingContextHelper.id()));
+            NamingContext theNewContext = NamingContextHelper.narrow(nsPOA.create_reference_with_id(newKey
+                    .getBytes(), NamingContextHelper.id()));
             return theNewContext;
         } catch (org.omg.CORBA.SystemException e) {
             throw e;
@@ -155,14 +147,13 @@ public class NameService {
      * using POA.create_reference_with_id method
      * 
      * @param Object
-     *               Key as String
+     *        Key as String
      * @returns reference an CORBA.Object.
      */
     org.omg.CORBA.Object getObjectReferenceFromKey(String key) {
         org.omg.CORBA.Object theObject = null;
         try {
-            theObject = nsPOA.create_reference_with_id(key.getBytes(),
-                    NamingContextHelper.id());
+            theObject = nsPOA.create_reference_with_id(key.getBytes(), NamingContextHelper.id());
         } catch (Exception e) {
             theObject = null;
         }
@@ -174,7 +165,7 @@ public class NameService {
      * POA.reference_to_id method
      * 
      * @param reference
-     *                  an CORBA.Object.
+     *        an CORBA.Object.
      * @returns Object Key as String
      */
     String getObjectKey(org.omg.CORBA.Object reference) {

@@ -69,8 +69,7 @@ class QuadIterator implements PathIterator {
      */
     public int currentSegment(float[] coords) {
         if (isDone()) {
-            throw new NoSuchElementException(
-                    "quad iterator iterator out of bounds");
+            throw new NoSuchElementException("quad iterator iterator out of bounds");
         }
         int type;
         if (index == 0) {
@@ -108,8 +107,7 @@ class QuadIterator implements PathIterator {
      */
     public int currentSegment(double[] coords) {
         if (isDone()) {
-            throw new NoSuchElementException(
-                    "quad iterator iterator out of bounds");
+            throw new NoSuchElementException("quad iterator iterator out of bounds");
         }
         int type;
         if (index == 0) {

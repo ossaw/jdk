@@ -34,7 +34,7 @@ public class CharKey extends Object {
      * Constructor CharKey
      *
      * @param key
-     *            char value of this object.
+     *        char value of this object.
      */
     public CharKey(char key) {
         m_char = key;
@@ -67,8 +67,7 @@ public class CharKey extends Object {
      * Override of equals() for this object
      *
      * @param obj
-     *            to compare to
-     *
+     *        to compare to
      * @return True if this object equals this string value
      */
     public final boolean equals(Object obj) {

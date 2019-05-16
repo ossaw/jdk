@@ -52,9 +52,7 @@ package com.sun.org.apache.xerces.internal.dom;
  * DeferredAttrNSImpl, which inherits from AttrNSImpl, does.
  * 
  * @see DeferredAttrNSImpl
- *
  * @xerces.internal
- *
  * @author Andy Clark, IBM
  * @author Arnaud Le Hors, IBM
  * @since PR-DOM-Level-1-19980818.

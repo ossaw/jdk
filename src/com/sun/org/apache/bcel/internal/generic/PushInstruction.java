@@ -55,7 +55,6 @@ package com.sun.org.apache.bcel.internal.generic;
  * stack, such as ILOAD, LDC, SIPUSH, DUP, ICONST, etc.
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
- * 
  * @see ILOAD
  * @see ICONST
  * @see LDC

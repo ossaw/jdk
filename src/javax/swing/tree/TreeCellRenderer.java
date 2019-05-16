@@ -38,8 +38,8 @@ public interface TreeCellRenderer {
      * 
      * <pre>
      * JTree.DropLocation dropLocation = tree.getDropLocation();
-     * if (dropLocation != null &amp;&amp; dropLocation.getChildIndex() == -1 &amp;&amp; tree
-     *         .getRowForPath(dropLocation.getPath()) == row) {
+     * if (dropLocation != null &amp;&amp; dropLocation.getChildIndex() == -1 &amp;&amp; tree.getRowForPath(dropLocation
+     *         .getPath()) == row) {
      *
      *     // this row represents the current drop location
      *     // so render it specially, perhaps with a different color
@@ -49,8 +49,7 @@ public interface TreeCellRenderer {
      * @return the <code>Component</code> that the renderer uses to draw the
      *         value
      */
-    Component getTreeCellRendererComponent(JTree tree, Object value,
-            boolean selected, boolean expanded, boolean leaf, int row,
-            boolean hasFocus);
+    Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,
+            boolean leaf, int row, boolean hasFocus);
 
 }

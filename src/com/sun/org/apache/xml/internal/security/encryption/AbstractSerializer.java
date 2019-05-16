@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -37,7 +35,6 @@ import org.w3c.dom.NodeList;
 
 /**
  * Converts <code>String</code>s into <code>Node</code>s and visa versa.
- *
  * An abstract class for common Serializer functionality
  */
 public abstract class AbstractSerializer implements Serializer {
@@ -55,7 +52,7 @@ public abstract class AbstractSerializer implements Serializer {
      * Refer also to comments about setup of format.
      *
      * @param element
-     *                the <code>Element</code> to serialize.
+     *        the <code>Element</code> to serialize.
      * @return the <code>String</code> representation of the serilaized
      *         <code>Element</code>.
      * @throws Exception
@@ -69,7 +66,7 @@ public abstract class AbstractSerializer implements Serializer {
      * <code>Element</code>.
      *
      * @param element
-     *                the <code>Element</code> to serialize.
+     *        the <code>Element</code> to serialize.
      * @return the <code>byte[]</code> representation of the serilaized
      *         <code>Element</code>.
      * @throws Exception
@@ -95,7 +92,7 @@ public abstract class AbstractSerializer implements Serializer {
      * Refer also to comments about setup of format.
      *
      * @param content
-     *                the <code>NodeList</code> to serialize.
+     *        the <code>NodeList</code> to serialize.
      * @return the <code>String</code> representation of the serialized
      *         <code>NodeList</code>.
      * @throws Exception
@@ -117,7 +114,7 @@ public abstract class AbstractSerializer implements Serializer {
      * <code>NodeList</code>.
      *
      * @param content
-     *                the <code>NodeList</code> to serialize.
+     *        the <code>NodeList</code> to serialize.
      * @return the <code>byte[]</code> representation of the serialized
      *         <code>NodeList</code>.
      * @throws Exception
@@ -170,8 +167,7 @@ public abstract class AbstractSerializer implements Serializer {
      * @return the Node resulting from the parse of the source
      * @throws XMLEncryptionException
      */
-    public abstract Node deserialize(String source, Node ctx)
-            throws XMLEncryptionException;
+    public abstract Node deserialize(String source, Node ctx) throws XMLEncryptionException;
 
     /**
      * @param source
@@ -179,18 +175,14 @@ public abstract class AbstractSerializer implements Serializer {
      * @return the Node resulting from the parse of the source
      * @throws XMLEncryptionException
      */
-    public abstract Node deserialize(byte[] source, Node ctx)
-            throws XMLEncryptionException;
+    public abstract Node deserialize(byte[] source, Node ctx) throws XMLEncryptionException;
 
-    protected static byte[] createContext(byte[] source, Node ctx)
-            throws XMLEncryptionException {
+    protected static byte[] createContext(byte[] source, Node ctx) throws XMLEncryptionException {
         // Create the context to parse the document against
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
-                    byteArrayOutputStream, "UTF-8");
-            outputStreamWriter.write(
-                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?><dummy");
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(byteArrayOutputStream, "UTF-8");
+            outputStreamWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?><dummy");
 
             // Run through each node up to the document node and find any xmlns:
             // nodes
@@ -202,9 +194,8 @@ public abstract class AbstractSerializer implements Serializer {
                     for (int i = 0; i < atts.getLength(); ++i) {
                         Node att = atts.item(i);
                         String nodeName = att.getNodeName();
-                        if ((nodeName.equals("xmlns") || nodeName.startsWith(
-                                "xmlns:")) && !storedNamespaces.containsKey(att
-                                        .getNodeName())) {
+                        if ((nodeName.equals("xmlns") || nodeName.startsWith("xmlns:")) && !storedNamespaces
+                                .containsKey(att.getNodeName())) {
                             outputStreamWriter.write(" ");
                             outputStreamWriter.write(nodeName);
                             outputStreamWriter.write("=\"");
@@ -246,11 +237,9 @@ public abstract class AbstractSerializer implements Serializer {
                 for (int i = 0; i < atts.getLength(); ++i) {
                     Node att = atts.item(i);
                     String nodeName = att.getNodeName();
-                    if ((nodeName.equals("xmlns") || nodeName.startsWith(
-                            "xmlns:")) && !storedNamespaces.containsKey(att
-                                    .getNodeName())) {
-                        sb.append(" " + nodeName + "=\"" + att.getNodeValue()
-                                + "\"");
+                    if ((nodeName.equals("xmlns") || nodeName.startsWith("xmlns:")) && !storedNamespaces
+                            .containsKey(att.getNodeName())) {
+                        sb.append(" " + nodeName + "=\"" + att.getNodeValue() + "\"");
                         storedNamespaces.put(nodeName, att.getNodeValue());
                     }
                 }

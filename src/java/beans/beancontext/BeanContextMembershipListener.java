@@ -27,8 +27,8 @@ public interface BeanContextMembershipListener extends EventListener {
      * <code>BeanContext</code> that this listener is registered with.
      * 
      * @param bcme
-     *             The <code>BeanContextMembershipEvent</code> describing the
-     *             change that occurred.
+     *        The <code>BeanContextMembershipEvent</code> describing the
+     *        change that occurred.
      */
     void childrenAdded(BeanContextMembershipEvent bcme);
 
@@ -37,8 +37,8 @@ public interface BeanContextMembershipListener extends EventListener {
      * <code>BeanContext</code> that this listener is registered with.
      * 
      * @param bcme
-     *             The <code>BeanContextMembershipEvent</code> describing the
-     *             change that occurred.
+     *        The <code>BeanContextMembershipEvent</code> describing the
+     *        change that occurred.
      */
     void childrenRemoved(BeanContextMembershipEvent bcme);
 }

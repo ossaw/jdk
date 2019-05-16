@@ -26,18 +26,14 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLParseException;
  * <strong>Note:</strong> The error object that describes the error might be
  * reused by Xerces implementation, across multiple calls to the handleEvent
  * method on DOMErrorHandler interface.
- *
- *
  * <p>
  * See also the
  * <a href='http://www.w3.org/TR/2001/WD-DOM-Level-3-Core-20010913'>Document
  * Object Model (DOM) Level 3 Core Specification</a>.
  *
  * @xerces.internal
- *
  * @author Gopal Sharma, SUN Microsystems Inc.
  * @author Elena Litani, IBM
- *
  */
 
 // REVISIT: the implementation of ErrorReporter.
@@ -100,9 +96,8 @@ public class DOMErrorImpl implements DOMError {
     private DOMLocatorImpl createDOMLocator(XMLParseException exception) {
         // assuming DOMLocator wants the *expanded*, not the literal, URI of the
         // doc... - neilg
-        return new DOMLocatorImpl(exception.getLineNumber(), exception
-                .getColumnNumber(), exception.getCharacterOffset(), exception
-                        .getExpandedSystemId());
+        return new DOMLocatorImpl(exception.getLineNumber(), exception.getColumnNumber(), exception
+                .getCharacterOffset(), exception.getExpandedSystemId());
     } // createDOMLocator()
 
     /**

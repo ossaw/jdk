@@ -21,8 +21,7 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class NumberOfDocuments extends IntegerSyntax implements
-        PrintJobAttribute {
+public final class NumberOfDocuments extends IntegerSyntax implements PrintJobAttribute {
 
     private static final long serialVersionUID = 7891881310684461097L;
 
@@ -31,12 +30,11 @@ public final class NumberOfDocuments extends IntegerSyntax implements
      * value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 0.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 0.
      */
     public NumberOfDocuments(int value) {
         super(value, 0, Integer.MAX_VALUE);
@@ -54,8 +52,7 @@ public final class NumberOfDocuments extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this number of
      *         documents attribute, false otherwise.
      */

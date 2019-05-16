@@ -82,10 +82,10 @@ public abstract class Dictionary<K, V> {
      *
      * @return the value to which the key is mapped in this dictionary;
      * @param key
-     *            a key in this dictionary. <code>null</code> if the key is not
-     *            mapped to any value in this dictionary.
+     *        a key in this dictionary. <code>null</code> if the key is not
+     *        mapped to any value in this dictionary.
      * @exception NullPointerException
-     *                                 if the <tt>key</tt> is <tt>null</tt>.
+     *            if the <tt>key</tt> is <tt>null</tt>.
      * @see java.util.Dictionary#put(java.lang.Object, java.lang.Object)
      */
     abstract public V get(Object key);
@@ -108,16 +108,16 @@ public abstract class Dictionary<K, V> {
      * <code>key</code>.
      *
      * @param key
-     *              the hashtable key.
+     *        the hashtable key.
      * @param value
-     *              the value.
+     *        the value.
      * @return the previous value to which the <code>key</code> was mapped in
      *         this dictionary, or <code>null</code> if the key did not have a
      *         previous mapping.
      * @exception NullPointerException
-     *                                 if the <code>key</code> or
-     *                                 <code>value</code> is
-     *                                 <code>null</code>.
+     *            if the <code>key</code> or
+     *            <code>value</code> is
+     *            <code>null</code>.
      * @see java.lang.Object#equals(java.lang.Object)
      * @see java.util.Dictionary#get(java.lang.Object)
      */
@@ -129,12 +129,12 @@ public abstract class Dictionary<K, V> {
      * not in this dictionary.
      *
      * @param key
-     *            the key that needs to be removed.
+     *        the key that needs to be removed.
      * @return the value to which the <code>key</code> had been mapped in this
      *         dictionary, or <code>null</code> if the key did not have a
      *         mapping.
      * @exception NullPointerException
-     *                                 if <tt>key</tt> is <tt>null</tt>.
+     *            if <tt>key</tt> is <tt>null</tt>.
      */
     abstract public V remove(Object key);
 }

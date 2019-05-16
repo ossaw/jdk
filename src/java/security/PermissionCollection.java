@@ -9,7 +9,6 @@ import java.util.*;
 
 /**
  * Abstract class representing a collection of Permission objects.
- *
  * <p>
  * With a PermissionCollection, you can:
  * <UL>
@@ -18,7 +17,6 @@ import java.util.*;
  * using the {@code implies} method.
  * <LI>enumerate all the permissions, using the {@code elements} method.
  * </UL>
- *
  * <p>
  * When it is desirable to group together a number of Permission objects of the
  * same type, the {@code newPermissionCollection} method on that particular type
@@ -31,7 +29,6 @@ import java.util.*;
  * returned, then the caller of {@code newPermissionCollection} is free to store
  * permissions of the given type in any PermissionCollection they choose (one
  * that uses a Hashtable, one that uses a Vector, etc).
- *
  * <p>
  * The PermissionCollection returned by the
  * {@code Permission.newPermissionCollection} method is a homogeneous
@@ -43,7 +40,6 @@ import java.util.*;
  * FilePermissionCollection for all the FilePermission objects, a
  * SocketPermissionCollection for all the SocketPermission objects, and so on.
  * Its {@code add} method adds a permission to the appropriate collection.
- *
  * <p>
  * Whenever a permission is added to a heterogeneous PermissionCollection such
  * as Permissions, and the PermissionCollection doesn't yet contain a
@@ -56,7 +52,6 @@ import java.util.*;
  * etc.). For example, the Permissions object uses a default
  * PermissionCollection implementation that stores the permission objects in a
  * Hashtable.
- *
  * <p>
  * Subclass implementations of PermissionCollection should assume that they may
  * be called simultaneously from multiple threads, and therefore should be
@@ -66,8 +61,6 @@ import java.util.*;
  *
  * @see Permission
  * @see Permissions
- *
- *
  * @author Roland Schemers
  */
 
@@ -82,17 +75,16 @@ public abstract class PermissionCollection implements java.io.Serializable {
      * Adds a permission object to the current collection of permission objects.
      *
      * @param permission
-     *                   the Permission object to add.
-     *
+     *        the Permission object to add.
      * @exception SecurityException
-     *                                     - if this PermissionCollection object
-     *                                     has been marked
-     *                                     readonly
+     *            - if this PermissionCollection object
+     *            has been marked
+     *            readonly
      * @exception IllegalArgumentException
-     *                                     - if this PermissionCollection object
-     *                                     is a homogeneous
-     *                                     collection and the permission is not
-     *                                     of the correct type.
+     *            - if this PermissionCollection object
+     *            is a homogeneous
+     *            collection and the permission is not
+     *            of the correct type.
      */
     public abstract void add(Permission permission);
 
@@ -101,8 +93,7 @@ public abstract class PermissionCollection implements java.io.Serializable {
      * Permission objects held in this PermissionCollection.
      *
      * @param permission
-     *                   the Permission object to compare.
-     *
+     *        the Permission object to compare.
      * @return true if "permission" is implied by the permissions in the
      *         collection, false if not.
      */
@@ -128,7 +119,6 @@ public abstract class PermissionCollection implements java.io.Serializable {
      * Returns true if this PermissionCollection object is marked as readonly.
      * If it is readonly, no new Permission objects can be added to it using
      * {@code add}.
-     *
      * <p>
      * By default, the object is <i>not</i> readonly. It can be set to readonly
      * by a call to {@code setReadOnly}.
@@ -160,7 +150,6 @@ public abstract class PermissionCollection implements java.io.Serializable {
      *
      * @return information about this PermissionCollection object, as described
      *         above.
-     *
      */
     public String toString() {
         Enumeration<Permission> enum_ = elements();

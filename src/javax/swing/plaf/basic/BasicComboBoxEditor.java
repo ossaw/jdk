@@ -50,7 +50,7 @@ public class BasicComboBoxEditor implements ComboBoxEditor, FocusListener {
      * Sets the item that should be edited.
      *
      * @param anObject
-     *                 the displayed value of the editor
+     *        the displayed value of the editor
      */
     public void setItem(Object anObject) {
         String text;
@@ -84,10 +84,8 @@ public class BasicComboBoxEditor implements ComboBoxEditor, FocusListener {
                 // cast it to the new type.
                 Class<?> cls = oldValue.getClass();
                 try {
-                    Method method = MethodUtil.getMethod(cls, "valueOf",
-                            new Class[] { String.class });
-                    newValue = MethodUtil.invoke(method, oldValue,
-                            new Object[] { editor.getText() });
+                    Method method = MethodUtil.getMethod(cls, "valueOf", new Class[] { String.class });
+                    newValue = MethodUtil.invoke(method, oldValue, new Object[] { editor.getText() });
                 } catch (Exception ex) {
                     // Fail silently and return the newValue (a String object)
                 }
@@ -150,6 +148,5 @@ public class BasicComboBoxEditor implements ComboBoxEditor, FocusListener {
      * all JavaBeans&trade; has been added to the <code>java.beans</code>
      * package. Please see {@link java.beans.XMLEncoder}.
      */
-    public static class UIResource extends BasicComboBoxEditor implements
-            javax.swing.plaf.UIResource {}
+    public static class UIResource extends BasicComboBoxEditor implements javax.swing.plaf.UIResource {}
 }

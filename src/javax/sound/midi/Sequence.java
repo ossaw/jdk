@@ -28,7 +28,6 @@ import com.sun.media.sound.MidiUtils;
  * @see Sequencer#setSequence(Sequence sequence)
  * @see Track#add(MidiEvent)
  * @see MidiFileFormat
- *
  * @author Kara Kytle
  */
 public class Sequence {
@@ -115,14 +114,13 @@ public class Sequence {
      * and <code>{@link #deleteTrack}</code>.
      *
      * @param divisionType
-     *                     the timing division type (PPQ or one of the SMPTE
-     *                     types)
+     *        the timing division type (PPQ or one of the SMPTE
+     *        types)
      * @param resolution
-     *                     the timing resolution
+     *        the timing resolution
      * @throws InvalidMidiDataException
-     *                                  if <code>divisionType</code> is not
-     *                                  valid
-     *
+     *         if <code>divisionType</code> is not
+     *         valid
      * @see #PPQ
      * @see #SMPTE_24
      * @see #SMPTE_25
@@ -132,8 +130,7 @@ public class Sequence {
      * @see #getResolution
      * @see #getTracks
      */
-    public Sequence(float divisionType, int resolution)
-            throws InvalidMidiDataException {
+    public Sequence(float divisionType, int resolution) throws InvalidMidiDataException {
 
         if (divisionType == PPQ)
             this.divisionType = PPQ;
@@ -146,8 +143,7 @@ public class Sequence {
         else if (divisionType == SMPTE_30)
             this.divisionType = SMPTE_30;
         else
-            throw new InvalidMidiDataException("Unsupported division type: "
-                    + divisionType);
+            throw new InvalidMidiDataException("Unsupported division type: " + divisionType);
 
         this.resolution = resolution;
     }
@@ -168,16 +164,15 @@ public class Sequence {
      * <code>{@link #deleteTrack}</code>.
      *
      * @param divisionType
-     *                     the timing division type (PPQ or one of the SMPTE
-     *                     types)
+     *        the timing division type (PPQ or one of the SMPTE
+     *        types)
      * @param resolution
-     *                     the timing resolution
+     *        the timing resolution
      * @param numTracks
-     *                     the initial number of tracks in the sequence.
+     *        the initial number of tracks in the sequence.
      * @throws InvalidMidiDataException
-     *                                  if <code>divisionType</code> is not
-     *                                  valid
-     *
+     *         if <code>divisionType</code> is not
+     *         valid
      * @see #PPQ
      * @see #SMPTE_24
      * @see #SMPTE_25
@@ -186,8 +181,7 @@ public class Sequence {
      * @see #getDivisionType
      * @see #getResolution
      */
-    public Sequence(float divisionType, int resolution, int numTracks)
-            throws InvalidMidiDataException {
+    public Sequence(float divisionType, int resolution, int numTracks) throws InvalidMidiDataException {
 
         if (divisionType == PPQ)
             this.divisionType = PPQ;
@@ -200,8 +194,7 @@ public class Sequence {
         else if (divisionType == SMPTE_30)
             this.divisionType = SMPTE_30;
         else
-            throw new InvalidMidiDataException("Unsupported division type: "
-                    + divisionType);
+            throw new InvalidMidiDataException("Unsupported division type: " + divisionType);
 
         this.resolution = resolution;
 
@@ -214,7 +207,6 @@ public class Sequence {
      * Obtains the timing division type for this sequence.
      * 
      * @return the division type (PPQ or one of the SMPTE types)
-     *
      * @see #PPQ
      * @see #SMPTE_24
      * @see #SMPTE_25
@@ -262,10 +254,9 @@ public class Sequence {
      * Removes the specified track from the sequence.
      * 
      * @param track
-     *              the track to remove
+     *        the track to remove
      * @return <code>true</code> if the track existed in the track and was
      *         removed, otherwise <code>false</code>.
-     *
      * @see #createTrack
      * @see #getTracks
      */
@@ -282,7 +273,6 @@ public class Sequence {
      * sequence contains no tracks, an array of length 0 is returned.
      * 
      * @return the array of tracks
-     *
      * @see #createTrack
      * @see #deleteTrack
      */
@@ -298,15 +288,13 @@ public class Sequence {
      */
     public long getMicrosecondLength() {
 
-        return com.sun.media.sound.MidiUtils.tick2microsecond(this,
-                getTickLength(), null);
+        return com.sun.media.sound.MidiUtils.tick2microsecond(this, getTickLength(), null);
     }
 
     /**
      * Obtains the duration of this sequence, expressed in MIDI ticks.
      *
      * @return this sequence's length in ticks
-     *
      * @see #getMicrosecondLength
      */
     public long getTickLength() {
@@ -332,7 +320,6 @@ public class Sequence {
      *
      * @return an array of <code>{@link Patch}</code> objects used in this
      *         sequence
-     *
      * @see Synthesizer#loadInstruments(Soundbank, Patch[])
      */
     public Patch[] getPatchList() {

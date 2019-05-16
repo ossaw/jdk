@@ -19,7 +19,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see Context
  * @see javax.naming.directory.DirContext
  * @see java.lang.Thread#interrupt
@@ -34,7 +33,7 @@ public class InterruptedNamingException extends NamingException {
      * null.
      * 
      * @param explanation
-     *                    A possibly null message explaining the problem.
+     *        A possibly null message explaining the problem.
      * @see java.lang.Throwable#getMessage
      */
     public InterruptedNamingException(String explanation) {

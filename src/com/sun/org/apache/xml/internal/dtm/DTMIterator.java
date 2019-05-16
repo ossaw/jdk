@@ -20,28 +20,23 @@
 package com.sun.org.apache.xml.internal.dtm;
 
 /**
- * 
  * <code>DTMIterators</code> are used to step through a (possibly filtered) set
  * of nodes. Their API is modeled largely after the DOM NodeIterator.
- *
  * <p>
  * A DTMIterator is a somewhat unusual type of iterator, in that it can serve
  * both single node iteration and random access.
  * </p>
- *
  * <p>
  * The DTMIterator's traversal semantics, i.e. how it walks the tree, are
  * specified when it is created, possibly and probably by an XPath <a
  * href="http://www.w3.org/TR/xpath#NT-LocationPath>LocationPath</a> or a
  * <a href="http://www.w3.org/TR/xpath#NT-UnionExpr">UnionExpr</a>.
  * </p>
- *
  * <p>
  * A DTMIterator is meant to be created once as a master static object, and then
  * cloned many times for runtime use. Or the master object itself may be used
  * for simpler use cases.
  * </p>
- *
  * <p>
  * At this time, we do not expect DTMIterator to emulate NodeIterator's
  * "maintain relative position" semantics under document mutation. It's likely
@@ -49,7 +44,6 @@ package com.sun.org.apache.xml.internal.dtm;
  * since the base DTM is immutable, this issue currently makes no practical
  * difference.
  * </p>
- *
  * <p>
  * State: In progress!!
  * </p>
@@ -83,8 +77,7 @@ public interface DTMIterator {
      * the DTM using just the iterator.
      *
      * @param nodeHandle
-     *                   the nodeHandle.
-     *
+     *        the nodeHandle.
      * @return a non-null DTM reference.
      */
     public DTM getDTM(int nodeHandle);
@@ -113,32 +106,30 @@ public interface DTMIterator {
      * the document tree, but the context node from where the iteration begins.
      *
      * @param nodeHandle
-     *                    int Handle of the context node.
+     *        int Handle of the context node.
      * @param environment
-     *                    The environment object. The environment in which this
-     *                    iterator
-     *                    operates, which should provide:
-     *                    <ul>
-     *                    <li>a node (the context node... same value as "root"
-     *                    defined
-     *                    below)</li>
-     *                    <li>a pair of non-zero positive integers (the context
-     *                    position
-     *                    and the context size)</li>
-     *                    <li>a set of variable bindings</li>
-     *                    <li>a function library</li>
-     *                    <li>the set of namespace declarations in scope for the
-     *                    expression.</li>
-     *                    <ul>
-     *
-     *                    <p>
-     *                    At this time the exact implementation of this
-     *                    environment is
-     *                    application dependent. Probably a proper interface
-     *                    will be
-     *                    created fairly soon.
-     *                    </p>
-     *
+     *        The environment object. The environment in which this
+     *        iterator
+     *        operates, which should provide:
+     *        <ul>
+     *        <li>a node (the context node... same value as "root"
+     *        defined
+     *        below)</li>
+     *        <li>a pair of non-zero positive integers (the context
+     *        position
+     *        and the context size)</li>
+     *        <li>a set of variable bindings</li>
+     *        <li>a function library</li>
+     *        <li>the set of namespace declarations in scope for the
+     *        expression.</li>
+     *        <ul>
+     *        <p>
+     *        At this time the exact implementation of this
+     *        environment is
+     *        application dependent. Probably a proper interface
+     *        will be
+     *        created fairly soon.
+     *        </p>
      */
     public void setRoot(int nodeHandle, Object environment);
 
@@ -166,7 +157,6 @@ public interface DTMIterator {
      * descendants will be rejected. Note that this rejection takes precedence
      * over <code>whatToShow</code> and the filter.
      * </p>
-     *
      * <p>
      * To produce a view of the document that has entity references expanded and
      * does not expose the entity reference node itself, use the
@@ -177,7 +167,6 @@ public interface DTMIterator {
      * entity reference node and set <code>expandEntityReferences</code> to
      * false.
      * </p>
-     *
      * <p>
      * NOTE: In Xalan's use of DTM we will generally have fully expanded entity
      * references when the document tree was built, and thus this flag will have
@@ -222,9 +211,9 @@ public interface DTMIterator {
      * Specify if it's OK for detach to release the iterator for reuse.
      *
      * @param allowRelease
-     *                     true if it is OK for detach to release this iterator
-     *                     for
-     *                     pooling.
+     *        true if it is OK for detach to release this iterator
+     *        for
+     *        pooling.
      */
     public void allowDetachToRelease(boolean allowRelease);
 
@@ -251,12 +240,11 @@ public interface DTMIterator {
      * If setShouldCacheNodes(true) is called, then nodes will be cached,
      * enabling random access, and giving the ability to do sorts and the like.
      * They are not cached by default.
-     *
      * %REVIEW% Shouldn't the other random-access methods throw an exception if
      * they're called on a DTMIterator with this flag set false?
      *
      * @param b
-     *          true if the nodes should be cached.
+     *        true if the nodes should be cached.
      */
     public void setShouldCacheNodes(boolean b);
 
@@ -284,8 +272,8 @@ public interface DTMIterator {
      * end and completely fill the cache.
      *
      * @param index
-     *              The index to run to, or -1 if the iterator should be run to
-     *              the end.
+     *        The index to run to, or -1 if the iterator should be run to
+     *        the end.
      */
     public void runTo(int index);
 
@@ -293,7 +281,7 @@ public interface DTMIterator {
      * Set the current position in the node set.
      *
      * @param i
-     *          Must be a valid index.
+     *        Must be a valid index.
      */
     public void setCurrentPos(int i);
 
@@ -303,7 +291,7 @@ public interface DTMIterator {
      * list, this returns <code>null</code>.
      *
      * @param index
-     *              of the item.
+     *        of the item.
      * @return The node handle at the <code>index</code>th position in the
      *         <code>DTMIterator</code>, or <code>-1</code> if that is not a
      *         valid index.
@@ -313,20 +301,18 @@ public interface DTMIterator {
     /**
      * Sets the node at the specified index of this vector to be the specified
      * node. The previous component at that position is discarded.
-     *
      * <p>
      * The index must be a value greater than or equal to 0 and less than the
      * current size of the vector. The iterator must be in cached mode.
      * </p>
-     *
      * <p>
      * Meant to be used for sorted iterators.
      * </p>
      *
      * @param node
-     *              Node to set
+     *        Node to set
      * @param index
-     *              Index of where to set the node
+     *        Index of where to set the node
      */
     public void setItem(int node, int index);
 
@@ -345,7 +331,6 @@ public interface DTMIterator {
      * Get a cloned Iterator that is reset to the start of the iteration.
      *
      * @return A clone of this iteration that has been reset.
-     *
      * @throws CloneNotSupportedException
      */
     public DTMIterator cloneWithReset() throws CloneNotSupportedException;
@@ -355,7 +340,6 @@ public interface DTMIterator {
      * process, so that it may be used from the current position.
      *
      * @return A clone of this object.
-     *
      * @throws CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException;

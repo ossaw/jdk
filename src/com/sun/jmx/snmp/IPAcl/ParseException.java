@@ -13,7 +13,6 @@ package com.sun.jmx.snmp.IPAcl;
  * This exception is thrown when parse errors are encountered. You can
  * explicitly create objects of this exception type by calling the method
  * generateParseException in the generated parser.
- *
  * You can modify this class to customize your error reporting mechanisms so
  * long as you retain the public fields.
  */
@@ -30,8 +29,7 @@ class ParseException extends Exception {
      * "toString" method of parent class "Throwable" to print the error message
      * in the form: ParseException: <result of getMessage>
      */
-    public ParseException(Token currentTokenVal,
-            int[][] expectedTokenSequencesVal, String[] tokenImageVal) {
+    public ParseException(Token currentTokenVal, int[][] expectedTokenSequencesVal, String[] tokenImageVal) {
         super("");
         specialConstructor = true;
         currentToken = currentTokenVal;
@@ -107,8 +105,7 @@ class ParseException extends Exception {
             for (int j = 0; j < expectedTokenSequences[i].length; j++) {
                 expected += tokenImage[expectedTokenSequences[i][j]] + " ";
             }
-            if (expectedTokenSequences[i][expectedTokenSequences[i].length
-                    - 1] != 0) {
+            if (expectedTokenSequences[i][expectedTokenSequences[i].length - 1] != 0) {
                 expected += "...";
             }
             expected += eol + "    ";
@@ -125,8 +122,8 @@ class ParseException extends Exception {
             retval += add_escapes(tok.image);
             tok = tok.next;
         }
-        retval += "\" at line " + currentToken.next.beginLine + ", column "
-                + currentToken.next.beginColumn + "." + eol;
+        retval += "\" at line " + currentToken.next.beginLine + ", column " + currentToken.next.beginColumn
+                + "." + eol;
         if (expectedTokenSequences.length == 1) {
             retval += "Was expecting:" + eol + "    ";
         } else {
@@ -179,8 +176,7 @@ class ParseException extends Exception {
                 default:
                     if ((ch = str.charAt(i)) < 0x20 || ch > 0x7e) {
                         String s = "0000" + Integer.toString(ch, 16);
-                        retval.append("\\u" + s.substring(s.length() - 4, s
-                                .length()));
+                        retval.append("\\u" + s.substring(s.length() - 4, s.length()));
                     } else {
                         retval.append(ch);
                     }

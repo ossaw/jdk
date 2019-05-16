@@ -45,7 +45,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
  * elements, when the parse attribute of the &lt;include&gt; element is "text".
  * Using this class will open the location, detect the encoding, and discard the
  * byte order mark, if applicable.
- *
  * REVISIT: Much of the code in this class is taken from XMLEntityManager. It
  * would be nice if this code could be shared in some way. However, since
  * XMLEntityManager is used for reading files as XML, and this needs to read
@@ -55,8 +54,6 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
  * @author Peter McCracken, IBM
  * @author Ankit Pasricha, IBM
  * @author Arun Yadav, Sun Microsystems Inc.
- *
- *
  * @see XIncludeHandler
  */
 public class XIncludeTextReader {
@@ -72,14 +69,14 @@ public class XIncludeTextReader {
      * XIncludeHandler.
      *
      * @param source
-     *                   The XMLInputSource to use.
+     *        The XMLInputSource to use.
      * @param handler
-     *                   The XIncludeHandler to use.
+     *        The XIncludeHandler to use.
      * @param bufferSize
-     *                   The size of this text reader's buffer.
+     *        The size of this text reader's buffer.
      */
-    public XIncludeTextReader(XMLInputSource source, XIncludeHandler handler,
-            int bufferSize) throws IOException {
+    public XIncludeTextReader(XMLInputSource source, XIncludeHandler handler, int bufferSize)
+            throws IOException {
         fHandler = handler;
         fSource = source;
         fTempString = new XMLString(new char[bufferSize + 1], 0, 0);
@@ -90,8 +87,8 @@ public class XIncludeTextReader {
      * text include.
      *
      * @param errorReporter
-     *                      the XMLErrorReporter to be used for reporting
-     *                      errors.
+     *        the XMLErrorReporter to be used for reporting
+     *        errors.
      */
     public void setErrorReporter(XMLErrorReporter errorReporter) {
         fErrorReporter = errorReporter;
@@ -101,7 +98,7 @@ public class XIncludeTextReader {
      * Return the Reader for given XMLInputSource.
      *
      * @param source
-     *               The XMLInputSource to use.
+     *        The XMLInputSource to use.
      */
     protected Reader getReader(XMLInputSource source) throws IOException {
         if (source.getCharacterStream() != null) {
@@ -117,38 +114,32 @@ public class XIncludeTextReader {
                 stream = source.getByteStream();
                 // Wrap the InputStream so that it is possible to rewind it.
                 if (!(stream instanceof BufferedInputStream)) {
-                    stream = new BufferedInputStream(stream,
-                            fTempString.ch.length);
+                    stream = new BufferedInputStream(stream, fTempString.ch.length);
                 }
             } else {
-                String expandedSystemId = XMLEntityManager.expandSystemId(source
-                        .getSystemId(), source.getBaseSystemId(), false);
+                String expandedSystemId = XMLEntityManager.expandSystemId(source.getSystemId(), source
+                        .getBaseSystemId(), false);
 
                 URL url = new URL(expandedSystemId);
                 URLConnection urlCon = url.openConnection();
 
                 // If this is an HTTP connection attach any request properties
                 // to the request.
-                if (urlCon instanceof HttpURLConnection
-                        && source instanceof HTTPInputSource) {
+                if (urlCon instanceof HttpURLConnection && source instanceof HTTPInputSource) {
                     final HttpURLConnection urlConnection = (HttpURLConnection) urlCon;
                     final HTTPInputSource httpInputSource = (HTTPInputSource) source;
 
                     // set request properties
-                    Iterator propIter = httpInputSource
-                            .getHTTPRequestProperties();
+                    Iterator propIter = httpInputSource.getHTTPRequestProperties();
                     while (propIter.hasNext()) {
                         Map.Entry entry = (Map.Entry) propIter.next();
-                        urlConnection.setRequestProperty((String) entry
-                                .getKey(), (String) entry.getValue());
+                        urlConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                     }
 
                     // set preference for redirection
-                    boolean followRedirects = httpInputSource
-                            .getFollowHTTPRedirects();
+                    boolean followRedirects = httpInputSource.getFollowHTTPRedirects();
                     if (!followRedirects) {
-                        XMLEntityManager.setInstanceFollowRedirects(
-                                urlConnection, followRedirects);
+                        XMLEntityManager.setInstanceFollowRedirects(urlConnection, followRedirects);
                     }
                 }
 
@@ -161,8 +152,7 @@ public class XIncludeTextReader {
 
                 // text/xml and application/xml offer only one optional
                 // parameter
-                int index = (rawContentType != null) ? rawContentType.indexOf(
-                        ';') : -1;
+                int index = (rawContentType != null) ? rawContentType.indexOf(';') : -1;
 
                 String contentType = null;
                 String charset = null;
@@ -178,12 +168,10 @@ public class XIncludeTextReader {
                         // 8 is the length of "charset="
                         charset = charset.substring(8).trim();
                         // strip quotes, if present
-                        if ((charset.charAt(0) == '"' && charset.charAt(charset
-                                .length() - 1) == '"') || (charset.charAt(
-                                        0) == '\'' && charset.charAt(charset
-                                                .length() - 1) == '\'')) {
-                            charset = charset.substring(1, charset.length()
-                                    - 1);
+                        if ((charset.charAt(0) == '"' && charset.charAt(charset.length() - 1) == '"')
+                                || (charset.charAt(0) == '\'' && charset.charAt(charset.length()
+                                        - 1) == '\'')) {
+                            charset = charset.substring(1, charset.length() - 1);
                         }
                     } else {
                         charset = null;
@@ -238,10 +226,8 @@ public class XIncludeTextReader {
             // US-ASCII consult the encoding map since
             // this encoding has many aliases.
             if (encoding.equals("UTF-8")) {
-                return new UTF8Reader(stream, fTempString.ch.length,
-                        fErrorReporter.getMessageFormatter(
-                                XMLMessageFormatter.XML_DOMAIN), fErrorReporter
-                                        .getLocale());
+                return new UTF8Reader(stream, fTempString.ch.length, fErrorReporter.getMessageFormatter(
+                        XMLMessageFormatter.XML_DOMAIN), fErrorReporter.getLocale());
             }
 
             // Try to use a Java reader.
@@ -253,16 +239,14 @@ public class XIncludeTextReader {
             // will
             // attempt to include a fallback if there is one.
             if (javaEncoding == null) {
-                MessageFormatter aFormatter = fErrorReporter
-                        .getMessageFormatter(XMLMessageFormatter.XML_DOMAIN);
+                MessageFormatter aFormatter = fErrorReporter.getMessageFormatter(
+                        XMLMessageFormatter.XML_DOMAIN);
                 Locale aLocale = fErrorReporter.getLocale();
-                throw new IOException(aFormatter.formatMessage(aLocale,
-                        "EncodingDeclInvalid", new Object[] { encoding }));
+                throw new IOException(aFormatter.formatMessage(aLocale, "EncodingDeclInvalid", new Object[] {
+                        encoding }));
             } else if (javaEncoding.equals("ASCII")) {
-                return new ASCIIReader(stream, fTempString.ch.length,
-                        fErrorReporter.getMessageFormatter(
-                                XMLMessageFormatter.XML_DOMAIN), fErrorReporter
-                                        .getLocale());
+                return new ASCIIReader(stream, fTempString.ch.length, fErrorReporter.getMessageFormatter(
+                        XMLMessageFormatter.XML_DOMAIN), fErrorReporter.getLocale());
             }
 
             return new InputStreamReader(stream, javaEncoding);
@@ -300,8 +284,7 @@ public class XIncludeTextReader {
      * @param encoding
      * @throws IOException
      */
-    protected String consumeBOM(InputStream stream, String encoding)
-            throws IOException {
+    protected String consumeBOM(InputStream stream, String encoding) throws IOException {
 
         byte[] b = new byte[3];
         int count = 0;
@@ -346,12 +329,11 @@ public class XIncludeTextReader {
      * com.sun.org.apache.xerces.internal.impl.XMLEntityManager. Is there any
      * way we can share the code, without having it implemented twice? I think
      * we should make it public and static in XMLEntityManager. --PJM
-     *
      * Returns the IANA encoding name that is auto-detected from the bytes
      * specified, with the endian-ness of that encoding where appropriate.
      *
      * @param b4
-     *           The first four bytes of the input.
+     *        The first four bytes of the input.
      * @return the encoding name, or null if no encoding could be detected
      */
     protected String getEncodingName(byte[] b4) {
@@ -424,8 +406,7 @@ public class XIncludeTextReader {
 
         fReader = getReader(fSource);
         fSource = null;
-        int readSize = fReader.read(fTempString.ch, 0, fTempString.ch.length
-                - 1);
+        int readSize = fReader.read(fTempString.ch, 0, fTempString.ch.length - 1);
         while (readSize != -1) {
             for (int i = 0; i < readSize; ++i) {
                 char ch = fTempString.ch[i];
@@ -447,24 +428,18 @@ public class XIncludeTextReader {
                             // convert surrogates to a supplemental character
                             int sup = XMLChar.supplemental(ch, (char) ch2);
                             if (!isValid(sup)) {
-                                fErrorReporter.reportError(
-                                        XMLMessageFormatter.XML_DOMAIN,
-                                        "InvalidCharInContent", new Object[] {
-                                                Integer.toString(sup, 16) },
+                                fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN,
+                                        "InvalidCharInContent", new Object[] { Integer.toString(sup, 16) },
                                         XMLErrorReporter.SEVERITY_FATAL_ERROR);
                             }
                         } else {
-                            fErrorReporter.reportError(
-                                    XMLMessageFormatter.XML_DOMAIN,
-                                    "InvalidCharInContent", new Object[] {
-                                            Integer.toString(ch2, 16) },
+                            fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInContent",
+                                    new Object[] { Integer.toString(ch2, 16) },
                                     XMLErrorReporter.SEVERITY_FATAL_ERROR);
                         }
                     } else {
-                        fErrorReporter.reportError(
-                                XMLMessageFormatter.XML_DOMAIN,
-                                "InvalidCharInContent", new Object[] { Integer
-                                        .toString(ch, 16) },
+                        fErrorReporter.reportError(XMLMessageFormatter.XML_DOMAIN, "InvalidCharInContent",
+                                new Object[] { Integer.toString(ch, 16) },
                                 XMLErrorReporter.SEVERITY_FATAL_ERROR);
                     }
                 }
@@ -472,11 +447,9 @@ public class XIncludeTextReader {
             if (fHandler != null && readSize > 0) {
                 fTempString.offset = 0;
                 fTempString.length = readSize;
-                fHandler.characters(fTempString, fHandler.modifyAugmentations(
-                        null, true));
+                fHandler.characters(fTempString, fHandler.modifyAugmentations(null, true));
             }
-            readSize = fReader.read(fTempString.ch, 0, fTempString.ch.length
-                    - 1);
+            readSize = fReader.read(fTempString.ch, 0, fTempString.ch.length - 1);
         }
 
     }
@@ -485,7 +458,7 @@ public class XIncludeTextReader {
      * Sets the input source on this text reader.
      *
      * @param source
-     *               The XMLInputSource to use.
+     *        The XMLInputSource to use.
      */
     public void setInputSource(XMLInputSource source) {
         fSource = source;
@@ -509,7 +482,7 @@ public class XIncludeTextReader {
      * the rules of XML 1.0.
      *
      * @param ch
-     *           The character to check.
+     *        The character to check.
      */
     protected boolean isValid(int ch) {
         return XMLChar.isValid(ch);
@@ -520,7 +493,7 @@ public class XIncludeTextReader {
      * sizes that are parsed by the reader at a time and passed to the handler
      *
      * @param bufferSize
-     *                   The size of the buffer desired
+     *        The size of the buffer desired
      */
     protected void setBufferSize(int bufferSize) {
         if (fTempString.ch.length != ++bufferSize) {

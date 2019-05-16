@@ -60,8 +60,7 @@ import com.sun.org.apache.bcel.internal.classfile.*;
  * @see LineNumber
  * @see MethodGen
  */
-public class LineNumberGen implements InstructionTargeter, Cloneable,
-        java.io.Serializable {
+public class LineNumberGen implements InstructionTargeter, Cloneable, java.io.Serializable {
     private InstructionHandle ih;
     private int src_line;
 
@@ -69,7 +68,7 @@ public class LineNumberGen implements InstructionTargeter, Cloneable,
      * Create a line number.
      *
      * @param ih
-     *           instruction handle to reference
+     *        instruction handle to reference
      */
     public LineNumberGen(InstructionHandle ih, int src_line) {
         setInstruction(ih);
@@ -86,23 +85,20 @@ public class LineNumberGen implements InstructionTargeter, Cloneable,
 
     /**
      * @param old_ih
-     *               old target
+     *        old target
      * @param new_ih
-     *               new target
+     *        new target
      */
     @Override
-    public void updateTarget(InstructionHandle old_ih,
-            InstructionHandle new_ih) {
+    public void updateTarget(InstructionHandle old_ih, InstructionHandle new_ih) {
         if (old_ih != ih)
-            throw new ClassGenException("Not targeting " + old_ih + ", but "
-                    + ih + "}");
+            throw new ClassGenException("Not targeting " + old_ih + ", but " + ih + "}");
         else
             setInstruction(new_ih);
     }
 
     /**
      * Get LineNumber attribute .
-     *
      * This relies on that the instruction list has already been dumped to byte
      * code or or that the `setPositions' methods has been called for the
      * instruction list.

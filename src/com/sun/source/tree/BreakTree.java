@@ -9,7 +9,6 @@ import javax.lang.model.element.Name;
 
 /**
  * A tree node for a 'break' statement.
- *
  * For example:
  * 
  * <pre>
@@ -19,7 +18,6 @@ import javax.lang.model.element.Name;
  * </pre>
  *
  * @jls section 14.15
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

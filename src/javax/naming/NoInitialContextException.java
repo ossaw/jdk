@@ -21,7 +21,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see InitialContext
  * @see javax.naming.directory.InitialDirContext
  * @see javax.naming.spi.NamingManager#getInitialContext
@@ -42,7 +41,7 @@ public class NoInitialContextException extends NamingException {
      * All other fields are initialized to null.
      * 
      * @param explanation
-     *                    Possibly null additional detail about this exception.
+     *        Possibly null additional detail about this exception.
      * @see java.lang.Throwable#getMessage
      */
     public NoInitialContextException(String explanation) {

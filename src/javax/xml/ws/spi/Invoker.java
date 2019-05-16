@@ -15,7 +15,6 @@ import java.lang.reflect.InvocationTargetException;
  * Container hands over an implementation of Invoker to JAX-WS runtime, and
  * jax-ws runtime calls {@link #invoke} for a web service invocation. Finally,
  * Invoker does the actual invocation of web service on endpoint instance.
- *
  * Container also injects the provided <code>WebServiceContext</code> and takes
  * care of invoking <code>javax.annotation.PostConstruct</code> methods, if
  * present, on the endpoint implementation.
@@ -36,20 +35,19 @@ public abstract class Invoker {
      * requests.
      *
      * @param webServiceContext
-     *                          a holder for MessageContext
+     *        a holder for MessageContext
      * @throws IllegalAccessException
-     *                                   if the injection done by reflection API
-     *                                   throws this exception
+     *         if the injection done by reflection API
+     *         throws this exception
      * @throws IllegalArgumentException
-     *                                   if the injection done by reflection API
-     *                                   throws this exception
+     *         if the injection done by reflection API
+     *         throws this exception
      * @throws InvocationTargetException
-     *                                   if the injection done by reflection API
-     *                                   throws this exception
+     *         if the injection done by reflection API
+     *         throws this exception
      */
-    public abstract void inject(WebServiceContext webServiceContext)
-            throws IllegalAccessException, IllegalArgumentException,
-            InvocationTargetException;
+    public abstract void inject(WebServiceContext webServiceContext) throws IllegalAccessException,
+            IllegalArgumentException, InvocationTargetException;
 
     /**
      * JAX-WS runtime calls this method to do the actual web service invocation
@@ -58,27 +56,25 @@ public abstract class Invoker {
      * information for this invocation.
      *
      * @param m
-     *             Method to be invoked on the service
+     *        Method to be invoked on the service
      * @param args
-     *             Method arguments
+     *        Method arguments
      * @return return value of the method
      * @throws IllegalAccessException
-     *                                   if the invocation done by reflection
-     *                                   API throws this
-     *                                   exception
+     *         if the invocation done by reflection
+     *         API throws this
+     *         exception
      * @throws IllegalArgumentException
-     *                                   if the invocation done by reflection
-     *                                   API throws this
-     *                                   exception
+     *         if the invocation done by reflection
+     *         API throws this
+     *         exception
      * @throws InvocationTargetException
-     *                                   if the invocation done by reflection
-     *                                   API throws this
-     *                                   exception
-     * 
+     *         if the invocation done by reflection
+     *         API throws this
+     *         exception
      * @see Method#invoke
      */
-    public abstract Object invoke(Method m, Object... args)
-            throws IllegalAccessException, IllegalArgumentException,
-            InvocationTargetException;
+    public abstract Object invoke(Method m, Object... args) throws IllegalAccessException,
+            IllegalArgumentException, InvocationTargetException;
 
 }

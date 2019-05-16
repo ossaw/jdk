@@ -20,7 +20,6 @@ import org.w3c.dom.ranges.RangeException;
 
 /**
  * @xerces.internal
- *
  */
 
 public class RangeExceptionImpl extends RangeException {

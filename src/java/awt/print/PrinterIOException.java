@@ -11,7 +11,6 @@ import java.io.IOException;
  * The <code>PrinterIOException</code> class is a subclass of
  * {@link PrinterException} and is used to indicate that an IO error of some
  * sort has occurred while printing.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The
@@ -36,7 +35,7 @@ public class PrinterIOException extends PrinterException {
      * representation of the specified {@link IOException}.
      * 
      * @param exception
-     *                  the specified <code>IOException</code>
+     *        the specified <code>IOException</code>
      */
     public PrinterIOException(IOException exception) {
         initCause(null); // Disallow subsequent initCause
@@ -45,7 +44,6 @@ public class PrinterIOException extends PrinterException {
 
     /**
      * Returns the <code>IOException</code> that terminated the print job.
-     *
      * <p>
      * This method predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of

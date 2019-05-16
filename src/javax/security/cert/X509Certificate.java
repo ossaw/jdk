@@ -94,7 +94,6 @@ import java.util.Date;
  * restrictions on access to Security properties, this value is looked up and
  * cached at class initialization time and will fallback on a default
  * implementation if the Security property is not accessible.
- *
  * <p>
  * <em>Note: The classes in the package {@code javax.security.cert}
  * exist for compatibility with earlier versions of the
@@ -122,12 +121,11 @@ public abstract class X509Certificate extends Certificate {
     private static String X509Provider;
 
     static {
-        X509Provider = AccessController.doPrivileged(
-                new PrivilegedAction<String>() {
-                    public String run() {
-                        return Security.getProperty(X509_PROVIDER);
-                    }
-                });
+        X509Provider = AccessController.doPrivileged(new PrivilegedAction<String>() {
+            public String run() {
+                return Security.getProperty(X509_PROVIDER);
+            }
+        });
     }
 
     /**
@@ -135,7 +133,6 @@ public abstract class X509Certificate extends Certificate {
      * read from the input stream {@code inStream}. The implementation
      * (X509Certificate is an abstract class) is provided by the class specified
      * as the value of the {@code cert.provider.x509v1} security property.
-     *
      * <p>
      * Note: Only one DER-encoded certificate is expected to be in the input
      * stream. Also, all X509Certificate subclasses must provide a constructor
@@ -148,18 +145,17 @@ public abstract class X509Certificate extends Certificate {
      * </pre>
      *
      * @param inStream
-     *                 an input stream with the data to be read to initialize
-     *                 the
-     *                 certificate.
+     *        an input stream with the data to be read to initialize
+     *        the
+     *        certificate.
      * @return an X509Certificate object initialized with the data from the
      *         input stream.
      * @exception CertificateException
-     *                                 if a class initialization or certificate
-     *                                 parsing error
-     *                                 occurs.
+     *            if a class initialization or certificate
+     *            parsing error
+     *            occurs.
      */
-    public static final X509Certificate getInstance(InputStream inStream)
-            throws CertificateException {
+    public static final X509Certificate getInstance(InputStream inStream) throws CertificateException {
         return getInst((Object) inStream);
     }
 
@@ -168,7 +164,6 @@ public abstract class X509Certificate extends Certificate {
      * specified byte array. The implementation (X509Certificate is an abstract
      * class) is provided by the class specified as the value of the
      * {@code cert.provider.x509v1} security property.
-     *
      * <p>
      * Note: All X509Certificate subclasses must provide a constructor of the
      * form:
@@ -180,21 +175,19 @@ public abstract class X509Certificate extends Certificate {
      * </pre>
      *
      * @param certData
-     *                 a byte array containing the DER-encoded certificate.
+     *        a byte array containing the DER-encoded certificate.
      * @return an X509Certificate object initialized with the data from
      *         {@code certData}.
      * @exception CertificateException
-     *                                 if a class initialization or certificate
-     *                                 parsing error
-     *                                 occurs.
+     *            if a class initialization or certificate
+     *            parsing error
+     *            occurs.
      */
-    public static final X509Certificate getInstance(byte[] certData)
-            throws CertificateException {
+    public static final X509Certificate getInstance(byte[] certData) throws CertificateException {
         return getInst((Object) certData);
     }
 
-    private static final X509Certificate getInst(Object value)
-            throws CertificateException {
+    private static final X509Certificate getInst(Object value) throws CertificateException {
         /*
          * This turns out not to work for now. To run under JDK1.2 we would need
          * to call beginPrivileged() but we can't do that and run under JDK1.1.
@@ -229,11 +222,9 @@ public abstract class X509Certificate extends Certificate {
         } catch (InstantiationException e) {
             throw new CertificateException("Problems instantiating: " + e);
         } catch (InvocationTargetException e) {
-            throw new CertificateException("InvocationTargetException: " + e
-                    .getTargetException());
+            throw new CertificateException("InvocationTargetException: " + e.getTargetException());
         } catch (NoSuchMethodException e) {
-            throw new CertificateException("Could not find class method: " + e
-                    .getMessage());
+            throw new CertificateException("Could not find class method: " + e.getMessage());
         }
     }
 
@@ -258,14 +249,13 @@ public abstract class X509Certificate extends Certificate {
      * </pre>
      *
      * @exception CertificateExpiredException
-     *                                            if the certificate has
-     *                                            expired.
+     *            if the certificate has
+     *            expired.
      * @exception CertificateNotYetValidException
-     *                                            if the certificate is not yet
-     *                                            valid.
+     *            if the certificate is not yet
+     *            valid.
      */
-    public abstract void checkValidity() throws CertificateExpiredException,
-            CertificateNotYetValidException;
+    public abstract void checkValidity() throws CertificateExpiredException, CertificateNotYetValidException;
 
     /**
      * Checks that the specified date is within the certificate's validity
@@ -273,20 +263,20 @@ public abstract class X509Certificate extends Certificate {
      * valid at the specified date/time.
      *
      * @param date
-     *             the Date to check against to see if this certificate is valid
-     *             at that date/time.
+     *        the Date to check against to see if this certificate is valid
+     *        at that date/time.
      * @exception CertificateExpiredException
-     *                                            if the certificate has expired
-     *                                            with respect to the
-     *                                            {@code date} supplied.
+     *            if the certificate has expired
+     *            with respect to the
+     *            {@code date} supplied.
      * @exception CertificateNotYetValidException
-     *                                            if the certificate is not yet
-     *                                            valid with respect to the
-     *                                            {@code date} supplied.
+     *            if the certificate is not yet
+     *            valid with respect to the
+     *            {@code date} supplied.
      * @see #checkValidity()
      */
-    public abstract void checkValidity(Date date)
-            throws CertificateExpiredException, CertificateNotYetValidException;
+    public abstract void checkValidity(Date date) throws CertificateExpiredException,
+            CertificateNotYetValidException;
 
     /**
      * Gets the {@code version} (version number) value from the certificate. The
@@ -323,7 +313,6 @@ public abstract class X509Certificate extends Certificate {
      * Gets the {@code issuer} (issuer distinguished name) value from the
      * certificate. The issuer name identifies the entity that signed (and
      * issued) the certificate.
-     *
      * <p>
      * The issuer name field contains an X.500 distinguished name (DN). The
      * ASN.1 definition for this is:
@@ -361,7 +350,6 @@ public abstract class X509Certificate extends Certificate {
      * <pre>
      * subject    Name
      * </pre>
-     *
      * <p>
      * See {@link #getIssuerDN() getIssuerDN} for {@code Name} and other
      * relevant definitions.
@@ -417,7 +405,6 @@ public abstract class X509Certificate extends Certificate {
      *                             -- registered for use with the
      *                             -- algorithm object identifier value
      * </pre>
-     *
      * <p>
      * The algorithm name is determined from the {@code algorithm} OID string.
      *
@@ -430,7 +417,6 @@ public abstract class X509Certificate extends Certificate {
      * represented by a set of positive whole numbers separated by periods. For
      * example, the string "1.2.840.10040.4.3" identifies the SHA-1 with DSA
      * signature algorithm, as per the PKIX part I.
-     *
      * <p>
      * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
      * definitions.
@@ -444,7 +430,6 @@ public abstract class X509Certificate extends Certificate {
      * certificate's signature algorithm. In most cases, the signature algorithm
      * parameters are null; the parameters are usually supplied with the
      * certificate's public key.
-     *
      * <p>
      * See {@link #getSigAlgName() getSigAlgName} for relevant ASN.1
      * definitions.

@@ -32,10 +32,10 @@ public interface HTMLDOMImplementation extends DOMImplementation {
      * <code>TITLE</code> , and <code>BODY</code> .
      * 
      * @param title
-     *              The title of the document to be set as the content of the
-     *              <code>TITLE</code> element, through a child
-     *              <code>Text</code>
-     *              node.
+     *        The title of the document to be set as the content of the
+     *        <code>TITLE</code> element, through a child
+     *        <code>Text</code>
+     *        node.
      * @return A new <code>HTMLDocument</code> object.
      */
     public HTMLDocument createHTMLDocument(String title);

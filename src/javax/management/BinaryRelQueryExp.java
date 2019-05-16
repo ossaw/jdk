@@ -10,7 +10,6 @@ package javax.management;
  * operations.
  * 
  * @serial include
- *
  * @since 1.5
  */
 class BinaryRelQueryExp extends QueryEval implements QueryExp {
@@ -73,20 +72,17 @@ class BinaryRelQueryExp extends QueryEval implements QueryExp {
      * Applies the BinaryRelQueryExp on an MBean.
      *
      * @param name
-     *             The name of the MBean on which the BinaryRelQueryExp will be
-     *             applied.
-     *
+     *        The name of the MBean on which the BinaryRelQueryExp will be
+     *        applied.
      * @return True if the query was successfully applied to the MBean, false
      *         otherwise.
-     *
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
-    public boolean apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public boolean apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         Object val1 = exp1.apply(name);
         Object val2 = exp2.apply(name);
         boolean numeric = val1 instanceof NumericValueExp;

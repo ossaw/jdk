@@ -22,38 +22,37 @@ public abstract class TextUI extends ComponentUI {
      * coordinate system.
      *
      * @param pos
-     *            the local location in the model to translate &gt;= 0
+     *        the local location in the model to translate &gt;= 0
      * @return the coordinates as a rectangle
      * @exception BadLocationException
-     *                                 if the given position does not represent
-     *                                 a valid location
-     *                                 in the associated document
+     *            if the given position does not represent
+     *            a valid location
+     *            in the associated document
      */
-    public abstract Rectangle modelToView(JTextComponent t, int pos)
-            throws BadLocationException;
+    public abstract Rectangle modelToView(JTextComponent t, int pos) throws BadLocationException;
 
     /**
      * Converts the given location in the model to a place in the view
      * coordinate system.
      *
      * @param pos
-     *            the local location in the model to translate &gt;= 0
+     *        the local location in the model to translate &gt;= 0
      * @return the coordinates as a rectangle
      * @exception BadLocationException
-     *                                 if the given position does not represent
-     *                                 a valid location
-     *                                 in the associated document
+     *            if the given position does not represent
+     *            a valid location
+     *            in the associated document
      */
-    public abstract Rectangle modelToView(JTextComponent t, int pos,
-            Position.Bias bias) throws BadLocationException;
+    public abstract Rectangle modelToView(JTextComponent t, int pos, Position.Bias bias)
+            throws BadLocationException;
 
     /**
      * Converts the given place in the view coordinate system to the nearest
      * representative location in the model.
      *
      * @param pt
-     *           the location in the view to translate. This should be in the
-     *           same coordinate system as the mouse events.
+     *        the location in the view to translate. This should be in the
+     *        same coordinate system as the mouse events.
      * @return the offset from the start of the document &gt;= 0
      */
     public abstract int viewToModel(JTextComponent t, Point pt);
@@ -63,20 +62,18 @@ public abstract class TextUI extends ComponentUI {
      * coordinate space of the model.
      *
      * @param pt
-     *                   the location in the view to translate. This should be
-     *                   in the
-     *                   same coordinate system as the mouse events.
+     *        the location in the view to translate. This should be
+     *        in the
+     *        same coordinate system as the mouse events.
      * @param biasReturn
-     *                   filled in by this method to indicate whether the point
-     *                   given
-     *                   is closer to the previous or the next character in the
-     *                   model
-     *
+     *        filled in by this method to indicate whether the point
+     *        given
+     *        is closer to the previous or the next character in the
+     *        model
      * @return the location within the model that best represents the given
      *         point in the view &gt;= 0
      */
-    public abstract int viewToModel(JTextComponent t, Point pt,
-            Position.Bias[] biasReturn);
+    public abstract int viewToModel(JTextComponent t, Point pt, Position.Bias[] biasReturn);
 
     /**
      * Provides a way to determine the next visually represented model location
@@ -85,38 +82,37 @@ public abstract class TextUI extends ComponentUI {
      * access to some of the locations in the model.
      *
      * @param t
-     *                  the text component for which this UI is installed
+     *        the text component for which this UI is installed
      * @param pos
-     *                  the position to convert &gt;= 0
+     *        the position to convert &gt;= 0
      * @param b
-     *                  the bias for the position
+     *        the bias for the position
      * @param direction
-     *                  the direction from the current position that can be
-     *                  thought of
-     *                  as the arrow keys typically found on a keyboard. This
-     *                  may be
-     *                  SwingConstants.WEST, SwingConstants.EAST,
-     *                  SwingConstants.NORTH, or SwingConstants.SOUTH
+     *        the direction from the current position that can be
+     *        thought of
+     *        as the arrow keys typically found on a keyboard. This
+     *        may be
+     *        SwingConstants.WEST, SwingConstants.EAST,
+     *        SwingConstants.NORTH, or SwingConstants.SOUTH
      * @param biasRet
-     *                  an array to contain the bias for the returned position
+     *        an array to contain the bias for the returned position
      * @return the location within the model that best represents the next
      *         location visual position
      * @exception BadLocationException
      * @exception IllegalArgumentException
-     *                                     for an invalid direction
+     *            for an invalid direction
      */
-    public abstract int getNextVisualPositionFrom(JTextComponent t, int pos,
-            Position.Bias b, int direction, Position.Bias[] biasRet)
-            throws BadLocationException;
+    public abstract int getNextVisualPositionFrom(JTextComponent t, int pos, Position.Bias b, int direction,
+            Position.Bias[] biasRet) throws BadLocationException;
 
     /**
      * Causes the portion of the view responsible for the given part of the
      * model to be repainted.
      *
      * @param p0
-     *           the beginning of the range &gt;= 0
+     *        the beginning of the range &gt;= 0
      * @param p1
-     *           the end of the range &gt;= p0
+     *        the end of the range &gt;= p0
      */
     public abstract void damageRange(JTextComponent t, int p0, int p1);
 
@@ -125,12 +121,12 @@ public abstract class TextUI extends ComponentUI {
      * model to be repainted.
      *
      * @param p0
-     *           the beginning of the range &gt;= 0
+     *        the beginning of the range &gt;= 0
      * @param p1
-     *           the end of the range &gt;= p0
+     *        the end of the range &gt;= p0
      */
-    public abstract void damageRange(JTextComponent t, int p0, int p1,
-            Position.Bias firstBias, Position.Bias secondBias);
+    public abstract void damageRange(JTextComponent t, int p0, int p1, Position.Bias firstBias,
+            Position.Bias secondBias);
 
     /**
      * Fetches the binding of services that set a policy for the type of

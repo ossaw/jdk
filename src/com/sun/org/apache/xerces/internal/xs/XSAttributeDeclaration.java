@@ -57,9 +57,9 @@ public interface XSAttributeDeclaration extends XSObject {
      * constraint.
      * 
      * @exception XSException
-     *                        NOT_SUPPORTED_ERR: Raised if the implementation
-     *                        does not
-     *                        support this method.
+     *            NOT_SUPPORTED_ERR: Raised if the implementation
+     *            does not
+     *            support this method.
      */
     public Object getActualVC() throws XSException;
 
@@ -75,9 +75,9 @@ public interface XSAttributeDeclaration extends XSObject {
      * <code>UNAVAILABLE_DT</code>.
      * 
      * @exception XSException
-     *                        NOT_SUPPORTED_ERR: Raised if the implementation
-     *                        does not
-     *                        support this method.
+     *            NOT_SUPPORTED_ERR: Raised if the implementation
+     *            does not
+     *            support this method.
      */
     public short getActualVCType() throws XSException;
 
@@ -91,9 +91,9 @@ public interface XSAttributeDeclaration extends XSObject {
      * memberType kind. For examples, see <code>ItemPSVI.itemValueTypes</code>.
      * 
      * @exception XSException
-     *                        NOT_SUPPORTED_ERR: Raised if the implementation
-     *                        does not
-     *                        support this method.
+     *            NOT_SUPPORTED_ERR: Raised if the implementation
+     *            does not
+     *            support this method.
      */
     public ShortList getItemValueTypes() throws XSException;
 

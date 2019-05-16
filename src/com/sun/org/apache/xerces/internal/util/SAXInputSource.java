@@ -29,7 +29,6 @@ import org.xml.sax.XMLReader;
  * An <code>XMLInputSource</code> analogue to
  * <code>javax.xml.transform.sax.SAXSource</code>.
  * </p>
- *
  */
 public final class SAXInputSource extends XMLInputSource {
 
@@ -45,8 +44,8 @@ public final class SAXInputSource extends XMLInputSource {
     }
 
     public SAXInputSource(XMLReader reader, InputSource inputSource) {
-        super(inputSource != null ? inputSource.getPublicId() : null,
-                inputSource != null ? inputSource.getSystemId() : null, null);
+        super(inputSource != null ? inputSource.getPublicId() : null, inputSource != null ? inputSource
+                .getSystemId() : null, null);
         if (inputSource != null) {
             setByteStream(inputSource.getByteStream());
             setCharacterStream(inputSource.getCharacterStream());
@@ -89,7 +88,7 @@ public final class SAXInputSource extends XMLInputSource {
      * Sets the public identifier.
      *
      * @param publicId
-     *                 The new public identifier.
+     *        The new public identifier.
      */
     public void setPublicId(String publicId) {
         super.setPublicId(publicId);
@@ -103,7 +102,7 @@ public final class SAXInputSource extends XMLInputSource {
      * Sets the system identifier.
      *
      * @param systemId
-     *                 The new system identifier.
+     *        The new system identifier.
      */
     public void setSystemId(String systemId) {
         super.setSystemId(systemId);
@@ -120,7 +119,7 @@ public final class SAXInputSource extends XMLInputSource {
      * auto-detected, then the encoding should also be set on this object.
      *
      * @param byteStream
-     *                   The new byte stream.
+     *        The new byte stream.
      */
     public void setByteStream(InputStream byteStream) {
         super.setByteStream(byteStream);
@@ -138,8 +137,7 @@ public final class SAXInputSource extends XMLInputSource {
      * if known.
      *
      * @param charStream
-     *                   The new character stream.
-     *
+     *        The new character stream.
      * @see #setEncoding
      */
     public void setCharacterStream(Reader charStream) {
@@ -154,7 +152,7 @@ public final class SAXInputSource extends XMLInputSource {
      * Sets the encoding of the stream.
      *
      * @param encoding
-     *                 The new encoding.
+     *        The new encoding.
      */
     public void setEncoding(String encoding) {
         super.setEncoding(encoding);

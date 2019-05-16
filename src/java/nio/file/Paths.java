@@ -32,12 +32,10 @@ public final class Paths {
      * path string {@code "/foo/bar/gus"} is converted to a {@code Path}. A
      * {@code Path} representing an empty path is returned if {@code first} is
      * the empty string and {@code more} does not contain any non-empty strings.
-     *
      * <p>
      * The {@code Path} is obtained by invoking the {@link FileSystem#getPath
      * getPath} method of the {@link FileSystems#getDefault default}
      * {@link FileSystem}.
-     *
      * <p>
      * Note that while this method is very convenient, using it will imply an
      * assumed reference to the default {@code FileSystem} and limit the utility
@@ -51,16 +49,13 @@ public final class Paths {
      * </pre>
      *
      * @param first
-     *              the path string or initial part of the path string
+     *        the path string or initial part of the path string
      * @param more
-     *              additional strings to be joined to form the path string
-     *
+     *        additional strings to be joined to form the path string
      * @return the resulting {@code Path}
-     *
      * @throws InvalidPathException
-     *                              if the path string cannot be converted to a
-     *                              {@code Path}
-     *
+     *         if the path string cannot be converted to a
+     *         {@code Path}
      * @see FileSystem#getPath
      */
     public static Path get(String first, String... more) {
@@ -69,7 +64,6 @@ public final class Paths {
 
     /**
      * Converts the given URI to a {@link Path} object.
-     *
      * <p>
      * This method iterates over the
      * {@link FileSystemProvider#installedProviders() installed} providers to
@@ -77,14 +71,12 @@ public final class Paths {
      * scheme} of the given URI. URI schemes are compared without regard to
      * case. If the provider is found then its {@link FileSystemProvider#getPath
      * getPath} method is invoked to convert the URI.
-     *
      * <p>
      * In the case of the default provider, identified by the URI scheme "file",
      * the given URI has a non-empty path component, and undefined query and
      * fragment components. Whether the authority component may be present is
      * platform specific. The returned {@code Path} is associated with the
      * {@link FileSystems#getDefault default} file system.
-     *
      * <p>
      * The default provider provides a similar <em>round-trip</em> guarantee to
      * the {@link java.io.File} class. For a given {@code Path} <i>p</i> it is
@@ -98,27 +90,25 @@ public final class Paths {
      * provider specific and therefore unspecified.
      *
      * @param uri
-     *            the URI to convert
-     *
+     *        the URI to convert
      * @return the resulting {@code Path}
-     *
      * @throws IllegalArgumentException
-     *                                     if preconditions on the {@code uri}
-     *                                     parameter do not hold.
-     *                                     The format of the URI is provider
-     *                                     specific.
+     *         if preconditions on the {@code uri}
+     *         parameter do not hold.
+     *         The format of the URI is provider
+     *         specific.
      * @throws FileSystemNotFoundException
-     *                                     The file system, identified by the
-     *                                     URI, does not exist and
-     *                                     cannot be created automatically, or
-     *                                     the provider identified
-     *                                     by the URI's scheme component is not
-     *                                     installed
+     *         The file system, identified by the
+     *         URI, does not exist and
+     *         cannot be created automatically, or
+     *         the provider identified
+     *         by the URI's scheme component is not
+     *         installed
      * @throws SecurityException
-     *                                     if a security manager is installed
-     *                                     and it denies an
-     *                                     unspecified permission to access the
-     *                                     file system
+     *         if a security manager is installed
+     *         and it denies an
+     *         unspecified permission to access the
+     *         file system
      */
     public static Path get(URI uri) {
         String scheme = uri.getScheme();
@@ -130,14 +120,12 @@ public final class Paths {
             return FileSystems.getDefault().provider().getPath(uri);
 
         // try to find provider
-        for (FileSystemProvider provider : FileSystemProvider
-                .installedProviders()) {
+        for (FileSystemProvider provider : FileSystemProvider.installedProviders()) {
             if (provider.getScheme().equalsIgnoreCase(scheme)) {
                 return provider.getPath(uri);
             }
         }
 
-        throw new FileSystemNotFoundException("Provider \"" + scheme
-                + "\" not installed");
+        throw new FileSystemNotFoundException("Provider \"" + scheme + "\" not installed");
     }
 }

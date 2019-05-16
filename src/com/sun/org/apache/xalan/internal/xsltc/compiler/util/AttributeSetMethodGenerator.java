@@ -49,12 +49,10 @@ public final class AttributeSetMethodGenerator extends MethodGenerator {
         argNames[3] = NODE_PNAME;
     }
 
-    public AttributeSetMethodGenerator(String methodName,
-            ClassGenerator classGen) {
+    public AttributeSetMethodGenerator(String methodName, ClassGenerator classGen) {
         super(com.sun.org.apache.bcel.internal.Constants.ACC_PRIVATE,
-                com.sun.org.apache.bcel.internal.generic.Type.VOID, argTypes,
-                argNames, methodName, classGen.getClassName(),
-                new InstructionList(), classGen.getConstantPool());
+                com.sun.org.apache.bcel.internal.generic.Type.VOID, argTypes, argNames, methodName, classGen
+                        .getClassName(), new InstructionList(), classGen.getConstantPool());
     }
 
     public int getLocalIndex(String name) {

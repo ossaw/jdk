@@ -57,7 +57,6 @@ import java.awt.Container;
  * @see JWindow
  * @see JApplet
  * @see JInternalFrame
- *
  * @author Hans Muller
  */
 public interface RootPaneContainer {
@@ -86,8 +85,8 @@ public interface RootPaneContainer {
      *            (a runtime exception) if the content pane parameter is
      *            null
      * @param contentPane
-     *                    the Container to use for the contents of this
-     *                    JRootPane
+     *        the Container to use for the contents of this
+     *        JRootPane
      * @see JRootPane#getContentPane
      * @see #getContentPane
      */

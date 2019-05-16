@@ -27,7 +27,7 @@ public class BadBinaryOpValueExpException extends Exception {
      * <CODE>ValueExp</CODE>.
      *
      * @param exp
-     *            the expression whose value was inappropriate.
+     *        the expression whose value was inappropriate.
      */
     public BadBinaryOpValueExpException(ValueExp exp) {
         this.exp = exp;

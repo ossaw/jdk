@@ -27,7 +27,6 @@ public interface RowSetReader {
      * <code>RowSetReader</code> object as its reader. The <code>readData</code>
      * method is invoked internally by the <code>RowSet.execute</code> method
      * for rowsets that support the reader/writer paradigm.
-     *
      * <P>
      * The <code>readData</code> method adds rows to the caller. It can be
      * implemented in a wide variety of ways and can even populate the caller
@@ -41,14 +40,14 @@ public interface RowSetReader {
      * listeners are already being notified by the method <code>execute</code>.
      *
      * @param caller
-     *               the <code>RowSet</code> object (1) that has implemented the
-     *               <code>RowSetInternal</code> interface, (2) with which this
-     *               reader is registered, and (3) whose <code>execute</code>
-     *               method called this reader
+     *        the <code>RowSet</code> object (1) that has implemented the
+     *        <code>RowSetInternal</code> interface, (2) with which this
+     *        reader is registered, and (3) whose <code>execute</code>
+     *        method called this reader
      * @exception SQLException
-     *                         if a database access error occurs or this method
-     *                         invokes
-     *                         the <code>RowSet.execute</code> method
+     *            if a database access error occurs or this method
+     *            invokes
+     *            the <code>RowSet.execute</code> method
      */
     void readData(RowSetInternal caller) throws SQLException;
 

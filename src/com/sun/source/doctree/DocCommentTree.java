@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * The top level representation of a documentation comment.
- *
  * <p>
  * first-sentence body block-tags
  *

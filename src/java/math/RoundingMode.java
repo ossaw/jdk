@@ -17,7 +17,6 @@ package java.math;
  * regardless the digits' contribution to the value of the number. In other
  * words, considered as a numerical value, the discarded fraction could have an
  * absolute value greater than one.
- *
  * <p>
  * Each rounding mode description includes a table listing how different
  * two-digit decimal values would round to a one digit decimal value under the
@@ -28,7 +27,6 @@ package java.math;
  * question), and calling {@link BigDecimal#round round} on this number with the
  * proper {@code MathContext}. A summary table showing the results of these
  * rounding operations for all rounding modes appears below.
- *
  * <table border> <caption><b>Summary of Rounding Operations Under Different
  * Rounding Modes</b></caption>
  * <tr>
@@ -45,7 +43,6 @@ package java.math;
  * <th>{@code HALF_DOWN}</th>
  * <th>{@code HALF_EVEN}</th>
  * <th>{@code UNNECESSARY}</th>
- *
  * <tr align=right>
  * <td>5.5</td>
  * <td>6</td>
@@ -147,8 +144,6 @@ package java.math;
  * <td>-6</td>
  * <td>throw {@code ArithmeticException}</td>
  * </table>
- *
- *
  * <p>
  * This {@code enum} is intended to replace the integer-based enumeration of
  * rounding mode constants in {@link BigDecimal} ({@link BigDecimal#ROUND_UP},
@@ -167,7 +162,6 @@ public enum RoundingMode {
      * Rounding mode to round away from zero. Always increments the digit prior
      * to a non-zero discarded fraction. Note that this rounding mode never
      * decreases the magnitude of the calculated value.
-     *
      * <p>
      * Example: <table border> <caption><b>Rounding mode UP
      * Examples</b></caption>
@@ -213,7 +207,6 @@ public enum RoundingMode {
      * Rounding mode to round towards zero. Never increments the digit prior to
      * a discarded fraction (i.e., truncates). Note that this rounding mode
      * never increases the magnitude of the calculated value.
-     *
      * <p>
      * Example: <table border> <caption><b>Rounding mode DOWN
      * Examples</b></caption>
@@ -260,7 +253,6 @@ public enum RoundingMode {
      * positive, behaves as for {@code RoundingMode.UP}; if negative, behaves as
      * for {@code RoundingMode.DOWN}. Note that this rounding mode never
      * decreases the calculated value.
-     *
      * <p>
      * Example: <table border> <caption><b>Rounding mode CEILING
      * Examples</b></caption>
@@ -307,7 +299,6 @@ public enum RoundingMode {
      * positive, behave as for {@code RoundingMode.DOWN}; if negative, behave as
      * for {@code RoundingMode.UP}. Note that this rounding mode never increases
      * the calculated value.
-     *
      * <p>
      * Example: <table border> <caption><b>Rounding mode FLOOR
      * Examples</b></caption>
@@ -355,7 +346,6 @@ public enum RoundingMode {
      * {@code RoundingMode.UP} if the discarded fraction is &ge; 0.5; otherwise,
      * behaves as for {@code RoundingMode.DOWN}. Note that this is the rounding
      * mode commonly taught at school.
-     *
      * <p>
      * Example: <table border> <caption><b>Rounding mode HALF_UP
      * Examples</b></caption>
@@ -402,7 +392,6 @@ public enum RoundingMode {
      * neighbors are equidistant, in which case round down. Behaves as for
      * {@code RoundingMode.UP} if the discarded fraction is &gt; 0.5; otherwise,
      * behaves as for {@code RoundingMode.DOWN}.
-     *
      * <p>
      * Example: <table border> <caption><b>Rounding mode HALF_DOWN
      * Examples</b></caption>
@@ -455,7 +444,6 @@ public enum RoundingMode {
      * {@literal "Banker's rounding,"} and is chiefly used in the USA. This
      * rounding mode is analogous to the rounding policy used for {@code float}
      * and {@code double} arithmetic in Java.
-     *
      * <p>
      * Example: <table border> <caption><b>Rounding mode HALF_EVEN
      * Examples</b></caption>
@@ -550,7 +538,7 @@ public enum RoundingMode {
      * Constructor
      *
      * @param oldMode
-     *                The {@code BigDecimal} constant corresponding to this mode
+     *        The {@code BigDecimal} constant corresponding to this mode
      */
     private RoundingMode(int oldMode) {
         this.oldMode = oldMode;
@@ -561,10 +549,10 @@ public enum RoundingMode {
      * rounding mode constant in {@link BigDecimal}.
      *
      * @param rm
-     *           legacy integer rounding mode to convert
+     *        legacy integer rounding mode to convert
      * @return {@code RoundingMode} corresponding to the given integer.
      * @throws IllegalArgumentException
-     *                                  integer is out of range
+     *         integer is out of range
      */
     public static RoundingMode valueOf(int rm) {
         switch (rm) {

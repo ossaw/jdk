@@ -22,8 +22,8 @@ import java.beans.PropertyVetoException;
  *
  * @since 1.3
  */
-public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
-        implements LayoutManager, ActionListener, PropertyChangeListener {
+public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane implements LayoutManager,
+        ActionListener, PropertyChangeListener {
     SystemButton systemButton;
     MinimizeButton minimizeButton;
     MaximizeButton maximizeButton;
@@ -89,12 +89,10 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
             public void mousePressed(MouseEvent evt) {
                 try {
                     frame.setSelected(true);
-                } catch (PropertyVetoException pve) {
-                }
+                } catch (PropertyVetoException pve) {}
                 if ((evt.getClickCount() == 2)) {
-                    closeAction.actionPerformed(new ActionEvent(evt.getSource(),
-                            ActionEvent.ACTION_PERFORMED, null, evt.getWhen(),
-                            0));
+                    closeAction.actionPerformed(new ActionEvent(evt.getSource(), ActionEvent.ACTION_PERFORMED,
+                            null, evt.getWhen(), 0));
                     systemMenu.setVisible(false);
                 }
             }
@@ -103,8 +101,8 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
 
     private static int getButtonMnemonic(String button) {
         try {
-            return Integer.parseInt(UIManager.getString(
-                    "InternalFrameTitlePane." + button + "Button.mnemonic"));
+            return Integer.parseInt(UIManager.getString("InternalFrameTitlePane." + button
+                    + "Button.mnemonic"));
         } catch (NumberFormatException e) {
             return -1;
         }
@@ -301,9 +299,8 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
             super();
             setText(title);
             setHorizontalAlignment(SwingConstants.CENTER);
-            setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
-                    UIManager.getColor("activeCaptionBorder"), UIManager
-                            .getColor("inactiveCaptionBorder")));
+            setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, UIManager.getColor(
+                    "activeCaptionBorder"), UIManager.getColor("inactiveCaptionBorder")));
 
             // Forward mouse events to titlebar for moves.
             addMouseMotionListener(new MouseMotionListener() {
@@ -339,11 +336,9 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
         }
 
         void forwardEventToParent(MouseEvent e) {
-            getParent().dispatchEvent(new MouseEvent(getParent(), e.getID(), e
-                    .getWhen(), e.getModifiers(), e.getX(), e.getY(), e
-                            .getXOnScreen(), e.getYOnScreen(), e
-                                    .getClickCount(), e.isPopupTrigger(),
-                    MouseEvent.NOBUTTON));
+            getParent().dispatchEvent(new MouseEvent(getParent(), e.getID(), e.getWhen(), e.getModifiers(), e
+                    .getX(), e.getY(), e.getXOnScreen(), e.getYOnScreen(), e.getClickCount(), e
+                            .isPopupTrigger(), MouseEvent.NOBUTTON));
         }
 
         public void paintComponent(Graphics g) {
@@ -356,8 +351,8 @@ public class MotifInternalFrameTitlePane extends BasicInternalFrameTitlePane
             Dimension d = getSize();
             String frameTitle = frame.getTitle();
             if (frameTitle != null) {
-                MotifGraphicsUtils.drawStringInRect(frame, g, frameTitle, 0, 0,
-                        d.width, d.height, SwingConstants.CENTER);
+                MotifGraphicsUtils.drawStringInRect(frame, g, frameTitle, 0, 0, d.width, d.height,
+                        SwingConstants.CENTER);
             }
         }
     }

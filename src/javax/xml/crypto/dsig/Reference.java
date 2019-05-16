@@ -35,7 +35,6 @@ import java.util.List;
  *   &lt;restriction base="base64Binary"/&gt;
  * &lt;/simpleType&gt;
  * </pre></code>
- *
  * <p>
  * A <code>Reference</code> instance may be created by invoking one of the
  * {@link XMLSignatureFactory#newReference newReference} methods of the
@@ -43,8 +42,8 @@ import java.util.List;
  *
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
- * Reference ref = factory.newReference("http://www.ietf.org/rfc/rfc3275.txt",
- *         factory.newDigestMethod(DigestMethod.SHA1, null));
+ * Reference ref = factory.newReference("http://www.ietf.org/rfc/rfc3275.txt", factory.newDigestMethod(
+ *         DigestMethod.SHA1, null));
  * </pre>
  *
  * @author Sean Mullan
@@ -109,7 +108,6 @@ public interface Reference extends URIReference, XMLStructure {
     /**
      * Validates this reference. This method verifies the digest of this
      * reference.
-     *
      * <p>
      * This method only validates the reference the first time it is invoked. On
      * subsequent invocations, it returns a cached result.
@@ -117,17 +115,16 @@ public interface Reference extends URIReference, XMLStructure {
      * @return <code>true</code> if this reference was validated successfully;
      *         <code>false</code> otherwise
      * @param validateContext
-     *                        the validating context
+     *        the validating context
      * @throws NullPointerException
-     *                               if <code>validateContext</code> is
-     *                               <code>null</code>
+     *         if <code>validateContext</code> is
+     *         <code>null</code>
      * @throws XMLSignatureException
-     *                               if an unexpected exception occurs while
-     *                               validating the
-     *                               reference
+     *         if an unexpected exception occurs while
+     *         validating the
+     *         reference
      */
-    boolean validate(XMLValidateContext validateContext)
-            throws XMLSignatureException;
+    boolean validate(XMLValidateContext validateContext) throws XMLSignatureException;
 
     /**
      * Returns the dereferenced data, if <a href=

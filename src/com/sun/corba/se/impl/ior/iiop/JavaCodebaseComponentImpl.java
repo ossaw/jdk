@@ -16,8 +16,7 @@ import com.sun.corba.se.spi.ior.iiop.JavaCodebaseComponent;
 /**
  * @author
  */
-public class JavaCodebaseComponentImpl extends TaggedComponentBase implements
-        JavaCodebaseComponent {
+public class JavaCodebaseComponentImpl extends TaggedComponentBase implements JavaCodebaseComponent {
     private String URLs;
 
     public boolean equals(Object obj) {

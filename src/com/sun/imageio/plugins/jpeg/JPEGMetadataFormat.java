@@ -31,15 +31,13 @@ abstract class JPEGMetadataFormat extends IIOMetadataFormatImpl {
 
         addElement("dqtable", "dqt", CHILD_POLICY_EMPTY);
 
-        addAttribute("dqtable", "elementPrecision", DATATYPE_INTEGER, false,
-                "0");
+        addAttribute("dqtable", "elementPrecision", DATATYPE_INTEGER, false, "0");
         List tabids = new ArrayList();
         tabids.add("0");
         tabids.add("1");
         tabids.add("2");
         tabids.add("3");
-        addAttribute("dqtable", "qtableId", DATATYPE_INTEGER, true, null,
-                tabids);
+        addAttribute("dqtable", "qtableId", DATATYPE_INTEGER, true, null, tabids);
         addObjectValue("dqtable", JPEGQTable.class, true, null);
 
         addElement("dht", parentName, 1, 4);
@@ -48,26 +46,22 @@ abstract class JPEGMetadataFormat extends IIOMetadataFormatImpl {
         classes.add("0");
         classes.add("1");
         addAttribute("dhtable", "class", DATATYPE_INTEGER, true, null, classes);
-        addAttribute("dhtable", "htableId", DATATYPE_INTEGER, true, null,
-                tabids);
+        addAttribute("dhtable", "htableId", DATATYPE_INTEGER, true, null, tabids);
         addObjectValue("dhtable", JPEGHuffmanTable.class, true, null);
 
         addElement("dri", parentName, CHILD_POLICY_EMPTY);
-        addAttribute("dri", "interval", DATATYPE_INTEGER, true, null, "0",
-                "65535", true, true);
+        addAttribute("dri", "interval", DATATYPE_INTEGER, true, null, "0", "65535", true, true);
 
         addElement("com", parentName, CHILD_POLICY_EMPTY);
         addAttribute("com", "comment", DATATYPE_STRING, false, null);
         addObjectValue("com", byte[].class, 1, MAX_JPEG_DATA_SIZE);
 
         addElement("unknown", parentName, CHILD_POLICY_EMPTY);
-        addAttribute("unknown", "MarkerTag", DATATYPE_INTEGER, true, null, "0",
-                "255", true, true);
+        addAttribute("unknown", "MarkerTag", DATATYPE_INTEGER, true, null, "0", "255", true, true);
         addObjectValue("unknown", byte[].class, 1, MAX_JPEG_DATA_SIZE);
     }
 
-    public boolean canNodeAppear(String elementName,
-            ImageTypeSpecifier imageType) {
+    public boolean canNodeAppear(String elementName, ImageTypeSpecifier imageType) {
         // Just check if it appears in the format
         if (isInSubtree(elementName, getRootName())) {
             return true;

@@ -8,14 +8,12 @@ package com.sun.corba.se.spi.activation;
  * 9:58:51 PM PDT
  */
 
-public final class ServerHeldDownHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ServerHeldDownHolder implements org.omg.CORBA.portable.Streamable {
     public com.sun.corba.se.spi.activation.ServerHeldDown value = null;
 
     public ServerHeldDownHolder() {}
 
-    public ServerHeldDownHolder(
-            com.sun.corba.se.spi.activation.ServerHeldDown initialValue) {
+    public ServerHeldDownHolder(com.sun.corba.se.spi.activation.ServerHeldDown initialValue) {
         value = initialValue;
     }
 

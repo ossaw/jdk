@@ -18,20 +18,15 @@ public class WBMPMetadataFormat extends IIOMetadataFormatImpl {
         super(WBMPMetadata.nativeMetadataFormatName, CHILD_POLICY_SOME);
 
         // root -> ImageDescriptor
-        addElement("ImageDescriptor", WBMPMetadata.nativeMetadataFormatName,
-                CHILD_POLICY_EMPTY);
+        addElement("ImageDescriptor", WBMPMetadata.nativeMetadataFormatName, CHILD_POLICY_EMPTY);
 
-        addAttribute("ImageDescriptor", "WBMPType", DATATYPE_INTEGER, true,
-                "0");
+        addAttribute("ImageDescriptor", "WBMPType", DATATYPE_INTEGER, true, "0");
 
-        addAttribute("ImageDescriptor", "Width", DATATYPE_INTEGER, true, null,
-                "0", "65535", true, true);
-        addAttribute("ImageDescriptor", "Height", DATATYPE_INTEGER, true, null,
-                "1", "65535", true, true);
+        addAttribute("ImageDescriptor", "Width", DATATYPE_INTEGER, true, null, "0", "65535", true, true);
+        addAttribute("ImageDescriptor", "Height", DATATYPE_INTEGER, true, null, "1", "65535", true, true);
     }
 
-    public boolean canNodeAppear(String elementName,
-            ImageTypeSpecifier imageType) {
+    public boolean canNodeAppear(String elementName, ImageTypeSpecifier imageType) {
         return true;
     }
 

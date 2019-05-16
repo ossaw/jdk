@@ -51,10 +51,10 @@ public interface SOAPBinding extends Binding {
      * Sets the roles played by the SOAP binding instance.
      *
      * @param roles
-     *              The set of roles played by the binding instance.
+     *        The set of roles played by the binding instance.
      * @throws WebServiceException
-     *                             On an error in the configuration of the list
-     *                             of roles.
+     *         On an error in the configuration of the list
+     *         of roles.
      **/
     public void setRoles(Set<String> roles);
 
@@ -70,13 +70,12 @@ public interface SOAPBinding extends Binding {
      * Enables or disables use of MTOM.
      *
      * @param flag
-     *             A <code>boolean</code> specifying whether the use of MTOM
-     *             should be enabled or disabled.
+     *        A <code>boolean</code> specifying whether the use of MTOM
+     *        should be enabled or disabled.
      * @throws WebServiceException
-     *                             If the specified setting is not supported by
-     *                             this binding
-     *                             instance.
-     *
+     *         If the specified setting is not supported by
+     *         this binding
+     *         instance.
      **/
     public void setMTOMEnabled(boolean flag);
 

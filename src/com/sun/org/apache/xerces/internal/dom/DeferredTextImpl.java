@@ -31,7 +31,6 @@ package com.sun.org.apache.xerces.internal.dom;
  * they're written out as part of an XML stream.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
 public class DeferredTextImpl extends TextImpl implements DeferredNode {
@@ -86,8 +85,7 @@ public class DeferredTextImpl extends TextImpl implements DeferredNode {
         needsSyncData(false);
 
         // get initial text value
-        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
-                .ownerDocument();
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument();
         data = ownerDocument.getNodeValueString(fNodeIndex);
 
         // NOTE: We used to normalize adjacent text node values here.

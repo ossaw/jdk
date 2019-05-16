@@ -160,9 +160,8 @@ class ContentModelState {
         switch (model.type) {
             case '+':
                 if (model.first(token)) {
-                    return new ContentModelState(model.content,
-                            new ContentModelState(model, next, value + 1))
-                                    .advance(token);
+                    return new ContentModelState(model.content, new ContentModelState(model, next, value + 1))
+                            .advance(token);
                 }
                 if (value != 0) {
                     if (next != null) {
@@ -175,8 +174,7 @@ class ContentModelState {
 
             case '*':
                 if (model.first(token)) {
-                    return new ContentModelState(model.content, this).advance(
-                            token);
+                    return new ContentModelState(model.content, this).advance(token);
                 }
                 if (next != null) {
                     return next.advance(token);
@@ -186,8 +184,7 @@ class ContentModelState {
 
             case '?':
                 if (model.first(token)) {
-                    return new ContentModelState(model.content, next).advance(
-                            token);
+                    return new ContentModelState(model.content, next).advance(token);
                 }
                 if (next != null) {
                     return next.advance(token);
@@ -212,8 +209,8 @@ class ContentModelState {
                     if (m.next == null) {
                         return new ContentModelState(m, next).advance(token);
                     } else {
-                        return new ContentModelState(m, new ContentModelState(
-                                model, next, value + 1)).advance(token);
+                        return new ContentModelState(m, new ContentModelState(model, next, value + 1))
+                                .advance(token);
                     }
                 }
                 break;
@@ -226,9 +223,8 @@ class ContentModelState {
                 for (int i = 0; m != null; i++, m = m.next) {
                     if ((value & (1L << i)) == 0) {
                         if (m.first(token)) {
-                            return new ContentModelState(m,
-                                    new ContentModelState(model, next, value
-                                            | (1L << i))).advance(token);
+                            return new ContentModelState(m, new ContentModelState(model, next, value
+                                    | (1L << i))).advance(token);
                         }
                         if (!m.empty()) {
                             complete = false;
@@ -247,8 +243,7 @@ class ContentModelState {
 
             default:
                 if (model.content == token) {
-                    if (next == null && (token instanceof Element)
-                            && ((Element) token).content != null) {
+                    if (next == null && (token instanceof Element) && ((Element) token).content != null) {
                         return new ContentModelState(((Element) token).content);
                     }
                     return next;

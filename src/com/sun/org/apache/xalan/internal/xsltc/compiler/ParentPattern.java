@@ -72,13 +72,10 @@ final class ParentPattern extends RelativePathPattern {
     public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
-        final LocalVariableGen local = methodGen.addLocalVariable2("ppt", Util
-                .getJCRefType(NODE_SIG), null);
+        final LocalVariableGen local = methodGen.addLocalVariable2("ppt", Util.getJCRefType(NODE_SIG), null);
 
-        final com.sun.org.apache.bcel.internal.generic.Instruction loadLocal = new ILOAD(
-                local.getIndex());
-        final com.sun.org.apache.bcel.internal.generic.Instruction storeLocal = new ISTORE(
-                local.getIndex());
+        final com.sun.org.apache.bcel.internal.generic.Instruction loadLocal = new ILOAD(local.getIndex());
+        final com.sun.org.apache.bcel.internal.generic.Instruction storeLocal = new ISTORE(local.getIndex());
 
         if (_right.isWildcard()) {
             il.append(methodGen.loadDOM());
@@ -100,13 +97,11 @@ final class ParentPattern extends RelativePathPattern {
             }
         }
 
-        final int getParent = cpg.addInterfaceMethodref(DOM_INTF, GET_PARENT,
-                GET_PARENT_SIG);
+        final int getParent = cpg.addInterfaceMethodref(DOM_INTF, GET_PARENT, GET_PARENT_SIG);
         il.append(new INVOKEINTERFACE(getParent, 2));
 
         final SyntaxTreeNode p = getParent();
-        if (p == null || p instanceof Instruction
-                || p instanceof TopLevelElement) {
+        if (p == null || p instanceof Instruction || p instanceof TopLevelElement) {
             _left.translate(classGen, methodGen);
         } else {
             il.append(DUP);

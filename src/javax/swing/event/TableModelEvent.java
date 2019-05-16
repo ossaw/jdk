@@ -110,8 +110,7 @@ public class TableModelEvent extends java.util.EventObject {
      * The cells in column <I>column</I> in the range [<I>firstRow</I>,
      * <I>lastRow</I>] have been updated.
      */
-    public TableModelEvent(TableModel source, int firstRow, int lastRow,
-            int column) {
+    public TableModelEvent(TableModel source, int firstRow, int lastRow, int column) {
         this(source, firstRow, lastRow, column, UPDATE);
     }
 
@@ -123,8 +122,7 @@ public class TableModelEvent extends java.util.EventObject {
      * <p>
      * The <I>type</I> should be one of: INSERT, UPDATE and DELETE.
      */
-    public TableModelEvent(TableModel source, int firstRow, int lastRow,
-            int column, int type) {
+    public TableModelEvent(TableModel source, int firstRow, int lastRow, int column, int type) {
         super(source);
         this.firstRow = firstRow;
         this.lastRow = lastRow;

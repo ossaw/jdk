@@ -35,13 +35,11 @@ public class FuncRound extends FunctionOneArg {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         final XObject obj = m_arg0.execute(xctxt);
         final double val = obj.num();
         if (val >= -0.5 && val < 0)

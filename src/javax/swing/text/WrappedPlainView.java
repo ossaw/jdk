@@ -33,7 +33,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * boundaries.
      *
      * @param elem
-     *             the element underlying the view
+     *        the element underlying the view
      */
     public WrappedPlainView(Element elem) {
         this(elem, false);
@@ -44,9 +44,9 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * or word boundaries depending upon the setting of the wordWrap parameter.
      *
      * @param elem
-     *                 the element underlying the view
+     *        the element underlying the view
      * @param wordWrap
-     *                 should lines be wrapped on word boundaries?
+     *        should lines be wrapped on word boundaries?
      */
     public WrappedPlainView(Element elem, boolean wordWrap) {
         super(elem, Y_AXIS);
@@ -59,8 +59,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * @return the tab size
      */
     protected int getTabSize() {
-        Integer i = (Integer) getDocument().getProperty(
-                PlainDocument.tabSizeAttribute);
+        Integer i = (Integer) getDocument().getProperty(PlainDocument.tabSizeAttribute);
         int size = (i != null) ? i.intValue() : 8;
         return size;
     }
@@ -72,15 +71,15 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * the way selected and unselected text are rendered can be customized.
      *
      * @param p0
-     *           the starting document location to use &gt;= 0
+     *        the starting document location to use &gt;= 0
      * @param p1
-     *           the ending document location to use &gt;= p1
+     *        the ending document location to use &gt;= p1
      * @param g
-     *           the graphics context
+     *        the graphics context
      * @param x
-     *           the starting X position &gt;= 0
+     *        the starting X position &gt;= 0
      * @param y
-     *           the starting Y position &gt;= 0
+     *        the starting Y position &gt;= 0
      * @see #drawUnselectedText
      * @see #drawSelectedText
      */
@@ -108,21 +107,19 @@ public class WrappedPlainView extends BoxView implements TabExpander {
         }
     }
 
-    private int drawText(Element elem, int p0, int p1, Graphics g, int x, int y)
-            throws BadLocationException {
+    private int drawText(Element elem, int p0, int p1, Graphics g, int x, int y) throws BadLocationException {
         p1 = Math.min(getDocument().getLength(), p1);
         AttributeSet attr = elem.getAttributes();
 
         if (Utilities.isComposedTextAttributeDefined(attr)) {
             g.setColor(unselected);
-            x = Utilities.drawComposedText(this, attr, g, x, y, p0 - elem
-                    .getStartOffset(), p1 - elem.getStartOffset());
+            x = Utilities.drawComposedText(this, attr, g, x, y, p0 - elem.getStartOffset(), p1 - elem
+                    .getStartOffset());
         } else {
             if (sel0 == sel1 || selected == unselected) {
                 // no selection, or it is invisible
                 x = drawUnselectedText(g, x, y, p0, p1);
-            } else if ((p0 >= sel0 && p0 <= sel1) && (p1 >= sel0
-                    && p1 <= sel1)) {
+            } else if ((p0 >= sel0 && p0 <= sel1) && (p1 >= sel0 && p1 <= sel1)) {
                 x = drawSelectedText(g, x, y, p0, p1);
             } else if (sel0 >= p0 && sel0 <= p1) {
                 if (sel1 >= p0 && sel1 <= p1) {
@@ -148,21 +145,20 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * Renders the given range in the model as normal unselected text.
      *
      * @param g
-     *           the graphics context
+     *        the graphics context
      * @param x
-     *           the starting X coordinate &gt;= 0
+     *        the starting X coordinate &gt;= 0
      * @param y
-     *           the starting Y coordinate &gt;= 0
+     *        the starting Y coordinate &gt;= 0
      * @param p0
-     *           the beginning position in the model &gt;= 0
+     *        the beginning position in the model &gt;= 0
      * @param p1
-     *           the ending position in the model &gt;= p0
+     *        the ending position in the model &gt;= p0
      * @return the X location of the end of the range &gt;= 0
      * @exception BadLocationException
-     *                                 if the range is invalid
+     *            if the range is invalid
      */
-    protected int drawUnselectedText(Graphics g, int x, int y, int p0, int p1)
-            throws BadLocationException {
+    protected int drawUnselectedText(Graphics g, int x, int y, int p0, int p1) throws BadLocationException {
         g.setColor(unselected);
         Document doc = getDocument();
         Segment segment = SegmentCache.getSharedSegment();
@@ -179,21 +175,20 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * background.
      *
      * @param g
-     *           the graphics context
+     *        the graphics context
      * @param x
-     *           the starting X coordinate &gt;= 0
+     *        the starting X coordinate &gt;= 0
      * @param y
-     *           the starting Y coordinate &gt;= 0
+     *        the starting Y coordinate &gt;= 0
      * @param p0
-     *           the beginning position in the model &gt;= 0
+     *        the beginning position in the model &gt;= 0
      * @param p1
-     *           the ending position in the model &gt;= p0
+     *        the ending position in the model &gt;= p0
      * @return the location of the end of the range.
      * @exception BadLocationException
-     *                                 if the range is invalid
+     *            if the range is invalid
      */
-    protected int drawSelectedText(Graphics g, int x, int y, int p0, int p1)
-            throws BadLocationException {
+    protected int drawSelectedText(Graphics g, int x, int y, int p0, int p1) throws BadLocationException {
         g.setColor(selected);
         Document doc = getDocument();
         Segment segment = SegmentCache.getSharedSegment();
@@ -228,11 +223,10 @@ public class WrappedPlainView extends BoxView implements TabExpander {
         loadText(segment, p0, p1);
         int currentWidth = getWidth();
         if (wordWrap) {
-            p = p0 + Utilities.getBreakLocation(segment, metrics, tabBase,
-                    tabBase + currentWidth, this, p0);
+            p = p0 + Utilities.getBreakLocation(segment, metrics, tabBase, tabBase + currentWidth, this, p0);
         } else {
-            p = p0 + Utilities.getTabbedTextOffset(segment, metrics, tabBase,
-                    tabBase + currentWidth, this, p0, false);
+            p = p0 + Utilities.getTabbedTextOffset(segment, metrics, tabBase, tabBase + currentWidth, this,
+                    p0, false);
         }
         SegmentCache.releaseSharedSegment(segment);
         return p;
@@ -245,7 +239,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * implementation creates a child view for each child element.
      *
      * @param f
-     *          the view factory
+     *        the view factory
      */
     protected void loadChildren(ViewFactory f) {
         Element e = getElement();
@@ -314,11 +308,11 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * tabOffset argument.
      *
      * @param x
-     *                  the current position &gt;= 0
+     *        the current position &gt;= 0
      * @param tabOffset
-     *                  the position within the text stream that the tab
-     *                  occurred at
-     *                  &gt;= 0.
+     *        the position within the text stream that the tab
+     *        occurred at
+     *        &gt;= 0.
      * @return the tab stop, measured in points &gt;= 0
      */
     public float nextTabStop(float x, int tabOffset) {
@@ -336,10 +330,9 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * font metrics for the nested lines to use.
      *
      * @param g
-     *          the rendering surface to use
+     *        the rendering surface to use
      * @param a
-     *          the allocated region to render into
-     *
+     *        the allocated region to render into
      * @see View#paint
      */
     public void paint(Graphics g, Shape a) {
@@ -348,11 +341,9 @@ public class WrappedPlainView extends BoxView implements TabExpander {
         JTextComponent host = (JTextComponent) getContainer();
         sel0 = host.getSelectionStart();
         sel1 = host.getSelectionEnd();
-        unselected = (host.isEnabled()) ? host.getForeground()
-                : host.getDisabledTextColor();
+        unselected = (host.isEnabled()) ? host.getForeground() : host.getDisabledTextColor();
         Caret c = host.getCaret();
-        selected = c.isSelectionVisible() && host.getHighlighter() != null
-                ? host.getSelectedTextColor()
+        selected = c.isSelectionVisible() && host.getHighlighter() != null ? host.getSelectedTextColor()
                 : unselected;
         g.setFont(host.getFont());
 
@@ -365,9 +356,9 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * given axis, if it has any layout duties.
      *
      * @param width
-     *               the width &gt;= 0
+     *        the width &gt;= 0
      * @param height
-     *               the height &gt;= 0
+     *        the height &gt;= 0
      */
     public void setSize(float width, float height) {
         updateMetrics();
@@ -388,7 +379,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * the metrics to determine the height of the potentially wrapped lines).
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the span the view would like to be rendered into. Typically the
      *         view is told to render into the span that is returned, although
      *         there is no guarantee. The parent may choose to resize or break
@@ -407,7 +398,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * the metrics to determine the height of the potentially wrapped lines).
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the span the view would like to be rendered into. Typically the
      *         view is told to render into the span that is returned, although
      *         there is no guarantee. The parent may choose to resize or break
@@ -426,7 +417,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * the metrics to determine the height of the potentially wrapped lines).
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @return the span the view would like to be rendered into. Typically the
      *         view is told to render into the span that is returned, although
      *         there is no guarantee. The parent may choose to resize or break
@@ -444,19 +435,17 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * update the children.
      *
      * @param e
-     *          the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *          the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *          the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @see View#insertUpdate
      */
     public void insertUpdate(DocumentEvent e, Shape a, ViewFactory f) {
         updateChildren(e, a);
 
-        Rectangle alloc = ((a != null) && isAllocationValid())
-                ? getInsideAllocation(a)
-                : null;
+        Rectangle alloc = ((a != null) && isAllocationValid()) ? getInsideAllocation(a) : null;
         int pos = e.getOffset();
         View v = getViewAtPosition(pos, alloc);
         if (v != null) {
@@ -470,19 +459,17 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * update the children.
      *
      * @param e
-     *          the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *          the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *          the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @see View#removeUpdate
      */
     public void removeUpdate(DocumentEvent e, Shape a, ViewFactory f) {
         updateChildren(e, a);
 
-        Rectangle alloc = ((a != null) && isAllocationValid())
-                ? getInsideAllocation(a)
-                : null;
+        Rectangle alloc = ((a != null) && isAllocationValid()) ? getInsideAllocation(a) : null;
         int pos = e.getOffset();
         View v = getViewAtPosition(pos, alloc);
         if (v != null) {
@@ -495,11 +482,11 @@ public class WrappedPlainView extends BoxView implements TabExpander {
      * location that this view is responsible for.
      *
      * @param e
-     *          the change information from the associated document
+     *        the change information from the associated document
      * @param a
-     *          the current allocation of the view
+     *        the current allocation of the view
      * @param f
-     *          the factory to use to rebuild if the view has children
+     *        the factory to use to rebuild if the view has children
      * @see View#changedUpdate
      */
     public void changedUpdate(DocumentEvent e, Shape a, ViewFactory f) {
@@ -537,7 +524,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
          * Determines the preferred span for this view along an axis.
          *
          * @param axis
-         *             may be either X_AXIS or Y_AXIS
+         *        may be either X_AXIS or Y_AXIS
          * @return the span the view would like to be rendered into. Typically
          *         the view is told to render into the span that is returned,
          *         although there is no guarantee. The parent may choose to
@@ -570,9 +557,9 @@ public class WrappedPlainView extends BoxView implements TabExpander {
          * itself to render into the given allocation.
          *
          * @param g
-         *          the rendering surface to use
+         *        the rendering surface to use
          * @param a
-         *          the allocated region to render into
+         *        the allocated region to render into
          * @see View#paint
          */
         public void paint(Graphics g, Shape a) {
@@ -582,9 +569,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
 
             JTextComponent host = (JTextComponent) getContainer();
             Highlighter h = host.getHighlighter();
-            LayeredHighlighter dh = (h instanceof LayeredHighlighter)
-                    ? (LayeredHighlighter) h
-                    : null;
+            LayeredHighlighter dh = (h instanceof LayeredHighlighter) ? (LayeredHighlighter) h : null;
 
             int start = getStartOffset();
             int end = getEndOffset();
@@ -608,18 +593,17 @@ public class WrappedPlainView extends BoxView implements TabExpander {
          * coordinate space of the view mapped to it.
          *
          * @param pos
-         *            the position to convert
+         *        the position to convert
          * @param a
-         *            the allocated region to render into
+         *        the allocated region to render into
          * @return the bounding box of the given position is returned
          * @exception BadLocationException
-         *                                 if the given position does not
-         *                                 represent a valid
-         *                                 location in the associated document
+         *            if the given position does not
+         *            represent a valid
+         *            location in the associated document
          * @see View#modelToView
          */
-        public Shape modelToView(int pos, Shape a, Position.Bias b)
-                throws BadLocationException {
+        public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
             Rectangle alloc = a.getBounds();
             alloc.height = metrics.getHeight();
             alloc.width = 1;
@@ -629,8 +613,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
                 throw new BadLocationException("Position out of range", pos);
             }
 
-            int testP = (b == Position.Bias.Forward) ? pos
-                    : Math.max(p0, pos - 1);
+            int testP = (b == Position.Bias.Forward) ? pos : Math.max(p0, pos - 1);
             int line = 0;
             int[] lineEnds = getLineEnds();
             if (lineEnds != null) {
@@ -644,8 +627,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
             if (pos > p0) {
                 Segment segment = SegmentCache.getSharedSegment();
                 loadText(segment, p0, pos);
-                alloc.x += Utilities.getTabbedTextWidth(segment, metrics,
-                        alloc.x, WrappedPlainView.this, p0);
+                alloc.x += Utilities.getTabbedTextWidth(segment, metrics, alloc.x, WrappedPlainView.this, p0);
                 SegmentCache.releaseSharedSegment(segment);
             }
             return alloc;
@@ -656,17 +638,16 @@ public class WrappedPlainView extends BoxView implements TabExpander {
          * coordinate space of the model.
          *
          * @param fx
-         *           the X coordinate
+         *        the X coordinate
          * @param fy
-         *           the Y coordinate
+         *        the Y coordinate
          * @param a
-         *           the allocated region to render into
+         *        the allocated region to render into
          * @return the location within the model that best represents the given
          *         point in the view
          * @see View#viewToModel
          */
-        public int viewToModel(float fx, float fy, Shape a,
-                Position.Bias[] bias) {
+        public int viewToModel(float fx, float fy, Shape a, Position.Bias[] bias) {
             // PENDING(prinz) implement bias properly
             bias[0] = Position.Bias.Forward;
 
@@ -690,8 +671,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
                 // place
                 // we can position to.
                 alloc.height = metrics.getHeight();
-                int line = (alloc.height > 0 ? (y - alloc.y) / alloc.height
-                        : lineCount - 1);
+                int line = (alloc.height > 0 ? (y - alloc.y) / alloc.height : lineCount - 1);
                 if (line >= lineCount) {
                     return getEndOffset() - 1;
                 } else {
@@ -717,8 +697,8 @@ public class WrappedPlainView extends BoxView implements TabExpander {
                         // Determine the offset into the text
                         Segment segment = SegmentCache.getSharedSegment();
                         loadText(segment, p0, p1);
-                        int n = Utilities.getTabbedTextOffset(segment, metrics,
-                                alloc.x, x, WrappedPlainView.this, p0);
+                        int n = Utilities.getTabbedTextOffset(segment, metrics, alloc.x, x,
+                                WrappedPlainView.this, p0);
                         SegmentCache.releaseSharedSegment(segment);
                         return Math.min(p0 + n, p1 - 1);
                     }
@@ -770,7 +750,7 @@ public class WrappedPlainView extends BoxView implements TabExpander {
          * Creates line cache if text breaks into more than one physical line.
          * 
          * @param startPos
-         *                 position to start breaking from
+         *        position to start breaking from
          * @return the cache created, ot null if text breaks into one line
          */
         final int[] breakLines(int startPos) {

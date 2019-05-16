@@ -9,7 +9,6 @@ import javax.lang.model.element.Name;
 
 /**
  * A tree node for an identifier expression.
- *
  * For example:
  * 
  * <pre>
@@ -17,7 +16,6 @@ import javax.lang.model.element.Name;
  * </pre>
  *
  * @jls section 6.5.6.1
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

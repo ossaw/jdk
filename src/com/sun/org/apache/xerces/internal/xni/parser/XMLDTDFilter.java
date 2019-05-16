@@ -24,7 +24,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLDTDHandler;
  * events.
  *
  * @author Andy Clark, IBM
- *
  */
 public interface XMLDTDFilter extends XMLDTDHandler, XMLDTDSource {
 

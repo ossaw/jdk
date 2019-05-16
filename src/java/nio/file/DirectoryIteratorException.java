@@ -20,20 +20,18 @@ import java.io.InvalidObjectException;
  * @see DirectoryStream
  */
 
-public final class DirectoryIteratorException extends
-        ConcurrentModificationException {
+public final class DirectoryIteratorException extends ConcurrentModificationException {
     private static final long serialVersionUID = -6012699886086212874L;
 
     /**
      * Constructs an instance of this class.
      *
      * @param cause
-     *              the {@code IOException} that caused the directory iteration
-     *              to
-     *              fail
-     *
+     *        the {@code IOException} that caused the directory iteration
+     *        to
+     *        fail
      * @throws NullPointerException
-     *                              if the cause is {@code null}
+     *         if the cause is {@code null}
      */
     public DirectoryIteratorException(IOException cause) {
         super(Objects.requireNonNull(cause));
@@ -53,12 +51,11 @@ public final class DirectoryIteratorException extends
      * Called to read the object from a stream.
      *
      * @throws InvalidObjectException
-     *                                if the object is invalid or has a cause
-     *                                that is not an
-     *                                {@code IOException}
+     *         if the object is invalid or has a cause
+     *         that is not an
+     *         {@code IOException}
      */
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         Throwable cause = super.getCause();
         if (!(cause instanceof IOException))

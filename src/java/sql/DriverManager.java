@@ -20,7 +20,6 @@ import sun.reflect.Reflection;
  * API, provides another way to connect to a data source. The use of a
  * <code>DataSource</code> object is the preferred means of connecting to a data
  * source.
- *
  * <P>
  * As part of its initialization, the <code>DriverManager</code> class will
  * attempt to load the driver classes referenced in the "jdbc.drivers" system
@@ -45,19 +44,16 @@ import sun.reflect.Reflection;
  * <pre>
  * <code>my.sql.Driver</code>
  * </pre>
- *
  * <P>
  * Applications no longer need to explicitly load JDBC drivers using
  * <code>Class.forName()</code>. Existing programs which currently load JDBC
  * drivers using <code>Class.forName()</code> will continue to work without
  * modification.
- *
  * <P>
  * When the method <code>getConnection</code> is called, the
  * <code>DriverManager</code> will attempt to locate a suitable driver from
  * amongst those loaded at initialization and those loaded explicitly using the
  * same classloader as the current applet or application.
- *
  * <P>
  * Starting with the Java 2 SDK, Standard Edition, version 1.3, a logging stream
  * can be set only if the proper permission has been granted. Normally this will
@@ -103,14 +99,12 @@ public class DriverManager {
      * 
      * @since 1.8
      */
-    final static SQLPermission DEREGISTER_DRIVER_PERMISSION = new SQLPermission(
-            "deregisterDriver");
+    final static SQLPermission DEREGISTER_DRIVER_PERMISSION = new SQLPermission("deregisterDriver");
 
     // --------------------------JDBC 2.0-----------------------------
 
     /**
      * Retrieves the log writer.
-     *
      * The <code>getLogWriter</code> and <code>setLogWriter</code> methods
      * should be used instead of the <code>get/setlogStream</code> methods,
      * which are deprecated.
@@ -143,14 +137,13 @@ public class DriverManager {
      * writer, this method throws a <code>java.lang.SecurityException</code>.
      *
      * @param out
-     *            the new logging/tracing <code>PrintStream</code> object;
-     *            <code>null</code> to disable logging and tracing
+     *        the new logging/tracing <code>PrintStream</code> object;
+     *        <code>null</code> to disable logging and tracing
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           <code>checkPermission</code> method denies
-     *                           setting the log
-     *                           writer
-     *
+     *         if a security manager exists and its
+     *         <code>checkPermission</code> method denies
+     *         setting the log
+     *         writer
      * @see SecurityManager#checkPermission
      * @see #getLogWriter
      * @since 1.2
@@ -178,28 +171,27 @@ public class DriverManager {
      * maximum portability, an application should only specify a property once.
      *
      * @param url
-     *             a database url of the form <code> jdbc:<em>subprotocol</em>:
+     *        a database url of the form <code> jdbc:<em>subprotocol</em>:
      *            <em>subname</em></code>
      * @param info
-     *             a list of arbitrary string tag/value pairs as connection
-     *             arguments; normally at least a "user" and "password" property
-     *             should be included
+     *        a list of arbitrary string tag/value pairs as connection
+     *        arguments; normally at least a "user" and "password" property
+     *        should be included
      * @return a Connection to the URL
      * @exception SQLException
-     *                         if a database access error occurs or the url is
-     *                         {@code null}
+     *            if a database access error occurs or the url is
+     *            {@code null}
      * @throws SQLTimeoutException
-     *                             when the driver has determined that the
-     *                             timeout value
-     *                             specified by the {@code setLoginTimeout}
-     *                             method has been
-     *                             exceeded and has at least tried to cancel the
-     *                             current
-     *                             database connection attempt
+     *         when the driver has determined that the
+     *         timeout value
+     *         specified by the {@code setLoginTimeout}
+     *         method has been
+     *         exceeded and has at least tried to cancel the
+     *         current
+     *         database connection attempt
      */
     @CallerSensitive
-    public static Connection getConnection(String url,
-            java.util.Properties info) throws SQLException {
+    public static Connection getConnection(String url, java.util.Properties info) throws SQLException {
 
         return (getConnection(url, info, Reflection.getCallerClass()));
     }
@@ -215,30 +207,29 @@ public class DriverManager {
      * should only specify a property once.
      *
      * @param url
-     *                 a database url of the form
-     *                 <code>jdbc:<em>subprotocol</em>:
+     *        a database url of the form
+     *        <code>jdbc:<em>subprotocol</em>:
      *            <em>subname</em></code>
      * @param user
-     *                 the database user on whose behalf the connection is being
-     *                 made
+     *        the database user on whose behalf the connection is being
+     *        made
      * @param password
-     *                 the user's password
+     *        the user's password
      * @return a connection to the URL
      * @exception SQLException
-     *                         if a database access error occurs or the url is
-     *                         {@code null}
+     *            if a database access error occurs or the url is
+     *            {@code null}
      * @throws SQLTimeoutException
-     *                             when the driver has determined that the
-     *                             timeout value
-     *                             specified by the {@code setLoginTimeout}
-     *                             method has been
-     *                             exceeded and has at least tried to cancel the
-     *                             current
-     *                             database connection attempt
+     *         when the driver has determined that the
+     *         timeout value
+     *         specified by the {@code setLoginTimeout}
+     *         method has been
+     *         exceeded and has at least tried to cancel the
+     *         current
+     *         database connection attempt
      */
     @CallerSensitive
-    public static Connection getConnection(String url, String user,
-            String password) throws SQLException {
+    public static Connection getConnection(String url, String user, String password) throws SQLException {
         java.util.Properties info = new java.util.Properties();
 
         if (user != null) {
@@ -257,20 +248,20 @@ public class DriverManager {
      * the set of registered JDBC drivers.
      *
      * @param url
-     *            a database url of the form <code> jdbc:<em>subprotocol</em>:
+     *        a database url of the form <code> jdbc:<em>subprotocol</em>:
      *            <em>subname</em></code>
      * @return a connection to the URL
      * @exception SQLException
-     *                         if a database access error occurs or the url is
-     *                         {@code null}
+     *            if a database access error occurs or the url is
+     *            {@code null}
      * @throws SQLTimeoutException
-     *                             when the driver has determined that the
-     *                             timeout value
-     *                             specified by the {@code setLoginTimeout}
-     *                             method has been
-     *                             exceeded and has at least tried to cancel the
-     *                             current
-     *                             database connection attempt
+     *         when the driver has determined that the
+     *         timeout value
+     *         specified by the {@code setLoginTimeout}
+     *         method has been
+     *         exceeded and has at least tried to cancel the
+     *         current
+     *         database connection attempt
      */
     @CallerSensitive
     public static Connection getConnection(String url) throws SQLException {
@@ -285,12 +276,12 @@ public class DriverManager {
      * the set of registered JDBC drivers.
      *
      * @param url
-     *            a database URL of the form <code>jdbc:<em>subprotocol</em>:
+     *        a database URL of the form <code>jdbc:<em>subprotocol</em>:
      *            <em>subname</em></code>
      * @return a <code>Driver</code> object representing a driver that can
      *         connect to the given URL
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      */
     @CallerSensitive
     public static Driver getDriver(String url) throws SQLException {
@@ -309,8 +300,7 @@ public class DriverManager {
                 try {
                     if (aDriver.driver.acceptsURL(url)) {
                         // Success!
-                        println("getDriver returning " + aDriver.driver
-                                .getClass().getName());
+                        println("getDriver returning " + aDriver.driver.getClass().getName());
                         return (aDriver.driver);
                     }
 
@@ -334,15 +324,14 @@ public class DriverManager {
      * registered, no action is taken.
      *
      * @param driver
-     *               the new JDBC Driver that is to be registered with the
-     *               {@code DriverManager}
+     *        the new JDBC Driver that is to be registered with the
+     *        {@code DriverManager}
      * @exception SQLException
-     *                                 if a database access error occurs
+     *            if a database access error occurs
      * @exception NullPointerException
-     *                                 if {@code driver} is null
+     *            if {@code driver} is null
      */
-    public static synchronized void registerDriver(java.sql.Driver driver)
-            throws SQLException {
+    public static synchronized void registerDriver(java.sql.Driver driver) throws SQLException {
 
         registerDriver(driver, null);
     }
@@ -354,19 +343,19 @@ public class DriverManager {
      * registered, no action is taken.
      *
      * @param driver
-     *               the new JDBC Driver that is to be registered with the
-     *               {@code DriverManager}
+     *        the new JDBC Driver that is to be registered with the
+     *        {@code DriverManager}
      * @param da
-     *               the {@code DriverAction} implementation to be used when
-     *               {@code DriverManager#deregisterDriver} is called
+     *        the {@code DriverAction} implementation to be used when
+     *        {@code DriverManager#deregisterDriver} is called
      * @exception SQLException
-     *                                 if a database access error occurs
+     *            if a database access error occurs
      * @exception NullPointerException
-     *                                 if {@code driver} is null
+     *            if {@code driver} is null
      * @since 1.8
      */
-    public static synchronized void registerDriver(java.sql.Driver driver,
-            DriverAction da) throws SQLException {
+    public static synchronized void registerDriver(java.sql.Driver driver, DriverAction da)
+            throws SQLException {
 
         /* Register the driver if it has not already been added to our list */
         if (driver != null) {
@@ -399,20 +388,18 @@ public class DriverManager {
      * being removed from the list of registered drivers.
      *
      * @param driver
-     *               the JDBC Driver to remove
+     *        the JDBC Driver to remove
      * @exception SQLException
-     *                         if a database access error occurs
+     *            if a database access error occurs
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           {@code checkPermission}
-     *                           method denies permission to deregister a
-     *                           driver.
-     *
+     *         if a security manager exists and its
+     *         {@code checkPermission}
+     *         method denies permission to deregister a
+     *         driver.
      * @see SecurityManager#checkPermission
      */
     @CallerSensitive
-    public static synchronized void deregisterDriver(Driver driver)
-            throws SQLException {
+    public static synchronized void deregisterDriver(Driver driver) throws SQLException {
         if (driver == null) {
             return;
         }
@@ -427,8 +414,7 @@ public class DriverManager {
         DriverInfo aDriver = new DriverInfo(driver, null);
         if (registeredDrivers.contains(aDriver)) {
             if (isDriverAllowed(driver, Reflection.getCallerClass())) {
-                DriverInfo di = registeredDrivers.get(registeredDrivers.indexOf(
-                        aDriver));
+                DriverInfo di = registeredDrivers.get(registeredDrivers.indexOf(aDriver));
                 // If a DriverAction was specified, Call it to notify the
                 // driver that it has been deregistered
                 if (di.action() != null) {
@@ -449,7 +435,6 @@ public class DriverManager {
     /**
      * Retrieves an Enumeration with all of the currently loaded JDBC drivers to
      * which the current caller has access.
-     *
      * <P>
      * <B>Note:</B> The classname of a driver can be found using
      * <CODE>d.getClass().getName()</CODE>
@@ -480,8 +465,8 @@ public class DriverManager {
      * to connect to a database once the driver has been identified.
      *
      * @param seconds
-     *                the login time limit in seconds; zero means there is no
-     *                limit
+     *        the login time limit in seconds; zero means there is no
+     *        limit
      * @see #getLoginTimeout
      */
     public static void setLoginTimeout(int seconds) {
@@ -510,15 +495,14 @@ public class DriverManager {
      * this method throws a <code>java.lang.SecurityException</code>.
      *
      * @param out
-     *            the new logging/tracing PrintStream; to disable, set to
-     *            <code>null</code>
+     *        the new logging/tracing PrintStream; to disable, set to
+     *        <code>null</code>
      * @deprecated Use {@code setLogWriter}
      * @throws SecurityException
-     *                           if a security manager exists and its
-     *                           <code>checkPermission</code> method denies
-     *                           setting the log
-     *                           stream
-     *
+     *         if a security manager exists and its
+     *         <code>checkPermission</code> method denies
+     *         setting the log
+     *         stream
      * @see SecurityManager#checkPermission
      * @see #getLogStream
      */
@@ -555,7 +539,7 @@ public class DriverManager {
      * Prints a message to the current JDBC log stream.
      *
      * @param message
-     *                a log or tracing message
+     *        a log or tracing message
      */
     public static void println(String message) {
         synchronized (logSync) {
@@ -579,14 +563,12 @@ public class DriverManager {
         return isDriverAllowed(driver, callerCL);
     }
 
-    private static boolean isDriverAllowed(Driver driver,
-            ClassLoader classLoader) {
+    private static boolean isDriverAllowed(Driver driver, ClassLoader classLoader) {
         boolean result = false;
         if (driver != null) {
             Class<?> aClass = null;
             try {
-                aClass = Class.forName(driver.getClass().getName(), true,
-                        classLoader);
+                aClass = Class.forName(driver.getClass().getName(), true, classLoader);
             } catch (Exception ex) {
                 result = false;
             }
@@ -600,12 +582,11 @@ public class DriverManager {
     private static void loadInitialDrivers() {
         String drivers;
         try {
-            drivers = AccessController.doPrivileged(
-                    new PrivilegedAction<String>() {
-                        public String run() {
-                            return System.getProperty("jdbc.drivers");
-                        }
-                    });
+            drivers = AccessController.doPrivileged(new PrivilegedAction<String>() {
+                public String run() {
+                    return System.getProperty("jdbc.drivers");
+                }
+            });
         } catch (Exception ex) {
             drivers = null;
         }
@@ -617,8 +598,7 @@ public class DriverManager {
         AccessController.doPrivileged(new PrivilegedAction<Void>() {
             public Void run() {
 
-                ServiceLoader<Driver> loadedDrivers = ServiceLoader.load(
-                        Driver.class);
+                ServiceLoader<Driver> loadedDrivers = ServiceLoader.load(Driver.class);
                 Iterator<Driver> driversIterator = loadedDrivers.iterator();
 
                 /*
@@ -654,8 +634,7 @@ public class DriverManager {
         for (String aDriver : driversList) {
             try {
                 println("DriverManager.Initialize: loading " + aDriver);
-                Class.forName(aDriver, true, ClassLoader
-                        .getSystemClassLoader());
+                Class.forName(aDriver, true, ClassLoader.getSystemClassLoader());
             } catch (Exception ex) {
                 println("DriverManager.Initialize: load failed: " + ex);
             }
@@ -663,8 +642,8 @@ public class DriverManager {
     }
 
     // Worker method called by the public getConnection() methods.
-    private static Connection getConnection(String url,
-            java.util.Properties info, Class<?> caller) throws SQLException {
+    private static Connection getConnection(String url, java.util.Properties info, Class<?> caller)
+            throws SQLException {
         /*
          * When callerCl is null, we should check the application's (which is
          * invoking this class indirectly) classloader, so that the JDBC driver
@@ -694,13 +673,11 @@ public class DriverManager {
             // skip it.
             if (isDriverAllowed(aDriver.driver, callerCL)) {
                 try {
-                    println("    trying " + aDriver.driver.getClass()
-                            .getName());
+                    println("    trying " + aDriver.driver.getClass().getName());
                     Connection con = aDriver.driver.connect(url, info);
                     if (con != null) {
                         // Success!
-                        println("getConnection returning " + aDriver.driver
-                                .getClass().getName());
+                        println("getConnection returning " + aDriver.driver.getClass().getName());
                         return (con);
                     }
                 } catch (SQLException ex) {
@@ -744,8 +721,7 @@ class DriverInfo {
 
     @Override
     public boolean equals(Object other) {
-        return (other instanceof DriverInfo)
-                && this.driver == ((DriverInfo) other).driver;
+        return (other instanceof DriverInfo) && this.driver == ((DriverInfo) other).driver;
     }
 
     @Override

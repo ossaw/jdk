@@ -93,9 +93,8 @@ public interface MultiDoc {
      * Obtain the current doc object.
      *
      * @return Current doc object.
-     *
      * @exception IOException
-     *                        Thrown if a error occurred reading the document.
+     *            Thrown if a error occurred reading the document.
      */
     public Doc getDoc() throws IOException;
 
@@ -105,10 +104,9 @@ public interface MultiDoc {
      *
      * @return Multidoc object containing the next doc object, or null if there
      *         are no further doc objects.
-     *
      * @exception IOException
-     *                        Thrown if an error occurred locating the next
-     *                        document
+     *            Thrown if an error occurred locating the next
+     *            document
      */
     public MultiDoc next() throws IOException;
 

@@ -25,7 +25,6 @@ import java.math.BigInteger;
  * </p>
  *
  * @author Naela Nissar, IBM
- *
  */
 public interface XSDecimal {
 
@@ -37,40 +36,40 @@ public interface XSDecimal {
     /**
      * @return the <code>BigInteger</code> representation of this object
      * @exception NumberFormatException
-     *                                  if the value cannot be represented as a
-     *                                  <code>BigInteger</code>
+     *            if the value cannot be represented as a
+     *            <code>BigInteger</code>
      */
     public BigInteger getBigInteger() throws NumberFormatException;
 
     /**
      * @return the long value representation of this object
      * @exception NumberFormatException
-     *                                  if the value cannot be represented as a
-     *                                  <code>long</code>
+     *            if the value cannot be represented as a
+     *            <code>long</code>
      */
     public long getLong() throws NumberFormatException;
 
     /**
      * @return the int value representation of this object
      * @exception NumberFormatException
-     *                                  if the value cannot be represented as a
-     *                                  <code>int</code>
+     *            if the value cannot be represented as a
+     *            <code>int</code>
      */
     public int getInt() throws NumberFormatException;
 
     /**
      * @return the short value representation of this object
      * @exception NumberFormatException
-     *                                  if the value cannot be represented as a
-     *                                  <code>short</code>
+     *            if the value cannot be represented as a
+     *            <code>short</code>
      */
     public short getShort() throws NumberFormatException;
 
     /**
      * @return the byte value representation of this object
      * @exception NumberFormatException
-     *                                  if the value cannot be represented as a
-     *                                  <code>byte</code>
+     *            if the value cannot be represented as a
+     *            <code>byte</code>
      */
     public byte getByte() throws NumberFormatException;
 }

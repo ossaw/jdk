@@ -49,8 +49,7 @@ class TopLevelElement extends SyntaxTreeNode {
      * Translate this node into JVM bytecodes.
      */
     public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
-        ErrorMsg msg = new ErrorMsg(ErrorMsg.NOT_IMPLEMENTED_ERR, getClass(),
-                this);
+        ErrorMsg msg = new ErrorMsg(ErrorMsg.NOT_IMPLEMENTED_ERR, getClass(), this);
         getParser().reportError(FATAL, msg);
     }
 
@@ -58,8 +57,7 @@ class TopLevelElement extends SyntaxTreeNode {
      * Translate this node into a fresh instruction list. The original
      * instruction list is saved and restored.
      */
-    public InstructionList compile(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public InstructionList compile(ClassGenerator classGen, MethodGenerator methodGen) {
         final InstructionList result, save = methodGen.getInstructionList();
         methodGen.setInstructionList(result = new InstructionList());
         translate(classGen, methodGen);

@@ -44,15 +44,13 @@ public class NVListImpl extends NVList {
     }
 
     public NamedValue add(int flags) {
-        NamedValue tmpVal = new NamedValueImpl(orb, "", new AnyImpl(orb),
-                flags);
+        NamedValue tmpVal = new NamedValueImpl(orb, "", new AnyImpl(orb), flags);
         _namedValues.addElement(tmpVal);
         return tmpVal;
     }
 
     public NamedValue add_item(String itemName, int flags) {
-        NamedValue tmpVal = new NamedValueImpl(orb, itemName, new AnyImpl(orb),
-                flags);
+        NamedValue tmpVal = new NamedValueImpl(orb, itemName, new AnyImpl(orb), flags);
         _namedValues.addElement(tmpVal);
         return tmpVal;
     }

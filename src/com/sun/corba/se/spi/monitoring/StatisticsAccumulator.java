@@ -18,7 +18,6 @@ import java.util.*;
  *         compute all the statistics for the collected samples (Which are
  *         Minimum, Maximum, Average, StandardDeviation) and provides a nice
  *         printable record as a String.
- *
  *         Users can easily extend this class and provide the implementation of
  *         toString() method to format the stats as desired. By default all the
  *         stats are printed in a single line.
@@ -54,13 +53,12 @@ public class StatisticsAccumulator {
      * collect the information when requested from the ASAdmin.
      * </p>
      * <p>
-     *
      * </p>
      * <p>
      *
      * @param value
-     *              a double value to make it more precise
-     *              </p>
+     *        a double value to make it more precise
+     *        </p>
      */
     public void sample(double value) {
         sampleCount++;
@@ -85,11 +83,9 @@ public class StatisticsAccumulator {
      * the format they prefer, if the default format doesn't suffice.
      */
     public String toString() {
-        return "Minimum Value = " + min + " " + unit + " " + "Maximum Value = "
-                + max + " " + unit + " " + "Average Value = " + computeAverage()
-                + " " + unit + " " + "Standard Deviation = "
-                + computeStandardDeviation() + " " + unit + " "
-                + "Samples Collected = " + sampleCount;
+        return "Minimum Value = " + min + " " + unit + " " + "Maximum Value = " + max + " " + unit + " "
+                + "Average Value = " + computeAverage() + " " + unit + " " + "Standard Deviation = "
+                + computeStandardDeviation() + " " + unit + " " + "Samples Collected = " + sampleCount;
     }
 
     /**
@@ -102,13 +98,11 @@ public class StatisticsAccumulator {
     /**
      * We use a derived Standard Deviation formula to compute SD. This way there
      * is no need to hold on to all the samples provided.
-     *
      * The method is protected to let users extend and format the results.
      */
     protected double computeStandardDeviation() {
         double sampleSumSquare = sampleSum * sampleSum;
-        return Math.sqrt((sampleSquareSum - ((sampleSumSquare) / sampleCount))
-                / (sampleCount - 1));
+        return Math.sqrt((sampleSquareSum - ((sampleSumSquare) / sampleCount)) / (sampleCount - 1));
     }
 
     /**
@@ -124,8 +118,8 @@ public class StatisticsAccumulator {
      *         </p>
      *         <p>
      * @param unit
-     *             a String representing the units for the samples collected
-     *             </p>
+     *        a String representing the units for the samples collected
+     *        </p>
      */
     public StatisticsAccumulator(String unit) {
         this.unit = unit;
@@ -148,48 +142,37 @@ public class StatisticsAccumulator {
     /**
      * This is an internal API to test StatisticsAccumulator...
      */
-    public void unitTestValidate(String expectedUnit, double expectedMin,
-            double expectedMax, long expectedSampleCount,
-            double expectedAverage, double expectedStandardDeviation) {
+    public void unitTestValidate(String expectedUnit, double expectedMin, double expectedMax,
+            long expectedSampleCount, double expectedAverage, double expectedStandardDeviation) {
         if (!expectedUnit.equals(unit)) {
-            throw new RuntimeException("Unit is not same as expected Unit"
-                    + "\nUnit = " + unit + "ExpectedUnit = " + expectedUnit);
+            throw new RuntimeException("Unit is not same as expected Unit" + "\nUnit = " + unit
+                    + "ExpectedUnit = " + expectedUnit);
         }
         if (min != expectedMin) {
-            throw new RuntimeException(
-                    "Minimum value is not same as expected minimum value"
-                            + "\nMin Value = " + min + "Expected Min Value = "
-                            + expectedMin);
+            throw new RuntimeException("Minimum value is not same as expected minimum value"
+                    + "\nMin Value = " + min + "Expected Min Value = " + expectedMin);
         }
         if (max != expectedMax) {
-            throw new RuntimeException(
-                    "Maximum value is not same as expected maximum value"
-                            + "\nMax Value = " + max + "Expected Max Value = "
-                            + expectedMax);
+            throw new RuntimeException("Maximum value is not same as expected maximum value"
+                    + "\nMax Value = " + max + "Expected Max Value = " + expectedMax);
         }
         if (sampleCount != expectedSampleCount) {
-            throw new RuntimeException(
-                    "Sample count is not same as expected Sample Count"
-                            + "\nSampleCount = " + sampleCount
-                            + "Expected Sample Count = " + expectedSampleCount);
+            throw new RuntimeException("Sample count is not same as expected Sample Count"
+                    + "\nSampleCount = " + sampleCount + "Expected Sample Count = " + expectedSampleCount);
         }
         if (computeAverage() != expectedAverage) {
-            throw new RuntimeException("Average is not same as expected Average"
-                    + "\nAverage = " + computeAverage() + "Expected Average = "
-                    + expectedAverage);
+            throw new RuntimeException("Average is not same as expected Average" + "\nAverage = "
+                    + computeAverage() + "Expected Average = " + expectedAverage);
         }
         // We are computing Standard Deviation from two different methods
         // for comparison. So, the values will not be the exact same to the last
         // few digits. So, we are taking the difference and making sure that
         // the difference is not greater than 1.
-        double difference = Math.abs(computeStandardDeviation()
-                - expectedStandardDeviation);
+        double difference = Math.abs(computeStandardDeviation() - expectedStandardDeviation);
         if (difference > 1) {
-            throw new RuntimeException(
-                    "Standard Deviation is not same as expected Std Deviation"
-                            + "\nStandard Dev = " + computeStandardDeviation()
-                            + "Expected Standard Dev = "
-                            + expectedStandardDeviation);
+            throw new RuntimeException("Standard Deviation is not same as expected Std Deviation"
+                    + "\nStandard Dev = " + computeStandardDeviation() + "Expected Standard Dev = "
+                    + expectedStandardDeviation);
         }
     }
 

@@ -24,9 +24,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * interface must be thread-safe.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  */
 public interface DatatypeValidator {
 
@@ -34,11 +32,10 @@ public interface DatatypeValidator {
      * validate a given string against this DV
      *
      * @param content
-     *                the string value that needs to be validated
+     *        the string value that needs to be validated
      * @param context
-     *                the validation context
+     *        the validation context
      */
-    public void validate(String content, ValidationContext context)
-            throws InvalidDatatypeValueException;
+    public void validate(String content, ValidationContext context) throws InvalidDatatypeValueException;
 
 }

@@ -13,11 +13,9 @@ import java.io.ObjectStreamException;
 
 /**
  * This is the common base class of all Java language enumeration types.
- *
  * More information about enums, including descriptions of the implicitly
  * declared methods synthesized by the compiler, can be found in section 8.9 of
  * <cite>The Java&trade; Language Specification</cite>.
- *
  * <p>
  * Note that when using an enumeration type as the type of a set or as the type
  * of the keys in a map, specialized and efficient {@linkplain java.util.EnumSet
@@ -32,8 +30,7 @@ import java.io.ObjectStreamException;
  * @see java.util.EnumMap
  * @since 1.5
  */
-public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
-        Serializable {
+public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializable {
     /**
      * The name of this enum constant, as declared in the enum declaration. Most
      * programmers should use the {@link #toString} method rather than accessing
@@ -44,7 +41,6 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
     /**
      * Returns the name of this enum constant, exactly as declared in its enum
      * declaration.
-     *
      * <b>Most programmers should use the {@link #toString} method in preference
      * to this one, as the toString method may return a more user-friendly
      * name.</b> This method is designed primarily for use in specialized
@@ -60,7 +56,6 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
     /**
      * The ordinal of this enumeration constant (its position in the enum
      * declaration, where the initial constant is assigned an ordinal of zero).
-     *
      * Most programmers will have no use for this field. It is designed for use
      * by sophisticated enum-based data structures, such as
      * {@link java.util.EnumSet} and {@link java.util.EnumMap}.
@@ -71,7 +66,6 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
      * Returns the ordinal of this enumeration constant (its position in its
      * enum declaration, where the initial constant is assigned an ordinal of
      * zero).
-     *
      * Most programmers will have no use for this method. It is designed for use
      * by sophisticated enum-based data structures, such as
      * {@link java.util.EnumSet} and {@link java.util.EnumMap}.
@@ -88,15 +82,15 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
      * declarations.
      *
      * @param name
-     *                - The name of this enum constant, which is the identifier
-     *                used
-     *                to declare it.
+     *        - The name of this enum constant, which is the identifier
+     *        used
+     *        to declare it.
      * @param ordinal
-     *                - The ordinal of this enumeration constant (its position
-     *                in
-     *                the enum declaration, where the initial constant is
-     *                assigned
-     *                an ordinal of zero).
+     *        - The ordinal of this enumeration constant (its position
+     *        in
+     *        the enum declaration, where the initial constant is
+     *        assigned
+     *        an ordinal of zero).
      */
     protected Enum(String name, int ordinal) {
         this.name = name;
@@ -119,7 +113,7 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
      * Returns true if the specified object is equal to this enum constant.
      *
      * @param other
-     *              the object to be compared for equality with this object.
+     *        the object to be compared for equality with this object.
      * @return true if the specified object is equal to this enum constant.
      */
     public final boolean equals(Object other) {
@@ -149,7 +143,6 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
      * Compares this enum with the specified object for order. Returns a
      * negative integer, zero, or a positive integer as this object is less
      * than, equal to, or greater than the specified object.
-     *
      * Enum constants are only comparable to other enum constants of the same
      * enum type. The natural order implemented by this method is the order in
      * which the constants are declared.
@@ -185,7 +178,6 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
      * name. The name must match exactly an identifier used to declare an enum
      * constant in this type. (Extraneous whitespace characters are not
      * permitted.)
-     *
      * <p>
      * Note that for a particular enum type {@code T}, the implicitly declared
      * {@code public static T valueOf(String)} method on that enum may be used
@@ -193,36 +185,34 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
      * constant. All the constants of an enum type can be obtained by calling
      * the implicit {@code public static T[] values()} method of that type.
      *
-     * @param          <T>
-     *                 The enum type whose constant is to be returned
+     * @param <T>
+     *        The enum type whose constant is to be returned
      * @param enumType
-     *                 the {@code Class} object of the enum type from which to
-     *                 return
-     *                 a constant
+     *        the {@code Class} object of the enum type from which to
+     *        return
+     *        a constant
      * @param name
-     *                 the name of the constant to return
+     *        the name of the constant to return
      * @return the enum constant of the specified enum type with the specified
      *         name
      * @throws IllegalArgumentException
-     *                                  if the specified enum type has no
-     *                                  constant with the specified
-     *                                  name, or the specified class object does
-     *                                  not represent an
-     *                                  enum type
+     *         if the specified enum type has no
+     *         constant with the specified
+     *         name, or the specified class object does
+     *         not represent an
+     *         enum type
      * @throws NullPointerException
-     *                                  if {@code enumType} or {@code name} is
-     *                                  null
+     *         if {@code enumType} or {@code name} is
+     *         null
      * @since 1.5
      */
-    public static <T extends Enum<T>> T valueOf(Class<T> enumType,
-            String name) {
+    public static <T extends Enum<T>> T valueOf(Class<T> enumType, String name) {
         T result = enumType.enumConstantDirectory().get(name);
         if (result != null)
             return result;
         if (name == null)
             throw new NullPointerException("Name is null");
-        throw new IllegalArgumentException("No enum constant " + enumType
-                .getCanonicalName() + "." + name);
+        throw new IllegalArgumentException("No enum constant " + enumType.getCanonicalName() + "." + name);
     }
 
     /**
@@ -233,8 +223,7 @@ public abstract class Enum<E extends Enum<E>> implements Comparable<E>,
     /**
      * prevent default deserialization
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         throw new InvalidObjectException("can't deserialize enum");
     }
 

@@ -10,12 +10,10 @@ import java.security.PublicKey;
 /**
  * This class represents the successful result of the PKIX certification path
  * validation algorithm.
- *
  * <p>
  * Instances of {@code PKIXCertPathValidatorResult} are returned by the
  * {@link CertPathValidator#validate validate} method of
  * {@code CertPathValidator} objects implementing the PKIX algorithm.
- *
  * <p>
  * All {@code PKIXCertPathValidatorResult} objects contain the valid policy tree
  * and subject public key resulting from the validation algorithm, as well as a
@@ -31,7 +29,6 @@ import java.security.PublicKey;
  * synchronize.
  *
  * @see CertPathValidatorResult
- *
  * @since 1.4
  * @author Yassir Elley
  * @author Sean Mullan
@@ -47,22 +44,22 @@ public class PKIXCertPathValidatorResult implements CertPathValidatorResult {
      * specified parameters.
      *
      * @param trustAnchor
-     *                         a {@code TrustAnchor} describing the CA that
-     *                         served as a trust
-     *                         anchor for the certification path
+     *        a {@code TrustAnchor} describing the CA that
+     *        served as a trust
+     *        anchor for the certification path
      * @param policyTree
-     *                         the immutable valid policy tree, or {@code null}
-     *                         if there are
-     *                         no valid policies
+     *        the immutable valid policy tree, or {@code null}
+     *        if there are
+     *        no valid policies
      * @param subjectPublicKey
-     *                         the public key of the subject
+     *        the public key of the subject
      * @throws NullPointerException
-     *                              if the {@code subjectPublicKey} or
-     *                              {@code trustAnchor}
-     *                              parameters are {@code null}
+     *         if the {@code subjectPublicKey} or
+     *         {@code trustAnchor}
+     *         parameters are {@code null}
      */
-    public PKIXCertPathValidatorResult(TrustAnchor trustAnchor,
-            PolicyNode policyTree, PublicKey subjectPublicKey) {
+    public PKIXCertPathValidatorResult(TrustAnchor trustAnchor, PolicyNode policyTree,
+            PublicKey subjectPublicKey) {
         if (subjectPublicKey == null)
             throw new NullPointerException("subjectPublicKey must be non-null");
         if (trustAnchor == null)
@@ -87,7 +84,6 @@ public class PKIXCertPathValidatorResult implements CertPathValidatorResult {
      * certification path validation algorithm. The {@code PolicyNode} object
      * that is returned and any objects that it returns through public methods
      * are immutable.
-     *
      * <p>
      * Most applications will not need to examine the valid policy tree. They
      * can achieve their policy processing goals by setting the policy-related

@@ -36,7 +36,6 @@ import org.w3c.dom.Node;
  * document when mutations are performed so that the document class do so.
  *
  * @xerces.internal
- *
  * @version $Id: AttributeMap.java,v 1.7 2010-11-01 04:39:37 joehw Exp $
  */
 public class AttributeMap extends NamedNodeMapImpl {
@@ -67,7 +66,7 @@ public class AttributeMap extends NamedNodeMapImpl {
      * @return If the new Node replaces an existing node the replaced Node is
      *         returned, otherwise null is returned.
      * @param arg
-     *            An Attr node to store in this map.
+     *        An Attr node to store in this map.
      * @exception org.w3c.dom.DOMException
      *            The exception description.
      */
@@ -76,22 +75,18 @@ public class AttributeMap extends NamedNodeMapImpl {
         boolean errCheck = ownerNode.ownerDocument().errorChecking;
         if (errCheck) {
             if (isReadOnly()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                         "NO_MODIFICATION_ALLOWED_ERR", null);
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        msg);
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
             }
             if (arg.getOwnerDocument() != ownerNode.ownerDocument()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "WRONG_DOCUMENT_ERR", null);
                 throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
             }
             if (arg.getNodeType() != Node.ATTRIBUTE_NODE) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "HIERARCHY_REQUEST_ERR", null);
                 throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, msg);
             }
         }
@@ -99,9 +94,8 @@ public class AttributeMap extends NamedNodeMapImpl {
 
         if (argn.isOwned()) {
             if (errCheck && argn.getOwnerElement() != ownerNode) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "INUSE_ATTRIBUTE_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "INUSE_ATTRIBUTE_ERR", null);
                 throw new DOMException(DOMException.INUSE_ATTRIBUTE_ERR, msg);
             }
             // replacing an Attribute with itself does nothing
@@ -148,29 +142,25 @@ public class AttributeMap extends NamedNodeMapImpl {
      * @return If the new Node replaces an existing node the replaced Node is
      *         returned, otherwise null is returned.
      * @param arg
-     *            A node to store in a named node map.
+     *        A node to store in a named node map.
      */
     public Node setNamedItemNS(Node arg) throws DOMException {
 
         boolean errCheck = ownerNode.ownerDocument().errorChecking;
         if (errCheck) {
             if (isReadOnly()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN,
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                         "NO_MODIFICATION_ALLOWED_ERR", null);
-                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                        msg);
+                throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
             }
             if (arg.getOwnerDocument() != ownerNode.ownerDocument()) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "WRONG_DOCUMENT_ERR", null);
                 throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
             }
             if (arg.getNodeType() != Node.ATTRIBUTE_NODE) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "HIERARCHY_REQUEST_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "HIERARCHY_REQUEST_ERR", null);
                 throw new DOMException(DOMException.HIERARCHY_REQUEST_ERR, msg);
             }
         }
@@ -178,9 +168,8 @@ public class AttributeMap extends NamedNodeMapImpl {
 
         if (argn.isOwned()) {
             if (errCheck && argn.getOwnerElement() != ownerNode) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "INUSE_ATTRIBUTE_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "INUSE_ATTRIBUTE_ERR", null);
                 throw new DOMException(DOMException.INUSE_ATTRIBUTE_ERR, msg);
             }
             // replacing an Attribute with itself does nothing
@@ -233,14 +222,14 @@ public class AttributeMap extends NamedNodeMapImpl {
      * Removes an attribute specified by name.
      * 
      * @param name
-     *             The name of a node to remove. If the removed attribute is
-     *             known to have a default value, an attribute immediately
-     *             appears containing the default value as well as the
-     *             corresponding namespace URI, local name, and prefix when
-     *             applicable.
+     *        The name of a node to remove. If the removed attribute is
+     *        known to have a default value, an attribute immediately
+     *        appears containing the default value as well as the
+     *        corresponding namespace URI, local name, and prefix when
+     *        applicable.
      * @return The node removed from the map if a node with such a name exists.
      * @throws NOT_FOUND_ERR:
-     *                        Raised if there is no node named name in the map.
+     *         Raised if there is no node named name in the map.
      */
     /***/
     public Node removeNamedItem(String name) throws DOMException {
@@ -257,20 +246,18 @@ public class AttributeMap extends NamedNodeMapImpl {
 
     /**
      * NON-DOM: Remove the node object
-     *
      * NOTE: Specifically removes THIS NODE -- not the node with this name, nor
      * the node with these contents. If node does not belong to this named node
      * map, we throw a DOMException.
      *
      * @param item
-     *                   The node to remove
+     *        The node to remove
      * @param addDefault
-     *                   true -- magically add default attribute
+     *        true -- magically add default attribute
      * @return Removed node
      * @exception DOMException
      */
-    protected Node removeItem(Node item, boolean addDefault)
-            throws DOMException {
+    protected Node removeItem(Node item, boolean addDefault) throws DOMException {
 
         int index = -1;
         if (nodes != null) {
@@ -283,8 +270,8 @@ public class AttributeMap extends NamedNodeMapImpl {
             }
         }
         if (index < 0) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR",
+                    null);
             throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
         }
 
@@ -297,17 +284,15 @@ public class AttributeMap extends NamedNodeMapImpl {
      */
     final protected Node internalRemoveNamedItem(String name, boolean raiseEx) {
         if (isReadOnly()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "NO_MODIFICATION_ALLOWED_ERR", null);
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    msg);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
         }
         int i = findNamePoint(name, 0);
         if (i < 0) {
             if (raiseEx) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NOT_FOUND_ERR", null);
                 throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
             } else {
                 return null;
@@ -328,12 +313,11 @@ public class AttributeMap extends NamedNodeMapImpl {
 
         if (hasDefaults() && addDefault) {
             // If there's a default, add it instead
-            NamedNodeMapImpl defaults = ((ElementImpl) ownerNode)
-                    .getDefaultAttributes();
+            NamedNodeMapImpl defaults = ((ElementImpl) ownerNode).getDefaultAttributes();
 
             Node d;
-            if (defaults != null && (d = defaults.getNamedItem(name)) != null
-                    && findNamePoint(name, index + 1) < 0) {
+            if (defaults != null && (d = defaults.getNamedItem(name)) != null && findNamePoint(name, index
+                    + 1) < 0) {
                 NodeImpl clone = (NodeImpl) d.cloneNode(true);
                 if (d.getLocalName() != null) {
                     // we must rely on the name to find a default attribute
@@ -348,8 +332,7 @@ public class AttributeMap extends NamedNodeMapImpl {
 
                 nodes.set(index, clone);
                 if (attr.isIdAttribute()) {
-                    ownerDocument.putIdentifier(clone.getNodeValue(),
-                            (ElementImpl) ownerNode);
+                    ownerDocument.putIdentifier(clone.getNodeValue(), (ElementImpl) ownerNode);
                 }
             } else {
                 nodes.remove(index);
@@ -381,23 +364,22 @@ public class AttributeMap extends NamedNodeMapImpl {
      * Removes an attribute specified by local name and namespace URI.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the node to remove. When it is
-     *                     null or an
-     *                     empty string, this method behaves like
-     *                     removeNamedItem.
+     *        The namespace URI of the node to remove. When it is
+     *        null or an
+     *        empty string, this method behaves like
+     *        removeNamedItem.
      * @param name
-     *                     The local name of the node to remove. If the removed
-     *                     attribute
-     *                     is known to have a default value, an attribute
-     *                     immediately
-     *                     appears containing the default value.
+     *        The local name of the node to remove. If the removed
+     *        attribute
+     *        is known to have a default value, an attribute
+     *        immediately
+     *        appears containing the default value.
      * @return Node The node removed from the map if a node with such a local
      *         name and namespace URI exists.
      * @throws NOT_FOUND_ERR:
-     *                        Raised if there is no node named name in the map.
+     *         Raised if there is no node named name in the map.
      */
-    public Node removeNamedItemNS(String namespaceURI, String name)
-            throws DOMException {
+    public Node removeNamedItemNS(String namespaceURI, String name) throws DOMException {
         return internalRemoveNamedItemNS(namespaceURI, name, true);
     }
 
@@ -414,22 +396,19 @@ public class AttributeMap extends NamedNodeMapImpl {
      * exception must be thrown if the specified local name and namespace URI is
      * not found.
      */
-    final protected Node internalRemoveNamedItemNS(String namespaceURI,
-            String name, boolean raiseEx) {
+    final protected Node internalRemoveNamedItemNS(String namespaceURI, String name, boolean raiseEx) {
 
         CoreDocumentImpl ownerDocument = ownerNode.ownerDocument();
         if (ownerDocument.errorChecking && isReadOnly()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "NO_MODIFICATION_ALLOWED_ERR", null);
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    msg);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
         }
         int i = findNamePoint(namespaceURI, name);
         if (i < 0) {
             if (raiseEx) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "NOT_FOUND_ERR", null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "NOT_FOUND_ERR", null);
                 throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
             } else {
                 return null;
@@ -444,11 +423,9 @@ public class AttributeMap extends NamedNodeMapImpl {
         // If there's a default, add it instead
         String nodeName = n.getNodeName();
         if (hasDefaults()) {
-            NamedNodeMapImpl defaults = ((ElementImpl) ownerNode)
-                    .getDefaultAttributes();
+            NamedNodeMapImpl defaults = ((ElementImpl) ownerNode).getDefaultAttributes();
             Node d;
-            if (defaults != null && (d = defaults.getNamedItem(
-                    nodeName)) != null) {
+            if (defaults != null && (d = defaults.getNamedItem(nodeName)) != null) {
                 int j = findNamePoint(nodeName, 0);
                 if (j >= 0 && findNamePoint(nodeName, j + 1) < 0) {
                     NodeImpl clone = (NodeImpl) d.cloneNode(true);
@@ -464,8 +441,7 @@ public class AttributeMap extends NamedNodeMapImpl {
                     clone.isSpecified(false);
                     nodes.set(i, clone);
                     if (clone.isIdAttribute()) {
-                        ownerDocument.putIdentifier(clone.getNodeValue(),
-                                (ElementImpl) ownerNode);
+                        ownerDocument.putIdentifier(clone.getNodeValue(), (ElementImpl) ownerNode);
                     }
                 } else {
                     nodes.remove(i);
@@ -558,7 +534,7 @@ public class AttributeMap extends NamedNodeMapImpl {
      * Get this AttributeMap in sync with the given "defaults" map.
      * 
      * @param defaults
-     *                 The default attributes map to sync with.
+     *        The default attributes map to sync with.
      */
     protected void reconcileDefaults(NamedNodeMapImpl defaults) {
 

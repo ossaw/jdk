@@ -53,26 +53,25 @@ public class MLetContent {
      * from an <CODE>MLET</CODE> tag in an MLet text file.
      *
      * @param url
-     *                   The URL of the MLet text file containing the
-     *                   <CODE>MLET</CODE>
-     *                   tag.
+     *        The URL of the MLet text file containing the
+     *        <CODE>MLET</CODE>
+     *        tag.
      * @param attributes
-     *                   A map of the attributes of the <CODE>MLET</CODE> tag.
-     *                   The keys
-     *                   in this map are the attribute names in lowercase, for
-     *                   example
-     *                   <code>codebase</code>. The values are the associated
-     *                   attribute
-     *                   values.
+     *        A map of the attributes of the <CODE>MLET</CODE> tag.
+     *        The keys
+     *        in this map are the attribute names in lowercase, for
+     *        example
+     *        <code>codebase</code>. The values are the associated
+     *        attribute
+     *        values.
      * @param types
-     *                   A list of the TYPE attributes that appeared in nested
-     *                   &lt;PARAM&gt; tags.
+     *        A list of the TYPE attributes that appeared in nested
+     *        &lt;PARAM&gt; tags.
      * @param values
-     *                   A list of the VALUE attributes that appeared in nested
-     *                   &lt;PARAM&gt; tags.
+     *        A list of the VALUE attributes that appeared in nested
+     *        &lt;PARAM&gt; tags.
      */
-    public MLetContent(URL url, Map<String, String> attributes,
-            List<String> types, List<String> values) {
+    public MLetContent(URL url, Map<String, String> attributes, List<String> types, List<String> values) {
         this.documentURL = url;
         this.attributes = Collections.unmodifiableMap(attributes);
         this.types = Collections.unmodifiableList(types);
@@ -219,7 +218,7 @@ public class MLetContent {
      * Gets the value of the specified attribute of the <CODE>MLET</CODE> tag.
      *
      * @param name
-     *             A string representing the name of the attribute.
+     *        A string representing the name of the attribute.
      * @return The value of the specified attribute of the <CODE>MLET</CODE>
      *         tag.
      */

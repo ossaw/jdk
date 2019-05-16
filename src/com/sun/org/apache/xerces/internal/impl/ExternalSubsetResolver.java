@@ -37,9 +37,7 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
  * </p>
  *
  * @xerces.internal
- *
  * @author Michael Glavassevich, IBM
- *
  */
 public interface ExternalSubsetResolver extends XMLEntityResolver {
 
@@ -55,17 +53,15 @@ public interface ExternalSubsetResolver extends XMLEntityResolver {
      * </p>
      *
      * @param grammarDescription
-     *                           a description of the DTD
-     *
+     *        a description of the DTD
      * @throws XNIException
-     *                      Thrown on general error.
+     *         Thrown on general error.
      * @throws IOException
-     *                      Thrown if resolved entity stream cannot be opened or
-     *                      some
-     *                      other i/o error occurs.
+     *         Thrown if resolved entity stream cannot be opened or
+     *         some
+     *         other i/o error occurs.
      */
-    public XMLInputSource getExternalSubset(
-            XMLDTDDescription grammarDescription) throws XNIException,
+    public XMLInputSource getExternalSubset(XMLDTDDescription grammarDescription) throws XNIException,
             IOException;
 
 } // interface ExternalSubsetResolver

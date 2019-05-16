@@ -24,7 +24,6 @@ import com.sun.corba.se.spi.activation.LocatorPackage.ServerLocation;
 import com.sun.corba.se.spi.activation.LocatorPackage.ServerLocationPerORB;
 
 /**
- *
  * @author Anita Jindal
  * @since JDK1.3
  */
@@ -33,12 +32,10 @@ public class ServerTool {
     final static String toolName = "servertool";
     final static String commandArg = "-cmd";
 
-    static int getServerIdForAlias(ORB orb, String applicationName)
-            throws ServerNotRegistered {
+    static int getServerIdForAlias(ORB orb, String applicationName) throws ServerNotRegistered {
         try {
-            Repository rep = RepositoryHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_REPOSITORY_NAME));
+            Repository rep = RepositoryHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_REPOSITORY_NAME));
             int serverid = rep.getServerID(applicationName);
 
             return rep.getServerID(applicationName);
@@ -67,8 +64,7 @@ public class ServerTool {
         try {
             // create the POA ORB
             Properties props = System.getProperties();
-            props.put("org.omg.CORBA.ORBClass",
-                    "com.sun.corba.se.impl.orb.ORBImpl");
+            props.put("org.omg.CORBA.ORBClass", "com.sun.corba.se.impl.orb.ORBImpl");
             orb = (ORB) ORB.init(args, props);
 
             // if command specified in the args, process it
@@ -77,12 +73,10 @@ public class ServerTool {
             else { // process commands interactively
 
                 // create a buffered reader to read commands from standard in
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                        System.in));
+                BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
                 // print tool banner
-                System.out.println(CorbaResourceUtil.getText(
-                        "servertool.banner"));
+                System.out.println(CorbaResourceUtil.getText("servertool.banner"));
 
                 // process commands until user quits
                 while (true) {
@@ -94,8 +88,7 @@ public class ServerTool {
                 }
             }
         } catch (Exception ex) {
-            System.out.println(CorbaResourceUtil.getText("servertool.usage",
-                    "servertool"));
+            System.out.println(CorbaResourceUtil.getText("servertool.usage", "servertool"));
             System.out.println();
             ex.printStackTrace();
         }
@@ -126,8 +119,7 @@ public class ServerTool {
 
             return cmd;
         } catch (Exception ex) {
-            System.out.println(CorbaResourceUtil.getText("servertool.usage",
-                    "servertool"));
+            System.out.println(CorbaResourceUtil.getText("servertool.usage", "servertool"));
             System.out.println();
             ex.printStackTrace();
         }
@@ -166,8 +158,7 @@ public class ServerTool {
                 for (int i = 0; i < handlers.size(); i++) {
                     handler = (CommandHandler) handlers.elementAt(i);
                     if (handler.getCommandName().equals(cmd[1])) {
-                        handler.printCommandHelp(System.out,
-                                CommandHandler.longHelp);
+                        handler.printCommandHelp(System.out, CommandHandler.longHelp);
                     }
                 }
             }
@@ -192,14 +183,12 @@ public class ServerTool {
                     result = handler.processCommand(cmdArgs, orb, System.out);
 
                     if (result == CommandHandler.parseError) {
-                        handler.printCommandHelp(System.out,
-                                CommandHandler.longHelp);
+                        handler.printCommandHelp(System.out, CommandHandler.longHelp);
                     }
 
                     System.out.println();
 
-                } catch (Exception ex) {
-                }
+                } catch (Exception ex) {}
 
                 return;
             }
@@ -289,16 +278,14 @@ class RegisterServer implements CommandHandler {
                     return parseError;
             } else if (arg.equals("-args")) {
                 while ((i < cmdArgs.length) && !cmdArgs[i].equals("-vmargs")) {
-                    args = args.equals("") ? cmdArgs[i]
-                            : args + " " + cmdArgs[i];
+                    args = args.equals("") ? cmdArgs[i] : args + " " + cmdArgs[i];
                     i++;
                 }
                 if (args.equals(""))
                     return parseError;
             } else if (arg.equals("-vmargs")) {
                 while ((i < cmdArgs.length) && !cmdArgs[i].equals("-args")) {
-                    vmargs = vmargs.equals("") ? cmdArgs[i]
-                            : vmargs + " " + cmdArgs[i];
+                    vmargs = vmargs.equals("") ? cmdArgs[i] : vmargs + " " + cmdArgs[i];
                     i++;
                 }
                 if (vmargs.equals(""))
@@ -314,35 +301,26 @@ class RegisterServer implements CommandHandler {
         // register server and activate it
         try {
             // register the server with the repository
-            Repository repository = RepositoryHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_REPOSITORY_NAME));
+            Repository repository = RepositoryHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_REPOSITORY_NAME));
 
-            ServerDef server = new ServerDef(applicationName, name, classpath,
-                    args, vmargs);
+            ServerDef server = new ServerDef(applicationName, name, classpath, args, vmargs);
             serverId = repository.registerServer(server);
 
             // activate the server
-            Activator activator = ActivatorHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_ACTIVATOR_NAME));
+            Activator activator = ActivatorHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_ACTIVATOR_NAME));
             activator.activate(serverId);
             activator.install(serverId);
 
             // print success message
-            out.println(CorbaResourceUtil.getText("servertool.register2",
-                    serverId));
-        } catch (ServerNotRegistered ex) {
-        } catch (ServerAlreadyActive ex) {
-        } catch (ServerHeldDown ex) {
-            out.println(CorbaResourceUtil.getText("servertool.register3",
-                    serverId));
+            out.println(CorbaResourceUtil.getText("servertool.register2", serverId));
+        } catch (ServerNotRegistered ex) {} catch (ServerAlreadyActive ex) {} catch (ServerHeldDown ex) {
+            out.println(CorbaResourceUtil.getText("servertool.register3", serverId));
         } catch (ServerAlreadyRegistered ex) {
-            out.println(CorbaResourceUtil.getText("servertool.register4",
-                    serverId));
+            out.println(CorbaResourceUtil.getText("servertool.register4", serverId));
         } catch (BadServerDefinition ex) {
-            out.println(CorbaResourceUtil.getText("servertool.baddef",
-                    ex.reason));
+            out.println(CorbaResourceUtil.getText("servertool.baddef", ex.reason));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -384,17 +362,14 @@ class UnRegisterServer implements CommandHandler {
             // deactivate server, hold it down and and unregister it
             // deactivate the server
             try {
-                Activator activator = ActivatorHelper.narrow(orb
-                        .resolve_initial_references(
-                                ORBConstants.SERVER_ACTIVATOR_NAME));
+                Activator activator = ActivatorHelper.narrow(orb.resolve_initial_references(
+                        ORBConstants.SERVER_ACTIVATOR_NAME));
                 activator.uninstall(serverId);
-            } catch (ServerHeldDown ex) {
-            }
+            } catch (ServerHeldDown ex) {}
 
             // unregister the server from the repository
-            Repository repository = RepositoryHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_REPOSITORY_NAME));
+            Repository repository = RepositoryHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_REPOSITORY_NAME));
             repository.unregisterServer(serverId);
 
             // print success message
@@ -444,8 +419,7 @@ class LocateServer implements CommandHandler {
                         return parseError;
                 } else if (arg.equals("-applicationName")) {
                     if (i < cmdArgs.length)
-                        serverId = ServerTool.getServerIdForAlias(orb,
-                                cmdArgs[i++]);
+                        serverId = ServerTool.getServerIdForAlias(orb, cmdArgs[i++]);
                     else
                         return parseError;
                 } else if (arg.equals("-endpointType")) {
@@ -460,24 +434,19 @@ class LocateServer implements CommandHandler {
 
             // locate the server
             // deactivate the server
-            Locator locator = LocatorHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_LOCATOR_NAME));
+            Locator locator = LocatorHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_LOCATOR_NAME));
 
-            ServerLocation location = locator.locateServer(serverId,
-                    endPointType);
+            ServerLocation location = locator.locateServer(serverId, endPointType);
 
             // print success message
-            out.println(CorbaResourceUtil.getText("servertool.locate2",
-                    location.hostname));
+            out.println(CorbaResourceUtil.getText("servertool.locate2", location.hostname));
             int numEntries = location.ports.length;
             for (i = 0; i < numEntries; i++) {
                 ORBPortInfo orbPort = location.ports[i];
-                out.println("\t\t" + orbPort.port + "\t\t" + endPointType
-                        + "\t\t" + orbPort.orbId);
+                out.println("\t\t" + orbPort.port + "\t\t" + endPointType + "\t\t" + orbPort.orbId);
             }
-        } catch (NoSuchEndPoint ex) {
-        } catch (ServerHeldDown ex) {
+        } catch (NoSuchEndPoint ex) {} catch (ServerHeldDown ex) {
             out.println(CorbaResourceUtil.getText("servertool.helddown"));
         } catch (ServerNotRegistered ex) {
             out.println(CorbaResourceUtil.getText("servertool.nosuchserver"));
@@ -524,8 +493,7 @@ class LocateServerForORB implements CommandHandler {
                         return parseError;
                 } else if (arg.equals("-applicationName")) {
                     if (i < cmdArgs.length)
-                        serverId = ServerTool.getServerIdForAlias(orb,
-                                cmdArgs[i++]);
+                        serverId = ServerTool.getServerIdForAlias(orb, cmdArgs[i++]);
                     else
                         return parseError;
                 } else if (arg.equals("-orbid")) {
@@ -540,21 +508,17 @@ class LocateServerForORB implements CommandHandler {
 
             // locate the server
             // deactivate the server
-            Locator locator = LocatorHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_LOCATOR_NAME));
+            Locator locator = LocatorHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_LOCATOR_NAME));
 
-            ServerLocationPerORB location = locator.locateServerForORB(serverId,
-                    orbId);
+            ServerLocationPerORB location = locator.locateServerForORB(serverId, orbId);
 
             // print success message
-            out.println(CorbaResourceUtil.getText("servertool.locateorb2",
-                    location.hostname));
+            out.println(CorbaResourceUtil.getText("servertool.locateorb2", location.hostname));
             int numEntries = location.ports.length;
             for (i = 0; i < numEntries; i++) {
                 EndPointInfo Port = location.ports[i];
-                out.println("\t\t" + Port.port + "\t\t" + Port.endpointType
-                        + "\t\t" + orbId);
+                out.println("\t\t" + Port.port + "\t\t" + Port.endpointType + "\t\t" + orbId);
             }
         } catch (InvalidORBid ex) {
             out.println(CorbaResourceUtil.getText("servertool.nosuchorb"));
@@ -588,20 +552,17 @@ class GetServerID implements CommandHandler {
             String str = (String) cmdArgs[1];
 
             try {
-                Repository repository = RepositoryHelper.narrow(orb
-                        .resolve_initial_references(
-                                ORBConstants.SERVER_REPOSITORY_NAME));
+                Repository repository = RepositoryHelper.narrow(orb.resolve_initial_references(
+                        ORBConstants.SERVER_REPOSITORY_NAME));
 
                 try {
                     int result = repository.getServerID(str);
                     out.println();
-                    out.println(CorbaResourceUtil.getText(
-                            "servertool.getserverid2", str, Integer.toString(
-                                    result)));
+                    out.println(CorbaResourceUtil.getText("servertool.getserverid2", str, Integer.toString(
+                            result)));
                     out.println();
                 } catch (ServerNotRegistered e) {
-                    out.println(CorbaResourceUtil.getText(
-                            "servertool.nosuchserver"));
+                    out.println(CorbaResourceUtil.getText("servertool.nosuchserver"));
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -643,9 +604,8 @@ class ListServers implements CommandHandler {
 
         // process the list server command
         try {
-            Repository repository = RepositoryHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_REPOSITORY_NAME));
+            Repository repository = RepositoryHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_REPOSITORY_NAME));
 
             if (listOneServer) {
 
@@ -655,8 +615,7 @@ class ListServers implements CommandHandler {
                     printServerDef(serverDef, serverId, out);
                     out.println();
                 } catch (ServerNotRegistered e) {
-                    out.println(CorbaResourceUtil.getText(
-                            "servertool.nosuchserver"));
+                    out.println(CorbaResourceUtil.getText("servertool.nosuchserver"));
                 }
 
             } else {
@@ -667,11 +626,9 @@ class ListServers implements CommandHandler {
                 for (int i = 0; i < servers.length; i++) {
                     try {
                         serverDef = repository.getServer(servers[i]);
-                        out.println("\t   " + servers[i] + "\t\t"
-                                + serverDef.serverName + "\t\t"
+                        out.println("\t   " + servers[i] + "\t\t" + serverDef.serverName + "\t\t"
                                 + serverDef.applicationName);
-                    } catch (ServerNotRegistered e) {
-                    }
+                    } catch (ServerNotRegistered e) {}
                 }
 
             }
@@ -682,18 +639,12 @@ class ListServers implements CommandHandler {
         return commandDone;
     }
 
-    static void printServerDef(ServerDef serverDef, int serverId,
-            PrintStream out) {
-        out.println(CorbaResourceUtil.getText("servertool.appname",
-                serverDef.applicationName));
-        out.println(CorbaResourceUtil.getText("servertool.name",
-                serverDef.serverName));
-        out.println(CorbaResourceUtil.getText("servertool.classpath",
-                serverDef.serverClassPath));
-        out.println(CorbaResourceUtil.getText("servertool.args",
-                serverDef.serverArgs));
-        out.println(CorbaResourceUtil.getText("servertool.vmargs",
-                serverDef.serverVmArgs));
+    static void printServerDef(ServerDef serverDef, int serverId, PrintStream out) {
+        out.println(CorbaResourceUtil.getText("servertool.appname", serverDef.applicationName));
+        out.println(CorbaResourceUtil.getText("servertool.name", serverDef.serverName));
+        out.println(CorbaResourceUtil.getText("servertool.classpath", serverDef.serverClassPath));
+        out.println(CorbaResourceUtil.getText("servertool.args", serverDef.serverArgs));
+        out.println(CorbaResourceUtil.getText("servertool.vmargs", serverDef.serverVmArgs));
         out.println(CorbaResourceUtil.getText("servertool.serverid", serverId));
     }
 
@@ -740,13 +691,11 @@ class ListActiveServers implements CommandHandler {
 
         // process the list active servers command
         try {
-            Repository repository = RepositoryHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_REPOSITORY_NAME));
+            Repository repository = RepositoryHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_REPOSITORY_NAME));
 
-            Activator activator = ActivatorHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_ACTIVATOR_NAME));
+            Activator activator = ActivatorHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_ACTIVATOR_NAME));
 
             int[] servers = activator.getActiveServers();
 
@@ -756,11 +705,9 @@ class ListActiveServers implements CommandHandler {
             for (int i = 0; i < servers.length; i++) {
                 try {
                     serverDef = repository.getServer(servers[i]);
-                    out.println("\t   " + servers[i] + "\t\t"
-                            + serverDef.serverName + "\t\t"
+                    out.println("\t   " + servers[i] + "\t\t" + serverDef.serverName + "\t\t"
                             + serverDef.applicationName);
-                } catch (ServerNotRegistered e) {
-                }
+                } catch (ServerNotRegistered e) {}
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -785,9 +732,8 @@ class ListAliases implements CommandHandler {
 
     public boolean processCommand(String[] cmdArgs, ORB orb, PrintStream out) {
         try {
-            Repository repository = RepositoryHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_REPOSITORY_NAME));
+            Repository repository = RepositoryHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_REPOSITORY_NAME));
 
             String[] applicationNames = repository.getApplicationNames();
 
@@ -833,15 +779,13 @@ class ShutdownServer implements CommandHandler {
                 return parseError;
 
             // shutdown the server
-            Activator activator = ActivatorHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_ACTIVATOR_NAME));
+            Activator activator = ActivatorHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_ACTIVATOR_NAME));
             activator.shutdown(serverId);
 
             out.println(CorbaResourceUtil.getText("servertool.shutdown2"));
         } catch (ServerNotActive ex) {
-            out.println(CorbaResourceUtil.getText(
-                    "servertool.servernotrunning"));
+            out.println(CorbaResourceUtil.getText("servertool.servernotrunning"));
         } catch (ServerNotRegistered ex) {
             out.println(CorbaResourceUtil.getText("servertool.nosuchserver"));
         } catch (Exception ex) {
@@ -882,9 +826,8 @@ class StartServer implements CommandHandler {
                 return parseError;
 
             // startup the server
-            Activator activator = ActivatorHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_ACTIVATOR_NAME));
+            Activator activator = ActivatorHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_ACTIVATOR_NAME));
             activator.activate(serverId);
 
             out.println(CorbaResourceUtil.getText("servertool.startserver2"));
@@ -970,9 +913,8 @@ class ListORBs implements CommandHandler {
             if (serverId == illegalServerId)
                 return parseError;
             // activate the server
-            Activator activator = ActivatorHelper.narrow(orb
-                    .resolve_initial_references(
-                            ORBConstants.SERVER_ACTIVATOR_NAME));
+            Activator activator = ActivatorHelper.narrow(orb.resolve_initial_references(
+                    ORBConstants.SERVER_ACTIVATOR_NAME));
 
             String[] orbList = activator.getORBNames(serverId);
 

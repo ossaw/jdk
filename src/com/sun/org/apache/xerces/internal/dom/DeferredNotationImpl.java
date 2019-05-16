@@ -35,7 +35,6 @@ package com.sun.org.apache.xerces.internal.dom;
  * Level 1 of the DOM does not support editing Notation contents.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
 public class DeferredNotationImpl extends NotationImpl implements DeferredNode {
@@ -93,8 +92,7 @@ public class DeferredNotationImpl extends NotationImpl implements DeferredNode {
         needsSyncData(false);
 
         // name
-        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this
-                .ownerDocument();
+        DeferredDocumentImpl ownerDocument = (DeferredDocumentImpl) this.ownerDocument();
         name = ownerDocument.getNodeName(fNodeIndex);
 
         ownerDocument.getNodeType(fNodeIndex);

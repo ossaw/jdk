@@ -14,7 +14,6 @@ import java.util.StringTokenizer;
  * This class is for runtime permissions. A RuntimePermission contains a name
  * (also referred to as a "target name") but no actions list; you either have
  * the named permission or you don't.
- *
  * <P>
  * The target name is the name of the runtime permission (see below). The naming
  * convention follows the hierarchical property naming convention. Also, an
@@ -25,7 +24,6 @@ import java.util.StringTokenizer;
  * The following table lists all the possible RuntimePermission target names,
  * and for each provides a description of what the permission allows and a
  * discussion of the risks of granting code the permission.
- *
  * <table border=1 cellpadding=5 summary="permission target name, what the
  * target allows,and associated risks">
  * <tr>
@@ -33,7 +31,6 @@ import java.util.StringTokenizer;
  * <th>What the Permission Allows</th>
  * <th>Risks of Allowing this Permission</th>
  * </tr>
- *
  * <tr>
  * <td>createClassLoader</td>
  * <td>Creation of a class loader</td>
@@ -43,7 +40,6 @@ import java.util.StringTokenizer;
  * placed into any protection domain by the class loader, thereby automatically
  * granting the classes the permissions for that domain.</td>
  * </tr>
- *
  * <tr>
  * <td>getClassLoader</td>
  * <td>Retrieval of a class loader (e.g., the class loader for the calling
@@ -54,7 +50,6 @@ import java.util.StringTokenizer;
  * loader. The attacker would typically otherwise not have access to those
  * classes.</td>
  * </tr>
- *
  * <tr>
  * <td>setContextClassLoader</td>
  * <td>Setting of the context class loader used by a thread</td>
@@ -64,7 +59,6 @@ import java.util.StringTokenizer;
  * context class loader is used for a particular thread, including system
  * threads.</td>
  * </tr>
- *
  * <tr>
  * <td>enableContextClassLoaderOverride</td>
  * <td>Subclass implementation of the thread context class loader methods</td>
@@ -74,14 +68,12 @@ import java.util.StringTokenizer;
  * of Thread to override the methods that are used to get or set the context
  * class loader for a particular thread.</td>
  * </tr>
- *
  * <tr>
  * <td>closeClassLoader</td>
  * <td>Closing of a ClassLoader</td>
  * <td>Granting this permission allows code to close any URLClassLoader that it
  * has a reference to.</td>
  * </tr>
- *
  * <tr>
  * <td>setSecurityManager</td>
  * <td>Setting of the security manager (possibly replacing an existing one)</td>
@@ -91,14 +83,12 @@ import java.util.StringTokenizer;
  * less restrictive security manager, thereby bypassing checks that would have
  * been enforced by the original security manager.</td>
  * </tr>
- *
  * <tr>
  * <td>createSecurityManager</td>
  * <td>Creation of a new security manager</td>
  * <td>This gives code access to protected, sensitive methods that may disclose
  * information about other classes or the execution stack.</td>
  * </tr>
- *
  * <tr>
  * <td>getenv.{variable name}</td>
  * <td>Reading of the value of the specified environment variable</td>
@@ -106,7 +96,6 @@ import java.util.StringTokenizer;
  * particular environment variable. This is dangerous if the variable contains
  * confidential data.</td>
  * </tr>
- *
  * <tr>
  * <td>exitVM.{exit status}</td>
  * <td>Halting of the Java Virtual Machine with the specified exit status</td>
@@ -116,14 +105,12 @@ import java.util.StringTokenizer;
  * class path, thus enabling applications to terminate themselves. Also, the
  * "exitVM" permission is equivalent to "exitVM.*".</td>
  * </tr>
- *
  * <tr>
  * <td>shutdownHooks</td>
  * <td>Registration and cancellation of virtual-machine shutdown hooks</td>
  * <td>This allows an attacker to register a malicious shutdown hook that
  * interferes with the clean shutdown of the virtual machine.</td>
  * </tr>
- *
  * <tr>
  * <td>setFactory</td>
  * <td>Setting of the socket factory used by ServerSocket or Socket, or of the
@@ -132,7 +119,6 @@ import java.util.StringTokenizer;
  * socket, stream handler, or RMI socket factory. An attacker may set a faulty
  * implementation which mangles the data stream.</td>
  * </tr>
- *
  * <tr>
  * <td>setIO</td>
  * <td>Setting of System.out, System.in, and System.err</td>
@@ -141,7 +127,6 @@ import java.util.StringTokenizer;
  * System.err to a "null" OutputStream, which would hide any error messages sent
  * to System.err.</td>
  * </tr>
- *
  * <tr>
  * <td>modifyThread</td>
  * <td>Modification of threads, e.g., via calls to Thread <tt>interrupt</tt>,
@@ -151,7 +136,6 @@ import java.util.StringTokenizer;
  * <td>This allows an attacker to modify the behaviour of any thread in the
  * system.</td>
  * </tr>
- *
  * <tr>
  * <td>stopThread</td>
  * <td>Stopping of threads via calls to the Thread <code>stop</code> method</td>
@@ -159,7 +143,6 @@ import java.util.StringTokenizer;
  * already granted permission to access that thread. This poses as a threat,
  * because that code may corrupt the system by killing existing threads.</td>
  * </tr>
- *
  * <tr>
  * <td>modifyThreadGroup</td>
  * <td>modification of thread groups, e.g., via calls to ThreadGroup
@@ -169,7 +152,6 @@ import java.util.StringTokenizer;
  * <td>This allows an attacker to create thread groups and set their run
  * priority.</td>
  * </tr>
- *
  * <tr>
  * <td>getProtectionDomain</td>
  * <td>Retrieval of the ProtectionDomain for a class</td>
@@ -178,7 +160,6 @@ import java.util.StringTokenizer;
  * of the system, it does give attackers additional information, such as local
  * file names for example, to better aim an attack.</td>
  * </tr>
- *
  * <tr>
  * <td>getFileSystemAttributes</td>
  * <td>Retrieval of file system attributes</td>
@@ -187,7 +168,6 @@ import java.util.StringTokenizer;
  * discloses information about the system hardware configuration and some
  * information about the caller's privilege to write files.</td>
  * </tr>
- *
  * <tr>
  * <td>readFileDescriptor</td>
  * <td>Reading of file descriptors</td>
@@ -195,7 +175,6 @@ import java.util.StringTokenizer;
  * file descriptor read. This is dangerous if the file contains confidential
  * data.</td>
  * </tr>
- *
  * <tr>
  * <td>writeFileDescriptor</td>
  * <td>Writing to file descriptors</td>
@@ -203,7 +182,6 @@ import java.util.StringTokenizer;
  * descriptor. This is dangerous because it may allow malicious code to plant
  * viruses or at the very least, fill up your entire disk.</td>
  * </tr>
- *
  * <tr>
  * <td>loadLibrary.{library name}</td>
  * <td>Dynamic linking of the specified library</td>
@@ -211,7 +189,6 @@ import java.util.StringTokenizer;
  * libraries, because the Java security architecture is not designed to and does
  * not prevent malicious behavior at the level of native code.</td>
  * </tr>
- *
  * <tr>
  * <td>accessClassInPackage.{package name}</td>
  * <td>Access to the specified package via a class loader's
@@ -221,7 +198,6 @@ import java.util.StringTokenizer;
  * not have access. Malicious code may use these classes to help in its attempt
  * to compromise security in the system.</td>
  * </tr>
- *
  * <tr>
  * <td>defineClassInPackage.{package name}</td>
  * <td>Definition of classes in the specified package, via a class loader's
@@ -232,7 +208,6 @@ import java.util.StringTokenizer;
  * rogue classes in trusted packages like <code>java.security</code> or
  * <code>java.lang</code>, for example.</td>
  * </tr>
- *
  * <tr>
  * <td>accessDeclaredMembers</td>
  * <td>Access to the declared members of a class</td>
@@ -253,7 +228,6 @@ import java.util.StringTokenizer;
  * <td>This could print sensitive information to a printer, or simply waste
  * paper.</td>
  * </tr>
- *
  * <tr>
  * <td>getStackTrace</td>
  * <td>Retrieval of the stack trace information of another thread.</td>
@@ -261,7 +235,6 @@ import java.util.StringTokenizer;
  * This might allow malicious code to monitor the execution of threads and
  * discover vulnerabilities in applications.</td>
  * </tr>
- *
  * <tr>
  * <td>setDefaultUncaughtExceptionHandler</td>
  * <td>Setting the default handler to be used when a thread terminates abruptly
@@ -269,7 +242,6 @@ import java.util.StringTokenizer;
  * <td>This allows an attacker to register a malicious uncaught exception
  * handler that could interfere with termination of a thread</td>
  * </tr>
- *
  * <tr>
  * <td>preferences</td>
  * <td>Represents the permission required to get access to the
@@ -282,7 +254,6 @@ import java.util.StringTokenizer;
  * a traditional filesystem directory or within a registry depending on the
  * platform OS</td>
  * </tr>
- *
  * <tr>
  * <td>usePolicy</td>
  * <td>Granting this permission disables the Java Plug-In's default security
@@ -300,8 +271,6 @@ import java.util.StringTokenizer;
  * @see java.security.Permissions
  * @see java.security.PermissionCollection
  * @see java.lang.SecurityManager
- *
- *
  * @author Marianne Mueller
  * @author Roland Schemers
  */
@@ -317,13 +286,12 @@ public final class RuntimePermission extends BasicPermission {
      * by itself, to signify a wildcard match.
      *
      * @param name
-     *             the name of the RuntimePermission.
-     *
+     *        the name of the RuntimePermission.
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty.
+     *         if <code>name</code> is empty.
      */
 
     public RuntimePermission(String name) {
@@ -336,15 +304,14 @@ public final class RuntimePermission extends BasicPermission {
      * currently unused and should be null.
      *
      * @param name
-     *                the name of the RuntimePermission.
+     *        the name of the RuntimePermission.
      * @param actions
-     *                should be null.
-     *
+     *        should be null.
      * @throws NullPointerException
-     *                                  if <code>name</code> is
-     *                                  <code>null</code>.
+     *         if <code>name</code> is
+     *         <code>null</code>.
      * @throws IllegalArgumentException
-     *                                  if <code>name</code> is empty.
+     *         if <code>name</code> is empty.
      */
 
     public RuntimePermission(String name, String actions) {

@@ -17,7 +17,6 @@ import java.util.Hashtable;
  * See <tt>javax.naming.InitialContext</tt> and
  * <tt>javax.naming.InitialDirContext</tt> for details on synchronization, and
  * the policy for how an initial context is created.
- *
  * <h1>Request Controls</h1> When you create an initial context (
  * <tt>InitialLdapContext</tt>), you can specify a list of request controls.
  * These controls will be used as the request controls for any implicit LDAP
@@ -56,7 +55,6 @@ import java.util.Hashtable;
  * @author Rosanna Lee
  * @author Scott Seligman
  * @author Vincent Ryan
- *
  * @see LdapContext
  * @see javax.naming.InitialContext
  * @see javax.naming.directory.InitialDirContext
@@ -64,8 +62,7 @@ import java.util.Hashtable;
  * @since 1.3
  */
 
-public class InitialLdapContext extends InitialDirContext implements
-        LdapContext {
+public class InitialLdapContext extends InitialDirContext implements LdapContext {
     private static final String BIND_CONTROLS_PROPERTY = "java.naming.ldap.control.connect";
 
     /**
@@ -74,7 +71,7 @@ public class InitialLdapContext extends InitialDirContext implements
      * <tt>new InitialLdapContext(null, null)</tt>.
      *
      * @throws NamingException
-     *                         if a naming exception is encountered
+     *         if a naming exception is encountered
      */
     public InitialLdapContext() throws NamingException {
         super(null);
@@ -84,40 +81,35 @@ public class InitialLdapContext extends InitialDirContext implements
      * Constructs an initial context using environment properties and connection
      * request controls. See <tt>javax.naming.InitialContext</tt> for a
      * discussion of environment properties.
-     *
      * <p>
      * This constructor will not modify its parameters or save references to
      * them, but may save a clone or copy. Caller should not modify mutable keys
      * and values in <tt>environment</tt> after it has been passed to the
      * constructor.
-     *
      * <p>
      * <tt>connCtls</tt> is used as the underlying context instance's connection
      * request controls. See the class description for details.
      *
      * @param environment
-     *                    environment used to create the initial DirContext.
-     *                    Null
-     *                    indicates an empty environment.
+     *        environment used to create the initial DirContext.
+     *        Null
+     *        indicates an empty environment.
      * @param connCtls
-     *                    connection request controls for the initial context.
-     *                    If null,
-     *                    no connection request controls are used.
-     *
+     *        connection request controls for the initial context.
+     *        If null,
+     *        no connection request controls are used.
      * @throws NamingException
-     *                         if a naming exception is encountered
-     *
+     *         if a naming exception is encountered
      * @see #reconnect
      * @see LdapContext#reconnect
      */
     @SuppressWarnings("unchecked")
-    public InitialLdapContext(Hashtable<?, ?> environment, Control[] connCtls)
-            throws NamingException {
+    public InitialLdapContext(Hashtable<?, ?> environment, Control[] connCtls) throws NamingException {
         super(true); // don't initialize yet
 
         // Clone environment since caller owns it.
-        Hashtable<Object, Object> env = (environment == null) ? new Hashtable<>(
-                11) : (Hashtable<Object, Object>) environment.clone();
+        Hashtable<Object, Object> env = (environment == null) ? new Hashtable<>(11)
+                : (Hashtable<Object, Object>) environment.clone();
 
         // Put connect controls into environment. Copy them first since
         // caller owns the array.
@@ -138,11 +130,11 @@ public class InitialLdapContext extends InitialDirContext implements
      *
      * @return The non-null cached initial context.
      * @exception NotContextException
-     *                                If the initial context is not an instance
-     *                                of
-     *                                <tt>LdapContext</tt>.
+     *            If the initial context is not an instance
+     *            of
+     *            <tt>LdapContext</tt>.
      * @exception NamingException
-     *                                If a naming exception was encountered.
+     *            If a naming exception was encountered.
      */
     private LdapContext getDefaultLdapInitCtx() throws NamingException {
         Context answer = getDefaultInitCtx();
@@ -160,8 +152,7 @@ public class InitialLdapContext extends InitialDirContext implements
     // LdapContext methods
     // Most Javadoc is deferred to the LdapContext interface.
 
-    public ExtendedResponse extendedOperation(ExtendedRequest request)
-            throws NamingException {
+    public ExtendedResponse extendedOperation(ExtendedRequest request) throws NamingException {
         return getDefaultLdapInitCtx().extendedOperation(request);
     }
 
@@ -177,8 +168,7 @@ public class InitialLdapContext extends InitialDirContext implements
         return getDefaultLdapInitCtx().getConnectControls();
     }
 
-    public void setRequestControls(Control[] requestControls)
-            throws NamingException {
+    public void setRequestControls(Control[] requestControls) throws NamingException {
         getDefaultLdapInitCtx().setRequestControls(requestControls);
     }
 

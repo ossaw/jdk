@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
  * describe the component's relationships with other components.
  *
  * @see AccessibleRelation
- *
  * @author Lynn Monsanto
  * @since 1.3
  */
@@ -48,8 +47,8 @@ public class AccessibleRelationSet {
      * array of relations passed in. Duplicate entries are ignored.
      *
      * @param relations
-     *                  an array of AccessibleRelation describing the relation
-     *                  set.
+     *        an array of AccessibleRelation describing the relation
+     *        set.
      */
     public AccessibleRelationSet(AccessibleRelation[] relations) {
         if (relations.length != 0) {
@@ -67,7 +66,7 @@ public class AccessibleRelationSet {
      * relation is added to the relation set.
      *
      * @param relation
-     *                 the relation to add to the relation set
+     *        the relation to add to the relation set
      * @return true if relation is added to the relation set; false if the
      *         relation set is unchanged
      */
@@ -102,7 +101,7 @@ public class AccessibleRelationSet {
      * are ignored.
      *
      * @param relations
-     *                  AccessibleRelation array describing the relation set.
+     *        AccessibleRelation array describing the relation set.
      */
     public void addAll(AccessibleRelation[] relations) {
         if (relations.length != 0) {
@@ -122,7 +121,7 @@ public class AccessibleRelationSet {
      * the set and the return value will be true.
      *
      * @param relation
-     *                 the relation to remove from the relation set
+     *        the relation to remove from the relation set
      * @return true if the relation is in the relation set; false if the
      *         relation set is unchanged
      */
@@ -161,7 +160,7 @@ public class AccessibleRelationSet {
      * specified key.
      * 
      * @param key
-     *            the AccessibleRelation key
+     *        the AccessibleRelation key
      * @return true if the relation is in the relation set; otherwise false
      */
     public boolean contains(String key) {
@@ -172,7 +171,7 @@ public class AccessibleRelationSet {
      * Returns the relation that matches the specified key.
      * 
      * @param key
-     *            the AccessibleRelation key
+     *        the AccessibleRelation key
      * @return the relation, if one exists, that matches the specified key.
      *         Otherwise, null is returned.
      */
@@ -182,8 +181,7 @@ public class AccessibleRelationSet {
         } else {
             int len = relations.size();
             for (int i = 0; i < len; i++) {
-                AccessibleRelation relation = (AccessibleRelation) relations
-                        .elementAt(i);
+                AccessibleRelation relation = (AccessibleRelation) relations.elementAt(i);
                 if (relation != null && relation.getKey().equals(key)) {
                     return relation;
                 }
@@ -201,8 +199,7 @@ public class AccessibleRelationSet {
         if (relations == null) {
             return new AccessibleRelation[0];
         } else {
-            AccessibleRelation[] relationArray = new AccessibleRelation[relations
-                    .size()];
+            AccessibleRelation[] relationArray = new AccessibleRelation[relations.size()];
             for (int i = 0; i < relationArray.length; i++) {
                 relationArray[i] = (AccessibleRelation) relations.elementAt(i);
             }
@@ -220,11 +217,9 @@ public class AccessibleRelationSet {
     public String toString() {
         String ret = "";
         if ((relations != null) && (relations.size() > 0)) {
-            ret = ((AccessibleRelation) (relations.elementAt(0)))
-                    .toDisplayString();
+            ret = ((AccessibleRelation) (relations.elementAt(0))).toDisplayString();
             for (int i = 1; i < relations.size(); i++) {
-                ret = ret + "," + ((AccessibleRelation) (relations.elementAt(
-                        i))).toDisplayString();
+                ret = ret + "," + ((AccessibleRelation) (relations.elementAt(i))).toDisplayString();
             }
         }
         return ret;

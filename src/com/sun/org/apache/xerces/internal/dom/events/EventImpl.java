@@ -27,7 +27,6 @@ import org.w3c.dom.events.EventTarget;
  * the DOM's intent but I don't see an explicit statement to this effect.
  *
  * @xerces.internal
- *
  */
 public class EventImpl implements Event {
     public String type = null;
@@ -48,8 +47,7 @@ public class EventImpl implements Event {
      * be reinvoked. At least one initialization is required; repeated
      * initializations overwrite the event with new values of their parameters.
      */
-    public void initEvent(String eventTypeArg, boolean canBubbleArg,
-            boolean cancelableArg) {
+    public void initEvent(String eventTypeArg, boolean canBubbleArg, boolean cancelableArg) {
         type = eventTypeArg;
         bubbles = canBubbleArg;
         cancelable = cancelableArg;

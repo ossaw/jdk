@@ -18,7 +18,6 @@ import sun.awt.EventQueueDelegate;
 /**
  * EventDispatchThread is a package-private AWT class which takes events off the
  * EventQueue and dispatches them to the appropriate AWT components.
- *
  * The Thread starts a "permanent" event pump with a call to
  * pumpEvents(Conditional) in its run() method. Event handlers can choose to
  * block this event pump at any time, but should start a new pump (<b>not</b> a
@@ -30,7 +29,6 @@ import sun.awt.EventQueueDelegate;
  * @author Amy Fowler
  * @author Fred Ecks
  * @author David Mendenhall
- *
  * @since 1.1
  */
 class EventDispatchThread extends Thread {
@@ -81,8 +79,7 @@ class EventDispatchThread extends Thread {
         pumpEventsForHierarchy(id, cond, null);
     }
 
-    void pumpEventsForHierarchy(int id, Conditional cond,
-            Component modalComponent) {
+    void pumpEventsForHierarchy(int id, Conditional cond, Component modalComponent) {
         pumpEventsForFilter(id, cond, new HierarchyEventFilter(modalComponent));
     }
 
@@ -148,8 +145,7 @@ class EventDispatchThread extends Thread {
                 if (delegate != null && id == ANY_EVENT) {
                     event = delegate.getNextEvent(eq);
                 } else {
-                    event = (id == ANY_EVENT) ? eq.getNextEvent()
-                            : eq.getNextEvent(id);
+                    event = (id == ANY_EVENT) ? eq.getNextEvent() : eq.getNextEvent(id);
                 }
 
                 eventOK = true;
@@ -229,8 +225,7 @@ class EventDispatchThread extends Thread {
                  * modalComponent hierarchy. KeyEvent is handled by using
                  * enqueueKeyEvent in Dialog.show
                  */
-                if (Component.isInstanceOf(modalComponent,
-                        "javax.swing.JInternalFrame")) {
+                if (Component.isInstanceOf(modalComponent, "javax.swing.JInternalFrame")) {
                     /*
                      * Modal internal frames are handled separately. If event is
                      * for some component from another heavyweight than
@@ -238,8 +233,7 @@ class EventDispatchThread extends Thread {
                      * we still accept event and perform further filtering in
                      * LightweightDispatcher
                      */
-                    return windowClosingEvent ? FilterAction.REJECT
-                            : FilterAction.ACCEPT;
+                    return windowClosingEvent ? FilterAction.REJECT : FilterAction.ACCEPT;
                 }
                 if (mouseEvent || actionEvent || windowClosingEvent) {
                     Object o = event.getSource();
@@ -253,8 +247,8 @@ class EventDispatchThread extends Thread {
                         boolean modalExcluded = false;
                         if (modalComponent instanceof Container) {
                             while (c != modalComponent && c != null) {
-                                if ((c instanceof Window) && (sun.awt.SunToolkit
-                                        .isModalExcluded((Window) c))) {
+                                if ((c instanceof Window) && (sun.awt.SunToolkit.isModalExcluded(
+                                        (Window) c))) {
                                     // Exclude this window and all its children
                                     // from
                                     // modality and continue to pump it's

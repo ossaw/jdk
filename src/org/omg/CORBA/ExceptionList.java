@@ -50,7 +50,7 @@ public abstract class ExceptionList {
      * <code>ExceptionList</code> object.
      *
      * @param exc
-     *            the <code>TypeCode</code> object to be added
+     *        the <code>TypeCode</code> object to be added
      */
 
     public abstract void add(TypeCode exc);
@@ -60,9 +60,9 @@ public abstract class ExceptionList {
      * item is at index 0.
      *
      * @param index
-     *              the index of the <code>TypeCode</code> object desired. This
-     *              must be an <code>int</code> between 0 and the number of
-     *              <code>TypeCode</code> objects minus one, inclusive.
+     *        the index of the <code>TypeCode</code> object desired. This
+     *        must be an <code>int</code> between 0 and the number of
+     *        <code>TypeCode</code> objects minus one, inclusive.
      * @return the <code>TypeCode</code> object at the given index
      * @exception org.omg.CORBA.Bounds
      *            if the index given is greater than or equal to the number
@@ -78,10 +78,9 @@ public abstract class ExceptionList {
      * deleted are shifted down by one.
      *
      * @param index
-     *              the index of the <code>TypeCode</code> object to be removed.
-     *              This must be an <code>int</code> between 0 and the number of
-     *              <code>TypeCode</code> objects minus one, inclusive.
-     *
+     *        the index of the <code>TypeCode</code> object to be removed.
+     *        This must be an <code>int</code> between 0 and the number of
+     *        <code>TypeCode</code> objects minus one, inclusive.
      * @exception org.omg.CORBA.Bounds
      *            if the index is greater than or equal to the number of
      *            <code>TypeCode</code> objects in this

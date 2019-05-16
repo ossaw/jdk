@@ -47,7 +47,7 @@ public class XNodeSetForDOM extends XNodeSet {
      * Construct a XNodeSet object.
      *
      * @param val
-     *            Value of the XNodeSet object
+     *        Value of the XNodeSet object
      */
     public XNodeSetForDOM(XNodeSet val) {
         super(val);
@@ -99,25 +99,20 @@ public class XNodeSetForDOM extends XNodeSet {
      * Cast result object to a nodelist. Always issues an error.
      *
      * @return null
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public NodeIterator nodeset()
-            throws javax.xml.transform.TransformerException {
-        return (m_origObj instanceof NodeIterator) ? (NodeIterator) m_origObj
-                : super.nodeset();
+    public NodeIterator nodeset() throws javax.xml.transform.TransformerException {
+        return (m_origObj instanceof NodeIterator) ? (NodeIterator) m_origObj : super.nodeset();
     }
 
     /**
      * Cast result object to a nodelist. Always issues an error.
      *
      * @return null
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public NodeList nodelist() throws javax.xml.transform.TransformerException {
-        return (m_origObj instanceof NodeList) ? (NodeList) m_origObj
-                : super.nodelist();
+        return (m_origObj instanceof NodeList) ? (NodeList) m_origObj : super.nodelist();
     }
 
 }

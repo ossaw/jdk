@@ -51,12 +51,11 @@ public class RenderableImageProducer implements ImageProducer, Runnable {
      * RenderContext.
      *
      * @param rdblImage
-     *                  the RenderableImage to be rendered.
+     *        the RenderableImage to be rendered.
      * @param rc
-     *                  the RenderContext to use for producing the pixels.
+     *        the RenderContext to use for producing the pixels.
      */
-    public RenderableImageProducer(RenderableImage rdblImage,
-            RenderContext rc) {
+    public RenderableImageProducer(RenderableImage rdblImage, RenderContext rc) {
         this.rdblImage = rdblImage;
         this.rc = rc;
     }
@@ -65,7 +64,7 @@ public class RenderableImageProducer implements ImageProducer, Runnable {
      * Sets a new RenderContext to use for the next startProduction() call.
      *
      * @param rc
-     *           the new RenderContext.
+     *        the new RenderContext.
      */
     public synchronized void setRenderContext(RenderContext rc) {
         this.rc = rc;
@@ -76,7 +75,7 @@ public class RenderableImageProducer implements ImageProducer, Runnable {
      * this image.
      *
      * @param ic
-     *           an ImageConsumer to be added to the interest list.
+     *        an ImageConsumer to be added to the interest list.
      */
     public synchronized void addConsumer(ImageConsumer ic) {
         if (!ics.contains(ic)) {
@@ -89,7 +88,7 @@ public class RenderableImageProducer implements ImageProducer, Runnable {
      * interested in data for this image.
      *
      * @param ic
-     *           the ImageConsumer to be checked.
+     *        the ImageConsumer to be checked.
      * @return true if the ImageConsumer is on the list; false otherwise.
      */
     public synchronized boolean isConsumer(ImageConsumer ic) {
@@ -101,7 +100,7 @@ public class RenderableImageProducer implements ImageProducer, Runnable {
      * this image.
      *
      * @param ic
-     *           the ImageConsumer to be removed.
+     *        the ImageConsumer to be removed.
      */
     public synchronized void removeConsumer(ImageConsumer ic) {
         ics.removeElement(ic);
@@ -113,7 +112,7 @@ public class RenderableImageProducer implements ImageProducer, Runnable {
      * ImageConsumer interface.
      *
      * @param ic
-     *           the ImageConsumer to be added to the list of consumers.
+     *        the ImageConsumer to be added to the list of consumers.
      */
     public synchronized void startProduction(ImageConsumer ic) {
         addConsumer(ic);
@@ -127,7 +126,7 @@ public class RenderableImageProducer implements ImageProducer, Runnable {
      * more time in top-down, left-right order.
      *
      * @param ic
-     *           the ImageConsumer requesting the resend.
+     *        the ImageConsumer requesting the resend.
      */
     public void requestTopDownLeftRightResend(ImageConsumer ic) {
         // So far, all pixels are already sent in TDLR order
@@ -168,9 +167,8 @@ public class RenderableImageProducer implements ImageProducer, Runnable {
         while (icList.hasMoreElements()) {
             ic = (ImageConsumer) icList.nextElement();
             ic.setDimensions(width, height);
-            ic.setHints(ImageConsumer.TOPDOWNLEFTRIGHT
-                    | ImageConsumer.COMPLETESCANLINES | ImageConsumer.SINGLEPASS
-                    | ImageConsumer.SINGLEFRAME);
+            ic.setHints(ImageConsumer.TOPDOWNLEFTRIGHT | ImageConsumer.COMPLETESCANLINES
+                    | ImageConsumer.SINGLEPASS | ImageConsumer.SINGLEFRAME);
         }
 
         // Get RGB pixels from the raster scanline by scanline and

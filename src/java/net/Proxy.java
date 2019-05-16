@@ -22,18 +22,18 @@ public class Proxy {
      * @since 1.5
      */
     public enum Type {
-    /**
-     * Represents a direct connection, or the absence of a proxy.
-     */
-    DIRECT,
-    /**
-     * Represents proxy for high level protocols such as HTTP or FTP.
-     */
-    HTTP,
-    /**
-     * Represents a SOCKS (V4 or V5) proxy.
-     */
-    SOCKS
+        /**
+         * Represents a direct connection, or the absence of a proxy.
+         */
+        DIRECT,
+        /**
+         * Represents proxy for high level protocols such as HTTP or FTP.
+         */
+        HTTP,
+        /**
+         * Represents a SOCKS (V4 or V5) proxy.
+         */
+        SOCKS
     };
 
     private Type type;
@@ -45,7 +45,6 @@ public class Proxy {
      * to create sockets bypassing any other global proxy settings (like SOCKS):
      * <P>
      * {@code Socket s = new Socket(Proxy.NO_PROXY);}
-     *
      */
     public final static Proxy NO_PROXY = new Proxy();
 
@@ -64,17 +63,16 @@ public class Proxy {
      * connection.
      *
      * @param type
-     *             the {@code Type} of the proxy
+     *        the {@code Type} of the proxy
      * @param sa
-     *             the {@code SocketAddress} for that proxy
+     *        the {@code SocketAddress} for that proxy
      * @throws IllegalArgumentException
-     *                                  when the type and the address are
-     *                                  incompatible
+     *         when the type and the address are
+     *         incompatible
      */
     public Proxy(Type type, SocketAddress sa) {
         if ((type == Type.DIRECT) || !(sa instanceof InetSocketAddress))
-            throw new IllegalArgumentException("type " + type
-                    + " is not compatible with address " + sa);
+            throw new IllegalArgumentException("type " + type + " is not compatible with address " + sa);
         this.type = type;
         this.sa = sa;
     }
@@ -121,7 +119,7 @@ public class Proxy {
      * SocketAddresses and type are equal.
      *
      * @param obj
-     *            the object to compare against.
+     *        the object to compare against.
      * @return {@code true} if the objects are the same; {@code false}
      *         otherwise.
      * @see java.net.InetSocketAddress#equals(java.lang.Object)

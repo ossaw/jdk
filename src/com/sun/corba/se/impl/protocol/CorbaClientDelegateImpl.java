@@ -62,11 +62,9 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
 
     private CorbaContactInfoList contactInfoList;
 
-    public CorbaClientDelegateImpl(ORB orb,
-            CorbaContactInfoList contactInfoList) {
+    public CorbaClientDelegateImpl(ORB orb, CorbaContactInfoList contactInfoList) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
         this.contactInfoList = contactInfoList;
     }
 
@@ -86,38 +84,30 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
     // CORBA_2_3.portable.Delegate
     //
 
-    public OutputStream request(org.omg.CORBA.Object self, String operation,
-            boolean responseExpected) {
-        ClientInvocationInfo invocationInfo = orb
-                .createOrIncrementInvocationInfo();
-        Iterator contactInfoListIterator = invocationInfo
-                .getContactInfoListIterator();
+    public OutputStream request(org.omg.CORBA.Object self, String operation, boolean responseExpected) {
+        ClientInvocationInfo invocationInfo = orb.createOrIncrementInvocationInfo();
+        Iterator contactInfoListIterator = invocationInfo.getContactInfoListIterator();
         if (contactInfoListIterator == null) {
             contactInfoListIterator = contactInfoList.iterator();
             invocationInfo.setContactInfoListIterator(contactInfoListIterator);
         }
         if (!contactInfoListIterator.hasNext()) {
-            throw ((CorbaContactInfoListIterator) contactInfoListIterator)
-                    .getFailureException();
+            throw ((CorbaContactInfoListIterator) contactInfoListIterator).getFailureException();
         }
-        CorbaContactInfo contactInfo = (CorbaContactInfo) contactInfoListIterator
-                .next();
-        ClientRequestDispatcher subcontract = contactInfo
-                .getClientRequestDispatcher();
+        CorbaContactInfo contactInfo = (CorbaContactInfo) contactInfoListIterator.next();
+        ClientRequestDispatcher subcontract = contactInfo.getClientRequestDispatcher();
         // Remember chosen subcontract for invoke and releaseReply.
         // NOTE: This is necessary since a stream is not available in
         // releaseReply if there is a client marshaling error or an
         // error in _invoke.
         invocationInfo.setClientRequestDispatcher(subcontract);
-        return (OutputStream) subcontract.beginRequest(self, operation,
-                !responseExpected, contactInfo);
+        return (OutputStream) subcontract.beginRequest(self, operation, !responseExpected, contactInfo);
     }
 
-    public InputStream invoke(org.omg.CORBA.Object self, OutputStream output)
-            throws ApplicationException, RemarshalException {
+    public InputStream invoke(org.omg.CORBA.Object self, OutputStream output) throws ApplicationException,
+            RemarshalException {
         ClientRequestDispatcher subcontract = getClientRequestDispatcher();
-        return (InputStream) subcontract.marshalingComplete((Object) self,
-                (OutputObject) output);
+        return (InputStream) subcontract.marshalingComplete((Object) self, (OutputObject) output);
     }
 
     public void releaseReply(org.omg.CORBA.Object self, InputStream input) {
@@ -128,8 +118,8 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
     }
 
     private ClientRequestDispatcher getClientRequestDispatcher() {
-        return (ClientRequestDispatcher) ((CorbaInvocationInfo) orb
-                .getInvocationInfo()).getClientRequestDispatcher();
+        return (ClientRequestDispatcher) ((CorbaInvocationInfo) orb.getInvocationInfo())
+                .getClientRequestDispatcher();
     }
 
     public org.omg.CORBA.Object get_interface_def(org.omg.CORBA.Object obj) {
@@ -141,23 +131,20 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
             OutputStream os = request(null, "_interface", true);
             is = (InputStream) invoke((org.omg.CORBA.Object) null, os);
 
-            org.omg.CORBA.Object objimpl = (org.omg.CORBA.Object) is
-                    .read_Object();
+            org.omg.CORBA.Object objimpl = (org.omg.CORBA.Object) is.read_Object();
 
             // check if returned object is of correct type
             if (!objimpl._is_a("IDL:omg.org/CORBA/InterfaceDef:1.0"))
-                throw wrapper.wrongInterfaceDef(
-                        CompletionStatus.COMPLETED_MAYBE);
+                throw wrapper.wrongInterfaceDef(CompletionStatus.COMPLETED_MAYBE);
 
             try {
-                stub = (org.omg.CORBA.Object) JDKBridge.loadClass(
-                        "org.omg.CORBA._InterfaceDefStub").newInstance();
+                stub = (org.omg.CORBA.Object) JDKBridge.loadClass("org.omg.CORBA._InterfaceDefStub")
+                        .newInstance();
             } catch (Exception ex) {
                 throw wrapper.noInterfaceDefStub(ex);
             }
 
-            org.omg.CORBA.portable.Delegate del = StubAdapter.getDelegate(
-                    objimpl);
+            org.omg.CORBA.portable.Delegate del = StubAdapter.getDelegate(objimpl);
             StubAdapter.setDelegate(stub, del);
         } catch (ApplicationException e) {
             // This cannot happen.
@@ -238,8 +225,7 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
 
     // obj._get_delegate() == this due to the argument passing conventions in
     // portable.ObjectImpl, so we just ignore obj here.
-    public boolean is_equivalent(org.omg.CORBA.Object obj,
-            org.omg.CORBA.Object ref) {
+    public boolean is_equivalent(org.omg.CORBA.Object obj, org.omg.CORBA.Object ref) {
         if (ref == null)
             return false;
 
@@ -260,10 +246,8 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
             return false;
 
         CorbaClientDelegateImpl corbaDelegate = (CorbaClientDelegateImpl) del;
-        CorbaContactInfoList ccil = (CorbaContactInfoList) corbaDelegate
-                .getContactInfoList();
-        return this.contactInfoList.getTargetIOR().isEquivalent(ccil
-                .getTargetIOR());
+        CorbaContactInfoList ccil = (CorbaContactInfoList) corbaDelegate.getContactInfoList();
+        return this.contactInfoList.getTargetIOR().isEquivalent(ccil.getTargetIOR());
     }
 
     /**
@@ -304,21 +288,17 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
     }
 
     public Request request(org.omg.CORBA.Object obj, String operation) {
-        return new RequestImpl(orb, obj, null, operation, null, null, null,
-                null);
+        return new RequestImpl(orb, obj, null, operation, null, null, null, null);
     }
 
-    public Request create_request(org.omg.CORBA.Object obj, Context ctx,
-            String operation, NVList arg_list, NamedValue result) {
-        return new RequestImpl(orb, obj, ctx, operation, arg_list, result, null,
-                null);
+    public Request create_request(org.omg.CORBA.Object obj, Context ctx, String operation, NVList arg_list,
+            NamedValue result) {
+        return new RequestImpl(orb, obj, ctx, operation, arg_list, result, null, null);
     }
 
-    public Request create_request(org.omg.CORBA.Object obj, Context ctx,
-            String operation, NVList arg_list, NamedValue result,
-            ExceptionList exclist, ContextList ctxlist) {
-        return new RequestImpl(orb, obj, ctx, operation, arg_list, result,
-                exclist, ctxlist);
+    public Request create_request(org.omg.CORBA.Object obj, Context ctx, String operation, NVList arg_list,
+            NamedValue result, ExceptionList exclist, ContextList ctxlist) {
+        return new RequestImpl(orb, obj, ctx, operation, arg_list, result, exclist, ctxlist);
     }
 
     public org.omg.CORBA.ORB orb(org.omg.CORBA.Object obj) {
@@ -327,12 +307,11 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
 
     /**
      * Returns true if this object is implemented by a local servant.
-     *
      * REVISIT: locatedIOR should be replaced with a method call that returns
      * the current IOR for this request (e.g. ContactInfoChooser).
      *
      * @param self
-     *             The object reference which delegated to this delegate.
+     *        The object reference which delegated to this delegate.
      * @return true only if the servant incarnating this object is located in
      *         this ORB.
      */
@@ -341,16 +320,13 @@ public class CorbaClientDelegateImpl extends CorbaClientDelegate {
         return contactInfoList.getEffectiveTargetIOR().getProfile().isLocal();
     }
 
-    public ServantObject servant_preinvoke(org.omg.CORBA.Object self,
-            String operation, Class expectedType) {
-        return contactInfoList.getLocalClientRequestDispatcher()
-                .servant_preinvoke(self, operation, expectedType);
+    public ServantObject servant_preinvoke(org.omg.CORBA.Object self, String operation, Class expectedType) {
+        return contactInfoList.getLocalClientRequestDispatcher().servant_preinvoke(self, operation,
+                expectedType);
     }
 
-    public void servant_postinvoke(org.omg.CORBA.Object self,
-            ServantObject servant) {
-        contactInfoList.getLocalClientRequestDispatcher().servant_postinvoke(
-                self, servant);
+    public void servant_postinvoke(org.omg.CORBA.Object self, ServantObject servant) {
+        contactInfoList.getLocalClientRequestDispatcher().servant_postinvoke(self, servant);
     }
 
     // XXX Should this be public?

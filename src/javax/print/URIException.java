@@ -13,7 +13,6 @@ import java.net.URI;
  * condition involving a URI address. The Print Service API does not define any
  * print exception classes that implement interface URIException, that being
  * left to the Print Service implementor's discretion.
- *
  */
 
 public interface URIException {

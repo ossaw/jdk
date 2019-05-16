@@ -138,54 +138,52 @@ public class BasicStroke implements Stroke {
      * Constructs a new <code>BasicStroke</code> with the specified attributes.
      * 
      * @param width
-     *                   the width of this <code>BasicStroke</code>. The width
-     *                   must be
-     *                   greater than or equal to 0.0f. If width is set to 0.0f,
-     *                   the
-     *                   stroke is rendered as the thinnest possible line for
-     *                   the
-     *                   target device and the antialias hint setting.
+     *        the width of this <code>BasicStroke</code>. The width
+     *        must be
+     *        greater than or equal to 0.0f. If width is set to 0.0f,
+     *        the
+     *        stroke is rendered as the thinnest possible line for
+     *        the
+     *        target device and the antialias hint setting.
      * @param cap
-     *                   the decoration of the ends of a
-     *                   <code>BasicStroke</code>
+     *        the decoration of the ends of a
+     *        <code>BasicStroke</code>
      * @param join
-     *                   the decoration applied where path segments meet
+     *        the decoration applied where path segments meet
      * @param miterlimit
-     *                   the limit to trim the miter join. The miterlimit must
-     *                   be
-     *                   greater than or equal to 1.0f.
+     *        the limit to trim the miter join. The miterlimit must
+     *        be
+     *        greater than or equal to 1.0f.
      * @param dash
-     *                   the array representing the dashing pattern
+     *        the array representing the dashing pattern
      * @param dash_phase
-     *                   the offset to start the dashing pattern
+     *        the offset to start the dashing pattern
      * @throws IllegalArgumentException
-     *                                  if <code>width</code> is negative
+     *         if <code>width</code> is negative
      * @throws IllegalArgumentException
-     *                                  if <code>cap</code> is not either
-     *                                  CAP_BUTT, CAP_ROUND or
-     *                                  CAP_SQUARE
+     *         if <code>cap</code> is not either
+     *         CAP_BUTT, CAP_ROUND or
+     *         CAP_SQUARE
      * @throws IllegalArgumentException
-     *                                  if <code>miterlimit</code> is less than
-     *                                  1 and
-     *                                  <code>join</code> is JOIN_MITER
+     *         if <code>miterlimit</code> is less than
+     *         1 and
+     *         <code>join</code> is JOIN_MITER
      * @throws IllegalArgumentException
-     *                                  if <code>join</code> is not either
-     *                                  JOIN_ROUND, JOIN_BEVEL, or
-     *                                  JOIN_MITER
+     *         if <code>join</code> is not either
+     *         JOIN_ROUND, JOIN_BEVEL, or
+     *         JOIN_MITER
      * @throws IllegalArgumentException
-     *                                  if <code>dash_phase</code> is negative
-     *                                  and <code>dash</code>
-     *                                  is not <code>null</code>
+     *         if <code>dash_phase</code> is negative
+     *         and <code>dash</code>
+     *         is not <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if the length of <code>dash</code> is
-     *                                  zero
+     *         if the length of <code>dash</code> is
+     *         zero
      * @throws IllegalArgumentException
-     *                                  if dash lengths are all zero.
+     *         if dash lengths are all zero.
      */
-    @ConstructorProperties({ "lineWidth", "endCap", "lineJoin", "miterLimit",
-            "dashArray", "dashPhase" })
-    public BasicStroke(float width, int cap, int join, float miterlimit,
-            float dash[], float dash_phase) {
+    @ConstructorProperties({ "lineWidth", "endCap", "lineJoin", "miterLimit", "dashArray", "dashPhase" })
+    public BasicStroke(float width, int cap, int join, float miterlimit, float dash[], float dash_phase) {
         if (width < 0.0f) {
             throw new IllegalArgumentException("negative width");
         }
@@ -231,28 +229,28 @@ public class BasicStroke implements Stroke {
      * attributes.
      * 
      * @param width
-     *                   the width of the <code>BasicStroke</code>
+     *        the width of the <code>BasicStroke</code>
      * @param cap
-     *                   the decoration of the ends of a
-     *                   <code>BasicStroke</code>
+     *        the decoration of the ends of a
+     *        <code>BasicStroke</code>
      * @param join
-     *                   the decoration applied where path segments meet
+     *        the decoration applied where path segments meet
      * @param miterlimit
-     *                   the limit to trim the miter join
+     *        the limit to trim the miter join
      * @throws IllegalArgumentException
-     *                                  if <code>width</code> is negative
+     *         if <code>width</code> is negative
      * @throws IllegalArgumentException
-     *                                  if <code>cap</code> is not either
-     *                                  CAP_BUTT, CAP_ROUND or
-     *                                  CAP_SQUARE
+     *         if <code>cap</code> is not either
+     *         CAP_BUTT, CAP_ROUND or
+     *         CAP_SQUARE
      * @throws IllegalArgumentException
-     *                                  if <code>miterlimit</code> is less than
-     *                                  1 and
-     *                                  <code>join</code> is JOIN_MITER
+     *         if <code>miterlimit</code> is less than
+     *         1 and
+     *         <code>join</code> is JOIN_MITER
      * @throws IllegalArgumentException
-     *                                  if <code>join</code> is not either
-     *                                  JOIN_ROUND, JOIN_BEVEL, or
-     *                                  JOIN_MITER
+     *         if <code>join</code> is not either
+     *         JOIN_ROUND, JOIN_BEVEL, or
+     *         JOIN_MITER
      */
     public BasicStroke(float width, int cap, int join, float miterlimit) {
         this(width, cap, join, miterlimit, null, 0.0f);
@@ -265,21 +263,21 @@ public class BasicStroke implements Stroke {
      * JOIN_MITER.
      * 
      * @param width
-     *              the width of the <code>BasicStroke</code>
+     *        the width of the <code>BasicStroke</code>
      * @param cap
-     *              the decoration of the ends of a <code>BasicStroke</code>
+     *        the decoration of the ends of a <code>BasicStroke</code>
      * @param join
-     *              the decoration applied where path segments meet
+     *        the decoration applied where path segments meet
      * @throws IllegalArgumentException
-     *                                  if <code>width</code> is negative
+     *         if <code>width</code> is negative
      * @throws IllegalArgumentException
-     *                                  if <code>cap</code> is not either
-     *                                  CAP_BUTT, CAP_ROUND or
-     *                                  CAP_SQUARE
+     *         if <code>cap</code> is not either
+     *         CAP_BUTT, CAP_ROUND or
+     *         CAP_SQUARE
      * @throws IllegalArgumentException
-     *                                  if <code>join</code> is not either
-     *                                  JOIN_ROUND, JOIN_BEVEL, or
-     *                                  JOIN_MITER
+     *         if <code>join</code> is not either
+     *         JOIN_ROUND, JOIN_BEVEL, or
+     *         JOIN_MITER
      */
     public BasicStroke(float width, int cap, int join) {
         this(width, cap, join, 10.0f, null, 0.0f);
@@ -290,9 +288,9 @@ public class BasicStroke implements Stroke {
      * and with default values for the cap and join styles.
      * 
      * @param width
-     *              the width of the <code>BasicStroke</code>
+     *        the width of the <code>BasicStroke</code>
      * @throws IllegalArgumentException
-     *                                  if <code>width</code> is negative
+     *         if <code>width</code> is negative
      */
     public BasicStroke(float width) {
         this(width, CAP_SQUARE, JOIN_MITER, 10.0f, null, 0.0f);
@@ -312,14 +310,12 @@ public class BasicStroke implements Stroke {
      * of a specified <code>Shape</code>.
      * 
      * @param s
-     *          the <code>Shape</code> boundary be stroked
+     *        the <code>Shape</code> boundary be stroked
      * @return the <code>Shape</code> of the stroked outline.
      */
     public Shape createStrokedShape(Shape s) {
-        sun.java2d.pipe.RenderingEngine re = sun.java2d.pipe.RenderingEngine
-                .getInstance();
-        return re.createStrokedShape(s, width, cap, join, miterlimit, dash,
-                dash_phase);
+        sun.java2d.pipe.RenderingEngine re = sun.java2d.pipe.RenderingEngine.getInstance();
+        return re.createStrokedShape(s, width, cap, join, miterlimit, dash, dash_phase);
     }
 
     /**
@@ -428,8 +424,8 @@ public class BasicStroke implements Stroke {
      * of this <code>BasicStroke</code>.
      * 
      * @param obj
-     *            the specified object to compare to this
-     *            <code>BasicStroke</code>
+     *        the specified object to compare to this
+     *        <code>BasicStroke</code>
      * @return <code>true</code> if the width, join, cap, miter limit, dash, and
      *         dash phase are the same for both objects; <code>false</code>
      *         otherwise.

@@ -34,6 +34,5 @@ import org.xml.sax.SAXException;
  */
 interface ValidatorHelper {
 
-    public void validate(Source source, Result result) throws SAXException,
-            IOException;
+    public void validate(Source source, Result result) throws SAXException, IOException;
 }

@@ -9,7 +9,6 @@ import java.util.Set;
 
 /**
  * Interface for an X.509 extension.
- *
  * <p>
  * The extensions defined for X.509 v3 {@link X509Certificate Certificates} and
  * v2 {@link X509CRL CRLs} (Certificate Revocation Lists) provide methods for
@@ -17,7 +16,6 @@ import java.util.Set;
  * certification hierarchy, and for managing CRL distribution. The X.509
  * extensions format also allows communities to define private extensions to
  * carry information unique to those communities.
- *
  * <p>
  * Each extension in a certificate/CRL may be designated as critical or
  * non-critical. A certificate/CRL-using system (an application validating a
@@ -61,7 +59,6 @@ public interface X509Extension {
     /**
      * Gets a Set of the OID strings for the extension(s) marked CRITICAL in the
      * certificate/CRL managed by the object implementing this interface.
-     *
      * Here is sample code to get a Set of critical extensions from an
      * X509Certificate and print the OIDs:
      * 
@@ -94,7 +91,6 @@ public interface X509Extension {
     /**
      * Gets a Set of the OID strings for the extension(s) marked NON-CRITICAL in
      * the certificate/CRL managed by the object implementing this interface.
-     *
      * Here is sample code to get a Set of non-critical extensions from an
      * X509CRL revoked certificate entry and print the OIDs:
      * 
@@ -135,7 +131,6 @@ public interface X509Extension {
      * <em>extnValue</em>) identified by the passed-in {@code oid} String. The
      * {@code oid} string is represented by a set of nonnegative whole numbers
      * separated by periods.
-     *
      * <p>
      * For example:<br>
      * <table border=groove summary="Examples of OIDs and extension names">
@@ -186,7 +181,7 @@ public interface X509Extension {
      * </table>
      *
      * @param oid
-     *            the Object Identifier value for the extension.
+     *        the Object Identifier value for the extension.
      * @return the DER-encoded octet string of the extension value or null if it
      *         is not present.
      */

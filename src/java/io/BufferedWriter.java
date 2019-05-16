@@ -8,18 +8,15 @@ package java.io;
 /**
  * Writes text to a character-output stream, buffering characters so as to
  * provide for the efficient writing of single characters, arrays, and strings.
- *
  * <p>
  * The buffer size may be specified, or the default size may be accepted. The
  * default is large enough for most purposes.
- *
  * <p>
  * A newLine() method is provided, which uses the platform's own notion of line
  * separator as defined by the system property <tt>line.separator</tt>. Not all
  * platforms use the newline character ('\n') to terminate lines. Calling this
  * method to terminate each output line is therefore preferred to writing a
  * newline character directly.
- *
  * <p>
  * In general, a Writer sends its output immediately to the underlying character
  * or byte stream. Unless prompt output is required, it is advisable to wrap a
@@ -27,8 +24,7 @@ package java.io;
  * as FileWriters and OutputStreamWriters. For example,
  *
  * <pre>
- * PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
- *         "foo.out")));
+ * PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("foo.out")));
  * </pre>
  *
  * will buffer the PrintWriter's output to the file. Without buffering, each
@@ -40,7 +36,6 @@ package java.io;
  * @see FileWriter
  * @see OutputStreamWriter
  * @see java.nio.file.Files#newBufferedWriter
- *
  * @author Mark Reinhold
  * @since JDK1.1
  */
@@ -65,7 +60,7 @@ public class BufferedWriter extends Writer {
      * output buffer.
      *
      * @param out
-     *            A Writer
+     *        A Writer
      */
     public BufferedWriter(Writer out) {
         this(out, defaultCharBufferSize);
@@ -76,12 +71,11 @@ public class BufferedWriter extends Writer {
      * of the given size.
      *
      * @param out
-     *            A Writer
+     *        A Writer
      * @param sz
-     *            Output-buffer size, a positive integer
-     *
+     *        Output-buffer size, a positive integer
      * @exception IllegalArgumentException
-     *                                     If {@code sz <= 0}
+     *            If {@code sz <= 0}
      */
     public BufferedWriter(Writer out, int sz) {
         super(out);
@@ -92,8 +86,8 @@ public class BufferedWriter extends Writer {
         nChars = sz;
         nextChar = 0;
 
-        lineSeparator = java.security.AccessController.doPrivileged(
-                new sun.security.action.GetPropertyAction("line.separator"));
+        lineSeparator = java.security.AccessController.doPrivileged(new sun.security.action.GetPropertyAction(
+                "line.separator"));
     }
 
     /** Checks to make sure that the stream has not been closed */
@@ -121,7 +115,7 @@ public class BufferedWriter extends Writer {
      * Writes a single character.
      *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(int c) throws IOException {
         synchronized (lock) {
@@ -144,7 +138,6 @@ public class BufferedWriter extends Writer {
 
     /**
      * Writes a portion of an array of characters.
-     *
      * <p>
      * Ordinarily this method stores characters from the given array into this
      * stream's buffer, flushing the buffer to the underlying stream as needed.
@@ -154,20 +147,19 @@ public class BufferedWriter extends Writer {
      * not copy data unnecessarily.
      *
      * @param cbuf
-     *             A character array
+     *        A character array
      * @param off
-     *             Offset from which to start reading characters
+     *        Offset from which to start reading characters
      * @param len
-     *             Number of characters to write
-     *
+     *        Number of characters to write
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(char cbuf[], int off, int len) throws IOException {
         synchronized (lock) {
             ensureOpen();
-            if ((off < 0) || (off > cbuf.length) || (len < 0) || ((off
-                    + len) > cbuf.length) || ((off + len) < 0)) {
+            if ((off < 0) || (off > cbuf.length) || (len < 0) || ((off + len) > cbuf.length) || ((off
+                    + len) < 0)) {
                 throw new IndexOutOfBoundsException();
             } else if (len == 0) {
                 return;
@@ -198,7 +190,6 @@ public class BufferedWriter extends Writer {
 
     /**
      * Writes a portion of a String.
-     *
      * <p>
      * If the value of the <tt>len</tt> parameter is negative then no characters
      * are written. This is contrary to the specification of this method in the
@@ -206,14 +197,13 @@ public class BufferedWriter extends Writer {
      * which requires that an {@link IndexOutOfBoundsException} be thrown.
      *
      * @param s
-     *            String to be written
+     *        String to be written
      * @param off
-     *            Offset from which to start reading characters
+     *        Offset from which to start reading characters
      * @param len
-     *            Number of characters to be written
-     *
+     *        Number of characters to be written
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(String s, int off, int len) throws IOException {
         synchronized (lock) {
@@ -237,7 +227,7 @@ public class BufferedWriter extends Writer {
      * newline ('\n') character.
      *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void newLine() throws IOException {
         write(lineSeparator);
@@ -247,7 +237,7 @@ public class BufferedWriter extends Writer {
      * Flushes the stream.
      *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void flush() throws IOException {
         synchronized (lock) {

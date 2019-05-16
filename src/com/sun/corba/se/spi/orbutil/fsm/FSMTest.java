@@ -129,8 +129,7 @@ public class FSMTest {
         }
     };
 
-    private static void add1(StateEngine se, State oldState, Input in,
-            State newState) {
+    private static void add1(StateEngine se, State oldState, Input in, State newState) {
         se.add(oldState, in, new TestAction1(oldState, in, newState), newState);
     }
 

@@ -15,13 +15,11 @@ import java.util.Arrays;
  * enable the GSS-API callers to bind the establishment of the security context
  * to relevant characteristics like addresses or to application specific data.
  * <p>
- *
  * The caller initiating the security context must determine the appropriate
  * channel binding values to set in the GSSContext object. The acceptor must
  * provide an identical binding in order to validate that received tokens
  * possess correct channel-related characteristics.
  * <p>
- *
  * Use of channel bindings is optional in GSS-API. ChannelBinding can be set for
  * the {@link GSSContext GSSContext} using the
  * {@link GSSContext#setChannelBinding(ChannelBinding) setChannelBinding} method
@@ -31,7 +29,6 @@ import java.util.Arrays;
  * <code>setChannelBinding</code> method has been used to set the ChannelBinding
  * for a GSSContext object, <code>null</code> ChannelBinding will be assumed.
  * <p>
- *
  * Conceptually, the GSS-API concatenates the initiator and acceptor address
  * information, and the application supplied byte array to form an octet string.
  * The mechanism calculates a MIC over this octet string and binds the MIC to
@@ -46,7 +43,6 @@ import java.util.Arrays;
  * binding data in the token (rather than just a MIC); applications should
  * therefore not use confidential data as channel-binding components.
  * <p>
- *
  * Individual mechanisms may impose additional constraints on addresses that may
  * appear in channel bindings. For example, a mechanism may verify that the
  * initiator address field of the channel binding contains the correct network
@@ -69,34 +65,32 @@ public class ChannelBinding {
      * application does not want to specify.
      *
      * @param initAddr
-     *                   the address of the context initiator. <code>null</code>
-     *                   value
-     *                   can be supplied to indicate that the application does
-     *                   not want
-     *                   to set this value.
+     *        the address of the context initiator. <code>null</code>
+     *        value
+     *        can be supplied to indicate that the application does
+     *        not want
+     *        to set this value.
      * @param acceptAddr
-     *                   the address of the context acceptor. <code>null</code>
-     *                   value
-     *                   can be supplied to indicate that the application does
-     *                   not want
-     *                   to set this value.
+     *        the address of the context acceptor. <code>null</code>
+     *        value
+     *        can be supplied to indicate that the application does
+     *        not want
+     *        to set this value.
      * @param appData
-     *                   application supplied data to be used as part of the
-     *                   channel
-     *                   bindings. <code>null</code> value can be supplied to
-     *                   indicate
-     *                   that the application does not want to set this value.
+     *        application supplied data to be used as part of the
+     *        channel
+     *        bindings. <code>null</code> value can be supplied to
+     *        indicate
+     *        that the application does not want to set this value.
      */
-    public ChannelBinding(InetAddress initAddr, InetAddress acceptAddr,
-            byte[] appData) {
+    public ChannelBinding(InetAddress initAddr, InetAddress acceptAddr, byte[] appData) {
 
         initiator = initAddr;
         acceptor = acceptAddr;
 
         if (appData != null) {
             this.appData = new byte[appData.length];
-            java.lang.System.arraycopy(appData, 0, this.appData, 0,
-                    appData.length);
+            java.lang.System.arraycopy(appData, 0, this.appData, 0, appData.length);
         }
     }
 
@@ -104,9 +98,9 @@ public class ChannelBinding {
      * Creates a ChannelBinding object without any addressing information.
      *
      * @param appData
-     *                application supplied data to be used as part of the
-     *                channel
-     *                bindings.
+     *        application supplied data to be used as part of the
+     *        channel
+     *        bindings.
      */
     public ChannelBinding(byte[] appData) {
         this(null, null, appData);
@@ -154,7 +148,7 @@ public class ChannelBinding {
      * Compares two instances of ChannelBinding.
      *
      * @param obj
-     *            another ChannelBinding to compare this one with
+     *        another ChannelBinding to compare this one with
      * @return true if the two ChannelBinding's contain the same values for the
      *         initiator and acceptor addresses and the application data.
      */
@@ -168,15 +162,13 @@ public class ChannelBinding {
 
         ChannelBinding cb = (ChannelBinding) obj;
 
-        if ((initiator != null && cb.initiator == null) || (initiator == null
-                && cb.initiator != null))
+        if ((initiator != null && cb.initiator == null) || (initiator == null && cb.initiator != null))
             return false;
 
         if (initiator != null && !initiator.equals(cb.initiator))
             return false;
 
-        if ((acceptor != null && cb.acceptor == null) || (acceptor == null
-                && cb.acceptor != null))
+        if ((acceptor != null && cb.acceptor == null) || (acceptor == null && cb.acceptor != null))
             return false;
 
         if (acceptor != null && !acceptor.equals(cb.acceptor))

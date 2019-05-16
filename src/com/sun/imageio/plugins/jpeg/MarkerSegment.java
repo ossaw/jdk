@@ -75,14 +75,12 @@ class MarkerSegment implements Cloneable {
             try {
                 data = (byte[]) iioNode.getUserObject();
             } catch (Exception e) {
-                IIOInvalidTreeException newGuy = new IIOInvalidTreeException(
-                        "Can't get User Object", node);
+                IIOInvalidTreeException newGuy = new IIOInvalidTreeException("Can't get User Object", node);
                 newGuy.initCause(e);
                 throw newGuy;
             }
         } else {
-            throw new IIOInvalidTreeException("Node must have User Object",
-                    node);
+            throw new IIOInvalidTreeException("Node must have User Object", node);
         }
     }
 
@@ -93,8 +91,7 @@ class MarkerSegment implements Cloneable {
         MarkerSegment newGuy = null;
         try {
             newGuy = (MarkerSegment) super.clone();
-        } catch (CloneNotSupportedException e) {
-        } // won't happen
+        } catch (CloneNotSupportedException e) {} // won't happen
         if (this.data != null) {
             newGuy.data = (byte[]) data.clone();
         }
@@ -118,8 +115,8 @@ class MarkerSegment implements Cloneable {
         return node;
     }
 
-    static int getAttributeValue(Node node, NamedNodeMap attrs, String name,
-            int min, int max, boolean required) throws IIOInvalidTreeException {
+    static int getAttributeValue(Node node, NamedNodeMap attrs, String name, int min, int max,
+            boolean required) throws IIOInvalidTreeException {
         if (attrs == null) {
             attrs = node.getAttributes();
         }
@@ -127,14 +124,12 @@ class MarkerSegment implements Cloneable {
         int value = -1;
         if (valueString == null) {
             if (required) {
-                throw new IIOInvalidTreeException(name + " attribute not found",
-                        node);
+                throw new IIOInvalidTreeException(name + " attribute not found", node);
             }
         } else {
             value = Integer.parseInt(valueString);
             if ((value < min) || (value > max)) {
-                throw new IIOInvalidTreeException(name
-                        + " attribute out of range", node);
+                throw new IIOInvalidTreeException(name + " attribute out of range", node);
             }
         }
         return value;
@@ -161,16 +156,14 @@ class MarkerSegment implements Cloneable {
         }
     }
 
-    static void write2bytes(ImageOutputStream ios, int value)
-            throws IOException {
+    static void write2bytes(ImageOutputStream ios, int value) throws IOException {
         ios.write((value >> 8) & 0xff);
         ios.write(value & 0xff);
 
     }
 
     void printTag(String prefix) {
-        System.out.println(prefix + " marker segment - marker = 0x" + Integer
-                .toHexString(tag));
+        System.out.println(prefix + " marker segment - marker = 0x" + Integer.toHexString(tag));
         System.out.println("length: " + length);
     }
 

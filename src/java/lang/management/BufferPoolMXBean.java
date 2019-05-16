@@ -9,7 +9,6 @@ package java.lang.management;
  * The management interface for a buffer pool, for example a pool of
  * {@link java.nio.ByteBuffer#allocateDirect direct} or
  * {@link java.nio.MappedByteBuffer mapped} buffers.
- *
  * <p>
  * A class implementing this interface is an {@link javax.management.MXBean}. A
  * Java virtual machine has one or more implementations of this interface. The
@@ -19,10 +18,8 @@ package java.lang.management;
  * pools of buffers as follows:
  * 
  * <pre>
- * List&lt;BufferPoolMXBean&gt; pools = ManagementFactory.getPlatformMXBeans(
- *         BufferPoolMXBean.class);
+ * List&lt;BufferPoolMXBean&gt; pools = ManagementFactory.getPlatformMXBeans(BufferPoolMXBean.class);
  * </pre>
- *
  * <p>
  * The management interfaces are also registered with the platform
  * {@link javax.management.MBeanServer MBeanServer}. The

@@ -38,7 +38,7 @@ public class MetalTextFieldUI extends BasicTextFieldUI {
      * subclasses.
      *
      * @param evt
-     *            the property change event
+     *        the property change event
      */
     public void propertyChange(PropertyChangeEvent evt) {
         super.propertyChange(evt);

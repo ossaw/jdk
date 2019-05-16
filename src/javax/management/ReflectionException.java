@@ -27,7 +27,7 @@ public class ReflectionException extends JMException {
      * <CODE>java.lang.Exception</CODE>.
      *
      * @param e
-     *          the wrapped exception.
+     *        the wrapped exception.
      */
     public ReflectionException(java.lang.Exception e) {
         super();
@@ -39,9 +39,9 @@ public class ReflectionException extends JMException {
      * <CODE>java.lang.Exception</CODE> with a detail message.
      *
      * @param e
-     *                the wrapped exception.
+     *        the wrapped exception.
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public ReflectionException(java.lang.Exception e, String message) {
         super(message);

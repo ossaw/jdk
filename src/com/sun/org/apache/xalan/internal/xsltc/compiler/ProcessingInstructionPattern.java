@@ -94,10 +94,8 @@ final class ProcessingInstructionPattern extends StepPattern {
         final InstructionList il = methodGen.getInstructionList();
 
         // context node is on the stack
-        int gname = cpg.addInterfaceMethodref(DOM_INTF, "getNodeName",
-                "(I)Ljava/lang/String;");
-        int cmp = cpg.addMethodref(STRING_CLASS, "equals",
-                "(Ljava/lang/Object;)Z");
+        int gname = cpg.addInterfaceMethodref(DOM_INTF, "getNodeName", "(I)Ljava/lang/String;");
+        int cmp = cpg.addMethodref(STRING_CLASS, "equals", "(Ljava/lang/Object;)Z");
 
         // Push current node on the stack
         il.append(methodGen.loadCurrentNode());
@@ -109,8 +107,7 @@ final class ProcessingInstructionPattern extends StepPattern {
         // If pattern not reduced then check kernel
         if (!_typeChecked) {
             il.append(methodGen.loadCurrentNode());
-            final int getType = cpg.addInterfaceMethodref(DOM_INTF,
-                    "getExpandedTypeID", "(I)I");
+            final int getType = cpg.addInterfaceMethodref(DOM_INTF, "getExpandedTypeID", "(I)I");
             il.append(methodGen.loadDOM());
             il.append(methodGen.loadCurrentNode());
             il.append(new INVOKEINTERFACE(getType, 2));

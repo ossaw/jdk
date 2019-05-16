@@ -63,15 +63,14 @@ public final class ConstantFieldref extends ConstantCP {
      * Initialize from another object.
      */
     public ConstantFieldref(ConstantFieldref c) {
-        super(Constants.CONSTANT_Fieldref, c.getClassIndex(), c
-                .getNameAndTypeIndex());
+        super(Constants.CONSTANT_Fieldref, c.getClassIndex(), c.getNameAndTypeIndex());
     }
 
     /**
      * Initialize instance from file data.
      *
      * @param file
-     *             input stream
+     *        input stream
      * @throws IOException
      */
     ConstantFieldref(DataInputStream file) throws IOException {
@@ -80,9 +79,9 @@ public final class ConstantFieldref extends ConstantCP {
 
     /**
      * @param class_index
-     *                            Reference to the class containing the Field
+     *        Reference to the class containing the Field
      * @param name_and_type_index
-     *                            and the Field signature
+     *        and the Field signature
      */
     public ConstantFieldref(int class_index, int name_and_type_index) {
         super(Constants.CONSTANT_Fieldref, class_index, name_and_type_index);
@@ -94,7 +93,7 @@ public final class ConstantFieldref extends ConstantCP {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantFieldref(this);

@@ -14,55 +14,43 @@ import static javax.management.monitor.MonitorNotification.*;
 
 /**
  * Defines a monitor MBean designed to observe the values of a gauge attribute.
- *
  * <P>
  * A gauge monitor observes an attribute that is continuously variable with
  * time. A gauge monitor sends notifications as follows:
- *
  * <UL>
- *
  * <LI>if the attribute value is increasing and becomes equal to or greater than
  * the high threshold value, a
  * {@link MonitorNotification#THRESHOLD_HIGH_VALUE_EXCEEDED threshold high
  * notification} is sent. The notify high flag must be set to <CODE>true</CODE>.
- *
  * <BR>
  * Subsequent crossings of the high threshold value do not cause further
  * notifications unless the attribute value becomes equal to or less than the
  * low threshold value.</LI>
- *
  * <LI>if the attribute value is decreasing and becomes equal to or less than
  * the low threshold value, a
  * {@link MonitorNotification#THRESHOLD_LOW_VALUE_EXCEEDED threshold low
  * notification} is sent. The notify low flag must be set to <CODE>true</CODE>.
- *
  * <BR>
  * Subsequent crossings of the low threshold value do not cause further
  * notifications unless the attribute value becomes equal to or greater than the
  * high threshold value.</LI>
- *
  * </UL>
- *
  * This provides a hysteresis mechanism to avoid repeated triggering of
  * notifications when the attribute value makes small oscillations around the
  * high or low threshold value.
- *
  * <P>
  * If the gauge difference mode is used, the value of the derived gauge is
  * calculated as the difference between the observed gauge values for two
  * successive observations.
- *
  * <BR>
  * The derived gauge value (V[t]) is calculated using the following method:
  * <UL>
  * <LI>V[t] = gauge[t] - gauge[t-GP]</LI>
  * </UL>
- *
  * This implementation of the gauge monitor requires the observed attribute to
  * be of the type integer or floating-point (<CODE>Byte</CODE>,
  * <CODE>Integer</CODE>, <CODE>Short</CODE>, <CODE>Long</CODE>,
  * <CODE>Float</CODE>, <CODE>Double</CODE>).
- *
  *
  * @since 1.5
  */
@@ -83,8 +71,7 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
             return derivedGaugeValid;
         }
 
-        public final synchronized void setDerivedGaugeValid(
-                boolean derivedGaugeValid) {
+        public final synchronized void setDerivedGaugeValid(boolean derivedGaugeValid) {
             this.derivedGaugeValid = derivedGaugeValid;
         }
 
@@ -100,8 +87,7 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
             return previousScanGauge;
         }
 
-        public final synchronized void setPreviousScanGauge(
-                Number previousScanGauge) {
+        public final synchronized void setPreviousScanGauge(Number previousScanGauge) {
             this.previousScanGauge = previousScanGauge;
         }
 
@@ -126,7 +112,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
 
     /**
      * Gauge high threshold.
-     *
      * <BR>
      * The default value is a null Integer object.
      */
@@ -134,7 +119,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
 
     /**
      * Gauge low threshold.
-     *
      * <BR>
      * The default value is a null Integer object.
      */
@@ -143,7 +127,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
     /**
      * Flag indicating if the gauge monitor notifies when exceeding the high
      * threshold.
-     *
      * <BR>
      * The default value is <CODE>false</CODE>.
      */
@@ -152,7 +135,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
     /**
      * Flag indicating if the gauge monitor notifies when exceeding the low
      * threshold.
-     *
      * <BR>
      * The default value is <CODE>false</CODE>.
      */
@@ -163,21 +145,17 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * difference mode is used, the derived gauge is the difference between two
      * consecutive observed values. Otherwise, the derived gauge is directly the
      * value of the observed attribute.
-     *
      * <BR>
      * The default value is set to <CODE>false</CODE>.
      */
     private boolean differenceMode = false;
 
-    private static final String[] types = { RUNTIME_ERROR,
-            OBSERVED_OBJECT_ERROR, OBSERVED_ATTRIBUTE_ERROR,
-            OBSERVED_ATTRIBUTE_TYPE_ERROR, THRESHOLD_ERROR,
-            THRESHOLD_HIGH_VALUE_EXCEEDED, THRESHOLD_LOW_VALUE_EXCEEDED };
+    private static final String[] types = { RUNTIME_ERROR, OBSERVED_OBJECT_ERROR, OBSERVED_ATTRIBUTE_ERROR,
+            OBSERVED_ATTRIBUTE_TYPE_ERROR, THRESHOLD_ERROR, THRESHOLD_HIGH_VALUE_EXCEEDED,
+            THRESHOLD_LOW_VALUE_EXCEEDED };
 
-    private static final MBeanNotificationInfo[] notifsInfo = {
-            new MBeanNotificationInfo(types,
-                    "javax.management.monitor.MonitorNotification",
-                    "Notifications sent by the GaugeMonitor MBean") };
+    private static final MBeanNotificationInfo[] notifsInfo = { new MBeanNotificationInfo(types,
+            "javax.management.monitor.MonitorNotification", "Notifications sent by the GaugeMonitor MBean") };
 
     // Flags needed to implement the hysteresis mechanism.
     //
@@ -205,8 +183,8 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      */
     public synchronized void start() {
         if (isActive()) {
-            MONITOR_LOGGER.logp(Level.FINER, GaugeMonitor.class.getName(),
-                    "start", "the monitor is already active");
+            MONITOR_LOGGER.logp(Level.FINER, GaugeMonitor.class.getName(), "start",
+                    "the monitor is already active");
             return;
         }
         // Reset values.
@@ -234,10 +212,8 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * contained in the set of observed MBeans, or <code>null</code> otherwise.
      *
      * @param object
-     *               the name of the MBean.
-     *
+     *        the name of the MBean.
      * @return The derived gauge of the specified object.
-     *
      */
     @Override
     public synchronized Number getDerivedGauge(ObjectName object) {
@@ -249,12 +225,10 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * is contained in the set of observed MBeans, or <code>0</code> otherwise.
      *
      * @param object
-     *               the name of the object whose derived gauge timestamp is to
-     *               be
-     *               returned.
-     *
+     *        the name of the object whose derived gauge timestamp is to
+     *        be
+     *        returned.
      * @return The derived gauge timestamp of the specified object.
-     *
      */
     @Override
     public synchronized long getDerivedGaugeTimeStamp(ObjectName object) {
@@ -266,7 +240,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * MBeans.
      *
      * @return The derived gauge.
-     *
      * @deprecated As of JMX 1.2, replaced by
      *             {@link #getDerivedGauge(ObjectName)}
      */
@@ -284,7 +257,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * observed MBeans.
      *
      * @return The derived gauge timestamp.
-     *
      * @deprecated As of JMX 1.2, replaced by
      *             {@link #getDerivedGaugeTimeStamp(ObjectName)}
      */
@@ -301,7 +273,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * Gets the high threshold value common to all observed MBeans.
      *
      * @return The high threshold value.
-     *
      * @see #setThresholds
      */
     public synchronized Number getHighThreshold() {
@@ -312,7 +283,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * Gets the low threshold value common to all observed MBeans.
      *
      * @return The low threshold value.
-     *
      * @see #setThresholds
      */
     public synchronized Number getLowThreshold() {
@@ -323,18 +293,16 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * Sets the high and the low threshold values common to all observed MBeans.
      *
      * @param highValue
-     *                  The high threshold value.
+     *        The high threshold value.
      * @param lowValue
-     *                  The low threshold value.
-     *
+     *        The low threshold value.
      * @exception IllegalArgumentException
-     *                                     The specified high/low threshold is
-     *                                     null or the low
-     *                                     threshold is greater than the high
-     *                                     threshold or the high
-     *                                     threshold and the low threshold are
-     *                                     not of the same type.
-     *
+     *            The specified high/low threshold is
+     *            null or the low
+     *            threshold is greater than the high
+     *            threshold or the high
+     *            threshold and the low threshold are
+     *            not of the same type.
      * @see #getHighThreshold
      * @see #getLowThreshold
      */
@@ -346,14 +314,11 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
         }
 
         if (highValue.getClass() != lowValue.getClass()) {
-            throw new IllegalArgumentException("Different type "
-                    + "threshold values");
+            throw new IllegalArgumentException("Different type " + "threshold values");
         }
 
-        if (isFirstStrictlyGreaterThanLast(lowValue, highValue, highValue
-                .getClass().getName())) {
-            throw new IllegalArgumentException("High threshold less than "
-                    + "low threshold");
+        if (isFirstStrictlyGreaterThanLast(lowValue, highValue, highValue.getClass().getName())) {
+            throw new IllegalArgumentException("High threshold less than " + "low threshold");
         }
 
         if (highThreshold.equals(highValue) && lowThreshold.equals(lowValue))
@@ -377,7 +342,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      *
      * @return <CODE>true</CODE> if the gauge monitor notifies when exceeding
      *         the high threshold, <CODE>false</CODE> otherwise.
-     *
      * @see #setNotifyHigh
      */
     public synchronized boolean getNotifyHigh() {
@@ -389,8 +353,7 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * MBeans.
      *
      * @param value
-     *              The high notification's on/off switch value.
-     *
+     *        The high notification's on/off switch value.
      * @see #getNotifyHigh
      */
     public synchronized void setNotifyHigh(boolean value) {
@@ -405,7 +368,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      *
      * @return <CODE>true</CODE> if the gauge monitor notifies when exceeding
      *         the low threshold, <CODE>false</CODE> otherwise.
-     *
      * @see #setNotifyLow
      */
     public synchronized boolean getNotifyLow() {
@@ -417,8 +379,7 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * MBeans.
      *
      * @param value
-     *              The low notification's on/off switch value.
-     *
+     *        The low notification's on/off switch value.
      * @see #getNotifyLow
      */
     public synchronized void setNotifyLow(boolean value) {
@@ -432,7 +393,6 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      *
      * @return <CODE>true</CODE> if the difference mode is used,
      *         <CODE>false</CODE> otherwise.
-     *
      * @see #setDifferenceMode
      */
     public synchronized boolean getDifferenceMode() {
@@ -443,8 +403,7 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * Sets the difference mode flag value common to all observed MBeans.
      *
      * @param value
-     *              The difference mode flag value.
-     *
+     *        The difference mode flag value.
      * @see #getDifferenceMode
      */
     public synchronized void setDifferenceMode(boolean value) {
@@ -480,17 +439,16 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * Updates the derived gauge attribute of the observed object.
      *
      * @param scanGauge
-     *                  The value of the observed attribute.
+     *        The value of the observed attribute.
      * @param o
-     *                  The observed object.
+     *        The observed object.
      * @return <CODE>true</CODE> if the derived gauge value is valid,
      *         <CODE>false</CODE> otherwise. The derived gauge value is invalid
      *         when the differenceMode flag is set to <CODE>true</CODE> and it
      *         is the first notification (so we haven't 2 consecutive values to
      *         update the derived gauge).
      */
-    private synchronized boolean updateDerivedGauge(Object scanGauge,
-            GaugeMonitorObservedObject o) {
+    private synchronized boolean updateDerivedGauge(Object scanGauge, GaugeMonitorObservedObject o) {
 
         boolean is_derived_gauge_valid;
 
@@ -527,10 +485,9 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * the listeners only once if the notify flag is set to <CODE>true</CODE>.
      * 
      * @param o
-     *          The observed object.
+     *        The observed object.
      */
-    private synchronized MonitorNotification updateNotifications(
-            GaugeMonitorObservedObject o) {
+    private synchronized MonitorNotification updateNotifications(GaugeMonitorObservedObject o) {
 
         MonitorNotification n = null;
 
@@ -538,39 +495,33 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
         // Send low notification if notifyLow is true.
         //
         if (o.getStatus() == RISING_OR_FALLING) {
-            if (isFirstGreaterThanLast((Number) o.getDerivedGauge(),
-                    highThreshold, o.getType())) {
+            if (isFirstGreaterThanLast((Number) o.getDerivedGauge(), highThreshold, o.getType())) {
                 if (notifyHigh) {
-                    n = new MonitorNotification(THRESHOLD_HIGH_VALUE_EXCEEDED,
-                            this, 0, 0, "", null, null, null, highThreshold);
+                    n = new MonitorNotification(THRESHOLD_HIGH_VALUE_EXCEEDED, this, 0, 0, "", null, null,
+                            null, highThreshold);
                 }
                 o.setStatus(FALLING);
-            } else if (isFirstGreaterThanLast(lowThreshold, (Number) o
-                    .getDerivedGauge(), o.getType())) {
+            } else if (isFirstGreaterThanLast(lowThreshold, (Number) o.getDerivedGauge(), o.getType())) {
                 if (notifyLow) {
-                    n = new MonitorNotification(THRESHOLD_LOW_VALUE_EXCEEDED,
-                            this, 0, 0, "", null, null, null, lowThreshold);
+                    n = new MonitorNotification(THRESHOLD_LOW_VALUE_EXCEEDED, this, 0, 0, "", null, null,
+                            null, lowThreshold);
                 }
                 o.setStatus(RISING);
             }
         } else {
             if (o.getStatus() == RISING) {
-                if (isFirstGreaterThanLast((Number) o.getDerivedGauge(),
-                        highThreshold, o.getType())) {
+                if (isFirstGreaterThanLast((Number) o.getDerivedGauge(), highThreshold, o.getType())) {
                     if (notifyHigh) {
-                        n = new MonitorNotification(
-                                THRESHOLD_HIGH_VALUE_EXCEEDED, this, 0, 0, "",
-                                null, null, null, highThreshold);
+                        n = new MonitorNotification(THRESHOLD_HIGH_VALUE_EXCEEDED, this, 0, 0, "", null, null,
+                                null, highThreshold);
                     }
                     o.setStatus(FALLING);
                 }
             } else if (o.getStatus() == FALLING) {
-                if (isFirstGreaterThanLast(lowThreshold, (Number) o
-                        .getDerivedGauge(), o.getType())) {
+                if (isFirstGreaterThanLast(lowThreshold, (Number) o.getDerivedGauge(), o.getType())) {
                     if (notifyLow) {
-                        n = new MonitorNotification(
-                                THRESHOLD_LOW_VALUE_EXCEEDED, this, 0, 0, "",
-                                null, null, null, lowThreshold);
+                        n = new MonitorNotification(THRESHOLD_LOW_VALUE_EXCEEDED, this, 0, 0, "", null, null,
+                                null, lowThreshold);
                     }
                     o.setStatus(RISING);
                 }
@@ -585,44 +536,36 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * <CODE>true</CODE>. Both integer and floating-point types are allowed.
      *
      * @param scanGauge
-     *                  The value of the observed attribute.
+     *        The value of the observed attribute.
      * @param o
-     *                  The observed object.
+     *        The observed object.
      */
-    private synchronized void setDerivedGaugeWithDifference(Number scanGauge,
-            GaugeMonitorObservedObject o) {
+    private synchronized void setDerivedGaugeWithDifference(Number scanGauge, GaugeMonitorObservedObject o) {
         Number prev = o.getPreviousScanGauge();
         Number der;
         switch (o.getType()) {
             case INTEGER:
-                der = Integer.valueOf(((Integer) scanGauge).intValue()
-                        - ((Integer) prev).intValue());
+                der = Integer.valueOf(((Integer) scanGauge).intValue() - ((Integer) prev).intValue());
                 break;
             case BYTE:
-                der = Byte.valueOf((byte) (((Byte) scanGauge).byteValue()
-                        - ((Byte) prev).byteValue()));
+                der = Byte.valueOf((byte) (((Byte) scanGauge).byteValue() - ((Byte) prev).byteValue()));
                 break;
             case SHORT:
-                der = Short.valueOf((short) (((Short) scanGauge).shortValue()
-                        - ((Short) prev).shortValue()));
+                der = Short.valueOf((short) (((Short) scanGauge).shortValue() - ((Short) prev).shortValue()));
                 break;
             case LONG:
-                der = Long.valueOf(((Long) scanGauge).longValue()
-                        - ((Long) prev).longValue());
+                der = Long.valueOf(((Long) scanGauge).longValue() - ((Long) prev).longValue());
                 break;
             case FLOAT:
-                der = Float.valueOf(((Float) scanGauge).floatValue()
-                        - ((Float) prev).floatValue());
+                der = Float.valueOf(((Float) scanGauge).floatValue() - ((Float) prev).floatValue());
                 break;
             case DOUBLE:
-                der = Double.valueOf(((Double) scanGauge).doubleValue()
-                        - ((Double) prev).doubleValue());
+                der = Double.valueOf(((Double) scanGauge).doubleValue() - ((Double) prev).doubleValue());
                 break;
             default:
                 // Should never occur...
                 MONITOR_LOGGER.logp(Level.FINEST, GaugeMonitor.class.getName(),
-                        "setDerivedGaugeWithDifference",
-                        "the threshold type is invalid");
+                        "setDerivedGaugeWithDifference", "the threshold type is invalid");
                 return;
         }
         o.setDerivedGauge(der);
@@ -633,16 +576,15 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * Both integer and floating-point types are allowed.
      *
      * @param greater
-     *                The first Number to compare with the second.
+     *        The first Number to compare with the second.
      * @param less
-     *                The second Number to compare with the first.
+     *        The second Number to compare with the first.
      * @param type
-     *                The number type.
+     *        The number type.
      * @return <CODE>true</CODE> if the first specified Number is greater than
      *         or equal to the last, <CODE>false</CODE> otherwise.
      */
-    private boolean isFirstGreaterThanLast(Number greater, Number less,
-            NumericalType type) {
+    private boolean isFirstGreaterThanLast(Number greater, Number less, NumericalType type) {
 
         switch (type) {
             case INTEGER:
@@ -655,8 +597,7 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
                 return (greater.doubleValue() >= less.doubleValue());
             default:
                 // Should never occur...
-                MONITOR_LOGGER.logp(Level.FINEST, GaugeMonitor.class.getName(),
-                        "isFirstGreaterThanLast",
+                MONITOR_LOGGER.logp(Level.FINEST, GaugeMonitor.class.getName(), "isFirstGreaterThanLast",
                         "the threshold type is invalid");
                 return false;
         }
@@ -667,30 +608,26 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * Both integer and floating-point types are allowed.
      *
      * @param greater
-     *                  The first Number to compare with the second.
+     *        The first Number to compare with the second.
      * @param less
-     *                  The second Number to compare with the first.
+     *        The second Number to compare with the first.
      * @param className
-     *                  The number class name.
+     *        The number class name.
      * @return <CODE>true</CODE> if the first specified Number is strictly
      *         greater than the last, <CODE>false</CODE> otherwise.
      */
-    private boolean isFirstStrictlyGreaterThanLast(Number greater, Number less,
-            String className) {
+    private boolean isFirstStrictlyGreaterThanLast(Number greater, Number less, String className) {
 
-        if (className.equals("java.lang.Integer") || className.equals(
-                "java.lang.Byte") || className.equals("java.lang.Short")
-                || className.equals("java.lang.Long")) {
+        if (className.equals("java.lang.Integer") || className.equals("java.lang.Byte") || className.equals(
+                "java.lang.Short") || className.equals("java.lang.Long")) {
 
             return (greater.longValue() > less.longValue());
-        } else if (className.equals("java.lang.Float") || className.equals(
-                "java.lang.Double")) {
+        } else if (className.equals("java.lang.Float") || className.equals("java.lang.Double")) {
 
             return (greater.doubleValue() > less.doubleValue());
         } else {
             // Should never occur...
-            MONITOR_LOGGER.logp(Level.FINEST, GaugeMonitor.class.getName(),
-                    "isFirstStrictlyGreaterThanLast",
+            MONITOR_LOGGER.logp(Level.FINEST, GaugeMonitor.class.getName(), "isFirstStrictlyGreaterThanLast",
                     "the threshold type is invalid");
             return false;
         }
@@ -708,8 +645,7 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      */
     @Override
     ObservedObject createObservedObject(ObjectName object) {
-        final GaugeMonitorObservedObject gmo = new GaugeMonitorObservedObject(
-                object);
+        final GaugeMonitorObservedObject gmo = new GaugeMonitorObservedObject(object);
         gmo.setStatus(RISING_OR_FALLING);
         gmo.setPreviousScanGauge(null);
         return gmo;
@@ -721,10 +657,8 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
      * attribute value is one of the value types supported by this monitor.
      */
     @Override
-    synchronized boolean isComparableTypeValid(ObjectName object,
-            String attribute, Comparable<?> value) {
-        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(
-                object);
+    synchronized boolean isComparableTypeValid(ObjectName object, String attribute, Comparable<?> value) {
+        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(object);
         if (o == null)
             return false;
 
@@ -750,10 +684,9 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
     }
 
     @Override
-    synchronized Comparable<?> getDerivedGaugeFromComparable(ObjectName object,
-            String attribute, Comparable<?> value) {
-        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(
-                object);
+    synchronized Comparable<?> getDerivedGaugeFromComparable(ObjectName object, String attribute,
+            Comparable<?> value) {
+        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(object);
         if (o == null)
             return null;
 
@@ -771,8 +704,8 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
 
     @Override
     synchronized void onErrorNotification(MonitorNotification notification) {
-        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(
-                notification.getObservedObject());
+        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(notification
+                .getObservedObject());
         if (o == null)
             return;
 
@@ -783,10 +716,9 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
     }
 
     @Override
-    synchronized MonitorNotification buildAlarmNotification(ObjectName object,
-            String attribute, Comparable<?> value) {
-        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(
-                object);
+    synchronized MonitorNotification buildAlarmNotification(ObjectName object, String attribute,
+            Comparable<?> value) {
+        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(object);
         if (o == null)
             return null;
 
@@ -804,30 +736,26 @@ public class GaugeMonitor extends Monitor implements GaugeMonitorMBean {
     /**
      * Tests if the threshold high and threshold low are both of the same type
      * as the gauge. Both integer and floating-point types are allowed.
-     *
      * Note: If the optional lowThreshold or highThreshold have not been
      * initialized, their default value is an Integer object with a value equal
      * to zero.
      *
      * @param object
-     *                  The observed object.
+     *        The observed object.
      * @param attribute
-     *                  The observed attribute.
+     *        The observed attribute.
      * @param value
-     *                  The sample value.
+     *        The sample value.
      * @return <CODE>true</CODE> if type is the same, <CODE>false</CODE>
      *         otherwise.
      */
     @Override
-    synchronized boolean isThresholdTypeValid(ObjectName object,
-            String attribute, Comparable<?> value) {
-        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(
-                object);
+    synchronized boolean isThresholdTypeValid(ObjectName object, String attribute, Comparable<?> value) {
+        final GaugeMonitorObservedObject o = (GaugeMonitorObservedObject) getObservedObject(object);
         if (o == null)
             return false;
 
         Class<? extends Number> c = classForType(o.getType());
-        return (isValidForType(highThreshold, c) && isValidForType(lowThreshold,
-                c));
+        return (isValidForType(highThreshold, c) && isValidForType(lowThreshold, c));
     }
 }

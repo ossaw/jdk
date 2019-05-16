@@ -111,7 +111,6 @@ import org.xml.sax.ext.LexicalHandler;
  * element is serialized indented when it is the first or last child of an
  * element, or immediate following or preceding another element.
  *
- *
  * @author <a href="mailto:arkin@intalio.com">Assaf Arkin</a>
  * @author <a href="mailto:rahul.srivastava@sun.com">Rahul Srivastava</a>
  * @author Elena Litani, IBM
@@ -119,9 +118,8 @@ import org.xml.sax.ext.LexicalHandler;
  * @see Serializer
  * @see LSSerializer
  */
-public abstract class BaseMarkupSerializer implements ContentHandler,
-        DocumentHandler, LexicalHandler, DTDHandler, DeclHandler, DOMSerializer,
-        Serializer {
+public abstract class BaseMarkupSerializer implements ContentHandler, DocumentHandler, LexicalHandler,
+        DTDHandler, DeclHandler, DOMSerializer, Serializer {
 
     // DOM L3 implementation
     protected short features = 0xFFFFFFFF;
@@ -249,9 +247,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
 
     public void setOutputByteStream(OutputStream output) {
         if (output == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.SERIALIZER_DOMAIN, "ArgumentIsNull",
-                    new Object[] { "output" });
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
+                    "ArgumentIsNull", new Object[] { "output" });
             throw new NullPointerException(msg);
         }
         _output = output;
@@ -261,9 +258,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
 
     public void setOutputCharStream(Writer writer) {
         if (writer == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.SERIALIZER_DOMAIN, "ArgumentIsNull",
-                    new Object[] { "writer" });
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
+                    "ArgumentIsNull", new Object[] { "writer" });
             throw new NullPointerException(msg);
         }
         _writer = writer;
@@ -273,9 +269,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
 
     public void setOutputFormat(OutputFormat format) {
         if (format == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.SERIALIZER_DOMAIN, "ArgumentIsNull",
-                    new Object[] { "format" });
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
+                    "ArgumentIsNull", new Object[] { "format" });
             throw new NullPointerException(msg);
         }
         _format = format;
@@ -284,9 +279,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
 
     public boolean reset() {
         if (_elementStateCount > 1) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.SERIALIZER_DOMAIN, "ResetInMiddle",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
+                    "ResetInMiddle", null);
             throw new IllegalStateException(msg);
         }
         _prepared = false;
@@ -300,9 +294,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
             return;
 
         if (_writer == null && _output == null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.SERIALIZER_DOMAIN, "NoWriterSupplied",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
+                    "NoWriterSupplied", null);
             throw new IOException(msg);
         }
         // If the output stream has been set, use it to construct
@@ -353,9 +346,9 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * serializing.
      *
      * @param elem
-     *             The element to serialize
+     *        The element to serialize
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     public void serialize(Element elem) throws IOException {
         reset();
@@ -372,9 +365,9 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * serializing.
      *
      * @param node
-     *             Node to serialize
+     *        Node to serialize
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     public void serialize(Node node) throws IOException {
         reset();
@@ -393,9 +386,9 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * while serializing.
      *
      * @param elem
-     *             The element to serialize
+     *        The element to serialize
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     public void serialize(DocumentFragment frag) throws IOException {
         reset();
@@ -412,9 +405,9 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * serializing.
      *
      * @param doc
-     *            The document to serialize
+     *        The document to serialize
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     public void serialize(Document doc) throws IOException {
         reset();
@@ -439,8 +432,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         // Nothing to do here. All the magic happens in startDocument(String)
     }
 
-    public void characters(char[] chars, int start, int length)
-            throws SAXException {
+    public void characters(char[] chars, int start, int length) throws SAXException {
         ElementState state;
 
         try {
@@ -466,8 +458,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                 final int end = start + length;
                 for (int index = start; index < end; ++index) {
                     ch = chars[index];
-                    if (ch == ']' && index + 2 < end && chars[index + 1] == ']'
-                            && chars[index + 2] == '>') {
+                    if (ch == ']' && index + 2 < end && chars[index + 1] == ']' && chars[index + 2] == '>') {
                         _printer.printText("]]]]><![CDATA[>");
                         index += 2;
                         continue;
@@ -477,14 +468,12 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                         if (++index < end) {
                             surrogates(ch, chars[index]);
                         } else {
-                            fatalError("The character '" + (char) ch
-                                    + "' is an invalid XML character");
+                            fatalError("The character '" + (char) ch + "' is an invalid XML character");
                         }
                         continue;
                     } else {
-                        if ((ch >= ' ' && _encodingInfo.isPrintable((char) ch)
-                                && ch != 0xF7) || ch == '\n' || ch == '\r'
-                                || ch == '\t') {
+                        if ((ch >= ' ' && _encodingInfo.isPrintable((char) ch) && ch != 0xF7) || ch == '\n'
+                                || ch == '\r' || ch == '\t') {
                             _printer.printText((char) ch);
                         } else {
                             // The character is not printable -- split CDATA
@@ -519,8 +508,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public void ignorableWhitespace(char[] chars, int start, int length)
-            throws SAXException {
+    public void ignorableWhitespace(char[] chars, int start, int length) throws SAXException {
         int i;
 
         try {
@@ -539,8 +527,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public final void processingInstruction(String target, String code)
-            throws SAXException {
+    public final void processingInstruction(String target, String code) throws SAXException {
         try {
             processingInstructionIO(target, code);
         } catch (IOException except) {
@@ -548,8 +535,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public void processingInstructionIO(String target, String code)
-            throws IOException {
+    public void processingInstructionIO(String target, String code) throws IOException {
         int index;
         ElementState state;
 
@@ -589,8 +575,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         fStrBuffer.setLength(0);
     }
 
-    public void comment(char[] chars, int start, int length)
-            throws SAXException {
+    public void comment(char[] chars, int start, int length) throws SAXException {
         try {
             comment(new String(chars, start, length));
         } catch (IOException except) {
@@ -610,8 +595,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         // Make sure we don't have '-->' inside the comment.
         index = text.indexOf("-->");
         if (index >= 0)
-            fStrBuffer.append("<!--").append(text.substring(0, index)).append(
-                    "-->");
+            fStrBuffer.append("<!--").append(text.substring(0, index)).append("-->");
         else
             fStrBuffer.append("<!--").append(text).append("-->");
 
@@ -686,7 +670,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * stream and throw an exception if any I/O error occured while serializing.
      *
      * @throws SAXException
-     *                      An I/O exception occured during serializing
+     *         An I/O exception occured during serializing
      */
     public void endDocument() throws SAXException {
         try {
@@ -728,8 +712,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public void startPrefixMapping(String prefix, String uri)
-            throws SAXException {
+    public void startPrefixMapping(String prefix, String uri) throws SAXException {
         if (_prefixes == null)
             _prefixes = new HashMap<>();
         _prefixes.put(uri, prefix == null ? "" : prefix);
@@ -741,8 +724,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
     // SAX DTD/Decl handler serializing methods //
     // ------------------------------------------//
 
-    public final void startDTD(String name, String publicId, String systemId)
-            throws SAXException {
+    public final void startDTD(String name, String publicId, String systemId) throws SAXException {
         try {
             _printer.enterDTD();
             _docTypePublicId = publicId;
@@ -772,8 +754,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public void attributeDecl(String eName, String aName, String type,
-            String valueDefault, String value) throws SAXException {
+    public void attributeDecl(String eName, String aName, String type, String valueDefault, String value)
+            throws SAXException {
         try {
             _printer.enterDTD();
             _printer.printText("<!ATTLIST ");
@@ -799,8 +781,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public void internalEntityDecl(String name, String value)
-            throws SAXException {
+    public void internalEntityDecl(String name, String value) throws SAXException {
         try {
             _printer.enterDTD();
             _printer.printText("<!ENTITY ");
@@ -815,8 +796,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public void externalEntityDecl(String name, String publicId,
-            String systemId) throws SAXException {
+    public void externalEntityDecl(String name, String publicId, String systemId) throws SAXException {
         try {
             _printer.enterDTD();
             unparsedEntityDecl(name, publicId, systemId, null);
@@ -825,8 +805,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public void unparsedEntityDecl(String name, String publicId,
-            String systemId, String notationName) throws SAXException {
+    public void unparsedEntityDecl(String name, String publicId, String systemId, String notationName)
+            throws SAXException {
         try {
             _printer.enterDTD();
             if (publicId == null) {
@@ -854,8 +834,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    public void notationDecl(String name, String publicId, String systemId)
-            throws SAXException {
+    public void notationDecl(String name, String publicId, String systemId) throws SAXException {
         try {
             _printer.enterDTD();
             if (publicId != null) {
@@ -891,10 +870,10 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * {@link #serializeElement}.
      *
      * @param node
-     *             The node to serialize
+     *        The node to serialize
      * @see #serializeElement
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     protected void serializeNode(Node node) throws IOException {
         fCurrentNode = node;
@@ -908,8 +887,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
 
                 text = node.getNodeValue();
                 if (text != null) {
-                    if (fDOMFilter != null && (fDOMFilter.getWhatToShow()
-                            & NodeFilter.SHOW_TEXT) != 0) {
+                    if (fDOMFilter != null && (fDOMFilter.getWhatToShow() & NodeFilter.SHOW_TEXT) != 0) {
                         short code = fDOMFilter.acceptNode(node);
                         switch (code) {
                             case NodeFilter.FILTER_REJECT:
@@ -920,8 +898,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                                 characters(text);
                             }
                         }
-                    } else if (!_indenting || getElementState().preserveSpace
-                            || (text.replace('\n', ' ').trim().length() != 0))
+                    } else if (!_indenting || getElementState().preserveSpace || (text.replace('\n', ' ')
+                            .trim().length() != 0))
                         characters(text);
 
                 }
@@ -989,8 +967,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                 endCDATA();
                 content();
 
-                if (((features & DOMSerializerImpl.ENTITIES) != 0) || (node
-                        .getFirstChild() == null)) {
+                if (((features & DOMSerializerImpl.ENTITIES) != 0) || (node.getFirstChild() == null)) {
                     if (fDOMFilter != null && (fDOMFilter.getWhatToShow()
                             & NodeFilter.SHOW_ENTITY_REFERENCE) != 0) {
                         short code = fDOMFilter.acceptNode(node);
@@ -1042,14 +1019,12 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                         }
                     }
                 }
-                processingInstructionIO(node.getNodeName(), node
-                        .getNodeValue());
+                processingInstructionIO(node.getNodeName(), node.getNodeValue());
                 break;
             }
             case Node.ELEMENT_NODE: {
 
-                if (fDOMFilter != null && (fDOMFilter.getWhatToShow()
-                        & NodeFilter.SHOW_ELEMENT) != 0) {
+                if (fDOMFilter != null && (fDOMFilter.getWhatToShow() & NodeFilter.SHOW_ELEMENT) != 0) {
                     short code = fDOMFilter.acceptNode(node);
                     switch (code) {
                         case NodeFilter.FILTER_REJECT: {
@@ -1105,23 +1080,19 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                         String docTypePublicId = null;
                         String docTypeSystemId = null;
                         try {
-                            java.lang.reflect.Method getPublicId = docTypeClass
-                                    .getMethod("getPublicId", (Class[]) null);
-                            if (getPublicId.getReturnType().equals(
-                                    String.class)) {
-                                docTypePublicId = (String) getPublicId.invoke(
-                                        docType, (Object[]) null);
+                            java.lang.reflect.Method getPublicId = docTypeClass.getMethod("getPublicId",
+                                    (Class[]) null);
+                            if (getPublicId.getReturnType().equals(String.class)) {
+                                docTypePublicId = (String) getPublicId.invoke(docType, (Object[]) null);
                             }
                         } catch (Exception e) {
                             // ignore
                         }
                         try {
-                            java.lang.reflect.Method getSystemId = docTypeClass
-                                    .getMethod("getSystemId", (Class[]) null);
-                            if (getSystemId.getReturnType().equals(
-                                    String.class)) {
-                                docTypeSystemId = (String) getSystemId.invoke(
-                                        docType, (Object[]) null);
+                            java.lang.reflect.Method getSystemId = docTypeClass.getMethod("getSystemId",
+                                    (Class[]) null);
+                            if (getSystemId.getReturnType().equals(String.class)) {
+                                docTypeSystemId = (String) getSystemId.invoke(docType, (Object[]) null);
                             }
                         } catch (Exception e) {
                             // ignore
@@ -1184,8 +1155,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                     buffer.append(format_encoding);
                     buffer.append('"');
                 }
-                if (_format.getStandalone() && _docTypeSystemId == null
-                        && _docTypePublicId == null)
+                if (_format.getStandalone() && _docTypeSystemId == null && _docTypePublicId == null)
                     buffer.append(" standalone=\"yes\"");
                 buffer.append("?>");
                 _printer.printText(buffer);
@@ -1255,7 +1225,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      *
      * @return The current element state
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     protected ElementState content() throws IOException {
         ElementState state;
@@ -1294,11 +1264,11 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * text is printed as CDATA or unescaped.
      *
      * @param text
-     *                  The text to print
+     *        The text to print
      * @param unescaped
-     *                  True is should print unescaped
+     *        True is should print unescaped
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     protected void characters(String text) throws IOException {
         ElementState state;
@@ -1349,7 +1319,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * return <tt>"&amp;amp;"</tt>.
      *
      * @param ch
-     *           Character value
+     *        Character value
      * @return Character entity name, or null
      */
     protected abstract String getEntityRef(int ch);
@@ -1359,9 +1329,9 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * the serializer's method (XML, HTML, XHTML).
      *
      * @param elem
-     *             The element to serialize
+     *        The element to serialize
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     protected abstract void serializeElement(Element elem) throws IOException;
 
@@ -1373,7 +1343,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * is serialized and when the document finished serializing.
      *
      * @throws IOException
-     *                     An I/O exception occured while serializing
+     *         An I/O exception occured while serializing
      */
     protected void serializePreRoot() throws IOException {
         int i;
@@ -1398,39 +1368,34 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
 
         for (int index = 0; index < length; ++index) {
             ch = text.charAt(index);
-            if (ch == ']' && index + 2 < length && text.charAt(index + 1) == ']'
-                    && text.charAt(index + 2) == '>') { // check for ']]>'
+            if (ch == ']' && index + 2 < length && text.charAt(index + 1) == ']' && text.charAt(index
+                    + 2) == '>') { // check for ']]>'
                 if (fDOMErrorHandler != null) {
                     // REVISIT: this means that if DOM Error handler is not
                     // registered we don't report any
                     // fatal errors and might serialize not wellformed document
                     if ((features & DOMSerializerImpl.SPLITCDATA) == 0) {
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.SERIALIZER_DOMAIN,
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
                                 "EndingCDATA", null);
                         if ((features & DOMSerializerImpl.WELLFORMED) != 0) {
                             // issue fatal error
-                            modifyDOMError(msg, DOMError.SEVERITY_FATAL_ERROR,
-                                    "wf-invalid-character", fCurrentNode);
+                            modifyDOMError(msg, DOMError.SEVERITY_FATAL_ERROR, "wf-invalid-character",
+                                    fCurrentNode);
                             fDOMErrorHandler.handleError(fDOMError);
-                            throw new LSException(LSException.SERIALIZE_ERR,
-                                    msg);
+                            throw new LSException(LSException.SERIALIZE_ERR, msg);
                         } else {
                             // issue error
-                            modifyDOMError(msg, DOMError.SEVERITY_ERROR,
-                                    "cdata-section-not-splitted", fCurrentNode);
+                            modifyDOMError(msg, DOMError.SEVERITY_ERROR, "cdata-section-not-splitted",
+                                    fCurrentNode);
                             if (!fDOMErrorHandler.handleError(fDOMError)) {
-                                throw new LSException(LSException.SERIALIZE_ERR,
-                                        msg);
+                                throw new LSException(LSException.SERIALIZE_ERR, msg);
                             }
                         }
                     } else {
                         // issue warning
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.SERIALIZER_DOMAIN,
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
                                 "SplittingCDATA", null);
-                        modifyDOMError(msg, DOMError.SEVERITY_WARNING, null,
-                                fCurrentNode);
+                        modifyDOMError(msg, DOMError.SEVERITY_WARNING, null, fCurrentNode);
                         fDOMErrorHandler.handleError(fDOMError);
                     }
                 }
@@ -1445,14 +1410,12 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                 if (++index < length) {
                     surrogates(ch, text.charAt(index));
                 } else {
-                    fatalError("The character '" + (char) ch
-                            + "' is an invalid XML character");
+                    fatalError("The character '" + (char) ch + "' is an invalid XML character");
                 }
                 continue;
             } else {
-                if ((ch >= ' ' && _encodingInfo.isPrintable((char) ch)
-                        && ch != 0xF7) || ch == '\n' || ch == '\r'
-                        || ch == '\t') {
+                if ((ch >= ' ' && _encodingInfo.isPrintable((char) ch) && ch != 0xF7) || ch == '\n'
+                        || ch == '\r' || ch == '\t') {
                     _printer.printText((char) ch);
                 } else {
 
@@ -1469,15 +1432,12 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         if (XMLChar.isHighSurrogate(high)) {
             if (!XMLChar.isLowSurrogate(low)) {
                 // Invalid XML
-                fatalError("The character '" + (char) low
-                        + "' is an invalid XML character");
+                fatalError("The character '" + (char) low + "' is an invalid XML character");
             } else {
-                int supplemental = XMLChar.supplemental((char) high,
-                        (char) low);
+                int supplemental = XMLChar.supplemental((char) high, (char) low);
                 if (!XMLChar.isValid(supplemental)) {
                     // Invalid XML
-                    fatalError("The character '" + (char) supplemental
-                            + "' is an invalid XML character");
+                    fatalError("The character '" + (char) supplemental + "' is an invalid XML character");
                 } else {
                     if (content().inCData) {
                         _printer.printText("]]>&#x");
@@ -1489,8 +1449,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
                 }
             }
         } else {
-            fatalError("The character '" + (char) high
-                    + "' is an invalid XML character");
+            fatalError("The character '" + (char) high + "' is an invalid XML character");
         }
 
     }
@@ -1505,14 +1464,14 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * removed.
      *
      * @param text
-     *                      The text to print
+     *        The text to print
      * @param preserveSpace
-     *                      Space preserving flag
+     *        Space preserving flag
      * @param unescaped
-     *                      Print unescaped
+     *        Print unescaped
      */
-    protected void printText(char[] chars, int start, int length,
-            boolean preserveSpace, boolean unescaped) throws IOException {
+    protected void printText(char[] chars, int start, int length, boolean preserveSpace, boolean unescaped)
+            throws IOException {
         int index;
         char ch;
 
@@ -1538,8 +1497,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
             while (length-- > 0) {
                 ch = chars[start];
                 ++start;
-                if (ch == ' ' || ch == '\f' || ch == '\t' || ch == '\n'
-                        || ch == '\r')
+                if (ch == ' ' || ch == '\f' || ch == '\t' || ch == '\n' || ch == '\r')
                     _printer.printSpace();
                 else if (unescaped)
                     _printer.printText(ch);
@@ -1549,8 +1507,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         }
     }
 
-    protected void printText(String text, boolean preserveSpace,
-            boolean unescaped) throws IOException {
+    protected void printText(String text, boolean preserveSpace, boolean unescaped) throws IOException {
         int index;
         char ch;
 
@@ -1574,8 +1531,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
             // no different than other text part.
             for (index = 0; index < text.length(); ++index) {
                 ch = text.charAt(index);
-                if (ch == ' ' || ch == '\f' || ch == '\t' || ch == '\n'
-                        || ch == '\r')
+                if (ch == ' ' || ch == '\f' || ch == '\t' || ch == '\n' || ch == '\r')
                     _printer.printSpace();
                 else if (unescaped)
                     _printer.printText(ch);
@@ -1591,15 +1547,14 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * equivalent to {@link #printText}.
      *
      * @param url
-     *            The document type url to print
+     *        The document type url to print
      */
     protected void printDoctypeURL(String url) throws IOException {
         int i;
 
         _printer.printText('"');
         for (i = 0; i < url.length(); ++i) {
-            if (url.charAt(i) == '"' || url.charAt(i) < 0x20 || url.charAt(
-                    i) > 0x7F) {
+            if (url.charAt(i) == '"' || url.charAt(i) < 0x20 || url.charAt(i) > 0x7F) {
                 _printer.printText('%');
                 _printer.printText(Integer.toHexString(url.charAt(i)));
             } else
@@ -1619,8 +1574,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
             _printer.printText('&');
             _printer.printText(charRef);
             _printer.printText(';');
-        } else if ((ch >= ' ' && _encodingInfo.isPrintable((char) ch)
-                && ch != 0xF7) || ch == '\n' || ch == '\r' || ch == '\t') {
+        } else if ((ch >= ' ' && _encodingInfo.isPrintable((char) ch) && ch != 0xF7) || ch == '\n'
+                || ch == '\r' || ch == '\t') {
             // Non printables are below ASCII space but not tab or line
             // terminator, ASCII delete, or above a certain Unicode threshold.
             if (ch < 0x10000) {
@@ -1651,7 +1606,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * (e.g. <tt>&amp;lt;</tt>).
      *
      * @param source
-     *               The string to escape
+     *        The string to escape
      */
     protected void printEscaped(String source) throws IOException {
         for (int i = 0; i < source.length(); ++i) {
@@ -1686,8 +1641,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      *
      * @return Current element state, or null
      */
-    protected ElementState enterElementState(String namespaceURI,
-            String localName, String rawName, boolean preserveSpace) {
+    protected ElementState enterElementState(String namespaceURI, String localName, String rawName,
+            boolean preserveSpace) {
         ElementState state;
 
         if (_elementStateCount + 1 == _elementStates.length) {
@@ -1735,8 +1690,8 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
             --_elementStateCount;
             return _elementStates[_elementStateCount];
         } else {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.SERIALIZER_DOMAIN, "Internal", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN, "Internal",
+                    null);
             throw new IllegalStateException(msg);
         }
     }
@@ -1756,7 +1711,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * mapped to a prefix, returns the prefix, otherwise returns null.
      *
      * @param namespaceURI
-     *                     The namespace URI
+     *        The namespace URI
      * @return The namespace prefix if known, or null
      */
     protected String getPrefix(String namespaceURI) {
@@ -1772,8 +1727,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
         else {
             for (int i = _elementStateCount; i > 0; --i) {
                 if (_elementStates[i].prefixes != null) {
-                    prefix = (String) _elementStates[i].prefixes.get(
-                            namespaceURI);
+                    prefix = (String) _elementStates[i].prefixes.get(namespaceURI);
                     if (prefix != null)
                         return prefix;
                 }
@@ -1790,8 +1744,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * @param type
      * @return a DOMError
      */
-    protected DOMError modifyDOMError(String message, short severity,
-            String type, Node node) {
+    protected DOMError modifyDOMError(String message, short severity, String type, Node node) {
         fDOMError.reset();
         fDOMError.fMessage = message;
         fDOMError.fType = type;
@@ -1803,8 +1756,7 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
 
     protected void fatalError(String message) throws IOException {
         if (fDOMErrorHandler != null) {
-            modifyDOMError(message, DOMError.SEVERITY_FATAL_ERROR, null,
-                    fCurrentNode);
+            modifyDOMError(message, DOMError.SEVERITY_FATAL_ERROR, null, fCurrentNode);
             fDOMErrorHandler.handleError(fDOMError);
         } else {
             throw new IOException(message);
@@ -1816,10 +1768,9 @@ public abstract class BaseMarkupSerializer implements ContentHandler,
      * prefixes.
      *
      * @param node
-     *             The node to check for unbound namespace prefices
+     *        The node to check for unbound namespace prefices
      */
-    protected void checkUnboundNamespacePrefixedNode(Node node)
-            throws IOException {
+    protected void checkUnboundNamespacePrefixedNode(Node node) throws IOException {
 
     }
 }

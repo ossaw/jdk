@@ -28,12 +28,11 @@ class MethodHandleNatives {
 
     static native void expand(MemberName self);
 
-    static native MemberName resolve(MemberName self, Class<?> caller)
-            throws LinkageError, ClassNotFoundException;
+    static native MemberName resolve(MemberName self, Class<?> caller) throws LinkageError,
+            ClassNotFoundException;
 
-    static native int getMembers(Class<?> defc, String matchName,
-            String matchSig, int matchFlags, Class<?> caller, int skip,
-            MemberName[] results);
+    static native int getMembers(Class<?> defc, String matchName, String matchSig, int matchFlags,
+            Class<?> caller, int skip, MemberName[] results);
 
     /// Field layout queries parallel to sun.misc.Unsafe:
     static native long objectFieldOffset(MemberName self); // e.g., returns
@@ -61,11 +60,9 @@ class MethodHandleNatives {
     /// CallSite support
 
     /** Tell the JVM that we need to change the target of a CallSite. */
-    static native void setCallSiteTargetNormal(CallSite site,
-            MethodHandle target);
+    static native void setCallSiteTargetNormal(CallSite site, MethodHandle target);
 
-    static native void setCallSiteTargetVolatile(CallSite site,
-            MethodHandle target);
+    static native void setCallSiteTargetVolatile(CallSite site, MethodHandle target);
 
     private static native void registerNatives();
 
@@ -103,16 +100,15 @@ class MethodHandleNatives {
                 MN_REFERENCE_KIND_MASK = 0x0F000000 >> MN_REFERENCE_KIND_SHIFT,
                 // The SEARCH_* bits are not for MN.flags but for the matchFlags
                 // argument of MHN.getMembers:
-                MN_SEARCH_SUPERCLASSES = 0x00100000,
-                MN_SEARCH_INTERFACES = 0x00200000;
+                MN_SEARCH_SUPERCLASSES = 0x00100000, MN_SEARCH_INTERFACES = 0x00200000;
 
         /**
          * Basic types as encoded in the JVM. These code values are not intended
          * for use outside this class. They are used as part of a private
          * interface between the JVM and this class.
          */
-        static final int T_BOOLEAN = 4, T_CHAR = 5, T_FLOAT = 6, T_DOUBLE = 7,
-                T_BYTE = 8, T_SHORT = 9, T_INT = 10, T_LONG = 11, T_OBJECT = 12,
+        static final int T_BOOLEAN = 4, T_CHAR = 5, T_FLOAT = 6, T_DOUBLE = 7, T_BYTE = 8, T_SHORT = 9,
+                T_INT = 10, T_LONG = 11, T_OBJECT = 12,
                 // T_ARRAY = 13
                 T_VOID = 14,
                 // T_ADDRESS = 15
@@ -121,11 +117,10 @@ class MethodHandleNatives {
         /**
          * Constant pool entry types.
          */
-        static final byte CONSTANT_Utf8 = 1, CONSTANT_Integer = 3,
-                CONSTANT_Float = 4, CONSTANT_Long = 5, CONSTANT_Double = 6,
-                CONSTANT_Class = 7, CONSTANT_String = 8, CONSTANT_Fieldref = 9,
-                CONSTANT_Methodref = 10, CONSTANT_InterfaceMethodref = 11,
-                CONSTANT_NameAndType = 12, CONSTANT_MethodHandle = 15, // JSR
+        static final byte CONSTANT_Utf8 = 1, CONSTANT_Integer = 3, CONSTANT_Float = 4, CONSTANT_Long = 5,
+                CONSTANT_Double = 6, CONSTANT_Class = 7, CONSTANT_String = 8, CONSTANT_Fieldref = 9,
+                CONSTANT_Methodref = 10, CONSTANT_InterfaceMethodref = 11, CONSTANT_NameAndType = 12,
+                CONSTANT_MethodHandle = 15, // JSR
                 // 292
                 CONSTANT_MethodType = 16, // JSR 292
                 CONSTANT_InvokeDynamic = 18, CONSTANT_LIMIT = 19; // Limit to
@@ -136,25 +131,20 @@ class MethodHandleNatives {
         /**
          * Access modifier flags.
          */
-        static final char ACC_PUBLIC = 0x0001, ACC_PRIVATE = 0x0002,
-                ACC_PROTECTED = 0x0004, ACC_STATIC = 0x0008, ACC_FINAL = 0x0010,
-                ACC_SYNCHRONIZED = 0x0020, ACC_VOLATILE = 0x0040,
-                ACC_TRANSIENT = 0x0080, ACC_NATIVE = 0x0100,
-                ACC_INTERFACE = 0x0200, ACC_ABSTRACT = 0x0400,
-                ACC_STRICT = 0x0800, ACC_SYNTHETIC = 0x1000,
-                ACC_ANNOTATION = 0x2000, ACC_ENUM = 0x4000,
+        static final char ACC_PUBLIC = 0x0001, ACC_PRIVATE = 0x0002, ACC_PROTECTED = 0x0004,
+                ACC_STATIC = 0x0008, ACC_FINAL = 0x0010, ACC_SYNCHRONIZED = 0x0020, ACC_VOLATILE = 0x0040,
+                ACC_TRANSIENT = 0x0080, ACC_NATIVE = 0x0100, ACC_INTERFACE = 0x0200, ACC_ABSTRACT = 0x0400,
+                ACC_STRICT = 0x0800, ACC_SYNTHETIC = 0x1000, ACC_ANNOTATION = 0x2000, ACC_ENUM = 0x4000,
                 // aliases:
-                ACC_SUPER = ACC_SYNCHRONIZED, ACC_BRIDGE = ACC_VOLATILE,
-                ACC_VARARGS = ACC_TRANSIENT;
+                ACC_SUPER = ACC_SYNCHRONIZED, ACC_BRIDGE = ACC_VOLATILE, ACC_VARARGS = ACC_TRANSIENT;
 
         /**
          * Constant pool reference-kind codes, as used by CONSTANT_MethodHandle
          * CP entries.
          */
         static final byte REF_NONE = 0, // null value
-                REF_getField = 1, REF_getStatic = 2, REF_putField = 3,
-                REF_putStatic = 4, REF_invokeVirtual = 5, REF_invokeStatic = 6,
-                REF_invokeSpecial = 7, REF_newInvokeSpecial = 8,
+                REF_getField = 1, REF_getStatic = 2, REF_putField = 3, REF_putStatic = 4,
+                REF_invokeVirtual = 5, REF_invokeStatic = 6, REF_invokeSpecial = 7, REF_newInvokeSpecial = 8,
                 REF_invokeInterface = 9, REF_LIMIT = 10;
     }
 
@@ -190,8 +180,7 @@ class MethodHandleNatives {
     }
 
     static boolean refKindIsStatic(byte refKind) {
-        return !refKindHasReceiver(refKind)
-                && (refKind != REF_newInvokeSpecial);
+        return !refKindHasReceiver(refKind) && (refKind != REF_newInvokeSpecial);
     }
 
     static boolean refKindDoesDispatch(byte refKind) {
@@ -200,12 +189,10 @@ class MethodHandleNatives {
     }
 
     static {
-        final int HR_MASK = ((1 << REF_getField) | (1 << REF_putField)
-                | (1 << REF_invokeVirtual) | (1 << REF_invokeSpecial)
-                | (1 << REF_invokeInterface));
+        final int HR_MASK = ((1 << REF_getField) | (1 << REF_putField) | (1 << REF_invokeVirtual)
+                | (1 << REF_invokeSpecial) | (1 << REF_invokeInterface));
         for (byte refKind = REF_NONE + 1; refKind < REF_LIMIT; refKind++) {
-            assert (refKindHasReceiver(refKind) == (((1 << refKind)
-                    & HR_MASK) != 0)) : refKind;
+            assert (refKindHasReceiver(refKind) == (((1 << refKind) & HR_MASK) != 0)) : refKind;
         }
     }
 
@@ -250,16 +237,14 @@ class MethodHandleNatives {
                 int jval = con.getInt(null);
                 if (jval == vmval)
                     continue;
-                String err = (name + ": JVM has " + vmval + " while Java has "
-                        + jval);
+                String err = (name + ": JVM has " + vmval + " while Java has " + jval);
                 if (name.equals("CONV_OP_LIMIT")) {
                     System.err.println("warning: " + err);
                     continue;
                 }
                 throw new InternalError(err);
             } catch (NoSuchFieldException | IllegalAccessException ex) {
-                String err = (name + ": JVM has " + vmval
-                        + " which Java does not define");
+                String err = (name + ": JVM has " + vmval + " which Java does not define");
                 // ignore exotic ops the JVM cares about; we just wont issue
                 // them
                 // System.err.println("warning: "+err);
@@ -280,25 +265,20 @@ class MethodHandleNatives {
      * The JVM is linking an invokedynamic instruction. Create a reified call
      * site for it.
      */
-    static MemberName linkCallSite(Object callerObj, Object bootstrapMethodObj,
-            Object nameObj, Object typeObj, Object staticArguments,
-            Object[] appendixResult) {
+    static MemberName linkCallSite(Object callerObj, Object bootstrapMethodObj, Object nameObj,
+            Object typeObj, Object staticArguments, Object[] appendixResult) {
         MethodHandle bootstrapMethod = (MethodHandle) bootstrapMethodObj;
         Class<?> caller = (Class<?>) callerObj;
         String name = nameObj.toString().intern();
         MethodType type = (MethodType) typeObj;
         if (!TRACE_METHOD_LINKAGE)
-            return linkCallSiteImpl(caller, bootstrapMethod, name, type,
-                    staticArguments, appendixResult);
-        return linkCallSiteTracing(caller, bootstrapMethod, name, type,
-                staticArguments, appendixResult);
+            return linkCallSiteImpl(caller, bootstrapMethod, name, type, staticArguments, appendixResult);
+        return linkCallSiteTracing(caller, bootstrapMethod, name, type, staticArguments, appendixResult);
     }
 
-    static MemberName linkCallSiteImpl(Class<?> caller,
-            MethodHandle bootstrapMethod, String name, MethodType type,
-            Object staticArguments, Object[] appendixResult) {
-        CallSite callSite = CallSite.makeSite(bootstrapMethod, name, type,
-                staticArguments, caller);
+    static MemberName linkCallSiteImpl(Class<?> caller, MethodHandle bootstrapMethod, String name,
+            MethodType type, Object staticArguments, Object[] appendixResult) {
+        CallSite callSite = CallSite.makeSite(bootstrapMethod, name, type, staticArguments, caller);
         if (callSite instanceof ConstantCallSite) {
             appendixResult[0] = callSite.dynamicInvoker();
             return Invokers.linkToTargetMethod(type);
@@ -309,22 +289,19 @@ class MethodHandleNatives {
     }
 
     // Tracing logic:
-    static MemberName linkCallSiteTracing(Class<?> caller,
-            MethodHandle bootstrapMethod, String name, MethodType type,
-            Object staticArguments, Object[] appendixResult) {
+    static MemberName linkCallSiteTracing(Class<?> caller, MethodHandle bootstrapMethod, String name,
+            MethodType type, Object staticArguments, Object[] appendixResult) {
         Object bsmReference = bootstrapMethod.internalMemberName();
         if (bsmReference == null)
             bsmReference = bootstrapMethod;
-        Object staticArglist = (staticArguments instanceof Object[]
-                ? java.util.Arrays.asList((Object[]) staticArguments)
-                : staticArguments);
-        System.out.println("linkCallSite " + caller.getName() + " "
-                + bsmReference + " " + name + type + "/" + staticArglist);
+        Object staticArglist = (staticArguments instanceof Object[] ? java.util.Arrays.asList(
+                (Object[]) staticArguments) : staticArguments);
+        System.out.println("linkCallSite " + caller.getName() + " " + bsmReference + " " + name + type + "/"
+                + staticArglist);
         try {
-            MemberName res = linkCallSiteImpl(caller, bootstrapMethod, name,
-                    type, staticArguments, appendixResult);
-            System.out.println("linkCallSite => " + res + " + "
-                    + appendixResult[0]);
+            MemberName res = linkCallSiteImpl(caller, bootstrapMethod, name, type, staticArguments,
+                    appendixResult);
+            System.out.println("linkCallSite => " + res + " + " + appendixResult[0]);
             return res;
         } catch (Throwable ex) {
             System.out.println("linkCallSite => throw " + ex);
@@ -397,21 +374,19 @@ class MethodHandleNatives {
      * correspond to special cases in reflective code such as
      * {@code findVirtual} or {@code revealDirect}.
      */
-    static MemberName linkMethod(Class<?> callerClass, int refKind,
-            Class<?> defc, String name, Object type, Object[] appendixResult) {
+    static MemberName linkMethod(Class<?> callerClass, int refKind, Class<?> defc, String name, Object type,
+            Object[] appendixResult) {
         if (!TRACE_METHOD_LINKAGE)
-            return linkMethodImpl(callerClass, refKind, defc, name, type,
-                    appendixResult);
-        return linkMethodTracing(callerClass, refKind, defc, name, type,
-                appendixResult);
+            return linkMethodImpl(callerClass, refKind, defc, name, type, appendixResult);
+        return linkMethodTracing(callerClass, refKind, defc, name, type, appendixResult);
     }
 
-    static MemberName linkMethodImpl(Class<?> callerClass, int refKind,
-            Class<?> defc, String name, Object type, Object[] appendixResult) {
+    static MemberName linkMethodImpl(Class<?> callerClass, int refKind, Class<?> defc, String name,
+            Object type, Object[] appendixResult) {
         try {
             if (defc == MethodHandle.class && refKind == REF_invokeVirtual) {
-                return Invokers.methodHandleInvokeLinkerMethod(name,
-                        fixMethodType(callerClass, type), appendixResult);
+                return Invokers.methodHandleInvokeLinkerMethod(name, fixMethodType(callerClass, type),
+                        appendixResult);
             }
         } catch (Throwable ex) {
             if (ex instanceof LinkageError)
@@ -419,28 +394,24 @@ class MethodHandleNatives {
             else
                 throw new LinkageError(ex.getMessage(), ex);
         }
-        throw new LinkageError("no such method " + defc.getName() + "." + name
-                + type);
+        throw new LinkageError("no such method " + defc.getName() + "." + name + type);
     }
 
     private static MethodType fixMethodType(Class<?> callerClass, Object type) {
         if (type instanceof MethodType)
             return (MethodType) type;
         else
-            return MethodType.fromMethodDescriptorString((String) type,
-                    callerClass.getClassLoader());
+            return MethodType.fromMethodDescriptorString((String) type, callerClass.getClassLoader());
     }
 
     // Tracing logic:
-    static MemberName linkMethodTracing(Class<?> callerClass, int refKind,
-            Class<?> defc, String name, Object type, Object[] appendixResult) {
-        System.out.println("linkMethod " + defc.getName() + "." + name + type
-                + "/" + Integer.toHexString(refKind));
+    static MemberName linkMethodTracing(Class<?> callerClass, int refKind, Class<?> defc, String name,
+            Object type, Object[] appendixResult) {
+        System.out.println("linkMethod " + defc.getName() + "." + name + type + "/" + Integer.toHexString(
+                refKind));
         try {
-            MemberName res = linkMethodImpl(callerClass, refKind, defc, name,
-                    type, appendixResult);
-            System.out.println("linkMethod => " + res + " + "
-                    + appendixResult[0]);
+            MemberName res = linkMethodImpl(callerClass, refKind, defc, name, type, appendixResult);
+            System.out.println("linkMethod => " + res + " + " + appendixResult[0]);
             return res;
         } catch (Throwable ex) {
             System.out.println("linkMethod => throw " + ex);
@@ -457,13 +428,12 @@ class MethodHandleNatives {
      * Recent versions of the JVM may also pass a resolved MemberName for the
      * type. In that case, the name is ignored and may be null.
      */
-    static MethodHandle linkMethodHandleConstant(Class<?> callerClass,
-            int refKind, Class<?> defc, String name, Object type) {
+    static MethodHandle linkMethodHandleConstant(Class<?> callerClass, int refKind, Class<?> defc,
+            String name, Object type) {
         try {
             Lookup lookup = IMPL_LOOKUP.in(callerClass);
             assert (refKindIsValid(refKind));
-            return lookup.linkMethodHandleConstant((byte) refKind, defc, name,
-                    type);
+            return lookup.linkMethodHandleConstant((byte) refKind, defc, name, type);
         } catch (IllegalAccessException ex) {
             Throwable cause = ex.getCause();
             if (cause instanceof AbstractMethodError) {
@@ -520,8 +490,7 @@ class MethodHandleNatives {
         return false;
     }
 
-    static boolean canBeCalledVirtual(MemberName symbolicRef,
-            Class<?> definingClass) {
+    static boolean canBeCalledVirtual(MemberName symbolicRef, Class<?> definingClass) {
         Class<?> symbolicRefClass = symbolicRef.getDeclaringClass();
         if (symbolicRefClass == definingClass)
             return true;

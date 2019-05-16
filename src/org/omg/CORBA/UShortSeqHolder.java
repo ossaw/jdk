@@ -14,8 +14,7 @@ package org.omg.CORBA;
  * GMT+00:00
  */
 
-public final class UShortSeqHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class UShortSeqHolder implements org.omg.CORBA.portable.Streamable {
     public short value[] = null;
 
     public UShortSeqHolder() {}

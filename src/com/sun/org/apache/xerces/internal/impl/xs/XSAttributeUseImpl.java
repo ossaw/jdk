@@ -31,7 +31,6 @@ import com.sun.org.apache.xerces.internal.xs.XSObjectList;
  * <attribute> element information item
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @version $Id: XSAttributeUseImpl.java,v 1.7 2010-11-01 04:39:55 joehw Exp $
  */
@@ -110,8 +109,7 @@ public class XSAttributeUseImpl implements XSAttributeUse {
      */
     public String getConstraintValue() {
         // REVISIT: SCAPI: what's the proper representation
-        return getConstraintType() == XSConstants.VC_NONE ? null
-                : fDefault.stringValue();
+        return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.stringValue();
     }
 
     /**
@@ -122,27 +120,23 @@ public class XSAttributeUseImpl implements XSAttributeUse {
     }
 
     public Object getActualVC() {
-        return getConstraintType() == XSConstants.VC_NONE ? null
-                : fDefault.actualValue;
+        return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.actualValue;
     }
 
     public short getActualVCType() {
-        return getConstraintType() == XSConstants.VC_NONE
-                ? XSConstants.UNAVAILABLE_DT
+        return getConstraintType() == XSConstants.VC_NONE ? XSConstants.UNAVAILABLE_DT
                 : fDefault.actualValueType;
     }
 
     public ShortList getItemValueTypes() {
-        return getConstraintType() == XSConstants.VC_NONE ? null
-                : fDefault.itemValueTypes;
+        return getConstraintType() == XSConstants.VC_NONE ? null : fDefault.itemValueTypes;
     }
 
     /**
      * Optional. Annotations.
      */
     public XSObjectList getAnnotations() {
-        return (fAnnotations != null) ? fAnnotations
-                : XSObjectListImpl.EMPTY_LIST;
+        return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
     }
 
 } // class XSAttributeUseImpl

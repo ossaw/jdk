@@ -33,7 +33,6 @@ import org.xml.sax.SAXNotSupportedException;
  *
  * @author Arnaud Le Hors, IBM
  * @author Andy Clark, IBM
- *
  * @version $Id: SAXParser.java,v 1.7 2010-11-01 04:40:09 joehw Exp $
  */
 public class SAXParser extends AbstractSAXParser {
@@ -52,8 +51,7 @@ public class SAXParser extends AbstractSAXParser {
             + Constants.SUN_REPORT_IGNORED_ELEMENT_CONTENT_WHITESPACE;
 
     /** Recognized features. */
-    private static final String[] RECOGNIZED_FEATURES = { NOTIFY_BUILTIN_REFS,
-            REPORT_WHITESPACE };
+    private static final String[] RECOGNIZED_FEATURES = { NOTIFY_BUILTIN_REFS, REPORT_WHITESPACE };
 
     // properties
 
@@ -66,8 +64,7 @@ public class SAXParser extends AbstractSAXParser {
             + Constants.XMLGRAMMAR_POOL_PROPERTY;
 
     /** Recognized properties. */
-    private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE,
-            XMLGRAMMAR_POOL, };
+    private static final String[] RECOGNIZED_PROPERTIES = { SYMBOL_TABLE, XMLGRAMMAR_POOL, };
 
     //
     // Constructors
@@ -120,16 +117,15 @@ public class SAXParser extends AbstractSAXParser {
      * Sets the particular property in the underlying implementation of
      * org.xml.sax.XMLReader.
      */
-    public void setProperty(String name, Object value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {
+    public void setProperty(String name, Object value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {
         /**
          * It's possible for users to set a security manager through the
          * interface. If it's the old SecurityManager, convert it to the new
          * XMLSecurityManager
          */
         if (name.equals(Constants.SECURITY_MANAGER)) {
-            securityManager = XMLSecurityManager.convert(value,
-                    securityManager);
+            securityManager = XMLSecurityManager.convert(value, securityManager);
             super.setProperty(Constants.SECURITY_MANAGER, securityManager);
             return;
         }
@@ -139,8 +135,7 @@ public class SAXParser extends AbstractSAXParser {
             } else {
                 securityPropertyManager = (XMLSecurityPropertyManager) value;
             }
-            super.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER,
-                    securityPropertyManager);
+            super.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER, securityPropertyManager);
             return;
         }
 
@@ -151,8 +146,7 @@ public class SAXParser extends AbstractSAXParser {
 
         if (securityPropertyManager == null) {
             securityPropertyManager = new XMLSecurityPropertyManager();
-            super.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER,
-                    securityPropertyManager);
+            super.setProperty(Constants.XML_SECURITY_PROPERTY_MANAGER, securityPropertyManager);
         }
 
         int index = securityPropertyManager.getIndex(name);
@@ -162,13 +156,11 @@ public class SAXParser extends AbstractSAXParser {
              * internally the support of this property is done through
              * XMLSecurityPropertyManager
              */
-            securityPropertyManager.setValue(index,
-                    XMLSecurityPropertyManager.State.APIPROPERTY,
+            securityPropertyManager.setValue(index, XMLSecurityPropertyManager.State.APIPROPERTY,
                     (String) value);
         } else {
             // check if the property is managed by security manager
-            if (!securityManager.setLimit(name,
-                    XMLSecurityManager.State.APIPROPERTY, value)) {
+            if (!securityManager.setLimit(name, XMLSecurityManager.State.APIPROPERTY, value)) {
                 // fall back to the default configuration to handle the property
                 super.setProperty(name, value);
             }

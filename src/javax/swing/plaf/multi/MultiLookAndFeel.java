@@ -16,11 +16,9 @@ import javax.swing.plaf.*;
  * <em>default</em> look and feel, and the other look and feels are called
  * <em>auxiliary</em>.
  * <p>
- *
  * For further information, see
  * <a href="doc-files/multi_tsc.html" target="_top">Using the Multiplexing Look
  * and Feel.</a>
- *
  * <p>
  * <strong>Warning:</strong> Serialized objects of this class will not be
  * compatible with future Swing releases. The current serialization support is
@@ -31,7 +29,6 @@ import javax.swing.plaf.*;
  *
  * @see UIManager#addAuxiliaryLookAndFeel
  * @see javax.swing.plaf.multi
- *
  * @author Willie Walker
  */
 public class MultiLookAndFeel extends LookAndFeel {
@@ -100,42 +97,29 @@ public class MultiLookAndFeel extends LookAndFeel {
      */
     public UIDefaults getDefaults() {
         String packageName = "javax.swing.plaf.multi.Multi";
-        Object[] uiDefaults = { "ButtonUI", packageName + "ButtonUI",
-                "CheckBoxMenuItemUI", packageName + "MenuItemUI", "CheckBoxUI",
-                packageName + "ButtonUI", "ColorChooserUI", packageName
-                        + "ColorChooserUI", "ComboBoxUI", packageName
-                                + "ComboBoxUI", "DesktopIconUI", packageName
-                                        + "DesktopIconUI", "DesktopPaneUI",
-                packageName + "DesktopPaneUI", "EditorPaneUI", packageName
-                        + "TextUI", "FileChooserUI", packageName
-                                + "FileChooserUI", "FormattedTextFieldUI",
-                packageName + "TextUI", "InternalFrameUI", packageName
-                        + "InternalFrameUI", "LabelUI", packageName + "LabelUI",
-                "ListUI", packageName + "ListUI", "MenuBarUI", packageName
-                        + "MenuBarUI", "MenuItemUI", packageName + "MenuItemUI",
-                "MenuUI", packageName + "MenuItemUI", "OptionPaneUI",
-                packageName + "OptionPaneUI", "PanelUI", packageName
-                        + "PanelUI", "PasswordFieldUI", packageName + "TextUI",
-                "PopupMenuSeparatorUI", packageName + "SeparatorUI",
-                "PopupMenuUI", packageName + "PopupMenuUI", "ProgressBarUI",
-                packageName + "ProgressBarUI", "RadioButtonMenuItemUI",
-                packageName + "MenuItemUI", "RadioButtonUI", packageName
-                        + "ButtonUI", "RootPaneUI", packageName + "RootPaneUI",
-                "ScrollBarUI", packageName + "ScrollBarUI", "ScrollPaneUI",
-                packageName + "ScrollPaneUI", "SeparatorUI", packageName
-                        + "SeparatorUI", "SliderUI", packageName + "SliderUI",
-                "SpinnerUI", packageName + "SpinnerUI", "SplitPaneUI",
-                packageName + "SplitPaneUI", "TabbedPaneUI", packageName
-                        + "TabbedPaneUI", "TableHeaderUI", packageName
-                                + "TableHeaderUI", "TableUI", packageName
-                                        + "TableUI", "TextAreaUI", packageName
-                                                + "TextUI", "TextFieldUI",
-                packageName + "TextUI", "TextPaneUI", packageName + "TextUI",
-                "ToggleButtonUI", packageName + "ButtonUI",
-                "ToolBarSeparatorUI", packageName + "SeparatorUI", "ToolBarUI",
-                packageName + "ToolBarUI", "ToolTipUI", packageName
-                        + "ToolTipUI", "TreeUI", packageName + "TreeUI",
-                "ViewportUI", packageName + "ViewportUI", };
+        Object[] uiDefaults = { "ButtonUI", packageName + "ButtonUI", "CheckBoxMenuItemUI", packageName
+                + "MenuItemUI", "CheckBoxUI", packageName + "ButtonUI", "ColorChooserUI", packageName
+                        + "ColorChooserUI", "ComboBoxUI", packageName + "ComboBoxUI", "DesktopIconUI",
+                packageName + "DesktopIconUI", "DesktopPaneUI", packageName + "DesktopPaneUI", "EditorPaneUI",
+                packageName + "TextUI", "FileChooserUI", packageName + "FileChooserUI",
+                "FormattedTextFieldUI", packageName + "TextUI", "InternalFrameUI", packageName
+                        + "InternalFrameUI", "LabelUI", packageName + "LabelUI", "ListUI", packageName
+                                + "ListUI", "MenuBarUI", packageName + "MenuBarUI", "MenuItemUI", packageName
+                                        + "MenuItemUI", "MenuUI", packageName + "MenuItemUI", "OptionPaneUI",
+                packageName + "OptionPaneUI", "PanelUI", packageName + "PanelUI", "PasswordFieldUI",
+                packageName + "TextUI", "PopupMenuSeparatorUI", packageName + "SeparatorUI", "PopupMenuUI",
+                packageName + "PopupMenuUI", "ProgressBarUI", packageName + "ProgressBarUI",
+                "RadioButtonMenuItemUI", packageName + "MenuItemUI", "RadioButtonUI", packageName
+                        + "ButtonUI", "RootPaneUI", packageName + "RootPaneUI", "ScrollBarUI", packageName
+                                + "ScrollBarUI", "ScrollPaneUI", packageName + "ScrollPaneUI", "SeparatorUI",
+                packageName + "SeparatorUI", "SliderUI", packageName + "SliderUI", "SpinnerUI", packageName
+                        + "SpinnerUI", "SplitPaneUI", packageName + "SplitPaneUI", "TabbedPaneUI", packageName
+                                + "TabbedPaneUI", "TableHeaderUI", packageName + "TableHeaderUI", "TableUI",
+                packageName + "TableUI", "TextAreaUI", packageName + "TextUI", "TextFieldUI", packageName
+                        + "TextUI", "TextPaneUI", packageName + "TextUI", "ToggleButtonUI", packageName
+                                + "ButtonUI", "ToolBarSeparatorUI", packageName + "SeparatorUI", "ToolBarUI",
+                packageName + "ToolBarUI", "ToolTipUI", packageName + "ToolTipUI", "TreeUI", packageName
+                        + "TreeUI", "ViewportUI", packageName + "ViewportUI", };
 
         UIDefaults table = new MultiUIDefaults(uiDefaults.length / 2, 0.75f);
         table.putDefaults(uiDefaults);
@@ -160,29 +144,26 @@ public class MultiLookAndFeel extends LookAndFeel {
      * <code>MultiXxxxUI</code> classes.
      *
      * @param mui
-     *               the <code>ComponentUI</code> object that represents the
-     *               complete UI for the <code>target</code> component; this
-     *               should
-     *               be an instance of one of the <code>MultiXxxxUI</code>
-     *               classes
+     *        the <code>ComponentUI</code> object that represents the
+     *        complete UI for the <code>target</code> component; this
+     *        should
+     *        be an instance of one of the <code>MultiXxxxUI</code>
+     *        classes
      * @param uis
-     *               a <code>Vector</code>; generally this is the
-     *               <code>uis</code>
-     *               field of the <code>mui</code> argument
+     *        a <code>Vector</code>; generally this is the
+     *        <code>uis</code>
+     *        field of the <code>mui</code> argument
      * @param target
-     *               a component whose UI is represented by <code>mui</code>
-     *
+     *        a component whose UI is represented by <code>mui</code>
      * @return <code>mui</code> if the component has any auxiliary UI objects;
      *         otherwise, returns the UI object for the default look and feel or
      *         <code>null</code> if the default UI object couldn't be found
-     *
      * @see javax.swing.UIManager#getAuxiliaryLookAndFeels
      * @see javax.swing.UIDefaults#getUI
      * @see MultiButtonUI#uis
      * @see MultiButtonUI#createUI
      */
-    public static ComponentUI createUIs(ComponentUI mui, Vector uis,
-            JComponent target) {
+    public static ComponentUI createUIs(ComponentUI mui, Vector uis, JComponent target) {
         ComponentUI ui;
 
         // Make sure we can at least get the default UI
@@ -222,9 +203,8 @@ public class MultiLookAndFeel extends LookAndFeel {
      * in the <code>uis</code> vector are not of type <code>ComponentUI</code>.
      *
      * @param uis
-     *            a vector containing <code>ComponentUI</code> objects
+     *        a vector containing <code>ComponentUI</code> objects
      * @return an array equivalent to the passed-in vector
-     *
      */
     protected static ComponentUI[] uisToArray(Vector uis) {
         if (uis == null) {

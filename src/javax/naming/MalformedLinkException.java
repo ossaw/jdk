@@ -14,7 +14,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see LinkRef#getLinkName
  * @see LinkRef
  * @since 1.3
@@ -26,9 +25,9 @@ public class MalformedLinkException extends LinkException {
      * All the other fields are initialized to null.
      * 
      * @param explanation
-     *                    A possibly null string containing additional detail
-     *                    about this
-     *                    exception.
+     *        A possibly null string containing additional detail
+     *        about this
+     *        exception.
      */
     public MalformedLinkException(String explanation) {
         super(explanation);

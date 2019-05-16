@@ -21,7 +21,6 @@ import java.util.Vector;
 
 /**
  * @xerces.internal
- *
  */
 class Op {
     static final int DOT = 0;
@@ -144,12 +143,10 @@ class Op {
         return op;
     }
 
-    static ConditionOp createCondition(Op next, int ref, Op conditionflow,
-            Op yesflow, Op noflow) {
+    static ConditionOp createCondition(Op next, int ref, Op conditionflow, Op yesflow, Op noflow) {
         if (Op.COUNT)
             Op.nofinstances++;
-        ConditionOp op = new ConditionOp(Op.CONDITION, ref, conditionflow,
-                yesflow, noflow);
+        ConditionOp op = new ConditionOp(Op.CONDITION, ref, conditionflow, yesflow, noflow);
         op.next = next;
         return op;
     }
@@ -298,8 +295,7 @@ class Op {
         Op yes;
         Op no;
 
-        ConditionOp(int type, int refno, Op conditionflow, Op yesflow,
-                Op noflow) {
+        ConditionOp(int type, int refno, Op conditionflow, Op yesflow, Op noflow) {
             super(type);
             this.refNumber = refno;
             this.condition = conditionflow;

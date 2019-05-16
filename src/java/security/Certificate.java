@@ -14,7 +14,6 @@ import java.util.Date;
  * certificates. An identity certificate is a guarantee by a principal that a
  * public key is that of another principal. (A principal represents an entity
  * such as an individual user, a group, or a corporation.)
- *
  * <p>
  * In particular, this interface is intended to be a common abstraction for
  * constructs that have different formats but important common uses. For
@@ -26,7 +25,6 @@ import java.util.Date;
  * certificates and an implementation of PGP certificates can both utilize the
  * Certificate interface, even though their formats and additional types and
  * amounts of information stored are different.
- *
  * <p>
  * <b>Important</b>: This interface is useful for cataloging and grouping
  * objects sharing certain common uses. It does not have any semantics of its
@@ -77,47 +75,39 @@ public interface Certificate {
      * decoded by the {@code decode} method.
      *
      * @param stream
-     *               the output stream to which to encode the certificate.
-     *
+     *        the output stream to which to encode the certificate.
      * @exception KeyException
-     *                         if the certificate is not properly initialized,
-     *                         or data is
-     *                         missing, etc.
-     *
+     *            if the certificate is not properly initialized,
+     *            or data is
+     *            missing, etc.
      * @exception IOException
-     *                         if a stream exception occurs while trying to
-     *                         output the
-     *                         encoded certificate to the output stream.
-     *
+     *            if a stream exception occurs while trying to
+     *            output the
+     *            encoded certificate to the output stream.
      * @see #decode
      * @see #getFormat
      */
-    public abstract void encode(OutputStream stream) throws KeyException,
-            IOException;
+    public abstract void encode(OutputStream stream) throws KeyException, IOException;
 
     /**
      * Decodes a certificate from an input stream. The format should be that
      * returned by {@code getFormat} and produced by {@code encode}.
      *
      * @param stream
-     *               the input stream from which to fetch the data being
-     *               decoded.
-     *
+     *        the input stream from which to fetch the data being
+     *        decoded.
      * @exception KeyException
-     *                         if the certificate is not properly initialized,
-     *                         or data is
-     *                         missing, etc.
-     *
+     *            if the certificate is not properly initialized,
+     *            or data is
+     *            missing, etc.
      * @exception IOException
-     *                         if an exception occurs while trying to input the
-     *                         encoded
-     *                         certificate from the input stream.
-     *
+     *            if an exception occurs while trying to input the
+     *            encoded
+     *            certificate from the input stream.
      * @see #encode
      * @see #getFormat
      */
-    public abstract void decode(InputStream stream) throws KeyException,
-            IOException;
+    public abstract void decode(InputStream stream) throws KeyException, IOException;
 
     /**
      * Returns the name of the coding format. This is used as a hint to find an
@@ -132,9 +122,8 @@ public interface Certificate {
      * Returns a string that represents the contents of the certificate.
      *
      * @param detailed
-     *                 whether or not to give detailed information about the
-     *                 certificate
-     *
+     *        whether or not to give detailed information about the
+     *        certificate
      * @return a string representing the contents of the certificate
      */
     public String toString(boolean detailed);

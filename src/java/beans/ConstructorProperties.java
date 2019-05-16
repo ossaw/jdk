@@ -14,7 +14,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  * An annotation on a constructor that shows how the parameters of that
  * constructor correspond to the constructed object's getter methods. For
  * example:
- * 
  * <blockquote>
  * 
  * <pre>
@@ -38,7 +37,6 @@ import static java.lang.annotation.RetentionPolicy.*;
  * </pre>
  * 
  * </blockquote>
- * 
  * The annotation shows that the first parameter of the constructor can be
  * retrieved with the {@code getX()} method and the second with the
  * {@code getY()} method. Since parameter names are not in general available at

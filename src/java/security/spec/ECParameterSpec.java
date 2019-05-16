@@ -11,9 +11,7 @@ import java.math.BigInteger;
  * elliptic curve cryptography (ECC).
  *
  * @see AlgorithmParameterSpec
- *
  * @author Valerie Peng
- *
  * @since 1.5
  */
 public class ECParameterSpec implements AlgorithmParameterSpec {
@@ -27,22 +25,21 @@ public class ECParameterSpec implements AlgorithmParameterSpec {
      * Creates elliptic curve domain parameters based on the specified values.
      * 
      * @param curve
-     *              the elliptic curve which this parameter defines.
+     *        the elliptic curve which this parameter defines.
      * @param g
-     *              the generator which is also known as the base point.
+     *        the generator which is also known as the base point.
      * @param n
-     *              the order of the generator {@code g}.
+     *        the order of the generator {@code g}.
      * @param h
-     *              the cofactor.
+     *        the cofactor.
      * @exception NullPointerException
-     *                                     if {@code curve}, {@code g}, or
-     *                                     {@code n} is null.
+     *            if {@code curve}, {@code g}, or
+     *            {@code n} is null.
      * @exception IllegalArgumentException
-     *                                     if {@code n} or {@code h} is not
-     *                                     positive.
+     *            if {@code n} or {@code h} is not
+     *            positive.
      */
-    public ECParameterSpec(EllipticCurve curve, ECPoint g, BigInteger n,
-            int h) {
+    public ECParameterSpec(EllipticCurve curve, ECPoint g, BigInteger n, int h) {
         if (curve == null) {
             throw new NullPointerException("curve is null");
         }

@@ -39,7 +39,6 @@ import javax.swing.*;
  * @see DefaultMetalTheme
  * @see OceanTheme
  * @see MetalLookAndFeel#setCurrentTheme
- *
  * @author Steve Wilson
  */
 public abstract class MetalTheme {
@@ -514,8 +513,7 @@ public abstract class MetalTheme {
      * to customize the defaults table.
      *
      * @param table
-     *              the {@code UIDefaults} to add the values to
-     *
+     *        the {@code UIDefaults} to add the values to
      * @see MetalLookAndFeel#getDefaults
      */
     public void addCustomEntriesToTable(UIDefaults table) {}

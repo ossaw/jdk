@@ -23,8 +23,7 @@ package org.omg.DynamicAny;
  * as ORB bridging and debugging and should not be used to arbitrarily violate
  * the encapsulation of the value type.
  */
-public interface DynValueOperations extends
-        org.omg.DynamicAny.DynValueCommonOperations {
+public interface DynValueOperations extends org.omg.DynamicAny.DynValueCommonOperations {
 
     /**
      * Returns the name of the member at the current position. This operation
@@ -32,26 +31,24 @@ public interface DynValueOperations extends
      * manipulated may not contain the names of members.
      *
      * @exception TypeMismatch
-     *                         if the DynValue represents a null value type.
+     *            if the DynValue represents a null value type.
      * @exception InvalidValue
-     *                         if the current position does not indicate a
-     *                         member
+     *            if the current position does not indicate a
+     *            member
      */
-    String current_member_name()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    String current_member_name() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Returns the TCKind associated with the member at the current position.
      *
      * @exception TypeMismatch
-     *                         if the DynValue represents a null value type.
+     *            if the DynValue represents a null value type.
      * @exception InvalidValue
-     *                         if the current position does not indicate a
-     *                         member
+     *            if the current position does not indicate a
+     *            member
      */
-    org.omg.CORBA.TCKind current_member_kind()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
+    org.omg.CORBA.TCKind current_member_kind() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
             org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
@@ -63,10 +60,9 @@ public interface DynValueOperations extends
      * not contain member names.
      *
      * @exception InvalidValue
-     *                         if this object represents a null value type
+     *            if this object represents a null value type
      */
-    org.omg.DynamicAny.NameValuePair[] get_members()
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
+    org.omg.DynamicAny.NameValuePair[] get_members() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Initializes the value type's members from a sequence of NameValuePairs.
@@ -81,17 +77,17 @@ public interface DynValueOperations extends
      * attempt to assign member values based on member names.
      *
      * @exception TypeMismatch
-     *                         if the member names supplied in the passed
-     *                         sequence do not
-     *                         match the corresponding member name in the
-     *                         DynValue's
-     *                         TypeCode and they are not empty strings
+     *            if the member names supplied in the passed
+     *            sequence do not
+     *            match the corresponding member name in the
+     *            DynValue's
+     *            TypeCode and they are not empty strings
      * @exception InvalidValue
-     *                         if the passed sequence has a number of elements
-     *                         that
-     *                         disagrees with the number of members as indicated
-     *                         by the
-     *                         DynValue's TypeCode
+     *            if the passed sequence has a number of elements
+     *            that
+     *            disagrees with the number of members as indicated
+     *            by the
+     *            DynValue's TypeCode
      */
     void set_members(org.omg.DynamicAny.NameValuePair[] value)
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,
@@ -106,7 +102,7 @@ public interface DynValueOperations extends
      * TypeCode does not contain member names.
      *
      * @exception InvalidValue
-     *                         if this object represents a null value type
+     *            if this object represents a null value type
      */
     org.omg.DynamicAny.NameDynAnyPair[] get_members_as_dyn_any()
             throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
@@ -124,17 +120,17 @@ public interface DynValueOperations extends
      * attempt to assign member values based on member names.
      *
      * @exception TypeMismatch
-     *                         if the member names supplied in the passed
-     *                         sequence do not
-     *                         match the corresponding member name in the
-     *                         DynValue's
-     *                         TypeCode and they are not empty strings
+     *            if the member names supplied in the passed
+     *            sequence do not
+     *            match the corresponding member name in the
+     *            DynValue's
+     *            TypeCode and they are not empty strings
      * @exception InvalidValue
-     *                         if the passed sequence has a number of elements
-     *                         that
-     *                         disagrees with the number of members as indicated
-     *                         by the
-     *                         DynValue's TypeCode
+     *            if the passed sequence has a number of elements
+     *            that
+     *            disagrees with the number of members as indicated
+     *            by the
+     *            DynValue's TypeCode
      */
     void set_members_as_dyn_any(org.omg.DynamicAny.NameDynAnyPair[] value)
             throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch,

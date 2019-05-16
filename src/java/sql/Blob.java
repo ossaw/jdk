@@ -16,7 +16,6 @@ import java.io.InputStream;
  * contains a logical pointer to the SQL <code>BLOB</code> data rather than the
  * data itself. A <code>Blob</code> object is valid for the duration of the
  * transaction in which is was created.
- *
  * <P>
  * Methods in the interfaces {@link ResultSet}, {@link CallableStatement}, and
  * {@link PreparedStatement}, such as <code>getBlob</code> and
@@ -41,12 +40,12 @@ public interface Blob {
      * 
      * @return length of the <code>BLOB</code> in bytes
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the length of the
-     *                                            <code>BLOB</code>
+     *            if there is an error accessing
+     *            the length of the
+     *            <code>BLOB</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
     long length() throws SQLException;
@@ -58,25 +57,25 @@ public interface Blob {
      * bytes starting at position <code>pos</code>.
      *
      * @param pos
-     *               the ordinal position of the first byte in the
-     *               <code>BLOB</code> value to be extracted; the first byte is
-     *               at
-     *               position 1
+     *        the ordinal position of the first byte in the
+     *        <code>BLOB</code> value to be extracted; the first byte is
+     *        at
+     *        position 1
      * @param length
-     *               the number of consecutive bytes to be copied; the value for
-     *               length must be 0 or greater
+     *        the number of consecutive bytes to be copied; the value for
+     *        length must be 0 or greater
      * @return a byte array containing up to <code>length</code> consecutive
      *         bytes from the <code>BLOB</code> value designated by this
      *         <code>Blob</code> object, starting with the byte at position
      *         <code>pos</code>
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the <code>BLOB</code>
-     *                                            value; if pos is less than 1
-     *                                            or length is less than 0
+     *            if there is an error accessing
+     *            the <code>BLOB</code>
+     *            value; if pos is less than 1
+     *            or length is less than 0
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #setBytes
      * @since 1.2
      */
@@ -88,11 +87,11 @@ public interface Blob {
      *
      * @return a stream containing the <code>BLOB</code> data
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the <code>BLOB</code> value
+     *            if there is an error accessing
+     *            the <code>BLOB</code> value
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #setBinaryStream
      * @since 1.2
      */
@@ -105,19 +104,19 @@ public interface Blob {
      * begins at position <code>start</code>.
      *
      * @param pattern
-     *                the byte array for which to search
+     *        the byte array for which to search
      * @param start
-     *                the position at which to begin searching; the first
-     *                position
-     *                is 1
+     *        the position at which to begin searching; the first
+     *        position
+     *        is 1
      * @return the position at which the pattern appears, else -1
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the <code>BLOB</code> or if
-     *                                            start is less than 1
+     *            if there is an error accessing
+     *            the <code>BLOB</code> or if
+     *            start is less than 1
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
     long position(byte pattern[], long start) throws SQLException;
@@ -128,21 +127,21 @@ public interface Blob {
      * search begins at position <code>start</code>.
      *
      * @param pattern
-     *                the <code>Blob</code> object designating the
-     *                <code>BLOB</code>
-     *                value for which to search
+     *        the <code>Blob</code> object designating the
+     *        <code>BLOB</code>
+     *        value for which to search
      * @param start
-     *                the position in the <code>BLOB</code> value at which to
-     *                begin
-     *                searching; the first position is 1
+     *        the position in the <code>BLOB</code> value at which to
+     *        begin
+     *        searching; the first position is 1
      * @return the position at which the pattern begins, else -1
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the <code>BLOB</code> value
-     *                                            or if start is less than 1
+     *            if there is an error accessing
+     *            the <code>BLOB</code> value
+     *            or if start is less than 1
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.2
      */
     long position(Blob pattern, long start) throws SQLException;
@@ -165,20 +164,20 @@ public interface Blob {
      * other drivers may support this operation.
      *
      * @param pos
-     *              the position in the <code>BLOB</code> object at which to
-     *              start
-     *              writing; the first position is 1
+     *        the position in the <code>BLOB</code> object at which to
+     *        start
+     *        writing; the first position is 1
      * @param bytes
-     *              the array of bytes to be written to the <code>BLOB</code>
-     *              value that this <code>Blob</code> object represents
+     *        the array of bytes to be written to the <code>BLOB</code>
+     *        value that this <code>Blob</code> object represents
      * @return the number of bytes written
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the <code>BLOB</code> value
-     *                                            or if pos is less than 1
+     *            if there is an error accessing
+     *            the <code>BLOB</code> value
+     *            or if pos is less than 1
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getBytes
      * @since 1.4
      */
@@ -201,32 +200,31 @@ public interface Blob {
      * other drivers may support this operation.
      *
      * @param pos
-     *               the position in the <code>BLOB</code> object at which to
-     *               start
-     *               writing; the first position is 1
+     *        the position in the <code>BLOB</code> object at which to
+     *        start
+     *        writing; the first position is 1
      * @param bytes
-     *               the array of bytes to be written to this <code>BLOB</code>
-     *               object
+     *        the array of bytes to be written to this <code>BLOB</code>
+     *        object
      * @param offset
-     *               the offset into the array <code>bytes</code> at which to
-     *               start
-     *               reading the bytes to be set
+     *        the offset into the array <code>bytes</code> at which to
+     *        start
+     *        reading the bytes to be set
      * @param len
-     *               the number of bytes to be written to the <code>BLOB</code>
-     *               value from the array of bytes <code>bytes</code>
+     *        the number of bytes to be written to the <code>BLOB</code>
+     *        value from the array of bytes <code>bytes</code>
      * @return the number of bytes written
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the <code>BLOB</code> value
-     *                                            or if pos is less than 1
+     *            if there is an error accessing
+     *            the <code>BLOB</code> value
+     *            or if pos is less than 1
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getBytes
      * @since 1.4
      */
-    int setBytes(long pos, byte[] bytes, int offset, int len)
-            throws SQLException;
+    int setBytes(long pos, byte[] bytes, int offset, int len) throws SQLException;
 
     /**
      * Retrieves a stream that can be used to write to the <code>BLOB</code>
@@ -243,17 +241,17 @@ public interface Blob {
      * other drivers may support this operation.
      *
      * @param pos
-     *            the position in the <code>BLOB</code> value at which to start
-     *            writing; the first position is 1
+     *        the position in the <code>BLOB</code> value at which to start
+     *        writing; the first position is 1
      * @return a <code>java.io.OutputStream</code> object to which data can be
      *         written
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the <code>BLOB</code> value
-     *                                            or if pos is less than 1
+     *            if there is an error accessing
+     *            the <code>BLOB</code> value
+     *            or if pos is less than 1
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @see #getBinaryStream
      * @since 1.4
      */
@@ -269,16 +267,16 @@ public interface Blob {
      * other drivers may support this operation.
      *
      * @param len
-     *            the length, in bytes, to which the <code>BLOB</code> value
-     *            that this <code>Blob</code> object represents should be
-     *            truncated
+     *        the length, in bytes, to which the <code>BLOB</code> value
+     *        that this <code>Blob</code> object represents should be
+     *        truncated
      * @exception SQLException
-     *                                            if there is an error accessing
-     *                                            the <code>BLOB</code> value
-     *                                            or if len is less than 0
+     *            if there is an error accessing
+     *            the <code>BLOB</code> value
+     *            or if len is less than 0
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
     void truncate(long len) throws SQLException;
@@ -295,10 +293,10 @@ public interface Blob {
      * <p>
      *
      * @throws SQLException
-     *                      if an error occurs releasing the Blob's resources
+     *         if an error occurs releasing the Blob's resources
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
     void free() throws SQLException;
@@ -309,23 +307,22 @@ public interface Blob {
      * is length bytes in length.
      *
      * @param pos
-     *               the offset to the first byte of the partial value to be
-     *               retrieved. The first byte in the <code>Blob</code> is at
-     *               position 1
+     *        the offset to the first byte of the partial value to be
+     *        retrieved. The first byte in the <code>Blob</code> is at
+     *        position 1
      * @param length
-     *               the length in bytes of the partial value to be retrieved
+     *        the length in bytes of the partial value to be retrieved
      * @return <code>InputStream</code> through which the partial
      *         <code>Blob</code> value can be read.
      * @throws SQLException
-     *                      if pos is less than 1 or if pos is greater than the
-     *                      number of
-     *                      bytes in the <code>Blob</code> or if pos + length is
-     *                      greater
-     *                      than the number of bytes in the <code>Blob</code>
-     *
+     *         if pos is less than 1 or if pos is greater than the
+     *         number of
+     *         bytes in the <code>Blob</code> or if pos + length is
+     *         greater
+     *         than the number of bytes in the <code>Blob</code>
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.6
      */
     InputStream getBinaryStream(long pos, long length) throws SQLException;

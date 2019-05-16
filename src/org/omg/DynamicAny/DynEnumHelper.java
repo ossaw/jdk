@@ -15,8 +15,7 @@ package org.omg.DynamicAny;
 abstract public class DynEnumHelper {
     private static String _id = "IDL:omg.org/DynamicAny/DynEnum:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.DynamicAny.DynEnum that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.DynamicAny.DynEnum that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -31,8 +30,8 @@ abstract public class DynEnumHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(
-                    org.omg.DynamicAny.DynEnumHelper.id(), "DynEnum");
+            __typeCode = org.omg.CORBA.ORB.init().create_interface_tc(org.omg.DynamicAny.DynEnumHelper.id(),
+                    "DynEnum");
         }
         return __typeCode;
     }
@@ -41,13 +40,11 @@ abstract public class DynEnumHelper {
         return _id;
     }
 
-    public static org.omg.DynamicAny.DynEnum read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.DynamicAny.DynEnum read(org.omg.CORBA.portable.InputStream istream) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.DynamicAny.DynEnum value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.DynamicAny.DynEnum value) {
         throw new org.omg.CORBA.MARSHAL();
     }
 
@@ -67,8 +64,7 @@ abstract public class DynEnumHelper {
         }
     }
 
-    public static org.omg.DynamicAny.DynEnum unchecked_narrow(
-            org.omg.CORBA.Object obj) {
+    public static org.omg.DynamicAny.DynEnum unchecked_narrow(org.omg.CORBA.Object obj) {
         if (obj == null)
             return null;
         else if (obj instanceof org.omg.DynamicAny.DynEnum)

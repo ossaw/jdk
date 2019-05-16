@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -40,8 +38,7 @@ import org.w3c.dom.Element;
  *
  * @author Brent Putman (putmanb@georgetown.edu)
  */
-public class DEREncodedKeyValue extends Signature11ElementProxy implements
-        KeyInfoContent {
+public class DEREncodedKeyValue extends Signature11ElementProxy implements KeyInfoContent {
 
     /** JCA algorithm key types supported by this implementation. */
     private static final String supportedKeyTypes[] = { "RSA", "DSA", "EC" };
@@ -53,8 +50,7 @@ public class DEREncodedKeyValue extends Signature11ElementProxy implements
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    public DEREncodedKeyValue(Element element, String BaseURI)
-            throws XMLSecurityException {
+    public DEREncodedKeyValue(Element element, String BaseURI) throws XMLSecurityException {
         super(element, BaseURI);
     }
 
@@ -65,8 +61,7 @@ public class DEREncodedKeyValue extends Signature11ElementProxy implements
      * @param publicKey
      * @throws XMLSecurityException
      */
-    public DEREncodedKeyValue(Document doc, PublicKey publicKey)
-            throws XMLSecurityException {
+    public DEREncodedKeyValue(Document doc, PublicKey publicKey) throws XMLSecurityException {
         super(doc);
 
         this.addBase64Text(getEncodedDER(publicKey));
@@ -88,14 +83,12 @@ public class DEREncodedKeyValue extends Signature11ElementProxy implements
      * Sets the <code>Id</code> attribute
      *
      * @param Id
-     *           ID
+     *        ID
      */
     public void setId(String id) {
         if (id != null) {
-            this.constructionElement.setAttributeNS(null, Constants._ATT_ID,
-                    id);
-            this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID,
-                    true);
+            this.constructionElement.setAttributeNS(null, Constants._ATT_ID, id);
+            this.constructionElement.setIdAttributeNS(null, Constants._ATT_ID, true);
         } else {
             this.constructionElement.removeAttributeNS(null, Constants._ATT_ID);
         }
@@ -139,8 +132,7 @@ public class DEREncodedKeyValue extends Signature11ElementProxy implements
                 // Do nothing, try the next type
             }
         }
-        throw new XMLSecurityException(
-                "DEREncodedKeyValue.UnsupportedEncodedKey");
+        throw new XMLSecurityException("DEREncodedKeyValue.UnsupportedEncodedKey");
     }
 
     /**
@@ -149,24 +141,19 @@ public class DEREncodedKeyValue extends Signature11ElementProxy implements
      * @return the public key
      * @throws XMLSecurityException
      */
-    protected byte[] getEncodedDER(PublicKey publicKey)
-            throws XMLSecurityException {
+    protected byte[] getEncodedDER(PublicKey publicKey) throws XMLSecurityException {
         try {
-            KeyFactory keyFactory = KeyFactory.getInstance(publicKey
-                    .getAlgorithm());
-            X509EncodedKeySpec keySpec = keyFactory.getKeySpec(publicKey,
-                    X509EncodedKeySpec.class);
+            KeyFactory keyFactory = KeyFactory.getInstance(publicKey.getAlgorithm());
+            X509EncodedKeySpec keySpec = keyFactory.getKeySpec(publicKey, X509EncodedKeySpec.class);
             return keySpec.getEncoded();
         } catch (NoSuchAlgorithmException e) {
-            Object exArgs[] = { publicKey.getAlgorithm(), publicKey.getFormat(),
-                    publicKey.getClass().getName() };
-            throw new XMLSecurityException(
-                    "DEREncodedKeyValue.UnsupportedPublicKey", exArgs, e);
+            Object exArgs[] = { publicKey.getAlgorithm(), publicKey.getFormat(), publicKey.getClass()
+                    .getName() };
+            throw new XMLSecurityException("DEREncodedKeyValue.UnsupportedPublicKey", exArgs, e);
         } catch (InvalidKeySpecException e) {
-            Object exArgs[] = { publicKey.getAlgorithm(), publicKey.getFormat(),
-                    publicKey.getClass().getName() };
-            throw new XMLSecurityException(
-                    "DEREncodedKeyValue.UnsupportedPublicKey", exArgs, e);
+            Object exArgs[] = { publicKey.getAlgorithm(), publicKey.getFormat(), publicKey.getClass()
+                    .getName() };
+            throw new XMLSecurityException("DEREncodedKeyValue.UnsupportedPublicKey", exArgs, e);
         }
     }
 

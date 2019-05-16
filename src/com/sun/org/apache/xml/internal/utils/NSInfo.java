@@ -30,14 +30,13 @@ public class NSInfo {
     /**
      * Constructor NSInfo
      *
-     *
      * @param hasProcessedNS
-     *                       Flag indicating whether namespaces have been
-     *                       processed for
-     *                       this node
+     *        Flag indicating whether namespaces have been
+     *        processed for
+     *        this node
      * @param hasXMLNSAttrs
-     *                       Flag indicating whether this node has XMLNS
-     *                       attributes.
+     *        Flag indicating whether this node has XMLNS
+     *        attributes.
      */
     public NSInfo(boolean hasProcessedNS, boolean hasXMLNSAttrs) {
 
@@ -52,21 +51,19 @@ public class NSInfo {
     /**
      * Constructor NSInfo
      *
-     *
      * @param hasProcessedNS
-     *                              Flag indicating whether namespaces have been
-     *                              processed for
-     *                              this node
+     *        Flag indicating whether namespaces have been
+     *        processed for
+     *        this node
      * @param hasXMLNSAttrs
-     *                              Flag indicating whether this node has XMLNS
-     *                              attributes.
+     *        Flag indicating whether this node has XMLNS
+     *        attributes.
      * @param ancestorHasXMLNSAttrs
-     *                              Flag indicating whether one of this node's
-     *                              ancestor has XMLNS
-     *                              attributes.
+     *        Flag indicating whether one of this node's
+     *        ancestor has XMLNS
+     *        attributes.
      */
-    public NSInfo(boolean hasProcessedNS, boolean hasXMLNSAttrs,
-            int ancestorHasXMLNSAttrs) {
+    public NSInfo(boolean hasProcessedNS, boolean hasXMLNSAttrs, int ancestorHasXMLNSAttrs) {
 
         m_hasProcessedNS = hasProcessedNS;
         m_hasXMLNSAttrs = hasXMLNSAttrs;
@@ -77,12 +74,11 @@ public class NSInfo {
     /**
      * Constructor NSInfo
      *
-     *
      * @param namespace
-     *                      The namespace URI
+     *        The namespace URI
      * @param hasXMLNSAttrs
-     *                      Flag indicating whether this node has XMLNS
-     *                      attributes.
+     *        Flag indicating whether this node has XMLNS
+     *        attributes.
      */
     public NSInfo(String namespace, boolean hasXMLNSAttrs) {
 

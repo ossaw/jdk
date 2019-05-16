@@ -25,8 +25,7 @@ public abstract class BufferManagerWrite {
 
     BufferManagerWrite(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_ENCODING);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_ENCODING);
     }
 
     /**
@@ -66,14 +65,11 @@ public abstract class BufferManagerWrite {
 
     /**
      * Called after Stub._invoke (i.e., before complete message has been sent).
-     *
      * IIOPOutputStream.writeTo called from IIOPOutputStream.invoke
-     *
      * Case: overflow was never called (bbwi.buf contains complete message).
      * Backpatch size field. If growing or collecting: this.bufQ.put(bbwi).
      * this.bufQ.iterate // However, see comment in getBufferQ
      * this.connection.send(fragment) If streaming: this.connection.send(bbwi).
-     *
      * Case: overflow was called N times (bbwi.buf contains last buffer). If
      * growing or collecting: this.bufQ.put(bbwi). backpatch size field in first
      * buffer. this.bufQ.iterate // However, see comment in getBufferQ

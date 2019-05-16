@@ -11,14 +11,12 @@ import java.security.Principal;
  * <p>
  * This class implements the <code>Principal</code> interface and represents
  * information about a Windows NT user, group or realm.
- *
  * <p>
  * Windows NT chooses to represent users, groups and realms (or domains) with
  * not only common names, but also relatively unique numbers. These numbers are
  * called Security IDentifiers, or SIDs. Windows NT also provides services that
  * render these SIDs into string forms. This class represents these string
  * forms.
- *
  * <p>
  * Principals such as this <code>NTSid</code> may be associated with a
  * particular <code>Subject</code> to augment that <code>Subject</code> with an
@@ -41,41 +39,34 @@ public class NTSid implements Principal, java.io.Serializable {
 
     /**
      * Create an <code>NTSid</code> with a Windows NT SID.
-     *
      * <p>
      *
      * @param stringSid
-     *                  the Windows NT SID.
-     *                  <p>
-     *
+     *        the Windows NT SID.
+     *        <p>
      * @exception NullPointerException
-     *                                     if the <code>String</code> is
-     *                                     <code>null</code>.
-     *
+     *            if the <code>String</code> is
+     *            <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if the <code>String</code> has zero
-     *                                     length.
+     *            if the <code>String</code> has zero
+     *            length.
      */
     public NTSid(String stringSid) {
         if (stringSid == null) {
-            java.text.MessageFormat form = new java.text.MessageFormat(
-                    sun.security.util.ResourcesMgr.getString(
-                            "invalid.null.input.value",
-                            "sun.security.util.AuthResources"));
+            java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
+                    .getString("invalid.null.input.value", "sun.security.util.AuthResources"));
             Object[] source = { "stringSid" };
             throw new NullPointerException(form.format(source));
         }
         if (stringSid.length() == 0) {
-            throw new IllegalArgumentException(sun.security.util.ResourcesMgr
-                    .getString("Invalid.NTSid.value",
-                            "sun.security.util.AuthResources"));
+            throw new IllegalArgumentException(sun.security.util.ResourcesMgr.getString("Invalid.NTSid.value",
+                    "sun.security.util.AuthResources"));
         }
         sid = new String(stringSid);
     }
 
     /**
      * Return a string version of this <code>NTSid</code>.
-     *
      * <p>
      *
      * @return a string version of this <code>NTSid</code>
@@ -86,15 +77,13 @@ public class NTSid implements Principal, java.io.Serializable {
 
     /**
      * Return a string representation of this <code>NTSid</code>.
-     *
      * <p>
      *
      * @return a string representation of this <code>NTSid</code>.
      */
     public String toString() {
-        java.text.MessageFormat form = new java.text.MessageFormat(
-                sun.security.util.ResourcesMgr.getString("NTSid.name",
-                        "sun.security.util.AuthResources"));
+        java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr.getString(
+                "NTSid.name", "sun.security.util.AuthResources"));
         Object[] source = { sid };
         return form.format(source);
     }
@@ -103,13 +92,11 @@ public class NTSid implements Principal, java.io.Serializable {
      * Compares the specified Object with this <code>NTSid</code> for equality.
      * Returns true if the given object is also a <code>NTSid</code> and the two
      * NTSids have the same String representation.
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>NTSid</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>NTSid</code>.
      * @return true if the specified Object is equal to this <code>NTSid</code>.
      */
     public boolean equals(Object o) {
@@ -131,7 +118,6 @@ public class NTSid implements Principal, java.io.Serializable {
 
     /**
      * Return a hash code for this <code>NTSid</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>NTSid</code>.

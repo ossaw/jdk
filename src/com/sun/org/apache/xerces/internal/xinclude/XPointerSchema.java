@@ -12,7 +12,6 @@ public interface XPointerSchema extends XMLComponent, XMLDocumentFilter {
 
     /**
      * Return Schema Name eg element , xpointer
-     *
      */
     public String getXpointerSchemaName();
 

@@ -15,7 +15,6 @@ import java.awt.dnd.DropTargetContext;
  * the current <code>DropTargetContext</code>.
  *
  * @since 1.2
- *
  */
 
 public class DropTargetEvent extends java.util.EventObject {
@@ -28,9 +27,9 @@ public class DropTargetEvent extends java.util.EventObject {
      * <P>
      * 
      * @param dtc
-     *            The <code>DropTargetContext</code>
+     *        The <code>DropTargetContext</code>
      * @throws NullPointerException
-     *                              if {@code dtc} equals {@code null}.
+     *         if {@code dtc} equals {@code null}.
      * @see #getSource()
      * @see #getDropTargetContext()
      */

@@ -15,7 +15,6 @@ import java.net.URL;
  *
  * @author Ann Wollrath
  * @since JDK1.1
- *
  * @deprecated no replacement
  */
 @Deprecated
@@ -29,51 +28,49 @@ public interface LoaderHandler {
      * <code>java.rmi.server.codebase</code> property.
      *
      * @param name
-     *             the name of the class to load
+     *        the name of the class to load
      * @return the <code>Class</code> object representing the loaded class
      * @exception MalformedURLException
-     *                                   if the system property
-     *                                   <b>java.rmi.server.codebase</b>
-     *                                   contains an invalid URL
+     *            if the system property
+     *            <b>java.rmi.server.codebase</b>
+     *            contains an invalid URL
      * @exception ClassNotFoundException
-     *                                   if a definition for the class could not
-     *                                   be found at the
-     *                                   codebase location.
+     *            if a definition for the class could not
+     *            be found at the
+     *            codebase location.
      * @since JDK1.1
      * @deprecated no replacement
      */
     @Deprecated
-    Class<?> loadClass(String name) throws MalformedURLException,
-            ClassNotFoundException;
+    Class<?> loadClass(String name) throws MalformedURLException, ClassNotFoundException;
 
     /**
      * Loads a class from a URL.
      *
      * @param codebase
-     *                 the URL from which to load the class
+     *        the URL from which to load the class
      * @param name
-     *                 the name of the class to load
+     *        the name of the class to load
      * @return the <code>Class</code> object representing the loaded class
      * @exception MalformedURLException
-     *                                   if the <code>codebase</code> paramater
-     *                                   contains an invalid
-     *                                   URL
+     *            if the <code>codebase</code> paramater
+     *            contains an invalid
+     *            URL
      * @exception ClassNotFoundException
-     *                                   if a definition for the class could not
-     *                                   be found at the
-     *                                   specified URL
+     *            if a definition for the class could not
+     *            be found at the
+     *            specified URL
      * @since JDK1.1
      * @deprecated no replacement
      */
     @Deprecated
-    Class<?> loadClass(URL codebase, String name) throws MalformedURLException,
-            ClassNotFoundException;
+    Class<?> loadClass(URL codebase, String name) throws MalformedURLException, ClassNotFoundException;
 
     /**
      * Returns the security context of the given class loader.
      *
      * @param loader
-     *               a class loader from which to get the security context
+     *        a class loader from which to get the security context
      * @return the security context
      * @since JDK1.1
      * @deprecated no replacement

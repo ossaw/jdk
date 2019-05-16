@@ -12,8 +12,7 @@
 
 package org.omg.CosNaming;
 
-public abstract class _BindingIteratorImplBase extends
-        org.omg.CORBA.DynamicImplementation implements
+public abstract class _BindingIteratorImplBase extends org.omg.CORBA.DynamicImplementation implements
         org.omg.CosNaming.BindingIterator {
     // Constructor
     public _BindingIteratorImplBase() {
@@ -21,8 +20,7 @@ public abstract class _BindingIteratorImplBase extends
     }
 
     // Type strings for this class and its superclases
-    private static final String _type_ids[] = {
-            "IDL:omg.org/CosNaming/BindingIterator:1.0" };
+    private static final String _type_ids[] = { "IDL:omg.org/CosNaming/BindingIterator:1.0" };
 
     public String[] _ids() {
         return (String[]) _type_ids.clone();
@@ -59,10 +57,8 @@ public abstract class _BindingIteratorImplBase extends
             {
                 org.omg.CORBA.NVList _list = _orb().create_list(0);
                 org.omg.CORBA.Any _how_many = _orb().create_any();
-                _how_many.type(org.omg.CORBA.ORB.init().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_ulong));
-                _list.add_value("how_many", _how_many,
-                        org.omg.CORBA.ARG_IN.value);
+                _how_many.type(org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_ulong));
+                _list.add_value("how_many", _how_many, org.omg.CORBA.ARG_IN.value);
                 org.omg.CORBA.Any _bl = _orb().create_any();
                 _bl.type(org.omg.CosNaming.BindingListHelper.type());
                 _list.add_value("bl", _bl, org.omg.CORBA.ARG_OUT.value);
@@ -85,14 +81,12 @@ public abstract class _BindingIteratorImplBase extends
                 r.params(_list);
                 this.destroy();
                 org.omg.CORBA.Any __return = _orb().create_any();
-                __return.type(_orb().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_void));
+                __return.type(_orb().get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
                 r.result(__return);
             }
                 break;
             default:
-                throw new org.omg.CORBA.BAD_OPERATION(0,
-                        org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+                throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
         }
     }
 }

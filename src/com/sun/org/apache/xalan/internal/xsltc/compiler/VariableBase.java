@@ -96,8 +96,7 @@ class VariableBase extends TopLevelElement {
         if (_local == null) {
             final InstructionList il = methodGen.getInstructionList();
             final String name = getEscapedName(); // TODO: namespace ?
-            final com.sun.org.apache.bcel.internal.generic.Type varType = _type
-                    .toJCType();
+            final com.sun.org.apache.bcel.internal.generic.Type varType = _type.toJCType();
             _local = methodGen.addLocalVariable2(name, varType, il.getEnd());
         }
     }
@@ -106,24 +105,22 @@ class VariableBase extends TopLevelElement {
      * Remove the mapping of this variable to a register. Called when we leave
      * the AST scope of the variable's declaration
      */
-    public void unmapRegister(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void unmapRegister(ClassGenerator classGen, MethodGenerator methodGen) {
         if (_local != null) {
             if (_type instanceof ResultTreeType) {
                 final ConstantPoolGen cpg = classGen.getConstantPool();
                 final InstructionList il = methodGen.getInstructionList();
-                if (classGen.getStylesheet().callsNodeset() && classGen
-                        .getDOMClass().equals(MULTI_DOM_CLASS)) {
-                    final int removeDA = cpg.addMethodref(MULTI_DOM_CLASS,
-                            "removeDOMAdapter", "(" + DOM_ADAPTER_SIG + ")V");
+                if (classGen.getStylesheet().callsNodeset() && classGen.getDOMClass().equals(
+                        MULTI_DOM_CLASS)) {
+                    final int removeDA = cpg.addMethodref(MULTI_DOM_CLASS, "removeDOMAdapter", "("
+                            + DOM_ADAPTER_SIG + ")V");
                     il.append(methodGen.loadDOM());
                     il.append(new CHECKCAST(cpg.addClass(MULTI_DOM_CLASS)));
                     il.append(loadInstruction());
                     il.append(new CHECKCAST(cpg.addClass(DOM_ADAPTER_CLASS)));
                     il.append(new INVOKEVIRTUAL(removeDA));
                 }
-                final int release = cpg.addInterfaceMethodref(DOM_IMPL_CLASS,
-                        "release", "()V");
+                final int release = cpg.addInterfaceMethodref(DOM_IMPL_CLASS, "release", "()V");
                 il.append(loadInstruction());
                 il.append(new INVOKEINTERFACE(release, 1));
             }
@@ -230,8 +227,7 @@ class VariableBase extends TopLevelElement {
 
         if (name.length() > 0) {
             if (!XML11Char.isXML11ValidQName(name)) {
-                ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, name,
-                        this);
+                ErrorMsg err = new ErrorMsg(ErrorMsg.INVALID_QNAME_ERR, name, this);
                 parser.reportError(Constants.ERROR, err);
             }
             setName(parser.getQNameIgnoreDefaultNs(name));
@@ -261,8 +257,7 @@ class VariableBase extends TopLevelElement {
      * Compile the value of the variable, which is either in an expression in a
      * 'select' attribute, or in the variable elements body
      */
-    public void translateValue(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateValue(ClassGenerator classGen, MethodGenerator methodGen) {
         // Compile expression is 'select' attribute if present
         if (_select != null) {
             _select.translate(classGen, methodGen);
@@ -272,11 +267,9 @@ class VariableBase extends TopLevelElement {
                 final ConstantPoolGen cpg = classGen.getConstantPool();
                 final InstructionList il = methodGen.getInstructionList();
 
-                final int initCNI = cpg.addMethodref(
-                        CACHED_NODE_LIST_ITERATOR_CLASS, "<init>", "("
-                                + NODE_ITERATOR_SIG + ")V");
-                il.append(new NEW(cpg.addClass(
-                        CACHED_NODE_LIST_ITERATOR_CLASS)));
+                final int initCNI = cpg.addMethodref(CACHED_NODE_LIST_ITERATOR_CLASS, "<init>", "("
+                        + NODE_ITERATOR_SIG + ")V");
+                il.append(new NEW(cpg.addClass(CACHED_NODE_LIST_ITERATOR_CLASS)));
                 il.append(DUP_X1);
                 il.append(SWAP);
 

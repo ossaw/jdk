@@ -27,7 +27,7 @@ final public class InvalidName extends org.omg.CORBA.UserException {
      * reason message.
      * 
      * @param reason
-     *               the String containing a reason message
+     *        the String containing a reason message
      */
     public InvalidName(String reason) {
         super(reason);

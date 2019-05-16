@@ -80,8 +80,7 @@ public final class INVOKEINTERFACE extends InvokeInstruction {
         length = 5;
 
         if (nargs < 1)
-            throw new ClassGenException("Number of arguments must be > 0 "
-                    + nargs);
+            throw new ClassGenException("Number of arguments must be > 0 " + nargs);
 
         this.nargs = nargs;
     }
@@ -90,7 +89,7 @@ public final class INVOKEINTERFACE extends InvokeInstruction {
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         out.writeByte(opcode);
@@ -110,8 +109,7 @@ public final class INVOKEINTERFACE extends InvokeInstruction {
     /**
      * Read needed data (i.e., index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         super.initFromFile(bytes, wide);
 
         length = 5;
@@ -132,11 +130,9 @@ public final class INVOKEINTERFACE extends InvokeInstruction {
     }
 
     public Class[] getExceptions() {
-        Class[] cs = new Class[4
-                + ExceptionConstants.EXCS_INTERFACE_METHOD_RESOLUTION.length];
+        Class[] cs = new Class[4 + ExceptionConstants.EXCS_INTERFACE_METHOD_RESOLUTION.length];
 
-        System.arraycopy(ExceptionConstants.EXCS_INTERFACE_METHOD_RESOLUTION, 0,
-                cs, 0,
+        System.arraycopy(ExceptionConstants.EXCS_INTERFACE_METHOD_RESOLUTION, 0, cs, 0,
                 ExceptionConstants.EXCS_INTERFACE_METHOD_RESOLUTION.length);
 
         cs[ExceptionConstants.EXCS_INTERFACE_METHOD_RESOLUTION.length
@@ -157,7 +153,7 @@ public final class INVOKEINTERFACE extends InvokeInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitExceptionThrower(this);

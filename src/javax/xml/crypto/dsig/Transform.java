@@ -91,19 +91,18 @@ public interface Transform extends XMLStructure, AlgorithmMethod {
      * Transforms the specified data using the underlying transform algorithm.
      *
      * @param data
-     *                the data to be transformed
+     *        the data to be transformed
      * @param context
-     *                the <code>XMLCryptoContext</code> containing additional
-     *                context (may be <code>null</code> if not applicable)
+     *        the <code>XMLCryptoContext</code> containing additional
+     *        context (may be <code>null</code> if not applicable)
      * @return the transformed data
      * @throws NullPointerException
-     *                              if <code>data</code> is <code>null</code>
+     *         if <code>data</code> is <code>null</code>
      * @throws TransformException
-     *                              if an error occurs while executing the
-     *                              transform
+     *         if an error occurs while executing the
+     *         transform
      */
-    public abstract Data transform(Data data, XMLCryptoContext context)
-            throws TransformException;
+    public abstract Data transform(Data data, XMLCryptoContext context) throws TransformException;
 
     /**
      * Transforms the specified data using the underlying transform algorithm.
@@ -114,23 +113,23 @@ public interface Transform extends XMLStructure, AlgorithmMethod {
      * {@link #transform(Data, XMLCryptoContext)} were invoked.
      *
      * @param data
-     *                the data to be transformed
+     *        the data to be transformed
      * @param context
-     *                the <code>XMLCryptoContext</code> containing additional
-     *                context (may be <code>null</code> if not applicable)
+     *        the <code>XMLCryptoContext</code> containing additional
+     *        context (may be <code>null</code> if not applicable)
      * @param os
-     *                the <code>OutputStream</code> that should be used to write
-     *                the
-     *                transformed data to
+     *        the <code>OutputStream</code> that should be used to write
+     *        the
+     *        transformed data to
      * @return the transformed data (or <code>null</code> if the data was
      *         written to the <code>OutputStream</code> parameter)
      * @throws NullPointerException
-     *                              if <code>data</code> or <code>os</code> is
-     *                              <code>null</code>
+     *         if <code>data</code> or <code>os</code> is
+     *         <code>null</code>
      * @throws TransformException
-     *                              if an error occurs while executing the
-     *                              transform
+     *         if an error occurs while executing the
+     *         transform
      */
-    public abstract Data transform(Data data, XMLCryptoContext context,
-            OutputStream os) throws TransformException;
+    public abstract Data transform(Data data, XMLCryptoContext context, OutputStream os)
+            throws TransformException;
 }

@@ -27,7 +27,6 @@ import com.sun.org.apache.xerces.internal.impl.dv.xs.XSSimpleTypeDecl;
  * mechanism is not implemented yet.
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
  * @version $Id: XSDeclarationPool.java,v 1.7 2010-11-01 04:39:55 joehw Exp $
  */
@@ -192,8 +191,7 @@ public final class XSDeclarationPool {
         return true;
     }
 
-    private static XSElementDecl[][] resize(XSElementDecl array[][],
-            int newsize) {
+    private static XSElementDecl[][] resize(XSElementDecl array[][], int newsize) {
         XSElementDecl newarray[][] = new XSElementDecl[newsize][];
         System.arraycopy(array, 0, newarray, 0, array.length);
         return newarray;
@@ -221,15 +219,13 @@ public final class XSDeclarationPool {
         return true;
     }
 
-    private static XSParticleDecl[][] resize(XSParticleDecl array[][],
-            int newsize) {
+    private static XSParticleDecl[][] resize(XSParticleDecl array[][], int newsize) {
         XSParticleDecl newarray[][] = new XSParticleDecl[newsize][];
         System.arraycopy(array, 0, newarray, 0, array.length);
         return newarray;
     }
 
-    private static XSModelGroupImpl[][] resize(XSModelGroupImpl array[][],
-            int newsize) {
+    private static XSModelGroupImpl[][] resize(XSModelGroupImpl array[][], int newsize) {
         XSModelGroupImpl newarray[][] = new XSModelGroupImpl[newsize][];
         System.arraycopy(array, 0, newarray, 0, array.length);
         return newarray;
@@ -246,8 +242,7 @@ public final class XSDeclarationPool {
         return true;
     }
 
-    private static XSAttributeDecl[][] resize(XSAttributeDecl array[][],
-            int newsize) {
+    private static XSAttributeDecl[][] resize(XSAttributeDecl array[][], int newsize) {
         XSAttributeDecl newarray[][] = new XSAttributeDecl[newsize][];
         System.arraycopy(array, 0, newarray, 0, array.length);
         return newarray;
@@ -264,8 +259,7 @@ public final class XSDeclarationPool {
         return true;
     }
 
-    private static XSAttributeUseImpl[][] resize(XSAttributeUseImpl array[][],
-            int newsize) {
+    private static XSAttributeUseImpl[][] resize(XSAttributeUseImpl array[][], int newsize) {
         XSAttributeUseImpl newarray[][] = new XSAttributeUseImpl[newsize][];
         System.arraycopy(array, 0, newarray, 0, array.length);
         return newarray;
@@ -282,8 +276,7 @@ public final class XSDeclarationPool {
         return true;
     }
 
-    private static XSSimpleTypeDecl[][] resize(XSSimpleTypeDecl array[][],
-            int newsize) {
+    private static XSSimpleTypeDecl[][] resize(XSSimpleTypeDecl array[][], int newsize) {
         XSSimpleTypeDecl newarray[][] = new XSSimpleTypeDecl[newsize][];
         System.arraycopy(array, 0, newarray, 0, array.length);
         return newarray;
@@ -301,8 +294,7 @@ public final class XSDeclarationPool {
         return true;
     }
 
-    private static XSComplexTypeDecl[][] resize(XSComplexTypeDecl array[][],
-            int newsize) {
+    private static XSComplexTypeDecl[][] resize(XSComplexTypeDecl array[][], int newsize) {
         XSComplexTypeDecl newarray[][] = new XSComplexTypeDecl[newsize][];
         System.arraycopy(array, 0, newarray, 0, array.length);
         return newarray;

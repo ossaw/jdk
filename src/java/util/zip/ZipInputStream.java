@@ -20,8 +20,7 @@ import static java.util.zip.ZipUtils.*;
  *
  * @author David Connelly
  */
-public class ZipInputStream extends InflaterInputStream implements
-        ZipConstants {
+public class ZipInputStream extends InflaterInputStream implements ZipConstants {
     private ZipEntry entry;
     private int flag;
     private CRC32 crc = new CRC32();
@@ -49,13 +48,12 @@ public class ZipInputStream extends InflaterInputStream implements
 
     /**
      * Creates a new ZIP input stream.
-     *
      * <p>
      * The UTF-8 {@link java.nio.charset.Charset charset} is used to decode the
      * entry names.
      *
      * @param in
-     *           the actual input stream
+     *        the actual input stream
      */
     public ZipInputStream(InputStream in) {
         this(in, StandardCharsets.UTF_8);
@@ -65,17 +63,15 @@ public class ZipInputStream extends InflaterInputStream implements
      * Creates a new ZIP input stream.
      *
      * @param in
-     *                the actual input stream
-     *
+     *        the actual input stream
      * @param charset
-     *                The {@linkplain java.nio.charset.Charset charset} to be
-     *                used
-     *                to decode the ZIP entry name (ignored if the
-     *                <a href="package-summary.html#lang_encoding"> language
-     *                encoding bit</a> of the ZIP entry's general purpose bit
-     *                flag
-     *                is set).
-     *
+     *        The {@linkplain java.nio.charset.Charset charset} to be
+     *        used
+     *        to decode the ZIP entry name (ignored if the
+     *        <a href="package-summary.html#lang_encoding"> language
+     *        encoding bit</a> of the ZIP entry's general purpose bit
+     *        flag
+     *        is set).
      * @since 1.7
      */
     public ZipInputStream(InputStream in, Charset charset) {
@@ -95,9 +91,9 @@ public class ZipInputStream extends InflaterInputStream implements
      * 
      * @return the next ZIP file entry, or null if there are no more entries
      * @exception ZipException
-     *                         if a ZIP file error has occurred
+     *            if a ZIP file error has occurred
      * @exception IOException
-     *                         if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public ZipEntry getNextEntry() throws IOException {
         ensureOpen();
@@ -121,9 +117,9 @@ public class ZipInputStream extends InflaterInputStream implements
      * next entry.
      * 
      * @exception ZipException
-     *                         if a ZIP file error has occurred
+     *            if a ZIP file error has occurred
      * @exception IOException
-     *                         if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public void closeEntry() throws IOException {
         ensureOpen();
@@ -141,8 +137,7 @@ public class ZipInputStream extends InflaterInputStream implements
      *
      * @return 1 before EOF and 0 after EOF has reached for current entry.
      * @exception IOException
-     *                        if an I/O error occurs.
-     *
+     *            if an I/O error occurs.
      */
     public int available() throws IOException {
         ensureOpen();
@@ -159,26 +154,26 @@ public class ZipInputStream extends InflaterInputStream implements
      * available; otherwise, no bytes are read and <code>0</code> is returned.
      * 
      * @param b
-     *            the buffer into which the data is read
+     *        the buffer into which the data is read
      * @param off
-     *            the start offset in the destination array <code>b</code>
+     *        the start offset in the destination array <code>b</code>
      * @param len
-     *            the maximum number of bytes read
+     *        the maximum number of bytes read
      * @return the actual number of bytes read, or -1 if the end of the entry is
      *         reached
      * @exception NullPointerException
-     *                                      if <code>b</code> is
-     *                                      <code>null</code>.
+     *            if <code>b</code> is
+     *            <code>null</code>.
      * @exception IndexOutOfBoundsException
-     *                                      if <code>off</code> is negative,
-     *                                      <code>len</code> is
-     *                                      negative, or <code>len</code> is
-     *                                      greater than
-     *                                      <code>b.length - off</code>
+     *            if <code>off</code> is negative,
+     *            <code>len</code> is
+     *            negative, or <code>len</code> is
+     *            greater than
+     *            <code>b.length - off</code>
      * @exception ZipException
-     *                                      if a ZIP file error has occurred
+     *            if a ZIP file error has occurred
      * @exception IOException
-     *                                      if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public int read(byte[] b, int off, int len) throws IOException {
         ensureOpen();
@@ -218,9 +213,8 @@ public class ZipInputStream extends InflaterInputStream implements
                 crc.update(b, off, len);
                 remaining -= len;
                 if (remaining == 0 && entry.crc != crc.getValue()) {
-                    throw new ZipException("invalid entry CRC (expected 0x"
-                            + Long.toHexString(entry.crc) + " but got 0x" + Long
-                                    .toHexString(crc.getValue()) + ")");
+                    throw new ZipException("invalid entry CRC (expected 0x" + Long.toHexString(entry.crc)
+                            + " but got 0x" + Long.toHexString(crc.getValue()) + ")");
                 }
                 return len;
             default:
@@ -232,14 +226,14 @@ public class ZipInputStream extends InflaterInputStream implements
      * Skips specified number of bytes in the current ZIP entry.
      * 
      * @param n
-     *          the number of bytes to skip
+     *        the number of bytes to skip
      * @return the actual number of bytes skipped
      * @exception ZipException
-     *                                     if a ZIP file error has occurred
+     *            if a ZIP file error has occurred
      * @exception IOException
-     *                                     if an I/O error has occurred
+     *            if an I/O error has occurred
      * @exception IllegalArgumentException
-     *                                     if {@code n < 0}
+     *            if {@code n < 0}
      */
     public long skip(long n) throws IOException {
         if (n < 0) {
@@ -268,7 +262,7 @@ public class ZipInputStream extends InflaterInputStream implements
      * with the stream.
      * 
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public void close() throws IOException {
         if (!closed) {
@@ -304,8 +298,7 @@ public class ZipInputStream extends InflaterInputStream implements
         }
         readFully(b, 0, len);
         // Force to use UTF-8 if the EFS bit is ON, even the cs is NOT UTF-8
-        ZipEntry e = createZipEntry(((flag & EFS) != 0) ? zc.toStringUTF8(b,
-                len) : zc.toString(b, len));
+        ZipEntry e = createZipEntry(((flag & EFS) != 0) ? zc.toStringUTF8(b, len) : zc.toString(b, len));
         // now get the remaining fields for the entry
         if ((flag & 1) == 1) {
             throw new ZipException("encrypted ZIP entry not supported");
@@ -315,8 +308,7 @@ public class ZipInputStream extends InflaterInputStream implements
         if ((flag & 8) == 8) {
             /* "Data Descriptor" present */
             if (e.method != DEFLATED) {
-                throw new ZipException(
-                        "only DEFLATED entries can have EXT descriptor");
+                throw new ZipException("only DEFLATED entries can have EXT descriptor");
             }
         } else {
             e.crc = get32(tmpbuf, LOCCRC);
@@ -327,8 +319,7 @@ public class ZipInputStream extends InflaterInputStream implements
         if (len > 0) {
             byte[] extra = new byte[len];
             readFully(extra, 0, len);
-            e.setExtra0(extra, e.csize == ZIP64_MAGICVAL
-                    || e.size == ZIP64_MAGICVAL);
+            e.setExtra0(extra, e.csize == ZIP64_MAGICVAL || e.size == ZIP64_MAGICVAL);
         }
         return e;
     }
@@ -337,7 +328,7 @@ public class ZipInputStream extends InflaterInputStream implements
      * Creates a new <code>ZipEntry</code> object for the specified entry name.
      *
      * @param name
-     *             the ZIP file entry name
+     *        the ZIP file entry name
      * @return the ZipEntry just created
      */
     protected ZipEntry createZipEntry(String name) {
@@ -354,8 +345,7 @@ public class ZipInputStream extends InflaterInputStream implements
         }
         if ((flag & 8) == 8) {
             /* "Data Descriptor" present */
-            if (inf.getBytesWritten() > ZIP64_MAGICVAL || inf
-                    .getBytesRead() > ZIP64_MAGICVAL) {
+            if (inf.getBytesWritten() > ZIP64_MAGICVAL || inf.getBytesRead() > ZIP64_MAGICVAL) {
                 // ZIP64 format
                 readFully(tmpbuf, 0, ZIP64_EXTHDR);
                 long sig = get32(tmpbuf, 0);
@@ -363,8 +353,7 @@ public class ZipInputStream extends InflaterInputStream implements
                     e.crc = sig;
                     e.csize = get64(tmpbuf, ZIP64_EXTSIZ - ZIP64_EXTCRC);
                     e.size = get64(tmpbuf, ZIP64_EXTLEN - ZIP64_EXTCRC);
-                    ((PushbackInputStream) in).unread(tmpbuf, ZIP64_EXTHDR
-                            - ZIP64_EXTCRC - 1, ZIP64_EXTCRC);
+                    ((PushbackInputStream) in).unread(tmpbuf, ZIP64_EXTHDR - ZIP64_EXTCRC - 1, ZIP64_EXTCRC);
                 } else {
                     e.crc = get32(tmpbuf, ZIP64_EXTCRC);
                     e.csize = get64(tmpbuf, ZIP64_EXTSIZ);
@@ -377,8 +366,7 @@ public class ZipInputStream extends InflaterInputStream implements
                     e.crc = sig;
                     e.csize = get32(tmpbuf, EXTSIZ - EXTCRC);
                     e.size = get32(tmpbuf, EXTLEN - EXTCRC);
-                    ((PushbackInputStream) in).unread(tmpbuf, EXTHDR - EXTCRC
-                            - 1, EXTCRC);
+                    ((PushbackInputStream) in).unread(tmpbuf, EXTHDR - EXTCRC - 1, EXTCRC);
                 } else {
                     e.crc = get32(tmpbuf, EXTCRC);
                     e.csize = get32(tmpbuf, EXTSIZ);
@@ -387,17 +375,16 @@ public class ZipInputStream extends InflaterInputStream implements
             }
         }
         if (e.size != inf.getBytesWritten()) {
-            throw new ZipException("invalid entry size (expected " + e.size
-                    + " but got " + inf.getBytesWritten() + " bytes)");
+            throw new ZipException("invalid entry size (expected " + e.size + " but got " + inf
+                    .getBytesWritten() + " bytes)");
         }
         if (e.csize != inf.getBytesRead()) {
-            throw new ZipException("invalid entry compressed size (expected "
-                    + e.csize + " but got " + inf.getBytesRead() + " bytes)");
+            throw new ZipException("invalid entry compressed size (expected " + e.csize + " but got " + inf
+                    .getBytesRead() + " bytes)");
         }
         if (e.crc != crc.getValue()) {
-            throw new ZipException("invalid entry CRC (expected 0x" + Long
-                    .toHexString(e.crc) + " but got 0x" + Long.toHexString(crc
-                            .getValue()) + ")");
+            throw new ZipException("invalid entry CRC (expected 0x" + Long.toHexString(e.crc) + " but got 0x"
+                    + Long.toHexString(crc.getValue()) + ")");
         }
     }
 

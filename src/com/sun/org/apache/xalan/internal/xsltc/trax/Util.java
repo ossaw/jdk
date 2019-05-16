@@ -58,18 +58,15 @@ import org.xml.sax.helpers.XMLReaderFactory;
 public final class Util {
 
     public static String baseName(String name) {
-        return com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util
-                .baseName(name);
+        return com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.baseName(name);
     }
 
     public static String noExtName(String name) {
-        return com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util
-                .noExtName(name);
+        return com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.noExtName(name);
     }
 
     public static String toJavaName(String name) {
-        return com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util
-                .toJavaName(name);
+        return com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.toJavaName(name);
     }
 
     /**
@@ -101,91 +98,73 @@ public final class Util {
                         try {
                             reader = XMLReaderFactory.createXMLReader();
                             try {
-                                reader.setFeature(
-                                        XMLConstants.FEATURE_SECURE_PROCESSING,
-                                        xsltc.isSecureProcessing());
+                                reader.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, xsltc
+                                        .isSecureProcessing());
                             } catch (SAXNotRecognizedException e) {
-                                XMLSecurityManager.printWarning(reader
-                                        .getClass().getName(),
-                                        XMLConstants.FEATURE_SECURE_PROCESSING,
-                                        e);
+                                XMLSecurityManager.printWarning(reader.getClass().getName(),
+                                        XMLConstants.FEATURE_SECURE_PROCESSING, e);
                             }
                         } catch (Exception e) {
                             try {
 
                                 // Incase there is an exception thrown
                                 // resort to JAXP
-                                SAXParserFactory parserFactory = FactoryImpl
-                                        .getSAXFactory(xsltc
-                                                .useServicesMechnism());
+                                SAXParserFactory parserFactory = FactoryImpl.getSAXFactory(xsltc
+                                        .useServicesMechnism());
                                 parserFactory.setNamespaceAware(true);
 
                                 if (xsltc.isSecureProcessing()) {
                                     try {
-                                        parserFactory.setFeature(
-                                                XMLConstants.FEATURE_SECURE_PROCESSING,
+                                        parserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
                                                 true);
-                                    } catch (org.xml.sax.SAXException se) {
-                                    }
+                                    } catch (org.xml.sax.SAXException se) {}
                                 }
 
-                                reader = parserFactory.newSAXParser()
-                                        .getXMLReader();
+                                reader = parserFactory.newSAXParser().getXMLReader();
 
                             } catch (ParserConfigurationException pce) {
-                                throw new TransformerConfigurationException(
-                                        "ParserConfigurationException", pce);
+                                throw new TransformerConfigurationException("ParserConfigurationException",
+                                        pce);
                             }
                         }
                     }
-                    reader.setFeature("http://xml.org/sax/features/namespaces",
-                            true);
-                    reader.setFeature(
-                            "http://xml.org/sax/features/namespace-prefixes",
-                            false);
+                    reader.setFeature("http://xml.org/sax/features/namespaces", true);
+                    reader.setFeature("http://xml.org/sax/features/namespace-prefixes", false);
 
                     try {
-                        reader.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD,
-                                xsltc.getProperty(
-                                        XMLConstants.ACCESS_EXTERNAL_DTD));
+                        reader.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, xsltc.getProperty(
+                                XMLConstants.ACCESS_EXTERNAL_DTD));
                     } catch (SAXNotRecognizedException e) {
-                        XMLSecurityManager.printWarning(reader.getClass()
-                                .getName(), XMLConstants.ACCESS_EXTERNAL_DTD,
-                                e);
+                        XMLSecurityManager.printWarning(reader.getClass().getName(),
+                                XMLConstants.ACCESS_EXTERNAL_DTD, e);
                     }
 
                     String lastProperty = "";
                     try {
-                        XMLSecurityManager securityManager = (XMLSecurityManager) xsltc
-                                .getProperty(XalanConstants.SECURITY_MANAGER);
+                        XMLSecurityManager securityManager = (XMLSecurityManager) xsltc.getProperty(
+                                XalanConstants.SECURITY_MANAGER);
                         if (securityManager != null) {
-                            for (XMLSecurityManager.Limit limit : XMLSecurityManager.Limit
-                                    .values()) {
+                            for (XMLSecurityManager.Limit limit : XMLSecurityManager.Limit.values()) {
                                 lastProperty = limit.apiProperty();
-                                reader.setProperty(lastProperty, securityManager
-                                        .getLimitValueAsString(limit));
+                                reader.setProperty(lastProperty, securityManager.getLimitValueAsString(
+                                        limit));
                             }
                             if (securityManager.printEntityCountInfo()) {
                                 lastProperty = XalanConstants.JDK_ENTITY_COUNT_INFO;
-                                reader.setProperty(
-                                        XalanConstants.JDK_ENTITY_COUNT_INFO,
+                                reader.setProperty(XalanConstants.JDK_ENTITY_COUNT_INFO,
                                         XalanConstants.JDK_YES);
                             }
                         }
                     } catch (SAXException se) {
-                        XMLSecurityManager.printWarning(reader.getClass()
-                                .getName(), lastProperty, se);
+                        XMLSecurityManager.printWarning(reader.getClass().getName(), lastProperty, se);
                     }
                     xsltc.setXMLReader(reader);
                 } catch (SAXNotRecognizedException snre) {
-                    throw new TransformerConfigurationException(
-                            "SAXNotRecognizedException ", snre);
+                    throw new TransformerConfigurationException("SAXNotRecognizedException ", snre);
                 } catch (SAXNotSupportedException snse) {
-                    throw new TransformerConfigurationException(
-                            "SAXNotSupportedException ", snse);
+                    throw new TransformerConfigurationException("SAXNotSupportedException ", snse);
                 } catch (SAXException se) {
-                    throw new TransformerConfigurationException("SAXException ",
-                            se);
+                    throw new TransformerConfigurationException("SAXException ", se);
                 }
 
             }
@@ -209,13 +188,11 @@ public final class Util {
                 StAXEvent2SAX staxevent2sax = null;
                 StAXStream2SAX staxStream2SAX = null;
                 if (staxSource.getXMLEventReader() != null) {
-                    final XMLEventReader xmlEventReader = staxSource
-                            .getXMLEventReader();
+                    final XMLEventReader xmlEventReader = staxSource.getXMLEventReader();
                     staxevent2sax = new StAXEvent2SAX(xmlEventReader);
                     xsltc.setXMLReader(staxevent2sax);
                 } else if (staxSource.getXMLStreamReader() != null) {
-                    final XMLStreamReader xmlStreamReader = staxSource
-                            .getXMLStreamReader();
+                    final XMLStreamReader xmlStreamReader = staxSource.getXMLStreamReader();
                     staxStream2SAX = new StAXStream2SAX(xmlStreamReader);
                     xsltc.setXMLReader(staxStream2SAX);
                 }
@@ -248,8 +225,7 @@ public final class Util {
             }
             input.setSystemId(systemId);
         } catch (NullPointerException e) {
-            ErrorMsg err = new ErrorMsg(ErrorMsg.JAXP_NO_SOURCE_ERR,
-                    "TransformerFactory.newTemplates()");
+            ErrorMsg err = new ErrorMsg(ErrorMsg.JAXP_NO_SOURCE_ERR, "TransformerFactory.newTemplates()");
             throw new TransformerConfigurationException(err.toString());
         } catch (SecurityException e) {
             ErrorMsg err = new ErrorMsg(ErrorMsg.FILE_ACCESS_ERR, systemId);

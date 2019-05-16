@@ -22,7 +22,7 @@ public class ActivateFailedException extends java.rmi.RemoteException {
      * detail message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since 1.2
      */
     public ActivateFailedException(String s) {
@@ -34,9 +34,9 @@ public class ActivateFailedException extends java.rmi.RemoteException {
      * detail message and nested exception.
      *
      * @param s
-     *           the detail message
+     *        the detail message
      * @param ex
-     *           the nested exception
+     *        the nested exception
      * @since 1.2
      */
     public ActivateFailedException(String s, Exception ex) {

@@ -77,14 +77,12 @@ import org.xml.sax.SAXException;
  * @version $Id: DOMParserImpl.java,v 1.8 2010-11-01 04:40:09 joehw Exp $
  */
 
-public class DOMParserImpl extends AbstractDOMParser implements LSParser,
-        DOMConfiguration {
+public class DOMParserImpl extends AbstractDOMParser implements LSParser, DOMConfiguration {
 
     // SAX & Xerces feature ids
 
     /** Feature identifier: namespaces. */
-    protected static final String NAMESPACES = Constants.SAX_FEATURE_PREFIX
-            + Constants.NAMESPACES_FEATURE;
+    protected static final String NAMESPACES = Constants.SAX_FEATURE_PREFIX + Constants.NAMESPACES_FEATURE;
 
     /** Feature id: validation. */
     protected static final String VALIDATION_FEATURE = Constants.SAX_FEATURE_PREFIX
@@ -167,13 +165,13 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                 // not a recognized feature for DTDConfiguration's and so
                 // setting this feature here would result in a Configuration
                 // Exception.
-                fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX
-                        + Constants.SCHEMA_LANGUAGE, Constants.NS_DTD);
+                fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX + Constants.SCHEMA_LANGUAGE,
+                        Constants.NS_DTD);
                 fSchemaType = Constants.NS_DTD;
             } else if (schemaType.equals(Constants.NS_XMLSCHEMA)) {
                 // XML Schem validation
-                fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX
-                        + Constants.SCHEMA_LANGUAGE, Constants.NS_XMLSCHEMA);
+                fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX + Constants.SCHEMA_LANGUAGE,
+                        Constants.NS_XMLSCHEMA);
             }
         }
 
@@ -186,13 +184,10 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
         super(config);
 
         // add recognized features
-        final String[] domRecognizedFeatures = { Constants.DOM_CANONICAL_FORM,
-                Constants.DOM_CDATA_SECTIONS,
-                Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING,
-                Constants.DOM_INFOSET, Constants.DOM_NAMESPACE_DECLARATIONS,
-                Constants.DOM_SPLIT_CDATA,
-                Constants.DOM_SUPPORTED_MEDIATYPES_ONLY,
-                Constants.DOM_CERTIFIED, Constants.DOM_WELLFORMED,
+        final String[] domRecognizedFeatures = { Constants.DOM_CANONICAL_FORM, Constants.DOM_CDATA_SECTIONS,
+                Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING, Constants.DOM_INFOSET,
+                Constants.DOM_NAMESPACE_DECLARATIONS, Constants.DOM_SPLIT_CDATA,
+                Constants.DOM_SUPPORTED_MEDIATYPES_ONLY, Constants.DOM_CERTIFIED, Constants.DOM_WELLFORMED,
                 Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS, };
 
         fConfiguration.addRecognizedFeatures(domRecognizedFeatures);
@@ -221,13 +216,10 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
 
         // set other default values
         fConfiguration.setFeature(Constants.DOM_CANONICAL_FORM, false);
-        fConfiguration.setFeature(Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING,
-                true);
+        fConfiguration.setFeature(Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING, true);
         fConfiguration.setFeature(Constants.DOM_SPLIT_CDATA, true);
-        fConfiguration.setFeature(Constants.DOM_SUPPORTED_MEDIATYPES_ONLY,
-                false);
-        fConfiguration.setFeature(
-                Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS, true);
+        fConfiguration.setFeature(Constants.DOM_SUPPORTED_MEDIATYPES_ONLY, false);
+        fConfiguration.setFeature(Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS, true);
 
         // REVISIT: by default Xerces assumes that input is certified.
         // default is different from the one specified in the DOM spec
@@ -238,8 +230,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
         // configuration doesn't support this feature, ignore it.
         try {
             fConfiguration.setFeature(NORMALIZE_DATA, false);
-        } catch (XMLConfigurationException exc) {
-        }
+        } catch (XMLConfigurationException exc) {}
 
     } // <init>(XMLParserConfiguration)
 
@@ -248,8 +239,8 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
      */
     public DOMParserImpl(SymbolTable symbolTable) {
         this(new XIncludeAwareParserConfiguration());
-        fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX
-                + Constants.SYMBOL_TABLE_PROPERTY, symbolTable);
+        fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY,
+                symbolTable);
     } // <init>(SymbolTable)
 
     /**
@@ -258,24 +249,23 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
      */
     public DOMParserImpl(SymbolTable symbolTable, XMLGrammarPool grammarPool) {
         this(new XIncludeAwareParserConfiguration());
-        fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX
-                + Constants.SYMBOL_TABLE_PROPERTY, symbolTable);
-        fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX
-                + Constants.XMLGRAMMAR_POOL_PROPERTY, grammarPool);
+        fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.SYMBOL_TABLE_PROPERTY,
+                symbolTable);
+        fConfiguration.setProperty(Constants.XERCES_PROPERTY_PREFIX + Constants.XMLGRAMMAR_POOL_PROPERTY,
+                grammarPool);
     }
 
     /**
      * Resets the parser state.
      *
      * @throws SAXException
-     *                      Thrown on initialization error.
+     *         Thrown on initialization error.
      */
     public void reset() {
         super.reset();
 
         // get state of namespace-declarations parameter.
-        fNamespaceDeclarations = fConfiguration.getFeature(
-                Constants.DOM_NAMESPACE_DECLARATIONS);
+        fNamespaceDeclarations = fConfiguration.getFeature(Constants.DOM_NAMESPACE_DECLARATIONS);
 
         // DOM Filter
         if (fSkippedElemStack != null) {
@@ -334,29 +324,20 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             try {
                 if (name.equalsIgnoreCase(Constants.DOM_COMMENTS)) {
                     fConfiguration.setFeature(INCLUDE_COMMENTS_FEATURE, state);
-                } else if (name.equalsIgnoreCase(
-                        Constants.DOM_DATATYPE_NORMALIZATION)) {
+                } else if (name.equalsIgnoreCase(Constants.DOM_DATATYPE_NORMALIZATION)) {
                     fConfiguration.setFeature(NORMALIZE_DATA, state);
                 } else if (name.equalsIgnoreCase(Constants.DOM_ENTITIES)) {
                     fConfiguration.setFeature(CREATE_ENTITY_REF_NODES, state);
-                } else if (name.equalsIgnoreCase(
-                        Constants.DOM_DISALLOW_DOCTYPE)) {
-                    fConfiguration.setFeature(DISALLOW_DOCTYPE_DECL_FEATURE,
-                            state);
-                } else if (name.equalsIgnoreCase(
-                        Constants.DOM_SUPPORTED_MEDIATYPES_ONLY) || name
-                                .equalsIgnoreCase(
-                                        Constants.DOM_NORMALIZE_CHARACTERS)
-                        || name.equalsIgnoreCase(
-                                Constants.DOM_CHECK_CHAR_NORMALIZATION) || name
-                                        .equalsIgnoreCase(
-                                                Constants.DOM_CANONICAL_FORM)) {
+                } else if (name.equalsIgnoreCase(Constants.DOM_DISALLOW_DOCTYPE)) {
+                    fConfiguration.setFeature(DISALLOW_DOCTYPE_DECL_FEATURE, state);
+                } else if (name.equalsIgnoreCase(Constants.DOM_SUPPORTED_MEDIATYPES_ONLY) || name
+                        .equalsIgnoreCase(Constants.DOM_NORMALIZE_CHARACTERS) || name.equalsIgnoreCase(
+                                Constants.DOM_CHECK_CHAR_NORMALIZATION) || name.equalsIgnoreCase(
+                                        Constants.DOM_CANONICAL_FORM)) {
                     if (state) { // true is not supported
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                                 "FEATURE_NOT_SUPPORTED", new Object[] { name });
-                        throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
-                                msg);
+                        throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
                     }
                     // setting those features to false is no-op
                 } else if (name.equalsIgnoreCase(Constants.DOM_NAMESPACES)) {
@@ -367,39 +348,27 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                         // true: namespaces, namespace-declarations,
                         // comments, element-content-whitespace
                         fConfiguration.setFeature(NAMESPACES, true);
-                        fConfiguration.setFeature(
-                                Constants.DOM_NAMESPACE_DECLARATIONS, true);
-                        fConfiguration.setFeature(INCLUDE_COMMENTS_FEATURE,
-                                true);
-                        fConfiguration.setFeature(INCLUDE_IGNORABLE_WHITESPACE,
-                                true);
+                        fConfiguration.setFeature(Constants.DOM_NAMESPACE_DECLARATIONS, true);
+                        fConfiguration.setFeature(INCLUDE_COMMENTS_FEATURE, true);
+                        fConfiguration.setFeature(INCLUDE_IGNORABLE_WHITESPACE, true);
 
                         // false: validate-if-schema, entities,
                         // datatype-normalization, cdata-sections
                         fConfiguration.setFeature(DYNAMIC_VALIDATION, false);
-                        fConfiguration.setFeature(CREATE_ENTITY_REF_NODES,
-                                false);
+                        fConfiguration.setFeature(CREATE_ENTITY_REF_NODES, false);
                         fConfiguration.setFeature(NORMALIZE_DATA, false);
-                        fConfiguration.setFeature(CREATE_CDATA_NODES_FEATURE,
-                                false);
+                        fConfiguration.setFeature(CREATE_CDATA_NODES_FEATURE, false);
                     }
-                } else if (name.equalsIgnoreCase(
-                        Constants.DOM_CDATA_SECTIONS)) {
-                    fConfiguration.setFeature(CREATE_CDATA_NODES_FEATURE,
-                            state);
-                } else if (name.equalsIgnoreCase(
-                        Constants.DOM_NAMESPACE_DECLARATIONS)) {
-                    fConfiguration.setFeature(
-                            Constants.DOM_NAMESPACE_DECLARATIONS, state);
-                } else if (name.equalsIgnoreCase(Constants.DOM_WELLFORMED)
-                        || name.equalsIgnoreCase(
-                                Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS)) {
+                } else if (name.equalsIgnoreCase(Constants.DOM_CDATA_SECTIONS)) {
+                    fConfiguration.setFeature(CREATE_CDATA_NODES_FEATURE, state);
+                } else if (name.equalsIgnoreCase(Constants.DOM_NAMESPACE_DECLARATIONS)) {
+                    fConfiguration.setFeature(Constants.DOM_NAMESPACE_DECLARATIONS, state);
+                } else if (name.equalsIgnoreCase(Constants.DOM_WELLFORMED) || name.equalsIgnoreCase(
+                        Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS)) {
                     if (!state) { // false is not supported
-                        String msg = DOMMessageFormatter.formatMessage(
-                                DOMMessageFormatter.DOM_DOMAIN,
+                        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                                 "FEATURE_NOT_SUPPORTED", new Object[] { name });
-                        throw new DOMException(DOMException.NOT_SUPPORTED_ERR,
-                                msg);
+                        throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
                     }
                     // setting these features to true is no-op
                     // REVISIT: implement "namespace-declaration" feature
@@ -407,24 +376,20 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                     fConfiguration.setFeature(VALIDATION_FEATURE, state);
                     if (fSchemaType != Constants.NS_DTD) {
                         fConfiguration.setFeature(XMLSCHEMA, state);
-                        fConfiguration.setFeature(XMLSCHEMA_FULL_CHECKING,
-                                state);
+                        fConfiguration.setFeature(XMLSCHEMA_FULL_CHECKING, state);
                     }
                     if (state) {
                         fConfiguration.setFeature(DYNAMIC_VALIDATION, false);
                     }
-                } else if (name.equalsIgnoreCase(
-                        Constants.DOM_VALIDATE_IF_SCHEMA)) {
+                } else if (name.equalsIgnoreCase(Constants.DOM_VALIDATE_IF_SCHEMA)) {
                     fConfiguration.setFeature(DYNAMIC_VALIDATION, state);
                     // Note: validation and dynamic validation are mutually
                     // exclusive
                     if (state) {
                         fConfiguration.setFeature(VALIDATION_FEATURE, false);
                     }
-                } else if (name.equalsIgnoreCase(
-                        Constants.DOM_ELEMENT_CONTENT_WHITESPACE)) {
-                    fConfiguration.setFeature(INCLUDE_IGNORABLE_WHITESPACE,
-                            state);
+                } else if (name.equalsIgnoreCase(Constants.DOM_ELEMENT_CONTENT_WHITESPACE)) {
+                    fConfiguration.setFeature(INCLUDE_IGNORABLE_WHITESPACE, state);
                 } else if (name.equalsIgnoreCase(Constants.DOM_PSVI)) {
                     // XSModel - turn on PSVI augmentation
                     fConfiguration.setFeature(PSVI_AUGMENT, true);
@@ -446,42 +411,34 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                 }
 
             } catch (XMLConfigurationException e) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "FEATURE_NOT_FOUND",
-                        new Object[] { name });
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "FEATURE_NOT_FOUND", new Object[] { name });
                 throw new DOMException(DOMException.NOT_FOUND_ERR, msg);
             }
         } else { // set properties
             if (name.equalsIgnoreCase(Constants.DOM_ERROR_HANDLER)) {
                 if (value instanceof DOMErrorHandler || value == null) {
                     try {
-                        fErrorHandler = new DOMErrorHandlerWrapper(
-                                (DOMErrorHandler) value);
-                        fConfiguration.setProperty(ERROR_HANDLER,
-                                fErrorHandler);
-                    } catch (XMLConfigurationException e) {
-                    }
+                        fErrorHandler = new DOMErrorHandlerWrapper((DOMErrorHandler) value);
+                        fConfiguration.setProperty(ERROR_HANDLER, fErrorHandler);
+                    } catch (XMLConfigurationException e) {}
                 } else {
                     // REVISIT: type mismatch
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN, "TYPE_MISMATCH_ERR",
-                            new Object[] { name });
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "TYPE_MISMATCH_ERR", new Object[] { name });
                     throw new DOMException(DOMException.TYPE_MISMATCH_ERR, msg);
                 }
 
             } else if (name.equalsIgnoreCase(Constants.DOM_RESOURCE_RESOLVER)) {
                 if (value instanceof LSResourceResolver || value == null) {
                     try {
-                        fConfiguration.setProperty(ENTITY_RESOLVER,
-                                new DOMEntityResolverWrapper(
-                                        (LSResourceResolver) value));
-                    } catch (XMLConfigurationException e) {
-                    }
+                        fConfiguration.setProperty(ENTITY_RESOLVER, new DOMEntityResolverWrapper(
+                                (LSResourceResolver) value));
+                    } catch (XMLConfigurationException e) {}
                 } else {
                     // REVISIT: type mismatch
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN, "TYPE_MISMATCH_ERR",
-                            new Object[] { name });
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "TYPE_MISMATCH_ERR", new Object[] { name });
                     throw new DOMException(DOMException.TYPE_MISMATCH_ERR, msg);
                 }
 
@@ -490,40 +447,32 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                     try {
                         if (value == null) {
                             fSchemaLocation = null;
-                            fConfiguration.setProperty(
-                                    Constants.JAXP_PROPERTY_PREFIX
-                                            + Constants.SCHEMA_SOURCE, null);
+                            fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX
+                                    + Constants.SCHEMA_SOURCE, null);
                         } else {
                             fSchemaLocation = (String) value;
                             // map DOM schema-location to JAXP schemaSource
                             // property
                             // tokenize location string
-                            StringTokenizer t = new StringTokenizer(
-                                    fSchemaLocation, " \n\t\r");
+                            StringTokenizer t = new StringTokenizer(fSchemaLocation, " \n\t\r");
                             if (t.hasMoreTokens()) {
                                 fSchemaLocations.clear();
                                 fSchemaLocations.add(t.nextToken());
                                 while (t.hasMoreTokens()) {
                                     fSchemaLocations.add(t.nextToken());
                                 }
-                                fConfiguration.setProperty(
-                                        Constants.JAXP_PROPERTY_PREFIX
-                                                + Constants.SCHEMA_SOURCE,
-                                        fSchemaLocations.toArray());
+                                fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX
+                                        + Constants.SCHEMA_SOURCE, fSchemaLocations.toArray());
                             } else {
-                                fConfiguration.setProperty(
-                                        Constants.JAXP_PROPERTY_PREFIX
-                                                + Constants.SCHEMA_SOURCE,
-                                        value);
+                                fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX
+                                        + Constants.SCHEMA_SOURCE, value);
                             }
                         }
-                    } catch (XMLConfigurationException e) {
-                    }
+                    } catch (XMLConfigurationException e) {}
                 } else {
                     // REVISIT: type mismatch
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN, "TYPE_MISMATCH_ERR",
-                            new Object[] { name });
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "TYPE_MISMATCH_ERR", new Object[] { name });
                     throw new DOMException(DOMException.TYPE_MISMATCH_ERR, msg);
                 }
 
@@ -533,42 +482,32 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                         if (value == null) {
                             // turn off schema features
                             fConfiguration.setFeature(XMLSCHEMA, false);
-                            fConfiguration.setFeature(XMLSCHEMA_FULL_CHECKING,
-                                    false);
+                            fConfiguration.setFeature(XMLSCHEMA_FULL_CHECKING, false);
                             // map to JAXP schemaLanguage
-                            fConfiguration.setProperty(
-                                    Constants.JAXP_PROPERTY_PREFIX
-                                            + Constants.SCHEMA_LANGUAGE, null);
+                            fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX
+                                    + Constants.SCHEMA_LANGUAGE, null);
                             fSchemaType = null;
                         } else if (value.equals(Constants.NS_XMLSCHEMA)) {
                             // turn on schema features
                             fConfiguration.setFeature(XMLSCHEMA, true);
-                            fConfiguration.setFeature(XMLSCHEMA_FULL_CHECKING,
-                                    true);
+                            fConfiguration.setFeature(XMLSCHEMA_FULL_CHECKING, true);
                             // map to JAXP schemaLanguage
-                            fConfiguration.setProperty(
-                                    Constants.JAXP_PROPERTY_PREFIX
-                                            + Constants.SCHEMA_LANGUAGE,
-                                    Constants.NS_XMLSCHEMA);
+                            fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX
+                                    + Constants.SCHEMA_LANGUAGE, Constants.NS_XMLSCHEMA);
                             fSchemaType = Constants.NS_XMLSCHEMA;
                         } else if (value.equals(Constants.NS_DTD)) {
                             // turn off schema features
                             fConfiguration.setFeature(XMLSCHEMA, false);
-                            fConfiguration.setFeature(XMLSCHEMA_FULL_CHECKING,
-                                    false);
+                            fConfiguration.setFeature(XMLSCHEMA_FULL_CHECKING, false);
                             // map to JAXP schemaLanguage
-                            fConfiguration.setProperty(
-                                    Constants.JAXP_PROPERTY_PREFIX
-                                            + Constants.SCHEMA_LANGUAGE,
-                                    Constants.NS_DTD);
+                            fConfiguration.setProperty(Constants.JAXP_PROPERTY_PREFIX
+                                    + Constants.SCHEMA_LANGUAGE, Constants.NS_DTD);
                             fSchemaType = Constants.NS_DTD;
                         }
-                    } catch (XMLConfigurationException e) {
-                    }
+                    } catch (XMLConfigurationException e) {}
                 } else {
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN, "TYPE_MISMATCH_ERR",
-                            new Object[] { name });
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                            "TYPE_MISMATCH_ERR", new Object[] { name });
                     throw new DOMException(DOMException.TYPE_MISMATCH_ERR, msg);
                 }
 
@@ -580,8 +519,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                 try {
                     fConfiguration.setProperty(normalizedName, value);
                     return;
-                } catch (XMLConfigurationException e) {
-                }
+                } catch (XMLConfigurationException e) {}
 
                 // If this is a boolean parameter a type mismatch should be
                 // thrown.
@@ -594,8 +532,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                     fConfiguration.getFeature(normalizedName);
                     throw newTypeMismatchError(name);
 
-                } catch (XMLConfigurationException e) {
-                }
+                } catch (XMLConfigurationException e) {}
 
                 // Parameter is not recognized
                 throw newFeatureNotFoundError(name);
@@ -608,72 +545,48 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
      */
     public Object getParameter(String name) throws DOMException {
         if (name.equalsIgnoreCase(Constants.DOM_COMMENTS)) {
-            return (fConfiguration.getFeature(INCLUDE_COMMENTS_FEATURE))
-                    ? Boolean.TRUE
-                    : Boolean.FALSE;
-        } else if (name.equalsIgnoreCase(
-                Constants.DOM_DATATYPE_NORMALIZATION)) {
-            return (fConfiguration.getFeature(NORMALIZE_DATA)) ? Boolean.TRUE
-                    : Boolean.FALSE;
+            return (fConfiguration.getFeature(INCLUDE_COMMENTS_FEATURE)) ? Boolean.TRUE : Boolean.FALSE;
+        } else if (name.equalsIgnoreCase(Constants.DOM_DATATYPE_NORMALIZATION)) {
+            return (fConfiguration.getFeature(NORMALIZE_DATA)) ? Boolean.TRUE : Boolean.FALSE;
         } else if (name.equalsIgnoreCase(Constants.DOM_ENTITIES)) {
-            return (fConfiguration.getFeature(CREATE_ENTITY_REF_NODES))
-                    ? Boolean.TRUE
-                    : Boolean.FALSE;
+            return (fConfiguration.getFeature(CREATE_ENTITY_REF_NODES)) ? Boolean.TRUE : Boolean.FALSE;
         } else if (name.equalsIgnoreCase(Constants.DOM_NAMESPACES)) {
-            return (fConfiguration.getFeature(NAMESPACES)) ? Boolean.TRUE
-                    : Boolean.FALSE;
+            return (fConfiguration.getFeature(NAMESPACES)) ? Boolean.TRUE : Boolean.FALSE;
         } else if (name.equalsIgnoreCase(Constants.DOM_VALIDATE)) {
-            return (fConfiguration.getFeature(VALIDATION_FEATURE))
-                    ? Boolean.TRUE
-                    : Boolean.FALSE;
+            return (fConfiguration.getFeature(VALIDATION_FEATURE)) ? Boolean.TRUE : Boolean.FALSE;
         } else if (name.equalsIgnoreCase(Constants.DOM_VALIDATE_IF_SCHEMA)) {
-            return (fConfiguration.getFeature(DYNAMIC_VALIDATION))
-                    ? Boolean.TRUE
-                    : Boolean.FALSE;
-        } else if (name.equalsIgnoreCase(
-                Constants.DOM_ELEMENT_CONTENT_WHITESPACE)) {
-            return (fConfiguration.getFeature(INCLUDE_IGNORABLE_WHITESPACE))
-                    ? Boolean.TRUE
-                    : Boolean.FALSE;
+            return (fConfiguration.getFeature(DYNAMIC_VALIDATION)) ? Boolean.TRUE : Boolean.FALSE;
+        } else if (name.equalsIgnoreCase(Constants.DOM_ELEMENT_CONTENT_WHITESPACE)) {
+            return (fConfiguration.getFeature(INCLUDE_IGNORABLE_WHITESPACE)) ? Boolean.TRUE : Boolean.FALSE;
         } else if (name.equalsIgnoreCase(Constants.DOM_DISALLOW_DOCTYPE)) {
-            return (fConfiguration.getFeature(DISALLOW_DOCTYPE_DECL_FEATURE))
-                    ? Boolean.TRUE
-                    : Boolean.FALSE;
+            return (fConfiguration.getFeature(DISALLOW_DOCTYPE_DECL_FEATURE)) ? Boolean.TRUE : Boolean.FALSE;
         } else if (name.equalsIgnoreCase(Constants.DOM_INFOSET)) {
             // REVISIT: This is somewhat expensive to compute
             // but it's possible that the user has a reference
             // to the configuration and is changing the values
             // of these features directly on it.
-            boolean infoset = fConfiguration.getFeature(NAMESPACES)
-                    && fConfiguration.getFeature(
-                            Constants.DOM_NAMESPACE_DECLARATIONS)
-                    && fConfiguration.getFeature(INCLUDE_COMMENTS_FEATURE)
-                    && fConfiguration.getFeature(INCLUDE_IGNORABLE_WHITESPACE)
-                    && !fConfiguration.getFeature(DYNAMIC_VALIDATION)
-                    && !fConfiguration.getFeature(CREATE_ENTITY_REF_NODES)
-                    && !fConfiguration.getFeature(NORMALIZE_DATA)
-                    && !fConfiguration.getFeature(CREATE_CDATA_NODES_FEATURE);
+            boolean infoset = fConfiguration.getFeature(NAMESPACES) && fConfiguration.getFeature(
+                    Constants.DOM_NAMESPACE_DECLARATIONS) && fConfiguration.getFeature(
+                            INCLUDE_COMMENTS_FEATURE) && fConfiguration.getFeature(
+                                    INCLUDE_IGNORABLE_WHITESPACE) && !fConfiguration.getFeature(
+                                            DYNAMIC_VALIDATION) && !fConfiguration.getFeature(
+                                                    CREATE_ENTITY_REF_NODES) && !fConfiguration.getFeature(
+                                                            NORMALIZE_DATA) && !fConfiguration.getFeature(
+                                                                    CREATE_CDATA_NODES_FEATURE);
             return (infoset) ? Boolean.TRUE : Boolean.FALSE;
         } else if (name.equalsIgnoreCase(Constants.DOM_CDATA_SECTIONS)) {
-            return (fConfiguration.getFeature(CREATE_CDATA_NODES_FEATURE))
-                    ? Boolean.TRUE
-                    : Boolean.FALSE;
-        } else if (name.equalsIgnoreCase(Constants.DOM_CHECK_CHAR_NORMALIZATION)
-                || name.equalsIgnoreCase(Constants.DOM_NORMALIZE_CHARACTERS)) {
+            return (fConfiguration.getFeature(CREATE_CDATA_NODES_FEATURE)) ? Boolean.TRUE : Boolean.FALSE;
+        } else if (name.equalsIgnoreCase(Constants.DOM_CHECK_CHAR_NORMALIZATION) || name.equalsIgnoreCase(
+                Constants.DOM_NORMALIZE_CHARACTERS)) {
             return Boolean.FALSE;
-        } else if (name.equalsIgnoreCase(Constants.DOM_NAMESPACE_DECLARATIONS)
-                || name.equalsIgnoreCase(Constants.DOM_WELLFORMED) || name
-                        .equalsIgnoreCase(
-                                Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS)
-                || name.equalsIgnoreCase(Constants.DOM_CANONICAL_FORM) || name
-                        .equalsIgnoreCase(
-                                Constants.DOM_SUPPORTED_MEDIATYPES_ONLY) || name
-                                        .equalsIgnoreCase(
-                                                Constants.DOM_SPLIT_CDATA)
-                || name.equalsIgnoreCase(
-                        Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING)) {
-            return (fConfiguration.getFeature(name.toLowerCase(Locale.ENGLISH)))
-                    ? Boolean.TRUE
+        } else if (name.equalsIgnoreCase(Constants.DOM_NAMESPACE_DECLARATIONS) || name.equalsIgnoreCase(
+                Constants.DOM_WELLFORMED) || name.equalsIgnoreCase(
+                        Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS) || name.equalsIgnoreCase(
+                                Constants.DOM_CANONICAL_FORM) || name.equalsIgnoreCase(
+                                        Constants.DOM_SUPPORTED_MEDIATYPES_ONLY) || name.equalsIgnoreCase(
+                                                Constants.DOM_SPLIT_CDATA) || name.equalsIgnoreCase(
+                                                        Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING)) {
+            return (fConfiguration.getFeature(name.toLowerCase(Locale.ENGLISH))) ? Boolean.TRUE
                     : Boolean.FALSE;
         } else if (name.equalsIgnoreCase(Constants.DOM_ERROR_HANDLER)) {
             if (fErrorHandler != null) {
@@ -682,19 +595,15 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             return null;
         } else if (name.equalsIgnoreCase(Constants.DOM_RESOURCE_RESOLVER)) {
             try {
-                XMLEntityResolver entityResolver = (XMLEntityResolver) fConfiguration
-                        .getProperty(ENTITY_RESOLVER);
-                if (entityResolver != null
-                        && entityResolver instanceof DOMEntityResolverWrapper) {
-                    return ((DOMEntityResolverWrapper) entityResolver)
-                            .getEntityResolver();
+                XMLEntityResolver entityResolver = (XMLEntityResolver) fConfiguration.getProperty(
+                        ENTITY_RESOLVER);
+                if (entityResolver != null && entityResolver instanceof DOMEntityResolverWrapper) {
+                    return ((DOMEntityResolverWrapper) entityResolver).getEntityResolver();
                 }
                 return null;
-            } catch (XMLConfigurationException e) {
-            }
+            } catch (XMLConfigurationException e) {}
         } else if (name.equalsIgnoreCase(Constants.DOM_SCHEMA_TYPE)) {
-            return fConfiguration.getProperty(Constants.JAXP_PROPERTY_PREFIX
-                    + Constants.SCHEMA_LANGUAGE);
+            return fConfiguration.getProperty(Constants.JAXP_PROPERTY_PREFIX + Constants.SCHEMA_LANGUAGE);
         } else if (name.equalsIgnoreCase(Constants.DOM_SCHEMA_LOCATION)) {
             return fSchemaLocation;
         } else if (name.equalsIgnoreCase(SYMBOL_TABLE)) {
@@ -713,16 +622,13 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                 normalizedName = name.toLowerCase(Locale.ENGLISH);
             }
             try {
-                return fConfiguration.getFeature(normalizedName) ? Boolean.TRUE
-                        : Boolean.FALSE;
-            } catch (XMLConfigurationException e) {
-            }
+                return fConfiguration.getFeature(normalizedName) ? Boolean.TRUE : Boolean.FALSE;
+            } catch (XMLConfigurationException e) {}
 
             // This isn't a feature; perhaps it's a property
             try {
                 return fConfiguration.getProperty(normalizedName);
-            } catch (XMLConfigurationException e) {
-            }
+            } catch (XMLConfigurationException e) {}
 
             throw newFeatureNotFoundError(name);
         }
@@ -736,36 +642,30 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
 
         if (value instanceof Boolean) {
             boolean state = ((Boolean) value).booleanValue();
-            if (name.equalsIgnoreCase(Constants.DOM_SUPPORTED_MEDIATYPES_ONLY)
-                    || name.equalsIgnoreCase(Constants.DOM_NORMALIZE_CHARACTERS)
-                    || name.equalsIgnoreCase(
-                            Constants.DOM_CHECK_CHAR_NORMALIZATION) || name
-                                    .equalsIgnoreCase(
-                                            Constants.DOM_CANONICAL_FORM)) {
+            if (name.equalsIgnoreCase(Constants.DOM_SUPPORTED_MEDIATYPES_ONLY) || name.equalsIgnoreCase(
+                    Constants.DOM_NORMALIZE_CHARACTERS) || name.equalsIgnoreCase(
+                            Constants.DOM_CHECK_CHAR_NORMALIZATION) || name.equalsIgnoreCase(
+                                    Constants.DOM_CANONICAL_FORM)) {
                 // true is not supported
                 return (state) ? false : true;
-            } else if (name.equalsIgnoreCase(Constants.DOM_WELLFORMED) || name
-                    .equalsIgnoreCase(
-                            Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS)) {
+            } else if (name.equalsIgnoreCase(Constants.DOM_WELLFORMED) || name.equalsIgnoreCase(
+                    Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS)) {
                 // false is not supported
                 return (state) ? true : false;
-            } else if (name.equalsIgnoreCase(Constants.DOM_CDATA_SECTIONS)
-                    || name.equalsIgnoreCase(
-                            Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING)
-                    || name.equalsIgnoreCase(Constants.DOM_COMMENTS) || name
-                            .equalsIgnoreCase(
-                                    Constants.DOM_DATATYPE_NORMALIZATION)
-                    || name.equalsIgnoreCase(Constants.DOM_DISALLOW_DOCTYPE)
-                    || name.equalsIgnoreCase(Constants.DOM_ENTITIES) || name
-                            .equalsIgnoreCase(Constants.DOM_INFOSET) || name
-                                    .equalsIgnoreCase(Constants.DOM_NAMESPACES)
-                    || name.equalsIgnoreCase(
-                            Constants.DOM_NAMESPACE_DECLARATIONS) || name
-                                    .equalsIgnoreCase(Constants.DOM_VALIDATE)
-                    || name.equalsIgnoreCase(Constants.DOM_VALIDATE_IF_SCHEMA)
-                    || name.equalsIgnoreCase(
-                            Constants.DOM_ELEMENT_CONTENT_WHITESPACE) || name
-                                    .equalsIgnoreCase(Constants.DOM_XMLDECL)) {
+            } else if (name.equalsIgnoreCase(Constants.DOM_CDATA_SECTIONS) || name.equalsIgnoreCase(
+                    Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING) || name.equalsIgnoreCase(
+                            Constants.DOM_COMMENTS) || name.equalsIgnoreCase(
+                                    Constants.DOM_DATATYPE_NORMALIZATION) || name.equalsIgnoreCase(
+                                            Constants.DOM_DISALLOW_DOCTYPE) || name.equalsIgnoreCase(
+                                                    Constants.DOM_ENTITIES) || name.equalsIgnoreCase(
+                                                            Constants.DOM_INFOSET) || name.equalsIgnoreCase(
+                                                                    Constants.DOM_NAMESPACES) || name
+                                                                            .equalsIgnoreCase(
+                                                                                    Constants.DOM_NAMESPACE_DECLARATIONS)
+                    || name.equalsIgnoreCase(Constants.DOM_VALIDATE) || name.equalsIgnoreCase(
+                            Constants.DOM_VALIDATE_IF_SCHEMA) || name.equalsIgnoreCase(
+                                    Constants.DOM_ELEMENT_CONTENT_WHITESPACE) || name.equalsIgnoreCase(
+                                            Constants.DOM_XMLDECL)) {
                 return true;
             }
 
@@ -796,9 +696,8 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                 }
                 return false;
             } else if (name.equalsIgnoreCase(Constants.DOM_SCHEMA_TYPE)) {
-                if ((value instanceof String && (value.equals(
-                        Constants.NS_XMLSCHEMA) || value.equals(
-                                Constants.NS_DTD))) || value == null) {
+                if ((value instanceof String && (value.equals(Constants.NS_XMLSCHEMA) || value.equals(
+                        Constants.NS_DTD))) || value == null) {
                     return true;
                 }
                 return false;
@@ -815,7 +714,6 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
 
     /**
      * DOM Level 3 CR - Experimental.
-     *
      * The list of the parameters supported by this
      * <code>DOMConfiguration</code> object and for which at least one value can
      * be set by the application. Note that this list can also contain parameter
@@ -840,8 +738,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             parameters.add(Constants.DOM_CHARSET_OVERRIDES_XML_ENCODING);
             parameters.add(Constants.DOM_CHECK_CHAR_NORMALIZATION);
             parameters.add(Constants.DOM_SUPPORTED_MEDIATYPES_ONLY);
-            parameters.add(
-                    Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS);
+            parameters.add(Constants.DOM_IGNORE_UNKNOWN_CHARACTER_DENORMALIZATIONS);
 
             parameters.add(Constants.DOM_NORMALIZE_CHARACTERS);
             parameters.add(Constants.DOM_WELLFORMED);
@@ -866,7 +763,6 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
      * Parse an XML document from a location identified by an URI reference. If
      * the URI contains a fragment identifier (see section 4.1 in ), the
      * behavior is not defined by this specification.
-     *
      */
     public Document parseURI(String uri) throws LSException {
 
@@ -875,8 +771,8 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
         // method is called, then raise INVALID_STATE_ERR according to DOM L3 LS
         // spec
         if (fBusy) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_STATE_ERR", null);
             throw new DOMException(DOMException.INVALID_STATE_ERR, msg);
         }
 
@@ -904,8 +800,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             // Consume this exception if the user
             // issued an interrupt or an abort.
             if (e != Abort.INSTANCE) {
-                if (!(e instanceof XMLParseException)
-                        && fErrorHandler != null) {
+                if (!(e instanceof XMLParseException) && fErrorHandler != null) {
                     DOMErrorImpl error = new DOMErrorImpl();
                     error.fException = e;
                     error.fMessage = e.getMessage();
@@ -915,8 +810,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                 if (DEBUG) {
                     e.printStackTrace();
                 }
-                throw (LSException) DOMUtil.createLSException(
-                        LSException.PARSE_ERR, e).fillInStackTrace();
+                throw (LSException) DOMUtil.createLSException(LSException.PARSE_ERR, e).fillInStackTrace();
             }
         }
         Document doc = getDocument();
@@ -927,15 +821,14 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
     /**
      * Parse an XML document from a resource identified by an
      * <code>LSInput</code>.
-     *
      */
     public Document parse(LSInput is) throws LSException {
 
         // need to wrap the LSInput with an XMLInputSource
         XMLInputSource xmlInputSource = dom2xmlInputSource(is);
         if (fBusy) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_STATE_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_STATE_ERR", null);
             throw new DOMException(DOMException.INVALID_STATE_ERR, msg);
         }
 
@@ -962,8 +855,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             // Consume this exception if the user
             // issued an interrupt or an abort.
             if (e != Abort.INSTANCE) {
-                if (!(e instanceof XMLParseException)
-                        && fErrorHandler != null) {
+                if (!(e instanceof XMLParseException) && fErrorHandler != null) {
                     DOMErrorImpl error = new DOMErrorImpl();
                     error.fException = e;
                     error.fMessage = e.getMessage();
@@ -973,8 +865,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
                 if (DEBUG) {
                     e.printStackTrace();
                 }
-                throw (LSException) DOMUtil.createLSException(
-                        LSException.PARSE_ERR, e).fillInStackTrace();
+                throw (LSException) DOMUtil.createLSException(LSException.PARSE_ERR, e).fillInStackTrace();
             }
         }
         Document doc = getDocument();
@@ -996,29 +887,28 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
      * node is used for resolving unbound namespace prefixes.
      *
      * @param is
-     *               The <code>LSInput</code> from which the source document is
-     *               to
-     *               be read.
+     *        The <code>LSInput</code> from which the source document is
+     *        to
+     *        be read.
      * @param cnode
-     *               The <code>Node</code> that is used as the context for the
-     *               data
-     *               that is being parsed.
+     *        The <code>Node</code> that is used as the context for the
+     *        data
+     *        that is being parsed.
      * @param action
-     *               This parameter describes which action should be taken
-     *               between
-     *               the new set of node being inserted and the existing
-     *               children
-     *               of the context node. The set of possible actions is defined
-     *               above.
+     *        This parameter describes which action should be taken
+     *        between
+     *        the new set of node being inserted and the existing
+     *        children
+     *        of the context node. The set of possible actions is defined
+     *        above.
      * @exception DOMException
-     *                         HIERARCHY_REQUEST_ERR: Thrown if this action
-     *                         results in an
-     *                         invalid hierarchy (i.e. a Document with more than
-     *                         one
-     *                         document element).
+     *            HIERARCHY_REQUEST_ERR: Thrown if this action
+     *            results in an
+     *            invalid hierarchy (i.e. a Document with more than
+     *            one
+     *            document element).
      */
-    public Node parseWithContext(LSInput is, Node cnode, short action)
-            throws DOMException, LSException {
+    public Node parseWithContext(LSInput is, Node cnode, short action) throws DOMException, LSException {
         // REVISIT: need to implement.
         throw new DOMException(DOMException.NOT_SUPPORTED_ERR, "Not supported");
     }
@@ -1035,28 +925,24 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
         // check whether there is a Reader
         // according to DOM, we need to treat such reader as "UTF-16".
         if (is.getCharacterStream() != null) {
-            xis = new XMLInputSource(is.getPublicId(), is.getSystemId(), is
-                    .getBaseURI(), is.getCharacterStream(), "UTF-16");
+            xis = new XMLInputSource(is.getPublicId(), is.getSystemId(), is.getBaseURI(), is
+                    .getCharacterStream(), "UTF-16");
         }
         // check whether there is an InputStream
         else if (is.getByteStream() != null) {
-            xis = new XMLInputSource(is.getPublicId(), is.getSystemId(), is
-                    .getBaseURI(), is.getByteStream(), is.getEncoding());
+            xis = new XMLInputSource(is.getPublicId(), is.getSystemId(), is.getBaseURI(), is.getByteStream(),
+                    is.getEncoding());
         }
         // if there is a string data, use a StringReader
         // according to DOM, we need to treat such data as "UTF-16".
-        else if (is.getStringData() != null && is.getStringData()
-                .length() > 0) {
-            xis = new XMLInputSource(is.getPublicId(), is.getSystemId(), is
-                    .getBaseURI(), new StringReader(is.getStringData()),
-                    "UTF-16");
+        else if (is.getStringData() != null && is.getStringData().length() > 0) {
+            xis = new XMLInputSource(is.getPublicId(), is.getSystemId(), is.getBaseURI(), new StringReader(is
+                    .getStringData()), "UTF-16");
         }
         // otherwise, just use the public/system/base Ids
-        else if ((is.getSystemId() != null && is.getSystemId().length() > 0)
-                || (is.getPublicId() != null && is.getPublicId()
-                        .length() > 0)) {
-            xis = new XMLInputSource(is.getPublicId(), is.getSystemId(), is
-                    .getBaseURI());
+        else if ((is.getSystemId() != null && is.getSystemId().length() > 0) || (is.getPublicId() != null
+                && is.getPublicId().length() > 0)) {
+            xis = new XMLInputSource(is.getPublicId(), is.getSystemId(), is.getBaseURI());
         } else {
             // all inputs are null
             if (fErrorHandler != null) {
@@ -1117,18 +1003,16 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
      * Overriding the parent to handle DOM_NAMESPACE_DECLARATIONS=false.
      *
      * @param element
-     *                   The name of the element.
+     *        The name of the element.
      * @param attributes
-     *                   The element attributes.
+     *        The element attributes.
      * @param augs
-     *                   Additional information that may include infoset
-     *                   augmentations
-     *
+     *        Additional information that may include infoset
+     *        augmentations
      * @throws XNIException
-     *                      Thrown by handler to signal an error.
+     *         Thrown by handler to signal an error.
      */
-    public void startElement(QName element, XMLAttributes attributes,
-            Augmentations augs) {
+    public void startElement(QName element, XMLAttributes attributes, Augmentations augs) {
         // namespace declarations parameter has no effect if namespaces is
         // false.
         if (!fNamespaceDeclarations && fNamespaceAware) {
@@ -1143,77 +1027,68 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
         super.startElement(element, attributes, augs);
     }
 
-    private class AbortHandler implements XMLDocumentHandler, XMLDTDHandler,
-            XMLDTDContentModelHandler {
+    private class AbortHandler implements XMLDocumentHandler, XMLDTDHandler, XMLDTDContentModelHandler {
 
         private XMLDocumentSource documentSource;
         private XMLDTDContentModelSource dtdContentSource;
         private XMLDTDSource dtdSource;
 
-        public void startDocument(XMLLocator locator, String encoding,
-                NamespaceContext namespaceContext, Augmentations augs)
-                throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void xmlDecl(String version, String encoding, String standalone,
+        public void startDocument(XMLLocator locator, String encoding, NamespaceContext namespaceContext,
                 Augmentations augs) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void doctypeDecl(String rootElement, String publicId,
-                String systemId, Augmentations augs) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void comment(XMLString text, Augmentations augs)
+        public void xmlDecl(String version, String encoding, String standalone, Augmentations augs)
                 throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void processingInstruction(String target, XMLString data,
-                Augmentations augs) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void startElement(QName element, XMLAttributes attributes,
-                Augmentations augs) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void emptyElement(QName element, XMLAttributes attributes,
-                Augmentations augs) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void startGeneralEntity(String name,
-                XMLResourceIdentifier identifier, String encoding,
-                Augmentations augs) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void textDecl(String version, String encoding,
-                Augmentations augs) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void endGeneralEntity(String name, Augmentations augs)
+        public void doctypeDecl(String rootElement, String publicId, String systemId, Augmentations augs)
                 throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void characters(XMLString text, Augmentations augs)
+        public void comment(XMLString text, Augmentations augs) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void processingInstruction(String target, XMLString data, Augmentations augs)
                 throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void ignorableWhitespace(XMLString text, Augmentations augs)
+        public void startElement(QName element, XMLAttributes attributes, Augmentations augs)
                 throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void endElement(QName element, Augmentations augs)
+        public void emptyElement(QName element, XMLAttributes attributes, Augmentations augs)
                 throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void startGeneralEntity(String name, XMLResourceIdentifier identifier, String encoding,
+                Augmentations augs) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void textDecl(String version, String encoding, Augmentations augs) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void endGeneralEntity(String name, Augmentations augs) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void characters(XMLString text, Augmentations augs) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void ignorableWhitespace(XMLString text, Augmentations augs) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void endElement(QName element, Augmentations augs) throws XNIException {
             throw Abort.INSTANCE;
         }
 
@@ -1237,89 +1112,76 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             return documentSource;
         }
 
-        public void startDTD(XMLLocator locator, Augmentations augmentations)
-                throws XNIException {
+        public void startDTD(XMLLocator locator, Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void startParameterEntity(String name,
-                XMLResourceIdentifier identifier, String encoding,
+        public void startParameterEntity(String name, XMLResourceIdentifier identifier, String encoding,
                 Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void endParameterEntity(String name, Augmentations augmentations)
+        public void endParameterEntity(String name, Augmentations augmentations) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void startExternalSubset(XMLResourceIdentifier identifier, Augmentations augmentations)
                 throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void startExternalSubset(XMLResourceIdentifier identifier,
-                Augmentations augmentations) throws XNIException {
+        public void endExternalSubset(Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void endExternalSubset(Augmentations augmentations)
+        public void elementDecl(String name, String contentModel, Augmentations augmentations)
                 throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void elementDecl(String name, String contentModel,
+        public void startAttlist(String elementName, Augmentations augmentations) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void attributeDecl(String elementName, String attributeName, String type, String[] enumeration,
+                String defaultType, XMLString defaultValue, XMLString nonNormalizedDefaultValue,
                 Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void startAttlist(String elementName,
+        public void endAttlist(Augmentations augmentations) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void internalEntityDecl(String name, XMLString text, XMLString nonNormalizedText,
                 Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void attributeDecl(String elementName, String attributeName,
-                String type, String[] enumeration, String defaultType,
-                XMLString defaultValue, XMLString nonNormalizedDefaultValue,
+        public void externalEntityDecl(String name, XMLResourceIdentifier identifier,
                 Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void endAttlist(Augmentations augmentations)
+        public void unparsedEntityDecl(String name, XMLResourceIdentifier identifier, String notation,
+                Augmentations augmentations) throws XNIException {
+            throw Abort.INSTANCE;
+        }
+
+        public void notationDecl(String name, XMLResourceIdentifier identifier, Augmentations augmentations)
                 throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void internalEntityDecl(String name, XMLString text,
-                XMLString nonNormalizedText, Augmentations augmentations)
-                throws XNIException {
+        public void startConditional(short type, Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void externalEntityDecl(String name,
-                XMLResourceIdentifier identifier, Augmentations augmentations)
-                throws XNIException {
+        public void ignoredCharacters(XMLString text, Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void unparsedEntityDecl(String name,
-                XMLResourceIdentifier identifier, String notation,
-                Augmentations augmentations) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void notationDecl(String name, XMLResourceIdentifier identifier,
-                Augmentations augmentations) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void startConditional(short type, Augmentations augmentations)
-                throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void ignoredCharacters(XMLString text,
-                Augmentations augmentations) throws XNIException {
-            throw Abort.INSTANCE;
-        }
-
-        public void endConditional(Augmentations augmentations)
-                throws XNIException {
+        public void endConditional(Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
@@ -1335,8 +1197,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             return dtdSource;
         }
 
-        public void startContentModel(String elementName,
-                Augmentations augmentations) throws XNIException {
+        public void startContentModel(String elementName, Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
@@ -1348,8 +1209,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             throw Abort.INSTANCE;
         }
 
-        public void startGroup(Augmentations augmentations)
-                throws XNIException {
+        public void startGroup(Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
@@ -1357,18 +1217,15 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             throw Abort.INSTANCE;
         }
 
-        public void element(String elementName, Augmentations augmentations)
-                throws XNIException {
+        public void element(String elementName, Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void separator(short separator, Augmentations augmentations)
-                throws XNIException {
+        public void separator(short separator, Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
-        public void occurrence(short occurrence, Augmentations augmentations)
-                throws XNIException {
+        public void occurrence(short occurrence, Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
@@ -1376,8 +1233,7 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
             throw Abort.INSTANCE;
         }
 
-        public void endContentModel(Augmentations augmentations)
-                throws XNIException {
+        public void endContentModel(Augmentations augmentations) throws XNIException {
             throw Abort.INSTANCE;
         }
 
@@ -1392,15 +1248,13 @@ public class DOMParserImpl extends AbstractDOMParser implements LSParser,
     }
 
     private static DOMException newFeatureNotFoundError(String name) {
-        String msg = DOMMessageFormatter.formatMessage(
-                DOMMessageFormatter.DOM_DOMAIN, "FEATURE_NOT_FOUND",
+        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "FEATURE_NOT_FOUND",
                 new Object[] { name });
         return new DOMException(DOMException.NOT_FOUND_ERR, msg);
     }
 
     private static DOMException newTypeMismatchError(String name) {
-        String msg = DOMMessageFormatter.formatMessage(
-                DOMMessageFormatter.DOM_DOMAIN, "TYPE_MISMATCH_ERR",
+        String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "TYPE_MISMATCH_ERR",
                 new Object[] { name });
         return new DOMException(DOMException.TYPE_MISMATCH_ERR, msg);
     }

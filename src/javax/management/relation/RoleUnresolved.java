@@ -26,7 +26,6 @@ import javax.management.ObjectName;
  * Represents an unresolved role: a role not retrieved from a relation due to a
  * problem. It provides the role name, value (if problem when trying to set the
  * role) and an integer defining the problem (constants defined in RoleStatus).
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is <code>-48350262537070138L</code>
  * .
@@ -49,16 +48,14 @@ public class RoleUnresolved implements Serializable {
     private static final long newSerialVersionUID = -48350262537070138L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("myRoleName", String.class),
-            new ObjectStreamField("myRoleValue", ArrayList.class),
-            new ObjectStreamField("myPbType", int.class) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField("myRoleName",
+            String.class), new ObjectStreamField("myRoleValue", ArrayList.class), new ObjectStreamField(
+                    "myPbType", int.class) };
     //
     // Serializable fields in new serial form
-    private static final ObjectStreamField[] newSerialPersistentFields = {
-            new ObjectStreamField("roleName", String.class),
-            new ObjectStreamField("roleValue", List.class),
-            new ObjectStreamField("problemType", int.class) };
+    private static final ObjectStreamField[] newSerialPersistentFields = { new ObjectStreamField("roleName",
+            String.class), new ObjectStreamField("roleValue", List.class), new ObjectStreamField(
+                    "problemType", int.class) };
     //
     // Actual serial version and serial form
     private static final long serialVersionUID;
@@ -119,20 +116,18 @@ public class RoleUnresolved implements Serializable {
      * Constructor.
      *
      * @param name
-     *               name of the role
+     *        name of the role
      * @param value
-     *               value of the role (if problem when setting the role)
+     *        value of the role (if problem when setting the role)
      * @param pbType
-     *               type of problem (according to known problem types, listed
-     *               as
-     *               static final members).
-     *
+     *        type of problem (according to known problem types, listed
+     *        as
+     *        static final members).
      * @exception IllegalArgumentException
-     *                                     if null parameter or incorrect
-     *                                     problem type
+     *            if null parameter or incorrect
+     *            problem type
      */
-    public RoleUnresolved(String name, List<ObjectName> value, int pbType)
-            throws IllegalArgumentException {
+    public RoleUnresolved(String name, List<ObjectName> value, int pbType) throws IllegalArgumentException {
 
         if (name == null) {
             String excMsg = "Invalid parameter.";
@@ -154,7 +149,6 @@ public class RoleUnresolved implements Serializable {
      * Retrieves role name.
      *
      * @return the role name.
-     *
      * @see #setRoleName
      */
     public String getRoleName() {
@@ -167,7 +161,6 @@ public class RoleUnresolved implements Serializable {
      * @return an ArrayList of ObjectName objects, the one provided to be set in
      *         given role. Null if the unresolved role is returned for a read
      *         access.
-     *
      * @see #setRoleValue
      */
     public List<ObjectName> getRoleValue() {
@@ -179,7 +172,6 @@ public class RoleUnresolved implements Serializable {
      *
      * @return an integer corresponding to a problem, those being described as
      *         static final members of current class.
-     *
      * @see #setProblemType
      */
     public int getProblemType() {
@@ -190,11 +182,9 @@ public class RoleUnresolved implements Serializable {
      * Sets role name.
      *
      * @param name
-     *             the new role name.
-     *
+     *        the new role name.
      * @exception IllegalArgumentException
-     *                                     if null parameter
-     *
+     *            if null parameter
      * @see #getRoleName
      */
     public void setRoleName(String name) throws IllegalArgumentException {
@@ -212,9 +202,8 @@ public class RoleUnresolved implements Serializable {
      * Sets role value.
      *
      * @param value
-     *              List of ObjectName objects for referenced MBeans not set in
-     *              role.
-     *
+     *        List of ObjectName objects for referenced MBeans not set in
+     *        role.
      * @see #getRoleValue
      */
     public void setRoleValue(List<ObjectName> value) {
@@ -231,12 +220,10 @@ public class RoleUnresolved implements Serializable {
      * Sets problem type.
      *
      * @param pbType
-     *               integer corresponding to a problem. Must be one of those
-     *               described as static final members of current class.
-     *
+     *        integer corresponding to a problem. Must be one of those
+     *        described as static final members of current class.
      * @exception IllegalArgumentException
-     *                                     if incorrect problem type
-     *
+     *            if incorrect problem type
      * @see #getProblemType
      */
     public void setProblemType(int pbType) throws IllegalArgumentException {
@@ -272,8 +259,7 @@ public class RoleUnresolved implements Serializable {
         result.append("role name: " + roleName);
         if (roleValue != null) {
             result.append("; value: ");
-            for (Iterator<ObjectName> objNameIter = roleValue
-                    .iterator(); objNameIter.hasNext();) {
+            for (Iterator<ObjectName> objNameIter = roleValue.iterator(); objNameIter.hasNext();) {
                 ObjectName currObjName = objNameIter.next();
                 result.append(currObjName.toString());
                 if (objNameIter.hasNext()) {
@@ -288,8 +274,7 @@ public class RoleUnresolved implements Serializable {
     /**
      * Deserializes a {@link RoleUnresolved} from an {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         if (compat) {
             // Read an object serialized in the old serial form
             //

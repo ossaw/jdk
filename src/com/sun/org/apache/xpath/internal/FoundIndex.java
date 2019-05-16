@@ -30,7 +30,6 @@ public class FoundIndex extends RuntimeException {
 
     /**
      * Constructor FoundIndex
-     *
      */
     public FoundIndex() {}
 }

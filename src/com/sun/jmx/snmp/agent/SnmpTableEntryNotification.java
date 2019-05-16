@@ -23,7 +23,6 @@ import javax.management.ObjectName;
  * <LI>A new entry has been added to the SNMP table.
  * <LI>An existing entry has been removed from the SNMP table.
  * </UL>
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -36,26 +35,26 @@ public class SnmpTableEntryNotification extends Notification {
      * Creates and initializes a table entry notification object.
      *
      * @param type
-     *                       The notification type.
+     *        The notification type.
      * @param source
-     *                       The notification producer.
+     *        The notification producer.
      * @param sequenceNumber
-     *                       The notification sequence number within the source
-     *                       object.
+     *        The notification sequence number within the source
+     *        object.
      * @param timeStamp
-     *                       The notification emission date.
+     *        The notification emission date.
      * @param entry
-     *                       The entry object (may be null if the entry is
-     *                       registered in
-     *                       the MBeanServer).
+     *        The entry object (may be null if the entry is
+     *        registered in
+     *        the MBeanServer).
      * @param entryName
-     *                       The ObjectName entry object (may be null if the
-     *                       entry is not
-     *                       registered in the MBeanServer).
+     *        The ObjectName entry object (may be null if the
+     *        entry is not
+     *        registered in the MBeanServer).
      * @since 1.5
      */
-    SnmpTableEntryNotification(String type, Object source, long sequenceNumber,
-            long timeStamp, Object entry, ObjectName entryName) {
+    SnmpTableEntryNotification(String type, Object source, long sequenceNumber, long timeStamp, Object entry,
+            ObjectName entryName) {
 
         super(type, source, sequenceNumber, timeStamp);
         this.entry = entry;

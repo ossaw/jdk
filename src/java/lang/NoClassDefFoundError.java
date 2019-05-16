@@ -32,7 +32,7 @@ public class NoClassDefFoundError extends LinkageError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public NoClassDefFoundError(String s) {
         super(s);

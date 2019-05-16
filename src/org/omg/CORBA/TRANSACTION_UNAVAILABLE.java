@@ -9,7 +9,6 @@ package org.omg.CORBA;
  * The CORBA <code>TRANSACTION_UNAVAILABLE</code> exception is thrown by the ORB
  * when it cannot process a transaction service context because its connection
  * to the Transaction Service has been abnormally terminated.
- *
  * It contains a minor code, which gives information about what caused the
  * exception, and a completion status. It may also contain a string describing
  * the exception. The OMG CORBA core 2.4 specification has details.
@@ -34,7 +33,7 @@ public final class TRANSACTION_UNAVAILABLE extends SystemException {
      * of COMPLETED_NO.
      * 
      * @param s
-     *          the String containing a detail message
+     *        the String containing a detail message
      */
     public TRANSACTION_UNAVAILABLE(String s) {
         this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -45,9 +44,9 @@ public final class TRANSACTION_UNAVAILABLE extends SystemException {
      * specified minor code and completion status.
      * 
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  the completion status
+     *        the completion status
      */
     public TRANSACTION_UNAVAILABLE(int minor, CompletionStatus completed) {
         this("", minor, completed);
@@ -58,14 +57,13 @@ public final class TRANSACTION_UNAVAILABLE extends SystemException {
      * specified description message, minor code, and completion status.
      * 
      * @param s
-     *                  the String containing a description message
+     *        the String containing a description message
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  the completion status
+     *        the completion status
      */
-    public TRANSACTION_UNAVAILABLE(String s, int minor,
-            CompletionStatus completed) {
+    public TRANSACTION_UNAVAILABLE(String s, int minor, CompletionStatus completed) {
         super(s, minor, completed);
     }
 }

@@ -47,9 +47,9 @@ public interface XSTypeDefinition extends XSObject {
      * list, restriction, union}.
      * 
      * @param restriction
-     *                    Extension, restriction, list, union constants (defined
-     *                    in
-     *                    <code>XSConstants</code>).
+     *        Extension, restriction, list, union constants (defined
+     *        in
+     *        <code>XSConstants</code>).
      * @return True if <code>restriction</code> is in the final set, otherwise
      *         false.
      */
@@ -78,33 +78,31 @@ public interface XSTypeDefinition extends XSObject {
      * <code>ancestorType</code>.
      * 
      * @param ancestorType
-     *                         An ancestor type definition.
+     *        An ancestor type definition.
      * @param derivationMethod
-     *                         A bit combination representing a subset of {
-     *                         <code>DERIVATION_RESTRICTION, DERIVATION_EXTENSION, DERIVATION_UNION, DERIVATION_LIST</code>
-     *                         }.
+     *        A bit combination representing a subset of {
+     *        <code>DERIVATION_RESTRICTION, DERIVATION_EXTENSION, DERIVATION_UNION, DERIVATION_LIST</code>
+     *        }.
      * @return True if this type is derived from <code>ancestorType</code> using
      *         only derivation methods from the <code>derivationMethod</code> .
      */
-    public boolean derivedFromType(XSTypeDefinition ancestorType,
-            short derivationMethod);
+    public boolean derivedFromType(XSTypeDefinition ancestorType, short derivationMethod);
 
     /**
      * Convenience method which checks if this type is derived from the given
      * ancestor type.
      * 
      * @param namespace
-     *                         An ancestor type namespace.
+     *        An ancestor type namespace.
      * @param name
-     *                         An ancestor type name.
+     *        An ancestor type name.
      * @param derivationMethod
-     *                         A bit combination representing a subset of {
-     *                         <code>DERIVATION_RESTRICTION, DERIVATION_EXTENSION, DERIVATION_UNION, DERIVATION_LIST</code>
-     *                         }.
+     *        A bit combination representing a subset of {
+     *        <code>DERIVATION_RESTRICTION, DERIVATION_EXTENSION, DERIVATION_UNION, DERIVATION_LIST</code>
+     *        }.
      * @return True if this type is derived from <code>ancestorType</code> using
      *         only derivation methods from the <code>derivationMethod</code> .
      */
-    public boolean derivedFrom(String namespace, String name,
-            short derivationMethod);
+    public boolean derivedFrom(String namespace, String name, short derivationMethod);
 
 }

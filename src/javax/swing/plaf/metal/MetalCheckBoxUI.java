@@ -26,7 +26,6 @@ import java.io.Serializable;
  * Please see {@link java.beans.XMLEncoder}.
  *
  * @author Michael C. Albers
- *
  */
 public class MetalCheckBoxUI extends MetalRadioButtonUI {
 
@@ -45,8 +44,7 @@ public class MetalCheckBoxUI extends MetalRadioButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent b) {
         AppContext appContext = AppContext.getAppContext();
-        MetalCheckBoxUI checkboxUI = (MetalCheckBoxUI) appContext.get(
-                METAL_CHECK_BOX_UI_KEY);
+        MetalCheckBoxUI checkboxUI = (MetalCheckBoxUI) appContext.get(METAL_CHECK_BOX_UI_KEY);
         if (checkboxUI == null) {
             checkboxUI = new MetalCheckBoxUI();
             appContext.put(METAL_CHECK_BOX_UI_KEY, checkboxUI);

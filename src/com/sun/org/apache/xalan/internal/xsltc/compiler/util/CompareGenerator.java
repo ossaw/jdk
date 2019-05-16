@@ -52,19 +52,17 @@ public final class CompareGenerator extends MethodGenerator {
     private final Instruction _aloadIterator;
     private final Instruction _astoreIterator;
 
-    public CompareGenerator(int access_flags, Type return_type,
-            Type[] arg_types, String[] arg_names, String method_name,
-            String class_name, InstructionList il, ConstantPoolGen cp) {
-        super(access_flags, return_type, arg_types, arg_names, method_name,
-                class_name, il, cp);
+    public CompareGenerator(int access_flags, Type return_type, Type[] arg_types, String[] arg_names,
+            String method_name, String class_name, InstructionList il, ConstantPoolGen cp) {
+        super(access_flags, return_type, arg_types, arg_names, method_name, class_name, il, cp);
 
         _iloadCurrent = new ILOAD(CURRENT_INDEX);
         _istoreCurrent = new ISTORE(CURRENT_INDEX);
         _aloadDom = new ALOAD(DOM_INDEX);
         _iloadLast = new ILOAD(LAST_INDEX);
 
-        LocalVariableGen iterator = addLocalVariable("iterator", Util
-                .getJCRefType(Constants.NODE_ITERATOR_SIG), null, null);
+        LocalVariableGen iterator = addLocalVariable("iterator", Util.getJCRefType(
+                Constants.NODE_ITERATOR_SIG), null, null);
         ITERATOR_INDEX = iterator.getIndex();
         _aloadIterator = new ALOAD(ITERATOR_INDEX);
         _astoreIterator = new ASTORE(ITERATOR_INDEX);

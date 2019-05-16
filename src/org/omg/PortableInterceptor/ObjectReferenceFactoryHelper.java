@@ -15,16 +15,14 @@ package org.omg.PortableInterceptor;
 abstract public class ObjectReferenceFactoryHelper {
     private static String _id = "IDL:omg.org/PortableInterceptor/ObjectReferenceFactory:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.PortableInterceptor.ObjectReferenceFactory that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.PortableInterceptor.ObjectReferenceFactory that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static org.omg.PortableInterceptor.ObjectReferenceFactory extract(
-            org.omg.CORBA.Any a) {
+    public static org.omg.PortableInterceptor.ObjectReferenceFactory extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -36,14 +34,12 @@ abstract public class ObjectReferenceFactoryHelper {
             synchronized (org.omg.CORBA.TypeCode.class) {
                 if (__typeCode == null) {
                     if (__active) {
-                        return org.omg.CORBA.ORB.init().create_recursive_tc(
-                                _id);
+                        return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
                     }
                     __active = true;
                     org.omg.CORBA.ValueMember[] _members0 = new org.omg.CORBA.ValueMember[0];
                     org.omg.CORBA.TypeCode _tcOf_members0 = null;
-                    __typeCode = org.omg.CORBA.ORB.init().create_value_tc(_id,
-                            "ObjectReferenceFactory",
+                    __typeCode = org.omg.CORBA.ORB.init().create_value_tc(_id, "ObjectReferenceFactory",
                             org.omg.CORBA.VM_ABSTRACT.value, null, _members0);
                     __active = false;
                 }
@@ -64,8 +60,7 @@ abstract public class ObjectReferenceFactoryHelper {
 
     public static void write(org.omg.CORBA.portable.OutputStream ostream,
             org.omg.PortableInterceptor.ObjectReferenceFactory value) {
-        ((org.omg.CORBA_2_3.portable.OutputStream) ostream).write_value(value,
-                id());
+        ((org.omg.CORBA_2_3.portable.OutputStream) ostream).write_value(value, id());
     }
 
 }

@@ -27,7 +27,7 @@ public interface FlavorListener extends EventListener {
      * occasional.
      *
      * @param e
-     *          a <code>FlavorEvent</code> object
+     *        a <code>FlavorEvent</code> object
      */
     void flavorsChanged(FlavorEvent e);
 }

@@ -19,14 +19,12 @@ package java.util.concurrent;
  * are submitted in one part of a program or system, and then acted upon in a
  * different part of the program when the reads complete, possibly in a
  * different order than they were requested.
- *
  * <p>
  * Typically, a {@code CompletionService} relies on a separate {@link Executor}
  * to actually execute the tasks, in which case the {@code CompletionService}
  * only manages an internal completion queue. The
  * {@link ExecutorCompletionService} class provides an implementation of this
  * approach.
- *
  * <p>
  * Memory consistency effects: Actions in a thread prior to submitting a task to
  * a {@code CompletionService}
@@ -41,13 +39,13 @@ public interface CompletionService<V> {
      * may be taken or polled.
      *
      * @param task
-     *             the task to submit
+     *        the task to submit
      * @return a Future representing pending completion of the task
      * @throws RejectedExecutionException
-     *                                    if the task cannot be scheduled for
-     *                                    execution
+     *         if the task cannot be scheduled for
+     *         execution
      * @throws NullPointerException
-     *                                    if the task is null
+     *         if the task is null
      */
     Future<V> submit(Callable<V> task);
 
@@ -56,17 +54,17 @@ public interface CompletionService<V> {
      * that task. Upon completion, this task may be taken or polled.
      *
      * @param task
-     *               the task to submit
+     *        the task to submit
      * @param result
-     *               the result to return upon successful completion
+     *        the result to return upon successful completion
      * @return a Future representing pending completion of the task, and whose
      *         {@code get()} method will return the given result value upon
      *         completion
      * @throws RejectedExecutionException
-     *                                    if the task cannot be scheduled for
-     *                                    execution
+     *         if the task cannot be scheduled for
+     *         execution
      * @throws NullPointerException
-     *                                    if the task is null
+     *         if the task is null
      */
     Future<V> submit(Runnable task, V result);
 
@@ -76,7 +74,7 @@ public interface CompletionService<V> {
      *
      * @return the Future representing the next completed task
      * @throws InterruptedException
-     *                              if interrupted while waiting
+     *         if interrupted while waiting
      */
     Future<V> take() throws InterruptedException;
 
@@ -95,15 +93,15 @@ public interface CompletionService<V> {
      * present.
      *
      * @param timeout
-     *                how long to wait before giving up, in units of
-     *                {@code unit}
+     *        how long to wait before giving up, in units of
+     *        {@code unit}
      * @param unit
-     *                a {@code TimeUnit} determining how to interpret the
-     *                {@code timeout} parameter
+     *        a {@code TimeUnit} determining how to interpret the
+     *        {@code timeout} parameter
      * @return the Future representing the next completed task or {@code null}
      *         if the specified waiting time elapses before one is present
      * @throws InterruptedException
-     *                              if interrupted while waiting
+     *         if interrupted while waiting
      */
     Future<V> poll(long timeout, TimeUnit unit) throws InterruptedException;
 }

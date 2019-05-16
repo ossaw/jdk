@@ -7,7 +7,6 @@ package java.util;
 
 /**
  * Unchecked exception thrown when a conversion and flag are incompatible.
- *
  * <p>
  * Unless otherwise specified, passing a <tt>null</tt> argument to any method or
  * constructor in this class will cause a {@link NullPointerException} to be
@@ -15,8 +14,7 @@ package java.util;
  *
  * @since 1.5
  */
-public class FormatFlagsConversionMismatchException extends
-        IllegalFormatException {
+public class FormatFlagsConversionMismatchException extends IllegalFormatException {
     private static final long serialVersionUID = 19120414L;
 
     private String f;
@@ -28,10 +26,9 @@ public class FormatFlagsConversionMismatchException extends
      * conversion.
      *
      * @param f
-     *          The flag
-     *
+     *        The flag
      * @param c
-     *          The conversion
+     *        The conversion
      */
     public FormatFlagsConversionMismatchException(String f, char c) {
         if (f == null)

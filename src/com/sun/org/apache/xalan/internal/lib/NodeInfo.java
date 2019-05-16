@@ -40,14 +40,13 @@ public class NodeInfo {
      * <code>systemId</code> returns the system id of the current context node.
      *
      * @param context
-     *                an <code>ExpressionContext</code> value
+     *        an <code>ExpressionContext</code> value
      * @return a <code>String</code> value
      */
     public static String systemId(ExpressionContext context) {
         Node contextNode = context.getContextNode();
         int nodeHandler = ((DTMNodeProxy) contextNode).getDTMNodeNumber();
-        SourceLocator locator = ((DTMNodeProxy) contextNode).getDTM()
-                .getSourceLocatorFor(nodeHandler);
+        SourceLocator locator = ((DTMNodeProxy) contextNode).getDTM().getSourceLocatorFor(nodeHandler);
 
         if (locator != null)
             return locator.getSystemId();
@@ -61,7 +60,7 @@ public class NodeInfo {
      * node in the set is returned.
      *
      * @param nodeList
-     *                 a <code>NodeList</code> value
+     *        a <code>NodeList</code> value
      * @return a <code>String</code> value
      */
     public static String systemId(NodeList nodeList) {
@@ -70,8 +69,7 @@ public class NodeInfo {
 
         Node node = nodeList.item(0);
         int nodeHandler = ((DTMNodeProxy) node).getDTMNodeNumber();
-        SourceLocator locator = ((DTMNodeProxy) node).getDTM()
-                .getSourceLocatorFor(nodeHandler);
+        SourceLocator locator = ((DTMNodeProxy) node).getDTM().getSourceLocatorFor(nodeHandler);
 
         if (locator != null)
             return locator.getSystemId();
@@ -82,18 +80,16 @@ public class NodeInfo {
     /**
      * <code>publicId</code> returns the public identifier of the current
      * context node.
-     *
      * Xalan does not currently record this value, and will return null.
      *
      * @param context
-     *                an <code>ExpressionContext</code> value
+     *        an <code>ExpressionContext</code> value
      * @return a <code>String</code> value
      */
     public static String publicId(ExpressionContext context) {
         Node contextNode = context.getContextNode();
         int nodeHandler = ((DTMNodeProxy) contextNode).getDTMNodeNumber();
-        SourceLocator locator = ((DTMNodeProxy) contextNode).getDTM()
-                .getSourceLocatorFor(nodeHandler);
+        SourceLocator locator = ((DTMNodeProxy) contextNode).getDTM().getSourceLocatorFor(nodeHandler);
 
         if (locator != null)
             return locator.getPublicId();
@@ -105,11 +101,10 @@ public class NodeInfo {
      * <code>publicId</code> returns the public identifier of the node passed as
      * argument. If a node set is passed as argument, the public identifier of
      * the first node in the set is returned.
-     *
      * Xalan does not currently record this value, and will return null.
      *
      * @param nodeList
-     *                 a <code>NodeList</code> value
+     *        a <code>NodeList</code> value
      * @return a <code>String</code> value
      */
     public static String publicId(NodeList nodeList) {
@@ -118,8 +113,7 @@ public class NodeInfo {
 
         Node node = nodeList.item(0);
         int nodeHandler = ((DTMNodeProxy) node).getDTMNodeNumber();
-        SourceLocator locator = ((DTMNodeProxy) node).getDTM()
-                .getSourceLocatorFor(nodeHandler);
+        SourceLocator locator = ((DTMNodeProxy) node).getDTM().getSourceLocatorFor(nodeHandler);
 
         if (locator != null)
             return locator.getPublicId();
@@ -130,7 +124,6 @@ public class NodeInfo {
     /**
      * <code>lineNumber</code> returns the line number of the current context
      * node.
-     *
      * NOTE: Xalan does not normally record location information for each node.
      * To obtain it, you must set the custom TrAX attribute
      * "http://xml.apache.org/xalan/features/source_location" true in the
@@ -139,15 +132,14 @@ public class NodeInfo {
      * mode.
      *
      * @param context
-     *                an <code>ExpressionContext</code> value
+     *        an <code>ExpressionContext</code> value
      * @return an <code>int</code> value. This may be -1 to indicate that the
      *         line number is not known.
      */
     public static int lineNumber(ExpressionContext context) {
         Node contextNode = context.getContextNode();
         int nodeHandler = ((DTMNodeProxy) contextNode).getDTMNodeNumber();
-        SourceLocator locator = ((DTMNodeProxy) contextNode).getDTM()
-                .getSourceLocatorFor(nodeHandler);
+        SourceLocator locator = ((DTMNodeProxy) contextNode).getDTM().getSourceLocatorFor(nodeHandler);
 
         if (locator != null)
             return locator.getLineNumber();
@@ -159,7 +151,6 @@ public class NodeInfo {
      * <code>lineNumber</code> returns the line number of the node passed as
      * argument. If a node set is passed as argument, the line number of the
      * first node in the set is returned.
-     *
      * NOTE: Xalan does not normally record location information for each node.
      * To obtain it, you must set the custom TrAX attribute
      * "http://xml.apache.org/xalan/features/source_location" true in the
@@ -168,7 +159,7 @@ public class NodeInfo {
      * mode.
      *
      * @param nodeList
-     *                 a <code>NodeList</code> value
+     *        a <code>NodeList</code> value
      * @return an <code>int</code> value. This may be -1 to indicate that the
      *         line number is not known.
      */
@@ -178,8 +169,7 @@ public class NodeInfo {
 
         Node node = nodeList.item(0);
         int nodeHandler = ((DTMNodeProxy) node).getDTMNodeNumber();
-        SourceLocator locator = ((DTMNodeProxy) node).getDTM()
-                .getSourceLocatorFor(nodeHandler);
+        SourceLocator locator = ((DTMNodeProxy) node).getDTM().getSourceLocatorFor(nodeHandler);
 
         if (locator != null)
             return locator.getLineNumber();
@@ -190,7 +180,6 @@ public class NodeInfo {
     /**
      * <code>columnNumber</code> returns the column number of the current
      * context node.
-     *
      * NOTE: Xalan does not normally record location information for each node.
      * To obtain it, you must set the custom TrAX attribute
      * "http://xml.apache.org/xalan/features/source_location" true in the
@@ -199,15 +188,14 @@ public class NodeInfo {
      * mode.
      *
      * @param context
-     *                an <code>ExpressionContext</code> value
+     *        an <code>ExpressionContext</code> value
      * @return an <code>int</code> value. This may be -1 to indicate that the
      *         column number is not known.
      */
     public static int columnNumber(ExpressionContext context) {
         Node contextNode = context.getContextNode();
         int nodeHandler = ((DTMNodeProxy) contextNode).getDTMNodeNumber();
-        SourceLocator locator = ((DTMNodeProxy) contextNode).getDTM()
-                .getSourceLocatorFor(nodeHandler);
+        SourceLocator locator = ((DTMNodeProxy) contextNode).getDTM().getSourceLocatorFor(nodeHandler);
 
         if (locator != null)
             return locator.getColumnNumber();
@@ -219,7 +207,6 @@ public class NodeInfo {
      * <code>columnNumber</code> returns the column number of the node passed as
      * argument. If a node set is passed as argument, the line number of the
      * first node in the set is returned.
-     *
      * NOTE: Xalan does not normally record location information for each node.
      * To obtain it, you must set the custom TrAX attribute
      * "http://xml.apache.org/xalan/features/source_location" true in the
@@ -228,7 +215,7 @@ public class NodeInfo {
      * mode.
      *
      * @param nodeList
-     *                 a <code>NodeList</code> value
+     *        a <code>NodeList</code> value
      * @return an <code>int</code> value. This may be -1 to indicate that the
      *         column number is not known.
      */
@@ -238,8 +225,7 @@ public class NodeInfo {
 
         Node node = nodeList.item(0);
         int nodeHandler = ((DTMNodeProxy) node).getDTMNodeNumber();
-        SourceLocator locator = ((DTMNodeProxy) node).getDTM()
-                .getSourceLocatorFor(nodeHandler);
+        SourceLocator locator = ((DTMNodeProxy) node).getDTM().getSourceLocatorFor(nodeHandler);
 
         if (locator != null)
             return locator.getColumnNumber();

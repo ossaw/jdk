@@ -58,9 +58,7 @@ import com.sun.org.apache.xerces.internal.xni.parser.XMLDocumentFilter;
  * validator.
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
- *
  */
 public interface XMLDTDValidatorFilter extends XMLDocumentFilter {
 

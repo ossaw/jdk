@@ -14,7 +14,6 @@ import java.util.Hashtable;
  * defined in this interface.
  *
  * @see ImageProducer
- *
  * @author Jim Graham
  */
 public interface ImageConsumer {
@@ -23,9 +22,9 @@ public interface ImageConsumer {
      * method call.
      * 
      * @param width
-     *               the width of the source image
+     *        the width of the source image
      * @param height
-     *               the height of the source image
+     *        the height of the source image
      */
     void setDimensions(int width, int height);
 
@@ -33,7 +32,7 @@ public interface ImageConsumer {
      * Sets the extensible list of properties associated with this image.
      * 
      * @param props
-     *              the list of properties to be associated with this image
+     *        the list of properties to be associated with this image
      */
     void setProperties(Hashtable<?, ?> props);
 
@@ -50,7 +49,7 @@ public interface ImageConsumer {
      * process.
      * 
      * @param model
-     *              the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @see ColorModel
      */
     void setColorModel(ColorModel model);
@@ -67,9 +66,9 @@ public interface ImageConsumer {
      * follow the guidelines for the indicated hint, the results are undefined.
      * 
      * @param hintflags
-     *                  a set of hints that the ImageConsumer uses to process
-     *                  the
-     *                  pixels
+     *        a set of hints that the ImageConsumer uses to process
+     *        the
+     *        pixels
      */
     void setHints(int hintflags);
 
@@ -134,28 +133,27 @@ public interface ImageConsumer {
      * using this method are all stored as bytes.
      * 
      * @param x
-     *                 the X coordinate of the upper-left corner of the area of
-     *                 pixels to be set
+     *        the X coordinate of the upper-left corner of the area of
+     *        pixels to be set
      * @param y
-     *                 the Y coordinate of the upper-left corner of the area of
-     *                 pixels to be set
+     *        the Y coordinate of the upper-left corner of the area of
+     *        pixels to be set
      * @param w
-     *                 the width of the area of pixels
+     *        the width of the area of pixels
      * @param h
-     *                 the height of the area of pixels
+     *        the height of the area of pixels
      * @param model
-     *                 the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param pixels
-     *                 the array of pixels
+     *        the array of pixels
      * @param off
-     *                 the offset into the <code>pixels</code> array
+     *        the offset into the <code>pixels</code> array
      * @param scansize
-     *                 the distance from one row of pixels to the next in the
-     *                 <code>pixels</code> array
+     *        the distance from one row of pixels to the next in the
+     *        <code>pixels</code> array
      * @see ColorModel
      */
-    void setPixels(int x, int y, int w, int h, ColorModel model, byte pixels[],
-            int off, int scansize);
+    void setPixels(int x, int y, int w, int h, ColorModel model, byte pixels[], int off, int scansize);
 
     /**
      * The pixels of the image are delivered using one or more calls to the
@@ -168,28 +166,27 @@ public interface ImageConsumer {
      * ints.
      * 
      * @param x
-     *                 the X coordinate of the upper-left corner of the area of
-     *                 pixels to be set
+     *        the X coordinate of the upper-left corner of the area of
+     *        pixels to be set
      * @param y
-     *                 the Y coordinate of the upper-left corner of the area of
-     *                 pixels to be set
+     *        the Y coordinate of the upper-left corner of the area of
+     *        pixels to be set
      * @param w
-     *                 the width of the area of pixels
+     *        the width of the area of pixels
      * @param h
-     *                 the height of the area of pixels
+     *        the height of the area of pixels
      * @param model
-     *                 the specified <code>ColorModel</code>
+     *        the specified <code>ColorModel</code>
      * @param pixels
-     *                 the array of pixels
+     *        the array of pixels
      * @param off
-     *                 the offset into the <code>pixels</code> array
+     *        the offset into the <code>pixels</code> array
      * @param scansize
-     *                 the distance from one row of pixels to the next in the
-     *                 <code>pixels</code> array
+     *        the distance from one row of pixels to the next in the
+     *        <code>pixels</code> array
      * @see ColorModel
      */
-    void setPixels(int x, int y, int w, int h, ColorModel model, int pixels[],
-            int off, int scansize);
+    void setPixels(int x, int y, int w, int h, ColorModel model, int pixels[], int off, int scansize);
 
     /**
      * The imageComplete method is called when the ImageProducer is finished
@@ -200,7 +197,7 @@ public interface ImageConsumer {
      * ImageProducer at this time, unless it is interested in successive frames.
      * 
      * @param status
-     *               the status of image loading
+     *        the status of image loading
      * @see ImageProducer#removeConsumer
      */
     void imageComplete(int status);

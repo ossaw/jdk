@@ -35,7 +35,6 @@ import java.io.IOException;
  * >
  * <p>
  * Here is the code for this applet:
- *
  * <hr>
  * <blockquote>
  * 
@@ -190,7 +189,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * <code>FlowLayout.LEADING</code>, or <code>FlowLayout.TRAILING</code>.
      * 
      * @param align
-     *              the alignment value
+     *        the alignment value
      */
     public FlowLayout(int align) {
         this(align, 5, 5);
@@ -206,14 +205,14 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * <code>FlowLayout.TRAILING</code>.
      * 
      * @param align
-     *              the alignment value
+     *        the alignment value
      * @param hgap
-     *              the horizontal gap between components and between the
-     *              components and the borders of the <code>Container</code>
+     *        the horizontal gap between components and between the
+     *        components and the borders of the <code>Container</code>
      * @param vgap
-     *              the vertical gap between components and between the
-     *              components
-     *              and the borders of the <code>Container</code>
+     *        the vertical gap between components and between the
+     *        components
+     *        and the borders of the <code>Container</code>
      */
     public FlowLayout(int align, int hgap, int vgap) {
         this.hgap = hgap;
@@ -246,7 +245,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * </ul>
      * 
      * @param align
-     *              one of the alignment values shown above
+     *        one of the alignment values shown above
      * @see #getAlignment()
      * @since JDK1.1
      */
@@ -288,8 +287,8 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * the borders of the <code>Container</code>.
      *
      * @param hgap
-     *             the horizontal gap between components and between the
-     *             components and the borders of the <code>Container</code>
+     *        the horizontal gap between components and between the
+     *        components and the borders of the <code>Container</code>
      * @see java.awt.FlowLayout#getHgap
      * @since JDK1.1
      */
@@ -315,9 +314,9 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * the borders of the <code>Container</code>.
      *
      * @param vgap
-     *             the vertical gap between components and between the
-     *             components
-     *             and the borders of the <code>Container</code>
+     *        the vertical gap between components and between the
+     *        components
+     *        and the borders of the <code>Container</code>
      * @see java.awt.FlowLayout#getVgap
      * @since JDK1.1
      */
@@ -331,9 +330,9 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * default is false.
      *
      * @param alignOnBaseline
-     *                        whether or not components should be vertically
-     *                        aligned on
-     *                        their baseline
+     *        whether or not components should be vertically
+     *        aligned on
+     *        their baseline
      * @since 1.6
      */
     public void setAlignOnBaseline(boolean alignOnBaseline) {
@@ -356,9 +355,9 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * Adds the specified component to the layout. Not used by this class.
      * 
      * @param name
-     *             the name of the component
+     *        the name of the component
      * @param comp
-     *             the component to be added
+     *        the component to be added
      */
     public void addLayoutComponent(String name, Component comp) {}
 
@@ -366,7 +365,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * Removes the specified component from the layout. Not used by this class.
      * 
      * @param comp
-     *             the component to remove
+     *        the component to remove
      * @see java.awt.Container#removeAll
      */
     public void removeLayoutComponent(Component comp) {}
@@ -376,7 +375,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * components in the specified target container.
      *
      * @param target
-     *               the container that needs to be laid out
+     *        the container that needs to be laid out
      * @return the preferred dimensions to lay out the subcomponents of the
      *         specified container
      * @see Container
@@ -407,8 +406,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
                         int baseline = m.getBaseline(d.width, d.height);
                         if (baseline >= 0) {
                             maxAscent = Math.max(maxAscent, baseline);
-                            maxDescent = Math.max(maxDescent, d.height
-                                    - baseline);
+                            maxDescent = Math.max(maxDescent, d.height - baseline);
                         }
                     }
                 }
@@ -428,7 +426,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * components contained in the specified target container.
      * 
      * @param target
-     *               the container that needs to be laid out
+     *        the container that needs to be laid out
      * @return the minimum dimensions to lay out the subcomponents of the
      *         specified container
      * @see #preferredLayoutSize
@@ -459,8 +457,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
                         int baseline = m.getBaseline(d.width, d.height);
                         if (baseline >= 0) {
                             maxAscent = Math.max(maxAscent, baseline);
-                            maxDescent = Math.max(maxDescent, dim.height
-                                    - baseline);
+                            maxDescent = Math.max(maxDescent, dim.height - baseline);
                         }
                     }
                 }
@@ -482,34 +479,33 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * Centers the elements in the specified row, if there is any slack.
      * 
      * @param target
-     *                    the component which needs to be moved
+     *        the component which needs to be moved
      * @param x
-     *                    the x coordinate
+     *        the x coordinate
      * @param y
-     *                    the y coordinate
+     *        the y coordinate
      * @param width
-     *                    the width dimensions
+     *        the width dimensions
      * @param height
-     *                    the height dimensions
+     *        the height dimensions
      * @param rowStart
-     *                    the beginning of the row
+     *        the beginning of the row
      * @param rowEnd
-     *                    the the ending of the row
+     *        the the ending of the row
      * @param useBaseline
-     *                    Whether or not to align on baseline.
+     *        Whether or not to align on baseline.
      * @param ascent
-     *                    Ascent for the components. This is only valid if
-     *                    useBaseline
-     *                    is true.
+     *        Ascent for the components. This is only valid if
+     *        useBaseline
+     *        is true.
      * @param descent
-     *                    Ascent for the components. This is only valid if
-     *                    useBaseline
-     *                    is true.
+     *        Ascent for the components. This is only valid if
+     *        useBaseline
+     *        is true.
      * @return actual row height
      */
-    private int moveComponents(Container target, int x, int y, int width,
-            int height, int rowStart, int rowEnd, boolean ltr,
-            boolean useBaseline, int[] ascent, int[] descent) {
+    private int moveComponents(Container target, int x, int y, int width, int height, int rowStart,
+            int rowEnd, boolean ltr, boolean useBaseline, int[] ascent, int[] descent) {
         switch (newAlign) {
             case LEFT:
                 x += ltr ? 0 : width;
@@ -538,8 +534,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
                         maxAscent = Math.max(maxAscent, ascent[i]);
                         maxDescent = Math.max(maxDescent, descent[i]);
                     } else {
-                        nonbaselineHeight = Math.max(m.getHeight(),
-                                nonbaselineHeight);
+                        nonbaselineHeight = Math.max(m.getHeight(), nonbaselineHeight);
                     }
                 }
             }
@@ -573,15 +568,14 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * <code>FlowLayout</code> object.
      *
      * @param target
-     *               the specified component being laid out
+     *        the specified component being laid out
      * @see Container
      * @see java.awt.Container#doLayout
      */
     public void layoutContainer(Container target) {
         synchronized (target.getTreeLock()) {
             Insets insets = target.getInsets();
-            int maxwidth = target.width - (insets.left + insets.right + hgap
-                    * 2);
+            int maxwidth = target.width - (insets.left + insets.right + hgap * 2);
             int nmembers = target.getComponentCount();
             int x = 0, y = insets.top + vgap;
             int rowh = 0, start = 0;
@@ -619,9 +613,8 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
                         x += d.width;
                         rowh = Math.max(rowh, d.height);
                     } else {
-                        rowh = moveComponents(target, insets.left + hgap, y,
-                                maxwidth - x, rowh, start, i, ltr, useBaseline,
-                                ascent, descent);
+                        rowh = moveComponents(target, insets.left + hgap, y, maxwidth - x, rowh, start, i,
+                                ltr, useBaseline, ascent, descent);
                         x = d.width;
                         y += vgap + rowh;
                         rowh = d.height;
@@ -629,8 +622,8 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
                     }
                 }
             }
-            moveComponents(target, insets.left + hgap, y, maxwidth - x, rowh,
-                    start, nmembers, ltr, useBaseline, ascent, descent);
+            moveComponents(target, insets.left + hgap, y, maxwidth - x, rowh, start, nmembers, ltr,
+                    useBaseline, ascent, descent);
         }
     }
 
@@ -655,8 +648,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
      * by older versions of the class that didn't contain all of the fields we
      * use now..
      */
-    private void readObject(ObjectInputStream stream) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
         stream.defaultReadObject();
 
         if (serialVersionOnStream < 1) {
@@ -691,8 +683,7 @@ public class FlowLayout implements LayoutManager, java.io.Serializable {
                 str = ",align=trailing";
                 break;
         }
-        return getClass().getName() + "[hgap=" + hgap + ",vgap=" + vgap + str
-                + "]";
+        return getClass().getName() + "[hgap=" + hgap + ",vgap=" + vgap + str + "]";
     }
 
 }

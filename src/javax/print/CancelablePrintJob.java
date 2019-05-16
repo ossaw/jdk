@@ -47,7 +47,7 @@ public interface CancelablePrintJob extends DocPrintJob {
      * execution.
      * 
      * @throws PrintException
-     *                        if the job could not be successfully cancelled.
+     *         if the job could not be successfully cancelled.
      */
     public void cancel() throws PrintException;
 

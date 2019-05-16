@@ -10,7 +10,6 @@ import javax.lang.model.element.Name;
 
 /**
  * A tree node for a method or annotation type element declaration.
- *
  * For example:
  * 
  * <pre>
@@ -22,7 +21,6 @@ import javax.lang.model.element.Name;
  * </pre>
  *
  * @jls sections 8.4, 8.6, 8.7, 9.4, and 9.6
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

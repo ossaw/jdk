@@ -41,15 +41,13 @@ class CharacterData01 extends CharacterData {
 
     int getProperties(int ch) {
         char offset = (char) ch;
-        int props = A[(Y[(X[offset >> 5] << 4) | ((offset >> 1) & 0xF)] << 1)
-                | (offset & 0x1)];
+        int props = A[(Y[(X[offset >> 5] << 4) | ((offset >> 1) & 0xF)] << 1) | (offset & 0x1)];
         return props;
     }
 
     int getPropertiesEx(int ch) {
         char offset = (char) ch;
-        int props = B[(Y[(X[offset >> 5] << 4) | ((offset >> 1) & 0xF)] << 1)
-                | (offset & 0x1)];
+        int props = B[(Y[(X[offset >> 5] << 4) | ((offset >> 1) & 0xF)] << 1) | (offset & 0x1)];
         return props;
     }
 
@@ -668,8 +666,7 @@ class CharacterData01 extends CharacterData {
             + "\111\111\111\161\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003"
             + "\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003"
             + "\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003"
-            + "\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003")
-                    .toCharArray();
+            + "\003\003\003\003\003\003\003\003\003\003\003\003\003\003\003").toCharArray();
 
     // The Y table has 2176 entries for a total of 4352 bytes.
 
@@ -856,8 +853,7 @@ class CharacterData01 extends CharacterData {
             + "\000\004\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
             + "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
             + "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
-            + "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000")
-                    .toCharArray();
+            + "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000").toCharArray();
 
     // In all, the character property tables require 9728 bytes.
 

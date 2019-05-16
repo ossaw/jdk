@@ -30,7 +30,7 @@ public class ZipException extends IOException {
      * Constructs a <code>ZipException</code> with the specified detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
 
     public ZipException(String s) {

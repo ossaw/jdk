@@ -35,10 +35,10 @@ public class GrayFilter extends RGBImageFilter {
      * image. Used by buttons to create disabled ("grayed out") button images.
      *
      * @param b
-     *          a boolean -- true if the pixels should be brightened
+     *        a boolean -- true if the pixels should be brightened
      * @param p
-     *          an int in the range 0..100 that determines the percentage of
-     *          gray, where 100 is the darkest gray, and 0 is the lightest
+     *        an int in the range 0..100 that determines the percentage of
+     *        gray, where 100 is the darkest gray, and 0 is the lightest
      */
     public GrayFilter(boolean b, int p) {
         brighter = b;
@@ -56,8 +56,8 @@ public class GrayFilter extends RGBImageFilter {
      */
     public int filterRGB(int x, int y, int rgb) {
         // Use NTSC conversion formula.
-        int gray = (int) ((0.30 * ((rgb >> 16) & 0xff) + 0.59 * ((rgb >> 8)
-                & 0xff) + 0.11 * (rgb & 0xff)) / 3);
+        int gray = (int) ((0.30 * ((rgb >> 16) & 0xff) + 0.59 * ((rgb >> 8) & 0xff) + 0.11 * (rgb & 0xff))
+                / 3);
 
         if (brighter) {
             gray = (255 - ((255 - gray) * (100 - percent) / 100));

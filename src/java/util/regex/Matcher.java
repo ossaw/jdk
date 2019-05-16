@@ -11,42 +11,34 @@ import java.util.Objects;
  * An engine that performs match operations on a
  * {@linkplain java.lang.CharSequence character sequence} by interpreting a
  * {@link Pattern}.
- *
  * <p>
  * A matcher is created from a pattern by invoking the pattern's
  * {@link Pattern#matcher matcher} method. Once created, a matcher can be used
  * to perform three different kinds of match operations:
- *
  * <ul>
- *
  * <li>
  * <p>
  * The {@link #matches matches} method attempts to match the entire input
  * sequence against the pattern.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #lookingAt lookingAt} method attempts to match the input sequence,
  * starting at the beginning, against the pattern.
  * </p>
  * </li>
- *
  * <li>
  * <p>
  * The {@link #find find} method scans the input sequence looking for the next
  * subsequence that matches the pattern.
  * </p>
  * </li>
- *
  * </ul>
- *
  * <p>
  * Each of these methods returns a boolean indicating success or failure. More
  * information about a successful match can be obtained by querying the state of
  * the matcher.
- *
  * <p>
  * A matcher finds matches in a subset of its input called the <i>region</i>. By
  * default, the region contains all of the matcher's input. The region can be
@@ -55,7 +47,6 @@ import java.util.Objects;
  * The way that the region boundaries interact with some pattern constructs can
  * be changed. See {@link #useAnchoringBounds useAnchoringBounds} and
  * {@link #useTransparentBounds useTransparentBounds} for more details.
- *
  * <p>
  * This class also defines methods for replacing matched subsequences with new
  * strings whose contents can, if desired, be computed from the match result.
@@ -64,7 +55,6 @@ import java.util.Objects;
  * an existing string buffer, or the more convenient {@link #replaceAll
  * replaceAll} method can be used to create a string in which every matching
  * subsequence in the input sequence is replaced.
- *
  * <p>
  * The explicit state of a matcher includes the start and end indices of the
  * most recent successful match. It also includes the start and end indices of
@@ -72,28 +62,23 @@ import java.util.Objects;
  * group</a> in the pattern as well as a total count of such subsequences. As a
  * convenience, methods are also provided for returning these captured
  * subsequences in string form.
- *
  * <p>
  * The explicit state of a matcher is initially undefined; attempting to query
  * any part of it before a successful match will cause an
  * {@link IllegalStateException} to be thrown. The explicit state of a matcher
  * is recomputed by every match operation.
- *
  * <p>
  * The implicit state of a matcher includes the input character sequence as well
  * as the <i>append position</i>, which is initially zero and is updated by the
  * {@link #appendReplacement appendReplacement} method.
- *
  * <p>
  * A matcher may be reset explicitly by invoking its {@link #reset()} method or,
  * if a new input sequence is desired, its {@link #reset(java.lang.CharSequence)
  * reset(CharSequence)} method. Resetting a matcher discards its explicit state
  * information and sets the append position to zero.
- *
  * <p>
  * Instances of this class are not safe for use by multiple concurrent threads.
  * </p>
- *
  *
  * @author Mike McCloskey
  * @author Mark Reinhold
@@ -168,7 +153,6 @@ public final class Matcher implements MatchResult {
     /**
      * Boolean indicating whether or not more input could change the results of
      * the last match.
-     *
      * If hitEnd is true, and a match was found, then more input might cause a
      * different match to be found. If hitEnd is true and a match was not found,
      * then more input could cause a match to be found. If hitEnd is false and a
@@ -181,7 +165,6 @@ public final class Matcher implements MatchResult {
     /**
      * Boolean indicating whether or not more input could change a positive
      * match into a negative one.
-     *
      * If requireEnd is true, and a match was found, then more input could cause
      * the match to be lost. If requireEnd is false and a match was found, then
      * more input might change the match but the match won't be lost. If a match
@@ -251,7 +234,6 @@ public final class Matcher implements MatchResult {
     /**
      * Changes the <tt>Pattern</tt> that this <tt>Matcher</tt> uses to find
      * matches with.
-     *
      * <p>
      * This method causes this matcher to lose information about the groups of
      * the last match that occurred. The matcher's position in the input is
@@ -259,10 +241,10 @@ public final class Matcher implements MatchResult {
      * </p>
      *
      * @param newPattern
-     *                   The new pattern used by this matcher
+     *        The new pattern used by this matcher
      * @return This matcher
      * @throws IllegalArgumentException
-     *                                  If newPattern is <tt>null</tt>
+     *         If newPattern is <tt>null</tt>
      * @since 1.5
      */
     public Matcher usePattern(Pattern newPattern) {
@@ -283,7 +265,6 @@ public final class Matcher implements MatchResult {
 
     /**
      * Resets this matcher.
-     *
      * <p>
      * Resetting a matcher discards all of its explicit state information and
      * sets its append position to zero. The matcher's region is set to the
@@ -308,7 +289,6 @@ public final class Matcher implements MatchResult {
 
     /**
      * Resets this matcher with a new input sequence.
-     *
      * <p>
      * Resetting a matcher discards all of its explicit state information and
      * sets its append position to zero. The matcher's region is set to the
@@ -316,8 +296,7 @@ public final class Matcher implements MatchResult {
      * transparency of this matcher's region boundaries are unaffected.
      *
      * @param input
-     *              The new input character sequence
-     *
+     *        The new input character sequence
      * @return This matcher
      */
     public Matcher reset(CharSequence input) {
@@ -329,11 +308,10 @@ public final class Matcher implements MatchResult {
      * Returns the start index of the previous match.
      *
      * @return The index of the first character matched
-     *
      * @throws IllegalStateException
-     *                               If no match has yet been attempted, or if
-     *                               the previous match
-     *                               operation failed
+     *         If no match has yet been attempted, or if
+     *         the previous match
+     *         operation failed
      */
     public int start() {
         if (first < 0)
@@ -344,7 +322,6 @@ public final class Matcher implements MatchResult {
     /**
      * Returns the start index of the subsequence captured by the given group
      * during the previous match operation.
-     *
      * <p>
      * <a href="Pattern.html#cg">Capturing groups</a> are indexed from left to
      * right, starting at one. Group zero denotes the entire pattern, so the
@@ -353,21 +330,18 @@ public final class Matcher implements MatchResult {
      * </p>
      *
      * @param group
-     *              The index of a capturing group in this matcher's pattern
-     *
+     *        The index of a capturing group in this matcher's pattern
      * @return The index of the first character captured by the group, or
      *         <tt>-1</tt> if the match was successful but the group itself did
      *         not match anything
-     *
      * @throws IllegalStateException
-     *                                   If no match has yet been attempted, or
-     *                                   if the previous match
-     *                                   operation failed
-     *
+     *         If no match has yet been attempted, or
+     *         if the previous match
+     *         operation failed
      * @throws IndexOutOfBoundsException
-     *                                   If there is no capturing group in the
-     *                                   pattern with the given
-     *                                   index
+     *         If there is no capturing group in the
+     *         pattern with the given
+     *         index
      */
     public int start(int group) {
         if (first < 0)
@@ -383,21 +357,18 @@ public final class Matcher implements MatchResult {
      * previous match operation.
      *
      * @param name
-     *             The name of a named-capturing group in this matcher's pattern
-     *
+     *        The name of a named-capturing group in this matcher's pattern
      * @return The index of the first character captured by the group, or
      *         {@code -1} if the match was successful but the group itself did
      *         not match anything
-     *
      * @throws IllegalStateException
-     *                                  If no match has yet been attempted, or
-     *                                  if the previous match
-     *                                  operation failed
-     *
+     *         If no match has yet been attempted, or
+     *         if the previous match
+     *         operation failed
      * @throws IllegalArgumentException
-     *                                  If there is no capturing group in the
-     *                                  pattern with the given
-     *                                  name
+     *         If there is no capturing group in the
+     *         pattern with the given
+     *         name
      * @since 1.8
      */
     public int start(String name) {
@@ -408,11 +379,10 @@ public final class Matcher implements MatchResult {
      * Returns the offset after the last character matched.
      *
      * @return The offset after the last character matched
-     *
      * @throws IllegalStateException
-     *                               If no match has yet been attempted, or if
-     *                               the previous match
-     *                               operation failed
+     *         If no match has yet been attempted, or if
+     *         the previous match
+     *         operation failed
      */
     public int end() {
         if (first < 0)
@@ -423,7 +393,6 @@ public final class Matcher implements MatchResult {
     /**
      * Returns the offset after the last character of the subsequence captured
      * by the given group during the previous match operation.
-     *
      * <p>
      * <a href="Pattern.html#cg">Capturing groups</a> are indexed from left to
      * right, starting at one. Group zero denotes the entire pattern, so the
@@ -432,21 +401,18 @@ public final class Matcher implements MatchResult {
      * </p>
      *
      * @param group
-     *              The index of a capturing group in this matcher's pattern
-     *
+     *        The index of a capturing group in this matcher's pattern
      * @return The offset after the last character captured by the group, or
      *         <tt>-1</tt> if the match was successful but the group itself did
      *         not match anything
-     *
      * @throws IllegalStateException
-     *                                   If no match has yet been attempted, or
-     *                                   if the previous match
-     *                                   operation failed
-     *
+     *         If no match has yet been attempted, or
+     *         if the previous match
+     *         operation failed
      * @throws IndexOutOfBoundsException
-     *                                   If there is no capturing group in the
-     *                                   pattern with the given
-     *                                   index
+     *         If there is no capturing group in the
+     *         pattern with the given
+     *         index
      */
     public int end(int group) {
         if (first < 0)
@@ -462,21 +428,18 @@ public final class Matcher implements MatchResult {
      * during the previous match operation.
      *
      * @param name
-     *             The name of a named-capturing group in this matcher's pattern
-     *
+     *        The name of a named-capturing group in this matcher's pattern
      * @return The offset after the last character captured by the group, or
      *         {@code -1} if the match was successful but the group itself did
      *         not match anything
-     *
      * @throws IllegalStateException
-     *                                  If no match has yet been attempted, or
-     *                                  if the previous match
-     *                                  operation failed
-     *
+     *         If no match has yet been attempted, or
+     *         if the previous match
+     *         operation failed
      * @throws IllegalArgumentException
-     *                                  If there is no capturing group in the
-     *                                  pattern with the given
-     *                                  name
+     *         If there is no capturing group in the
+     *         pattern with the given
+     *         name
      * @since 1.8
      */
     public int end(String name) {
@@ -485,13 +448,11 @@ public final class Matcher implements MatchResult {
 
     /**
      * Returns the input subsequence matched by the previous match.
-     *
      * <p>
      * For a matcher <i>m</i> with input sequence <i>s</i>, the expressions
      * <i>m.</i><tt>group()</tt> and <i>s.</i><tt>substring(</tt><i>m.</i>
      * <tt>start(),</tt>&nbsp;<i>m.</i><tt>end())</tt> are equivalent.
      * </p>
-     *
      * <p>
      * Note that some patterns, for example <tt>a*</tt>, match the empty string.
      * This method will return the empty string when the pattern successfully
@@ -500,11 +461,10 @@ public final class Matcher implements MatchResult {
      *
      * @return The (possibly empty) subsequence matched by the previous match,
      *         in string form
-     *
      * @throws IllegalStateException
-     *                               If no match has yet been attempted, or if
-     *                               the previous match
-     *                               operation failed
+     *         If no match has yet been attempted, or if
+     *         the previous match
+     *         operation failed
      */
     public String group() {
         return group(0);
@@ -513,20 +473,17 @@ public final class Matcher implements MatchResult {
     /**
      * Returns the input subsequence captured by the given group during the
      * previous match operation.
-     *
      * <p>
      * For a matcher <i>m</i>, input sequence <i>s</i>, and group index <i>g</i>
      * , the expressions <i>m.</i><tt>group(</tt><i>g</i><tt>)</tt> and
      * <i>s.</i><tt>substring(</tt><i>m.</i><tt>start(</tt><i>g</i><tt>),</tt>
      * &nbsp;<i>m.</i><tt>end(</tt><i>g</i><tt>))</tt> are equivalent.
      * </p>
-     *
      * <p>
      * <a href="Pattern.html#cg">Capturing groups</a> are indexed from left to
      * right, starting at one. Group zero denotes the entire pattern, so the
      * expression <tt>m.group(0)</tt> is equivalent to <tt>m.group()</tt>.
      * </p>
-     *
      * <p>
      * If the match was successful but the group specified failed to match any
      * part of the input sequence, then <tt>null</tt> is returned. Note that
@@ -536,21 +493,18 @@ public final class Matcher implements MatchResult {
      * </p>
      *
      * @param group
-     *              The index of a capturing group in this matcher's pattern
-     *
+     *        The index of a capturing group in this matcher's pattern
      * @return The (possibly empty) subsequence captured by the group during the
      *         previous match, or <tt>null</tt> if the group failed to match
      *         part of the input
-     *
      * @throws IllegalStateException
-     *                                   If no match has yet been attempted, or
-     *                                   if the previous match
-     *                                   operation failed
-     *
+     *         If no match has yet been attempted, or
+     *         if the previous match
+     *         operation failed
      * @throws IndexOutOfBoundsException
-     *                                   If there is no capturing group in the
-     *                                   pattern with the given
-     *                                   index
+     *         If there is no capturing group in the
+     *         pattern with the given
+     *         index
      */
     public String group(int group) {
         if (first < 0)
@@ -559,15 +513,13 @@ public final class Matcher implements MatchResult {
             throw new IndexOutOfBoundsException("No group " + group);
         if ((groups[group * 2] == -1) || (groups[group * 2 + 1] == -1))
             return null;
-        return getSubSequence(groups[group * 2], groups[group * 2 + 1])
-                .toString();
+        return getSubSequence(groups[group * 2], groups[group * 2 + 1]).toString();
     }
 
     /**
      * Returns the input subsequence captured by the given
      * <a href="Pattern.html#groupname">named-capturing group</a> during the
      * previous match operation.
-     *
      * <p>
      * If the match was successful but the group specified failed to match any
      * part of the input sequence, then <tt>null</tt> is returned. Note that
@@ -577,38 +529,32 @@ public final class Matcher implements MatchResult {
      * </p>
      *
      * @param name
-     *             The name of a named-capturing group in this matcher's pattern
-     *
+     *        The name of a named-capturing group in this matcher's pattern
      * @return The (possibly empty) subsequence captured by the named group
      *         during the previous match, or <tt>null</tt> if the group failed
      *         to match part of the input
-     *
      * @throws IllegalStateException
-     *                                  If no match has yet been attempted, or
-     *                                  if the previous match
-     *                                  operation failed
-     *
+     *         If no match has yet been attempted, or
+     *         if the previous match
+     *         operation failed
      * @throws IllegalArgumentException
-     *                                  If there is no capturing group in the
-     *                                  pattern with the given
-     *                                  name
+     *         If there is no capturing group in the
+     *         pattern with the given
+     *         name
      * @since 1.7
      */
     public String group(String name) {
         int group = getMatchedGroupIndex(name);
         if ((groups[group * 2] == -1) || (groups[group * 2 + 1] == -1))
             return null;
-        return getSubSequence(groups[group * 2], groups[group * 2 + 1])
-                .toString();
+        return getSubSequence(groups[group * 2], groups[group * 2 + 1]).toString();
     }
 
     /**
      * Returns the number of capturing groups in this matcher's pattern.
-     *
      * <p>
      * Group zero denotes the entire pattern by convention. It is not included
      * in this count.
-     *
      * <p>
      * Any non-negative integer smaller than or equal to the value returned by
      * this method is guaranteed to be a valid group index for this matcher.
@@ -622,7 +568,6 @@ public final class Matcher implements MatchResult {
 
     /**
      * Attempts to match the entire region against the pattern.
-     *
      * <p>
      * If the match succeeds then more information can be obtained via the
      * <tt>start</tt>, <tt>end</tt>, and <tt>group</tt> methods.
@@ -638,13 +583,11 @@ public final class Matcher implements MatchResult {
     /**
      * Attempts to find the next subsequence of the input sequence that matches
      * the pattern.
-     *
      * <p>
      * This method starts at the beginning of this matcher's region, or, if a
      * previous invocation of the method was successful and the matcher has not
      * since been reset, at the first character not matched by the previous
      * match.
-     *
      * <p>
      * If the match succeeds then more information can be obtained via the
      * <tt>start</tt>, <tt>end</tt>, and <tt>group</tt> methods.
@@ -674,7 +617,6 @@ public final class Matcher implements MatchResult {
     /**
      * Resets this matcher and then attempts to find the next subsequence of the
      * input sequence that matches the pattern, starting at the specified index.
-     *
      * <p>
      * If the match succeeds then more information can be obtained via the
      * <tt>start</tt>, <tt>end</tt>, and <tt>group</tt> methods, and subsequent
@@ -683,12 +625,11 @@ public final class Matcher implements MatchResult {
      * </p>
      *
      * @param start
-     *              the index to start searching for a match
+     *        the index to start searching for a match
      * @throws IndexOutOfBoundsException
-     *                                   If start is less than zero or if start
-     *                                   is greater than the
-     *                                   length of the input sequence.
-     *
+     *         If start is less than zero or if start
+     *         is greater than the
+     *         length of the input sequence.
      * @return <tt>true</tt> if, and only if, a subsequence of the input
      *         sequence starting at the given index matches this matcher's
      *         pattern
@@ -704,12 +645,10 @@ public final class Matcher implements MatchResult {
     /**
      * Attempts to match the input sequence, starting at the beginning of the
      * region, against the pattern.
-     *
      * <p>
      * Like the {@link #matches matches} method, this method always starts at
      * the beginning of the region; unlike that method, it does not require that
      * the entire region be matched.
-     *
      * <p>
      * If the match succeeds then more information can be obtained via the
      * <tt>start</tt>, <tt>end</tt>, and <tt>group</tt> methods.
@@ -725,7 +664,6 @@ public final class Matcher implements MatchResult {
     /**
      * Returns a literal replacement <code>String</code> for the specified
      * <code>String</code>.
-     *
      * This method produces a <code>String</code> that will work as a literal
      * replacement <code>s</code> in the <code>appendReplacement</code> method
      * of the {@link Matcher} class. The <code>String</code> produced will match
@@ -734,7 +672,7 @@ public final class Matcher implements MatchResult {
      * meaning.
      *
      * @param s
-     *          The string to be literalized
+     *        The string to be literalized
      * @return A literal string replacement
      * @since 1.5
      */
@@ -754,13 +692,10 @@ public final class Matcher implements MatchResult {
 
     /**
      * Implements a non-terminal append-and-replace step.
-     *
      * <p>
      * This method performs the following actions:
      * </p>
-     *
      * <ol>
-     *
      * <li>
      * <p>
      * It reads characters from the input sequence, starting at the append
@@ -769,22 +704,18 @@ public final class Matcher implements MatchResult {
      * character at index {@link #start()}&nbsp;<tt>-</tt>&nbsp;<tt>1</tt>.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * It appends the given replacement string to the string buffer.
      * </p>
      * </li>
-     *
      * <li>
      * <p>
      * It sets the append position of this matcher to the index of the last
      * character matched, plus one, that is, to {@link #end()}.
      * </p>
      * </li>
-     *
      * </ol>
-     *
      * <p>
      * The replacement string may contain references to subsequences captured
      * during the previous match: Each occurrence of <tt>${</tt><i>name</i>
@@ -800,7 +731,6 @@ public final class Matcher implements MatchResult {
      * appended to the string buffer. A dollar sign (<tt>$</tt>) may be included
      * as a literal in the replacement string by preceding it with a backslash (
      * <tt>\$</tt>).
-     *
      * <p>
      * Note that backslashes (<tt>\</tt>) and dollar signs (<tt>$</tt>) in the
      * replacement string may cause the results to be different than if it were
@@ -808,14 +738,12 @@ public final class Matcher implements MatchResult {
      * treated as references to captured subsequences as described above, and
      * backslashes are used to escape literal characters in the replacement
      * string.
-     *
      * <p>
      * This method is intended to be used in a loop together with the
      * {@link #appendTail appendTail} and {@link #find find} methods. The
      * following code, for example, writes <tt>one dog two dogs in the
      * yard</tt> to the standard-output stream:
      * </p>
-     *
      * <blockquote>
      * 
      * <pre>
@@ -832,27 +760,22 @@ public final class Matcher implements MatchResult {
      * </blockquote>
      *
      * @param sb
-     *                    The target string buffer
-     *
+     *        The target string buffer
      * @param replacement
-     *                    The replacement string
-     *
+     *        The replacement string
      * @return This matcher
-     *
      * @throws IllegalStateException
-     *                                   If no match has yet been attempted, or
-     *                                   if the previous match
-     *                                   operation failed
-     *
+     *         If no match has yet been attempted, or
+     *         if the previous match
+     *         operation failed
      * @throws IllegalArgumentException
-     *                                   If the replacement string refers to a
-     *                                   named-capturing group
-     *                                   that does not exist in the pattern
-     *
+     *         If the replacement string refers to a
+     *         named-capturing group
+     *         that does not exist in the pattern
      * @throws IndexOutOfBoundsException
-     *                                   If the replacement string refers to a
-     *                                   capturing group that
-     *                                   does not exist in the pattern
+     *         If the replacement string refers to a
+     *         capturing group that
+     *         does not exist in the pattern
      */
     public Matcher appendReplacement(StringBuffer sb, String replacement) {
 
@@ -869,8 +792,7 @@ public final class Matcher implements MatchResult {
             if (nextChar == '\\') {
                 cursor++;
                 if (cursor == replacement.length())
-                    throw new IllegalArgumentException(
-                            "character to be escaped is missing");
+                    throw new IllegalArgumentException("character to be escaped is missing");
                 nextChar = replacement.charAt(cursor);
                 result.append(nextChar);
                 cursor++;
@@ -879,8 +801,7 @@ public final class Matcher implements MatchResult {
                 cursor++;
                 // Throw IAE if this "$" is the last character in replacement
                 if (cursor == replacement.length())
-                    throw new IllegalArgumentException(
-                            "Illegal group reference: group index is missing");
+                    throw new IllegalArgumentException("Illegal group reference: group index is missing");
                 nextChar = replacement.charAt(cursor);
                 int refNum = -1;
                 if (nextChar == '{') {
@@ -888,8 +809,7 @@ public final class Matcher implements MatchResult {
                     StringBuilder gsb = new StringBuilder();
                     while (cursor < replacement.length()) {
                         nextChar = replacement.charAt(cursor);
-                        if (ASCII.isLower(nextChar) || ASCII.isUpper(nextChar)
-                                || ASCII.isDigit(nextChar)) {
+                        if (ASCII.isLower(nextChar) || ASCII.isUpper(nextChar) || ASCII.isDigit(nextChar)) {
                             gsb.append(nextChar);
                             cursor++;
                         } else {
@@ -897,27 +817,22 @@ public final class Matcher implements MatchResult {
                         }
                     }
                     if (gsb.length() == 0)
-                        throw new IllegalArgumentException(
-                                "named capturing group has 0 length name");
+                        throw new IllegalArgumentException("named capturing group has 0 length name");
                     if (nextChar != '}')
-                        throw new IllegalArgumentException(
-                                "named capturing group is missing trailing '}'");
+                        throw new IllegalArgumentException("named capturing group is missing trailing '}'");
                     String gname = gsb.toString();
                     if (ASCII.isDigit(gname.charAt(0)))
-                        throw new IllegalArgumentException(
-                                "capturing group name {" + gname
-                                        + "} starts with digit character");
+                        throw new IllegalArgumentException("capturing group name {" + gname
+                                + "} starts with digit character");
                     if (!parentPattern.namedGroups().containsKey(gname))
-                        throw new IllegalArgumentException(
-                                "No group with name {" + gname + "}");
+                        throw new IllegalArgumentException("No group with name {" + gname + "}");
                     refNum = parentPattern.namedGroups().get(gname);
                     cursor++;
                 } else {
                     // The first number is always a group
                     refNum = (int) nextChar - '0';
                     if ((refNum < 0) || (refNum > 9))
-                        throw new IllegalArgumentException(
-                                "Illegal group reference");
+                        throw new IllegalArgumentException("Illegal group reference");
                     cursor++;
                     // Capture the largest legal group string
                     boolean done = false;
@@ -958,7 +873,6 @@ public final class Matcher implements MatchResult {
 
     /**
      * Implements a terminal append-and-replace step.
-     *
      * <p>
      * This method reads characters from the input sequence, starting at the
      * append position, and appends them to the given string buffer. It is
@@ -968,8 +882,7 @@ public final class Matcher implements MatchResult {
      * </p>
      *
      * @param sb
-     *           The target string buffer
-     *
+     *        The target string buffer
      * @return The target string buffer
      */
     public StringBuffer appendTail(StringBuffer sb) {
@@ -980,7 +893,6 @@ public final class Matcher implements MatchResult {
     /**
      * Replaces every subsequence of the input sequence that matches the pattern
      * with the given replacement string.
-     *
      * <p>
      * This method first resets this matcher. It then scans the input sequence
      * looking for matches of the pattern. Characters that are not part of any
@@ -988,7 +900,6 @@ public final class Matcher implements MatchResult {
      * in the result by the replacement string. The replacement string may
      * contain references to captured subsequences as in the
      * {@link #appendReplacement appendReplacement} method.
-     *
      * <p>
      * Note that backslashes (<tt>\</tt>) and dollar signs (<tt>$</tt>) in the
      * replacement string may cause the results to be different than if it were
@@ -996,21 +907,18 @@ public final class Matcher implements MatchResult {
      * treated as references to captured subsequences as described above, and
      * backslashes are used to escape literal characters in the replacement
      * string.
-     *
      * <p>
      * Given the regular expression <tt>a*b</tt>, the input
      * <tt>"aabfooaabfooabfoob"</tt>, and the replacement string <tt>"-"</tt>,
      * an invocation of this method on a matcher for that expression would yield
      * the string <tt>"-foo-foo-foo-"</tt>.
-     *
      * <p>
      * Invoking this method changes this matcher's state. If the matcher is to
      * be used in further matching operations then it should first be reset.
      * </p>
      *
      * @param replacement
-     *                    The replacement string
-     *
+     *        The replacement string
      * @return The string constructed by replacing each matching subsequence by
      *         the replacement string, substituting captured subsequences as
      *         needed
@@ -1033,7 +941,6 @@ public final class Matcher implements MatchResult {
     /**
      * Replaces the first subsequence of the input sequence that matches the
      * pattern with the given replacement string.
-     *
      * <p>
      * This method first resets this matcher. It then scans the input sequence
      * looking for a match of the pattern. Characters that are not part of the
@@ -1041,7 +948,6 @@ public final class Matcher implements MatchResult {
      * in the result by the replacement string. The replacement string may
      * contain references to captured subsequences as in the
      * {@link #appendReplacement appendReplacement} method.
-     *
      * <p>
      * Note that backslashes (<tt>\</tt>) and dollar signs (<tt>$</tt>) in the
      * replacement string may cause the results to be different than if it were
@@ -1049,21 +955,19 @@ public final class Matcher implements MatchResult {
      * treated as references to captured subsequences as described above, and
      * backslashes are used to escape literal characters in the replacement
      * string.
-     *
      * <p>
      * Given the regular expression <tt>dog</tt>, the input
      * <tt>"zzzdogzzzdogzzz"</tt>, and the replacement string <tt>"cat"</tt>, an
      * invocation of this method on a matcher for that expression would yield
      * the string <tt>"zzzcatzzzdogzzz"</tt>.
      * </p>
-     *
      * <p>
      * Invoking this method changes this matcher's state. If the matcher is to
      * be used in further matching operations then it should first be reset.
      * </p>
      *
      * @param replacement
-     *                    The replacement string
+     *        The replacement string
      * @return The string constructed by replacing the first matching
      *         subsequence by the replacement string, substituting captured
      *         subsequences as needed
@@ -1086,7 +990,6 @@ public final class Matcher implements MatchResult {
      * method resets the matcher, and then sets the region to start at the index
      * specified by the <code>start</code> parameter and end at the index
      * specified by the <code>end</code> parameter.
-     *
      * <p>
      * Depending on the transparency and anchoring being used (see
      * {@link #useTransparentBounds useTransparentBounds} and
@@ -1095,17 +998,17 @@ public final class Matcher implements MatchResult {
      * region.
      *
      * @param start
-     *              The index to start searching at (inclusive)
+     *        The index to start searching at (inclusive)
      * @param end
-     *              The index to end searching at (exclusive)
+     *        The index to end searching at (exclusive)
      * @throws IndexOutOfBoundsException
-     *                                   If start or end is less than zero, if
-     *                                   start is greater than
-     *                                   the length of the input sequence, if
-     *                                   end is greater than the
-     *                                   length of the input sequence, or if
-     *                                   start is greater than
-     *                                   end.
+     *         If start or end is less than zero, if
+     *         start is greater than
+     *         the length of the input sequence, if
+     *         end is greater than the
+     *         length of the input sequence, or if
+     *         start is greater than
+     *         end.
      * @return this matcher
      * @since 1.5
      */
@@ -1150,15 +1053,12 @@ public final class Matcher implements MatchResult {
 
     /**
      * Queries the transparency of region bounds for this matcher.
-     *
      * <p>
      * This method returns <tt>true</tt> if this matcher uses <i>transparent</i>
      * bounds, <tt>false</tt> if it uses <i>opaque</i> bounds.
-     *
      * <p>
      * See {@link #useTransparentBounds useTransparentBounds} for a description
      * of transparent and opaque bounds.
-     *
      * <p>
      * By default, a matcher uses opaque region boundaries.
      *
@@ -1173,30 +1073,26 @@ public final class Matcher implements MatchResult {
 
     /**
      * Sets the transparency of region bounds for this matcher.
-     *
      * <p>
      * Invoking this method with an argument of <tt>true</tt> will set this
      * matcher to use <i>transparent</i> bounds. If the boolean argument is
      * <tt>false</tt>, then <i>opaque</i> bounds will be used.
-     *
      * <p>
      * Using transparent bounds, the boundaries of this matcher's region are
      * transparent to lookahead, lookbehind, and boundary matching constructs.
      * Those constructs can see beyond the boundaries of the region to see if a
      * match is appropriate.
-     *
      * <p>
      * Using opaque bounds, the boundaries of this matcher's region are opaque
      * to lookahead, lookbehind, and boundary matching constructs that may try
      * to see beyond them. Those constructs cannot look past the boundaries so
      * they will fail to match anything outside of the region.
-     *
      * <p>
      * By default, a matcher uses opaque bounds.
      *
      * @param b
-     *          a boolean indicating whether to use opaque or transparent
-     *          regions
+     *        a boolean indicating whether to use opaque or transparent
+     *        regions
      * @return this matcher
      * @see java.util.regex.Matcher#hasTransparentBounds
      * @since 1.5
@@ -1208,15 +1104,12 @@ public final class Matcher implements MatchResult {
 
     /**
      * Queries the anchoring of region bounds for this matcher.
-     *
      * <p>
      * This method returns <tt>true</tt> if this matcher uses <i>anchoring</i>
      * bounds, <tt>false</tt> otherwise.
-     *
      * <p>
      * See {@link #useAnchoringBounds useAnchoringBounds} for a description of
      * anchoring bounds.
-     *
      * <p>
      * By default, a matcher uses anchoring region boundaries.
      *
@@ -1231,25 +1124,21 @@ public final class Matcher implements MatchResult {
 
     /**
      * Sets the anchoring of region bounds for this matcher.
-     *
      * <p>
      * Invoking this method with an argument of <tt>true</tt> will set this
      * matcher to use <i>anchoring</i> bounds. If the boolean argument is
      * <tt>false</tt>, then <i>non-anchoring</i> bounds will be used.
-     *
      * <p>
      * Using anchoring bounds, the boundaries of this matcher's region match
      * anchors such as ^ and $.
-     *
      * <p>
      * Without anchoring bounds, the boundaries of this matcher's region will
      * not match anchors such as ^ and $.
-     *
      * <p>
      * By default, a matcher uses anchoring region boundaries.
      *
      * @param b
-     *          a boolean indicating whether or not to use anchoring bounds.
+     *        a boolean indicating whether or not to use anchoring bounds.
      * @return this matcher
      * @see java.util.regex.Matcher#hasAnchoringBounds
      * @since 1.5
@@ -1286,7 +1175,6 @@ public final class Matcher implements MatchResult {
      * <p>
      * Returns true if the end of input was hit by the search engine in the last
      * match operation performed by this matcher.
-     *
      * <p>
      * When this method returns true, then it is possible that more input would
      * have changed the result of the last search.
@@ -1303,7 +1191,6 @@ public final class Matcher implements MatchResult {
      * <p>
      * Returns true if more input could change a positive match into a negative
      * one.
-     *
      * <p>
      * If this method returns true, and a match was found, then more input could
      * cause the match to be lost. If this method returns false and a match was
@@ -1323,7 +1210,6 @@ public final class Matcher implements MatchResult {
      * are filled with default values and the match of the root of the state
      * machine is called. The state machine will hold the state of the match as
      * it proceeds in this matcher.
-     *
      * Matcher.from is not set here, because it is the "hard" boundary of the
      * start of the search which anchors will set to. The from param is the
      * "soft" boundary of the start of the search, meaning that the regex tries
@@ -1382,9 +1268,9 @@ public final class Matcher implements MatchResult {
      * Generates a String from this Matcher's input in the specified range.
      *
      * @param beginIndex
-     *                   the beginning index, inclusive
+     *        the beginning index, inclusive
      * @param endIndex
-     *                   the ending index, exclusive
+     *        the ending index, exclusive
      * @return A String generated from this Matcher's input
      */
     CharSequence getSubSequence(int beginIndex, int endIndex) {
@@ -1410,8 +1296,7 @@ public final class Matcher implements MatchResult {
         if (first < 0)
             throw new IllegalStateException("No match found");
         if (!parentPattern.namedGroups().containsKey(name))
-            throw new IllegalArgumentException("No group with name <" + name
-                    + ">");
+            throw new IllegalArgumentException("No group with name <" + name + ">");
         return parentPattern.namedGroups().get(name);
     }
 }

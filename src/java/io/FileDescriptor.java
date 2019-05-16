@@ -14,7 +14,6 @@ import java.util.List;
  * socket, or another source or sink of bytes. The main practical use for a file
  * descriptor is to create a {@link FileInputStream} or {@link FileOutputStream}
  * to contain it.
- *
  * <p>
  * Applications should not create their own file descriptors.
  *
@@ -45,24 +44,23 @@ public final class FileDescriptor {
 
     // Set up JavaIOFileDescriptorAccess in SharedSecrets
     static {
-        sun.misc.SharedSecrets.setJavaIOFileDescriptorAccess(
-                new sun.misc.JavaIOFileDescriptorAccess() {
-                    public void set(FileDescriptor obj, int fd) {
-                        obj.fd = fd;
-                    }
+        sun.misc.SharedSecrets.setJavaIOFileDescriptorAccess(new sun.misc.JavaIOFileDescriptorAccess() {
+            public void set(FileDescriptor obj, int fd) {
+                obj.fd = fd;
+            }
 
-                    public int get(FileDescriptor obj) {
-                        return obj.fd;
-                    }
+            public int get(FileDescriptor obj) {
+                return obj.fd;
+            }
 
-                    public void setHandle(FileDescriptor obj, long handle) {
-                        obj.handle = handle;
-                    }
+            public void setHandle(FileDescriptor obj, long handle) {
+                obj.handle = handle;
+            }
 
-                    public long getHandle(FileDescriptor obj) {
-                        return obj.handle;
-                    }
-                });
+            public long getHandle(FileDescriptor obj) {
+                return obj.handle;
+            }
+        });
     }
 
     /**
@@ -111,12 +109,10 @@ public final class FileDescriptor {
      * such as a file in a file system, sync will not return until all in-memory
      * modified copies of buffers associated with this FileDesecriptor have been
      * written to the physical medium.
-     *
      * sync is meant to be used by code that requires physical storage (such as
      * a file) to be in a known state For example, a class that provided a
      * simple transaction facility might use sync to ensure that all changes to
      * a file caused by a given transaction were recorded on a storage medium.
-     *
      * sync only affects buffers downstream of this FileDescriptor. If any
      * in-memory buffering is being done by the application (for example, by a
      * BufferedOutputStream object), those buffers must be flushed into the
@@ -124,11 +120,11 @@ public final class FileDescriptor {
      * data will be affected by sync.
      *
      * @exception SyncFailedException
-     *                                Thrown when the buffers cannot be flushed,
-     *                                or because the
-     *                                system cannot guarantee that all the
-     *                                buffers have been
-     *                                synchronized with physical media.
+     *            Thrown when the buffers cannot be flushed,
+     *            or because the
+     *            system cannot guarantee that all the
+     *            buffers have been
+     *            synchronized with physical media.
      * @since JDK1.1
      */
     public native void sync() throws SyncFailedException;
@@ -170,7 +166,6 @@ public final class FileDescriptor {
     /**
      * Cycle through all Closeables sharing this FD and call close() on each
      * one.
-     *
      * The caller closeable gets to call close0().
      */
     @SuppressWarnings("try")

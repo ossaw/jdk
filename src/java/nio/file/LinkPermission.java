@@ -9,11 +9,9 @@ import java.security.BasicPermission;
 
 /**
  * The {@code Permission} class for link creation operations.
- *
  * <p>
  * The following table provides a summary description of what the permission
  * allows, and discusses the risks of granting code the permission.
- *
  * <table border=1 cellpadding=5 summary=
  * "Table shows permission target name, what the permission allows, and
  * associated risks"
@@ -41,7 +39,6 @@ import java.security.BasicPermission;
  * </table>
  *
  * @since 1.7
- *
  * @see Files#createLink
  * @see Files#createSymbolicLink
  */
@@ -58,10 +55,9 @@ public final class LinkPermission extends BasicPermission {
      * Constructs a {@code LinkPermission} with the specified name.
      *
      * @param name
-     *             the name of the permission. It must be "hard" or "symbolic".
-     *
+     *        the name of the permission. It must be "hard" or "symbolic".
      * @throws IllegalArgumentException
-     *                                  if name is empty or invalid
+     *         if name is empty or invalid
      */
     public LinkPermission(String name) {
         super(name);
@@ -72,15 +68,14 @@ public final class LinkPermission extends BasicPermission {
      * Constructs a {@code LinkPermission} with the specified name.
      *
      * @param name
-     *                the name of the permission; must be "hard" or "symbolic".
+     *        the name of the permission; must be "hard" or "symbolic".
      * @param actions
-     *                the actions for the permission; must be the empty string
-     *                or
-     *                {@code null}
-     *
+     *        the actions for the permission; must be the empty string
+     *        or
+     *        {@code null}
      * @throws IllegalArgumentException
-     *                                  if name is empty or invalid, or actions
-     *                                  is a non-empty string
+     *         if name is empty or invalid, or actions
+     *         is a non-empty string
      */
     public LinkPermission(String name, String actions) {
         super(name);

@@ -37,7 +37,7 @@ public final class ReaderCharacterIterator implements CharacterIterator {
 
     /**
      * @param reader
-     *               a Reader, which is parsed
+     *        a Reader, which is parsed
      */
     public ReaderCharacterIterator(Reader reader) {
         this.reader = reader;

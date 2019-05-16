@@ -20,12 +20,10 @@ import javax.xml.transform.Result;
  *
  * @author <a href="mailto:Neeraj.Bajaj@Sun.com">Neeraj Bajaj</a>
  * @author <a href="mailto:Jeff.Suttor@Sun.com">Jeff Suttor</a>
- *
  * @see <a href="http://jcp.org/en/jsr/detail?id=173"> JSR 173: Streaming API
  *      for XML</a>
  * @see XMLStreamWriter
  * @see XMLEventWriter
- *
  * @since 1.6
  */
 public class StAXResult implements Result {
@@ -62,24 +60,21 @@ public class StAXResult implements Result {
      * Creates a new instance of a <code>StAXResult</code> by supplying an
      * {@link XMLEventWriter}.
      * </p>
-     *
      * <p>
      * <code>XMLEventWriter</code> must be a non-<code>null</code> reference.
      * </p>
      *
      * @param xmlEventWriter
-     *                       <code>XMLEventWriter</code> used to create this
-     *                       <code>StAXResult</code>.
-     *
+     *        <code>XMLEventWriter</code> used to create this
+     *        <code>StAXResult</code>.
      * @throws IllegalArgumentException
-     *                                  If <code>xmlEventWriter</code> ==
-     *                                  <code>null</code>.
+     *         If <code>xmlEventWriter</code> ==
+     *         <code>null</code>.
      */
     public StAXResult(final XMLEventWriter xmlEventWriter) {
 
         if (xmlEventWriter == null) {
-            throw new IllegalArgumentException(
-                    "StAXResult(XMLEventWriter) with XMLEventWriter == null");
+            throw new IllegalArgumentException("StAXResult(XMLEventWriter) with XMLEventWriter == null");
         }
 
         this.xmlEventWriter = xmlEventWriter;
@@ -90,24 +85,21 @@ public class StAXResult implements Result {
      * Creates a new instance of a <code>StAXResult</code> by supplying an
      * {@link XMLStreamWriter}.
      * </p>
-     *
      * <p>
      * <code>XMLStreamWriter</code> must be a non-<code>null</code> reference.
      * </p>
      *
      * @param xmlStreamWriter
-     *                        <code>XMLStreamWriter</code> used to create this
-     *                        <code>StAXResult</code>.
-     *
+     *        <code>XMLStreamWriter</code> used to create this
+     *        <code>StAXResult</code>.
      * @throws IllegalArgumentException
-     *                                  If <code>xmlStreamWriter</code> ==
-     *                                  <code>null</code>.
+     *         If <code>xmlStreamWriter</code> ==
+     *         <code>null</code>.
      */
     public StAXResult(final XMLStreamWriter xmlStreamWriter) {
 
         if (xmlStreamWriter == null) {
-            throw new IllegalArgumentException(
-                    "StAXResult(XMLStreamWriter) with XMLStreamWriter == null");
+            throw new IllegalArgumentException("StAXResult(XMLStreamWriter) with XMLStreamWriter == null");
         }
 
         this.xmlStreamWriter = xmlStreamWriter;
@@ -117,7 +109,6 @@ public class StAXResult implements Result {
      * <p>
      * Get the <code>XMLEventWriter</code> used by this <code>StAXResult</code>.
      * </p>
-     *
      * <p>
      * <code>XMLEventWriter</code> will be <code>null</code> if this
      * <code>StAXResult</code> was created with a <code>XMLStreamWriter</code>.
@@ -135,7 +126,6 @@ public class StAXResult implements Result {
      * Get the <code>XMLStreamWriter</code> used by this <code>StAXResult</code>
      * .
      * </p>
-     *
      * <p>
      * <code>XMLStreamWriter</code> will be <code>null</code> if this
      * <code>StAXResult</code> was created with a <code>XMLEventWriter</code>.
@@ -157,24 +147,21 @@ public class StAXResult implements Result {
      * <code>StAXResult</code> determines the system identifier of the XML
      * result.
      * </p>
-     *
      * <p>
      * An {@link UnsupportedOperationException} is <strong>always</strong>
      * thrown by this method.
      * </p>
      *
      * @param systemId
-     *                 Ignored.
-     *
+     *        Ignored.
      * @throws UnsupportedOperationException
-     *                                       Is <strong>always</strong> thrown
-     *                                       by this method.
+     *         Is <strong>always</strong> thrown
+     *         by this method.
      */
     public void setSystemId(final String systemId) {
 
-        throw new UnsupportedOperationException(
-                "StAXResult#setSystemId(systemId) cannot set the "
-                        + "system identifier for a StAXResult");
+        throw new UnsupportedOperationException("StAXResult#setSystemId(systemId) cannot set the "
+                + "system identifier for a StAXResult");
     }
 
     /**

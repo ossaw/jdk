@@ -14,7 +14,6 @@ package javax.management.remote;
  * instances of {@link javax.management.remote.rmi.RMIConnector RMIConnector}
  * which implements this interface.
  * </p>
- *
  * <p>
  * An object implementing this interface might not have an address at a given
  * moment. This is indicated by a null return value from {@link #getAddress()}.

@@ -47,7 +47,6 @@ import org.w3c.dom.DOMException;
  * operation, and this is the simplest solution.
  *
  * @xerces.internal
- *
  * @author Elena Litani, IBM
  * @since PR-DOM-Level-1-19980818.
  */
@@ -128,11 +127,9 @@ public class EntityImpl extends ParentNode implements Entity {
      */
     public void setNodeValue(String x) throws DOMException {
         if (ownerDocument.errorChecking && isReadOnly()) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN,
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                     "NO_MODIFICATION_ALLOWED_ERR", null);
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    msg);
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, msg);
         }
     }
 
@@ -140,17 +137,15 @@ public class EntityImpl extends ParentNode implements Entity {
      * The namespace prefix of this node
      * 
      * @exception DOMException
-     *                         <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this node
-     *                         is
-     *                         readonly.
+     *            <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this node
+     *            is
+     *            readonly.
      */
     public void setPrefix(String prefix) throws DOMException {
         if (ownerDocument.errorChecking && isReadOnly()) {
-            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR,
-                    DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
-                            "NO_MODIFICATION_ALLOWED_ERR", null));
+            throw new DOMException(DOMException.NO_MODIFICATION_ALLOWED_ERR, DOMMessageFormatter
+                    .formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NO_MODIFICATION_ALLOWED_ERR", null));
         }
     }
 
@@ -253,7 +248,6 @@ public class EntityImpl extends ParentNode implements Entity {
      * NON-DOM encoding - An attribute specifying, as part of the text
      * declaration, the encoding of this entity, when it is an external parsed
      * entity. This is null otherwise
-     *
      */
     public void setXmlEncoding(String value) {
         if (needsSyncData()) {
@@ -337,8 +331,7 @@ public class EntityImpl extends ParentNode implements Entity {
         if (needsSyncData()) {
             synchronizeData();
         }
-        return (baseURI != null) ? baseURI
-                : ((CoreDocumentImpl) getOwnerDocument()).getBaseURI();
+        return (baseURI != null) ? baseURI : ((CoreDocumentImpl) getOwnerDocument()).getBaseURI();
     }
 
     /** NON-DOM: set base uri */

@@ -76,8 +76,7 @@ public class ErrorMessages_cs extends ListResourceBundle {
                  * message is a class name. Used for internal errors in the
                  * processor.
                  */
-                { BasisLibrary.RUN_TIME_INTERNAL_ERR,
-                        "Vnit\u0159n\u00ed b\u011bhov\u00e1 chyba v ''{0}''" },
+                { BasisLibrary.RUN_TIME_INTERNAL_ERR, "Vnit\u0159n\u00ed b\u011bhov\u00e1 chyba v ''{0}''" },
 
                 /*
                  * Note to translators: <xsl:copy> is a keyword that should not
@@ -92,8 +91,7 @@ public class ErrorMessages_cs extends ListResourceBundle {
                  * context needs to be converted to type {1}, but that's not
                  * possible for a value of type {0}.
                  */
-                { BasisLibrary.DATA_CONVERSION_ERR,
-                        "Neplatn\u00e1 konverze z ''{0}'' do ''{1}''." },
+                { BasisLibrary.DATA_CONVERSION_ERR, "Neplatn\u00e1 konverze z ''{0}'' do ''{1}''." },
 
                 /*
                  * Note to translators: This message is displayed if the
@@ -134,8 +132,7 @@ public class ErrorMessages_cs extends ListResourceBundle {
                  * error situation in XSLTC. The processor was unable to create
                  * a copy of an iterator. (See definition of iterator above.)
                  */
-                { BasisLibrary.ITERATOR_CLONE_ERR,
-                        "Nelze klonovat iter\u00e1tor ''{0}''." },
+                { BasisLibrary.ITERATOR_CLONE_ERR, "Nelze klonovat iter\u00e1tor ''{0}''." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -143,8 +140,7 @@ public class ErrorMessages_cs extends ListResourceBundle {
                  * an iterator for a particular axis (see definition above) that
                  * it does not support.
                  */
-                { BasisLibrary.AXIS_SUPPORT_ERR,
-                        "Iter\u00e1tor pro osu ''{0}'' nen\u00ed podporov\u00e1n." },
+                { BasisLibrary.AXIS_SUPPORT_ERR, "Iter\u00e1tor pro osu ''{0}'' nen\u00ed podporov\u00e1n." },
 
                 /*
                  * Note to translators: The following represents an internal
@@ -162,8 +158,7 @@ public class ErrorMessages_cs extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { BasisLibrary.STRAY_ATTRIBUTE_ERR,
-                        "Atribut ''{0}'' je vn\u011b prvku." },
+                { BasisLibrary.STRAY_ATTRIBUTE_ERR, "Atribut ''{0}'' je vn\u011b prvku." },
 
                 /*
                  * Note to translators: As with the preceding message, a

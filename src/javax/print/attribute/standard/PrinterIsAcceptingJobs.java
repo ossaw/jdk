@@ -28,39 +28,34 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PrinterIsAcceptingJobs extends EnumSyntax implements
-        PrintServiceAttribute {
+public final class PrinterIsAcceptingJobs extends EnumSyntax implements PrintServiceAttribute {
 
     private static final long serialVersionUID = -5052010680537678061L;
 
     /**
      * The printer is currently rejecting any jobs sent to it.
      */
-    public static final PrinterIsAcceptingJobs NOT_ACCEPTING_JOBS = new PrinterIsAcceptingJobs(
-            0);
+    public static final PrinterIsAcceptingJobs NOT_ACCEPTING_JOBS = new PrinterIsAcceptingJobs(0);
 
     /**
      * The printer is currently accepting jobs.
      */
-    public static final PrinterIsAcceptingJobs ACCEPTING_JOBS = new PrinterIsAcceptingJobs(
-            1);
+    public static final PrinterIsAcceptingJobs ACCEPTING_JOBS = new PrinterIsAcceptingJobs(1);
 
     /**
      * Construct a new printer is accepting jobs enumeration value with the
      * given integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected PrinterIsAcceptingJobs(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "not-accepting-jobs",
-            "accepting-jobs" };
+    private static final String[] myStringTable = { "not-accepting-jobs", "accepting-jobs" };
 
-    private static final PrinterIsAcceptingJobs[] myEnumValueTable = {
-            NOT_ACCEPTING_JOBS, ACCEPTING_JOBS };
+    private static final PrinterIsAcceptingJobs[] myEnumValueTable = { NOT_ACCEPTING_JOBS, ACCEPTING_JOBS };
 
     /**
      * Returns the string table for class PrinterIsAcceptingJobs.

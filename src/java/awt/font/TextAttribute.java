@@ -62,9 +62,7 @@ import java.util.HashMap;
  * <code>POSTURE</code> are interpolated by the system, which can select the
  * 'nearest available' font or use other techniques to approximate the user's
  * request.
- *
  * </UL>
- *
  * <h4>Summary of attributes</h4>
  * <p>
  * <table style="float:center" border="0" cellspacing="0" cellpadding="2" width=
@@ -231,15 +229,14 @@ import java.util.HashMap;
 public final class TextAttribute extends Attribute {
 
     // table of all instances in this class, used by readResolve
-    private static final Map<String, TextAttribute> instanceMap = new HashMap<String, TextAttribute>(
-            29);
+    private static final Map<String, TextAttribute> instanceMap = new HashMap<String, TextAttribute>(29);
 
     /**
      * Constructs a <code>TextAttribute</code> with the specified name.
      * 
      * @param name
-     *             the attribute name to assign to this
-     *             <code>TextAttribute</code>
+     *        the attribute name to assign to this
+     *        <code>TextAttribute</code>
      */
     protected TextAttribute(String name) {
         super(name);
@@ -253,8 +250,7 @@ public final class TextAttribute extends Attribute {
      */
     protected Object readResolve() throws InvalidObjectException {
         if (this.getClass() != TextAttribute.class) {
-            throw new InvalidObjectException(
-                    "subclass didn't correctly implement readResolve");
+            throw new InvalidObjectException("subclass didn't correctly implement readResolve");
         }
 
         TextAttribute instance = instanceMap.get(getName());
@@ -279,20 +275,17 @@ public final class TextAttribute extends Attribute {
      * Attribute key for the font name. Values are instances of <b>
      * <code>String</code></b>. The default value is <code>"Default"</code>,
      * which causes the platform default font family to be used.
-     *
      * <p>
      * The <code>Font</code> class defines constants for the logical font names
      * {@link java.awt.Font#DIALOG DIALOG}, {@link java.awt.Font#DIALOG_INPUT
      * DIALOG_INPUT}, {@link java.awt.Font#SANS_SERIF SANS_SERIF},
      * {@link java.awt.Font#SERIF SERIF}, and {@link java.awt.Font#MONOSPACED
      * MONOSPACED}.
-     *
      * <p>
      * This defines the value passed as <code>name</code> to the
      * <code>Font</code> constructor. Both logical and physical font names are
      * allowed. If a font with the requested name is not found, the default font
      * is used.
-     *
      * <p>
      * <em>Note:</em> This attribute is unfortunately misnamed, as it specifies
      * the face name and not just the family. Thus values such as
@@ -308,7 +301,6 @@ public final class TextAttribute extends Attribute {
      * Attribute key for the weight of a font. Values are instances of <b>
      * <code>Number</code></b>. The default value is <code>WEIGHT_REGULAR</code>
      * .
-     *
      * <p>
      * Several constant values are provided, see {@link #WEIGHT_EXTRA_LIGHT},
      * {@link #WEIGHT_LIGHT}, {@link #WEIGHT_DEMILIGHT}, {@link #WEIGHT_REGULAR}
@@ -317,11 +309,9 @@ public final class TextAttribute extends Attribute {
      * {@link #WEIGHT_EXTRABOLD}, and {@link #WEIGHT_ULTRABOLD}. The value
      * <code>WEIGHT_BOLD</code> corresponds to the style value
      * <code>Font.BOLD</code> as passed to the <code>Font</code> constructor.
-     *
      * <p>
      * The value is roughly the ratio of the stem width to that of the regular
      * weight.
-     *
      * <p>
      * The system can interpolate the provided value.
      */
@@ -409,16 +399,13 @@ public final class TextAttribute extends Attribute {
     /**
      * Attribute key for the width of a font. Values are instances of <b>
      * <code>Number</code></b>. The default value is <code>WIDTH_REGULAR</code>.
-     *
      * <p>
      * Several constant values are provided, see {@link #WIDTH_CONDENSED},
      * {@link #WIDTH_SEMI_CONDENSED}, {@link #WIDTH_REGULAR},
      * {@link #WIDTH_SEMI_EXTENDED}, {@link #WIDTH_EXTENDED}.
-     *
      * <p>
      * The value is roughly the ratio of the advance width to that of the
      * regular width.
-     *
      * <p>
      * The system can interpolate the provided value.
      */
@@ -463,20 +450,16 @@ public final class TextAttribute extends Attribute {
      * Attribute key for the posture of a font. Values are instances of <b>
      * <code>Number</code></b>. The default value is
      * <code>POSTURE_REGULAR</code>.
-     *
      * <p>
      * Two constant values are provided, {@link #POSTURE_REGULAR} and
      * {@link #POSTURE_OBLIQUE}. The value <code>POSTURE_OBLIQUE</code>
      * corresponds to the style value <code>Font.ITALIC</code> as passed to the
      * <code>Font</code> constructor.
-     *
      * <p>
      * The value is roughly the slope of the stems of the font, expressed as the
      * run over the rise. Positive values lean right.
-     *
      * <p>
      * The system can interpolate the provided value.
-     *
      * <p>
      * This will affect the font's italic angle as returned by
      * <code>Font.getItalicAngle</code>.
@@ -503,16 +486,13 @@ public final class TextAttribute extends Attribute {
     /**
      * Attribute key for the font size. Values are instances of <b>
      * <code>Number</code></b>. The default value is 12pt.
-     *
      * <p>
      * This corresponds to the <code>size</code> parameter to the
      * <code>Font</code> constructor.
-     *
      * <p>
      * Very large or small sizes will impact rendering performance, and the
      * rendering system might not render text at these sizes. Negative sizes are
      * illegal and result in the default size.
-     *
      * <p>
      * Note that the appearance and metrics of a 12pt font with a 2x transform
      * might be different than that of a 24 point font with no transform.
@@ -523,22 +503,18 @@ public final class TextAttribute extends Attribute {
      * Attribute key for the transform of a font. Values are instances of <b>
      * <code>TransformAttribute</code></b>. The default value is
      * <code>TransformAttribute.IDENTITY</code>.
-     *
      * <p>
      * The <code>TransformAttribute</code> class defines the constant
      * {@link TransformAttribute#IDENTITY IDENTITY}.
-     *
      * <p>
      * This corresponds to the transform passed to
      * <code>Font.deriveFont(AffineTransform)</code>. Since that transform is
      * mutable and <code>TextAttribute</code> values must not be, the
      * <code>TransformAttribute</code> wrapper class is used.
-     *
      * <p>
      * The primary intent is to support scaling and skewing, though other
      * effects are possible.
      * </p>
-     *
      * <p>
      * Some transforms will cause the baseline to be rotated and/or shifted. The
      * text and the baseline are transformed together so that the text follows
@@ -549,7 +525,6 @@ public final class TextAttribute extends Attribute {
      * TRANSFORM and an unrotated TRANSFORM will measure as having the same
      * ascent, descent, and advance.
      * </p>
-     *
      * <p>
      * In styled text, the baselines for each such run are aligned one after the
      * other to potentially create a non-linear baseline for the entire run of
@@ -559,14 +534,12 @@ public final class TextAttribute extends Attribute {
      * @see TransformAttribute
      * @see java.awt.geom.AffineTransform
      */
-    public static final TextAttribute TRANSFORM = new TextAttribute(
-            "transform");
+    public static final TextAttribute TRANSFORM = new TextAttribute("transform");
 
     /**
      * Attribute key for superscripting and subscripting. Values are instances
      * of <b><code>Integer</code></b>. The default value is 0, which means that
      * no superscript or subscript is used.
-     *
      * <p>
      * Two constant values are provided, see {@link #SUPERSCRIPT_SUPER} and
      * {@link #SUPERSCRIPT_SUB}. These have the values 1 and -1 respectively.
@@ -575,13 +548,11 @@ public final class TextAttribute extends Attribute {
      * super-super-superscript, and similarly for negative values and subscript,
      * up to a level of 7 (or -7). Values beyond this range are reserved;
      * behavior is platform-dependent.
-     *
      * <p>
      * <code>SUPERSCRIPT</code> can impact the ascent and descent of a font. The
      * ascent and descent can never become negative, however.
      */
-    public static final TextAttribute SUPERSCRIPT = new TextAttribute(
-            "superscript");
+    public static final TextAttribute SUPERSCRIPT = new TextAttribute("superscript");
 
     /**
      * Standard superscript.
@@ -602,7 +573,6 @@ public final class TextAttribute extends Attribute {
      * instances of {@link java.awt.Font}. The default value is null, indicating
      * that normal resolution of a <code>Font</code> from attributes should be
      * performed.
-     *
      * <p>
      * <code>TextLayout</code> and <code>AttributedCharacterIterator</code> work
      * in terms of <code>Maps</code> of <code>TextAttributes</code>. Normally,
@@ -613,7 +583,6 @@ public final class TextAttribute extends Attribute {
      * <code>Font</code>, or force use of a particular <code>Font</code>
      * instance. This also allows users to specify subclasses of
      * <code>Font</code> in cases where a <code>Font</code> can be subclassed.
-     *
      * <p>
      * <code>FONT</code> is used for special situations where clients already
      * have a <code>Font</code> instance but still need to use <code>Map</code>
@@ -621,7 +590,6 @@ public final class TextAttribute extends Attribute {
      * <code>Map</code> except the <code>FONT</code> attribute. With
      * <code>Map</code>-based APIs the common case is to specify all attributes
      * individually, so <code>FONT</code> is not needed or desireable.
-     *
      * <p>
      * However, if both <code>FONT</code> and other attributes are present in
      * the <code>Map</code>, the rendering system will merge the attributes
@@ -634,7 +602,6 @@ public final class TextAttribute extends Attribute {
      * <code>SUPERSCRIPT</code>, and <code>TRACKING</code>. The other group, the
      * 'secondary' group, consists of all other defined attributes, with the
      * exception of <code>FONT</code> itself.
-     *
      * <p>
      * To generate the new <code>Map</code>, first the <code>Font</code> is
      * obtained from the <code>FONT</code> attribute, and <em>all</em> of its
@@ -644,7 +611,6 @@ public final class TextAttribute extends Attribute {
      * attributes come solely from the <code>Font</code>, and the values of
      * secondary attributes originate with the <code>Font</code> but can be
      * overridden by other values in the <code>Map</code>.
-     *
      * <p>
      * <em>Note:</em><code>Font's</code> <code>Map</code>-based constructor and
      * <code>deriveFont</code> methods do not process the <code>FONT</code>
@@ -661,7 +627,6 @@ public final class TextAttribute extends Attribute {
      * standard glyph for a character. Values are intances of GraphicAttribute.
      * The default value is null, indicating that the standard glyphs provided
      * by the font should be used.
-     *
      * <p>
      * This attribute is used to reserve space for a graphic or other component
      * embedded in a line of text. It is required for correct positioning of
@@ -670,15 +635,13 @@ public final class TextAttribute extends Attribute {
      * will be rendered using the provided GraphicAttribute. Typically, the
      * characters to which this attribute is applied should be
      * <code>&#92;uFFFC</code>.
-     *
      * <p>
      * The GraphicAttribute determines the logical and visual bounds of the
      * text; the actual Font values are ignored.
      *
      * @see GraphicAttribute
      */
-    public static final TextAttribute CHAR_REPLACEMENT = new TextAttribute(
-            "char_replacement");
+    public static final TextAttribute CHAR_REPLACEMENT = new TextAttribute("char_replacement");
 
     //
     // Adornments added to text.
@@ -689,7 +652,6 @@ public final class TextAttribute extends Attribute {
      * of <b><code>Paint</code></b>. The default value is null, indicating that
      * the <code>Paint</code> set on the <code>Graphics2D</code> at the time of
      * rendering is used.
-     *
      * <p>
      * Glyphs will be rendered using this <code>Paint</code> regardless of the
      * <code>Paint</code> value set on the <code>Graphics</code> (but see
@@ -698,19 +660,16 @@ public final class TextAttribute extends Attribute {
      * @see java.awt.Paint
      * @see #SWAP_COLORS
      */
-    public static final TextAttribute FOREGROUND = new TextAttribute(
-            "foreground");
+    public static final TextAttribute FOREGROUND = new TextAttribute("foreground");
 
     /**
      * Attribute key for the paint used to render the background of the text.
      * Values are instances of <b><code>Paint</code></b>. The default value is
      * null, indicating that the background should not be rendered.
-     *
      * <p>
      * The logical bounds of the text will be filled using this
      * <code>Paint</code>, and then the text will be rendered on top of it (but
      * see {@link #SWAP_COLORS}).
-     *
      * <p>
      * The visual bounds of the text is extended to include the logical bounds,
      * if necessary. The outline is not affected.
@@ -718,22 +677,18 @@ public final class TextAttribute extends Attribute {
      * @see java.awt.Paint
      * @see #SWAP_COLORS
      */
-    public static final TextAttribute BACKGROUND = new TextAttribute(
-            "background");
+    public static final TextAttribute BACKGROUND = new TextAttribute("background");
 
     /**
      * Attribute key for underline. Values are instances of <b>
      * <code>Integer</code></b>. The default value is -1, which means no
      * underline.
-     *
      * <p>
      * The constant value {@link #UNDERLINE_ON} is provided.
-     *
      * <p>
      * The underline affects both the visual bounds and the outline of the text.
      */
-    public static final TextAttribute UNDERLINE = new TextAttribute(
-            "underline");
+    public static final TextAttribute UNDERLINE = new TextAttribute("underline");
 
     /**
      * Standard underline.
@@ -746,16 +701,13 @@ public final class TextAttribute extends Attribute {
      * Attribute key for strikethrough. Values are instances of <b>
      * <code>Boolean</code></b>. The default value is <code>false</code>, which
      * means no strikethrough.
-     *
      * <p>
      * The constant value {@link #STRIKETHROUGH_ON} is provided.
-     *
      * <p>
      * The strikethrough affects both the visual bounds and the outline of the
      * text.
      */
-    public static final TextAttribute STRIKETHROUGH = new TextAttribute(
-            "strikethrough");
+    public static final TextAttribute STRIKETHROUGH = new TextAttribute("strikethrough");
 
     /**
      * A single strikethrough.
@@ -774,23 +726,19 @@ public final class TextAttribute extends Attribute {
      * that the standard Bidi algorithm for determining run direction should be
      * used with the value
      * {@link java.text.Bidi#DIRECTION_DEFAULT_LEFT_TO_RIGHT}.
-     *
      * <p>
      * The constants {@link #RUN_DIRECTION_RTL} and {@link #RUN_DIRECTION_LTR}
      * are provided.
-     *
      * <p>
      * This determines the value passed to the {@link java.text.Bidi}
      * constructor to select the primary direction of the text in the paragraph.
-     *
      * <p>
      * <em>Note:</em> This attribute should have the same value for all the text
      * in a paragraph, otherwise the behavior is undetermined.
      *
      * @see java.text.Bidi
      */
-    public static final TextAttribute RUN_DIRECTION = new TextAttribute(
-            "run_direction");
+    public static final TextAttribute RUN_DIRECTION = new TextAttribute("run_direction");
 
     /**
      * Left-to-right run direction.
@@ -811,13 +759,11 @@ public final class TextAttribute extends Attribute {
      * of <b><code>Integer</code></b>. The default value is <code>null</code>,
      * indicating that the the Bidirectional algorithm should run without
      * explicit embeddings.
-     *
      * <p>
      * Positive values 1 through 61 are <em>embedding</em> levels, negative
      * values -1 through -61 are <em>override</em> levels. The value 0 means
      * that the base line direction is used. These levels are passed in the
      * embedding levels array to the {@link java.text.Bidi} constructor.
-     *
      * <p>
      * <em>Note:</em> When this attribute is present anywhere in a paragraph,
      * then any Unicode bidi control characters (RLO, LRO, RLE, LRE, and PDF) in
@@ -826,34 +772,29 @@ public final class TextAttribute extends Attribute {
      *
      * @see java.text.Bidi
      */
-    public static final TextAttribute BIDI_EMBEDDING = new TextAttribute(
-            "bidi_embedding");
+    public static final TextAttribute BIDI_EMBEDDING = new TextAttribute("bidi_embedding");
 
     /**
      * Attribute key for the justification of a paragraph. Values are instances
      * of <b><code>Number</code></b>. The default value is 1, indicating that
      * justification should use the full width provided. Values are pinned to
      * the range [0..1].
-     *
      * <p>
      * The constants {@link #JUSTIFICATION_FULL} and {@link #JUSTIFICATION_NONE}
      * are provided.
-     *
      * <p>
      * Specifies the fraction of the extra space to use when justification is
      * requested on a <code>TextLayout</code>. For example, if the line is 50
      * points wide and it is requested to justify to 70 points, a value of 0.75
      * will pad to use three-quarters of the remaining space, or 15 points, so
      * that the resulting line will be 65 points in length.
-     *
      * <p>
      * <em>Note:</em> This should have the same value for all the text in a
      * paragraph, otherwise the behavior is undetermined.
      *
      * @see TextLayout#getJustifiedLayout
      */
-    public static final TextAttribute JUSTIFICATION = new TextAttribute(
-            "justification");
+    public static final TextAttribute JUSTIFICATION = new TextAttribute("justification");
 
     /**
      * Justify the line to the full requested width. This is the default value
@@ -876,18 +817,15 @@ public final class TextAttribute extends Attribute {
 
     /**
      * Attribute key for input method highlight styles.
-     *
      * <p>
      * Values are instances of {@link java.awt.im.InputMethodHighlight} or
      * {@link java.text.Annotation}. The default value is <code>null</code>,
      * which means that input method styles should not be applied before
      * rendering.
-     *
      * <p>
      * If adjacent runs of text with the same <code>InputMethodHighlight</code>
      * need to be rendered separately, the <code>InputMethodHighlights</code>
      * should be wrapped in <code>Annotation</code> instances.
-     *
      * <p>
      * Input method highlights are used while text is being composed by an input
      * method. Text editing components should retain them even if they generally
@@ -898,33 +836,28 @@ public final class TextAttribute extends Attribute {
      * @see java.awt.im.InputMethodHighlight
      * @see java.text.Annotation
      */
-    public static final TextAttribute INPUT_METHOD_HIGHLIGHT = new TextAttribute(
-            "input method highlight");
+    public static final TextAttribute INPUT_METHOD_HIGHLIGHT = new TextAttribute("input method highlight");
 
     /**
      * Attribute key for input method underlines. Values are instances of <b>
      * <code>Integer</code></b>. The default value is <code>-1</code>, which
      * means no underline.
-     *
      * <p>
      * Several constant values are provided, see
      * {@link #UNDERLINE_LOW_ONE_PIXEL}, {@link #UNDERLINE_LOW_TWO_PIXEL},
      * {@link #UNDERLINE_LOW_DOTTED}, {@link #UNDERLINE_LOW_GRAY}, and
      * {@link #UNDERLINE_LOW_DASHED}.
-     *
      * <p>
      * This may be used in conjunction with {@link #UNDERLINE} if desired. The
      * primary purpose is for use by input methods. Other use of these
      * underlines for simple ornamentation might confuse users.
-     *
      * <p>
      * The input method underline affects both the visual bounds and the outline
      * of the text.
      *
      * @since 1.3
      */
-    public static final TextAttribute INPUT_METHOD_UNDERLINE = new TextAttribute(
-            "input method underline");
+    public static final TextAttribute INPUT_METHOD_UNDERLINE = new TextAttribute("input method underline");
 
     /**
      * Single pixel solid low underline.
@@ -970,10 +903,8 @@ public final class TextAttribute extends Attribute {
      * Attribute key for swapping foreground and background <code>Paints</code>.
      * Values are instances of <b><code>Boolean</code></b>. The default value is
      * <code>false</code>, which means do not swap colors.
-     *
      * <p>
      * The constant value {@link #SWAP_COLORS_ON} is defined.
-     *
      * <p>
      * If the {@link #FOREGROUND} attribute is set, its <code>Paint</code> will
      * be used as the background, otherwise the <code>Paint</code> currently on
@@ -985,8 +916,7 @@ public final class TextAttribute extends Attribute {
      * @see #FOREGROUND
      * @see #BACKGROUND
      */
-    public static final TextAttribute SWAP_COLORS = new TextAttribute(
-            "swap_colors");
+    public static final TextAttribute SWAP_COLORS = new TextAttribute("swap_colors");
 
     /**
      * Swap foreground and background.
@@ -1000,11 +930,9 @@ public final class TextAttribute extends Attribute {
      * Attribute key for converting ASCII decimal digits to other decimal
      * ranges. Values are instances of {@link NumericShaper}. The default is
      * <code>null</code>, which means do not perform numeric shaping.
-     *
      * <p>
      * When a numeric shaper is defined, the text is first processed by the
      * shaper before any other analysis of the text is performed.
-     *
      * <p>
      * <em>Note:</em> This should have the same value for all the text in the
      * paragraph, otherwise the behavior is undetermined.
@@ -1012,17 +940,14 @@ public final class TextAttribute extends Attribute {
      * @see NumericShaper
      * @since 1.4
      */
-    public static final TextAttribute NUMERIC_SHAPING = new TextAttribute(
-            "numeric_shaping");
+    public static final TextAttribute NUMERIC_SHAPING = new TextAttribute("numeric_shaping");
 
     /**
      * Attribute key to request kerning. Values are instances of <b>
      * <code>Integer</code></b>. The default value is <code>0</code>, which does
      * not request kerning.
-     *
      * <p>
      * The constant value {@link #KERNING_ON} is provided.
-     *
      * <p>
      * The default advances of single characters are not appropriate for some
      * character sequences, for example "To" or "AWAY". Without kerning the
@@ -1046,17 +971,14 @@ public final class TextAttribute extends Attribute {
      * Attribute key for enabling optional ligatures. Values are instances of
      * <b><code>Integer</code></b>. The default value is <code>0</code>, which
      * means do not use optional ligatures.
-     *
      * <p>
      * The constant value {@link #LIGATURES_ON} is defined.
-     *
      * <p>
      * Ligatures required by the writing system are always enabled.
      *
      * @since 1.6
      */
-    public static final TextAttribute LIGATURES = new TextAttribute(
-            "ligatures");
+    public static final TextAttribute LIGATURES = new TextAttribute("ligatures");
 
     /**
      * Request standard optional ligatures.
@@ -1070,11 +992,9 @@ public final class TextAttribute extends Attribute {
      * Attribute key to control tracking. Values are instances of <b>
      * <code>Number</code></b>. The default value is <code>0</code>, which means
      * no additional tracking.
-     *
      * <p>
      * The constant values {@link #TRACKING_TIGHT} and {@link #TRACKING_LOOSE}
      * are provided.
-     *
      * <p>
      * The tracking value is multiplied by the font point size and passed
      * through the font transform to determine an additional amount to add to

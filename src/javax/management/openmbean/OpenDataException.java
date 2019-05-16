@@ -14,7 +14,6 @@ import javax.management.JMException;
  * data</i> or an <i>open MBean metadata info</i> instance could not be
  * constructed because one or more validity constraints were not met.
  *
- *
  * @since 1.5
  */
 public class OpenDataException extends JMException {
@@ -32,7 +31,7 @@ public class OpenDataException extends JMException {
      * An OpenDataException with a detail message.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public OpenDataException(String msg) {
         super(msg);

@@ -52,13 +52,13 @@ public class InflaterInputStream extends FilterInputStream {
      * size.
      * 
      * @param in
-     *             the input stream
+     *        the input stream
      * @param inf
-     *             the decompressor ("inflater")
+     *        the decompressor ("inflater")
      * @param size
-     *             the input buffer size
+     *        the input buffer size
      * @exception IllegalArgumentException
-     *                                     if {@code size <= 0}
+     *            if {@code size <= 0}
      */
     public InflaterInputStream(InputStream in, Inflater inf, int size) {
         super(in);
@@ -76,9 +76,9 @@ public class InflaterInputStream extends FilterInputStream {
      * buffer size.
      * 
      * @param in
-     *            the input stream
+     *        the input stream
      * @param inf
-     *            the decompressor ("inflater")
+     *        the decompressor ("inflater")
      */
     public InflaterInputStream(InputStream in, Inflater inf) {
         this(in, inf, 512);
@@ -90,7 +90,7 @@ public class InflaterInputStream extends FilterInputStream {
      * Creates a new input stream with a default decompressor and buffer size.
      * 
      * @param in
-     *           the input stream
+     *        the input stream
      */
     public InflaterInputStream(InputStream in) {
         this(in, new Inflater());
@@ -105,12 +105,11 @@ public class InflaterInputStream extends FilterInputStream {
      * 
      * @return the byte read, or -1 if end of compressed input is reached
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public int read() throws IOException {
         ensureOpen();
-        return read(singleByteBuf, 0, 1) == -1 ? -1
-                : Byte.toUnsignedInt(singleByteBuf[0]);
+        return read(singleByteBuf, 0, 1) == -1 ? -1 : Byte.toUnsignedInt(singleByteBuf[0]);
     }
 
     /**
@@ -119,26 +118,26 @@ public class InflaterInputStream extends FilterInputStream {
      * otherwise, no bytes are read and <code>0</code> is returned.
      * 
      * @param b
-     *            the buffer into which the data is read
+     *        the buffer into which the data is read
      * @param off
-     *            the start offset in the destination array <code>b</code>
+     *        the start offset in the destination array <code>b</code>
      * @param len
-     *            the maximum number of bytes read
+     *        the maximum number of bytes read
      * @return the actual number of bytes read, or -1 if the end of the
      *         compressed input is reached or a preset dictionary is needed
      * @exception NullPointerException
-     *                                      If <code>b</code> is
-     *                                      <code>null</code>.
+     *            If <code>b</code> is
+     *            <code>null</code>.
      * @exception IndexOutOfBoundsException
-     *                                      If <code>off</code> is negative,
-     *                                      <code>len</code> is
-     *                                      negative, or <code>len</code> is
-     *                                      greater than
-     *                                      <code>b.length - off</code>
+     *            If <code>off</code> is negative,
+     *            <code>len</code> is
+     *            negative, or <code>len</code> is
+     *            greater than
+     *            <code>b.length - off</code>
      * @exception ZipException
-     *                                      if a ZIP format error has occurred
+     *            if a ZIP format error has occurred
      * @exception IOException
-     *                                      if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public int read(byte[] b, int off, int len) throws IOException {
         ensureOpen();
@@ -175,8 +174,7 @@ public class InflaterInputStream extends FilterInputStream {
      *
      * @return 1 before EOF and 0 after EOF.
      * @exception IOException
-     *                        if an I/O error occurs.
-     *
+     *            if an I/O error occurs.
      */
     public int available() throws IOException {
         ensureOpen();
@@ -193,12 +191,12 @@ public class InflaterInputStream extends FilterInputStream {
      * Skips specified number of bytes of uncompressed data.
      * 
      * @param n
-     *          the number of bytes to skip
+     *        the number of bytes to skip
      * @return the actual number of bytes skipped.
      * @exception IOException
-     *                                     if an I/O error has occurred
+     *            if an I/O error has occurred
      * @exception IllegalArgumentException
-     *                                     if {@code n < 0}
+     *            if {@code n < 0}
      */
     public long skip(long n) throws IOException {
         if (n < 0) {
@@ -227,7 +225,7 @@ public class InflaterInputStream extends FilterInputStream {
      * with the stream.
      * 
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     public void close() throws IOException {
         if (!closed) {
@@ -242,7 +240,7 @@ public class InflaterInputStream extends FilterInputStream {
      * Fills input buffer with more data to decompress.
      * 
      * @exception IOException
-     *                        if an I/O error has occurred
+     *            if an I/O error has occurred
      */
     protected void fill() throws IOException {
         ensureOpen();
@@ -269,15 +267,14 @@ public class InflaterInputStream extends FilterInputStream {
 
     /**
      * Marks the current position in this input stream.
-     *
      * <p>
      * The <code>mark</code> method of <code>InflaterInputStream</code> does
      * nothing.
      *
      * @param readlimit
-     *                  the maximum limit of bytes that can be read before the
-     *                  mark
-     *                  position becomes invalid.
+     *        the maximum limit of bytes that can be read before the
+     *        mark
+     *        position becomes invalid.
      * @see java.io.InputStream#reset()
      */
     public synchronized void mark(int readlimit) {}
@@ -285,13 +282,12 @@ public class InflaterInputStream extends FilterInputStream {
     /**
      * Repositions this stream to the position at the time the <code>mark</code>
      * method was last called on this input stream.
-     *
      * <p>
      * The method <code>reset</code> for class <code>InflaterInputStream</code>
      * does nothing except throw an <code>IOException</code>.
      *
      * @exception IOException
-     *                        if this method is invoked.
+     *            if this method is invoked.
      * @see java.io.InputStream#mark(int)
      * @see java.io.IOException
      */

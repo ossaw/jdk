@@ -34,7 +34,7 @@ public class InvalidSearchControlsException extends NamingException {
      * explanation. All other fields set to null.
      * 
      * @param msg
-     *            Detail about this exception. Can be null.
+     *        Detail about this exception. Can be null.
      * @see java.lang.Throwable#getMessage
      */
     public InvalidSearchControlsException(String msg) {

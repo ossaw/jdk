@@ -9,14 +9,11 @@ package java.security.spec;
  * This class represents a public or private key in encoded format.
  *
  * @author Jan Luehe
- *
- *
  * @see java.security.Key
  * @see java.security.KeyFactory
  * @see KeySpec
  * @see X509EncodedKeySpec
  * @see PKCS8EncodedKeySpec
- *
  * @since 1.2
  */
 
@@ -28,11 +25,11 @@ public abstract class EncodedKeySpec implements KeySpec {
      * Creates a new EncodedKeySpec with the given encoded key.
      *
      * @param encodedKey
-     *                   the encoded key. The contents of the array are copied
-     *                   to
-     *                   protect against subsequent modification.
+     *        the encoded key. The contents of the array are copied
+     *        to
+     *        protect against subsequent modification.
      * @exception NullPointerException
-     *                                 if {@code encodedKey} is null.
+     *            if {@code encodedKey} is null.
      */
     public EncodedKeySpec(byte[] encodedKey) {
         this.encodedKey = encodedKey.clone();
@@ -51,7 +48,6 @@ public abstract class EncodedKeySpec implements KeySpec {
     /**
      * Returns the name of the encoding format associated with this key
      * specification.
-     *
      * <p>
      * If the opaque representation of a key (see {@link java.security.Key Key})
      * can be transformed (see {@link java.security.KeyFactory KeyFactory}) into

@@ -81,7 +81,7 @@ public final class DupFilterIterator extends DTMAxisIteratorBase {
      * Set the start node for this iterator
      * 
      * @param node
-     *             The start node
+     *        The start node
      * @return A reference to this node iterator
      */
     public DTMAxisIterator setStartNode(int node) {
@@ -135,8 +135,7 @@ public final class DupFilterIterator extends DTMAxisIteratorBase {
             clone._isRestartable = false;
             return clone.reset();
         } catch (CloneNotSupportedException e) {
-            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e
-                    .toString());
+            BasisLibrary.runTimeError(BasisLibrary.ITERATOR_CLONE_ERR, e.toString());
             return null;
         }
     }

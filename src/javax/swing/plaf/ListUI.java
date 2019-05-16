@@ -24,12 +24,12 @@ public abstract class ListUI extends ComponentUI {
      * {@code -1} if the list's model is empty.
      *
      * @param list
-     *                 the list
+     *        the list
      * @param location
-     *                 the coordinates of the point
+     *        the coordinates of the point
      * @return the cell index closest to the given location, or {@code -1}
      * @throws NullPointerException
-     *                              if {@code location} is null
+     *         if {@code location} is null
      */
     public abstract int locationToIndex(JList list, Point location);
 
@@ -39,9 +39,9 @@ public abstract class ListUI extends ComponentUI {
      * valid.
      *
      * @param list
-     *              the list
+     *        the list
      * @param index
-     *              the cell index
+     *        the cell index
      * @return the origin of the cell, or {@code null}
      */
     public abstract Point indexToLocation(JList list, int index);
@@ -57,11 +57,11 @@ public abstract class ListUI extends ComponentUI {
      * returned. Otherwise, the bounds of the valid range is returned.
      *
      * @param list
-     *               the list
+     *        the list
      * @param index1
-     *               the first index in the range
+     *        the first index in the range
      * @param index2
-     *               the second index in the range
+     *        the second index in the range
      * @return the bounding rectangle for the range of cells, or {@code null}
      */
     public abstract Rectangle getCellBounds(JList list, int index1, int index2);

@@ -27,8 +27,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class LocateReplyMessage_1_0 extends Message_1_0 implements
-        LocateReplyMessage {
+public final class LocateReplyMessage_1_0 extends Message_1_0 implements LocateReplyMessage {
 
     // Instance variables
 
@@ -43,8 +42,7 @@ public final class LocateReplyMessage_1_0 extends Message_1_0 implements
         this.orb = orb;
     }
 
-    LocateReplyMessage_1_0(ORB orb, int _request_id, int _locate_status,
-            IOR _ior) {
+    LocateReplyMessage_1_0(ORB orb, int _request_id, int _locate_status, IOR _ior) {
         super(Message.GIOPBigMagic, false, Message.GIOPLocateReply, 0);
         this.orb = orb;
         request_id = _request_id;
@@ -106,10 +104,9 @@ public final class LocateReplyMessage_1_0 extends Message_1_0 implements
             case OBJECT_FORWARD:
                 break;
             default:
-                ORBUtilSystemException localWrapper = ORBUtilSystemException
-                        .get(CORBALogDomains.RPC_PROTOCOL);
-                throw localWrapper.illegalReplyStatus(
-                        CompletionStatus.COMPLETED_MAYBE);
+                ORBUtilSystemException localWrapper = ORBUtilSystemException.get(
+                        CORBALogDomains.RPC_PROTOCOL);
+                throw localWrapper.illegalReplyStatus(CompletionStatus.COMPLETED_MAYBE);
         }
     }
 

@@ -10,7 +10,6 @@ import sun.management.MemoryNotifInfoCompositeData;
 
 /**
  * The information about a memory notification.
- *
  * <p>
  * A memory notification is emitted by {@link MemoryMXBean} when the Java
  * virtual machine detects that the memory usage of a memory pool is exceeding a
@@ -27,7 +26,6 @@ import sun.management.MemoryNotifInfoCompositeData;
  * the {@link MemoryPoolMXBean#getCollectionUsageThresholdCount collection usage
  * threshold count}.</li>
  * </ul>
- *
  * <p>
  * A {@link CompositeData CompositeData} representing the
  * <tt>MemoryNotificationInfo</tt> object is stored in the
@@ -35,7 +33,6 @@ import sun.management.MemoryNotifInfoCompositeData;
  * {@link javax.management.Notification notification}. The {@link #from from}
  * method is provided to convert from a <tt>CompositeData</tt> to a
  * <tt>MemoryNotificationInfo</tt> object. For example:
- *
  * <blockquote>
  * 
  * <pre>
@@ -55,7 +52,6 @@ import sun.management.MemoryNotifInfoCompositeData;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * The types of notifications emitted by <tt>MemoryMXBean</tt> are:
  * <ul>
@@ -80,7 +76,6 @@ import sun.management.MemoryNotifInfoCompositeData;
  *
  * @author Mandy Chung
  * @since 1.5
- *
  */
 public class MemoryNotificationInfo {
     private final String poolName;
@@ -114,15 +109,14 @@ public class MemoryNotificationInfo {
      * Constructs a <tt>MemoryNotificationInfo</tt> object.
      *
      * @param poolName
-     *                 The name of the memory pool which triggers this
-     *                 notification.
+     *        The name of the memory pool which triggers this
+     *        notification.
      * @param usage
-     *                 Memory usage of the memory pool.
+     *        Memory usage of the memory pool.
      * @param count
-     *                 The threshold crossing count.
+     *        The threshold crossing count.
      */
-    public MemoryNotificationInfo(String poolName, MemoryUsage usage,
-            long count) {
+    public MemoryNotificationInfo(String poolName, MemoryUsage usage, long count) {
         if (poolName == null) {
             throw new NullPointerException("Null poolName");
         }
@@ -204,13 +198,11 @@ public class MemoryNotificationInfo {
      * </blockquote>
      *
      * @param cd
-     *           <tt>CompositeData</tt> representing a
-     *           <tt>MemoryNotificationInfo</tt>
-     *
+     *        <tt>CompositeData</tt> representing a
+     *        <tt>MemoryNotificationInfo</tt>
      * @throws IllegalArgumentException
-     *                                  if <tt>cd</tt> does not represent a
-     *                                  <tt>MemoryNotificationInfo</tt> object.
-     *
+     *         if <tt>cd</tt> does not represent a
+     *         <tt>MemoryNotificationInfo</tt> object.
      * @return a <tt>MemoryNotificationInfo</tt> object represented by
      *         <tt>cd</tt> if <tt>cd</tt> is not <tt>null</tt>; <tt>null</tt>
      *         otherwise.

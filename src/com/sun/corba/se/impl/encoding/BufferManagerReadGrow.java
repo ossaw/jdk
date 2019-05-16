@@ -12,8 +12,7 @@ import com.sun.corba.se.impl.protocol.giopmsgheaders.FragmentMessage;
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 
-public class BufferManagerReadGrow implements BufferManagerRead,
-        MarkAndResetHandler {
+public class BufferManagerReadGrow implements BufferManagerRead, MarkAndResetHandler {
     // REVISIT - This should go in an abstract class called
     // BufferManagerReadBase which should implement
     // BufferManagerRead. Then, this class should extend
@@ -24,8 +23,7 @@ public class BufferManagerReadGrow implements BufferManagerRead,
 
     BufferManagerReadGrow(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_ENCODING);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_ENCODING);
     }
 
     public void processFragment(ByteBuffer byteBuffer, FragmentMessage header) {

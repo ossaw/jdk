@@ -9,13 +9,12 @@ import com.sun.corba.se.spi.presentation.rmi.PresentationManager;
 
 import com.sun.corba.se.impl.util.Utility;
 
-public abstract class StubFactoryFactoryBase implements
-        PresentationManager.StubFactoryFactory {
+public abstract class StubFactoryFactoryBase implements PresentationManager.StubFactoryFactory {
     /**
      * Returns the stub classname for the given interface name.
      *
      * @param fullName
-     *                 fully qualified name remote class
+     *        fully qualified name remote class
      */
     public String getStubName(String fullName) {
         return Utility.stubName(fullName);

@@ -71,7 +71,7 @@ public class DUP2 extends StackInstruction implements PushInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackProducer(this);

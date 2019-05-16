@@ -62,8 +62,7 @@ public class DynArrayImpl extends DynAnyCollectionImpl implements DynArray {
             anys[i] = DynAnyUtil.extractAnyFromStream(contentType, input, orb);
             try {
                 // Creates the appropriate subtype without copying the Any
-                components[i] = DynAnyUtil.createMostDerivedDynAny(anys[i], orb,
-                        false);
+                components[i] = DynAnyUtil.createMostDerivedDynAny(anys[i], orb, false);
             } catch (InconsistentTypeCode itc) { // impossible
             }
         }
@@ -111,8 +110,7 @@ public class DynArrayImpl extends DynAnyCollectionImpl implements DynArray {
     // Utility methods
     //
 
-    protected void checkValue(Object[] value)
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+    protected void checkValue(Object[] value) throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (value == null || value.length != getBound()) {
             throw new InvalidValue();
         }

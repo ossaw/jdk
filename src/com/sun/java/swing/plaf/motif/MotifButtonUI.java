@@ -38,8 +38,7 @@ public class MotifButtonUI extends BasicButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent c) {
         AppContext appContext = AppContext.getAppContext();
-        MotifButtonUI motifButtonUI = (MotifButtonUI) appContext.get(
-                MOTIF_BUTTON_UI_KEY);
+        MotifButtonUI motifButtonUI = (MotifButtonUI) appContext.get(MOTIF_BUTTON_UI_KEY);
         if (motifButtonUI == null) {
             motifButtonUI = new MotifButtonUI();
             appContext.put(MOTIF_BUTTON_UI_KEY, motifButtonUI);
@@ -90,19 +89,18 @@ public class MotifButtonUI extends BasicButtonUI {
     // Overridden to ensure we don't paint icon over button borders.
     protected void paintIcon(Graphics g, JComponent c, Rectangle iconRect) {
         Shape oldClip = g.getClip();
-        Rectangle newClip = AbstractBorder.getInteriorRectangle(c, c
-                .getBorder(), 0, 0, c.getWidth(), c.getHeight());
+        Rectangle newClip = AbstractBorder.getInteriorRectangle(c, c.getBorder(), 0, 0, c.getWidth(), c
+                .getHeight());
 
         Rectangle r = oldClip.getBounds();
-        newClip = SwingUtilities.computeIntersection(r.x, r.y, r.width,
-                r.height, newClip);
+        newClip = SwingUtilities.computeIntersection(r.x, r.y, r.width, r.height, newClip);
         g.setClip(newClip);
         super.paintIcon(g, c, iconRect);
         g.setClip(oldClip);
     }
 
-    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect,
-            Rectangle textRect, Rectangle iconRect) {
+    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
+            Rectangle iconRect) {
         // focus painting is handled by the border
     }
 
@@ -112,19 +110,16 @@ public class MotifButtonUI extends BasicButtonUI {
 
     }
 
-    protected void fillContentArea(Graphics g, AbstractButton b,
-            Color fillColor) {
+    protected void fillContentArea(Graphics g, AbstractButton b, Color fillColor) {
 
         if (b.isContentAreaFilled()) {
             Insets margin = b.getMargin();
             Insets insets = b.getInsets();
             Dimension size = b.getSize();
             g.setColor(fillColor);
-            g.fillRect(insets.left - margin.left, insets.top - margin.top,
-                    size.width - (insets.left - margin.left) - (insets.right
-                            - margin.right), size.height - (insets.top
-                                    - margin.top) - (insets.bottom
-                                            - margin.bottom));
+            g.fillRect(insets.left - margin.left, insets.top - margin.top, size.width - (insets.left
+                    - margin.left) - (insets.right - margin.right), size.height - (insets.top - margin.top)
+                            - (insets.bottom - margin.bottom));
         }
     }
 }

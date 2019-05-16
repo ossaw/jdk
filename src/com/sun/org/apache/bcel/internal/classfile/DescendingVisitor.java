@@ -72,7 +72,7 @@ public class DescendingVisitor implements Visitor {
 
     /**
      * @param level
-     *              nesting level, i.e., 0 returns the direct predecessor
+     *        nesting level, i.e., 0 returns the direct predecessor
      * @return container of current entitity, i.e., predecessor during traversal
      */
     public Object predecessor(int level) {
@@ -93,9 +93,9 @@ public class DescendingVisitor implements Visitor {
 
     /**
      * @param clazz
-     *                Class to traverse
+     *        Class to traverse
      * @param visitor
-     *                visitor object to apply to all components
+     *        visitor object to apply to all components
      */
     public DescendingVisitor(JavaClass clazz, Visitor visitor) {
         this.clazz = clazz;
@@ -284,8 +284,7 @@ public class DescendingVisitor implements Visitor {
         stack.pop();
     }
 
-    public void visitConstantInterfaceMethodref(
-            ConstantInterfaceMethodref constant) {
+    public void visitConstantInterfaceMethodref(ConstantInterfaceMethodref constant) {
         stack.push(constant);
         constant.accept(visitor);
         stack.pop();

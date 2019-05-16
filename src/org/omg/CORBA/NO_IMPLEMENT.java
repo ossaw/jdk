@@ -39,7 +39,7 @@ public final class NO_IMPLEMENT extends SystemException {
      * COMPLETED_NO.
      * 
      * @param s
-     *          the String containing a description of the exception
+     *        the String containing a description of the exception
      */
     public NO_IMPLEMENT(String s) {
         this(s, 0, CompletionStatus.COMPLETED_NO);
@@ -50,10 +50,10 @@ public final class NO_IMPLEMENT extends SystemException {
      * code and completion status.
      * 
      * @param minor
-     *                  an <code>int</code> specifying the minor code
+     *        an <code>int</code> specifying the minor code
      * @param completed
-     *                  a <code>CompletionStatus</code> instance indicating the
-     *                  completion status
+     *        a <code>CompletionStatus</code> instance indicating the
+     *        completion status
      */
     public NO_IMPLEMENT(int minor, CompletionStatus completed) {
         this("", minor, completed);
@@ -64,12 +64,12 @@ public final class NO_IMPLEMENT extends SystemException {
      * description message, minor code, and completion status.
      * 
      * @param s
-     *                  the String containing a description message
+     *        the String containing a description message
      * @param minor
-     *                  an <code>int</code> specifying the minor code
+     *        an <code>int</code> specifying the minor code
      * @param completed
-     *                  a <code>CompletionStatus</code> instance indicating the
-     *                  completion status
+     *        a <code>CompletionStatus</code> instance indicating the
+     *        completion status
      */
     public NO_IMPLEMENT(String s, int minor, CompletionStatus completed) {
         super(s, minor, completed);

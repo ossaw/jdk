@@ -34,47 +34,43 @@ public abstract class SOAPConnection {
      * returned the response.
      *
      * @param request
-     *                the <code>SOAPMessage</code> object to be sent
+     *        the <code>SOAPMessage</code> object to be sent
      * @param to
-     *                an <code>Object</code> that identifies where the message
-     *                should be sent. It is required to support Objects of type
-     *                <code>java.lang.String</code>, <code>java.net.URL</code>,
-     *                and
-     *                when JAXM is present
-     *                <code>javax.xml.messaging.URLEndpoint</code>
-     *
+     *        an <code>Object</code> that identifies where the message
+     *        should be sent. It is required to support Objects of type
+     *        <code>java.lang.String</code>, <code>java.net.URL</code>,
+     *        and
+     *        when JAXM is present
+     *        <code>javax.xml.messaging.URLEndpoint</code>
      * @return the <code>SOAPMessage</code> object that is the response to the
      *         message that was sent
      * @throws SOAPException
-     *                       if there is a SOAP error
+     *         if there is a SOAP error
      */
-    public abstract SOAPMessage call(SOAPMessage request, Object to)
-            throws SOAPException;
+    public abstract SOAPMessage call(SOAPMessage request, Object to) throws SOAPException;
 
     /**
      * Gets a message from a specific endpoint and blocks until it receives,
      *
      * @param to
-     *           an <code>Object</code> that identifies where the request
-     *           should be sent. Objects of type <code>java.lang.String</code>
-     *           and <code>java.net.URL</code> must be supported.
-     *
+     *        an <code>Object</code> that identifies where the request
+     *        should be sent. Objects of type <code>java.lang.String</code>
+     *        and <code>java.net.URL</code> must be supported.
      * @return the <code>SOAPMessage</code> object that is the response to the
      *         get message request
      * @throws SOAPException
-     *                       if there is a SOAP error
+     *         if there is a SOAP error
      * @since SAAJ 1.3
      */
     public SOAPMessage get(Object to) throws SOAPException {
-        throw new UnsupportedOperationException(
-                "All subclasses of SOAPConnection must override get()");
+        throw new UnsupportedOperationException("All subclasses of SOAPConnection must override get()");
     }
 
     /**
      * Closes this <code>SOAPConnection</code> object.
      *
      * @throws SOAPException
-     *                       if there is a SOAP error
+     *         if there is a SOAP error
      */
     public abstract void close() throws SOAPException;
 }

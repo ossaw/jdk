@@ -15,13 +15,12 @@ import java.util.List;
  * @param <S>
  *        the type of source objects used by diagnostics received by this
  *        object
- *
  * @author Peter von der Ah&eacute;
  * @since 1.6
  */
 public final class DiagnosticCollector<S> implements DiagnosticListener<S> {
-    private List<Diagnostic<? extends S>> diagnostics = Collections
-            .synchronizedList(new ArrayList<Diagnostic<? extends S>>());
+    private List<Diagnostic<? extends S>> diagnostics = Collections.synchronizedList(
+            new ArrayList<Diagnostic<? extends S>>());
 
     public void report(Diagnostic<? extends S> diagnostic) {
         diagnostic.getClass(); // null check

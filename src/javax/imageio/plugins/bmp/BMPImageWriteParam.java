@@ -14,13 +14,11 @@ import com.sun.imageio.plugins.bmp.BMPCompressionTypes;
 /**
  * A subclass of <code>ImageWriteParam</code> for encoding images in the BMP
  * format.
- *
  * <p>
  * This class allows for the specification of various parameters while writing a
  * BMP format image file. By default, the data layout is bottom-up, such that
  * the pixels are stored in bottom-up order, the first scanline being stored
  * last.
- *
  * <p>
  * The particular compression scheme to be used can be specified by using the
  * <code>setCompressionType()</code> method with the appropriate type string.
@@ -35,7 +33,6 @@ import com.sun.imageio.plugins.bmp.BMPCompressionTypes;
  * <p>
  * The compression type strings and the image type(s) each supports are listed
  * in the following table:
- *
  * <p>
  * <table border=1>
  * <caption><b>Compression Types</b></caption>
@@ -75,9 +72,9 @@ public class BMPImageWriteParam extends ImageWriteParam {
      * <code>Locale</code> and with default values for all parameters.
      *
      * @param locale
-     *               a <code>Locale</code> to be used to localize compression
-     *               type
-     *               names and quality descriptions, or <code>null</code>.
+     *        a <code>Locale</code> to be used to localize compression
+     *        type
+     *        names and quality descriptions, or <code>null</code>.
      */
     public BMPImageWriteParam(Locale locale) {
         super(locale);
@@ -104,7 +101,7 @@ public class BMPImageWriteParam extends ImageWriteParam {
      * scanline being written first.
      *
      * @param topDown
-     *                whether the data are written in top-down order.
+     *        whether the data are written in top-down order.
      */
     public void setTopDown(boolean topDown) {
         this.topDown = topDown;

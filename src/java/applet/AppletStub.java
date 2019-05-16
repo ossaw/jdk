@@ -75,7 +75,7 @@ public interface AppletStub {
      * <code>"blue"</code>.
      *
      * @param name
-     *             a parameter name.
+     *        a parameter name.
      * @return the value of the named parameter, or <tt>null</tt> if not set.
      */
     String getParameter(String name);
@@ -91,9 +91,9 @@ public interface AppletStub {
      * Called when the applet wants to be resized.
      *
      * @param width
-     *               the new requested width for the applet.
+     *        the new requested width for the applet.
      * @param height
-     *               the new requested height for the applet.
+     *        the new requested height for the applet.
      */
     void appletResize(int width, int height);
 }

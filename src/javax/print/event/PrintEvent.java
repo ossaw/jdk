@@ -6,7 +6,6 @@
 package javax.print.event;
 
 /**
- *
  * Class PrintEvent is the super class of all Print Service API events.
  */
 
@@ -18,10 +17,10 @@ public class PrintEvent extends java.util.EventObject {
      * Constructs a PrintEvent object.
      * 
      * @param source
-     *               is the source of the event
+     *        is the source of the event
      * @throws IllegalArgumentException
-     *                                  if <code>source</code> is
-     *                                  <code>null</code>.
+     *         if <code>source</code> is
+     *         <code>null</code>.
      */
     public PrintEvent(Object source) {
         super(source);

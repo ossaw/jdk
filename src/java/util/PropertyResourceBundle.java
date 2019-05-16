@@ -27,7 +27,6 @@ import sun.util.ResourceBundleEnumeration;
  * <code>ResourceBundle</code> that manages resources for a locale using a set
  * of static strings from a property file. See {@link ResourceBundle
  * ResourceBundle} for more information about resource bundles.
- *
  * <p>
  * Unlike other types of resource bundle, you don't subclass
  * <code>PropertyResourceBundle</code>. Instead, you supply properties files
@@ -37,7 +36,6 @@ import sun.util.ResourceBundleEnumeration;
  * {@link ResourceBundle#getBundle(java.lang.String, java.util.Locale, java.lang.ClassLoader)
  * ResourceBundle.getBundle} for a complete description of the search and
  * instantiation strategy.
- *
  * <p>
  * The following <a name="sample">example</a> shows a member of a resource
  * bundle family with the base name "MyResources". The text defines the bundle
@@ -75,12 +73,10 @@ import sun.util.ResourceBundleEnumeration;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * The implementation of a {@code PropertyResourceBundle} subclass must be
  * thread-safe if it's simultaneously used by multiple threads. The default
  * implementations of the non-abstract methods in this class are thread-safe.
- *
  * <p>
  * <strong>Note:</strong> PropertyResourceBundle can be constructed either from
  * an InputStream or a Reader, which represents a property file. Constructing a
@@ -103,16 +99,16 @@ public class PropertyResourceBundle extends ResourceBundle {
      * encoded in ISO-8859-1.
      *
      * @param stream
-     *               an InputStream that represents a property file to read
-     *               from.
+     *        an InputStream that represents a property file to read
+     *        from.
      * @throws IOException
-     *                                  if an I/O error occurs
+     *         if an I/O error occurs
      * @throws NullPointerException
-     *                                  if <code>stream</code> is null
+     *         if <code>stream</code> is null
      * @throws IllegalArgumentException
-     *                                  if {@code stream} contains a malformed
-     *                                  Unicode escape
-     *                                  sequence.
+     *         if {@code stream} contains a malformed
+     *         Unicode escape
+     *         sequence.
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public PropertyResourceBundle(InputStream stream) throws IOException {
@@ -129,15 +125,15 @@ public class PropertyResourceBundle extends ResourceBundle {
      * encoding of the input property file.
      *
      * @param reader
-     *               a Reader that represents a property file to read from.
+     *        a Reader that represents a property file to read from.
      * @throws IOException
-     *                                  if an I/O error occurs
+     *         if an I/O error occurs
      * @throws NullPointerException
-     *                                  if <code>reader</code> is null
+     *         if <code>reader</code> is null
      * @throws IllegalArgumentException
-     *                                  if a malformed Unicode escape sequence
-     *                                  appears from
-     *                                  {@code reader}.
+     *         if a malformed Unicode escape sequence
+     *         appears from
+     *         {@code reader}.
      * @since 1.6
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -166,9 +162,7 @@ public class PropertyResourceBundle extends ResourceBundle {
      */
     public Enumeration<String> getKeys() {
         ResourceBundle parent = this.parent;
-        return new ResourceBundleEnumeration(lookup.keySet(), (parent != null)
-                ? parent.getKeys()
-                : null);
+        return new ResourceBundleEnumeration(lookup.keySet(), (parent != null) ? parent.getKeys() : null);
     }
 
     /**

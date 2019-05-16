@@ -54,8 +54,8 @@ public class NodeSortRecordFactory {
      * @deprecated This constructor is no longer used in generated code. It
      *             exists only for backwards compatibility.
      */
-    public NodeSortRecordFactory(DOM dom, String className, Translet translet,
-            String order[], String type[]) throws TransletException {
+    public NodeSortRecordFactory(DOM dom, String className, Translet translet, String order[], String type[])
+            throws TransletException {
         this(dom, className, translet, order, type, null, null);
     }
 
@@ -66,9 +66,8 @@ public class NodeSortRecordFactory {
      * class), and the translet parameter is needed for methods called by this
      * object.
      */
-    public NodeSortRecordFactory(DOM dom, String className, Translet translet,
-            String order[], String type[], String lang[], String caseOrder[])
-            throws TransletException {
+    public NodeSortRecordFactory(DOM dom, String className, Translet translet, String order[], String type[],
+            String lang[], String caseOrder[]) throws TransletException {
         try {
             _dom = dom;
             _className = className;
@@ -121,8 +120,8 @@ public class NodeSortRecordFactory {
                 collators[i] = Collator.getInstance(locales[i]);
             }
 
-            _sortSettings = new SortSettings((AbstractTranslet) translet,
-                    iOrder, iType, locales, collators, caseOrder);
+            _sortSettings = new SortSettings((AbstractTranslet) translet, iOrder, iType, locales, collators,
+                    caseOrder);
         } catch (ClassNotFoundException e) {
             throw new TransletException(e);
         }
@@ -132,9 +131,8 @@ public class NodeSortRecordFactory {
      * Create an instance of a sub-class of NodeSortRecord. The name of this
      * sub-class is passed to us in the constructor.
      */
-    public NodeSortRecord makeNodeSortRecord(int node, int last)
-            throws ExceptionInInitializerError, LinkageError,
-            IllegalAccessException, InstantiationException, SecurityException,
+    public NodeSortRecord makeNodeSortRecord(int node, int last) throws ExceptionInInitializerError,
+            LinkageError, IllegalAccessException, InstantiationException, SecurityException,
             TransletException {
 
         final NodeSortRecord sortRecord = (NodeSortRecord) _class.newInstance();

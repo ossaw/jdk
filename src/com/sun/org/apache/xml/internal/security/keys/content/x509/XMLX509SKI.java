@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -39,12 +37,11 @@ import org.w3c.dom.Element;
  *      "https://docs.oracle.com/javase/1.5.0/docs/api/java/security/cert/X509Extension.html">
  *      Interface X509Extension</A>
  */
-public class XMLX509SKI extends SignatureElementProxy implements
-        XMLX509DataContent {
+public class XMLX509SKI extends SignatureElementProxy implements XMLX509DataContent {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(XMLX509SKI.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(XMLX509SKI.class
+            .getName());
 
     /**
      * <CODE>SubjectKeyIdentifier (id-ce-subjectKeyIdentifier) (2.5.29.14)</CODE>
@@ -74,8 +71,7 @@ public class XMLX509SKI extends SignatureElementProxy implements
      * @param x509certificate
      * @throws XMLSecurityException
      */
-    public XMLX509SKI(Document doc, X509Certificate x509certificate)
-            throws XMLSecurityException {
+    public XMLX509SKI(Document doc, X509Certificate x509certificate) throws XMLSecurityException {
         super(doc);
         this.addBase64Text(XMLX509SKI.getSKIBytesFromCert(x509certificate));
     }
@@ -87,8 +83,7 @@ public class XMLX509SKI extends SignatureElementProxy implements
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    public XMLX509SKI(Element element, String BaseURI)
-            throws XMLSecurityException {
+    public XMLX509SKI(Element element, String BaseURI) throws XMLSecurityException {
         super(element, BaseURI);
     }
 
@@ -107,17 +102,14 @@ public class XMLX509SKI extends SignatureElementProxy implements
      *
      * @param cert
      * @return ski bytes from the given certificate
-     *
      * @throws XMLSecurityException
      * @see java.security.cert.X509Extension#getExtensionValue(java.lang.String)
      */
-    public static byte[] getSKIBytesFromCert(X509Certificate cert)
-            throws XMLSecurityException {
+    public static byte[] getSKIBytesFromCert(X509Certificate cert) throws XMLSecurityException {
 
         if (cert.getVersion() < 3) {
             Object exArgs[] = { Integer.valueOf(cert.getVersion()) };
-            throw new XMLSecurityException("certificate.noSki.lowVersion",
-                    exArgs);
+            throw new XMLSecurityException("certificate.noSki.lowVersion", exArgs);
         }
 
         /*
@@ -140,8 +132,7 @@ public class XMLX509SKI extends SignatureElementProxy implements
         System.arraycopy(extensionValue, 4, skidValue, 0, skidValue.length);
 
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE, "Base64 of SKI is " + Base64
-                    .encode(skidValue));
+            log.log(java.util.logging.Level.FINE, "Base64 of SKI is " + Base64.encode(skidValue));
         }
 
         return skidValue;

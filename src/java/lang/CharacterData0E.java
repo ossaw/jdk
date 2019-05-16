@@ -41,15 +41,13 @@ class CharacterData0E extends CharacterData {
 
     int getProperties(int ch) {
         char offset = (char) ch;
-        int props = A[Y[X[offset >> 5] | ((offset >> 1) & 0xF)] | (offset
-                & 0x1)];
+        int props = A[Y[X[offset >> 5] | ((offset >> 1) & 0xF)] | (offset & 0x1)];
         return props;
     }
 
     int getPropertiesEx(int ch) {
         char offset = (char) ch;
-        int props = B[Y[X[offset >> 5] | ((offset >> 1) & 0xF)] | (offset
-                & 0x1)];
+        int props = B[Y[X[offset >> 5] | ((offset >> 1) & 0xF)] | (offset & 0x1)];
         return props;
     }
 
@@ -338,8 +336,7 @@ class CharacterData0E extends CharacterData {
             + "\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040"
             + "\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040"
             + "\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040"
-            + "\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040")
-                    .toCharArray();
+            + "\040\040\040\040\040\040\040\040\040\040\040\040\040\040\040").toCharArray();
 
     // The Y table has 80 entries for a total of 160 bytes.
 

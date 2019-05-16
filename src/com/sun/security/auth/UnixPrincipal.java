@@ -11,7 +11,6 @@ import java.security.Principal;
  * <p>
  * This class implements the <code>Principal</code> interface and represents a
  * Unix user.
- *
  * <p>
  * Principals such as this <code>UnixPrincipal</code> may be associated with a
  * particular <code>Subject</code> to augment that <code>Subject</code> with an
@@ -34,22 +33,18 @@ public class UnixPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Create a UnixPrincipal with a Unix username.
-     *
      * <p>
      *
      * @param name
-     *             the Unix username for this user.
-     *
+     *        the Unix username for this user.
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public UnixPrincipal(String name) {
         if (name == null) {
-            java.text.MessageFormat form = new java.text.MessageFormat(
-                    sun.security.util.ResourcesMgr.getString(
-                            "invalid.null.input.value",
-                            "sun.security.util.AuthResources"));
+            java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr
+                    .getString("invalid.null.input.value", "sun.security.util.AuthResources"));
             Object[] source = { "name" };
             throw new NullPointerException(form.format(source));
         }
@@ -59,7 +54,6 @@ public class UnixPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return the Unix username for this <code>UnixPrincipal</code>.
-     *
      * <p>
      *
      * @return the Unix username for this <code>UnixPrincipal</code>
@@ -70,15 +64,13 @@ public class UnixPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return a string representation of this <code>UnixPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this <code>UnixPrincipal</code>.
      */
     public String toString() {
-        java.text.MessageFormat form = new java.text.MessageFormat(
-                sun.security.util.ResourcesMgr.getString("UnixPrincipal.name",
-                        "sun.security.util.AuthResources"));
+        java.text.MessageFormat form = new java.text.MessageFormat(sun.security.util.ResourcesMgr.getString(
+                "UnixPrincipal.name", "sun.security.util.AuthResources"));
         Object[] source = { name };
         return form.format(source);
     }
@@ -88,13 +80,11 @@ public class UnixPrincipal implements Principal, java.io.Serializable {
      * equality. Returns true if the given object is also a
      * <code>UnixPrincipal</code> and the two UnixPrincipals have the same
      * username.
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>UnixPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>UnixPrincipal</code>.
      * @return true if the specified Object is equal equal to this
      *         <code>UnixPrincipal</code>.
      */
@@ -116,7 +106,6 @@ public class UnixPrincipal implements Principal, java.io.Serializable {
 
     /**
      * Return a hash code for this <code>UnixPrincipal</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>UnixPrincipal</code>.

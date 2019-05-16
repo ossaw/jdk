@@ -37,11 +37,11 @@ public class RowSetWarning extends SQLException {
      * the reason; SQLState defaults to null, and vendorCode defaults to 0.
      *
      * @param reason
-     *               a <code>String</code> object giving a description of the
-     *               warning; if the <code>String</code> is <code>null</code>,
-     *               this
-     *               constructor behaves like the default (zero parameter)
-     *               <code>RowSetWarning</code> constructor
+     *        a <code>String</code> object giving a description of the
+     *        warning; if the <code>String</code> is <code>null</code>,
+     *        this
+     *        constructor behaves like the default (zero parameter)
+     *        <code>RowSetWarning</code> constructor
      */
     public RowSetWarning(String reason) {
         super(reason);
@@ -59,18 +59,17 @@ public class RowSetWarning extends SQLException {
     /**
      * Constructs a <code>RowSetWarning</code> object initialized with the given
      * values for the reason and SQLState. The vendor code defaults to 0.
-     *
      * If the <code>reason</code> or <code>SQLState</code> parameters are
      * <code>null</code>, this constructor behaves like the default (zero
      * parameter) <code>RowSetWarning</code> constructor.
      *
      * @param reason
-     *                 a <code>String</code> giving a description of the
-     *                 warning;
+     *        a <code>String</code> giving a description of the
+     *        warning;
      * @param SQLState
-     *                 an XOPEN code identifying the warning; if a non standard
-     *                 XOPEN
-     *                 <i>SQLState</i> is supplied, no exception is thrown.
+     *        an XOPEN code identifying the warning; if a non standard
+     *        XOPEN
+     *        <i>SQLState</i> is supplied, no exception is thrown.
      */
     public RowSetWarning(java.lang.String reason, java.lang.String SQLState) {
         super(reason, SQLState);
@@ -80,23 +79,21 @@ public class RowSetWarning extends SQLException {
      * Constructs a fully specified <code>RowSetWarning</code> object
      * initialized with the given values for the reason, SQLState and
      * vendorCode.
-     *
      * If the <code>reason</code>, or the <code>SQLState</code> parameters are
      * <code>null</code>, this constructor behaves like the default (zero
      * parameter) <code>RowSetWarning</code> constructor.
      *
      * @param reason
-     *                   a <code>String</code> giving a description of the
-     *                   warning;
+     *        a <code>String</code> giving a description of the
+     *        warning;
      * @param SQLState
-     *                   an XOPEN code identifying the warning; if a non
-     *                   standard XOPEN
-     *                   <i>SQLState</i> is supplied, no exception is thrown.
+     *        an XOPEN code identifying the warning; if a non
+     *        standard XOPEN
+     *        <i>SQLState</i> is supplied, no exception is thrown.
      * @param vendorCode
-     *                   a database vendor-specific warning code
+     *        a database vendor-specific warning code
      */
-    public RowSetWarning(java.lang.String reason, java.lang.String SQLState,
-            int vendorCode) {
+    public RowSetWarning(java.lang.String reason, java.lang.String SQLState, int vendorCode) {
         super(reason, SQLState, vendorCode);
     }
 
@@ -116,8 +113,7 @@ public class RowSetWarning extends SQLException {
             // The chained value isn't a RowSetWarning.
             // This is a programming error by whoever added it to
             // the RowSetWarning chain. We throw a Java "Error".
-            throw new Error(
-                    "RowSetWarning chain holds value that is not a RowSetWarning: ");
+            throw new Error("RowSetWarning chain holds value that is not a RowSetWarning: ");
         }
     }
 
@@ -126,10 +122,10 @@ public class RowSetWarning extends SQLException {
      * this <code>RowSetWarning</code> object.
      *
      * @param warning
-     *                the <code>RowSetWarning</code> object to be set as the
-     *                next
-     *                warning; if the <code>RowSetWarning</code> is null, this
-     *                represents the finish point in the warning chain
+     *        the <code>RowSetWarning</code> object to be set as the
+     *        next
+     *        warning; if the <code>RowSetWarning</code> is null, this
+     *        represents the finish point in the warning chain
      * @see #getNextWarning
      */
     public void setNextWarning(RowSetWarning warning) {

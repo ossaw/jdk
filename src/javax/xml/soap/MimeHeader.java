@@ -22,9 +22,9 @@ public class MimeHeader {
      * name and value.
      *
      * @param name
-     *              a <code>String</code> giving the name of the header
+     *        a <code>String</code> giving the name of the header
      * @param value
-     *              a <code>String</code> giving the value of the header
+     *        a <code>String</code> giving the value of the header
      */
     public MimeHeader(String name, String value) {
         this.name = name;

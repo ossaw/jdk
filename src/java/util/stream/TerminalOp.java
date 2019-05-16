@@ -13,7 +13,6 @@ import java.util.Spliterator;
  * <em>operation flags</em> that describes how the operation processes elements
  * of the stream (such as short-circuiting or respecting encounter order; see
  * {@link StreamOpFlag}).
- *
  * <p>
  * A {@code TerminalOp} must provide a sequential and parallel implementation of
  * the operation relative to a given stream source and set of intermediate
@@ -30,7 +29,6 @@ interface TerminalOp<E_IN, R> {
      * Gets the shape of the input type of this operation.
      *
      * @implSpec The default returns {@code StreamShape.REFERENCE}.
-     *
      * @return StreamShape of the input type of this operation
      */
     default StreamShape inputShape() {
@@ -44,7 +42,6 @@ interface TerminalOp<E_IN, R> {
      * intermediate operation flags for the pipeline.
      *
      * @implSpec The default implementation returns zero.
-     *
      * @return the stream flags for this operation
      * @see StreamOpFlag
      */
@@ -59,18 +56,15 @@ interface TerminalOp<E_IN, R> {
      *
      * @implSpec The default performs a sequential evaluation of the operation
      *           using the specified {@code PipelineHelper}.
-     *
      * @param helper
-     *                    the pipeline helper
+     *        the pipeline helper
      * @param spliterator
-     *                    the source spliterator
+     *        the source spliterator
      * @return the result of the evaluation
      */
-    default <P_IN> R evaluateParallel(PipelineHelper<E_IN> helper,
-            Spliterator<P_IN> spliterator) {
+    default <P_IN> R evaluateParallel(PipelineHelper<E_IN> helper, Spliterator<P_IN> spliterator) {
         if (Tripwire.ENABLED)
-            Tripwire.trip(getClass(),
-                    "{0} triggering TerminalOp.evaluateParallel serial default");
+            Tripwire.trip(getClass(), "{0} triggering TerminalOp.evaluateParallel serial default");
         return evaluateSequential(helper, spliterator);
     }
 
@@ -80,11 +74,10 @@ interface TerminalOp<E_IN, R> {
      * operations.
      *
      * @param helper
-     *                    the pipeline helper
+     *        the pipeline helper
      * @param spliterator
-     *                    the source spliterator
+     *        the source spliterator
      * @return the result of the evaluation
      */
-    <P_IN> R evaluateSequential(PipelineHelper<E_IN> helper,
-            Spliterator<P_IN> spliterator);
+    <P_IN> R evaluateSequential(PipelineHelper<E_IN> helper, Spliterator<P_IN> spliterator);
 }

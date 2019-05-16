@@ -35,7 +35,7 @@ public class CloneNotSupportedException extends Exception {
      * detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public CloneNotSupportedException(String s) {
         super(s);

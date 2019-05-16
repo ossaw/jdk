@@ -54,7 +54,6 @@ package javax.sound.midi;
  *
  * @see Synthesizer#getMaxPolyphony
  * @see Synthesizer#getVoiceStatus
- *
  * @author David Rivas
  * @author Kara Kytle
  */

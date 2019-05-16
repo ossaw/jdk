@@ -36,7 +36,7 @@ public interface Transferable {
      * object.
      * 
      * @param flavor
-     *               the requested flavor for the data
+     *        the requested flavor for the data
      * @return boolean indicating whether or not the data flavor is supported
      */
     public boolean isDataFlavorSupported(DataFlavor flavor);
@@ -47,17 +47,16 @@ public interface Transferable {
      * flavor.
      *
      * @param flavor
-     *               the requested flavor for the data
+     *        the requested flavor for the data
      * @see DataFlavor#getRepresentationClass
      * @exception IOException
-     *                                       if the data is no longer available
-     *                                       in the requested
-     *                                       flavor.
+     *            if the data is no longer available
+     *            in the requested
+     *            flavor.
      * @exception UnsupportedFlavorException
-     *                                       if the requested data flavor is not
-     *                                       supported.
+     *            if the requested data flavor is not
+     *            supported.
      */
-    public Object getTransferData(DataFlavor flavor)
-            throws UnsupportedFlavorException, IOException;
+    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException;
 
 }

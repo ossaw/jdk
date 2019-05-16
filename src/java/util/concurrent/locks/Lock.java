@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
  * can be obtained using {@code synchronized} methods and statements. They allow
  * more flexible structuring, may have quite different properties, and may
  * support multiple associated {@link Condition} objects.
- *
  * <p>
  * A lock is a tool for controlling access to a shared resource by multiple
  * threads. Commonly, a lock provides exclusive access to a shared resource:
@@ -25,14 +24,12 @@ import java.util.concurrent.TimeUnit;
  * resource requires that the lock be acquired first. However, some locks may
  * allow concurrent access to a shared resource, such as the read lock of a
  * {@link ReadWriteLock}.
- *
  * <p>
  * The use of {@code synchronized} methods or statements provides access to the
  * implicit monitor lock associated with every object, but forces all lock
  * acquisition and release to occur in a block-structured way: when multiple
  * locks are acquired they must be released in the opposite order, and all locks
  * must be released in the same lexical scope in which they were acquired.
- *
  * <p>
  * While the scoping mechanism for {@code synchronized} methods and statements
  * makes it much easier to program with monitor locks, and helps avoid many
@@ -45,7 +42,6 @@ import java.util.concurrent.TimeUnit;
  * use of such techniques by allowing a lock to be acquired and released in
  * different scopes, and allowing multiple locks to be acquired and released in
  * any order.
- *
  * <p>
  * With this increased flexibility comes additional responsibility. The absence
  * of block-structured locking removes the automatic release of locks that
@@ -66,21 +62,18 @@ import java.util.concurrent.TimeUnit;
  * When locking and unlocking occur in different scopes, care must be taken to
  * ensure that all code that is executed while the lock is held is protected by
  * try-finally or try-catch to ensure that the lock is released when necessary.
- *
  * <p>
  * {@code Lock} implementations provide additional functionality over the use of
  * {@code synchronized} methods and statements by providing a non-blocking
  * attempt to acquire a lock ({@link #tryLock()}), an attempt to acquire the
  * lock that can be interrupted ({@link #lockInterruptibly}, and an attempt to
  * acquire the lock that can timeout ({@link #tryLock(long, TimeUnit)}).
- *
  * <p>
  * A {@code Lock} class can also provide behavior and semantics that is quite
  * different from that of the implicit monitor lock, such as guaranteed
  * ordering, non-reentrant usage, or deadlock detection. If an implementation
  * provides such specialized semantics then the implementation must document
  * those semantics.
- *
  * <p>
  * Note that {@code Lock} instances are just normal objects and can themselves
  * be used as the target in a {@code synchronized} statement. Acquiring the
@@ -88,13 +81,10 @@ import java.util.concurrent.TimeUnit;
  * invoking any of the {@link #lock} methods of that instance. It is recommended
  * that to avoid confusion you never use {@code Lock} instances in this way,
  * except within their own implementation.
- *
  * <p>
  * Except where noted, passing a {@code null} value for any parameter will
  * result in a {@link NullPointerException} being thrown.
- *
  * <h3>Memory Synchronization</h3>
- *
  * <p>
  * All {@code Lock} implementations <em>must</em> enforce the same memory
  * synchronization semantics as provided by the built-in monitor lock, as
@@ -107,13 +97,10 @@ import java.util.concurrent.TimeUnit;
  * <li>A successful {@code unlock} operation has the same memory synchronization
  * effects as a successful <em>Unlock</em> action.
  * </ul>
- *
  * Unsuccessful locking and unlocking operations, and reentrant
  * locking/unlocking operations, do not require any memory synchronization
  * effects.
- *
  * <h3>Implementation Considerations</h3>
- *
  * <p>
  * The three forms of lock acquisition (interruptible, non-interruptible, and
  * timed) may differ in their performance characteristics, ordering guarantees,
@@ -127,7 +114,6 @@ import java.util.concurrent.TimeUnit;
  * interruption semantics as defined in this interface, to the extent that
  * interruption of lock acquisition is supported: which is either totally, or
  * only on method entry.
- *
  * <p>
  * As interruption generally implies cancellation, and checks for interruption
  * are often infrequent, an implementation can favor responding to an interrupt
@@ -138,7 +124,6 @@ import java.util.concurrent.TimeUnit;
  * @see ReentrantLock
  * @see Condition
  * @see ReadWriteLock
- *
  * @since 1.5
  * @author Doug Lea
  */
@@ -146,15 +131,12 @@ public interface Lock {
 
     /**
      * Acquires the lock.
-     *
      * <p>
      * If the lock is not available then the current thread becomes disabled for
      * thread scheduling purposes and lies dormant until the lock has been
      * acquired.
-     *
      * <p>
      * <b>Implementation Considerations</b>
-     *
      * <p>
      * A {@code Lock} implementation may be able to detect erroneous use of the
      * lock, such as an invocation that would cause deadlock, and may throw an
@@ -166,21 +148,17 @@ public interface Lock {
     /**
      * Acquires the lock unless the current thread is
      * {@linkplain Thread#interrupt interrupted}.
-     *
      * <p>
      * Acquires the lock if it is available and returns immediately.
-     *
      * <p>
      * If the lock is not available then the current thread becomes disabled for
      * thread scheduling purposes and lies dormant until one of two things
      * happens:
-     *
      * <ul>
      * <li>The lock is acquired by the current thread; or
      * <li>Some other thread {@linkplain Thread#interrupt interrupts} the
      * current thread, and interruption of lock acquisition is supported.
      * </ul>
-     *
      * <p>
      * If the current thread:
      * <ul>
@@ -190,20 +168,16 @@ public interface Lock {
      * </ul>
      * then {@link InterruptedException} is thrown and the current thread's
      * interrupted status is cleared.
-     *
      * <p>
      * <b>Implementation Considerations</b>
-     *
      * <p>
      * The ability to interrupt a lock acquisition in some implementations may
      * not be possible, and if possible may be an expensive operation. The
      * programmer should be aware that this may be the case. An implementation
      * should document when this is the case.
-     *
      * <p>
      * An implementation can favor responding to an interrupt over normal method
      * return.
-     *
      * <p>
      * A {@code Lock} implementation may be able to detect erroneous use of the
      * lock, such as an invocation that would cause deadlock, and may throw an
@@ -211,21 +185,19 @@ public interface Lock {
      * exception type must be documented by that {@code Lock} implementation.
      *
      * @throws InterruptedException
-     *                              if the current thread is interrupted while
-     *                              acquiring the lock
-     *                              (and interruption of lock acquisition is
-     *                              supported)
+     *         if the current thread is interrupted while
+     *         acquiring the lock
+     *         (and interruption of lock acquisition is
+     *         supported)
      */
     void lockInterruptibly() throws InterruptedException;
 
     /**
      * Acquires the lock only if it is free at the time of invocation.
-     *
      * <p>
      * Acquires the lock if it is available and returns immediately with the
      * value {@code true}. If the lock is not available then this method will
      * return immediately with the value {@code false}.
-     *
      * <p>
      * A typical usage idiom for this method would be:
      * 
@@ -253,7 +225,6 @@ public interface Lock {
     /**
      * Acquires the lock if it is free within the given waiting time and the
      * current thread has not been {@linkplain Thread#interrupt interrupted}.
-     *
      * <p>
      * If the lock is available this method returns immediately with the value
      * {@code true}. If the lock is not available then the current thread
@@ -265,10 +236,8 @@ public interface Lock {
      * current thread, and interruption of lock acquisition is supported; or
      * <li>The specified waiting time elapses
      * </ul>
-     *
      * <p>
      * If the lock is acquired then the value {@code true} is returned.
-     *
      * <p>
      * If the current thread:
      * <ul>
@@ -278,25 +247,20 @@ public interface Lock {
      * </ul>
      * then {@link InterruptedException} is thrown and the current thread's
      * interrupted status is cleared.
-     *
      * <p>
      * If the specified waiting time elapses then the value {@code false} is
      * returned. If the time is less than or equal to zero, the method will not
      * wait at all.
-     *
      * <p>
      * <b>Implementation Considerations</b>
-     *
      * <p>
      * The ability to interrupt a lock acquisition in some implementations may
      * not be possible, and if possible may be an expensive operation. The
      * programmer should be aware that this may be the case. An implementation
      * should document when this is the case.
-     *
      * <p>
      * An implementation can favor responding to an interrupt over normal method
      * return, or reporting a timeout.
-     *
      * <p>
      * A {@code Lock} implementation may be able to detect erroneous use of the
      * lock, such as an invocation that would cause deadlock, and may throw an
@@ -304,26 +268,23 @@ public interface Lock {
      * exception type must be documented by that {@code Lock} implementation.
      *
      * @param time
-     *             the maximum time to wait for the lock
+     *        the maximum time to wait for the lock
      * @param unit
-     *             the time unit of the {@code time} argument
+     *        the time unit of the {@code time} argument
      * @return {@code true} if the lock was acquired and {@code false} if the
      *         waiting time elapsed before the lock was acquired
-     *
      * @throws InterruptedException
-     *                              if the current thread is interrupted while
-     *                              acquiring the lock
-     *                              (and interruption of lock acquisition is
-     *                              supported)
+     *         if the current thread is interrupted while
+     *         acquiring the lock
+     *         (and interruption of lock acquisition is
+     *         supported)
      */
     boolean tryLock(long time, TimeUnit unit) throws InterruptedException;
 
     /**
      * Releases the lock.
-     *
      * <p>
      * <b>Implementation Considerations</b>
-     *
      * <p>
      * A {@code Lock} implementation will usually impose restrictions on which
      * thread can release a lock (typically only the holder of the lock can
@@ -336,15 +297,12 @@ public interface Lock {
     /**
      * Returns a new {@link Condition} instance that is bound to this
      * {@code Lock} instance.
-     *
      * <p>
      * Before waiting on the condition the lock must be held by the current
      * thread. A call to {@link Condition#await()} will atomically release the
      * lock before waiting and re-acquire the lock before the wait returns.
-     *
      * <p>
      * <b>Implementation Considerations</b>
-     *
      * <p>
      * The exact operation of the {@link Condition} instance depends on the
      * {@code Lock} implementation and must be documented by that
@@ -352,9 +310,9 @@ public interface Lock {
      *
      * @return A new {@link Condition} instance for this {@code Lock} instance
      * @throws UnsupportedOperationException
-     *                                       if this {@code Lock} implementation
-     *                                       does not support
-     *                                       conditions
+     *         if this {@code Lock} implementation
+     *         does not support
+     *         conditions
      */
     Condition newCondition();
 }

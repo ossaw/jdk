@@ -25,7 +25,6 @@ import com.sun.jmx.remote.internal.IIOPHelper;
  * </p>
  *
  * @see RMIServerImpl
- *
  * @since 1.5
  */
 public class RMIIIOPServerImpl extends RMIServerImpl {
@@ -35,12 +34,11 @@ public class RMIIIOPServerImpl extends RMIServerImpl {
      * </p>
      *
      * @param env
-     *            the environment containing attributes for the new
-     *            <code>RMIServerImpl</code>. Can be null, which is equivalent
-     *            to an empty Map.
-     *
+     *        the environment containing attributes for the new
+     *        <code>RMIServerImpl</code>. Can be null, which is equivalent
+     *        to an empty Map.
      * @exception IOException
-     *                        if the RMI object cannot be created.
+     *            if the RMI object cannot be created.
      */
     public RMIIIOPServerImpl(Map<String, ?> env) throws IOException {
         super(env);
@@ -67,9 +65,9 @@ public class RMIIIOPServerImpl extends RMIServerImpl {
      * 
      * @return an IIOP stub.
      * @exception IOException
-     *                        if the stub cannot be created - e.g the
-     *                        RMIIIOPServerImpl
-     *                        has not been exported yet.
+     *            if the stub cannot be created - e.g the
+     *            RMIIIOPServerImpl
+     *            has not been exported yet.
      **/
     public Remote toStub() throws IOException {
         // javax.rmi.CORBA.Stub stub =
@@ -88,29 +86,25 @@ public class RMIIIOPServerImpl extends RMIServerImpl {
      * Creates a new client connection as an RMI object exported through IIOP.
      *
      * @param connectionId
-     *                     the ID of the new connection. Every connection opened
-     *                     by this
-     *                     connector server will have a different ID. The
-     *                     behavior is
-     *                     unspecified if this parameter is null.
-     *
+     *        the ID of the new connection. Every connection opened
+     *        by this
+     *        connector server will have a different ID. The
+     *        behavior is
+     *        unspecified if this parameter is null.
      * @param subject
-     *                     the authenticated subject. Can be null.
-     *
+     *        the authenticated subject. Can be null.
      * @return the newly-created <code>RMIConnection</code>.
-     *
      * @exception IOException
-     *                        if the new client object cannot be created or
-     *                        exported.
+     *            if the new client object cannot be created or
+     *            exported.
      */
-    protected RMIConnection makeClient(String connectionId, Subject subject)
-            throws IOException {
+    protected RMIConnection makeClient(String connectionId, Subject subject) throws IOException {
 
         if (connectionId == null)
             throw new NullPointerException("Null connectionId");
 
-        RMIConnection client = new RMIConnectionImpl(this, connectionId,
-                getDefaultClassLoader(), subject, env);
+        RMIConnection client = new RMIConnectionImpl(this, connectionId, getDefaultClassLoader(), subject,
+                env);
         IIOPHelper.exportObject(client);
         return client;
     }
@@ -127,8 +121,8 @@ public class RMIIIOPServerImpl extends RMIServerImpl {
      * </p>
      *
      * @exception IOException
-     *                        if the attempt to close the connector server
-     *                        failed.
+     *            if the attempt to close the connector server
+     *            failed.
      */
     protected void closeServer() throws IOException {
         IIOPHelper.unexportObject(this);
@@ -140,12 +134,11 @@ public class RMIIIOPServerImpl extends RMIServerImpl {
             throw new SecurityException("AccessControlContext cannot be null");
         }
         try {
-            return AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<RMIConnection>() {
-                        public RMIConnection run() throws IOException {
-                            return superDoNewClient(credentials);
-                        }
-                    }, callerACC);
+            return AccessController.doPrivileged(new PrivilegedExceptionAction<RMIConnection>() {
+                public RMIConnection run() throws IOException {
+                    return superDoNewClient(credentials);
+                }
+            }, callerACC);
         } catch (PrivilegedActionException pae) {
             throw (IOException) pae.getCause();
         }

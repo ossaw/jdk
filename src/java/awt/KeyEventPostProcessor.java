@@ -28,7 +28,6 @@ import java.awt.event.KeyEvent;
  * recommended.)
  *
  * @author David Mendenhall
- *
  * @see KeyboardFocusManager#addKeyEventPostProcessor
  * @see KeyboardFocusManager#removeKeyEventPostProcessor
  * @since 1.4
@@ -64,7 +63,7 @@ public interface KeyEventPostProcessor {
      * consumed KeyEvent.
      *
      * @param e
-     *          the KeyEvent to post-process
+     *        the KeyEvent to post-process
      * @return <code>true</code> if the AWT should take no further action with
      *         regard to the KeyEvent; <code>false</code> otherwise
      * @see KeyboardFocusManager#redispatchEvent

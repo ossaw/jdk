@@ -32,9 +32,7 @@ import com.sun.xml.internal.stream.util.ThreadLocalBufferAllocator;
  * streams that only contain 7-bit ASCII characters.
  *
  * @xerces.internal
- *
  * @author Andy Clark, IBM
- *
  */
 public class ASCIIReader extends Reader {
 
@@ -71,14 +69,13 @@ public class ASCIIReader extends Reader {
      * default buffer size.
      *
      * @param inputStream
-     *                         The input stream.
+     *        The input stream.
      * @param messageFormatter
-     *                         the MessageFormatter to use to message reporting.
+     *        the MessageFormatter to use to message reporting.
      * @param locale
-     *                         the Locale for which messages are to be reported
+     *        the Locale for which messages are to be reported
      */
-    public ASCIIReader(InputStream inputStream,
-            MessageFormatter messageFormatter, Locale locale) {
+    public ASCIIReader(InputStream inputStream, MessageFormatter messageFormatter, Locale locale) {
         this(inputStream, DEFAULT_BUFFER_SIZE, messageFormatter, locale);
     } // <init>(InputStream, MessageFormatter, Locale)
 
@@ -87,16 +84,15 @@ public class ASCIIReader extends Reader {
      * size.
      *
      * @param inputStream
-     *                         The input stream.
+     *        The input stream.
      * @param size
-     *                         The initial buffer size.
+     *        The initial buffer size.
      * @param messageFormatter
-     *                         the MessageFormatter to use to message reporting.
+     *        the MessageFormatter to use to message reporting.
      * @param locale
-     *                         the Locale for which messages are to be reported
+     *        the Locale for which messages are to be reported
      */
-    public ASCIIReader(InputStream inputStream, int size,
-            MessageFormatter messageFormatter, Locale locale) {
+    public ASCIIReader(InputStream inputStream, int size, MessageFormatter messageFormatter, Locale locale) {
         fInputStream = inputStream;
         BufferAllocator ba = ThreadLocalBufferAllocator.getBufferAllocator();
         fBuffer = ba.getByteBuffer(size);
@@ -114,7 +110,6 @@ public class ASCIIReader extends Reader {
     /**
      * Read a single character. This method will block until a character is
      * available, an I/O error occurs, or the end of the stream is reached.
-     *
      * <p>
      * Subclasses that intend to support efficient single-character input should
      * override this method.
@@ -122,16 +117,14 @@ public class ASCIIReader extends Reader {
      * @return The character read, as an integer in the range 0 to 127 (
      *         <tt>0x00-0x7f</tt>), or -1 if the end of the stream has been
      *         reached
-     *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public int read() throws IOException {
         int b0 = fInputStream.read();
         if (b0 >= 0x80) {
-            throw new MalformedByteSequenceException(fFormatter, fLocale,
-                    XMLMessageFormatter.XML_DOMAIN, "InvalidASCII",
-                    new Object[] { Integer.toString(b0) });
+            throw new MalformedByteSequenceException(fFormatter, fLocale, XMLMessageFormatter.XML_DOMAIN,
+                    "InvalidASCII", new Object[] { Integer.toString(b0) });
         }
         return b0;
     } // read():int
@@ -142,17 +135,15 @@ public class ASCIIReader extends Reader {
      * reached.
      *
      * @param ch
-     *               Destination buffer
+     *        Destination buffer
      * @param offset
-     *               Offset at which to start storing characters
+     *        Offset at which to start storing characters
      * @param length
-     *               Maximum number of characters to read
-     *
+     *        Maximum number of characters to read
      * @return The number of characters read, or -1 if the end of the stream has
      *         been reached
-     *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public int read(char ch[], int offset, int length) throws IOException {
         if (length > fBuffer.length) {
@@ -162,9 +153,8 @@ public class ASCIIReader extends Reader {
         for (int i = 0; i < count; i++) {
             int b0 = fBuffer[i];
             if (b0 < 0) {
-                throw new MalformedByteSequenceException(fFormatter, fLocale,
-                        XMLMessageFormatter.XML_DOMAIN, "InvalidASCII",
-                        new Object[] { Integer.toString(b0 & 0x0FF) });
+                throw new MalformedByteSequenceException(fFormatter, fLocale, XMLMessageFormatter.XML_DOMAIN,
+                        "InvalidASCII", new Object[] { Integer.toString(b0 & 0x0FF) });
             }
             ch[offset + i] = (char) b0;
         }
@@ -176,12 +166,10 @@ public class ASCIIReader extends Reader {
      * available, an I/O error occurs, or the end of the stream is reached.
      *
      * @param n
-     *          The number of characters to skip
-     *
+     *        The number of characters to skip
      * @return The number of characters actually skipped
-     *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public long skip(long n) throws IOException {
         return fInputStream.skip(n);
@@ -193,9 +181,8 @@ public class ASCIIReader extends Reader {
      * @return True if the next read() is guaranteed not to block for input,
      *         false otherwise. Note that returning false does not guarantee
      *         that the next read will block.
-     *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public boolean ready() throws IOException {
         return false;
@@ -214,16 +201,15 @@ public class ASCIIReader extends Reader {
      * streams support the mark() operation.
      *
      * @param readAheadLimit
-     *                       Limit on the number of characters that may be read
-     *                       while still
-     *                       preserving the mark. After reading this many
-     *                       characters,
-     *                       attempting to reset the stream may fail.
-     *
+     *        Limit on the number of characters that may be read
+     *        while still
+     *        preserving the mark. After reading this many
+     *        characters,
+     *        attempting to reset the stream may fail.
      * @exception IOException
-     *                        If the stream does not support mark(), or if some
-     *                        other
-     *                        I/O error occurs
+     *            If the stream does not support mark(), or if some
+     *            other
+     *            I/O error occurs
      */
     public void mark(int readAheadLimit) throws IOException {
         fInputStream.mark(readAheadLimit);
@@ -238,11 +224,11 @@ public class ASCIIReader extends Reader {
      * reset() without supporting mark().
      *
      * @exception IOException
-     *                        If the stream has not been marked, or if the mark
-     *                        has been
-     *                        invalidated, or if the stream does not support
-     *                        reset(), or
-     *                        if some other I/O error occurs
+     *            If the stream has not been marked, or if the mark
+     *            has been
+     *            invalidated, or if the stream does not support
+     *            reset(), or
+     *            if some other I/O error occurs
      */
     public void reset() throws IOException {
         fInputStream.reset();
@@ -254,7 +240,7 @@ public class ASCIIReader extends Reader {
      * previously-closed stream, however, has no effect.
      *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void close() throws IOException {
         BufferAllocator ba = ThreadLocalBufferAllocator.getBufferAllocator();

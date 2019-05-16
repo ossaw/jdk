@@ -66,7 +66,7 @@ public class SyncProviderException extends java.sql.SQLException {
      * detail message.
      *
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public SyncProviderException(String msg) {
         super(msg);
@@ -77,18 +77,17 @@ public class SyncProviderException extends java.sql.SQLException {
      * <code>SyncResolver</code> instance.
      *
      * @param syncResolver
-     *                     the <code>SyncResolver</code> instance used to to
-     *                     process the
-     *                     synchronization conflicts
+     *        the <code>SyncResolver</code> instance used to to
+     *        process the
+     *        synchronization conflicts
      * @throws IllegalArgumentException
-     *                                  if the <code>SyncResolver</code> object
-     *                                  is <code>null</code>.
+     *         if the <code>SyncResolver</code> object
+     *         is <code>null</code>.
      */
     public SyncProviderException(SyncResolver syncResolver) {
         if (syncResolver == null) {
-            throw new IllegalArgumentException(
-                    "Cannot instantiate a SyncProviderException "
-                            + "with a null SyncResolver object");
+            throw new IllegalArgumentException("Cannot instantiate a SyncProviderException "
+                    + "with a null SyncResolver object");
         } else {
             this.syncResolver = syncResolver;
         }
@@ -120,8 +119,7 @@ public class SyncProviderException extends java.sql.SQLException {
         } else {
             try {
                 syncResolver = new com.sun.rowset.internal.SyncResolverImpl();
-            } catch (SQLException sqle) {
-            }
+            } catch (SQLException sqle) {}
             return syncResolver;
         }
     }
@@ -134,18 +132,17 @@ public class SyncProviderException extends java.sql.SQLException {
      * implementation of the <code>SyncResolver</code> interface.
      *
      * @param syncResolver
-     *                     the <code>SyncResolver</code> object to be set;
-     *                     cannot be
-     *                     <code>null</code>
+     *        the <code>SyncResolver</code> object to be set;
+     *        cannot be
+     *        <code>null</code>
      * @throws IllegalArgumentException
-     *                                  if the <code>SyncResolver</code> object
-     *                                  is <code>null</code>.
+     *         if the <code>SyncResolver</code> object
+     *         is <code>null</code>.
      * @see #getSyncResolver
      */
     public void setSyncResolver(SyncResolver syncResolver) {
         if (syncResolver == null) {
-            throw new IllegalArgumentException("Cannot set a null SyncResolver "
-                    + "object");
+            throw new IllegalArgumentException("Cannot set a null SyncResolver " + "object");
         } else {
             this.syncResolver = syncResolver;
         }

@@ -36,8 +36,7 @@ abstract public class ObjectHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(
-                    TCKind.tk_objref);
+            __typeCode = org.omg.CORBA.ORB.init().get_primitive_tc(TCKind.tk_objref);
         }
         return __typeCode;
     }
@@ -46,13 +45,11 @@ abstract public class ObjectHelper {
         return _id;
     }
 
-    public static org.omg.CORBA.Object read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CORBA.Object read(org.omg.CORBA.portable.InputStream istream) {
         return istream.read_Object();
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.CORBA.Object value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.CORBA.Object value) {
         ostream.write_Object(value);
     }
 

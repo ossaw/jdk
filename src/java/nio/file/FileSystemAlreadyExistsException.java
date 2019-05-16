@@ -22,7 +22,7 @@ public class FileSystemAlreadyExistsException extends RuntimeException {
      * Constructs an instance of this class.
      *
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public FileSystemAlreadyExistsException(String msg) {
         super(msg);

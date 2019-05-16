@@ -15,8 +15,7 @@ package org.omg.CORBA;
  * July 17, 1999 12:26:21 AM PDT
  */
 
-public final class PolicyListHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class PolicyListHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CORBA.Policy value[] = null;
 
     public PolicyListHolder() {}

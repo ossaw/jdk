@@ -55,14 +55,12 @@ public class OMGSystemException extends LogWrapperBase {
     };
 
     public static OMGSystemException get(ORB orb, String logDomain) {
-        OMGSystemException wrapper = (OMGSystemException) orb.getLogWrapper(
-                logDomain, "OMG", factory);
+        OMGSystemException wrapper = (OMGSystemException) orb.getLogWrapper(logDomain, "OMG", factory);
         return wrapper;
     }
 
     public static OMGSystemException get(String logDomain) {
-        OMGSystemException wrapper = (OMGSystemException) ORB
-                .staticGetLogWrapper(logDomain, "OMG", factory);
+        OMGSystemException wrapper = (OMGSystemException) ORB.staticGetLogWrapper(logDomain, "OMG", factory);
         return wrapper;
     }
 
@@ -79,8 +77,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.idlContextNotFound", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.idlContextNotFound", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -107,8 +104,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noMatchingIdlContext", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noMatchingIdlContext", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -132,16 +128,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int DEP_PREVENT_DESTRUCTION = OMGVMCID.value + 1;
 
-    public BAD_INV_ORDER depPreventDestruction(CompletionStatus cs,
-            Throwable t) {
+    public BAD_INV_ORDER depPreventDestruction(CompletionStatus cs, Throwable t) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(DEP_PREVENT_DESTRUCTION, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.depPreventDestruction", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.depPreventDestruction", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -161,16 +155,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int DESTROY_INDESTRUCTIBLE = OMGVMCID.value + 2;
 
-    public BAD_INV_ORDER destroyIndestructible(CompletionStatus cs,
-            Throwable t) {
+    public BAD_INV_ORDER destroyIndestructible(CompletionStatus cs, Throwable t) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(DESTROY_INDESTRUCTIBLE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.destroyIndestructible", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.destroyIndestructible", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -188,52 +180,44 @@ public class OMGSystemException extends LogWrapperBase {
         return destroyIndestructible(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int SHUTDOWN_WAIT_FOR_COMPLETION_DEADLOCK = OMGVMCID.value
-            + 3;
+    public static final int SHUTDOWN_WAIT_FOR_COMPLETION_DEADLOCK = OMGVMCID.value + 3;
 
-    public BAD_INV_ORDER shutdownWaitForCompletionDeadlock(CompletionStatus cs,
-            Throwable t) {
-        BAD_INV_ORDER exc = new BAD_INV_ORDER(
-                SHUTDOWN_WAIT_FOR_COMPLETION_DEADLOCK, cs);
+    public BAD_INV_ORDER shutdownWaitForCompletionDeadlock(CompletionStatus cs, Throwable t) {
+        BAD_INV_ORDER exc = new BAD_INV_ORDER(SHUTDOWN_WAIT_FOR_COMPLETION_DEADLOCK, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.shutdownWaitForCompletionDeadlock",
-                    parameters, OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.shutdownWaitForCompletionDeadlock", parameters,
+                    OMGSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public BAD_INV_ORDER shutdownWaitForCompletionDeadlock(
-            CompletionStatus cs) {
+    public BAD_INV_ORDER shutdownWaitForCompletionDeadlock(CompletionStatus cs) {
         return shutdownWaitForCompletionDeadlock(cs, null);
     }
 
     public BAD_INV_ORDER shutdownWaitForCompletionDeadlock(Throwable t) {
-        return shutdownWaitForCompletionDeadlock(CompletionStatus.COMPLETED_NO,
-                t);
+        return shutdownWaitForCompletionDeadlock(CompletionStatus.COMPLETED_NO, t);
     }
 
     public BAD_INV_ORDER shutdownWaitForCompletionDeadlock() {
-        return shutdownWaitForCompletionDeadlock(CompletionStatus.COMPLETED_NO,
-                null);
+        return shutdownWaitForCompletionDeadlock(CompletionStatus.COMPLETED_NO, null);
     }
 
     public static final int BAD_OPERATION_AFTER_SHUTDOWN = OMGVMCID.value + 4;
 
-    public BAD_INV_ORDER badOperationAfterShutdown(CompletionStatus cs,
-            Throwable t) {
+    public BAD_INV_ORDER badOperationAfterShutdown(CompletionStatus cs, Throwable t) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(BAD_OPERATION_AFTER_SHUTDOWN, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badOperationAfterShutdown", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badOperationAfterShutdown", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -260,8 +244,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badInvoke", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badInvoke", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -281,16 +264,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int BAD_SET_SERVANT_MANAGER = OMGVMCID.value + 6;
 
-    public BAD_INV_ORDER badSetServantManager(CompletionStatus cs,
-            Throwable t) {
+    public BAD_INV_ORDER badSetServantManager(CompletionStatus cs, Throwable t) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(BAD_SET_SERVANT_MANAGER, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badSetServantManager", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badSetServantManager", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -317,8 +298,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badArgumentsCall", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badArgumentsCall", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -345,8 +325,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badCtxCall", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badCtxCall", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -373,8 +352,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badResultCall", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badResultCall", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -401,8 +379,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badSend", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badSend", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -429,8 +406,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badPollBefore", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badPollBefore", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -457,8 +433,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badPollAfter", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badPollAfter", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -485,8 +460,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badPollSync", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badPollSync", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -513,8 +487,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.invalidPiCall1", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.invalidPiCall1", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -541,8 +514,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.invalidPiCall2", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.invalidPiCall2", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -569,8 +541,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.invalidPiCall3", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.invalidPiCall3", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -597,8 +568,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.invalidPiCall4", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.invalidPiCall4", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -618,8 +588,7 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int SERVICE_CONTEXT_ADD_FAILED = OMGVMCID.value + 15;
 
-    public BAD_INV_ORDER serviceContextAddFailed(CompletionStatus cs,
-            Throwable t, Object arg0) {
+    public BAD_INV_ORDER serviceContextAddFailed(CompletionStatus cs, Throwable t, Object arg0) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(SERVICE_CONTEXT_ADD_FAILED, cs);
         if (t != null)
             exc.initCause(t);
@@ -627,15 +596,13 @@ public class OMGSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.FINE, "OMG.serviceContextAddFailed", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.serviceContextAddFailed", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public BAD_INV_ORDER serviceContextAddFailed(CompletionStatus cs,
-            Object arg0) {
+    public BAD_INV_ORDER serviceContextAddFailed(CompletionStatus cs, Object arg0) {
         return serviceContextAddFailed(cs, null, arg0);
     }
 
@@ -644,14 +611,12 @@ public class OMGSystemException extends LogWrapperBase {
     }
 
     public BAD_INV_ORDER serviceContextAddFailed(Object arg0) {
-        return serviceContextAddFailed(CompletionStatus.COMPLETED_NO, null,
-                arg0);
+        return serviceContextAddFailed(CompletionStatus.COMPLETED_NO, null, arg0);
     }
 
     public static final int POLICY_FACTORY_REG_FAILED = OMGVMCID.value + 16;
 
-    public BAD_INV_ORDER policyFactoryRegFailed(CompletionStatus cs,
-            Throwable t, Object arg0) {
+    public BAD_INV_ORDER policyFactoryRegFailed(CompletionStatus cs, Throwable t, Object arg0) {
         BAD_INV_ORDER exc = new BAD_INV_ORDER(POLICY_FACTORY_REG_FAILED, cs);
         if (t != null)
             exc.initCause(t);
@@ -659,15 +624,13 @@ public class OMGSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "OMG.policyFactoryRegFailed", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.policyFactoryRegFailed", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public BAD_INV_ORDER policyFactoryRegFailed(CompletionStatus cs,
-            Object arg0) {
+    public BAD_INV_ORDER policyFactoryRegFailed(CompletionStatus cs, Object arg0) {
         return policyFactoryRegFailed(cs, null, arg0);
     }
 
@@ -676,8 +639,7 @@ public class OMGSystemException extends LogWrapperBase {
     }
 
     public BAD_INV_ORDER policyFactoryRegFailed(Object arg0) {
-        return policyFactoryRegFailed(CompletionStatus.COMPLETED_NO, null,
-                arg0);
+        return policyFactoryRegFailed(CompletionStatus.COMPLETED_NO, null, arg0);
     }
 
     public static final int CREATE_POA_DESTROY = OMGVMCID.value + 17;
@@ -689,8 +651,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.createPoaDestroy", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.createPoaDestroy", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -717,8 +678,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.priorityReassign", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.priorityReassign", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -745,8 +705,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.xaStartOutsize", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.xaStartOutsize", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -773,8 +732,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.xaStartProto", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.xaStartProto", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -798,16 +756,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int BAD_SERVANT_MANAGER_TYPE = OMGVMCID.value + 1;
 
-    public BAD_OPERATION badServantManagerType(CompletionStatus cs,
-            Throwable t) {
+    public BAD_OPERATION badServantManagerType(CompletionStatus cs, Throwable t) {
         BAD_OPERATION exc = new BAD_OPERATION(BAD_SERVANT_MANAGER_TYPE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badServantManagerType", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badServantManagerType", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -827,16 +783,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int OPERATION_UNKNOWN_TO_TARGET = OMGVMCID.value + 2;
 
-    public BAD_OPERATION operationUnknownToTarget(CompletionStatus cs,
-            Throwable t) {
+    public BAD_OPERATION operationUnknownToTarget(CompletionStatus cs, Throwable t) {
         BAD_OPERATION exc = new BAD_OPERATION(OPERATION_UNKNOWN_TO_TARGET, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.operationUnknownToTarget", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.operationUnknownToTarget", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -860,16 +814,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int UNABLE_REGISTER_VALUE_FACTORY = OMGVMCID.value + 1;
 
-    public BAD_PARAM unableRegisterValueFactory(CompletionStatus cs,
-            Throwable t) {
+    public BAD_PARAM unableRegisterValueFactory(CompletionStatus cs, Throwable t) {
         BAD_PARAM exc = new BAD_PARAM(UNABLE_REGISTER_VALUE_FACTORY, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.unableRegisterValueFactory", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.unableRegisterValueFactory", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -896,8 +848,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.ridAlreadyDefined", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.ridAlreadyDefined", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -924,8 +875,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.nameUsedIfr", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.nameUsedIfr", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -952,8 +902,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.targetNotContainer", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.targetNotContainer", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -980,8 +929,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.nameClash", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.nameClash", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1001,8 +949,7 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int NOT_SERIALIZABLE = OMGVMCID.value + 6;
 
-    public BAD_PARAM notSerializable(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public BAD_PARAM notSerializable(CompletionStatus cs, Throwable t, Object arg0) {
         BAD_PARAM exc = new BAD_PARAM(NOT_SERIALIZABLE, cs);
         if (t != null)
             exc.initCause(t);
@@ -1010,8 +957,7 @@ public class OMGSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "OMG.notSerializable", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.notSerializable", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1038,8 +984,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.soBadSchemeName", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.soBadSchemeName", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1066,8 +1011,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.soBadAddress", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.soBadAddress", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1094,8 +1038,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.soBadSchemaSpecific", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.soBadSchemaSpecific", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1122,8 +1065,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.soNonSpecific", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.soNonSpecific", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1150,8 +1092,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.irDeriveAbsIntBase", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.irDeriveAbsIntBase", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1178,8 +1119,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.irValueSupport", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.irValueSupport", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1206,8 +1146,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.incompleteTypecode", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.incompleteTypecode", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1234,8 +1173,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.invalidObjectId", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.invalidObjectId", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1262,8 +1200,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.typecodeBadName", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.typecodeBadName", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1290,8 +1227,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.typecodeBadRepid", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.typecodeBadRepid", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1318,8 +1254,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.typecodeInvMember", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.typecodeInvMember", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1346,8 +1281,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.tcUnionDupLabel", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.tcUnionDupLabel", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1374,8 +1308,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.tcUnionIncompatible", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.tcUnionIncompatible", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1402,8 +1335,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.tcUnionBadDisc", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.tcUnionBadDisc", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1430,8 +1362,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.setExceptionBadAny", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.setExceptionBadAny", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1458,8 +1389,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.setExceptionUnlisted", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.setExceptionUnlisted", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1486,8 +1416,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noClientWcharCodesetCtx", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noClientWcharCodesetCtx", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1514,8 +1443,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.illegalServiceContext", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.illegalServiceContext", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1542,8 +1470,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.enumOutOfRange", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.enumOutOfRange", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1570,8 +1497,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.invalidServiceContextId", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.invalidServiceContextId", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1598,8 +1524,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.rirWithNullObject", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.rirWithNullObject", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1619,8 +1544,7 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int INVALID_COMPONENT_ID = OMGVMCID.value + 28;
 
-    public BAD_PARAM invalidComponentId(CompletionStatus cs, Throwable t,
-            Object arg0) {
+    public BAD_PARAM invalidComponentId(CompletionStatus cs, Throwable t, Object arg0) {
         BAD_PARAM exc = new BAD_PARAM(INVALID_COMPONENT_ID, cs);
         if (t != null)
             exc.initCause(t);
@@ -1628,8 +1552,7 @@ public class OMGSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.FINE, "OMG.invalidComponentId", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.invalidComponentId", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1656,8 +1579,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.invalidProfileId", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.invalidProfileId", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1684,8 +1606,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.policyTypeDuplicate", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.policyTypeDuplicate", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1712,8 +1633,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badOnewayDefinition", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badOnewayDefinition", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1740,8 +1660,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.diiForImplicitOperation", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.diiForImplicitOperation", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1768,8 +1687,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.xaCallInval", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.xaCallInval", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1796,8 +1714,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.unionBadDiscriminator", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.unionBadDiscriminator", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1824,8 +1741,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.ctxIllegalPropertyName", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.ctxIllegalPropertyName", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1852,8 +1768,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.ctxIllegalSearchString", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.ctxIllegalSearchString", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1880,8 +1795,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.ctxIllegalName", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.ctxIllegalName", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1908,8 +1822,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.ctxNonEmpty", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.ctxNonEmpty", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1929,8 +1842,7 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int INVALID_STREAM_FORMAT_VERSION = OMGVMCID.value + 39;
 
-    public BAD_PARAM invalidStreamFormatVersion(CompletionStatus cs,
-            Throwable t, Object arg0) {
+    public BAD_PARAM invalidStreamFormatVersion(CompletionStatus cs, Throwable t, Object arg0) {
         BAD_PARAM exc = new BAD_PARAM(INVALID_STREAM_FORMAT_VERSION, cs);
         if (t != null)
             exc.initCause(t);
@@ -1938,26 +1850,22 @@ public class OMGSystemException extends LogWrapperBase {
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = new Object[1];
             parameters[0] = arg0;
-            doLog(Level.WARNING, "OMG.invalidStreamFormatVersion", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.invalidStreamFormatVersion", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public BAD_PARAM invalidStreamFormatVersion(CompletionStatus cs,
-            Object arg0) {
+    public BAD_PARAM invalidStreamFormatVersion(CompletionStatus cs, Object arg0) {
         return invalidStreamFormatVersion(cs, null, arg0);
     }
 
     public BAD_PARAM invalidStreamFormatVersion(Throwable t, Object arg0) {
-        return invalidStreamFormatVersion(CompletionStatus.COMPLETED_NO, t,
-                arg0);
+        return invalidStreamFormatVersion(CompletionStatus.COMPLETED_NO, t, arg0);
     }
 
     public BAD_PARAM invalidStreamFormatVersion(Object arg0) {
-        return invalidStreamFormatVersion(CompletionStatus.COMPLETED_NO, null,
-                arg0);
+        return invalidStreamFormatVersion(CompletionStatus.COMPLETED_NO, null, arg0);
     }
 
     public static final int NOT_A_VALUEOUTPUTSTREAM = OMGVMCID.value + 40;
@@ -1969,8 +1877,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.notAValueoutputstream", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.notAValueoutputstream", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -1997,8 +1904,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.notAValueinputstream", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.notAValueinputstream", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2022,16 +1928,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int MARSHALL_INCOMPLETE_TYPECODE = OMGVMCID.value + 1;
 
-    public BAD_TYPECODE marshallIncompleteTypecode(CompletionStatus cs,
-            Throwable t) {
+    public BAD_TYPECODE marshallIncompleteTypecode(CompletionStatus cs, Throwable t) {
         BAD_TYPECODE exc = new BAD_TYPECODE(MARSHALL_INCOMPLETE_TYPECODE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.marshallIncompleteTypecode", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.marshallIncompleteTypecode", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2058,8 +1962,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badMemberTypecode", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badMemberTypecode", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2086,8 +1989,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.illegalParameter", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.illegalParameter", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2118,8 +2020,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.charNotInCodeset", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.charNotInCodeset", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2146,8 +2047,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.priorityMapFailre", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.priorityMapFailre", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2178,8 +2078,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noUsableProfile", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noUsableProfile", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2210,8 +2109,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.priorityRangeRestrict", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.priorityRangeRestrict", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2235,16 +2133,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int NO_SERVER_WCHAR_CODESET_CMP = OMGVMCID.value + 1;
 
-    public INV_OBJREF noServerWcharCodesetCmp(CompletionStatus cs,
-            Throwable t) {
+    public INV_OBJREF noServerWcharCodesetCmp(CompletionStatus cs, Throwable t) {
         INV_OBJREF exc = new INV_OBJREF(NO_SERVER_WCHAR_CODESET_CMP, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noServerWcharCodesetCmp", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noServerWcharCodesetCmp", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2264,16 +2160,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int CODESET_COMPONENT_REQUIRED = OMGVMCID.value + 2;
 
-    public INV_OBJREF codesetComponentRequired(CompletionStatus cs,
-            Throwable t) {
+    public INV_OBJREF codesetComponentRequired(CompletionStatus cs, Throwable t) {
         INV_OBJREF exc = new INV_OBJREF(CODESET_COMPONENT_REQUIRED, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.codesetComponentRequired", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.codesetComponentRequired", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2297,16 +2191,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int IOR_POLICY_RECONCILE_ERROR = OMGVMCID.value + 1;
 
-    public INV_POLICY iorPolicyReconcileError(CompletionStatus cs,
-            Throwable t) {
+    public INV_POLICY iorPolicyReconcileError(CompletionStatus cs, Throwable t) {
         INV_POLICY exc = new INV_POLICY(IOR_POLICY_RECONCILE_ERROR, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.iorPolicyReconcileError", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.iorPolicyReconcileError", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2333,8 +2225,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.policyUnknown", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.policyUnknown", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2361,8 +2252,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noPolicyFactory", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noPolicyFactory", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2393,8 +2283,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.xaRmerr", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.xaRmerr", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2421,8 +2310,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.xaRmfail", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.xaRmfail", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2453,8 +2341,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noIr", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noIr", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2481,8 +2368,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noInterfaceInIr", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noInterfaceInIr", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2513,8 +2399,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.unableLocateValueFactory", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.unableLocateValueFactory", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2541,8 +2426,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.setResultBeforeCtx", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.setResultBeforeCtx", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2569,8 +2453,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badNvlist", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badNvlist", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2597,8 +2480,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.notAnObjectImpl", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.notAnObjectImpl", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2625,8 +2507,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.wcharBadGiopVersionSent", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.wcharBadGiopVersionSent", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2644,19 +2525,17 @@ public class OMGSystemException extends LogWrapperBase {
         return wcharBadGiopVersionSent(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int WCHAR_BAD_GIOP_VERSION_RETURNED = OMGVMCID.value
-            + 6;
+    public static final int WCHAR_BAD_GIOP_VERSION_RETURNED = OMGVMCID.value + 6;
 
-    public MARSHAL wcharBadGiopVersionReturned(CompletionStatus cs,
-            Throwable t) {
+    public MARSHAL wcharBadGiopVersionReturned(CompletionStatus cs, Throwable t) {
         MARSHAL exc = new MARSHAL(WCHAR_BAD_GIOP_VERSION_RETURNED, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.wcharBadGiopVersionReturned", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.wcharBadGiopVersionReturned", parameters, OMGSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -2683,8 +2562,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.unsupportedFormatVersion", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.unsupportedFormatVersion", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2702,19 +2580,17 @@ public class OMGSystemException extends LogWrapperBase {
         return unsupportedFormatVersion(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE1 = OMGVMCID.value
-            + 8;
+    public static final int RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE1 = OMGVMCID.value + 8;
 
-    public MARSHAL rmiiiopOptionalDataIncompatible1(CompletionStatus cs,
-            Throwable t) {
+    public MARSHAL rmiiiopOptionalDataIncompatible1(CompletionStatus cs, Throwable t) {
         MARSHAL exc = new MARSHAL(RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE1, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.rmiiiopOptionalDataIncompatible1",
-                    parameters, OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.rmiiiopOptionalDataIncompatible1", parameters, OMGSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -2725,28 +2601,24 @@ public class OMGSystemException extends LogWrapperBase {
     }
 
     public MARSHAL rmiiiopOptionalDataIncompatible1(Throwable t) {
-        return rmiiiopOptionalDataIncompatible1(CompletionStatus.COMPLETED_NO,
-                t);
+        return rmiiiopOptionalDataIncompatible1(CompletionStatus.COMPLETED_NO, t);
     }
 
     public MARSHAL rmiiiopOptionalDataIncompatible1() {
-        return rmiiiopOptionalDataIncompatible1(CompletionStatus.COMPLETED_NO,
-                null);
+        return rmiiiopOptionalDataIncompatible1(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE2 = OMGVMCID.value
-            + 8;
+    public static final int RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE2 = OMGVMCID.value + 8;
 
-    public MARSHAL rmiiiopOptionalDataIncompatible2(CompletionStatus cs,
-            Throwable t) {
+    public MARSHAL rmiiiopOptionalDataIncompatible2(CompletionStatus cs, Throwable t) {
         MARSHAL exc = new MARSHAL(RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE2, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.rmiiiopOptionalDataIncompatible2",
-                    parameters, OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.rmiiiopOptionalDataIncompatible2", parameters, OMGSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -2757,28 +2629,24 @@ public class OMGSystemException extends LogWrapperBase {
     }
 
     public MARSHAL rmiiiopOptionalDataIncompatible2(Throwable t) {
-        return rmiiiopOptionalDataIncompatible2(CompletionStatus.COMPLETED_NO,
-                t);
+        return rmiiiopOptionalDataIncompatible2(CompletionStatus.COMPLETED_NO, t);
     }
 
     public MARSHAL rmiiiopOptionalDataIncompatible2() {
-        return rmiiiopOptionalDataIncompatible2(CompletionStatus.COMPLETED_NO,
-                null);
+        return rmiiiopOptionalDataIncompatible2(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE3 = OMGVMCID.value
-            + 8;
+    public static final int RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE3 = OMGVMCID.value + 8;
 
-    public MARSHAL rmiiiopOptionalDataIncompatible3(CompletionStatus cs,
-            Throwable t) {
+    public MARSHAL rmiiiopOptionalDataIncompatible3(CompletionStatus cs, Throwable t) {
         MARSHAL exc = new MARSHAL(RMIIIOP_OPTIONAL_DATA_INCOMPATIBLE3, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.rmiiiopOptionalDataIncompatible3",
-                    parameters, OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.rmiiiopOptionalDataIncompatible3", parameters, OMGSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -2789,13 +2657,11 @@ public class OMGSystemException extends LogWrapperBase {
     }
 
     public MARSHAL rmiiiopOptionalDataIncompatible3(Throwable t) {
-        return rmiiiopOptionalDataIncompatible3(CompletionStatus.COMPLETED_NO,
-                t);
+        return rmiiiopOptionalDataIncompatible3(CompletionStatus.COMPLETED_NO, t);
     }
 
     public MARSHAL rmiiiopOptionalDataIncompatible3() {
-        return rmiiiopOptionalDataIncompatible3(CompletionStatus.COMPLETED_NO,
-                null);
+        return rmiiiopOptionalDataIncompatible3(CompletionStatus.COMPLETED_NO, null);
     }
 
     ///////////////////////////////////////////////////////////
@@ -2804,16 +2670,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int MISSING_LOCAL_VALUE_IMPL = OMGVMCID.value + 1;
 
-    public NO_IMPLEMENT missingLocalValueImpl(CompletionStatus cs,
-            Throwable t) {
+    public NO_IMPLEMENT missingLocalValueImpl(CompletionStatus cs, Throwable t) {
         NO_IMPLEMENT exc = new NO_IMPLEMENT(MISSING_LOCAL_VALUE_IMPL, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.missingLocalValueImpl", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.missingLocalValueImpl", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2833,16 +2697,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int INCOMPATIBLE_VALUE_IMPL = OMGVMCID.value + 2;
 
-    public NO_IMPLEMENT incompatibleValueImpl(CompletionStatus cs,
-            Throwable t) {
+    public NO_IMPLEMENT incompatibleValueImpl(CompletionStatus cs, Throwable t) {
         NO_IMPLEMENT exc = new NO_IMPLEMENT(INCOMPATIBLE_VALUE_IMPL, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.incompatibleValueImpl", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.incompatibleValueImpl", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2869,8 +2731,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noUsableProfile2", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noUsableProfile2", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2897,8 +2758,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.diiLocalObject", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.diiLocalObject", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2925,8 +2785,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.bioReset", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.bioReset", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2953,8 +2812,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.bioMetaNotAvailable", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.bioMetaNotAvailable", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -2981,8 +2839,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.bioGenomicNoIterator", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.bioGenomicNoIterator", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3006,16 +2863,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int PI_OPERATION_NOT_SUPPORTED1 = OMGVMCID.value + 1;
 
-    public NO_RESOURCES piOperationNotSupported1(CompletionStatus cs,
-            Throwable t) {
+    public NO_RESOURCES piOperationNotSupported1(CompletionStatus cs, Throwable t) {
         NO_RESOURCES exc = new NO_RESOURCES(PI_OPERATION_NOT_SUPPORTED1, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.piOperationNotSupported1", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.piOperationNotSupported1", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3035,16 +2890,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int PI_OPERATION_NOT_SUPPORTED2 = OMGVMCID.value + 1;
 
-    public NO_RESOURCES piOperationNotSupported2(CompletionStatus cs,
-            Throwable t) {
+    public NO_RESOURCES piOperationNotSupported2(CompletionStatus cs, Throwable t) {
         NO_RESOURCES exc = new NO_RESOURCES(PI_OPERATION_NOT_SUPPORTED2, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.piOperationNotSupported2", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.piOperationNotSupported2", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3064,16 +2917,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int PI_OPERATION_NOT_SUPPORTED3 = OMGVMCID.value + 1;
 
-    public NO_RESOURCES piOperationNotSupported3(CompletionStatus cs,
-            Throwable t) {
+    public NO_RESOURCES piOperationNotSupported3(CompletionStatus cs, Throwable t) {
         NO_RESOURCES exc = new NO_RESOURCES(PI_OPERATION_NOT_SUPPORTED3, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.piOperationNotSupported3", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.piOperationNotSupported3", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3093,16 +2944,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int PI_OPERATION_NOT_SUPPORTED4 = OMGVMCID.value + 1;
 
-    public NO_RESOURCES piOperationNotSupported4(CompletionStatus cs,
-            Throwable t) {
+    public NO_RESOURCES piOperationNotSupported4(CompletionStatus cs, Throwable t) {
         NO_RESOURCES exc = new NO_RESOURCES(PI_OPERATION_NOT_SUPPORTED4, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.piOperationNotSupported4", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.piOperationNotSupported4", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3122,16 +2971,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int PI_OPERATION_NOT_SUPPORTED5 = OMGVMCID.value + 1;
 
-    public NO_RESOURCES piOperationNotSupported5(CompletionStatus cs,
-            Throwable t) {
+    public NO_RESOURCES piOperationNotSupported5(CompletionStatus cs, Throwable t) {
         NO_RESOURCES exc = new NO_RESOURCES(PI_OPERATION_NOT_SUPPORTED5, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.piOperationNotSupported5", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.piOperationNotSupported5", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3151,16 +2998,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int PI_OPERATION_NOT_SUPPORTED6 = OMGVMCID.value + 1;
 
-    public NO_RESOURCES piOperationNotSupported6(CompletionStatus cs,
-            Throwable t) {
+    public NO_RESOURCES piOperationNotSupported6(CompletionStatus cs, Throwable t) {
         NO_RESOURCES exc = new NO_RESOURCES(PI_OPERATION_NOT_SUPPORTED6, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.piOperationNotSupported6", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.piOperationNotSupported6", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3180,16 +3025,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int PI_OPERATION_NOT_SUPPORTED7 = OMGVMCID.value + 1;
 
-    public NO_RESOURCES piOperationNotSupported7(CompletionStatus cs,
-            Throwable t) {
+    public NO_RESOURCES piOperationNotSupported7(CompletionStatus cs, Throwable t) {
         NO_RESOURCES exc = new NO_RESOURCES(PI_OPERATION_NOT_SUPPORTED7, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.piOperationNotSupported7", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.piOperationNotSupported7", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3209,16 +3052,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int PI_OPERATION_NOT_SUPPORTED8 = OMGVMCID.value + 1;
 
-    public NO_RESOURCES piOperationNotSupported8(CompletionStatus cs,
-            Throwable t) {
+    public NO_RESOURCES piOperationNotSupported8(CompletionStatus cs, Throwable t) {
         NO_RESOURCES exc = new NO_RESOURCES(PI_OPERATION_NOT_SUPPORTED8, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.piOperationNotSupported8", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.piOperationNotSupported8", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3245,8 +3086,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noConnectionPriority", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noConnectionPriority", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3277,8 +3117,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.xaRb", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.xaRb", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3305,8 +3144,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.xaNota", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.xaNota", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3326,24 +3164,20 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int XA_END_TRUE_ROLLBACK_DEFERRED = OMGVMCID.value + 3;
 
-    public TRANSACTION_ROLLEDBACK xaEndTrueRollbackDeferred(CompletionStatus cs,
-            Throwable t) {
-        TRANSACTION_ROLLEDBACK exc = new TRANSACTION_ROLLEDBACK(
-                XA_END_TRUE_ROLLBACK_DEFERRED, cs);
+    public TRANSACTION_ROLLEDBACK xaEndTrueRollbackDeferred(CompletionStatus cs, Throwable t) {
+        TRANSACTION_ROLLEDBACK exc = new TRANSACTION_ROLLEDBACK(XA_END_TRUE_ROLLBACK_DEFERRED, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.xaEndTrueRollbackDeferred", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.xaEndTrueRollbackDeferred", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public TRANSACTION_ROLLEDBACK xaEndTrueRollbackDeferred(
-            CompletionStatus cs) {
+    public TRANSACTION_ROLLEDBACK xaEndTrueRollbackDeferred(CompletionStatus cs) {
         return xaEndTrueRollbackDeferred(cs, null);
     }
 
@@ -3368,8 +3202,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.poaRequestDiscard", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.poaRequestDiscard", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3396,8 +3229,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noUsableProfile3", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noUsableProfile3", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3424,8 +3256,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.requestCancelled", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.requestCancelled", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3452,8 +3283,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.poaDestroyed", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.poaDestroyed", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3477,17 +3307,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int UNREGISTERED_VALUE_AS_OBJREF = OMGVMCID.value + 1;
 
-    public OBJECT_NOT_EXIST unregisteredValueAsObjref(CompletionStatus cs,
-            Throwable t) {
-        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(
-                UNREGISTERED_VALUE_AS_OBJREF, cs);
+    public OBJECT_NOT_EXIST unregisteredValueAsObjref(CompletionStatus cs, Throwable t) {
+        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(UNREGISTERED_VALUE_AS_OBJREF, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.unregisteredValueAsObjref", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.unregisteredValueAsObjref", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3514,8 +3341,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.noObjectAdaptor", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.noObjectAdaptor", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3542,8 +3368,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.bioNotAvailable", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.bioNotAvailable", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3563,17 +3388,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int OBJECT_ADAPTER_INACTIVE = OMGVMCID.value + 4;
 
-    public OBJECT_NOT_EXIST objectAdapterInactive(CompletionStatus cs,
-            Throwable t) {
-        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(OBJECT_ADAPTER_INACTIVE,
-                cs);
+    public OBJECT_NOT_EXIST objectAdapterInactive(CompletionStatus cs, Throwable t) {
+        OBJECT_NOT_EXIST exc = new OBJECT_NOT_EXIST(OBJECT_ADAPTER_INACTIVE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.objectAdapterInactive", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.objectAdapterInactive", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3597,8 +3419,7 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int ADAPTER_ACTIVATOR_EXCEPTION = OMGVMCID.value + 1;
 
-    public OBJ_ADAPTER adapterActivatorException(CompletionStatus cs,
-            Throwable t, Object arg0, Object arg1) {
+    public OBJ_ADAPTER adapterActivatorException(CompletionStatus cs, Throwable t, Object arg0, Object arg1) {
         OBJ_ADAPTER exc = new OBJ_ADAPTER(ADAPTER_ACTIVATOR_EXCEPTION, cs);
         if (t != null)
             exc.initCause(t);
@@ -3607,27 +3428,22 @@ public class OMGSystemException extends LogWrapperBase {
             Object[] parameters = new Object[2];
             parameters[0] = arg0;
             parameters[1] = arg1;
-            doLog(Level.WARNING, "OMG.adapterActivatorException", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.adapterActivatorException", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
     }
 
-    public OBJ_ADAPTER adapterActivatorException(CompletionStatus cs,
-            Object arg0, Object arg1) {
+    public OBJ_ADAPTER adapterActivatorException(CompletionStatus cs, Object arg0, Object arg1) {
         return adapterActivatorException(cs, null, arg0, arg1);
     }
 
-    public OBJ_ADAPTER adapterActivatorException(Throwable t, Object arg0,
-            Object arg1) {
-        return adapterActivatorException(CompletionStatus.COMPLETED_NO, t, arg0,
-                arg1);
+    public OBJ_ADAPTER adapterActivatorException(Throwable t, Object arg0, Object arg1) {
+        return adapterActivatorException(CompletionStatus.COMPLETED_NO, t, arg0, arg1);
     }
 
     public OBJ_ADAPTER adapterActivatorException(Object arg0, Object arg1) {
-        return adapterActivatorException(CompletionStatus.COMPLETED_NO, null,
-                arg0, arg1);
+        return adapterActivatorException(CompletionStatus.COMPLETED_NO, null, arg0, arg1);
     }
 
     public static final int BAD_SERVANT_TYPE = OMGVMCID.value + 2;
@@ -3639,8 +3455,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badServantType", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badServantType", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3667,8 +3482,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noDefaultServant", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noDefaultServant", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3695,8 +3509,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.noServantManager", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.noServantManager", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3723,8 +3536,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.badPolicyIncarnate", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.badPolicyIncarnate", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3751,8 +3563,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.piExcCompEstablished", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.piExcCompEstablished", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3779,8 +3590,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.nullServantReturned", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.nullServantReturned", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3811,8 +3621,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.FINE)) {
             Object[] parameters = null;
-            doLog(Level.FINE, "OMG.unknownUserException", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.FINE, "OMG.unknownUserException", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3832,16 +3641,14 @@ public class OMGSystemException extends LogWrapperBase {
 
     public static final int UNSUPPORTED_SYSTEM_EXCEPTION = OMGVMCID.value + 2;
 
-    public UNKNOWN unsupportedSystemException(CompletionStatus cs,
-            Throwable t) {
+    public UNKNOWN unsupportedSystemException(CompletionStatus cs, Throwable t) {
         UNKNOWN exc = new UNKNOWN(UNSUPPORTED_SYSTEM_EXCEPTION, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.unsupportedSystemException", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.unsupportedSystemException", parameters, OMGSystemException.class, exc);
         }
 
         return exc;
@@ -3868,8 +3675,7 @@ public class OMGSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "OMG.piUnknownUserException", parameters,
-                    OMGSystemException.class, exc);
+            doLog(Level.WARNING, "OMG.piUnknownUserException", parameters, OMGSystemException.class, exc);
         }
 
         return exc;

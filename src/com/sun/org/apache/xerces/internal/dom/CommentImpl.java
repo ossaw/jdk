@@ -25,11 +25,9 @@ import org.w3c.dom.Node;
  * Represents an XML (or HTML) comment.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
-public class CommentImpl extends CharacterDataImpl implements CharacterData,
-        Comment {
+public class CommentImpl extends CharacterDataImpl implements CharacterData, Comment {
 
     //
     // Constants

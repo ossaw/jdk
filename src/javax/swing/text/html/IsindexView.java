@@ -81,8 +81,6 @@ class IsindexView extends ComponentView implements ActionListener {
             URL url = new URL(action + "?" + data);
             JEditorPane pane = (JEditorPane) getContainer();
             pane.setPage(url);
-        } catch (MalformedURLException e1) {
-        } catch (IOException e2) {
-        }
+        } catch (MalformedURLException e1) {} catch (IOException e2) {}
     }
 }

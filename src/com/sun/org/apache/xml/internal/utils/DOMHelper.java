@@ -66,7 +66,7 @@ public class DOMHelper {
      * for particular kinds of documents.)
      *
      * @param isSecureProcessing
-     *                           state of the secure processing feature.
+     *        state of the secure processing feature.
      * @return The newly created DOM Document object, with no children, or null
      *         if we can't find a DOM implementation that permits creating new
      *         empty Documents.
@@ -77,18 +77,15 @@ public class DOMHelper {
 
             // Use an implementation of the JAVA API for XML Parsing 1.0 to
             // create a DOM Document node to contain the result.
-            DocumentBuilderFactory dfactory = DocumentBuilderFactory
-                    .newInstance();
+            DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
 
             dfactory.setNamespaceAware(true);
             dfactory.setValidating(true);
 
             if (isSecureProcessing) {
                 try {
-                    dfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
-                            true);
-                } catch (ParserConfigurationException pce) {
-                }
+                    dfactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+                } catch (ParserConfigurationException pce) {}
             }
 
             DocumentBuilder docBuilder = dfactory.newDocumentBuilder();
@@ -129,14 +126,12 @@ public class DOMHelper {
      * tested with this function.
      * 
      * @param textNode
-     *                 A text node from the source tree.
+     *        A text node from the source tree.
      * @return true if the text node should be stripped of extra whitespace.
-     *
      * @throws javax.xml.transform.TransformerException
      * @xsl.usage advanced
      */
-    public boolean shouldStripSourceNode(Node textNode)
-            throws javax.xml.transform.TransformerException {
+    public boolean shouldStripSourceNode(Node textNode) throws javax.xml.transform.TransformerException {
 
         // return (null == m_envSupport) ? false :
         // m_envSupport.shouldStripSourceNode(textNode);
@@ -165,8 +160,7 @@ public class DOMHelper {
      * won't help Level 1 and Level 2 implementations.)
      *
      * @param node
-     *             whose identifier you want to obtain
-     *
+     *        whose identifier you want to obtain
      * @return a string which should be different for every Node object.
      */
     public String getUniqueID(Node node) {
@@ -180,14 +174,12 @@ public class DOMHelper {
      * <p>
      * There are some cases where ordering isn't defined, and neither are the
      * results of this function -- though we'll generally return true.
-     *
      * TODO: Make sure this does the right thing with attribute nodes!!!
      *
      * @param node1
-     *              DOM Node to perform position comparison on.
+     *        DOM Node to perform position comparison on.
      * @param node2
-     *              DOM Node to perform position comparison on .
-     *
+     *        DOM Node to perform position comparison on .
      * @return false if node2 comes before node1, otherwise return true. You can
      *         think of this as
      *         <code>(node1.documentOrderPosition &lt;= node2.documentOrderPosition)</code>
@@ -274,9 +266,8 @@ public class DOMHelper {
 
             // Loop up the ancestor chain looking for common parent
             while (null != startNode1) {
-                if (startNode1 == startNode2 || isNodeTheSame(startNode1,
-                        startNode2)) // common
-                                                                                               // parent?
+                if (startNode1 == startNode2 || isNodeTheSame(startNode1, startNode2)) // common
+                                                                                       // parent?
                 {
                     if (null == prevChild1) // first time in loop?
                     {
@@ -287,8 +278,7 @@ public class DOMHelper {
                         break; // from while loop
                     } else {
                         // Compare ancestors below lowest-common as siblings
-                        isNodeAfter = isNodeAfterSibling(startNode1, prevChild1,
-                                prevChild2);
+                        isNodeAfter = isNodeAfterSibling(startNode1, prevChild1, prevChild2);
 
                         break; // from while loop
                     }
@@ -319,9 +309,9 @@ public class DOMHelper {
      * Use DTMNodeProxy to determine whether two nodes are the same.
      *
      * @param node1
-     *              The first DOM node to compare.
+     *        The first DOM node to compare.
      * @param node2
-     *              The second DOM node to compare.
+     *        The second DOM node to compare.
      * @return true if the two nodes are the same.
      */
     public static boolean isNodeTheSame(Node node1, Node node2) {
@@ -341,27 +331,24 @@ public class DOMHelper {
      * output.
      *
      * @param parent
-     *               Must be the parent of both child1 and child2.
+     *        Must be the parent of both child1 and child2.
      * @param child1
-     *               Must be the child of parent and not equal to child2.
+     *        Must be the child of parent and not equal to child2.
      * @param child2
-     *               Must be the child of parent and not equal to child1.
+     *        Must be the child of parent and not equal to child1.
      * @return true if child 2 is after child1 in document order.
      */
-    private static boolean isNodeAfterSibling(Node parent, Node child1,
-            Node child2) {
+    private static boolean isNodeAfterSibling(Node parent, Node child1, Node child2) {
 
         boolean isNodeAfterSibling = false;
         short child1type = child1.getNodeType();
         short child2type = child2.getNodeType();
 
-        if ((Node.ATTRIBUTE_NODE != child1type)
-                && (Node.ATTRIBUTE_NODE == child2type)) {
+        if ((Node.ATTRIBUTE_NODE != child1type) && (Node.ATTRIBUTE_NODE == child2type)) {
 
             // always sort attributes before non-attributes.
             isNodeAfterSibling = false;
-        } else if ((Node.ATTRIBUTE_NODE == child1type)
-                && (Node.ATTRIBUTE_NODE != child2type)) {
+        } else if ((Node.ATTRIBUTE_NODE == child1type) && (Node.ATTRIBUTE_NODE != child2type)) {
 
             // always sort attributes before non-attributes.
             isNodeAfterSibling = true;
@@ -444,7 +431,7 @@ public class DOMHelper {
      * node).
      *
      * @param n
-     *          Node to be examined.
+     *        Node to be examined.
      * @return the number of ancestors, plus one
      * @xsl.usage internal
      */
@@ -464,29 +451,26 @@ public class DOMHelper {
      * evaluated, return the Namespace Name this prefix was bound to. Note that
      * DOM Level 3 is expected to provide a version of this which deals with the
      * DOM's "early binding" behavior.
-     *
      * Default handling:
      *
      * @param prefix
-     *                         String containing namespace prefix to be
-     *                         resolved, without the
-     *                         ':' which separates it from the localname when
-     *                         used in a Node
-     *                         Name. The empty sting signifies the default
-     *                         namespace at this
-     *                         point in the document.
+     *        String containing namespace prefix to be
+     *        resolved, without the
+     *        ':' which separates it from the localname when
+     *        used in a Node
+     *        Name. The empty sting signifies the default
+     *        namespace at this
+     *        point in the document.
      * @param namespaceContext
-     *                         Element which provides context for resolution.
-     *                         (We could
-     *                         extend this to work for other nodes by first
-     *                         seeking their
-     *                         nearest Element ancestor.)
-     *
+     *        Element which provides context for resolution.
+     *        (We could
+     *        extend this to work for other nodes by first
+     *        seeking their
+     *        nearest Element ancestor.)
      * @return a String containing the Namespace URI which this prefix
      *         represents in the specified context.
      */
-    public String getNamespaceForPrefix(String prefix,
-            Element namespaceContext) {
+    public String getNamespaceForPrefix(String prefix, Element namespaceContext) {
 
         int type;
         Node parent = namespaceContext;
@@ -508,8 +492,7 @@ public class DOMHelper {
 
             // Scan until we run out of Elements or have resolved the namespace
             while ((null != parent) && (null == namespace) && (((type = parent
-                    .getNodeType()) == Node.ELEMENT_NODE)
-                    || (type == Node.ENTITY_REFERENCE_NODE))) {
+                    .getNodeType()) == Node.ELEMENT_NODE) || (type == Node.ENTITY_REFERENCE_NODE))) {
                 if (type == Node.ELEMENT_NODE) {
 
                     // Look for the appropriate Namespace Declaration attribute,
@@ -543,44 +526,40 @@ public class DOMHelper {
      * Object to put into the m_NSInfos table that tells that a node has not
      * been processed, but has xmlns namespace decls.
      */
-    protected static final NSInfo m_NSInfoUnProcWithXMLNS = new NSInfo(false,
-            true);
+    protected static final NSInfo m_NSInfoUnProcWithXMLNS = new NSInfo(false, true);
 
     /**
      * Object to put into the m_NSInfos table that tells that a node has not
      * been processed, but has no xmlns namespace decls.
      */
-    protected static final NSInfo m_NSInfoUnProcWithoutXMLNS = new NSInfo(false,
-            false);
+    protected static final NSInfo m_NSInfoUnProcWithoutXMLNS = new NSInfo(false, false);
 
     /**
      * Object to put into the m_NSInfos table that tells that a node has not
      * been processed, and has no xmlns namespace decls, and has no ancestor
      * decls.
      */
-    protected static final NSInfo m_NSInfoUnProcNoAncestorXMLNS = new NSInfo(
-            false, false, NSInfo.ANCESTORNOXMLNS);
+    protected static final NSInfo m_NSInfoUnProcNoAncestorXMLNS = new NSInfo(false, false,
+            NSInfo.ANCESTORNOXMLNS);
 
     /**
      * Object to put into the m_NSInfos table that tells that a node has been
      * processed, and has xmlns namespace decls.
      */
-    protected static final NSInfo m_NSInfoNullWithXMLNS = new NSInfo(true,
-            true);
+    protected static final NSInfo m_NSInfoNullWithXMLNS = new NSInfo(true, true);
 
     /**
      * Object to put into the m_NSInfos table that tells that a node has been
      * processed, and has no xmlns namespace decls.
      */
-    protected static final NSInfo m_NSInfoNullWithoutXMLNS = new NSInfo(true,
-            false);
+    protected static final NSInfo m_NSInfoNullWithoutXMLNS = new NSInfo(true, false);
 
     /**
      * Object to put into the m_NSInfos table that tells that a node has been
      * processed, and has no xmlns namespace decls. and has no ancestor decls.
      */
-    protected static final NSInfo m_NSInfoNullNoAncestorXMLNS = new NSInfo(true,
-            false, NSInfo.ANCESTORNOXMLNS);
+    protected static final NSInfo m_NSInfoNullNoAncestorXMLNS = new NSInfo(true, false,
+            NSInfo.ANCESTORNOXMLNS);
 
     /**
      * Vector of node (odd indexes) and NSInfos (even indexes) that tell if the
@@ -595,8 +574,7 @@ public class DOMHelper {
      * Should we consider moving that logic into getNamespaceForPrefix?
      *
      * @param n
-     *          Node to be examined.
-     *
+     *        Node to be examined.
      * @return String containing the Namespace Name (uri) for this node. Note
      *         that this is undefined for any nodes other than Elements and
      *         Attributes.
@@ -635,8 +613,7 @@ public class DOMHelper {
                     return namespaceOfPrefix;
                 }
             } else {
-                prefix = (indexOfNSSep >= 0) ? nodeName.substring(0,
-                        indexOfNSSep) : "";
+                prefix = (indexOfNSSep >= 0) ? nodeName.substring(0, indexOfNSSep) : "";
             }
 
             boolean ancestorsHaveXMLNS = false;
@@ -649,8 +626,7 @@ public class DOMHelper {
                 Node parent = n;
 
                 while ((null != parent) && (null == namespaceOfPrefix)) {
-                    if ((null != nsInfo)
-                            && (nsInfo.m_ancestorHasXMLNSAttrs == NSInfo.ANCESTORNOXMLNS)) {
+                    if ((null != nsInfo) && (nsInfo.m_ancestorHasXMLNSAttrs == NSInfo.ANCESTORNOXMLNS)) {
                         break;
                     }
 
@@ -667,8 +643,7 @@ public class DOMHelper {
                                 String aname = attr.getNodeName();
 
                                 if (aname.charAt(0) == 'x') {
-                                    boolean isPrefix = aname.startsWith(
-                                            "xmlns:");
+                                    boolean isPrefix = aname.startsWith("xmlns:");
 
                                     if (aname.equals("xmlns") || isPrefix) {
                                         if (n == parent)
@@ -677,12 +652,10 @@ public class DOMHelper {
                                         elementHasXMLNS = true;
                                         ancestorsHaveXMLNS = true;
 
-                                        String p = isPrefix ? aname.substring(6)
-                                                : "";
+                                        String p = isPrefix ? aname.substring(6) : "";
 
                                         if (p.equals(prefix)) {
-                                            namespaceOfPrefix = attr
-                                                    .getNodeValue();
+                                            namespaceOfPrefix = attr.getNodeValue();
 
                                             break;
                                         }
@@ -691,10 +664,8 @@ public class DOMHelper {
                             }
                         }
 
-                        if ((Node.ATTRIBUTE_NODE != parentType)
-                                && (null == nsInfo) && (n != parent)) {
-                            nsInfo = elementHasXMLNS ? m_NSInfoUnProcWithXMLNS
-                                    : m_NSInfoUnProcWithoutXMLNS;
+                        if ((Node.ATTRIBUTE_NODE != parentType) && (null == nsInfo) && (n != parent)) {
+                            nsInfo = elementHasXMLNS ? m_NSInfoUnProcWithXMLNS : m_NSInfoUnProcWithoutXMLNS;
 
                             m_NSInfos.put(parent, nsInfo);
                         }
@@ -719,16 +690,13 @@ public class DOMHelper {
                 if (nCandidates > 0) {
                     if ((false == ancestorsHaveXMLNS) && (null == parent)) {
                         for (int i = 0; i < nCandidates; i += 2) {
-                            Object candidateInfo = m_candidateNoAncestorXMLNS
-                                    .elementAt(i + 1);
+                            Object candidateInfo = m_candidateNoAncestorXMLNS.elementAt(i + 1);
 
                             if (candidateInfo == m_NSInfoUnProcWithoutXMLNS) {
-                                m_NSInfos.put((Node) m_candidateNoAncestorXMLNS
-                                        .elementAt(i),
+                                m_NSInfos.put((Node) m_candidateNoAncestorXMLNS.elementAt(i),
                                         m_NSInfoUnProcNoAncestorXMLNS);
                             } else if (candidateInfo == m_NSInfoNullWithoutXMLNS) {
-                                m_NSInfos.put((Node) m_candidateNoAncestorXMLNS
-                                        .elementAt(i),
+                                m_NSInfos.put((Node) m_candidateNoAncestorXMLNS.elementAt(i),
                                         m_NSInfoNullNoAncestorXMLNS);
                             }
                         }
@@ -763,8 +731,7 @@ public class DOMHelper {
      * full node name.
      *
      * @param n
-     *          the node to be examined.
-     *
+     *        the node to be examined.
      * @return String containing the Local Name
      */
     public String getLocalNameOfNode(Node n) {
@@ -782,8 +749,7 @@ public class DOMHelper {
      * "universal" names of two nodes.
      *
      * @param elem
-     *             Element to be examined.
-     *
+     *        Element to be examined.
      * @return String in the form "namespaceURI:localname" if the node belongs
      *         to a namespace, or simply "localname" if it doesn't.
      * @see #getExpandedAttributeName
@@ -792,8 +758,7 @@ public class DOMHelper {
 
         String namespace = getNamespaceOfNode(elem);
 
-        return (null != namespace) ? namespace + ":" + getLocalNameOfNode(elem)
-                : getLocalNameOfNode(elem);
+        return (null != namespace) ? namespace + ":" + getLocalNameOfNode(elem) : getLocalNameOfNode(elem);
     }
 
     /**
@@ -803,8 +768,7 @@ public class DOMHelper {
      * "universal" names of two nodes.
      *
      * @param attr
-     *             Attr to be examined
-     *
+     *        Attr to be examined
      * @return String in the form "namespaceURI:localname" if the node belongs
      *         to a namespace, or simply "localname" if it doesn't.
      * @see #getExpandedElementName
@@ -813,8 +777,7 @@ public class DOMHelper {
 
         String namespace = getNamespaceOfNode(attr);
 
-        return (null != namespace) ? namespace + ":" + getLocalNameOfNode(attr)
-                : getLocalNameOfNode(attr);
+        return (null != namespace) ? namespace + ":" + getLocalNameOfNode(attr) : getLocalNameOfNode(attr);
     }
 
     // ==========================================================
@@ -827,10 +790,8 @@ public class DOMHelper {
      * Level 2 has nostandardized DOM API which can return that information.
      * 
      * @deprecated
-     *
      * @param node
-     *             Node to be examined
-     *
+     *        Node to be examined
      * @return CURRENTLY HARDCODED TO FALSE, but should return true if and only
      *         if the node is of type Text, contains only whitespace, and does
      *         not appear as part of the #PCDATA content of an element. (Note
@@ -854,10 +815,8 @@ public class DOMHelper {
      * Get the first unparented node in the ancestor chain.
      * 
      * @deprecated
-     *
      * @param node
-     *             Starting node, to specify which chain to chase
-     *
+     *        Starting node, to specify which chain to chase
      * @return the topmost ancestor.
      */
     public Node getRoot(Node node) {
@@ -882,10 +841,8 @@ public class DOMHelper {
      * to say that it finds the Document node, or change the code to walk up the
      * ancestor chain.
      *
-     * 
      * @param n
-     *          Node to be examined
-     *
+     *        Node to be examined
      * @return the Document node. Note that this is not the correct answer if n
      *         was (or was a child of) a DocumentFragment or an orphaned node,
      *         as can arise if the DOM has been edited rather than being
@@ -893,9 +850,7 @@ public class DOMHelper {
      */
     public Node getRootNode(Node n) {
         int nt = n.getNodeType();
-        return ((Node.DOCUMENT_NODE == nt)
-                || (Node.DOCUMENT_FRAGMENT_NODE == nt)) ? n
-                        : n.getOwnerDocument();
+        return ((Node.DOCUMENT_NODE == nt) || (Node.DOCUMENT_FRAGMENT_NODE == nt)) ? n : n.getOwnerDocument();
     }
 
     /**
@@ -904,8 +859,7 @@ public class DOMHelper {
      * done by testing the node name.
      *
      * @param n
-     *          Node to be examined.
-     *
+     *        Node to be examined.
      * @return boolean -- true iff the node is an Attr whose name is "xmlns" or
      *         has the "xmlns:" prefix.
      */
@@ -936,18 +890,16 @@ public class DOMHelper {
      * <p>
      *
      * @param node
-     *             Node whose XPath parent we want to obtain
-     *
+     *        Node whose XPath parent we want to obtain
      * @return the parent of the node, or the ownerElement if it's an Attr node,
      *         or null if the node is an orphan.
-     *
      * @throws RuntimeException
-     *                          if the Document has no root element. This can't
-     *                          arise if the
-     *                          Document was created via the DOM Level 2 factory
-     *                          methods, but
-     *                          is possible if other mechanisms were used to
-     *                          obtain it
+     *         if the Document has no root element. This can't
+     *         arise if the
+     *         Document was created via the DOM Level 2 factory
+     *         methods, but
+     *         is possible if other mechanisms were used to
+     *         obtain it
      */
     public static Node getParentOfNode(Node node) throws RuntimeException {
         Node parent;
@@ -983,8 +935,7 @@ public class DOMHelper {
 
             if (null == rootElem) {
                 throw new RuntimeException(XMLMessages.createXMLMessage(
-                        XMLErrorResources.ER_CHILD_HAS_NO_OWNER_DOCUMENT_ELEMENT,
-                        null)); // "Attribute
+                        XMLErrorResources.ER_CHILD_HAS_NO_OWNER_DOCUMENT_ELEMENT, null)); // "Attribute
                                                                                                                                                   // child
                                                                                                                                                   // does
                                                                                                                                                   // not
@@ -1021,9 +972,9 @@ public class DOMHelper {
      * TODO: getElementByID is currently unimplemented. Support DOM Level 2?
      *
      * @param id
-     *            The unique identifier to be searched for.
+     *        The unique identifier to be searched for.
      * @param doc
-     *            The document to search within.
+     *        The document to search within.
      * @return CURRENTLY HARDCODED TO NULL, but it should be: The node which has
      *         this unique identifier, or null if there is no such node or this
      *         DOM can't reliably recognize it.
@@ -1059,10 +1010,9 @@ public class DOMHelper {
      * function.)
      *
      * @param name
-     *             A string containing the Entity Name of the unparsed entity.
+     *        A string containing the Entity Name of the unparsed entity.
      * @param doc
-     *             Document node for the document to be searched.
-     *
+     *        Document node for the document to be searched.
      * @return String containing the URI of the Unparsed Entity, or an empty
      *         string if no such entity exists.
      */
@@ -1123,10 +1073,9 @@ public class DOMHelper {
      * fixes that, but only for Level 2 and later DOMs.
      *
      * @param elem
-     *             Element whose subtree is to be searched for this Attr
+     *        Element whose subtree is to be searched for this Attr
      * @param attr
-     *             Attr whose owner is to be located.
-     *
+     *        Attr whose owner is to be located.
      * @return the first Element whose attribute list includes the provided
      *         attr. In modern DOMs, this will also be the only such Element.
      *         (Early DOMs had some hope that Attrs might be sharable, but this
@@ -1146,8 +1095,7 @@ public class DOMHelper {
             parent = elem;
 
         if (null == parent) {
-            for (Node node = elem.getFirstChild(); null != node; node = node
-                    .getNextSibling()) {
+            for (Node node = elem.getFirstChild(); null != node; node = node.getNextSibling()) {
                 if (Node.ELEMENT_NODE == node.getNodeType()) {
                     parent = locateAttrParent((Element) node, attr);
 
@@ -1170,9 +1118,9 @@ public class DOMHelper {
      * In fact, that's just the result tree's Document node...
      *
      * @param domFactory
-     *                   The DOM Document Node within whose context the result
-     *                   tree
-     *                   will be built.
+     *        The DOM Document Node within whose context the result
+     *        tree
+     *        will be built.
      */
     public void setDOMFactory(Document domFactory) {
         this.m_DOMFactory = domFactory;
@@ -1199,11 +1147,10 @@ public class DOMHelper {
      * are handled.
      *
      * @param node
-     *             DOM Node to be examined
+     *        DOM Node to be examined
      * @return String containing a concatenation of all the textual content
      *         within that node.
      * @see #getNodeData(Node,FastStringBuffer)
-     *
      */
     public static String getNodeData(Node node) {
 
@@ -1234,12 +1181,12 @@ public class DOMHelper {
      * solve the problem for us.
      *
      * @param node
-     *             Node whose subtree is to be walked, gathering the contents of
-     *             all Text or CDATASection nodes.
+     *        Node whose subtree is to be walked, gathering the contents of
+     *        all Text or CDATASection nodes.
      * @param buf
-     *             FastStringBuffer into which the contents of the text nodes
-     *             are
-     *             to be concatenated.
+     *        FastStringBuffer into which the contents of the text nodes
+     *        are
+     *        to be concatenated.
      */
     public static void getNodeData(Node node, FastStringBuffer buf) {
 
@@ -1247,9 +1194,7 @@ public class DOMHelper {
             case Node.DOCUMENT_FRAGMENT_NODE:
             case Node.DOCUMENT_NODE:
             case Node.ELEMENT_NODE: {
-                for (Node child = node
-                        .getFirstChild(); null != child; child = child
-                                .getNextSibling()) {
+                for (Node child = node.getFirstChild(); null != child; child = child.getNextSibling()) {
                     getNodeData(child, buf);
                 }
             }

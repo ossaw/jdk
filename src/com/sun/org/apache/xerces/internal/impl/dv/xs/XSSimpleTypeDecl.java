@@ -53,10 +53,8 @@ import org.w3c.dom.TypeInfo;
 
 /**
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
  * @author Neeraj Bajaj, Sun Microsystems, inc.
- *
  * @version $Id: XSSimpleTypeDecl.java 3029 2011-04-24 17:50:18Z joehw $
  */
 public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
@@ -93,18 +91,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     protected static final short DV_DAYTIMEDURATION = DV_NOTATION + 8;
     protected static final short DV_ANYATOMICTYPE = DV_NOTATION + 9;
 
-    private static final TypeValidator[] gDVs = { new AnySimpleDV(),
-            new StringDV(), new BooleanDV(), new DecimalDV(), new FloatDV(),
-            new DoubleDV(), new DurationDV(), new DateTimeDV(), new TimeDV(),
-            new DateDV(), new YearMonthDV(), new YearDV(), new MonthDayDV(),
-            new DayDV(), new MonthDV(), new HexBinaryDV(), new Base64BinaryDV(),
-            new AnyURIDV(), new QNameDV(), new PrecisionDecimalDV(), // XML
+    private static final TypeValidator[] gDVs = { new AnySimpleDV(), new StringDV(), new BooleanDV(),
+            new DecimalDV(), new FloatDV(), new DoubleDV(), new DurationDV(), new DateTimeDV(), new TimeDV(),
+            new DateDV(), new YearMonthDV(), new YearDV(), new MonthDayDV(), new DayDV(), new MonthDV(),
+            new HexBinaryDV(), new Base64BinaryDV(), new AnyURIDV(), new QNameDV(), new PrecisionDecimalDV(), // XML
             // Schema
             // 1.1
             // type
             new QNameDV(), // notation use the same one as qname
-            new IDDV(), new IDREFDV(), new EntityDV(), new IntegerDV(),
-            new ListDV(), new UnionDV(), new YearMonthDurationDV(), // XML Schema 1.1 type
+            new IDDV(), new IDREFDV(), new EntityDV(), new IntegerDV(), new ListDV(), new UnionDV(),
+            new YearMonthDurationDV(), // XML Schema 1.1 type
             new DayTimeDurationDV(), // XML Schema 1.1 type
             new AnyAtomicDV() // XML Schema 1.1 type
     };
@@ -150,11 +146,9 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     static final short SPECIAL_PATTERN_NAME = 2;
     static final short SPECIAL_PATTERN_NCNAME = 3;
 
-    static final String[] SPECIAL_PATTERN_STRING = { "NONE", "NMTOKEN", "Name",
-            "NCName" };
+    static final String[] SPECIAL_PATTERN_STRING = { "NONE", "NMTOKEN", "Name", "NCName" };
 
-    static final String[] WS_FACET_STRING = { "preserve", "replace",
-            "collapse" };
+    static final String[] WS_FACET_STRING = { "preserve", "replace", "collapse" };
 
     static final String URI_SCHEMAFORSCHEMA = "http://www.w3.org/2001/XMLSchema";
     static final String ANY_TYPE = "anyType";
@@ -313,9 +307,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     // Create a new built-in primitive types (and
     // id/idref/entity/integer/yearMonthDuration)
-    protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name,
-            short validateDV, short ordered, boolean bounded, boolean finite,
-            boolean numeric, boolean isImmutable, short builtInKind) {
+    protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name, short validateDV, short ordered,
+            boolean bounded, boolean finite, boolean numeric, boolean isImmutable, short builtInKind) {
         fIsImmutable = isImmutable;
         fBase = base;
         fTypeName = name;
@@ -324,8 +317,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         fVariety = VARIETY_ATOMIC;
         fValidationDV = validateDV;
         fFacetsDefined = FACET_WHITESPACE;
-        if (validateDV == DV_ANYSIMPLETYPE || validateDV == DV_ANYATOMICTYPE
-                || validateDV == DV_STRING) {
+        if (validateDV == DV_ANYSIMPLETYPE || validateDV == DV_ANYATOMICTYPE || validateDV == DV_STRING) {
             fWhiteSpace = WS_PRESERVE;
         } else {
             fWhiteSpace = WS_COLLAPSE;
@@ -342,17 +334,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     // Create a new simple type for restriction for built-in types
-    protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name, String uri,
-            short finalSet, boolean isImmutable, XSObjectList annotations,
-            short builtInKind) {
+    protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name, String uri, short finalSet,
+            boolean isImmutable, XSObjectList annotations, short builtInKind) {
         this(base, name, uri, finalSet, isImmutable, annotations);
         // Specify the build in kind for this built-in type
         fBuiltInKind = builtInKind;
     }
 
     // Create a new simple type for restriction.
-    protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name, String uri,
-            short finalSet, boolean isImmutable, XSObjectList annotations) {
+    protected XSSimpleTypeDecl(XSSimpleTypeDecl base, String name, String uri, short finalSet,
+            boolean isImmutable, XSObjectList annotations) {
         fBase = base;
         fTypeName = name;
         fTargetNamespace = uri;
@@ -417,9 +408,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     // Create a new simple type for list.
-    protected XSSimpleTypeDecl(String name, String uri, short finalSet,
-            XSSimpleTypeDecl itemType, boolean isImmutable,
-            XSObjectList annotations) {
+    protected XSSimpleTypeDecl(String name, String uri, short finalSet, XSSimpleTypeDecl itemType,
+            boolean isImmutable, XSObjectList annotations) {
         fBase = fAnySimpleType;
         fTypeName = name;
         fTargetNamespace = uri;
@@ -442,8 +432,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     // Create a new simple type for union.
-    protected XSSimpleTypeDecl(String name, String uri, short finalSet,
-            XSSimpleTypeDecl[] memberTypes, XSObjectList annotations) {
+    protected XSSimpleTypeDecl(String name, String uri, short finalSet, XSSimpleTypeDecl[] memberTypes,
+            XSObjectList annotations) {
         fBase = fAnySimpleType;
         fTypeName = name;
         fTargetNamespace = uri;
@@ -471,8 +461,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     // set values for restriction.
-    protected XSSimpleTypeDecl setRestrictionValues(XSSimpleTypeDecl base,
-            String name, String uri, short finalSet, XSObjectList annotations) {
+    protected XSSimpleTypeDecl setRestrictionValues(XSSimpleTypeDecl base, String name, String uri,
+            short finalSet, XSObjectList annotations) {
         // decline to do anything if the object is immutable.
         if (fIsImmutable)
             return null;
@@ -528,9 +518,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     // set values for list.
-    protected XSSimpleTypeDecl setListValues(String name, String uri,
-            short finalSet, XSSimpleTypeDecl itemType,
-            XSObjectList annotations) {
+    protected XSSimpleTypeDecl setListValues(String name, String uri, short finalSet,
+            XSSimpleTypeDecl itemType, XSObjectList annotations) {
         // decline to do anything if the object is immutable.
         if (fIsImmutable)
             return null;
@@ -558,9 +547,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     }
 
     // set values for union.
-    protected XSSimpleTypeDecl setUnionValues(String name, String uri,
-            short finalSet, XSSimpleTypeDecl[] memberTypes,
-            XSObjectList annotations) {
+    protected XSSimpleTypeDecl setUnionValues(String name, String uri, short finalSet,
+            XSSimpleTypeDecl[] memberTypes, XSObjectList annotations) {
         // decline to do anything if the object is immutable.
         if (fIsImmutable)
             return null;
@@ -648,22 +636,19 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     public short getWhitespace() throws DatatypeException {
         if (fVariety == VARIETY_UNION) {
-            throw new DatatypeException("dt-whitespace", new Object[] {
-                    fTypeName });
+            throw new DatatypeException("dt-whitespace", new Object[] { fTypeName });
         }
         return fWhiteSpace;
     }
 
     public short getPrimitiveKind() {
         if (fVariety == VARIETY_ATOMIC && fValidationDV != DV_ANYSIMPLETYPE) {
-            if (fValidationDV == DV_ID || fValidationDV == DV_IDREF
-                    || fValidationDV == DV_ENTITY) {
+            if (fValidationDV == DV_ID || fValidationDV == DV_IDREF || fValidationDV == DV_ENTITY) {
                 return DV_STRING;
             } else if (fValidationDV == DV_INTEGER) {
                 return DV_DECIMAL;
-            } else if (Constants.SCHEMA_1_1_SUPPORT
-                    && (fValidationDV == DV_YEARMONTHDURATION
-                            || fValidationDV == DV_DAYTIMEDURATION)) {
+            } else if (Constants.SCHEMA_1_1_SUPPORT && (fValidationDV == DV_YEARMONTHDURATION
+                    || fValidationDV == DV_DAYTIMEDURATION)) {
                 return DV_DURATION;
             } else {
                 return fValidationDV;
@@ -730,14 +715,12 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     /**
      * If <restriction> is chosen
      */
-    public void applyFacets(XSFacets facets, short presentFacet,
-            short fixedFacet, ValidationContext context)
+    public void applyFacets(XSFacets facets, short presentFacet, short fixedFacet, ValidationContext context)
             throws InvalidDatatypeFacetException {
         if (context == null) {
             context = fEmptyContext;
         }
-        applyFacets(facets, presentFacet, fixedFacet, SPECIAL_PATTERN_NONE,
-                context);
+        applyFacets(facets, presentFacet, fixedFacet, SPECIAL_PATTERN_NONE, context);
     }
 
     /**
@@ -746,8 +729,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     void applyFacets1(XSFacets facets, short presentFacet, short fixedFacet) {
 
         try {
-            applyFacets(facets, presentFacet, fixedFacet, SPECIAL_PATTERN_NONE,
-                    fDummyContext);
+            applyFacets(facets, presentFacet, fixedFacet, SPECIAL_PATTERN_NONE, fDummyContext);
         } catch (InvalidDatatypeFacetException e) {
             // should never gets here, internel error
             throw new RuntimeException("internal error");
@@ -759,12 +741,10 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     /**
      * built-in derived types by restriction
      */
-    void applyFacets1(XSFacets facets, short presentFacet, short fixedFacet,
-            short patternType) {
+    void applyFacets1(XSFacets facets, short presentFacet, short fixedFacet, short patternType) {
 
         try {
-            applyFacets(facets, presentFacet, fixedFacet, patternType,
-                    fDummyContext);
+            applyFacets(facets, presentFacet, fixedFacet, patternType, fDummyContext);
         } catch (InvalidDatatypeFacetException e) {
             // should never gets here, internel error
             throw new RuntimeException("internal error");
@@ -776,9 +756,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     /**
      * If <restriction> is chosen, or built-in derived types by restriction
      */
-    void applyFacets(XSFacets facets, short presentFacet, short fixedFacet,
-            short patternType, ValidationContext context)
-            throws InvalidDatatypeFacetException {
+    void applyFacets(XSFacets facets, short presentFacet, short fixedFacet, short patternType,
+            ValidationContext context) throws InvalidDatatypeFacetException {
 
         // if the object is immutable, should not apply facets...
         if (fIsImmutable)
@@ -803,8 +782,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // length
         if ((presentFacet & FACET_LENGTH) != 0) {
             if ((allowedFacet & FACET_LENGTH) == 0) {
-                reportError("cos-applicable-facets", new Object[] { "length",
-                        fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "length", fTypeName });
             } else {
                 fLength = facets.length;
                 lengthAnnotation = facets.lengthAnnotation;
@@ -816,8 +794,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // minLength
         if ((presentFacet & FACET_MINLENGTH) != 0) {
             if ((allowedFacet & FACET_MINLENGTH) == 0) {
-                reportError("cos-applicable-facets", new Object[] { "minLength",
-                        fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "minLength", fTypeName });
             } else {
                 fMinLength = facets.minLength;
                 minLengthAnnotation = facets.minLengthAnnotation;
@@ -829,8 +806,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // maxLength
         if ((presentFacet & FACET_MAXLENGTH) != 0) {
             if ((allowedFacet & FACET_MAXLENGTH) == 0) {
-                reportError("cos-applicable-facets", new Object[] { "maxLength",
-                        fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "maxLength", fTypeName });
             } else {
                 fMaxLength = facets.maxLength;
                 maxLengthAnnotation = facets.maxLengthAnnotation;
@@ -842,17 +818,14 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // pattern
         if ((presentFacet & FACET_PATTERN) != 0) {
             if ((allowedFacet & FACET_PATTERN) == 0) {
-                reportError("cos-applicable-facets", new Object[] { "pattern",
-                        fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "pattern", fTypeName });
             } else {
                 patternAnnotations = facets.patternAnnotations;
                 RegularExpression regex = null;
                 try {
-                    regex = new RegularExpression(facets.pattern, "X", context
-                            .getLocale());
+                    regex = new RegularExpression(facets.pattern, "X", context.getLocale());
                 } catch (Exception e) {
-                    reportError("InvalidRegex", new Object[] { facets.pattern, e
-                            .getLocalizedMessage() });
+                    reportError("InvalidRegex", new Object[] { facets.pattern, e.getLocalizedMessage() });
                 }
                 if (regex != null) {
                     fPattern = new Vector();
@@ -869,8 +842,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // whiteSpace
         if ((presentFacet & FACET_WHITESPACE) != 0) {
             if ((allowedFacet & FACET_WHITESPACE) == 0) {
-                reportError("cos-applicable-facets", new Object[] {
-                        "whiteSpace", fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "whiteSpace", fTypeName });
             } else {
                 fWhiteSpace = facets.whiteSpace;
                 whiteSpaceAnnotation = facets.whiteSpaceAnnotation;
@@ -882,8 +854,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // enumeration
         if ((presentFacet & FACET_ENUMERATION) != 0) {
             if ((allowedFacet & FACET_ENUMERATION) == 0) {
-                reportError("cos-applicable-facets", new Object[] {
-                        "enumeration", fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "enumeration", fTypeName });
             } else {
                 fEnumeration = new Vector();
                 Vector enumVals = facets.enumeration;
@@ -894,20 +865,18 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                 enumerationAnnotations = facets.enumAnnotations;
                 for (int i = 0; i < enumVals.size(); i++) {
                     if (enumNSDecls != null)
-                        ctx.setNSContext((NamespaceContext) enumNSDecls
-                                .elementAt(i));
+                        ctx.setNSContext((NamespaceContext) enumNSDecls.elementAt(i));
                     try {
-                        ValidatedInfo info = getActualEnumValue(
-                                (String) enumVals.elementAt(i), ctx, tempInfo);
+                        ValidatedInfo info = getActualEnumValue((String) enumVals.elementAt(i), ctx,
+                                tempInfo);
                         // check 4.3.5.c0 must: enumeration values from the
                         // value space of base
                         fEnumeration.addElement(info.actualValue);
                         fEnumerationType[i] = info.actualValueType;
                         fEnumerationItemType[i] = info.itemValueTypes;
                     } catch (InvalidDatatypeValueException ide) {
-                        reportError("enumeration-valid-restriction",
-                                new Object[] { enumVals.elementAt(i), this
-                                        .getBaseType().getName() });
+                        reportError("enumeration-valid-restriction", new Object[] { enumVals.elementAt(i),
+                                this.getBaseType().getName() });
                     }
                 }
                 fFacetsDefined |= FACET_ENUMERATION;
@@ -919,30 +888,25 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // maxInclusive
         if ((presentFacet & FACET_MAXINCLUSIVE) != 0) {
             if ((allowedFacet & FACET_MAXINCLUSIVE) == 0) {
-                reportError("cos-applicable-facets", new Object[] {
-                        "maxInclusive", fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "maxInclusive", fTypeName });
             } else {
                 maxInclusiveAnnotation = facets.maxInclusiveAnnotation;
                 try {
-                    fMaxInclusive = fBase.getActualValue(facets.maxInclusive,
-                            context, tempInfo, true);
+                    fMaxInclusive = fBase.getActualValue(facets.maxInclusive, context, tempInfo, true);
                     fFacetsDefined |= FACET_MAXINCLUSIVE;
                     if ((fixedFacet & FACET_MAXINCLUSIVE) != 0)
                         fFixedFacet |= FACET_MAXINCLUSIVE;
                 } catch (InvalidDatatypeValueException ide) {
                     reportError(ide.getKey(), ide.getArgs());
-                    reportError("FacetValueFromBase", new Object[] { fTypeName,
-                            facets.maxInclusive, "maxInclusive", fBase
-                                    .getName() });
+                    reportError("FacetValueFromBase", new Object[] { fTypeName, facets.maxInclusive,
+                            "maxInclusive", fBase.getName() });
                 }
 
                 // check against fixed value in base
                 if (((fBase.fFacetsDefined & FACET_MAXINCLUSIVE) != 0)) {
                     if ((fBase.fFixedFacet & FACET_MAXINCLUSIVE) != 0) {
-                        if (fDVs[fValidationDV].compare(fMaxInclusive,
-                                fBase.fMaxInclusive) != 0)
-                            reportError("FixedFacetValue", new Object[] {
-                                    "maxInclusive", fMaxInclusive,
+                        if (fDVs[fValidationDV].compare(fMaxInclusive, fBase.fMaxInclusive) != 0)
+                            reportError("FixedFacetValue", new Object[] { "maxInclusive", fMaxInclusive,
                                     fBase.fMaxInclusive, fTypeName });
                     }
                 }
@@ -951,9 +915,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                     fBase.validate(context, tempInfo);
                 } catch (InvalidDatatypeValueException ide) {
                     reportError(ide.getKey(), ide.getArgs());
-                    reportError("FacetValueFromBase", new Object[] { fTypeName,
-                            facets.maxInclusive, "maxInclusive", fBase
-                                    .getName() });
+                    reportError("FacetValueFromBase", new Object[] { fTypeName, facets.maxInclusive,
+                            "maxInclusive", fBase.getName() });
                 }
             }
         }
@@ -962,31 +925,25 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         boolean needCheckBase = true;
         if ((presentFacet & FACET_MAXEXCLUSIVE) != 0) {
             if ((allowedFacet & FACET_MAXEXCLUSIVE) == 0) {
-                reportError("cos-applicable-facets", new Object[] {
-                        "maxExclusive", fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "maxExclusive", fTypeName });
             } else {
                 maxExclusiveAnnotation = facets.maxExclusiveAnnotation;
                 try {
-                    fMaxExclusive = fBase.getActualValue(facets.maxExclusive,
-                            context, tempInfo, true);
+                    fMaxExclusive = fBase.getActualValue(facets.maxExclusive, context, tempInfo, true);
                     fFacetsDefined |= FACET_MAXEXCLUSIVE;
                     if ((fixedFacet & FACET_MAXEXCLUSIVE) != 0)
                         fFixedFacet |= FACET_MAXEXCLUSIVE;
                 } catch (InvalidDatatypeValueException ide) {
                     reportError(ide.getKey(), ide.getArgs());
-                    reportError("FacetValueFromBase", new Object[] { fTypeName,
-                            facets.maxExclusive, "maxExclusive", fBase
-                                    .getName() });
+                    reportError("FacetValueFromBase", new Object[] { fTypeName, facets.maxExclusive,
+                            "maxExclusive", fBase.getName() });
                 }
 
                 // check against fixed value in base
                 if (((fBase.fFacetsDefined & FACET_MAXEXCLUSIVE) != 0)) {
-                    result = fDVs[fValidationDV].compare(fMaxExclusive,
-                            fBase.fMaxExclusive);
-                    if ((fBase.fFixedFacet & FACET_MAXEXCLUSIVE) != 0
-                            && result != 0) {
-                        reportError("FixedFacetValue", new Object[] {
-                                "maxExclusive", facets.maxExclusive,
+                    result = fDVs[fValidationDV].compare(fMaxExclusive, fBase.fMaxExclusive);
+                    if ((fBase.fFixedFacet & FACET_MAXEXCLUSIVE) != 0 && result != 0) {
+                        reportError("FixedFacetValue", new Object[] { "maxExclusive", facets.maxExclusive,
                                 fBase.fMaxExclusive, fTypeName });
                     }
                     if (result == 0) {
@@ -999,20 +956,17 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                         fBase.validate(context, tempInfo);
                     } catch (InvalidDatatypeValueException ide) {
                         reportError(ide.getKey(), ide.getArgs());
-                        reportError("FacetValueFromBase", new Object[] {
-                                fTypeName, facets.maxExclusive, "maxExclusive",
-                                fBase.getName() });
+                        reportError("FacetValueFromBase", new Object[] { fTypeName, facets.maxExclusive,
+                                "maxExclusive", fBase.getName() });
                     }
                 }
                 // If maxExclusive == base.maxExclusive, then we only need to
                 // check
                 // maxExclusive <= base.maxInclusive
                 else if (((fBase.fFacetsDefined & FACET_MAXINCLUSIVE) != 0)) {
-                    if (fDVs[fValidationDV].compare(fMaxExclusive,
-                            fBase.fMaxInclusive) > 0) {
-                        reportError("maxExclusive-valid-restriction.2",
-                                new Object[] { facets.maxExclusive,
-                                        fBase.fMaxInclusive });
+                    if (fDVs[fValidationDV].compare(fMaxExclusive, fBase.fMaxInclusive) > 0) {
+                        reportError("maxExclusive-valid-restriction.2", new Object[] { facets.maxExclusive,
+                                fBase.fMaxInclusive });
                     }
                 }
             }
@@ -1021,31 +975,25 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         needCheckBase = true;
         if ((presentFacet & FACET_MINEXCLUSIVE) != 0) {
             if ((allowedFacet & FACET_MINEXCLUSIVE) == 0) {
-                reportError("cos-applicable-facets", new Object[] {
-                        "minExclusive", fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "minExclusive", fTypeName });
             } else {
                 minExclusiveAnnotation = facets.minExclusiveAnnotation;
                 try {
-                    fMinExclusive = fBase.getActualValue(facets.minExclusive,
-                            context, tempInfo, true);
+                    fMinExclusive = fBase.getActualValue(facets.minExclusive, context, tempInfo, true);
                     fFacetsDefined |= FACET_MINEXCLUSIVE;
                     if ((fixedFacet & FACET_MINEXCLUSIVE) != 0)
                         fFixedFacet |= FACET_MINEXCLUSIVE;
                 } catch (InvalidDatatypeValueException ide) {
                     reportError(ide.getKey(), ide.getArgs());
-                    reportError("FacetValueFromBase", new Object[] { fTypeName,
-                            facets.minExclusive, "minExclusive", fBase
-                                    .getName() });
+                    reportError("FacetValueFromBase", new Object[] { fTypeName, facets.minExclusive,
+                            "minExclusive", fBase.getName() });
                 }
 
                 // check against fixed value in base
                 if (((fBase.fFacetsDefined & FACET_MINEXCLUSIVE) != 0)) {
-                    result = fDVs[fValidationDV].compare(fMinExclusive,
-                            fBase.fMinExclusive);
-                    if ((fBase.fFixedFacet & FACET_MINEXCLUSIVE) != 0
-                            && result != 0) {
-                        reportError("FixedFacetValue", new Object[] {
-                                "minExclusive", facets.minExclusive,
+                    result = fDVs[fValidationDV].compare(fMinExclusive, fBase.fMinExclusive);
+                    if ((fBase.fFixedFacet & FACET_MINEXCLUSIVE) != 0 && result != 0) {
+                        reportError("FixedFacetValue", new Object[] { "minExclusive", facets.minExclusive,
                                 fBase.fMinExclusive, fTypeName });
                     }
                     if (result == 0) {
@@ -1058,20 +1006,17 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                         fBase.validate(context, tempInfo);
                     } catch (InvalidDatatypeValueException ide) {
                         reportError(ide.getKey(), ide.getArgs());
-                        reportError("FacetValueFromBase", new Object[] {
-                                fTypeName, facets.minExclusive, "minExclusive",
-                                fBase.getName() });
+                        reportError("FacetValueFromBase", new Object[] { fTypeName, facets.minExclusive,
+                                "minExclusive", fBase.getName() });
                     }
                 }
                 // If minExclusive == base.minExclusive, then we only need to
                 // check
                 // minExclusive >= base.minInclusive
                 else if (((fBase.fFacetsDefined & FACET_MININCLUSIVE) != 0)) {
-                    if (fDVs[fValidationDV].compare(fMinExclusive,
-                            fBase.fMinInclusive) < 0) {
-                        reportError("minExclusive-valid-restriction.3",
-                                new Object[] { facets.minExclusive,
-                                        fBase.fMinInclusive });
+                    if (fDVs[fValidationDV].compare(fMinExclusive, fBase.fMinInclusive) < 0) {
+                        reportError("minExclusive-valid-restriction.3", new Object[] { facets.minExclusive,
+                                fBase.fMinInclusive });
                     }
                 }
             }
@@ -1079,30 +1024,25 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // minInclusive
         if ((presentFacet & FACET_MININCLUSIVE) != 0) {
             if ((allowedFacet & FACET_MININCLUSIVE) == 0) {
-                reportError("cos-applicable-facets", new Object[] {
-                        "minInclusive", fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "minInclusive", fTypeName });
             } else {
                 minInclusiveAnnotation = facets.minInclusiveAnnotation;
                 try {
-                    fMinInclusive = fBase.getActualValue(facets.minInclusive,
-                            context, tempInfo, true);
+                    fMinInclusive = fBase.getActualValue(facets.minInclusive, context, tempInfo, true);
                     fFacetsDefined |= FACET_MININCLUSIVE;
                     if ((fixedFacet & FACET_MININCLUSIVE) != 0)
                         fFixedFacet |= FACET_MININCLUSIVE;
                 } catch (InvalidDatatypeValueException ide) {
                     reportError(ide.getKey(), ide.getArgs());
-                    reportError("FacetValueFromBase", new Object[] { fTypeName,
-                            facets.minInclusive, "minInclusive", fBase
-                                    .getName() });
+                    reportError("FacetValueFromBase", new Object[] { fTypeName, facets.minInclusive,
+                            "minInclusive", fBase.getName() });
                 }
 
                 // check against fixed value in base
                 if (((fBase.fFacetsDefined & FACET_MININCLUSIVE) != 0)) {
                     if ((fBase.fFixedFacet & FACET_MININCLUSIVE) != 0) {
-                        if (fDVs[fValidationDV].compare(fMinInclusive,
-                                fBase.fMinInclusive) != 0)
-                            reportError("FixedFacetValue", new Object[] {
-                                    "minInclusive", facets.minInclusive,
+                        if (fDVs[fValidationDV].compare(fMinInclusive, fBase.fMinInclusive) != 0)
+                            reportError("FixedFacetValue", new Object[] { "minInclusive", facets.minInclusive,
                                     fBase.fMinInclusive, fTypeName });
                     }
                 }
@@ -1111,9 +1051,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                     fBase.validate(context, tempInfo);
                 } catch (InvalidDatatypeValueException ide) {
                     reportError(ide.getKey(), ide.getArgs());
-                    reportError("FacetValueFromBase", new Object[] { fTypeName,
-                            facets.minInclusive, "minInclusive", fBase
-                                    .getName() });
+                    reportError("FacetValueFromBase", new Object[] { fTypeName, facets.minInclusive,
+                            "minInclusive", fBase.getName() });
                 }
             }
         }
@@ -1121,8 +1060,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // totalDigits
         if ((presentFacet & FACET_TOTALDIGITS) != 0) {
             if ((allowedFacet & FACET_TOTALDIGITS) == 0) {
-                reportError("cos-applicable-facets", new Object[] {
-                        "totalDigits", fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "totalDigits", fTypeName });
             } else {
                 totalDigitsAnnotation = facets.totalDigitsAnnotation;
                 fTotalDigits = facets.totalDigits;
@@ -1134,8 +1072,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // fractionDigits
         if ((presentFacet & FACET_FRACTIONDIGITS) != 0) {
             if ((allowedFacet & FACET_FRACTIONDIGITS) == 0) {
-                reportError("cos-applicable-facets", new Object[] {
-                        "fractionDigits", fTypeName });
+                reportError("cos-applicable-facets", new Object[] { "fractionDigits", fTypeName });
             } else {
                 fFractionDigits = facets.fractionDigits;
                 fractionDigitsAnnotation = facets.fractionDigitsAnnotation;
@@ -1154,146 +1091,119 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         if (fFacetsDefined != 0) {
 
             // check 4.3.2.c1 must: minLength <= maxLength
-            if (((fFacetsDefined & FACET_MINLENGTH) != 0) && ((fFacetsDefined
-                    & FACET_MAXLENGTH) != 0)) {
+            if (((fFacetsDefined & FACET_MINLENGTH) != 0) && ((fFacetsDefined & FACET_MAXLENGTH) != 0)) {
                 if (fMinLength > fMaxLength)
-                    reportError("minLength-less-than-equal-to-maxLength",
-                            new Object[] { Integer.toString(fMinLength), Integer
-                                    .toString(fMaxLength), fTypeName });
+                    reportError("minLength-less-than-equal-to-maxLength", new Object[] { Integer.toString(
+                            fMinLength), Integer.toString(fMaxLength), fTypeName });
             }
 
             // check 4.3.8.c1 error: maxInclusive + maxExclusive
             if (((fFacetsDefined & FACET_MAXEXCLUSIVE) != 0) && ((fFacetsDefined
                     & FACET_MAXINCLUSIVE) != 0)) {
-                reportError("maxInclusive-maxExclusive", new Object[] {
-                        fMaxInclusive, fMaxExclusive, fTypeName });
+                reportError("maxInclusive-maxExclusive", new Object[] { fMaxInclusive, fMaxExclusive,
+                        fTypeName });
             }
 
             // check 4.3.9.c1 error: minInclusive + minExclusive
             if (((fFacetsDefined & FACET_MINEXCLUSIVE) != 0) && ((fFacetsDefined
                     & FACET_MININCLUSIVE) != 0)) {
-                reportError("minInclusive-minExclusive", new Object[] {
-                        fMinInclusive, fMinExclusive, fTypeName });
+                reportError("minInclusive-minExclusive", new Object[] { fMinInclusive, fMinExclusive,
+                        fTypeName });
             }
 
             // check 4.3.7.c1 must: minInclusive <= maxInclusive
             if (((fFacetsDefined & FACET_MAXINCLUSIVE) != 0) && ((fFacetsDefined
                     & FACET_MININCLUSIVE) != 0)) {
-                result = fDVs[fValidationDV].compare(fMinInclusive,
-                        fMaxInclusive);
+                result = fDVs[fValidationDV].compare(fMinInclusive, fMaxInclusive);
                 if (result != -1 && result != 0)
-                    reportError("minInclusive-less-than-equal-to-maxInclusive",
-                            new Object[] { fMinInclusive, fMaxInclusive,
-                                    fTypeName });
+                    reportError("minInclusive-less-than-equal-to-maxInclusive", new Object[] { fMinInclusive,
+                            fMaxInclusive, fTypeName });
             }
 
             // check 4.3.8.c2 must: minExclusive <= maxExclusive ???
             // minExclusive < maxExclusive
             if (((fFacetsDefined & FACET_MAXEXCLUSIVE) != 0) && ((fFacetsDefined
                     & FACET_MINEXCLUSIVE) != 0)) {
-                result = fDVs[fValidationDV].compare(fMinExclusive,
-                        fMaxExclusive);
+                result = fDVs[fValidationDV].compare(fMinExclusive, fMaxExclusive);
                 if (result != -1 && result != 0)
-                    reportError("minExclusive-less-than-equal-to-maxExclusive",
-                            new Object[] { fMinExclusive, fMaxExclusive,
-                                    fTypeName });
+                    reportError("minExclusive-less-than-equal-to-maxExclusive", new Object[] { fMinExclusive,
+                            fMaxExclusive, fTypeName });
             }
 
             // check 4.3.9.c2 must: minExclusive < maxInclusive
             if (((fFacetsDefined & FACET_MAXINCLUSIVE) != 0) && ((fFacetsDefined
                     & FACET_MINEXCLUSIVE) != 0)) {
-                if (fDVs[fValidationDV].compare(fMinExclusive,
-                        fMaxInclusive) != -1)
-                    reportError("minExclusive-less-than-maxInclusive",
-                            new Object[] { fMinExclusive, fMaxInclusive,
-                                    fTypeName });
+                if (fDVs[fValidationDV].compare(fMinExclusive, fMaxInclusive) != -1)
+                    reportError("minExclusive-less-than-maxInclusive", new Object[] { fMinExclusive,
+                            fMaxInclusive, fTypeName });
             }
 
             // check 4.3.10.c1 must: minInclusive < maxExclusive
             if (((fFacetsDefined & FACET_MAXEXCLUSIVE) != 0) && ((fFacetsDefined
                     & FACET_MININCLUSIVE) != 0)) {
-                if (fDVs[fValidationDV].compare(fMinInclusive,
-                        fMaxExclusive) != -1)
-                    reportError("minInclusive-less-than-maxExclusive",
-                            new Object[] { fMinInclusive, fMaxExclusive,
-                                    fTypeName });
+                if (fDVs[fValidationDV].compare(fMinInclusive, fMaxExclusive) != -1)
+                    reportError("minInclusive-less-than-maxExclusive", new Object[] { fMinInclusive,
+                            fMaxExclusive, fTypeName });
             }
 
             // check 4.3.12.c1 must: fractionDigits <= totalDigits
-            if (((fFacetsDefined & FACET_FRACTIONDIGITS) != 0)
-                    && ((fFacetsDefined & FACET_TOTALDIGITS) != 0)) {
+            if (((fFacetsDefined & FACET_FRACTIONDIGITS) != 0) && ((fFacetsDefined
+                    & FACET_TOTALDIGITS) != 0)) {
                 if (fFractionDigits > fTotalDigits)
-                    reportError("fractionDigits-totalDigits", new Object[] {
-                            Integer.toString(fFractionDigits), Integer.toString(
-                                    fTotalDigits), fTypeName });
+                    reportError("fractionDigits-totalDigits", new Object[] { Integer.toString(
+                            fFractionDigits), Integer.toString(fTotalDigits), fTypeName });
             }
 
             // step 3: check facets against base
             // check 4.3.1.c1 error: length & (fBase.maxLength |
             // fBase.minLength)
             if ((fFacetsDefined & FACET_LENGTH) != 0) {
-                if ((fBase.fFacetsDefined & FACET_MINLENGTH) != 0
-                        && fLength < fBase.fMinLength) {
+                if ((fBase.fFacetsDefined & FACET_MINLENGTH) != 0 && fLength < fBase.fMinLength) {
                     // length, fBase.minLength and fBase.maxLength defined
-                    reportError("length-minLength-maxLength.1.1", new Object[] {
-                            fTypeName, Integer.toString(fLength), Integer
-                                    .toString(fBase.fMinLength) });
+                    reportError("length-minLength-maxLength.1.1", new Object[] { fTypeName, Integer.toString(
+                            fLength), Integer.toString(fBase.fMinLength) });
                 }
-                if ((fBase.fFacetsDefined & FACET_MAXLENGTH) != 0
-                        && fLength > fBase.fMaxLength) {
+                if ((fBase.fFacetsDefined & FACET_MAXLENGTH) != 0 && fLength > fBase.fMaxLength) {
                     // length and fBase.maxLength defined
-                    reportError("length-minLength-maxLength.2.1", new Object[] {
-                            fTypeName, Integer.toString(fLength), Integer
-                                    .toString(fBase.fMaxLength) });
+                    reportError("length-minLength-maxLength.2.1", new Object[] { fTypeName, Integer.toString(
+                            fLength), Integer.toString(fBase.fMaxLength) });
                 }
                 if ((fBase.fFacetsDefined & FACET_LENGTH) != 0) {
                     // check 4.3.1.c2 error: length != fBase.length
                     if (fLength != fBase.fLength)
-                        reportError("length-valid-restriction", new Object[] {
-                                Integer.toString(fLength), Integer.toString(
-                                        fBase.fLength), fTypeName });
+                        reportError("length-valid-restriction", new Object[] { Integer.toString(fLength),
+                                Integer.toString(fBase.fLength), fTypeName });
                 }
             }
 
             // check 4.3.1.c1 error: fBase.length & (maxLength | minLength)
-            if ((fBase.fFacetsDefined & FACET_LENGTH) != 0 || (fFacetsDefined
-                    & FACET_LENGTH) != 0) {
+            if ((fBase.fFacetsDefined & FACET_LENGTH) != 0 || (fFacetsDefined & FACET_LENGTH) != 0) {
                 if ((fFacetsDefined & FACET_MINLENGTH) != 0) {
                     if (fBase.fLength < fMinLength) {
                         // fBase.length, minLength and maxLength defined
-                        reportError("length-minLength-maxLength.1.1",
-                                new Object[] { fTypeName, Integer.toString(
-                                        fBase.fLength), Integer.toString(
-                                                fMinLength) });
+                        reportError("length-minLength-maxLength.1.1", new Object[] { fTypeName, Integer
+                                .toString(fBase.fLength), Integer.toString(fMinLength) });
                     }
                     if ((fBase.fFacetsDefined & FACET_MINLENGTH) == 0) {
-                        reportError("length-minLength-maxLength.1.2.a",
-                                new Object[] { fTypeName });
+                        reportError("length-minLength-maxLength.1.2.a", new Object[] { fTypeName });
                     }
                     if (fMinLength != fBase.fMinLength) {
-                        reportError("length-minLength-maxLength.1.2.b",
-                                new Object[] { fTypeName, Integer.toString(
-                                        fMinLength), Integer.toString(
-                                                fBase.fMinLength) });
+                        reportError("length-minLength-maxLength.1.2.b", new Object[] { fTypeName, Integer
+                                .toString(fMinLength), Integer.toString(fBase.fMinLength) });
                     }
                 }
                 if ((fFacetsDefined & FACET_MAXLENGTH) != 0) {
                     if (fBase.fLength > fMaxLength) {
                         // fBase.length, minLength and maxLength defined
-                        reportError("length-minLength-maxLength.2.1",
-                                new Object[] { fTypeName, Integer.toString(
-                                        fBase.fLength), Integer.toString(
-                                                fMaxLength) });
+                        reportError("length-minLength-maxLength.2.1", new Object[] { fTypeName, Integer
+                                .toString(fBase.fLength), Integer.toString(fMaxLength) });
                     }
                     if ((fBase.fFacetsDefined & FACET_MAXLENGTH) == 0) {
-                        reportError("length-minLength-maxLength.2.2.a",
-                                new Object[] { fTypeName });
+                        reportError("length-minLength-maxLength.2.2.a", new Object[] { fTypeName });
                     }
                     if (fMaxLength != fBase.fMaxLength) {
-                        reportError("length-minLength-maxLength.2.2.b",
-                                new Object[] { fTypeName, Integer.toString(
-                                        fMaxLength), Integer.toString(
-                                                fBase.fBase.fMaxLength) });
+                        reportError("length-minLength-maxLength.2.2.b", new Object[] { fTypeName, Integer
+                                .toString(fMaxLength), Integer.toString(fBase.fBase.fMaxLength) });
                     }
                 }
             }
@@ -1302,55 +1212,42 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             if (((fFacetsDefined & FACET_MINLENGTH) != 0)) {
                 if ((fBase.fFacetsDefined & FACET_MAXLENGTH) != 0) {
                     if (fMinLength > fBase.fMaxLength) {
-                        reportError("minLength-less-than-equal-to-maxLength",
-                                new Object[] { Integer.toString(fMinLength),
-                                        Integer.toString(fBase.fMaxLength),
-                                        fTypeName });
+                        reportError("minLength-less-than-equal-to-maxLength", new Object[] { Integer.toString(
+                                fMinLength), Integer.toString(fBase.fMaxLength), fTypeName });
                     }
                 } else if ((fBase.fFacetsDefined & FACET_MINLENGTH) != 0) {
-                    if ((fBase.fFixedFacet & FACET_MINLENGTH) != 0
-                            && fMinLength != fBase.fMinLength) {
-                        reportError("FixedFacetValue", new Object[] {
-                                "minLength", Integer.toString(fMinLength),
-                                Integer.toString(fBase.fMinLength),
-                                fTypeName });
+                    if ((fBase.fFixedFacet & FACET_MINLENGTH) != 0 && fMinLength != fBase.fMinLength) {
+                        reportError("FixedFacetValue", new Object[] { "minLength", Integer.toString(
+                                fMinLength), Integer.toString(fBase.fMinLength), fTypeName });
                     }
 
                     // check 4.3.2.c2 error: minLength < fBase.minLength
                     if (fMinLength < fBase.fMinLength) {
-                        reportError("minLength-valid-restriction",
-                                new Object[] { Integer.toString(fMinLength),
-                                        Integer.toString(fBase.fMinLength),
-                                        fTypeName });
+                        reportError("minLength-valid-restriction", new Object[] { Integer.toString(
+                                fMinLength), Integer.toString(fBase.fMinLength), fTypeName });
                     }
                 }
             }
 
             // check 4.3.2.c1 must: maxLength < fBase.minLength
-            if (((fFacetsDefined & FACET_MAXLENGTH) != 0)
-                    && ((fBase.fFacetsDefined & FACET_MINLENGTH) != 0)) {
+            if (((fFacetsDefined & FACET_MAXLENGTH) != 0) && ((fBase.fFacetsDefined
+                    & FACET_MINLENGTH) != 0)) {
                 if (fMaxLength < fBase.fMinLength) {
-                    reportError("minLength-less-than-equal-to-maxLength",
-                            new Object[] { Integer.toString(fBase.fMinLength),
-                                    Integer.toString(fMaxLength) });
+                    reportError("minLength-less-than-equal-to-maxLength", new Object[] { Integer.toString(
+                            fBase.fMinLength), Integer.toString(fMaxLength) });
                 }
             }
 
             // check 4.3.3.c1 error: maxLength > fBase.maxLength
             if ((fFacetsDefined & FACET_MAXLENGTH) != 0) {
                 if ((fBase.fFacetsDefined & FACET_MAXLENGTH) != 0) {
-                    if (((fBase.fFixedFacet & FACET_MAXLENGTH) != 0)
-                            && fMaxLength != fBase.fMaxLength) {
-                        reportError("FixedFacetValue", new Object[] {
-                                "maxLength", Integer.toString(fMaxLength),
-                                Integer.toString(fBase.fMaxLength),
-                                fTypeName });
+                    if (((fBase.fFixedFacet & FACET_MAXLENGTH) != 0) && fMaxLength != fBase.fMaxLength) {
+                        reportError("FixedFacetValue", new Object[] { "maxLength", Integer.toString(
+                                fMaxLength), Integer.toString(fBase.fMaxLength), fTypeName });
                     }
                     if (fMaxLength > fBase.fMaxLength) {
-                        reportError("maxLength-valid-restriction",
-                                new Object[] { Integer.toString(fMaxLength),
-                                        Integer.toString(fBase.fMaxLength),
-                                        fTypeName });
+                        reportError("maxLength-valid-restriction", new Object[] { Integer.toString(
+                                fMaxLength), Integer.toString(fBase.fMaxLength), fTypeName });
                     }
                 }
             }
@@ -1463,18 +1360,13 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             // check 4.3.11.c1 error: totalDigits > fBase.totalDigits
             if (((fFacetsDefined & FACET_TOTALDIGITS) != 0)) {
                 if (((fBase.fFacetsDefined & FACET_TOTALDIGITS) != 0)) {
-                    if ((fBase.fFixedFacet & FACET_TOTALDIGITS) != 0
-                            && fTotalDigits != fBase.fTotalDigits) {
-                        reportError("FixedFacetValue", new Object[] {
-                                "totalDigits", Integer.toString(fTotalDigits),
-                                Integer.toString(fBase.fTotalDigits),
-                                fTypeName });
+                    if ((fBase.fFixedFacet & FACET_TOTALDIGITS) != 0 && fTotalDigits != fBase.fTotalDigits) {
+                        reportError("FixedFacetValue", new Object[] { "totalDigits", Integer.toString(
+                                fTotalDigits), Integer.toString(fBase.fTotalDigits), fTypeName });
                     }
                     if (fTotalDigits > fBase.fTotalDigits) {
-                        reportError("totalDigits-valid-restriction",
-                                new Object[] { Integer.toString(fTotalDigits),
-                                        Integer.toString(fBase.fTotalDigits),
-                                        fTypeName });
+                        reportError("totalDigits-valid-restriction", new Object[] { Integer.toString(
+                                fTotalDigits), Integer.toString(fBase.fTotalDigits), fTypeName });
                     }
                 }
             }
@@ -1483,9 +1375,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             if ((fFacetsDefined & FACET_FRACTIONDIGITS) != 0) {
                 if ((fBase.fFacetsDefined & FACET_TOTALDIGITS) != 0) {
                     if (fFractionDigits > fBase.fTotalDigits)
-                        reportError("fractionDigits-totalDigits", new Object[] {
-                                Integer.toString(fFractionDigits), Integer
-                                        .toString(fTotalDigits), fTypeName });
+                        reportError("fractionDigits-totalDigits", new Object[] { Integer.toString(
+                                fFractionDigits), Integer.toString(fTotalDigits), fTypeName });
                 }
             }
 
@@ -1494,27 +1385,18 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             if (((fFacetsDefined & FACET_FRACTIONDIGITS) != 0)) {
                 if (((fBase.fFacetsDefined & FACET_FRACTIONDIGITS) != 0)) {
                     if (((fBase.fFixedFacet & FACET_FRACTIONDIGITS) != 0
-                            && fFractionDigits != fBase.fFractionDigits)
-                            || (fValidationDV == DV_INTEGER
+                            && fFractionDigits != fBase.fFractionDigits) || (fValidationDV == DV_INTEGER
                                     && fFractionDigits != 0)) {
-                        reportError("FixedFacetValue", new Object[] {
-                                "fractionDigits", Integer.toString(
-                                        fFractionDigits), Integer.toString(
-                                                fBase.fFractionDigits),
-                                fTypeName });
+                        reportError("FixedFacetValue", new Object[] { "fractionDigits", Integer.toString(
+                                fFractionDigits), Integer.toString(fBase.fFractionDigits), fTypeName });
                     }
                     if (fFractionDigits > fBase.fFractionDigits) {
-                        reportError("fractionDigits-valid-restriction",
-                                new Object[] { Integer.toString(
-                                        fFractionDigits), Integer.toString(
-                                                fBase.fFractionDigits),
-                                        fTypeName });
+                        reportError("fractionDigits-valid-restriction", new Object[] { Integer.toString(
+                                fFractionDigits), Integer.toString(fBase.fFractionDigits), fTypeName });
                     }
-                } else if (fValidationDV == DV_INTEGER
-                        && fFractionDigits != 0) {
-                    reportError("FixedFacetValue", new Object[] {
-                            "fractionDigits", Integer.toString(fFractionDigits),
-                            "0", fTypeName });
+                } else if (fValidationDV == DV_INTEGER && fFractionDigits != 0) {
+                    reportError("FixedFacetValue", new Object[] { "fractionDigits", Integer.toString(
+                            fFractionDigits), "0", fTypeName });
                 }
             }
 
@@ -1523,29 +1405,20 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             // fBase.whiteSpace = collapese or
             // whiteSpace = preserve && fBase.whiteSpace = replace
 
-            if ((fFacetsDefined & FACET_WHITESPACE) != 0
-                    && (fBase.fFacetsDefined & FACET_WHITESPACE) != 0) {
-                if ((fBase.fFixedFacet & FACET_WHITESPACE) != 0
-                        && fWhiteSpace != fBase.fWhiteSpace) {
-                    reportError("FixedFacetValue", new Object[] { "whiteSpace",
-                            whiteSpaceValue(fWhiteSpace), whiteSpaceValue(
-                                    fBase.fWhiteSpace), fTypeName });
+            if ((fFacetsDefined & FACET_WHITESPACE) != 0 && (fBase.fFacetsDefined & FACET_WHITESPACE) != 0) {
+                if ((fBase.fFixedFacet & FACET_WHITESPACE) != 0 && fWhiteSpace != fBase.fWhiteSpace) {
+                    reportError("FixedFacetValue", new Object[] { "whiteSpace", whiteSpaceValue(fWhiteSpace),
+                            whiteSpaceValue(fBase.fWhiteSpace), fTypeName });
                 }
 
-                if (fWhiteSpace == WS_PRESERVE
-                        && fBase.fWhiteSpace == WS_COLLAPSE) {
-                    reportError("whiteSpace-valid-restriction.1", new Object[] {
-                            fTypeName, "preserve" });
+                if (fWhiteSpace == WS_PRESERVE && fBase.fWhiteSpace == WS_COLLAPSE) {
+                    reportError("whiteSpace-valid-restriction.1", new Object[] { fTypeName, "preserve" });
                 }
-                if (fWhiteSpace == WS_REPLACE
-                        && fBase.fWhiteSpace == WS_COLLAPSE) {
-                    reportError("whiteSpace-valid-restriction.1", new Object[] {
-                            fTypeName, "replace" });
+                if (fWhiteSpace == WS_REPLACE && fBase.fWhiteSpace == WS_COLLAPSE) {
+                    reportError("whiteSpace-valid-restriction.1", new Object[] { fTypeName, "replace" });
                 }
-                if (fWhiteSpace == WS_PRESERVE
-                        && fBase.fWhiteSpace == WS_REPLACE) {
-                    reportError("whiteSpace-valid-restriction.2", new Object[] {
-                            fTypeName });
+                if (fWhiteSpace == WS_PRESERVE && fBase.fWhiteSpace == WS_REPLACE) {
+                    reportError("whiteSpace-valid-restriction.2", new Object[] { fTypeName });
                 }
             }
         } // fFacetsDefined != null
@@ -1553,22 +1426,19 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         // step 4: inherit other facets from base (including fTokeyType)
 
         // inherit length
-        if ((fFacetsDefined & FACET_LENGTH) == 0 && (fBase.fFacetsDefined
-                & FACET_LENGTH) != 0) {
+        if ((fFacetsDefined & FACET_LENGTH) == 0 && (fBase.fFacetsDefined & FACET_LENGTH) != 0) {
             fFacetsDefined |= FACET_LENGTH;
             fLength = fBase.fLength;
             lengthAnnotation = fBase.lengthAnnotation;
         }
         // inherit minLength
-        if ((fFacetsDefined & FACET_MINLENGTH) == 0 && (fBase.fFacetsDefined
-                & FACET_MINLENGTH) != 0) {
+        if ((fFacetsDefined & FACET_MINLENGTH) == 0 && (fBase.fFacetsDefined & FACET_MINLENGTH) != 0) {
             fFacetsDefined |= FACET_MINLENGTH;
             fMinLength = fBase.fMinLength;
             minLengthAnnotation = fBase.minLengthAnnotation;
         }
         // inherit maxLength
-        if ((fFacetsDefined & FACET_MAXLENGTH) == 0 && (fBase.fFacetsDefined
-                & FACET_MAXLENGTH) != 0) {
+        if ((fFacetsDefined & FACET_MAXLENGTH) == 0 && (fBase.fFacetsDefined & FACET_MAXLENGTH) != 0) {
             fFacetsDefined |= FACET_MAXLENGTH;
             fMaxLength = fBase.fMaxLength;
             maxLengthAnnotation = fBase.maxLengthAnnotation;
@@ -1587,10 +1457,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                 }
                 if (fBase.patternAnnotations != null) {
                     if (patternAnnotations != null) {
-                        for (int i = fBase.patternAnnotations.getLength()
-                                - 1; i >= 0; --i) {
-                            patternAnnotations.addXSObject(
-                                    fBase.patternAnnotations.item(i));
+                        for (int i = fBase.patternAnnotations.getLength() - 1; i >= 0; --i) {
+                            patternAnnotations.addXSObject(fBase.patternAnnotations.item(i));
                         }
                     } else {
                         patternAnnotations = fBase.patternAnnotations;
@@ -1599,68 +1467,61 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             }
         }
         // inherit whiteSpace
-        if ((fFacetsDefined & FACET_WHITESPACE) == 0 && (fBase.fFacetsDefined
-                & FACET_WHITESPACE) != 0) {
+        if ((fFacetsDefined & FACET_WHITESPACE) == 0 && (fBase.fFacetsDefined & FACET_WHITESPACE) != 0) {
             fFacetsDefined |= FACET_WHITESPACE;
             fWhiteSpace = fBase.fWhiteSpace;
             whiteSpaceAnnotation = fBase.whiteSpaceAnnotation;
         }
         // inherit enumeration
-        if ((fFacetsDefined & FACET_ENUMERATION) == 0 && (fBase.fFacetsDefined
-                & FACET_ENUMERATION) != 0) {
+        if ((fFacetsDefined & FACET_ENUMERATION) == 0 && (fBase.fFacetsDefined & FACET_ENUMERATION) != 0) {
             fFacetsDefined |= FACET_ENUMERATION;
             fEnumeration = fBase.fEnumeration;
             enumerationAnnotations = fBase.enumerationAnnotations;
         }
         // inherit maxExclusive
-        if (((fBase.fFacetsDefined & FACET_MAXEXCLUSIVE) != 0)
-                && !((fFacetsDefined & FACET_MAXEXCLUSIVE) != 0)
-                && !((fFacetsDefined & FACET_MAXINCLUSIVE) != 0)) {
+        if (((fBase.fFacetsDefined & FACET_MAXEXCLUSIVE) != 0) && !((fFacetsDefined
+                & FACET_MAXEXCLUSIVE) != 0) && !((fFacetsDefined & FACET_MAXINCLUSIVE) != 0)) {
             fFacetsDefined |= FACET_MAXEXCLUSIVE;
             fMaxExclusive = fBase.fMaxExclusive;
             maxExclusiveAnnotation = fBase.maxExclusiveAnnotation;
         }
         // inherit maxInclusive
-        if (((fBase.fFacetsDefined & FACET_MAXINCLUSIVE) != 0)
-                && !((fFacetsDefined & FACET_MAXEXCLUSIVE) != 0)
-                && !((fFacetsDefined & FACET_MAXINCLUSIVE) != 0)) {
+        if (((fBase.fFacetsDefined & FACET_MAXINCLUSIVE) != 0) && !((fFacetsDefined
+                & FACET_MAXEXCLUSIVE) != 0) && !((fFacetsDefined & FACET_MAXINCLUSIVE) != 0)) {
             fFacetsDefined |= FACET_MAXINCLUSIVE;
             fMaxInclusive = fBase.fMaxInclusive;
             maxInclusiveAnnotation = fBase.maxInclusiveAnnotation;
         }
         // inherit minExclusive
-        if (((fBase.fFacetsDefined & FACET_MINEXCLUSIVE) != 0)
-                && !((fFacetsDefined & FACET_MINEXCLUSIVE) != 0)
-                && !((fFacetsDefined & FACET_MININCLUSIVE) != 0)) {
+        if (((fBase.fFacetsDefined & FACET_MINEXCLUSIVE) != 0) && !((fFacetsDefined
+                & FACET_MINEXCLUSIVE) != 0) && !((fFacetsDefined & FACET_MININCLUSIVE) != 0)) {
             fFacetsDefined |= FACET_MINEXCLUSIVE;
             fMinExclusive = fBase.fMinExclusive;
             minExclusiveAnnotation = fBase.minExclusiveAnnotation;
         }
         // inherit minExclusive
-        if (((fBase.fFacetsDefined & FACET_MININCLUSIVE) != 0)
-                && !((fFacetsDefined & FACET_MINEXCLUSIVE) != 0)
-                && !((fFacetsDefined & FACET_MININCLUSIVE) != 0)) {
+        if (((fBase.fFacetsDefined & FACET_MININCLUSIVE) != 0) && !((fFacetsDefined
+                & FACET_MINEXCLUSIVE) != 0) && !((fFacetsDefined & FACET_MININCLUSIVE) != 0)) {
             fFacetsDefined |= FACET_MININCLUSIVE;
             fMinInclusive = fBase.fMinInclusive;
             minInclusiveAnnotation = fBase.minInclusiveAnnotation;
         }
         // inherit totalDigits
-        if (((fBase.fFacetsDefined & FACET_TOTALDIGITS) != 0)
-                && !((fFacetsDefined & FACET_TOTALDIGITS) != 0)) {
+        if (((fBase.fFacetsDefined & FACET_TOTALDIGITS) != 0) && !((fFacetsDefined
+                & FACET_TOTALDIGITS) != 0)) {
             fFacetsDefined |= FACET_TOTALDIGITS;
             fTotalDigits = fBase.fTotalDigits;
             totalDigitsAnnotation = fBase.totalDigitsAnnotation;
         }
         // inherit fractionDigits
-        if (((fBase.fFacetsDefined & FACET_FRACTIONDIGITS) != 0)
-                && !((fFacetsDefined & FACET_FRACTIONDIGITS) != 0)) {
+        if (((fBase.fFacetsDefined & FACET_FRACTIONDIGITS) != 0) && !((fFacetsDefined
+                & FACET_FRACTIONDIGITS) != 0)) {
             fFacetsDefined |= FACET_FRACTIONDIGITS;
             fFractionDigits = fBase.fFractionDigits;
             fractionDigitsAnnotation = fBase.fractionDigitsAnnotation;
         }
         // inherit tokeytype
-        if ((fPatternType == SPECIAL_PATTERN_NONE)
-                && (fBase.fPatternType != SPECIAL_PATTERN_NONE)) {
+        if ((fPatternType == SPECIAL_PATTERN_NONE) && (fBase.fPatternType != SPECIAL_PATTERN_NONE)) {
             fPatternType = fBase.fPatternType;
         }
 
@@ -1675,8 +1536,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     /**
      * validate a value, and return the compiled form
      */
-    public Object validate(String content, ValidationContext context,
-            ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
+    public Object validate(String content, ValidationContext context, ValidatedInfo validatedInfo)
+            throws InvalidDatatypeValueException {
 
         if (context == null)
             context = fEmptyContext;
@@ -1688,8 +1549,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
         // first normalize string value, and convert it to actual value
         boolean needNormalize = context == null || context.needToNormalize();
-        Object ob = getActualValue(content, context, validatedInfo,
-                needNormalize);
+        Object ob = getActualValue(content, context, validatedInfo, needNormalize);
 
         validate(context, validatedInfo);
 
@@ -1697,8 +1557,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     }
 
-    protected ValidatedInfo getActualEnumValue(String lexical,
-            ValidationContext ctx, ValidatedInfo info)
+    protected ValidatedInfo getActualEnumValue(String lexical, ValidationContext ctx, ValidatedInfo info)
             throws InvalidDatatypeValueException {
         return fBase.validateWithInfo(lexical, ctx, info);
     }
@@ -1706,9 +1565,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     /**
      * validate a value, and return the compiled form
      */
-    public ValidatedInfo validateWithInfo(String content,
-            ValidationContext context, ValidatedInfo validatedInfo)
-            throws InvalidDatatypeValueException {
+    public ValidatedInfo validateWithInfo(String content, ValidationContext context,
+            ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
 
         if (context == null)
             context = fEmptyContext;
@@ -1731,8 +1589,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
     /**
      * validate a value, and return the compiled form
      */
-    public Object validate(Object content, ValidationContext context,
-            ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
+    public Object validate(Object content, ValidationContext context, ValidatedInfo validatedInfo)
+            throws InvalidDatatypeValueException {
 
         if (context == null)
             context = fEmptyContext;
@@ -1744,8 +1602,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
         // first normalize string value, and convert it to actual value
         boolean needNormalize = context == null || context.needToNormalize();
-        Object ob = getActualValue(content, context, validatedInfo,
-                needNormalize);
+        Object ob = getActualValue(content, context, validatedInfo, needNormalize);
 
         validate(context, validatedInfo);
 
@@ -1757,9 +1614,9 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * validate an actual value against this DV
      *
      * @param context
-     *                      the validation context
+     *        the validation context
      * @param validatedInfo
-     *                      used to provide the actual value and member types
+     *        used to provide the actual value and member types
      */
     public void validate(ValidationContext context, ValidatedInfo validatedInfo)
             throws InvalidDatatypeValueException {
@@ -1768,8 +1625,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             context = fEmptyContext;
 
         // then validate the actual value against the facets
-        if (context.needFacetChecking() && (fFacetsDefined != 0
-                && fFacetsDefined != FACET_WHITESPACE)) {
+        if (context.needFacetChecking() && (fFacetsDefined != 0 && fFacetsDefined != FACET_WHITESPACE)) {
             checkFacets(validatedInfo);
         }
 
@@ -1780,8 +1636,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     }
 
-    private void checkFacets(ValidatedInfo validatedInfo)
-            throws InvalidDatatypeValueException {
+    private void checkFacets(ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
 
         Object ob = validatedInfo.actualValue;
         String content = validatedInfo.normalizedValue;
@@ -1795,29 +1650,24 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             // maxLength
             if ((fFacetsDefined & FACET_MAXLENGTH) != 0) {
                 if (length > fMaxLength) {
-                    throw new InvalidDatatypeValueException(
-                            "cvc-maxLength-valid", new Object[] { content,
-                                    Integer.toString(length), Integer.toString(
-                                            fMaxLength), fTypeName });
+                    throw new InvalidDatatypeValueException("cvc-maxLength-valid", new Object[] { content,
+                            Integer.toString(length), Integer.toString(fMaxLength), fTypeName });
                 }
             }
 
             // minLength
             if ((fFacetsDefined & FACET_MINLENGTH) != 0) {
                 if (length < fMinLength) {
-                    throw new InvalidDatatypeValueException(
-                            "cvc-minLength-valid", new Object[] { content,
-                                    Integer.toString(length), Integer.toString(
-                                            fMinLength), fTypeName });
+                    throw new InvalidDatatypeValueException("cvc-minLength-valid", new Object[] { content,
+                            Integer.toString(length), Integer.toString(fMinLength), fTypeName });
                 }
             }
 
             // length
             if ((fFacetsDefined & FACET_LENGTH) != 0) {
                 if (length != fLength) {
-                    throw new InvalidDatatypeValueException("cvc-length-valid",
-                            new Object[] { content, Integer.toString(length),
-                                    Integer.toString(fLength), fTypeName });
+                    throw new InvalidDatatypeValueException("cvc-length-valid", new Object[] { content,
+                            Integer.toString(length), Integer.toString(fLength), fTypeName });
                 }
             }
         }
@@ -1828,29 +1678,21 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             final int enumSize = fEnumeration.size();
             final short primitiveType1 = convertToPrimitiveKind(type);
             for (int i = 0; i < enumSize; i++) {
-                final short primitiveType2 = convertToPrimitiveKind(
-                        fEnumerationType[i]);
-                if ((primitiveType1 == primitiveType2
-                        || primitiveType1 == XSConstants.ANYSIMPLETYPE_DT
-                                && primitiveType2 == XSConstants.STRING_DT
-                        || primitiveType1 == XSConstants.STRING_DT
-                                && primitiveType2 == XSConstants.ANYSIMPLETYPE_DT)
-                        && fEnumeration.elementAt(i).equals(ob)) {
+                final short primitiveType2 = convertToPrimitiveKind(fEnumerationType[i]);
+                if ((primitiveType1 == primitiveType2 || primitiveType1 == XSConstants.ANYSIMPLETYPE_DT
+                        && primitiveType2 == XSConstants.STRING_DT || primitiveType1 == XSConstants.STRING_DT
+                                && primitiveType2 == XSConstants.ANYSIMPLETYPE_DT) && fEnumeration.elementAt(
+                                        i).equals(ob)) {
                     if (primitiveType1 == XSConstants.LIST_DT
                             || primitiveType1 == XSConstants.LISTOFUNION_DT) {
                         ShortList enumItemType = fEnumerationItemType[i];
-                        final int typeList1Length = itemType != null ? itemType
-                                .getLength() : 0;
-                        final int typeList2Length = enumItemType != null
-                                ? enumItemType.getLength()
-                                : 0;
+                        final int typeList1Length = itemType != null ? itemType.getLength() : 0;
+                        final int typeList2Length = enumItemType != null ? enumItemType.getLength() : 0;
                         if (typeList1Length == typeList2Length) {
                             int j;
                             for (j = 0; j < typeList1Length; ++j) {
-                                final short primitiveItem1 = convertToPrimitiveKind(
-                                        itemType.item(j));
-                                final short primitiveItem2 = convertToPrimitiveKind(
-                                        enumItemType.item(j));
+                                final short primitiveItem1 = convertToPrimitiveKind(itemType.item(j));
+                                final short primitiveItem2 = convertToPrimitiveKind(enumItemType.item(j));
                                 if (primitiveItem1 != primitiveItem2) {
                                     if (primitiveItem1 == XSConstants.ANYSIMPLETYPE_DT
                                             && primitiveItem2 == XSConstants.STRING_DT
@@ -1873,8 +1715,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                 }
             }
             if (!present) {
-                throw new InvalidDatatypeValueException("cvc-enumeration-valid",
-                        new Object[] { content, fEnumeration.toString() });
+                throw new InvalidDatatypeValueException("cvc-enumeration-valid", new Object[] { content,
+                        fEnumeration.toString() });
             }
         }
 
@@ -1882,10 +1724,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         if ((fFacetsDefined & FACET_FRACTIONDIGITS) != 0) {
             int scale = fDVs[fValidationDV].getFractionDigits(ob);
             if (scale > fFractionDigits) {
-                throw new InvalidDatatypeValueException(
-                        "cvc-fractionDigits-valid", new Object[] { content,
-                                Integer.toString(scale), Integer.toString(
-                                        fFractionDigits) });
+                throw new InvalidDatatypeValueException("cvc-fractionDigits-valid", new Object[] { content,
+                        Integer.toString(scale), Integer.toString(fFractionDigits) });
             }
         }
 
@@ -1893,9 +1733,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         if ((fFacetsDefined & FACET_TOTALDIGITS) != 0) {
             int totalDigits = fDVs[fValidationDV].getTotalDigits(ob);
             if (totalDigits > fTotalDigits) {
-                throw new InvalidDatatypeValueException("cvc-totalDigits-valid",
-                        new Object[] { content, Integer.toString(totalDigits),
-                                Integer.toString(fTotalDigits) });
+                throw new InvalidDatatypeValueException("cvc-totalDigits-valid", new Object[] { content,
+                        Integer.toString(totalDigits), Integer.toString(fTotalDigits) });
             }
         }
 
@@ -1905,9 +1744,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         if ((fFacetsDefined & FACET_MAXINCLUSIVE) != 0) {
             compare = fDVs[fValidationDV].compare(ob, fMaxInclusive);
             if (compare != -1 && compare != 0) {
-                throw new InvalidDatatypeValueException(
-                        "cvc-maxInclusive-valid", new Object[] { content,
-                                fMaxInclusive, fTypeName });
+                throw new InvalidDatatypeValueException("cvc-maxInclusive-valid", new Object[] { content,
+                        fMaxInclusive, fTypeName });
             }
         }
 
@@ -1915,9 +1753,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         if ((fFacetsDefined & FACET_MAXEXCLUSIVE) != 0) {
             compare = fDVs[fValidationDV].compare(ob, fMaxExclusive);
             if (compare != -1) {
-                throw new InvalidDatatypeValueException(
-                        "cvc-maxExclusive-valid", new Object[] { content,
-                                fMaxExclusive, fTypeName });
+                throw new InvalidDatatypeValueException("cvc-maxExclusive-valid", new Object[] { content,
+                        fMaxExclusive, fTypeName });
             }
         }
 
@@ -1925,9 +1762,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         if ((fFacetsDefined & FACET_MININCLUSIVE) != 0) {
             compare = fDVs[fValidationDV].compare(ob, fMinInclusive);
             if (compare != 1 && compare != 0) {
-                throw new InvalidDatatypeValueException(
-                        "cvc-minInclusive-valid", new Object[] { content,
-                                fMinInclusive, fTypeName });
+                throw new InvalidDatatypeValueException("cvc-minInclusive-valid", new Object[] { content,
+                        fMinInclusive, fTypeName });
             }
         }
 
@@ -1935,16 +1771,15 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         if ((fFacetsDefined & FACET_MINEXCLUSIVE) != 0) {
             compare = fDVs[fValidationDV].compare(ob, fMinExclusive);
             if (compare != 1) {
-                throw new InvalidDatatypeValueException(
-                        "cvc-minExclusive-valid", new Object[] { content,
-                                fMinExclusive, fTypeName });
+                throw new InvalidDatatypeValueException("cvc-minExclusive-valid", new Object[] { content,
+                        fMinExclusive, fTypeName });
             }
         }
 
     }
 
-    private void checkExtraRules(ValidationContext context,
-            ValidatedInfo validatedInfo) throws InvalidDatatypeValueException {
+    private void checkExtraRules(ValidationContext context, ValidatedInfo validatedInfo)
+            throws InvalidDatatypeValueException {
 
         Object ob = validatedInfo.actualValue;
 
@@ -1978,17 +1813,15 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
         } else { // (fVariety == VARIETY_UNION)
 
-            ((XSSimpleTypeDecl) validatedInfo.memberType).checkExtraRules(
-                    context, validatedInfo);
+            ((XSSimpleTypeDecl) validatedInfo.memberType).checkExtraRules(context, validatedInfo);
 
         }
 
     }// checkExtraRules()
 
     // we can still return object for internal use.
-    private Object getActualValue(Object content, ValidationContext context,
-            ValidatedInfo validatedInfo, boolean needNormalize)
-            throws InvalidDatatypeValueException {
+    private Object getActualValue(Object content, ValidationContext context, ValidatedInfo validatedInfo,
+            boolean needNormalize) throws InvalidDatatypeValueException {
 
         String nvalue;
         if (needNormalize) {
@@ -1998,16 +1831,15 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
         if ((fFacetsDefined & FACET_PATTERN) != 0) {
             if (fPattern.size() == 0 && nvalue.length() > 0) {
-                throw new InvalidDatatypeValueException("cvc-pattern-valid",
-                        new Object[] { content, "(empty string)", fTypeName });
+                throw new InvalidDatatypeValueException("cvc-pattern-valid", new Object[] { content,
+                        "(empty string)", fTypeName });
             }
             RegularExpression regex;
             for (int idx = fPattern.size() - 1; idx >= 0; idx--) {
                 regex = (RegularExpression) fPattern.elementAt(idx);
                 if (!regex.matches(nvalue)) {
-                    throw new InvalidDatatypeValueException("cvc-pattern-valid",
-                            new Object[] { content, fPatternStr.elementAt(idx),
-                                    fTypeName });
+                    throw new InvalidDatatypeValueException("cvc-pattern-valid", new Object[] { content,
+                            fPatternStr.elementAt(idx), fTypeName });
                 }
             }
         }
@@ -2029,9 +1861,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                     seenErr = !XMLChar.isValidNCName(nvalue);
                 }
                 if (seenErr) {
-                    throw new InvalidDatatypeValueException(
-                            "cvc-datatype-valid.1.2.1", new Object[] { nvalue,
-                                    SPECIAL_PATTERN_STRING[fPatternType] });
+                    throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { nvalue,
+                            SPECIAL_PATTERN_STRING[fPatternType] });
                 }
             }
 
@@ -2060,11 +1891,9 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                 // so we take two steps to get the actual value:
                 // 1. fItemType.getActualValue()
                 // 2. fItemType.chekcFacets()
-                avalue[i] = fItemType.getActualValue(parsedList.nextToken(),
-                        context, validatedInfo, false);
-                if (context.needFacetChecking()
-                        && (fItemType.fFacetsDefined != 0
-                                && fItemType.fFacetsDefined != FACET_WHITESPACE)) {
+                avalue[i] = fItemType.getActualValue(parsedList.nextToken(), context, validatedInfo, false);
+                if (context.needFacetChecking() && (fItemType.fFacetsDefined != 0
+                        && fItemType.fFacetsDefined != FACET_WHITESPACE)) {
                     fItemType.checkFacets(validatedInfo);
                 }
                 memberTypes[i] = (XSSimpleTypeDecl) validatedInfo.memberType;
@@ -2074,19 +1903,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
             ListDV.ListData v = new ListDV.ListData(avalue);
             validatedInfo.actualValue = v;
-            validatedInfo.actualValueType = isUnion ? XSConstants.LISTOFUNION_DT
-                    : XSConstants.LIST_DT;
+            validatedInfo.actualValueType = isUnion ? XSConstants.LISTOFUNION_DT : XSConstants.LIST_DT;
             validatedInfo.memberType = null;
             validatedInfo.memberTypes = memberTypes;
-            validatedInfo.itemValueTypes = new ShortListImpl(itemTypes,
-                    itemTypes.length);
+            validatedInfo.itemValueTypes = new ShortListImpl(itemTypes, itemTypes.length);
             validatedInfo.normalizedValue = nvalue;
 
             return v;
 
         } else { // (fVariety == VARIETY_UNION)
-            final Object _content = (fMemberTypes.length > 1 && content != null)
-                    ? content.toString()
+            final Object _content = (fMemberTypes.length > 1 && content != null) ? content.toString()
                     : content;
             for (int i = 0; i < fMemberTypes.length; i++) {
                 try {
@@ -2098,17 +1924,14 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                     // so we take two steps to get the actual value:
                     // 1. fMemberType[i].getActualValue()
                     // 2. fMemberType[i].chekcFacets()
-                    Object aValue = fMemberTypes[i].getActualValue(_content,
-                            context, validatedInfo, true);
-                    if (context.needFacetChecking()
-                            && (fMemberTypes[i].fFacetsDefined != 0
-                                    && fMemberTypes[i].fFacetsDefined != FACET_WHITESPACE)) {
+                    Object aValue = fMemberTypes[i].getActualValue(_content, context, validatedInfo, true);
+                    if (context.needFacetChecking() && (fMemberTypes[i].fFacetsDefined != 0
+                            && fMemberTypes[i].fFacetsDefined != FACET_WHITESPACE)) {
                         fMemberTypes[i].checkFacets(validatedInfo);
                     }
                     validatedInfo.memberType = fMemberTypes[i];
                     return aValue;
-                } catch (InvalidDatatypeValueException invalidValue) {
-                }
+                } catch (InvalidDatatypeValueException invalidValue) {}
             }
             StringBuffer typesBuffer = new StringBuffer();
             XSSimpleTypeDecl decl;
@@ -2133,9 +1956,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                     typesBuffer.append(']');
                 }
             }
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.3",
-                    new Object[] { content, fTypeName, typesBuffer
-                            .toString() });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.3", new Object[] { content,
+                    fTypeName, typesBuffer.toString() });
         }
 
     }// getActualValue()
@@ -2266,8 +2088,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return sb.toString();
     }
 
-    void reportError(String key, Object[] args)
-            throws InvalidDatatypeFacetException {
+    void reportError(String key, Object[] args) throws InvalidDatatypeFacetException {
         throw new InvalidDatatypeFacetException(key, args);
     }
 
@@ -2308,12 +2129,11 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * type.
      * 
      * @param facetName
-     *                  The name of the facet.
+     *        The name of the facet.
      * @return True if the facet is defined, false otherwise.
      */
     public boolean isDefinedFacet(short facetName) {
-        if (fValidationDV == DV_ANYSIMPLETYPE
-                || fValidationDV == DV_ANYATOMICTYPE) {
+        if (fValidationDV == DV_ANYSIMPLETYPE || fValidationDV == DV_ANYATOMICTYPE) {
             return false;
         }
         if ((fFacetsDefined & facetName) != 0) {
@@ -2323,8 +2143,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             return facetName == FACET_PATTERN;
         }
         if (fValidationDV == DV_INTEGER) {
-            return facetName == FACET_PATTERN
-                    || facetName == FACET_FRACTIONDIGITS;
+            return facetName == FACET_PATTERN || facetName == FACET_FRACTIONDIGITS;
         }
         return false;
     }
@@ -2334,16 +2153,14 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * of FACET_XXX constants of all defined facets.
      */
     public short getDefinedFacets() {
-        if (fValidationDV == DV_ANYSIMPLETYPE
-                || fValidationDV == DV_ANYATOMICTYPE) {
+        if (fValidationDV == DV_ANYSIMPLETYPE || fValidationDV == DV_ANYATOMICTYPE) {
             return FACET_NONE;
         }
         if (fPatternType != SPECIAL_PATTERN_NONE) {
             return (short) (fFacetsDefined | FACET_PATTERN);
         }
         if (fValidationDV == DV_INTEGER) {
-            return (short) (fFacetsDefined | FACET_PATTERN
-                    | FACET_FRACTIONDIGITS);
+            return (short) (fFacetsDefined | FACET_PATTERN | FACET_FRACTIONDIGITS);
         }
         return fFacetsDefined;
     }
@@ -2353,7 +2170,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * on this type.
      * 
      * @param facetName
-     *                  The name of the facet.
+     *        The name of the facet.
      * @return True if the facet is fixed, false otherwise.
      */
     public boolean isFixedFacet(short facetName) {
@@ -2379,12 +2196,12 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * values for <code>enumeration</code> and <code>pattern</code> facets.
      * 
      * @param facetName
-     *                  The name of the facet, i.e.
-     *                  <code>FACET_LENGTH, FACET_TOTALDIGITS </code> (see
-     *                  <code>XSConstants</code>). To retrieve the value for a
-     *                  pattern
-     *                  or an enumeration, see <code>enumeration</code> and
-     *                  <code>pattern</code>.
+     *        The name of the facet, i.e.
+     *        <code>FACET_LENGTH, FACET_TOTALDIGITS </code> (see
+     *        <code>XSConstants</code>). To retrieve the value for a
+     *        pattern
+     *        or an enumeration, see <code>enumeration</code> and
+     *        <code>pattern</code>.
      * @return A value of the facet specified in <code>facetName</code> for this
      *         simple type definition or <code>null</code>.
      */
@@ -2397,32 +2214,25 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             case FACET_MAXLENGTH:
                 return (fMaxLength == -1) ? null : Integer.toString(fMaxLength);
             case FACET_WHITESPACE:
-                if (fValidationDV == DV_ANYSIMPLETYPE
-                        || fValidationDV == DV_ANYATOMICTYPE) {
+                if (fValidationDV == DV_ANYSIMPLETYPE || fValidationDV == DV_ANYATOMICTYPE) {
                     return null;
                 }
                 return WS_FACET_STRING[fWhiteSpace];
             case FACET_MAXINCLUSIVE:
-                return (fMaxInclusive == null) ? null
-                        : fMaxInclusive.toString();
+                return (fMaxInclusive == null) ? null : fMaxInclusive.toString();
             case FACET_MAXEXCLUSIVE:
-                return (fMaxExclusive == null) ? null
-                        : fMaxExclusive.toString();
+                return (fMaxExclusive == null) ? null : fMaxExclusive.toString();
             case FACET_MINEXCLUSIVE:
-                return (fMinExclusive == null) ? null
-                        : fMinExclusive.toString();
+                return (fMinExclusive == null) ? null : fMinExclusive.toString();
             case FACET_MININCLUSIVE:
-                return (fMinInclusive == null) ? null
-                        : fMinInclusive.toString();
+                return (fMinInclusive == null) ? null : fMinInclusive.toString();
             case FACET_TOTALDIGITS:
-                return (fTotalDigits == -1) ? null
-                        : Integer.toString(fTotalDigits);
+                return (fTotalDigits == -1) ? null : Integer.toString(fTotalDigits);
             case FACET_FRACTIONDIGITS:
                 if (fValidationDV == DV_INTEGER) {
                     return "0";
                 }
-                return (fFractionDigits == -1) ? null
-                        : Integer.toString(fFractionDigits);
+                return (fFractionDigits == -1) ? null : Integer.toString(fFractionDigits);
         }
         return null;
     }
@@ -2456,8 +2266,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                 }
 
                 public boolean contains(Object item) {
-                    return (fEnumeration != null && fEnumeration.contains(
-                            item));
+                    return (fEnumeration != null && fEnumeration.contains(item));
                 }
 
                 public Object item(int index) {
@@ -2481,14 +2290,11 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                 return null;
             fEnumerationItemTypeList = new AbstractObjectList() {
                 public int getLength() {
-                    return (fEnumerationItemType != null)
-                            ? fEnumerationItemType.length
-                            : 0;
+                    return (fEnumerationItemType != null) ? fEnumerationItemType.length : 0;
                 }
 
                 public boolean contains(Object item) {
-                    if (fEnumerationItemType == null
-                            || !(item instanceof ShortList))
+                    if (fEnumerationItemType == null || !(item instanceof ShortList))
                         return false;
                     for (int i = 0; i < fEnumerationItemType.length; i++)
                         if (fEnumerationItemType[i] == item)
@@ -2512,8 +2318,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             if (fEnumerationType == null) {
                 return ShortListImpl.EMPTY_LIST;
             }
-            fEnumerationTypeList = new ShortListImpl(fEnumerationType,
-                    fEnumerationType.length);
+            fEnumerationTypeList = new ShortListImpl(fEnumerationType, fEnumerationType.length);
         }
         return fEnumerationTypeList;
     }
@@ -2523,8 +2328,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * <code>StringList</code>.
      */
     public StringList getLexicalPattern() {
-        if (fPatternType == SPECIAL_PATTERN_NONE && fValidationDV != DV_INTEGER
-                && fPatternStr == null)
+        if (fPatternType == SPECIAL_PATTERN_NONE && fValidationDV != DV_INTEGER && fPatternStr == null)
             return StringListImpl.EMPTY_LIST;
         if (fLexicalPattern == null) {
             int size = fPatternStr == null ? 0 : fPatternStr.size();
@@ -2557,8 +2361,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * exists, otherwise an empty <code>XSObjectList</code>.
      */
     public XSObjectList getAnnotations() {
-        return (fAnnotations != null) ? fAnnotations
-                : XSObjectListImpl.EMPTY_LIST;
+        return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
     }
 
     private void calcFundamentalFacets() {
@@ -2602,11 +2405,9 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             boolean allFalse = fMemberTypes[0].fOrdered == ORDERED_FALSE;
             // for the other member types, check whether the value is false
             // and whether they have the same ancestor as the first one
-            for (int i = 1; i < fMemberTypes.length && (commonAnc
-                    || allFalse); i++) {
+            for (int i = 1; i < fMemberTypes.length && (commonAnc || allFalse); i++) {
                 if (commonAnc)
-                    commonAnc = ancestorId == getPrimitiveDV(
-                            fMemberTypes[i].fValidationDV);
+                    commonAnc = ancestorId == getPrimitiveDV(fMemberTypes[i].fValidationDV);
                 if (allFalse)
                     allFalse = fMemberTypes[i].fOrdered == ORDERED_FALSE;
             }
@@ -2643,20 +2444,16 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     private void setBounded() {
         if (fVariety == VARIETY_ATOMIC) {
-            if ((((this.fFacetsDefined & FACET_MININCLUSIVE) != 0)
-                    || ((this.fFacetsDefined & FACET_MINEXCLUSIVE) != 0))
-                    && (((this.fFacetsDefined & FACET_MAXINCLUSIVE) != 0)
-                            || ((this.fFacetsDefined
-                                    & FACET_MAXEXCLUSIVE) != 0))) {
+            if ((((this.fFacetsDefined & FACET_MININCLUSIVE) != 0) || ((this.fFacetsDefined
+                    & FACET_MINEXCLUSIVE) != 0)) && (((this.fFacetsDefined & FACET_MAXINCLUSIVE) != 0)
+                            || ((this.fFacetsDefined & FACET_MAXEXCLUSIVE) != 0))) {
                 this.fBounded = true;
             } else {
                 this.fBounded = false;
             }
         } else if (fVariety == VARIETY_LIST) {
-            if (((this.fFacetsDefined & FACET_LENGTH) != 0)
-                    || (((this.fFacetsDefined & FACET_MINLENGTH) != 0)
-                            && ((this.fFacetsDefined
-                                    & FACET_MAXLENGTH) != 0))) {
+            if (((this.fFacetsDefined & FACET_LENGTH) != 0) || (((this.fFacetsDefined & FACET_MINLENGTH) != 0)
+                    && ((this.fFacetsDefined & FACET_MAXLENGTH) != 0))) {
                 this.fBounded = true;
             } else {
                 this.fBounded = false;
@@ -2672,9 +2469,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             }
 
             for (int i = 0; i < memberTypes.length; i++) {
-                if (!memberTypes[i].getBounded()
-                        || (ancestorId != getPrimitiveDV(
-                                memberTypes[i].fValidationDV))) {
+                if (!memberTypes[i].getBounded() || (ancestorId != getPrimitiveDV(
+                        memberTypes[i].fValidationDV))) {
                     this.fBounded = false;
                     return;
                 }
@@ -2702,17 +2498,13 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             if (fBase.fFinite) {
                 this.fFinite = true;
             } else {// (!fBase.fFinite)
-                if (((this.fFacetsDefined & FACET_LENGTH) != 0)
-                        || ((this.fFacetsDefined & FACET_MAXLENGTH) != 0)
-                        || ((this.fFacetsDefined & FACET_TOTALDIGITS) != 0)) {
+                if (((this.fFacetsDefined & FACET_LENGTH) != 0) || ((this.fFacetsDefined
+                        & FACET_MAXLENGTH) != 0) || ((this.fFacetsDefined & FACET_TOTALDIGITS) != 0)) {
                     this.fFinite = true;
-                } else if ((((this.fFacetsDefined & FACET_MININCLUSIVE) != 0)
-                        || ((this.fFacetsDefined & FACET_MINEXCLUSIVE) != 0))
-                        && (((this.fFacetsDefined & FACET_MAXINCLUSIVE) != 0)
-                                || ((this.fFacetsDefined
-                                        & FACET_MAXEXCLUSIVE) != 0))) {
-                    if (((this.fFacetsDefined & FACET_FRACTIONDIGITS) != 0)
-                            || specialCardinalityCheck()) {
+                } else if ((((this.fFacetsDefined & FACET_MININCLUSIVE) != 0) || ((this.fFacetsDefined
+                        & FACET_MINEXCLUSIVE) != 0)) && (((this.fFacetsDefined & FACET_MAXINCLUSIVE) != 0)
+                                || ((this.fFacetsDefined & FACET_MAXEXCLUSIVE) != 0))) {
+                    if (((this.fFacetsDefined & FACET_FRACTIONDIGITS) != 0) || specialCardinalityCheck()) {
                         this.fFinite = true;
                     } else {
                         this.fFinite = false;
@@ -2722,10 +2514,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
                 }
             }
         } else if (fVariety == VARIETY_LIST) {
-            if (((this.fFacetsDefined & FACET_LENGTH) != 0)
-                    || (((this.fFacetsDefined & FACET_MINLENGTH) != 0)
-                            && ((this.fFacetsDefined
-                                    & FACET_MAXLENGTH) != 0))) {
+            if (((this.fFacetsDefined & FACET_LENGTH) != 0) || (((this.fFacetsDefined & FACET_MINLENGTH) != 0)
+                    && ((this.fFacetsDefined & FACET_MAXLENGTH) != 0))) {
                 this.fFinite = true;
             } else {
                 this.fFinite = false;
@@ -2746,14 +2536,12 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     private short getPrimitiveDV(short validationDV) {
 
-        if (validationDV == DV_ID || validationDV == DV_IDREF
-                || validationDV == DV_ENTITY) {
+        if (validationDV == DV_ID || validationDV == DV_IDREF || validationDV == DV_ENTITY) {
             return DV_STRING;
         } else if (validationDV == DV_INTEGER) {
             return DV_DECIMAL;
-        } else if (Constants.SCHEMA_1_1_SUPPORT
-                && (validationDV == DV_YEARMONTHDURATION
-                        || validationDV == DV_DAYTIMEDURATION)) {
+        } else if (Constants.SCHEMA_1_1_SUPPORT && (validationDV == DV_YEARMONTHDURATION
+                || validationDV == DV_DAYTIMEDURATION)) {
             return DV_DURATION;
         } else {
             return validationDV;
@@ -2761,8 +2549,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
 
     }// getPrimitiveDV()
 
-    public boolean derivedFromType(XSTypeDefinition ancestor,
-            short derivation) {
+    public boolean derivedFromType(XSTypeDefinition ancestor, short derivation) {
         // REVISIT: implement according to derivation
 
         // ancestor is null, return false
@@ -2788,24 +2575,21 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return type == ancestor;
     }
 
-    public boolean derivedFrom(String ancestorNS, String ancestorName,
-            short derivation) {
+    public boolean derivedFrom(String ancestorNS, String ancestorName, short derivation) {
         // REVISIT: implement according to derivation
 
         // ancestor is null, retur false
         if (ancestorName == null)
             return false;
         // ancestor is anyType, return true
-        if (URI_SCHEMAFORSCHEMA.equals(ancestorNS) && ANY_TYPE.equals(
-                ancestorName)) {
+        if (URI_SCHEMAFORSCHEMA.equals(ancestorNS) && ANY_TYPE.equals(ancestorName)) {
             return true;
         }
 
         // recursively get base, and compare it with ancestor
         XSTypeDefinition type = this;
-        while (!(ancestorName.equals(type.getName()) && ((ancestorNS == null
-                && type.getNamespace() == null) || (ancestorNS != null
-                        && ancestorNS.equals(type.getNamespace())))) && // compare with ancestor
+        while (!(ancestorName.equals(type.getName()) && ((ancestorNS == null && type.getNamespace() == null)
+                || (ancestorNS != null && ancestorNS.equals(type.getNamespace())))) && // compare with ancestor
                 type != fAnySimpleType) { // reached anySimpleType
             type = (XSTypeDefinition) type.getBaseType();
         }
@@ -2820,26 +2604,23 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * TypeInfo-isDerivedFrom
      *
      * @param ancestorNS
-     *                         The namspace of the ancestor type declaration
+     *        The namspace of the ancestor type declaration
      * @param ancestorName
-     *                         The name of the ancestor type declaration
+     *        The name of the ancestor type declaration
      * @param derivationMethod
-     *                         The derivation method
-     *
+     *        The derivation method
      * @return boolean True if the ancestor type is derived from the reference
      *         type by the specifiied derivation method.
      */
-    public boolean isDOMDerivedFrom(String ancestorNS, String ancestorName,
-            int derivationMethod) {
+    public boolean isDOMDerivedFrom(String ancestorNS, String ancestorName, int derivationMethod) {
 
         // ancestor is null, return false
         if (ancestorName == null)
             return false;
 
         // ancestor is anyType, return true
-        if (SchemaSymbols.URI_SCHEMAFORSCHEMA.equals(ancestorNS)
-                && SchemaSymbols.ATTVAL_ANYTYPE.equals(ancestorName)
-                && (((derivationMethod & DERIVATION_RESTRICTION) != 0)
+        if (SchemaSymbols.URI_SCHEMAFORSCHEMA.equals(ancestorNS) && SchemaSymbols.ATTVAL_ANYTYPE.equals(
+                ancestorName) && (((derivationMethod & DERIVATION_RESTRICTION) != 0)
                         || (derivationMethod == DERIVATION_ANY))) {
             return true;
         }
@@ -2866,20 +2647,18 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
 
         // extension
-        if (((derivationMethod & DERIVATION_EXTENSION) != 0)
-                && (((derivationMethod & DERIVATION_RESTRICTION) == 0)
-                        && ((derivationMethod & DERIVATION_LIST) == 0)
-                        && ((derivationMethod & DERIVATION_UNION) == 0))) {
+        if (((derivationMethod & DERIVATION_EXTENSION) != 0) && (((derivationMethod
+                & DERIVATION_RESTRICTION) == 0) && ((derivationMethod & DERIVATION_LIST) == 0)
+                && ((derivationMethod & DERIVATION_UNION) == 0))) {
             return false;
         }
 
         // If the value of the parameter is 0 i.e. no bit (corresponding to
         // restriction, list, extension or union) is set to 1 for the
         // derivationMethod parameter.
-        if (((derivationMethod & DERIVATION_EXTENSION) == 0)
-                && (((derivationMethod & DERIVATION_RESTRICTION) == 0)
-                        && ((derivationMethod & DERIVATION_LIST) == 0)
-                        && ((derivationMethod & DERIVATION_UNION) == 0))) {
+        if (((derivationMethod & DERIVATION_EXTENSION) == 0) && (((derivationMethod
+                & DERIVATION_RESTRICTION) == 0) && ((derivationMethod & DERIVATION_LIST) == 0)
+                && ((derivationMethod & DERIVATION_UNION) == 0))) {
             return isDerivedByAny(ancestorNS, ancestorName, this);
         }
 
@@ -2893,17 +2672,15 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * TypeInfo-isDerivedFrom
      *
      * @param ancestorNS
-     *                     The namspace of the ancestor type declaration
+     *        The namspace of the ancestor type declaration
      * @param ancestorName
-     *                     The name of the ancestor type declaration
+     *        The name of the ancestor type declaration
      * @param type
-     *                     The reference type definition
-     *
+     *        The reference type definition
      * @return boolean True if the type is derived by restriciton for the
      *         reference type
      */
-    private boolean isDerivedByAny(String ancestorNS, String ancestorName,
-            XSTypeDefinition type) {
+    private boolean isDerivedByAny(String ancestorNS, String ancestorName, XSTypeDefinition type) {
 
         boolean derivedFrom = false;
         XSTypeDefinition oldType = null;
@@ -2911,9 +2688,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         while (type != null && type != oldType) {
 
             // If the ancestor type is reached or is the same as this type.
-            if ((ancestorName.equals(type.getName())) && ((ancestorNS == null
-                    && type.getNamespace() == null) || (ancestorNS != null
-                            && ancestorNS.equals(type.getNamespace())))) {
+            if ((ancestorName.equals(type.getName())) && ((ancestorNS == null && type.getNamespace() == null)
+                    || (ancestorNS != null && ancestorNS.equals(type.getNamespace())))) {
                 derivedFrom = true;
                 break;
             }
@@ -2928,17 +2704,13 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
             }
             oldType = type;
             // get the base, item or member type depending on the variety
-            if (((XSSimpleTypeDecl) type).getVariety() == VARIETY_ABSENT
-                    || ((XSSimpleTypeDecl) type)
-                            .getVariety() == VARIETY_ATOMIC) {
+            if (((XSSimpleTypeDecl) type).getVariety() == VARIETY_ABSENT || ((XSSimpleTypeDecl) type)
+                    .getVariety() == VARIETY_ATOMIC) {
                 type = type.getBaseType();
-            } else if (((XSSimpleTypeDecl) type)
-                    .getVariety() == VARIETY_UNION) {
-                for (int i = 0; i < ((XSSimpleTypeDecl) type).getMemberTypes()
-                        .getLength(); i++) {
+            } else if (((XSSimpleTypeDecl) type).getVariety() == VARIETY_UNION) {
+                for (int i = 0; i < ((XSSimpleTypeDecl) type).getMemberTypes().getLength(); i++) {
                     return isDerivedByAny(ancestorNS, ancestorName,
-                            (XSTypeDefinition) ((XSSimpleTypeDecl) type)
-                                    .getMemberTypes().item(i));
+                            (XSTypeDefinition) ((XSSimpleTypeDecl) type).getMemberTypes().item(i));
                 }
             } else if (((XSSimpleTypeDecl) type).getVariety() == VARIETY_LIST) {
                 type = ((XSSimpleTypeDecl) type).getItemType();
@@ -2954,22 +2726,19 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * TypeInfo-isDerivedFrom
      *
      * @param ancestorNS
-     *                     The namspace of the ancestor type declaration
+     *        The namspace of the ancestor type declaration
      * @param ancestorName
-     *                     The name of the ancestor type declaration
+     *        The name of the ancestor type declaration
      * @param type
-     *                     The reference type definition
-     *
+     *        The reference type definition
      * @return boolean True if the type is derived by restriciton for the
      *         reference type
      */
-    private boolean isDerivedByRestriction(String ancestorNS,
-            String ancestorName, XSTypeDefinition type) {
+    private boolean isDerivedByRestriction(String ancestorNS, String ancestorName, XSTypeDefinition type) {
         XSTypeDefinition oldType = null;
         while (type != null && type != oldType) {
-            if ((ancestorName.equals(type.getName())) && ((ancestorNS != null
-                    && ancestorNS.equals(type.getNamespace())) || (type
-                            .getNamespace() == null && ancestorNS == null))) {
+            if ((ancestorName.equals(type.getName())) && ((ancestorNS != null && ancestorNS.equals(type
+                    .getNamespace())) || (type.getNamespace() == null && ancestorNS == null))) {
 
                 return true;
             }
@@ -2986,32 +2755,27 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * TypeInfo-isDerivedFrom
      *
      * @param ancestorNS
-     *                     The namspace of the ancestor type declaration
+     *        The namspace of the ancestor type declaration
      * @param ancestorName
-     *                     The name of the ancestor type declaration
+     *        The name of the ancestor type declaration
      * @param type
-     *                     The reference type definition
-     *
+     *        The reference type definition
      * @return boolean True if the type is derived by list for the reference
      *         type
      */
-    private boolean isDerivedByList(String ancestorNS, String ancestorName,
-            XSTypeDefinition type) {
+    private boolean isDerivedByList(String ancestorNS, String ancestorName, XSTypeDefinition type) {
         // If the variety is union
-        if (type != null && ((XSSimpleTypeDefinition) type)
-                .getVariety() == VARIETY_LIST) {
+        if (type != null && ((XSSimpleTypeDefinition) type).getVariety() == VARIETY_LIST) {
 
             // get the {item type}
-            XSTypeDefinition itemType = ((XSSimpleTypeDefinition) type)
-                    .getItemType();
+            XSTypeDefinition itemType = ((XSSimpleTypeDefinition) type).getItemType();
 
             // T2 is the {item type definition}
             if (itemType != null) {
 
                 // T2 is derived from the other type definition by
                 // DERIVATION_RESTRICTION
-                if (isDerivedByRestriction(ancestorNS, ancestorName,
-                        itemType)) {
+                if (isDerivedByRestriction(ancestorNS, ancestorName, itemType)) {
                     return true;
                 }
             }
@@ -3025,33 +2789,29 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * TypeInfo-isDerivedFrom
      *
      * @param ancestorNS
-     *                     The namspace of the ancestor type declaration
+     *        The namspace of the ancestor type declaration
      * @param ancestorName
-     *                     The name of the ancestor type declaration
+     *        The name of the ancestor type declaration
      * @param type
-     *                     The reference type definition
-     *
+     *        The reference type definition
      * @return boolean True if the type is derived by union for the reference
      *         type
      */
-    private boolean isDerivedByUnion(String ancestorNS, String ancestorName,
-            XSTypeDefinition type) {
+    private boolean isDerivedByUnion(String ancestorNS, String ancestorName, XSTypeDefinition type) {
 
         // If the variety is union
-        if (type != null && ((XSSimpleTypeDefinition) type)
-                .getVariety() == VARIETY_UNION) {
+        if (type != null && ((XSSimpleTypeDefinition) type).getVariety() == VARIETY_UNION) {
 
             // get member types
-            XSObjectList memberTypes = ((XSSimpleTypeDefinition) type)
-                    .getMemberTypes();
+            XSObjectList memberTypes = ((XSSimpleTypeDefinition) type).getMemberTypes();
 
             for (int i = 0; i < memberTypes.getLength(); i++) {
                 // One of the {member type definitions} is T2.
                 if (memberTypes.item(i) != null) {
                     // T2 is derived from the other type definition by
                     // DERIVATION_RESTRICTION
-                    if (isDerivedByRestriction(ancestorNS, ancestorName,
-                            (XSSimpleTypeDefinition) memberTypes.item(i))) {
+                    if (isDerivedByRestriction(ancestorNS, ancestorName, (XSSimpleTypeDefinition) memberTypes
+                            .item(i))) {
                         return true;
                     }
                 }
@@ -3060,13 +2820,11 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return false;
     }
 
-    static final XSSimpleTypeDecl fAnySimpleType = new XSSimpleTypeDecl(null,
-            "anySimpleType", DV_ANYSIMPLETYPE, ORDERED_FALSE, false, true,
-            false, true, XSConstants.ANYSIMPLETYPE_DT);
+    static final XSSimpleTypeDecl fAnySimpleType = new XSSimpleTypeDecl(null, "anySimpleType",
+            DV_ANYSIMPLETYPE, ORDERED_FALSE, false, true, false, true, XSConstants.ANYSIMPLETYPE_DT);
 
-    static final XSSimpleTypeDecl fAnyAtomicType = new XSSimpleTypeDecl(
-            fAnySimpleType, "anyAtomicType", DV_ANYATOMICTYPE, ORDERED_FALSE,
-            false, true, false, true, XSSimpleTypeDecl.ANYATOMICTYPE_DT);
+    static final XSSimpleTypeDecl fAnyAtomicType = new XSSimpleTypeDecl(fAnySimpleType, "anyAtomicType",
+            DV_ANYATOMICTYPE, ORDERED_FALSE, false, true, false, true, XSSimpleTypeDecl.ANYATOMICTYPE_DT);
 
     /**
      * Validation context used to validate facet values.
@@ -3271,85 +3029,65 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * values for <code>enumeration</code> and <code>pattern</code> facets.
      */
     public XSObjectList getFacets() {
-        if (fFacets == null && (fFacetsDefined != 0
-                || fValidationDV == DV_INTEGER)) {
+        if (fFacets == null && (fFacetsDefined != 0 || fValidationDV == DV_INTEGER)) {
 
             XSFacetImpl[] facets = new XSFacetImpl[10];
             int count = 0;
-            if ((fFacetsDefined & FACET_WHITESPACE) != 0
-                    && fValidationDV != DV_ANYSIMPLETYPE
+            if ((fFacetsDefined & FACET_WHITESPACE) != 0 && fValidationDV != DV_ANYSIMPLETYPE
                     && fValidationDV != DV_ANYATOMICTYPE) {
-                facets[count] = new XSFacetImpl(FACET_WHITESPACE,
-                        WS_FACET_STRING[fWhiteSpace], (fFixedFacet
-                                & FACET_WHITESPACE) != 0, whiteSpaceAnnotation);
+                facets[count] = new XSFacetImpl(FACET_WHITESPACE, WS_FACET_STRING[fWhiteSpace], (fFixedFacet
+                        & FACET_WHITESPACE) != 0, whiteSpaceAnnotation);
                 count++;
             }
             if (fLength != -1) {
-                facets[count] = new XSFacetImpl(FACET_LENGTH, Integer.toString(
-                        fLength), (fFixedFacet & FACET_LENGTH) != 0,
-                        lengthAnnotation);
+                facets[count] = new XSFacetImpl(FACET_LENGTH, Integer.toString(fLength), (fFixedFacet
+                        & FACET_LENGTH) != 0, lengthAnnotation);
                 count++;
             }
             if (fMinLength != -1) {
-                facets[count] = new XSFacetImpl(FACET_MINLENGTH, Integer
-                        .toString(fMinLength), (fFixedFacet
-                                & FACET_MINLENGTH) != 0, minLengthAnnotation);
+                facets[count] = new XSFacetImpl(FACET_MINLENGTH, Integer.toString(fMinLength), (fFixedFacet
+                        & FACET_MINLENGTH) != 0, minLengthAnnotation);
                 count++;
             }
             if (fMaxLength != -1) {
-                facets[count] = new XSFacetImpl(FACET_MAXLENGTH, Integer
-                        .toString(fMaxLength), (fFixedFacet
-                                & FACET_MAXLENGTH) != 0, maxLengthAnnotation);
+                facets[count] = new XSFacetImpl(FACET_MAXLENGTH, Integer.toString(fMaxLength), (fFixedFacet
+                        & FACET_MAXLENGTH) != 0, maxLengthAnnotation);
                 count++;
             }
             if (fTotalDigits != -1) {
-                facets[count] = new XSFacetImpl(FACET_TOTALDIGITS, Integer
-                        .toString(fTotalDigits), (fFixedFacet
-                                & FACET_TOTALDIGITS) != 0,
-                        totalDigitsAnnotation);
+                facets[count] = new XSFacetImpl(FACET_TOTALDIGITS, Integer.toString(fTotalDigits),
+                        (fFixedFacet & FACET_TOTALDIGITS) != 0, totalDigitsAnnotation);
                 count++;
             }
             if (fValidationDV == DV_INTEGER) {
-                facets[count] = new XSFacetImpl(FACET_FRACTIONDIGITS, "0", true,
-                        fractionDigitsAnnotation);
+                facets[count] = new XSFacetImpl(FACET_FRACTIONDIGITS, "0", true, fractionDigitsAnnotation);
                 count++;
             } else if (fFractionDigits != -1) {
-                facets[count] = new XSFacetImpl(FACET_FRACTIONDIGITS, Integer
-                        .toString(fFractionDigits), (fFixedFacet
-                                & FACET_FRACTIONDIGITS) != 0,
-                        fractionDigitsAnnotation);
+                facets[count] = new XSFacetImpl(FACET_FRACTIONDIGITS, Integer.toString(fFractionDigits),
+                        (fFixedFacet & FACET_FRACTIONDIGITS) != 0, fractionDigitsAnnotation);
                 count++;
             }
             if (fMaxInclusive != null) {
-                facets[count] = new XSFacetImpl(FACET_MAXINCLUSIVE,
-                        fMaxInclusive.toString(), (fFixedFacet
-                                & FACET_MAXINCLUSIVE) != 0,
-                        maxInclusiveAnnotation);
+                facets[count] = new XSFacetImpl(FACET_MAXINCLUSIVE, fMaxInclusive.toString(), (fFixedFacet
+                        & FACET_MAXINCLUSIVE) != 0, maxInclusiveAnnotation);
                 count++;
             }
             if (fMaxExclusive != null) {
-                facets[count] = new XSFacetImpl(FACET_MAXEXCLUSIVE,
-                        fMaxExclusive.toString(), (fFixedFacet
-                                & FACET_MAXEXCLUSIVE) != 0,
-                        maxExclusiveAnnotation);
+                facets[count] = new XSFacetImpl(FACET_MAXEXCLUSIVE, fMaxExclusive.toString(), (fFixedFacet
+                        & FACET_MAXEXCLUSIVE) != 0, maxExclusiveAnnotation);
                 count++;
             }
             if (fMinExclusive != null) {
-                facets[count] = new XSFacetImpl(FACET_MINEXCLUSIVE,
-                        fMinExclusive.toString(), (fFixedFacet
-                                & FACET_MINEXCLUSIVE) != 0,
-                        minExclusiveAnnotation);
+                facets[count] = new XSFacetImpl(FACET_MINEXCLUSIVE, fMinExclusive.toString(), (fFixedFacet
+                        & FACET_MINEXCLUSIVE) != 0, minExclusiveAnnotation);
                 count++;
             }
             if (fMinInclusive != null) {
-                facets[count] = new XSFacetImpl(FACET_MININCLUSIVE,
-                        fMinInclusive.toString(), (fFixedFacet
-                                & FACET_MININCLUSIVE) != 0,
-                        minInclusiveAnnotation);
+                facets[count] = new XSFacetImpl(FACET_MININCLUSIVE, fMinInclusive.toString(), (fFixedFacet
+                        & FACET_MININCLUSIVE) != 0, minInclusiveAnnotation);
                 count++;
             }
-            fFacets = (count > 0) ? new XSObjectListImpl(facets, count)
-                    : XSObjectListImpl.EMPTY_LIST;
+            fFacets = (count > 0) ? new XSObjectListImpl(facets, count) : XSObjectListImpl.EMPTY_LIST;
         }
         return (fFacets != null) ? fFacets : XSObjectListImpl.EMPTY_LIST;
     }
@@ -3359,30 +3097,26 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
      * otherwise an empty <code>XSObjectList</code>.
      */
     public XSObjectList getMultiValueFacets() {
-        if (fMultiValueFacets == null && ((fFacetsDefined
-                & FACET_ENUMERATION) != 0 || (fFacetsDefined
-                        & FACET_PATTERN) != 0
-                || fPatternType != SPECIAL_PATTERN_NONE
+        if (fMultiValueFacets == null && ((fFacetsDefined & FACET_ENUMERATION) != 0 || (fFacetsDefined
+                & FACET_PATTERN) != 0 || fPatternType != SPECIAL_PATTERN_NONE
                 || fValidationDV == DV_INTEGER)) {
 
             XSMVFacetImpl[] facets = new XSMVFacetImpl[2];
             int count = 0;
-            if ((fFacetsDefined & FACET_PATTERN) != 0
-                    || fPatternType != SPECIAL_PATTERN_NONE
+            if ((fFacetsDefined & FACET_PATTERN) != 0 || fPatternType != SPECIAL_PATTERN_NONE
                     || fValidationDV == DV_INTEGER) {
-                facets[count] = new XSMVFacetImpl(FACET_PATTERN, this
-                        .getLexicalPattern(), patternAnnotations);
+                facets[count] = new XSMVFacetImpl(FACET_PATTERN, this.getLexicalPattern(),
+                        patternAnnotations);
                 count++;
             }
             if (fEnumeration != null) {
-                facets[count] = new XSMVFacetImpl(FACET_ENUMERATION, this
-                        .getLexicalEnumeration(), enumerationAnnotations);
+                facets[count] = new XSMVFacetImpl(FACET_ENUMERATION, this.getLexicalEnumeration(),
+                        enumerationAnnotations);
                 count++;
             }
             fMultiValueFacets = new XSObjectListImpl(facets, count);
         }
-        return (fMultiValueFacets != null) ? fMultiValueFacets
-                : XSObjectListImpl.EMPTY_LIST;
+        return (fMultiValueFacets != null) ? fMultiValueFacets : XSObjectListImpl.EMPTY_LIST;
     }
 
     public Object getMinInclusiveValue() {
@@ -3411,8 +3145,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         final boolean fixed;
         final XSObjectList annotations;
 
-        public XSFacetImpl(short kind, String value, boolean fixed,
-                XSAnnotation annotation) {
+        public XSFacetImpl(short kind, String value, boolean fixed, XSAnnotation annotation) {
             this.kind = kind;
             this.value = value;
             this.fixed = fixed;
@@ -3513,12 +3246,10 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         final XSObjectList annotations;
         final StringList values;
 
-        public XSMVFacetImpl(short kind, StringList values,
-                XSObjectList annotations) {
+        public XSMVFacetImpl(short kind, StringList values, XSObjectList annotations) {
             this.kind = kind;
             this.values = values;
-            this.annotations = (annotations != null) ? annotations
-                    : XSObjectListImpl.EMPTY_LIST;
+            this.annotations = (annotations != null) ? annotations : XSObjectListImpl.EMPTY_LIST;
         }
 
         /*
@@ -3582,8 +3313,7 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         }
     }
 
-    private static abstract class AbstractObjectList extends AbstractList
-            implements ObjectList {
+    private static abstract class AbstractObjectList extends AbstractList implements ObjectList {
         public Object get(int index) {
             if (index >= 0 && index < getLength()) {
                 return item(index);
@@ -3600,10 +3330,8 @@ public class XSSimpleTypeDecl implements XSSimpleType, TypeInfo {
         return getNamespace();
     }
 
-    public boolean isDerivedFrom(String typeNamespaceArg, String typeNameArg,
-            int derivationMethod) {
-        return isDOMDerivedFrom(typeNamespaceArg, typeNameArg,
-                derivationMethod);
+    public boolean isDerivedFrom(String typeNamespaceArg, String typeNameArg, int derivationMethod) {
+        return isDOMDerivedFrom(typeNamespaceArg, typeNameArg, derivationMethod);
     }
 
     private short convertToPrimitiveKind(short valueType) {

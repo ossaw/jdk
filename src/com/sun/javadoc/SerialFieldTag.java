@@ -15,14 +15,12 @@ package com.sun.javadoc;
  * - field type name
  *      (fully-qualified or visible from the current import context)
  * - description of the valid values for the field
- * 
  * </pre>
  * 
  * This tag is only allowed in the javadoc for the special member
  * serialPersistentFields.
  *
  * @author Joe Fialli
- *
  * @see java.io.ObjectStreamField
  */
 public interface SerialFieldTag extends Tag, Comparable<Object> {
@@ -59,13 +57,13 @@ public interface SerialFieldTag extends Tag, Comparable<Object> {
      * Included to make SerialFieldTag items java.lang.Comparable.
      *
      * @param obj
-     *            the <code>Object</code> to be compared.
+     *        the <code>Object</code> to be compared.
      * @return a negative integer, zero, or a positive integer as this Object is
      *         less than, equal to, or greater than the given Object.
      * @exception ClassCastException
-     *                               the specified Object's type prevents it
-     *                               from being
-     *                               compared to this Object.
+     *            the specified Object's type prevents it
+     *            from being
+     *            compared to this Object.
      * @since 1.2
      */
     public int compareTo(Object obj);

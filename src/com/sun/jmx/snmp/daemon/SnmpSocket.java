@@ -50,19 +50,18 @@ final class SnmpSocket implements java.lang.Runnable {
      * Creates a new <CODE>SnmpSocket</CODE> object.
      * 
      * @param rspHdlr
-     *                   A Datagram handler.
+     *        A Datagram handler.
      * @param bufferSize
-     *                   The SNMP adaptor buffer size.
+     *        The SNMP adaptor buffer size.
      * @exception SocketException
-     *                            A socket could not be created.
+     *            A socket could not be created.
      */
-    public SnmpSocket(SnmpResponseHandler rspHdlr, InetAddress addr,
-            int bufferSize) throws SocketException {
+    public SnmpSocket(SnmpResponseHandler rspHdlr, InetAddress addr, int bufferSize) throws SocketException {
         super();
 
         if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-            SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class.getName(),
-                    "constructor", "Creating new SNMP datagram socket");
+            SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class.getName(), "constructor",
+                    "Creating new SNMP datagram socket");
         }
 
         // TIME BOMB HERE
@@ -82,19 +81,19 @@ final class SnmpSocket implements java.lang.Runnable {
      * Sends a datagram packet to a specified device at specified port.
      * 
      * @param buff
-     *               The packet data.
+     *        The packet data.
      * @param length
-     *               The packet length.
+     *        The packet length.
      * @param addr
-     *               The destination address.
+     *        The destination address.
      * @param port
-     *               The destination port number.
+     *        The destination port number.
      * @exception IOException
-     *                        Signals that an I/O exception of some sort has
-     *                        occurred.
+     *            Signals that an I/O exception of some sort has
+     *            occurred.
      */
-    public synchronized void sendPacket(byte[] buff, int length,
-            InetAddress addr, int port) throws IOException {
+    public synchronized void sendPacket(byte[] buff, int length, InetAddress addr, int port)
+            throws IOException {
         DatagramPacket dgrmpkt;
         dgrmpkt = new DatagramPacket(buff, length, addr, port);
         sendPacket(dgrmpkt);
@@ -104,21 +103,18 @@ final class SnmpSocket implements java.lang.Runnable {
      * Sends a datagram packet to a specified device at specified port.
      * 
      * @param dgrmpkt
-     *                The datagram packet.
+     *        The datagram packet.
      * @exception IOException
-     *                        Signals that an I/O exception of some sort has
-     *                        occurred.
+     *            Signals that an I/O exception of some sort has
+     *            occurred.
      */
-    public synchronized void sendPacket(DatagramPacket dgrmpkt)
-            throws IOException {
+    public synchronized void sendPacket(DatagramPacket dgrmpkt) throws IOException {
 
         try {
             if (isValid()) {
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class
-                            .getName(), "sendPacket",
-                            "Sending DatagramPacket. Length = " + dgrmpkt
-                                    .getLength() + " through socket = "
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class.getName(), "sendPacket",
+                            "Sending DatagramPacket. Length = " + dgrmpkt.getLength() + " through socket = "
                                     + _socket.toString());
                 }
                 _socket.send(dgrmpkt);
@@ -126,8 +122,8 @@ final class SnmpSocket implements java.lang.Runnable {
                 throw new IOException("Invalid state of SNMP datagram socket.");
         } catch (IOException e) {
             if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class
-                        .getName(), "sendPacket", "I/O error while sending", e);
+                SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(), "sendPacket",
+                        "I/O error while sending", e);
             }
             throw e;
         }
@@ -151,10 +147,8 @@ final class SnmpSocket implements java.lang.Runnable {
         isClosing = true;
 
         if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-            SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class.getName(),
-                    "close",
-                    "Closing and destroying the SNMP datagram socket -> "
-                            + toString());
+            SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class.getName(), "close",
+                    "Closing and destroying the SNMP datagram socket -> " + toString());
         }
 
         try {
@@ -163,12 +157,10 @@ final class SnmpSocket implements java.lang.Runnable {
             //
             DatagramSocket sn = new java.net.DatagramSocket(0);
             byte[] ob = new byte[1];
-            DatagramPacket pk = new DatagramPacket(ob, 1, java.net.InetAddress
-                    .getLocalHost(), _socketPort);
+            DatagramPacket pk = new DatagramPacket(ob, 1, java.net.InetAddress.getLocalHost(), _socketPort);
             sn.send(pk);
             sn.close();
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
 
         // First close the datagram socket.
         // This may generates an IO exception at the run method
@@ -205,14 +197,11 @@ final class SnmpSocket implements java.lang.Runnable {
 
         while (true) {
             try {
-                DatagramPacket dgrmpkt = new DatagramPacket(_buffer,
-                        _buffer.length);
+                DatagramPacket dgrmpkt = new DatagramPacket(_buffer, _buffer.length);
 
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class
-                            .getName(), "run", "[" + Thread.currentThread()
-                                    .toString() + "]:"
-                                    + "Blocking for receiving packet");
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class.getName(), "run", "[" + Thread
+                            .currentThread().toString() + "]:" + "Blocking for receiving packet");
                 }
 
                 _socket.receive(dgrmpkt);
@@ -224,21 +213,17 @@ final class SnmpSocket implements java.lang.Runnable {
                     break;
 
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class
-                            .getName(), "run", "[" + Thread.currentThread()
-                                    .toString() + "]:" + "Received a packet");
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class.getName(), "run", "[" + Thread
+                            .currentThread().toString() + "]:" + "Received a packet");
                 }
 
                 if (dgrmpkt.getLength() <= 0)
                     continue;
 
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINER)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class
-                            .getName(), "run", "[" + Thread.currentThread()
-                                    .toString() + "]:"
-                                    + "Received a packet from : " + dgrmpkt
-                                            .getAddress().toString()
-                                    + ", Length = " + dgrmpkt.getLength());
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINER, SnmpSocket.class.getName(), "run", "[" + Thread
+                            .currentThread().toString() + "]:" + "Received a packet from : " + dgrmpkt
+                                    .getAddress().toString() + ", Length = " + dgrmpkt.getLength());
                 }
 
                 handleDatagram(dgrmpkt);
@@ -258,8 +243,7 @@ final class SnmpSocket implements java.lang.Runnable {
                     break;
                 }
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class
-                            .getName(), "run",
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(), "run",
                             "IOEXception while receiving datagram", io);
                 }
             } catch (Exception e) {
@@ -272,22 +256,20 @@ final class SnmpSocket implements java.lang.Runnable {
                     break;
                 }
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class
-                            .getName(), "run", "Exception in socket thread...",
-                            e);
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(), "run",
+                            "Exception in socket thread...", e);
                 }
             } catch (ThreadDeath d) {
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class
-                            .getName(), "run", "Socket Thread DEAD..."
-                                    + toString(), d);
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(), "run",
+                            "Socket Thread DEAD..." + toString(), d);
                 }
                 close();
                 throw d; // rethrow dead thread.
             } catch (Error err) {
                 if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class
-                            .getName(), "run", "Got unexpected error", err);
+                    SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(), "run",
+                            "Got unexpected error", err);
                 }
                 handleJavaError(err);
             }
@@ -316,9 +298,8 @@ final class SnmpSocket implements java.lang.Runnable {
     private synchronized void handleJavaError(Throwable thr) {
         if (thr instanceof OutOfMemoryError) {
             if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-                SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class
-                        .getName(), "handleJavaError", "OutOfMemory error",
-                        thr);
+                SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(), "handleJavaError",
+                        "OutOfMemory error", thr);
             }
             Thread.yield();
             return;
@@ -329,8 +310,8 @@ final class SnmpSocket implements java.lang.Runnable {
         }
 
         if (SNMP_ADAPTOR_LOGGER.isLoggable(Level.FINEST)) {
-            SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(),
-                    "handleJavaError", "Global Internal error");
+            SNMP_ADAPTOR_LOGGER.logp(Level.FINEST, SnmpSocket.class.getName(), "handleJavaError",
+                    "Global Internal error");
         }
         Thread.yield();
     }

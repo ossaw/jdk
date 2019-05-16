@@ -18,7 +18,7 @@ public class ZipError extends InternalError {
      * Constructs a ZipError with the given detail message.
      * 
      * @param s
-     *          the {@code String} containing a detail message
+     *        the {@code String} containing a detail message
      */
     public ZipError(String s) {
         super(s);

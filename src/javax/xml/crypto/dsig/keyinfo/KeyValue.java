@@ -67,8 +67,7 @@ import javax.xml.crypto.XMLStructure;
  * 
  * <pre>
  * KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
- * PublicKey dsaPublicKey = keyStore.getCertificate("myDSASigningCert")
- *         .getPublicKey();
+ * PublicKey dsaPublicKey = keyStore.getCertificate("myDSASigningCert").getPublicKey();
  * KeyInfoFactory factory = KeyInfoFactory.getInstance("DOM");
  * KeyValue keyValue = factory.newKeyValue(dsaPublicKey);
  * </pre>
@@ -108,9 +107,9 @@ public interface KeyValue extends XMLStructure {
      *
      * @return the public key of this <code>KeyValue</code>
      * @throws KeyException
-     *                      if this <code>KeyValue</code> cannot be converted to
-     *                      a
-     *                      <code>PublicKey</code>
+     *         if this <code>KeyValue</code> cannot be converted to
+     *         a
+     *         <code>PublicKey</code>
      */
     PublicKey getPublicKey() throws KeyException;
 }

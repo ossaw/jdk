@@ -39,7 +39,7 @@ final class MergeCollation {
      * Creates from a pattern
      * 
      * @exception ParseException
-     *                           If the input pattern is incorrect.
+     *            If the input pattern is incorrect.
      */
     public MergeCollation(String pattern) throws ParseException {
         for (int i = 0; i < statusArray.length; i++)
@@ -58,8 +58,8 @@ final class MergeCollation {
      * recovers current pattern.
      * 
      * @param withWhiteSpace
-     *                       puts spacing around the entries, and \n before &
-     *                       and <
+     *        puts spacing around the entries, and \n before &
+     *        and <
      */
     public String getPattern(boolean withWhiteSpace) {
         StringBuffer result = new StringBuffer();
@@ -119,8 +119,8 @@ final class MergeCollation {
      * emits the pattern for collation builder.
      * 
      * @param withWhiteSpace
-     *                       puts spacing around the entries, and \n before &
-     *                       and <
+     *        puts spacing around the entries, and \n before &
+     *        and <
      * @return emits the string in the format understable to the collation
      *         builder.
      */
@@ -147,7 +147,7 @@ final class MergeCollation {
      * adds a pattern to the current one.
      * 
      * @param pattern
-     *                the new pattern to be added
+     *        the new pattern to be added
      */
     public void addPattern(String pattern) throws ParseException {
         if (pattern == null)
@@ -175,7 +175,7 @@ final class MergeCollation {
      * gets count of separate entries
      * 
      * @param index
-     *              the offset of the desired pattern entry
+     *        the offset of the desired pattern entry
      * @return the requested pattern entry
      */
     public PatternEntry getItemAt(int index) {
@@ -224,15 +224,12 @@ final class MergeCollation {
         // is anything other than IDENTICAL or RESET, throw an exception (you
         // can't
         // declare a string to be unequal to itself). --rtg 5/24/99
-        if (lastEntry != null && newEntry.chars.equals(lastEntry.chars)
-                && newEntry.extension.equals(lastEntry.extension)) {
-            if (newEntry.strength != Collator.IDENTICAL
-                    && newEntry.strength != PatternEntry.RESET) {
-                throw new ParseException("The entries " + lastEntry + " and "
-                        + newEntry
+        if (lastEntry != null && newEntry.chars.equals(lastEntry.chars) && newEntry.extension.equals(
+                lastEntry.extension)) {
+            if (newEntry.strength != Collator.IDENTICAL && newEntry.strength != PatternEntry.RESET) {
+                throw new ParseException("The entries " + lastEntry + " and " + newEntry
                         + " are adjacent in the rules, but have conflicting "
-                        + "strengths: A character can't be unequal to itself.",
-                        -1);
+                        + "strengths: A character can't be unequal to itself.", -1);
             } else {
                 // otherwise, just skip this entry and behave as though you
                 // never saw it
@@ -287,8 +284,7 @@ final class MergeCollation {
         }
     }
 
-    private final int findLastEntry(PatternEntry entry,
-            StringBuffer excessChars) throws ParseException {
+    private final int findLastEntry(PatternEntry entry, StringBuffer excessChars) throws ParseException {
         if (entry == null)
             return 0;
 
@@ -299,25 +295,21 @@ final class MergeCollation {
             int oldIndex = -1;
             if ((entry.chars.length() == 1)) {
                 int index = entry.chars.charAt(0) >> BYTEPOWER;
-                if ((statusArray[index] & (BITARRAYMASK << (entry.chars.charAt(
-                        0) & BYTEMASK))) != 0) {
+                if ((statusArray[index] & (BITARRAYMASK << (entry.chars.charAt(0) & BYTEMASK))) != 0) {
                     oldIndex = patterns.lastIndexOf(entry);
                 }
             } else {
                 oldIndex = patterns.lastIndexOf(entry);
             }
             if ((oldIndex == -1))
-                throw new ParseException("couldn't find last entry: " + entry,
-                        oldIndex);
+                throw new ParseException("couldn't find last entry: " + entry, oldIndex);
             return oldIndex + 1;
         } else {
             int i;
             for (i = patterns.size() - 1; i >= 0; --i) {
                 PatternEntry e = patterns.get(i);
-                if (e.chars.regionMatches(0, entry.chars, 0, e.chars
-                        .length())) {
-                    excessChars.append(entry.chars.substring(e.chars.length(),
-                            entry.chars.length()));
+                if (e.chars.regionMatches(0, entry.chars, 0, e.chars.length())) {
+                    excessChars.append(entry.chars.substring(e.chars.length(), entry.chars.length()));
                     break;
                 }
             }

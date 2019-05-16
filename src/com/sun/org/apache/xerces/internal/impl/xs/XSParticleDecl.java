@@ -28,9 +28,7 @@ import com.sun.org.apache.xerces.internal.xs.XSTerm;
  * Store schema particle declaration.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  * @version $Id: XSParticleDecl.java,v 1.7 2010-11-01 04:39:55 joehw Exp $
  */
 public class XSParticleDecl implements XSParticle {
@@ -101,8 +99,7 @@ public class XSParticleDecl implements XSParticle {
             return 0;
         }
         if (fType == PARTICLE_MODELGROUP) {
-            return ((XSModelGroupImpl) fValue).minEffectiveTotalRange()
-                    * fMinOccurs;
+            return ((XSModelGroupImpl) fValue).minEffectiveTotalRange() * fMinOccurs;
         }
         return fMinOccurs;
     }
@@ -131,8 +128,7 @@ public class XSParticleDecl implements XSParticle {
         if (fDescription == null) {
             StringBuffer buffer = new StringBuffer();
             appendParticle(buffer);
-            if (!(fMinOccurs == 0 && fMaxOccurs == 0 || fMinOccurs == 1
-                    && fMaxOccurs == 1)) {
+            if (!(fMinOccurs == 0 && fMaxOccurs == 0 || fMinOccurs == 1 && fMaxOccurs == 1)) {
                 buffer.append('{').append(fMinOccurs);
                 if (fMaxOccurs == SchemaSymbols.OCCURRENCE_UNBOUNDED)
                     buffer.append("-UNBOUNDED");
@@ -240,8 +236,7 @@ public class XSParticleDecl implements XSParticle {
      * Optional. Annotations.
      */
     public XSObjectList getAnnotations() {
-        return (fAnnotations != null) ? fAnnotations
-                : XSObjectListImpl.EMPTY_LIST;
+        return (fAnnotations != null) ? fAnnotations : XSObjectListImpl.EMPTY_LIST;
     }
 
 } // class XSParticleDecl

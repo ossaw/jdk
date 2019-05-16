@@ -53,7 +53,6 @@ import java.util.Map;
  * {@code EPOCH_DAY} is available. The fields work with all chronologies.
  *
  * @implSpec This is an immutable and thread-safe class.
- *
  * @since 1.8
  */
 public final class JulianFields {
@@ -87,7 +86,6 @@ public final class JulianFields {
      * {@linkplain ResolverStyle#SMART smart mode} the Julian Day value is
      * validated against the range of valid values. In
      * {@linkplain ResolverStyle#LENIENT lenient mode} no validation occurs.
-     *
      * <h3>Astronomical and Scientific Notes</h3> The standard astronomical
      * definition uses a fraction to indicate the time-of-day, thus 3.25 would
      * represent the time 18:00, since days start at midday. This implementation
@@ -140,7 +138,6 @@ public final class JulianFields {
      * {@linkplain ResolverStyle#SMART smart mode} the Modified Julian Day value
      * is validated against the range of valid values. In
      * {@linkplain ResolverStyle#LENIENT lenient mode} no validation occurs.
-     *
      * <h3>Astronomical and Scientific Notes</h3>
      * 
      * <pre>
@@ -195,9 +192,8 @@ public final class JulianFields {
      * Implementation of JulianFields. Each instance is a singleton.
      */
     private static enum Field implements TemporalField {
-        JULIAN_DAY("JulianDay", DAYS, FOREVER, JULIAN_DAY_OFFSET),
-        MODIFIED_JULIAN_DAY("ModifiedJulianDay", DAYS, FOREVER, 40587L),
-        RATA_DIE("RataDie", DAYS, FOREVER, 719163L);
+        JULIAN_DAY("JulianDay", DAYS, FOREVER, JULIAN_DAY_OFFSET), MODIFIED_JULIAN_DAY("ModifiedJulianDay",
+                DAYS, FOREVER, 40587L), RATA_DIE("RataDie", DAYS, FOREVER, 719163L);
 
         private static final long serialVersionUID = -7501623920830201812L;
 
@@ -207,13 +203,11 @@ public final class JulianFields {
         private final transient ValueRange range;
         private final transient long offset;
 
-        private Field(String name, TemporalUnit baseUnit,
-                TemporalUnit rangeUnit, long offset) {
+        private Field(String name, TemporalUnit baseUnit, TemporalUnit rangeUnit, long offset) {
             this.name = name;
             this.baseUnit = baseUnit;
             this.rangeUnit = rangeUnit;
-            this.range = ValueRange.of(-365243219162L + offset, 365241780471L
-                    + offset);
+            this.range = ValueRange.of(-365243219162L + offset, 365241780471L + offset);
             this.offset = offset;
         }
 
@@ -266,17 +260,15 @@ public final class JulianFields {
         @Override
         public <R extends Temporal> R adjustInto(R temporal, long newValue) {
             if (range().isValidValue(newValue) == false) {
-                throw new DateTimeException("Invalid value: " + name + " "
-                        + newValue);
+                throw new DateTimeException("Invalid value: " + name + " " + newValue);
             }
-            return (R) temporal.with(EPOCH_DAY, Math.subtractExact(newValue,
-                    offset));
+            return (R) temporal.with(EPOCH_DAY, Math.subtractExact(newValue, offset));
         }
 
         // -----------------------------------------------------------------------
         @Override
-        public ChronoLocalDate resolve(Map<TemporalField, Long> fieldValues,
-                TemporalAccessor partialTemporal, ResolverStyle resolverStyle) {
+        public ChronoLocalDate resolve(Map<TemporalField, Long> fieldValues, TemporalAccessor partialTemporal,
+                ResolverStyle resolverStyle) {
             long value = fieldValues.remove(this);
             Chronology chrono = Chronology.from(partialTemporal);
             if (resolverStyle == ResolverStyle.LENIENT) {

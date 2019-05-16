@@ -37,8 +37,7 @@ import com.sun.corba.se.spi.orb.ORB;
 /**
  * @author If getMinorVersion==0, this does not contain any tagged components
  */
-public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
-        implements IIOPProfileTemplate {
+public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase implements IIOPProfileTemplate {
     private ORB orb;
     private GIOPVersion giopVersion;
     private IIOPAddress primary;
@@ -49,8 +48,7 @@ public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
 
         IIOPProfileTemplateImpl other = (IIOPProfileTemplateImpl) obj;
 
-        return super.equals(obj) && giopVersion.equals(other.giopVersion)
-                && primary.equals(other.primary);
+        return super.equals(obj) && giopVersion.equals(other.giopVersion) && primary.equals(other.primary);
     }
 
     public int hashCode() {
@@ -69,8 +67,7 @@ public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
         return primary;
     }
 
-    public IIOPProfileTemplateImpl(ORB orb, GIOPVersion version,
-            IIOPAddress primary) {
+    public IIOPProfileTemplateImpl(ORB orb, GIOPVersion version, IIOPAddress primary) {
         this.orb = orb;
         this.giopVersion = version;
         this.primary = primary;
@@ -88,14 +85,12 @@ public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
         orb = (ORB) (istr.orb());
         // Handle any tagged components (if applicable)
         if (minor > 0)
-            EncapsulationUtility.readIdentifiableSequence(this, orb
-                    .getTaggedComponentFactoryFinder(), istr);
+            EncapsulationUtility.readIdentifiableSequence(this, orb.getTaggedComponentFactoryFinder(), istr);
 
         makeImmutable();
     }
 
-    public void write(ObjectKeyTemplate okeyTemplate, ObjectId id,
-            OutputStream os) {
+    public void write(ObjectKeyTemplate okeyTemplate, ObjectId id, OutputStream os) {
         giopVersion.write(os);
         primary.write(os);
 
@@ -104,9 +99,8 @@ public class IIOPProfileTemplateImpl extends TaggedProfileTemplateBase
         // Note that this cannot be accomplished with a codec!
 
         // Use the byte order of the given stream
-        OutputStream encapsulatedOS = sun.corba.OutputStreamFactory
-                .newEncapsOutputStream((ORB) os.orb(), ((CDROutputStream) os)
-                        .isLittleEndian());
+        OutputStream encapsulatedOS = sun.corba.OutputStreamFactory.newEncapsOutputStream((ORB) os.orb(),
+                ((CDROutputStream) os).isLittleEndian());
 
         okeyTemplate.write(id, encapsulatedOS);
         EncapsulationUtility.writeOutputStream(encapsulatedOS, os);

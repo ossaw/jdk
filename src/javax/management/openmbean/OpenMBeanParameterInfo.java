@@ -18,14 +18,12 @@ import java.lang.Comparable; // to be substituted for jdk1.1.x
  * Describes a parameter used in one or more operations or constructors of an
  * open MBean.
  * </p>
- *
  * <p>
  * This interface declares the same methods as the class
  * {@link javax.management.MBeanParameterInfo}. A class implementing this
  * interface (typically {@link OpenMBeanParameterInfoSupport}) should extend
  * {@link javax.management.MBeanParameterInfo}.
  * </p>
- *
  *
  * @since 1.5
  */
@@ -131,8 +129,7 @@ public interface OpenMBeanParameterInfo {
      * by this <code>OpenMBeanParameterInfo</code> instance.
      *
      * @param obj
-     *            the object to be tested.
-     *
+     *        the object to be tested.
      * @return <code>true</code> if <var>obj</var> is a valid value for the
      *         parameter described by this <code>OpenMBeanParameterInfo</code>
      *         instance, <code>false</code> otherwise.
@@ -159,9 +156,8 @@ public interface OpenMBeanParameterInfo {
      * &nbsp;
      * 
      * @param obj
-     *            the object to be compared for equality with this
-     *            <code>OpenMBeanParameterInfo</code> instance;
-     *
+     *        the object to be compared for equality with this
+     *        <code>OpenMBeanParameterInfo</code> instance;
      * @return <code>true</code> if the specified object is equal to this
      *         <code>OpenMBeanParameterInfo</code> instance.
      */

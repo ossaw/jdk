@@ -16,21 +16,18 @@ import javax.management.MBeanParameterInfo;
  * <p>
  * Describes an operation of an Open MBean.
  * </p>
- *
  * <p>
  * This interface declares the same methods as the class
  * {@link javax.management.MBeanOperationInfo}. A class implementing this
  * interface (typically {@link OpenMBeanOperationInfoSupport}) should extend
  * {@link javax.management.MBeanOperationInfo}.
  * </p>
- *
  * <p>
  * The {@link #getSignature()} method should return at runtime an array of
  * instances of a subclass of {@link MBeanParameterInfo} which implements the
  * {@link OpenMBeanParameterInfo} interface (typically
  * {@link OpenMBeanParameterInfoSupport}).
  * </p>
- *
  *
  * @since 1.5
  */
@@ -72,7 +69,6 @@ public interface OpenMBeanOperationInfo {
     /**
      * Returns an <tt>int</tt> constant qualifying the impact of the operation
      * described by this <tt>OpenMBeanOperationInfo</tt> instance.
-     *
      * The returned constant is one of
      * {@link javax.management.MBeanOperationInfo#INFO},
      * {@link javax.management.MBeanOperationInfo#ACTION},
@@ -128,9 +124,8 @@ public interface OpenMBeanOperationInfo {
      * &nbsp;
      * 
      * @param obj
-     *            the object to be compared for equality with this
-     *            <code>OpenMBeanOperationInfo</code> instance;
-     *
+     *        the object to be compared for equality with this
+     *        <code>OpenMBeanOperationInfo</code> instance;
      * @return <code>true</code> if the specified object is equal to this
      *         <code>OpenMBeanOperationInfo</code> instance.
      */

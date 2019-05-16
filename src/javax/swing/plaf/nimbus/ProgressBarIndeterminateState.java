@@ -15,8 +15,7 @@ class ProgressBarIndeterminateState extends State {
     @Override
     protected boolean isInState(JComponent c) {
 
-        return c instanceof JProgressBar && ((JProgressBar) c)
-                .isIndeterminate();
+        return c instanceof JProgressBar && ((JProgressBar) c).isIndeterminate();
 
     }
 }

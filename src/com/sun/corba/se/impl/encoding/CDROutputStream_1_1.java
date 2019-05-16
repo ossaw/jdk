@@ -97,8 +97,7 @@ public class CDROutputStream_1_1 extends CDROutputStream_1_0 {
 
         alignAndReserve(converter.getAlignment(), converter.getNumBytes());
 
-        parent.write_octet_array(converter.getBytes(), 0, converter
-                .getNumBytes());
+        parent.write_octet_array(converter.getBytes(), 0, converter.getNumBytes());
     }
 
     public void write_wstring(String value) {
@@ -117,8 +116,7 @@ public class CDROutputStream_1_1 extends CDROutputStream_1_0 {
 
         converter.convert(value);
 
-        internalWriteOctetArray(converter.getBytes(), 0, converter
-                .getNumBytes());
+        internalWriteOctetArray(converter.getBytes(), 0, converter.getNumBytes());
 
         // Write the 2 byte null ending
         write_short((short) 0);

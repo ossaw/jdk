@@ -12,7 +12,6 @@ import java.lang.annotation.*;
  * declaration in a supertype. If a method is annotated with this annotation
  * type compilers are required to generate an error message unless at least one
  * of the following conditions hold:
- *
  * <ul>
  * <li>The method does override or implement a method declared in a supertype.
  * </li>
@@ -27,5 +26,4 @@ import java.lang.annotation.*;
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.SOURCE)
-public @interface Override {
-}
+public @interface Override {}

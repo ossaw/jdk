@@ -12,7 +12,6 @@ package java.nio.file.attribute;
  * and/or update the attributes of a file.
  *
  * @since 1.7
- *
  * @see java.nio.file.Files#getFileAttributeView(Path,Class,java.nio.file.LinkOption[])
  */
 

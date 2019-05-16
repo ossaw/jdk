@@ -27,7 +27,6 @@ import sun.reflect.misc.ReflectUtil;
  * @param <M>
  *        either Method or ConvertingMethod, for Standard MBeans and MXBeans
  *        respectively.
- *
  * @since 1.6
  */
 /*
@@ -83,16 +82,14 @@ import sun.reflect.misc.ReflectUtil;
  * that was supplied to the constructor. MXBeans do not have this problem
  * because their getNotificationInfo() method is called only once.
  */
-public abstract class MBeanSupport<M> implements DynamicMBean2,
-        MBeanRegistration {
+public abstract class MBeanSupport<M> implements DynamicMBean2, MBeanRegistration {
 
-    <T> MBeanSupport(T resource, Class<T> mbeanInterfaceType)
-            throws NotCompliantMBeanException {
+    <T> MBeanSupport(T resource, Class<T> mbeanInterfaceType) throws NotCompliantMBeanException {
         if (mbeanInterfaceType == null)
             throw new NotCompliantMBeanException("Null MBean interface");
         if (!mbeanInterfaceType.isInstance(resource)) {
-            final String msg = "Resource class " + resource.getClass().getName()
-                    + " is not an instance of " + mbeanInterfaceType.getName();
+            final String msg = "Resource class " + resource.getClass().getName() + " is not an instance of "
+                    + mbeanInterfaceType.getName();
             throw new NotCompliantMBeanException(msg);
         }
         ReflectUtil.checkPackageAccess(mbeanInterfaceType);
@@ -120,20 +117,17 @@ public abstract class MBeanSupport<M> implements DynamicMBean2,
     // Methods that javax.management.StandardMBean should call from its
     // preRegister and postRegister, given that it is not supposed to
     // call the contained object's preRegister etc methods even if it has them
-    public abstract void register(MBeanServer mbs, ObjectName name)
-            throws Exception;
+    public abstract void register(MBeanServer mbs, ObjectName name) throws Exception;
 
     public abstract void unregister();
 
-    public final ObjectName preRegister(MBeanServer server, ObjectName name)
-            throws Exception {
+    public final ObjectName preRegister(MBeanServer server, ObjectName name) throws Exception {
         if (resource instanceof MBeanRegistration)
             name = ((MBeanRegistration) resource).preRegister(server, name);
         return name;
     }
 
-    public final void preRegister2(MBeanServer server, ObjectName name)
-            throws Exception {
+    public final void preRegister2(MBeanServer server, ObjectName name) throws Exception {
         register(server, name);
     }
 
@@ -163,8 +157,7 @@ public abstract class MBeanSupport<M> implements DynamicMBean2,
         }
     }
 
-    public final Object getAttribute(String attribute)
-            throws AttributeNotFoundException, MBeanException,
+    public final Object getAttribute(String attribute) throws AttributeNotFoundException, MBeanException,
             ReflectionException {
         return perInterface.getAttribute(resource, attribute, getCookie());
     }
@@ -183,9 +176,8 @@ public abstract class MBeanSupport<M> implements DynamicMBean2,
         return result;
     }
 
-    public final void setAttribute(Attribute attribute)
-            throws AttributeNotFoundException, InvalidAttributeValueException,
-            MBeanException, ReflectionException {
+    public final void setAttribute(Attribute attribute) throws AttributeNotFoundException,
+            InvalidAttributeValueException, MBeanException, ReflectionException {
         final String name = attribute.getName();
         final Object value = attribute.getValue();
         perInterface.setAttribute(resource, name, value, getCookie());
@@ -207,10 +199,9 @@ public abstract class MBeanSupport<M> implements DynamicMBean2,
         return result;
     }
 
-    public final Object invoke(String operation, Object[] params,
-            String[] signature) throws MBeanException, ReflectionException {
-        return perInterface.invoke(resource, operation, params, signature,
-                getCookie());
+    public final Object invoke(String operation, Object[] params, String[] signature) throws MBeanException,
+            ReflectionException {
+        return perInterface.invoke(resource, operation, params, signature, getCookie());
     }
 
     // Overridden by StandardMBeanSupport

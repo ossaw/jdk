@@ -19,7 +19,6 @@ import java.util.EventListener;
  * control-change notifications.
  *
  * @see MidiChannel#controlChange(int, int)
- *
  * @author Kara Kytle
  */
 public interface ControllerEventListener extends EventListener {
@@ -32,10 +31,9 @@ public interface ControllerEventListener extends EventListener {
      * controller was set.
      *
      * @param event
-     *              the control-change event that the sequencer encountered in
-     *              the
-     *              sequence it is processing
-     *
+     *        the control-change event that the sequencer encountered in
+     *        the
+     *        sequence it is processing
      * @see Sequencer#addControllerEventListener(ControllerEventListener, int[])
      * @see MidiChannel#controlChange(int, int)
      * @see ShortMessage#getData1

@@ -14,8 +14,7 @@ package org.omg.CORBA;
  * 5:32:50 PM PDT
  */
 
-public final class WrongTransactionHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class WrongTransactionHolder implements org.omg.CORBA.portable.Streamable {
     public org.omg.CORBA.WrongTransaction value = null;
 
     public WrongTransactionHolder() {}

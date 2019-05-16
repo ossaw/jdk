@@ -83,7 +83,6 @@ public class JMX {
      * <p>
      * Make a proxy for a Standard MBean in a local or remote MBean Server.
      * </p>
-     *
      * <p>
      * If you have an MBean Server {@code mbs} containing an MBean with
      * {@link ObjectName} {@code name}, and if the MBean's management interface
@@ -94,7 +93,6 @@ public class JMX {
      * <pre>
      * MyMBean proxy = JMX.newMBeanProxy(mbs, name, MyMBean.class);
      * </pre>
-     *
      * <p>
      * Suppose, for example, {@code MyMBean} looks like this:
      * </p>
@@ -108,32 +106,24 @@ public class JMX {
      *     public void someOperation(String param1, int param2);
      * }
      * </pre>
-     *
      * <p>
      * Then you can execute:
      * </p>
-     *
      * <ul>
-     *
      * <li>{@code proxy.getSomeAttribute()} which will result in a call to
      * {@code mbs.}{@link MBeanServerConnection#getAttribute getAttribute}
      * {@code (name, "SomeAttribute")}.
-     *
      * <li>{@code proxy.setSomeAttribute("whatever")} which will result in a
      * call to {@code mbs.}{@link MBeanServerConnection#setAttribute
      * setAttribute}{@code (name, new Attribute("SomeAttribute", "whatever"))}.
-     *
      * <li>{@code proxy.someOperation("param1", 2)} which will be translated
      * into a call to {@code mbs.}{@link MBeanServerConnection#invoke invoke}
      * {@code (name, "someOperation", <etc>)}.
-     *
      * </ul>
-     *
      * <p>
      * The object returned by this method is a {@link Proxy} whose
      * {@code InvocationHandler} is an {@link MBeanServerInvocationHandler}.
      * </p>
-     *
      * <p>
      * This method is equivalent to
      * {@link #newMBeanProxy(MBeanServerConnection, ObjectName, Class, boolean)
@@ -141,32 +131,29 @@ public class JMX {
      * </p>
      *
      * @param connection
-     *                       the MBean server to forward to.
+     *        the MBean server to forward to.
      * @param objectName
-     *                       the name of the MBean within {@code connection} to
-     *                       forward to.
+     *        the name of the MBean within {@code connection} to
+     *        forward to.
      * @param interfaceClass
-     *                       the management interface that the MBean exports,
-     *                       which will
-     *                       also be implemented by the returned proxy.
-     *
-     * @param                <T>
-     *                       allows the compiler to know that if the {@code
-     * interfaceClass}    parameter is {@code MyMBean.class}, for example,
-     *                       then the
-     *                       return type is {@code MyMBean}.
-     *
+     *        the management interface that the MBean exports,
+     *        which will
+     *        also be implemented by the returned proxy.
+     * @param <T>
+     *        allows the compiler to know that if the {@code
+     * interfaceClass} parameter is {@code MyMBean.class}, for example,
+     *        then the
+     *        return type is {@code MyMBean}.
      * @return the new proxy instance.
-     *
      * @throws IllegalArgumentException
-     *                                  if {@code interfaceClass} is not a
-     *                                  <a href=
-     *                                  "package-summary.html#mgIface">compliant
-     *                                  MBean
-     *                                  interface</a>
+     *         if {@code interfaceClass} is not a
+     *         <a href=
+     *         "package-summary.html#mgIface">compliant
+     *         MBean
+     *         interface</a>
      */
-    public static <T> T newMBeanProxy(MBeanServerConnection connection,
-            ObjectName objectName, Class<T> interfaceClass) {
+    public static <T> T newMBeanProxy(MBeanServerConnection connection, ObjectName objectName,
+            Class<T> interfaceClass) {
         return newMBeanProxy(connection, objectName, interfaceClass, false);
     }
 
@@ -175,7 +162,6 @@ public class JMX {
      * Make a proxy for a Standard MBean in a local or remote MBean Server that
      * may also support the methods of {@link NotificationEmitter}.
      * </p>
-     *
      * <p>
      * This method behaves the same as
      * {@link #newMBeanProxy(MBeanServerConnection, ObjectName, Class)}, but
@@ -191,45 +177,39 @@ public class JMX {
      * </p>
      *
      * @param connection
-     *                            the MBean server to forward to.
+     *        the MBean server to forward to.
      * @param objectName
-     *                            the name of the MBean within
-     *                            {@code connection} to forward to.
+     *        the name of the MBean within
+     *        {@code connection} to forward to.
      * @param interfaceClass
-     *                            the management interface that the MBean
-     *                            exports, which will
-     *                            also be implemented by the returned proxy.
+     *        the management interface that the MBean
+     *        exports, which will
+     *        also be implemented by the returned proxy.
      * @param notificationEmitter
-     *                            make the returned proxy implement
-     *                            {@link NotificationEmitter}
-     *                            by forwarding its methods via
-     *                            {@code connection}.
-     *
-     * @param                     <T>
-     *                            allows the compiler to know that if the {@code
-     * interfaceClass}         parameter is {@code MyMBean.class}, for
-     *                            example, then the
-     *                            return type is {@code MyMBean}.
-     *
+     *        make the returned proxy implement
+     *        {@link NotificationEmitter}
+     *        by forwarding its methods via
+     *        {@code connection}.
+     * @param <T>
+     *        allows the compiler to know that if the {@code
+     * interfaceClass} parameter is {@code MyMBean.class}, for
+     *        example, then the
+     *        return type is {@code MyMBean}.
      * @return the new proxy instance.
-     *
      * @throws IllegalArgumentException
-     *                                  if {@code interfaceClass} is not a
-     *                                  <a href=
-     *                                  "package-summary.html#mgIface">compliant
-     *                                  MBean
-     *                                  interface</a>
+     *         if {@code interfaceClass} is not a
+     *         <a href=
+     *         "package-summary.html#mgIface">compliant
+     *         MBean
+     *         interface</a>
      */
-    public static <T> T newMBeanProxy(MBeanServerConnection connection,
-            ObjectName objectName, Class<T> interfaceClass,
-            boolean notificationEmitter) {
-        return createProxy(connection, objectName, interfaceClass,
-                notificationEmitter, false);
+    public static <T> T newMBeanProxy(MBeanServerConnection connection, ObjectName objectName,
+            Class<T> interfaceClass, boolean notificationEmitter) {
+        return createProxy(connection, objectName, interfaceClass, notificationEmitter, false);
     }
 
     /**
      * Make a proxy for an MXBean in a local or remote MBean Server.
-     *
      * <p>
      * If you have an MBean Server {@code mbs} containing an MXBean with
      * {@link ObjectName} {@code name}, and if the MXBean's management interface
@@ -240,7 +220,6 @@ public class JMX {
      * <pre>
      * MyMXBean proxy = JMX.newMXBeanProxy(mbs, name, MyMXBean.class);
      * </pre>
-     *
      * <p>
      * Suppose, for example, {@code MyMXBean} looks like this:
      * </p>
@@ -254,20 +233,16 @@ public class JMX {
      *     public MemoryUsage someOperation(String param1, MemoryUsage param2);
      * }
      * </pre>
-     *
      * <p>
      * Then:
      * </p>
-     *
      * <ul>
-     *
      * <li>
      * <p>
      * {@code proxy.getSimpleAttribute()} will result in a call to {@code mbs.}
      * {@link MBeanServerConnection#getAttribute getAttribute}
      * {@code (name, "SimpleAttribute")}.
      * </p>
-     *
      * <li>
      * <p>
      * {@code proxy.setSimpleAttribute("whatever")} will result in a call to
@@ -275,7 +250,6 @@ public class JMX {
      * <code>(name,
      * new Attribute("SimpleAttribute", "whatever"))</code>.
      * </p>
-     *
      * <p>
      * Because {@code String} is a <em>simple type</em>, in the sense of
      * {@link javax.management.openmbean.SimpleType}, it is not changed in the
@@ -285,7 +259,6 @@ public class JMX {
      * newMBeanProxy}) for the attribute {@code
      *     SimpleAttribute}.
      * </p>
-     *
      * <li>
      * <p>
      * {@code proxy.getMappedAttribute()} will result in a call to
@@ -296,14 +269,12 @@ public class JMX {
      * return. The proxy will then convert the {@code CompositeData} back into
      * the expected type {@code MemoryUsage} using the MXBean mapping rules.
      * </p>
-     *
      * <li>
      * <p>
      * Similarly, {@code proxy.setMappedAttribute(memoryUsage)} will convert the
      * {@code MemoryUsage} argument into a {@code
      * CompositeData} before calling {@code mbs.setAttribute}.
      * </p>
-     *
      * <li>
      * <p>
      * {@code proxy.someOperation("whatever", memoryUsage)} will convert the
@@ -313,14 +284,11 @@ public class JMX {
      * will convert this into the expected type {@code
      * MemoryUsage} using the MXBean mapping rules.
      * </p>
-     *
      * </ul>
-     *
      * <p>
      * The object returned by this method is a {@link Proxy} whose
      * {@code InvocationHandler} is an {@link MBeanServerInvocationHandler}.
      * </p>
-     *
      * <p>
      * This method is equivalent to
      * {@link #newMXBeanProxy(MBeanServerConnection, ObjectName, Class, boolean)
@@ -328,30 +296,27 @@ public class JMX {
      * </p>
      *
      * @param connection
-     *                       the MBean server to forward to.
+     *        the MBean server to forward to.
      * @param objectName
-     *                       the name of the MBean within {@code connection} to
-     *                       forward to.
+     *        the name of the MBean within {@code connection} to
+     *        forward to.
      * @param interfaceClass
-     *                       the MXBean interface, which will also be
-     *                       implemented by the
-     *                       returned proxy.
-     *
-     * @param                <T>
-     *                       allows the compiler to know that if the {@code
-     * interfaceClass}    parameter is {@code MyMXBean.class}, for example,
-     *                       then
-     *                       the return type is {@code MyMXBean}.
-     *
+     *        the MXBean interface, which will also be
+     *        implemented by the
+     *        returned proxy.
+     * @param <T>
+     *        allows the compiler to know that if the {@code
+     * interfaceClass} parameter is {@code MyMXBean.class}, for example,
+     *        then
+     *        the return type is {@code MyMXBean}.
      * @return the new proxy instance.
-     *
      * @throws IllegalArgumentException
-     *                                  if {@code interfaceClass} is not a
-     *                                  {@link javax.management.MXBean compliant
-     *                                  MXBean interface}
+     *         if {@code interfaceClass} is not a
+     *         {@link javax.management.MXBean compliant
+     *         MXBean interface}
      */
-    public static <T> T newMXBeanProxy(MBeanServerConnection connection,
-            ObjectName objectName, Class<T> interfaceClass) {
+    public static <T> T newMXBeanProxy(MBeanServerConnection connection, ObjectName objectName,
+            Class<T> interfaceClass) {
         return newMXBeanProxy(connection, objectName, interfaceClass, false);
     }
 
@@ -360,7 +325,6 @@ public class JMX {
      * Make a proxy for an MXBean in a local or remote MBean Server that may
      * also support the methods of {@link NotificationEmitter}.
      * </p>
-     *
      * <p>
      * This method behaves the same as
      * {@link #newMXBeanProxy(MBeanServerConnection, ObjectName, Class)}, but
@@ -376,38 +340,33 @@ public class JMX {
      * </p>
      *
      * @param connection
-     *                            the MBean server to forward to.
+     *        the MBean server to forward to.
      * @param objectName
-     *                            the name of the MBean within
-     *                            {@code connection} to forward to.
+     *        the name of the MBean within
+     *        {@code connection} to forward to.
      * @param interfaceClass
-     *                            the MXBean interface, which will also be
-     *                            implemented by the
-     *                            returned proxy.
+     *        the MXBean interface, which will also be
+     *        implemented by the
+     *        returned proxy.
      * @param notificationEmitter
-     *                            make the returned proxy implement
-     *                            {@link NotificationEmitter}
-     *                            by forwarding its methods via
-     *                            {@code connection}.
-     *
-     * @param                     <T>
-     *                            allows the compiler to know that if the {@code
-     * interfaceClass}         parameter is {@code MyMXBean.class}, for
-     *                            example, then
-     *                            the return type is {@code MyMXBean}.
-     *
+     *        make the returned proxy implement
+     *        {@link NotificationEmitter}
+     *        by forwarding its methods via
+     *        {@code connection}.
+     * @param <T>
+     *        allows the compiler to know that if the {@code
+     * interfaceClass} parameter is {@code MyMXBean.class}, for
+     *        example, then
+     *        the return type is {@code MyMXBean}.
      * @return the new proxy instance.
-     *
      * @throws IllegalArgumentException
-     *                                  if {@code interfaceClass} is not a
-     *                                  {@link javax.management.MXBean compliant
-     *                                  MXBean interface}
+     *         if {@code interfaceClass} is not a
+     *         {@link javax.management.MXBean compliant
+     *         MXBean interface}
      */
-    public static <T> T newMXBeanProxy(MBeanServerConnection connection,
-            ObjectName objectName, Class<T> interfaceClass,
-            boolean notificationEmitter) {
-        return createProxy(connection, objectName, interfaceClass,
-                notificationEmitter, true);
+    public static <T> T newMXBeanProxy(MBeanServerConnection connection, ObjectName objectName,
+            Class<T> interfaceClass, boolean notificationEmitter) {
+        return createProxy(connection, objectName, interfaceClass, notificationEmitter, true);
     }
 
     /**
@@ -419,19 +378,16 @@ public class JMX {
      * </p>
      *
      * @param interfaceClass
-     *                       The candidate interface.
-     *
+     *        The candidate interface.
      * @return true if {@code interfaceClass} is a
      *         {@link javax.management.MXBean compliant MXBean interface}
-     *
      * @throws NullPointerException
-     *                              if {@code interfaceClass} is null.
+     *         if {@code interfaceClass} is null.
      */
     public static boolean isMXBeanInterface(Class<?> interfaceClass) {
         if (!interfaceClass.isInterface())
             return false;
-        if (!Modifier.isPublic(interfaceClass.getModifiers())
-                && !Introspector.ALLOW_NONPUBLIC_MBEAN) {
+        if (!Modifier.isPublic(interfaceClass.getModifiers()) && !Introspector.ALLOW_NONPUBLIC_MBEAN) {
             return false;
         }
         MXBean a = interfaceClass.getAnnotation(MXBean.class);
@@ -447,23 +403,22 @@ public class JMX {
      * Centralised M(X)Bean proxy creation code
      * 
      * @param connection
-     *                            {@linkplain MBeanServerConnection} to use
+     *        {@linkplain MBeanServerConnection} to use
      * @param objectName
-     *                            M(X)Bean object name
+     *        M(X)Bean object name
      * @param interfaceClass
-     *                            M(X)Bean interface class
+     *        M(X)Bean interface class
      * @param notificationEmitter
-     *                            Is a notification emitter?
+     *        Is a notification emitter?
      * @param isMXBean
-     *                            Is an MXBean?
+     *        Is an MXBean?
      * @return Returns an M(X)Bean proxy generated for the provided interface
      *         class
      * @throws SecurityException
      * @throws IllegalArgumentException
      */
-    private static <T> T createProxy(MBeanServerConnection connection,
-            ObjectName objectName, Class<T> interfaceClass,
-            boolean notificationEmitter, boolean isMXBean) {
+    private static <T> T createProxy(MBeanServerConnection connection, ObjectName objectName,
+            Class<T> interfaceClass, boolean notificationEmitter, boolean isMXBean) {
 
         try {
             if (isMXBean) {
@@ -477,17 +432,14 @@ public class JMX {
             throw new IllegalArgumentException(e);
         }
 
-        InvocationHandler handler = new MBeanServerInvocationHandler(connection,
-                objectName, isMXBean);
+        InvocationHandler handler = new MBeanServerInvocationHandler(connection, objectName, isMXBean);
         final Class<?>[] interfaces;
         if (notificationEmitter) {
-            interfaces = new Class<?>[] { interfaceClass,
-                    NotificationEmitter.class };
+            interfaces = new Class<?>[] { interfaceClass, NotificationEmitter.class };
         } else
             interfaces = new Class<?>[] { interfaceClass };
 
-        Object proxy = Proxy.newProxyInstance(interfaceClass.getClassLoader(),
-                interfaces, handler);
+        Object proxy = Proxy.newProxyInstance(interfaceClass.getClassLoader(), interfaces, handler);
         return interfaceClass.cast(proxy);
     }
 }

@@ -36,15 +36,13 @@ public class MenuSelectionManager {
     public static MenuSelectionManager defaultManager() {
         synchronized (MENU_SELECTION_MANAGER_KEY) {
             AppContext context = AppContext.getAppContext();
-            MenuSelectionManager msm = (MenuSelectionManager) context.get(
-                    MENU_SELECTION_MANAGER_KEY);
+            MenuSelectionManager msm = (MenuSelectionManager) context.get(MENU_SELECTION_MANAGER_KEY);
             if (msm == null) {
                 msm = new MenuSelectionManager();
                 context.put(MENU_SELECTION_MANAGER_KEY, msm);
 
                 // installing additional listener if found in the AppContext
-                Object o = context.get(
-                        SwingUtilities2.MENU_SELECTION_MANAGER_LISTENER_KEY);
+                Object o = context.get(SwingUtilities2.MENU_SELECTION_MANAGER_LISTENER_KEY);
                 if (o != null && o instanceof ChangeListener) {
                     msm.addChangeListener((ChangeListener) o);
                 }
@@ -71,8 +69,8 @@ public class MenuSelectionManager {
      * and should not be called by client applications.
      *
      * @param path
-     *             an array of <code>MenuElement</code> objects specifying the
-     *             selected path
+     *        an array of <code>MenuElement</code> objects specifying the
+     *        selected path
      */
     public void setSelectedPath(MenuElement[] path) {
         int i, c;
@@ -140,7 +138,7 @@ public class MenuSelectionManager {
      * Adds a ChangeListener to the button.
      *
      * @param l
-     *          the listener to add
+     *        the listener to add
      */
     public void addChangeListener(ChangeListener l) {
         listenerList.add(ChangeListener.class, l);
@@ -150,7 +148,7 @@ public class MenuSelectionManager {
      * Removes a ChangeListener from the button.
      *
      * @param l
-     *          the listener to remove
+     *        the listener to remove
      */
     public void removeChangeListener(ChangeListener l) {
         listenerList.remove(ChangeListener.class, l);
@@ -195,7 +193,7 @@ public class MenuSelectionManager {
      * this method with the event.
      *
      * @param event
-     *              a MouseEvent object
+     *        a MouseEvent object
      */
     public void processMouseEvent(MouseEvent event) {
         int screenX, screenY;
@@ -222,10 +220,8 @@ public class MenuSelectionManager {
         int type = event.getID();
         int modifiers = event.getModifiers();
         // 4188027: drag enter/exit added in JDK 1.1.7A, JDK1.2
-        if ((type == MouseEvent.MOUSE_ENTERED
-                || type == MouseEvent.MOUSE_EXITED) && ((modifiers
-                        & (InputEvent.BUTTON1_MASK | InputEvent.BUTTON2_MASK
-                                | InputEvent.BUTTON3_MASK)) != 0)) {
+        if ((type == MouseEvent.MOUSE_ENTERED || type == MouseEvent.MOUSE_EXITED) && ((modifiers
+                & (InputEvent.BUTTON1_MASK | InputEvent.BUTTON2_MASK | InputEvent.BUTTON3_MASK)) != 0)) {
             return;
         }
 
@@ -244,8 +240,7 @@ public class MenuSelectionManager {
             subElements = menuElement.getSubElements();
 
             path = null;
-            for (j = 0, d = subElements.length; j < d
-                    && success == false; j++) {
+            for (j = 0, d = subElements.length; j < d && success == false; j++) {
                 if (subElements[j] == null)
                     continue;
                 mc = subElements[j].getComponent();
@@ -278,38 +273,25 @@ public class MenuSelectionManager {
                     MenuElement currentSelection[] = getSelectedPath();
 
                     // Enter/exit detection -- needs tuning...
-                    if (currentSelection[currentSelection.length - 1] != path[i
-                            + 1] && (currentSelection.length < 2
-                                    || currentSelection[currentSelection.length
-                                            - 2] != path[i + 1])) {
-                        Component oldMC = currentSelection[currentSelection.length
-                                - 1].getComponent();
+                    if (currentSelection[currentSelection.length - 1] != path[i + 1]
+                            && (currentSelection.length < 2 || currentSelection[currentSelection.length
+                                    - 2] != path[i + 1])) {
+                        Component oldMC = currentSelection[currentSelection.length - 1].getComponent();
 
-                        MouseEvent exitEvent = new MouseEvent(oldMC,
-                                MouseEvent.MOUSE_EXITED, event.getWhen(), event
-                                        .getModifiers(), p.x, p.y, event
-                                                .getXOnScreen(), event
-                                                        .getYOnScreen(), event
-                                                                .getClickCount(),
-                                event.isPopupTrigger(), MouseEvent.NOBUTTON);
-                        currentSelection[currentSelection.length - 1]
-                                .processMouseEvent(exitEvent, path, this);
-
-                        MouseEvent enterEvent = new MouseEvent(mc,
-                                MouseEvent.MOUSE_ENTERED, event.getWhen(), event
-                                        .getModifiers(), p.x, p.y, event
-                                                .getXOnScreen(), event
-                                                        .getYOnScreen(), event
-                                                                .getClickCount(),
-                                event.isPopupTrigger(), MouseEvent.NOBUTTON);
-                        subElements[j].processMouseEvent(enterEvent, path,
+                        MouseEvent exitEvent = new MouseEvent(oldMC, MouseEvent.MOUSE_EXITED, event.getWhen(),
+                                event.getModifiers(), p.x, p.y, event.getXOnScreen(), event.getYOnScreen(),
+                                event.getClickCount(), event.isPopupTrigger(), MouseEvent.NOBUTTON);
+                        currentSelection[currentSelection.length - 1].processMouseEvent(exitEvent, path,
                                 this);
+
+                        MouseEvent enterEvent = new MouseEvent(mc, MouseEvent.MOUSE_ENTERED, event.getWhen(),
+                                event.getModifiers(), p.x, p.y, event.getXOnScreen(), event.getYOnScreen(),
+                                event.getClickCount(), event.isPopupTrigger(), MouseEvent.NOBUTTON);
+                        subElements[j].processMouseEvent(enterEvent, path, this);
                     }
-                    MouseEvent mouseEvent = new MouseEvent(mc, event.getID(),
-                            event.getWhen(), event.getModifiers(), p.x, p.y,
-                            event.getXOnScreen(), event.getYOnScreen(), event
-                                    .getClickCount(), event.isPopupTrigger(),
-                            MouseEvent.NOBUTTON);
+                    MouseEvent mouseEvent = new MouseEvent(mc, event.getID(), event.getWhen(), event
+                            .getModifiers(), p.x, p.y, event.getXOnScreen(), event.getYOnScreen(), event
+                                    .getClickCount(), event.isPopupTrigger(), MouseEvent.NOBUTTON);
                     subElements[j].processMouseEvent(mouseEvent, path, this);
                     success = true;
                     event.consume();
@@ -352,10 +334,10 @@ public class MenuSelectionManager {
      * sourcePoint.
      *
      * @param source
-     *                    The component in whose coordinate space sourcePoint is
-     *                    given
+     *        The component in whose coordinate space sourcePoint is
+     *        given
      * @param sourcePoint
-     *                    The point which is being tested
+     *        The point which is being tested
      * @return The component in the currently selected path which contains
      *         sourcePoint (relative to the source component's coordinate space.
      *         If sourcePoint is not inside a component on the currently
@@ -420,7 +402,7 @@ public class MenuSelectionManager {
      * method with the event.
      *
      * @param e
-     *          a KeyEvent object
+     *        a KeyEvent object
      */
     public void processKeyEvent(KeyEvent e) {
         MenuElement[] sel2 = new MenuElement[0];
@@ -438,8 +420,8 @@ public class MenuSelectionManager {
             path = null;
 
             for (int j = 0; j < subs.length; j++) {
-                if (subs[j] == null || !subs[j].getComponent().isShowing()
-                        || !subs[j].getComponent().isEnabled()) {
+                if (subs[j] == null || !subs[j].getComponent().isShowing() || !subs[j].getComponent()
+                        .isEnabled()) {
                     continue;
                 }
 
@@ -475,8 +457,7 @@ public class MenuSelectionManager {
             return false;
     }
 
-    private boolean isComponentPartOfCurrentMenu(MenuElement root,
-            Component c) {
+    private boolean isComponentPartOfCurrentMenu(MenuElement root, Component c) {
         MenuElement children[];
         int i, d;
 

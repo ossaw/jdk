@@ -35,14 +35,12 @@ public class FuncStartsWith extends Function2Args {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
-        return m_arg0.execute(xctxt).xstr().startsWith(m_arg1.execute(xctxt)
-                .xstr()) ? XBoolean.S_TRUE : XBoolean.S_FALSE;
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
+        return m_arg0.execute(xctxt).xstr().startsWith(m_arg1.execute(xctxt).xstr()) ? XBoolean.S_TRUE
+                : XBoolean.S_FALSE;
     }
 }

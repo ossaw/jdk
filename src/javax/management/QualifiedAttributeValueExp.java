@@ -13,7 +13,6 @@ package javax.management;
  * be used anywhere a ValueExp is required.
  *
  * @serial include
- *
  * @since 1.5
  */
 class QualifiedAttributeValueExp extends AttributeValueExp {
@@ -54,20 +53,17 @@ class QualifiedAttributeValueExp extends AttributeValueExp {
      * Applies the QualifiedAttributeValueExp to an MBean.
      *
      * @param name
-     *             The name of the MBean on which the QualifiedAttributeValueExp
-     *             will be applied.
-     *
+     *        The name of the MBean on which the QualifiedAttributeValueExp
+     *        will be applied.
      * @return The ValueExp.
-     *
      * @exception BadStringOperationException
      * @exception BadBinaryOpValueExpException
      * @exception BadAttributeValueExpException
      * @exception InvalidApplicationException
      */
     @Override
-    public ValueExp apply(ObjectName name) throws BadStringOperationException,
-            BadBinaryOpValueExpException, BadAttributeValueExpException,
-            InvalidApplicationException {
+    public ValueExp apply(ObjectName name) throws BadStringOperationException, BadBinaryOpValueExpException,
+            BadAttributeValueExpException, InvalidApplicationException {
         try {
             MBeanServer server = QueryEval.getMBeanServer();
             String v = server.getObjectInstance(name).getClassName();
@@ -75,8 +71,7 @@ class QualifiedAttributeValueExp extends AttributeValueExp {
             if (v.equals(className)) {
                 return super.apply(name);
             }
-            throw new InvalidApplicationException("Class name is " + v
-                    + ", should be " + className);
+            throw new InvalidApplicationException("Class name is " + v + ", should be " + className);
 
         } catch (Exception e) {
             throw new InvalidApplicationException("Qualified attribute: " + e);

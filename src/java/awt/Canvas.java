@@ -40,8 +40,7 @@ public class Canvas extends Component implements Accessible {
      * Constructs a new Canvas given a GraphicsConfiguration object.
      *
      * @param config
-     *               a reference to a GraphicsConfiguration object.
-     *
+     *        a reference to a GraphicsConfiguration object.
      * @see GraphicsConfiguration
      */
     public Canvas(GraphicsConfiguration config) {
@@ -95,7 +94,7 @@ public class Canvas extends Component implements Accessible {
      * super.paint(g).
      *
      * @param g
-     *          the specified Graphics context
+     *        the specified Graphics context
      * @see #update(Graphics)
      * @see Component#paint(Graphics)
      */
@@ -114,7 +113,7 @@ public class Canvas extends Component implements Accessible {
      * their own code.
      *
      * @param g
-     *          the specified Graphics context
+     *        the specified Graphics context
      * @see #paint(Graphics)
      * @see Component#update(Graphics)
      */
@@ -140,11 +139,11 @@ public class Canvas extends Component implements Accessible {
      * component is discarded.
      * 
      * @param numBuffers
-     *                   number of buffers to create, including the front buffer
+     *        number of buffers to create, including the front buffer
      * @exception IllegalArgumentException
-     *                                     if numBuffers is less than 1.
+     *            if numBuffers is less than 1.
      * @exception IllegalStateException
-     *                                     if the component is not displayable
+     *            if the component is not displayable
      * @see #isDisplayable
      * @see #getBufferStrategy
      * @since 1.4
@@ -163,29 +162,28 @@ public class Canvas extends Component implements Accessible {
      * component is discarded.
      * 
      * @param numBuffers
-     *                   number of buffers to create
+     *        number of buffers to create
      * @param caps
-     *                   the required capabilities for creating the buffer
-     *                   strategy;
-     *                   cannot be <code>null</code>
+     *        the required capabilities for creating the buffer
+     *        strategy;
+     *        cannot be <code>null</code>
      * @exception AWTException
-     *                                     if the capabilities supplied could
-     *                                     not be supported or
-     *                                     met; this may happen, for example, if
-     *                                     there is not enough
-     *                                     accelerated memory currently
-     *                                     available, or if page
-     *                                     flipping is specified but not
-     *                                     possible.
+     *            if the capabilities supplied could
+     *            not be supported or
+     *            met; this may happen, for example, if
+     *            there is not enough
+     *            accelerated memory currently
+     *            available, or if page
+     *            flipping is specified but not
+     *            possible.
      * @exception IllegalArgumentException
-     *                                     if numBuffers is less than 1, or if
-     *                                     caps is
-     *                                     <code>null</code>
+     *            if numBuffers is less than 1, or if
+     *            caps is
+     *            <code>null</code>
      * @see #getBufferStrategy
      * @since 1.4
      */
-    public void createBufferStrategy(int numBuffers, BufferCapabilities caps)
-            throws AWTException {
+    public void createBufferStrategy(int numBuffers, BufferCapabilities caps) throws AWTException {
         super.createBufferStrategy(numBuffers, caps);
     }
 

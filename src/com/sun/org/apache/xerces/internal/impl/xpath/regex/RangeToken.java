@@ -21,7 +21,6 @@ package com.sun.org.apache.xerces.internal.impl.xpath.regex;
  * This class represents a character class such as [a-z] or a period.
  *
  * @xerces.internal
- *
  */
 final class RangeToken extends Token implements java.io.Serializable {
 
@@ -106,9 +105,8 @@ final class RangeToken extends Token implements java.io.Serializable {
         // this.ranges has few elements.
         for (int i = this.ranges.length - 4; i >= 0; i -= 2) {
             for (int j = 0; j <= i; j += 2) {
-                if (this.ranges[j] > this.ranges[j + 2]
-                        || this.ranges[j] == this.ranges[j + 2] && this.ranges[j
-                                + 1] > this.ranges[j + 3]) {
+                if (this.ranges[j] > this.ranges[j + 2] || this.ranges[j] == this.ranges[j + 2]
+                        && this.ranges[j + 1] > this.ranges[j + 3]) {
                     int tmp;
                     tmp = this.ranges[j + 2];
                     this.ranges[j + 2] = this.ranges[j];
@@ -146,47 +144,33 @@ final class RangeToken extends Token implements java.io.Serializable {
                     break;
                 if (baseend + 1 == this.ranges[target]) {
                     if (DEBUG)
-                        System.err.println(
-                                "Token#compactRanges(): Compaction: ["
-                                        + this.ranges[base] + ", "
-                                        + this.ranges[base + 1] + "], ["
-                                        + this.ranges[target] + ", "
-                                        + this.ranges[target + 1] + "] -> ["
-                                        + this.ranges[base] + ", "
-                                        + this.ranges[target + 1] + "]");
+                        System.err.println("Token#compactRanges(): Compaction: [" + this.ranges[base] + ", "
+                                + this.ranges[base + 1] + "], [" + this.ranges[target] + ", "
+                                + this.ranges[target + 1] + "] -> [" + this.ranges[base] + ", "
+                                + this.ranges[target + 1] + "]");
                     this.ranges[base + 1] = this.ranges[target + 1];
                     baseend = this.ranges[base + 1];
                     target += 2;
                 } else if (baseend >= this.ranges[target + 1]) {
                     if (DEBUG)
-                        System.err.println(
-                                "Token#compactRanges(): Compaction: ["
-                                        + this.ranges[base] + ", "
-                                        + this.ranges[base + 1] + "], ["
-                                        + this.ranges[target] + ", "
-                                        + this.ranges[target + 1] + "] -> ["
-                                        + this.ranges[base] + ", "
-                                        + this.ranges[base + 1] + "]");
+                        System.err.println("Token#compactRanges(): Compaction: [" + this.ranges[base] + ", "
+                                + this.ranges[base + 1] + "], [" + this.ranges[target] + ", "
+                                + this.ranges[target + 1] + "] -> [" + this.ranges[base] + ", "
+                                + this.ranges[base + 1] + "]");
                     target += 2;
                 } else if (baseend < this.ranges[target + 1]) {
                     if (DEBUG)
-                        System.err.println(
-                                "Token#compactRanges(): Compaction: ["
-                                        + this.ranges[base] + ", "
-                                        + this.ranges[base + 1] + "], ["
-                                        + this.ranges[target] + ", "
-                                        + this.ranges[target + 1] + "] -> ["
-                                        + this.ranges[base] + ", "
-                                        + this.ranges[target + 1] + "]");
+                        System.err.println("Token#compactRanges(): Compaction: [" + this.ranges[base] + ", "
+                                + this.ranges[base + 1] + "], [" + this.ranges[target] + ", "
+                                + this.ranges[target + 1] + "] -> [" + this.ranges[base] + ", "
+                                + this.ranges[target + 1] + "]");
                     this.ranges[base + 1] = this.ranges[target + 1];
                     baseend = this.ranges[base + 1];
                     target += 2;
                 } else {
-                    throw new RuntimeException(
-                            "Token#compactRanges(): Internel Error: ["
-                                    + this.ranges[base] + "," + this.ranges[base
-                                            + 1] + "] [" + this.ranges[target]
-                                    + "," + this.ranges[target + 1] + "]");
+                    throw new RuntimeException("Token#compactRanges(): Internel Error: [" + this.ranges[base]
+                            + "," + this.ranges[base + 1] + "] [" + this.ranges[target] + ","
+                            + this.ranges[target + 1] + "]");
                 }
             } // while
             base += 2;
@@ -214,17 +198,15 @@ final class RangeToken extends Token implements java.io.Serializable {
             return;
         }
         int[] result = new int[this.ranges.length + tok.ranges.length];
-        for (int i = 0, j = 0, k = 0; i < this.ranges.length
-                || j < tok.ranges.length;) {
+        for (int i = 0, j = 0, k = 0; i < this.ranges.length || j < tok.ranges.length;) {
             if (i >= this.ranges.length) {
                 result[k++] = tok.ranges[j++];
                 result[k++] = tok.ranges[j++];
             } else if (j >= tok.ranges.length) {
                 result[k++] = this.ranges[i++];
                 result[k++] = this.ranges[i++];
-            } else if (tok.ranges[j] < this.ranges[i]
-                    || tok.ranges[j] == this.ranges[i] && tok.ranges[j
-                            + 1] < this.ranges[i + 1]) {
+            } else if (tok.ranges[j] < this.ranges[i] || tok.ranges[j] == this.ranges[i] && tok.ranges[j
+                    + 1] < this.ranges[i + 1]) {
                 result[k++] = tok.ranges[j++];
                 result[k++] = tok.ranges[j++];
             } else {
@@ -314,11 +296,9 @@ final class RangeToken extends Token implements java.io.Serializable {
                 // sub: o----o
                 sub += 2;
             } else {
-                throw new RuntimeException(
-                        "Token#subtractRanges(): Internal Error: ["
-                                + this.ranges[src] + "," + this.ranges[src + 1]
-                                + "] - [" + tok.ranges[sub] + ","
-                                + tok.ranges[sub + 1] + "]");
+                throw new RuntimeException("Token#subtractRanges(): Internal Error: [" + this.ranges[src]
+                        + "," + this.ranges[src + 1] + "] - [" + tok.ranges[sub] + "," + tok.ranges[sub + 1]
+                        + "]");
             }
         }
         while (src < this.ranges.length) {
@@ -332,7 +312,7 @@ final class RangeToken extends Token implements java.io.Serializable {
 
     /**
      * @param tok
-     *            Ignore whether it is NRANGE or not.
+     *        Ignore whether it is NRANGE or not.
      */
     protected void intersectRanges(Token token) {
         RangeToken tok = (RangeToken) token;
@@ -408,11 +388,9 @@ final class RangeToken extends Token implements java.io.Serializable {
                 // src2: o----o
                 src2 += 2;
             } else {
-                throw new RuntimeException(
-                        "Token#intersectRanges(): Internal Error: ["
-                                + this.ranges[src1] + "," + this.ranges[src1
-                                        + 1] + "] & [" + tok.ranges[src2] + ","
-                                + tok.ranges[src2 + 1] + "]");
+                throw new RuntimeException("Token#intersectRanges(): Internal Error: [" + this.ranges[src1]
+                        + "," + this.ranges[src1 + 1] + "] & [" + tok.ranges[src2] + "," + tok.ranges[src2
+                                + 1] + "]");
             }
         }
         while (src1 < this.ranges.length) {
@@ -430,8 +408,7 @@ final class RangeToken extends Token implements java.io.Serializable {
      */
     static Token complementRanges(Token token) {
         if (token.type != RANGE && token.type != NRANGE)
-            throw new IllegalArgumentException(
-                    "Token#complementRanges(): must be RANGE: " + token.type);
+            throw new IllegalArgumentException("Token#complementRanges(): must be RANGE: " + token.type);
         RangeToken tok = (RangeToken) token;
         tok.sortRanges();
         tok.compactRanges();
@@ -464,8 +441,7 @@ final class RangeToken extends Token implements java.io.Serializable {
         if (this.icaseCache != null)
             return this.icaseCache;
 
-        RangeToken uppers = this.type == Token.RANGE ? Token.createRange()
-                : Token.createNRange();
+        RangeToken uppers = this.type == Token.RANGE ? Token.createRange() : Token.createNRange();
         for (int i = 0; i < this.ranges.length; i += 2) {
             for (int ch = this.ranges[i]; ch <= this.ranges[i + 1]; ch++) {
                 if (ch > 0xffff)
@@ -476,8 +452,7 @@ final class RangeToken extends Token implements java.io.Serializable {
                 }
             }
         }
-        RangeToken lowers = this.type == Token.RANGE ? Token.createRange()
-                : Token.createNRange();
+        RangeToken lowers = this.type == Token.RANGE ? Token.createRange() : Token.createNRange();
         for (int i = 0; i < uppers.ranges.length; i += 2) {
             for (int ch = uppers.ranges[i]; ch <= uppers.ranges[i + 1]; ch++) {
                 if (ch > 0xffff)
@@ -501,8 +476,7 @@ final class RangeToken extends Token implements java.io.Serializable {
         if (this.ranges == null)
             System.err.println(" NULL");
         for (int i = 0; i < this.ranges.length; i += 2) {
-            System.err.print("[" + this.ranges[i] + "," + this.ranges[i + 1]
-                    + "] ");
+            System.err.print("[" + this.ranges[i] + "," + this.ranges[i + 1] + "] ");
         }
         System.err.println("");
     }
@@ -577,8 +551,7 @@ final class RangeToken extends Token implements java.io.Serializable {
                 StringBuffer sb = new StringBuffer();
                 sb.append("[");
                 for (int i = 0; i < this.ranges.length; i += 2) {
-                    if ((options & RegularExpression.SPECIAL_COMMA) != 0
-                            && i > 0)
+                    if ((options & RegularExpression.SPECIAL_COMMA) != 0 && i > 0)
                         sb.append(",");
                     if (this.ranges[i] == this.ranges[i + 1]) {
                         sb.append(escapeCharInCharClass(this.ranges[i]));
@@ -602,8 +575,7 @@ final class RangeToken extends Token implements java.io.Serializable {
                 StringBuffer sb = new StringBuffer();
                 sb.append("[^");
                 for (int i = 0; i < this.ranges.length; i += 2) {
-                    if ((options & RegularExpression.SPECIAL_COMMA) != 0
-                            && i > 0)
+                    if ((options & RegularExpression.SPECIAL_COMMA) != 0 && i > 0)
                         sb.append(",");
                     if (this.ranges[i] == this.ranges[i + 1]) {
                         sb.append(escapeCharInCharClass(this.ranges[i]));

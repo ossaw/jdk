@@ -23,26 +23,25 @@ public class BufferCapabilities implements Cloneable {
      * Creates a new object for specifying buffering capabilities
      * 
      * @param frontCaps
-     *                     the capabilities of the front buffer; cannot be
-     *                     <code>null</code>
+     *        the capabilities of the front buffer; cannot be
+     *        <code>null</code>
      * @param backCaps
-     *                     the capabilities of the back and intermediate
-     *                     buffers; cannot
-     *                     be <code>null</code>
+     *        the capabilities of the back and intermediate
+     *        buffers; cannot
+     *        be <code>null</code>
      * @param flipContents
-     *                     the contents of the back buffer after page-flipping,
-     *                     <code>null</code> if page flipping is not used
-     *                     (implies
-     *                     blitting)
+     *        the contents of the back buffer after page-flipping,
+     *        <code>null</code> if page flipping is not used
+     *        (implies
+     *        blitting)
      * @exception IllegalArgumentException
-     *                                     if frontCaps or backCaps are
-     *                                     <code>null</code>
+     *            if frontCaps or backCaps are
+     *            <code>null</code>
      */
-    public BufferCapabilities(ImageCapabilities frontCaps,
-            ImageCapabilities backCaps, FlipContents flipContents) {
+    public BufferCapabilities(ImageCapabilities frontCaps, ImageCapabilities backCaps,
+            FlipContents flipContents) {
         if (frontCaps == null || backCaps == null) {
-            throw new IllegalArgumentException(
-                    "Image capabilities specified cannot be null");
+            throw new IllegalArgumentException("Image capabilities specified cannot be null");
         }
         this.frontCaps = frontCaps;
         this.backCaps = backCaps;
@@ -142,8 +141,7 @@ public class BufferCapabilities implements Cloneable {
         private static int I_PRIOR = 2;
         private static int I_COPIED = 3;
 
-        private static final String NAMES[] = { "undefined", "background",
-                "prior", "copied" };
+        private static final String NAMES[] = { "undefined", "background", "prior", "copied" };
 
         /**
          * When flip contents are <code>UNDEFINED</code>, the contents of the
@@ -155,8 +153,7 @@ public class BufferCapabilities implements Cloneable {
          * @see #PRIOR
          * @see #COPIED
          */
-        public static final FlipContents UNDEFINED = new FlipContents(
-                I_UNDEFINED);
+        public static final FlipContents UNDEFINED = new FlipContents(I_UNDEFINED);
 
         /**
          * When flip contents are <code>BACKGROUND</code>, the contents of the
@@ -168,8 +165,7 @@ public class BufferCapabilities implements Cloneable {
          * @see #PRIOR
          * @see #COPIED
          */
-        public static final FlipContents BACKGROUND = new FlipContents(
-                I_BACKGROUND);
+        public static final FlipContents BACKGROUND = new FlipContents(I_BACKGROUND);
 
         /**
          * When flip contents are <code>PRIOR</code>, the contents of the back

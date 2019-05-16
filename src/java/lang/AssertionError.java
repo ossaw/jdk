@@ -7,7 +7,6 @@ package java.lang;
 
 /**
  * Thrown to indicate that an assertion has failed.
- *
  * <p>
  * The seven one-argument public constructors provided by this class ensure that
  * the assertion error returned by the invocation:
@@ -48,7 +47,7 @@ public class AssertionError extends Error {
      * the <i>cause</i> of the newly constructed assertion error.
      *
      * @param detailMessage
-     *                      value to be used in constructing detail message
+     *        value to be used in constructing detail message
      * @see Throwable#getCause()
      */
     public AssertionError(Object detailMessage) {
@@ -64,7 +63,7 @@ public class AssertionError extends Error {
      * Specification</cite>.
      *
      * @param detailMessage
-     *                      value to be used in constructing detail message
+     *        value to be used in constructing detail message
      */
     public AssertionError(boolean detailMessage) {
         this(String.valueOf(detailMessage));
@@ -76,7 +75,7 @@ public class AssertionError extends Error {
      * section 15.18.1.1 of <cite>The Java&trade; Language Specification</cite>.
      *
      * @param detailMessage
-     *                      value to be used in constructing detail message
+     *        value to be used in constructing detail message
      */
     public AssertionError(char detailMessage) {
         this(String.valueOf(detailMessage));
@@ -88,7 +87,7 @@ public class AssertionError extends Error {
      * section 15.18.1.1 of <cite>The Java&trade; Language Specification</cite>.
      *
      * @param detailMessage
-     *                      value to be used in constructing detail message
+     *        value to be used in constructing detail message
      */
     public AssertionError(int detailMessage) {
         this(String.valueOf(detailMessage));
@@ -100,7 +99,7 @@ public class AssertionError extends Error {
      * section 15.18.1.1 of <cite>The Java&trade; Language Specification</cite>.
      *
      * @param detailMessage
-     *                      value to be used in constructing detail message
+     *        value to be used in constructing detail message
      */
     public AssertionError(long detailMessage) {
         this(String.valueOf(detailMessage));
@@ -113,7 +112,7 @@ public class AssertionError extends Error {
      * Specification</cite>.
      *
      * @param detailMessage
-     *                      value to be used in constructing detail message
+     *        value to be used in constructing detail message
      */
     public AssertionError(float detailMessage) {
         this(String.valueOf(detailMessage));
@@ -126,7 +125,7 @@ public class AssertionError extends Error {
      * Specification</cite>.
      *
      * @param detailMessage
-     *                      value to be used in constructing detail message
+     *        value to be used in constructing detail message
      */
     public AssertionError(double detailMessage) {
         this(String.valueOf(detailMessage));
@@ -135,16 +134,14 @@ public class AssertionError extends Error {
     /**
      * Constructs a new {@code AssertionError} with the specified detail message
      * and cause.
-     *
      * <p>
      * Note that the detail message associated with {@code cause} is <i>not</i>
      * automatically incorporated in this error's detail message.
      *
      * @param message
-     *                the detail message, may be {@code null}
+     *        the detail message, may be {@code null}
      * @param cause
-     *                the cause, may be {@code null}
-     *
+     *        the cause, may be {@code null}
      * @since 1.7
      */
     public AssertionError(String message, Throwable cause) {

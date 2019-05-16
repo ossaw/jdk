@@ -36,7 +36,6 @@ public interface Characters extends XMLEvent {
     /**
      * Returns true if this is a CData section. If this event is CData its event
      * type will be CDATA
-     *
      * If javax.xml.stream.isCoalescing is set to true CDATA Sections that are
      * surrounded by non CDATA characters will be reported as a single
      * Characters event. This method will return false in this case.

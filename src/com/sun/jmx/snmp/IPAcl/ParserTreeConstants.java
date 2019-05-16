@@ -35,11 +35,9 @@ interface ParserTreeConstants {
     public int JJTINFORMINTERESTEDHOST = 24;
     public int JJTHOSTINFORM = 25;
 
-    public String[] jjtNodeName = { "SecurityDefs", "AclBlock", "AclItem",
-            "Communities", "Community", "Access", "Managers", "Host",
-            "HostName", "IpAddress", "IpV6Address", "IpMask", "NetMask",
-            "NetMaskV6", "TrapBlock", "TrapItem", "TrapCommunity",
-            "TrapInterestedHost", "HostTrap", "Enterprise", "TrapNum",
-            "InformBlock", "InformItem", "InformCommunity",
-            "InformInterestedHost", "HostInform", };
+    public String[] jjtNodeName = { "SecurityDefs", "AclBlock", "AclItem", "Communities", "Community",
+            "Access", "Managers", "Host", "HostName", "IpAddress", "IpV6Address", "IpMask", "NetMask",
+            "NetMaskV6", "TrapBlock", "TrapItem", "TrapCommunity", "TrapInterestedHost", "HostTrap",
+            "Enterprise", "TrapNum", "InformBlock", "InformItem", "InformCommunity", "InformInterestedHost",
+            "HostInform", };
 }

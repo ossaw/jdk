@@ -34,7 +34,7 @@ public interface XPathNSResolver {
      * argument, because the result of doing this is undefined.
      * 
      * @param prefix
-     *               The prefix to look for.
+     *        The prefix to look for.
      * @return Returns the associated namespace URI or <code>null</code> if none
      *         is found.
      */

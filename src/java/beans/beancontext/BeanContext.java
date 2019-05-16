@@ -23,7 +23,6 @@ import java.util.Locale;
  *
  * @author Laurence P. G. Cable
  * @since 1.2
- *
  * @see java.beans.Beans
  * @see java.beans.beancontext.BeanContextChild
  * @see java.beans.beancontext.BeanContextMembershipListener
@@ -34,8 +33,7 @@ import java.util.Locale;
  */
 
 @SuppressWarnings("rawtypes")
-public interface BeanContext extends BeanContextChild, Collection, DesignMode,
-        Visibility {
+public interface BeanContext extends BeanContextChild, Collection, DesignMode, Visibility {
 
     /**
      * Instantiate the javaBean named as a child of this
@@ -45,18 +43,17 @@ public interface BeanContext extends BeanContextChild, Collection, DesignMode,
      *
      * @return a javaBean named as a child of this <code>BeanContext</code>
      * @param beanName
-     *                 The name of the JavaBean to instantiate as a child of
-     *                 this
-     *                 <code>BeanContext</code>
+     *        The name of the JavaBean to instantiate as a child of
+     *        this
+     *        <code>BeanContext</code>
      * @throws IOException
-     *                                if an IO problem occurs
+     *         if an IO problem occurs
      * @throws ClassNotFoundException
-     *                                if the class identified by the beanName
-     *                                parameter is not
-     *                                found
+     *         if the class identified by the beanName
+     *         parameter is not
+     *         found
      */
-    Object instantiateChild(String beanName) throws IOException,
-            ClassNotFoundException;
+    Object instantiateChild(String beanName) throws IOException, ClassNotFoundException;
 
     /**
      * Analagous to <code>java.lang.ClassLoader.getResourceAsStream()</code>,
@@ -65,16 +62,15 @@ public interface BeanContext extends BeanContextChild, Collection, DesignMode,
      * <code>ClassLoader</code>.
      *
      * @param name
-     *             the resource name
+     *        the resource name
      * @param bcc
-     *             the specified child
+     *        the specified child
      * @return an <code>InputStream</code> for reading the resource, or
      *         <code>null</code> if the resource could not be found.
      * @throws IllegalArgumentException
-     *                                  if the resource is not valid
+     *         if the resource is not valid
      */
-    InputStream getResourceAsStream(String name, BeanContextChild bcc)
-            throws IllegalArgumentException;
+    InputStream getResourceAsStream(String name, BeanContextChild bcc) throws IllegalArgumentException;
 
     /**
      * Analagous to <code>java.lang.ClassLoader.getResource()</code>, this
@@ -83,15 +79,14 @@ public interface BeanContext extends BeanContextChild, Collection, DesignMode,
      * <code>ClassLoader</code>.
      *
      * @param name
-     *             the resource name
+     *        the resource name
      * @param bcc
-     *             the specified child
+     *        the specified child
      * @return a <code>URL</code> for the named resource for the specified child
      * @throws IllegalArgumentException
-     *                                  if the resource is not valid
+     *         if the resource is not valid
      */
-    URL getResource(String name, BeanContextChild bcc)
-            throws IllegalArgumentException;
+    URL getResource(String name, BeanContextChild bcc) throws IllegalArgumentException;
 
     /**
      * Adds the specified <code>BeanContextMembershipListener</code> to receive
@@ -100,7 +95,7 @@ public interface BeanContext extends BeanContextChild, Collection, DesignMode,
      * <code>Component</code>(s).
      *
      * @param bcml
-     *             the BeanContextMembershipListener to be added
+     *        the BeanContextMembershipListener to be added
      */
     void addBeanContextMembershipListener(BeanContextMembershipListener bcml);
 
@@ -110,10 +105,9 @@ public interface BeanContext extends BeanContextChild, Collection, DesignMode,
      * child <code>Component</code>(s) are added or removed.
      *
      * @param bcml
-     *             the <code>BeanContextMembershipListener</code> to be removed
+     *        the <code>BeanContextMembershipListener</code> to be removed
      */
-    void removeBeanContextMembershipListener(
-            BeanContextMembershipListener bcml);
+    void removeBeanContextMembershipListener(BeanContextMembershipListener bcml);
 
     /**
      * This global lock is used by both <code>BeanContext</code> and

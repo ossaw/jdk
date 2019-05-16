@@ -111,10 +111,8 @@ final class UnionPathExpr extends Expression {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
 
-        final int init = cpg.addMethodref(UNION_ITERATOR_CLASS, "<init>", "("
-                + DOM_INTF_SIG + ")V");
-        final int iter = cpg.addMethodref(UNION_ITERATOR_CLASS, ADD_ITERATOR,
-                ADD_ITERATOR_SIG);
+        final int init = cpg.addMethodref(UNION_ITERATOR_CLASS, "<init>", "(" + DOM_INTF_SIG + ")V");
+        final int iter = cpg.addMethodref(UNION_ITERATOR_CLASS, ADD_ITERATOR, ADD_ITERATOR_SIG);
 
         // Create the UnionIterator and leave it on the stack
         il.append(new NEW(cpg.addClass(UNION_ITERATOR_CLASS)));
@@ -131,8 +129,7 @@ final class UnionPathExpr extends Expression {
 
         // Order the iterator only if strictly needed
         if (_reverse) {
-            final int order = cpg.addInterfaceMethodref(DOM_INTF,
-                    ORDER_ITERATOR, ORDER_ITERATOR_SIG);
+            final int order = cpg.addInterfaceMethodref(DOM_INTF, ORDER_ITERATOR, ORDER_ITERATOR_SIG);
             il.append(methodGen.loadDOM());
             il.append(SWAP);
             il.append(methodGen.loadContextNode());

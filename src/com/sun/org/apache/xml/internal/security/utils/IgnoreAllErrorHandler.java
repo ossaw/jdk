@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,18 +33,16 @@ import org.xml.sax.SAXParseException;
 public class IgnoreAllErrorHandler implements ErrorHandler {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(IgnoreAllErrorHandler.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(
+            IgnoreAllErrorHandler.class.getName());
 
     /** Field throwExceptions */
     private static final boolean warnOnExceptions = System.getProperty(
-            "com.sun.org.apache.xml.internal.security.test.warn.on.exceptions",
-            "false").equals("true");
+            "com.sun.org.apache.xml.internal.security.test.warn.on.exceptions", "false").equals("true");
 
     /** Field throwExceptions */
     private static final boolean throwExceptions = System.getProperty(
-            "com.sun.org.apache.xml.internal.security.test.throw.exceptions",
-            "false").equals("true");
+            "com.sun.org.apache.xml.internal.security.test.throw.exceptions", "false").equals("true");
 
     /** @inheritDoc */
     public void warning(SAXParseException ex) throws SAXException {

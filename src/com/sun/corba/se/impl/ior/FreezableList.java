@@ -32,8 +32,7 @@ public class FreezableList extends AbstractList {
 
         FreezableList other = (FreezableList) obj;
 
-        return delegate.equals(other.delegate)
-                && (immutable == other.immutable);
+        return delegate.equals(other.delegate) && (immutable == other.immutable);
     }
 
     public int hashCode() {

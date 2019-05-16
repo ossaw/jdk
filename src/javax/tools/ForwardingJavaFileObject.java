@@ -18,14 +18,14 @@ import javax.lang.model.element.NestingKind;
  * @author Peter von der Ah&eacute;
  * @since 1.6
  */
-public class ForwardingJavaFileObject<F extends JavaFileObject> extends
-        ForwardingFileObject<F> implements JavaFileObject {
+public class ForwardingJavaFileObject<F extends JavaFileObject> extends ForwardingFileObject<F> implements
+        JavaFileObject {
 
     /**
      * Creates a new instance of ForwardingJavaFileObject.
      * 
      * @param fileObject
-     *                   delegate to this file object
+     *        delegate to this file object
      */
     protected ForwardingJavaFileObject(F fileObject) {
         super(fileObject);

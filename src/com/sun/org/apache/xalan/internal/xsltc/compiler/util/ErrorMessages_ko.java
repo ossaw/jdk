@@ -445,8 +445,7 @@ public class ErrorMessages_ko extends ListResourceBundle {
                  * error in condition in XSLTC. The substitution text is the
                  * class name in XSLTC that is missing some functionality.
                  */
-                { ErrorMsg.NOT_IMPLEMENTED_ERR,
-                        "\uAD6C\uD604\uB418\uC9C0 \uC54A\uC74C: ''{0}''." },
+                { ErrorMsg.NOT_IMPLEMENTED_ERR, "\uAD6C\uD604\uB418\uC9C0 \uC54A\uC74C: ''{0}''." },
 
                 /*
                  * Note to translators: The XML document given to XSLTC as a
@@ -770,8 +769,7 @@ public class ErrorMessages_ko extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
-                        "WARNING:  ''{0}''\n       :{1}" },
+                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "WARNING:  ''{0}''\n       :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -787,8 +785,7 @@ public class ErrorMessages_ko extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG,
-                        "FATAL ERROR:  ''{0}''\n           :{1}" },
+                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG, "FATAL ERROR:  ''{0}''\n           :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -804,8 +801,7 @@ public class ErrorMessages_ko extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
-                        "ERROR:  ''{0}''\n     :{1}" },
+                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "ERROR:  ''{0}''\n     :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -853,16 +849,14 @@ public class ErrorMessages_ko extends ListResourceBundle {
                  * header. All the error messages are collected together and
                  * displayed beneath this message.
                  */
-                { ErrorMsg.COMPILER_ERROR_KEY,
-                        "\uCEF4\uD30C\uC77C\uB7EC \uC624\uB958:" },
+                { ErrorMsg.COMPILER_ERROR_KEY, "\uCEF4\uD30C\uC77C\uB7EC \uC624\uB958:" },
 
                 /*
                  * Note to translators: The following message is used as a
                  * header. All the warning messages are collected together and
                  * displayed beneath this message.
                  */
-                { ErrorMsg.COMPILER_WARNING_KEY,
-                        "\uCEF4\uD30C\uC77C\uB7EC \uACBD\uACE0:" },
+                { ErrorMsg.COMPILER_WARNING_KEY, "\uCEF4\uD30C\uC77C\uB7EC \uACBD\uACE0:" },
 
                 /*
                  * Note to translators: The following message is used as a

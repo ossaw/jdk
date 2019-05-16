@@ -25,12 +25,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
  *           lambda lead to recursive calls cause stack overflow.
  */
 final class ProxyClassesDumper {
-    private static final char[] HEX = { '0', '1', '2', '3', '4', '5', '6', '7',
-            '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-    private static final char[] BAD_CHARS = { '\\', ':', '*', '?', '"', '<',
-            '>', '|' };
-    private static final String[] REPLACEMENT = { "%5C", "%3A", "%2A", "%3F",
-            "%22", "%3C", "%3E", "%7C" };
+    private static final char[] HEX = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D',
+            'E', 'F' };
+    private static final char[] BAD_CHARS = { '\\', ':', '*', '?', '"', '<', '>', '|' };
+    private static final String[] REPLACEMENT = { "%5C", "%3A", "%2A", "%3F", "%22", "%3C", "%3E", "%7C" };
 
     private final Path dumpDir;
 
@@ -50,12 +48,11 @@ final class ProxyClassesDumper {
             }, null, new FilePermission("<<ALL FILES>>", "read, write"));
             return new ProxyClassesDumper(dir);
         } catch (InvalidPathException ex) {
-            PlatformLogger.getLogger(ProxyClassesDumper.class.getName())
-                    .warning("Path " + path
-                            + " is not valid - dumping disabled", ex);
+            PlatformLogger.getLogger(ProxyClassesDumper.class.getName()).warning("Path " + path
+                    + " is not valid - dumping disabled", ex);
         } catch (IllegalArgumentException iae) {
-            PlatformLogger.getLogger(ProxyClassesDumper.class.getName())
-                    .warning(iae.getMessage() + " - dumping disabled");
+            PlatformLogger.getLogger(ProxyClassesDumper.class.getName()).warning(iae.getMessage()
+                    + " - dumping disabled");
         }
         return null;
     }
@@ -66,14 +63,11 @@ final class ProxyClassesDumper {
 
     private static void validateDumpDir(Path path) {
         if (!Files.exists(path)) {
-            throw new IllegalArgumentException("Directory " + path
-                    + " does not exist");
+            throw new IllegalArgumentException("Directory " + path + " does not exist");
         } else if (!Files.isDirectory(path)) {
-            throw new IllegalArgumentException("Path " + path
-                    + " is not a directory");
+            throw new IllegalArgumentException("Path " + path + " is not a directory");
         } else if (!Files.isWritable(path)) {
-            throw new IllegalArgumentException("Directory " + path
-                    + " is not writable");
+            throw new IllegalArgumentException("Directory " + path + " is not writable");
         }
     }
 
@@ -110,8 +104,8 @@ final class ProxyClassesDumper {
         try {
             file = dumpDir.resolve(encodeForFilename(className) + ".class");
         } catch (InvalidPathException ex) {
-            PlatformLogger.getLogger(ProxyClassesDumper.class.getName())
-                    .warning("Invalid path for class " + className);
+            PlatformLogger.getLogger(ProxyClassesDumper.class.getName()).warning("Invalid path for class "
+                    + className);
             return;
         }
 
@@ -120,8 +114,8 @@ final class ProxyClassesDumper {
             Files.createDirectories(dir);
             Files.write(file, classBytes);
         } catch (Exception ignore) {
-            PlatformLogger.getLogger(ProxyClassesDumper.class.getName())
-                    .warning("Exception writing to path at " + file.toString());
+            PlatformLogger.getLogger(ProxyClassesDumper.class.getName()).warning(
+                    "Exception writing to path at " + file.toString());
             // simply don't care if this operation failed
         }
     }

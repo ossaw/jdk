@@ -19,7 +19,6 @@ import java.util.Iterator;
  * The <code>CompositeType</code> class is the <i>open type</i> class whose
  * instances describe the types of {@link CompositeData CompositeData} values.
  *
- *
  * @since 1.5
  */
 public class CompositeType extends OpenType<CompositeData> {
@@ -65,79 +64,78 @@ public class CompositeType extends OpenType<CompositeData> {
      * <p>
      * 
      * @param typeName
-     *                         The name given to the composite type this
-     *                         instance represents;
-     *                         cannot be a null or empty string. <br>
-     *                         &nbsp;
+     *        The name given to the composite type this
+     *        instance represents;
+     *        cannot be a null or empty string. <br>
+     *        &nbsp;
      * @param description
-     *                         The human readable description of the composite
-     *                         type this
-     *                         instance represents; cannot be a null or empty
-     *                         string. <br>
-     *                         &nbsp;
+     *        The human readable description of the composite
+     *        type this
+     *        instance represents; cannot be a null or empty
+     *        string. <br>
+     *        &nbsp;
      * @param itemNames
-     *                         The names of the items contained in the composite
-     *                         data values
-     *                         described by this <code>CompositeType</code>
-     *                         instance; cannot
-     *                         be null and should contain at least one element;
-     *                         no element
-     *                         can be a null or empty string. Note that the
-     *                         order in which
-     *                         the item names are given is not important to
-     *                         differentiate a
-     *                         <code>CompositeType</code> instance from another;
-     *                         the item
-     *                         names are internally stored sorted in ascending
-     *                         alphanumeric
-     *                         order. <br>
-     *                         &nbsp;
+     *        The names of the items contained in the composite
+     *        data values
+     *        described by this <code>CompositeType</code>
+     *        instance; cannot
+     *        be null and should contain at least one element;
+     *        no element
+     *        can be a null or empty string. Note that the
+     *        order in which
+     *        the item names are given is not important to
+     *        differentiate a
+     *        <code>CompositeType</code> instance from another;
+     *        the item
+     *        names are internally stored sorted in ascending
+     *        alphanumeric
+     *        order. <br>
+     *        &nbsp;
      * @param itemDescriptions
-     *                         The descriptions, in the same order as
-     *                         <var>itemNames</var>,
-     *                         of the items contained in the composite data
-     *                         values described
-     *                         by this <code>CompositeType</code> instance;
-     *                         should be of the
-     *                         same size as <var>itemNames</var>; no element can
-     *                         be null or
-     *                         an empty string. <br>
-     *                         &nbsp;
+     *        The descriptions, in the same order as
+     *        <var>itemNames</var>,
+     *        of the items contained in the composite data
+     *        values described
+     *        by this <code>CompositeType</code> instance;
+     *        should be of the
+     *        same size as <var>itemNames</var>; no element can
+     *        be null or
+     *        an empty string. <br>
+     *        &nbsp;
      * @param itemTypes
-     *                         The open type instances, in the same order as
-     *                         <var>itemNames</var>, describing the items
-     *                         contained in the
-     *                         composite data values described by this
-     *                         <code>CompositeType</code> instance; should be of
-     *                         the same
-     *                         size as <var>itemNames</var>; no element can be
-     *                         null. <br>
-     *                         &nbsp;
+     *        The open type instances, in the same order as
+     *        <var>itemNames</var>, describing the items
+     *        contained in the
+     *        composite data values described by this
+     *        <code>CompositeType</code> instance; should be of
+     *        the same
+     *        size as <var>itemNames</var>; no element can be
+     *        null. <br>
+     *        &nbsp;
      * @throws IllegalArgumentException
-     *                                  If <var>typeName</var> or
-     *                                  <var>description</var> is a null or
-     *                                  empty string, or <var>itemNames</var> or
-     *                                  <var>itemDescriptions</var> or
-     *                                  <var>itemTypes</var> is null,
-     *                                  or any element of <var>itemNames</var>
-     *                                  or
-     *                                  <var>itemDescriptions</var> is a null or
-     *                                  empty string, or any
-     *                                  element of <var>itemTypes</var> is null,
-     *                                  or
-     *                                  <var>itemNames</var> or
-     *                                  <var>itemDescriptions</var> or
-     *                                  <var>itemTypes</var> are not of the same
-     *                                  size. <br>
-     *                                  &nbsp;
+     *         If <var>typeName</var> or
+     *         <var>description</var> is a null or
+     *         empty string, or <var>itemNames</var> or
+     *         <var>itemDescriptions</var> or
+     *         <var>itemTypes</var> is null,
+     *         or any element of <var>itemNames</var>
+     *         or
+     *         <var>itemDescriptions</var> is a null or
+     *         empty string, or any
+     *         element of <var>itemTypes</var> is null,
+     *         or
+     *         <var>itemNames</var> or
+     *         <var>itemDescriptions</var> or
+     *         <var>itemTypes</var> are not of the same
+     *         size. <br>
+     *         &nbsp;
      * @throws OpenDataException
-     *                                  If <var>itemNames</var> contains
-     *                                  duplicate item names (case
-     *                                  sensitive, but leading and trailing
-     *                                  whitespaces removed).
+     *         If <var>itemNames</var> contains
+     *         duplicate item names (case
+     *         sensitive, but leading and trailing
+     *         whitespaces removed).
      */
-    public CompositeType(String typeName, String description,
-            String[] itemNames, String[] itemDescriptions,
+    public CompositeType(String typeName, String description, String[] itemNames, String[] itemDescriptions,
             OpenType<?>[] itemTypes) throws OpenDataException {
 
         // Check and construct state defined by parent
@@ -155,13 +153,11 @@ public class CompositeType extends OpenType<CompositeData> {
 
         // Check the sizes of the 3 arrays are the same
         //
-        if ((itemNames.length != itemDescriptions.length)
-                || (itemNames.length != itemTypes.length)) {
+        if ((itemNames.length != itemDescriptions.length) || (itemNames.length != itemTypes.length)) {
             throw new IllegalArgumentException(
                     "Array arguments itemNames[], itemDescriptions[] and itemTypes[] "
-                            + "should be of same length (got "
-                            + itemNames.length + ", " + itemDescriptions.length
-                            + " and " + itemTypes.length + ").");
+                            + "should be of same length (got " + itemNames.length + ", "
+                            + itemDescriptions.length + " and " + itemTypes.length + ").");
         }
 
         // Initialize internal "names to descriptions" and "names to types"
@@ -174,8 +170,7 @@ public class CompositeType extends OpenType<CompositeData> {
         for (int i = 0; i < itemNames.length; i++) {
             key = itemNames[i].trim();
             if (nameToDescription.containsKey(key)) {
-                throw new OpenDataException("Argument's element itemNames[" + i
-                        + "]=\"" + itemNames[i]
+                throw new OpenDataException("Argument's element itemNames[" + i + "]=\"" + itemNames[i]
                         + "\" duplicates a previous item names.");
             }
             nameToDescription.put(key, itemDescriptions[i].trim());
@@ -185,13 +180,12 @@ public class CompositeType extends OpenType<CompositeData> {
 
     private static void checkForNullElement(Object[] arg, String argName) {
         if ((arg == null) || (arg.length == 0)) {
-            throw new IllegalArgumentException("Argument " + argName
-                    + "[] cannot be null or empty.");
+            throw new IllegalArgumentException("Argument " + argName + "[] cannot be null or empty.");
         }
         for (int i = 0; i < arg.length; i++) {
             if (arg[i] == null) {
-                throw new IllegalArgumentException("Argument's element "
-                        + argName + "[" + i + "] cannot be null.");
+                throw new IllegalArgumentException("Argument's element " + argName + "[" + i
+                        + "] cannot be null.");
             }
         }
     }
@@ -199,8 +193,8 @@ public class CompositeType extends OpenType<CompositeData> {
     private static void checkForEmptyString(String[] arg, String argName) {
         for (int i = 0; i < arg.length; i++) {
             if (arg[i].trim().equals("")) {
-                throw new IllegalArgumentException("Argument's element "
-                        + argName + "[" + i + "] cannot be an empty string.");
+                throw new IllegalArgumentException("Argument's element " + argName + "[" + i
+                        + "] cannot be an empty string.");
             }
         }
     }
@@ -212,8 +206,7 @@ public class CompositeType extends OpenType<CompositeData> {
      * defines an item whose name is <var>itemName</var>.
      *
      * @param itemName
-     *                 the name of the item.
-     *
+     *        the name of the item.
      * @return true if an item of this name is present.
      */
     public boolean containsKey(String itemName) {
@@ -230,8 +223,7 @@ public class CompositeType extends OpenType<CompositeData> {
      * define any item whose name is <var>itemName</var>.
      *
      * @param itemName
-     *                 the name of the item.
-     *
+     *        the name of the item.
      * @return the description.
      */
     public String getDescription(String itemName) {
@@ -249,8 +241,7 @@ public class CompositeType extends OpenType<CompositeData> {
      * is <var>itemName</var>.
      *
      * @param itemName
-     *                 the name of the time.
-     *
+     *        the name of the time.
      * @return the type.
      */
     public OpenType<?> getType(String itemName) {
@@ -272,8 +263,7 @@ public class CompositeType extends OpenType<CompositeData> {
 
         // Initializes myNamesSet on first call
         if (myNamesSet == null) {
-            myNamesSet = Collections.unmodifiableSet(nameToDescription
-                    .keySet());
+            myNamesSet = Collections.unmodifiableSet(nameToDescription.keySet());
         }
 
         return myNamesSet; // always return the same value
@@ -282,13 +272,11 @@ public class CompositeType extends OpenType<CompositeData> {
     /**
      * Tests whether <var>obj</var> is a value which could be described by this
      * <code>CompositeType</code> instance.
-     *
      * <p>
      * If <var>obj</var> is null or is not an instance of
      * <code>javax.management.openmbean.CompositeData</code>,
      * <code>isValue</code> returns <code>false</code>.
      * </p>
-     *
      * <p>
      * If <var>obj</var> is an instance of
      * <code>javax.management.openmbean.CompositeData</code>, then let
@@ -296,7 +284,6 @@ public class CompositeType extends OpenType<CompositeData> {
      * {@link CompositeData#getCompositeType()}. The result is true if
      * {@code this} is <em>assignable from</em> {@code ct}. This means that:
      * </p>
-     *
      * <ul>
      * <li>{@link #getTypeName() this.getTypeName()} equals
      * {@code ct.getTypeName()}, and
@@ -305,14 +292,12 @@ public class CompositeType extends OpenType<CompositeData> {
      * <li>for every item in {@code this}, its type is assignable from the type
      * of the corresponding item in {@code ct}.
      * </ul>
-     *
      * <p>
      * A {@code TabularType} is assignable from another {@code
      * TabularType} if they have the same {@linkplain TabularType#getTypeName()
      * typeName} and {@linkplain TabularType#getIndexNames() index name list},
      * and the {@linkplain TabularType#getRowType() row type} of the first is
      * assignable from the row type of the second.
-     *
      * <p>
      * An {@code ArrayType} is assignable from another {@code
      * ArrayType} if they have the same {@linkplain ArrayType#getDimension()
@@ -320,12 +305,10 @@ public class CompositeType extends OpenType<CompositeData> {
      * primitive arrays} or neither is; and the
      * {@linkplain ArrayType#getElementOpenType() element type} of the first is
      * assignable from the element type of the second.
-     *
      * <p>
      * In every other case, an {@code OpenType} is assignable from another
      * {@code OpenType} only if they are equal.
      * </p>
-     *
      * <p>
      * These rules mean that extra items can be added to a {@code
      * CompositeData} without making it invalid for a {@code CompositeType} that
@@ -333,9 +316,8 @@ public class CompositeType extends OpenType<CompositeData> {
      * </p>
      *
      * @param obj
-     *            the value whose open type is to be tested for compatibility
-     *            with this <code>CompositeType</code> instance.
-     *
+     *        the value whose open type is to be tested for compatibility
+     *        with this <code>CompositeType</code> instance.
      * @return <code>true</code> if <var>obj</var> is a value for this composite
      *         type, <code>false</code> otherwise.
      */
@@ -366,8 +348,7 @@ public class CompositeType extends OpenType<CompositeData> {
      * can be additional items in the given type, which are ignored.
      *
      * @param ot
-     *           the type to be tested.
-     *
+     *        the type to be tested.
      * @return true if {@code ot} is assignable to this open type.
      */
     @Override
@@ -380,8 +361,7 @@ public class CompositeType extends OpenType<CompositeData> {
         for (String key : keySet()) {
             OpenType<?> otItemType = ct.getType(key);
             OpenType<?> thisItemType = getType(key);
-            if (otItemType == null || !thisItemType.isAssignableFrom(
-                    otItemType))
+            if (otItemType == null || !thisItemType.isAssignableFrom(otItemType))
                 return false;
         }
         return true;
@@ -403,11 +383,10 @@ public class CompositeType extends OpenType<CompositeData> {
      * &nbsp;
      * 
      * @param obj
-     *            the object to be compared for equality with this
-     *            <code>CompositeType</code> instance; if <var>obj</var> is
-     *            <code>null</code>, <code>equals</code> returns
-     *            <code>false</code>.
-     *
+     *        the object to be compared for equality with this
+     *        <code>CompositeType</code> instance; if <var>obj</var> is
+     *        <code>null</code>, <code>equals</code> returns
+     *        <code>false</code>.
      * @return <code>true</code> if the specified object is equal to this
      *         <code>CompositeType</code> instance.
      */

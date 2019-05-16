@@ -16,8 +16,7 @@ import javax.imageio.IIOException;
 
 public class BMPImageReaderSpi extends ImageReaderSpi {
 
-    private static String[] writerSpiNames = {
-            "com.sun.imageio.plugins.bmp.BMPImageWriterSpi" };
+    private static String[] writerSpiNames = { "com.sun.imageio.plugins.bmp.BMPImageWriterSpi" };
     private static String[] formatNames = { "bmp", "BMP" };
     private static String[] entensions = { "bmp" };
     private static String[] mimeType = { "image/bmp" };
@@ -26,9 +25,8 @@ public class BMPImageReaderSpi extends ImageReaderSpi {
 
     public BMPImageReaderSpi() {
         super("Oracle Corporation", "1.0", formatNames, entensions, mimeType,
-                "com.sun.imageio.plugins.bmp.BMPImageReader", new Class[] {
-                        ImageInputStream.class }, writerSpiNames, false, null,
-                null, null, null, true, BMPMetadata.nativeMetadataFormatName,
+                "com.sun.imageio.plugins.bmp.BMPImageReader", new Class[] { ImageInputStream.class },
+                writerSpiNames, false, null, null, null, null, true, BMPMetadata.nativeMetadataFormatName,
                 "com.sun.imageio.plugins.bmp.BMPMetadataFormat", null, null);
     }
 
@@ -57,8 +55,7 @@ public class BMPImageReaderSpi extends ImageReaderSpi {
         return (b[0] == 0x42) && (b[1] == 0x4d);
     }
 
-    public ImageReader createReaderInstance(Object extension)
-            throws IIOException {
+    public ImageReader createReaderInstance(Object extension) throws IIOException {
         return new BMPImageReader(this);
     }
 }

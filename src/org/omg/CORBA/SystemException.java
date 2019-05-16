@@ -48,14 +48,13 @@ public abstract class SystemException extends java.lang.RuntimeException {
      * String that describes this particular exception.
      * 
      * @param reason
-     *                  the String containing a detail message
+     *        the String containing a detail message
      * @param minor
-     *                  the minor code
+     *        the minor code
      * @param completed
-     *                  the completion status
+     *        the completion status
      */
-    protected SystemException(String reason, int minor,
-            CompletionStatus completed) {
+    protected SystemException(String reason, int minor, CompletionStatus completed) {
         super(reason);
         this.minor = minor;
         this.completed = completed;

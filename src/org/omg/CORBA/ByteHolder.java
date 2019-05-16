@@ -47,10 +47,10 @@ public final class ByteHolder implements Streamable {
      * <code>byte</code>.
      * 
      * @param initial
-     *                the <code>byte</code> with which to initialize the
-     *                <code>value</code> field of the new
-     *                <code>ByteHolder</code>
-     *                object
+     *        the <code>byte</code> with which to initialize the
+     *        <code>value</code> field of the new
+     *        <code>ByteHolder</code>
+     *        object
      */
     public ByteHolder(byte initial) {
         value = initial;
@@ -61,7 +61,7 @@ public final class ByteHolder implements Streamable {
      * <code>ByteHolder</code> object with the unmarshalled data.
      *
      * @param input
-     *              the InputStream containing CDR formatted data from the wire.
+     *        the InputStream containing CDR formatted data from the wire.
      */
     public void _read(InputStream input) {
         value = input.read_octet();
@@ -72,7 +72,7 @@ public final class ByteHolder implements Streamable {
      * object.
      *
      * @param output
-     *               the OutputStream which will contain the CDR formatted data.
+     *        the OutputStream which will contain the CDR formatted data.
      */
     public void _write(OutputStream output) {
         output.write_octet(value);

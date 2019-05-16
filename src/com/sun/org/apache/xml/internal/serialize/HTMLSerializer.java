@@ -101,7 +101,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
      * {@link #setOutputCharStream} or {@link #setOutputByteStream} first.
      *
      * @param xhtml
-     *              True if XHTML serializing
+     *        True if XHTML serializing
      */
     protected HTMLSerializer(boolean xhtml, OutputFormat format) {
         super(format);
@@ -123,8 +123,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
      * first.
      */
     public HTMLSerializer(OutputFormat format) {
-        this(false, format != null ? format
-                : new OutputFormat(Method.HTML, "ISO-8859-1", false));
+        this(false, format != null ? format : new OutputFormat(Method.HTML, "ISO-8859-1", false));
     }
 
     /**
@@ -133,13 +132,12 @@ public class HTMLSerializer extends BaseMarkupSerializer {
      * output format.
      *
      * @param writer
-     *               The writer to use
+     *        The writer to use
      * @param format
-     *               The output format to use, null for the default
+     *        The output format to use, null for the default
      */
     public HTMLSerializer(Writer writer, OutputFormat format) {
-        this(false, format != null ? format
-                : new OutputFormat(Method.HTML, "ISO-8859-1", false));
+        this(false, format != null ? format : new OutputFormat(Method.HTML, "ISO-8859-1", false));
         setOutputCharStream(writer);
     }
 
@@ -149,19 +147,17 @@ public class HTMLSerializer extends BaseMarkupSerializer {
      * default output format.
      *
      * @param output
-     *               The output stream to use
+     *        The output stream to use
      * @param format
-     *               The output format to use, null for the default
+     *        The output format to use, null for the default
      */
     public HTMLSerializer(OutputStream output, OutputFormat format) {
-        this(false, format != null ? format
-                : new OutputFormat(Method.HTML, "ISO-8859-1", false));
+        this(false, format != null ? format : new OutputFormat(Method.HTML, "ISO-8859-1", false));
         setOutputByteStream(output);
     }
 
     public void setOutputFormat(OutputFormat format) {
-        super.setOutputFormat(format != null ? format
-                : new OutputFormat(Method.HTML, "ISO-8859-1", false));
+        super.setOutputFormat(format != null ? format : new OutputFormat(Method.HTML, "ISO-8859-1", false));
     }
 
     // Set value for alternate XHTML namespace.
@@ -173,8 +169,8 @@ public class HTMLSerializer extends BaseMarkupSerializer {
     // SAX content handler serializing methods //
     // -----------------------------------------//
 
-    public void startElement(String namespaceURI, String localName,
-            String rawName, Attributes attrs) throws SAXException {
+    public void startElement(String namespaceURI, String localName, String rawName, Attributes attrs)
+            throws SAXException {
         int i;
         boolean preserveSpace;
         ElementState state;
@@ -185,9 +181,8 @@ public class HTMLSerializer extends BaseMarkupSerializer {
 
         try {
             if (_printer == null)
-                throw new IllegalStateException(DOMMessageFormatter
-                        .formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
-                                "NoWriterSupplied", null));
+                throw new IllegalStateException(DOMMessageFormatter.formatMessage(
+                        DOMMessageFormatter.SERIALIZER_DOMAIN, "NoWriterSupplied", null));
 
             state = getElementState();
             if (isDocumentState()) {
@@ -196,9 +191,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
                 // the document's DOCTYPE. Space preserving defaults
                 // to that of the output format.
                 if (!_started)
-                    startDocument((localName == null || localName.length() == 0)
-                            ? rawName
-                            : localName);
+                    startDocument((localName == null || localName.length() == 0) ? rawName : localName);
             } else {
                 // For any other element, if first in parent, then
                 // close parent's opening tag and use the parnet's
@@ -208,8 +201,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
                 // Indent this element on a new line if the first
                 // content of the parent element or immediately
                 // following an element.
-                if (_indenting && !state.preserveSpace && (state.empty
-                        || state.afterElement))
+                if (_indenting && !state.preserveSpace && (state.empty || state.afterElement))
                     _printer.breakLine();
             }
             preserveSpace = state.preserveSpace;
@@ -223,8 +215,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             // null protects
             // against broken SAX implementations, so I've left it there. -
             // mrglavas
-            boolean hasNamespaceURI = (namespaceURI != null && namespaceURI
-                    .length() != 0);
+            boolean hasNamespaceURI = (namespaceURI != null && namespaceURI.length() != 0);
 
             // SAX2: rawName (QName) could be empty string if
             // namespace-prefixes property is false.
@@ -241,9 +232,8 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             if (!hasNamespaceURI)
                 htmlName = rawName;
             else {
-                if (namespaceURI.equals(XHTMLNamespace)
-                        || (fUserXHTMLNamespace != null && fUserXHTMLNamespace
-                                .equals(namespaceURI)))
+                if (namespaceURI.equals(XHTMLNamespace) || (fUserXHTMLNamespace != null && fUserXHTMLNamespace
+                        .equals(namespaceURI)))
                     htmlName = localName;
                 else
                     htmlName = null;
@@ -282,8 +272,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
                         if (value == null) {
                             value = "";
                         }
-                        if (!_format.getPreserveEmptyAttributes() && value
-                                .length() == 0)
+                        if (!_format.getPreserveEmptyAttributes() && value.length() == 0)
                             _printer.printText(name);
                         else if (HTMLdtd.isURI(rawName, name)) {
                             _printer.printText(name);
@@ -327,13 +316,11 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             // Now it's time to enter a new element state
             // with the tag name and space preserving.
             // We still do not change the curent element state.
-            state = enterElementState(namespaceURI, localName, rawName,
-                    preserveSpace);
+            state = enterElementState(namespaceURI, localName, rawName, preserveSpace);
 
             // Prevents line breaks inside A/TD
 
-            if (htmlName != null && (htmlName.equalsIgnoreCase("A") || htmlName
-                    .equalsIgnoreCase("TD"))) {
+            if (htmlName != null && (htmlName.equalsIgnoreCase("A") || htmlName.equalsIgnoreCase("TD"))) {
                 state.empty = false;
                 _printer.printText('>');
             }
@@ -341,8 +328,8 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             // Handle SCRIPT and STYLE specifically by changing the
             // state of the current element to CDATA (XHTML) or
             // unescaped (HTML).
-            if (htmlName != null && (rawName.equalsIgnoreCase("SCRIPT")
-                    || rawName.equalsIgnoreCase("STYLE"))) {
+            if (htmlName != null && (rawName.equalsIgnoreCase("SCRIPT") || rawName.equalsIgnoreCase(
+                    "STYLE"))) {
                 if (_xhtml) {
                     // XHTML: Print contents as CDATA section
                     state.doCData = true;
@@ -356,8 +343,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
         }
     }
 
-    public void endElement(String namespaceURI, String localName,
-            String rawName) throws SAXException {
+    public void endElement(String namespaceURI, String localName, String rawName) throws SAXException {
         try {
             endElementIO(namespaceURI, localName, rawName);
         } catch (IOException except) {
@@ -365,8 +351,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
         }
     }
 
-    public void endElementIO(String namespaceURI, String localName,
-            String rawName) throws IOException {
+    public void endElementIO(String namespaceURI, String localName, String rawName) throws IOException {
         ElementState state;
         String htmlName;
 
@@ -379,9 +364,8 @@ public class HTMLSerializer extends BaseMarkupSerializer {
         if (state.namespaceURI == null || state.namespaceURI.length() == 0)
             htmlName = state.rawName;
         else {
-            if (state.namespaceURI.equals(XHTMLNamespace)
-                    || (fUserXHTMLNamespace != null && fUserXHTMLNamespace
-                            .equals(state.namespaceURI)))
+            if (state.namespaceURI.equals(XHTMLNamespace) || (fUserXHTMLNamespace != null
+                    && fUserXHTMLNamespace.equals(state.namespaceURI)))
                 htmlName = state.localName;
             else
                 htmlName = null;
@@ -422,8 +406,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
         // (if we're not root) to not empty and after element.
         state = leaveElementState();
         // Temporary hack to prevent line breaks inside A/TD
-        if (htmlName == null || (!htmlName.equalsIgnoreCase("A") && !htmlName
-                .equalsIgnoreCase("TD")))
+        if (htmlName == null || (!htmlName.equalsIgnoreCase("A") && !htmlName.equalsIgnoreCase("TD")))
 
             state.afterElement = true;
         state.empty = false;
@@ -435,8 +418,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
     // SAX document handler serializing methods //
     // ------------------------------------------//
 
-    public void characters(char[] chars, int start, int length)
-            throws SAXException {
+    public void characters(char[] chars, int start, int length) throws SAXException {
         ElementState state;
 
         try {
@@ -449,8 +431,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
         }
     }
 
-    public void startElement(String tagName, AttributeList attrs)
-            throws SAXException {
+    public void startElement(String tagName, AttributeList attrs) throws SAXException {
         int i;
         boolean preserveSpace;
         ElementState state;
@@ -459,9 +440,8 @@ public class HTMLSerializer extends BaseMarkupSerializer {
 
         try {
             if (_printer == null)
-                throw new IllegalStateException(DOMMessageFormatter
-                        .formatMessage(DOMMessageFormatter.SERIALIZER_DOMAIN,
-                                "NoWriterSupplied", null));
+                throw new IllegalStateException(DOMMessageFormatter.formatMessage(
+                        DOMMessageFormatter.SERIALIZER_DOMAIN, "NoWriterSupplied", null));
 
             state = getElementState();
             if (isDocumentState()) {
@@ -480,8 +460,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
                 // Indent this element on a new line if the first
                 // content of the parent element or immediately
                 // following an element.
-                if (_indenting && !state.preserveSpace && (state.empty
-                        || state.afterElement))
+                if (_indenting && !state.preserveSpace && (state.empty || state.afterElement))
                     _printer.breakLine();
             }
             preserveSpace = state.preserveSpace;
@@ -522,8 +501,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
                         if (value == null) {
                             value = "";
                         }
-                        if (!_format.getPreserveEmptyAttributes() && value
-                                .length() == 0)
+                        if (!_format.getPreserveEmptyAttributes() && value.length() == 0)
                             _printer.printText(name);
                         else if (HTMLdtd.isURI(tagName, name)) {
                             _printer.printText(name);
@@ -550,8 +528,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             state = enterElementState(null, null, tagName, preserveSpace);
 
             // Prevents line breaks inside A/TD
-            if (tagName.equalsIgnoreCase("A") || tagName.equalsIgnoreCase(
-                    "TD")) {
+            if (tagName.equalsIgnoreCase("A") || tagName.equalsIgnoreCase("TD")) {
                 state.empty = false;
                 _printer.printText('>');
             }
@@ -559,8 +536,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             // Handle SCRIPT and STYLE specifically by changing the
             // state of the current element to CDATA (XHTML) or
             // unescaped (HTML).
-            if (tagName.equalsIgnoreCase("SCRIPT") || tagName.equalsIgnoreCase(
-                    "STYLE")) {
+            if (tagName.equalsIgnoreCase("SCRIPT") || tagName.equalsIgnoreCase("STYLE")) {
                 if (_xhtml) {
                     // XHTML: Print contents as CDATA section
                     state.doCData = true;
@@ -621,8 +597,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
                 // system identifier, if specified.
                 // XHTML requires that all element names are lower case, so the
                 // root on the DOCTYPE must be 'html'. - mrglavas
-                if (_docTypePublicId != null && (!_xhtml
-                        || _docTypeSystemId != null)) {
+                if (_docTypePublicId != null && (!_xhtml || _docTypeSystemId != null)) {
                     if (_xhtml) {
                         _printer.printText("<!DOCTYPE html PUBLIC ");
                     } else {
@@ -691,8 +666,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             // Indent this element on a new line if the first
             // content of the parent element or immediately
             // following an element.
-            if (_indenting && !state.preserveSpace && (state.empty
-                    || state.afterElement))
+            if (_indenting && !state.preserveSpace && (state.empty || state.afterElement))
                 _printer.breakLine();
         }
         preserveSpace = state.preserveSpace;
@@ -738,8 +712,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
                         if (value == null) {
                             value = "";
                         }
-                        if (!_format.getPreserveEmptyAttributes() && value
-                                .length() == 0)
+                        if (!_format.getPreserveEmptyAttributes() && value.length() == 0)
                             _printer.printText(name);
                         else if (HTMLdtd.isURI(tagName, name)) {
                             _printer.printText(name);
@@ -769,8 +742,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             state = enterElementState(null, null, tagName, preserveSpace);
 
             // Prevents line breaks inside A/TD
-            if (tagName.equalsIgnoreCase("A") || tagName.equalsIgnoreCase(
-                    "TD")) {
+            if (tagName.equalsIgnoreCase("A") || tagName.equalsIgnoreCase("TD")) {
                 state.empty = false;
                 _printer.printText('>');
             }
@@ -778,8 +750,7 @@ public class HTMLSerializer extends BaseMarkupSerializer {
             // Handle SCRIPT and STYLE specifically by changing the
             // state of the current element to CDATA (XHTML) or
             // unescaped (HTML).
-            if (tagName.equalsIgnoreCase("SCRIPT") || tagName.equalsIgnoreCase(
-                    "STYLE")) {
+            if (tagName.equalsIgnoreCase("SCRIPT") || tagName.equalsIgnoreCase("STYLE")) {
                 if (_xhtml) {
                     // XHTML: Print contents as CDATA section
                     state.doCData = true;

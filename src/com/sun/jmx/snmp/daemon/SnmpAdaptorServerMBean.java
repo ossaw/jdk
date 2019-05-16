@@ -46,7 +46,6 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Returns the Ip address based ACL used by this SNMP protocol adaptor.
      * 
      * @return The <CODE>InetAddressAcl</CODE> implementation.
-     *
      * @since 1.5
      */
     public InetAddressAcl getInetAddressAcl();
@@ -63,7 +62,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Sets the port used by this SNMP protocol adaptor for sending traps.
      *
      * @param port
-     *             The port number for sending SNMP traps.
+     *        The port number for sending SNMP traps.
      */
     public void setTrapPort(Integer port);
 
@@ -80,7 +79,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * requests.
      *
      * @param port
-     *             The port number for sending SNMP inform requests.
+     *        The port number for sending SNMP inform requests.
      */
     public void setInformPort(int port);
 
@@ -117,14 +116,12 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * process concurrently.
      *
      * @param c
-     *          The number of managers.
-     *
+     *        The number of managers.
      * @exception java.lang.IllegalStateException
      *            This method has been invoked while the communicator was
      *            <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
      */
-    public void setMaxActiveClientCount(int c)
-            throws java.lang.IllegalStateException;
+    public void setMaxActiveClientCount(int c) throws java.lang.IllegalStateException;
 
     /**
      * Returns the protocol of this SNMP protocol adaptor.
@@ -146,8 +143,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Sets the buffer size of this SNMP protocol adaptor.
      *
      * @param s
-     *          The buffer size.
-     *
+     *        The buffer size.
      * @exception java.lang.IllegalStateException
      *            This method has been invoked while the communicator was
      *            <CODE>ONLINE</CODE> or <CODE>STARTING</CODE>.
@@ -167,7 +163,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * before giving up.
      * 
      * @param newMaxTries
-     *                    The maximun number of tries.
+     *        The maximun number of tries.
      */
     public void setMaxTries(int newMaxTries);
 
@@ -182,7 +178,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Changes the timeout to wait for an inform response from the manager.
      * 
      * @param newTimeout
-     *                   The timeout (in milliseconds).
+     *        The timeout (in milliseconds).
      */
     public void setTimeout(int newTimeout);
 
@@ -197,7 +193,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Sets the message factory of this SNMP protocol adaptor.
      *
      * @param factory
-     *                The factory object (null means the default factory).
+     *        The factory object (null means the default factory).
      */
     public void setPduFactory(SnmpPduFactory factory);
 
@@ -205,7 +201,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Set the user-data factory of this SNMP protocol adaptor.
      *
      * @param factory
-     *                The factory object (null means no factory).
+     *        The factory object (null means no factory).
      * @see com.sun.jmx.snmp.agent.SnmpUserDataFactory
      */
     public void setUserDataFactory(SnmpUserDataFactory factory);
@@ -237,7 +233,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * authentication failure.
      *
      * @param enabled
-     *                Flag indicating if traps need to be sent.
+     *        Flag indicating if traps need to be sent.
      */
     public void setAuthTrapEnabled(boolean enabled);
 
@@ -261,7 +257,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * authentication failure.
      *
      * @param enabled
-     *                Flag indicating if responses need to be sent.
+     *        Flag indicating if responses need to be sent.
      */
     public void setAuthRespEnabled(boolean enabled);
 
@@ -277,10 +273,9 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * Sets the enterprise OID.
      *
      * @param oid
-     *            The OID in string format "x.x.x.x".
-     *
+     *        The OID in string format "x.x.x.x".
      * @exception IllegalArgumentException
-     *                                     The string format is incorrect
+     *            The string format is incorrect
      */
     public void setEnterpriseOid(String oid) throws IllegalArgumentException;
 
@@ -418,7 +413,6 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * NMPv2-MIB .
      *
      * @return The <CODE>snmpSilentDrops</CODE> value.
-     *
      * @since 1.5
      */
     public Long getSnmpSilentDrops();
@@ -428,7 +422,6 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * NMPv2-MIB .
      *
      * @return The <CODE>snmpProxyDrops</CODE> value.
-     *
      * @since 1.5
      */
     public Long getSnmpProxyDrops();
@@ -445,33 +438,26 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * and should not be called directly.
      *
      * @param mib
-     *            The MIB to add.
-     *
+     *        The MIB to add.
      * @return A reference to the SNMP MIB handler.
-     *
      * @exception IllegalArgumentException
-     *                                     If the parameter is null.
+     *            If the parameter is null.
      */
-    public SnmpMibHandler addMib(SnmpMibAgent mib)
-            throws IllegalArgumentException;
+    public SnmpMibHandler addMib(SnmpMibAgent mib) throws IllegalArgumentException;
 
     /**
      * Adds a new MIB in the SNMP MIB handler.
      *
      * @param mib
-     *             The MIB to add.
+     *        The MIB to add.
      * @param oids
-     *             The set of OIDs this agent implements.
-     *
+     *        The set of OIDs this agent implements.
      * @return A reference to the SNMP MIB handler.
-     *
      * @exception IllegalArgumentException
-     *                                     If the parameter is null.
-     *
+     *            If the parameter is null.
      * @since 1.5
      */
-    public SnmpMibHandler addMib(SnmpMibAgent mib, SnmpOid[] oids)
-            throws IllegalArgumentException;
+    public SnmpMibHandler addMib(SnmpMibAgent mib, SnmpOid[] oids) throws IllegalArgumentException;
 
     /**
      * Removes the specified MIB from the SNMP protocol adaptor. This method is
@@ -482,8 +468,7 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * and should not be called directly.
      *
      * @param mib
-     *            The MIB to be removed.
-     *
+     *        The MIB to be removed.
      * @return <code>true</code> if the specified <CODE>mib</CODE> was a MIB
      *         included in the SNMP MIB handler, <code>false</code> otherwise.
      */
@@ -496,21 +481,19 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * sent to the local host.
      *
      * @param generic
-     *                    The generic number of the trap.
+     *        The generic number of the trap.
      * @param specific
-     *                    The specific number of the trap.
+     *        The specific number of the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
-     *
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @exception IOException
-     *                                An I/O error occurred while sending the
-     *                                trap.
+     *            An I/O error occurred while sending the
+     *            trap.
      * @exception SnmpStatusException
-     *                                If the trap exceeds the limit defined by
-     *                                <CODE>bufferSize</CODE>.
+     *            If the trap exceeds the limit defined by
+     *            <CODE>bufferSize</CODE>.
      */
-    public void snmpV1Trap(int generic, int specific,
-            SnmpVarBindList varBindList) throws IOException,
+    public void snmpV1Trap(int generic, int specific, SnmpVarBindList varBindList) throws IOException,
             SnmpStatusException;
 
     /**
@@ -519,26 +502,24 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * using the specified community string (and the ACL file is not used).
      *
      * @param address
-     *                    The <CODE>InetAddress</CODE> destination of the trap.
+     *        The <CODE>InetAddress</CODE> destination of the trap.
      * @param cs
-     *                    The community string to be used for the trap.
+     *        The community string to be used for the trap.
      * @param generic
-     *                    The generic number of the trap.
+     *        The generic number of the trap.
      * @param specific
-     *                    The specific number of the trap.
+     *        The specific number of the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
-     *
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @exception IOException
-     *                                An I/O error occurred while sending the
-     *                                trap.
+     *            An I/O error occurred while sending the
+     *            trap.
      * @exception SnmpStatusException
-     *                                If the trap exceeds the limit defined by
-     *                                <CODE>bufferSize</CODE>.
+     *            If the trap exceeds the limit defined by
+     *            <CODE>bufferSize</CODE>.
      */
-    public void snmpV1Trap(InetAddress address, String cs, int generic,
-            int specific, SnmpVarBindList varBindList) throws IOException,
-            SnmpStatusException;
+    public void snmpV1Trap(InetAddress address, String cs, int generic, int specific,
+            SnmpVarBindList varBindList) throws IOException, SnmpStatusException;
 
     /**
      * Sends a trap using SNMP V1 trap format. <BR>
@@ -547,32 +528,29 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * parameters (<CODE>SnmpParameters.getRdCommunity() </CODE>).
      *
      * @param peer
-     *                    The <CODE>SnmpPeer</CODE> destination of the trap.
+     *        The <CODE>SnmpPeer</CODE> destination of the trap.
      * @param agentAddr
-     *                    The agent address to be used for the trap.
+     *        The agent address to be used for the trap.
      * @param enterpOid
-     *                    The enterprise OID to be used for the trap.
+     *        The enterprise OID to be used for the trap.
      * @param generic
-     *                    The generic number of the trap.
+     *        The generic number of the trap.
      * @param specific
-     *                    The specific number of the trap.
+     *        The specific number of the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @param time
-     *                    The time stamp (overwrite the current time).
-     *
+     *        The time stamp (overwrite the current time).
      * @exception IOException
-     *                                An I/O error occurred while sending the
-     *                                trap.
+     *            An I/O error occurred while sending the
+     *            trap.
      * @exception SnmpStatusException
-     *                                If the trap exceeds the limit defined by
-     *                                <CODE>bufferSize</CODE>.
-     *
+     *            If the trap exceeds the limit defined by
+     *            <CODE>bufferSize</CODE>.
      * @since 1.5
      */
-    public void snmpV1Trap(SnmpPeer peer, SnmpIpAddress agentAddr,
-            SnmpOid enterpOid, int generic, int specific,
-            SnmpVarBindList varBindList, SnmpTimeticks time) throws IOException,
+    public void snmpV1Trap(SnmpPeer peer, SnmpIpAddress agentAddr, SnmpOid enterpOid, int generic,
+            int specific, SnmpVarBindList varBindList, SnmpTimeticks time) throws IOException,
             SnmpStatusException;
 
     /**
@@ -592,26 +570,23 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * </UL>
      *
      * @param peer
-     *                    The <CODE>SnmpPeer</CODE> destination of the trap.
+     *        The <CODE>SnmpPeer</CODE> destination of the trap.
      * @param trapOid
-     *                    The OID identifying the trap.
+     *        The OID identifying the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @param time
-     *                    The time stamp (overwrite the current time).
-     *
+     *        The time stamp (overwrite the current time).
      * @exception IOException
-     *                                An I/O error occurred while sending the
-     *                                trap.
+     *            An I/O error occurred while sending the
+     *            trap.
      * @exception SnmpStatusException
-     *                                If the trap exceeds the limit defined by
-     *                                <CODE>bufferSize</CODE>.
-     *
+     *            If the trap exceeds the limit defined by
+     *            <CODE>bufferSize</CODE>.
      * @since 1.5
      */
-    public void snmpV2Trap(SnmpPeer peer, SnmpOid trapOid,
-            SnmpVarBindList varBindList, SnmpTimeticks time) throws IOException,
-            SnmpStatusException;
+    public void snmpV2Trap(SnmpPeer peer, SnmpOid trapOid, SnmpVarBindList varBindList, SnmpTimeticks time)
+            throws IOException, SnmpStatusException;
 
     /**
      * Sends a trap using SNMP V2 trap format. <BR>
@@ -629,19 +604,18 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * </UL>
      *
      * @param trapOid
-     *                    The OID identifying the trap.
+     *        The OID identifying the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
-     *
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @exception IOException
-     *                                An I/O error occurred while sending the
-     *                                trap.
+     *            An I/O error occurred while sending the
+     *            trap.
      * @exception SnmpStatusException
-     *                                If the trap exceeds the limit defined by
-     *                                <CODE>bufferSize</CODE>.
+     *            If the trap exceeds the limit defined by
+     *            <CODE>bufferSize</CODE>.
      */
-    public void snmpV2Trap(SnmpOid trapOid, SnmpVarBindList varBindList)
-            throws IOException, SnmpStatusException;
+    public void snmpV2Trap(SnmpOid trapOid, SnmpVarBindList varBindList) throws IOException,
+            SnmpStatusException;
 
     /**
      * Sends a trap using SNMP V2 trap format. <BR>
@@ -658,63 +632,58 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * </UL>
      *
      * @param address
-     *                    The <CODE>InetAddress</CODE> destination of the trap.
+     *        The <CODE>InetAddress</CODE> destination of the trap.
      * @param cs
-     *                    The community string to be used for the trap.
+     *        The community string to be used for the trap.
      * @param trapOid
-     *                    The OID identifying the trap.
+     *        The OID identifying the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
-     *
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @exception IOException
-     *                                An I/O error occurred while sending the
-     *                                trap.
+     *            An I/O error occurred while sending the
+     *            trap.
      * @exception SnmpStatusException
-     *                                If the trap exceeds the limit defined by
-     *                                <CODE>bufferSize</CODE>.
+     *            If the trap exceeds the limit defined by
+     *            <CODE>bufferSize</CODE>.
      */
-    public void snmpV2Trap(InetAddress address, String cs, SnmpOid trapOid,
-            SnmpVarBindList varBindList) throws IOException,
-            SnmpStatusException;
+    public void snmpV2Trap(InetAddress address, String cs, SnmpOid trapOid, SnmpVarBindList varBindList)
+            throws IOException, SnmpStatusException;
 
     /**
      * Send the specified trap PDU to the passed <CODE>InetAddress</CODE>.
      * 
      * @param address
-     *                The destination address.
+     *        The destination address.
      * @param pdu
-     *                The pdu to send.
+     *        The pdu to send.
      * @exception IOException
-     *                                An I/O error occurred while sending the
-     *                                trap.
+     *            An I/O error occurred while sending the
+     *            trap.
      * @exception SnmpStatusException
-     *                                If the trap exceeds the limit defined by
-     *                                <CODE>bufferSize</CODE>.
-     *
+     *            If the trap exceeds the limit defined by
+     *            <CODE>bufferSize</CODE>.
      * @since 1.5
      */
-    public void snmpPduTrap(InetAddress address, SnmpPduPacket pdu)
-            throws IOException, SnmpStatusException;
+    public void snmpPduTrap(InetAddress address, SnmpPduPacket pdu) throws IOException, SnmpStatusException;
 
     /**
      * Send the specified trap PDU to the passed <CODE>SnmpPeer</CODE>.
      * 
      * @param peer
-     *             The destination peer. The Read community string is used of
-     *             <CODE>SnmpParameters</CODE> is used as the trap community
-     *             string.
+     *        The destination peer. The Read community string is used of
+     *        <CODE>SnmpParameters</CODE> is used as the trap community
+     *        string.
      * @param pdu
-     *             The pdu to send.
+     *        The pdu to send.
      * @exception IOException
-     *                                An I/O error occurred while sending the
-     *                                trap.
+     *            An I/O error occurred while sending the
+     *            trap.
      * @exception SnmpStatusException
-     *                                If the trap exceeds the limit defined by
-     *                                <CODE>bufferSize</CODE>.
+     *            If the trap exceeds the limit defined by
+     *            <CODE>bufferSize</CODE>.
      * @since 1.5
      */
-    public void snmpPduTrap(SnmpPeer peer, SnmpPduPacket pdu)
-            throws IOException, SnmpStatusException;
+    public void snmpPduTrap(SnmpPeer peer, SnmpPduPacket pdu) throws IOException, SnmpStatusException;
 
     /**
      * Sends an inform using SNMP V2 inform request format. <BR>
@@ -733,34 +702,31 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * To send an inform request, the SNMP adaptor server must be active.
      *
      * @param cb
-     *                    The callback that is invoked when a request is
-     *                    complete.
+     *        The callback that is invoked when a request is
+     *        complete.
      * @param trapOid
-     *                    The OID identifying the trap.
+     *        The OID identifying the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
-     *
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @return A vector of {@link com.sun.jmx.snmp.daemon.SnmpInformRequest}
      *         objects.
      *         <P>
      *         If there is no destination host for this inform request, the
      *         returned vector will be empty.
-     *
      * @exception IllegalStateException
-     *                                  This method has been invoked while the
-     *                                  SNMP adaptor server
-     *                                  was not active.
+     *            This method has been invoked while the
+     *            SNMP adaptor server
+     *            was not active.
      * @exception IOException
-     *                                  An I/O error occurred while sending the
-     *                                  inform request.
+     *            An I/O error occurred while sending the
+     *            inform request.
      * @exception SnmpStatusException
-     *                                  If the inform request exceeds the limit
-     *                                  defined by
-     *                                  <CODE>bufferSize</CODE>.
+     *            If the inform request exceeds the limit
+     *            defined by
+     *            <CODE>bufferSize</CODE>.
      */
-    public Vector<?> snmpInformRequest(SnmpInformHandler cb, SnmpOid trapOid,
-            SnmpVarBindList varBindList) throws IllegalStateException,
-            IOException, SnmpStatusException;
+    public Vector<?> snmpInformRequest(SnmpInformHandler cb, SnmpOid trapOid, SnmpVarBindList varBindList)
+            throws IllegalStateException, IOException, SnmpStatusException;
 
     /**
      * Sends an inform using SNMP V2 inform request format. <BR>
@@ -778,37 +744,35 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * To send an inform request, the SNMP adaptor server must be active.
      *
      * @param address
-     *                    The <CODE>InetAddress</CODE> destination for this
-     *                    inform
-     *                    request.
+     *        The <CODE>InetAddress</CODE> destination for this
+     *        inform
+     *        request.
      * @param cs
-     *                    The community string to be used for the inform
-     *                    request.
+     *        The community string to be used for the inform
+     *        request.
      * @param cb
-     *                    The callback that is invoked when a request is
-     *                    complete.
+     *        The callback that is invoked when a request is
+     *        complete.
      * @param trapOid
-     *                    The OID identifying the trap.
+     *        The OID identifying the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
-     *
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @return The inform request object.
-     *
      * @exception IllegalStateException
-     *                                  This method has been invoked while the
-     *                                  SNMP adaptor server
-     *                                  was not active.
+     *            This method has been invoked while the
+     *            SNMP adaptor server
+     *            was not active.
      * @exception IOException
-     *                                  An I/O error occurred while sending the
-     *                                  inform request.
+     *            An I/O error occurred while sending the
+     *            inform request.
      * @exception SnmpStatusException
-     *                                  If the inform request exceeds the limit
-     *                                  defined by
-     *                                  <CODE>bufferSize</CODE>.
+     *            If the inform request exceeds the limit
+     *            defined by
+     *            <CODE>bufferSize</CODE>.
      */
-    public SnmpInformRequest snmpInformRequest(InetAddress address, String cs,
-            SnmpInformHandler cb, SnmpOid trapOid, SnmpVarBindList varBindList)
-            throws IllegalStateException, IOException, SnmpStatusException;
+    public SnmpInformRequest snmpInformRequest(InetAddress address, String cs, SnmpInformHandler cb,
+            SnmpOid trapOid, SnmpVarBindList varBindList) throws IllegalStateException, IOException,
+            SnmpStatusException;
 
     /**
      * Sends an inform using SNMP V2 inform request format. <BR>
@@ -828,33 +792,29 @@ public interface SnmpAdaptorServerMBean extends CommunicatorServerMBean {
      * To send an inform request, the SNMP adaptor server must be active.
      *
      * @param peer
-     *                    The <CODE>SnmpPeer</CODE> destination for this inform
-     *                    request.
+     *        The <CODE>SnmpPeer</CODE> destination for this inform
+     *        request.
      * @param cb
-     *                    The callback that is invoked when a request is
-     *                    complete.
+     *        The callback that is invoked when a request is
+     *        complete.
      * @param trapOid
-     *                    The OID identifying the trap.
+     *        The OID identifying the trap.
      * @param varBindList
-     *                    A list of <CODE>SnmpVarBind</CODE> instances or null.
-     *
+     *        A list of <CODE>SnmpVarBind</CODE> instances or null.
      * @return The inform request object.
-     *
      * @exception IllegalStateException
-     *                                  This method has been invoked while the
-     *                                  SNMP adaptor server
-     *                                  was not active.
+     *            This method has been invoked while the
+     *            SNMP adaptor server
+     *            was not active.
      * @exception IOException
-     *                                  An I/O error occurred while sending the
-     *                                  inform request.
+     *            An I/O error occurred while sending the
+     *            inform request.
      * @exception SnmpStatusException
-     *                                  If the inform request exceeds the limit
-     *                                  defined by
-     *                                  <CODE>bufferSize</CODE>.
-     *
+     *            If the inform request exceeds the limit
+     *            defined by
+     *            <CODE>bufferSize</CODE>.
      * @since 1.5
      */
-    public SnmpInformRequest snmpInformRequest(SnmpPeer peer,
-            SnmpInformHandler cb, SnmpOid trapOid, SnmpVarBindList varBindList)
-            throws IllegalStateException, IOException, SnmpStatusException;
+    public SnmpInformRequest snmpInformRequest(SnmpPeer peer, SnmpInformHandler cb, SnmpOid trapOid,
+            SnmpVarBindList varBindList) throws IllegalStateException, IOException, SnmpStatusException;
 }

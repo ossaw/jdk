@@ -32,8 +32,7 @@ class NimbusIcon extends SynthIcon {
     }
 
     @Override
-    public void paintIcon(SynthContext context, Graphics g, int x, int y, int w,
-            int h) {
+    public void paintIcon(SynthContext context, Graphics g, int x, int y, int w, int h) {
         Painter painter = null;
         if (context != null) {
             painter = (Painter) context.getStyle().get(context, key);
@@ -92,8 +91,7 @@ class NimbusIcon extends SynthIcon {
             } else {
                 // use image if we are printing to a Java 1.1 PrintGraphics as
                 // it is not a instance of Graphics2D
-                BufferedImage img = new BufferedImage(w, h,
-                        BufferedImage.TYPE_INT_ARGB);
+                BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
                 Graphics2D gfx = img.createGraphics();
                 if (rotate) {
                     gfx.rotate(Math.toRadians(90));
@@ -137,8 +135,7 @@ class NimbusIcon extends SynthIcon {
             return width;
         }
         JComponent c = context.getComponent();
-        if (c instanceof JToolBar && ((JToolBar) c)
-                .getOrientation() == JToolBar.VERTICAL) {
+        if (c instanceof JToolBar && ((JToolBar) c).getOrientation() == JToolBar.VERTICAL) {
             // we only do the -1 hack for UIResource borders, assuming
             // that the border is probably going to be our border
             if (c.getBorder() instanceof UIResource) {
@@ -180,9 +177,9 @@ class NimbusIcon extends SynthIcon {
      * component that is using this icon
      *
      * @param context
-     *                The synthContext to get the component from
+     *        The synthContext to get the component from
      * @param size
-     *                The size to scale
+     *        The size to scale
      * @return The scaled size or original if "JComponent.sizeVariant" is not
      *         set
      */
@@ -191,8 +188,7 @@ class NimbusIcon extends SynthIcon {
             return size;
         }
         // The key "JComponent.sizeVariant" is used to match Apple's LAF
-        String scaleKey = (String) context.getComponent().getClientProperty(
-                "JComponent.sizeVariant");
+        String scaleKey = (String) context.getComponent().getClientProperty("JComponent.sizeVariant");
         if (scaleKey != null) {
             if (NimbusStyle.LARGE_KEY.equals(scaleKey)) {
                 size *= NimbusStyle.LARGE_SCALE;

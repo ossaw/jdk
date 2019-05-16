@@ -25,7 +25,6 @@ import java.awt.event.KeyEvent;
  * usually unnecessary and not recommended.)
  *
  * @author David Mendenhall
- *
  * @see KeyboardFocusManager#addKeyEventDispatcher
  * @see KeyboardFocusManager#removeKeyEventDispatcher
  * @since 1.4
@@ -60,7 +59,7 @@ public interface KeyEventDispatcher {
      * KeyboardFocusManager will not dispatch a consumed KeyEvent.
      *
      * @param e
-     *          the KeyEvent to dispatch
+     *        the KeyEvent to dispatch
      * @return <code>true</code> if the KeyboardFocusManager should take no
      *         further action with regard to the KeyEvent; <code>false</code>
      *         otherwise

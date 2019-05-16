@@ -57,7 +57,6 @@ import java.lang.annotation.Target;
  *     ...
  *   &lt;/definitions>
  * </pre>
- *
  * <p>
  * <b>Example 2</b>: Specify explicit value for <code>Action</code> message
  * addressing property for only the <code>input</code> message. The
@@ -95,14 +94,12 @@ import java.lang.annotation.Target;
  * addressing property for <code>output</code> message only. In this case,
  * <code>wsam:Action</code> value for the WSDL <code>input</code> message is
  * computed using the algorithm in the JAX-WS specification.
- *
  * <p>
  * <b>Example 3</b>: See {@link FaultAction} annotation for an example of how to
  * specify an explicit value for <code>Action</code> message addressing property
  * for the <code>fault</code> message.
  *
  * @see FaultAction
- *
  * @since JAX-WS 2.1
  */
 

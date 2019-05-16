@@ -32,7 +32,7 @@ public class RESyntaxException extends RuntimeException {
      * Constructor.
      * 
      * @param s
-     *          Further description of the syntax error
+     *        Further description of the syntax error
      */
     public RESyntaxException(String s) {
         super("Syntax error: " + s);

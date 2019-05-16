@@ -12,25 +12,20 @@ import java.util.Map;
 /**
  * An abstract class for service providers that provide localized string
  * representations (display names) of {@code Calendar} field values.
- *
  * <p>
  * <a name="calendartypes"><b>Calendar Types</b></a>
- *
  * <p>
  * Calendar types are used to specify calendar systems for which the
  * {@link #getDisplayName(String, int, int, int, Locale) getDisplayName} and
  * {@link #getDisplayNames(String, int, int, Locale) getDisplayNames} methods
  * provide calendar field value names. See {@link Calendar#getCalendarType()}
  * for details.
- *
  * <p>
  * <b>Calendar Fields</b>
- *
  * <p>
  * Calendar fields are specified with the constants defined in {@link Calendar}.
  * The following are calendar-common fields and their values to be supported for
  * each calendar system.
- *
  * <table style=
  * "border-bottom:1px solid" border="1" cellpadding="3" cellspacing="0" summary=
  * "Field values">
@@ -60,10 +55,8 @@ import java.util.Map;
  * <td>0 - AM, 1 - PM</td>
  * </tr>
  * </table>
- *
  * <p style="margin-top:20px">
  * The following are calendar-specific fields and their values to be supported.
- *
  * <table style=
  * "border-bottom:1px solid" border="1" cellpadding="3" cellspacing="0" summary=
  * "Calendar type and field values">
@@ -144,12 +137,10 @@ import java.util.Map;
  * <td>Anno Hijrah (AH)</td>
  * </tr>
  * </table>
- *
  * <p>
  * Calendar field value names for {@code "gregory"} must be consistent with the
  * date-time symbols provided by {@link java.text.spi.DateFormatSymbolsProvider}
  * .
- *
  * <p>
  * Time zone names are supported by {@link TimeZoneNameProvider}.
  *
@@ -170,84 +161,78 @@ public abstract class CalendarNameProvider extends LocaleServiceProvider {
      * <code>field value</code> in the given <code>style</code> and
      * <code>locale</code>. If no string representation is applicable,
      * <code>null</code> is returned.
-     *
      * <p>
      * {@code field} is a {@code Calendar} field index, such as
      * {@link Calendar#MONTH}. The time zone fields,
      * {@link Calendar#ZONE_OFFSET} and {@link Calendar#DST_OFFSET}, are
      * <em>not</em> supported by this method. {@code null} must be returned if
      * any time zone fields are specified.
-     *
      * <p>
      * {@code value} is the numeric representation of the {@code field} value.
      * For example, if {@code field} is {@link Calendar#DAY_OF_WEEK}, the valid
      * values are {@link Calendar#SUNDAY} to {@link Calendar#SATURDAY}
      * (inclusive).
-     *
      * <p>
      * {@code style} gives the style of the string representation. It is one of
      * {@link Calendar#SHORT_FORMAT} ({@link Calendar#SHORT SHORT}),
      * {@link Calendar#SHORT_STANDALONE}, {@link Calendar#LONG_FORMAT} (
      * {@link Calendar#LONG LONG}), {@link Calendar#LONG_STANDALONE},
      * {@link Calendar#NARROW_FORMAT}, or {@link Calendar#NARROW_STANDALONE}.
-     *
      * <p>
      * For example, the following call will return {@code "Sunday"}.
      * 
      * <pre>
-     * getDisplayName("gregory", Calendar.DAY_OF_WEEK, Calendar.SUNDAY,
-     *         Calendar.LONG_STANDALONE, Locale.ENGLISH);
+     * getDisplayName("gregory", Calendar.DAY_OF_WEEK, Calendar.SUNDAY, Calendar.LONG_STANDALONE,
+     *         Locale.ENGLISH);
      * </pre>
      *
      * @param calendarType
-     *                     the calendar type. (Any calendar type given by
-     *                     {@code locale}
-     *                     is ignored.)
+     *        the calendar type. (Any calendar type given by
+     *        {@code locale}
+     *        is ignored.)
      * @param field
-     *                     the {@code Calendar} field index, such as
-     *                     {@link Calendar#DAY_OF_WEEK}
+     *        the {@code Calendar} field index, such as
+     *        {@link Calendar#DAY_OF_WEEK}
      * @param value
-     *                     the value of the {@code Calendar field}, such as
-     *                     {@link Calendar#MONDAY}
+     *        the value of the {@code Calendar field}, such as
+     *        {@link Calendar#MONDAY}
      * @param style
-     *                     the string representation style: one of
-     *                     {@link Calendar#SHORT_FORMAT} ({@link Calendar#SHORT
-     *                     SHORT}),
-     *                     {@link Calendar#SHORT_STANDALONE},
-     *                     {@link Calendar#LONG_FORMAT} ({@link Calendar#LONG
-     *                     LONG}),
-     *                     {@link Calendar#LONG_STANDALONE},
-     *                     {@link Calendar#NARROW_FORMAT}, or
-     *                     {@link Calendar#NARROW_STANDALONE}
+     *        the string representation style: one of
+     *        {@link Calendar#SHORT_FORMAT} ({@link Calendar#SHORT
+     *        SHORT}),
+     *        {@link Calendar#SHORT_STANDALONE},
+     *        {@link Calendar#LONG_FORMAT} ({@link Calendar#LONG
+     *        LONG}),
+     *        {@link Calendar#LONG_STANDALONE},
+     *        {@link Calendar#NARROW_FORMAT}, or
+     *        {@link Calendar#NARROW_STANDALONE}
      * @param locale
-     *                     the desired locale
+     *        the desired locale
      * @return the string representation of the {@code field value}, or {@code
      *         null} if the string representation is not applicable or the given
      *         calendar type is unknown
      * @throws IllegalArgumentException
-     *                                  if {@code field} or {@code style} is
-     *                                  invalid
+     *         if {@code field} or {@code style} is
+     *         invalid
      * @throws NullPointerException
-     *                                  if {@code locale} is {@code null}
+     *         if {@code locale} is {@code null}
      * @see TimeZoneNameProvider
      * @see java.util.Calendar#get(int)
      * @see java.util.Calendar#getDisplayName(int, int, Locale)
      */
-    public abstract String getDisplayName(String calendarType, int field,
-            int value, int style, Locale locale);
+    public abstract String getDisplayName(String calendarType, int field, int value, int style,
+            Locale locale);
 
     /**
      * Returns a {@code Map} containing all string representations (display
      * names) of the {@code Calendar} {@code field} in the given {@code style}
      * and {@code locale} and their corresponding field values.
-     *
      * <p>
      * {@code field} is a {@code Calendar} field index, such as
      * {@link Calendar#MONTH}. The time zone fields,
      * {@link Calendar#ZONE_OFFSET} and {@link Calendar#DST_OFFSET}, are
      * <em>not</em> supported by this method. {@code null} must be returned if
      * any time zone fields are specified.
-     *
      * <p>
      * {@code style} gives the style of the string representation. It must be
      * one of {@link Calendar#ALL_STYLES}, {@link Calendar#SHORT_FORMAT} (
@@ -257,7 +242,6 @@ public abstract class CalendarNameProvider extends LocaleServiceProvider {
      * {@link Calendar#NARROW_STANDALONE}. Note that narrow names may not be
      * unique due to use of single characters, such as "S" for Sunday and
      * Saturday, and that no narrow names are included in that case.
-     *
      * <p>
      * For example, the following call will return a {@code Map} containing
      * {@code "January"} to {@link Calendar#JANUARY}, {@code "Jan"} to
@@ -265,37 +249,36 @@ public abstract class CalendarNameProvider extends LocaleServiceProvider {
      * , {@code "Feb"} to {@link Calendar#FEBRUARY}, and so on.
      * 
      * <pre>
-     * getDisplayNames("gregory", Calendar.MONTH, Calendar.ALL_STYLES,
-     *         Locale.ENGLISH);
+     * getDisplayNames("gregory", Calendar.MONTH, Calendar.ALL_STYLES, Locale.ENGLISH);
      * </pre>
      *
      * @param calendarType
-     *                     the calendar type. (Any calendar type given by
-     *                     {@code locale}
-     *                     is ignored.)
+     *        the calendar type. (Any calendar type given by
+     *        {@code locale}
+     *        is ignored.)
      * @param field
-     *                     the calendar field for which the display names are
-     *                     returned
+     *        the calendar field for which the display names are
+     *        returned
      * @param style
-     *                     the style applied to the display names; one of
-     *                     {@link Calendar#ALL_STYLES},
-     *                     {@link Calendar#SHORT_FORMAT} (
-     *                     {@link Calendar#SHORT SHORT}),
-     *                     {@link Calendar#SHORT_STANDALONE},
-     *                     {@link Calendar#LONG_FORMAT} ({@link Calendar#LONG
-     *                     LONG}),
-     *                     {@link Calendar#LONG_STANDALONE},
-     *                     {@link Calendar#NARROW_FORMAT}, or
-     *                     {@link Calendar#NARROW_STANDALONE}
+     *        the style applied to the display names; one of
+     *        {@link Calendar#ALL_STYLES},
+     *        {@link Calendar#SHORT_FORMAT} (
+     *        {@link Calendar#SHORT SHORT}),
+     *        {@link Calendar#SHORT_STANDALONE},
+     *        {@link Calendar#LONG_FORMAT} ({@link Calendar#LONG
+     *        LONG}),
+     *        {@link Calendar#LONG_STANDALONE},
+     *        {@link Calendar#NARROW_FORMAT}, or
+     *        {@link Calendar#NARROW_STANDALONE}
      * @param locale
-     *                     the desired locale
+     *        the desired locale
      * @return a {@code Map} containing all display names of {@code field} in
      *         {@code style} and {@code locale} and their {@code field} values,
      *         or {@code null} if no display names are defined for {@code field}
      * @throws NullPointerException
-     *                              if {@code locale} is {@code null}
+     *         if {@code locale} is {@code null}
      * @see Calendar#getDisplayNames(int, int, Locale)
      */
-    public abstract Map<String, Integer> getDisplayNames(String calendarType,
-            int field, int style, Locale locale);
+    public abstract Map<String, Integer> getDisplayNames(String calendarType, int field, int style,
+            Locale locale);
 }

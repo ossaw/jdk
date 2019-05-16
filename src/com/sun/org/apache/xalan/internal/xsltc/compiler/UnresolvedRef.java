@@ -44,8 +44,7 @@ final class UnresolvedRef extends VariableRefBase {
     }
 
     private ErrorMsg reportError() {
-        ErrorMsg err = new ErrorMsg(ErrorMsg.VARIABLE_UNDEF_ERR, _variableName,
-                this);
+        ErrorMsg err = new ErrorMsg(ErrorMsg.VARIABLE_UNDEF_ERR, _variableName, this);
         getParser().reportError(Constants.ERROR, err);
         return (err);
     }
@@ -77,8 +76,7 @@ final class UnresolvedRef extends VariableRefBase {
     public Type typeCheck(SymbolTable stable) throws TypeCheckError {
         if (_ref != null) {
             final String name = _variableName.toString();
-            ErrorMsg err = new ErrorMsg(ErrorMsg.CIRCULAR_VARIABLE_ERR, name,
-                    this);
+            ErrorMsg err = new ErrorMsg(ErrorMsg.CIRCULAR_VARIABLE_ERR, name, this);
         }
         if ((_ref = resolve(getParser(), stable)) != null) {
             return (_type = _ref.typeCheck(stable));

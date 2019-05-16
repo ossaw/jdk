@@ -29,11 +29,11 @@ public interface XAConnection extends PooledConnection {
      *
      * @return the <code>XAResource</code> object
      * @exception SQLException
-     *                                            if a database access error
-     *                                            occurs
+     *            if a database access error
+     *            occurs
      * @exception SQLFeatureNotSupportedException
-     *                                            if the JDBC driver does not
-     *                                            support this method
+     *            if the JDBC driver does not
+     *            support this method
      * @since 1.4
      */
     javax.transaction.xa.XAResource getXAResource() throws SQLException;

@@ -62,23 +62,22 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * searching in the specified parent class loader. Any URL that ends with a
      * '/' is assumed to refer to a directory. Otherwise, the URL is assumed to
      * refer to a JAR file which will be downloaded and opened as needed.
-     *
      * <p>
      * If there is a security manager, this method first calls the security
      * manager's {@code checkCreateClassLoader} method to ensure creation of a
      * class loader is allowed.
      *
      * @param urls
-     *               the URLs from which to load classes and resources
+     *        the URLs from which to load classes and resources
      * @param parent
-     *               the parent class loader for delegation
+     *        the parent class loader for delegation
      * @exception SecurityException
-     *                                 if a security manager exists and its
-     *                                 {@code checkCreateClassLoader} method
-     *                                 doesn't allow
-     *                                 creation of a class loader.
+     *            if a security manager exists and its
+     *            {@code checkCreateClassLoader} method
+     *            doesn't allow
+     *            creation of a class loader.
      * @exception NullPointerException
-     *                                 if {@code urls} is {@code null}.
+     *            if {@code urls} is {@code null}.
      * @see SecurityManager#checkCreateClassLoader
      */
     public URLClassLoader(URL[] urls, ClassLoader parent) {
@@ -110,22 +109,20 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * parent class loader. Any URL that ends with a '/' is assumed to refer to
      * a directory. Otherwise, the URL is assumed to refer to a JAR file which
      * will be downloaded and opened as needed.
-     *
      * <p>
      * If there is a security manager, this method first calls the security
      * manager's {@code checkCreateClassLoader} method to ensure creation of a
      * class loader is allowed.
      *
      * @param urls
-     *             the URLs from which to load classes and resources
-     *
+     *        the URLs from which to load classes and resources
      * @exception SecurityException
-     *                                 if a security manager exists and its
-     *                                 {@code checkCreateClassLoader} method
-     *                                 doesn't allow
-     *                                 creation of a class loader.
+     *            if a security manager exists and its
+     *            {@code checkCreateClassLoader} method
+     *            doesn't allow
+     *            creation of a class loader.
      * @exception NullPointerException
-     *                                 if {@code urls} is {@code null}.
+     *            if {@code urls} is {@code null}.
      * @see SecurityManager#checkCreateClassLoader
      */
     public URLClassLoader(URL[] urls) {
@@ -156,30 +153,27 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * the parent class loader for delegation. The factory argument will be used
      * as the stream handler factory to obtain protocol handlers when creating
      * new jar URLs.
-     *
      * <p>
      * If there is a security manager, this method first calls the security
      * manager's {@code checkCreateClassLoader} method to ensure creation of a
      * class loader is allowed.
      *
      * @param urls
-     *                the URLs from which to load classes and resources
+     *        the URLs from which to load classes and resources
      * @param parent
-     *                the parent class loader for delegation
+     *        the parent class loader for delegation
      * @param factory
-     *                the URLStreamHandlerFactory to use when creating URLs
-     *
+     *        the URLStreamHandlerFactory to use when creating URLs
      * @exception SecurityException
-     *                                 if a security manager exists and its
-     *                                 {@code checkCreateClassLoader} method
-     *                                 doesn't allow
-     *                                 creation of a class loader.
+     *            if a security manager exists and its
+     *            {@code checkCreateClassLoader} method
+     *            doesn't allow
+     *            creation of a class loader.
      * @exception NullPointerException
-     *                                 if {@code urls} is {@code null}.
+     *            if {@code urls} is {@code null}.
      * @see SecurityManager#checkCreateClassLoader
      */
-    public URLClassLoader(URL[] urls, ClassLoader parent,
-            URLStreamHandlerFactory factory) {
+    public URLClassLoader(URL[] urls, ClassLoader parent, URLStreamHandlerFactory factory) {
         super(parent);
         // this is to make the stack depth consistent with 1.1
         SecurityManager security = System.getSecurityManager();
@@ -208,18 +202,15 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * Returns an input stream for reading the specified resource. If this
      * loader is closed, then any resources opened by this method will be
      * closed.
-     *
      * <p>
      * The search order is described in the documentation for
      * {@link #getResource(String)}.
      * </p>
      *
      * @param name
-     *             The resource name
-     *
+     *        The resource name
      * @return An input stream for reading the resource, or {@code null} if the
      *         resource could not be found
-     *
      * @since 1.7
      */
     public InputStream getResourceAsStream(String name) {
@@ -266,23 +257,21 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * <p>
      * 
      * @exception IOException
-     *                              if closing any file opened by this class
-     *                              loader resulted
-     *                              in an IOException. Any such exceptions are
-     *                              caught
-     *                              internally. If only one is caught, then it
-     *                              is re-thrown.
-     *                              If more than one exception is caught, then
-     *                              the second and
-     *                              following exceptions are added as suppressed
-     *                              exceptions of
-     *                              the first one caught, which is then
-     *                              re-thrown.
-     *
+     *            if closing any file opened by this class
+     *            loader resulted
+     *            in an IOException. Any such exceptions are
+     *            caught
+     *            internally. If only one is caught, then it
+     *            is re-thrown.
+     *            If more than one exception is caught, then
+     *            the second and
+     *            following exceptions are added as suppressed
+     *            exceptions of
+     *            the first one caught, which is then
+     *            re-thrown.
      * @exception SecurityException
-     *                              if a security manager is set, and it denies
-     *                              {@link RuntimePermission}{@code ("closeClassLoader")}
-     *
+     *            if a security manager is set, and it denies
+     *            {@link RuntimePermission}{@code ("closeClassLoader")}
      * @since 1.7
      */
     public void close() throws IOException {
@@ -328,7 +317,7 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * or if this loader is closed, then invoking this method has no effect.
      *
      * @param url
-     *            the URL to be added to the search path of URLs
+     *        the URL to be added to the search path of URLs
      */
     protected void addURL(URL url) {
         ucp.addURL(url);
@@ -351,36 +340,33 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * until the class is found.
      *
      * @param name
-     *             the name of the class
+     *        the name of the class
      * @return the resulting class
      * @exception ClassNotFoundException
-     *                                   if the class could not be found, or if
-     *                                   the loader is
-     *                                   closed.
+     *            if the class could not be found, or if
+     *            the loader is
+     *            closed.
      * @exception NullPointerException
-     *                                   if {@code name} is {@code null}.
+     *            if {@code name} is {@code null}.
      */
-    protected Class<?> findClass(final String name)
-            throws ClassNotFoundException {
+    protected Class<?> findClass(final String name) throws ClassNotFoundException {
         final Class<?> result;
         try {
-            result = AccessController.doPrivileged(
-                    new PrivilegedExceptionAction<Class<?>>() {
-                        public Class<?> run() throws ClassNotFoundException {
-                            String path = name.replace('.', '/').concat(
-                                    ".class");
-                            Resource res = ucp.getResource(path, false);
-                            if (res != null) {
-                                try {
-                                    return defineClass(name, res);
-                                } catch (IOException e) {
-                                    throw new ClassNotFoundException(name, e);
-                                }
-                            } else {
-                                return null;
-                            }
+            result = AccessController.doPrivileged(new PrivilegedExceptionAction<Class<?>>() {
+                public Class<?> run() throws ClassNotFoundException {
+                    String path = name.replace('.', '/').concat(".class");
+                    Resource res = ucp.getResource(path, false);
+                    if (res != null) {
+                        try {
+                            return defineClass(name, res);
+                        } catch (IOException e) {
+                            throw new ClassNotFoundException(name, e);
                         }
-                    }, acc);
+                    } else {
+                        return null;
+                    }
+                }
+            }, acc);
         } catch (java.security.PrivilegedActionException pae) {
             throw (ClassNotFoundException) pae.getException();
         }
@@ -401,16 +387,14 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
             if (pkg.isSealed()) {
                 // Verify that code source URL is the same.
                 if (!pkg.isSealed(url)) {
-                    throw new SecurityException("sealing violation: package "
-                            + pkgname + " is sealed");
+                    throw new SecurityException("sealing violation: package " + pkgname + " is sealed");
                 }
             } else {
                 // Make sure we are not attempting to seal the package
                 // at this code source URL.
                 if ((man != null) && isSealed(pkgname, man)) {
-                    throw new SecurityException(
-                            "sealing violation: can't seal package " + pkgname
-                                    + ": already loaded");
+                    throw new SecurityException("sealing violation: can't seal package " + pkgname
+                            + ": already loaded");
                 }
             }
         }
@@ -425,8 +409,7 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
                 if (man != null) {
                     definePackage(pkgname, man, url);
                 } else {
-                    definePackage(pkgname, null, null, null, null, null, null,
-                            null);
+                    definePackage(pkgname, null, null, null, null, null, null, null);
                 }
             } catch (IllegalArgumentException iae) {
                 // parallel-capable class loaders: re-verify in case of a
@@ -478,21 +461,20 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * specifies the code source URL from which the package was loaded.
      *
      * @param name
-     *             the package name
+     *        the package name
      * @param man
-     *             the Manifest containing package version and sealing
-     *             information
+     *        the Manifest containing package version and sealing
+     *        information
      * @param url
-     *             the code source url for the package, or null if none
+     *        the code source url for the package, or null if none
      * @exception IllegalArgumentException
-     *                                     if the package name duplicates an
-     *                                     existing package either
-     *                                     in this class loader or one of its
-     *                                     ancestors
+     *            if the package name duplicates an
+     *            existing package either
+     *            in this class loader or one of its
+     *            ancestors
      * @return the newly defined Package object
      */
-    protected Package definePackage(String name, Manifest man, URL url)
-            throws IllegalArgumentException {
+    protected Package definePackage(String name, Manifest man, URL url) throws IllegalArgumentException {
         String path = name.replace('.', '/').concat("/");
         String specTitle = null, specVersion = null, specVendor = null;
         String implTitle = null, implVersion = null, implVendor = null;
@@ -536,8 +518,8 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
         if ("true".equalsIgnoreCase(sealed)) {
             sealBase = url;
         }
-        return definePackage(name, specTitle, specVersion, specVendor,
-                implTitle, implVersion, implVendor, sealBase);
+        return definePackage(name, specTitle, specVersion, specVendor, implTitle, implVersion, implVendor,
+                sealBase);
     }
 
     /*
@@ -563,7 +545,7 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * Finds the resource with the specified name on the URL search path.
      *
      * @param name
-     *             the name of the resource
+     *        the name of the resource
      * @return a {@code URL} for the resource, or {@code null} if the resource
      *         could not be found, or if the loader is closed.
      */
@@ -585,14 +567,13 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * URL search path having the specified name.
      *
      * @param name
-     *             the resource name
+     *        the resource name
      * @exception IOException
-     *                        if an I/O exception occurs
+     *            if an I/O exception occurs
      * @return an {@code Enumeration} of {@code URL}s If the loader is closed,
      *         the Enumeration will be empty.
      */
-    public Enumeration<URL> findResources(final String name)
-            throws IOException {
+    public Enumeration<URL> findResources(final String name) throws IOException {
         final Enumeration<URL> e = ucp.findResources(name, true);
 
         return new Enumeration<URL>() {
@@ -603,14 +584,13 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
                     return true;
                 }
                 do {
-                    URL u = AccessController.doPrivileged(
-                            new PrivilegedAction<URL>() {
-                                public URL run() {
-                                    if (!e.hasMoreElements())
-                                        return null;
-                                    return e.nextElement();
-                                }
-                            }, acc);
+                    URL u = AccessController.doPrivileged(new PrivilegedAction<URL>() {
+                        public URL run() {
+                            if (!e.hasMoreElements())
+                                return null;
+                            return e.nextElement();
+                        }
+                    }, acc);
                     if (u == null)
                         break;
                     url = ucp.checkURL(u);
@@ -652,9 +632,9 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * connections from the URL's host is granted.
      * 
      * @param codesource
-     *                   the codesource
+     *        the codesource
      * @exception NullPointerException
-     *                                 if {@code codesource} is {@code null}.
+     *            if {@code codesource} is {@code null}.
      * @return the permissions granted to the codesource
      */
     protected PermissionCollection getPermissions(CodeSource codesource) {
@@ -680,8 +660,7 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
             String path = p.getName();
             if (path.endsWith(File.separator)) {
                 path += "-";
-                p = new FilePermission(path,
-                        SecurityConstants.FILE_READ_ACTION);
+                p = new FilePermission(path, SecurityConstants.FILE_READ_ACTION);
             }
         } else if ((p == null) && (url.getProtocol().equals("file"))) {
             String path = url.getFile().replace('/', File.separatorChar);
@@ -701,8 +680,7 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
             }
             String host = locUrl.getHost();
             if (host != null && (host.length() > 0))
-                p = new SocketPermission(host,
-                        SecurityConstants.SOCKET_CONNECT_ACCEPT_ACTION);
+                p = new SocketPermission(host, SecurityConstants.SOCKET_CONNECT_ACCEPT_ACTION);
         }
 
         // make sure the person that created this class loader
@@ -732,24 +710,22 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * loading the class.
      *
      * @param urls
-     *               the URLs to search for classes and resources
+     *        the URLs to search for classes and resources
      * @param parent
-     *               the parent class loader for delegation
+     *        the parent class loader for delegation
      * @exception NullPointerException
-     *                                 if {@code urls} is {@code null}.
+     *            if {@code urls} is {@code null}.
      * @return the resulting class loader
      */
-    public static URLClassLoader newInstance(final URL[] urls,
-            final ClassLoader parent) {
+    public static URLClassLoader newInstance(final URL[] urls, final ClassLoader parent) {
         // Save the caller's context
         final AccessControlContext acc = AccessController.getContext();
         // Need a privileged block to create the class loader
-        URLClassLoader ucl = AccessController.doPrivileged(
-                new PrivilegedAction<URLClassLoader>() {
-                    public URLClassLoader run() {
-                        return new FactoryURLClassLoader(urls, parent, acc);
-                    }
-                });
+        URLClassLoader ucl = AccessController.doPrivileged(new PrivilegedAction<URLClassLoader>() {
+            public URLClassLoader run() {
+                return new FactoryURLClassLoader(urls, parent, acc);
+            }
+        });
         return ucl;
     }
 
@@ -761,21 +737,20 @@ public class URLClassLoader extends SecureClassLoader implements Closeable {
      * the class.
      *
      * @param urls
-     *             the URLs to search for classes and resources
+     *        the URLs to search for classes and resources
      * @exception NullPointerException
-     *                                 if {@code urls} is {@code null}.
+     *            if {@code urls} is {@code null}.
      * @return the resulting class loader
      */
     public static URLClassLoader newInstance(final URL[] urls) {
         // Save the caller's context
         final AccessControlContext acc = AccessController.getContext();
         // Need a privileged block to create the class loader
-        URLClassLoader ucl = AccessController.doPrivileged(
-                new PrivilegedAction<URLClassLoader>() {
-                    public URLClassLoader run() {
-                        return new FactoryURLClassLoader(urls, acc);
-                    }
-                });
+        URLClassLoader ucl = AccessController.doPrivileged(new PrivilegedAction<URLClassLoader>() {
+            public URLClassLoader run() {
+                return new FactoryURLClassLoader(urls, acc);
+            }
+        });
         return ucl;
     }
 
@@ -799,8 +774,7 @@ final class FactoryURLClassLoader extends URLClassLoader {
         ClassLoader.registerAsParallelCapable();
     }
 
-    FactoryURLClassLoader(URL[] urls, ClassLoader parent,
-            AccessControlContext acc) {
+    FactoryURLClassLoader(URL[] urls, ClassLoader parent, AccessControlContext acc) {
         super(urls, parent, acc);
     }
 
@@ -808,8 +782,7 @@ final class FactoryURLClassLoader extends URLClassLoader {
         super(urls, acc);
     }
 
-    public final Class<?> loadClass(String name, boolean resolve)
-            throws ClassNotFoundException {
+    public final Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         // First check if we have permission to access the package. This
         // should go away once we've added support for exported packages.
         SecurityManager sm = System.getSecurityManager();

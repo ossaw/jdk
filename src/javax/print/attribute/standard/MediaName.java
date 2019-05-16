@@ -21,7 +21,6 @@ import javax.print.attribute.EnumSyntax;
  * <B>IPP Compatibility:</B> MediaName is a representation class for values of
  * the IPP "media" attribute which names media.
  * <P>
- *
  */
 public class MediaName extends Media implements Attribute {
 
@@ -52,17 +51,17 @@ public class MediaName extends Media implements Attribute {
      * value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected MediaName(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "na-letter-white",
-            "na-letter-transparent", "iso-a4-white", "iso-a4-transparent" };
+    private static final String[] myStringTable = { "na-letter-white", "na-letter-transparent",
+            "iso-a4-white", "iso-a4-transparent" };
 
-    private static final MediaName[] myEnumValueTable = { NA_LETTER_WHITE,
-            NA_LETTER_TRANSPARENT, ISO_A4_WHITE, ISO_A4_TRANSPARENT };
+    private static final MediaName[] myEnumValueTable = { NA_LETTER_WHITE, NA_LETTER_TRANSPARENT,
+            ISO_A4_WHITE, ISO_A4_TRANSPARENT };
 
     /**
      * Returns the string table for class MediaTray.

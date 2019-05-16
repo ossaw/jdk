@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -40,8 +38,7 @@ import org.w3c.dom.Element;
  *
  * @author Christian Geuer-Pollmann
  */
-public class InclusiveNamespaces extends ElementProxy implements
-        TransformParam {
+public class InclusiveNamespaces extends ElementProxy implements TransformParam {
 
     /** Field _TAG_EC_INCLUSIVENAMESPACES */
     public static final String _TAG_EC_INCLUSIVENAMESPACES = "InclusiveNamespaces";
@@ -87,8 +84,8 @@ public class InclusiveNamespaces extends ElementProxy implements
             }
         }
 
-        this.constructionElement.setAttributeNS(null,
-                InclusiveNamespaces._ATT_EC_PREFIXLIST, sb.toString().trim());
+        this.constructionElement.setAttributeNS(null, InclusiveNamespaces._ATT_EC_PREFIXLIST, sb.toString()
+                .trim());
     }
 
     /**
@@ -98,8 +95,7 @@ public class InclusiveNamespaces extends ElementProxy implements
      * @param BaseURI
      * @throws XMLSecurityException
      */
-    public InclusiveNamespaces(Element element, String BaseURI)
-            throws XMLSecurityException {
+    public InclusiveNamespaces(Element element, String BaseURI) throws XMLSecurityException {
         super(element, BaseURI);
     }
 
@@ -109,8 +105,7 @@ public class InclusiveNamespaces extends ElementProxy implements
      * @return The Inclusive Namespace string
      */
     public String getInclusiveNamespaces() {
-        return this.constructionElement.getAttributeNS(null,
-                InclusiveNamespaces._ATT_EC_PREFIXLIST);
+        return this.constructionElement.getAttributeNS(null, InclusiveNamespaces._ATT_EC_PREFIXLIST);
     }
 
     /**
@@ -132,8 +127,7 @@ public class InclusiveNamespaces extends ElementProxy implements
     public static SortedSet<String> prefixStr2Set(String inclusiveNamespaces) {
         SortedSet<String> prefixes = new TreeSet<String>();
 
-        if ((inclusiveNamespaces == null) || (inclusiveNamespaces
-                .length() == 0)) {
+        if ((inclusiveNamespaces == null) || (inclusiveNamespaces.length() == 0)) {
             return prefixes;
         }
 

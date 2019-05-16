@@ -39,12 +39,12 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
      * {@link Image}. The origin is at (0,&nbsp;0).
      * 
      * @param image
-     *                  the <code>Image</code> rendered by this
-     *                  <code>ImageGraphicAttribute</code>. This object keeps a
-     *                  reference to <code>image</code>.
+     *        the <code>Image</code> rendered by this
+     *        <code>ImageGraphicAttribute</code>. This object keeps a
+     *        reference to <code>image</code>.
      * @param alignment
-     *                  one of the alignments from this
-     *                  <code>ImageGraphicAttribute</code>
+     *        one of the alignments from this
+     *        <code>ImageGraphicAttribute</code>
      */
     public ImageGraphicAttribute(Image image, int alignment) {
 
@@ -58,25 +58,24 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
      * the <code>ImageGraphicAttribute</code> within the text.
      * 
      * @param image
-     *                  the <code>Image</code> rendered by this
-     *                  <code>ImageGraphicAttribute</code>. This object keeps a
-     *                  reference to <code>image</code>.
+     *        the <code>Image</code> rendered by this
+     *        <code>ImageGraphicAttribute</code>. This object keeps a
+     *        reference to <code>image</code>.
      * @param alignment
-     *                  one of the alignments from this
-     *                  <code>ImageGraphicAttribute</code>
+     *        one of the alignments from this
+     *        <code>ImageGraphicAttribute</code>
      * @param originX
-     *                  the X coordinate of the point within the
-     *                  <code>Image</code>
-     *                  that appears at the origin of the
-     *                  <code>ImageGraphicAttribute</code> in the text line.
+     *        the X coordinate of the point within the
+     *        <code>Image</code>
+     *        that appears at the origin of the
+     *        <code>ImageGraphicAttribute</code> in the text line.
      * @param originY
-     *                  the Y coordinate of the point within the
-     *                  <code>Image</code>
-     *                  that appears at the origin of the
-     *                  <code>ImageGraphicAttribute</code> in the text line.
+     *        the Y coordinate of the point within the
+     *        <code>Image</code>
+     *        that appears at the origin of the
+     *        <code>ImageGraphicAttribute</code> in the text line.
      */
-    public ImageGraphicAttribute(Image image, int alignment, float originX,
-            float originY) {
+    public ImageGraphicAttribute(Image image, int alignment, float originX, float originY) {
 
         super(alignment);
 
@@ -140,8 +139,7 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
      */
     public Rectangle2D getBounds() {
 
-        return new Rectangle2D.Float(-fOriginX, -fOriginY, fImageWidth,
-                fImageHeight);
+        return new Rectangle2D.Float(-fOriginX, -fOriginY, fImageWidth, fImageHeight);
     }
 
     /**
@@ -149,8 +147,7 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
      */
     public void draw(Graphics2D graphics, float x, float y) {
 
-        graphics.drawImage(fImage, (int) (x - fOriginX), (int) (y - fOriginY),
-                null);
+        graphics.drawImage(fImage, (int) (x - fOriginX), (int) (y - fOriginY), null);
     }
 
     /**
@@ -168,7 +165,7 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
      * {@link Object}.
      * 
      * @param rhs
-     *            the <code>Object</code> to compare for equality
+     *        the <code>Object</code> to compare for equality
      * @return <code>true</code> if this <code>ImageGraphicAttribute</code>
      *         equals <code>rhs</code>; <code>false</code> otherwise.
      */
@@ -186,7 +183,7 @@ public final class ImageGraphicAttribute extends GraphicAttribute {
      * <code>ImageGraphicAttribute</code>.
      * 
      * @param rhs
-     *            the <code>ImageGraphicAttribute</code> to compare for equality
+     *        the <code>ImageGraphicAttribute</code> to compare for equality
      * @return <code>true</code> if this <code>ImageGraphicAttribute</code>
      *         equals <code>rhs</code>; <code>false</code> otherwise.
      */

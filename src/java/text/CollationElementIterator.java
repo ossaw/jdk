@@ -27,7 +27,6 @@ import sun.text.normalizer.NormalizerBase;
  * return the ordering priority of the positioned character. The ordering
  * priority of a character, which we refer to as a key, defines how a character
  * is collated in the given collation object.
- *
  * <p>
  * For example, consider the following in Spanish: <blockquote>
  * 
@@ -49,7 +48,6 @@ import sun.text.normalizer.NormalizerBase;
  * static functions <code>primaryOrder</code>, <code>secondaryOrder</code>, and
  * <code>tertiaryOrder</code> return <code>int</code>, <code>short</code>, and
  * <code>short</code> respectively to ensure the correctness of the key value.
- *
  * <p>
  * Example of the iterator usage, <blockquote>
  * 
@@ -66,7 +64,6 @@ import sun.text.normalizer.NormalizerBase;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * <code>CollationElementIterator.next</code> returns the collation order of the
  * next character. A collation order consists of primary order, secondary order
@@ -74,7 +71,6 @@ import sun.text.normalizer.NormalizerBase;
  * <strong>int</strong>. The first 16 bits of a collation order is its primary
  * order; the next 8 bits is the secondary order and the last 8 bits is the
  * tertiary order.
- *
  * <p>
  * <b>Note:</b> <code>CollationElementIterator</code> is a part of
  * <code>RuleBasedCollator</code> implementation. It is only usable with
@@ -97,16 +93,15 @@ public final class CollationElementIterator {
      * NULLORDER will be returned on the calls to next().
      * 
      * @param sourceText
-     *                   the source string.
+     *        the source string.
      * @param owner
-     *                   the collation object.
+     *        the collation object.
      */
     CollationElementIterator(String sourceText, RuleBasedCollator owner) {
         this.owner = owner;
         ordering = owner.getTables();
         if (sourceText.length() != 0) {
-            NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner
-                    .getDecomposition());
+            NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner.getDecomposition());
             text = new NormalizerBase(sourceText, mode);
         }
     }
@@ -118,16 +113,14 @@ public final class CollationElementIterator {
      * NULLORDER will be returned on the calls to next().
      * 
      * @param sourceText
-     *                   the source string.
+     *        the source string.
      * @param owner
-     *                   the collation object.
+     *        the collation object.
      */
-    CollationElementIterator(CharacterIterator sourceText,
-            RuleBasedCollator owner) {
+    CollationElementIterator(CharacterIterator sourceText, RuleBasedCollator owner) {
         this.owner = owner;
         ordering = owner.getTables();
-        NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner
-                .getDecomposition());
+        NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner.getDecomposition());
         text = new NormalizerBase(sourceText, mode);
     }
 
@@ -138,8 +131,7 @@ public final class CollationElementIterator {
     public void reset() {
         if (text != null) {
             text.reset();
-            NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner
-                    .getDecomposition());
+            NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner.getDecomposition());
             text.setMode(mode);
         }
         buffer = null;
@@ -173,8 +165,7 @@ public final class CollationElementIterator {
         }
         NormalizerBase.Mode textMode = text.getMode();
         // convert the owner's mode to something the Normalizer understands
-        NormalizerBase.Mode ownerMode = CollatorUtilities.toNormalizerMode(owner
-                .getDecomposition());
+        NormalizerBase.Mode ownerMode = CollatorUtilities.toNormalizerMode(owner.getDecomposition());
         if (textMode != ownerMode) {
             text.setMode(ownerMode);
         }
@@ -224,8 +215,7 @@ public final class CollationElementIterator {
             if (isThaiPreVowel(ch)) {
                 consonant = text.next();
                 if (isThaiBaseConsonant(consonant)) {
-                    buffer = makeReorderedBuffer(consonant, value, buffer,
-                            true);
+                    buffer = makeReorderedBuffer(consonant, value, buffer, true);
                     value = buffer[0];
                     expIndex = 1;
                 } else if (consonant != NormalizerBase.DONE) {
@@ -235,8 +225,7 @@ public final class CollationElementIterator {
             if (isLaoPreVowel(ch)) {
                 consonant = text.next();
                 if (isLaoBaseConsonant(consonant)) {
-                    buffer = makeReorderedBuffer(consonant, value, buffer,
-                            true);
+                    buffer = makeReorderedBuffer(consonant, value, buffer, true);
                     value = buffer[0];
                     expIndex = 1;
                 } else if (consonant != NormalizerBase.DONE) {
@@ -275,8 +264,7 @@ public final class CollationElementIterator {
         }
         NormalizerBase.Mode textMode = text.getMode();
         // convert the owner's mode to something the Normalizer understands
-        NormalizerBase.Mode ownerMode = CollatorUtilities.toNormalizerMode(owner
-                .getDecomposition());
+        NormalizerBase.Mode ownerMode = CollatorUtilities.toNormalizerMode(owner.getDecomposition());
         if (textMode != ownerMode) {
             text.setMode(ownerMode);
         }
@@ -347,7 +335,7 @@ public final class CollationElementIterator {
      * Return the primary component of a collation element.
      * 
      * @param order
-     *              the collation element
+     *        the collation element
      * @return the element's primary component
      */
     public final static int primaryOrder(int order) {
@@ -359,7 +347,7 @@ public final class CollationElementIterator {
      * Return the secondary component of a collation element.
      * 
      * @param order
-     *              the collation element
+     *        the collation element
      * @return the element's secondary component
      */
     public final static short secondaryOrder(int order) {
@@ -371,7 +359,7 @@ public final class CollationElementIterator {
      * Return the tertiary component of a collation element.
      * 
      * @param order
-     *              the collation element
+     *        the collation element
      * @return the element's tertiary component
      */
     public final static short tertiaryOrder(int order) {
@@ -383,7 +371,7 @@ public final class CollationElementIterator {
      * differences.
      * 
      * @param order
-     *              The order value
+     *        The order value
      */
     final int strengthOrder(int order) {
         int s = owner.getStrength();
@@ -407,15 +395,14 @@ public final class CollationElementIterator {
      * same value as was passed to a preceding call to setOffset().
      *
      * @param newOffset
-     *                  The new character offset into the original text.
+     *        The new character offset into the original text.
      * @since 1.2
      */
     @SuppressWarnings("deprecation") // getBeginIndex, getEndIndex and setIndex
                                      // are deprecated
     public void setOffset(int newOffset) {
         if (text != null) {
-            if (newOffset < text.getBeginIndex() || newOffset >= text
-                    .getEndIndex()) {
+            if (newOffset < text.getBeginIndex() || newOffset >= text.getEndIndex()) {
                 text.setIndexOnly(newOffset);
             } else {
                 int c = text.setIndex(newOffset);
@@ -478,7 +465,7 @@ public final class CollationElementIterator {
      * specified comparison order.
      * 
      * @param order
-     *              a collation order returned by previous or next.
+     *        a collation order returned by previous or next.
      * @return the maximum length of any expansion sequences ending with the
      *         specified order.
      * @since 1.2
@@ -491,15 +478,14 @@ public final class CollationElementIterator {
      * Set a new string over which to iterate.
      *
      * @param source
-     *               the new source text
+     *        the new source text
      * @since 1.2
      */
     public void setText(String source) {
         buffer = null;
         swapOrder = 0;
         expIndex = 0;
-        NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner
-                .getDecomposition());
+        NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner.getDecomposition());
         if (text == null) {
             text = new NormalizerBase(source, mode);
         } else {
@@ -512,15 +498,14 @@ public final class CollationElementIterator {
      * Set a new string over which to iterate.
      *
      * @param source
-     *               the new source text.
+     *        the new source text.
      * @since 1.2
      */
     public void setText(CharacterIterator source) {
         buffer = null;
         swapOrder = 0;
         expIndex = 0;
-        NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner
-                .getDecomposition());
+        NormalizerBase.Mode mode = CollatorUtilities.toNormalizerMode(owner.getDecomposition());
         if (text == null) {
             text = new NormalizerBase(source, mode);
         } else {
@@ -573,15 +558,13 @@ public final class CollationElementIterator {
      * lastExpansion is null. If it has an expansion it is passed in
      * lastExpansion, and colLastValue is ignored.
      */
-    private int[] makeReorderedBuffer(int colFirst, int lastValue,
-            int[] lastExpansion, boolean forward) {
+    private int[] makeReorderedBuffer(int colFirst, int lastValue, int[] lastExpansion, boolean forward) {
 
         int[] result;
 
         int firstValue = ordering.getUnicodeOrder(colFirst);
         if (firstValue >= RuleBasedCollator.CONTRACTCHARINDEX) {
-            firstValue = forward ? nextContractChar(colFirst)
-                    : prevContractChar(colFirst);
+            firstValue = forward ? nextContractChar(colFirst) : prevContractChar(colFirst);
         }
 
         int[] firstExpansion = null;
@@ -603,8 +586,7 @@ public final class CollationElementIterator {
             result[0] = firstValue;
             result[1] = lastValue;
         } else {
-            int firstLength = firstExpansion == null ? 1
-                    : firstExpansion.length;
+            int firstLength = firstExpansion == null ? 1 : firstExpansion.length;
             int lastLength = lastExpansion == null ? 1 : lastExpansion.length;
             result = new int[firstLength + lastLength];
 
@@ -617,8 +599,7 @@ public final class CollationElementIterator {
             if (lastExpansion == null) {
                 result[firstLength] = lastValue;
             } else {
-                System.arraycopy(lastExpansion, 0, result, firstLength,
-                        lastLength);
+                System.arraycopy(lastExpansion, 0, result, firstLength, lastLength);
             }
         }
 
@@ -639,7 +620,7 @@ public final class CollationElementIterator {
      * string.
      * 
      * @param ch
-     *           the starting character of a contracting character token
+     *        the starting character of a contracting character token
      * @return the next contracting character's ordering. Returns NULLORDER if
      *         the end of string is reached.
      */
@@ -698,8 +679,7 @@ public final class CollationElementIterator {
             if (!pair.fwd)
                 continue;
 
-            if (fragment.startsWith(pair.entryName) && pair.entryName
-                    .length() > maxLength) {
+            if (fragment.startsWith(pair.entryName) && pair.entryName.length() > maxLength) {
                 maxLength = pair.entryName.length();
                 order = pair.value;
             }
@@ -724,7 +704,7 @@ public final class CollationElementIterator {
      * string.
      * 
      * @param ch
-     *           the starting character of a contracting character token
+     *        the starting character of a contracting character token
      * @return the next contracting character's ordering. Returns NULLORDER if
      *         the end of string is reached.
      */
@@ -769,8 +749,7 @@ public final class CollationElementIterator {
             if (pair.fwd)
                 continue;
 
-            if (fragment.startsWith(pair.entryName) && pair.entryName
-                    .length() > maxLength) {
+            if (fragment.startsWith(pair.entryName) && pair.entryName.length() > maxLength) {
                 maxLength = pair.entryName.length();
                 order = pair.value;
             }

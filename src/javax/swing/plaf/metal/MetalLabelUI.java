@@ -36,8 +36,7 @@ public class MetalLabelUI extends BasicLabelUI {
     public static ComponentUI createUI(JComponent c) {
         if (System.getSecurityManager() != null) {
             AppContext appContext = AppContext.getAppContext();
-            MetalLabelUI safeMetalLabelUI = (MetalLabelUI) appContext.get(
-                    METAL_LABEL_UI_KEY);
+            MetalLabelUI safeMetalLabelUI = (MetalLabelUI) appContext.get(METAL_LABEL_UI_KEY);
             if (safeMetalLabelUI == null) {
                 safeMetalLabelUI = new MetalLabelUI();
                 appContext.put(METAL_LABEL_UI_KEY, safeMetalLabelUI);
@@ -54,11 +53,9 @@ public class MetalLabelUI extends BasicLabelUI {
      * @see #paint
      * @see #paintEnabledText
      */
-    protected void paintDisabledText(JLabel l, Graphics g, String s, int textX,
-            int textY) {
+    protected void paintDisabledText(JLabel l, Graphics g, String s, int textX, int textY) {
         int mnemIndex = l.getDisplayedMnemonicIndex();
         g.setColor(UIManager.getColor("Label.disabledForeground"));
-        SwingUtilities2.drawStringUnderlineCharAt(l, g, s, mnemIndex, textX,
-                textY);
+        SwingUtilities2.drawStringUnderlineCharAt(l, g, s, mnemIndex, textX, textY);
     }
 }

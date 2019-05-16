@@ -20,37 +20,35 @@ public interface ValueHandler {
      * Writes a value to the stream using Java semantics.
      * 
      * @param out
-     *              the stream to write the value to.
+     *        the stream to write the value to.
      * @param value
-     *              the value to be written to the stream.
+     *        the value to be written to the stream.
      **/
-    void writeValue(org.omg.CORBA.portable.OutputStream out,
-            java.io.Serializable value);
+    void writeValue(org.omg.CORBA.portable.OutputStream out, java.io.Serializable value);
 
     /**
      * Reads a value from the stream using Java semantics.
      * 
      * @param in
-     *                     the stream to read the value from.
+     *        the stream to read the value from.
      * @param offset
-     *                     the current position in the input stream.
+     *        the current position in the input stream.
      * @param clz
-     *                     the type of the value to be read in.
+     *        the type of the value to be read in.
      * @param repositoryID
-     *                     the RepositoryId of the value to be read in.
+     *        the RepositoryId of the value to be read in.
      * @param sender
-     *                     the sending context runtime codebase.
+     *        the sending context runtime codebase.
      * @return the value read from the stream.
      **/
-    java.io.Serializable readValue(org.omg.CORBA.portable.InputStream in,
-            int offset, java.lang.Class clz, String repositoryID,
-            org.omg.SendingContext.RunTime sender);
+    java.io.Serializable readValue(org.omg.CORBA.portable.InputStream in, int offset, java.lang.Class clz,
+            String repositoryID, org.omg.SendingContext.RunTime sender);
 
     /**
      * Returns the CORBA RepositoryId for the given Java class.
      * 
      * @param clz
-     *            a Java class.
+     *        a Java class.
      * @return the CORBA RepositoryId for the class.
      **/
     java.lang.String getRMIRepositoryID(java.lang.Class clz);
@@ -59,7 +57,7 @@ public interface ValueHandler {
      * Indicates whether the given class performs custom or default marshaling.
      * 
      * @param clz
-     *            the class to test for custom marshaling.
+     *        the class to test for custom marshaling.
      * @return <code>true</code> if the class performs custom marshaling,
      *         <code>false</code> if it does not.
      **/
@@ -80,7 +78,7 @@ public interface ValueHandler {
      * is returned. Otherwise, the value itself is returned.
      * 
      * @param value
-     *              the value to be marshaled.
+     *        the value to be marshaled.
      * @return the true value to marshal on the wire.
      **/
     java.io.Serializable writeReplace(java.io.Serializable value);

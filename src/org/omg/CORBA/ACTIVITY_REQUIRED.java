@@ -31,7 +31,7 @@ public final class ACTIVITY_REQUIRED extends SystemException {
      * message.
      *
      * @param detailMessage
-     *                      string containing a detailed message.
+     *        string containing a detailed message.
      */
     public ACTIVITY_REQUIRED(String detailMessage) {
         this(detailMessage, 0, CompletionStatus.COMPLETED_NO);
@@ -42,9 +42,9 @@ public final class ACTIVITY_REQUIRED extends SystemException {
      * minor code and completion status.
      *
      * @param minorCode
-     *                         minor code.
+     *        minor code.
      * @param completionStatus
-     *                         completion status.
+     *        completion status.
      */
     public ACTIVITY_REQUIRED(int minorCode, CompletionStatus completionStatus) {
         this("", minorCode, completionStatus);
@@ -55,14 +55,13 @@ public final class ACTIVITY_REQUIRED extends SystemException {
      * message, minor code, and completion status.
      *
      * @param detailMessage
-     *                         string containing a detailed message.
+     *        string containing a detailed message.
      * @param minorCode
-     *                         minor code.
+     *        minor code.
      * @param completionStatus
-     *                         completion status.
+     *        completion status.
      */
-    public ACTIVITY_REQUIRED(String detailMessage, int minorCode,
-            CompletionStatus completionStatus) {
+    public ACTIVITY_REQUIRED(String detailMessage, int minorCode, CompletionStatus completionStatus) {
         super(detailMessage, minorCode, completionStatus);
     }
 }

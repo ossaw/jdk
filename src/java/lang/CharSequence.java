@@ -20,7 +20,6 @@ import java.util.stream.StreamSupport;
  * in the <i>Basic Multilingual Plane (BMP)</i> or a surrogate. Refer to
  * <a href="Character.html#unicode">Unicode Character Representation</a> for
  * details.
- *
  * <p>
  * This interface does not refine the general contracts of the
  * {@link java.lang.Object#equals(java.lang.Object) equals} and
@@ -53,21 +52,18 @@ public interface CharSequence {
      * ranges from zero to <tt>length() - 1</tt>. The first <code>char</code>
      * value of the sequence is at index zero, the next at index one, and so on,
      * as for array indexing.
-     *
      * <p>
      * If the <code>char</code> value specified by the index is a <a href=
      * "{@docRoot}/java/lang/Character.html#unicode">surrogate</a>, the
      * surrogate value is returned.
      *
      * @param index
-     *              the index of the <code>char</code> value to be returned
-     *
+     *        the index of the <code>char</code> value to be returned
      * @return the specified <code>char</code> value
-     *
      * @throws IndexOutOfBoundsException
-     *                                   if the <tt>index</tt> argument is
-     *                                   negative or not less than
-     *                                   <tt>length()</tt>
+     *         if the <tt>index</tt> argument is
+     *         negative or not less than
+     *         <tt>length()</tt>
      */
     char charAt(int index);
 
@@ -80,19 +76,17 @@ public interface CharSequence {
      * empty sequence is returned.
      *
      * @param start
-     *              the start index, inclusive
+     *        the start index, inclusive
      * @param end
-     *              the end index, exclusive
-     *
+     *        the end index, exclusive
      * @return the specified subsequence
-     *
      * @throws IndexOutOfBoundsException
-     *                                   if <tt>start</tt> or <tt>end</tt> are
-     *                                   negative, if
-     *                                   <tt>end</tt> is greater than
-     *                                   <tt>length()</tt>, or if
-     *                                   <tt>start</tt> is greater than
-     *                                   <tt>end</tt>
+     *         if <tt>start</tt> or <tt>end</tt> are
+     *         negative, if
+     *         <tt>end</tt> is greater than
+     *         <tt>length()</tt>, or if
+     *         <tt>start</tt> is greater than
+     *         <tt>end</tt>
      */
     CharSequence subSequence(int start, int end);
 
@@ -110,7 +104,6 @@ public interface CharSequence {
      * from this sequence. Any char which maps to a <a href=
      * "{@docRoot}/java/lang/Character.html#unicode">surrogate code point</a> is
      * passed through uninterpreted.
-     *
      * <p>
      * If the sequence is mutated while the stream is being read, the result is
      * undefined.
@@ -142,10 +135,8 @@ public interface CharSequence {
             }
         }
 
-        return StreamSupport.intStream(() -> Spliterators.spliterator(
-                new CharIterator(), length(), Spliterator.ORDERED),
-                Spliterator.SUBSIZED | Spliterator.SIZED | Spliterator.ORDERED,
-                false);
+        return StreamSupport.intStream(() -> Spliterators.spliterator(new CharIterator(), length(),
+                Spliterator.ORDERED), Spliterator.SUBSIZED | Spliterator.SIZED | Spliterator.ORDERED, false);
     }
 
     /**
@@ -155,7 +146,6 @@ public interface CharSequence {
      * is passed to the stream. Any other code units, including ordinary BMP
      * characters, unpaired surrogates, and undefined code units, are
      * zero-extended to {@code int} values which are then passed to the stream.
-     *
      * <p>
      * If the sequence is mutated while the stream is being read, the result is
      * undefined.
@@ -213,8 +203,7 @@ public interface CharSequence {
             }
         }
 
-        return StreamSupport.intStream(() -> Spliterators
-                .spliteratorUnknownSize(new CodePointIterator(),
-                        Spliterator.ORDERED), Spliterator.ORDERED, false);
+        return StreamSupport.intStream(() -> Spliterators.spliteratorUnknownSize(new CodePointIterator(),
+                Spliterator.ORDERED), Spliterator.ORDERED, false);
     }
 }

@@ -115,14 +115,12 @@ public class ClassLogger {
 
     public final void finest(String func, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.FINEST, className, func, t
-                    .toString(), t);
+            logger.logp(java.util.logging.Level.FINEST, className, func, t.toString(), t);
     }
 
     public final void finest(String func, String msg, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.FINEST, className, func, msg,
-                    t);
+            logger.logp(java.util.logging.Level.FINEST, className, func, msg, t);
     }
 
     public final void finer(String func, String msg) {
@@ -132,8 +130,7 @@ public class ClassLogger {
 
     public final void finer(String func, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.FINER, className, func, t
-                    .toString(), t);
+            logger.logp(java.util.logging.Level.FINER, className, func, t.toString(), t);
     }
 
     public final void finer(String func, String msg, Throwable t) {
@@ -148,8 +145,7 @@ public class ClassLogger {
 
     public final void fine(String func, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.FINE, className, func, t
-                    .toString(), t);
+            logger.logp(java.util.logging.Level.FINE, className, func, t.toString(), t);
     }
 
     public final void fine(String func, String msg, Throwable t) {
@@ -164,14 +160,12 @@ public class ClassLogger {
 
     public final void config(String func, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.CONFIG, className, func, t
-                    .toString(), t);
+            logger.logp(java.util.logging.Level.CONFIG, className, func, t.toString(), t);
     }
 
     public final void config(String func, String msg, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.CONFIG, className, func, msg,
-                    t);
+            logger.logp(java.util.logging.Level.CONFIG, className, func, msg, t);
     }
 
     public final void info(String func, String msg) {
@@ -181,8 +175,7 @@ public class ClassLogger {
 
     public final void info(String func, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.INFO, className, func, t
-                    .toString(), t);
+            logger.logp(java.util.logging.Level.INFO, className, func, t.toString(), t);
     }
 
     public final void info(String func, String msg, Throwable t) {
@@ -197,14 +190,12 @@ public class ClassLogger {
 
     public final void warning(String func, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.WARNING, className, func, t
-                    .toString(), t);
+            logger.logp(java.util.logging.Level.WARNING, className, func, t.toString(), t);
     }
 
     public final void warning(String func, String msg, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.WARNING, className, func, msg,
-                    t);
+            logger.logp(java.util.logging.Level.WARNING, className, func, msg, t);
     }
 
     public final void severe(String func, String msg) {
@@ -214,13 +205,11 @@ public class ClassLogger {
 
     public final void severe(String func, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.SEVERE, className, func, t
-                    .toString(), t);
+            logger.logp(java.util.logging.Level.SEVERE, className, func, t.toString(), t);
     }
 
     public final void severe(String func, String msg, Throwable t) {
         if (ok)
-            logger.logp(java.util.logging.Level.SEVERE, className, func, msg,
-                    t);
+            logger.logp(java.util.logging.Level.SEVERE, className, func, msg, t);
     }
 }

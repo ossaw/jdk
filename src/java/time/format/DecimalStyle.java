@@ -46,7 +46,6 @@ import java.util.concurrent.ConcurrentMap;
  * class acts as a central point for accessing the information.
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
 public final class DecimalStyle {
@@ -57,13 +56,11 @@ public final class DecimalStyle {
      * This uses standard ASCII characters for zero, positive, negative and a
      * dot for the decimal point.
      */
-    public static final DecimalStyle STANDARD = new DecimalStyle('0', '+', '-',
-            '.');
+    public static final DecimalStyle STANDARD = new DecimalStyle('0', '+', '-', '.');
     /**
      * The cache of DecimalStyle instances.
      */
-    private static final ConcurrentMap<Locale, DecimalStyle> CACHE = new ConcurrentHashMap<>(
-            16, 0.75f, 2);
+    private static final ConcurrentMap<Locale, DecimalStyle> CACHE = new ConcurrentHashMap<>(16, 0.75f, 2);
 
     /**
      * The zero digit.
@@ -119,7 +116,7 @@ public final class DecimalStyle {
      * This method provides access to locale sensitive decimal style symbols.
      *
      * @param locale
-     *               the locale, not null
+     *        the locale, not null
      * @return the decimal style, not null
      */
     public static DecimalStyle of(Locale locale) {
@@ -134,18 +131,15 @@ public final class DecimalStyle {
     }
 
     private static DecimalStyle create(Locale locale) {
-        DecimalFormatSymbols oldSymbols = DecimalFormatSymbols.getInstance(
-                locale);
+        DecimalFormatSymbols oldSymbols = DecimalFormatSymbols.getInstance(locale);
         char zeroDigit = oldSymbols.getZeroDigit();
         char positiveSign = '+';
         char negativeSign = oldSymbols.getMinusSign();
         char decimalSeparator = oldSymbols.getDecimalSeparator();
-        if (zeroDigit == '0' && negativeSign == '-'
-                && decimalSeparator == '.') {
+        if (zeroDigit == '0' && negativeSign == '-' && decimalSeparator == '.') {
             return STANDARD;
         }
-        return new DecimalStyle(zeroDigit, positiveSign, negativeSign,
-                decimalSeparator);
+        return new DecimalStyle(zeroDigit, positiveSign, negativeSign, decimalSeparator);
     }
 
     // -----------------------------------------------------------------------
@@ -153,16 +147,15 @@ public final class DecimalStyle {
      * Restricted constructor.
      *
      * @param zeroChar
-     *                         the character to use for the digit of zero
+     *        the character to use for the digit of zero
      * @param positiveSignChar
-     *                         the character to use for the positive sign
+     *        the character to use for the positive sign
      * @param negativeSignChar
-     *                         the character to use for the negative sign
+     *        the character to use for the negative sign
      * @param decimalPointChar
-     *                         the character to use for the decimal point
+     *        the character to use for the decimal point
      */
-    private DecimalStyle(char zeroChar, char positiveSignChar,
-            char negativeSignChar, char decimalPointChar) {
+    private DecimalStyle(char zeroChar, char positiveSignChar, char negativeSignChar, char decimalPointChar) {
         this.zeroDigit = zeroChar;
         this.positiveSign = positiveSignChar;
         this.negativeSign = negativeSignChar;
@@ -191,16 +184,14 @@ public final class DecimalStyle {
      * to nine.
      *
      * @param zeroDigit
-     *                  the character for zero
+     *        the character for zero
      * @return a copy with a new character that represents zero, not null
-     * 
      */
     public DecimalStyle withZeroDigit(char zeroDigit) {
         if (zeroDigit == this.zeroDigit) {
             return this;
         }
-        return new DecimalStyle(zeroDigit, positiveSign, negativeSign,
-                decimalSeparator);
+        return new DecimalStyle(zeroDigit, positiveSign, negativeSign, decimalSeparator);
     }
 
     // -----------------------------------------------------------------------
@@ -224,7 +215,7 @@ public final class DecimalStyle {
      * This method specifies the character to use.
      *
      * @param positiveSign
-     *                     the character for the positive sign
+     *        the character for the positive sign
      * @return a copy with a new character that represents the positive sign,
      *         not null
      */
@@ -232,8 +223,7 @@ public final class DecimalStyle {
         if (positiveSign == this.positiveSign) {
             return this;
         }
-        return new DecimalStyle(zeroDigit, positiveSign, negativeSign,
-                decimalSeparator);
+        return new DecimalStyle(zeroDigit, positiveSign, negativeSign, decimalSeparator);
     }
 
     // -----------------------------------------------------------------------
@@ -257,7 +247,7 @@ public final class DecimalStyle {
      * This method specifies the character to use.
      *
      * @param negativeSign
-     *                     the character for the negative sign
+     *        the character for the negative sign
      * @return a copy with a new character that represents the negative sign,
      *         not null
      */
@@ -265,8 +255,7 @@ public final class DecimalStyle {
         if (negativeSign == this.negativeSign) {
             return this;
         }
-        return new DecimalStyle(zeroDigit, positiveSign, negativeSign,
-                decimalSeparator);
+        return new DecimalStyle(zeroDigit, positiveSign, negativeSign, decimalSeparator);
     }
 
     // -----------------------------------------------------------------------
@@ -290,7 +279,7 @@ public final class DecimalStyle {
      * method specifies the character to use.
      *
      * @param decimalSeparator
-     *                         the character for the decimal point
+     *        the character for the decimal point
      * @return a copy with a new character that represents the decimal point,
      *         not null
      */
@@ -298,8 +287,7 @@ public final class DecimalStyle {
         if (decimalSeparator == this.decimalSeparator) {
             return this;
         }
-        return new DecimalStyle(zeroDigit, positiveSign, negativeSign,
-                decimalSeparator);
+        return new DecimalStyle(zeroDigit, positiveSign, negativeSign, decimalSeparator);
     }
 
     // -----------------------------------------------------------------------
@@ -308,7 +296,7 @@ public final class DecimalStyle {
      * character.
      *
      * @param ch
-     *           the character to check
+     *        the character to check
      * @return the value, 0 to 9, of the character, or -1 if not a digit
      */
     int convertToDigit(char ch) {
@@ -321,8 +309,8 @@ public final class DecimalStyle {
      * zero character.
      *
      * @param numericText
-     *                    the text, consisting of digits 0 to 9, to convert, not
-     *                    null
+     *        the text, consisting of digits 0 to 9, to convert, not
+     *        null
      * @return the internationalized text, not null
      */
     String convertNumberToI18N(String numericText) {
@@ -342,7 +330,7 @@ public final class DecimalStyle {
      * Checks if this DecimalStyle is equal to another DecimalStyle.
      *
      * @param obj
-     *            the object to check, null returns false
+     *        the object to check, null returns false
      * @return true if this is equal to the other date
      */
     @Override
@@ -352,10 +340,8 @@ public final class DecimalStyle {
         }
         if (obj instanceof DecimalStyle) {
             DecimalStyle other = (DecimalStyle) obj;
-            return (zeroDigit == other.zeroDigit
-                    && positiveSign == other.positiveSign
-                    && negativeSign == other.negativeSign
-                    && decimalSeparator == other.decimalSeparator);
+            return (zeroDigit == other.zeroDigit && positiveSign == other.positiveSign
+                    && negativeSign == other.negativeSign && decimalSeparator == other.decimalSeparator);
         }
         return false;
     }
@@ -378,8 +364,7 @@ public final class DecimalStyle {
      */
     @Override
     public String toString() {
-        return "DecimalStyle[" + zeroDigit + positiveSign + negativeSign
-                + decimalSeparator + "]";
+        return "DecimalStyle[" + zeroDigit + positiveSign + negativeSign + decimalSeparator + "]";
     }
 
 }

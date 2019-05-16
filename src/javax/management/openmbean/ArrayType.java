@@ -19,15 +19,13 @@ import java.lang.reflect.Array;
  * {
  *     &#64;code
  *     // 2-dimension array of java.lang.String
- *     ArrayType<String[][]> a1 = new ArrayType<String[][]>(2,
- *             SimpleType.STRING);
+ *     ArrayType<String[][]> a1 = new ArrayType<String[][]>(2, SimpleType.STRING);
  *
  *     // 1-dimension array of int
  *     ArrayType<int[]> a2 = new ArrayType<int[]>(SimpleType.INTEGER, true);
  *
  *     // 1-dimension array of java.lang.Integer
- *     ArrayType<Integer[]> a3 = new ArrayType<Integer[]>(SimpleType.INTEGER,
- *             false);
+ *     ArrayType<Integer[]> a3 = new ArrayType<Integer[]>(SimpleType.INTEGER, false);
  *
  *     // 4-dimension array of int
  *     ArrayType<int[][][][]> a4 = new ArrayType<int[][][][]>(3, a2);
@@ -36,8 +34,7 @@ import java.lang.reflect.Array;
  *     ArrayType<Integer[][][][]> a5 = new ArrayType<Integer[][][][]>(3, a3);
  *
  *     // 1-dimension array of java.lang.String
- *     ArrayType<String[]> a6 = new ArrayType<String[]>(SimpleType.STRING,
- *             false);
+ *     ArrayType<String[]> a6 = new ArrayType<String[]>(SimpleType.STRING, false);
  *
  *     // 1-dimension array of long
  *     ArrayType<long[]> a7 = new ArrayType<long[]>(SimpleType.LONG, true);
@@ -61,15 +58,13 @@ import java.lang.reflect.Array;
  *     ArrayType<float[][]> a13 = ArrayType.getArrayType(a12);
  *
  *     // 1-dimension array of javax.management.ObjectName
- *     ArrayType<ObjectName[]> a14 = ArrayType.getArrayType(
- *             SimpleType.OBJECTNAME);
+ *     ArrayType<ObjectName[]> a14 = ArrayType.getArrayType(SimpleType.OBJECTNAME);
  *
  *     // 2-dimension array of javax.management.ObjectName
  *     ArrayType<ObjectName[][]> a15 = ArrayType.getArrayType(a14);
  *
  *     // 3-dimension array of java.lang.String
- *     ArrayType<String[][][]> a16 = new ArrayType<String[][][]>(3,
- *             SimpleType.STRING);
+ *     ArrayType<String[][][]> a16 = new ArrayType<String[][][]>(3, SimpleType.STRING);
  *
  *     // 1-dimension array of java.lang.String
  *     ArrayType<String[]> a17 = new ArrayType<String[]>(1, SimpleType.STRING);
@@ -81,7 +76,6 @@ import java.lang.reflect.Array;
  *     ArrayType<String[][][]> a19 = new ArrayType<String[][][]>(1, a18);
  * }
  * </pre>
- *
  *
  * @since 1.5
  */
@@ -117,7 +111,6 @@ public class ArrayType<T> extends OpenType<T> {
     /**
      * @serial This flag indicates whether this {@link ArrayType} describes a
      *         primitive array.
-     *
      * @since 1.6
      */
     private boolean primitiveArray;
@@ -133,26 +126,17 @@ public class ArrayType<T> extends OpenType<T> {
     private static final int PRIMITIVE_TYPE_KEY_INDEX = 2;
     private static final int PRIMITIVE_OPEN_TYPE_INDEX = 3;
 
-    private static final Object[][] PRIMITIVE_ARRAY_TYPES = { { Boolean.class
-            .getName(), boolean.class.getName(), "Z", SimpleType.BOOLEAN }, {
-                    Character.class.getName(), char.class.getName(), "C",
-                    SimpleType.CHARACTER }, { Byte.class.getName(), byte.class
-                            .getName(), "B", SimpleType.BYTE }, { Short.class
-                                    .getName(), short.class.getName(), "S",
-                                    SimpleType.SHORT }, { Integer.class
-                                            .getName(), int.class.getName(),
-                                            "I", SimpleType.INTEGER }, {
-                                                    Long.class.getName(),
-                                                    long.class.getName(), "J",
-                                                    SimpleType.LONG }, {
-                                                            Float.class
-                                                                    .getName(),
-                                                            float.class
-                                                                    .getName(),
-                                                            "F",
-                                                            SimpleType.FLOAT },
-            { Double.class.getName(), double.class.getName(), "D",
-                    SimpleType.DOUBLE } };
+    private static final Object[][] PRIMITIVE_ARRAY_TYPES = { { Boolean.class.getName(), boolean.class
+            .getName(), "Z", SimpleType.BOOLEAN }, { Character.class.getName(), char.class.getName(), "C",
+                    SimpleType.CHARACTER }, { Byte.class.getName(), byte.class.getName(), "B",
+                            SimpleType.BYTE }, { Short.class.getName(), short.class.getName(), "S",
+                                    SimpleType.SHORT }, { Integer.class.getName(), int.class.getName(), "I",
+                                            SimpleType.INTEGER }, { Long.class.getName(), long.class
+                                                    .getName(), "J", SimpleType.LONG }, { Float.class
+                                                            .getName(), float.class.getName(), "F",
+                                                            SimpleType.FLOAT }, { Double.class.getName(),
+                                                                    double.class.getName(), "D",
+                                                                    SimpleType.DOUBLE } };
 
     static boolean isPrimitiveContentType(final String primitiveKey) {
         for (Object[] typeDescr : PRIMITIVE_ARRAY_TYPES) {
@@ -168,17 +152,16 @@ public class ArrayType<T> extends OpenType<T> {
      * boolean, "C" for char etc...
      * 
      * @param elementClassName
-     *                         the wrapper class name of the array element
-     *                         ("Boolean",
-     *                         "Character", etc...)
+     *        the wrapper class name of the array element
+     *        ("Boolean",
+     *        "Character", etc...)
      * @return the key corresponding to the given type ("Z", "C", etc...) return
      *         null if the given elementClassName is not a primitive wrapper
      *         class name.
      **/
     static String getPrimitiveTypeKey(String elementClassName) {
         for (Object[] typeDescr : PRIMITIVE_ARRAY_TYPES) {
-            if (elementClassName.equals(
-                    typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]))
+            if (elementClassName.equals(typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]))
                 return (String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX];
         }
         return null;
@@ -189,16 +172,15 @@ public class ArrayType<T> extends OpenType<T> {
      * e.g. "boolean" for "Boolean", "char" for "Character" etc...
      * 
      * @param elementClassName
-     *                         the type of the array element ("Boolean",
-     *                         "Character", etc...)
+     *        the type of the array element ("Boolean",
+     *        "Character", etc...)
      * @return the primitive type name corresponding to the given wrapper class
      *         ("boolean", "char", etc...) return null if the given
      *         elementClassName is not a primitive wrapper type name.
      **/
     static String getPrimitiveTypeName(String elementClassName) {
         for (Object[] typeDescr : PRIMITIVE_ARRAY_TYPES) {
-            if (elementClassName.equals(
-                    typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]))
+            if (elementClassName.equals(typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]))
                 return (String) typeDescr[PRIMITIVE_TYPE_NAME_INDEX];
         }
         return null;
@@ -210,9 +192,9 @@ public class ArrayType<T> extends OpenType<T> {
      * etc...
      * 
      * @param primitiveTypeName
-     *                          the primitive type of the array element
-     *                          ("boolean", "char",
-     *                          etc...)
+     *        the primitive type of the array element
+     *        ("boolean", "char",
+     *        etc...)
      * @return the OpenType corresponding to the given primitive type name
      *         (SimpleType.BOOLEAN, SimpleType.CHARACTER, etc...) return null if
      *         the given elementClassName is not a primitive type name.
@@ -261,11 +243,9 @@ public class ArrayType<T> extends OpenType<T> {
      * <pre>
      * {
      *     &#64;code
-     *     ArrayType<String[][][]> t = new ArrayType<String[][][]>(3,
-     *             SimpleType.STRING);
+     *     ArrayType<String[][][]> t = new ArrayType<String[][][]>(3, SimpleType.STRING);
      *     System.out.println("array class name       = " + t.getClassName());
-     *     System.out.println("element class name     = " + t.getElementOpenType()
-     *             .getClassName());
+     *     System.out.println("element class name     = " + t.getElementOpenType().getClassName());
      *     System.out.println("array type name        = " + t.getTypeName());
      *     System.out.println("array type description = " + t.getDescription());
      * }
@@ -292,46 +272,41 @@ public class ArrayType<T> extends OpenType<T> {
      *     ArrayType<String[][]> t2 = new ArrayType<String[][]>(1, t1);
      *     ArrayType<String[][][]> t3 = new ArrayType<String[][][]>(1, t2);
      *     System.out.println("array class name       = " + t3.getClassName());
-     *     System.out.println("element class name     = " + t3.getElementOpenType()
-     *             .getClassName());
+     *     System.out.println("element class name     = " + t3.getElementOpenType().getClassName());
      *     System.out.println("array type name        = " + t3.getTypeName());
      *     System.out.println("array type description = " + t3.getDescription());
      * }
      * </pre>
      *
      * @param dimension
-     *                    the dimension of arrays described by this
-     *                    <tt>ArrayType</tt>
-     *                    instance; must be greater than or equal to 1.
-     *
+     *        the dimension of arrays described by this
+     *        <tt>ArrayType</tt>
+     *        instance; must be greater than or equal to 1.
      * @param elementType
-     *                    the <i>open type</i> of element values contained in
-     *                    the arrays
-     *                    described by this <tt>ArrayType</tt> instance; must be
-     *                    an
-     *                    instance of either <tt>SimpleType</tt>,
-     *                    <tt>CompositeType</tt>
-     *                    , <tt>TabularType</tt> or another <tt>ArrayType</tt>
-     *                    with a
-     *                    <tt>SimpleType</tt>, <tt>CompositeType</tt> or
-     *                    <tt>TabularType</tt> as its <tt>elementType</tt>.
-     *
+     *        the <i>open type</i> of element values contained in
+     *        the arrays
+     *        described by this <tt>ArrayType</tt> instance; must be
+     *        an
+     *        instance of either <tt>SimpleType</tt>,
+     *        <tt>CompositeType</tt>
+     *        , <tt>TabularType</tt> or another <tt>ArrayType</tt>
+     *        with a
+     *        <tt>SimpleType</tt>, <tt>CompositeType</tt> or
+     *        <tt>TabularType</tt> as its <tt>elementType</tt>.
      * @throws IllegalArgumentException
-     *                                  if {@code dimension} is not a positive
-     *                                  integer.
+     *         if {@code dimension} is not a positive
+     *         integer.
      * @throws OpenDataException
-     *                                  if <var>elementType's className</var> is
-     *                                  not one of the
-     *                                  allowed Java class names for open data.
+     *         if <var>elementType's className</var> is
+     *         not one of the
+     *         allowed Java class names for open data.
      */
-    public ArrayType(int dimension, OpenType<?> elementType)
-            throws OpenDataException {
+    public ArrayType(int dimension, OpenType<?> elementType) throws OpenDataException {
         // Check and construct state defined by parent.
         // We can't use the package-private OpenType constructor because
         // we don't know if the elementType parameter is sane.
-        super(buildArrayClassName(dimension, elementType), buildArrayClassName(
-                dimension, elementType), buildArrayDescription(dimension,
-                        elementType));
+        super(buildArrayClassName(dimension, elementType), buildArrayClassName(dimension, elementType),
+                buildArrayDescription(dimension, elementType));
 
         // Check and construct state specific to ArrayType
         //
@@ -388,8 +363,7 @@ public class ArrayType<T> extends OpenType<T> {
      *     &#64;code
      *     ArrayType<int[]> t = new ArrayType<int[]>(SimpleType.INTEGER, true);
      *     System.out.println("array class name       = " + t.getClassName());
-     *     System.out.println("element class name     = " + t.getElementOpenType()
-     *             .getClassName());
+     *     System.out.println("element class name     = " + t.getElementOpenType().getClassName());
      *     System.out.println("array type name        = " + t.getTypeName());
      *     System.out.println("array type description = " + t.getDescription());
      * }
@@ -407,36 +381,31 @@ public class ArrayType<T> extends OpenType<T> {
      * </pre>
      *
      * @param elementType
-     *                       the {@code SimpleType} of the element values
-     *                       contained in the
-     *                       arrays described by this {@code ArrayType}
-     *                       instance.
-     *
+     *        the {@code SimpleType} of the element values
+     *        contained in the
+     *        arrays described by this {@code ArrayType}
+     *        instance.
      * @param primitiveArray
-     *                       {@code true} when this array describes primitive
-     *                       arrays.
-     *
+     *        {@code true} when this array describes primitive
+     *        arrays.
      * @throws IllegalArgumentException
-     *                                  if {@code dimension} is not a positive
-     *                                  integer.
+     *         if {@code dimension} is not a positive
+     *         integer.
      * @throws OpenDataException
-     *                                  if {@code primitiveArray} is
-     *                                  {@code true} and
-     *                                  {@code elementType} is not a valid
-     *                                  {@code SimpleType} for a
-     *                                  primitive type.
-     *
+     *         if {@code primitiveArray} is
+     *         {@code true} and
+     *         {@code elementType} is not a valid
+     *         {@code SimpleType} for a
+     *         primitive type.
      * @since 1.6
      */
-    public ArrayType(SimpleType<?> elementType, boolean primitiveArray)
-            throws OpenDataException {
+    public ArrayType(SimpleType<?> elementType, boolean primitiveArray) throws OpenDataException {
 
         // Check and construct state defined by parent.
         // We can call the package-private OpenType constructor because the
         // set of SimpleTypes is fixed and SimpleType can't be subclassed.
-        super(buildArrayClassName(1, elementType, primitiveArray),
-                buildArrayClassName(1, elementType, primitiveArray),
-                buildArrayDescription(1, elementType, primitiveArray), true);
+        super(buildArrayClassName(1, elementType, primitiveArray), buildArrayClassName(1, elementType,
+                primitiveArray), buildArrayDescription(1, elementType, primitiveArray), true);
 
         // Check and construct state specific to ArrayType
         //
@@ -446,16 +415,16 @@ public class ArrayType<T> extends OpenType<T> {
     }
 
     /* Package-private constructor for callers we trust to get it right. */
-    ArrayType(String className, String typeName, String description,
-            int dimension, OpenType<?> elementType, boolean primitiveArray) {
+    ArrayType(String className, String typeName, String description, int dimension, OpenType<?> elementType,
+            boolean primitiveArray) {
         super(className, typeName, description, true);
         this.dimension = dimension;
         this.elementType = elementType;
         this.primitiveArray = primitiveArray;
     }
 
-    private static String buildArrayClassName(int dimension,
-            OpenType<?> elementType) throws OpenDataException {
+    private static String buildArrayClassName(int dimension, OpenType<?> elementType)
+            throws OpenDataException {
         boolean isPrimitiveArray = false;
         if (elementType.isArray()) {
             isPrimitiveArray = ((ArrayType<?>) elementType).isPrimitiveArray();
@@ -463,12 +432,10 @@ public class ArrayType<T> extends OpenType<T> {
         return buildArrayClassName(dimension, elementType, isPrimitiveArray);
     }
 
-    private static String buildArrayClassName(int dimension,
-            OpenType<?> elementType, boolean isPrimitiveArray)
-            throws OpenDataException {
+    private static String buildArrayClassName(int dimension, OpenType<?> elementType,
+            boolean isPrimitiveArray) throws OpenDataException {
         if (dimension < 1) {
-            throw new IllegalArgumentException(
-                    "Value of argument dimension must be greater than 0");
+            throw new IllegalArgumentException("Value of argument dimension must be greater than 0");
         }
         StringBuilder result = new StringBuilder();
         String elementClassName = elementType.getClassName();
@@ -486,9 +453,7 @@ public class ArrayType<T> extends OpenType<T> {
                 // (used to be thrown by OpenType() constructor).
                 //
                 if (key == null)
-                    throw new OpenDataException(
-                            "Element type is not primitive: "
-                                    + elementClassName);
+                    throw new OpenDataException("Element type is not primitive: " + elementClassName);
                 result.append(key);
             } else {
                 result.append("L");
@@ -499,8 +464,8 @@ public class ArrayType<T> extends OpenType<T> {
         return result.toString();
     }
 
-    private static String buildArrayDescription(int dimension,
-            OpenType<?> elementType) throws OpenDataException {
+    private static String buildArrayDescription(int dimension, OpenType<?> elementType)
+            throws OpenDataException {
         boolean isPrimitiveArray = false;
         if (elementType.isArray()) {
             isPrimitiveArray = ((ArrayType<?>) elementType).isPrimitiveArray();
@@ -508,17 +473,15 @@ public class ArrayType<T> extends OpenType<T> {
         return buildArrayDescription(dimension, elementType, isPrimitiveArray);
     }
 
-    private static String buildArrayDescription(int dimension,
-            OpenType<?> elementType, boolean isPrimitiveArray)
-            throws OpenDataException {
+    private static String buildArrayDescription(int dimension, OpenType<?> elementType,
+            boolean isPrimitiveArray) throws OpenDataException {
         if (elementType.isArray()) {
             ArrayType<?> at = (ArrayType<?>) elementType;
             dimension += at.getDimension();
             elementType = at.getElementOpenType();
             isPrimitiveArray = at.isPrimitiveArray();
         }
-        StringBuilder result = new StringBuilder(dimension
-                + "-dimension array of ");
+        StringBuilder result = new StringBuilder(dimension + "-dimension array of ");
         final String elementClassName = elementType.getClassName();
         if (isPrimitiveArray) {
             // Convert from wrapper type to primitive type
@@ -529,8 +492,7 @@ public class ArrayType<T> extends OpenType<T> {
             // (used to be thrown by OpenType() constructor).
             //
             if (primitiveType == null)
-                throw new OpenDataException("Element is not a primitive type: "
-                        + elementClassName);
+                throw new OpenDataException("Element is not a primitive type: " + elementClassName);
             result.append(primitiveType);
         } else {
             result.append(elementClassName);
@@ -567,7 +529,6 @@ public class ArrayType<T> extends OpenType<T> {
      * describes are primitive arrays, <code>false</code> otherwise.
      *
      * @return true if this is a primitive array type.
-     *
      * @since 1.6
      */
     public boolean isPrimitiveArray() {
@@ -582,7 +543,6 @@ public class ArrayType<T> extends OpenType<T> {
      * This method returns <code>true</code> if and only if <var>obj</var> is
      * not null, <var>obj</var> is an array and any one of the following is
      * <tt>true</tt>:
-     *
      * <ul>
      * <li>if this <code>ArrayType</code> instance describes an array of
      * <tt>SimpleType</tt> elements or their corresponding primitive types,
@@ -600,8 +560,7 @@ public class ArrayType<T> extends OpenType<T> {
      * </ul>
      *
      * @param obj
-     *            the object to be tested.
-     *
+     *        the object to be tested.
      * @return <code>true</code> if <var>obj</var> is a value for this
      *         <code>ArrayType</code> instance.
      */
@@ -649,17 +608,13 @@ public class ArrayType<T> extends OpenType<T> {
         // [Class.forName("[Lpackage.CompositeData;").isAssignableFrom(Class.forName("[Lpackage.CompositeDataImpl;)"));
         // ]
         //
-        if ((this.elementType.getClassName().equals(TabularData.class
-                .getName())) || (this.elementType.getClassName().equals(
-                        CompositeData.class.getName()))) {
+        if ((this.elementType.getClassName().equals(TabularData.class.getName())) || (this.elementType
+                .getClassName().equals(CompositeData.class.getName()))) {
 
-            boolean isTabular = (elementType.getClassName().equals(
-                    TabularData.class.getName()));
+            boolean isTabular = (elementType.getClassName().equals(TabularData.class.getName()));
             int[] dims = new int[getDimension()];
-            Class<?> elementClass = isTabular ? TabularData.class
-                    : CompositeData.class;
-            Class<?> targetClass = Array.newInstance(elementClass, dims)
-                    .getClass();
+            Class<?> elementClass = isTabular ? TabularData.class : CompositeData.class;
+            Class<?> targetClass = Array.newInstance(elementClass, dims).getClass();
 
             // assignment check: return false if negative
             if (!targetClass.isAssignableFrom(objClass)) {
@@ -689,7 +644,6 @@ public class ArrayType<T> extends OpenType<T> {
      * x_dim_Array of dimension dim are valid values (ie either null or of the
      * right openType) for the element open type specified by this ArrayType
      * instance.
-     *
      * This method's implementation uses recursion to go down the dimensions of
      * the array argument.
      */
@@ -709,8 +663,7 @@ public class ArrayType<T> extends OpenType<T> {
         // either null or of the right openType
         else {
             for (int i = 0; i < x_dim_Array.length; i++) {
-                if ((x_dim_Array[i] != null) && (!this.getElementOpenType()
-                        .isValue(x_dim_Array[i]))) {
+                if ((x_dim_Array[i] != null) && (!this.getElementOpenType().isValue(x_dim_Array[i]))) {
                     return false;
                 }
             }
@@ -723,10 +676,8 @@ public class ArrayType<T> extends OpenType<T> {
         if (!(ot instanceof ArrayType<?>))
             return false;
         ArrayType<?> at = (ArrayType<?>) ot;
-        return (at.getDimension() == getDimension() && at
-                .isPrimitiveArray() == isPrimitiveArray() && at
-                        .getElementOpenType().isAssignableFrom(
-                                getElementOpenType()));
+        return (at.getDimension() == getDimension() && at.isPrimitiveArray() == isPrimitiveArray() && at
+                .getElementOpenType().isAssignableFrom(getElementOpenType()));
     }
 
     /* *** Methods overriden from class Object *** */
@@ -740,11 +691,10 @@ public class ArrayType<T> extends OpenType<T> {
      * type and primitive array flag.
      *
      * @param obj
-     *            the object to be compared for equality with this
-     *            <code>ArrayType</code> instance; if <var>obj</var> is
-     *            <code>null</code> or is not an instance of the class
-     *            <code>ArrayType</code> this method returns <code>false</code>.
-     *
+     *        the object to be compared for equality with this
+     *        <code>ArrayType</code> instance; if <var>obj</var> is
+     *        <code>null</code> or is not an instance of the class
+     *        <code>ArrayType</code> this method returns <code>false</code>.
      * @return <code>true</code> if the specified object is equal to this
      *         <code>ArrayType</code> instance.
      */
@@ -839,9 +789,8 @@ public class ArrayType<T> extends OpenType<T> {
         // 1st call to toString())
         //
         if (myToString == null) {
-            myToString = getClass().getName() + "(name=" + getTypeName()
-                    + ",dimension=" + dimension + ",elementType=" + elementType
-                    + ",primitiveArray=" + primitiveArray + ")";
+            myToString = getClass().getName() + "(name=" + getTypeName() + ",dimension=" + dimension
+                    + ",elementType=" + elementType + ",primitiveArray=" + primitiveArray + ")";
         }
 
         // return always the same string representation for this instance
@@ -868,8 +817,7 @@ public class ArrayType<T> extends OpenType<T> {
      *     ArrayType<String[][]> t2 = ArrayType.getArrayType(t1);
      *     ArrayType<String[][][]> t3 = ArrayType.getArrayType(t2);
      *     System.out.println("array class name       = " + t3.getClassName());
-     *     System.out.println("element class name     = " + t3.getElementOpenType()
-     *             .getClassName());
+     *     System.out.println("element class name     = " + t3.getElementOpenType().getClassName());
      *     System.out.println("array type name        = " + t3.getTypeName());
      *     System.out.println("array type description = " + t3.getDescription());
      * }
@@ -887,26 +835,23 @@ public class ArrayType<T> extends OpenType<T> {
      * </pre>
      *
      * @param elementType
-     *                    the <i>open type</i> of element values contained in
-     *                    the arrays
-     *                    described by this <tt>ArrayType</tt> instance; must be
-     *                    an
-     *                    instance of either <tt>SimpleType</tt>,
-     *                    <tt>CompositeType</tt>
-     *                    , <tt>TabularType</tt> or another <tt>ArrayType</tt>
-     *                    with a
-     *                    <tt>SimpleType</tt>, <tt>CompositeType</tt> or
-     *                    <tt>TabularType</tt> as its <tt>elementType</tt>.
-     *
+     *        the <i>open type</i> of element values contained in
+     *        the arrays
+     *        described by this <tt>ArrayType</tt> instance; must be
+     *        an
+     *        instance of either <tt>SimpleType</tt>,
+     *        <tt>CompositeType</tt>
+     *        , <tt>TabularType</tt> or another <tt>ArrayType</tt>
+     *        with a
+     *        <tt>SimpleType</tt>, <tt>CompositeType</tt> or
+     *        <tt>TabularType</tt> as its <tt>elementType</tt>.
      * @throws OpenDataException
-     *                           if <var>elementType's className</var> is not
-     *                           one of the
-     *                           allowed Java class names for open data.
-     *
+     *         if <var>elementType's className</var> is not
+     *         one of the
+     *         allowed Java class names for open data.
      * @since 1.6
      */
-    public static <E> ArrayType<E[]> getArrayType(OpenType<E> elementType)
-            throws OpenDataException {
+    public static <E> ArrayType<E[]> getArrayType(OpenType<E> elementType) throws OpenDataException {
         return new ArrayType<E[]>(1, elementType);
     }
 
@@ -921,11 +866,9 @@ public class ArrayType<T> extends OpenType<T> {
      * <pre>
      * {
      *     &#64;code
-     *     ArrayType<int[][][]> t = ArrayType.getPrimitiveArrayType(
-     *             int[][][].class);
+     *     ArrayType<int[][][]> t = ArrayType.getPrimitiveArrayType(int[][][].class);
      *     System.out.println("array class name       = " + t.getClassName());
-     *     System.out.println("element class name     = " + t.getElementOpenType()
-     *             .getClassName());
+     *     System.out.println("element class name     = " + t.getElementOpenType().getClassName());
      *     System.out.println("array type name        = " + t.getTypeName());
      *     System.out.println("array type description = " + t.getDescription());
      * }
@@ -943,17 +886,15 @@ public class ArrayType<T> extends OpenType<T> {
      * </pre>
      *
      * @param arrayClass
-     *                   a primitive array class such as {@code int[].class},
-     *                   {@code boolean[][].class}, etc. The
-     *                   {@link #getElementOpenType()} method of the returned
-     *                   {@code ArrayType} returns the {@link SimpleType}
-     *                   corresponding
-     *                   to the wrapper type of the primitive type of the array.
-     *
+     *        a primitive array class such as {@code int[].class},
+     *        {@code boolean[][].class}, etc. The
+     *        {@link #getElementOpenType()} method of the returned
+     *        {@code ArrayType} returns the {@link SimpleType}
+     *        corresponding
+     *        to the wrapper type of the primitive type of the array.
      * @throws IllegalArgumentException
-     *                                  if <var>arrayClass</var> is not a
-     *                                  primitive array.
-     *
+     *         if <var>arrayClass</var> is not a
+     *         primitive array.
      * @since 1.6
      */
     @SuppressWarnings("unchecked") // can't get appropriate T for primitive
@@ -978,14 +919,12 @@ public class ArrayType<T> extends OpenType<T> {
         // Check if the array's component type is a primitive type
         //
         if (!componentType.isPrimitive()) {
-            throw new IllegalArgumentException(
-                    "component type of the array must be a primitive type");
+            throw new IllegalArgumentException("component type of the array must be a primitive type");
         }
 
         // Map component type name to corresponding SimpleType
         //
-        final SimpleType<?> simpleType = getPrimitiveOpenType(
-                componentTypeName);
+        final SimpleType<?> simpleType = getPrimitiveOpenType(componentTypeName);
 
         // Build primitive array
         //
@@ -1040,7 +979,6 @@ public class ArrayType<T> extends OpenType<T> {
      *             {@code "2-dimension array of java.lang.Integer"} will be
      *             deserialized as {@code "2-dimension array of int"}.</li>
      *             </ul>
-     *
      * @since 1.6
      */
     private Object readResolve() throws ObjectStreamException {
@@ -1056,22 +994,17 @@ public class ArrayType<T> extends OpenType<T> {
         String tn = getTypeName();
         String d = getDescription();
         for (Object[] typeDescr : PRIMITIVE_ARRAY_TYPES) {
-            if (cn.indexOf(
-                    (String) typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]) != -1) {
-                cn = cn.replaceFirst("L"
-                        + typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX] + ";",
+            if (cn.indexOf((String) typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]) != -1) {
+                cn = cn.replaceFirst("L" + typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX] + ";",
                         (String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX]);
-                tn = tn.replaceFirst("L"
-                        + typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX] + ";",
+                tn = tn.replaceFirst("L" + typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX] + ";",
                         (String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX]);
-                d = d.replaceFirst(
-                        (String) typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX],
+                d = d.replaceFirst((String) typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX],
                         (String) typeDescr[PRIMITIVE_TYPE_NAME_INDEX]);
                 break;
             }
         }
-        return new ArrayType<T>(cn, tn, d, dimension, elementType,
-                primitiveArray);
+        return new ArrayType<T>(cn, tn, d, dimension, elementType, primitiveArray);
     }
 
     /**
@@ -1112,7 +1045,6 @@ public class ArrayType<T> extends OpenType<T> {
      *             {@code "2-dimension array of int"} will be serialized as
      *             {@code "2-dimension array of java.lang.Integer"}.</li>
      *             </ul>
-     *
      * @since 1.6
      */
     private Object writeReplace() throws ObjectStreamException {
@@ -1128,23 +1060,16 @@ public class ArrayType<T> extends OpenType<T> {
         String tn = getTypeName();
         String d = getDescription();
         for (Object[] typeDescr : PRIMITIVE_ARRAY_TYPES) {
-            if (cn.indexOf(
-                    (String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX]) != -1) {
-                cn = cn.replaceFirst(
-                        (String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX], "L"
-                                + typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]
-                                + ";");
-                tn = tn.replaceFirst(
-                        (String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX], "L"
-                                + typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]
-                                + ";");
-                d = d.replaceFirst(
-                        (String) typeDescr[PRIMITIVE_TYPE_NAME_INDEX],
+            if (cn.indexOf((String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX]) != -1) {
+                cn = cn.replaceFirst((String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX], "L"
+                        + typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX] + ";");
+                tn = tn.replaceFirst((String) typeDescr[PRIMITIVE_TYPE_KEY_INDEX], "L"
+                        + typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX] + ";");
+                d = d.replaceFirst((String) typeDescr[PRIMITIVE_TYPE_NAME_INDEX],
                         (String) typeDescr[PRIMITIVE_WRAPPER_NAME_INDEX]);
                 break;
             }
         }
-        return new ArrayType<T>(cn, tn, d, dimension, elementType,
-                primitiveArray);
+        return new ArrayType<T>(cn, tn, d, dimension, elementType, primitiveArray);
     }
 }

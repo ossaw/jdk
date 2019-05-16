@@ -21,15 +21,14 @@ import java.beans.*;
  * @author Rich Schiavi
  * @since 1.7
  */
-public class SynthInternalFrameUI extends BasicInternalFrameUI implements
-        SynthUI, PropertyChangeListener {
+public class SynthInternalFrameUI extends BasicInternalFrameUI implements SynthUI, PropertyChangeListener {
     private SynthStyle style;
 
     /**
      * Creates a new UI object for the given component.
      *
      * @param b
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent b) {
@@ -86,8 +85,7 @@ public class SynthInternalFrameUI extends BasicInternalFrameUI implements
         if (style != oldStyle) {
             Icon frameIcon = frame.getFrameIcon();
             if (frameIcon == null || frameIcon instanceof UIResource) {
-                frame.setFrameIcon(context.getStyle().getIcon(context,
-                        "InternalFrame.icon"));
+                frame.setFrameIcon(context.getStyle().getIcon(context, "InternalFrame.icon"));
             }
             if (oldStyle != null) {
                 uninstallKeyboardActions();
@@ -151,8 +149,8 @@ public class SynthInternalFrameUI extends BasicInternalFrameUI implements
                         JDesktopPane desktop = (JDesktopPane) e.getSource();
                         for (Component comp : desktop.getComponents()) {
                             if (comp instanceof SynthDesktopPaneUI.TaskBar) {
-                                frame.setBounds(0, 0, desktop.getWidth(),
-                                        desktop.getHeight() - comp.getHeight());
+                                frame.setBounds(0, 0, desktop.getWidth(), desktop.getHeight() - comp
+                                        .getHeight());
                                 frame.revalidate();
                                 break;
                             }
@@ -176,15 +174,14 @@ public class SynthInternalFrameUI extends BasicInternalFrameUI implements
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -192,8 +189,7 @@ public class SynthInternalFrameUI extends BasicInternalFrameUI implements
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintInternalFrameBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+        context.getPainter().paintInternalFrameBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
         paint(context, g);
         context.dispose();
     }
@@ -205,9 +201,9 @@ public class SynthInternalFrameUI extends BasicInternalFrameUI implements
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -222,9 +218,9 @@ public class SynthInternalFrameUI extends BasicInternalFrameUI implements
      * Paints the specified component. This implementation does nothing.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {}
@@ -233,8 +229,7 @@ public class SynthInternalFrameUI extends BasicInternalFrameUI implements
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintInternalFrameBorder(context, g, x, y, w, h);
     }
 

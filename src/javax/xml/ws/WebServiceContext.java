@@ -14,12 +14,10 @@ import org.w3c.dom.Element;
  * A <code>WebServiceContext</code> makes it possible for a web service endpoint
  * implementation class to access message context and security information
  * relative to a request being served.
- *
  * Typically a <code>WebServiceContext</code> is injected into an endpoint
  * implementation class using the <code>Resource</code> annotation.
  *
  * @since JAX-WS 2.0
- *
  * @see javax.annotation.Resource
  **/
 public interface WebServiceContext {
@@ -30,12 +28,10 @@ public interface WebServiceContext {
      * will be visible to the application.
      *
      * @return MessageContext The message context.
-     *
      * @throws IllegalStateException
-     *                               This exception is thrown if the method is
-     *                               called while no
-     *                               request is being serviced.
-     *
+     *         This exception is thrown if the method is
+     *         called while no
+     *         request is being serviced.
      * @see javax.xml.ws.handler.MessageContext
      * @see javax.xml.ws.handler.MessageContext.Scope
      * @see java.lang.IllegalStateException
@@ -48,12 +44,10 @@ public interface WebServiceContext {
      * returns <code>null</code>.
      *
      * @return Principal The principal object.
-     *
      * @throws IllegalStateException
-     *                               This exception is thrown if the method is
-     *                               called while no
-     *                               request is being serviced.
-     *
+     *         This exception is thrown if the method is
+     *         called while no
+     *         request is being serviced.
      * @see java.security.Principal
      * @see java.lang.IllegalStateException
      **/
@@ -65,15 +59,13 @@ public interface WebServiceContext {
      * the method returns <code>false</code>.
      *
      * @param role
-     *             A <code>String</code> specifying the name of the role
-     *
+     *        A <code>String</code> specifying the name of the role
      * @return a <code>boolean</code> indicating whether the sender of the
      *         request belongs to a given role
-     *
      * @throws IllegalStateException
-     *                               This exception is thrown if the method is
-     *                               called while no
-     *                               request is being serviced.
+     *         This exception is thrown if the method is
+     *         called while no
+     *         request is being serviced.
      **/
     public boolean isUserInRole(String role);
 
@@ -85,53 +77,47 @@ public interface WebServiceContext {
      * MUST be returned.
      *
      * @param referenceParameters
-     *                            Reference parameters to be associated with the
-     *                            returned
-     *                            <code>EndpointReference</code> instance.
+     *        Reference parameters to be associated with the
+     *        returned
+     *        <code>EndpointReference</code> instance.
      * @return EndpointReference of the endpoint associated with this
      *         <code>WebServiceContext</code>. If the returned
      *         <code>EndpointReference</code> is of type
      *         <code>W3CEndpointReference</code> then it MUST contain the the
      *         specified <code>referenceParameters</code>.
-     *
      * @throws IllegalStateException
-     *                               This exception is thrown if the method is
-     *                               called while no
-     *                               request is being serviced.
-     *
+     *         This exception is thrown if the method is
+     *         called while no
+     *         request is being serviced.
      * @see W3CEndpointReference
-     *
      * @since JAX-WS 2.1
      */
-    public EndpointReference getEndpointReference(
-            Element... referenceParameters);
+    public EndpointReference getEndpointReference(Element... referenceParameters);
 
     /**
      * Returns the <code>EndpointReference</code> associated with this endpoint.
      *
      * @param clazz
-     *                            The type of <code>EndpointReference</code>
-     *                            that MUST be
-     *                            returned.
+     *        The type of <code>EndpointReference</code>
+     *        that MUST be
+     *        returned.
      * @param referenceParameters
-     *                            Reference parameters to be associated with the
-     *                            returned
-     *                            <code>EndpointReference</code> instance.
+     *        Reference parameters to be associated with the
+     *        returned
+     *        <code>EndpointReference</code> instance.
      * @return EndpointReference of type <code>clazz</code> of the endpoint
      *         associated with this <code>WebServiceContext</code> instance. If
      *         the returned <code>EndpointReference</code> is of type
      *         <code>W3CEndpointReference</code> then it MUST contain the the
      *         specified <code>referenceParameters</code>.
-     *
      * @throws IllegalStateException
-     *                               This exception is thrown if the method is
-     *                               called while no
-     *                               request is being serviced.
+     *         This exception is thrown if the method is
+     *         called while no
+     *         request is being serviced.
      * @throws WebServiceException
-     *                               If the <code>clazz</code> type of
-     *                               <code>EndpointReference</code> is not
-     *                               supported.
-     *
+     *         If the <code>clazz</code> type of
+     *         <code>EndpointReference</code> is not
+     *         supported.
      * @since JAX-WS 2.1
      **/
     public <T extends EndpointReference> T getEndpointReference(Class<T> clazz,

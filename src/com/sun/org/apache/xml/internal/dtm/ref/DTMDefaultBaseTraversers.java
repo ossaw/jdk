@@ -32,7 +32,6 @@ import com.sun.org.apache.xalan.internal.xsltc.dom.NodeCounter;
 
 /**
  * This class implements the traversers for DTMDefaultBase.
- *
  * PLEASE NOTE that the public interface for all traversers should be in terms
  * of DTM Node Handles... but they may use the internal node identity indices
  * within their logic, for efficiency's sake. Be very careful to avoid confusing
@@ -44,63 +43,60 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
      * Construct a DTMDefaultBaseTraversers object from a DOM node.
      *
      * @param mgr
-     *                         The DTMManager who owns this DTM.
+     *        The DTMManager who owns this DTM.
      * @param source
-     *                         The object that is used to specify the
-     *                         construction source.
+     *        The object that is used to specify the
+     *        construction source.
      * @param dtmIdentity
-     *                         The DTM identity ID for this DTM.
+     *        The DTM identity ID for this DTM.
      * @param whiteSpaceFilter
-     *                         The white space filter for this DTM, which may be
-     *                         null.
+     *        The white space filter for this DTM, which may be
+     *        null.
      * @param xstringfactory
-     *                         The factory to use for creating XMLStrings.
+     *        The factory to use for creating XMLStrings.
      * @param doIndexing
-     *                         true if the caller considers it worth it to use
-     *                         indexing
-     *                         schemes.
+     *        true if the caller considers it worth it to use
+     *        indexing
+     *        schemes.
      */
-    public DTMDefaultBaseTraversers(DTMManager mgr, Source source,
-            int dtmIdentity, DTMWSFilter whiteSpaceFilter,
-            XMLStringFactory xstringfactory, boolean doIndexing) {
-        super(mgr, source, dtmIdentity, whiteSpaceFilter, xstringfactory,
-                doIndexing);
+    public DTMDefaultBaseTraversers(DTMManager mgr, Source source, int dtmIdentity,
+            DTMWSFilter whiteSpaceFilter, XMLStringFactory xstringfactory, boolean doIndexing) {
+        super(mgr, source, dtmIdentity, whiteSpaceFilter, xstringfactory, doIndexing);
     }
 
     /**
      * Construct a DTMDefaultBaseTraversers object from a DOM node.
      *
      * @param mgr
-     *                         The DTMManager who owns this DTM.
+     *        The DTMManager who owns this DTM.
      * @param source
-     *                         The object that is used to specify the
-     *                         construction source.
+     *        The object that is used to specify the
+     *        construction source.
      * @param dtmIdentity
-     *                         The DTM identity ID for this DTM.
+     *        The DTM identity ID for this DTM.
      * @param whiteSpaceFilter
-     *                         The white space filter for this DTM, which may be
-     *                         null.
+     *        The white space filter for this DTM, which may be
+     *        null.
      * @param xstringfactory
-     *                         The factory to use for creating XMLStrings.
+     *        The factory to use for creating XMLStrings.
      * @param doIndexing
-     *                         true if the caller considers it worth it to use
-     *                         indexing
-     *                         schemes.
+     *        true if the caller considers it worth it to use
+     *        indexing
+     *        schemes.
      * @param blocksize
-     *                         The block size of the DTM.
+     *        The block size of the DTM.
      * @param usePrevsib
-     *                         true if we want to build the previous sibling
-     *                         node array.
+     *        true if we want to build the previous sibling
+     *        node array.
      * @param newNameTable
-     *                         true if we want to use a new ExpandedNameTable
-     *                         for this DTM.
+     *        true if we want to use a new ExpandedNameTable
+     *        for this DTM.
      */
-    public DTMDefaultBaseTraversers(DTMManager mgr, Source source,
-            int dtmIdentity, DTMWSFilter whiteSpaceFilter,
-            XMLStringFactory xstringfactory, boolean doIndexing, int blocksize,
+    public DTMDefaultBaseTraversers(DTMManager mgr, Source source, int dtmIdentity,
+            DTMWSFilter whiteSpaceFilter, XMLStringFactory xstringfactory, boolean doIndexing, int blocksize,
             boolean usePrevsib, boolean newNameTable) {
-        super(mgr, source, dtmIdentity, whiteSpaceFilter, xstringfactory,
-                doIndexing, blocksize, usePrevsib, newNameTable);
+        super(mgr, source, dtmIdentity, whiteSpaceFilter, xstringfactory, doIndexing, blocksize, usePrevsib,
+                newNameTable);
     }
 
     /**
@@ -108,8 +104,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
      * axis, though perhaps not in document order.
      *
      * @param axis
-     *             One of Axes.ANCESTORORSELF, etc.
-     *
+     *        One of Axes.ANCESTORORSELF, etc.
      * @return A DTMAxisTraverser, or null if the given axis isn't supported.
      */
     public DTMAxisTraverser getAxisTraverser(final int axis) {
@@ -192,19 +187,17 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
             case Axis.FILTEREDLIST:
                 return null; // Don't want to throw an exception for this one.
             default:
-                throw new DTMException(XMLMessages.createXMLMessage(
-                        XMLErrorResources.ER_UNKNOWN_AXIS_TYPE, new Object[] {
-                                Integer.toString(axis) })); // "Unknown
-                                                                                                                                                                       // axis
-                                                                                                                                                                       // traversal
-                                                                                                                                                                       // type:
-                                                                                                                                                                       // "+axis);
+                throw new DTMException(XMLMessages.createXMLMessage(XMLErrorResources.ER_UNKNOWN_AXIS_TYPE,
+                        new Object[] { Integer.toString(axis) })); // "Unknown
+                                                                                                                                                               // axis
+                                                                                                                                                               // traversal
+                                                                                                                                                               // type:
+                                                                                                                                                               // "+axis);
         }
 
         if (null == traverser)
             throw new DTMException(XMLMessages.createXMLMessage(
-                    XMLErrorResources.ER_AXIS_TRAVERSER_NOT_SUPPORTED,
-                    new Object[] { Axis.getNames(axis) }));
+                    XMLErrorResources.ER_AXIS_TRAVERSER_NOT_SUPPORTED, new Object[] { Axis.getNames(axis) }));
         // "Axis traverser not supported: "
         // + Axis.names[axis]);
 
@@ -222,10 +215,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node if this iteration.
+         *        The context node if this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -237,12 +229,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -269,8 +260,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the self node should be processed, use this function.
          *
          * @param context
-         *                The context node of this traversal.
-         *
+         *        The context node of this traversal.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -285,10 +275,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * false.
          *
          * @param context
-         *                       The context node of this traversal.
+         *        The context node of this traversal.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
@@ -306,15 +295,13 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
-            return (context == current) ? getFirstAttribute(context)
-                    : getNextAttribute(current);
+            return (context == current) ? getFirstAttribute(context) : getNextAttribute(current);
         }
 
         /**
@@ -322,18 +309,16 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
 
-            current = (context == current) ? getFirstAttribute(context)
-                    : getNextAttribute(current);
+            current = (context == current) ? getFirstAttribute(context) : getNextAttribute(current);
 
             do {
                 if (getExpandedTypeID(current) == expandedTypeID)
@@ -356,24 +341,21 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the given expanded type ID.
          *
          * @param axisRoot
-         *                       The root identity of the axis.
+         *        The root identity of the axis.
          * @param nextPotential
-         *                       The node found must match or occur after this
-         *                       node.
+         *        The node found must match or occur after this
+         *        node.
          * @param expandedTypeID
-         *                       The expanded type ID for the request.
-         *
+         *        The expanded type ID for the request.
          * @return The node ID or NULL if not found.
          */
-        protected int getNextIndexed(int axisRoot, int nextPotential,
-                int expandedTypeID) {
+        protected int getNextIndexed(int axisRoot, int nextPotential, int expandedTypeID) {
 
             int nsIndex = m_expandedNameTable.getNamespaceID(expandedTypeID);
             int lnIndex = m_expandedNameTable.getLocalNameID(expandedTypeID);
 
             for (;;) {
-                int nextID = findElementFromIndex(nsIndex, lnIndex,
-                        nextPotential);
+                int nextID = findElementFromIndex(nsIndex, lnIndex, nextPotential);
 
                 if (NOTPROCESSED != nextID) {
                     int parentID = m_parent.elementAt(nextID);
@@ -421,15 +403,14 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * returned or the iteration will go into an infinate loop. So to
          * traverse an axis, the first function must be used to get the first
          * node.
-         *
          * <p>
          * This method needs to be overloaded only by those axis that process
          * the self node. <\p>
          *
          * @param context
-         *                The context node of this traversal. This is the point
-         *                that
-         *                the traversal starts from.
+         *        The context node of this traversal. This is the point
+         *        that
+         *        the traversal starts from.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -441,35 +422,31 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * returned or the iteration will go into an infinate loop. So to
          * traverse an axis, the first function must be used to get the first
          * node.
-         *
          * <p>
          * This method needs to be overloaded only by those axis that process
          * the self node. <\p>
          *
          * @param context
-         *                       The context node of this traversal. This is the
-         *                       point of
-         *                       origin for the traversal -- its "root node" or
-         *                       starting
-         *                       point.
+         *        The context node of this traversal. This is the
+         *        point of
+         *        origin for the traversal -- its "root node" or
+         *        starting
+         *        point.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
             if (true) {
                 int identity = makeNodeIdentity(context);
 
-                int firstMatch = getNextIndexed(identity, _firstch(identity),
-                        expandedTypeID);
+                int firstMatch = getNextIndexed(identity, _firstch(identity), expandedTypeID);
 
                 return makeNodeHandle(firstMatch);
             } else {
                 // %REVIEW% Dead code. Eliminate?
                 for (int current = _firstch(makeNodeIdentity(
-                        context)); DTM.NULL != current; current = _nextsib(
-                                current)) {
+                        context)); DTM.NULL != current; current = _nextsib(current)) {
                     if (m_exptype.elementAt(current) == expandedTypeID)
                         return makeNodeHandle(current);
                 }
@@ -481,10 +458,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -496,19 +472,17 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
             // Process in Identifier space
-            for (current = _nextsib(makeNodeIdentity(
-                    current)); DTM.NULL != current; current = _nextsib(
-                            current)) {
+            for (current = _nextsib(makeNodeIdentity(current)); DTM.NULL != current; current = _nextsib(
+                    current)) {
                 if (m_exptype.elementAt(current) == expandedTypeID)
                     return makeNodeHandle(current);
             }
@@ -529,15 +503,12 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * calling {@link #getNextIndexed(int, int, int) getNextIndexed} method.
          *
          * @param expandedTypeID
-         *                       The expanded type ID being requested.
-         *
+         *        The expanded type ID being requested.
          * @return true if it is OK to call the
          *         {@link #getNextIndexed(int, int, int) getNextIndexed} method.
          */
         protected final boolean isIndexed(int expandedTypeID) {
-            return (m_indexing
-                    && ExpandedNameTable.ELEMENT == m_expandedNameTable.getType(
-                            expandedTypeID));
+            return (m_indexing && ExpandedNameTable.ELEMENT == m_expandedNameTable.getType(expandedTypeID));
         }
 
         /**
@@ -546,10 +517,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * handle any node that occurs after the axis root.
          *
          * @param axisRoot
-         *                 The root identity of the axis.
+         *        The root identity of the axis.
          * @param identity
-         *                 The node in question.
-         *
+         *        The node in question.
          * @return true if the given node falls outside the axis being
          *         traversed.
          */
@@ -561,8 +531,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * a derived class.
          *
          * @param axisRoot
-         *                 The root identity of the axis.
-         *
+         *        The root identity of the axis.
          * @return true if the axis has been fully processed.
          */
         protected abstract boolean axisHasBeenProcessed(int axisRoot);
@@ -574,24 +543,21 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the given expanded type ID.
          *
          * @param axisRoot
-         *                       The root identity of the axis.
+         *        The root identity of the axis.
          * @param nextPotential
-         *                       The node found must match or occur after this
-         *                       node.
+         *        The node found must match or occur after this
+         *        node.
          * @param expandedTypeID
-         *                       The expanded type ID for the request.
-         *
+         *        The expanded type ID for the request.
          * @return The node ID or NULL if not found.
          */
-        protected int getNextIndexed(int axisRoot, int nextPotential,
-                int expandedTypeID) {
+        protected int getNextIndexed(int axisRoot, int nextPotential, int expandedTypeID) {
 
             int nsIndex = m_expandedNameTable.getNamespaceID(expandedTypeID);
             int lnIndex = m_expandedNameTable.getLocalNameID(expandedTypeID);
 
             while (true) {
-                int next = findElementFromIndex(nsIndex, lnIndex,
-                        nextPotential);
+                int next = findElementFromIndex(nsIndex, lnIndex, nextPotential);
 
                 if (NOTPROCESSED != next) {
                     if (isAfterAxis(axisRoot, next))
@@ -618,9 +584,8 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * overridded by classes that need to return the self node.
          *
          * @param identity
-         *                 The node identity of the root context of the
-         *                 traversal.
-         *
+         *        The node identity of the root context of the
+         *        traversal.
          * @return The first potential node that can be in the traversal.
          */
         protected int getFirstPotential(int identity) {
@@ -632,8 +597,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * an arriving node should terminate.
          *
          * @param axisRoot
-         *                 The root identity of the axis.
-         *
+         *        The root identity of the axis.
          * @return true if the axis has been fully processed.
          */
         protected boolean axisHasBeenProcessed(int axisRoot) {
@@ -646,7 +610,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * context of the traversal.
          *
          * @param handle
-         *               handle to the root context.
+         *        handle to the root context.
          * @return identity of the root of the subtree.
          */
         protected int getSubtreeRoot(int handle) {
@@ -656,16 +620,15 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
         /**
          * Tell if this node identity is a descendant. Assumes that the node
          * info for the element has already been obtained.
-         *
          * %REVIEW% This is really parentFollowsRootInDocumentOrder ... which
          * fails if the parent starts after the root ends. May be sufficient for
          * this class's logic, but misleadingly named!
          *
          * @param subtreeRootIdentity
-         *                            The root context of the subtree in
-         *                            question.
+         *        The root context of the subtree in
+         *        question.
          * @param identity
-         *                            The index number of the node in question.
+         *        The index number of the node in question.
          * @return true if the index is a descendant of _startNode.
          */
         protected boolean isDescendant(int subtreeRootIdentity, int identity) {
@@ -678,10 +641,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * handle any node that occurs after the axis root.
          *
          * @param axisRoot
-         *                 The root identity of the axis.
+         *        The root identity of the axis.
          * @param identity
-         *                 The node in question.
-         *
+         *        The node in question.
          * @return true if the given node falls outside the axis being
          *         traversed.
          */
@@ -703,20 +665,18 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * returned or the iteration will go into an infinate loop. So to
          * traverse an axis, the first function must be used to get the first
          * node.
-         *
          * <p>
          * This method needs to be overloaded only by those axis that process
          * the self node. <\p>
          *
          * @param context
-         *                       The context node of this traversal. This is the
-         *                       point of
-         *                       origin for the traversal -- its "root node" or
-         *                       starting
-         *                       point.
+         *        The context node of this traversal. This is the
+         *        point of
+         *        origin for the traversal -- its "root node" or
+         *        starting
+         *        point.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
@@ -725,8 +685,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
                 int identity = getSubtreeRoot(context);
                 int firstPotential = getFirstPotential(identity);
 
-                return makeNodeHandle(getNextIndexed(identity, firstPotential,
-                        expandedTypeID));
+                return makeNodeHandle(getNextIndexed(identity, firstPotential, expandedTypeID));
             }
 
             return next(context, context, expandedTypeID);
@@ -736,10 +695,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -764,12 +722,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -779,8 +736,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
             current = makeNodeIdentity(current) + 1;
 
             if (isIndexed(expandedTypeID)) {
-                return makeNodeHandle(getNextIndexed(subtreeRootIdent, current,
-                        expandedTypeID));
+                return makeNodeHandle(getNextIndexed(subtreeRootIdent, current, expandedTypeID));
             }
 
             for (;; current++) {
@@ -807,9 +763,8 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * axis context, in this case.
          *
          * @param identity
-         *                 The node identity of the root context of the
-         *                 traversal.
-         *
+         *        The node identity of the root context of the
+         *        traversal.
          * @return The axis context.
          */
         protected int getFirstPotential(int identity) {
@@ -822,8 +777,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the self node should be processed, use this function.
          *
          * @param context
-         *                The context node of this traversal.
-         *
+         *        The context node of this traversal.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -840,10 +794,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -877,9 +830,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Get the first of the following.
          *
          * @param context
-         *                The context node of this traversal. This is the point
-         *                that
-         *                the traversal starts from.
+         *        The context node of this traversal. This is the point
+         *        that
+         *        the traversal starts from.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -911,14 +864,13 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Get the first of the following.
          *
          * @param context
-         *                       The context node of this traversal. This is the
-         *                       point of
-         *                       origin for the traversal -- its "root node" or
-         *                       starting
-         *                       point.
+         *        The context node of this traversal. This is the
+         *        point of
+         *        origin for the traversal -- its "root node" or
+         *        starting
+         *        point.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
@@ -959,10 +911,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -990,12 +941,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -1027,10 +977,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -1042,12 +991,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -1070,10 +1018,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -1087,24 +1034,22 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
 
-            current = (context == current) ? getFirstNamespaceNode(context,
-                    false) : getNextNamespaceNode(context, current, false);
+            current = (context == current) ? getFirstNamespaceNode(context, false)
+                    : getNextNamespaceNode(context, current, false);
 
             do {
                 if (getExpandedTypeID(current) == expandedTypeID)
                     return current;
-            } while (DTM.NULL != (current = getNextNamespaceNode(context,
-                    current, false)));
+            } while (DTM.NULL != (current = getNextNamespaceNode(context, current, false)));
 
             return NULL;
         }
@@ -1119,10 +1064,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -1136,24 +1080,22 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
 
-            current = (context == current) ? getFirstNamespaceNode(context,
-                    true) : getNextNamespaceNode(context, current, true);
+            current = (context == current) ? getFirstNamespaceNode(context, true)
+                    : getNextNamespaceNode(context, current, true);
 
             do {
                 if (getExpandedTypeID(current) == expandedTypeID)
                     return current;
-            } while (DTM.NULL != (current = getNextNamespaceNode(context,
-                    current, true)));
+            } while (DTM.NULL != (current = getNextNamespaceNode(context, current, true)));
 
             return NULL;
         }
@@ -1168,15 +1110,14 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * returned or the iteration will go into an infinate loop. So to
          * traverse an axis, the first function must be used to get the first
          * node.
-         *
          * <p>
          * This method needs to be overloaded only by those axis that process
          * the self node. <\p>
          *
          * @param context
-         *                The context node of this traversal. This is the point
-         *                that
-         *                the traversal starts from.
+         *        The context node of this traversal. This is the point
+         *        that
+         *        the traversal starts from.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -1188,20 +1129,18 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * returned or the iteration will go into an infinate loop. So to
          * traverse an axis, the first function must be used to get the first
          * node.
-         *
          * <p>
          * This method needs to be overloaded only by those axis that process
          * the self node. <\p>
          *
          * @param context
-         *                       The context node of this traversal. This is the
-         *                       point of
-         *                       origin for the traversal -- its "root node" or
-         *                       starting
-         *                       point.
+         *        The context node of this traversal. This is the
+         *        point of
+         *        origin for the traversal -- its "root node" or
+         *        starting
+         *        point.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int current, int expandedTypeID) {
@@ -1220,10 +1159,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -1236,12 +1174,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -1261,17 +1198,17 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * traversal. But the preceding axis is used fairly infrequently.
          *
          * @param contextIdent
-         *                     The context node of the axis traversal.
+         *        The context node of the axis traversal.
          * @param currentIdent
-         *                     The node in question.
+         *        The node in question.
          * @return true if the currentIdent node is an ancestor of contextIdent.
          */
         protected boolean isAncestor(int contextIdent, int currentIdent) {
             // %REVIEW% See comments in IsAfterAxis; using the "successor" of
             // contextIdent is probably more efficient.
             for (contextIdent = m_parent.elementAt(
-                    contextIdent); DTM.NULL != contextIdent; contextIdent = m_parent
-                            .elementAt(contextIdent)) {
+                    contextIdent); DTM.NULL != contextIdent; contextIdent = m_parent.elementAt(
+                            contextIdent)) {
                 if (contextIdent == currentIdent)
                     return true;
             }
@@ -1283,22 +1220,19 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
             // compute in ID space
             int subtreeRootIdent = makeNodeIdentity(context);
 
-            for (current = makeNodeIdentity(current)
-                    - 1; current >= 0; current--) {
+            for (current = makeNodeIdentity(current) - 1; current >= 0; current--) {
                 short type = _type(current);
 
-                if (ATTRIBUTE_NODE == type || NAMESPACE_NODE == type
-                        || isAncestor(subtreeRootIdent, current))
+                if (ATTRIBUTE_NODE == type || NAMESPACE_NODE == type || isAncestor(subtreeRootIdent, current))
                     continue;
 
                 return makeNodeHandle(current); // make handle.
@@ -1312,24 +1246,21 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
             // Compute in ID space
             int subtreeRootIdent = makeNodeIdentity(context);
 
-            for (current = makeNodeIdentity(current)
-                    - 1; current >= 0; current--) {
+            for (current = makeNodeIdentity(current) - 1; current >= 0; current--) {
                 int exptype = m_exptype.elementAt(current);
 
-                if (exptype != expandedTypeID || isAncestor(subtreeRootIdent,
-                        current))
+                if (exptype != expandedTypeID || isAncestor(subtreeRootIdent, current))
                     continue;
 
                 return makeNodeHandle(current); // make handle.
@@ -1349,18 +1280,16 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
             // Compute in ID space
             int subtreeRootIdent = makeNodeIdentity(context);
 
-            for (current = makeNodeIdentity(current)
-                    - 1; current >= 0; current--) {
+            for (current = makeNodeIdentity(current) - 1; current >= 0; current--) {
                 short type = _type(current);
 
                 if (ATTRIBUTE_NODE == type || NAMESPACE_NODE == type)
@@ -1377,20 +1306,18 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
             // Compute in ID space
             int subtreeRootIdent = makeNodeIdentity(context);
 
-            for (current = makeNodeIdentity(current)
-                    - 1; current >= 0; current--) {
+            for (current = makeNodeIdentity(current) - 1; current >= 0; current--) {
                 int exptype = m_exptype.elementAt(current);
 
                 if (exptype != expandedTypeID)
@@ -1412,10 +1339,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -1427,12 +1353,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -1457,8 +1382,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the self node should be processed, use this function.
          *
          * @param context
-         *                The context node of this traversal.
-         *
+         *        The context node of this traversal.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -1473,25 +1397,22 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * false.
          *
          * @param context
-         *                       The context node of this traversal.
+         *        The context node of this traversal.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
-            return (getExpandedTypeID(context) == expandedTypeID) ? context
-                    : NULL;
+            return (getExpandedTypeID(context) == expandedTypeID) ? context : NULL;
         }
 
         /**
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return Always return NULL for this axis.
          */
         public int next(int context, int current) {
@@ -1503,12 +1424,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -1525,8 +1445,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Return the root.
          *
          * @param context
-         *                The context node of this traversal.
-         *
+         *        The context node of this traversal.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -1537,26 +1456,23 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Return the root if it matches the expanded type ID.
          *
          * @param context
-         *                       The context node of this traversal.
+         *        The context node of this traversal.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
-            return (getExpandedTypeID(getDocumentRoot(
-                    context)) == expandedTypeID) ? context
-                            : next(context, context, expandedTypeID);
+            return (getExpandedTypeID(getDocumentRoot(context)) == expandedTypeID) ? context
+                    : next(context, context, expandedTypeID);
         }
 
         /**
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current) {
@@ -1578,12 +1494,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -1613,10 +1528,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * (nothing found)
          *
          * @param context
-         *                       The context node of this traversal.
+         *        The context node of this traversal.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
@@ -1628,10 +1542,9 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Traverse to the next node after the current node.
          *
          * @param context
-         *                The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                The current node of the iteration.
-         *
+         *        The current node of the iteration.
          * @return Always return NULL for this axis.
          */
         public int next(int context, int current) {
@@ -1643,12 +1556,11 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * the expanded type ID.
          *
          * @param context
-         *                       The context node of this iteration.
+         *        The context node of this iteration.
          * @param current
-         *                       The current node of the iteration.
+         *        The current node of the iteration.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the next node in the iteration, or DTM.NULL.
          */
         public int next(int context, int current, int expandedTypeID) {
@@ -1660,17 +1572,15 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
      * A non-xpath axis, returns all nodes that aren't namespaces or attributes,
      * from and including the root.
      */
-    private class DescendantOrSelfFromRootTraverser extends
-            DescendantTraverser {
+    private class DescendantOrSelfFromRootTraverser extends DescendantTraverser {
 
         /**
          * Get the first potential identity that can be returned, which is the
          * axis root context in this case.
          *
          * @param identity
-         *                 The node identity of the root context of the
-         *                 traversal.
-         *
+         *        The node identity of the root context of the
+         *        traversal.
          * @return The identity argument.
          */
         protected int getFirstPotential(int identity) {
@@ -1681,7 +1591,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Get the first potential identity that can be returned.
          * 
          * @param handle
-         *               handle to the root context.
+         *        handle to the root context.
          * @return identity of the root of the subtree.
          */
         protected int getSubtreeRoot(int handle) {
@@ -1693,8 +1603,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Return the root.
          *
          * @param context
-         *                The context node of this traversal.
-         *
+         *        The context node of this traversal.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -1706,20 +1615,18 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * returned or the iteration will go into an infinate loop. So to
          * traverse an axis, the first function must be used to get the first
          * node.
-         *
          * <p>
          * This method needs to be overloaded only by those axis that process
          * the self node. <\p>
          *
          * @param context
-         *                       The context node of this traversal. This is the
-         *                       point of
-         *                       origin for the traversal -- its "root node" or
-         *                       starting
-         *                       point.
+         *        The context node of this traversal. This is the
+         *        point of
+         *        origin for the traversal -- its "root node" or
+         *        starting
+         *        point.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
@@ -1727,8 +1634,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
                 int identity = 0;
                 int firstPotential = getFirstPotential(identity);
 
-                return makeNodeHandle(getNextIndexed(identity, firstPotential,
-                        expandedTypeID));
+                return makeNodeHandle(getNextIndexed(identity, firstPotential, expandedTypeID));
             }
 
             int root = first(context);
@@ -1747,9 +1653,8 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * axis root context in this case.
          *
          * @param identity
-         *                 The node identity of the root context of the
-         *                 traversal.
-         *
+         *        The node identity of the root context of the
+         *        traversal.
          * @return The identity argument.
          */
         protected int getFirstPotential(int identity) {
@@ -1760,7 +1665,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Get the first potential identity that can be returned.
          * 
          * @param handle
-         *               handle to the root context.
+         *        handle to the root context.
          * @return identity of the root of the subtree.
          */
         protected int getSubtreeRoot(int handle) {
@@ -1771,8 +1676,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * Return the root.
          *
          * @param context
-         *                The context node of this traversal.
-         *
+         *        The context node of this traversal.
          * @return the first node in the traversal.
          */
         public int first(int context) {
@@ -1784,20 +1688,18 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
          * returned or the iteration will go into an infinate loop. So to
          * traverse an axis, the first function must be used to get the first
          * node.
-         *
          * <p>
          * This method needs to be overloaded only by those axis that process
          * the self node. <\p>
          *
          * @param context
-         *                       The context node of this traversal. This is the
-         *                       point of
-         *                       origin for the traversal -- its "root node" or
-         *                       starting
-         *                       point.
+         *        The context node of this traversal. This is the
+         *        point of
+         *        origin for the traversal -- its "root node" or
+         *        starting
+         *        point.
          * @param expandedTypeID
-         *                       The expanded type ID that must match.
-         *
+         *        The expanded type ID that must match.
          * @return the first node in the traversal.
          */
         public int first(int context, int expandedTypeID) {
@@ -1805,8 +1707,7 @@ public abstract class DTMDefaultBaseTraversers extends DTMDefaultBase {
                 int identity = 0;
                 int firstPotential = getFirstPotential(identity);
 
-                return makeNodeHandle(getNextIndexed(identity, firstPotential,
-                        expandedTypeID));
+                return makeNodeHandle(getNextIndexed(identity, firstPotential, expandedTypeID));
             }
 
             int root = getDocumentRoot(context);

@@ -13,8 +13,7 @@ import com.sun.corba.se.spi.ior.iiop.GIOPVersion;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class FragmentMessage_1_2 extends Message_1_2 implements
-        FragmentMessage {
+public final class FragmentMessage_1_2 extends Message_1_2 implements FragmentMessage {
 
     // Constructors
 
@@ -22,8 +21,7 @@ public final class FragmentMessage_1_2 extends Message_1_2 implements
 
     // This is currently never called.
     FragmentMessage_1_2(int _request_id) {
-        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN,
-                Message.GIOPFragment, 0);
+        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPFragment, 0);
         this.message_type = GIOPFragment;
         request_id = _request_id;
     }

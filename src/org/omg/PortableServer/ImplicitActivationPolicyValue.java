@@ -14,8 +14,7 @@ package org.omg.PortableServer;
  * requires SYSTEM_ID and RETAIN policies to be set. NO_IMPLICIT_ACTIVATION to
  * indicate no implicit servant activation.
  */
-public class ImplicitActivationPolicyValue implements
-        org.omg.CORBA.portable.IDLEntity {
+public class ImplicitActivationPolicyValue implements org.omg.CORBA.portable.IDLEntity {
     private int __value;
     private static int __size = 2;
     private static org.omg.PortableServer.ImplicitActivationPolicyValue[] __array = new org.omg.PortableServer.ImplicitActivationPolicyValue[__size];
@@ -31,8 +30,7 @@ public class ImplicitActivationPolicyValue implements
         return __value;
     }
 
-    public static org.omg.PortableServer.ImplicitActivationPolicyValue from_int(
-            int value) {
+    public static org.omg.PortableServer.ImplicitActivationPolicyValue from_int(int value) {
         if (value >= 0 && value < __size)
             return __array[value];
         else

@@ -83,16 +83,14 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * template. The same name was used on two different templates
                  * in the same stylesheet.
                  */
-                { ErrorMsg.TEMPLATE_REDEF_ERR,
-                        "Vorlage \"{0}\" bereits in diesem Stylesheet definiert." },
+                { ErrorMsg.TEMPLATE_REDEF_ERR, "Vorlage \"{0}\" bereits in diesem Stylesheet definiert." },
 
                 /*
                  * Note to translators: The substitution text is the name of a
                  * template. A reference to the template name was encountered,
                  * but the template is undefined.
                  */
-                { ErrorMsg.TEMPLATE_UNDEF_ERR,
-                        "Vorlage \"{0}\" nicht in diesem Stylesheet definiert." },
+                { ErrorMsg.TEMPLATE_UNDEF_ERR, "Vorlage \"{0}\" nicht in diesem Stylesheet definiert." },
 
                 /*
                  * Note to translators: The substitution text is the name of a
@@ -106,8 +104,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * variable or parameter. A reference to the variable or
                  * parameter was found, but it was never defined.
                  */
-                { ErrorMsg.VARIABLE_UNDEF_ERR,
-                        "Variable oder Parameter \"{0}\" ist nicht definiert." },
+                { ErrorMsg.VARIABLE_UNDEF_ERR, "Variable oder Parameter \"{0}\" ist nicht definiert." },
 
                 /*
                  * Note to translators: The word "class" here refers to a Java
@@ -115,8 +112,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * loaded, but it could not be found. The substitution text is
                  * the name of the class.
                  */
-                { ErrorMsg.CLASS_NOT_FOUND_ERR,
-                        "Klasse \"{0}\" kann nicht gefunden werden." },
+                { ErrorMsg.CLASS_NOT_FOUND_ERR, "Klasse \"{0}\" kann nicht gefunden werden." },
 
                 /*
                  * Note to translators: The word "method" here refers to a Java
@@ -140,8 +136,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: The file or URI named in the
                  * substitution text is missing.
                  */
-                { ErrorMsg.FILE_NOT_FOUND_ERR,
-                        "Datei oder URI \"{0}\" nicht gefunden." },
+                { ErrorMsg.FILE_NOT_FOUND_ERR, "Datei oder URI \"{0}\" nicht gefunden." },
 
                 /*
                  * Note to translators: This message is displayed when the URI
@@ -154,23 +149,20 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: The file or URI named in the
                  * substitution text exists but could not be opened.
                  */
-                { ErrorMsg.FILE_ACCESS_ERR,
-                        "Datei oder URI \"{0}\" kann nicht ge\u00F6ffnet werden." },
+                { ErrorMsg.FILE_ACCESS_ERR, "Datei oder URI \"{0}\" kann nicht ge\u00F6ffnet werden." },
 
                 /*
                  * Note to translators: <xsl:stylesheet> and <xsl:transform> are
                  * keywords that should not be translated.
                  */
-                { ErrorMsg.MISSING_ROOT_ERR,
-                        "<xsl:stylesheet>- oder <xsl:transform>-Element erwartet." },
+                { ErrorMsg.MISSING_ROOT_ERR, "<xsl:stylesheet>- oder <xsl:transform>-Element erwartet." },
 
                 /*
                  * Note to translators: The stylesheet contained a reference to
                  * a namespace prefix that was undefined. The value of the
                  * substitution text is the name of the prefix.
                  */
-                { ErrorMsg.NAMESPACE_UNDEF_ERR,
-                        "Namespace-Pr\u00E4fix \"{0}\" ist nicht deklariert." },
+                { ErrorMsg.NAMESPACE_UNDEF_ERR, "Namespace-Pr\u00E4fix \"{0}\" ist nicht deklariert." },
 
                 /*
                  * Note to translators: The Java function named in the
@@ -192,24 +184,21 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * syntactic error in the form of an XPath expression. The
                  * substitution text is the expression.
                  */
-                { ErrorMsg.XPATH_PARSER_ERR,
-                        "Fehler beim Parsen von XPath-Ausdruck \"{0}\"." },
+                { ErrorMsg.XPATH_PARSER_ERR, "Fehler beim Parsen von XPath-Ausdruck \"{0}\"." },
 
                 /*
                  * Note to translators: An element in the stylesheet requires a
                  * particular attribute named by the substitution text, but that
                  * attribute was not specified in the stylesheet.
                  */
-                { ErrorMsg.REQUIRED_ATTR_ERR,
-                        "Erforderliches Attribut \"{0}\" fehlt." },
+                { ErrorMsg.REQUIRED_ATTR_ERR, "Erforderliches Attribut \"{0}\" fehlt." },
 
                 /*
                  * Note to translators: This message indicates that a character
                  * not permitted in an XPath expression was encountered. The
                  * substitution text is the offending character.
                  */
-                { ErrorMsg.ILLEGAL_CHAR_ERR,
-                        "Ung\u00FCltiges Zeichen \"{0}\" in XPath-Ausdruck." },
+                { ErrorMsg.ILLEGAL_CHAR_ERR, "Ung\u00FCltiges Zeichen \"{0}\" in XPath-Ausdruck." },
 
                 /*
                  * Note to translators: A processing instruction is a mark-up
@@ -217,8 +206,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * processor. The form of the name of was invalid in this case,
                  * and the substitution text is the name.
                  */
-                { ErrorMsg.ILLEGAL_PI_ERR,
-                        "Ung\u00FCltiger Name \"{0}\" f\u00FCr Verarbeitungsanweisung." },
+                { ErrorMsg.ILLEGAL_PI_ERR, "Ung\u00FCltiger Name \"{0}\" f\u00FCr Verarbeitungsanweisung." },
 
                 /*
                  * Note to translators: This message is reported if the
@@ -227,16 +215,14 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { ErrorMsg.STRAY_ATTRIBUTE_ERR,
-                        "Attribut \"{0}\" au\u00DFerhalb des Elements." },
+                { ErrorMsg.STRAY_ATTRIBUTE_ERR, "Attribut \"{0}\" au\u00DFerhalb des Elements." },
 
                 /*
                  * Note to translators: An attribute that wasn't recognized was
                  * specified on an element in the stylesheet. The attribute is
                  * named by the substitution text.
                  */
-                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
-                        "Ung\u00FCltiges Attribut \"{0}\"." },
+                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "Ung\u00FCltiges Attribut \"{0}\"." },
 
                 /*
                  * Note to translators: "import" and "include" are keywords that
@@ -261,36 +247,31 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * text gives the name of such a style for which more than one
                  * declaration was encountered.
                  */
-                { ErrorMsg.SYMBOLS_REDEF_ERR,
-                        "Dezimalformatierung \"{0}\" ist bereits definiert." },
+                { ErrorMsg.SYMBOLS_REDEF_ERR, "Dezimalformatierung \"{0}\" ist bereits definiert." },
 
                 /*
                  * Note to translators: The stylesheet version named in the
                  * substitution text is not supported.
                  */
-                { ErrorMsg.XSL_VERSION_ERR,
-                        "XSL-Version \"{0}\" wird nicht von XSLTC unterst\u00FCtzt." },
+                { ErrorMsg.XSL_VERSION_ERR, "XSL-Version \"{0}\" wird nicht von XSLTC unterst\u00FCtzt." },
 
                 /*
                  * Note to translators: The definitions of one or more variables
                  * or parameters depend on one another.
                  */
-                { ErrorMsg.CIRCULAR_VARIABLE_ERR,
-                        "Zyklische Variablen-/Parameterreferenz in \"{0}\"." },
+                { ErrorMsg.CIRCULAR_VARIABLE_ERR, "Zyklische Variablen-/Parameterreferenz in \"{0}\"." },
 
                 /*
                  * Note to translators: The operator in an expresion with two
                  * operands was not recognized.
                  */
-                { ErrorMsg.ILLEGAL_BINARY_OP_ERR,
-                        "Unbekannter Operator f\u00FCr Bin\u00E4rausdruck." },
+                { ErrorMsg.ILLEGAL_BINARY_OP_ERR, "Unbekannter Operator f\u00FCr Bin\u00E4rausdruck." },
 
                 /*
                  * Note to translators: This message is produced if a reference
                  * to a function has too many or too few arguments.
                  */
-                { ErrorMsg.ILLEGAL_ARG_ERR,
-                        "Ung\u00FCltige Argumente f\u00FCr Funktionsaufruf." },
+                { ErrorMsg.ILLEGAL_ARG_ERR, "Ung\u00FCltige Argumente f\u00FCr Funktionsaufruf." },
 
                 /*
                  * Note to translators: "document()" is the name of function and
@@ -329,8 +310,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * keywords and should not be translated. This message describes
                  * a syntax error in the stylesheet.
                  */
-                { ErrorMsg.STRAY_WHEN_ERR,
-                        "<xsl:when> kann nur in <xsl:choose> verwendet werden." },
+                { ErrorMsg.STRAY_WHEN_ERR, "<xsl:when> kann nur in <xsl:choose> verwendet werden." },
 
                 /*
                  * Note to translators: "<xsl:when>", "<xsl:otherwise>" and
@@ -344,31 +324,27 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: "<xsl:attribute-set>" and "name" are
                  * keywords that should not be translated.
                  */
-                { ErrorMsg.UNNAMED_ATTRIBSET_ERR,
-                        "Bei <xsl:attribute-set> fehlt das \"name\"-Attribut." },
+                { ErrorMsg.UNNAMED_ATTRIBSET_ERR, "Bei <xsl:attribute-set> fehlt das \"name\"-Attribut." },
 
                 /*
                  * Note to translators: An element in the stylesheet contained
                  * an element of a type that it was not permitted to contain.
                  */
-                { ErrorMsg.ILLEGAL_CHILD_ERR,
-                        "Ung\u00FCltiges untergeordnetes Element." },
+                { ErrorMsg.ILLEGAL_CHILD_ERR, "Ung\u00FCltiges untergeordnetes Element." },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
                  * element with a name that was not a valid XML name. The
                  * substitution text contains the name.
                  */
-                { ErrorMsg.ILLEGAL_ELEM_NAME_ERR,
-                        "Elemente d\u00FCrfen nicht den Namen \"{0}\" haben" },
+                { ErrorMsg.ILLEGAL_ELEM_NAME_ERR, "Elemente d\u00FCrfen nicht den Namen \"{0}\" haben" },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
                  * attribute with a name that was not a valid XML name. The
                  * substitution text contains the name.
                  */
-                { ErrorMsg.ILLEGAL_ATTR_NAME_ERR,
-                        "Attribute d\u00FCrfen nicht den Namen \"{0}\" haben" },
+                { ErrorMsg.ILLEGAL_ATTR_NAME_ERR, "Attribute d\u00FCrfen nicht den Namen \"{0}\" haben" },
 
                 /*
                  * Note to translators: The children of the outermost element of
@@ -387,23 +363,20 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * provided to XSLTC to process the XML input document had a
                  * configuration problem.
                  */
-                { ErrorMsg.SAX_PARSER_CONFIG_ERR,
-                        "JAXP-Parser nicht korrekt konfiguriert" },
+                { ErrorMsg.SAX_PARSER_CONFIG_ERR, "JAXP-Parser nicht korrekt konfiguriert" },
 
                 /*
                  * Note to translators: The substitution text names the internal
                  * error encountered.
                  */
-                { ErrorMsg.INTERNAL_ERR,
-                        "Nicht behebbarer interner XSLTC-Fehler: \"{0}\"" },
+                { ErrorMsg.INTERNAL_ERR, "Nicht behebbarer interner XSLTC-Fehler: \"{0}\"" },
 
                 /*
                  * Note to translators: The stylesheet contained an element that
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { ErrorMsg.UNSUPPORTED_XSL_ERR,
-                        "Nicht unterst\u00FCtztes XSL-Element \"{0}\"." },
+                { ErrorMsg.UNSUPPORTED_XSL_ERR, "Nicht unterst\u00FCtztes XSL-Element \"{0}\"." },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -411,8 +384,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * but XSTLC does not recognized the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { ErrorMsg.UNSUPPORTED_EXT_ERR,
-                        "Unbekannte XSLTC-Erweiterung \"{0}\"." },
+                { ErrorMsg.UNSUPPORTED_EXT_ERR, "Unbekannte XSLTC-Erweiterung \"{0}\"." },
 
                 /*
                  * Note to translators: The XML document given to XSLTC as a
@@ -429,8 +401,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: XSLTC could not find the stylesheet
                  * document with the name specified by the substitution text.
                  */
-                { ErrorMsg.MISSING_XSLT_TARGET_ERR,
-                        "Stylesheet-Ziel \"{0}\" konnte nicht gefunden werden." },
+                { ErrorMsg.MISSING_XSLT_TARGET_ERR, "Stylesheet-Ziel \"{0}\" konnte nicht gefunden werden." },
 
                 /*
                  * Note to translators: access to the stylesheet target is
@@ -444,22 +415,19 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * error in condition in XSLTC. The substitution text is the
                  * class name in XSLTC that is missing some functionality.
                  */
-                { ErrorMsg.NOT_IMPLEMENTED_ERR,
-                        "Nicht implementiert: \"{0}\"." },
+                { ErrorMsg.NOT_IMPLEMENTED_ERR, "Nicht implementiert: \"{0}\"." },
 
                 /*
                  * Note to translators: The XML document given to XSLTC as a
                  * stylesheet was not, in fact, a stylesheet.
                  */
-                { ErrorMsg.NOT_STYLESHEET_ERR,
-                        "Das Eingabedokument enth\u00E4lt kein XSL-Stylesheet." },
+                { ErrorMsg.NOT_STYLESHEET_ERR, "Das Eingabedokument enth\u00E4lt kein XSL-Stylesheet." },
 
                 /*
                  * Note to translators: The element named in the substitution
                  * text was encountered in the stylesheet but is not recognized.
                  */
-                { ErrorMsg.ELEMENT_PARSE_ERR,
-                        "Element \"{0}\" konnte nicht geparst werden" },
+                { ErrorMsg.ELEMENT_PARSE_ERR, "Element \"{0}\" konnte nicht geparst werden" },
 
                 /*
                  * Note to translators: "use", "<key>", "node", "node-set",
@@ -476,15 +444,13 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * indicates that the version specified for the output document
                  * was not valid.
                  */
-                { ErrorMsg.OUTPUT_VERSION_ERR,
-                        "Ausgabe-XML-Dokumentversion muss 1.0 sein" },
+                { ErrorMsg.OUTPUT_VERSION_ERR, "Ausgabe-XML-Dokumentversion muss 1.0 sein" },
 
                 /*
                  * Note to translators: The operator in a comparison operation
                  * was not recognized.
                  */
-                { ErrorMsg.ILLEGAL_RELAT_OP_ERR,
-                        "Unbekannter Operator f\u00FCr Vergleichsausdruck" },
+                { ErrorMsg.ILLEGAL_RELAT_OP_ERR, "Unbekannter Operator f\u00FCr Vergleichsausdruck" },
 
                 /*
                  * Note to translators: An attribute set defines as a set of XML
@@ -504,8 +470,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * incorrect; the substitution text contains the expression that
                  * was in error.
                  */
-                { ErrorMsg.ATTR_VAL_TEMPLATE_ERR,
-                        "Attributwertvorlage \"{0}\" kann nicht geparst werden." },
+                { ErrorMsg.ATTR_VAL_TEMPLATE_ERR, "Attributwertvorlage \"{0}\" kann nicht geparst werden." },
 
                 /*
                  * Note to translators: ???
@@ -540,8 +505,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: The substitution text is the name of a
                  * class.
                  */
-                { ErrorMsg.TRANSLET_CLASS_ERR,
-                        "Translet-Klasse \"{0}\" konnte nicht geladen werden." },
+                { ErrorMsg.TRANSLET_CLASS_ERR, "Translet-Klasse \"{0}\" konnte nicht geladen werden." },
 
                 { ErrorMsg.TRANSLET_OBJECT_ERR,
                         "Translet-Klasse geladen, Translet-Instanz kann aber nicht erstellt werden." },
@@ -574,8 +538,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: The message indicates that XSLTC failed
                  * to compile the stylesheet into a translet (class file).
                  */
-                { ErrorMsg.JAXP_COMPILE_ERR,
-                        "Stylesheet konnte nicht kompiliert werden" },
+                { ErrorMsg.JAXP_COMPILE_ERR, "Stylesheet konnte nicht kompiliert werden" },
 
                 /*
                  * Note to translators: "TransformerFactory" is a class name. In
@@ -585,8 +548,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * the attribute is "getAttribute", so it's not clear whether it
                  * would be best to translate the term "attribute".
                  */
-                { ErrorMsg.JAXP_INVALID_ATTR_ERR,
-                        "TransformerFactory erkennt Attribut \"{0}\" nicht." },
+                { ErrorMsg.JAXP_INVALID_ATTR_ERR, "TransformerFactory erkennt Attribut \"{0}\" nicht." },
 
                 { ErrorMsg.JAXP_INVALID_ATTR_VALUE_ERR,
                         "Falscher Wert f\u00FCr Attribut \"{0}\" angegeben." },
@@ -595,8 +557,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: "setResult()" and "startDocument()" are
                  * Java method names that should not be translated.
                  */
-                { ErrorMsg.JAXP_SET_RESULT_ERR,
-                        "setResult() muss vor startDocument() aufgerufen werden." },
+                { ErrorMsg.JAXP_SET_RESULT_ERR, "setResult() muss vor startDocument() aufgerufen werden." },
 
                 /*
                  * Note to translators: "Transformer" is a Java interface name
@@ -605,8 +566,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * used for transformations; this message is produced if that
                  * requirement is not met.
                  */
-                { ErrorMsg.JAXP_NO_TRANSLET_ERR,
-                        "Der Transformer hat kein gekapseltes Translet-Objekt." },
+                { ErrorMsg.JAXP_NO_TRANSLET_ERR, "Der Transformer hat kein gekapseltes Translet-Objekt." },
 
                 /*
                  * Note to translators: The XML document that results from a
@@ -640,16 +600,14 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * that it takes a DOM object and converts it to something that
                  * uses the SAX API.
                  */
-                { ErrorMsg.SAX2DOM_ADAPTER_ERR,
-                        "SAX2DOM-Adapter \"{0}\" konnte nicht erstellt werden." },
+                { ErrorMsg.SAX2DOM_ADAPTER_ERR, "SAX2DOM-Adapter \"{0}\" konnte nicht erstellt werden." },
 
                 /*
                  * Note to translators: "XSLTCSource.build()" is a Java method
                  * name. "systemId" is an XML term that is short for
                  * "system identification".
                  */
-                { ErrorMsg.XSLTC_SOURCE_ERR,
-                        "XSLTCSource.build() ohne festgelegte systemID aufgerufen." },
+                { ErrorMsg.XSLTC_SOURCE_ERR, "XSLTCSource.build() ohne festgelegte systemID aufgerufen." },
 
                 { ErrorMsg.ER_RESULT_NULL, "Ergebnis darf nicht null sein" },
 
@@ -735,8 +693,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * required in a particular context. The substitution text is
                  * the expression that was in error.
                  */
-                { ErrorMsg.TYPE_CHECK_ERR,
-                        "Fehler beim Pr\u00FCfen des Typs des Ausdrucks \"{0}\"." },
+                { ErrorMsg.TYPE_CHECK_ERR, "Fehler beim Pr\u00FCfen des Typs des Ausdrucks \"{0}\"." },
 
                 /*
                  * Note to translators: An XPath expression was not of the type
@@ -767,8 +724,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
-                        "WARNING:  ''{0}''\n       :{1}" },
+                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "WARNING:  ''{0}''\n       :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -784,8 +740,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG,
-                        "FATAL ERROR:  ''{0}''\n           :{1}" },
+                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG, "FATAL ERROR:  ''{0}''\n           :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -801,8 +756,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
-                        "ERROR:  ''{0}''\n     :{1}" },
+                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "ERROR:  ''{0}''\n     :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -815,8 +769,7 @@ public class ErrorMessages_de extends ListResourceBundle {
                  * Note to translators: The substitution text is the name of a
                  * class.
                  */
-                { ErrorMsg.TRANSFORM_WITH_TRANSLET_STR,
-                        "Transformation mit Translet \"{0}\" " },
+                { ErrorMsg.TRANSFORM_WITH_TRANSLET_STR, "Transformation mit Translet \"{0}\" " },
 
                 /*
                  * Note to translators: The first substitution is the name of a

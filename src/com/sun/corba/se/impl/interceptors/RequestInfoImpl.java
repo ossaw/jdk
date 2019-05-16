@@ -78,8 +78,7 @@ import sun.corba.SharedSecrets;
  * Implementation of the RequestInfo interface as specified in orbos/99-12-02
  * section 5.4.1.
  */
-public abstract class RequestInfoImpl extends LocalObject implements
-        RequestInfo, RequestInfoExt {
+public abstract class RequestInfoImpl extends LocalObject implements RequestInfo, RequestInfoExt {
     //////////////////////////////////////////////////////////////////////
     //
     // NOTE: IF AN ATTRIBUTE IS ADDED, PLEASE UPDATE RESET();
@@ -214,10 +213,8 @@ public abstract class RequestInfoImpl extends LocalObject implements
         super();
 
         this.myORB = myORB;
-        wrapper = InterceptorsSystemException.get(myORB,
-                CORBALogDomains.RPC_PROTOCOL);
-        stdWrapper = OMGSystemException.get(myORB,
-                CORBALogDomains.RPC_PROTOCOL);
+        wrapper = InterceptorsSystemException.get(myORB, CORBALogDomains.RPC_PROTOCOL);
+        stdWrapper = OMGSystemException.get(myORB, CORBALogDomains.RPC_PROTOCOL);
 
         // Capture the current TSC and make it the RSC of this request.
         PICurrent current = (PICurrent) (myORB.getPIHandler().getPICurrent());
@@ -227,7 +224,6 @@ public abstract class RequestInfoImpl extends LocalObject implements
     /**
      * Implementation for request_id() differs for client and server
      * implementations.
-     *
      * Uniquely identifies an active request/reply sequence. Once a
      * request/reply sequence is concluded this ID may be reused. (this is NOT
      * necessarily the same as the GIOP request_id).
@@ -237,7 +233,6 @@ public abstract class RequestInfoImpl extends LocalObject implements
     /**
      * Implementation for operation() differs for client and server
      * implementations.
-     *
      * The name of the operation being invoked.
      */
     abstract public String operation();
@@ -280,7 +275,6 @@ public abstract class RequestInfoImpl extends LocalObject implements
     /**
      * Implementation for response_expected() differs for client and server
      * implementations.
-     *
      * Indicates whether a response is expected. On the client, a reply is not
      * returned when response_expected is false, so receive_reply cannot be
      * called. receive_other is called unless an exception occurs, in which case
@@ -326,7 +320,6 @@ public abstract class RequestInfoImpl extends LocalObject implements
     /**
      * Implementation for forward_reference() differs for client and server
      * implementations.
-     *
      * If the reply_status attribute is LOCATION_FORWARD then this attribute
      * will contain the object to which the request will be forwarded. It is
      * indeterminate whether a forwarded request will actually occur.
@@ -353,26 +346,22 @@ public abstract class RequestInfoImpl extends LocalObject implements
     /**
      * Implementation for get_request_service_context() differs for client and
      * server implementations.
-     *
      * This operation returns a copy of the service context with the given ID
      * that is associated with the request. If the request's service context
      * does not contain an etry for that ID, BAD_PARAM with a minor code of
      * TBD_BP is raised.
      */
-    abstract public org.omg.IOP.ServiceContext get_request_service_context(
-            int id);
+    abstract public org.omg.IOP.ServiceContext get_request_service_context(int id);
 
     /**
      * Implementation for get_reply_service_context() differs for client and
      * server implementations.
-     *
      * This operation returns a copy of the service context with the given ID
      * that is associated with the reply. IF the request's service context does
      * not contain an entry for that ID, BAD_PARAM with a minor code of TBD_BP
      * is raised.
      */
-    abstract public org.omg.IOP.ServiceContext get_reply_service_context(
-            int id);
+    abstract public org.omg.IOP.ServiceContext get_reply_service_context(int id);
 
     // NOTE: When adding a method, be sure to:
     // 1. Add a MID_* constant for that method
@@ -386,7 +375,6 @@ public abstract class RequestInfoImpl extends LocalObject implements
 
     /**
      * @return The connection on which the request is made.
-     *
      *         Note: we store the connection as an internal type but expose it
      *         here as an external type.
      */
@@ -404,8 +392,7 @@ public abstract class RequestInfoImpl extends LocalObject implements
      * OMGSYstemException.UNKNOWN_USER_EXCEPTION if the Helper class could not
      * be found to insert it with.
      */
-    private void insertApplicationException(ApplicationException appException,
-            Any result) throws UNKNOWN {
+    private void insertApplicationException(ApplicationException appException, Any result) throws UNKNOWN {
         try {
             // Extract the UserException from the ApplicationException.
             // Look up class name from repository id:
@@ -414,8 +401,7 @@ public abstract class RequestInfoImpl extends LocalObject implements
 
             // Find the read method on the helper class:
             String helperClassName = className + "Helper";
-            Class<?> helperClass = SharedSecrets.getJavaCorbaAccess().loadClass(
-                    helperClassName);
+            Class<?> helperClass = SharedSecrets.getJavaCorbaAccess().loadClass(helperClassName);
             Class[] readParams = new Class[1];
             readParams[0] = org.omg.CORBA.portable.InputStream.class;
             Method readMethod = helperClass.getMethod("read", readParams);
@@ -429,8 +415,7 @@ public abstract class RequestInfoImpl extends LocalObject implements
             try {
                 java.lang.Object[] readArguments = new java.lang.Object[1];
                 readArguments[0] = ueInputStream;
-                userException = (UserException) readMethod.invoke(null,
-                        readArguments);
+                userException = (UserException) readMethod.invoke(null, readArguments);
             } finally {
                 try {
                     ueInputStream.reset();
@@ -443,23 +428,17 @@ public abstract class RequestInfoImpl extends LocalObject implements
             // helper class.
             insertUserException(userException, result);
         } catch (ClassNotFoundException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (NoSuchMethodException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (SecurityException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (IllegalAccessException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (IllegalArgumentException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (InvocationTargetException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         }
     }
 
@@ -468,8 +447,7 @@ public abstract class RequestInfoImpl extends LocalObject implements
      * minor code OMGSYstemException.UNKNOWN_USER_EXCEPTION if the Helper class
      * could not be found to insert it with.
      */
-    private void insertUserException(UserException userException, Any result)
-            throws UNKNOWN {
+    private void insertUserException(UserException userException, Any result) throws UNKNOWN {
         try {
             // Insert this UserException into the provided Any using the
             // helper class.
@@ -477,15 +455,13 @@ public abstract class RequestInfoImpl extends LocalObject implements
                 Class exceptionClass = userException.getClass();
                 String className = exceptionClass.getName();
                 String helperClassName = className + "Helper";
-                Class<?> helperClass = SharedSecrets.getJavaCorbaAccess()
-                        .loadClass(helperClassName);
+                Class<?> helperClass = SharedSecrets.getJavaCorbaAccess().loadClass(helperClassName);
 
                 // Find insert( Any, class ) method
                 Class[] insertMethodParams = new Class[2];
                 insertMethodParams[0] = org.omg.CORBA.Any.class;
                 insertMethodParams[1] = exceptionClass;
-                Method insertMethod = helperClass.getMethod("insert",
-                        insertMethodParams);
+                Method insertMethod = helperClass.getMethod("insert", insertMethodParams);
 
                 // Call helper.insert( result, userException ):
                 java.lang.Object[] insertMethodArguments = new java.lang.Object[2];
@@ -494,23 +470,17 @@ public abstract class RequestInfoImpl extends LocalObject implements
                 insertMethod.invoke(null, insertMethodArguments);
             }
         } catch (ClassNotFoundException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (NoSuchMethodException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (SecurityException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (IllegalAccessException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (IllegalArgumentException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         } catch (InvocationTargetException e) {
-            throw stdWrapper.unknownUserException(
-                    CompletionStatus.COMPLETED_MAYBE, e);
+            throw stdWrapper.unknownUserException(CompletionStatus.COMPLETED_MAYBE, e);
         }
     }
 
@@ -563,8 +533,7 @@ public abstract class RequestInfoImpl extends LocalObject implements
             // a BAD_INV_ORDER if this is not called from receive_exception.
             throw wrapper.exceptionWasNull2();
         } else if (exception instanceof SystemException) {
-            ORBUtility.insertSystemException((SystemException) exception,
-                    result);
+            ORBUtility.insertSystemException((SystemException) exception, result);
         } else if (exception instanceof ApplicationException) {
             // Use the Helper class for this exception to insert it into an
             // Any.
@@ -598,15 +567,13 @@ public abstract class RequestInfoImpl extends LocalObject implements
      * it to an IOP.ServiceContext. Uses the given HashMap as a cache. If not
      * found in cache, the result is inserted in the cache.
      */
-    protected org.omg.IOP.ServiceContext getServiceContext(
-            HashMap cachedServiceContexts, ServiceContexts serviceContexts,
-            int id) {
+    protected org.omg.IOP.ServiceContext getServiceContext(HashMap cachedServiceContexts,
+            ServiceContexts serviceContexts, int id) {
         org.omg.IOP.ServiceContext result = null;
         Integer integerId = new Integer(id);
 
         // Search cache first:
-        result = (org.omg.IOP.ServiceContext) cachedServiceContexts.get(
-                integerId);
+        result = (org.omg.IOP.ServiceContext) cachedServiceContexts.get(integerId);
 
         // null could normally mean that either we cached the value null
         // or it's not in the cache. However, there is no way for us to
@@ -614,16 +581,14 @@ public abstract class RequestInfoImpl extends LocalObject implements
         if (result == null) {
             // Not in cache. Find it and put in cache.
             // Get the desired "core" service context.
-            com.sun.corba.se.spi.servicecontext.ServiceContext context = serviceContexts
-                    .get(id);
+            com.sun.corba.se.spi.servicecontext.ServiceContext context = serviceContexts.get(id);
             if (context == null)
                 throw stdWrapper.invalidServiceContextId();
 
             // Convert the "core" service context to an
             // "IOP" ServiceContext by writing it to a
             // CDROutputStream and reading it back.
-            EncapsOutputStream out = sun.corba.OutputStreamFactory
-                    .newEncapsOutputStream(myORB);
+            EncapsOutputStream out = sun.corba.OutputStreamFactory.newEncapsOutputStream(myORB);
 
             context.write(out, GIOPVersion.V1_2);
             InputStream inputStream = out.create_input_stream();
@@ -650,13 +615,11 @@ public abstract class RequestInfoImpl extends LocalObject implements
      * Uses the given HashMap as a cache. If a service context is placed in the
      * container, it goes in the HashMap as well.
      */
-    protected void addServiceContext(HashMap cachedServiceContexts,
-            ServiceContexts serviceContexts,
+    protected void addServiceContext(HashMap cachedServiceContexts, ServiceContexts serviceContexts,
             org.omg.IOP.ServiceContext service_context, boolean replace) {
         int id = 0;
         // Convert IOP.service_context to core.ServiceContext:
-        EncapsOutputStream outputStream = sun.corba.OutputStreamFactory
-                .newEncapsOutputStream(myORB);
+        EncapsOutputStream outputStream = sun.corba.OutputStreamFactory.newEncapsOutputStream(myORB);
         InputStream inputStream = null;
         UnknownServiceContext coreServiceContext = null;
         ServiceContextHelper.write(outputStream, service_context);
@@ -822,8 +785,7 @@ public abstract class RequestInfoImpl extends LocalObject implements
     protected IOR getForwardRequestIOR() {
         if (this.forwardRequestIOR == null) {
             if (this.forwardRequest != null) {
-                this.forwardRequestIOR = ORBUtility.getIOR(
-                        this.forwardRequest.forward);
+                this.forwardRequestIOR = ORBUtility.getIOR(this.forwardRequest.forward);
             }
         }
 
@@ -863,11 +825,11 @@ public abstract class RequestInfoImpl extends LocalObject implements
      * this time, BAD_INV_ORDER is raised with a minor code of TBD_BIO.
      *
      * @param methodID
-     *                 The ID of this method, one of the MID_* constants. This
-     *                 allows
-     *                 us to easily look up the method access in a table. Note
-     *                 that
-     *                 method ids may overlap between subclasses.
+     *        The ID of this method, one of the MID_* constants. This
+     *        allows
+     *        us to easily look up the method access in a table. Note
+     *        that
+     *        method ids may overlap between subclasses.
      */
     protected abstract void checkAccess(int methodID) throws BAD_INV_ORDER;
 

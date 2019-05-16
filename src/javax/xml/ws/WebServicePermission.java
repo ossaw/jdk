@@ -43,7 +43,7 @@ public final class WebServicePermission extends BasicPermission {
      * Creates a new permission with the specified name.
      *
      * @param name
-     *             the name of the <code>WebServicePermission</code>
+     *        the name of the <code>WebServicePermission</code>
      */
     public WebServicePermission(String name) {
         super(name);
@@ -51,14 +51,13 @@ public final class WebServicePermission extends BasicPermission {
 
     /**
      * Creates a new permission with the specified name and actions.
-     *
      * The <code>actions</code> parameter is currently unused and it should be
      * <code>null</code>.
      *
      * @param name
-     *                the name of the <code>WebServicePermission</code>
+     *        the name of the <code>WebServicePermission</code>
      * @param actions
-     *                should be <code>null</code>
+     *        should be <code>null</code>
      */
     public WebServicePermission(String name, String actions) {
         super(name, actions);

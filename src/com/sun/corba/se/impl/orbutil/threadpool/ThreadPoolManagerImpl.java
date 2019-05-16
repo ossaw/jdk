@@ -30,13 +30,12 @@ public class ThreadPoolManagerImpl implements ThreadPoolManager {
     private ThreadPool threadPool;
     private ThreadGroup threadGroup;
 
-    private static final ORBUtilSystemException wrapper = ORBUtilSystemException
-            .get(CORBALogDomains.RPC_TRANSPORT);
+    private static final ORBUtilSystemException wrapper = ORBUtilSystemException.get(
+            CORBALogDomains.RPC_TRANSPORT);
 
     public ThreadPoolManagerImpl() {
         threadGroup = getThreadGroup();
-        threadPool = new ThreadPoolImpl(threadGroup,
-                ORBConstants.THREADPOOL_DEFAULT_NAME);
+        threadPool = new ThreadPoolImpl(threadGroup, ORBConstants.THREADPOOL_DEFAULT_NAME);
     }
 
     private static AtomicInteger tgCount = new AtomicInteger();
@@ -62,24 +61,21 @@ public class ThreadPoolManagerImpl implements ThreadPoolManager {
             // parent-child hierarchy, as we can get to.
             // this will prevent an ORB thread created during applet-init from
             // being killed when an applet dies.
-            tg = AccessController.doPrivileged(
-                    new PrivilegedAction<ThreadGroup>() {
-                        public ThreadGroup run() {
-                            ThreadGroup tg = Thread.currentThread()
-                                    .getThreadGroup();
-                            ThreadGroup ptg = tg;
-                            try {
-                                while (ptg != null) {
-                                    tg = ptg;
-                                    ptg = tg.getParent();
-                                }
-                            } catch (SecurityException se) {
-                                // Discontinue going higher on a security exception.
-                            }
-                            return new ThreadGroup(tg, "ORB ThreadGroup "
-                                    + tgCount.getAndIncrement());
+            tg = AccessController.doPrivileged(new PrivilegedAction<ThreadGroup>() {
+                public ThreadGroup run() {
+                    ThreadGroup tg = Thread.currentThread().getThreadGroup();
+                    ThreadGroup ptg = tg;
+                    try {
+                        while (ptg != null) {
+                            tg = ptg;
+                            ptg = tg.getParent();
                         }
-                    });
+                    } catch (SecurityException se) {
+                        // Discontinue going higher on a security exception.
+                    }
+                    return new ThreadGroup(tg, "ORB ThreadGroup " + tgCount.getAndIncrement());
+                }
+            });
         } catch (SecurityException e) {
             // something wrong, we go back to the original code
             tg = Thread.currentThread().getThreadGroup();
@@ -104,12 +100,10 @@ public class ThreadPoolManagerImpl implements ThreadPoolManager {
                 wrapper.threadGroupIsDestroyed(threadGroup);
             } else {
                 if (numThreads > 0)
-                    wrapper.threadGroupHasActiveThreadsInClose(threadGroup,
-                            numThreads);
+                    wrapper.threadGroupHasActiveThreadsInClose(threadGroup, numThreads);
 
                 if (numGroups > 0)
-                    wrapper.threadGroupHasSubGroupsInClose(threadGroup,
-                            numGroups);
+                    wrapper.threadGroupHasSubGroupsInClose(threadGroup, numGroups);
 
                 threadGroup.destroy();
             }
@@ -125,11 +119,10 @@ public class ThreadPoolManagerImpl implements ThreadPoolManager {
      * threadpoolId, that can be used by any component in the app. server.
      *
      * @throws NoSuchThreadPoolException
-     *                                   thrown when invalid threadpoolId is
-     *                                   passed as a parameter
+     *         thrown when invalid threadpoolId is
+     *         passed as a parameter
      */
-    public ThreadPool getThreadPool(String threadpoolId)
-            throws NoSuchThreadPoolException {
+    public ThreadPool getThreadPool(String threadpoolId) throws NoSuchThreadPoolException {
 
         return threadPool;
     }
@@ -140,13 +133,12 @@ public class ThreadPoolManagerImpl implements ThreadPoolManager {
      * functionality of dedicated threadpool for EJB beans
      *
      * @throws NoSuchThreadPoolException
-     *                                   thrown when
-     *                                   invalidnumericIdForThreadpool is passed
-     *                                   as a
-     *                                   parameter
+     *         thrown when
+     *         invalidnumericIdForThreadpool is passed
+     *         as a
+     *         parameter
      */
-    public ThreadPool getThreadPool(int numericIdForThreadpool)
-            throws NoSuchThreadPoolException {
+    public ThreadPool getThreadPool(int numericIdForThreadpool) throws NoSuchThreadPoolException {
 
         return threadPool;
     }
@@ -203,8 +195,7 @@ public class ThreadPoolManagerImpl implements ThreadPoolManager {
      * ThreadPoolManager. This would enable any component to add a
      * ThreadPoolChooser for their specific use
      */
-    public void setThreadPoolChooser(String componentId,
-            ThreadPoolChooser aThreadPoolChooser) {
+    public void setThreadPoolChooser(String componentId, ThreadPoolChooser aThreadPoolChooser) {
         // FIXME: This method is not used, but should be fixed once
         // nio select starts working and we start using ThreadPoolChooser
     }

@@ -21,7 +21,6 @@ import sun.java2d.pipe.Region;
  * peers. Most component peers have to implement this interface (via one of the
  * subinterfaces), except menu components, which implement
  * {@link MenuComponentPeer}.
- *
  * The peer interfaces are intended only for use in porting the AWT. They are
  * not intended for use by application developers, and developers should not
  * implement peers nor invoke any of the peer methods directly on the peer
@@ -65,7 +64,6 @@ public interface ComponentPeer {
     /**
      * Resets the setBounds() operation to DEFAULT_OPERATION. This is not passed
      * into {@link #setBounds(int, int, int, int, int)}.
-     *
      * TODO: This is only used internally and should probably be moved outside
      * the peer interface.
      *
@@ -75,7 +73,6 @@ public interface ComponentPeer {
 
     /**
      * A flag that is used to suppress checks for embedded frames.
-     *
      * TODO: This is only used internally and should probably be moved outside
      * the peer interface.
      */
@@ -83,7 +80,6 @@ public interface ComponentPeer {
 
     /**
      * The default operation, which is to set size and location.
-     *
      * TODO: This is only used internally and should probably be moved outside
      * the peer interface.
      *
@@ -99,7 +95,6 @@ public interface ComponentPeer {
      *
      * @return {@code true} when the component has been obscured, {@code false}
      *         otherwise
-     *
      * @see #canDetermineObscurity()
      * @see javax.swing.JViewport#needsRepaintAfterBlit
      */
@@ -111,7 +106,6 @@ public interface ComponentPeer {
      *
      * @return {@code true} when the peer can determine if a component has been
      *         obscured, {@code false} false otherwise
-     *
      * @see #isObscured()
      * @see javax.swing.JViewport#needsRepaintAfterBlit
      */
@@ -121,9 +115,8 @@ public interface ComponentPeer {
      * Makes a component visible or invisible.
      *
      * @param v
-     *          {@code true} to make a component visible, {@code false} to
-     *          make it invisible
-     *
+     *        {@code true} to make a component visible, {@code false} to
+     *        make it invisible
      * @see Component#setVisible(boolean)
      */
     void setVisible(boolean v);
@@ -133,9 +126,8 @@ public interface ComponentPeer {
      * out and cannot be activated.
      *
      * @param e
-     *          {@code true} to enable the component, {@code false} to disable
-     *          it
-     *
+     *        {@code true} to enable the component, {@code false} to disable
+     *        it
      * @see Component#setEnabled(boolean)
      */
     void setEnabled(boolean e);
@@ -145,8 +137,7 @@ public interface ComponentPeer {
      * {@link Component#paintAll(Graphics)} to paint the component.
      *
      * @param g
-     *          the graphics context to paint to
-     *
+     *        the graphics context to paint to
      * @see Component#paintAll(Graphics)
      */
     void paint(Graphics g);
@@ -156,8 +147,7 @@ public interface ComponentPeer {
      * {@link Component#printAll(Graphics)} to print the component.
      *
      * @param g
-     *          the graphics context to print to
-     *
+     *        the graphics context to print to
      * @see Component#printAll(Graphics)
      */
     void print(Graphics g);
@@ -174,16 +164,15 @@ public interface ComponentPeer {
      * 'inner' size, without the insets of the window borders).
      *
      * @param x
-     *               the X location of the component
+     *        the X location of the component
      * @param y
-     *               the Y location of the component
+     *        the Y location of the component
      * @param width
-     *               the width of the component
+     *        the width of the component
      * @param height
-     *               the height of the component
+     *        the height of the component
      * @param op
-     *               the operation flag
-     *
+     *        the operation flag
      * @see #SET_BOUNDS
      * @see #SET_LOCATION
      * @see #SET_SIZE
@@ -195,8 +184,7 @@ public interface ComponentPeer {
      * Called to let the component peer handle events.
      *
      * @param e
-     *          the AWT event to handle
-     *
+     *        the AWT event to handle
      * @see Component#dispatchEvent(AWTEvent)
      */
     void handleEvent(AWTEvent e);
@@ -205,8 +193,7 @@ public interface ComponentPeer {
      * Called to coalesce paint events.
      *
      * @param e
-     *          the paint event to consider to coalesce
-     *
+     *        the paint event to consider to coalesce
      * @see EventQueue#coalescePaintEvent
      */
     void coalescePaintEvent(PaintEvent e);
@@ -215,7 +202,6 @@ public interface ComponentPeer {
      * Determines the location of the component on the screen.
      *
      * @return the location of the component on the screen
-     *
      * @see Component#getLocationOnScreen()
      */
     Point getLocationOnScreen();
@@ -224,7 +210,6 @@ public interface ComponentPeer {
      * Determines the preferred size of the component.
      *
      * @return the preferred size of the component
-     *
      * @see Component#getPreferredSize()
      */
     Dimension getPreferredSize();
@@ -233,7 +218,6 @@ public interface ComponentPeer {
      * Determines the minimum size of the component.
      *
      * @return the minimum size of the component
-     *
      * @see Component#getMinimumSize()
      */
     Dimension getMinimumSize();
@@ -242,7 +226,6 @@ public interface ComponentPeer {
      * Returns the color model used by the component.
      *
      * @return the color model used by the component
-     *
      * @see Component#getColorModel()
      */
     ColorModel getColorModel();
@@ -251,7 +234,6 @@ public interface ComponentPeer {
      * Returns a graphics object to paint on the component.
      *
      * @return a graphics object to paint on the component
-     *
      * @see Component#getGraphics()
      */
     // TODO: Maybe change this to force Graphics2D, since many things will
@@ -263,11 +245,9 @@ public interface ComponentPeer {
      * specified font.
      *
      * @param font
-     *             the font to determine the metrics for
-     *
+     *        the font to determine the metrics for
      * @return a font metrics object to determine the metrics properties of the
      *         specified font
-     *
      * @see Component#getFontMetrics(Font)
      */
     FontMetrics getFontMetrics(Font font);
@@ -285,8 +265,7 @@ public interface ComponentPeer {
      * Sets the foreground color of this component.
      *
      * @param c
-     *          the foreground color to set
-     *
+     *        the foreground color to set
      * @see Component#setForeground(Color)
      */
     void setForeground(Color c);
@@ -295,8 +274,7 @@ public interface ComponentPeer {
      * Sets the background color of this component.
      *
      * @param c
-     *          the background color to set
-     *
+     *        the background color to set
      * @see Component#setBackground(Color)
      */
     void setBackground(Color c);
@@ -305,8 +283,7 @@ public interface ComponentPeer {
      * Sets the font of this component.
      *
      * @param f
-     *          the font of this component
-     *
+     *        the font of this component
      * @see Component#setFont(Font)
      */
     void setFont(Font f);
@@ -322,27 +299,25 @@ public interface ComponentPeer {
      * Requests focus on this component.
      *
      * @param lightweightChild
-     *                                   the actual lightweight child that
-     *                                   requests the focus
+     *        the actual lightweight child that
+     *        requests the focus
      * @param temporary
-     *                                   {@code true} if the focus change is
-     *                                   temporary, {@code false}
-     *                                   otherwise
+     *        {@code true} if the focus change is
+     *        temporary, {@code false}
+     *        otherwise
      * @param focusedWindowChangeAllowed
-     *                                   {@code true} if changing the focus of
-     *                                   the containing window is
-     *                                   allowed or not
+     *        {@code true} if changing the focus of
+     *        the containing window is
+     *        allowed or not
      * @param time
-     *                                   the time of the focus change request
+     *        the time of the focus change request
      * @param cause
-     *                                   the cause of the focus change request
-     *
+     *        the cause of the focus change request
      * @return {@code true} if the focus change is guaranteed to be granted,
      *         {@code false} otherwise
      */
-    boolean requestFocus(Component lightweightChild, boolean temporary,
-            boolean focusedWindowChangeAllowed, long time,
-            CausedFocusEvent.Cause cause);
+    boolean requestFocus(Component lightweightChild, boolean temporary, boolean focusedWindowChangeAllowed,
+            long time, CausedFocusEvent.Cause cause);
 
     /**
      * Returns {@code true} when the component takes part in the focus
@@ -357,11 +332,9 @@ public interface ComponentPeer {
      * Creates an image using the specified image producer.
      *
      * @param producer
-     *                 the image producer from which the image pixels will be
-     *                 produced
-     *
+     *        the image producer from which the image pixels will be
+     *        produced
      * @return the created image
-     *
      * @see Component#createImage(ImageProducer)
      */
     Image createImage(ImageProducer producer);
@@ -372,12 +345,10 @@ public interface ComponentPeer {
      * component (e.g. by Swing).
      *
      * @param width
-     *               the width of the image
+     *        the width of the image
      * @param height
-     *               the height of the image
-     *
+     *        the height of the image
      * @return the created image
-     *
      * @see Component#createImage(int, int)
      */
     // TODO: Maybe make that return a BufferedImage, because some stuff will
@@ -390,12 +361,10 @@ public interface ComponentPeer {
      * component (e.g. by Swing).
      *
      * @param width
-     *               the width of the image
+     *        the width of the image
      * @param height
-     *               the height of the image
-     *
+     *        the height of the image
      * @return the created volatile image
-     *
      * @see Component#createVolatileImage(int, int)
      */
     // TODO: Include capabilities here and fix Component#createVolatileImage
@@ -407,17 +376,15 @@ public interface ComponentPeer {
      * screen representation.
      *
      * @param img
-     *            the image to prepare
+     *        the image to prepare
      * @param w
-     *            the width of the screen representation
+     *        the width of the screen representation
      * @param h
-     *            the height of the screen representation
+     *        the height of the screen representation
      * @param o
-     *            an image observer to observe the progress
-     *
+     *        an image observer to observe the progress
      * @return {@code true} if the image is already fully prepared,
      *         {@code false} otherwise
-     *
      * @see Component#prepareImage(Image, int, int, ImageObserver)
      */
     boolean prepareImage(Image img, int w, int h, ImageObserver o);
@@ -427,16 +394,14 @@ public interface ComponentPeer {
      * the specified image.
      *
      * @param img
-     *            the image to check
+     *        the image to check
      * @param w
-     *            the target width
+     *        the target width
      * @param h
-     *            the target height
+     *        the target height
      * @param o
-     *            the image observer to notify
-     *
+     *        the image observer to notify
      * @return the status as bitwise ORed ImageObserver flags
-     *
      * @see Component#checkImage(Image, int, int, ImageObserver)
      */
     int checkImage(Image img, int w, int h, ImageObserver o);
@@ -445,7 +410,6 @@ public interface ComponentPeer {
      * Returns the graphics configuration that corresponds to this component.
      *
      * @return the graphics configuration that corresponds to this component
-     *
      * @see Component#getGraphicsConfiguration()
      */
     GraphicsConfiguration getGraphicsConfiguration();
@@ -456,7 +420,6 @@ public interface ComponentPeer {
      *
      * @return {@code true} if the component handles wheel scrolling,
      *         {@code false} otherwise
-     *
      * @see Component#dispatchEventImpl(AWTEvent)
      */
     boolean handlesWheelScrolling();
@@ -466,23 +429,19 @@ public interface ComponentPeer {
      * capabilities.
      *
      * @param numBuffers
-     *                   the number of buffers to create
+     *        the number of buffers to create
      * @param caps
-     *                   the buffer capabilities
-     *
+     *        the buffer capabilities
      * @throws AWTException
-     *                      if flip buffering is not supported
-     *
+     *         if flip buffering is not supported
      * @see Component.FlipBufferStrategy#createBuffers
      */
-    void createBuffers(int numBuffers, BufferCapabilities caps)
-            throws AWTException;
+    void createBuffers(int numBuffers, BufferCapabilities caps) throws AWTException;
 
     /**
      * Returns the back buffer as image.
      *
      * @return the back buffer as image
-     *
      * @see Component.FlipBufferStrategy#getBackBuffer
      */
     Image getBackBuffer();
@@ -491,20 +450,18 @@ public interface ComponentPeer {
      * Move the back buffer to the front buffer.
      *
      * @param x1
-     *                   the area to be flipped, upper left X coordinate
+     *        the area to be flipped, upper left X coordinate
      * @param y1
-     *                   the area to be flipped, upper left Y coordinate
+     *        the area to be flipped, upper left Y coordinate
      * @param x2
-     *                   the area to be flipped, lower right X coordinate
+     *        the area to be flipped, lower right X coordinate
      * @param y2
-     *                   the area to be flipped, lower right Y coordinate
+     *        the area to be flipped, lower right Y coordinate
      * @param flipAction
-     *                   the flip action to perform
-     *
+     *        the flip action to perform
      * @see Component.FlipBufferStrategy#flip
      */
-    void flip(int x1, int y1, int x2, int y2,
-            BufferCapabilities.FlipContents flipAction);
+    void flip(int x1, int y1, int x2, int y2, BufferCapabilities.FlipContents flipAction);
 
     /**
      * Destroys all created buffers.
@@ -518,8 +475,7 @@ public interface ComponentPeer {
      * peer. Implementation depends on toolkit and container.
      *
      * @param newContainer
-     *                     peer of the new parent container
-     *
+     *        peer of the new parent container
      * @since 1.5
      */
     void reparent(ContainerPeer newContainer);
@@ -529,7 +485,6 @@ public interface ComponentPeer {
      * destroying the peer.
      *
      * @return true if appropriate reparent is supported, false otherwise
-     *
      * @since 1.5
      */
     boolean isReparentSupported();
@@ -547,7 +502,6 @@ public interface ComponentPeer {
      * Applies the shape to the native component window.
      * 
      * @since 1.7
-     *
      * @see Component#applyCompoundShape
      */
     void applyShape(Region shape);

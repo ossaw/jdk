@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -44,9 +42,9 @@ public class IdResolver {
      * Method registerElementById
      *
      * @param element
-     *                the element to register
+     *        the element to register
      * @param id
-     *                the ID attribute
+     *        the ID attribute
      */
     public static void registerElementById(Element element, Attr id) {
         element.setIdAttributeNode(id, true);
@@ -56,9 +54,9 @@ public class IdResolver {
      * Method getElementById
      *
      * @param doc
-     *            the document
+     *        the document
      * @param id
-     *            the value of the ID
+     *        the value of the ID
      * @return the element obtained by the id, or null if it is not found.
      */
     public static Element getElementById(Document doc, String id) {

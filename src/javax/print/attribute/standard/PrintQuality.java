@@ -23,8 +23,8 @@ import javax.print.attribute.PrintJobAttribute;
  * @author David Mendenhall
  * @author Alan Kaminsky
  */
-public class PrintQuality extends EnumSyntax implements DocAttribute,
-        PrintRequestAttribute, PrintJobAttribute {
+public class PrintQuality extends EnumSyntax implements DocAttribute, PrintRequestAttribute,
+        PrintJobAttribute {
 
     private static final long serialVersionUID = -3072341285225858365L;
     /**
@@ -47,7 +47,7 @@ public class PrintQuality extends EnumSyntax implements DocAttribute,
      * value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected PrintQuality(int value) {
         super(value);
@@ -55,8 +55,7 @@ public class PrintQuality extends EnumSyntax implements DocAttribute,
 
     private static final String[] myStringTable = { "draft", "normal", "high" };
 
-    private static final PrintQuality[] myEnumValueTable = { DRAFT, NORMAL,
-            HIGH };
+    private static final PrintQuality[] myEnumValueTable = { DRAFT, NORMAL, HIGH };
 
     /**
      * Returns the string table for class PrintQuality.

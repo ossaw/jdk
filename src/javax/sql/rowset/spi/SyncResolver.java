@@ -21,10 +21,7 @@ import java.sql.SQLException;
  * synchronization. Note also that a <code>RowSet</code> object's original
  * values are the values it had just prior to the the last synchronization,
  * which are not necessarily its initial values.
- *
- *
  * <H2>Description of a <code>SyncResolver</code> Object</H2>
- *
  * A <code>SyncResolver</code> object is a specialized <code>RowSet</code>
  * object that implements the <code>SyncResolver</code> interface. It <b>may</b>
  * operate as either a connected <code>RowSet</code> object (an implementation
@@ -47,10 +44,7 @@ import java.sql.SQLException;
  * the values from the data source that caused the conflict(s) and
  * <code>null</code> for all other values. In addition, it contains information
  * about each conflict.
- *
- *
  * <H2>Getting and Using a <code>SyncResolver</code> Object</H2>
- *
  * When the method <code>acceptChanges</code> encounters conflicts, the
  * <code>SyncProvider</code> object creates a <code>SyncProviderException</code>
  * object and sets it with the new <code>SyncResolver</code> object. The method
@@ -79,7 +73,6 @@ import java.sql.SQLException;
  * <P>
  * The following kinds of information can be obtained from a
  * <code>SyncResolver</code> object:
- *
  * <h3>What operation was being attempted when a conflict occurred</h3> The
  * <code>SyncProvider</code> interface defines four constants describing states
  * that may occur. Three constants describe the type of operation (update,
@@ -129,10 +122,7 @@ import java.sql.SQLException;
  * An application calls the method <code>setResolvedValue</code> after it has
  * resolved all of the conflicts in the current conflict row and repeats this
  * process for each conflict row in the <code>SyncResolver</code> object.
- *
- *
  * <H2>Navigating a <code>SyncResolver</code> Object</H2>
- *
  * Because a <code>SyncResolver</code> object is a <code>RowSet</code> object,
  * an application can use all of the <code>RowSet</code> methods for moving the
  * cursor to navigate a <code>SyncResolver</code> object. For example, an
@@ -151,9 +141,7 @@ import java.sql.SQLException;
  * call the <code>SyncResolver</code> method <code>getConflictValue</code>,
  * supplying it with the column number, to get the conflict value itself. The
  * code fragment in the next section gives an example.
- *
  * <H2>Code Example</H2>
- *
  * The following code fragment demonstrates how a disconnected
  * <code>RowSet</code> object <i>crs</i> might attempt to synchronize itself
  * with the underlying data source and then resolve the conflicts. In the
@@ -280,14 +268,14 @@ public interface SyncResolver extends RowSet {
      * that caused a conflict.
      *
      * @param index
-     *              an <code>int</code> designating the column in this row of
-     *              this
-     *              <code>SyncResolver</code> object from which to retrieve the
-     *              value causing a conflict
+     *        an <code>int</code> designating the column in this row of
+     *        this
+     *        <code>SyncResolver</code> object from which to retrieve the
+     *        value causing a conflict
      * @return the value of the designated column in the current row of this
      *         <code>SyncResolver</code> object
      * @throws SQLException
-     *                      if a database access error occurs
+     *         if a database access error occurs
      */
     public Object getConflictValue(int index) throws SQLException;
 
@@ -297,15 +285,15 @@ public interface SyncResolver extends RowSet {
      * that caused a conflict.
      *
      * @param columnName
-     *                   a <code>String</code> object designating the column in
-     *                   this
-     *                   row of this <code>SyncResolver</code> object from which
-     *                   to
-     *                   retrieve the value causing a conflict
+     *        a <code>String</code> object designating the column in
+     *        this
+     *        row of this <code>SyncResolver</code> object from which
+     *        to
+     *        retrieve the value causing a conflict
      * @return the value of the designated column in the current row of this
      *         <code>SyncResolver</code> object
      * @throws SQLException
-     *                      if a database access error occurs
+     *         if a database access error occurs
      */
     public Object getConflictValue(String columnName) throws SQLException;
 
@@ -315,14 +303,14 @@ public interface SyncResolver extends RowSet {
      * set as the value in the data source internally.
      *
      * @param index
-     *              an <code>int</code> giving the number of the column into
-     *              which
-     *              to set the value to be persisted
+     *        an <code>int</code> giving the number of the column into
+     *        which
+     *        to set the value to be persisted
      * @param obj
-     *              an <code>Object</code> that is the value to be set in the
-     *              <code>RowSet</code> object and persisted in the data source
+     *        an <code>Object</code> that is the value to be set in the
+     *        <code>RowSet</code> object and persisted in the data source
      * @throws SQLException
-     *                      if a database access error occurs
+     *         if a database access error occurs
      */
     public void setResolvedValue(int index, Object obj) throws SQLException;
 
@@ -332,19 +320,18 @@ public interface SyncResolver extends RowSet {
      * <i>obj</i> is set as the value in the data source internally.
      *
      * @param columnName
-     *                   a <code>String</code> object giving the name of the
-     *                   column
-     *                   into which to set the value to be persisted
+     *        a <code>String</code> object giving the name of the
+     *        column
+     *        into which to set the value to be persisted
      * @param obj
-     *                   an <code>Object</code> that is the value to be set in
-     *                   the
-     *                   <code>RowSet</code> object and persisted in the data
-     *                   source
+     *        an <code>Object</code> that is the value to be set in
+     *        the
+     *        <code>RowSet</code> object and persisted in the data
+     *        source
      * @throws SQLException
-     *                      if a database access error occurs
+     *         if a database access error occurs
      */
-    public void setResolvedValue(String columnName, Object obj)
-            throws SQLException;
+    public void setResolvedValue(String columnName, Object obj) throws SQLException;
 
     /**
      * Moves the cursor down from its current position to the next row that
@@ -361,10 +348,9 @@ public interface SyncResolver extends RowSet {
      * @return <code>true</code> if the new current row is valid;
      *         <code>false</code> if there are no more rows
      * @throws SQLException
-     *                      if a database access error occurs or the result set
-     *                      type is
-     *                      <code>TYPE_FORWARD_ONLY</code>
-     *
+     *         if a database access error occurs or the result set
+     *         type is
+     *         <code>TYPE_FORWARD_ONLY</code>
      */
     public boolean nextConflict() throws SQLException;
 
@@ -379,9 +365,9 @@ public interface SyncResolver extends RowSet {
      * @return <code>true</code> if the cursor is on a valid row;
      *         <code>false</code> if it is off the result set
      * @throws SQLException
-     *                      if a database access error occurs or the result set
-     *                      type is
-     *                      <code>TYPE_FORWARD_ONLY</code>
+     *         if a database access error occurs or the result set
+     *         type is
+     *         <code>TYPE_FORWARD_ONLY</code>
      */
     public boolean previousConflict() throws SQLException;
 

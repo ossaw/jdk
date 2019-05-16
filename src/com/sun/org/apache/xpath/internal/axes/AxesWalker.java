@@ -36,15 +36,14 @@ import com.sun.org.apache.xpath.internal.res.XPATHErrorResources;
  * Serves as common interface for axes Walkers, and stores common state
  * variables.
  */
-public class AxesWalker extends PredicatedNodeTest implements Cloneable,
-        PathComponent, ExpressionOwner {
+public class AxesWalker extends PredicatedNodeTest implements Cloneable, PathComponent, ExpressionOwner {
     static final long serialVersionUID = -2966031951306601247L;
 
     /**
      * Construct an AxesWalker using a LocPathIterator.
      *
      * @param locPathIterator
-     *                        non-null reference to the parent iterator.
+     *        non-null reference to the parent iterator.
      */
     public AxesWalker(LocPathIterator locPathIterator, int axis) {
         super(locPathIterator);
@@ -59,14 +58,13 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
      * Initialize an AxesWalker during the parse of the XPath expression.
      *
      * @param compiler
-     *                 The Compiler object that has information about this
-     *                 walker in
-     *                 the op map.
+     *        The Compiler object that has information about this
+     *        walker in
+     *        the op map.
      * @param opPos
-     *                 The op code position of this location step.
+     *        The op code position of this location step.
      * @param stepType
-     *                 The type of location step.
-     *
+     *        The type of location step.
      * @throws javax.xml.transform.TransformerException
      */
     public void init(Compiler compiler, int opPos, int stepType)
@@ -81,7 +79,6 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
      * Get a cloned AxesWalker.
      *
      * @return A new AxesWalker that can be used without mutating this one.
-     *
      * @throws CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException {
@@ -102,18 +99,16 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
      * already cloned version.
      *
      * @param cloneOwner
-     *                   non-null reference to the cloned location path iterator
-     *                   to
-     *                   which this clone will be added.
+     *        non-null reference to the cloned location path iterator
+     *        to
+     *        which this clone will be added.
      * @param cloneList
-     *                   non-null vector of sources in odd elements, and the
-     *                   corresponding clones in even vectors.
-     *
+     *        non-null vector of sources in odd elements, and the
+     *        corresponding clones in even vectors.
      * @return non-null clone, which may be a new clone, or may be a clone
      *         contained on the cloneList.
      */
-    AxesWalker cloneDeep(WalkingIterator cloneOwner, Vector cloneList)
-            throws CloneNotSupportedException {
+    AxesWalker cloneDeep(WalkingIterator cloneOwner, Vector cloneList) throws CloneNotSupportedException {
         AxesWalker clone = findClone(this, cloneList);
         if (null != clone)
             return clone;
@@ -134,8 +129,7 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
         // recursive infinate loop.
         if (null != cloneList) {
             if (null != m_prevWalker)
-                clone.m_prevWalker = m_prevWalker.cloneDeep(cloneOwner,
-                        cloneList);
+                clone.m_prevWalker = m_prevWalker.cloneDeep(cloneOwner, cloneList);
         } else {
             if (null != m_nextWalker)
                 clone.m_nextWalker.m_prevWalker = clone;
@@ -147,11 +141,10 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
      * Find a clone that corresponds to the key argument.
      *
      * @param key
-     *                  The original AxesWalker for which there may be a clone.
+     *        The original AxesWalker for which there may be a clone.
      * @param cloneList
-     *                  vector of sources in odd elements, and the corresponding
-     *                  clones in even vectors, may be null.
-     *
+     *        vector of sources in odd elements, and the corresponding
+     *        clones in even vectors, may be null.
      * @return A clone that corresponds to the key, or null if key not found.
      */
     static AxesWalker findClone(AxesWalker key, Vector cloneList) {
@@ -206,7 +199,7 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
      * interface).
      *
      * @param root
-     *             The context node of this step.
+     *        The context node of this step.
      */
     public void setRoot(int root) {
         // %OPT% Get this directly from the lpi.
@@ -257,9 +250,8 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
     /**
      * Set the next walker in the location step chain.
      *
-     *
      * @param walker
-     *               Reference to AxesWalker derivative, or may be null.
+     *        Reference to AxesWalker derivative, or may be null.
      */
     public void setNextWalker(AxesWalker walker) {
         m_nextWalker = walker;
@@ -267,7 +259,6 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
 
     /**
      * Get the next walker in the location step chain.
-     *
      *
      * @return Reference to AxesWalker derivative, or null.
      */
@@ -278,10 +269,9 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
     /**
      * Set or clear the previous walker reference in the location step chain.
      *
-     *
      * @param walker
-     *               Reference to previous walker reference in the location step
-     *               chain, or null.
+     *        Reference to previous walker reference in the location step
+     *        chain, or null.
      */
     public void setPrevWalker(AxesWalker walker) {
         m_prevWalker = walker;
@@ -289,7 +279,6 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
 
     /**
      * Get the previous walker reference in the location step chain.
-     *
      *
      * @return Reference to previous walker reference in the location step
      *         chain, or null.
@@ -303,8 +292,7 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
      * diagnostic purposes.
      *
      * @param n
-     *          Node to return, or null.
-     *
+     *        Node to return, or null.
      * @return The argument.
      */
     private int returnNextNode(int n) {
@@ -393,10 +381,8 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
     /**
      * Get the index of the last node that can be itterated to.
      *
-     *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return the index of the last node that can be itterated to.
      */
     public int getLastPos(XPathContext xctxt) {
@@ -449,7 +435,7 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
      * Set the DTM for this walker.
      *
      * @param dtm
-     *            Non-null reference to a DTM.
+     *        Non-null reference to a DTM.
      */
     public void setDefaultDTM(DTM dtm) {
         m_dtm = dtm;
@@ -492,11 +478,11 @@ public class AxesWalker extends PredicatedNodeTest implements Cloneable,
      * called.
      *
      * @param owner
-     *                The owner of the visitor, where that path may be rewritten
-     *                if
-     *                needed.
+     *        The owner of the visitor, where that path may be rewritten
+     *        if
+     *        needed.
      * @param visitor
-     *                The visitor whose appropriate method will be called.
+     *        The visitor whose appropriate method will be called.
      */
     public void callVisitors(ExpressionOwner owner, XPathVisitor visitor) {
         if (visitor.visitStep(owner, this)) {

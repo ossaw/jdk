@@ -77,7 +77,7 @@ public final class ConstantNameAndType extends Constant {
      * Initialize instance from file data.
      *
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      */
     ConstantNameAndType(DataInputStream file) throws IOException {
@@ -86,9 +86,9 @@ public final class ConstantNameAndType extends Constant {
 
     /**
      * @param name_index
-     *                        Name of field/method
+     *        Name of field/method
      * @param signature_index
-     *                        and its signature
+     *        and its signature
      */
     public ConstantNameAndType(int name_index, int signature_index) {
         super(Constants.CONSTANT_NameAndType);
@@ -102,7 +102,7 @@ public final class ConstantNameAndType extends Constant {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantNameAndType(this);
@@ -112,7 +112,7 @@ public final class ConstantNameAndType extends Constant {
      * Dump name and signature index to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -146,8 +146,7 @@ public final class ConstantNameAndType extends Constant {
      * @return signature
      */
     public final String getSignature(ConstantPool cp) {
-        return cp.constantToString(getSignatureIndex(),
-                Constants.CONSTANT_Utf8);
+        return cp.constantToString(getSignatureIndex(), Constants.CONSTANT_Utf8);
     }
 
     /**
@@ -168,7 +167,7 @@ public final class ConstantNameAndType extends Constant {
      * @return String representation
      */
     public final String toString() {
-        return super.toString() + "(name_index = " + name_index
-                + ", signature_index = " + signature_index + ")";
+        return super.toString() + "(name_index = " + name_index + ", signature_index = " + signature_index
+                + ")";
     }
 }

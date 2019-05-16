@@ -27,8 +27,7 @@ public interface ClientInvocationInfo {
 
     public void decrementEntryCount();
 
-    public void setClientRequestDispatcher(
-            ClientRequestDispatcher clientRequestDispatcher);
+    public void setClientRequestDispatcher(ClientRequestDispatcher clientRequestDispatcher);
 
     public ClientRequestDispatcher getClientRequestDispatcher();
 

@@ -16,8 +16,7 @@ public abstract class ParserActionBase implements ParserAction {
     private String fieldName;
 
     public int hashCode() {
-        return propertyName.hashCode() ^ operation.hashCode() ^ fieldName
-                .hashCode() ^ (prefix ? 0 : 1);
+        return propertyName.hashCode() ^ operation.hashCode() ^ fieldName.hashCode() ^ (prefix ? 0 : 1);
     }
 
     public boolean equals(Object obj) {
@@ -29,13 +28,11 @@ public abstract class ParserActionBase implements ParserAction {
 
         ParserActionBase other = (ParserActionBase) obj;
 
-        return propertyName.equals(other.propertyName) && prefix == other.prefix
-                && operation.equals(other.operation) && fieldName.equals(
-                        other.fieldName);
+        return propertyName.equals(other.propertyName) && prefix == other.prefix && operation.equals(
+                other.operation) && fieldName.equals(other.fieldName);
     }
 
-    public ParserActionBase(String propertyName, boolean prefix,
-            Operation operation, String fieldName) {
+    public ParserActionBase(String propertyName, boolean prefix, Operation operation, String fieldName) {
         this.propertyName = propertyName;
         this.prefix = prefix;
         this.operation = operation;

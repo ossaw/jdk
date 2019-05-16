@@ -93,8 +93,7 @@ class TypeConvertingMethodAdapter extends MethodVisitor {
             return null;
         }
         // Pare it down to the simple class name
-        String cname = desc.substring(WRAPPER_PREFIX.length(), desc.length()
-                - 1);
+        String cname = desc.substring(WRAPPER_PREFIX.length(), desc.length() - 1);
         // Hash to a Wrapper
         Wrapper w = FROM_WRAPPER_NAME[hashWrapperName(cname)];
         if (w == null || w.wrapperSimpleName().equals(cname)) {
@@ -137,8 +136,7 @@ class TypeConvertingMethodAdapter extends MethodVisitor {
     }
 
     void box(Wrapper w) {
-        visitMethodInsn(Opcodes.INVOKESTATIC, wrapperName(w), NAME_BOX_METHOD,
-                boxingDescriptor(w), false);
+        visitMethodInsn(Opcodes.INVOKESTATIC, wrapperName(w), NAME_BOX_METHOD, boxingDescriptor(w), false);
     }
 
     /**
@@ -146,15 +144,14 @@ class TypeConvertingMethodAdapter extends MethodVisitor {
      * wrapper.
      * 
      * @param sname
-     *              A primitive wrapper corresponding to wrapped reference
-     *              source
-     *              type
+     *        A primitive wrapper corresponding to wrapped reference
+     *        source
+     *        type
      * @param wt
-     *              A primitive wrapper being converted to
+     *        A primitive wrapper being converted to
      */
     void unbox(String sname, Wrapper wt) {
-        visitMethodInsn(Opcodes.INVOKEVIRTUAL, sname, unboxMethod(wt),
-                unboxingDescriptor(wt), false);
+        visitMethodInsn(Opcodes.INVOKEVIRTUAL, sname, unboxMethod(wt), unboxingDescriptor(wt), false);
     }
 
     private String descriptorToName(String desc) {

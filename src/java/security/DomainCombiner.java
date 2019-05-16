@@ -8,7 +8,6 @@ package java.security;
 /**
  * A {@code DomainCombiner} provides a means to dynamically update the
  * ProtectionDomains associated with the current {@code AccessControlContext}.
- *
  * <p>
  * A {@code DomainCombiner} is passed as a parameter to the appropriate
  * constructor for {@code AccessControlContext}. The newly constructed context
@@ -18,7 +17,6 @@ package java.security;
  * {@code AccessController.getContext} or
  * {@code AccessController.checkPermission} cause the
  * {@code DomainCombiner.combine} to get invoked.
- *
  * <p>
  * The combine method takes two arguments. The first argument represents an
  * array of ProtectionDomains from the current execution Thread, since the most
@@ -34,7 +32,6 @@ package java.security;
  * ProtectionDomains from the privileged context. If the most recent call was to
  * doPrivileged(action), then there is no privileged context, and the second
  * argument will be {@code null}.
- *
  * <p>
  * The {@code combine} method investigates the two input arrays of
  * ProtectionDomains and returns a single array containing the updated
@@ -46,7 +43,6 @@ package java.security;
  * the ProtectionDomains are also permitted. Typically the {@code combine}
  * method bases its updates on the information encapsulated in the
  * {@code DomainCombiner}.
- *
  * <p>
  * After the {@code AccessController.getContext} method receives the combined
  * stack of ProtectionDomains back from the {@code DomainCombiner}, it returns a
@@ -64,38 +60,34 @@ public interface DomainCombiner {
      * added to or removed from the given ProtectionDomains. The
      * ProtectionDomains may be re-ordered. Individual ProtectionDomains may be
      * modified (with a new set of Permissions, for example).
-     *
      * <p>
      *
      * @param currentDomains
-     *                        the ProtectionDomains associated with the current
-     *                        execution
-     *                        Thread, up to the most recent privileged
-     *                        {@code ProtectionDomain}. The ProtectionDomains
-     *                        are are listed
-     *                        in order of execution, with the most recently
-     *                        executing
-     *                        {@code ProtectionDomain} residing at the beginning
-     *                        of the
-     *                        array. This parameter may be {@code null} if the
-     *                        current
-     *                        execution Thread has no associated
-     *                        ProtectionDomains.
-     *                        <p>
-     *
+     *        the ProtectionDomains associated with the current
+     *        execution
+     *        Thread, up to the most recent privileged
+     *        {@code ProtectionDomain}. The ProtectionDomains
+     *        are are listed
+     *        in order of execution, with the most recently
+     *        executing
+     *        {@code ProtectionDomain} residing at the beginning
+     *        of the
+     *        array. This parameter may be {@code null} if the
+     *        current
+     *        execution Thread has no associated
+     *        ProtectionDomains.
+     *        <p>
      * @param assignedDomains
-     *                        an array of inherited ProtectionDomains.
-     *                        ProtectionDomains may
-     *                        be inherited from a parent Thread, or from a
-     *                        privileged
-     *                        {@code AccessControlContext}. This parameter may
-     *                        be
-     *                        {@code null} if there are no inherited
-     *                        ProtectionDomains.
-     *
+     *        an array of inherited ProtectionDomains.
+     *        ProtectionDomains may
+     *        be inherited from a parent Thread, or from a
+     *        privileged
+     *        {@code AccessControlContext}. This parameter may
+     *        be
+     *        {@code null} if there are no inherited
+     *        ProtectionDomains.
      * @return a new array consisting of the updated ProtectionDomains, or
      *         {@code null}.
      */
-    ProtectionDomain[] combine(ProtectionDomain[] currentDomains,
-            ProtectionDomain[] assignedDomains);
+    ProtectionDomain[] combine(ProtectionDomain[] currentDomains, ProtectionDomain[] assignedDomains);
 }

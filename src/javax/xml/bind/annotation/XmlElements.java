@@ -15,7 +15,6 @@ import java.lang.annotation.Target;
 /**
  * <p>
  * A container for multiple @{@link XmlElement} annotations.
- *
  * Multiple annotations of the same type are not allowed on a program element.
  * This annotation therefore serves as a container annotation for multiple
  * &#64;XmlElements as follows:
@@ -23,7 +22,6 @@ import java.lang.annotation.Target;
  * <pre>
  * &#64;XmlElements({ @XmlElement(...),@XmlElement(...) })
  * </pre>
- *
  * <p>
  * The <tt>@XmlElements</tt> annnotation can be used with the following program
  * elements:
@@ -32,14 +30,11 @@ import java.lang.annotation.Target;
  * <li>a JavaBean property</li>
  * <li>non static, non transient field</li>
  * </ul>
- *
  * This annotation is intended for annotation a JavaBean collection property
  * (e.g. List).
- *
  * <p>
  * <b>Usage</b>
  * </p>
- *
  * <p>
  * The usage is subject to the following constraints:
  * <ul>
@@ -49,14 +44,11 @@ import java.lang.annotation.Target;
  * &#64;XmlElement.type() must contain a JavaBean property annotated with
  * <tt>&#64;XmlID</tt>.</li>
  * </ul>
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
  * </p>
- *
  * <hr>
- *
  * <p>
  * <b>Example 1:</b> Map to a list of elements
  * </p>
@@ -88,9 +80,7 @@ import java.lang.annotation.Target;
  *        &lt;xs:choice>
  *      &lt;/xs:sequence>
  *    &lt;/xs:complexType>
- *
  * </pre>
- *
  * <p>
  * <b>Example 2:</b> Map to a list of elements wrapped with another element
  * </p>
@@ -121,7 +111,6 @@ import java.lang.annotation.Target;
  *      &lt;/xs:sequence>
  *    &lt;/xs:complexType>
  * </pre>
- *
  * <p>
  * <b>Example 3:</b> Change element name based on type using an adapter.
  * </p>

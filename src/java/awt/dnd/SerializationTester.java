@@ -23,8 +23,7 @@ final class SerializationTester {
             stream = new ObjectOutputStream(new OutputStream() {
                 public void write(int b) {}
             });
-        } catch (IOException cannotHappen) {
-        }
+        } catch (IOException cannotHappen) {}
     }
 
     static boolean test(Object obj) {

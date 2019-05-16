@@ -65,10 +65,8 @@ public class LOOKUPSWITCH extends Select {
      */
     LOOKUPSWITCH() {}
 
-    public LOOKUPSWITCH(int[] match, InstructionHandle[] targets,
-            InstructionHandle target) {
-        super(com.sun.org.apache.bcel.internal.Constants.LOOKUPSWITCH, match,
-                targets, target);
+    public LOOKUPSWITCH(int[] match, InstructionHandle[] targets, InstructionHandle target) {
+        super(com.sun.org.apache.bcel.internal.Constants.LOOKUPSWITCH, match, targets, target);
 
         length = (short) (9 + match_length * 8); /*
                                                   * alignment remainder
@@ -82,7 +80,7 @@ public class LOOKUPSWITCH extends Select {
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         super.dump(out);
@@ -97,8 +95,7 @@ public class LOOKUPSWITCH extends Select {
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         super.initFromFile(bytes, wide); // reads padding
 
         match_length = bytes.readInt();
@@ -122,7 +119,7 @@ public class LOOKUPSWITCH extends Select {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitVariableLengthInstruction(this);

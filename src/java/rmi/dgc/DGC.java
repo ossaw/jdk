@@ -16,7 +16,6 @@ import java.rmi.server.ObjID;
  * failed dirty call must schedule a strong clean call so that the call's
  * sequence number can be retained in order to detect future calls received out
  * of order by the distributed garbage collector.
- *
  * A reference to a remote object is leased for a period of time by the client
  * holding the reference. The lease period starts when the dirty call is
  * received. It is the client's responsibility to renew the leases, by making
@@ -41,19 +40,16 @@ public interface DGC extends Remote {
      * detect and discard late calls to the garbage collector. The sequence
      * number should always increase for each subsequent call to the garbage
      * collector.
-     *
      * Some clients are unable to generate a VMID, since a VMID is a universally
      * unique identifier that contains a host address which some clients are
      * unable to obtain due to security restrictions. In this case, a client can
      * use a VMID of null, and the distributed garbage collector will assign a
      * VMID for the client.
-     *
      * The dirty call returns a Lease object that contains the VMID used and the
      * lease period granted for the remote references (a server may decide to
      * grant a smaller lease period than the client requests). A client must use
      * the VMID the garbage collector uses in order to make corresponding clean
      * calls when the client drops remote object references.
-     *
      * A client VM need only make one initial dirty call for each remote
      * reference referenced in the VM (even if it has multiple references to the
      * same remote object). The client must also make a dirty call to renew
@@ -62,17 +58,16 @@ public interface DGC extends Remote {
      * clean call for the object ID associated with the reference.
      *
      * @param ids
-     *                    IDs of objects to mark as referenced by calling client
+     *        IDs of objects to mark as referenced by calling client
      * @param sequenceNum
-     *                    sequence number
+     *        sequence number
      * @param lease
-     *                    requested lease
+     *        requested lease
      * @return granted lease
      * @throws RemoteException
-     *                         if dirty call fails
+     *         if dirty call fails
      */
-    Lease dirty(ObjID[] ids, long sequenceNum, Lease lease)
-            throws RemoteException;
+    Lease dirty(ObjID[] ids, long sequenceNum, Lease lease) throws RemoteException;
 
     /**
      * The clean call removes the 'vmid' from the reference list of each remote
@@ -82,17 +77,16 @@ public interface DGC extends Remote {
      * 'vmid' needs to be remembered.
      *
      * @param ids
-     *                    IDs of objects to mark as unreferenced by calling
-     *                    client
+     *        IDs of objects to mark as unreferenced by calling
+     *        client
      * @param sequenceNum
-     *                    sequence number
+     *        sequence number
      * @param vmid
-     *                    client VMID
+     *        client VMID
      * @param strong
-     *                    make 'strong' clean call
+     *        make 'strong' clean call
      * @throws RemoteException
-     *                         if clean call fails
+     *         if clean call fails
      */
-    void clean(ObjID[] ids, long sequenceNum, VMID vmid, boolean strong)
-            throws RemoteException;
+    void clean(ObjID[] ids, long sequenceNum, VMID vmid, boolean strong) throws RemoteException;
 }

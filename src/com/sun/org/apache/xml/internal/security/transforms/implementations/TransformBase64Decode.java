@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -47,7 +45,6 @@ import org.xml.sax.SAXException;
 /**
  * Implements the <CODE>http://www.w3.org/2000/09/xmldsig#base64</CODE> decoding
  * transform.
- *
  * <p>
  * The normative specification for base64 decoding transforms is
  * <A HREF="http://www.w3.org/TR/2001/CR-xmldsig-core-20010419/#ref-MIME">[MIME]
@@ -55,7 +52,6 @@ import org.xml.sax.SAXException;
  * the algorithms. This transform is useful if an application needs to sign the
  * raw data associated with the encoded content of an element.
  * </p>
- *
  * <p>
  * This transform requires an octet stream for input. If an XPath node-set (or
  * sufficiently functional alternative) is given as input, then it is converted
@@ -96,15 +92,14 @@ public class TransformBase64Decode extends TransformSpi {
      * @throws IOException
      * @throws TransformationException
      */
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
-            Transform transformObject) throws IOException,
-            CanonicalizationException, TransformationException {
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, Transform transformObject)
+            throws IOException, CanonicalizationException, TransformationException {
         return enginePerformTransform(input, null, transformObject);
     }
 
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
-            OutputStream os, Transform transformObject) throws IOException,
-            CanonicalizationException, TransformationException {
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
+            Transform transformObject) throws IOException, CanonicalizationException,
+            TransformationException {
         try {
             if (input.isElement()) {
                 Node el = input.getSubNode();
@@ -132,8 +127,7 @@ public class TransformBase64Decode extends TransformSpi {
                 if (input.isByteArray() || input.isNodeSet()) {
                     Base64.decode(input.getBytes(), os);
                 } else {
-                    Base64.decode(new BufferedInputStream(input
-                            .getOctetStreamReal()), os);
+                    Base64.decode(new BufferedInputStream(input.getOctetStreamReal()), os);
                 }
                 XMLSignatureInput output = new XMLSignatureInput((byte[]) null);
                 output.setOutputStream(os);
@@ -144,12 +138,9 @@ public class TransformBase64Decode extends TransformSpi {
                 // Exceptional case there is current not text case testing
                 // this(Before it was a
                 // a common case).
-                DocumentBuilderFactory dbf = DocumentBuilderFactory
-                        .newInstance();
-                dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
-                        Boolean.TRUE);
-                Document doc = dbf.newDocumentBuilder().parse(input
-                        .getOctetStream());
+                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
+                Document doc = dbf.newDocumentBuilder().parse(input.getOctetStream());
 
                 Element rootNode = doc.getDocumentElement();
                 StringBuilder sb = new StringBuilder();
@@ -157,8 +148,7 @@ public class TransformBase64Decode extends TransformSpi {
                 byte[] decodedBytes = Base64.decode(sb.toString());
                 return new XMLSignatureInput(decodedBytes);
             } catch (ParserConfigurationException e) {
-                throw new TransformationException(
-                        "c14n.Canonicalizer.Exception", e);
+                throw new TransformationException("c14n.Canonicalizer.Exception", e);
             } catch (SAXException e) {
                 throw new TransformationException("SAX exception", e);
             }

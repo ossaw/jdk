@@ -65,7 +65,7 @@ public abstract class SnmpLcd {
      * Persists the number of reboots.
      * 
      * @param i
-     *          Reboot number.
+     *        Reboot number.
      */
     public abstract void storeEngineBoots(int i);
 
@@ -73,7 +73,7 @@ public abstract class SnmpLcd {
      * Persists the engine Id.
      * 
      * @param id
-     *           The engine Id.
+     *        The engine Id.
      */
     public abstract void storeEngineId(SnmpEngineId id);
 
@@ -81,11 +81,11 @@ public abstract class SnmpLcd {
      * Adds an Lcd model.
      * 
      * @param sys
-     *            The subsytem managing the model.
+     *        The subsytem managing the model.
      * @param id
-     *            The model Id.
+     *        The model Id.
      * @param lcd
-     *            The Lcd model.
+     *        The Lcd model.
      */
     public void addModelLcd(SnmpSubSystem sys, int id, SnmpModelLcd lcd) {
 
@@ -102,12 +102,12 @@ public abstract class SnmpLcd {
      * Removes an Lcd model.
      * 
      * @param sys
-     *            The subsytem managing the model.
+     *        The subsytem managing the model.
      * @param id
-     *            The model Id.
+     *        The model Id.
      */
-    public void removeModelLcd(SnmpSubSystem sys, int id)
-            throws SnmpUnknownModelLcdException, SnmpUnknownSubSystemException {
+    public void removeModelLcd(SnmpSubSystem sys, int id) throws SnmpUnknownModelLcdException,
+            SnmpUnknownSubSystemException {
 
         SubSysLcdManager subsys = subs.get(sys);
         if (subsys != null) {
@@ -123,9 +123,9 @@ public abstract class SnmpLcd {
      * Gets an Lcd model.
      * 
      * @param sys
-     *            The subsytem managing the model
+     *        The subsytem managing the model
      * @param id
-     *            The model Id.
+     *        The model Id.
      * @return The Lcd model or null if no Lcd model were found.
      */
     public SnmpModelLcd getModelLcd(SnmpSubSystem sys, int id) {

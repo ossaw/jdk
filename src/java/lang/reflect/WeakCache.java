@@ -49,17 +49,16 @@ final class WeakCache<K, P, V> {
      * Construct an instance of {@code WeakCache}
      *
      * @param subKeyFactory
-     *                      a function mapping a pair of
-     *                      {@code (key, parameter) -> sub-key}
+     *        a function mapping a pair of
+     *        {@code (key, parameter) -> sub-key}
      * @param valueFactory
-     *                      a function mapping a pair of
-     *                      {@code (key, parameter) -> value}
+     *        a function mapping a pair of
+     *        {@code (key, parameter) -> value}
      * @throws NullPointerException
-     *                              if {@code subKeyFactory} or
-     *                              {@code valueFactory} is null.
+     *         if {@code subKeyFactory} or
+     *         {@code valueFactory} is null.
      */
-    public WeakCache(BiFunction<K, P, ?> subKeyFactory,
-            BiFunction<K, P, V> valueFactory) {
+    public WeakCache(BiFunction<K, P, ?> subKeyFactory, BiFunction<K, P, V> valueFactory) {
         this.subKeyFactory = Objects.requireNonNull(subKeyFactory);
         this.valueFactory = Objects.requireNonNull(valueFactory);
     }
@@ -71,18 +70,18 @@ final class WeakCache<K, P, V> {
      * pair of (key, subKey) or the entry has already been cleared.
      *
      * @param key
-     *                  possibly null key
+     *        possibly null key
      * @param parameter
-     *                  parameter used together with key to create sub-key and
-     *                  value
-     *                  (should not be null)
+     *        parameter used together with key to create sub-key and
+     *        value
+     *        (should not be null)
      * @return the cached value (never null)
      * @throws NullPointerException
-     *                              if {@code parameter} passed in or
-     *                              {@code sub-key} calculated
-     *                              by {@code subKeyFactory} or {@code value}
-     *                              calculated by
-     *                              {@code valueFactory} is null.
+     *         if {@code parameter} passed in or
+     *         {@code sub-key} calculated
+     *         by {@code subKeyFactory} or {@code value}
+     *         calculated by
+     *         {@code valueFactory} is null.
      */
     public V get(K key, P parameter) {
         Objects.requireNonNull(parameter);
@@ -94,8 +93,8 @@ final class WeakCache<K, P, V> {
         // lazily install the 2nd level valuesMap for the particular cacheKey
         ConcurrentMap<Object, Supplier<V>> valuesMap = map.get(cacheKey);
         if (valuesMap == null) {
-            ConcurrentMap<Object, Supplier<V>> oldValuesMap = map.putIfAbsent(
-                    cacheKey, valuesMap = new ConcurrentHashMap<>());
+            ConcurrentMap<Object, Supplier<V>> oldValuesMap = map.putIfAbsent(cacheKey,
+                    valuesMap = new ConcurrentHashMap<>());
             if (oldValuesMap != null) {
                 valuesMap = oldValuesMap;
             }
@@ -103,8 +102,7 @@ final class WeakCache<K, P, V> {
 
         // create subKey and retrieve the possible Supplier<V> stored by that
         // subKey from valuesMap
-        Object subKey = Objects.requireNonNull(subKeyFactory.apply(key,
-                parameter));
+        Object subKey = Objects.requireNonNull(subKeyFactory.apply(key, parameter));
         Supplier<V> supplier = valuesMap.get(subKey);
         Factory factory = null;
 
@@ -152,10 +150,10 @@ final class WeakCache<K, P, V> {
      * of whether value's class overrides {@link Object#equals} or not.
      *
      * @param value
-     *              the non-null value to check
+     *        the non-null value to check
      * @return true if given {@code value} is already cached
      * @throws NullPointerException
-     *                              if value is null
+     *         if value is null
      */
     public boolean containsValue(V value) {
         Objects.requireNonNull(value);
@@ -191,8 +189,7 @@ final class WeakCache<K, P, V> {
         private final Object subKey;
         private final ConcurrentMap<Object, Supplier<V>> valuesMap;
 
-        Factory(K key, P parameter, Object subKey,
-                ConcurrentMap<Object, Supplier<V>> valuesMap) {
+        Factory(K key, P parameter, Object subKey, ConcurrentMap<Object, Supplier<V>> valuesMap) {
             this.key = key;
             this.parameter = parameter;
             this.subKey = subKey;
@@ -216,8 +213,7 @@ final class WeakCache<K, P, V> {
             // create new value
             V value = null;
             try {
-                value = Objects.requireNonNull(valueFactory.apply(key,
-                        parameter));
+                value = Objects.requireNonNull(valueFactory.apply(key, parameter));
             } finally {
                 if (value == null) { // remove us on failure
                     valuesMap.remove(subKey, this);
@@ -274,18 +270,16 @@ final class WeakCache<K, P, V> {
 
         @Override
         public boolean equals(Object obj) {
-            return obj == this || obj instanceof Value
-                    && this.value == ((Value<?>) obj).get(); // compare
-                                                                                                        // by
-                                                                                                        // identity
+            return obj == this || obj instanceof Value && this.value == ((Value<?>) obj).get(); // compare
+                                                                                                // by
+                                                                                                // identity
         }
     }
 
     /**
      * A {@link Value} that weakly references the referent.
      */
-    private static final class CacheValue<V> extends WeakReference<V> implements
-            Value<V> {
+    private static final class CacheValue<V> extends WeakReference<V> implements Value<V> {
         private final int hash;
 
         CacheValue(V value) {
@@ -343,8 +337,7 @@ final class WeakCache<K, P, V> {
         @Override
         public boolean equals(Object obj) {
             K key;
-            return obj == this || obj != null && obj.getClass() == this
-                    .getClass() &&
+            return obj == this || obj != null && obj.getClass() == this.getClass() &&
             // cleared CacheKey is only equal to itself
                     (key = this.get()) != null &&
                     // compare key by identity

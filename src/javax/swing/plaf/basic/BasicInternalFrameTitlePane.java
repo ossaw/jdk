@@ -62,18 +62,15 @@ public class BasicInternalFrameTitlePane extends JComponent {
     protected Action sizeAction;
 
     // These constants are not used in JDK code
-    protected static final String CLOSE_CMD = UIManager.getString(
-            "InternalFrameTitlePane.closeButtonText");
+    protected static final String CLOSE_CMD = UIManager.getString("InternalFrameTitlePane.closeButtonText");
     protected static final String ICONIFY_CMD = UIManager.getString(
             "InternalFrameTitlePane.minimizeButtonText");
     protected static final String RESTORE_CMD = UIManager.getString(
             "InternalFrameTitlePane.restoreButtonText");
     protected static final String MAXIMIZE_CMD = UIManager.getString(
             "InternalFrameTitlePane.maximizeButtonText");
-    protected static final String MOVE_CMD = UIManager.getString(
-            "InternalFrameTitlePane.moveButtonText");
-    protected static final String SIZE_CMD = UIManager.getString(
-            "InternalFrameTitlePane.sizeButtonText");
+    protected static final String MOVE_CMD = UIManager.getString("InternalFrameTitlePane.moveButtonText");
+    protected static final String SIZE_CMD = UIManager.getString("InternalFrameTitlePane.sizeButtonText");
 
     private String closeButtonToolTip;
     private String iconButtonToolTip;
@@ -149,43 +146,32 @@ public class BasicInternalFrameTitlePane extends JComponent {
         iconIcon = UIManager.getIcon("InternalFrame.iconifyIcon");
         closeIcon = UIManager.getIcon("InternalFrame.closeIcon");
 
-        selectedTitleColor = UIManager.getColor(
-                "InternalFrame.activeTitleBackground");
-        selectedTextColor = UIManager.getColor(
-                "InternalFrame.activeTitleForeground");
-        notSelectedTitleColor = UIManager.getColor(
-                "InternalFrame.inactiveTitleBackground");
-        notSelectedTextColor = UIManager.getColor(
-                "InternalFrame.inactiveTitleForeground");
+        selectedTitleColor = UIManager.getColor("InternalFrame.activeTitleBackground");
+        selectedTextColor = UIManager.getColor("InternalFrame.activeTitleForeground");
+        notSelectedTitleColor = UIManager.getColor("InternalFrame.inactiveTitleBackground");
+        notSelectedTextColor = UIManager.getColor("InternalFrame.inactiveTitleForeground");
         setFont(UIManager.getFont("InternalFrame.titleFont"));
-        closeButtonToolTip = UIManager.getString(
-                "InternalFrame.closeButtonToolTip");
-        iconButtonToolTip = UIManager.getString(
-                "InternalFrame.iconButtonToolTip");
-        restoreButtonToolTip = UIManager.getString(
-                "InternalFrame.restoreButtonToolTip");
-        maxButtonToolTip = UIManager.getString(
-                "InternalFrame.maxButtonToolTip");
+        closeButtonToolTip = UIManager.getString("InternalFrame.closeButtonToolTip");
+        iconButtonToolTip = UIManager.getString("InternalFrame.iconButtonToolTip");
+        restoreButtonToolTip = UIManager.getString("InternalFrame.restoreButtonToolTip");
+        maxButtonToolTip = UIManager.getString("InternalFrame.maxButtonToolTip");
     }
 
     protected void uninstallDefaults() {}
 
     protected void createButtons() {
-        iconButton = new NoFocusButton(
-                "InternalFrameTitlePane.iconifyButtonAccessibleName",
+        iconButton = new NoFocusButton("InternalFrameTitlePane.iconifyButtonAccessibleName",
                 "InternalFrameTitlePane.iconifyButtonOpacity");
         iconButton.addActionListener(iconifyAction);
         if (iconButtonToolTip != null && iconButtonToolTip.length() != 0) {
             iconButton.setToolTipText(iconButtonToolTip);
         }
 
-        maxButton = new NoFocusButton(
-                "InternalFrameTitlePane.maximizeButtonAccessibleName",
+        maxButton = new NoFocusButton("InternalFrameTitlePane.maximizeButtonAccessibleName",
                 "InternalFrameTitlePane.maximizeButtonOpacity");
         maxButton.addActionListener(maximizeAction);
 
-        closeButton = new NoFocusButton(
-                "InternalFrameTitlePane.closeButtonAccessibleName",
+        closeButton = new NoFocusButton("InternalFrameTitlePane.closeButtonAccessibleName",
                 "InternalFrameTitlePane.closeButtonOpacity");
         closeButton.addActionListener(closeAction);
         if (closeButtonToolTip != null && closeButtonToolTip.length() != 0) {
@@ -200,8 +186,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
             if (minIcon != null) {
                 iconButton.setIcon(minIcon);
             }
-            if (restoreButtonToolTip != null && restoreButtonToolTip
-                    .length() != 0) {
+            if (restoreButtonToolTip != null && restoreButtonToolTip.length() != 0) {
                 iconButton.setToolTipText(restoreButtonToolTip);
             }
             if (maxIcon != null) {
@@ -220,8 +205,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
             if (minIcon != null) {
                 maxButton.setIcon(minIcon);
             }
-            if (restoreButtonToolTip != null && restoreButtonToolTip
-                    .length() != 0) {
+            if (restoreButtonToolTip != null && restoreButtonToolTip.length() != 0) {
                 maxButton.setToolTipText(restoreButtonToolTip);
             }
         } else {
@@ -269,8 +253,8 @@ public class BasicInternalFrameTitlePane extends JComponent {
 
     private static int getButtonMnemonic(String button) {
         try {
-            return Integer.parseInt(UIManager.getString(
-                    "InternalFrameTitlePane." + button + "Button.mnemonic"));
+            return Integer.parseInt(UIManager.getString("InternalFrameTitlePane." + button
+                    + "Button.mnemonic"));
         } catch (NumberFormatException e) {
             return -1;
         }
@@ -306,8 +290,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
 
             // Center text vertically.
             FontMetrics fm = SwingUtilities2.getFontMetrics(frame, g);
-            int baseline = (getHeight() + fm.getAscent() - fm.getLeading() - fm
-                    .getDescent()) / 2;
+            int baseline = (getHeight() + fm.getAscent() - fm.getLeading() - fm.getDescent()) / 2;
 
             int titleX;
             Rectangle r = new Rectangle(0, 0, 0, 0);
@@ -327,8 +310,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
                 titleW = r.x - titleX - 3;
                 title = getTitle(frame.getTitle(), fm, titleW);
             } else {
-                titleX = menuBar.getX() - 2 - SwingUtilities2.stringWidth(frame,
-                        fm, title);
+                titleX = menuBar.getX() - 2 - SwingUtilities2.stringWidth(frame, fm, title);
             }
 
             SwingUtilities2.drawString(frame, g, title, titleX, baseline);
@@ -341,7 +323,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
      * text and icons will then be rendered on top of this background.
      * 
      * @param g
-     *          the graphics to use to render the background
+     *        the graphics to use to render the background
      * @since 1.4
      */
     protected void paintTitleBackground(Graphics g) {
@@ -355,8 +337,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
     }
 
     protected String getTitle(String text, FontMetrics fm, int availTextWidth) {
-        return SwingUtilities2.clipStringIfNecessary(frame, fm, text,
-                availTextWidth);
+        return SwingUtilities2.clipStringIfNecessary(frame, fm, text, availTextWidth);
     }
 
     /**
@@ -364,8 +345,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
      * like a regular Frame.
      */
     protected void postClosingEvent(JInternalFrame frame) {
-        InternalFrameEvent e = new InternalFrameEvent(frame,
-                InternalFrameEvent.INTERNAL_FRAME_CLOSING);
+        InternalFrameEvent e = new InternalFrameEvent(frame, InternalFrameEvent.INTERNAL_FRAME_CLOSING);
         // Try posting event, unless there's a SecurityManager.
         try {
             Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(e);
@@ -376,9 +356,8 @@ public class BasicInternalFrameTitlePane extends JComponent {
 
     protected void enableActions() {
         restoreAction.setEnabled(frame.isMaximum() || frame.isIcon());
-        maximizeAction.setEnabled((frame.isMaximizable() && !frame.isMaximum()
-                && !frame.isIcon()) || (frame.isMaximizable() && frame
-                        .isIcon()));
+        maximizeAction.setEnabled((frame.isMaximizable() && !frame.isMaximum() && !frame.isIcon()) || (frame
+                .isMaximizable() && frame.isIcon()));
         iconifyAction.setEnabled(frame.isIconifiable() && !frame.isIcon());
         closeAction.setEnabled(frame.isClosable());
         sizeAction.setEnabled(false);
@@ -412,8 +391,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
                 return;
             }
 
-            if (prop == JInternalFrame.IS_ICON_PROPERTY
-                    || prop == JInternalFrame.IS_MAXIMUM_PROPERTY) {
+            if (prop == JInternalFrame.IS_ICON_PROPERTY || prop == JInternalFrame.IS_MAXIMUM_PROPERTY) {
                 setButtonIcons();
                 enableActions();
                 return;
@@ -471,14 +449,12 @@ public class BasicInternalFrameTitlePane extends JComponent {
 
             FontMetrics fm = frame.getFontMetrics(getFont());
             String frameTitle = frame.getTitle();
-            int title_w = frameTitle != null ? SwingUtilities2.stringWidth(
-                    frame, fm, frameTitle) : 0;
+            int title_w = frameTitle != null ? SwingUtilities2.stringWidth(frame, fm, frameTitle) : 0;
             int title_length = frameTitle != null ? frameTitle.length() : 0;
 
             // Leave room for three characters in the title.
             if (title_length > 3) {
-                int subtitle_w = SwingUtilities2.stringWidth(frame, fm,
-                        frameTitle.substring(0, 3) + "...");
+                int subtitle_w = SwingUtilities2.stringWidth(frame, fm, frameTitle.substring(0, 3) + "...");
                 width += (title_w < subtitle_w) ? title_w : subtitle_w;
             } else {
                 width += title_w;
@@ -593,8 +569,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
      */
     public class CloseAction extends AbstractAction {
         public CloseAction() {
-            super(UIManager.getString(
-                    "InternalFrameTitlePane.closeButtonText"));
+            super(UIManager.getString("InternalFrameTitlePane.closeButtonText"));
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -610,8 +585,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
      */
     public class MaximizeAction extends AbstractAction {
         public MaximizeAction() {
-            super(UIManager.getString(
-                    "InternalFrameTitlePane.maximizeButtonText"));
+            super(UIManager.getString("InternalFrameTitlePane.maximizeButtonText"));
         }
 
         public void actionPerformed(ActionEvent evt) {
@@ -619,18 +593,15 @@ public class BasicInternalFrameTitlePane extends JComponent {
                 if (frame.isMaximum() && frame.isIcon()) {
                     try {
                         frame.setIcon(false);
-                    } catch (PropertyVetoException e) {
-                    }
+                    } catch (PropertyVetoException e) {}
                 } else if (!frame.isMaximum()) {
                     try {
                         frame.setMaximum(true);
-                    } catch (PropertyVetoException e) {
-                    }
+                    } catch (PropertyVetoException e) {}
                 } else {
                     try {
                         frame.setMaximum(false);
-                    } catch (PropertyVetoException e) {
-                    }
+                    } catch (PropertyVetoException e) {}
                 }
             }
         }
@@ -642,8 +613,7 @@ public class BasicInternalFrameTitlePane extends JComponent {
      */
     public class IconifyAction extends AbstractAction {
         public IconifyAction() {
-            super(UIManager.getString(
-                    "InternalFrameTitlePane.minimizeButtonText"));
+            super(UIManager.getString("InternalFrameTitlePane.minimizeButtonText"));
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -651,13 +621,11 @@ public class BasicInternalFrameTitlePane extends JComponent {
                 if (!frame.isIcon()) {
                     try {
                         frame.setIcon(true);
-                    } catch (PropertyVetoException e1) {
-                    }
+                    } catch (PropertyVetoException e1) {}
                 } else {
                     try {
                         frame.setIcon(false);
-                    } catch (PropertyVetoException e1) {
-                    }
+                    } catch (PropertyVetoException e1) {}
                 }
             }
         }
@@ -669,26 +637,22 @@ public class BasicInternalFrameTitlePane extends JComponent {
      */
     public class RestoreAction extends AbstractAction {
         public RestoreAction() {
-            super(UIManager.getString(
-                    "InternalFrameTitlePane.restoreButtonText"));
+            super(UIManager.getString("InternalFrameTitlePane.restoreButtonText"));
         }
 
         public void actionPerformed(ActionEvent evt) {
             if (frame.isMaximizable() && frame.isMaximum() && frame.isIcon()) {
                 try {
                     frame.setIcon(false);
-                } catch (PropertyVetoException e) {
-                }
+                } catch (PropertyVetoException e) {}
             } else if (frame.isMaximizable() && frame.isMaximum()) {
                 try {
                     frame.setMaximum(false);
-                } catch (PropertyVetoException e) {
-                }
+                } catch (PropertyVetoException e) {}
             } else if (frame.isIconifiable() && frame.isIcon()) {
                 try {
                     frame.setIcon(false);
-                } catch (PropertyVetoException e) {
-                }
+                } catch (PropertyVetoException e) {}
             }
         }
     }
@@ -754,16 +718,13 @@ public class BasicInternalFrameTitlePane extends JComponent {
         public void paint(Graphics g) {
             Icon icon = frame.getFrameIcon();
             if (icon == null) {
-                icon = (Icon) DefaultLookup.get(frame, frame.getUI(),
-                        "InternalFrame.icon");
+                icon = (Icon) DefaultLookup.get(frame, frame.getUI(), "InternalFrame.icon");
             }
             if (icon != null) {
                 // Resize to 16x16 if necessary.
-                if (icon instanceof ImageIcon && (icon.getIconWidth() > 16
-                        || icon.getIconHeight() > 16)) {
+                if (icon instanceof ImageIcon && (icon.getIconWidth() > 16 || icon.getIconHeight() > 16)) {
                     Image img = ((ImageIcon) icon).getImage();
-                    ((ImageIcon) icon).setImage(img.getScaledInstance(16, 16,
-                            Image.SCALE_SMOOTH));
+                    ((ImageIcon) icon).setImage(img.getScaledInstance(16, 16, Image.SCALE_SMOOTH));
                 }
                 icon.paintIcon(this, g, 0, 0);
             }

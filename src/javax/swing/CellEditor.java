@@ -12,7 +12,6 @@ import javax.swing.event.*;
  * This interface defines the methods any general editor should be able to
  * implement.
  * <p>
- *
  * Having this interface enables complex components (the client of the editor)
  * such as <code>JTree</code> and <code>JTable</code> to allow any generic
  * editor to edit values in a table cell, or tree cell, etc. Without this
@@ -22,7 +21,6 @@ import javax.swing.event.*;
  * editors such as <code>JTable</code> would not be able to work with any
  * editors developed in the future by the user or a 3rd party ISV.
  * <p>
- *
  * To use this interface, a developer creating a new editor can have the new
  * component implement the interface. Or the developer can choose a wrapper
  * based approach and provide a companion object which implements the
@@ -34,7 +32,6 @@ import javax.swing.event.*;
  * <code>CellEditor</code> API into the 3rd party editor's API.
  *
  * @see javax.swing.event.CellEditorListener
- *
  * @author Alan Chung
  */
 public interface CellEditor {
@@ -56,9 +53,9 @@ public interface CellEditor {
      * this method returns true.
      *
      * @param anEvent
-     *                the event the editor should use to consider whether to
-     *                begin
-     *                editing or not
+     *        the event the editor should use to consider whether to
+     *        begin
+     *        editing or not
      * @return true if editing can be started
      * @see #shouldSelectCell
      */
@@ -76,7 +73,7 @@ public interface CellEditor {
      * doesn't want to.
      *
      * @param anEvent
-     *                the event the editor should use to start editing
+     *        the event the editor should use to start editing
      * @return true if the editor would like the editing cell to be selected;
      *         otherwise returns false
      * @see #isCellEditable
@@ -104,7 +101,7 @@ public interface CellEditor {
      * cancels editing.
      *
      * @param l
-     *          the CellEditorListener
+     *        the CellEditorListener
      */
     public void addCellEditorListener(CellEditorListener l);
 
@@ -112,7 +109,7 @@ public interface CellEditor {
      * Removes a listener from the list that's notified
      *
      * @param l
-     *          the CellEditorListener
+     *        the CellEditorListener
      */
     public void removeCellEditorListener(CellEditorListener l);
 }

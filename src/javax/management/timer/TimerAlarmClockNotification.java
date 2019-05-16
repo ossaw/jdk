@@ -24,7 +24,7 @@ class TimerAlarmClockNotification extends javax.management.Notification {
      * Constructor.
      *
      * @param source
-     *               the source.
+     *        the source.
      */
     public TimerAlarmClockNotification(TimerAlarmClock source) {
         super("", source, 0);

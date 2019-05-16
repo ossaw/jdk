@@ -31,20 +31,16 @@ import javax.swing.event.*;
  * to accommodate their new value argument. For example setting the model's
  * minimum may change its maximum, value, and extent properties (in that order),
  * to maintain the constraints specified above.
- *
  * <li>The value and extent set methods "correct" their argument to fit within
  * the limits defined by the other three properties. For example if
  * <code>value == maximum</code>, <code>setExtent(10)</code> would change the
  * extent (back) to zero.
- *
  * <li>The four BoundedRangeModel values are defined as Java Beans properties
  * however Swing ChangeEvents are used to notify clients of changes rather than
  * PropertyChangeEvents. This was done to keep the overhead of monitoring a
  * BoundedRangeModel low. Changes are often reported at MouseDragged rates.
  * </ul>
- *
  * <p>
- *
  * For an example of specifying custom bounded range models used by sliders, see
  * <a href=
  * "http://www.oracle.com/technetwork/java/architecture-142923.html#separable">
@@ -73,7 +69,7 @@ public interface BoundedRangeModel {
      * Notifies any listeners if the model changes.
      *
      * @param newMinimum
-     *                   the model's new minimum
+     *        the model's new minimum
      * @see #getMinimum
      * @see #addChangeListener
      */
@@ -100,7 +96,7 @@ public interface BoundedRangeModel {
      * Notifies any listeners if the model changes.
      *
      * @param newMaximum
-     *                   the model's new maximum
+     *        the model's new maximum
      * @see #getMaximum
      * @see #addChangeListener
      */
@@ -139,7 +135,7 @@ public interface BoundedRangeModel {
      * Notifies any listeners if the model changes.
      *
      * @param newValue
-     *                 the model's new value
+     *        the model's new value
      * @see #getValue
      */
     void setValue(int newValue);
@@ -155,8 +151,8 @@ public interface BoundedRangeModel {
      * Sliders and scrollbars use this property when a drag is underway.
      *
      * @param b
-     *          true if the upcoming changes to the value property are part of
-     *          a series
+     *        true if the upcoming changes to the value property are part of
+     *        a series
      */
     void setValueIsAdjusting(boolean b);
 
@@ -192,7 +188,7 @@ public interface BoundedRangeModel {
      * Notifies any listeners if the model changes.
      *
      * @param newExtent
-     *                  the model's new extent
+     *        the model's new extent
      * @see #getExtent
      * @see #setValue
      */
@@ -205,30 +201,28 @@ public interface BoundedRangeModel {
      * do not want individual change events to occur.
      *
      * @param value
-     *                  an int giving the current value
+     *        an int giving the current value
      * @param extent
-     *                  an int giving the amount by which the value can "jump"
+     *        an int giving the amount by which the value can "jump"
      * @param min
-     *                  an int giving the minimum value
+     *        an int giving the minimum value
      * @param max
-     *                  an int giving the maximum value
+     *        an int giving the maximum value
      * @param adjusting
-     *                  a boolean, true if a series of changes are in progress
-     *
+     *        a boolean, true if a series of changes are in progress
      * @see #setValue
      * @see #setExtent
      * @see #setMinimum
      * @see #setMaximum
      * @see #setValueIsAdjusting
      */
-    void setRangeProperties(int value, int extent, int min, int max,
-            boolean adjusting);
+    void setRangeProperties(int value, int extent, int min, int max, boolean adjusting);
 
     /**
      * Adds a ChangeListener to the model's listener list.
      *
      * @param x
-     *          the ChangeListener to add
+     *        the ChangeListener to add
      * @see #removeChangeListener
      */
     void addChangeListener(ChangeListener x);
@@ -237,7 +231,7 @@ public interface BoundedRangeModel {
      * Removes a ChangeListener from the model's listener list.
      *
      * @param x
-     *          the ChangeListener to remove
+     *        the ChangeListener to remove
      * @see #addChangeListener
      */
     void removeChangeListener(ChangeListener x);

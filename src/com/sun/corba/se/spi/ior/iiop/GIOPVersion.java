@@ -25,8 +25,7 @@ public class GIOPVersion {
 
     // Major version 13 indicates Java serialization,
     // Minor version [00-FF] is the version number.
-    public static final GIOPVersion V13_XX = new GIOPVersion((byte) 13,
-            (byte) Message.JAVA_ENC_VERSION);
+    public static final GIOPVersion V13_XX = new GIOPVersion((byte) 13, (byte) Message.JAVA_ENC_VERSION);
 
     public static final GIOPVersion DEFAULT_VERSION = V1_2;
 
@@ -34,8 +33,7 @@ public class GIOPVersion {
     public static final int VERSION_1_1 = 0x0101;
     public static final int VERSION_1_2 = 0x0102;
     public static final int VERSION_1_3 = 0x0103;
-    public static final int VERSION_13_XX = ((0x0D << 8) & 0x0000FF00)
-            | Message.JAVA_ENC_VERSION;
+    public static final int VERSION_13_XX = ((0x0D << 8) & 0x0000FF00) | Message.JAVA_ENC_VERSION;
 
     // Instance variables
 
@@ -124,8 +122,7 @@ public class GIOPVersion {
         int dotIdx = s.indexOf('.');
 
         if (dotIdx < 1 || dotIdx == s.length() - 1)
-            throw new NumberFormatException(
-                    "GIOP major, minor, and decimal point required: " + s);
+            throw new NumberFormatException("GIOP major, minor, and decimal point required: " + s);
 
         int major = Integer.parseInt(s.substring(0, dotIdx));
         int minor = Integer.parseInt(s.substring(dotIdx + 1, s.length()));
@@ -148,8 +145,8 @@ public class GIOPVersion {
         // Check if the profile is from a legacy Sun ORB.
 
         ORBVersion targetOrbVersion = prof.getORBVersion();
-        if (!(targetOrbVersion.equals(ORBVersionFactory.getFOREIGN()))
-                && targetOrbVersion.lessThan(ORBVersionFactory.getNEWER())) {
+        if (!(targetOrbVersion.equals(ORBVersionFactory.getFOREIGN())) && targetOrbVersion.lessThan(
+                ORBVersionFactory.getNEWER())) {
             // we are dealing with a SUN legacy orb which emits 1.1 IORs,
             // in spite of being able to handle only GIOP 1.0 messages.
             return V1_0;

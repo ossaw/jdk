@@ -46,7 +46,6 @@ import java.security.PrivilegedAction;
  * The modeling of HTML is provided by the class <code>HTMLDocument</code>. Its
  * documentation describes the details of how the HTML is modeled. The editing
  * support leverages heavily off of the text package.
- *
  * <dt>Extendable/Scalable
  * <dd>To maximize the usefulness of this kit, a great deal of effort has gone
  * into making it extendable. These are some of the features.
@@ -77,7 +76,6 @@ import java.security.PrivilegedAction;
  * converted to CSS attributes for display. This helps make the View
  * implementations more general purpose
  * </ol>
- *
  * <dt>Asynchronous Loading
  * <dd>Larger documents involve a lot of parsing and take some time to load. By
  * default, this kit produces documents that will be loaded asynchronously if
@@ -87,7 +85,6 @@ import java.security.PrivilegedAction;
  * is done by the <code>HTMLDocument.HTMLReader</code> class. The actual work is
  * done by the <code>DefaultStyledDocument</code> and
  * <code>AbstractDocument</code> classes in the text package.
- *
  * <dt>Customization from current LAF
  * <dd>HTML provides a well known set of features without exactly specifying the
  * display characteristics. Swing has a theme mechanism for its look-and-feel
@@ -98,7 +95,6 @@ import java.security.PrivilegedAction;
  * The support for this is provided by the <code>StyleSheet</code> class. The
  * presentation of the HTML can be heavily influenced by the setting of the
  * StyleSheet property on the EditorKit.
- *
  * <dt>Not lossy
  * <dd>An EditorKit has the ability to be read and save documents. It is
  * generally the most pleasing to users if there is no loss of data between the
@@ -190,23 +186,22 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * dropped.
      *
      * @param in
-     *            the stream to read from
+     *        the stream to read from
      * @param doc
-     *            the destination for the insertion
+     *        the destination for the insertion
      * @param pos
-     *            the location in the document to place the content
+     *        the location in the document to place the content
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document
+     *            if pos represents an invalid location
+     *            within the document
      * @exception RuntimeException
-     *                                 (will eventually be a
-     *                                 BadLocationException) if pos is
-     *                                 invalid
+     *            (will eventually be a
+     *            BadLocationException) if pos is
+     *            invalid
      */
-    public void read(Reader in, Document doc, int pos) throws IOException,
-            BadLocationException {
+    public void read(Reader in, Document doc, int pos) throws IOException, BadLocationException {
 
         if (doc instanceof HTMLDocument) {
             HTMLDocument hdoc = (HTMLDocument) doc;
@@ -216,10 +211,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
 
             Parser p = ensureParser(hdoc);
             ParserCallback receiver = hdoc.getReader(pos);
-            Boolean ignoreCharset = (Boolean) doc.getProperty(
-                    "IgnoreCharsetDirective");
-            p.parse(in, receiver, (ignoreCharset == null) ? false
-                    : ignoreCharset.booleanValue());
+            Boolean ignoreCharset = (Boolean) doc.getProperty("IgnoreCharsetDirective");
+            p.parse(in, receiver, (ignoreCharset == null) ? false : ignoreCharset.booleanValue());
             receiver.flush();
         } else {
             super.read(in, doc, pos);
@@ -230,39 +223,35 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * Inserts HTML into an existing document.
      *
      * @param doc
-     *                  the document to insert into
+     *        the document to insert into
      * @param offset
-     *                  the offset to insert HTML at
+     *        the offset to insert HTML at
      * @param popDepth
-     *                  the number of ElementSpec.EndTagTypes to generate before
-     *                  inserting
+     *        the number of ElementSpec.EndTagTypes to generate before
+     *        inserting
      * @param pushDepth
-     *                  the number of ElementSpec.StartTagTypes with a direction
-     *                  of
-     *                  ElementSpec.JoinNextDirection that should be generated
-     *                  before
-     *                  inserting, but after the end tags have been generated
+     *        the number of ElementSpec.StartTagTypes with a direction
+     *        of
+     *        ElementSpec.JoinNextDirection that should be generated
+     *        before
+     *        inserting, but after the end tags have been generated
      * @param insertTag
-     *                  the first tag to start inserting into document
+     *        the first tag to start inserting into document
      * @exception RuntimeException
-     *                             (will eventually be a BadLocationException)
-     *                             if pos is
-     *                             invalid
+     *            (will eventually be a BadLocationException)
+     *            if pos is
+     *            invalid
      */
-    public void insertHTML(HTMLDocument doc, int offset, String html,
-            int popDepth, int pushDepth, HTML.Tag insertTag)
-            throws BadLocationException, IOException {
+    public void insertHTML(HTMLDocument doc, int offset, String html, int popDepth, int pushDepth,
+            HTML.Tag insertTag) throws BadLocationException, IOException {
         if (offset > doc.getLength()) {
             throw new BadLocationException("Invalid location", offset);
         }
 
         Parser p = ensureParser(doc);
-        ParserCallback receiver = doc.getReader(offset, popDepth, pushDepth,
-                insertTag);
-        Boolean ignoreCharset = (Boolean) doc.getProperty(
-                "IgnoreCharsetDirective");
-        p.parse(new StringReader(html), receiver, (ignoreCharset == null)
-                ? false
+        ParserCallback receiver = doc.getReader(offset, popDepth, pushDepth, insertTag);
+        Boolean ignoreCharset = (Boolean) doc.getProperty("IgnoreCharsetDirective");
+        p.parse(new StringReader(html), receiver, (ignoreCharset == null) ? false
                 : ignoreCharset.booleanValue());
         receiver.flush();
     }
@@ -272,28 +261,26 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * for this kind of content handler.
      *
      * @param out
-     *            the stream to write to
+     *        the stream to write to
      * @param doc
-     *            the source for the write
+     *        the source for the write
      * @param pos
-     *            the location in the document to fetch the content
+     *        the location in the document to fetch the content
      * @param len
-     *            the amount to write out
+     *        the amount to write out
      * @exception IOException
-     *                                 on any I/O error
+     *            on any I/O error
      * @exception BadLocationException
-     *                                 if pos represents an invalid location
-     *                                 within the document
+     *            if pos represents an invalid location
+     *            within the document
      */
-    public void write(Writer out, Document doc, int pos, int len)
-            throws IOException, BadLocationException {
+    public void write(Writer out, Document doc, int pos, int len) throws IOException, BadLocationException {
 
         if (doc instanceof HTMLDocument) {
             HTMLWriter w = new HTMLWriter(out, (HTMLDocument) doc, pos, len);
             w.write();
         } else if (doc instanceof StyledDocument) {
-            MinimalHTMLWriter w = new MinimalHTMLWriter(out,
-                    (StyledDocument) doc, pos, len);
+            MinimalHTMLWriter w = new MinimalHTMLWriter(out, (StyledDocument) doc, pos, len);
             w.write();
         } else {
             super.write(out, doc, pos, len);
@@ -304,7 +291,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * Called when the kit is being installed into the a JEditorPane.
      *
      * @param c
-     *          the JEditorPane
+     *        the JEditorPane
      */
     public void install(JEditorPane c) {
         c.addMouseListener(linkHandler);
@@ -319,7 +306,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * to unregister any listeners that were attached.
      *
      * @param c
-     *          the JEditorPane
+     *        the JEditorPane
      */
     public void deinstall(JEditorPane c) {
         c.removeMouseListener(linkHandler);
@@ -357,16 +344,14 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      */
     public StyleSheet getStyleSheet() {
         AppContext appContext = AppContext.getAppContext();
-        StyleSheet defaultStyles = (StyleSheet) appContext.get(
-                DEFAULT_STYLES_KEY);
+        StyleSheet defaultStyles = (StyleSheet) appContext.get(DEFAULT_STYLES_KEY);
 
         if (defaultStyles == null) {
             defaultStyles = new StyleSheet();
             appContext.put(DEFAULT_STYLES_KEY, defaultStyles);
             try {
                 InputStream is = HTMLEditorKit.getResourceAsStream(DEFAULT_CSS);
-                Reader r = new BufferedReader(new InputStreamReader(is,
-                        "ISO-8859-1"));
+                Reader r = new BufferedReader(new InputStreamReader(is, "ISO-8859-1"));
                 defaultStyles.loadRules(r, null);
                 r.close();
             } catch (Throwable e) {
@@ -384,16 +369,15 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * applet.
      *
      * @param name
-     *             the name of the resource, relative to the HTMLEditorKit class
+     *        the name of the resource, relative to the HTMLEditorKit class
      * @return a stream representing the resource
      */
     static InputStream getResourceAsStream(final String name) {
-        return AccessController.doPrivileged(
-                new PrivilegedAction<InputStream>() {
-                    public InputStream run() {
-                        return HTMLEditorKit.class.getResourceAsStream(name);
-                    }
-                });
+        return AccessController.doPrivileged(new PrivilegedAction<InputStream>() {
+            public InputStream run() {
+                return HTMLEditorKit.class.getResourceAsStream(name);
+            }
+        });
     }
 
     /**
@@ -415,10 +399,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * <code>set</code>.
      * <p>
      * This is called anytime the caret moves over a different location.
-     *
      */
-    protected void createInputAttributes(Element element,
-            MutableAttributeSet set) {
+    protected void createInputAttributes(Element element, MutableAttributeSet set) {
         set.removeAttributes(set);
         set.addAttributes(element.getAttributes());
         set.removeAttribute(StyleConstants.ComposedTextAttribute);
@@ -433,26 +415,21 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 set.removeAttribute(HTML.Attribute.SRC);
                 set.removeAttribute(HTML.Attribute.HEIGHT);
                 set.removeAttribute(HTML.Attribute.WIDTH);
-                set.addAttribute(StyleConstants.NameAttribute,
-                        HTML.Tag.CONTENT);
+                set.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
             } else if (tag == HTML.Tag.HR || tag == HTML.Tag.BR) {
                 // Don't copy HRs or BRs either.
-                set.addAttribute(StyleConstants.NameAttribute,
-                        HTML.Tag.CONTENT);
+                set.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
             } else if (tag == HTML.Tag.COMMENT) {
                 // Don't copy COMMENTs either
-                set.addAttribute(StyleConstants.NameAttribute,
-                        HTML.Tag.CONTENT);
+                set.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
                 set.removeAttribute(HTML.Attribute.COMMENT);
             } else if (tag == HTML.Tag.INPUT) {
                 // or INPUT either
-                set.addAttribute(StyleConstants.NameAttribute,
-                        HTML.Tag.CONTENT);
+                set.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
                 set.removeAttribute(HTML.Tag.INPUT);
             } else if (tag instanceof HTML.UnknownTag) {
                 // Don't copy unknowns either:(
-                set.addAttribute(StyleConstants.NameAttribute,
-                        HTML.Tag.CONTENT);
+                set.addAttribute(StyleConstants.NameAttribute, HTML.Tag.CONTENT);
                 set.removeAttribute(HTML.Attribute.ENDTAG);
             }
         }
@@ -512,7 +489,6 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      *
      * @return true if html form submission is processed automatically, false
      *         otherwise.
-     *
      * @see #setAutoFormSubmission
      * @since 1.5
      */
@@ -556,11 +532,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
     protected Parser getParser() {
         if (defaultParser == null) {
             try {
-                Class c = Class.forName(
-                        "javax.swing.text.html.parser.ParserDelegator");
+                Class c = Class.forName("javax.swing.text.html.parser.ParserDelegator");
                 defaultParser = (Parser) c.newInstance();
-            } catch (Throwable e) {
-            }
+            } catch (Throwable e) {}
         }
         return defaultParser;
     }
@@ -587,10 +561,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
 
     // --- variables ------------------------------------------
 
-    private static final Cursor MoveCursor = Cursor.getPredefinedCursor(
-            Cursor.HAND_CURSOR);
-    private static final Cursor DefaultCursor = Cursor.getPredefinedCursor(
-            Cursor.DEFAULT_CURSOR);
+    private static final Cursor MoveCursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
+    private static final Cursor DefaultCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
     /** Shared factory for creating HTML Views. */
     private static final ViewFactory defaultFactory = new HTMLFactory();
@@ -607,8 +579,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * Class to watch the associated component and fire hyperlink events on it
      * when appropriate.
      */
-    public static class LinkController extends MouseAdapter implements
-            MouseMotionListener, Serializable {
+    public static class LinkController extends MouseAdapter implements MouseMotionListener, Serializable {
         private Element curElem = null;
         /**
          * If true, the current element (curElem) represents an image.
@@ -630,14 +601,13 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * the reference specified by a link.
          *
          * @param e
-         *          the mouse event
+         *        the mouse event
          * @see MouseListener#mouseClicked
          */
         public void mouseClicked(MouseEvent e) {
             JEditorPane editor = (JEditorPane) e.getSource();
 
-            if (!editor.isEditable() && editor.isEnabled() && SwingUtilities
-                    .isLeftMouseButton(e)) {
+            if (!editor.isEditable() && editor.isEnabled() && SwingUtilities.isLeftMouseButton(e)) {
                 Point pt = new Point(e.getX(), e.getY());
                 int pos = editor.viewToModel(pt);
                 if (pos >= 0) {
@@ -665,12 +635,10 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 if (bias[0] == Position.Bias.Backward && pos > 0) {
                     pos--;
                 }
-                if (pos >= 0 && (editor
-                        .getDocument() instanceof HTMLDocument)) {
+                if (pos >= 0 && (editor.getDocument() instanceof HTMLDocument)) {
                     HTMLDocument hdoc = (HTMLDocument) editor.getDocument();
                     Element elem = hdoc.getCharacterElement(pos);
-                    if (!doesElementContainLocation(editor, elem, pos, e.getX(),
-                            e.getY())) {
+                    if (!doesElementContainLocation(editor, elem, pos, e.getX(), e.getY())) {
                         elem = null;
                     }
                     if (curElem != elem || curElemImage) {
@@ -680,18 +648,14 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                         curElemImage = false;
                         if (elem != null) {
                             AttributeSet a = elem.getAttributes();
-                            AttributeSet anchor = (AttributeSet) a.getAttribute(
-                                    HTML.Tag.A);
+                            AttributeSet anchor = (AttributeSet) a.getAttribute(HTML.Tag.A);
                             if (anchor == null) {
-                                curElemImage = (a.getAttribute(
-                                        StyleConstants.NameAttribute) == HTML.Tag.IMG);
+                                curElemImage = (a.getAttribute(StyleConstants.NameAttribute) == HTML.Tag.IMG);
                                 if (curElemImage) {
-                                    href = getMapHREF(editor, hdoc, elem, a,
-                                            pos, e.getX(), e.getY());
+                                    href = getMapHREF(editor, hdoc, elem, a, pos, e.getX(), e.getY());
                                 }
                             } else {
-                                href = (String) anchor.getAttribute(
-                                        HTML.Attribute.HREF);
+                                href = (String) anchor.getAttribute(HTML.Attribute.HREF);
                             }
                         }
 
@@ -720,8 +684,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * Returns a string anchor if the passed in element has a USEMAP that
          * contains the passed in location.
          */
-        private String getMapHREF(JEditorPane html, HTMLDocument hdoc,
-                Element elem, AttributeSet attr, int offset, int x, int y) {
+        private String getMapHREF(JEditorPane html, HTMLDocument hdoc, Element elem, AttributeSet attr,
+                int offset, int x, int y) {
             Object useMap = attr.getAttribute(HTML.Attribute.USEMAP);
             if (useMap != null && (useMap instanceof String)) {
                 Map m = hdoc.getMap((String) useMap);
@@ -729,23 +693,19 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     Rectangle bounds;
                     TextUI ui = html.getUI();
                     try {
-                        Shape lBounds = ui.modelToView(html, offset,
-                                Position.Bias.Forward);
-                        Shape rBounds = ui.modelToView(html, offset + 1,
-                                Position.Bias.Backward);
+                        Shape lBounds = ui.modelToView(html, offset, Position.Bias.Forward);
+                        Shape rBounds = ui.modelToView(html, offset + 1, Position.Bias.Backward);
                         bounds = lBounds.getBounds();
-                        bounds.add((rBounds instanceof Rectangle)
-                                ? (Rectangle) rBounds
+                        bounds.add((rBounds instanceof Rectangle) ? (Rectangle) rBounds
                                 : rBounds.getBounds());
                     } catch (BadLocationException ble) {
                         bounds = null;
                     }
                     if (bounds != null) {
-                        AttributeSet area = m.getArea(x - bounds.x, y
-                                - bounds.y, bounds.width, bounds.height);
+                        AttributeSet area = m.getArea(x - bounds.x, y - bounds.y, bounds.width,
+                                bounds.height);
                         if (area != null) {
-                            return (String) area.getAttribute(
-                                    HTML.Attribute.HREF);
+                            return (String) area.getAttribute(HTML.Attribute.HREF);
                         }
                     }
                 }
@@ -758,29 +718,22 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * location <code>x</code>, <code>y</code>. <code>offset</code> gives
          * the offset into the Document to check for.
          */
-        private boolean doesElementContainLocation(JEditorPane editor,
-                Element e, int offset, int x, int y) {
+        private boolean doesElementContainLocation(JEditorPane editor, Element e, int offset, int x, int y) {
             if (e != null && offset > 0 && e.getStartOffset() == offset) {
                 try {
                     TextUI ui = editor.getUI();
-                    Shape s1 = ui.modelToView(editor, offset,
-                            Position.Bias.Forward);
+                    Shape s1 = ui.modelToView(editor, offset, Position.Bias.Forward);
                     if (s1 == null) {
                         return false;
                     }
-                    Rectangle r1 = (s1 instanceof Rectangle) ? (Rectangle) s1
-                            : s1.getBounds();
-                    Shape s2 = ui.modelToView(editor, e.getEndOffset(),
-                            Position.Bias.Backward);
+                    Rectangle r1 = (s1 instanceof Rectangle) ? (Rectangle) s1 : s1.getBounds();
+                    Shape s2 = ui.modelToView(editor, e.getEndOffset(), Position.Bias.Backward);
                     if (s2 != null) {
-                        Rectangle r2 = (s2 instanceof Rectangle)
-                                ? (Rectangle) s2
-                                : s2.getBounds();
+                        Rectangle r2 = (s2 instanceof Rectangle) ? (Rectangle) s2 : s2.getBounds();
                         r1.add(r2);
                     }
                     return r1.contains(x, y);
-                } catch (BadLocationException ble) {
-                }
+                } catch (BadLocationException ble) {}
             }
             return true;
         }
@@ -793,9 +746,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * with the following args both == -1.
          *
          * @param pos
-         *               the position
+         *        the position
          * @param editor
-         *               the editor pane
+         *        the editor pane
          */
         protected void activateLink(int pos, JEditorPane editor) {
             activateLink(pos, editor, null);
@@ -808,9 +761,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * mouse, otherwise they will be {@literal <} 0.
          *
          * @param pos
-         *             the position
+         *        the position
          * @param html
-         *             the editor pane
+         *        the editor pane
          */
         void activateLink(int pos, JEditorPane html, MouseEvent mouseEvent) {
             Document doc = html.getDocument();
@@ -836,8 +789,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 }
 
                 if (href != null) {
-                    linkEvent = createHyperlinkEvent(html, hdoc, href, anchor,
-                            e, mouseEvent);
+                    linkEvent = createHyperlinkEvent(html, hdoc, href, anchor, e, mouseEvent);
                 }
                 if (linkEvent != null) {
                     html.fireHyperlinkUpdate(linkEvent);
@@ -850,9 +802,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * <code>hdoc</code> is a frame document a HTMLFrameHyperlinkEvent will
          * be created.
          */
-        HyperlinkEvent createHyperlinkEvent(JEditorPane html, HTMLDocument hdoc,
-                String href, AttributeSet anchor, Element element,
-                MouseEvent mouseEvent) {
+        HyperlinkEvent createHyperlinkEvent(JEditorPane html, HTMLDocument hdoc, String href,
+                AttributeSet anchor, Element element, MouseEvent mouseEvent) {
             URL u;
             try {
                 URL base = hdoc.getBase();
@@ -860,12 +811,10 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 // Following is a workaround for 1.2, in which
                 // new URL("file://...", "#...") causes the filename to
                 // be lost.
-                if (href != null && "file".equals(u.getProtocol()) && href
-                        .startsWith("#")) {
+                if (href != null && "file".equals(u.getProtocol()) && href.startsWith("#")) {
                     String baseFile = base.getFile();
                     String newFile = u.getFile();
-                    if (baseFile != null && newFile != null && !newFile
-                            .startsWith(baseFile)) {
+                    if (baseFile != null && newFile != null && !newFile.startsWith(baseFile)) {
                         u = new URL(base, baseFile + href);
                     }
                 }
@@ -875,27 +824,24 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
             HyperlinkEvent linkEvent;
 
             if (!hdoc.isFrameDocument()) {
-                linkEvent = new HyperlinkEvent(html,
-                        HyperlinkEvent.EventType.ACTIVATED, u, href, element,
+                linkEvent = new HyperlinkEvent(html, HyperlinkEvent.EventType.ACTIVATED, u, href, element,
                         mouseEvent);
             } else {
-                String target = (anchor != null) ? (String) anchor.getAttribute(
-                        HTML.Attribute.TARGET) : null;
+                String target = (anchor != null) ? (String) anchor.getAttribute(HTML.Attribute.TARGET) : null;
                 if ((target == null) || (target.equals(""))) {
                     target = hdoc.getBaseTarget();
                 }
                 if ((target == null) || (target.equals(""))) {
                     target = "_self";
                 }
-                linkEvent = new HTMLFrameHyperlinkEvent(html,
-                        HyperlinkEvent.EventType.ACTIVATED, u, href, element,
-                        mouseEvent, target);
+                linkEvent = new HTMLFrameHyperlinkEvent(html, HyperlinkEvent.EventType.ACTIVATED, u, href,
+                        element, mouseEvent, target);
             }
             return linkEvent;
         }
 
-        void fireEvents(JEditorPane editor, HTMLDocument doc, String href,
-                Element lastElem, MouseEvent mouseEvent) {
+        void fireEvents(JEditorPane editor, HTMLDocument doc, String href, Element lastElem,
+                MouseEvent mouseEvent) {
             if (this.href != null) {
                 // fire an exited event on the old link
                 URL u;
@@ -904,9 +850,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 } catch (MalformedURLException m) {
                     u = null;
                 }
-                HyperlinkEvent exit = new HyperlinkEvent(editor,
-                        HyperlinkEvent.EventType.EXITED, u, this.href, lastElem,
-                        mouseEvent);
+                HyperlinkEvent exit = new HyperlinkEvent(editor, HyperlinkEvent.EventType.EXITED, u,
+                        this.href, lastElem, mouseEvent);
                 editor.fireHyperlinkUpdate(exit);
             }
             if (href != null) {
@@ -917,9 +862,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 } catch (MalformedURLException m) {
                     u = null;
                 }
-                HyperlinkEvent entered = new HyperlinkEvent(editor,
-                        HyperlinkEvent.EventType.ENTERED, u, href, curElem,
-                        mouseEvent);
+                HyperlinkEvent entered = new HyperlinkEvent(editor, HyperlinkEvent.EventType.ENTERED, u, href,
+                        curElem, mouseEvent);
                 editor.fireHyperlinkUpdate(entered);
             }
         }
@@ -935,8 +879,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * Parse the given stream and drive the given callback with the results
          * of the parse. This method should be implemented to be thread-safe.
          */
-        public abstract void parse(Reader r, ParserCallback cb,
-                boolean ignoreCharSet) throws IOException;
+        public abstract void parse(Reader r, ParserCallback cb, boolean ignoreCharSet) throws IOException;
 
     }
 
@@ -967,13 +910,11 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
 
         public void handleComment(char[] data, int pos) {}
 
-        public void handleStartTag(HTML.Tag t, MutableAttributeSet a,
-                int pos) {}
+        public void handleStartTag(HTML.Tag t, MutableAttributeSet a, int pos) {}
 
         public void handleEndTag(HTML.Tag t, int pos) {}
 
-        public void handleSimpleTag(HTML.Tag t, MutableAttributeSet a,
-                int pos) {}
+        public void handleSimpleTag(HTML.Tag t, MutableAttributeSet a, int pos) {}
 
         public void handleError(String errorMsg, int pos) {}
 
@@ -990,7 +931,6 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
     /**
      * A factory to build views for HTML. The following table describes what
      * this factory will build by default.
-     *
      * <table summary=
      * "Describes the tag and view created by this factory by default">
      * <tr>
@@ -1145,43 +1085,37 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * Creates a view from an element.
          *
          * @param elem
-         *             the element
+         *        the element
          * @return the view
          */
         public View create(Element elem) {
             AttributeSet attrs = elem.getAttributes();
-            Object elementName = attrs.getAttribute(
-                    AbstractDocument.ElementNameAttribute);
-            Object o = (elementName != null) ? null
-                    : attrs.getAttribute(StyleConstants.NameAttribute);
+            Object elementName = attrs.getAttribute(AbstractDocument.ElementNameAttribute);
+            Object o = (elementName != null) ? null : attrs.getAttribute(StyleConstants.NameAttribute);
             if (o instanceof HTML.Tag) {
                 HTML.Tag kind = (HTML.Tag) o;
                 if (kind == HTML.Tag.CONTENT) {
                     return new InlineView(elem);
                 } else if (kind == HTML.Tag.IMPLIED) {
-                    String ws = (String) elem.getAttributes().getAttribute(
-                            CSS.Attribute.WHITE_SPACE);
+                    String ws = (String) elem.getAttributes().getAttribute(CSS.Attribute.WHITE_SPACE);
                     if ((ws != null) && ws.equals("pre")) {
                         return new LineView(elem);
                     }
                     return new javax.swing.text.html.ParagraphView(elem);
-                } else if ((kind == HTML.Tag.P) || (kind == HTML.Tag.H1)
-                        || (kind == HTML.Tag.H2) || (kind == HTML.Tag.H3)
-                        || (kind == HTML.Tag.H4) || (kind == HTML.Tag.H5)
+                } else if ((kind == HTML.Tag.P) || (kind == HTML.Tag.H1) || (kind == HTML.Tag.H2)
+                        || (kind == HTML.Tag.H3) || (kind == HTML.Tag.H4) || (kind == HTML.Tag.H5)
                         || (kind == HTML.Tag.H6) || (kind == HTML.Tag.DT)) {
                     // paragraph
                     return new javax.swing.text.html.ParagraphView(elem);
-                } else if ((kind == HTML.Tag.MENU) || (kind == HTML.Tag.DIR)
-                        || (kind == HTML.Tag.UL) || (kind == HTML.Tag.OL)) {
+                } else if ((kind == HTML.Tag.MENU) || (kind == HTML.Tag.DIR) || (kind == HTML.Tag.UL)
+                        || (kind == HTML.Tag.OL)) {
                     return new ListView(elem);
                 } else if (kind == HTML.Tag.BODY) {
                     return new BodyBlockView(elem);
                 } else if (kind == HTML.Tag.HTML) {
                     return new BlockView(elem, View.Y_AXIS);
-                } else if ((kind == HTML.Tag.LI) || (kind == HTML.Tag.CENTER)
-                        || (kind == HTML.Tag.DL) || (kind == HTML.Tag.DD)
-                        || (kind == HTML.Tag.DIV)
-                        || (kind == HTML.Tag.BLOCKQUOTE)
+                } else if ((kind == HTML.Tag.LI) || (kind == HTML.Tag.CENTER) || (kind == HTML.Tag.DL)
+                        || (kind == HTML.Tag.DD) || (kind == HTML.Tag.DIV) || (kind == HTML.Tag.BLOCKQUOTE)
                         || (kind == HTML.Tag.PRE) || (kind == HTML.Tag.FORM)) {
                     // vertical box
                     return new BlockView(elem, View.Y_AXIS);
@@ -1205,12 +1139,11 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 } else if (kind == HTML.Tag.FRAMESET) {
                     if (elem.getAttributes().isDefined(HTML.Attribute.ROWS)) {
                         return new FrameSetView(elem, View.Y_AXIS);
-                    } else if (elem.getAttributes().isDefined(
-                            HTML.Attribute.COLS)) {
+                    } else if (elem.getAttributes().isDefined(HTML.Attribute.COLS)) {
                         return new FrameSetView(elem, View.X_AXIS);
                     }
-                    throw new RuntimeException("Can't build a" + kind + ", "
-                            + elem + ":" + "no ROWS or COLS defined.");
+                    throw new RuntimeException("Can't build a" + kind + ", " + elem + ":"
+                            + "no ROWS or COLS defined.");
                 } else if (kind == HTML.Tag.FRAME) {
                     return new FrameView(elem);
                 } else if (kind instanceof HTML.UnknownTag) {
@@ -1237,30 +1170,26 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
 
                         protected void loadChildren(ViewFactory f) {}
 
-                        public Shape modelToView(int pos, Shape a,
-                                Position.Bias b) throws BadLocationException {
+                        public Shape modelToView(int pos, Shape a, Position.Bias b)
+                                throws BadLocationException {
                             return a;
                         }
 
-                        public int getNextVisualPositionFrom(int pos,
-                                Position.Bias b, Shape a, int direction,
+                        public int getNextVisualPositionFrom(int pos, Position.Bias b, Shape a, int direction,
                                 Position.Bias[] biasRet) {
                             return getElement().getEndOffset();
                         }
                     };
-                } else if ((kind == HTML.Tag.TITLE) || (kind == HTML.Tag.META)
-                        || (kind == HTML.Tag.LINK) || (kind == HTML.Tag.STYLE)
-                        || (kind == HTML.Tag.SCRIPT) || (kind == HTML.Tag.AREA)
-                        || (kind == HTML.Tag.MAP) || (kind == HTML.Tag.PARAM)
-                        || (kind == HTML.Tag.APPLET)) {
+                } else if ((kind == HTML.Tag.TITLE) || (kind == HTML.Tag.META) || (kind == HTML.Tag.LINK)
+                        || (kind == HTML.Tag.STYLE) || (kind == HTML.Tag.SCRIPT) || (kind == HTML.Tag.AREA)
+                        || (kind == HTML.Tag.MAP) || (kind == HTML.Tag.PARAM) || (kind == HTML.Tag.APPLET)) {
                     return new HiddenTagView(elem);
                 }
             }
             // If we get here, it's either an element we don't know about
             // or something from StyledDocument that doesn't have a mapping to
             // HTML.
-            String nm = (elementName != null) ? (String) elementName
-                    : elem.getName();
+            String nm = (elementName != null) ? (String) elementName : elem.getName();
             if (nm != null) {
                 if (nm.equals(AbstractDocument.ContentElementName)) {
                     return new LabelView(elem);
@@ -1279,8 +1208,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
             return new LabelView(elem);
         }
 
-        static class BodyBlockView extends BlockView implements
-                ComponentListener {
+        static class BodyBlockView extends BlockView implements ComponentListener {
             public BodyBlockView(Element elem) {
                 super(elem, View.Y_AXIS);
             }
@@ -1288,19 +1216,16 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
             // reimplement major axis requirements to indicate that the
             // block is flexible for the body element... so that it can
             // be stretched to fill the background properly.
-            protected SizeRequirements calculateMajorAxisRequirements(int axis,
-                    SizeRequirements r) {
+            protected SizeRequirements calculateMajorAxisRequirements(int axis, SizeRequirements r) {
                 r = super.calculateMajorAxisRequirements(axis, r);
                 r.maximum = Integer.MAX_VALUE;
                 return r;
             }
 
-            protected void layoutMinorAxis(int targetSpan, int axis,
-                    int[] offsets, int[] spans) {
+            protected void layoutMinorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
                 Container container = getContainer();
                 Container parentContainer;
-                if (container != null
-                        && (container instanceof javax.swing.JEditorPane)
+                if (container != null && (container instanceof javax.swing.JEditorPane)
                         && (parentContainer = container.getParent()) != null
                         && (parentContainer instanceof javax.swing.JViewport)) {
                     JViewport viewPort = (JViewport) parentContainer;
@@ -1322,8 +1247,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     componentVisibleWidth = viewPort.getExtentSize().width;
                     if (componentVisibleWidth > 0) {
                         Insets insets = container.getInsets();
-                        viewVisibleWidth = componentVisibleWidth - insets.left
-                                - getLeftInset();
+                        viewVisibleWidth = componentVisibleWidth - insets.left - getLeftInset();
                         // try to use viewVisibleWidth if it is smaller than
                         // targetSpan
                         targetSpan = Math.min(targetSpan, viewVisibleWidth);
@@ -1346,8 +1270,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     if (cachedViewPort != null) {
                         Object cachedObject;
                         if ((cachedObject = cachedViewPort.get()) != null) {
-                            ((JComponent) cachedObject).removeComponentListener(
-                                    this);
+                            ((JComponent) cachedObject).removeComponentListener(this);
                         }
                         cachedViewPort = null;
                     }
@@ -1466,8 +1389,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
     /** HTML used when inserting pre. */
     private static final String INSERT_PRE_HTML = "<pre></pre>";
 
-    private static final NavigateLinkAction nextLinkAction = new NavigateLinkAction(
-            "next-link-action");
+    private static final NavigateLinkAction nextLinkAction = new NavigateLinkAction("next-link-action");
 
     private static final NavigateLinkAction previousLinkAction = new NavigateLinkAction(
             "previous-link-action");
@@ -1475,27 +1397,21 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
     private static final ActivateLinkAction activateLinkAction = new ActivateLinkAction(
             "activate-link-action");
 
-    private static final Action[] defaultActions = { new InsertHTMLTextAction(
-            "InsertTable", INSERT_TABLE_HTML, HTML.Tag.BODY, HTML.Tag.TABLE),
-            new InsertHTMLTextAction("InsertTableRow", INSERT_TABLE_HTML,
-                    HTML.Tag.TABLE, HTML.Tag.TR, HTML.Tag.BODY, HTML.Tag.TABLE),
-            new InsertHTMLTextAction("InsertTableDataCell", INSERT_TABLE_HTML,
-                    HTML.Tag.TR, HTML.Tag.TD, HTML.Tag.BODY, HTML.Tag.TABLE),
-            new InsertHTMLTextAction("InsertUnorderedList", INSERT_UL_HTML,
-                    HTML.Tag.BODY, HTML.Tag.UL), new InsertHTMLTextAction(
-                            "InsertUnorderedListItem", INSERT_UL_HTML,
-                            HTML.Tag.UL, HTML.Tag.LI, HTML.Tag.BODY,
-                            HTML.Tag.UL), new InsertHTMLTextAction(
-                                    "InsertOrderedList", INSERT_OL_HTML,
-                                    HTML.Tag.BODY, HTML.Tag.OL),
-            new InsertHTMLTextAction("InsertOrderedListItem", INSERT_OL_HTML,
-                    HTML.Tag.OL, HTML.Tag.LI, HTML.Tag.BODY, HTML.Tag.OL),
-            new InsertHRAction(), new InsertHTMLTextAction("InsertPre",
-                    INSERT_PRE_HTML, HTML.Tag.BODY, HTML.Tag.PRE),
-            nextLinkAction, previousLinkAction, activateLinkAction,
+    private static final Action[] defaultActions = { new InsertHTMLTextAction("InsertTable",
+            INSERT_TABLE_HTML, HTML.Tag.BODY, HTML.Tag.TABLE), new InsertHTMLTextAction("InsertTableRow",
+                    INSERT_TABLE_HTML, HTML.Tag.TABLE, HTML.Tag.TR, HTML.Tag.BODY, HTML.Tag.TABLE),
+            new InsertHTMLTextAction("InsertTableDataCell", INSERT_TABLE_HTML, HTML.Tag.TR, HTML.Tag.TD,
+                    HTML.Tag.BODY, HTML.Tag.TABLE), new InsertHTMLTextAction("InsertUnorderedList",
+                            INSERT_UL_HTML, HTML.Tag.BODY, HTML.Tag.UL), new InsertHTMLTextAction(
+                                    "InsertUnorderedListItem", INSERT_UL_HTML, HTML.Tag.UL, HTML.Tag.LI,
+                                    HTML.Tag.BODY, HTML.Tag.UL), new InsertHTMLTextAction("InsertOrderedList",
+                                            INSERT_OL_HTML, HTML.Tag.BODY, HTML.Tag.OL),
+            new InsertHTMLTextAction("InsertOrderedListItem", INSERT_OL_HTML, HTML.Tag.OL, HTML.Tag.LI,
+                    HTML.Tag.BODY, HTML.Tag.OL), new InsertHRAction(), new InsertHTMLTextAction("InsertPre",
+                            INSERT_PRE_HTML, HTML.Tag.BODY, HTML.Tag.PRE), nextLinkAction, previousLinkAction,
+            activateLinkAction,
 
-            new BeginAction(beginAction, false), new BeginAction(
-                    selectionBeginAction, true) };
+            new BeginAction(beginAction, false), new BeginAction(selectionBeginAction, true) };
 
     // link navigation support
     private boolean foundLink = false;
@@ -1534,8 +1450,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
             if (k instanceof HTMLEditorKit) {
                 return (HTMLEditorKit) k;
             }
-            throw new IllegalArgumentException(
-                    "EditorKit must be HTMLEditorKit");
+            throw new IllegalArgumentException("EditorKit must be HTMLEditorKit");
         }
 
         /**
@@ -1555,8 +1470,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 retValue[depth] = parent;
                 return retValue;
             }
-            Element[] retValue = getElementsAt(parent.getElement(parent
-                    .getElementIndex(offset)), offset, depth + 1);
+            Element[] retValue = getElementsAt(parent.getElement(parent.getElementIndex(offset)), offset,
+                    depth + 1);
             retValue[depth] = parent;
             return retValue;
         }
@@ -1568,12 +1483,10 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * parent of the leaf at <code>offset</code> represents <code>tag</code>
          * .
          */
-        protected int elementCountToTag(HTMLDocument doc, int offset,
-                HTML.Tag tag) {
+        protected int elementCountToTag(HTMLDocument doc, int offset, HTML.Tag tag) {
             int depth = -1;
             Element e = doc.getCharacterElement(offset);
-            while (e != null && e.getAttributes().getAttribute(
-                    StyleConstants.NameAttribute) != tag) {
+            while (e != null && e.getAttributes().getAttribute(StyleConstants.NameAttribute) != tag) {
                 e = e.getParentElement();
                 depth++;
             }
@@ -1587,13 +1500,11 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * Returns the deepest element at <code>offset</code> matching
          * <code>tag</code>.
          */
-        protected Element findElementMatchingTag(HTMLDocument doc, int offset,
-                HTML.Tag tag) {
+        protected Element findElementMatchingTag(HTMLDocument doc, int offset, HTML.Tag tag) {
             Element e = doc.getDefaultRootElement();
             Element lastMatch = null;
             while (e != null) {
-                if (e.getAttributes().getAttribute(
-                        StyleConstants.NameAttribute) == tag) {
+                if (e.getAttributes().getAttribute(StyleConstants.NameAttribute) == tag) {
                     lastMatch = e;
                 }
                 e = e.getElement(e.getElementIndex(offset));
@@ -1620,22 +1531,18 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * These will be checked for if there is no parentTag at offset.
      */
     public static class InsertHTMLTextAction extends HTMLTextAction {
-        public InsertHTMLTextAction(String name, String html,
-                HTML.Tag parentTag, HTML.Tag addTag) {
+        public InsertHTMLTextAction(String name, String html, HTML.Tag parentTag, HTML.Tag addTag) {
             this(name, html, parentTag, addTag, null, null);
         }
 
-        public InsertHTMLTextAction(String name, String html,
-                HTML.Tag parentTag, HTML.Tag addTag,
+        public InsertHTMLTextAction(String name, String html, HTML.Tag parentTag, HTML.Tag addTag,
                 HTML.Tag alternateParentTag, HTML.Tag alternateAddTag) {
-            this(name, html, parentTag, addTag, alternateParentTag,
-                    alternateAddTag, true);
+            this(name, html, parentTag, addTag, alternateParentTag, alternateAddTag, true);
         }
 
         /* public */
-        InsertHTMLTextAction(String name, String html, HTML.Tag parentTag,
-                HTML.Tag addTag, HTML.Tag alternateParentTag,
-                HTML.Tag alternateAddTag, boolean adjustSelection) {
+        InsertHTMLTextAction(String name, String html, HTML.Tag parentTag, HTML.Tag addTag,
+                HTML.Tag alternateParentTag, HTML.Tag alternateAddTag, boolean adjustSelection) {
             super(name);
             this.html = html;
             this.parentTag = parentTag;
@@ -1649,12 +1556,10 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * A cover for HTMLEditorKit.insertHTML. If an exception it thrown it is
          * wrapped in a RuntimeException and thrown.
          */
-        protected void insertHTML(JEditorPane editor, HTMLDocument doc,
-                int offset, String html, int popDepth, int pushDepth,
-                HTML.Tag addTag) {
+        protected void insertHTML(JEditorPane editor, HTMLDocument doc, int offset, String html, int popDepth,
+                int pushDepth, HTML.Tag addTag) {
             try {
-                getHTMLEditorKit(editor).insertHTML(doc, offset, html, popDepth,
-                        pushDepth, addTag);
+                getHTMLEditorKit(editor).insertHTML(doc, offset, html, popDepth, pushDepth, addTag);
             } catch (IOException ioe) {
                 throw new RuntimeException("Unable to insert: " + ioe);
             } catch (BadLocationException ble) {
@@ -1669,11 +1574,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * 
          * @since 1.3
          */
-        protected void insertAtBoundary(JEditorPane editor, HTMLDocument doc,
-                int offset, Element insertElement, String html,
-                HTML.Tag parentTag, HTML.Tag addTag) {
-            insertAtBoundry(editor, doc, offset, insertElement, html, parentTag,
-                    addTag);
+        protected void insertAtBoundary(JEditorPane editor, HTMLDocument doc, int offset,
+                Element insertElement, String html, HTML.Tag parentTag, HTML.Tag addTag) {
+            insertAtBoundry(editor, doc, offset, insertElement, html, parentTag, addTag);
         }
 
         /**
@@ -1684,9 +1587,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * @deprecated As of Java 2 platform v1.3, use insertAtBoundary
          */
         @Deprecated
-        protected void insertAtBoundry(JEditorPane editor, HTMLDocument doc,
-                int offset, Element insertElement, String html,
-                HTML.Tag parentTag, HTML.Tag addTag) {
+        protected void insertAtBoundry(JEditorPane editor, HTMLDocument doc, int offset,
+                Element insertElement, String html, HTML.Tag parentTag, HTML.Tag addTag) {
             // Find the common parent.
             Element e;
             Element commonParent;
@@ -1694,8 +1596,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
 
             if (offset > 0 || insertElement == null) {
                 e = doc.getDefaultRootElement();
-                while (e != null && e.getStartOffset() != offset && !e
-                        .isLeaf()) {
+                while (e != null && e.getStartOffset() != offset && !e.isLeaf()) {
                     e = e.getElement(e.getElementIndex(offset));
                 }
                 commonParent = (e != null) ? e.getParentElement() : null;
@@ -1744,8 +1645,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * one of the inserts is invoked.
          */
         /* protected */
-        boolean insertIntoTag(JEditorPane editor, HTMLDocument doc, int offset,
-                HTML.Tag tag, HTML.Tag addTag) {
+        boolean insertIntoTag(JEditorPane editor, HTMLDocument doc, int offset, HTML.Tag tag,
+                HTML.Tag addTag) {
             Element e = findElementMatchingTag(doc, offset, tag);
             if (e != null && e.getStartOffset() == offset) {
                 insertAtBoundary(editor, doc, offset, e, html, tag, addTag);
@@ -1764,8 +1665,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * Called after an insertion to adjust the selection.
          */
         /* protected */
-        void adjustSelection(JEditorPane pane, HTMLDocument doc,
-                int startOffset, int oldLength) {
+        void adjustSelection(JEditorPane pane, HTMLDocument doc, int startOffset, int oldLength) {
             int newLength = doc.getLength();
             if (newLength != oldLength && startOffset < newLength) {
                 if (startOffset > 0) {
@@ -1775,8 +1675,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     } catch (BadLocationException ble) {
                         text = null;
                     }
-                    if (text != null && text.length() > 0 && text.charAt(
-                            0) == '\n') {
+                    if (text != null && text.length() > 0 && text.charAt(0) == '\n') {
                         pane.select(startOffset, startOffset);
                     } else {
                         pane.select(startOffset + 1, startOffset + 1);
@@ -1791,7 +1690,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * Inserts the HTML into the document.
          *
          * @param ae
-         *           the event
+         *        the event
          */
         public void actionPerformed(ActionEvent ae) {
             JEditorPane editor = getEditor(ae);
@@ -1801,11 +1700,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 int length = doc.getLength();
                 boolean inserted;
                 // Try first choice
-                if (!insertIntoTag(editor, doc, offset, parentTag, addTag)
-                        && alternateParentTag != null) {
+                if (!insertIntoTag(editor, doc, offset, parentTag, addTag) && alternateParentTag != null) {
                     // Then alternate.
-                    inserted = insertIntoTag(editor, doc, offset,
-                            alternateParentTag, alternateAddTag);
+                    inserted = insertIntoTag(editor, doc, offset, alternateParentTag, alternateAddTag);
                 } else {
                     inserted = true;
                 }
@@ -1840,15 +1737,14 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      */
     static class InsertHRAction extends InsertHTMLTextAction {
         InsertHRAction() {
-            super("InsertHR", "<hr>", null, HTML.Tag.IMPLIED, null, null,
-                    false);
+            super("InsertHR", "<hr>", null, HTML.Tag.IMPLIED, null, null, false);
         }
 
         /**
          * Inserts the HTML into the document.
          *
          * @param ae
-         *           the event
+         *        the event
          */
         public void actionPerformed(ActionEvent ae) {
             JEditorPane editor = getEditor(ae);
@@ -1857,9 +1753,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 int offset = editor.getSelectionStart();
                 Element paragraph = doc.getParagraphElement(offset);
                 if (paragraph.getParentElement() != null) {
-                    parentTag = (HTML.Tag) paragraph.getParentElement()
-                            .getAttributes().getAttribute(
-                                    StyleConstants.NameAttribute);
+                    parentTag = (HTML.Tag) paragraph.getParentElement().getAttributes().getAttribute(
+                            StyleConstants.NameAttribute);
                     super.actionPerformed(ae);
                 }
             }
@@ -1893,11 +1788,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
      * package. The text package should support keyboard navigation of text
      * elements directly.
      */
-    static class NavigateLinkAction extends TextAction implements
-            CaretListener {
+    static class NavigateLinkAction extends TextAction implements CaretListener {
 
-        private static final FocusHighlightPainter focusPainter = new FocusHighlightPainter(
-                null);
+        private static final FocusHighlightPainter focusPainter = new FocusHighlightPainter(null);
         private final boolean focusBack;
 
         /*
@@ -1912,7 +1805,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * Called when the caret position is updated.
          *
          * @param e
-         *          the caret event
+         *        the caret event
          */
         public void caretUpdate(CaretEvent e) {
             Object src = e.getSource();
@@ -1926,9 +1819,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     // as a listener for CaretEvents and forward the events to
                     // assistive technologies listening for such events.
                     comp.getAccessibleContext().firePropertyChange(
-                            AccessibleContext.ACCESSIBLE_HYPERTEXT_OFFSET,
-                            Integer.valueOf(kit.prevHypertextOffset), Integer
-                                    .valueOf(e.getDot()));
+                            AccessibleContext.ACCESSIBLE_HYPERTEXT_OFFSET, Integer.valueOf(
+                                    kit.prevHypertextOffset), Integer.valueOf(e.getDot()));
                 }
             }
         }
@@ -1963,20 +1855,17 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 AttributeSet attr = nextElement.getAttributes();
 
                 Object href = getAttrValue(attr, HTML.Attribute.HREF);
-                if (!(name.equals(HTML.Tag.OBJECT.toString()))
-                        && href == null) {
+                if (!(name.equals(HTML.Tag.OBJECT.toString())) && href == null) {
                     continue;
                 }
 
                 int elementOffset = nextElement.getStartOffset();
                 if (focusBack) {
-                    if (elementOffset >= currentOffset
-                            && prevStartOffset >= 0) {
+                    if (elementOffset >= currentOffset && prevStartOffset >= 0) {
 
                         kit.foundLink = true;
                         comp.setCaretPosition(prevStartOffset);
-                        moveCaretPosition(comp, kit, prevStartOffset,
-                                prevEndOffset);
+                        moveCaretPosition(comp, kit, prevStartOffset, prevEndOffset);
                         kit.prevHypertextOffset = prevStartOffset;
                         return;
                     }
@@ -1985,8 +1874,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
 
                         kit.foundLink = true;
                         comp.setCaretPosition(elementOffset);
-                        moveCaretPosition(comp, kit, elementOffset, nextElement
-                                .getEndOffset());
+                        moveCaretPosition(comp, kit, elementOffset, nextElement.getEndOffset());
                         kit.prevHypertextOffset = elementOffset;
                         return;
                     }
@@ -2005,8 +1893,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
         /*
          * Moves the caret from mark to dot
          */
-        private void moveCaretPosition(JTextComponent comp, HTMLEditorKit kit,
-                int mark, int dot) {
+        private void moveCaretPosition(JTextComponent comp, HTMLEditorKit kit, int mark, int dot) {
             Highlighter h = comp.getHighlighter();
             if (h != null) {
                 int p0 = Math.min(dot, mark);
@@ -2015,11 +1902,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     if (kit.linkNavigationTag != null) {
                         h.changeHighlight(kit.linkNavigationTag, p0, p1);
                     } else {
-                        kit.linkNavigationTag = h.addHighlight(p0, p1,
-                                focusPainter);
+                        kit.linkNavigationTag = h.addHighlight(p0, p1, focusPainter);
                     }
-                } catch (BadLocationException e) {
-                }
+                } catch (BadLocationException e) {}
             }
         }
 
@@ -2037,8 +1922,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
          * A highlight painter that draws a one-pixel border around the
          * highlighted area.
          */
-        static class FocusHighlightPainter extends
-                DefaultHighlighter.DefaultHighlightPainter {
+        static class FocusHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
 
             FocusHighlightPainter(Color color) {
                 super(color);
@@ -2048,23 +1932,23 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
              * Paints a portion of a highlight.
              *
              * @param g
-             *               the graphics context
+             *        the graphics context
              * @param offs0
-             *               the starting model offset &ge; 0
+             *        the starting model offset &ge; 0
              * @param offs1
-             *               the ending model offset &ge; offs1
+             *        the ending model offset &ge; offs1
              * @param bounds
-             *               the bounding box of the view, which is not
-             *               necessarily
-             *               the region to paint.
+             *        the bounding box of the view, which is not
+             *        necessarily
+             *        the region to paint.
              * @param c
-             *               the editor
+             *        the editor
              * @param view
-             *               View painting for
+             *        View painting for
              * @return region in which drawing occurred
              */
-            public Shape paintLayer(Graphics g, int offs0, int offs1,
-                    Shape bounds, JTextComponent c, View view) {
+            public Shape paintLayer(Graphics g, int offs0, int offs1, Shape bounds, JTextComponent c,
+                    View view) {
 
                 Color color = getColor();
 
@@ -2073,8 +1957,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                 } else {
                     g.setColor(color);
                 }
-                if (offs0 == view.getStartOffset() && offs1 == view
-                        .getEndOffset()) {
+                if (offs0 == view.getStartOffset() && offs1 == view.getEndOffset()) {
                     // Contained in view, can just use bounds.
                     Rectangle alloc;
                     if (bounds instanceof Rectangle) {
@@ -2088,12 +1971,9 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     // Should only render part of View.
                     try {
                         // --- determine locations ---
-                        Shape shape = view.modelToView(offs0,
-                                Position.Bias.Forward, offs1,
+                        Shape shape = view.modelToView(offs0, Position.Bias.Forward, offs1,
                                 Position.Bias.Backward, bounds);
-                        Rectangle r = (shape instanceof Rectangle)
-                                ? (Rectangle) shape
-                                : shape.getBounds();
+                        Rectangle r = (shape instanceof Rectangle) ? (Rectangle) shape : shape.getBounds();
                         g.drawRect(r.x, r.y, r.width - 1, r.height);
                         return r;
                     } catch (BadLocationException e) {
@@ -2123,19 +2003,14 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
         /*
          * activates the hyperlink at offset
          */
-        private void activateLink(String href, HTMLDocument doc,
-                JEditorPane editor, int offset) {
+        private void activateLink(String href, HTMLDocument doc, JEditorPane editor, int offset) {
             try {
-                URL page = (URL) doc.getProperty(
-                        Document.StreamDescriptionProperty);
+                URL page = (URL) doc.getProperty(Document.StreamDescriptionProperty);
                 URL url = new URL(page, href);
-                HyperlinkEvent linkEvent = new HyperlinkEvent(editor,
-                        HyperlinkEvent.EventType.ACTIVATED, url, url
-                                .toExternalForm(), doc.getCharacterElement(
-                                        offset));
+                HyperlinkEvent linkEvent = new HyperlinkEvent(editor, HyperlinkEvent.EventType.ACTIVATED, url,
+                        url.toExternalForm(), doc.getCharacterElement(offset));
                 editor.fireHyperlinkUpdate(linkEvent);
-            } catch (MalformedURLException m) {
-            }
+            } catch (MalformedURLException m) {}
         }
 
         /*
@@ -2247,8 +2122,8 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
 
                 Object href = getAttrValue(attr, HTML.Attribute.HREF);
                 if (href != null) {
-                    if (currentOffset >= currentElement.getStartOffset()
-                            && currentOffset <= currentElement.getEndOffset()) {
+                    if (currentOffset >= currentElement.getStartOffset() && currentOffset <= currentElement
+                            .getEndOffset()) {
 
                         activateLink((String) href, doc, editor, currentOffset);
                         return;
@@ -2257,8 +2132,7 @@ public class HTMLEditorKit extends StyledEditorKit implements Accessible {
                     Object obj = getAttrValue(attr, HTML.Attribute.CLASSID);
                     if (obj != null) {
                         if (currentOffset >= currentElement.getStartOffset()
-                                && currentOffset <= currentElement
-                                        .getEndOffset()) {
+                                && currentOffset <= currentElement.getEndOffset()) {
 
                             doObjectAction(editor, currentElement);
                             return;

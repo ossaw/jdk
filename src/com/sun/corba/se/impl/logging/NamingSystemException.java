@@ -39,14 +39,14 @@ public class NamingSystemException extends LogWrapperBase {
     };
 
     public static NamingSystemException get(ORB orb, String logDomain) {
-        NamingSystemException wrapper = (NamingSystemException) orb
-                .getLogWrapper(logDomain, "NAMING", factory);
+        NamingSystemException wrapper = (NamingSystemException) orb.getLogWrapper(logDomain, "NAMING",
+                factory);
         return wrapper;
     }
 
     public static NamingSystemException get(String logDomain) {
-        NamingSystemException wrapper = (NamingSystemException) ORB
-                .staticGetLogWrapper(logDomain, "NAMING", factory);
+        NamingSystemException wrapper = (NamingSystemException) ORB.staticGetLogWrapper(logDomain, "NAMING",
+                factory);
         return wrapper;
     }
 
@@ -54,19 +54,17 @@ public class NamingSystemException extends LogWrapperBase {
     // BAD_PARAM
     ///////////////////////////////////////////////////////////
 
-    public static final int TRANSIENT_NAME_SERVER_BAD_PORT = SUNVMCID.value
-            + 600;
+    public static final int TRANSIENT_NAME_SERVER_BAD_PORT = SUNVMCID.value + 600;
 
-    public BAD_PARAM transientNameServerBadPort(CompletionStatus cs,
-            Throwable t) {
+    public BAD_PARAM transientNameServerBadPort(CompletionStatus cs, Throwable t) {
         BAD_PARAM exc = new BAD_PARAM(TRANSIENT_NAME_SERVER_BAD_PORT, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.transientNameServerBadPort",
-                    parameters, NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.transientNameServerBadPort", parameters, NamingSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -84,19 +82,17 @@ public class NamingSystemException extends LogWrapperBase {
         return transientNameServerBadPort(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int TRANSIENT_NAME_SERVER_BAD_HOST = SUNVMCID.value
-            + 601;
+    public static final int TRANSIENT_NAME_SERVER_BAD_HOST = SUNVMCID.value + 601;
 
-    public BAD_PARAM transientNameServerBadHost(CompletionStatus cs,
-            Throwable t) {
+    public BAD_PARAM transientNameServerBadHost(CompletionStatus cs, Throwable t) {
         BAD_PARAM exc = new BAD_PARAM(TRANSIENT_NAME_SERVER_BAD_HOST, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.transientNameServerBadHost",
-                    parameters, NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.transientNameServerBadHost", parameters, NamingSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -123,8 +119,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.objectIsNull", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.objectIsNull", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -151,8 +146,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.insBadAddress", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.insBadAddress", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -183,8 +177,8 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.bindUpdateContextFailed", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.bindUpdateContextFailed", parameters, NamingSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -211,8 +205,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.bindFailure", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.bindFailure", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -239,8 +232,8 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.resolveConversionFailure", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.resolveConversionFailure", parameters, NamingSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -267,8 +260,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.resolveFailure", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.resolveFailure", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -295,8 +287,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.unbindFailure", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.unbindFailure", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -318,20 +309,17 @@ public class NamingSystemException extends LogWrapperBase {
     // INITIALIZE
     ///////////////////////////////////////////////////////////
 
-    public static final int TRANS_NS_CANNOT_CREATE_INITIAL_NC_SYS = SUNVMCID.value
-            + 650;
+    public static final int TRANS_NS_CANNOT_CREATE_INITIAL_NC_SYS = SUNVMCID.value + 650;
 
-    public INITIALIZE transNsCannotCreateInitialNcSys(CompletionStatus cs,
-            Throwable t) {
-        INITIALIZE exc = new INITIALIZE(TRANS_NS_CANNOT_CREATE_INITIAL_NC_SYS,
-                cs);
+    public INITIALIZE transNsCannotCreateInitialNcSys(CompletionStatus cs, Throwable t) {
+        INITIALIZE exc = new INITIALIZE(TRANS_NS_CANNOT_CREATE_INITIAL_NC_SYS, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.transNsCannotCreateInitialNcSys",
-                    parameters, NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.transNsCannotCreateInitialNcSys", parameters,
+                    NamingSystemException.class, exc);
         }
 
         return exc;
@@ -342,28 +330,24 @@ public class NamingSystemException extends LogWrapperBase {
     }
 
     public INITIALIZE transNsCannotCreateInitialNcSys(Throwable t) {
-        return transNsCannotCreateInitialNcSys(CompletionStatus.COMPLETED_NO,
-                t);
+        return transNsCannotCreateInitialNcSys(CompletionStatus.COMPLETED_NO, t);
     }
 
     public INITIALIZE transNsCannotCreateInitialNcSys() {
-        return transNsCannotCreateInitialNcSys(CompletionStatus.COMPLETED_NO,
-                null);
+        return transNsCannotCreateInitialNcSys(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int TRANS_NS_CANNOT_CREATE_INITIAL_NC = SUNVMCID.value
-            + 651;
+    public static final int TRANS_NS_CANNOT_CREATE_INITIAL_NC = SUNVMCID.value + 651;
 
-    public INITIALIZE transNsCannotCreateInitialNc(CompletionStatus cs,
-            Throwable t) {
+    public INITIALIZE transNsCannotCreateInitialNc(CompletionStatus cs, Throwable t) {
         INITIALIZE exc = new INITIALIZE(TRANS_NS_CANNOT_CREATE_INITIAL_NC, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.transNsCannotCreateInitialNc",
-                    parameters, NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.transNsCannotCreateInitialNc", parameters,
+                    NamingSystemException.class, exc);
         }
 
         return exc;
@@ -378,27 +362,24 @@ public class NamingSystemException extends LogWrapperBase {
     }
 
     public INITIALIZE transNsCannotCreateInitialNc() {
-        return transNsCannotCreateInitialNc(CompletionStatus.COMPLETED_NO,
-                null);
+        return transNsCannotCreateInitialNc(CompletionStatus.COMPLETED_NO, null);
     }
 
     ///////////////////////////////////////////////////////////
     // INTERNAL
     ///////////////////////////////////////////////////////////
 
-    public static final int NAMING_CTX_REBIND_ALREADY_BOUND = SUNVMCID.value
-            + 600;
+    public static final int NAMING_CTX_REBIND_ALREADY_BOUND = SUNVMCID.value + 600;
 
-    public INTERNAL namingCtxRebindAlreadyBound(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL namingCtxRebindAlreadyBound(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(NAMING_CTX_REBIND_ALREADY_BOUND, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.namingCtxRebindAlreadyBound",
-                    parameters, NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.namingCtxRebindAlreadyBound", parameters,
+                    NamingSystemException.class, exc);
         }
 
         return exc;
@@ -416,19 +397,17 @@ public class NamingSystemException extends LogWrapperBase {
         return namingCtxRebindAlreadyBound(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int NAMING_CTX_REBINDCTX_ALREADY_BOUND = SUNVMCID.value
-            + 601;
+    public static final int NAMING_CTX_REBINDCTX_ALREADY_BOUND = SUNVMCID.value + 601;
 
-    public INTERNAL namingCtxRebindctxAlreadyBound(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL namingCtxRebindctxAlreadyBound(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(NAMING_CTX_REBINDCTX_ALREADY_BOUND, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.namingCtxRebindctxAlreadyBound",
-                    parameters, NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.namingCtxRebindctxAlreadyBound", parameters,
+                    NamingSystemException.class, exc);
         }
 
         return exc;
@@ -443,8 +422,7 @@ public class NamingSystemException extends LogWrapperBase {
     }
 
     public INTERNAL namingCtxRebindctxAlreadyBound() {
-        return namingCtxRebindctxAlreadyBound(CompletionStatus.COMPLETED_NO,
-                null);
+        return namingCtxRebindctxAlreadyBound(CompletionStatus.COMPLETED_NO, null);
     }
 
     public static final int NAMING_CTX_BAD_BINDINGTYPE = SUNVMCID.value + 602;
@@ -456,8 +434,8 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.namingCtxBadBindingtype", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.namingCtxBadBindingtype", parameters, NamingSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -475,20 +453,17 @@ public class NamingSystemException extends LogWrapperBase {
         return namingCtxBadBindingtype(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int NAMING_CTX_RESOLVE_CANNOT_NARROW_TO_CTX = SUNVMCID.value
-            + 603;
+    public static final int NAMING_CTX_RESOLVE_CANNOT_NARROW_TO_CTX = SUNVMCID.value + 603;
 
-    public INTERNAL namingCtxResolveCannotNarrowToCtx(CompletionStatus cs,
-            Throwable t) {
-        INTERNAL exc = new INTERNAL(NAMING_CTX_RESOLVE_CANNOT_NARROW_TO_CTX,
-                cs);
+    public INTERNAL namingCtxResolveCannotNarrowToCtx(CompletionStatus cs, Throwable t) {
+        INTERNAL exc = new INTERNAL(NAMING_CTX_RESOLVE_CANNOT_NARROW_TO_CTX, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.namingCtxResolveCannotNarrowToCtx",
-                    parameters, NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.namingCtxResolveCannotNarrowToCtx", parameters,
+                    NamingSystemException.class, exc);
         }
 
         return exc;
@@ -499,28 +474,24 @@ public class NamingSystemException extends LogWrapperBase {
     }
 
     public INTERNAL namingCtxResolveCannotNarrowToCtx(Throwable t) {
-        return namingCtxResolveCannotNarrowToCtx(CompletionStatus.COMPLETED_NO,
-                t);
+        return namingCtxResolveCannotNarrowToCtx(CompletionStatus.COMPLETED_NO, t);
     }
 
     public INTERNAL namingCtxResolveCannotNarrowToCtx() {
-        return namingCtxResolveCannotNarrowToCtx(CompletionStatus.COMPLETED_NO,
-                null);
+        return namingCtxResolveCannotNarrowToCtx(CompletionStatus.COMPLETED_NO, null);
     }
 
-    public static final int NAMING_CTX_BINDING_ITERATOR_CREATE = SUNVMCID.value
-            + 604;
+    public static final int NAMING_CTX_BINDING_ITERATOR_CREATE = SUNVMCID.value + 604;
 
-    public INTERNAL namingCtxBindingIteratorCreate(CompletionStatus cs,
-            Throwable t) {
+    public INTERNAL namingCtxBindingIteratorCreate(CompletionStatus cs, Throwable t) {
         INTERNAL exc = new INTERNAL(NAMING_CTX_BINDING_ITERATOR_CREATE, cs);
         if (t != null)
             exc.initCause(t);
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.namingCtxBindingIteratorCreate",
-                    parameters, NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.namingCtxBindingIteratorCreate", parameters,
+                    NamingSystemException.class, exc);
         }
 
         return exc;
@@ -535,8 +506,7 @@ public class NamingSystemException extends LogWrapperBase {
     }
 
     public INTERNAL namingCtxBindingIteratorCreate() {
-        return namingCtxBindingIteratorCreate(CompletionStatus.COMPLETED_NO,
-                null);
+        return namingCtxBindingIteratorCreate(CompletionStatus.COMPLETED_NO, null);
     }
 
     public static final int TRANS_NC_BIND_ALREADY_BOUND = SUNVMCID.value + 700;
@@ -548,8 +518,8 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.transNcBindAlreadyBound", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.transNcBindAlreadyBound", parameters, NamingSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -576,8 +546,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.transNcListGotExc", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.transNcListGotExc", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -604,8 +573,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.transNcNewctxGotExc", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.transNcNewctxGotExc", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -632,8 +600,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.transNcDestroyGotExc", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.transNcDestroyGotExc", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -660,8 +627,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.insBadSchemeName", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.insBadSchemeName", parameters, NamingSystemException.class, exc);
         }
 
         return exc;
@@ -688,8 +654,8 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.insBadSchemeSpecificPart", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.insBadSchemeSpecificPart", parameters, NamingSystemException.class,
+                    exc);
         }
 
         return exc;
@@ -716,8 +682,7 @@ public class NamingSystemException extends LogWrapperBase {
 
         if (logger.isLoggable(Level.WARNING)) {
             Object[] parameters = null;
-            doLog(Level.WARNING, "NAMING.insOther", parameters,
-                    NamingSystemException.class, exc);
+            doLog(Level.WARNING, "NAMING.insOther", parameters, NamingSystemException.class, exc);
         }
 
         return exc;

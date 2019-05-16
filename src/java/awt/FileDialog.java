@@ -20,7 +20,6 @@ import sun.awt.AWTAccessor;
  * user has chosen a file.
  *
  * @see Window#show
- *
  * @author Sami Shaio
  * @author Arthur van Hoff
  * @since JDK1.0
@@ -149,7 +148,7 @@ public class FileDialog extends Dialog {
      * <code>FileDialog(parent, "", LOAD)</code>.
      *
      * @param parent
-     *               the owner of the dialog
+     *        the owner of the dialog
      * @since JDK1.1
      */
     public FileDialog(Frame parent) {
@@ -162,9 +161,9 @@ public class FileDialog extends Dialog {
      * method for <code>FileDialog(parent, title, LOAD)</code>.
      *
      * @param parent
-     *               the owner of the dialog
+     *        the owner of the dialog
      * @param title
-     *               the title of the dialog
+     *        the title of the dialog
      */
     public FileDialog(Frame parent, String title) {
         this(parent, title, LOAD);
@@ -180,16 +179,16 @@ public class FileDialog extends Dialog {
      * , the file dialog is finding a place to write a file.
      *
      * @param parent
-     *               the owner of the dialog
+     *        the owner of the dialog
      * @param title
-     *               the title of the dialog
+     *        the title of the dialog
      * @param mode
-     *               the mode of the dialog; either <code>FileDialog.LOAD</code>
-     *               or
-     *               <code>FileDialog.SAVE</code>
+     *        the mode of the dialog; either <code>FileDialog.LOAD</code>
+     *        or
+     *        <code>FileDialog.SAVE</code>
      * @exception IllegalArgumentException
-     *                                     if an illegal file dialog mode is
-     *                                     supplied
+     *            if an illegal file dialog mode is
+     *            supplied
      * @see java.awt.FileDialog#LOAD
      * @see java.awt.FileDialog#SAVE
      */
@@ -205,7 +204,7 @@ public class FileDialog extends Dialog {
      * <code>FileDialog(parent, "", LOAD)</code>.
      *
      * @param parent
-     *               the owner of the dialog
+     *        the owner of the dialog
      * @exception java.lang.IllegalArgumentException
      *            if the <code>parent</code>'s
      *            <code>GraphicsConfiguration</code> is not from a screen
@@ -228,12 +227,12 @@ public class FileDialog extends Dialog {
      * method for <code>FileDialog(parent, title, LOAD)</code>.
      *
      * @param parent
-     *               the owner of the dialog
+     *        the owner of the dialog
      * @param title
-     *               the title of the dialog; a <code>null</code> value will be
-     *               accepted without causing a
-     *               <code>NullPointerException</code>
-     *               to be thrown
+     *        the title of the dialog; a <code>null</code> value will be
+     *        accepted without causing a
+     *        <code>NullPointerException</code>
+     *        to be thrown
      * @exception java.lang.IllegalArgumentException
      *            if the <code>parent</code>'s
      *            <code>GraphicsConfiguration</code> is not from a screen
@@ -260,16 +259,16 @@ public class FileDialog extends Dialog {
      * , the file dialog is finding a place to write a file.
      *
      * @param parent
-     *               the owner of the dialog
+     *        the owner of the dialog
      * @param title
-     *               the title of the dialog; a <code>null</code> value will be
-     *               accepted without causing a
-     *               <code>NullPointerException</code>
-     *               to be thrown
+     *        the title of the dialog; a <code>null</code> value will be
+     *        accepted without causing a
+     *        <code>NullPointerException</code>
+     *        to be thrown
      * @param mode
-     *               the mode of the dialog; either <code>FileDialog.LOAD</code>
-     *               or
-     *               <code>FileDialog.SAVE</code>
+     *        the mode of the dialog; either <code>FileDialog.LOAD</code>
+     *        or
+     *        <code>FileDialog.SAVE</code>
      * @exception java.lang.IllegalArgumentException
      *            if an illegal file dialog mode is supplied;
      * @exception java.lang.IllegalArgumentException
@@ -336,14 +335,14 @@ public class FileDialog extends Dialog {
      * value, an exception will be thrown and <code>mode</code> will not be set.
      *
      * @param mode
-     *             the mode for this file dialog, either
-     *             <code>FileDialog.LOAD</code> or <code>FileDialog.SAVE</code>
+     *        the mode for this file dialog, either
+     *        <code>FileDialog.LOAD</code> or <code>FileDialog.SAVE</code>
      * @see java.awt.FileDialog#LOAD
      * @see java.awt.FileDialog#SAVE
      * @see java.awt.FileDialog#getMode
      * @exception IllegalArgumentException
-     *                                     if an illegal file dialog mode is
-     *                                     supplied
+     *            if an illegal file dialog mode is
+     *            supplied
      * @since JDK1.1
      */
     public void setMode(int mode) {
@@ -380,7 +379,7 @@ public class FileDialog extends Dialog {
      * <code>null</code> as the directory.
      *
      * @param dir
-     *            the specified directory
+     *        the specified directory
      * @see java.awt.FileDialog#getDirectory
      */
     public void setDirectory(String dir) {
@@ -427,15 +426,13 @@ public class FileDialog extends Dialog {
 
     /**
      * Stores the names of all the files that the user selects.
-     *
      * Note that the method is private and it's intended to be used by the peers
      * through the AWTAccessor API.
      *
      * @param files
-     *              the array that contains the short names of all the files
-     *              that
-     *              the user selects.
-     *
+     *        the array that contains the short names of all the files
+     *        that
+     *        the user selects.
      * @see #getFiles
      * @since 1.7
      */
@@ -462,7 +459,7 @@ public class FileDialog extends Dialog {
      * {@code null} as the file.
      *
      * @param file
-     *             the file being set
+     *        the file being set
      * @see #getFile
      * @see #getFiles
      */
@@ -478,8 +475,8 @@ public class FileDialog extends Dialog {
      * Enables or disables multiple file selection for the file dialog.
      *
      * @param enable
-     *               if {@code true}, multiple file selection is enabled;
-     *               {@code false} - disabled.
+     *        if {@code true}, multiple file selection is enabled;
+     *        {@code false} - disabled.
      * @see #isMultipleMode
      * @since 1.7
      */
@@ -523,7 +520,7 @@ public class FileDialog extends Dialog {
      * implementation for Microsoft Windows.
      *
      * @param filter
-     *               the specified filter
+     *        the specified filter
      * @see java.io.FilenameFilter
      * @see java.awt.FileDialog#getFilenameFilter
      */
@@ -541,10 +538,9 @@ public class FileDialog extends Dialog {
      * <code>file</code> equal to an empty string to <code>null</code>.
      *
      * @param s
-     *          the <code>ObjectInputStream</code> to read
+     *        the <code>ObjectInputStream</code> to read
      */
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         s.defaultReadObject();
 
         // 1.1 Compatibility: "" is not converted to null in 1.1

@@ -10,7 +10,6 @@ import java.nio.ByteBuffer;
 
 /**
  * A channel that can write bytes from a sequence of buffers.
- *
  * <p>
  * A <i>gathering</i> write operation writes, in a single invocation, a sequence
  * of bytes from one or more of a given sequence of buffers. Gathering writes
@@ -19,7 +18,6 @@ import java.nio.ByteBuffer;
  * headers followed by a variable-length body. Similar <i>scattering</i> read
  * operations are defined in the {@link ScatteringByteChannel} interface.
  * </p>
- *
  *
  * @author Mark Reinhold
  * @author JSR-51 Expert Group
@@ -31,12 +29,10 @@ public interface GatheringByteChannel extends WritableByteChannel {
     /**
      * Writes a sequence of bytes to this channel from a subsequence of the
      * given buffers.
-     *
      * <p>
      * An attempt is made to write up to <i>r</i> bytes to this channel, where
      * <i>r</i> is the total number of bytes remaining in the specified
      * subsequence of the given buffer array, that is,
-     *
      * <blockquote>
      * 
      * <pre>
@@ -46,9 +42,7 @@ public interface GatheringByteChannel extends WritableByteChannel {
      * </pre>
      * 
      * </blockquote>
-     *
      * at the moment that this method is invoked.
-     *
      * <p>
      * Suppose that a byte sequence of length <i>n</i> is written, where
      * <tt>0</tt>&nbsp;<tt>&lt;=</tt>&nbsp;<i>n</i>&nbsp;<tt>&lt;=</tt>&nbsp;
@@ -59,14 +53,12 @@ public interface GatheringByteChannel extends WritableByteChannel {
      * written. As many bytes as possible are written from each buffer, hence
      * the final position of each updated buffer, except the last updated
      * buffer, is guaranteed to be equal to that buffer's limit.
-     *
      * <p>
      * Unless otherwise specified, a write operation will return only after
      * writing all of the <i>r</i> requested bytes. Some types of channels,
      * depending upon their state, may write only some of the bytes or possibly
      * none at all. A socket channel in non-blocking mode, for example, cannot
      * write any more bytes than are free in the socket's output buffer.
-     *
      * <p>
      * This method may be invoked at any time. If another thread has already
      * initiated a write operation upon this channel, however, then an
@@ -75,60 +67,48 @@ public interface GatheringByteChannel extends WritableByteChannel {
      * </p>
      *
      * @param srcs
-     *               The buffers from which bytes are to be retrieved
-     *
+     *        The buffers from which bytes are to be retrieved
      * @param offset
-     *               The offset within the buffer array of the first buffer from
-     *               which bytes are to be retrieved; must be non-negative and
-     *               no
-     *               larger than <tt>srcs.length</tt>
-     *
+     *        The offset within the buffer array of the first buffer from
+     *        which bytes are to be retrieved; must be non-negative and
+     *        no
+     *        larger than <tt>srcs.length</tt>
      * @param length
-     *               The maximum number of buffers to be accessed; must be
-     *               non-negative and no larger than <tt>srcs.length</tt>
-     *               &nbsp;-&nbsp;<tt>offset</tt>
-     *
+     *        The maximum number of buffers to be accessed; must be
+     *        non-negative and no larger than <tt>srcs.length</tt>
+     *        &nbsp;-&nbsp;<tt>offset</tt>
      * @return The number of bytes written, possibly zero
-     *
      * @throws IndexOutOfBoundsException
-     *                                     If the preconditions on the
-     *                                     <tt>offset</tt> and
-     *                                     <tt>length</tt> parameters do not
-     *                                     hold
-     *
+     *         If the preconditions on the
+     *         <tt>offset</tt> and
+     *         <tt>length</tt> parameters do not
+     *         hold
      * @throws NonWritableChannelException
-     *                                     If this channel was not opened for
-     *                                     writing
-     *
+     *         If this channel was not opened for
+     *         writing
      * @throws ClosedChannelException
-     *                                     If this channel is closed
-     *
+     *         If this channel is closed
      * @throws AsynchronousCloseException
-     *                                     If another thread closes this channel
-     *                                     while the write
-     *                                     operation is in progress
-     *
+     *         If another thread closes this channel
+     *         while the write
+     *         operation is in progress
      * @throws ClosedByInterruptException
-     *                                     If another thread interrupts the
-     *                                     current thread while the
-     *                                     write operation is in progress,
-     *                                     thereby closing the channel
-     *                                     and setting the current thread's
-     *                                     interrupt status
-     *
+     *         If another thread interrupts the
+     *         current thread while the
+     *         write operation is in progress,
+     *         thereby closing the channel
+     *         and setting the current thread's
+     *         interrupt status
      * @throws IOException
-     *                                     If some other I/O error occurs
+     *         If some other I/O error occurs
      */
-    public long write(ByteBuffer[] srcs, int offset, int length)
-            throws IOException;
+    public long write(ByteBuffer[] srcs, int offset, int length) throws IOException;
 
     /**
      * Writes a sequence of bytes to this channel from the given buffers.
-     *
      * <p>
      * An invocation of this method of the form <tt>c.write(srcs)</tt> behaves
      * in exactly the same manner as the invocation
-     *
      * <blockquote>
      * 
      * <pre>
@@ -138,32 +118,26 @@ public interface GatheringByteChannel extends WritableByteChannel {
      * </blockquote>
      *
      * @param srcs
-     *             The buffers from which bytes are to be retrieved
-     *
+     *        The buffers from which bytes are to be retrieved
      * @return The number of bytes written, possibly zero
-     *
      * @throws NonWritableChannelException
-     *                                     If this channel was not opened for
-     *                                     writing
-     *
+     *         If this channel was not opened for
+     *         writing
      * @throws ClosedChannelException
-     *                                     If this channel is closed
-     *
+     *         If this channel is closed
      * @throws AsynchronousCloseException
-     *                                     If another thread closes this channel
-     *                                     while the write
-     *                                     operation is in progress
-     *
+     *         If another thread closes this channel
+     *         while the write
+     *         operation is in progress
      * @throws ClosedByInterruptException
-     *                                     If another thread interrupts the
-     *                                     current thread while the
-     *                                     write operation is in progress,
-     *                                     thereby closing the channel
-     *                                     and setting the current thread's
-     *                                     interrupt status
-     *
+     *         If another thread interrupts the
+     *         current thread while the
+     *         write operation is in progress,
+     *         thereby closing the channel
+     *         and setting the current thread's
+     *         interrupt status
      * @throws IOException
-     *                                     If some other I/O error occurs
+     *         If some other I/O error occurs
      */
     public long write(ByteBuffer[] srcs) throws IOException;
 

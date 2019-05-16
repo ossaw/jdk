@@ -40,11 +40,9 @@ public final class NamedMethodGenerator extends MethodGenerator {
     // The index of the first parameter (after dom/iterator/handler/current)
     private static final int PARAM_START_INDEX = 5;
 
-    public NamedMethodGenerator(int access_flags, Type return_type,
-            Type[] arg_types, String[] arg_names, String method_name,
-            String class_name, InstructionList il, ConstantPoolGen cp) {
-        super(access_flags, return_type, arg_types, arg_names, method_name,
-                class_name, il, cp);
+    public NamedMethodGenerator(int access_flags, Type return_type, Type[] arg_types, String[] arg_names,
+            String method_name, String class_name, InstructionList il, ConstantPoolGen cp) {
+        super(access_flags, return_type, arg_types, arg_names, method_name, class_name, il, cp);
     }
 
     public int getLocalIndex(String name) {

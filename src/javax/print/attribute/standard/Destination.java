@@ -32,8 +32,7 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Phil Race.
  */
-public final class Destination extends URISyntax implements PrintJobAttribute,
-        PrintRequestAttribute {
+public final class Destination extends URISyntax implements PrintJobAttribute, PrintRequestAttribute {
 
     private static final long serialVersionUID = 6776739171700415321L;
 
@@ -41,11 +40,10 @@ public final class Destination extends URISyntax implements PrintJobAttribute,
      * Constructs a new destination attribute with the specified URI.
      *
      * @param uri
-     *            URI.
-     *
+     *        URI.
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if
-     *                                 <CODE>uri</CODE> is null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>uri</CODE> is null.
      */
     public Destination(URI uri) {
         super(uri);
@@ -62,8 +60,7 @@ public final class Destination extends URISyntax implements PrintJobAttribute,
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this destination
      *         attribute, false otherwise.
      */

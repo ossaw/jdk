@@ -32,12 +32,10 @@ import com.sun.org.apache.xerces.internal.xs.XSConstants;
  * Element PSV infoset augmentations implementation. The following information
  * will be available at the startElement call: name, namespace, type, notation,
  * validation context
- *
  * The following information will be available at the endElement call: nil,
  * specified, normalized value, member type, validity, error codes, default
  *
  * @xerces.internal
- *
  * @author Elena Litani IBM
  */
 public class ElementPSVImpl implements ElementPSVI {
@@ -113,7 +111,6 @@ public class ElementPSVImpl implements ElementPSVI {
 
     /**
      * [schema normalized value]
-     *
      *
      * @see <a
      *      href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value>

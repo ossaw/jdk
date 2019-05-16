@@ -86,9 +86,9 @@ public class Area implements Shape, Cloneable {
      * determine the resulting enclosed area.
      * 
      * @param s
-     *          the <code>Shape</code> from which the area is constructed
+     *        the <code>Shape</code> from which the area is constructed
      * @throws NullPointerException
-     *                              if <code>s</code> is null
+     *         if <code>s</code> is null
      * @since 1.2
      */
     public Area(Shape s) {
@@ -192,9 +192,9 @@ public class Area implements Shape, Cloneable {
      * </pre>
      * 
      * @param rhs
-     *            the <code>Area</code> to be added to the current shape
+     *        the <code>Area</code> to be added to the current shape
      * @throws NullPointerException
-     *                              if <code>rhs</code> is null
+     *         if <code>rhs</code> is null
      * @since 1.2
      */
     public void add(Area rhs) {
@@ -227,9 +227,9 @@ public class Area implements Shape, Cloneable {
      * </pre>
      * 
      * @param rhs
-     *            the <code>Area</code> to be subtracted from the current shape
+     *        the <code>Area</code> to be subtracted from the current shape
      * @throws NullPointerException
-     *                              if <code>rhs</code> is null
+     *         if <code>rhs</code> is null
      * @since 1.2
      */
     public void subtract(Area rhs) {
@@ -263,10 +263,10 @@ public class Area implements Shape, Cloneable {
      * </pre>
      * 
      * @param rhs
-     *            the <code>Area</code> to be intersected with this
-     *            <code>Area</code>
+     *        the <code>Area</code> to be intersected with this
+     *        <code>Area</code>
      * @throws NullPointerException
-     *                              if <code>rhs</code> is null
+     *         if <code>rhs</code> is null
      * @since 1.2
      */
     public void intersect(Area rhs) {
@@ -300,10 +300,10 @@ public class Area implements Shape, Cloneable {
      * </pre>
      * 
      * @param rhs
-     *            the <code>Area</code> to be exclusive ORed with this
-     *            <code>Area</code>.
+     *        the <code>Area</code> to be exclusive ORed with this
+     *        <code>Area</code>.
      * @throws NullPointerException
-     *                              if <code>rhs</code> is null
+     *         if <code>rhs</code> is null
      * @since 1.2
      */
     public void exclusiveOr(Area rhs) {
@@ -479,8 +479,8 @@ public class Area implements Shape, Cloneable {
      * equal. This method will return false if the argument is null.
      * 
      * @param other
-     *              the <code>Area</code> to be compared to this
-     *              <code>Area</code>
+     *        the <code>Area</code> to be compared to this
+     *        <code>Area</code>
      * @return <code>true</code> if the two geometries are equal;
      *         <code>false</code> otherwise.
      * @since 1.2
@@ -505,9 +505,9 @@ public class Area implements Shape, Cloneable {
      * permanently changes the enclosed area defined by this object.
      * 
      * @param t
-     *          the transformation used to transform the area
+     *        the transformation used to transform the area
      * @throws NullPointerException
-     *                              if <code>t</code> is null
+     *         if <code>t</code> is null
      * @since 1.2
      */
     public void transform(AffineTransform t) {
@@ -526,10 +526,10 @@ public class Area implements Shape, Cloneable {
      * <code>AffineTransform</code>. This <code>Area</code> object is unchanged.
      * 
      * @param t
-     *          the specified <code>AffineTransform</code> used to transform
-     *          the new <code>Area</code>
+     *        the specified <code>AffineTransform</code> used to transform
+     *        the new <code>Area</code>
      * @throws NullPointerException
-     *                              if <code>t</code> is null
+     *         if <code>t</code> is null
      * @return a new <code>Area</code> object representing the transformed
      *         geometry.
      * @since 1.2
@@ -622,9 +622,9 @@ public class Area implements Shape, Cloneable {
      * object. This <code>Area</code> object is unchanged.
      * 
      * @param at
-     *           an optional <code>AffineTransform</code> to be applied to the
-     *           coordinates as they are returned in the iteration, or
-     *           <code>null</code> if untransformed coordinates are desired
+     *        an optional <code>AffineTransform</code> to be applied to the
+     *        coordinates as they are returned in the iteration, or
+     *        <code>null</code> if untransformed coordinates are desired
      * @return the <code>PathIterator</code> object that returns the geometry of
      *         the outline of this <code>Area</code>, one segment at a time.
      * @since 1.2
@@ -640,17 +640,17 @@ public class Area implements Shape, Cloneable {
      * iterator. This <code>Area</code> object is unchanged.
      * 
      * @param at
-     *                 an optional <code>AffineTransform</code> to be applied to
-     *                 the
-     *                 coordinates as they are returned in the iteration, or
-     *                 <code>null</code> if untransformed coordinates are
-     *                 desired
+     *        an optional <code>AffineTransform</code> to be applied to
+     *        the
+     *        coordinates as they are returned in the iteration, or
+     *        <code>null</code> if untransformed coordinates are
+     *        desired
      * @param flatness
-     *                 the maximum amount that the control points for a given
-     *                 curve
-     *                 can vary from colinear before a subdivided curve is
-     *                 replaced
-     *                 by a straight line connecting the end points
+     *        the maximum amount that the control points for a given
+     *        curve
+     *        can vary from colinear before a subdivided curve is
+     *        replaced
+     *        by a straight line connecting the end points
      * @return the <code>PathIterator</code> object that returns the geometry of
      *         the outline of this <code>Area</code>, one segment at a time.
      * @since 1.2
@@ -694,8 +694,8 @@ class AreaIterator implements PathIterator {
             index++;
             if (index < curves.size()) {
                 thiscurve = (Curve) curves.get(index);
-                if (thiscurve.getOrder() != 0 && prevcurve.getX1() == thiscurve
-                        .getX0() && prevcurve.getY1() == thiscurve.getY0()) {
+                if (thiscurve.getOrder() != 0 && prevcurve.getX1() == thiscurve.getX0() && prevcurve
+                        .getY1() == thiscurve.getY0()) {
                     prevcurve = null;
                 }
             } else {
@@ -708,8 +708,7 @@ class AreaIterator implements PathIterator {
         double dcoords[] = new double[6];
         int segtype = currentSegment(dcoords);
         int numpoints = (segtype == SEG_CLOSE ? 0
-                : (segtype == SEG_QUADTO ? 2
-                        : (segtype == SEG_CUBICTO ? 3 : 1)));
+                : (segtype == SEG_QUADTO ? 2 : (segtype == SEG_CUBICTO ? 3 : 1)));
         for (int i = 0; i < numpoints * 2; i++) {
             coords[i] = (float) dcoords[i];
         }

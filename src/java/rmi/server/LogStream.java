@@ -43,7 +43,7 @@ public class LogStream extends PrintStream {
      * users must have a LogStream created through the "log" method.
      * 
      * @param name
-     *             string identifying messages from this log
+     *        string identifying messages from this log
      * @out output stream that log messages will be sent to
      * @since JDK1.1
      * @deprecated no replacement
@@ -62,7 +62,7 @@ public class LogStream extends PrintStream {
      * to "name" does not exist, a log using the default stream is created.
      * 
      * @param name
-     *             name identifying the desired LogStream
+     *        name identifying the desired LogStream
      * @return log associated with given name
      * @since JDK1.1
      * @deprecated no replacement
@@ -97,7 +97,7 @@ public class LogStream extends PrintStream {
      * Set the default stream for new logs.
      * 
      * @param newDefault
-     *                   new default log stream
+     *        new default log stream
      * @see #getDefaultStream
      * @since JDK1.1
      * @deprecated no replacement
@@ -107,8 +107,7 @@ public class LogStream extends PrintStream {
         SecurityManager sm = System.getSecurityManager();
 
         if (sm != null) {
-            sm.checkPermission(new java.util.logging.LoggingPermission(
-                    "control", null));
+            sm.checkPermission(new java.util.logging.LoggingPermission("control", null));
         }
 
         defaultStream = newDefault;
@@ -131,7 +130,7 @@ public class LogStream extends PrintStream {
      * Set the stream to which output from this log is sent.
      * 
      * @param out
-     *            new output stream for this log
+     *        new output stream for this log
      * @see #getOutputStream
      * @since JDK1.1
      * @deprecated no replacement
@@ -229,7 +228,7 @@ public class LogStream extends PrintStream {
      * representation.
      * 
      * @param s
-     *          name of logging level (e.g., 'SILENT', 'BRIEF', 'VERBOSE')
+     *        name of logging level (e.g., 'SILENT', 'BRIEF', 'VERBOSE')
      * @return corresponding integer log level
      * @since JDK1.1
      * @deprecated no replacement
@@ -241,8 +240,7 @@ public class LogStream extends PrintStream {
 
         try {
             return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-        }
+        } catch (NumberFormatException e) {}
         if (s.length() < 1)
             return -1;
 

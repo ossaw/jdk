@@ -109,8 +109,7 @@ public class XMLElementDecl {
      * @param contentModelValidator
      * @param simpleType
      */
-    public void setValues(QName name, int scope, short type,
-            ContentModelValidator contentModelValidator,
+    public void setValues(QName name, int scope, short type, ContentModelValidator contentModelValidator,
             XMLSimpleType simpleType) {
         this.name.setValues(name);
         this.scope = scope;

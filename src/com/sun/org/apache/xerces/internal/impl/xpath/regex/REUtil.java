@@ -21,7 +21,6 @@ import java.text.CharacterIterator;
 
 /**
  * @xerces.internal
- *
  */
 public final class REUtil {
     private REUtil() {}
@@ -46,8 +45,7 @@ public final class REUtil {
         return new String(chs);
     }
 
-    static final String substring(CharacterIterator iterator, int begin,
-            int end) {
+    static final String substring(CharacterIterator iterator, int begin, int end) {
         char[] src = new char[end - begin];
         for (int i = 0; i < src.length; i++)
             src[i] = iterator.setIndex(i + begin);
@@ -101,8 +99,7 @@ public final class REUtil {
         for (int i = 0; i < opts.length(); i++) {
             int v = getOptionValue(opts.charAt(i));
             if (v == 0)
-                throw new ParseException("Unknown Option: " + opts.substring(i),
-                        -1);
+                throw new ParseException("Unknown Option: " + opts.substring(i), -1);
             options |= v;
         }
         return options;
@@ -110,11 +107,9 @@ public final class REUtil {
 
     static final String createOptionString(int options) {
         StringBuffer sb = new StringBuffer(9);
-        if ((options
-                & RegularExpression.PROHIBIT_FIXED_STRING_OPTIMIZATION) != 0)
+        if ((options & RegularExpression.PROHIBIT_FIXED_STRING_OPTIMIZATION) != 0)
             sb.append((char) 'F');
-        if ((options
-                & RegularExpression.PROHIBIT_HEAD_CHARACTER_OPTIMIZATION) != 0)
+        if ((options & RegularExpression.PROHIBIT_HEAD_CHARACTER_OPTIMIZATION) != 0)
             sb.append((char) 'H');
         if ((options & RegularExpression.XMLSCHEMA_MODE) != 0)
             sb.append((char) 'X');
@@ -144,8 +139,7 @@ public final class REUtil {
         while (offset < len) {
             int ch = regex.charAt(offset++);
             // Skips a white space.
-            if (ch == '\t' || ch == '\n' || ch == '\f' || ch == '\r'
-                    || ch == ' ')
+            if (ch == '\t' || ch == '\n' || ch == '\f' || ch == '\r' || ch == ' ')
                 continue;
 
             if (ch == '#') { // Skips chracters between '#' and a line end.
@@ -159,9 +153,8 @@ public final class REUtil {
 
             int next; // Strips an escaped white space.
             if (ch == '\\' && offset < len) {
-                if ((next = regex.charAt(offset)) == '#' || next == '\t'
-                        || next == '\n' || next == '\f' || next == '\r'
-                        || next == ' ') {
+                if ((next = regex.charAt(offset)) == '#' || next == '\t' || next == '\n' || next == '\f'
+                        || next == '\r' || next == ' ') {
                     buffer.append((char) next);
                     offset++;
                 } else { // Other escaped character.
@@ -188,8 +181,7 @@ public final class REUtil {
             String options = "";
             String target = null;
             if (argv.length == 0) {
-                System.out.println(
-                        "Error:Usage: java REUtil -i|-m|-s|-u|-w|-X regularExpression String");
+                System.out.println("Error:Usage: java REUtil -i|-m|-s|-u|-w|-X regularExpression String");
                 System.exit(0);
             }
             for (int i = 0; i < argv.length; i++) {
@@ -228,8 +220,7 @@ public final class REUtil {
                 if (match.getBeginning(i) < 0)
                     System.out.println("-1");
                 else {
-                    System.out.print(match.getBeginning(i) + ", " + match
-                            .getEnd(i) + ", ");
+                    System.out.print(match.getBeginning(i) + ", " + match.getEnd(i) + ", ");
                     System.out.println("\"" + match.getCapturedText(i) + "\"");
                 }
             }
@@ -237,9 +228,8 @@ public final class REUtil {
             if (pattern == null) {
                 pe.printStackTrace();
             } else {
-                System.err.println(
-                        "com.sun.org.apache.xerces.internal.utils.regex.ParseException: "
-                                + pe.getMessage());
+                System.err.println("com.sun.org.apache.xerces.internal.utils.regex.ParseException: " + pe
+                        .getMessage());
                 String indent = "        ";
                 System.err.println(indent + pattern);
                 int loc = pe.getLocation();
@@ -265,8 +255,7 @@ public final class REUtil {
      * @see RegularExpression#RegularExpression(java.lang.String,
      *      java.lang.String)
      */
-    public static RegularExpression createRegex(String pattern, String options)
-            throws ParseException {
+    public static RegularExpression createRegex(String pattern, String options) throws ParseException {
         RegularExpression re = null;
         int intOptions = REUtil.parseOptions(options);
         synchronized (REUtil.regexCache) {
@@ -284,14 +273,12 @@ public final class REUtil {
             }
             if (re != null) {
                 if (i != 0) {
-                    System.arraycopy(REUtil.regexCache, 0, REUtil.regexCache, 1,
-                            i);
+                    System.arraycopy(REUtil.regexCache, 0, REUtil.regexCache, 1, i);
                     REUtil.regexCache[0] = re;
                 }
             } else {
                 re = new RegularExpression(pattern, options);
-                System.arraycopy(REUtil.regexCache, 0, REUtil.regexCache, 1,
-                        REUtil.CACHESIZE - 1);
+                System.arraycopy(REUtil.regexCache, 0, REUtil.regexCache, 1, REUtil.CACHESIZE - 1);
                 REUtil.regexCache[0] = re;
             }
         }
@@ -299,20 +286,16 @@ public final class REUtil {
     }
 
     /**
-     *
      * @see RegularExpression#matches(java.lang.String)
      */
-    public static boolean matches(String regex, String target)
-            throws ParseException {
+    public static boolean matches(String regex, String target) throws ParseException {
         return REUtil.createRegex(regex, null).matches(target);
     }
 
     /**
-     *
      * @see RegularExpression#matches(java.lang.String)
      */
-    public static boolean matches(String regex, String options, String target)
-            throws ParseException {
+    public static boolean matches(String regex, String options, String target) throws ParseException {
         return REUtil.createRegex(regex, options).matches(target);
     }
 

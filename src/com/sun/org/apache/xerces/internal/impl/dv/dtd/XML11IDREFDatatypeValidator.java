@@ -33,11 +33,9 @@ import com.sun.org.apache.xerces.internal.util.XML11Char;
  * </P>
  *
  * @xerces.internal
- *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
  * @author Neil Graham, IBM
- *
  */
 public class XML11IDREFDatatypeValidator extends IDREFDatatypeValidator {
 
@@ -51,29 +49,27 @@ public class XML11IDREFDatatypeValidator extends IDREFDatatypeValidator {
      * validation exception is thrown.
      *
      * @param content
-     *                the string value that needs to be validated
+     *        the string value that needs to be validated
      * @param context
-     *                the validation context
+     *        the validation context
      * @throws InvalidDatatypeException
-     *                                  if the content is invalid according to
-     *                                  the rules for the
-     *                                  validators
+     *         if the content is invalid according to
+     *         the rules for the
+     *         validators
      * @see InvalidDatatypeValueException
      */
-    public void validate(String content, ValidationContext context)
-            throws InvalidDatatypeValueException {
+    public void validate(String content, ValidationContext context) throws InvalidDatatypeValueException {
 
         // Check if is valid key-[81] EncName ::= [A-Za-z] ([A-Za-z0-9._] |
         // '-')*
         if (context.useNamespaces()) {
             if (!XML11Char.isXML11ValidNCName(content)) {
-                throw new InvalidDatatypeValueException(
-                        "IDREFInvalidWithNamespaces", new Object[] { content });
+                throw new InvalidDatatypeValueException("IDREFInvalidWithNamespaces", new Object[] {
+                        content });
             }
         } else {
             if (!XML11Char.isXML11ValidName(content)) {
-                throw new InvalidDatatypeValueException("IDREFInvalid",
-                        new Object[] { content });
+                throw new InvalidDatatypeValueException("IDREFInvalid", new Object[] { content });
             }
         }
 

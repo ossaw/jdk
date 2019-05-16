@@ -31,14 +31,11 @@ abstract public class AdapterNameHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.CORBA.ORB.init().create_string_tc(0);
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.CORBA.StringSeqHelper.id(),
+                    "StringSeq", __typeCode);
             __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.CORBA.StringSeqHelper.id(), "StringSeq",
-                    __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.PortableInterceptor.AdapterNameHelper.id(),
-                    "AdapterName", __typeCode);
+                    org.omg.PortableInterceptor.AdapterNameHelper.id(), "AdapterName", __typeCode);
         }
         return __typeCode;
     }
@@ -53,8 +50,7 @@ abstract public class AdapterNameHelper {
         return value;
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            String[] value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, String[] value) {
         org.omg.CORBA.StringSeqHelper.write(ostream, value);
     }
 

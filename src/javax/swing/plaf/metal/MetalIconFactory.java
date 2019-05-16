@@ -19,12 +19,10 @@ import sun.swing.CachedPainter;
  * feel (Metal). These icons are used extensively in Metal via the defaults
  * mechanism. While other look and feels often use GIFs for icons, creating
  * icons in code facilitates switching to other themes.
- *
  * <p>
  * Each method in this class returns either an <code>Icon</code> or
  * <code>null</code>, where <code>null</code> implies that there is no default
  * icon.
- *
  * <p>
  * <strong>Warning:</strong> Serialized objects of this class will not be
  * compatible with future Swing releases. The current serialization support is
@@ -239,8 +237,7 @@ public class MetalIconFactory implements Serializable {
     }
 
     // File Chooser Detail View code
-    private static class FileChooserDetailViewIcon implements Icon, UIResource,
-            Serializable {
+    private static class FileChooserDetailViewIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.translate(x, y);
 
@@ -285,8 +282,7 @@ public class MetalIconFactory implements Serializable {
     } // End class FileChooserDetailViewIcon
 
     // File Chooser Home Folder code
-    private static class FileChooserHomeFolderIcon implements Icon, UIResource,
-            Serializable {
+    private static class FileChooserHomeFolderIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.translate(x, y);
 
@@ -335,8 +331,7 @@ public class MetalIconFactory implements Serializable {
     } // End class FileChooserHomeFolderIcon
 
     // File Chooser List View code
-    private static class FileChooserListViewIcon implements Icon, UIResource,
-            Serializable {
+    private static class FileChooserListViewIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.translate(x, y);
 
@@ -397,8 +392,7 @@ public class MetalIconFactory implements Serializable {
     } // End class FileChooserListViewIcon
 
     // File Chooser New Folder code
-    private static class FileChooserNewFolderIcon implements Icon, UIResource,
-            Serializable {
+    private static class FileChooserNewFolderIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.translate(x, y);
 
@@ -438,8 +432,7 @@ public class MetalIconFactory implements Serializable {
     } // End class FileChooserNewFolderIcon
 
     // File Chooser Up Folder code
-    private static class FileChooserUpFolderIcon implements Icon, UIResource,
-            Serializable {
+    private static class FileChooserUpFolderIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.translate(x, y);
 
@@ -490,8 +483,7 @@ public class MetalIconFactory implements Serializable {
      * 
      * @since 1.3
      */
-    public static class PaletteCloseIcon implements Icon, UIResource,
-            Serializable {
+    public static class PaletteCloseIcon implements Icon, UIResource, Serializable {
         int iconSize = 7;
 
         public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -534,8 +526,7 @@ public class MetalIconFactory implements Serializable {
     }
 
     // Internal Frame Close code
-    private static class InternalFrameCloseIcon implements Icon, UIResource,
-            Serializable {
+    private static class InternalFrameCloseIcon implements Icon, UIResource, Serializable {
         int iconSize = 16;
 
         public InternalFrameCloseIcon(int size) {
@@ -547,10 +538,8 @@ public class MetalIconFactory implements Serializable {
             ButtonModel buttonModel = parentButton.getModel();
 
             Color backgroundColor = MetalLookAndFeel.getPrimaryControl();
-            Color internalBackgroundColor = MetalLookAndFeel
-                    .getPrimaryControl();
-            Color mainItemColor = MetalLookAndFeel
-                    .getPrimaryControlDarkShadow();
+            Color internalBackgroundColor = MetalLookAndFeel.getPrimaryControl();
+            Color mainItemColor = MetalLookAndFeel.getPrimaryControlDarkShadow();
             Color darkHighlightColor = MetalLookAndFeel.getBlack();
             Color xLightHighlightColor = MetalLookAndFeel.getWhite();
             Color boxLightHighlightColor = MetalLookAndFeel.getWhite();
@@ -562,16 +551,14 @@ public class MetalIconFactory implements Serializable {
                 mainItemColor = MetalLookAndFeel.getControlDarkShadow();
                 // if inactive and pressed
                 if (buttonModel.isPressed() && buttonModel.isArmed()) {
-                    internalBackgroundColor = MetalLookAndFeel
-                            .getControlShadow();
+                    internalBackgroundColor = MetalLookAndFeel.getControlShadow();
                     xLightHighlightColor = internalBackgroundColor;
                     mainItemColor = darkHighlightColor;
                 }
             }
             // if pressed
             else if (buttonModel.isPressed() && buttonModel.isArmed()) {
-                internalBackgroundColor = MetalLookAndFeel
-                        .getPrimaryControlShadow();
+                internalBackgroundColor = MetalLookAndFeel.getPrimaryControlShadow();
                 xLightHighlightColor = internalBackgroundColor;
                 mainItemColor = darkHighlightColor;
                 // darkHighlightColor is still "getBlack()"
@@ -646,8 +633,7 @@ public class MetalIconFactory implements Serializable {
     } // End class InternalFrameCloseIcon
 
     // Internal Frame Alternate Maximize code (actually, the un-maximize icon)
-    private static class InternalFrameAltMaximizeIcon implements Icon,
-            UIResource, Serializable {
+    private static class InternalFrameAltMaximizeIcon implements Icon, UIResource, Serializable {
         int iconSize = 16;
 
         public InternalFrameAltMaximizeIcon(int size) {
@@ -659,10 +645,8 @@ public class MetalIconFactory implements Serializable {
             ButtonModel buttonModel = parentButton.getModel();
 
             Color backgroundColor = MetalLookAndFeel.getPrimaryControl();
-            Color internalBackgroundColor = MetalLookAndFeel
-                    .getPrimaryControl();
-            Color mainItemColor = MetalLookAndFeel
-                    .getPrimaryControlDarkShadow();
+            Color internalBackgroundColor = MetalLookAndFeel.getPrimaryControl();
+            Color mainItemColor = MetalLookAndFeel.getPrimaryControlDarkShadow();
             Color darkHighlightColor = MetalLookAndFeel.getBlack();
             // ul = Upper Left and lr = Lower Right
             Color ulLightHighlightColor = MetalLookAndFeel.getWhite();
@@ -675,16 +659,14 @@ public class MetalIconFactory implements Serializable {
                 mainItemColor = MetalLookAndFeel.getControlDarkShadow();
                 // if inactive and pressed
                 if (buttonModel.isPressed() && buttonModel.isArmed()) {
-                    internalBackgroundColor = MetalLookAndFeel
-                            .getControlShadow();
+                    internalBackgroundColor = MetalLookAndFeel.getControlShadow();
                     ulLightHighlightColor = internalBackgroundColor;
                     mainItemColor = darkHighlightColor;
                 }
             }
             // if the button is pressed and the mouse is over it
             else if (buttonModel.isPressed() && buttonModel.isArmed()) {
-                internalBackgroundColor = MetalLookAndFeel
-                        .getPrimaryControlShadow();
+                internalBackgroundColor = MetalLookAndFeel.getPrimaryControlShadow();
                 ulLightHighlightColor = internalBackgroundColor;
                 mainItemColor = darkHighlightColor;
                 // darkHighlightColor is still "getBlack()"
@@ -765,8 +747,7 @@ public class MetalIconFactory implements Serializable {
     } // End class InternalFrameAltMaximizeIcon
 
     // Code for the default icons that goes in the upper left corner
-    private static class InternalFrameDefaultMenuIcon implements Icon,
-            UIResource, Serializable {
+    private static class InternalFrameDefaultMenuIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
 
             Color windowBodyColor = MetalLookAndFeel.getWindowBackground();
@@ -816,8 +797,7 @@ public class MetalIconFactory implements Serializable {
     } // End class InternalFrameDefaultMenuIcon
 
     // Internal Frame Maximize code
-    private static class InternalFrameMaximizeIcon implements Icon, UIResource,
-            Serializable {
+    private static class InternalFrameMaximizeIcon implements Icon, UIResource, Serializable {
         protected int iconSize = 16;
 
         public InternalFrameMaximizeIcon(int size) {
@@ -829,10 +809,8 @@ public class MetalIconFactory implements Serializable {
             ButtonModel buttonModel = parentButton.getModel();
 
             Color backgroundColor = MetalLookAndFeel.getPrimaryControl();
-            Color internalBackgroundColor = MetalLookAndFeel
-                    .getPrimaryControl();
-            Color mainItemColor = MetalLookAndFeel
-                    .getPrimaryControlDarkShadow();
+            Color internalBackgroundColor = MetalLookAndFeel.getPrimaryControl();
+            Color mainItemColor = MetalLookAndFeel.getPrimaryControlDarkShadow();
             Color darkHighlightColor = MetalLookAndFeel.getBlack();
             // ul = Upper Left and lr = Lower Right
             Color ulLightHighlightColor = MetalLookAndFeel.getWhite();
@@ -845,16 +823,14 @@ public class MetalIconFactory implements Serializable {
                 mainItemColor = MetalLookAndFeel.getControlDarkShadow();
                 // if inactive and pressed
                 if (buttonModel.isPressed() && buttonModel.isArmed()) {
-                    internalBackgroundColor = MetalLookAndFeel
-                            .getControlShadow();
+                    internalBackgroundColor = MetalLookAndFeel.getControlShadow();
                     ulLightHighlightColor = internalBackgroundColor;
                     mainItemColor = darkHighlightColor;
                 }
             }
             // if the button is pressed and the mouse is over it
             else if (buttonModel.isPressed() && buttonModel.isArmed()) {
-                internalBackgroundColor = MetalLookAndFeel
-                        .getPrimaryControlShadow();
+                internalBackgroundColor = MetalLookAndFeel.getPrimaryControlShadow();
                 ulLightHighlightColor = internalBackgroundColor;
                 mainItemColor = darkHighlightColor;
                 // darkHighlightColor is still "getBlack()"
@@ -932,8 +908,7 @@ public class MetalIconFactory implements Serializable {
     } // End class InternalFrameMaximizeIcon
 
     // Internal Frame Minimize code
-    private static class InternalFrameMinimizeIcon implements Icon, UIResource,
-            Serializable {
+    private static class InternalFrameMinimizeIcon implements Icon, UIResource, Serializable {
         int iconSize = 16;
 
         public InternalFrameMinimizeIcon(int size) {
@@ -945,10 +920,8 @@ public class MetalIconFactory implements Serializable {
             ButtonModel buttonModel = parentButton.getModel();
 
             Color backgroundColor = MetalLookAndFeel.getPrimaryControl();
-            Color internalBackgroundColor = MetalLookAndFeel
-                    .getPrimaryControl();
-            Color mainItemColor = MetalLookAndFeel
-                    .getPrimaryControlDarkShadow();
+            Color internalBackgroundColor = MetalLookAndFeel.getPrimaryControl();
+            Color mainItemColor = MetalLookAndFeel.getPrimaryControlDarkShadow();
             Color darkHighlightColor = MetalLookAndFeel.getBlack();
             // ul = Upper Left and lr = Lower Right
             Color ulLightHighlightColor = MetalLookAndFeel.getWhite();
@@ -961,16 +934,14 @@ public class MetalIconFactory implements Serializable {
                 mainItemColor = MetalLookAndFeel.getControlDarkShadow();
                 // if inactive and pressed
                 if (buttonModel.isPressed() && buttonModel.isArmed()) {
-                    internalBackgroundColor = MetalLookAndFeel
-                            .getControlShadow();
+                    internalBackgroundColor = MetalLookAndFeel.getControlShadow();
                     ulLightHighlightColor = internalBackgroundColor;
                     mainItemColor = darkHighlightColor;
                 }
             }
             // if the button is pressed and the mouse is over it
             else if (buttonModel.isPressed() && buttonModel.isArmed()) {
-                internalBackgroundColor = MetalLookAndFeel
-                        .getPrimaryControlShadow();
+                internalBackgroundColor = MetalLookAndFeel.getPrimaryControlShadow();
                 ulLightHighlightColor = internalBackgroundColor;
                 mainItemColor = darkHighlightColor;
                 // darkHighlightColor is still "getBlack()"
@@ -1037,8 +1008,7 @@ public class MetalIconFactory implements Serializable {
         }
     } // End class InternalFrameMinimizeIcon
 
-    private static class CheckBoxIcon implements Icon, UIResource,
-            Serializable {
+    private static class CheckBoxIcon implements Icon, UIResource, Serializable {
 
         protected int getControlSize() {
             return 13;
@@ -1060,16 +1030,14 @@ public class MetalIconFactory implements Serializable {
                     g.fillRect(w - 1, 1, 1, h - 1);
                     g.fillRect(1, h - 1, w - 2, 1);
                 } else if (model.isRollover()) {
-                    MetalUtils.drawGradient(c, g, "CheckBox.gradient", 0, 0, w,
-                            h, true);
+                    MetalUtils.drawGradient(c, g, "CheckBox.gradient", 0, 0, w, h, true);
                     g.setColor(MetalLookAndFeel.getControlDarkShadow());
                     g.drawRect(0, 0, w - 1, h - 1);
                     g.setColor(MetalLookAndFeel.getPrimaryControl());
                     g.drawRect(1, 1, w - 3, h - 3);
                     g.drawRect(2, 2, w - 5, h - 5);
                 } else {
-                    MetalUtils.drawGradient(c, g, "CheckBox.gradient", 0, 0, w,
-                            h, true);
+                    MetalUtils.drawGradient(c, g, "CheckBox.gradient", 0, 0, w, h, true);
                     g.setColor(MetalLookAndFeel.getControlDarkShadow());
                     g.drawRect(0, 0, w - 1, h - 1);
                 }
@@ -1096,11 +1064,9 @@ public class MetalIconFactory implements Serializable {
                 if (model.isPressed() && model.isArmed()) {
                     g.setColor(MetalLookAndFeel.getControlShadow());
                     g.fillRect(x, y, controlSize - 1, controlSize - 1);
-                    MetalUtils.drawPressed3DBorder(g, x, y, controlSize,
-                            controlSize);
+                    MetalUtils.drawPressed3DBorder(g, x, y, controlSize, controlSize);
                 } else {
-                    MetalUtils.drawFlush3DBorder(g, x, y, controlSize,
-                            controlSize);
+                    MetalUtils.drawFlush3DBorder(g, x, y, controlSize, controlSize);
                 }
                 g.setColor(c.getForeground());
             } else {
@@ -1117,10 +1083,8 @@ public class MetalIconFactory implements Serializable {
         protected void drawCheck(Component c, Graphics g, int x, int y) {
             int controlSize = getControlSize();
             g.fillRect(x + 3, y + 5, 2, controlSize - 8);
-            g.drawLine(x + (controlSize - 4), y + 3, x + 5, y + (controlSize
-                    - 6));
-            g.drawLine(x + (controlSize - 4), y + 4, x + 5, y + (controlSize
-                    - 5));
+            g.drawLine(x + (controlSize - 4), y + 3, x + 5, y + (controlSize - 6));
+            g.drawLine(x + (controlSize - 4), y + 4, x + 5, y + (controlSize - 5));
         }
 
         public int getIconWidth() {
@@ -1133,8 +1097,7 @@ public class MetalIconFactory implements Serializable {
     } // End class CheckBoxIcon
 
     // Radio button code
-    private static class RadioButtonIcon implements Icon, UIResource,
-            Serializable {
+    private static class RadioButtonIcon implements Icon, UIResource, Serializable {
         public void paintOceanIcon(Component c, Graphics g, int x, int y) {
             ButtonModel model = ((JRadioButton) c).getModel();
             boolean enabled = model.isEnabled();
@@ -1145,8 +1108,7 @@ public class MetalIconFactory implements Serializable {
             if (enabled && !pressed) {
                 // PENDING: this isn't quite right, when we're sure it won't
                 // change it needs to be cleaned.
-                MetalUtils.drawGradient(c, g, "RadioButton.gradient", 1, 1, 10,
-                        10, true);
+                MetalUtils.drawGradient(c, g, "RadioButton.gradient", 1, 1, 10, 10, true);
                 g.setColor(c.getBackground());
                 g.fillRect(1, 1, 1, 1);
                 g.fillRect(10, 1, 1, 1);
@@ -1308,8 +1270,7 @@ public class MetalIconFactory implements Serializable {
     } // End class RadioButtonIcon
 
     // Tree Computer Icon code
-    private static class TreeComputerIcon implements Icon, UIResource,
-            Serializable {
+    private static class TreeComputerIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.translate(x, y);
 
@@ -1353,8 +1314,7 @@ public class MetalIconFactory implements Serializable {
     } // End class TreeComputerIcon
 
     // Tree HardDrive Icon code
-    private static class TreeHardDriveIcon implements Icon, UIResource,
-            Serializable {
+    private static class TreeHardDriveIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.translate(x, y);
 
@@ -1438,8 +1398,7 @@ public class MetalIconFactory implements Serializable {
     } // End class TreeHardDriveIcon
 
     // Tree FloppyDrive Icon code
-    private static class TreeFloppyDriveIcon implements Icon, UIResource,
-            Serializable {
+    private static class TreeFloppyDriveIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.translate(x, y);
 
@@ -1511,15 +1470,13 @@ public class MetalIconFactory implements Serializable {
             }
 
             boolean hasSameConfiguration(GraphicsConfiguration newGC) {
-                return ((newGC != null) && (newGC.equals(gc)))
-                        || ((newGC == null) && (gc == null));
+                return ((newGC != null) && (newGC.equals(gc))) || ((newGC == null) && (gc == null));
             }
 
         }
 
         Image getImage(GraphicsConfiguration newGC) {
-            if ((currentImageGcPair == null) || !(currentImageGcPair
-                    .hasSameConfiguration(newGC))) {
+            if ((currentImageGcPair == null) || !(currentImageGcPair.hasSameConfiguration(newGC))) {
                 for (ImageGcPair imgGcPair : images) {
                     if (imgGcPair.hasSameConfiguration(newGC)) {
                         currentImageGcPair = imgGcPair;
@@ -1560,11 +1517,9 @@ public class MetalIconFactory implements Serializable {
             Image image = imageCacher.getImage(gc);
             if (image == null) {
                 if (gc != null) {
-                    image = gc.createCompatibleImage(getIconWidth(),
-                            getIconHeight(), Transparency.BITMASK);
+                    image = gc.createCompatibleImage(getIconWidth(), getIconHeight(), Transparency.BITMASK);
                 } else {
-                    image = new BufferedImage(getIconWidth(), getIconHeight(),
-                            BufferedImage.TYPE_INT_ARGB);
+                    image = new BufferedImage(getIconWidth(), getIconHeight(), BufferedImage.TYPE_INT_ARGB);
                 }
                 Graphics imageG = image.getGraphics();
                 paintMe(c, imageG);
@@ -1667,11 +1622,9 @@ public class MetalIconFactory implements Serializable {
             Image image = imageCacher.getImage(gc);
             if (image == null) {
                 if (gc != null) {
-                    image = gc.createCompatibleImage(getIconWidth(),
-                            getIconHeight(), Transparency.BITMASK);
+                    image = gc.createCompatibleImage(getIconWidth(), getIconHeight(), Transparency.BITMASK);
                 } else {
-                    image = new BufferedImage(getIconWidth(), getIconHeight(),
-                            BufferedImage.TYPE_INT_ARGB);
+                    image = new BufferedImage(getIconWidth(), getIconHeight(), BufferedImage.TYPE_INT_ARGB);
                 }
                 Graphics imageG = image.getGraphics();
                 paintMe(c, imageG);
@@ -1772,15 +1725,12 @@ public class MetalIconFactory implements Serializable {
             }
             Image image = imageCacher.getImage(gc);
 
-            if (image == null || cachedOrientation != MetalUtils.isLeftToRight(
-                    c)) {
+            if (image == null || cachedOrientation != MetalUtils.isLeftToRight(c)) {
                 cachedOrientation = MetalUtils.isLeftToRight(c);
                 if (gc != null) {
-                    image = gc.createCompatibleImage(getIconWidth(),
-                            getIconHeight(), Transparency.BITMASK);
+                    image = gc.createCompatibleImage(getIconWidth(), getIconHeight(), Transparency.BITMASK);
                 } else {
-                    image = new BufferedImage(getIconWidth(), getIconHeight(),
-                            BufferedImage.TYPE_INT_ARGB);
+                    image = new BufferedImage(getIconWidth(), getIconHeight(), BufferedImage.TYPE_INT_ARGB);
                 }
                 Graphics imageG = image.getGraphics();
                 paintMe(c, imageG, x, y);
@@ -1791,19 +1741,15 @@ public class MetalIconFactory implements Serializable {
 
             if (MetalUtils.isLeftToRight(c)) {
                 if (isLight) { // isCollapsed
-                    g.drawImage(image, x + 5, y + 3, x + 18, y + 13, 4, 3, 17,
-                            13, null);
+                    g.drawImage(image, x + 5, y + 3, x + 18, y + 13, 4, 3, 17, 13, null);
                 } else {
-                    g.drawImage(image, x + 5, y + 3, x + 18, y + 17, 4, 3, 17,
-                            17, null);
+                    g.drawImage(image, x + 5, y + 3, x + 18, y + 17, 4, 3, 17, 17, null);
                 }
             } else {
                 if (isLight) { // isCollapsed
-                    g.drawImage(image, x + 3, y + 3, x + 16, y + 13, 4, 3, 17,
-                            13, null);
+                    g.drawImage(image, x + 3, y + 3, x + 16, y + 13, 4, 3, 17, 13, null);
                 } else {
-                    g.drawImage(image, x + 3, y + 3, x + 16, y + 17, 4, 3, 17,
-                            17, null);
+                    g.drawImage(image, x + 3, y + 3, x + 16, y + 17, 4, 3, 17, 17, null);
                 }
             }
         }
@@ -1886,8 +1832,7 @@ public class MetalIconFactory implements Serializable {
     static private final Dimension menuCheckIconSize = new Dimension(10, 10);
     static private final int xOff = 4;
 
-    private static class MenuArrowIcon implements Icon, UIResource,
-            Serializable {
+    private static class MenuArrowIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             JMenuItem b = (JMenuItem) c;
             ButtonModel model = b.getModel();
@@ -1897,8 +1842,7 @@ public class MetalIconFactory implements Serializable {
             if (!model.isEnabled()) {
                 g.setColor(MetalLookAndFeel.getMenuDisabledForeground());
             } else {
-                if (model.isArmed() || (c instanceof JMenu && model
-                        .isSelected())) {
+                if (model.isArmed() || (c instanceof JMenu && model.isSelected())) {
                     g.setColor(MetalLookAndFeel.getMenuSelectedForeground());
                 } else {
                     g.setColor(b.getForeground());
@@ -1929,8 +1873,7 @@ public class MetalIconFactory implements Serializable {
 
     } // End class MenuArrowIcon
 
-    private static class MenuItemArrowIcon implements Icon, UIResource,
-            Serializable {
+    private static class MenuItemArrowIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {}
 
         public int getIconWidth() {
@@ -1943,8 +1886,7 @@ public class MetalIconFactory implements Serializable {
 
     } // End class MenuItemArrowIcon
 
-    private static class CheckBoxMenuItemIcon implements Icon, UIResource,
-            Serializable {
+    private static class CheckBoxMenuItemIcon implements Icon, UIResource, Serializable {
         public void paintOceanIcon(Component c, Graphics g, int x, int y) {
             ButtonModel model = ((JMenuItem) c).getModel();
             boolean isSelected = model.isSelected();
@@ -1954,8 +1896,7 @@ public class MetalIconFactory implements Serializable {
 
             g.translate(x, y);
             if (isEnabled) {
-                MetalUtils.drawGradient(c, g, "CheckBoxMenuItem.gradient", 1, 1,
-                        7, 7, true);
+                MetalUtils.drawGradient(c, g, "CheckBoxMenuItem.gradient", 1, 1, 7, 7, true);
                 if (isPressed || isArmed) {
                     g.setColor(MetalLookAndFeel.getControlInfo());
                     g.drawLine(0, 0, 8, 0);
@@ -1984,8 +1925,7 @@ public class MetalIconFactory implements Serializable {
             if (isSelected) {
                 if (isEnabled) {
                     if (isArmed || (c instanceof JMenu && isSelected)) {
-                        g.setColor(MetalLookAndFeel
-                                .getMenuSelectedForeground());
+                        g.setColor(MetalLookAndFeel.getMenuSelectedForeground());
                     } else {
                         g.setColor(MetalLookAndFeel.getControlInfo());
                     }
@@ -2049,10 +1989,8 @@ public class MetalIconFactory implements Serializable {
 
             if (isSelected) {
                 if (isEnabled) {
-                    if (model.isArmed() || (c instanceof JMenu && model
-                            .isSelected())) {
-                        g.setColor(MetalLookAndFeel
-                                .getMenuSelectedForeground());
+                    if (model.isArmed() || (c instanceof JMenu && model.isSelected())) {
+                        g.setColor(MetalLookAndFeel.getMenuSelectedForeground());
                     } else {
                         g.setColor(b.getForeground());
                     }
@@ -2079,8 +2017,7 @@ public class MetalIconFactory implements Serializable {
 
     } // End class CheckBoxMenuItemIcon
 
-    private static class RadioButtonMenuItemIcon implements Icon, UIResource,
-            Serializable {
+    private static class RadioButtonMenuItemIcon implements Icon, UIResource, Serializable {
         public void paintOceanIcon(Component c, Graphics g, int x, int y) {
             ButtonModel model = ((JMenuItem) c).getModel();
             boolean isSelected = model.isSelected();
@@ -2091,8 +2028,7 @@ public class MetalIconFactory implements Serializable {
             g.translate(x, y);
 
             if (isEnabled) {
-                MetalUtils.drawGradient(c, g, "RadioButtonMenuItem.gradient", 1,
-                        1, 7, 7, true);
+                MetalUtils.drawGradient(c, g, "RadioButtonMenuItem.gradient", 1, 1, 7, 7, true);
                 if (isPressed || isArmed) {
                     g.setColor(MetalLookAndFeel.getPrimaryControl());
                 } else {
@@ -2122,8 +2058,7 @@ public class MetalIconFactory implements Serializable {
             if (isSelected) {
                 if (isEnabled) {
                     if (isArmed || (c instanceof JMenu && model.isSelected())) {
-                        g.setColor(MetalLookAndFeel
-                                .getMenuSelectedForeground());
+                        g.setColor(MetalLookAndFeel.getMenuSelectedForeground());
                     } else {
                         g.setColor(MetalLookAndFeel.getControlInfo());
                     }
@@ -2207,10 +2142,8 @@ public class MetalIconFactory implements Serializable {
 
             if (isSelected) {
                 if (isEnabled) {
-                    if (model.isArmed() || (c instanceof JMenu && model
-                            .isSelected())) {
-                        g.setColor(MetalLookAndFeel
-                                .getMenuSelectedForeground());
+                    if (model.isArmed() || (c instanceof JMenu && model.isSelected())) {
+                        g.setColor(MetalLookAndFeel.getMenuSelectedForeground());
                     } else {
                         g.setColor(b.getForeground());
                     }
@@ -2238,19 +2171,15 @@ public class MetalIconFactory implements Serializable {
 
     } // End class RadioButtonMenuItemIcon
 
-    private static class VerticalSliderThumbIcon implements Icon, Serializable,
-            UIResource {
+    private static class VerticalSliderThumbIcon implements Icon, Serializable, UIResource {
         protected static MetalBumps controlBumps;
         protected static MetalBumps primaryBumps;
 
         public VerticalSliderThumbIcon() {
-            controlBumps = new MetalBumps(6, 10, MetalLookAndFeel
-                    .getControlHighlight(), MetalLookAndFeel.getControlInfo(),
-                    MetalLookAndFeel.getControl());
-            primaryBumps = new MetalBumps(6, 10, MetalLookAndFeel
-                    .getPrimaryControl(), MetalLookAndFeel
-                            .getPrimaryControlDarkShadow(), MetalLookAndFeel
-                                    .getPrimaryControlShadow());
+            controlBumps = new MetalBumps(6, 10, MetalLookAndFeel.getControlHighlight(), MetalLookAndFeel
+                    .getControlInfo(), MetalLookAndFeel.getControl());
+            primaryBumps = new MetalBumps(6, 10, MetalLookAndFeel.getPrimaryControl(), MetalLookAndFeel
+                    .getPrimaryControlDarkShadow(), MetalLookAndFeel.getPrimaryControlShadow());
         }
 
         public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -2262,8 +2191,7 @@ public class MetalIconFactory implements Serializable {
             if (c.hasFocus()) {
                 g.setColor(MetalLookAndFeel.getPrimaryControlInfo());
             } else {
-                g.setColor(c.isEnabled() ? MetalLookAndFeel
-                        .getPrimaryControlInfo()
+                g.setColor(c.isEnabled() ? MetalLookAndFeel.getPrimaryControlInfo()
                         : MetalLookAndFeel.getControlDarkShadow());
             }
 
@@ -2342,19 +2270,15 @@ public class MetalIconFactory implements Serializable {
         }
     }
 
-    private static class HorizontalSliderThumbIcon implements Icon,
-            Serializable, UIResource {
+    private static class HorizontalSliderThumbIcon implements Icon, Serializable, UIResource {
         protected static MetalBumps controlBumps;
         protected static MetalBumps primaryBumps;
 
         public HorizontalSliderThumbIcon() {
-            controlBumps = new MetalBumps(10, 6, MetalLookAndFeel
-                    .getControlHighlight(), MetalLookAndFeel.getControlInfo(),
-                    MetalLookAndFeel.getControl());
-            primaryBumps = new MetalBumps(10, 6, MetalLookAndFeel
-                    .getPrimaryControl(), MetalLookAndFeel
-                            .getPrimaryControlDarkShadow(), MetalLookAndFeel
-                                    .getPrimaryControlShadow());
+            controlBumps = new MetalBumps(10, 6, MetalLookAndFeel.getControlHighlight(), MetalLookAndFeel
+                    .getControlInfo(), MetalLookAndFeel.getControl());
+            primaryBumps = new MetalBumps(10, 6, MetalLookAndFeel.getPrimaryControl(), MetalLookAndFeel
+                    .getPrimaryControlDarkShadow(), MetalLookAndFeel.getPrimaryControlShadow());
         }
 
         public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -2364,8 +2288,7 @@ public class MetalIconFactory implements Serializable {
             if (c.hasFocus()) {
                 g.setColor(MetalLookAndFeel.getPrimaryControlInfo());
             } else {
-                g.setColor(c.isEnabled() ? MetalLookAndFeel
-                        .getPrimaryControlInfo()
+                g.setColor(c.isEnabled() ? MetalLookAndFeel.getPrimaryControlInfo()
                         : MetalLookAndFeel.getControlDarkShadow());
             }
 
@@ -2419,18 +2342,16 @@ public class MetalIconFactory implements Serializable {
         }
     }
 
-    private static class OceanVerticalSliderThumbIcon extends CachedPainter
-            implements Icon, Serializable, UIResource {
+    private static class OceanVerticalSliderThumbIcon extends CachedPainter implements Icon, Serializable,
+            UIResource {
         // Used for clipping when the orientation is left to right
         private static Polygon LTR_THUMB_SHAPE;
         // Used for clipping when the orientation is right to left
         private static Polygon RTL_THUMB_SHAPE;
 
         static {
-            LTR_THUMB_SHAPE = new Polygon(new int[] { 0, 8, 15, 8, 0 },
-                    new int[] { 0, 0, 7, 14, 14 }, 5);
-            RTL_THUMB_SHAPE = new Polygon(new int[] { 15, 15, 7, 0, 7 },
-                    new int[] { 0, 14, 14, 7, 0 }, 5);
+            LTR_THUMB_SHAPE = new Polygon(new int[] { 0, 8, 15, 8, 0 }, new int[] { 0, 0, 7, 14, 14 }, 5);
+            RTL_THUMB_SHAPE = new Polygon(new int[] { 15, 15, 7, 0, 7 }, new int[] { 0, 14, 14, 7, 0 }, 5);
         }
 
         OceanVerticalSliderThumbIcon() {
@@ -2441,13 +2362,11 @@ public class MetalIconFactory implements Serializable {
             if (!(g instanceof Graphics2D)) {
                 return;
             }
-            paint(c, g, x, y, getIconWidth(), getIconHeight(), MetalUtils
-                    .isLeftToRight(c), c.hasFocus(), c.isEnabled(),
-                    MetalLookAndFeel.getCurrentTheme());
+            paint(c, g, x, y, getIconWidth(), getIconHeight(), MetalUtils.isLeftToRight(c), c.hasFocus(), c
+                    .isEnabled(), MetalLookAndFeel.getCurrentTheme());
         }
 
-        protected void paintToImage(Component c, Image image, Graphics g2,
-                int w, int h, Object[] args) {
+        protected void paintToImage(Component c, Image image, Graphics g2, int w, int h, Object[] args) {
             Graphics2D g = (Graphics2D) g2;
             boolean leftToRight = ((Boolean) args[0]).booleanValue();
             boolean hasFocus = ((Boolean) args[1]).booleanValue();
@@ -2463,11 +2382,9 @@ public class MetalIconFactory implements Serializable {
                 g.setColor(MetalLookAndFeel.getControl());
                 g.fillRect(1, 1, 14, 14);
             } else if (hasFocus) {
-                MetalUtils.drawGradient(c, g, "Slider.focusGradient", 1, 1, 14,
-                        14, false);
+                MetalUtils.drawGradient(c, g, "Slider.focusGradient", 1, 1, 14, 14, false);
             } else {
-                MetalUtils.drawGradient(c, g, "Slider.gradient", 1, 1, 14, 14,
-                        false);
+                MetalUtils.drawGradient(c, g, "Slider.gradient", 1, 1, 14, 14, false);
             }
             g.setClip(clip);
 
@@ -2520,8 +2437,7 @@ public class MetalIconFactory implements Serializable {
             return 15;
         }
 
-        protected Image createImage(Component c, int w, int h,
-                GraphicsConfiguration config, Object[] args) {
+        protected Image createImage(Component c, int w, int h, GraphicsConfiguration config, Object[] args) {
             if (config == null) {
                 return new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
             }
@@ -2529,14 +2445,13 @@ public class MetalIconFactory implements Serializable {
         }
     }
 
-    private static class OceanHorizontalSliderThumbIcon extends CachedPainter
-            implements Icon, Serializable, UIResource {
+    private static class OceanHorizontalSliderThumbIcon extends CachedPainter implements Icon, Serializable,
+            UIResource {
         // Used for clipping
         private static Polygon THUMB_SHAPE;
 
         static {
-            THUMB_SHAPE = new Polygon(new int[] { 0, 14, 14, 7, 0 }, new int[] {
-                    0, 0, 8, 15, 8 }, 5);
+            THUMB_SHAPE = new Polygon(new int[] { 0, 14, 14, 7, 0 }, new int[] { 0, 0, 8, 15, 8 }, 5);
         }
 
         OceanHorizontalSliderThumbIcon() {
@@ -2547,20 +2462,18 @@ public class MetalIconFactory implements Serializable {
             if (!(g instanceof Graphics2D)) {
                 return;
             }
-            paint(c, g, x, y, getIconWidth(), getIconHeight(), c.hasFocus(), c
-                    .isEnabled(), MetalLookAndFeel.getCurrentTheme());
+            paint(c, g, x, y, getIconWidth(), getIconHeight(), c.hasFocus(), c.isEnabled(), MetalLookAndFeel
+                    .getCurrentTheme());
         }
 
-        protected Image createImage(Component c, int w, int h,
-                GraphicsConfiguration config, Object[] args) {
+        protected Image createImage(Component c, int w, int h, GraphicsConfiguration config, Object[] args) {
             if (config == null) {
                 return new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
             }
             return config.createCompatibleImage(w, h, Transparency.BITMASK);
         }
 
-        protected void paintToImage(Component c, Image image, Graphics g2,
-                int w, int h, Object[] args) {
+        protected void paintToImage(Component c, Image image, Graphics g2, int w, int h, Object[] args) {
             Graphics2D g = (Graphics2D) g2;
             boolean hasFocus = ((Boolean) args[0]).booleanValue();
             boolean enabled = ((Boolean) args[1]).booleanValue();
@@ -2572,11 +2485,9 @@ public class MetalIconFactory implements Serializable {
                 g.setColor(MetalLookAndFeel.getControl());
                 g.fillRect(1, 1, 13, 14);
             } else if (hasFocus) {
-                MetalUtils.drawGradient(c, g, "Slider.focusGradient", 1, 1, 13,
-                        14, true);
+                MetalUtils.drawGradient(c, g, "Slider.focusGradient", 1, 1, 13, 14, true);
             } else {
-                MetalUtils.drawGradient(c, g, "Slider.gradient", 1, 1, 13, 14,
-                        true);
+                MetalUtils.drawGradient(c, g, "Slider.gradient", 1, 1, 13, 14, true);
             }
             g.setClip(clip);
 

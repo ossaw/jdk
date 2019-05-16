@@ -53,7 +53,7 @@ public class RoleList extends ArrayList<Object> {
      * Constructs an empty RoleList with the initial capacity specified.
      *
      * @param initialCapacity
-     *                        initial capacity
+     *        initial capacity
      */
     public RoleList(int initialCapacity) {
         super(initialCapacity);
@@ -66,15 +66,13 @@ public class RoleList extends ArrayList<Object> {
      * of the size of the {@code List} specified.
      *
      * @param list
-     *             the {@code List} that defines the initial contents of the new
-     *             {@code RoleList}.
-     *
+     *        the {@code List} that defines the initial contents of the new
+     *        {@code RoleList}.
      * @exception IllegalArgumentException
-     *                                     if the {@code list} parameter is
-     *                                     {@code null} or if the
-     *                                     {@code list} parameter contains any
-     *                                     non-Role objects.
-     *
+     *            if the {@code list} parameter is
+     *            {@code null} or if the
+     *            {@code list} parameter contains any
+     *            non-Role objects.
      * @see ArrayList#ArrayList(java.util.Collection)
      */
     public RoleList(List<Role> list) throws IllegalArgumentException {
@@ -99,7 +97,6 @@ public class RoleList extends ArrayList<Object> {
      *
      * @return a {@code List<Role>} whose contents reflect the contents of this
      *         {@code RoleList}.
-     *
      *         <p>
      *         If this method has ever been called on a given {@code RoleList}
      *         instance, a subsequent attempt to add an object to that instance
@@ -108,12 +105,10 @@ public class RoleList extends ArrayList<Object> {
      *         {@code RoleList} on which this method has never been called does
      *         allow objects other than {@code Role}s to be added.
      *         </p>
-     *
      * @throws IllegalArgumentException
-     *                                  if this {@code RoleList} contains an
-     *                                  element that is not a
-     *                                  {@code Role}.
-     *
+     *         if this {@code RoleList} contains an
+     *         element that is not a
+     *         {@code Role}.
      * @since 1.6
      */
     @SuppressWarnings("unchecked")
@@ -134,10 +129,9 @@ public class RoleList extends ArrayList<Object> {
      * Adds the Role specified as the last element of the list.
      *
      * @param role
-     *             the role to be added.
-     *
+     *        the role to be added.
      * @exception IllegalArgumentException
-     *                                     if the role is null.
+     *            if the role is null.
      */
     public void add(Role role) throws IllegalArgumentException {
 
@@ -154,19 +148,17 @@ public class RoleList extends ArrayList<Object> {
      * shifted up.
      *
      * @param index
-     *              The position in the list where the new Role object is to be
-     *              inserted.
+     *        The position in the list where the new Role object is to be
+     *        inserted.
      * @param role
-     *              The Role object to be inserted.
-     *
+     *        The Role object to be inserted.
      * @exception IllegalArgumentException
-     *                                      if the role is null.
+     *            if the role is null.
      * @exception IndexOutOfBoundsException
-     *                                      if accessing with an index outside
-     *                                      of the list.
+     *            if accessing with an index outside
+     *            of the list.
      */
-    public void add(int index, Role role) throws IllegalArgumentException,
-            IndexOutOfBoundsException {
+    public void add(int index, Role role) throws IllegalArgumentException, IndexOutOfBoundsException {
 
         if (role == null) {
             String excMsg = "Invalid parameter";
@@ -181,18 +173,16 @@ public class RoleList extends ArrayList<Object> {
      * previous element at that position is discarded.
      *
      * @param index
-     *              The position specified.
+     *        The position specified.
      * @param role
-     *              The value to which the role element should be set.
-     *
+     *        The value to which the role element should be set.
      * @exception IllegalArgumentException
-     *                                      if the role is null.
+     *            if the role is null.
      * @exception IndexOutOfBoundsException
-     *                                      if accessing with an index outside
-     *                                      of the list.
+     *            if accessing with an index outside
+     *            of the list.
      */
-    public void set(int index, Role role) throws IllegalArgumentException,
-            IndexOutOfBoundsException {
+    public void set(int index, Role role) throws IllegalArgumentException, IndexOutOfBoundsException {
 
         if (role == null) {
             // Revisit [cebro] Localize message
@@ -209,14 +199,11 @@ public class RoleList extends ArrayList<Object> {
      * RoleList specified.
      *
      * @param roleList
-     *                 Elements to be inserted into the list (can be null)
-     *
+     *        Elements to be inserted into the list (can be null)
      * @return true if this list changed as a result of the call.
-     *
      * @exception IndexOutOfBoundsException
-     *                                      if accessing with an index outside
-     *                                      of the list.
-     *
+     *            if accessing with an index outside
+     *            of the list.
      * @see ArrayList#addAll(Collection)
      */
     public boolean addAll(RoleList roleList) throws IndexOutOfBoundsException {
@@ -234,23 +221,20 @@ public class RoleList extends ArrayList<Object> {
      * returned by the Iterator of the RoleList specified.
      *
      * @param index
-     *                 Position at which to insert the first element from the
-     *                 RoleList specified.
+     *        Position at which to insert the first element from the
+     *        RoleList specified.
      * @param roleList
-     *                 Elements to be inserted into the list.
-     *
+     *        Elements to be inserted into the list.
      * @return true if this list changed as a result of the call.
-     *
      * @exception IllegalArgumentException
-     *                                      if the role is null.
+     *            if the role is null.
      * @exception IndexOutOfBoundsException
-     *                                      if accessing with an index outside
-     *                                      of the list.
-     *
+     *            if accessing with an index outside
+     *            of the list.
      * @see ArrayList#addAll(int, Collection)
      */
-    public boolean addAll(int index, RoleList roleList)
-            throws IllegalArgumentException, IndexOutOfBoundsException {
+    public boolean addAll(int index, RoleList roleList) throws IllegalArgumentException,
+            IndexOutOfBoundsException {
 
         if (roleList == null) {
             // Revisit [cebro] Localize message

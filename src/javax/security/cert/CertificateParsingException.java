@@ -9,7 +9,6 @@ package javax.security.cert;
  * Certificate Parsing Exception. This is thrown whenever invalid DER encoded
  * certificate is parsed or unsupported DER features are found in the
  * Certificate.
- *
  * <p>
  * <em>Note: The classes in the package {@code javax.security.cert}
  * exist for compatibility with earlier versions of the
@@ -39,7 +38,7 @@ public class CertificateParsingException extends CertificateException {
      * exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public CertificateParsingException(String message) {
         super(message);

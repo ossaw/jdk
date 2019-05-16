@@ -26,7 +26,7 @@ public interface MetaEventListener extends EventListener {
      * it is processing.
      * 
      * @param meta
-     *             the meta-message that the sequencer encountered
+     *        the meta-message that the sequencer encountered
      */
     public void meta(MetaMessage meta);
 }

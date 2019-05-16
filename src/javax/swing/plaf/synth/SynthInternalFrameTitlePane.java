@@ -22,8 +22,8 @@ import sun.swing.SwingUtilities2;
  * @author Joshua Outwater
  * @author Steve Wilson
  */
-class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
-        SynthUI, PropertyChangeListener {
+class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements SynthUI,
+        PropertyChangeListener {
 
     protected JPopupMenu systemPopupMenu;
     protected JButton menuButton;
@@ -92,20 +92,13 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
         SynthStyle oldStyle = style;
         style = SynthLookAndFeel.updateStyle(context, this);
         if (style != oldStyle) {
-            maxIcon = style.getIcon(context,
-                    "InternalFrameTitlePane.maximizeIcon");
-            minIcon = style.getIcon(context,
-                    "InternalFrameTitlePane.minimizeIcon");
-            iconIcon = style.getIcon(context,
-                    "InternalFrameTitlePane.iconifyIcon");
-            closeIcon = style.getIcon(context,
-                    "InternalFrameTitlePane.closeIcon");
-            titleSpacing = style.getInt(context,
-                    "InternalFrameTitlePane.titleSpacing", 2);
-            buttonSpacing = style.getInt(context,
-                    "InternalFrameTitlePane.buttonSpacing", 2);
-            String alignString = (String) style.get(context,
-                    "InternalFrameTitlePane.titleAlignment");
+            maxIcon = style.getIcon(context, "InternalFrameTitlePane.maximizeIcon");
+            minIcon = style.getIcon(context, "InternalFrameTitlePane.minimizeIcon");
+            iconIcon = style.getIcon(context, "InternalFrameTitlePane.iconifyIcon");
+            closeIcon = style.getIcon(context, "InternalFrameTitlePane.closeIcon");
+            titleSpacing = style.getInt(context, "InternalFrameTitlePane.titleSpacing", 2);
+            buttonSpacing = style.getInt(context, "InternalFrameTitlePane.buttonSpacing", 2);
+            String alignString = (String) style.get(context, "InternalFrameTitlePane.titleAlignment");
             titleAlignment = SwingConstants.LEADING;
             if (alignString != null) {
                 alignString = alignString.toUpperCase();
@@ -137,8 +130,7 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
         super.uninstallDefaults();
     }
 
-    private static class JPopupMenuUIResource extends JPopupMenu implements
-            UIResource {}
+    private static class JPopupMenuUIResource extends JPopupMenu implements UIResource {}
 
     protected void assembleSystemMenu() {
         systemPopupMenu = new JPopupMenuUIResource();
@@ -150,8 +142,7 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
             public void mousePressed(MouseEvent e) {
                 try {
                     frame.setSelected(true);
-                } catch (PropertyVetoException pve) {
-                }
+                } catch (PropertyVetoException pve) {}
                 showSystemMenu();
             }
         });
@@ -186,8 +177,8 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
 
     private static int getButtonMnemonic(String button) {
         try {
-            return Integer.parseInt(UIManager.getString(
-                    "InternalFrameTitlePane." + button + "Button.mnemonic"));
+            return Integer.parseInt(UIManager.getString("InternalFrameTitlePane." + button
+                    + "Button.mnemonic"));
         } catch (NumberFormatException e) {
             return -1;
         }
@@ -196,13 +187,10 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
     protected void showSystemMenu() {
         Insets insets = frame.getInsets();
         if (!frame.isIcon()) {
-            systemPopupMenu.show(frame, menuButton.getX(), getY()
-                    + getHeight());
+            systemPopupMenu.show(frame, menuButton.getX(), getY() + getHeight());
         } else {
-            systemPopupMenu.show(menuButton, getX() - insets.left
-                    - insets.right, getY() - systemPopupMenu
-                            .getPreferredSize().height - insets.bottom
-                            - insets.top);
+            systemPopupMenu.show(menuButton, getX() - insets.left - insets.right, getY() - systemPopupMenu
+                    .getPreferredSize().height - insets.bottom - insets.top);
         }
     }
 
@@ -210,8 +198,7 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
     public void paintComponent(Graphics g) {
         SynthContext context = getContext(this);
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintInternalFrameTitlePaneBackground(context, g,
-                0, 0, getWidth(), getHeight());
+        context.getPainter().paintInternalFrameTitlePaneBackground(context, g, 0, 0, getWidth(), getHeight());
         paint(context, g);
         context.dispose();
     }
@@ -227,8 +214,7 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
 
             // Center text vertically.
             FontMetrics fm = SwingUtilities2.getFontMetrics(frame, g);
-            int baseline = (getHeight() + fm.getAscent() - fm.getLeading() - fm
-                    .getDescent()) / 2;
+            int baseline = (getHeight() + fm.getAscent() - fm.getLeading() - fm.getDescent()) / 2;
             JButton lastButton = null;
             if (frame.isIconifiable()) {
                 lastButton = iconButton;
@@ -245,14 +231,12 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
                 if (lastButton != null) {
                     maxX = lastButton.getX() - titleSpacing;
                 } else {
-                    maxX = frame.getWidth() - frame.getInsets().right
-                            - titleSpacing;
+                    maxX = frame.getWidth() - frame.getInsets().right - titleSpacing;
                 }
                 minX = menuButton.getX() + menuButton.getWidth() + titleSpacing;
             } else {
                 if (lastButton != null) {
-                    minX = lastButton.getX() + lastButton.getWidth()
-                            + titleSpacing;
+                    minX = lastButton.getX() + lastButton.getWidth() + titleSpacing;
                 } else {
                     minX = frame.getInsets().left + titleSpacing;
                 }
@@ -267,32 +251,27 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
             if (clippedTitle == title) {
                 // String fit, align as necessary.
                 if (titleAlignment == SwingConstants.TRAILING) {
-                    minX = maxX - style.getGraphicsUtils(context)
-                            .computeStringWidth(context, g.getFont(), fm,
-                                    title);
+                    minX = maxX - style.getGraphicsUtils(context).computeStringWidth(context, g.getFont(), fm,
+                            title);
                 } else if (titleAlignment == SwingConstants.CENTER) {
-                    int width = style.getGraphicsUtils(context)
-                            .computeStringWidth(context, g.getFont(), fm,
-                                    title);
+                    int width = style.getGraphicsUtils(context).computeStringWidth(context, g.getFont(), fm,
+                            title);
                     minX = Math.max(minX, (getWidth() - width) / 2);
                     minX = Math.min(maxX - width, minX);
                 }
             }
-            style.getGraphicsUtils(context).paintText(context, g, clippedTitle,
-                    minX, baseline - fm.getAscent(), -1);
+            style.getGraphicsUtils(context).paintText(context, g, clippedTitle, minX, baseline - fm
+                    .getAscent(), -1);
         }
     }
 
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
-        context.getPainter().paintInternalFrameTitlePaneBorder(context, g, x, y,
-                w, h);
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
+        context.getPainter().paintInternalFrameTitlePaneBorder(context, g, x, y, w, h);
     }
 
     protected LayoutManager createLayout() {
         SynthContext context = getContext(this);
-        LayoutManager lm = (LayoutManager) style.get(context,
-                "InternalFrameTitlePane.titlePaneLayout");
+        LayoutManager lm = (LayoutManager) style.get(context, "InternalFrameTitlePane.titlePaneLayout");
         context.dispose();
         return (lm != null) ? lm : new SynthTitlePaneLayout();
     }
@@ -325,12 +304,10 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
                 maxWidth = maxSize.width;
                 maxHeight = maxSize.height;
             }
-            if ((frameIcon.getIconWidth() > maxWidth || frameIcon
-                    .getIconHeight() > maxHeight)
+            if ((frameIcon.getIconWidth() > maxWidth || frameIcon.getIconHeight() > maxHeight)
                     && (frameIcon instanceof ImageIcon)) {
-                frameIcon = new ImageIcon(((ImageIcon) frameIcon).getImage()
-                        .getScaledInstance(maxWidth, maxHeight,
-                                Image.SCALE_SMOOTH));
+                frameIcon = new ImageIcon(((ImageIcon) frameIcon).getImage().getScaledInstance(maxWidth,
+                        maxHeight, Image.SCALE_SMOOTH));
             }
         }
         context.dispose();
@@ -378,19 +355,17 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
 
             width += Math.max(0, (buttonCount - 1) * buttonSpacing);
 
-            FontMetrics fm = SynthInternalFrameTitlePane.this.getFontMetrics(
-                    getFont());
-            SynthGraphicsUtils graphicsUtils = context.getStyle()
-                    .getGraphicsUtils(context);
+            FontMetrics fm = SynthInternalFrameTitlePane.this.getFontMetrics(getFont());
+            SynthGraphicsUtils graphicsUtils = context.getStyle().getGraphicsUtils(context);
             String frameTitle = frame.getTitle();
-            int title_w = frameTitle != null ? graphicsUtils.computeStringWidth(
-                    context, fm.getFont(), fm, frameTitle) : 0;
+            int title_w = frameTitle != null ? graphicsUtils.computeStringWidth(context, fm.getFont(), fm,
+                    frameTitle) : 0;
             int title_length = frameTitle != null ? frameTitle.length() : 0;
 
             // Leave room for three characters in the title.
             if (title_length > 3) {
-                int subtitle_w = graphicsUtils.computeStringWidth(context, fm
-                        .getFont(), fm, frameTitle.substring(0, 3) + "...");
+                int subtitle_w = graphicsUtils.computeStringWidth(context, fm.getFont(), fm, frameTitle
+                        .substring(0, 3) + "...");
                 width += (title_w < subtitle_w) ? title_w : subtitle_w;
             } else {
                 width += title_w;
@@ -407,15 +382,13 @@ class SynthInternalFrameTitlePane extends BasicInternalFrameTitlePane implements
             return new Dimension(width, height);
         }
 
-        private int center(Component c, Insets insets, int x,
-                boolean trailing) {
+        private int center(Component c, Insets insets, int x, boolean trailing) {
             Dimension pref = c.getPreferredSize();
             if (trailing) {
                 x -= pref.width;
             }
-            c.setBounds(x, insets.top + (getHeight() - insets.top
-                    - insets.bottom - pref.height) / 2, pref.width,
-                    pref.height);
+            c.setBounds(x, insets.top + (getHeight() - insets.top - insets.bottom - pref.height) / 2,
+                    pref.width, pref.height);
             if (pref.width > 0) {
                 if (trailing) {
                     return x - buttonSpacing;

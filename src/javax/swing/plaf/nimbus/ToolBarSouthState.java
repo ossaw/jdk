@@ -15,8 +15,8 @@ class ToolBarSouthState extends State {
     @Override
     protected boolean isInState(JComponent c) {
 
-        return (c instanceof JToolBar) && NimbusLookAndFeel
-                .resolveToolbarConstraint((JToolBar) c) == BorderLayout.SOUTH;
+        return (c instanceof JToolBar) && NimbusLookAndFeel.resolveToolbarConstraint(
+                (JToolBar) c) == BorderLayout.SOUTH;
 
     }
 }

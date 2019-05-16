@@ -31,14 +31,12 @@ package java.text;
  * <code>FieldPosition</code> keeps track of the position of the field within
  * the formatted output with two indices: the index of the first character of
  * the field and the index of the last character of the field.
- *
  * <p>
  * One version of the <code>format</code> method in the various
  * <code>Format</code> classes requires a <code>FieldPosition</code> object as
  * an argument. You use this <code>format</code> method to perform partial
  * formatting or to get information about the formatted output (such as the
  * position of a field).
- *
  * <p>
  * If you are interested in the positions of all attributes in the formatted
  * string use the <code>Format</code> method
@@ -78,7 +76,7 @@ public class FieldPosition {
      * subclasses of Format.
      *
      * @param field
-     *              the field identifier
+     *        the field identifier
      * @see java.text.NumberFormat#INTEGER_FIELD
      * @see java.text.NumberFormat#FRACTION_FIELD
      * @see java.text.DateFormat#YEAR_FIELD
@@ -95,7 +93,7 @@ public class FieldPosition {
      * <code>new FieldPosition(attribute, -1)</code>.
      *
      * @param attribute
-     *                  Format.Field constant identifying a field
+     *        Format.Field constant identifying a field
      * @since 1.4
      */
     public FieldPosition(Format.Field attribute) {
@@ -115,9 +113,9 @@ public class FieldPosition {
      * <code>fieldID</code> should be -1.
      *
      * @param attribute
-     *                  Format.Field constant identifying a field
+     *        Format.Field constant identifying a field
      * @param fieldID
-     *                  integer constant identifying a field
+     *        integer constant identifying a field
      * @since 1.4
      */
     public FieldPosition(Format.Field attribute, int fieldID) {
@@ -169,7 +167,7 @@ public class FieldPosition {
      * Sets the begin index. For use by subclasses of Format.
      *
      * @param bi
-     *           the begin index
+     *        the begin index
      * @since 1.2
      */
     public void setBeginIndex(int bi) {
@@ -180,7 +178,7 @@ public class FieldPosition {
      * Sets the end index. For use by subclasses of Format.
      *
      * @param ei
-     *           the end index
+     *        the end index
      * @since 1.2
      */
     public void setEndIndex(int ei) {
@@ -212,8 +210,7 @@ public class FieldPosition {
         } else if (!attribute.equals(other.attribute)) {
             return false;
         }
-        return (beginIndex == other.beginIndex && endIndex == other.endIndex
-                && field == other.field);
+        return (beginIndex == other.beginIndex && endIndex == other.endIndex && field == other.field);
     }
 
     /**
@@ -231,9 +228,8 @@ public class FieldPosition {
      * @return a string representation of this object
      */
     public String toString() {
-        return getClass().getName() + "[field=" + field + ",attribute="
-                + attribute + ",beginIndex=" + beginIndex + ",endIndex="
-                + endIndex + ']';
+        return getClass().getName() + "[field=" + field + ",attribute=" + attribute + ",beginIndex="
+                + beginIndex + ",endIndex=" + endIndex + ']';
     }
 
     /**
@@ -271,8 +267,7 @@ public class FieldPosition {
          */
         private boolean encounteredField;
 
-        public void formatted(Format.Field attr, Object value, int start,
-                int end, StringBuffer buffer) {
+        public void formatted(Format.Field attr, Object value, int start, int end, StringBuffer buffer) {
             if (!encounteredField && matchesField(attr)) {
                 setBeginIndex(start);
                 setEndIndex(end);
@@ -280,8 +275,8 @@ public class FieldPosition {
             }
         }
 
-        public void formatted(int fieldID, Format.Field attr, Object value,
-                int start, int end, StringBuffer buffer) {
+        public void formatted(int fieldID, Format.Field attr, Object value, int start, int end,
+                StringBuffer buffer) {
             if (!encounteredField && matchesField(attr, fieldID)) {
                 setBeginIndex(start);
                 setEndIndex(end);

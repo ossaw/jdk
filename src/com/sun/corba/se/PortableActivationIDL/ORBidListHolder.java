@@ -11,8 +11,7 @@ package com.sun.corba.se.PortableActivationIDL;
 /**
  * A list of ORB IDs.
  */
-public final class ORBidListHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ORBidListHolder implements org.omg.CORBA.portable.Streamable {
     public String value[] = null;
 
     public ORBidListHolder() {}

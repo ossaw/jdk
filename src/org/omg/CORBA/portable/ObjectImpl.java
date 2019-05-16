@@ -42,7 +42,7 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      *
      * @return the Delegate contained in this ObjectImpl instance
      * @throws BAD_OPERATION
-     *                       if the delegate has not been set
+     *         if the delegate has not been set
      * @see #_set_delegate
      */
     public Delegate _get_delegate() {
@@ -57,11 +57,11 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * <code>ObjectImpl</code> object will be forwarded to this delegate.
      *
      * @param delegate
-     *                 the <code>Delegate</code> instance to which all method
-     *                 calls
-     *                 on this <code>ObjectImpl</code> object will be delegated;
-     *                 may
-     *                 be implemented by a third-party ORB
+     *        the <code>Delegate</code> instance to which all method
+     *        calls
+     *        on this <code>ObjectImpl</code> object will be delegated;
+     *        may
+     *        be implemented by a third-party ORB
      * @see #_get_delegate
      */
     public void _set_delegate(Delegate delegate) {
@@ -102,9 +102,9 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * is an <code>ObjectImpl</code> object.
      *
      * @param repository_id
-     *                      a <code>String</code> object with the repository
-     *                      identifier to
-     *                      check
+     *        a <code>String</code> object with the repository
+     *        identifier to
+     *        check
      * @return <code>true</code> if the object identified by the given
      *         repository id is an instance of <code>ObjectImpl</code>;
      *         <code>false</code> otherwise
@@ -118,8 +118,8 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * to this <code>ObjectImpl</code> object.
      *
      * @param that
-     *             an instance of <code>ObjectImpl</code> to compare with this
-     *             <code>ObjectImpl</code> object
+     *        an instance of <code>ObjectImpl</code> to compare with this
+     *        <code>ObjectImpl</code> object
      * @return <code>true</code> if the given object is equivalent to this
      *         <code>ObjectImpl</code> object; <code>false</code> otherwise
      */
@@ -143,8 +143,8 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * this <code>ObjectImpl</code> object.
      *
      * @param maximum
-     *                an <code>int</code> indicating the upper bound on the hash
-     *                value returned by the ORB
+     *        an <code>int</code> indicating the upper bound on the hash
+     *        value returned by the ORB
      * @return an <code>int</code> representing the hash code for this
      *         <code>ObjectImpl</code> object
      */
@@ -157,8 +157,8 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * can be used with the Dynamic Invocation Interface.
      *
      * @param operation
-     *                  the method to be invoked by the new <code>Request</code>
-     *                  object
+     *        the method to be invoked by the new <code>Request</code>
+     *        object
      * @return a new <code>Request</code> object initialized with the given
      *         method
      */
@@ -171,26 +171,24 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * method, argument list, and container for the result.
      *
      * @param ctx
-     *                  the Context for the request
+     *        the Context for the request
      * @param operation
-     *                  the method that the new <code>Request</code> object will
-     *                  invoke
+     *        the method that the new <code>Request</code> object will
+     *        invoke
      * @param arg_list
-     *                  the arguments for the method; an <code>NVList</code> in
-     *                  which
-     *                  each argument is a <code>NamedValue</code> object
+     *        the arguments for the method; an <code>NVList</code> in
+     *        which
+     *        each argument is a <code>NamedValue</code> object
      * @param result
-     *                  a <code>NamedValue</code> object to be used for
-     *                  returning the
-     *                  result of executing the request's method
+     *        a <code>NamedValue</code> object to be used for
+     *        returning the
+     *        result of executing the request's method
      * @return a new <code>Request</code> object initialized with the given
      *         context, method, argument list, and container for the return
      *         value
      */
-    public Request _create_request(Context ctx, String operation,
-            NVList arg_list, NamedValue result) {
-        return _get_delegate().create_request(this, ctx, operation, arg_list,
-                result);
+    public Request _create_request(Context ctx, String operation, NVList arg_list, NamedValue result) {
+        return _get_delegate().create_request(this, ctx, operation, arg_list, result);
     }
 
     /**
@@ -201,43 +199,41 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * Interface.
      *
      * @param ctx
-     *                   the <code>Context</code> object that contains the
-     *                   context
-     *                   strings that must be resolved before they are sent
-     *                   along with
-     *                   the request
+     *        the <code>Context</code> object that contains the
+     *        context
+     *        strings that must be resolved before they are sent
+     *        along with
+     *        the request
      * @param operation
-     *                   the method that the new <code>Request</code> object
-     *                   will
-     *                   invoke
+     *        the method that the new <code>Request</code> object
+     *        will
+     *        invoke
      * @param arg_list
-     *                   the arguments for the method; an <code>NVList</code> in
-     *                   which
-     *                   each argument is a <code>NamedValue</code> object
+     *        the arguments for the method; an <code>NVList</code> in
+     *        which
+     *        each argument is a <code>NamedValue</code> object
      * @param result
-     *                   a <code>NamedValue</code> object to be used for
-     *                   returning the
-     *                   result of executing the request's method
+     *        a <code>NamedValue</code> object to be used for
+     *        returning the
+     *        result of executing the request's method
      * @param exceptions
-     *                   a list of the exceptions that the given method throws
+     *        a list of the exceptions that the given method throws
      * @param contexts
-     *                   a list of the properties that are needed to resolve the
-     *                   contexts in <i>ctx</i>; the strings in <i>contexts</i>
-     *                   are
-     *                   used as arguments to the method
-     *                   <code>Context.get_values</code>, which returns the
-     *                   value
-     *                   associated with the given property
+     *        a list of the properties that are needed to resolve the
+     *        contexts in <i>ctx</i>; the strings in <i>contexts</i>
+     *        are
+     *        used as arguments to the method
+     *        <code>Context.get_values</code>, which returns the
+     *        value
+     *        associated with the given property
      * @return a new <code>Request</code> object initialized with the given
      *         context strings to resolve, method, argument list, container for
      *         the result, exceptions, and list of property names to be used in
      *         resolving the context strings
      */
-    public Request _create_request(Context ctx, String operation,
-            NVList arg_list, NamedValue result, ExceptionList exceptions,
-            ContextList contexts) {
-        return _get_delegate().create_request(this, ctx, operation, arg_list,
-                result, exceptions, contexts);
+    public Request _create_request(Context ctx, String operation, NVList arg_list, NamedValue result,
+            ExceptionList exceptions, ContextList contexts) {
+        return _get_delegate().create_request(this, ctx, operation, arg_list, result, exceptions, contexts);
     }
 
     /**
@@ -264,8 +260,7 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
             // Call "InterfaceDef get_interface(..)" method using reflection.
             try {
                 Class[] argc = { org.omg.CORBA.Object.class };
-                java.lang.reflect.Method meth = delegate.getClass().getMethod(
-                        "get_interface", argc);
+                java.lang.reflect.Method meth = delegate.getClass().getMethod("get_interface", argc);
                 Object[] argx = { this };
                 return (org.omg.CORBA.Object) meth.invoke(delegate, argx);
             } catch (java.lang.reflect.InvocationTargetException exs) {
@@ -302,7 +297,7 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * object that has the given policy type.
      *
      * @param policy_type
-     *                    an int indicating the policy type
+     *        an int indicating the policy type
      * @return the <code>Policy</code> object that is the specified policy type
      *         and that applies to this <code>ObjectImpl</code> object
      * @see org.omg.CORBA.PolicyOperations#policy_type
@@ -327,24 +322,23 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * policies to the given instance of <code>SetOverrideType</code>.
      *
      * @param policies
-     *                 an array of <code>Policy</code> objects with the policies
-     *                 that
-     *                 will replace the current policies or be added to the
-     *                 current
-     *                 policies
+     *        an array of <code>Policy</code> objects with the policies
+     *        that
+     *        will replace the current policies or be added to the
+     *        current
+     *        policies
      * @param set_add
-     *                 either <code>SetOverrideType.SET_OVERRIDE</code>,
-     *                 indicating
-     *                 that the given policies will replace any existing ones,
-     *                 or
-     *                 <code>SetOverrideType.ADD_OVERRIDE</code>, indicating
-     *                 that the
-     *                 given policies should be added to any existing ones
+     *        either <code>SetOverrideType.SET_OVERRIDE</code>,
+     *        indicating
+     *        that the given policies will replace any existing ones,
+     *        or
+     *        <code>SetOverrideType.ADD_OVERRIDE</code>, indicating
+     *        that the
+     *        given policies should be added to any existing ones
      * @return an <code>Object</code> with the given policies replacing or added
      *         to its previous policies
      */
-    public org.omg.CORBA.Object _set_policy_override(
-            org.omg.CORBA.Policy[] policies,
+    public org.omg.CORBA.Object _set_policy_override(org.omg.CORBA.Policy[] policies,
             org.omg.CORBA.SetOverrideType set_add) {
         return _get_delegate().set_policy_override(this, policies, set_add);
     }
@@ -376,25 +370,23 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * invocation.
      *
      * @param operation
-     *                     a <code>String</code> containing the name of the
-     *                     method to be
-     *                     invoked. This name should correspond to the method
-     *                     name as it
-     *                     would be encoded in a GIOP request.
-     *
+     *        a <code>String</code> containing the name of the
+     *        method to be
+     *        invoked. This name should correspond to the method
+     *        name as it
+     *        would be encoded in a GIOP request.
      * @param expectedType
-     *                     a <code>Class</code> object representing the expected
-     *                     type of
-     *                     the servant that is returned. This expected type is
-     *                     the
-     *                     <code>Class</code> object associated with the
-     *                     operations class
-     *                     for the stub's interface. For example, a stub for an
-     *                     interface
-     *                     <code>Foo</code> would pass the <code>Class</code>
-     *                     object for
-     *                     the <code>FooOperations</code> interface.
-     *
+     *        a <code>Class</code> object representing the expected
+     *        type of
+     *        the servant that is returned. This expected type is
+     *        the
+     *        <code>Class</code> object associated with the
+     *        operations class
+     *        for the stub's interface. For example, a stub for an
+     *        interface
+     *        <code>Foo</code> would pass the <code>Class</code>
+     *        object for
+     *        the <code>FooOperations</code> interface.
      * @return (1) a <code>ServantObject</code> object, which may or may not be
      *         the actual servant instance, or (2) <code>null</code> if (a) the
      *         servant is not local or (b) the servant has ceased to be local
@@ -402,8 +394,7 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * @throws org.omg.CORBA.BAD_PARAM
      *         if the servant is not the expected type
      */
-    public ServantObject _servant_preinvoke(String operation,
-            Class expectedType) {
+    public ServantObject _servant_preinvoke(String operation, Class expectedType) {
         return _get_delegate().servant_preinvoke(this, operation, expectedType);
     }
 
@@ -418,9 +409,9 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * <code>finally</code> clause.
      *
      * @param servant
-     *                the instance of the <code>ServantObject</code> returned by
-     *                the
-     *                <code>_servant_preinvoke</code> method
+     *        the instance of the <code>ServantObject</code> returned by
+     *        the
+     *        <code>_servant_preinvoke</code> method
      */
     public void _servant_postinvoke(ServantObject servant) {
         _get_delegate().servant_postinvoke(this, servant);
@@ -438,11 +429,11 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * is oneway.
      *
      * @param operation
-     *                         a String giving the name of the method.
+     *        a String giving the name of the method.
      * @param responseExpected
-     *                         a boolean -- <code>true</code> if the request is
-     *                         not one way,
-     *                         that is, a response is expected
+     *        a boolean -- <code>true</code> if the request is
+     *        not one way,
+     *        that is, a response is expected
      * @return an <code>OutputStream</code> object for dispatching the request
      */
     public OutputStream _request(String operation, boolean responseExpected) {
@@ -462,19 +453,18 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * from which the user exception state may be unmarshalled.
      *
      * @param output
-     *               an OutputStream object for dispatching the request
+     *        an OutputStream object for dispatching the request
      * @return an <code>InputStream</code> object containing the marshalled
      *         response to the method invoked
      * @throws ApplicationException
-     *                              if the invocation meets application-defined
-     *                              exception
+     *         if the invocation meets application-defined
+     *         exception
      * @throws RemarshalException
-     *                              if the invocation leads to a remarshalling
-     *                              error
+     *         if the invocation leads to a remarshalling
+     *         error
      * @see #_request
      */
-    public InputStream _invoke(OutputStream output) throws ApplicationException,
-            RemarshalException {
+    public InputStream _invoke(OutputStream output) throws ApplicationException, RemarshalException {
         return _get_delegate().invoke(this, output);
     }
 
@@ -484,10 +474,10 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * method is optional for the stub.
      *
      * @param input
-     *              the <code>InputStream</code> object that was returned by the
-     *              <code>_invoke</code> method or the
-     *              <code>ApplicationException.getInputStream</code> method; may
-     *              be <code>null</code>, in which case this method does nothing
+     *        the <code>InputStream</code> object that was returned by the
+     *        <code>_invoke</code> method or the
+     *        <code>ApplicationException.getInputStream</code> method; may
+     *        be <code>null</code>, in which case this method does nothing
      * @see #_invoke
      */
     public void _releaseReply(InputStream input) {
@@ -524,7 +514,7 @@ abstract public class ObjectImpl implements org.omg.CORBA.Object {
      * equality.
      *
      * @param obj
-     *            the object with which to compare this object
+     *        the object with which to compare this object
      * @return <code>true</code> if the two objects are equal;
      *         <code>false</code> otherwise
      */

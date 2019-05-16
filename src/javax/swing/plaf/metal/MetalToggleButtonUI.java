@@ -48,8 +48,8 @@ public class MetalToggleButtonUI extends BasicToggleButtonUI {
     // ********************************
     public static ComponentUI createUI(JComponent b) {
         AppContext appContext = AppContext.getAppContext();
-        MetalToggleButtonUI metalToggleButtonUI = (MetalToggleButtonUI) appContext
-                .get(METAL_TOGGLE_BUTTON_UI_KEY);
+        MetalToggleButtonUI metalToggleButtonUI = (MetalToggleButtonUI) appContext.get(
+                METAL_TOGGLE_BUTTON_UI_KEY);
         if (metalToggleButtonUI == null) {
             metalToggleButtonUI = new MetalToggleButtonUI();
             appContext.put(METAL_TOGGLE_BUTTON_UI_KEY, metalToggleButtonUI);
@@ -65,8 +65,7 @@ public class MetalToggleButtonUI extends BasicToggleButtonUI {
         if (!defaults_initialized) {
             focusColor = UIManager.getColor(getPropertyPrefix() + "focus");
             selectColor = UIManager.getColor(getPropertyPrefix() + "select");
-            disabledTextColor = UIManager.getColor(getPropertyPrefix()
-                    + "disabledText");
+            disabledTextColor = UIManager.getColor(getPropertyPrefix() + "disabledText");
             defaults_initialized = true;
         }
     }
@@ -99,30 +98,27 @@ public class MetalToggleButtonUI extends BasicToggleButtonUI {
      * <code>paint</code>.
      *
      * @param g
-     *          Graphics to paint to
+     *        Graphics to paint to
      * @param c
-     *          JComponent painting on
+     *        JComponent painting on
      * @throws NullPointerException
-     *                              if <code>g</code> or <code>c</code> is null
+     *         if <code>g</code> or <code>c</code> is null
      * @see javax.swing.plaf.ComponentUI#update
      * @see javax.swing.plaf.ComponentUI#paint
      * @since 1.5
      */
     public void update(Graphics g, JComponent c) {
         AbstractButton button = (AbstractButton) c;
-        if ((c.getBackground() instanceof UIResource) && button
-                .isContentAreaFilled() && c.isEnabled()) {
+        if ((c.getBackground() instanceof UIResource) && button.isContentAreaFilled() && c.isEnabled()) {
             ButtonModel model = button.getModel();
             if (!MetalUtils.isToolBarButton(c)) {
-                if (!model.isArmed() && !model.isPressed() && MetalUtils
-                        .drawGradient(c, g, "ToggleButton.gradient", 0, 0, c
-                                .getWidth(), c.getHeight(), true)) {
+                if (!model.isArmed() && !model.isPressed() && MetalUtils.drawGradient(c, g,
+                        "ToggleButton.gradient", 0, 0, c.getWidth(), c.getHeight(), true)) {
                     paint(g, c);
                     return;
                 }
-            } else if ((model.isRollover() || model.isSelected()) && MetalUtils
-                    .drawGradient(c, g, "ToggleButton.gradient", 0, 0, c
-                            .getWidth(), c.getHeight(), true)) {
+            } else if ((model.isRollover() || model.isSelected()) && MetalUtils.drawGradient(c, g,
+                    "ToggleButton.gradient", 0, 0, c.getWidth(), c.getHeight(), true)) {
                 paint(g, c);
                 return;
             }
@@ -137,8 +133,7 @@ public class MetalToggleButtonUI extends BasicToggleButtonUI {
         }
     }
 
-    protected void paintText(Graphics g, JComponent c, Rectangle textRect,
-            String text) {
+    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
         FontMetrics fm = SwingUtilities2.getFontMetrics(b, g);
@@ -156,12 +151,12 @@ public class MetalToggleButtonUI extends BasicToggleButtonUI {
                 g.setColor(getDisabledTextColor());
             }
         }
-        SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemIndex,
-                textRect.x, textRect.y + fm.getAscent());
+        SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemIndex, textRect.x, textRect.y + fm
+                .getAscent());
     }
 
-    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect,
-            Rectangle textRect, Rectangle iconRect) {
+    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
+            Rectangle iconRect) {
 
         Rectangle focusRect = new Rectangle();
         String text = b.getText();
@@ -181,8 +176,7 @@ public class MetalToggleButtonUI extends BasicToggleButtonUI {
         }
 
         g.setColor(getFocusColor());
-        g.drawRect((focusRect.x - 1), (focusRect.y - 1), focusRect.width + 1,
-                focusRect.height + 1);
+        g.drawRect((focusRect.x - 1), (focusRect.y - 1), focusRect.width + 1, focusRect.height + 1);
 
     }
 
@@ -191,13 +185,13 @@ public class MetalToggleButtonUI extends BasicToggleButtonUI {
      * <code>iconRect</code>.
      *
      * @param g
-     *                 Graphics to paint to
+     *        Graphics to paint to
      * @param b
-     *                 Button to render for
+     *        Button to render for
      * @param iconRect
-     *                 space to render in
+     *        space to render in
      * @throws NullPointerException
-     *                              if any of the arguments are null.
+     *         if any of the arguments are null.
      * @since 1.5
      */
     protected void paintIcon(Graphics g, AbstractButton b, Rectangle iconRect) {

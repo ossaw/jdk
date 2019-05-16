@@ -16,7 +16,6 @@ import java.io.OutputStream;
  * not be used for read/modify/write operations. Reading can occur only on parts
  * of the stream that have already been written to the cache and not yet
  * flushed.
- *
  */
 public class MemoryCacheImageOutputStream extends ImageOutputStreamImpl {
 
@@ -29,11 +28,10 @@ public class MemoryCacheImageOutputStream extends ImageOutputStreamImpl {
      * a given <code>OutputStream</code>.
      *
      * @param stream
-     *               an <code>OutputStream</code> to write to.
-     *
+     *        an <code>OutputStream</code> to write to.
      * @exception IllegalArgumentException
-     *                                     if <code>stream</code> is
-     *                                     <code>null</code>.
+     *            if <code>stream</code> is
+     *            <code>null</code>.
      */
     public MemoryCacheImageOutputStream(OutputStream stream) {
         if (stream == null) {
@@ -62,8 +60,7 @@ public class MemoryCacheImageOutputStream extends ImageOutputStreamImpl {
         }
         // Fix 4467608: read([B,I,I) works incorrectly if len<=0
         if (off < 0 || len < 0 || off + len > b.length || off + len < 0) {
-            throw new IndexOutOfBoundsException(
-                    "off < 0 || len < 0 || off+len > b.length || off+len < 0!");
+            throw new IndexOutOfBoundsException("off < 0 || len < 0 || off+len > b.length || off+len < 0!");
         }
 
         bitOffset = 0;
@@ -114,7 +111,6 @@ public class MemoryCacheImageOutputStream extends ImageOutputStreamImpl {
      * caches data in order to allow seeking backwards.
      *
      * @return <code>true</code>.
-     *
      * @see #isCachedMemory
      * @see #isCachedFile
      */
@@ -127,7 +123,6 @@ public class MemoryCacheImageOutputStream extends ImageOutputStreamImpl {
      * not maintain a file cache.
      *
      * @return <code>false</code>.
-     *
      * @see #isCached
      * @see #isCachedMemory
      */
@@ -140,7 +135,6 @@ public class MemoryCacheImageOutputStream extends ImageOutputStreamImpl {
      * maintains a main memory cache.
      *
      * @return <code>true</code>.
-     *
      * @see #isCached
      * @see #isCachedFile
      */

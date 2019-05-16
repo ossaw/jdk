@@ -39,13 +39,11 @@ import sun.awt.image.SunVolatileImage;
  * Rectangle bounds = gc.getBounds();
  * f.setLocation(10 + bounds.x, 10 + bounds.y);
  * </pre>
- *
  * <p>
  * To determine if your environment is a virtual device environment, call
  * <code>getBounds</code> on all of the <code>GraphicsConfiguration</code>
  * objects in your system. If any of the origins of the returned bounds is not
  * (0,&nbsp;0), your environment is a virtual device environment.
- *
  * <p>
  * You can also use <code>getBounds</code> to determine the bounds of the
  * virtual device. To do this, first call <code>getBounds</code> on all of the
@@ -58,8 +56,7 @@ import sun.awt.image.SunVolatileImage;
  * {
  *     &#64;code
  *     Rectangle virtualBounds = new Rectangle();
- *     GraphicsEnvironment ge = GraphicsEnvironment
- *             .getLocalGraphicsEnvironment();
+ *     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
  *     GraphicsDevice[] gs = ge.getScreenDevices();
  *     for (int j = 0; j < gs.length; j++) {
  *         GraphicsDevice gd = gs[j];
@@ -116,18 +113,16 @@ public abstract class GraphicsConfiguration {
      * blitted to this device.
      * 
      * @param width
-     *               the width of the returned <code>BufferedImage</code>
+     *        the width of the returned <code>BufferedImage</code>
      * @param height
-     *               the height of the returned <code>BufferedImage</code>
+     *        the height of the returned <code>BufferedImage</code>
      * @return a <code>BufferedImage</code> whose data layout and color model is
      *         compatible with this <code>GraphicsConfiguration</code>.
      */
     public BufferedImage createCompatibleImage(int width, int height) {
         ColorModel model = getColorModel();
-        WritableRaster raster = model.createCompatibleWritableRaster(width,
-                height);
-        return new BufferedImage(model, raster, model.isAlphaPremultiplied(),
-                null);
+        WritableRaster raster = model.createCompatibleWritableRaster(width, height);
+        return new BufferedImage(model, raster, model.isAlphaPremultiplied(), null);
     }
 
     /**
@@ -139,30 +134,28 @@ public abstract class GraphicsConfiguration {
      * this <code>GraphicsConfiguration</code>.
      * 
      * @param width
-     *                     the width of the returned <code>BufferedImage</code>
+     *        the width of the returned <code>BufferedImage</code>
      * @param height
-     *                     the height of the returned <code>BufferedImage</code>
+     *        the height of the returned <code>BufferedImage</code>
      * @param transparency
-     *                     the specified transparency mode
+     *        the specified transparency mode
      * @return a <code>BufferedImage</code> whose data layout and color model is
      *         compatible with this <code>GraphicsConfiguration</code> and also
      *         supports the specified transparency.
      * @throws IllegalArgumentException
-     *                                  if the transparency is not a valid value
+     *         if the transparency is not a valid value
      * @see Transparency#OPAQUE
      * @see Transparency#BITMASK
      * @see Transparency#TRANSLUCENT
      */
-    public BufferedImage createCompatibleImage(int width, int height,
-            int transparency) {
+    public BufferedImage createCompatibleImage(int width, int height, int transparency) {
         if (getColorModel().getTransparency() == transparency) {
             return createCompatibleImage(width, height);
         }
 
         ColorModel cm = getColorModel(transparency);
         if (cm == null) {
-            throw new IllegalArgumentException("Unknown transparency: "
-                    + transparency);
+            throw new IllegalArgumentException("Unknown transparency: " + transparency);
         }
         WritableRaster wr = cm.createCompatibleWritableRaster(width, height);
         return new BufferedImage(cm, wr, cm.isAlphaPremultiplied(), null);
@@ -176,9 +169,9 @@ public abstract class GraphicsConfiguration {
      * platform-specific rendering acceleration.
      * 
      * @param width
-     *               the width of the returned <code>VolatileImage</code>
+     *        the width of the returned <code>VolatileImage</code>
      * @param height
-     *               the height of the returned <code>VolatileImage</code>
+     *        the height of the returned <code>VolatileImage</code>
      * @return a <code>VolatileImage</code> whose data layout and color model is
      *         compatible with this <code>GraphicsConfiguration</code>.
      * @see Component#createVolatileImage(int, int)
@@ -187,8 +180,7 @@ public abstract class GraphicsConfiguration {
     public VolatileImage createCompatibleVolatileImage(int width, int height) {
         VolatileImage vi = null;
         try {
-            vi = createCompatibleVolatileImage(width, height, null,
-                    Transparency.OPAQUE);
+            vi = createCompatibleVolatileImage(width, height, null, Transparency.OPAQUE);
         } catch (AWTException e) {
             // shouldn't happen: we're passing in null caps
             assert false;
@@ -204,27 +196,25 @@ public abstract class GraphicsConfiguration {
      * platform-specific rendering acceleration.
      * 
      * @param width
-     *                     the width of the returned <code>VolatileImage</code>
+     *        the width of the returned <code>VolatileImage</code>
      * @param height
-     *                     the height of the returned <code>VolatileImage</code>
+     *        the height of the returned <code>VolatileImage</code>
      * @param transparency
-     *                     the specified transparency mode
+     *        the specified transparency mode
      * @return a <code>VolatileImage</code> whose data layout and color model is
      *         compatible with this <code>GraphicsConfiguration</code>.
      * @throws IllegalArgumentException
-     *                                  if the transparency is not a valid value
+     *         if the transparency is not a valid value
      * @see Transparency#OPAQUE
      * @see Transparency#BITMASK
      * @see Transparency#TRANSLUCENT
      * @see Component#createVolatileImage(int, int)
      * @since 1.5
      */
-    public VolatileImage createCompatibleVolatileImage(int width, int height,
-            int transparency) {
+    public VolatileImage createCompatibleVolatileImage(int width, int height, int transparency) {
         VolatileImage vi = null;
         try {
-            vi = createCompatibleVolatileImage(width, height, null,
-                    transparency);
+            vi = createCompatibleVolatileImage(width, height, null, transparency);
         } catch (AWTException e) {
             // shouldn't happen: we're passing in null caps
             assert false;
@@ -238,7 +228,6 @@ public abstract class GraphicsConfiguration {
      * specified image capabilities. If the <code>caps</code> parameter is null,
      * it is effectively ignored and this method will create a VolatileImage
      * without regard to <code>ImageCapabilities</code> constraints.
-     *
      * The returned <code>VolatileImage</code> has a layout and color model that
      * is closest to this native device configuration and can therefore be
      * optimally blitted to this device.
@@ -246,21 +235,20 @@ public abstract class GraphicsConfiguration {
      * @return a <code>VolatileImage</code> whose data layout and color model is
      *         compatible with this <code>GraphicsConfiguration</code>.
      * @param width
-     *               the width of the returned <code>VolatileImage</code>
+     *        the width of the returned <code>VolatileImage</code>
      * @param height
-     *               the height of the returned <code>VolatileImage</code>
+     *        the height of the returned <code>VolatileImage</code>
      * @param caps
-     *               the image capabilities
+     *        the image capabilities
      * @exception AWTException
-     *                         if the supplied image capabilities could not be
-     *                         met by
-     *                         this graphics configuration
+     *            if the supplied image capabilities could not be
+     *            met by
+     *            this graphics configuration
      * @since 1.4
      */
-    public VolatileImage createCompatibleVolatileImage(int width, int height,
-            ImageCapabilities caps) throws AWTException {
-        return createCompatibleVolatileImage(width, height, caps,
-                Transparency.OPAQUE);
+    public VolatileImage createCompatibleVolatileImage(int width, int height, ImageCapabilities caps)
+            throws AWTException {
+        return createCompatibleVolatileImage(width, height, caps, Transparency.OPAQUE);
     }
 
     /**
@@ -270,39 +258,36 @@ public abstract class GraphicsConfiguration {
      * <code>caps</code> parameter is null, it is effectively ignored and this
      * method will create a VolatileImage without regard to
      * <code>ImageCapabilities</code> constraints.
-     *
      * The returned <code>VolatileImage</code> has a layout and color model that
      * is closest to this native device configuration and can therefore be
      * optimally blitted to this device.
      * 
      * @param width
-     *                     the width of the returned <code>VolatileImage</code>
+     *        the width of the returned <code>VolatileImage</code>
      * @param height
-     *                     the height of the returned <code>VolatileImage</code>
+     *        the height of the returned <code>VolatileImage</code>
      * @param caps
-     *                     the image capabilities
+     *        the image capabilities
      * @param transparency
-     *                     the specified transparency mode
+     *        the specified transparency mode
      * @return a <code>VolatileImage</code> whose data layout and color model is
      *         compatible with this <code>GraphicsConfiguration</code>.
      * @see Transparency#OPAQUE
      * @see Transparency#BITMASK
      * @see Transparency#TRANSLUCENT
      * @throws IllegalArgumentException
-     *                                  if the transparency is not a valid value
+     *         if the transparency is not a valid value
      * @exception AWTException
-     *                         if the supplied image capabilities could not be
-     *                         met by
-     *                         this graphics configuration
+     *            if the supplied image capabilities could not be
+     *            met by
+     *            this graphics configuration
      * @see Component#createVolatileImage(int, int)
      * @since 1.5
      */
-    public VolatileImage createCompatibleVolatileImage(int width, int height,
-            ImageCapabilities caps, int transparency) throws AWTException {
-        VolatileImage vi = new SunVolatileImage(this, width, height,
-                transparency, caps);
-        if (caps != null && caps.isAccelerated() && !vi.getCapabilities()
-                .isAccelerated()) {
+    public VolatileImage createCompatibleVolatileImage(int width, int height, ImageCapabilities caps,
+            int transparency) throws AWTException {
+        VolatileImage vi = new SunVolatileImage(this, width, height, transparency, caps);
+        if (caps != null && caps.isAccelerated() && !vi.getCapabilities().isAccelerated()) {
             throw new AWTException("Supplied image capabilities could not "
                     + "be met by this graphics configuration.");
         }
@@ -324,7 +309,7 @@ public abstract class GraphicsConfiguration {
      * transparency.
      * 
      * @param transparency
-     *                     the specified transparency mode
+     *        the specified transparency mode
      * @return a <code>ColorModel</code> object that is associated with this
      *         <code>GraphicsConfiguration</code> and supports the specified
      *         transparency or null if the transparency is not a valid value.
@@ -355,7 +340,6 @@ public abstract class GraphicsConfiguration {
     public abstract AffineTransform getDefaultTransform();
 
     /**
-     *
      * Returns a <code>AffineTransform</code> that can be concatenated with the
      * default <code>AffineTransform</code> of a
      * <code>GraphicsConfiguration</code> so that 72 units in user space equals
@@ -411,8 +395,7 @@ public abstract class GraphicsConfiguration {
      */
     public BufferCapabilities getBufferCapabilities() {
         if (defaultBufferCaps == null) {
-            defaultBufferCaps = new DefaultBufferCapabilities(
-                    getImageCapabilities());
+            defaultBufferCaps = new DefaultBufferCapabilities(getImageCapabilities());
         }
         return defaultBufferCaps;
     }
@@ -438,9 +421,7 @@ public abstract class GraphicsConfiguration {
      *
      * @return whether the given GraphicsConfiguration supports the translucency
      *         effects.
-     *
      * @see Window#setBackground(Color)
-     *
      * @since 1.7
      */
     public boolean isTranslucencyCapable() {

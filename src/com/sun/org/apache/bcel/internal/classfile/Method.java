@@ -79,31 +79,29 @@ public final class Method extends FieldOrMethod {
      * Construct object from file stream.
      * 
      * @param file
-     *             Input stream
+     *        Input stream
      * @throws IOException
      * @throws ClassFormatException
      */
-    Method(DataInputStream file, ConstantPool constant_pool) throws IOException,
-            ClassFormatException {
+    Method(DataInputStream file, ConstantPool constant_pool) throws IOException, ClassFormatException {
         super(file, constant_pool);
     }
 
     /**
      * @param access_flags
-     *                        Access rights of method
+     *        Access rights of method
      * @param name_index
-     *                        Points to field name in constant pool
+     *        Points to field name in constant pool
      * @param signature_index
-     *                        Points to encoded signature
+     *        Points to encoded signature
      * @param attributes
-     *                        Collection of attributes
+     *        Collection of attributes
      * @param constant_pool
-     *                        Array of constants
+     *        Array of constants
      */
-    public Method(int access_flags, int name_index, int signature_index,
-            Attribute[] attributes, ConstantPool constant_pool) {
-        super(access_flags, name_index, signature_index, attributes,
-                constant_pool);
+    public Method(int access_flags, int name_index, int signature_index, Attribute[] attributes,
+            ConstantPool constant_pool) {
+        super(access_flags, name_index, signature_index, attributes, constant_pool);
     }
 
     /**
@@ -112,7 +110,7 @@ public final class Method extends FieldOrMethod {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitMethod(this);
@@ -181,16 +179,13 @@ public final class Method extends FieldOrMethod {
         access = Utility.accessToString(access_flags);
 
         // Get name and signature from constant pool
-        c = (ConstantUtf8) constant_pool.getConstant(signature_index,
-                Constants.CONSTANT_Utf8);
+        c = (ConstantUtf8) constant_pool.getConstant(signature_index, Constants.CONSTANT_Utf8);
         signature = c.getBytes();
 
-        c = (ConstantUtf8) constant_pool.getConstant(name_index,
-                Constants.CONSTANT_Utf8);
+        c = (ConstantUtf8) constant_pool.getConstant(name_index, Constants.CONSTANT_Utf8);
         name = c.getBytes();
 
-        signature = Utility.methodSignatureToString(signature, name, access,
-                true, getLocalVariableTable());
+        signature = Utility.methodSignatureToString(signature, name, access, true, getLocalVariableTable());
         buf = new StringBuffer(signature);
 
         for (int i = 0; i < attributes_count; i++) {

@@ -36,14 +36,13 @@ class MetalBumps implements Icon {
      * Creates MetalBumps of the specified size with the specified colors. If
      * <code>newBackColor</code> is null, the background will be transparent.
      */
-    public MetalBumps(int width, int height, Color newTopColor,
-            Color newShadowColor, Color newBackColor) {
+    public MetalBumps(int width, int height, Color newTopColor, Color newShadowColor, Color newBackColor) {
         setBumpArea(width, height);
         setBumpColors(newTopColor, newShadowColor, newBackColor);
     }
 
-    private static BumpBuffer createBuffer(GraphicsConfiguration gc,
-            Color topColor, Color shadowColor, Color backColor) {
+    private static BumpBuffer createBuffer(GraphicsConfiguration gc, Color topColor, Color shadowColor,
+            Color backColor) {
         AppContext context = AppContext.getAppContext();
         List<BumpBuffer> buffers = (List<BumpBuffer>) context.get(METAL_BUMPS);
         if (buffers == null) {
@@ -51,13 +50,11 @@ class MetalBumps implements Icon {
             context.put(METAL_BUMPS, buffers);
         }
         for (BumpBuffer buffer : buffers) {
-            if (buffer.hasSameConfiguration(gc, topColor, shadowColor,
-                    backColor)) {
+            if (buffer.hasSameConfiguration(gc, topColor, shadowColor, backColor)) {
                 return buffer;
             }
         }
-        BumpBuffer buffer = new BumpBuffer(gc, topColor, shadowColor,
-                backColor);
+        BumpBuffer buffer = new BumpBuffer(gc, topColor, shadowColor, backColor);
         buffers.add(buffer);
         return buffer;
     }
@@ -71,8 +68,7 @@ class MetalBumps implements Icon {
         yBumps = height / 2;
     }
 
-    public void setBumpColors(Color newTopColor, Color newShadowColor,
-            Color newBackColor) {
+    public void setBumpColors(Color newTopColor, Color newShadowColor, Color newBackColor) {
         topColor = newTopColor;
         shadowColor = newShadowColor;
         if (newBackColor == null) {
@@ -83,11 +79,10 @@ class MetalBumps implements Icon {
     }
 
     public void paintIcon(Component c, Graphics g, int x, int y) {
-        GraphicsConfiguration gc = (g instanceof Graphics2D) ? ((Graphics2D) g)
-                .getDeviceConfiguration() : null;
+        GraphicsConfiguration gc = (g instanceof Graphics2D) ? ((Graphics2D) g).getDeviceConfiguration()
+                : null;
 
-        if ((buffer == null) || !buffer.hasSameConfiguration(gc, topColor,
-                shadowColor, backColor)) {
+        if ((buffer == null) || !buffer.hasSameConfiguration(gc, topColor, shadowColor, backColor)) {
             buffer = createBuffer(gc, topColor, shadowColor, backColor);
         }
 
@@ -103,8 +98,7 @@ class MetalBumps implements Icon {
             int h = Math.min(y2 - y, bufferHeight);
             for (x = savex; x < x2; x += bufferWidth) {
                 int w = Math.min(x2 - x, bufferWidth);
-                g.drawImage(buffer.getImage(), x, y, x + w, y + h, 0, 0, w, h,
-                        null);
+                g.drawImage(buffer.getImage(), x, y, x + w, y + h, 0, 0, w, h, null);
             }
             y += bufferHeight;
         }
@@ -129,8 +123,7 @@ class BumpBuffer {
     Color backColor;
     private GraphicsConfiguration gc;
 
-    public BumpBuffer(GraphicsConfiguration gc, Color aTopColor,
-            Color aShadowColor, Color aBackColor) {
+    public BumpBuffer(GraphicsConfiguration gc, Color aTopColor, Color aShadowColor, Color aBackColor) {
         this.gc = gc;
         topColor = aTopColor;
         shadowColor = aShadowColor;
@@ -139,8 +132,8 @@ class BumpBuffer {
         fillBumpBuffer();
     }
 
-    public boolean hasSameConfiguration(GraphicsConfiguration gc,
-            Color aTopColor, Color aShadowColor, Color aBackColor) {
+    public boolean hasSameConfiguration(GraphicsConfiguration gc, Color aTopColor, Color aShadowColor,
+            Color aBackColor) {
         if (this.gc != null) {
             if (!this.gc.equals(gc)) {
                 return false;
@@ -148,8 +141,7 @@ class BumpBuffer {
         } else if (gc != null) {
             return false;
         }
-        return topColor.equals(aTopColor) && shadowColor.equals(aShadowColor)
-                && backColor.equals(aBackColor);
+        return topColor.equals(aTopColor) && shadowColor.equals(aShadowColor) && backColor.equals(aBackColor);
     }
 
     /**
@@ -193,17 +185,13 @@ class BumpBuffer {
      */
     private void createImage() {
         if (gc != null) {
-            image = gc.createCompatibleImage(IMAGE_SIZE, IMAGE_SIZE,
-                    (backColor != MetalBumps.ALPHA) ? Transparency.OPAQUE
-                            : Transparency.BITMASK);
+            image = gc.createCompatibleImage(IMAGE_SIZE, IMAGE_SIZE, (backColor != MetalBumps.ALPHA)
+                    ? Transparency.OPAQUE : Transparency.BITMASK);
         } else {
-            int cmap[] = { backColor.getRGB(), topColor.getRGB(), shadowColor
-                    .getRGB() };
-            IndexColorModel icm = new IndexColorModel(8, 3, cmap, 0, false,
-                    (backColor == MetalBumps.ALPHA) ? 0 : -1,
-                    DataBuffer.TYPE_BYTE);
-            image = new BufferedImage(IMAGE_SIZE, IMAGE_SIZE,
-                    BufferedImage.TYPE_BYTE_INDEXED, icm);
+            int cmap[] = { backColor.getRGB(), topColor.getRGB(), shadowColor.getRGB() };
+            IndexColorModel icm = new IndexColorModel(8, 3, cmap, 0, false, (backColor == MetalBumps.ALPHA)
+                    ? 0 : -1, DataBuffer.TYPE_BYTE);
+            image = new BufferedImage(IMAGE_SIZE, IMAGE_SIZE, BufferedImage.TYPE_BYTE_INDEXED, icm);
         }
     }
 }

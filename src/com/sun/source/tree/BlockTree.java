@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for a statement block.
- *
  * For example:
  * 
  * <pre>
@@ -21,7 +20,6 @@ import java.util.List;
  * </pre>
  *
  * @jls section 14.2
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

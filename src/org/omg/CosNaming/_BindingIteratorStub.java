@@ -11,27 +11,25 @@ package org.omg.CosNaming;
 /**
  * The BindingIterator interface allows a client to iterate through the bindings
  * using the next_one or next_n operations.
- * 
  * The bindings iterator is obtained by using the <tt>list</tt> method on the
  * <tt>NamingContext</tt>.
  * 
  * @see org.omg.CosNaming.NamingContext#list
  */
-public class _BindingIteratorStub extends org.omg.CORBA.portable.ObjectImpl
-        implements org.omg.CosNaming.BindingIterator {
+public class _BindingIteratorStub extends org.omg.CORBA.portable.ObjectImpl implements
+        org.omg.CosNaming.BindingIterator {
 
     /**
      * This operation returns the next binding. If there are no more bindings,
      * false is returned.
      * 
      * @param b
-     *          the returned binding
+     *        the returned binding
      */
     public boolean next_one(org.omg.CosNaming.BindingHolder b) {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("next_one",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("next_one", true);
             $in = _invoke($out);
             boolean $result = $in.read_boolean();
             b.value = org.omg.CosNaming.BindingHelper.read($in);
@@ -51,14 +49,12 @@ public class _BindingIteratorStub extends org.omg.CORBA.portable.ObjectImpl
      * This operation returns at most the requested number of bindings.
      * 
      * @param how_many
-     *                 the maximum number of bindings tro return
-     *                 <p>
-     * 
+     *        the maximum number of bindings tro return
+     *        <p>
      * @param bl
-     *                 the returned bindings
+     *        the returned bindings
      */
-    public boolean next_n(int how_many,
-            org.omg.CosNaming.BindingListHolder bl) {
+    public boolean next_n(int how_many, org.omg.CosNaming.BindingListHolder bl) {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
             org.omg.CORBA.portable.OutputStream $out = _request("next_n", true);
@@ -84,8 +80,7 @@ public class _BindingIteratorStub extends org.omg.CORBA.portable.ObjectImpl
     public void destroy() {
         org.omg.CORBA.portable.InputStream $in = null;
         try {
-            org.omg.CORBA.portable.OutputStream $out = _request("destroy",
-                    true);
+            org.omg.CORBA.portable.OutputStream $out = _request("destroy", true);
             $in = _invoke($out);
             return;
         } catch (org.omg.CORBA.portable.ApplicationException $ex) {
@@ -100,15 +95,13 @@ public class _BindingIteratorStub extends org.omg.CORBA.portable.ObjectImpl
     } // destroy
 
     // Type-specific CORBA::Object operations
-    private static String[] __ids = {
-            "IDL:omg.org/CosNaming/BindingIterator:1.0" };
+    private static String[] __ids = { "IDL:omg.org/CosNaming/BindingIterator:1.0" };
 
     public String[] _ids() {
         return (String[]) __ids.clone();
     }
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException {
         String str = s.readUTF();
         String[] args = null;
         java.util.Properties props = null;
@@ -123,8 +116,7 @@ public class _BindingIteratorStub extends org.omg.CORBA.portable.ObjectImpl
         }
     }
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         String[] args = null;
         java.util.Properties props = null;
         org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args, props);

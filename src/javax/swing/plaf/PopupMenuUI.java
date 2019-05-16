@@ -30,11 +30,11 @@ public abstract class PopupMenuUI extends ComponentUI {
      * the <code>JPopupMenu</code>.
      *
      * @param popup
-     *              JPopupMenu requesting Popup
+     *        JPopupMenu requesting Popup
      * @param x
-     *              Screen x location Popup is to be shown at
+     *        Screen x location Popup is to be shown at
      * @param y
-     *              Screen y location Popup is to be shown at.
+     *        Screen y location Popup is to be shown at.
      * @return Popup that will show the JPopupMenu
      * @since 1.4
      */

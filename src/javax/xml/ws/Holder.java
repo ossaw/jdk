@@ -30,7 +30,7 @@ public final class Holder<T> implements Serializable {
      * Create a new holder with the specified value.
      *
      * @param value
-     *              The value to be stored in the holder.
+     *        The value to be stored in the holder.
      */
     public Holder(T value) {
         this.value = value;

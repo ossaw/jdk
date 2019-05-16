@@ -47,7 +47,7 @@ public interface UndoableEdit {
      * Undo the edit.
      *
      * @throws CannotUndoException
-     *                             if this edit can not be undone
+     *         if this edit can not be undone
      */
     public void undo() throws CannotUndoException;
 
@@ -62,7 +62,7 @@ public interface UndoableEdit {
      * Re-applies the edit.
      *
      * @throws CannotRedoException
-     *                             if this edit can not be redone
+     *         if this edit can not be redone
      */
     public void redo() throws CannotRedoException;
 
@@ -108,7 +108,6 @@ public interface UndoableEdit {
      * and is being given a chance to incorporate <code>anEdit</code> rather
      * than letting it be added to the queue in turn.
      * </p>
-     *
      * <p>
      * If true is returned, from now on <code>anEdit</code> must return false
      * from <code>canUndo</code> and <code>canRedo</code>, and must throw the
@@ -116,7 +115,7 @@ public interface UndoableEdit {
      * </p>
      *
      * @param anEdit
-     *               the edit to be added
+     *        the edit to be added
      * @return true if <code>anEdit</code> may be incorporated into this edit
      */
     public boolean addEdit(UndoableEdit anEdit);
@@ -134,7 +133,6 @@ public interface UndoableEdit {
      * UndoableEditListener), and the receiver is being given a chance to take
      * its place.
      * </p>
-     *
      * <p>
      * If true is returned, from now on anEdit must return false from canUndo()
      * and canRedo(), and must throw the appropriate exception on undo() or
@@ -142,7 +140,7 @@ public interface UndoableEdit {
      * </p>
      *
      * @param anEdit
-     *               the edit that replaces the current edit
+     *        the edit that replaces the current edit
      * @return true if this edit should replace <code>anEdit</code>
      */
     public boolean replaceEdit(UndoableEdit anEdit);

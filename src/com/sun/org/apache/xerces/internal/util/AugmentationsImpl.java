@@ -43,10 +43,9 @@ public class AugmentationsImpl implements Augmentations {
      * structure.
      *
      * @param key
-     *             Identifier, can't be <code>null</code>
+     *        Identifier, can't be <code>null</code>
      * @param item
-     *             Additional information
-     *
+     *        Additional information
      * @return the previous value of the specified key in the Augmentations
      *         strucutre, or <code>null</code> if it did not have one.
      */
@@ -64,8 +63,7 @@ public class AugmentationsImpl implements Augmentations {
      * Get information identified by a key from the Augmentations structure
      *
      * @param key
-     *            Identifier, can't be <code>null</code>
-     *
+     *        Identifier, can't be <code>null</code>
      * @return the value to which the key is mapped in the Augmentations
      *         structure; <code>null</code> if the key is not mapped to any
      *         value.
@@ -78,7 +76,7 @@ public class AugmentationsImpl implements Augmentations {
      * Remove additional info from the Augmentations structure
      *
      * @param key
-     *            Identifier, can't be <code>null</code>
+     *        Identifier, can't be <code>null</code>
      */
     public Object removeItem(String key) {
         return fAugmentationsContainer.removeItem(key);
@@ -86,7 +84,6 @@ public class AugmentationsImpl implements Augmentations {
 
     /**
      * Returns an enumeration of the keys in the Augmentations structure
-     *
      */
     public Enumeration keys() {
         return fAugmentationsContainer.keys();
@@ -193,8 +190,7 @@ public class AugmentationsImpl implements Augmentations {
             LargeContainer expandedContainer = new LargeContainer();
 
             for (int i = 0; i < fNumEntries * 2; i = i + 2) {
-                expandedContainer.putItem(fAugmentations[i], fAugmentations[i
-                        + 1]);
+                expandedContainer.putItem(fAugmentations[i], fAugmentations[i + 1]);
             }
 
             return expandedContainer;
@@ -205,10 +201,8 @@ public class AugmentationsImpl implements Augmentations {
             buff.append("SmallContainer - fNumEntries == ").append(fNumEntries);
 
             for (int i = 0; i < SIZE_LIMIT * 2; i = i + 2) {
-                buff.append("\nfAugmentations[").append(i).append("] == ")
-                        .append(fAugmentations[i]).append("; fAugmentations[")
-                        .append(i + 1).append("] == ").append(fAugmentations[i
-                                + 1]);
+                buff.append("\nfAugmentations[").append(i).append("] == ").append(fAugmentations[i]).append(
+                        "; fAugmentations[").append(i + 1).append("] == ").append(fAugmentations[i + 1]);
             }
 
             return buff.toString();

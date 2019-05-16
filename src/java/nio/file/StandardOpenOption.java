@@ -25,7 +25,6 @@ public enum StandardOpenOption implements OpenOption {
     /**
      * If the file is opened for {@link #WRITE} access then bytes will be
      * written to the end of the file rather than the beginning.
-     *
      * <p>
      * If the file is opened for write access by other programs, then it is file
      * system specific if writing to the end of the file is atomic.
@@ -70,7 +69,6 @@ public enum StandardOpenOption implements OpenOption {
      * the expected file when replaced by an attacker while the file is open.
      * Consequently, security sensitive applications should take care when using
      * this option.
-     *
      * <p>
      * For security reasons, this option may imply the
      * {@link LinkOption#NOFOLLOW_LINKS} option. In other words, if the option

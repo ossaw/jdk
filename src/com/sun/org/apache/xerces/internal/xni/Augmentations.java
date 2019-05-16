@@ -41,10 +41,9 @@ public interface Augmentations {
      * structure.
      *
      * @param key
-     *             Identifier, can't be <code>null</code>
+     *        Identifier, can't be <code>null</code>
      * @param item
-     *             Additional information
-     *
+     *        Additional information
      * @return the previous value of the specified key in the Augmentations
      *         structure, or <code>null</code> if it did not have one.
      */
@@ -54,8 +53,7 @@ public interface Augmentations {
      * Get information identified by a key from the Augmentations structure
      *
      * @param key
-     *            Identifier, can't be <code>null</code>
-     *
+     *        Identifier, can't be <code>null</code>
      * @return the value to which the key is mapped in the Augmentations
      *         structure; <code>null</code> if the key is not mapped to any
      *         value.
@@ -66,7 +64,7 @@ public interface Augmentations {
      * Remove additional info from the Augmentations structure
      *
      * @param key
-     *            Identifier, can't be <code>null</code>
+     *        Identifier, can't be <code>null</code>
      * @return the previous value of the specified key in the Augmentations
      *         structure, or <code>null</code> if it did not have one.
      */
@@ -74,7 +72,6 @@ public interface Augmentations {
 
     /**
      * Returns an enumeration of the keys in the Augmentations structure
-     *
      */
     public Enumeration keys();
 

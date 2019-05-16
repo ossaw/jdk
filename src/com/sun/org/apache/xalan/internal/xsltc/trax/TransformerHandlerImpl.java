@@ -103,7 +103,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * the base ID (URI or system ID) from where relative URLs will be resolved.
      * 
      * @param id
-     *           Base URI for this stylesheet
+     *        Base URI for this stylesheet
      */
     @Override
     public void setSystemId(String id) {
@@ -128,9 +128,9 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * transformation.
      * 
      * @param result
-     *               A Result instance, should not be null
+     *        A Result instance, should not be null
      * @throws IllegalArgumentException
-     *                                  if result is invalid for some reason
+     *         if result is invalid for some reason
      */
     @Override
     public void setResult(Result result) throws IllegalArgumentException {
@@ -146,8 +146,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
         if (_isIdentity) {
             try {
                 // Connect this object with output system directly
-                SerializationHandler outputHandler = _transformer
-                        .getOutputHandler(result);
+                SerializationHandler outputHandler = _transformer.getOutputHandler(result);
                 _transformer.transferOutputProperties(outputHandler);
 
                 _handler = outputHandler;
@@ -172,8 +171,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * of character data.
      */
     @Override
-    public void characters(char[] ch, int start, int length)
-            throws SAXException {
+    public void characters(char[] ch, int start, int length) throws SAXException {
         _handler.characters(ch, start, length);
     }
 
@@ -190,14 +188,12 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
         }
 
         if (!_isIdentity) {
-            boolean hasIdCall = (_translet != null) ? _translet.hasIdCall()
-                    : false;
+            boolean hasIdCall = (_translet != null) ? _translet.hasIdCall() : false;
             XSLTCDTMManager dtmManager = null;
 
             // Create an internal DOM (not W3C) and get SAX2 input handler
             try {
-                dtmManager = _transformer.getTransformerFactory()
-                        .createNewDTMManagerInstance();
+                dtmManager = _transformer.getTransformerFactory().createNewDTMManagerInstance();
             } catch (Exception e) {
                 throw new SAXException(e);
             }
@@ -210,8 +206,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
             }
 
             // Construct the DTM using the SAX events that come through
-            _dom = (SAXImpl) dtmManager.getDTM(null, false, wsFilter, true,
-                    false, hasIdCall);
+            _dom = (SAXImpl) dtmManager.getDTM(null, false, wsFilter, true, false, hasIdCall);
 
             _handler = _dom.getBuilder();
             _lexHandler = (LexicalHandler) _handler;
@@ -257,8 +252,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
             _transformer.setDOM(_dom);
         }
         if (_isIdentity && _result instanceof DOMResult) {
-            ((DOMResult) _result).setNode(_transformer
-                    .getTransletOutputHandlerFactory().getNode());
+            ((DOMResult) _result).setNode(_transformer.getTransletOutputHandlerFactory().getNode());
         }
     }
 
@@ -267,8 +261,8 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * of the beginning of an element.
      */
     @Override
-    public void startElement(String uri, String localName, String qname,
-            Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qname, Attributes attributes)
+            throws SAXException {
         _handler.startElement(uri, localName, qname, attributes);
     }
 
@@ -277,8 +271,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * of the end of an element.
      */
     @Override
-    public void endElement(String namespaceURI, String localName, String qname)
-            throws SAXException {
+    public void endElement(String namespaceURI, String localName, String qname) throws SAXException {
         _handler.endElement(namespaceURI, localName, qname);
     }
 
@@ -287,8 +280,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * notification of a processing instruction.
      */
     @Override
-    public void processingInstruction(String target, String data)
-            throws SAXException {
+    public void processingInstruction(String target, String data) throws SAXException {
         _handler.processingInstruction(target, data);
     }
 
@@ -329,8 +321,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * characters(char[], int, int).
      */
     @Override
-    public void ignorableWhitespace(char[] ch, int start, int length)
-            throws SAXException {
+    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
         _handler.ignorableWhitespace(ch, start, length);
     }
 
@@ -361,8 +352,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * scope of a prefix-URI Namespace mapping.
      */
     @Override
-    public void startPrefixMapping(String prefix, String uri)
-            throws SAXException {
+    public void startPrefixMapping(String prefix, String uri) throws SAXException {
         _handler.startPrefixMapping(prefix, uri);
     }
 
@@ -379,8 +369,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * Implements org.xml.sax.ext.LexicalHandler.startDTD()
      */
     @Override
-    public void startDTD(String name, String publicId, String systemId)
-            throws SAXException {
+    public void startDTD(String name, String publicId, String systemId) throws SAXException {
         if (_lexHandler != null) {
             _lexHandler.startDTD(name, publicId, systemId);
         }
@@ -420,11 +409,10 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * Implements org.xml.sax.DTDHandler.unparsedEntityDecl()
      */
     @Override
-    public void unparsedEntityDecl(String name, String publicId,
-            String systemId, String notationName) throws SAXException {
+    public void unparsedEntityDecl(String name, String publicId, String systemId, String notationName)
+            throws SAXException {
         if (_dtdHandler != null) {
-            _dtdHandler.unparsedEntityDecl(name, publicId, systemId,
-                    notationName);
+            _dtdHandler.unparsedEntityDecl(name, publicId, systemId, notationName);
         }
     }
 
@@ -432,8 +420,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * Implements org.xml.sax.DTDHandler.notationDecl()
      */
     @Override
-    public void notationDecl(String name, String publicId, String systemId)
-            throws SAXException {
+    public void notationDecl(String name, String publicId, String systemId) throws SAXException {
         if (_dtdHandler != null) {
             _dtdHandler.notationDecl(name, publicId, systemId);
         }
@@ -443,8 +430,8 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * Implements org.xml.sax.ext.DeclHandler.attributeDecl()
      */
     @Override
-    public void attributeDecl(String eName, String aName, String type,
-            String valueDefault, String value) throws SAXException {
+    public void attributeDecl(String eName, String aName, String type, String valueDefault, String value)
+            throws SAXException {
         if (_declHandler != null) {
             _declHandler.attributeDecl(eName, aName, type, valueDefault, value);
         }
@@ -464,8 +451,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * Implements org.xml.sax.ext.DeclHandler.externalEntityDecl()
      */
     @Override
-    public void externalEntityDecl(String name, String publicId,
-            String systemId) throws SAXException {
+    public void externalEntityDecl(String name, String publicId, String systemId) throws SAXException {
         if (_declHandler != null) {
             _declHandler.externalEntityDecl(name, publicId, systemId);
         }
@@ -475,8 +461,7 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
      * Implements org.xml.sax.ext.DeclHandler.externalEntityDecl()
      */
     @Override
-    public void internalEntityDecl(String name, String value)
-            throws SAXException {
+    public void internalEntityDecl(String name, String value) throws SAXException {
         if (_declHandler != null) {
             _declHandler.internalEntityDecl(name, value);
         }
@@ -484,7 +469,6 @@ public class TransformerHandlerImpl implements TransformerHandler, DeclHandler {
 
     /**
      * Implementation of the reset() method
-     *
      */
     public void reset() {
         _systemId = null;

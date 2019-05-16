@@ -17,7 +17,6 @@ import javax.xml.stream.XMLStreamException;
 
 /**
  * This is the base class for deriving an XMLStreamReader filter
- *
  * This class is designed to sit between an XMLStreamReader and an application's
  * XMLStreamReader. By default each method does nothing but call the
  * corresponding method on the parent interface.
@@ -41,7 +40,7 @@ public class StreamReaderDelegate implements XMLStreamReader {
      * Construct an filter with the specified parent.
      * 
      * @param reader
-     *               the parent
+     *        the parent
      */
     public StreamReaderDelegate(XMLStreamReader reader) {
         this.reader = reader;
@@ -51,7 +50,7 @@ public class StreamReaderDelegate implements XMLStreamReader {
      * Set the parent of this instance.
      * 
      * @param reader
-     *               the new parent
+     *        the new parent
      */
     public void setParent(XMLStreamReader reader) {
         this.reader = reader;
@@ -78,8 +77,7 @@ public class StreamReaderDelegate implements XMLStreamReader {
         return reader.getElementText();
     }
 
-    public void require(int type, String namespaceURI, String localName)
-            throws XMLStreamException {
+    public void require(int type, String namespaceURI, String localName) throws XMLStreamException {
         reader.require(type, namespaceURI, localName);
     }
 
@@ -171,10 +169,9 @@ public class StreamReaderDelegate implements XMLStreamReader {
         return reader.getText();
     }
 
-    public int getTextCharacters(int sourceStart, char[] target,
-            int targetStart, int length) throws XMLStreamException {
-        return reader.getTextCharacters(sourceStart, target, targetStart,
-                length);
+    public int getTextCharacters(int sourceStart, char[] target, int targetStart, int length)
+            throws XMLStreamException {
+        return reader.getTextCharacters(sourceStart, target, targetStart, length);
     }
 
     public char[] getTextCharacters() {

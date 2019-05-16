@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -77,24 +75,19 @@ public class TransformXPath2Filter extends TransformSpi {
      * 
      * @inheritDoc
      * @param input
-     *
      * @throws TransformationException
      */
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
-            OutputStream os, Transform transformObject)
-            throws TransformationException {
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream os,
+            Transform transformObject) throws TransformationException {
         try {
             List<NodeList> unionNodes = new ArrayList<NodeList>();
             List<NodeList> subtractNodes = new ArrayList<NodeList>();
             List<NodeList> intersectNodes = new ArrayList<NodeList>();
 
-            Element[] xpathElements = XMLUtils.selectNodes(transformObject
-                    .getElement().getFirstChild(),
-                    XPath2FilterContainer.XPathFilter2NS,
-                    XPath2FilterContainer._TAG_XPATH2);
+            Element[] xpathElements = XMLUtils.selectNodes(transformObject.getElement().getFirstChild(),
+                    XPath2FilterContainer.XPathFilter2NS, XPath2FilterContainer._TAG_XPATH2);
             if (xpathElements.length == 0) {
-                Object exArgs[] = { Transforms.TRANSFORM_XPATH2FILTER,
-                        "XPath" };
+                Object exArgs[] = { Transforms.TRANSFORM_XPATH2FILTER, "XPath" };
 
                 throw new TransformationException("xml.WrongContent", exArgs);
             }
@@ -109,18 +102,16 @@ public class TransformXPath2Filter extends TransformSpi {
             for (int i = 0; i < xpathElements.length; i++) {
                 Element xpathElement = xpathElements[i];
 
-                XPath2FilterContainer xpathContainer = XPath2FilterContainer
-                        .newInstance(xpathElement, input.getSourceURI());
+                XPath2FilterContainer xpathContainer = XPath2FilterContainer.newInstance(xpathElement, input
+                        .getSourceURI());
 
-                String str = XMLUtils.getStrFromNode(xpathContainer
-                        .getXPathFilterTextNode());
+                String str = XMLUtils.getStrFromNode(xpathContainer.getXPathFilterTextNode());
 
                 XPathFactory xpathFactory = XPathFactory.newInstance();
                 XPathAPI xpathAPIInstance = xpathFactory.newXPathAPI();
 
-                NodeList subtreeRoots = xpathAPIInstance.selectNodeList(
-                        inputDoc, xpathContainer.getXPathFilterTextNode(), str,
-                        xpathContainer.getElement());
+                NodeList subtreeRoots = xpathAPIInstance.selectNodeList(inputDoc, xpathContainer
+                        .getXPathFilterTextNode(), str, xpathContainer.getElement());
                 if (xpathContainer.isIntersect()) {
                     intersectNodes.add(subtreeRoots);
                 } else if (xpathContainer.isSubtract()) {
@@ -130,8 +121,7 @@ public class TransformXPath2Filter extends TransformSpi {
                 }
             }
 
-            input.addNodeFilter(new XPath2NodeFilter(unionNodes, subtractNodes,
-                    intersectNodes));
+            input.addNodeFilter(new XPath2NodeFilter(unionNodes, subtractNodes, intersectNodes));
             input.setNodeSet(true);
             return input;
         } catch (TransformerException ex) {
@@ -166,8 +156,7 @@ class XPath2NodeFilter implements NodeFilter {
     int inIntersect = -1;
     int inUnion = -1;
 
-    XPath2NodeFilter(List<NodeList> unionNodes, List<NodeList> subtractNodes,
-            List<NodeList> intersectNodes) {
+    XPath2NodeFilter(List<NodeList> unionNodes, List<NodeList> subtractNodes, List<NodeList> intersectNodes) {
         hasUnionFilter = !unionNodes.isEmpty();
         this.unionNodes = convertNodeListToSet(unionNodes);
         hasSubtractFilter = !subtractNodes.isEmpty();
@@ -215,8 +204,7 @@ class XPath2NodeFilter implements NodeFilter {
                 result = -1;
             }
         }
-        if (result != -1 && hasIntersectFilter && ((inIntersect == -1)
-                || (level <= inIntersect))) {
+        if (result != -1 && hasIntersectFilter && ((inIntersect == -1) || (level <= inIntersect))) {
             if (!inList(n, intersectNodes)) {
                 inIntersect = -1;
                 result = 0;
@@ -249,7 +237,6 @@ class XPath2NodeFilter implements NodeFilter {
      * 
      * @param currentNode
      * @param nodeList
-     *
      * @return if rooted bye the rootnodes
      */
     static boolean rooted(Node currentNode, Set<Node> nodeList) {
@@ -272,7 +259,6 @@ class XPath2NodeFilter implements NodeFilter {
      * 
      * @param currentNode
      * @param nodeList
-     *
      * @return if rooted bye the rootnodes
      */
     static boolean inList(Node currentNode, Set<Node> nodeList) {

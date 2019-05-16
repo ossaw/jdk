@@ -67,7 +67,6 @@ import org.w3c.dom.Node;
  * code I implemented to support DeepNodeList.
  *
  * @xerces.internal
- *
  * @author Arnaud Le Hors, IBM
  * @author Joe Kesselman, IBM
  * @author Andy Clark, IBM
@@ -155,8 +154,8 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
             DocumentType doctype;
             NamedNodeMap entities;
             EntityImpl entDef;
-            if (null != (doctype = getOwnerDocument().getDoctype())
-                    && null != (entities = doctype.getEntities())) {
+            if (null != (doctype = getOwnerDocument().getDoctype()) && null != (entities = doctype
+                    .getEntities())) {
 
                 entDef = (EntityImpl) entities.getNamedItem(getNodeName());
                 if (entDef != null) {
@@ -217,8 +216,7 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
                 while (next != null) {
 
                     if (next.getNodeType() == Node.ENTITY_REFERENCE_NODE) {
-                        value = ((EntityReferenceImpl) next)
-                                .getEntityRefValue();
+                        value = ((EntityReferenceImpl) next).getEntityRefValue();
                     } else if (next.getNodeType() == Node.TEXT_NODE) {
                         value = next.getNodeValue();
                     } else {
@@ -248,8 +246,8 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
         DocumentType doctype;
         NamedNodeMap entities;
         EntityImpl entDef;
-        if (null != (doctype = getOwnerDocument().getDoctype())
-                && null != (entities = doctype.getEntities())) {
+        if (null != (doctype = getOwnerDocument().getDoctype()) && null != (entities = doctype
+                .getEntities())) {
 
             entDef = (EntityImpl) entities.getNamedItem(getNodeName());
 
@@ -259,9 +257,7 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
 
             // If entity's definition exists, clone its kids
             isReadOnly(false);
-            for (Node defkid = entDef
-                    .getFirstChild(); defkid != null; defkid = defkid
-                            .getNextSibling()) {
+            for (Node defkid = entDef.getFirstChild(); defkid != null; defkid = defkid.getNextSibling()) {
                 Node newkid = defkid.cloneNode(true);
                 insertBefore(newkid, null);
             }
@@ -335,23 +331,18 @@ public class EntityReferenceImpl extends ParentNode implements EntityReference {
      * entities; EntityImpl entDef; if (null != (doctype =
      * getOwnerDocument().getDoctype()) && null != (entities =
      * doctype.getEntities())) {
-     * 
      * entDef = (EntityImpl)entities.getNamedItem(getNodeName());
-     * 
      * // No Entity by this name. If we had a change count, reset it.
      * if(null==entDef) entityChanges=-1;
-     * 
      * // If no kids availalble, wipe any pre-existing children. // (See
      * discussion above.) // Note that we have to use the superclass to avoid
      * recursion // through Synchronize. readOnly=false; if(null==entDef ||
      * !entDef.hasChildNodes()) for(Node kid=super.getFirstChild(); kid!=null;
      * kid=super.getFirstChild()) removeChild(kid);
-     * 
      * // If entity's definition changed, clone its kids // (See discussion
      * above.) if(null!=entDef && entDef.changes!=entityChanges) { for(Node
      * defkid=entDef.getFirstChild(); defkid!=null;
      * defkid=defkid.getNextSibling()) {
-     * 
      * NodeImpl newkid=(NodeImpl) defkid.cloneNode(true);
      * newkid.setReadOnly(true,true); insertBefore(newkid,null); }
      * entityChanges=entDef.changes; } readOnly=true; } } /

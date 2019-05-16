@@ -14,11 +14,9 @@ import java.awt.FocusTraversalPolicy;
  * default, this is the same as the JInternalFrame's default Component to focus.
  *
  * @author David Mendenhall
- *
  * @since 1.4
  */
-public abstract class InternalFrameFocusTraversalPolicy extends
-        FocusTraversalPolicy {
+public abstract class InternalFrameFocusTraversalPolicy extends FocusTraversalPolicy {
 
     /**
      * Returns the Component that should receive the focus when a JInternalFrame
@@ -31,13 +29,13 @@ public abstract class InternalFrameFocusTraversalPolicy extends
      * method returns the JInternalFrame's default Component to focus.
      *
      * @param frame
-     *              the JInternalFrame whose initial Component is to be returned
+     *        the JInternalFrame whose initial Component is to be returned
      * @return the Component that should receive the focus when frame is
      *         selected for the first time, or null if no suitable Component can
      *         be found
      * @see JInternalFrame#getMostRecentFocusOwner
      * @throws IllegalArgumentException
-     *                                  if window is null
+     *         if window is null
      */
     public Component getInitialComponent(JInternalFrame frame) {
         return getDefaultComponent(frame);

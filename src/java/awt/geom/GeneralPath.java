@@ -45,7 +45,7 @@ public final class GeneralPath extends Path2D.Float {
      * to be defined.
      *
      * @param rule
-     *             the winding rule
+     *        the winding rule
      * @see #WIND_EVEN_ODD
      * @see #WIND_NON_ZERO
      * @since 1.2
@@ -62,10 +62,10 @@ public final class GeneralPath extends Path2D.Float {
      * whatever path segments are added.
      *
      * @param rule
-     *                        the winding rule
+     *        the winding rule
      * @param initialCapacity
-     *                        the estimate for the number of path segments in
-     *                        the path
+     *        the estimate for the number of path segments in
+     *        the path
      * @see #WIND_EVEN_ODD
      * @see #WIND_NON_ZERO
      * @since 1.2
@@ -80,15 +80,14 @@ public final class GeneralPath extends Path2D.Float {
      * for this path are taken from the specified <code>Shape</code> object.
      *
      * @param s
-     *          the specified <code>Shape</code> object
+     *        the specified <code>Shape</code> object
      * @since 1.2
      */
     public GeneralPath(Shape s) {
         super(s, null);
     }
 
-    GeneralPath(int windingRule, byte[] pointTypes, int numTypes,
-            float[] pointCoords, int numCoords) {
+    GeneralPath(int windingRule, byte[] pointTypes, int numTypes, float[] pointCoords, int numCoords) {
         // used to construct from native
 
         this.windingRule = windingRule;

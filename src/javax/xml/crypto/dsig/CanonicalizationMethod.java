@@ -69,7 +69,6 @@ public interface CanonicalizationMethod extends Transform {
     /**
      * Returns the algorithm-specific input parameters associated with this
      * <code>CanonicalizationMethod</code>.
-     *
      * <p>
      * The returned parameters can be typecast to a
      * {@link C14NMethodParameterSpec} object.

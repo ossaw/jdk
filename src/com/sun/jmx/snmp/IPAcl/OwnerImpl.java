@@ -36,7 +36,7 @@ class OwnerImpl implements Owner, Serializable {
      * Constructs a list of owner with the specified principal as first element.
      *
      * @param owner
-     *              the principal added to the owner list.
+     *        the principal added to the owner list.
      */
     public OwnerImpl(PrincipalImpl owner) {
         ownerList = new Vector<Principal>();
@@ -50,18 +50,17 @@ class OwnerImpl implements Owner, Serializable {
      * construction time.
      *
      * @param caller
-     *               the principal invoking this method. It must be an owner of
-     *               the
-     *               ACL.
+     *        the principal invoking this method. It must be an owner of
+     *        the
+     *        ACL.
      * @param owner
-     *               the owner that should be added to the list of owners.
+     *        the owner that should be added to the list of owners.
      * @return true if successful, false if owner is already an owner.
      * @exception NotOwnerException
-     *                              if the caller principal is not an owner of
-     *                              the ACL.
+     *            if the caller principal is not an owner of
+     *            the ACL.
      */
-    public boolean addOwner(Principal caller, Principal owner)
-            throws NotOwnerException {
+    public boolean addOwner(Principal caller, Principal owner) throws NotOwnerException {
         if (!ownerList.contains(caller))
             throw new NotOwnerException();
 
@@ -81,22 +80,22 @@ class OwnerImpl implements Owner, Serializable {
      * method.
      *
      * @param caller
-     *               the principal invoking this method. It must be an owner of
-     *               the
-     *               ACL.
+     *        the principal invoking this method. It must be an owner of
+     *        the
+     *        ACL.
      * @param owner
-     *               the owner to be removed from the list of owners.
+     *        the owner to be removed from the list of owners.
      * @return true if successful, false if owner is already an owner.
      * @exception NotOwnerException
-     *                               if the caller principal is not an owner of
-     *                               the ACL.
+     *            if the caller principal is not an owner of
+     *            the ACL.
      * @exception LastOwnerException
-     *                               if there is only one owner left, so that
-     *                               deleteOwner would
-     *                               leave the ACL owner-less.
+     *            if there is only one owner left, so that
+     *            deleteOwner would
+     *            leave the ACL owner-less.
      */
-    public boolean deleteOwner(Principal caller, Principal owner)
-            throws NotOwnerException, LastOwnerException {
+    public boolean deleteOwner(Principal caller, Principal owner) throws NotOwnerException,
+            LastOwnerException {
 
         if (!ownerList.contains(caller))
             throw new NotOwnerException();
@@ -116,9 +115,9 @@ class OwnerImpl implements Owner, Serializable {
      * Returns true if the given principal is an owner of the ACL.
      *
      * @param owner
-     *              the principal to be checked to determine whether or not it
-     *              is
-     *              an owner.
+     *        the principal to be checked to determine whether or not it
+     *        is
+     *        an owner.
      * @return true if the given principal is an owner of the ACL.
      */
     public boolean isOwner(Principal owner) {

@@ -18,7 +18,6 @@ public interface Type {
      * type parameters.
      *
      * @implSpec The default implementation calls {@code toString}.
-     *
      * @return a string describing this type
      * @since 1.8
      */

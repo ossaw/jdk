@@ -35,16 +35,13 @@ import com.sun.org.apache.xml.internal.resolver.readers.CatalogReader;
 
 /**
  * Parses plain text Catalog files.
- *
  * <p>
  * This class reads plain text Open Catalog files.
  * </p>
  *
  * @see Catalog
- *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  */
 public class TextCatalogReader implements CatalogReader {
     /** The input stream used to read the catalog */
@@ -87,15 +84,13 @@ public class TextCatalogReader implements CatalogReader {
      * </p>
      *
      * @param fileUrl
-     *                The URL or filename of the catalog file to process
-     *
+     *        The URL or filename of the catalog file to process
      * @throws MalformedURLException
-     *                               Improper fileUrl
+     *         Improper fileUrl
      * @throws IOException
-     *                               Error reading catalog file
+     *         Error reading catalog file
      */
-    public void readCatalog(Catalog catalog, String fileUrl)
-            throws MalformedURLException, IOException {
+    public void readCatalog(Catalog catalog, String fileUrl) throws MalformedURLException, IOException {
         URL catURL = null;
 
         try {
@@ -108,14 +103,12 @@ public class TextCatalogReader implements CatalogReader {
         try {
             readCatalog(catalog, urlCon.getInputStream());
         } catch (FileNotFoundException e) {
-            catalog.getCatalogManager().debug.message(1,
-                    "Failed to load catalog, file not found", catURL
-                            .toString());
+            catalog.getCatalogManager().debug.message(1, "Failed to load catalog, file not found", catURL
+                    .toString());
         }
     }
 
-    public void readCatalog(Catalog catalog, InputStream is)
-            throws MalformedURLException, IOException {
+    public void readCatalog(Catalog catalog, InputStream is) throws MalformedURLException, IOException {
 
         catfile = is;
 
@@ -167,15 +160,11 @@ public class TextCatalogReader implements CatalogReader {
                             unknownEntry = new Vector();
                         }
                         unknownEntry.addElement(token);
-                    } else if (cex
-                            .getExceptionType() == CatalogException.INVALID_ENTRY) {
-                        catalog.getCatalogManager().debug.message(1,
-                                "Invalid catalog entry", token);
+                    } else if (cex.getExceptionType() == CatalogException.INVALID_ENTRY) {
+                        catalog.getCatalogManager().debug.message(1, "Invalid catalog entry", token);
                         unknownEntry = null;
-                    } else if (cex
-                            .getExceptionType() == CatalogException.UNENDED_COMMENT) {
-                        catalog.getCatalogManager().debug.message(1, cex
-                                .getMessage());
+                    } else if (cex.getExceptionType() == CatalogException.UNENDED_COMMENT) {
+                        catalog.getCatalogManager().debug.message(1, cex.getMessage());
                     }
                 }
             }
@@ -188,7 +177,6 @@ public class TextCatalogReader implements CatalogReader {
 
     /**
      * The destructor.
-     *
      * <p>
      * Makes sure the catalog file is closed.
      * </p>
@@ -208,14 +196,13 @@ public class TextCatalogReader implements CatalogReader {
 
     /**
      * Return the next token in the catalog file.
-     *
      * <p>
      * FYI: This code does not throw any sort of exception for a file that
      * contains an n
      *
      * @return The Catalog file token from the input stream.
      * @throws IOException
-     *                     If an error occurs reading from the stream.
+     *         If an error occurs reading from the stream.
      */
     protected String nextToken() throws IOException, CatalogException {
         String token = "";
@@ -301,9 +288,8 @@ public class TextCatalogReader implements CatalogReader {
      *
      * @return The next (logical) character from the input stream. The character
      *         may be buffered from a previous lookahead.
-     *
      * @throws IOException
-     *                     If an error occurs reading from the stream.
+     *         If an error occurs reading from the stream.
      */
     protected int nextChar() throws IOException {
         if (top < 0) {

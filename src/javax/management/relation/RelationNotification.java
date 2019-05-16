@@ -32,7 +32,6 @@ import static com.sun.jmx.mbeanserver.Util.cast;
  * notification is sent when a relation is created via the Relation Service, or
  * an MBean is added as a relation in the Relation Service, or a role is updated
  * in a relation, or a relation is removed from the Relation Service.
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is
  * <code>-6871117877523310399L</code>.
@@ -55,24 +54,20 @@ public class RelationNotification extends Notification {
     private static final long newSerialVersionUID = -6871117877523310399L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("myNewRoleValue", ArrayList.class),
-            new ObjectStreamField("myOldRoleValue", ArrayList.class),
-            new ObjectStreamField("myRelId", String.class),
-            new ObjectStreamField("myRelObjName", ObjectName.class),
-            new ObjectStreamField("myRelTypeName", String.class),
-            new ObjectStreamField("myRoleName", String.class),
-            new ObjectStreamField("myUnregMBeanList", ArrayList.class) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField(
+            "myNewRoleValue", ArrayList.class), new ObjectStreamField("myOldRoleValue", ArrayList.class),
+            new ObjectStreamField("myRelId", String.class), new ObjectStreamField("myRelObjName",
+                    ObjectName.class), new ObjectStreamField("myRelTypeName", String.class),
+            new ObjectStreamField("myRoleName", String.class), new ObjectStreamField("myUnregMBeanList",
+                    ArrayList.class) };
     //
     // Serializable fields in new serial form
-    private static final ObjectStreamField[] newSerialPersistentFields = {
-            new ObjectStreamField("newRoleValue", List.class),
-            new ObjectStreamField("oldRoleValue", List.class),
-            new ObjectStreamField("relationId", String.class),
-            new ObjectStreamField("relationObjName", ObjectName.class),
-            new ObjectStreamField("relationTypeName", String.class),
-            new ObjectStreamField("roleName", String.class),
-            new ObjectStreamField("unregisterMBeanList", List.class) };
+    private static final ObjectStreamField[] newSerialPersistentFields = { new ObjectStreamField(
+            "newRoleValue", List.class), new ObjectStreamField("oldRoleValue", List.class),
+            new ObjectStreamField("relationId", String.class), new ObjectStreamField("relationObjName",
+                    ObjectName.class), new ObjectStreamField("relationTypeName", String.class),
+            new ObjectStreamField("roleName", String.class), new ObjectStreamField("unregisterMBeanList",
+                    List.class) };
     //
     // Actual serial version and serial form
     private static final long serialVersionUID;
@@ -203,77 +198,74 @@ public class RelationNotification extends Notification {
      * relation) or for a relation removal from the Relation Service.
      *
      * @param notifType
-     *                       type of the notification; either:
-     *                       <P>
-     *                       - RELATION_BASIC_CREATION
-     *                       <P>
-     *                       - RELATION_MBEAN_CREATION
-     *                       <P>
-     *                       - RELATION_BASIC_REMOVAL
-     *                       <P>
-     *                       - RELATION_MBEAN_REMOVAL
+     *        type of the notification; either:
+     *        <P>
+     *        - RELATION_BASIC_CREATION
+     *        <P>
+     *        - RELATION_MBEAN_CREATION
+     *        <P>
+     *        - RELATION_BASIC_REMOVAL
+     *        <P>
+     *        - RELATION_MBEAN_REMOVAL
      * @param sourceObj
-     *                       source object, sending the notification. This is
-     *                       either an
-     *                       ObjectName or a RelationService object. In the
-     *                       latter case it
-     *                       must be the MBean emitting the notification; the
-     *                       MBean Server
-     *                       will rewrite the source to be the ObjectName under
-     *                       which that
-     *                       MBean is registered.
+     *        source object, sending the notification. This is
+     *        either an
+     *        ObjectName or a RelationService object. In the
+     *        latter case it
+     *        must be the MBean emitting the notification; the
+     *        MBean Server
+     *        will rewrite the source to be the ObjectName under
+     *        which that
+     *        MBean is registered.
      * @param sequence
-     *                       sequence number to identify the notification
+     *        sequence number to identify the notification
      * @param timeStamp
-     *                       time stamp
+     *        time stamp
      * @param message
-     *                       human-readable message describing the notification
+     *        human-readable message describing the notification
      * @param id
-     *                       relation id identifying the relation in the
-     *                       Relation Service
+     *        relation id identifying the relation in the
+     *        Relation Service
      * @param typeName
-     *                       name of the relation type
+     *        name of the relation type
      * @param objectName
-     *                       ObjectName of the relation object if it is an MBean
-     *                       (null for
-     *                       relations internally handled by the Relation
-     *                       Service)
+     *        ObjectName of the relation object if it is an MBean
+     *        (null for
+     *        relations internally handled by the Relation
+     *        Service)
      * @param unregMBeanList
-     *                       list of ObjectNames of referenced MBeans expected
-     *                       to be
-     *                       unregistered due to relation removal (only for
-     *                       removal, due to
-     *                       CIM qualifiers, can be null)
-     *
+     *        list of ObjectNames of referenced MBeans expected
+     *        to be
+     *        unregistered due to relation removal (only for
+     *        removal, due to
+     *        CIM qualifiers, can be null)
      * @exception IllegalArgumentException
-     *                                     if:
-     *                                     <P>
-     *                                     - no value for the notification type
-     *                                     <P>
-     *                                     - the notification type is not
-     *                                     RELATION_BASIC_CREATION,
-     *                                     RELATION_MBEAN_CREATION,
-     *                                     RELATION_BASIC_REMOVAL or
-     *                                     RELATION_MBEAN_REMOVAL
-     *                                     <P>
-     *                                     - no source object
-     *                                     <P>
-     *                                     - the source object is not a Relation
-     *                                     Service
-     *                                     <P>
-     *                                     - no relation id
-     *                                     <P>
-     *                                     - no relation type name
+     *            if:
+     *            <P>
+     *            - no value for the notification type
+     *            <P>
+     *            - the notification type is not
+     *            RELATION_BASIC_CREATION,
+     *            RELATION_MBEAN_CREATION,
+     *            RELATION_BASIC_REMOVAL or
+     *            RELATION_MBEAN_REMOVAL
+     *            <P>
+     *            - no source object
+     *            <P>
+     *            - the source object is not a Relation
+     *            Service
+     *            <P>
+     *            - no relation id
+     *            <P>
+     *            - no relation type name
      */
-    public RelationNotification(String notifType, Object sourceObj,
-            long sequence, long timeStamp, String message, String id,
-            String typeName, ObjectName objectName,
+    public RelationNotification(String notifType, Object sourceObj, long sequence, long timeStamp,
+            String message, String id, String typeName, ObjectName objectName,
             List<ObjectName> unregMBeanList) throws IllegalArgumentException {
 
         super(notifType, sourceObj, sequence, timeStamp, message);
 
-        if (!isValidBasicStrict(notifType, sourceObj, id, typeName)
-                || !isValidCreate(notifType)) {
+        if (!isValidBasicStrict(notifType, sourceObj, id, typeName) || !isValidCreate(notifType)) {
             throw new IllegalArgumentException("Invalid parameter.");
         }
 
@@ -287,56 +279,53 @@ public class RelationNotification extends Notification {
      * Creates a notification for a role update in a relation.
      *
      * @param notifType
-     *                   type of the notification; either:
-     *                   <P>
-     *                   - RELATION_BASIC_UPDATE
-     *                   <P>
-     *                   - RELATION_MBEAN_UPDATE
+     *        type of the notification; either:
+     *        <P>
+     *        - RELATION_BASIC_UPDATE
+     *        <P>
+     *        - RELATION_MBEAN_UPDATE
      * @param sourceObj
-     *                   source object, sending the notification. This is either
-     *                   an
-     *                   ObjectName or a RelationService object. In the latter
-     *                   case it
-     *                   must be the MBean emitting the notification; the MBean
-     *                   Server
-     *                   will rewrite the source to be the ObjectName under
-     *                   which that
-     *                   MBean is registered.
+     *        source object, sending the notification. This is either
+     *        an
+     *        ObjectName or a RelationService object. In the latter
+     *        case it
+     *        must be the MBean emitting the notification; the MBean
+     *        Server
+     *        will rewrite the source to be the ObjectName under
+     *        which that
+     *        MBean is registered.
      * @param sequence
-     *                   sequence number to identify the notification
+     *        sequence number to identify the notification
      * @param timeStamp
-     *                   time stamp
+     *        time stamp
      * @param message
-     *                   human-readable message describing the notification
+     *        human-readable message describing the notification
      * @param id
-     *                   relation id identifying the relation in the Relation
-     *                   Service
+     *        relation id identifying the relation in the Relation
+     *        Service
      * @param typeName
-     *                   name of the relation type
+     *        name of the relation type
      * @param objectName
-     *                   ObjectName of the relation object if it is an MBean
-     *                   (null for
-     *                   relations internally handled by the Relation Service)
+     *        ObjectName of the relation object if it is an MBean
+     *        (null for
+     *        relations internally handled by the Relation Service)
      * @param name
-     *                   name of the updated role
+     *        name of the updated role
      * @param newValue
-     *                   new role value (List of ObjectName objects)
+     *        new role value (List of ObjectName objects)
      * @param oldValue
-     *                   old role value (List of ObjectName objects)
-     *
+     *        old role value (List of ObjectName objects)
      * @exception IllegalArgumentException
-     *                                     if null parameter
+     *            if null parameter
      */
-    public RelationNotification(String notifType, Object sourceObj,
-            long sequence, long timeStamp, String message, String id,
-            String typeName, ObjectName objectName, String name,
-            List<ObjectName> newValue, List<ObjectName> oldValue)
-            throws IllegalArgumentException {
+    public RelationNotification(String notifType, Object sourceObj, long sequence, long timeStamp,
+            String message, String id, String typeName, ObjectName objectName, String name,
+            List<ObjectName> newValue, List<ObjectName> oldValue) throws IllegalArgumentException {
 
         super(notifType, sourceObj, sequence, timeStamp, message);
 
-        if (!isValidBasicStrict(notifType, sourceObj, id, typeName)
-                || !isValidUpdate(notifType, name, newValue, oldValue)) {
+        if (!isValidBasicStrict(notifType, sourceObj, id, typeName) || !isValidUpdate(notifType, name,
+                newValue, oldValue)) {
             throw new IllegalArgumentException("Invalid parameter.");
         }
 
@@ -490,16 +479,14 @@ public class RelationNotification extends Notification {
     // So we should relax validation rules to preserve serialization behavior
     // compatibility.
 
-    private boolean isValidBasicStrict(String notifType, Object sourceObj,
-            String id, String typeName) {
+    private boolean isValidBasicStrict(String notifType, Object sourceObj, String id, String typeName) {
         if (sourceObj == null) {
             return false;
         }
         return isValidBasic(notifType, sourceObj, id, typeName);
     }
 
-    private boolean isValidBasic(String notifType, Object sourceObj, String id,
-            String typeName) {
+    private boolean isValidBasic(String notifType, Object sourceObj, String id, String typeName) {
         if (notifType == null || id == null || typeName == null) {
             return false;
         }
@@ -514,20 +501,18 @@ public class RelationNotification extends Notification {
 
     private boolean isValidCreate(String notifType) {
         String[] validTypes = { RelationNotification.RELATION_BASIC_CREATION,
-                RelationNotification.RELATION_MBEAN_CREATION,
-                RelationNotification.RELATION_BASIC_REMOVAL,
+                RelationNotification.RELATION_MBEAN_CREATION, RelationNotification.RELATION_BASIC_REMOVAL,
                 RelationNotification.RELATION_MBEAN_REMOVAL };
 
         Set<String> ctSet = new HashSet<String>(Arrays.asList(validTypes));
         return ctSet.contains(notifType);
     }
 
-    private boolean isValidUpdate(String notifType, String name,
-            List<ObjectName> newValue, List<ObjectName> oldValue) {
+    private boolean isValidUpdate(String notifType, String name, List<ObjectName> newValue,
+            List<ObjectName> oldValue) {
 
-        if (!(notifType.equals(RelationNotification.RELATION_BASIC_UPDATE))
-                && !(notifType.equals(
-                        RelationNotification.RELATION_MBEAN_UPDATE))) {
+        if (!(notifType.equals(RelationNotification.RELATION_BASIC_UPDATE)) && !(notifType.equals(
+                RelationNotification.RELATION_MBEAN_UPDATE))) {
             return false;
         }
 
@@ -562,8 +547,7 @@ public class RelationNotification extends Notification {
      * Deserializes a {@link RelationNotification} from an
      * {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
 
         String tmpRelationId, tmpRelationTypeName, tmpRoleName;
 
@@ -586,8 +570,7 @@ public class RelationNotification extends Notification {
             tmpRelationTypeName = (String) fields.get("relationTypeName", null);
             tmpRoleName = (String) fields.get("roleName", null);
 
-            tmpRelationObjName = (ObjectName) fields.get("relationObjName",
-                    null);
+            tmpRelationObjName = (ObjectName) fields.get("relationObjName", null);
             tmpNewRoleValue = cast(fields.get("newRoleValue", null));
             tmpOldRoleValue = cast(fields.get("oldRoleValue", null));
             tmpUnregMBeanList = cast(fields.get("unregisterMBeanList", null));
@@ -597,10 +580,9 @@ public class RelationNotification extends Notification {
         // if something goes wrong
 
         String notifType = super.getType();
-        if (!isValidBasic(notifType, super.getSource(), tmpRelationId,
-                tmpRelationTypeName) || (!isValidCreate(notifType)
-                        && !isValidUpdate(notifType, tmpRoleName,
-                                tmpNewRoleValue, tmpOldRoleValue))) {
+        if (!isValidBasic(notifType, super.getSource(), tmpRelationId, tmpRelationTypeName)
+                || (!isValidCreate(notifType) && !isValidUpdate(notifType, tmpRoleName, tmpNewRoleValue,
+                        tmpOldRoleValue))) {
 
             super.setSource(null);
             throw new InvalidObjectException("Invalid object read");

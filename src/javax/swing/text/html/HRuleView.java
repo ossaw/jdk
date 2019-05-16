@@ -22,7 +22,7 @@ class HRuleView extends View {
      * Creates a new view that represents an &lt;hr&gt; element.
      *
      * @param elem
-     *             the element to create a view for
+     *        the element to create a view for
      */
     public HRuleView(Element elem) {
         super(elem);
@@ -87,22 +87,20 @@ class HRuleView extends View {
      * Paints the view.
      *
      * @param g
-     *          the graphics context
+     *        the graphics context
      * @param a
-     *          the allocation region for the view
+     *        the allocation region for the view
      * @see View#paint
      */
     public void paint(Graphics g, Shape a) {
-        Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a
-                : a.getBounds();
+        Rectangle alloc = (a instanceof Rectangle) ? (Rectangle) a : a.getBounds();
         int x = 0;
         int y = alloc.y + SPACE_ABOVE + (int) topMargin;
         int width = alloc.width - (int) (leftMargin + rightMargin);
         if (widthValue != null) {
             width = (int) widthValue.getValue((float) width);
         }
-        int height = alloc.height - (SPACE_ABOVE + SPACE_BELOW + (int) topMargin
-                + (int) bottomMargin);
+        int height = alloc.height - (SPACE_ABOVE + SPACE_BELOW + (int) topMargin + (int) bottomMargin);
         if (size > 0)
             height = size;
 
@@ -149,7 +147,7 @@ class HRuleView extends View {
      * preferred size of the border.
      *
      * @param axis
-     *             may be either X_AXIS or Y_AXIS
+     *        may be either X_AXIS or Y_AXIS
      * @return the desired span
      * @see View#getPreferredSpan
      */
@@ -159,15 +157,12 @@ class HRuleView extends View {
                 return 1;
             case View.Y_AXIS:
                 if (size > 0) {
-                    return size + SPACE_ABOVE + SPACE_BELOW + topMargin
-                            + bottomMargin;
+                    return size + SPACE_ABOVE + SPACE_BELOW + topMargin + bottomMargin;
                 } else {
                     if (noshade != null) {
-                        return 2 + SPACE_ABOVE + SPACE_BELOW + topMargin
-                                + bottomMargin;
+                        return 2 + SPACE_ABOVE + SPACE_BELOW + topMargin + bottomMargin;
                     } else {
-                        return SPACE_ABOVE + SPACE_BELOW + topMargin
-                                + bottomMargin;
+                        return SPACE_ABOVE + SPACE_BELOW + topMargin + bottomMargin;
                     }
                 }
             default:
@@ -180,7 +175,7 @@ class HRuleView extends View {
      * flexible horizontally.
      *
      * @param axis
-     *             may be either X_AXIS or Y_AXIS
+     *        may be either X_AXIS or Y_AXIS
      * @return the weight
      */
     public int getResizeWeight(int axis) {
@@ -198,15 +193,15 @@ class HRuleView extends View {
      * implemented to request a forced break.
      *
      * @param axis
-     *             may be either View.X_AXIS or View.Y_AXIS
+     *        may be either View.X_AXIS or View.Y_AXIS
      * @param pos
-     *             the potential location of the start of the broken view
-     *             (greater than or equal to zero). This may be useful for
-     *             calculating tab positions.
+     *        the potential location of the start of the broken view
+     *        (greater than or equal to zero). This may be useful for
+     *        calculating tab positions.
      * @param len
-     *             specifies the relative length from <em>pos</em> where a
-     *             potential break is desired. The value must be greater than or
-     *             equal to zero.
+     *        specifies the relative length from <em>pos</em> where a
+     *        potential break is desired. The value must be greater than or
+     *        equal to zero.
      * @return the weight, which should be a value between ForcedBreakWeight and
      *         BadBreakWeight.
      */
@@ -226,18 +221,17 @@ class HRuleView extends View {
      * coordinate space of the view mapped to it.
      *
      * @param pos
-     *            the position to convert
+     *        the position to convert
      * @param a
-     *            the allocated region to render into
+     *        the allocated region to render into
      * @return the bounding box of the given position
      * @exception BadLocationException
-     *                                 if the given position does not represent
-     *                                 a valid location
-     *                                 in the associated document
+     *            if the given position does not represent
+     *            a valid location
+     *            in the associated document
      * @see View#modelToView
      */
-    public Shape modelToView(int pos, Shape a, Position.Bias b)
-            throws BadLocationException {
+    public Shape modelToView(int pos, Shape a, Position.Bias b) throws BadLocationException {
         int p0 = getStartOffset();
         int p1 = getEndOffset();
         if ((pos >= p0) && (pos <= p1)) {
@@ -256,11 +250,11 @@ class HRuleView extends View {
      * coordinate space of the model.
      *
      * @param x
-     *          the X coordinate
+     *        the X coordinate
      * @param y
-     *          the Y coordinate
+     *        the Y coordinate
      * @param a
-     *          the allocated region to render into
+     *        the allocated region to render into
      * @return the location within the model that best represents the given
      *         point of view
      * @see View#viewToModel
@@ -286,8 +280,7 @@ class HRuleView extends View {
     public void changedUpdate(DocumentEvent changes, Shape a, ViewFactory f) {
         super.changedUpdate(changes, a, f);
         int pos = changes.getOffset();
-        if (pos <= getStartOffset() && (pos + changes
-                .getLength()) >= getEndOffset()) {
+        if (pos <= getStartOffset() && (pos + changes.getLength()) >= getEndOffset()) {
             setPropertiesFromAttributes();
         }
     }

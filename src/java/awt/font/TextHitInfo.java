@@ -74,10 +74,10 @@ public final class TextHitInfo {
      * Constructs a new <code>TextHitInfo</code>.
      * 
      * @param charIndex
-     *                      the index of the character hit
+     *        the index of the character hit
      * @param isLeadingEdge
-     *                      <code>true</code> if the leading edge of the
-     *                      character was hit
+     *        <code>true</code> if the leading edge of the
+     *        character was hit
      */
     private TextHitInfo(int charIndex, boolean isLeadingEdge) {
         this.charIndex = charIndex;
@@ -129,7 +129,7 @@ public final class TextHitInfo {
      * <code>TextHitInfo</code> and equals this <code>TextHitInfo</code>.
      * 
      * @param obj
-     *            the <code>Object</code> to test for equality
+     *        the <code>Object</code> to test for equality
      * @return <code>true</code> if the specified <code>Object</code> equals
      *         this <code>TextHitInfo</code>; <code>false</code> otherwise.
      */
@@ -144,14 +144,13 @@ public final class TextHitInfo {
      * insertion offset.
      * 
      * @param hitInfo
-     *                a specified <code>TextHitInfo</code>
+     *        a specified <code>TextHitInfo</code>
      * @return <code>true</code> if the specified <code>TextHitInfo</code> has
      *         the same <code>charIndex</code> and <code>isLeadingEdge</code> as
      *         this <code>TextHitInfo</code>.
      */
     public boolean equals(TextHitInfo hitInfo) {
-        return hitInfo != null && charIndex == hitInfo.charIndex
-                && isLeadingEdge == hitInfo.isLeadingEdge;
+        return hitInfo != null && charIndex == hitInfo.charIndex && isLeadingEdge == hitInfo.isLeadingEdge;
     }
 
     /**
@@ -169,7 +168,7 @@ public final class TextHitInfo {
      * at the specified <code>charIndex</code>.
      * 
      * @param charIndex
-     *                  the index of the character hit
+     *        the index of the character hit
      * @return a <code>TextHitInfo</code> on the leading edge of the character
      *         at the specified <code>charIndex</code>.
      */
@@ -182,7 +181,7 @@ public final class TextHitInfo {
      * <code>charIndex</code>.
      * 
      * @param charIndex
-     *                  the index of the character hit
+     *        the index of the character hit
      * @return a <code>TextHitInfo</code> on the trailing edge of the character
      *         at the specified <code>charIndex</code>.
      */
@@ -195,7 +194,7 @@ public final class TextHitInfo {
      * with the character before the offset.
      * 
      * @param offset
-     *               an offset associated with the character before the offset
+     *        an offset associated with the character before the offset
      * @return a <code>TextHitInfo</code> at the specified offset.
      */
     public static TextHitInfo beforeOffset(int offset) {
@@ -207,7 +206,7 @@ public final class TextHitInfo {
      * with the character after the offset.
      * 
      * @param offset
-     *               an offset associated with the character after the offset
+     *        an offset associated with the character after the offset
      * @return a <code>TextHitInfo</code> at the specified offset.
      */
     public static TextHitInfo afterOffset(int offset) {
@@ -236,7 +235,7 @@ public final class TextHitInfo {
      * unchanged.
      * 
      * @param delta
-     *              the value to offset this <code>charIndex</code>
+     *        the value to offset this <code>charIndex</code>
      * @return a <code>TextHitInfo</code> whose <code>charIndex</code> is offset
      *         by <code>delta</code> from the <code>charIndex</code> of this
      *         <code>TextHitInfo</code>.

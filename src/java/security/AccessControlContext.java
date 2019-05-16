@@ -13,7 +13,6 @@ import sun.security.util.SecurityConstants;
 /**
  * An AccessControlContext is used to make system resource access decisions
  * based on the context it encapsulates.
- *
  * <p>
  * More specifically, it encapsulates a context and has a single method,
  * {@code checkPermission}, that is equivalent to the {@code checkPermission}
@@ -21,13 +20,11 @@ import sun.security.util.SecurityConstants;
  * AccessControlContext {@code checkPermission} method makes access decisions
  * based on the context it encapsulates, rather than that of the current
  * execution thread.
- *
  * <p>
  * Thus, the purpose of AccessControlContext is for those situations where a
  * security check that should be made within a given context actually needs to
  * be done from within a <i>different</i> context (for example, from within a
  * worker thread).
- *
  * <p>
  * An AccessControlContext is created by calling the
  * {@code AccessController.getContext} method. The {@code getContext} method
@@ -38,7 +35,6 @@ import sun.security.util.SecurityConstants;
  * <pre>
  *   AccessControlContext acc = AccessController.getContext()
  * </pre>
- *
  * <p>
  * Code within a different context can subsequently call the
  * {@code checkPermission} method on the previously-saved AccessControlContext
@@ -49,7 +45,6 @@ import sun.security.util.SecurityConstants;
  * </pre>
  *
  * @see AccessController
- *
  * @author Roland Schemers
  */
 
@@ -97,13 +92,13 @@ public final class AccessControlContext {
      * context.
      *
      * @param context
-     *                the ProtectionDomains associated with this context. The
-     *                non-duplicate domains are copied from the array.
-     *                Subsequent
-     *                changes to the array will not affect this
-     *                AccessControlContext.
+     *        the ProtectionDomains associated with this context. The
+     *        non-duplicate domains are copied from the array.
+     *        Subsequent
+     *        changes to the array will not affect this
+     *        AccessControlContext.
      * @throws NullPointerException
-     *                              if {@code context} is {@code null}
+     *         if {@code context} is {@code null}
      */
     public AccessControlContext(ProtectionDomain context[]) {
         if (context.length == 0) {
@@ -132,32 +127,27 @@ public final class AccessControlContext {
      * {@code AccessControlContext} and {@code DomainCombiner}. This constructor
      * associates the provided {@code DomainCombiner} with the provided
      * {@code AccessControlContext}.
-     *
      * <p>
      *
      * @param acc
-     *                 the {@code AccessControlContext} associated with the
-     *                 provided
-     *                 {@code DomainCombiner}.
-     *
+     *        the {@code AccessControlContext} associated with the
+     *        provided
+     *        {@code DomainCombiner}.
      * @param combiner
-     *                 the {@code DomainCombiner} to be associated with the
-     *                 provided
-     *                 {@code AccessControlContext}.
-     *
+     *        the {@code DomainCombiner} to be associated with the
+     *        provided
+     *        {@code AccessControlContext}.
      * @exception NullPointerException
-     *                                 if the provided {@code context} is
-     *                                 {@code null}.
-     *
+     *            if the provided {@code context} is
+     *            {@code null}.
      * @exception SecurityException
-     *                                 if a security manager is installed and
-     *                                 the caller does not
-     *                                 have the "createAccessControlContext"
-     *                                 {@link SecurityPermission}
+     *            if a security manager is installed and
+     *            the caller does not
+     *            have the "createAccessControlContext"
+     *            {@link SecurityPermission}
      * @since 1.3
      */
-    public AccessControlContext(AccessControlContext acc,
-            DomainCombiner combiner) {
+    public AccessControlContext(AccessControlContext acc, DomainCombiner combiner) {
 
         this(acc, combiner, false);
     }
@@ -167,8 +157,7 @@ public final class AccessControlContext {
      * the security check for
      * {@linkplain SecurityConstants.CREATE_ACC_PERMISSION} permission
      */
-    AccessControlContext(AccessControlContext acc, DomainCombiner combiner,
-            boolean preauthorized) {
+    AccessControlContext(AccessControlContext acc, DomainCombiner combiner, boolean preauthorized) {
         if (!preauthorized) {
             SecurityManager sm = System.getSecurityManager();
             if (sm != null) {
@@ -192,13 +181,11 @@ public final class AccessControlContext {
 
     /**
      * package private for AccessController
-     *
      * This "argument wrapper" context will be passed as the actual context
      * parameter on an internal doPrivileged() call used in the implementation.
      */
-    AccessControlContext(ProtectionDomain caller, DomainCombiner combiner,
-            AccessControlContext parent, AccessControlContext context,
-            Permission[] perms) {
+    AccessControlContext(ProtectionDomain caller, DomainCombiner combiner, AccessControlContext parent,
+            AccessControlContext context, Permission[] perms) {
         /*
          * Combine the domains from the doPrivileged() context into our wrapper
          * context, if necessary.
@@ -253,8 +240,7 @@ public final class AccessControlContext {
          * limiting permissions implied a requested permission.
          */
         if (parent != null) {
-            this.limitedContext = combine(parent.context,
-                    parent.limitedContext);
+            this.limitedContext = combine(parent.context, parent.limitedContext);
             this.isLimited = true;
             this.isWrapped = true;
             this.permissions = tmp;
@@ -277,8 +263,7 @@ public final class AccessControlContext {
     /**
      * Constructor for JavaSecurityAccess.doIntersectionPrivilege()
      */
-    AccessControlContext(ProtectionDomain[] context,
-            AccessControlContext privilegedContext) {
+    AccessControlContext(ProtectionDomain[] context, AccessControlContext privilegedContext) {
         this.context = context;
         this.privilegedContext = privilegedContext;
         this.isPrivileged = true;
@@ -317,17 +302,15 @@ public final class AccessControlContext {
     /**
      * Get the {@code DomainCombiner} associated with this
      * {@code AccessControlContext}.
-     *
      * <p>
      *
      * @return the {@code DomainCombiner} associated with this
      *         {@code AccessControlContext}, or {@code null} if there is none.
-     *
      * @exception SecurityException
-     *                              if a security manager is installed and the
-     *                              caller does not
-     *                              have the "getDomainCombiner"
-     *                              {@link SecurityPermission}
+     *            if a security manager is installed and the
+     *            caller does not
+     *            have the "getDomainCombiner"
+     *            {@link SecurityPermission}
      * @since 1.3
      */
     public DomainCombiner getDomainCombiner() {
@@ -356,22 +339,20 @@ public final class AccessControlContext {
      * currently in effect, and the context in this object. The request is
      * allowed only if every ProtectionDomain in the context implies the
      * permission. Otherwise the request is denied.
-     *
      * <p>
      * This method quietly returns if the access request is permitted, or throws
      * a suitable AccessControlException otherwise.
      *
      * @param perm
-     *             the requested permission.
-     *
+     *        the requested permission.
      * @exception AccessControlException
-     *                                   if the specified permission is not
-     *                                   permitted, based on the
-     *                                   current security policy and the context
-     *                                   encapsulated by
-     *                                   this object.
+     *            if the specified permission is not
+     *            permitted, based on the
+     *            current security policy and the context
+     *            encapsulated by
+     *            this object.
      * @exception NullPointerException
-     *                                   if the permission to check for is null.
+     *            if the permission to check for is null.
      */
     public void checkPermission(Permission perm) throws AccessControlException {
         boolean dumpDebug = false;
@@ -386,19 +367,17 @@ public final class AccessControlContext {
                 // If "codebase" is specified, only dump if the specified code
                 // value is in the stack.
                 for (int i = 0; context != null && i < context.length; i++) {
-                    if (context[i].getCodeSource() != null && context[i]
-                            .getCodeSource().getLocation() != null && Debug
-                                    .isOn("codebase=" + context[i]
-                                            .getCodeSource().getLocation()
-                                            .toString())) {
+                    if (context[i].getCodeSource() != null && context[i].getCodeSource().getLocation() != null
+                            && Debug.isOn("codebase=" + context[i].getCodeSource().getLocation()
+                                    .toString())) {
                         dumpDebug = true;
                         break;
                     }
                 }
             }
 
-            dumpDebug &= !Debug.isOn("permission=") || Debug.isOn("permission="
-                    + perm.getClass().getCanonicalName());
+            dumpDebug &= !Debug.isOn("permission=") || Debug.isOn("permission=" + perm.getClass()
+                    .getCanonicalName());
 
             if (dumpDebug && Debug.isOn("stack")) {
                 Thread.dumpStack();
@@ -579,8 +558,7 @@ public final class AccessControlContext {
 
         // if there is no enclosing limited privilege scope on the stack or
         // inherited from a parent thread
-        boolean skipLimited = ((acc == null || !acc.isWrapped)
-                && parent == null);
+        boolean skipLimited = ((acc == null || !acc.isWrapped) && parent == null);
 
         if (acc != null && acc.combiner != null) {
             // let the assigned acc's combiner do its thing
@@ -632,8 +610,7 @@ public final class AccessControlContext {
     /*
      * Combine the current (stack) and assigned domains.
      */
-    private static ProtectionDomain[] combine(ProtectionDomain[] current,
-            ProtectionDomain[] assigned) {
+    private static ProtectionDomain[] combine(ProtectionDomain[] current, ProtectionDomain[] assigned) {
 
         // current could be null if only system code is on the stack;
         // in that case, ignore the stack context
@@ -663,7 +640,8 @@ public final class AccessControlContext {
         }
 
         // now add the stack context domains, discarding nulls and duplicates
-        outer: for (int i = 0; i < slen; i++) {
+        outer:
+        for (int i = 0; i < slen; i++) {
             ProtectionDomain sd = current[i];
             if (sd != null) {
                 for (int j = 0; j < n; j++) {
@@ -698,8 +676,8 @@ public final class AccessControlContext {
      * contained in this domain context (in which case any limited privilege
      * scope checking would be redundant).
      */
-    private void calculateFields(AccessControlContext assigned,
-            AccessControlContext parent, Permission[] permissions) {
+    private void calculateFields(AccessControlContext assigned, AccessControlContext parent,
+            Permission[] permissions) {
         ProtectionDomain[] parentLimit = null;
         ProtectionDomain[] assignedLimit = null;
         ProtectionDomain[] newLimit;
@@ -724,7 +702,7 @@ public final class AccessControlContext {
      * <P>
      * 
      * @param obj
-     *            the object we are testing for equality with this object.
+     *        the object we are testing for equality with this object.
      * @return true if <i>obj</i> is an AccessControlContext, and has the same
      *         set of ProtectionDomains as this context, false otherwise.
      */
@@ -804,8 +782,7 @@ public final class AccessControlContext {
          * only makes any sense to compare if they both have the same isWrapped
          * state.
          */
-        if ((this.isWrapped && !that.isWrapped) || (!this.isWrapped
-                && that.isWrapped)) {
+        if ((this.isWrapped && !that.isWrapped) || (!this.isWrapped && that.isWrapped)) {
             return false;
         }
 
@@ -858,8 +835,7 @@ public final class AccessControlContext {
         return null;
     }
 
-    private static boolean containsAllPDs(ProtectionDomain[] thisContext,
-            ProtectionDomain[] thatContext) {
+    private static boolean containsAllPDs(ProtectionDomain[] thisContext, ProtectionDomain[] thatContext) {
         boolean match = false;
 
         //
@@ -882,8 +858,7 @@ public final class AccessControlContext {
                     thatPd = thatContext[j];
 
                     // Class check required to avoid PD exposure (4285406)
-                    match = (thatPd != null && thisPdClass == thatPd.getClass()
-                            && thisPd.equals(thatPd));
+                    match = (thatPd != null && thisPdClass == thatPd.getClass() && thisPd.equals(thatPd));
                 }
             }
             if (!match)
@@ -905,8 +880,7 @@ public final class AccessControlContext {
             match = false;
             for (int j = 0; (j < that.permissions.length) && !match; j++) {
                 Permission perm = that.permissions[j];
-                match = (limitClass.equals(perm.getClass()) && limit.equals(
-                        perm));
+                match = (limitClass.equals(perm.getClass()) && limit.equals(perm));
             }
             if (!match)
                 return false;

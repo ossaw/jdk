@@ -7,13 +7,11 @@ package javax.lang.model.element;
 
 /**
  * Represents a modifier on a program element such as a class, method, or field.
- *
  * <p>
  * Not all modifiers are applicable to all kinds of elements. When two or more
  * modifiers appear in the source code of an element then it is customary,
  * though not required, that they appear in the same order as the constants
  * listed in the detail section below.
- *
  * <p>
  * Note that it is possible additional modifiers will be added in future
  * versions of the platform.

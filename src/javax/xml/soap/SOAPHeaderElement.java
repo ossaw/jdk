@@ -24,12 +24,10 @@ public interface SOAPHeaderElement extends SOAPElement {
      * is equivalent to {@link #setRole(String)}
      *
      * @param actorURI
-     *                 a <code>String</code> giving the URI of the actor to set
-     *
+     *        a <code>String</code> giving the URI of the actor to set
      * @exception IllegalArgumentException
-     *                                     if there is a problem in setting the
-     *                                     actor.
-     *
+     *            if there is a problem in setting the
+     *            actor.
      * @see #getActor
      */
     public void setActor(String actorURI);
@@ -39,16 +37,13 @@ public interface SOAPHeaderElement extends SOAPElement {
      * <code>SOAPHeaderElement</code> object to the specified <code>Role</code>.
      *
      * @param uri
-     *            - the URI of the <code>Role</code>
-     *
+     *        - the URI of the <code>Role</code>
      * @throws SOAPException
-     *                       if there is an error in setting the role
-     *
+     *         if there is an error in setting the role
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Role.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Role.
      * @since SAAJ 1.3
      */
     public void setRole(String uri) throws SOAPException;
@@ -70,12 +65,10 @@ public interface SOAPHeaderElement extends SOAPElement {
      * <code>SOAPHeaderElement</code>.
      *
      * @return a <code>String</code> giving the URI of the <code>Role</code>
-     *
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Fault Role.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Fault Role.
      * @since SAAJ 1.3
      */
     public String getRole();
@@ -90,14 +83,13 @@ public interface SOAPHeaderElement extends SOAPElement {
      * the message, that the message is being modified correctly.
      *
      * @param mustUnderstand
-     *                       <code>true</code> to set the mustUnderstand
-     *                       attribute to true;
-     *                       <code>false</code> to set it to false
-     *
+     *        <code>true</code> to set the mustUnderstand
+     *        attribute to true;
+     *        <code>false</code> to set it to false
      * @exception IllegalArgumentException
-     *                                     if there is a problem in setting the
-     *                                     mustUnderstand
-     *                                     attribute
+     *            if there is a problem in setting the
+     *            mustUnderstand
+     *            attribute
      * @see #getMustUnderstand
      * @see #setRelay
      */
@@ -125,19 +117,16 @@ public interface SOAPHeaderElement extends SOAPElement {
      * attribute is <code>false</code>.
      *
      * @param relay
-     *              the new value of the <i>relay</i> attribute
-     *
+     *        the new value of the <i>relay</i> attribute
      * @exception SOAPException
-     *                                          if there is a problem in setting
-     *                                          the relay attribute.
+     *            if there is a problem in setting
+     *            the relay attribute.
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Relay attribute.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Relay attribute.
      * @see #setMustUnderstand
      * @see #getRelay
-     *
      * @since SAAJ 1.3
      */
     public void setRelay(boolean relay) throws SOAPException;
@@ -148,15 +137,12 @@ public interface SOAPHeaderElement extends SOAPElement {
      *
      * @return <code>true</code> if the relay attribute is turned on;
      *         <code>false</code> otherwise
-     *
      * @exception UnsupportedOperationException
-     *                                          if this message does not support
-     *                                          the SOAP 1.2 concept of
-     *                                          Relay attribute.
-     *
+     *            if this message does not support
+     *            the SOAP 1.2 concept of
+     *            Relay attribute.
      * @see #getMustUnderstand
      * @see #setRelay
-     *
      * @since SAAJ 1.3
      */
     public boolean getRelay();

@@ -14,8 +14,7 @@ public class OrderClassLoaders extends ClassLoader {
         this.cl2 = cl2;
     }
 
-    protected Class<?> loadClass(String name, boolean resolve)
-            throws ClassNotFoundException {
+    protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         ReflectUtil.checkPackageAccess(name);
         try {
             return super.loadClass(name, resolve);

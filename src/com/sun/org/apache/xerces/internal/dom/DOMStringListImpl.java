@@ -23,11 +23,9 @@ import org.w3c.dom.DOMStringList;
 
 /**
  * DOM Level 3
- *
  * This class implements the DOM Level 3 Core interface DOMStringList.
  *
  * @xerces.internal
- *
  * @author Neil Delima, IBM
  */
 public class DOMStringListImpl implements DOMStringList {
@@ -78,7 +76,7 @@ public class DOMStringListImpl implements DOMStringList {
      * DOM Internal: Add a <code>DOMString</code> to the list.
      *
      * @param domString
-     *                  A string to add to the list
+     *        A string to add to the list
      */
     public void add(String param) {
         fStrings.add(param);

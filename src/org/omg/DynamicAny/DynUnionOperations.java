@@ -19,8 +19,7 @@ package org.omg.DynamicAny;
  * it is 2 for a union whose discriminator indicates a named member, and 1
  * otherwise.
  */
-public interface DynUnionOperations extends
-        org.omg.DynamicAny.DynAnyOperations {
+public interface DynUnionOperations extends org.omg.DynamicAny.DynAnyOperations {
 
     /**
      * Returns the current discriminator value.
@@ -42,12 +41,11 @@ public interface DynUnionOperations extends
      * returns false and component_count returns 2 in this case).
      *
      * @exception TypeMismatch
-     *                         if the TypeCode of the parameter is not
-     *                         equivalent to the
-     *                         TypeCode of the union's discriminator
+     *            if the TypeCode of the parameter is not
+     *            equivalent to the
+     *            TypeCode of the union's discriminator
      */
-    void set_discriminator(org.omg.DynamicAny.DynAny d)
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
+    void set_discriminator(org.omg.DynamicAny.DynAny d) throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
 
     /**
      * Sets the discriminator to a value that is consistent with the value of
@@ -55,11 +53,10 @@ public interface DynUnionOperations extends
      * causes component_count to return 2.
      *
      * @exception TypeMismatch
-     *                         if the union does not have an explicit default
-     *                         case
+     *            if the union does not have an explicit default
+     *            case
      */
-    void set_to_default_member()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
+    void set_to_default_member() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
 
     /**
      * Sets the discriminator to a value that does not correspond to any of the
@@ -67,14 +64,13 @@ public interface DynUnionOperations extends
      * component_count to return 1.
      *
      * @exception TypeMismatch
-     *                         if the union has an explicit default case or if
-     *                         it uses
-     *                         the entire range of discriminator values for
-     *                         explicit case
-     *                         labels
+     *            if the union has an explicit default case or if
+     *            it uses
+     *            the entire range of discriminator values for
+     *            explicit case
+     *            labels
      */
-    void set_to_no_active_member()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
+    void set_to_no_active_member() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch;
 
     /**
      * Returns true if the union has no active member, that is, the unions value
@@ -95,11 +91,10 @@ public interface DynUnionOperations extends
      * Returns the TCKind value of the currently active members TypeCode.
      *
      * @exception InvalidValue
-     *                         if the union does not have a currently active
-     *                         member
+     *            if the union does not have a currently active
+     *            member
      */
-    org.omg.CORBA.TCKind member_kind()
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
+    org.omg.CORBA.TCKind member_kind() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Returns the currently active member. Note that the returned reference
@@ -108,10 +103,9 @@ public interface DynUnionOperations extends
      * currently active member raises OBJECT_NOT_EXIST.
      *
      * @exception InvalidValue
-     *                         if the union has no active member
+     *            if the union has no active member
      */
-    org.omg.DynamicAny.DynAny member()
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
+    org.omg.DynamicAny.DynAny member() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 
     /**
      * Returns the name of the currently active member. If the unions TypeCode
@@ -119,7 +113,7 @@ public interface DynUnionOperations extends
      * operation returns an empty string.
      *
      * @exception InvalidValue
-     *                         if the union has no active member
+     *            if the union has no active member
      */
     String member_name() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue;
 } // interface DynUnionOperations

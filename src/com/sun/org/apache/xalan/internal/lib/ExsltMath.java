@@ -36,7 +36,6 @@ import org.w3c.dom.NodeList;
  * Implementer page.
  *
  * @see <a href="http://www.exslt.org/">EXSLT</a>
- * 
  * @xsl.usage general
  */
 public class ExsltMath extends ExsltBase {
@@ -61,11 +60,9 @@ public class ExsltMath extends ExsltBase {
      * values of any of the nodes to a number is NaN, then NaN is returned.
      *
      * @param nl
-     *           The NodeList for the node-set to be evaluated.
-     *
+     *        The NodeList for the node-set to be evaluated.
      * @return the maximum value found, NaN if any node cannot be converted to a
      *         number.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static double max(NodeList nl) {
@@ -97,11 +94,9 @@ public class ExsltMath extends ExsltBase {
      * values of any of the nodes to a number is NaN, then NaN is returned.
      *
      * @param nl
-     *           The NodeList for the node-set to be evaluated.
-     *
+     *        The NodeList for the node-set to be evaluated.
      * @return the minimum value found, NaN if any node cannot be converted to a
      *         number.
-     *
      * @see <a href="http://www.exslt.org/">EXSLT</a>
      */
     public static double min(NodeList nl) {
@@ -136,8 +131,7 @@ public class ExsltMath extends ExsltBase {
      * non-numeric value, math:highest will return an empty node set.
      *
      * @param nl
-     *           The NodeList for the node-set to be evaluated.
-     *
+     *        The NodeList for the node-set to be evaluated.
      * @return node-set with nodes containing the maximum value found, an empty
      *         node-set if any node cannot be converted to a number.
      */
@@ -173,11 +167,9 @@ public class ExsltMath extends ExsltBase {
      * non-numeric value, math:lowest will return an empty node set.
      *
      * @param nl
-     *           The NodeList for the node-set to be evaluated.
-     *
+     *        The NodeList for the node-set to be evaluated.
      * @return node-set with nodes containing the minimum value found, an empty
      *         node-set if any node cannot be converted to a number.
-     *
      */
     public static NodeList lowest(NodeList nl) {
         double minValue = min(nl);
@@ -201,7 +193,7 @@ public class ExsltMath extends ExsltBase {
      * The math:abs function returns the absolute value of a number.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The absolute value of the number
      */
     public static double abs(double num) {
@@ -212,7 +204,7 @@ public class ExsltMath extends ExsltBase {
      * The math:acos function returns the arccosine value of a number.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The arccosine value of the number
      */
     public static double acos(double num) {
@@ -223,7 +215,7 @@ public class ExsltMath extends ExsltBase {
      * The math:asin function returns the arcsine value of a number.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The arcsine value of the number
      */
     public static double asin(double num) {
@@ -234,7 +226,7 @@ public class ExsltMath extends ExsltBase {
      * The math:atan function returns the arctangent value of a number.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The arctangent value of the number
      */
     public static double atan(double num) {
@@ -246,9 +238,9 @@ public class ExsltMath extends ExsltBase {
      * to a point (y,x).
      *
      * @param num1
-     *             The X axis value
+     *        The X axis value
      * @param num2
-     *             The Y axis value
+     *        The Y axis value
      * @return The angle (in radians) from the X axis to a point (y,x)
      */
     public static double atan2(double num1, double num2) {
@@ -259,7 +251,7 @@ public class ExsltMath extends ExsltBase {
      * The math:cos function returns cosine of the passed argument.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The cosine value of the number
      */
     public static double cos(double num) {
@@ -271,7 +263,7 @@ public class ExsltMath extends ExsltBase {
      * to a power.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The value of e raised to the given power
      */
     public static double exp(double num) {
@@ -282,7 +274,7 @@ public class ExsltMath extends ExsltBase {
      * The math:log function returns the natural logarithm of a number.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The natural logarithm of the number
      */
     public static double log(double num) {
@@ -294,9 +286,9 @@ public class ExsltMath extends ExsltBase {
      * specified power.
      *
      * @param num1
-     *             The base
+     *        The base
      * @param num2
-     *             The power
+     *        The power
      * @return The value of the base expression taken to the specified power
      */
     public static double power(double num1, double num2) {
@@ -316,7 +308,7 @@ public class ExsltMath extends ExsltBase {
      * The math:sin function returns the sine of the number.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The sine value of the number
      */
     public static double sin(double num) {
@@ -327,7 +319,7 @@ public class ExsltMath extends ExsltBase {
      * The math:sqrt function returns the square root of a number.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The square root of the number
      */
     public static double sqrt(double num) {
@@ -339,7 +331,7 @@ public class ExsltMath extends ExsltBase {
      * argument.
      *
      * @param num
-     *            A number
+     *        A number
      * @return The tangent value of the number
      */
     public static double tan(double num) {
@@ -361,9 +353,9 @@ public class ExsltMath extends ExsltBase {
      * </pre>
      * 
      * @param name
-     *                  The name of the constant
+     *        The name of the constant
      * @param precision
-     *                  The precision
+     *        The precision
      * @return The value of the specified constant to the given precision
      */
     public static double constant(String name, double precision) {

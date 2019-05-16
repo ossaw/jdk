@@ -57,8 +57,7 @@ public class PINoOpHandlerImpl implements PIHandler {
 
     public void adapterManagerStateChanged(int managerId, short newState) {}
 
-    public void adapterStateChanged(ObjectReferenceTemplate[] templates,
-            short newState) {}
+    public void adapterStateChanged(ObjectReferenceTemplate[] templates, short newState) {}
 
     public void disableInterceptorsThisThread() {}
 
@@ -66,13 +65,11 @@ public class PINoOpHandlerImpl implements PIHandler {
 
     public void invokeClientPIStartingPoint() throws RemarshalException {}
 
-    public Exception invokeClientPIEndingPoint(int replyStatus,
-            Exception exception) {
+    public Exception invokeClientPIEndingPoint(int replyStatus, Exception exception) {
         return null;
     }
 
-    public Exception makeCompletedClientRequest(int replyStatus,
-            Exception exception) {
+    public Exception makeCompletedClientRequest(int replyStatus, Exception exception) {
         return null;
     }
 
@@ -100,16 +97,14 @@ public class PINoOpHandlerImpl implements PIHandler {
 
     public void setServerPIInfo(Any result) {}
 
-    public void initializeServerPIInfo(CorbaMessageMediator request,
-            ObjectAdapter oa, byte[] objectId, ObjectKeyTemplate oktemp) {}
+    public void initializeServerPIInfo(CorbaMessageMediator request, ObjectAdapter oa, byte[] objectId,
+            ObjectKeyTemplate oktemp) {}
 
-    public void setServerPIInfo(java.lang.Object servant,
-            String targetMostDerivedInterface) {}
+    public void setServerPIInfo(java.lang.Object servant, String targetMostDerivedInterface) {}
 
     public void cleanupServerPIRequest() {}
 
-    public void register_interceptor(Interceptor interceptor, int type)
-            throws DuplicateName {}
+    public void register_interceptor(Interceptor interceptor, int type) throws DuplicateName {}
 
     public Current getPICurrent() {
         return null;

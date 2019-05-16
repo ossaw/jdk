@@ -23,8 +23,7 @@ class DirectLongBufferU
     protected static final Unsafe unsafe = Bits.unsafe();
 
     // Cached array base offset
-    private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(
-            long[].class);
+    private static final long arrayBaseOffset = (long) unsafe.arrayBaseOffset(long[].class);
 
     // Cached unaligned-access capability
     protected static final boolean unaligned = Bits.unaligned();
@@ -69,14 +68,14 @@ class DirectLongBufferU
     }
 
     public LongBuffer duplicate() {
-        return new DirectLongBufferU(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectLongBufferU(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
     }
 
     public LongBuffer asReadOnlyBuffer() {
 
-        return new DirectLongBufferRU(this, this.markValue(), this.position(),
-                this.limit(), this.capacity(), 0);
+        return new DirectLongBufferRU(this, this.markValue(), this.position(), this.limit(), this.capacity(),
+                0);
 
     }
 
@@ -108,12 +107,10 @@ class DirectLongBufferU
                 throw new BufferUnderflowException();
 
             if (order() != ByteOrder.nativeOrder())
-                Bits.copyToLongArray(ix(pos), dst, (long) offset << 3,
-                        (long) length << 3);
+                Bits.copyToLongArray(ix(pos), dst, (long) offset << 3, (long) length << 3);
             else
 
-                Bits.copyToArray(ix(pos), dst, arrayBaseOffset,
-                        (long) offset << 3, (long) length << 3);
+                Bits.copyToArray(ix(pos), dst, arrayBaseOffset, (long) offset << 3, (long) length << 3);
             position(pos + length);
         } else {
             super.get(dst, offset, length);
@@ -187,12 +184,10 @@ class DirectLongBufferU
                 throw new BufferOverflowException();
 
             if (order() != ByteOrder.nativeOrder())
-                Bits.copyFromLongArray(src, (long) offset << 3, ix(pos),
-                        (long) length << 3);
+                Bits.copyFromLongArray(src, (long) offset << 3, ix(pos), (long) length << 3);
             else
 
-                Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 3, ix(
-                        pos), (long) length << 3);
+                Bits.copyFromArray(src, arrayBaseOffset, (long) offset << 3, ix(pos), (long) length << 3);
             position(pos + length);
         } else {
             super.put(src, offset, length);
@@ -226,8 +221,7 @@ class DirectLongBufferU
 
     public ByteOrder order() {
 
-        return ((ByteOrder.nativeOrder() != ByteOrder.BIG_ENDIAN)
-                ? ByteOrder.LITTLE_ENDIAN
+        return ((ByteOrder.nativeOrder() != ByteOrder.BIG_ENDIAN) ? ByteOrder.LITTLE_ENDIAN
                 : ByteOrder.BIG_ENDIAN);
 
     }

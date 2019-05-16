@@ -28,7 +28,7 @@ public final class Bounds extends org.omg.CORBA.UserException {
      * message.
      * 
      * @param reason
-     *               the String containing a reason message
+     *        the String containing a reason message
      */
     public Bounds(String reason) {
         super(reason);

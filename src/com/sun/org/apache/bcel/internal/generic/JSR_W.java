@@ -73,7 +73,7 @@ public class JSR_W extends JsrInstruction {
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         index = getTargetOffset();
@@ -84,8 +84,7 @@ public class JSR_W extends JsrInstruction {
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         index = bytes.readInt();
         length = 5;
     }
@@ -97,7 +96,7 @@ public class JSR_W extends JsrInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackProducer(this);

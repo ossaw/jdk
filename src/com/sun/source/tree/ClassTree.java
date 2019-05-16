@@ -10,7 +10,6 @@ import javax.lang.model.element.Name;
 
 /**
  * A tree node for a class, interface, enum, or annotation type declaration.
- *
  * For example:
  * 
  * <pre>
@@ -23,7 +22,6 @@ import javax.lang.model.element.Name;
  * </pre>
  *
  * @jls sections 8.1, 8.9, 9.1, and 9.6
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

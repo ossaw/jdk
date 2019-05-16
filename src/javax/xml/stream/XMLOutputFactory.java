@@ -13,11 +13,9 @@ import javax.xml.transform.Result;
 /**
  * Defines an abstract implementation of a factory for getting XMLEventWriters
  * and XMLStreamWriters.
- *
  * The following table defines the standard properties of this specification.
  * Each property varies in the level of support required by each implementation.
  * The level of support required is described in the 'Required' column.
- *
  * <table border="2" rules="all" cellpadding="4">
  * <thead>
  * <tr>
@@ -40,21 +38,17 @@ import javax.xml.transform.Result;
  * </tr>
  * </tbody>
  * </table>
- *
  * <p>
  * The following paragraphs describe the namespace and prefix repair algorithm:
  * </p>
- *
  * <p>
  * The property can be set with the following code line:
  * <code>setProperty("javax.xml.stream.isRepairingNamespaces",new Boolean(true|false));</code>
  * </p>
- *
  * <p>
  * This property specifies that the writer default namespace prefix
  * declarations. The default value is false.
  * </p>
- *
  * <p>
  * If a writer isRepairingNamespaces it will create a namespace declaration on
  * the current StartElement for any attribute that does not currently have a
@@ -65,12 +59,10 @@ import javax.xml.transform.Result;
  * namespace matches the URI of the attribute or StartElement QName no prefix
  * will be assigned.
  * </p>
- *
  * <p>
  * If an element or attribute name has a prefix, but is not bound to any
  * namespace URI, then the prefix will be removed during serialization.
  * </p>
- *
  * <p>
  * If element and/or attribute names in the same start or empty-element tag are
  * bound to different namespace URIs and are using the same prefix then the
@@ -78,14 +70,12 @@ import javax.xml.transform.Result;
  * following attributes have their prefixes replaced with a new prefix that is
  * bound to the namespace URIs of those attributes.
  * </p>
- *
  * <p>
  * If an element or attribute name uses a prefix that is bound to a different
  * URI than that inherited from the namespace context of the parent of that
  * element and there is no namespace declaration in the context of the current
  * element then such a namespace declaration is added.
  * </p>
- *
  * <p>
  * If an element or attribute name is bound to a prefix and there is a namespace
  * declaration that binds that prefix to a different URI then that namespace
@@ -116,11 +106,10 @@ public abstract class XMLOutputFactory {
      * {@link #newFactory()} method.
      * 
      * @throws FactoryConfigurationError
-     *                                   if an instance of this factory cannot
-     *                                   be loaded
+     *         if an instance of this factory cannot
+     *         be loaded
      */
-    public static XMLOutputFactory newInstance()
-            throws FactoryConfigurationError {
+    public static XMLOutputFactory newInstance() throws FactoryConfigurationError {
         return FactoryFinder.find(XMLOutputFactory.class, DEFAULIMPL);
     }
 
@@ -158,14 +147,13 @@ public abstract class XMLOutputFactory {
      * </p>
      * 
      * @throws FactoryConfigurationError
-     *                                   in case of
-     *                                   {@linkplain java.util.ServiceConfigurationError
-     *                                   service configuration error} or if the
-     *                                   implementation is not
-     *                                   available or cannot be instantiated.
+     *         in case of
+     *         {@linkplain java.util.ServiceConfigurationError
+     *         service configuration error} or if the
+     *         implementation is not
+     *         available or cannot be instantiated.
      */
-    public static XMLOutputFactory newFactory()
-            throws FactoryConfigurationError {
+    public static XMLOutputFactory newFactory() throws FactoryConfigurationError {
         return FactoryFinder.find(XMLOutputFactory.class, DEFAULIMPL);
     }
 
@@ -173,26 +161,24 @@ public abstract class XMLOutputFactory {
      * Create a new instance of the factory.
      *
      * @param factoryId
-     *                    Name of the factory to find, same as a property name
+     *        Name of the factory to find, same as a property name
      * @param classLoader
-     *                    classLoader to use
+     *        classLoader to use
      * @return the factory implementation
      * @throws FactoryConfigurationError
-     *                                   if an instance of this factory cannot
-     *                                   be loaded
-     *
+     *         if an instance of this factory cannot
+     *         be loaded
      * @deprecated This method has been deprecated because it returns an
      *             instance of XMLInputFactory, which is of the wrong class. Use
      *             the new method
      *             {@link #newFactory(java.lang.String, java.lang.ClassLoader)}
      *             instead.
      */
-    public static XMLInputFactory newInstance(String factoryId,
-            ClassLoader classLoader) throws FactoryConfigurationError {
+    public static XMLInputFactory newInstance(String factoryId, ClassLoader classLoader)
+            throws FactoryConfigurationError {
         // do not fallback if given classloader can't find the class, throw
         // exception
-        return FactoryFinder.find(XMLInputFactory.class, factoryId, classLoader,
-                null);
+        return FactoryFinder.find(XMLInputFactory.class, factoryId, classLoader, null);
     }
 
     /**
@@ -229,7 +215,6 @@ public abstract class XMLOutputFactory {
      *          of other JAXP factories where the first parameter is fully
      *          qualified factory class name that provides implementation of the
      *          factory.
-     *
      *          <p>
      *          Note that this is a new method that replaces the deprecated
      *          {@link #newInstance(java.lang.String, java.lang.ClassLoader)
@@ -237,58 +222,54 @@ public abstract class XMLOutputFactory {
      *          The original method was incorrectly defined to return
      *          XMLInputFactory.
      *          </p>
-     *
      * @param factoryId
-     *                    Name of the factory to find, same as a property name
+     *        Name of the factory to find, same as a property name
      * @param classLoader
-     *                    classLoader to use
+     *        classLoader to use
      * @return the factory implementation
      * @throws FactoryConfigurationError
-     *                                   in case of
-     *                                   {@linkplain java.util.ServiceConfigurationError
-     *                                   service configuration error} or if the
-     *                                   implementation is not
-     *                                   available or cannot be instantiated.
+     *         in case of
+     *         {@linkplain java.util.ServiceConfigurationError
+     *         service configuration error} or if the
+     *         implementation is not
+     *         available or cannot be instantiated.
      */
-    public static XMLOutputFactory newFactory(String factoryId,
-            ClassLoader classLoader) throws FactoryConfigurationError {
+    public static XMLOutputFactory newFactory(String factoryId, ClassLoader classLoader)
+            throws FactoryConfigurationError {
         // do not fallback if given classloader can't find the class, throw
         // exception
-        return FactoryFinder.find(XMLOutputFactory.class, factoryId,
-                classLoader, null);
+        return FactoryFinder.find(XMLOutputFactory.class, factoryId, classLoader, null);
     }
 
     /**
      * Create a new XMLStreamWriter that writes to a writer
      * 
      * @param stream
-     *               the writer to write to
+     *        the writer to write to
      * @throws XMLStreamException
      */
-    public abstract XMLStreamWriter createXMLStreamWriter(java.io.Writer stream)
+    public abstract XMLStreamWriter createXMLStreamWriter(java.io.Writer stream) throws XMLStreamException;
+
+    /**
+     * Create a new XMLStreamWriter that writes to a stream
+     * 
+     * @param stream
+     *        the stream to write to
+     * @throws XMLStreamException
+     */
+    public abstract XMLStreamWriter createXMLStreamWriter(java.io.OutputStream stream)
             throws XMLStreamException;
 
     /**
      * Create a new XMLStreamWriter that writes to a stream
      * 
      * @param stream
-     *               the stream to write to
-     * @throws XMLStreamException
-     */
-    public abstract XMLStreamWriter createXMLStreamWriter(
-            java.io.OutputStream stream) throws XMLStreamException;
-
-    /**
-     * Create a new XMLStreamWriter that writes to a stream
-     * 
-     * @param stream
-     *                 the stream to write to
+     *        the stream to write to
      * @param encoding
-     *                 the encoding to use
+     *        the encoding to use
      * @throws XMLStreamException
      */
-    public abstract XMLStreamWriter createXMLStreamWriter(
-            java.io.OutputStream stream, String encoding)
+    public abstract XMLStreamWriter createXMLStreamWriter(java.io.OutputStream stream, String encoding)
             throws XMLStreamException;
 
     /**
@@ -296,93 +277,87 @@ public abstract class XMLOutputFactory {
      * optional.
      * 
      * @param result
-     *               the result to write to
+     *        the result to write to
      * @throws UnsupportedOperationException
-     *                                       if this method is not supported by
-     *                                       this XMLOutputFactory
+     *         if this method is not supported by
+     *         this XMLOutputFactory
      * @throws XMLStreamException
      */
-    public abstract XMLStreamWriter createXMLStreamWriter(Result result)
-            throws XMLStreamException;
+    public abstract XMLStreamWriter createXMLStreamWriter(Result result) throws XMLStreamException;
 
     /**
      * Create a new XMLEventWriter that writes to a JAXP result. This method is
      * optional.
      * 
      * @param result
-     *               the result to write to
+     *        the result to write to
      * @throws UnsupportedOperationException
-     *                                       if this method is not supported by
-     *                                       this XMLOutputFactory
+     *         if this method is not supported by
+     *         this XMLOutputFactory
      * @throws XMLStreamException
      */
-    public abstract XMLEventWriter createXMLEventWriter(Result result)
+    public abstract XMLEventWriter createXMLEventWriter(Result result) throws XMLStreamException;
+
+    /**
+     * Create a new XMLEventWriter that writes to a stream
+     * 
+     * @param stream
+     *        the stream to write to
+     * @throws XMLStreamException
+     */
+    public abstract XMLEventWriter createXMLEventWriter(java.io.OutputStream stream)
             throws XMLStreamException;
 
     /**
      * Create a new XMLEventWriter that writes to a stream
      * 
      * @param stream
-     *               the stream to write to
-     * @throws XMLStreamException
-     */
-    public abstract XMLEventWriter createXMLEventWriter(
-            java.io.OutputStream stream) throws XMLStreamException;
-
-    /**
-     * Create a new XMLEventWriter that writes to a stream
-     * 
-     * @param stream
-     *                 the stream to write to
+     *        the stream to write to
      * @param encoding
-     *                 the encoding to use
+     *        the encoding to use
      * @throws XMLStreamException
      */
-    public abstract XMLEventWriter createXMLEventWriter(
-            java.io.OutputStream stream, String encoding)
+    public abstract XMLEventWriter createXMLEventWriter(java.io.OutputStream stream, String encoding)
             throws XMLStreamException;
 
     /**
      * Create a new XMLEventWriter that writes to a writer
      * 
      * @param stream
-     *               the stream to write to
+     *        the stream to write to
      * @throws XMLStreamException
      */
-    public abstract XMLEventWriter createXMLEventWriter(java.io.Writer stream)
-            throws XMLStreamException;
+    public abstract XMLEventWriter createXMLEventWriter(java.io.Writer stream) throws XMLStreamException;
 
     /**
      * Allows the user to set specific features/properties on the underlying
      * implementation.
      * 
      * @param name
-     *              The name of the property
+     *        The name of the property
      * @param value
-     *              The value of the property
+     *        The value of the property
      * @throws java.lang.IllegalArgumentException
      *         if the property is not supported
      */
-    public abstract void setProperty(java.lang.String name, Object value)
-            throws IllegalArgumentException;
+    public abstract void setProperty(java.lang.String name, Object value) throws IllegalArgumentException;
 
     /**
      * Get a feature/property on the underlying implementation
      * 
      * @param name
-     *             The name of the property
+     *        The name of the property
      * @return The value of the property
      * @throws java.lang.IllegalArgumentException
      *         if the property is not supported
      */
-    public abstract Object getProperty(java.lang.String name)
-            throws IllegalArgumentException;
+    public abstract Object getProperty(java.lang.String name) throws IllegalArgumentException;
 
     /**
      * Query the set of properties that this factory supports.
      *
      * @param name
-     *             The name of the property (may not be null)
+     *        The name of the property (may not be null)
      * @return true if the property is supported and false otherwise
      */
     public abstract boolean isPropertySupported(String name);

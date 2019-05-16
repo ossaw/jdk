@@ -23,9 +23,8 @@ public class SubjectDelegator {
      * does not have permission to delegate to that subject, throw
      * SecurityException.
      */
-    public AccessControlContext delegatedContext(
-            AccessControlContext authenticatedACC, Subject delegatedSubject,
-            boolean removeCallerContext) throws SecurityException {
+    public AccessControlContext delegatedContext(AccessControlContext authenticatedACC,
+            Subject delegatedSubject, boolean removeCallerContext) throws SecurityException {
 
         if (System.getSecurityManager() != null && authenticatedACC == null) {
             throw new SecurityException("Illegal AccessControlContext: null");
@@ -54,11 +53,9 @@ public class SubjectDelegator {
         return getDelegatedAcc(delegatedSubject, removeCallerContext);
     }
 
-    private AccessControlContext getDelegatedAcc(Subject delegatedSubject,
-            boolean removeCallerContext) {
+    private AccessControlContext getDelegatedAcc(Subject delegatedSubject, boolean removeCallerContext) {
         if (removeCallerContext) {
-            return JMXSubjectDomainCombiner.getDomainCombinerContext(
-                    delegatedSubject);
+            return JMXSubjectDomainCombiner.getDomainCombinerContext(delegatedSubject);
         } else {
             return JMXSubjectDomainCombiner.getContext(delegatedSubject);
         }
@@ -74,8 +71,7 @@ public class SubjectDelegator {
      *         the authenticated principals in the subject. Otherwise,
      *         {@code false}.
      */
-    public static synchronized boolean checkRemoveCallerContext(
-            Subject subject) {
+    public static synchronized boolean checkRemoveCallerContext(Subject subject) {
         try {
             for (Principal p : getSubjectPrincipals(subject)) {
                 final String pname = p.getClass().getName() + "." + p.getName();
@@ -92,7 +88,7 @@ public class SubjectDelegator {
      * Retrieves the {@linkplain Subject} principals
      * 
      * @param subject
-     *                The subject
+     *        The subject
      * @return If the {@code Subject} is immutable it will return the principals
      *         directly. If the {@code Subject} is mutable it will create an
      *         unmodifiable copy.
@@ -102,8 +98,7 @@ public class SubjectDelegator {
             return subject.getPrincipals();
         }
 
-        List<Principal> principals = Arrays.asList(subject.getPrincipals()
-                .toArray(new Principal[0]));
+        List<Principal> principals = Arrays.asList(subject.getPrincipals().toArray(new Principal[0]));
         return Collections.unmodifiableList(principals);
     }
 }

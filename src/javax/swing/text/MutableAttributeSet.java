@@ -8,10 +8,8 @@ import java.util.Enumeration;
 
 /**
  * A generic interface for a mutable collection of unique attributes.
- *
  * Implementations will probably want to provide a constructor of the form:<tt>
  * public XXXAttributeSet(ConstAttributeSet source);</tt>
- *
  */
 public interface MutableAttributeSet extends AttributeSet {
 
@@ -21,9 +19,9 @@ public interface MutableAttributeSet extends AttributeSet {
      * or not mutated by any client.
      *
      * @param name
-     *              the name
+     *        the name
      * @param value
-     *              the value
+     *        the value
      */
     public void addAttribute(Object name, Object value);
 
@@ -32,7 +30,7 @@ public interface MutableAttributeSet extends AttributeSet {
      * the given attributes and values.
      *
      * @param attributes
-     *                   the set of attributes
+     *        the set of attributes
      */
     public void addAttributes(AttributeSet attributes);
 
@@ -40,7 +38,7 @@ public interface MutableAttributeSet extends AttributeSet {
      * Removes an attribute with the given <code>name</code>.
      *
      * @param name
-     *             the attribute name
+     *        the attribute name
      */
     public void removeAttribute(Object name);
 
@@ -48,7 +46,7 @@ public interface MutableAttributeSet extends AttributeSet {
      * Removes an attribute set with the given <code>names</code>.
      *
      * @param names
-     *              the set of names
+     *        the set of names
      */
     public void removeAttributes(Enumeration<?> names);
 
@@ -56,7 +54,7 @@ public interface MutableAttributeSet extends AttributeSet {
      * Removes a set of attributes with the given <code>name</code>.
      *
      * @param attributes
-     *                   the set of attributes
+     *        the set of attributes
      */
     public void removeAttributes(AttributeSet attributes);
 
@@ -65,7 +63,7 @@ public interface MutableAttributeSet extends AttributeSet {
      * through if an attribute isn't defined locally.
      *
      * @param parent
-     *               the parent
+     *        the parent
      */
     public void setResolveParent(AttributeSet parent);
 

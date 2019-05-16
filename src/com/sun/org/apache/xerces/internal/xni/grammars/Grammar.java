@@ -28,7 +28,6 @@ package com.sun.org.apache.xerces.internal.xni.grammars;
  * grammar syntaxes with the compiled grammar information in the Grammar object.
  * You <em>can</em> create equivalent validation rules in your choice of grammar
  * syntax but there is no guarantee that the input and output will be the same.
- *
  * <p>
  * Right now, this class is largely a shell; eventually, it will be enriched by
  * having more expressive methods added.
@@ -39,7 +38,6 @@ package com.sun.org.apache.xerces.internal.xni.grammars;
  * @author Eric Ye, IBM
  * @author Andy Clark, IBM
  * @author Neil Graham, IBM
- *
  */
 
 public interface Grammar {

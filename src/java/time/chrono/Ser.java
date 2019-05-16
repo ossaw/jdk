@@ -63,7 +63,6 @@ import java.time.LocalDateTime;
  *           index of their element.
  *           <p>
  *           This class is mutable and should be created once per serialization.
- *
  * @serial include
  * @since 1.8
  */
@@ -98,9 +97,9 @@ final class Ser implements Externalizable {
      * Creates an instance for serialization.
      *
      * @param type
-     *               the type
+     *        the type
      * @param object
-     *               the object
+     *        the object
      */
     Ser(byte type, Object object) {
         this.type = type;
@@ -153,17 +152,15 @@ final class Ser implements Externalizable {
      *             "../../../serialized-form.html#java.time.chrono.ThaiBuddhistDate">
      *             ThaiBuddhistDate.writeReplace</a>
      *             </ul>
-     *
      * @param out
-     *            the data stream to write to, not null
+     *        the data stream to write to, not null
      */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         writeInternal(type, object, out);
     }
 
-    private static void writeInternal(byte type, Object object,
-            ObjectOutput out) throws IOException {
+    private static void writeInternal(byte type, Object object, ObjectOutput out) throws IOException {
         out.writeByte(type);
         switch (type) {
             case CHRONO_TYPE:
@@ -207,7 +204,6 @@ final class Ser implements Externalizable {
      *             corresponding static factory for the type to create a new
      *             instance. That instance is returned as the de-serialized
      *             {@code Ser} object.
-     *
      *             <ul>
      *             <li><a href=
      *             "../../../serialized-form.html#java.time.chrono.HijrahChronology">
@@ -251,25 +247,21 @@ final class Ser implements Externalizable {
      *             ThaiBuddhistDate</a> -
      *             ThaiBuddhistChronology.INSTANCE.date(year, month, dayOfMonth)
      *             </ul>
-     *
      * @param in
-     *           the data stream to read from, not null
+     *        the data stream to read from, not null
      */
     @Override
-    public void readExternal(ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         type = in.readByte();
         object = readInternal(type, in);
     }
 
-    static Object read(ObjectInput in) throws IOException,
-            ClassNotFoundException {
+    static Object read(ObjectInput in) throws IOException, ClassNotFoundException {
         byte type = in.readByte();
         return readInternal(type, in);
     }
 
-    private static Object readInternal(byte type, ObjectInput in)
-            throws IOException, ClassNotFoundException {
+    private static Object readInternal(byte type, ObjectInput in) throws IOException, ClassNotFoundException {
         switch (type) {
             case CHRONO_TYPE:
                 return AbstractChronology.readExternal(in);

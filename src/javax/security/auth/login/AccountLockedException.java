@@ -7,7 +7,6 @@ package javax.security.auth.login;
 
 /**
  * Signals that an account was locked.
- *
  * <p>
  * This exception may be thrown by a LoginModule if it determines that
  * authentication is being attempted on a locked account.
@@ -29,11 +28,10 @@ public class AccountLockedException extends AccountException {
     /**
      * Constructs a AccountLockedException with the specified detail message. A
      * detail message is a String that describes this particular exception.
-     *
      * <p>
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public AccountLockedException(String msg) {
         super(msg);

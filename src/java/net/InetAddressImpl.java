@@ -19,8 +19,7 @@ interface InetAddressImpl {
 
     String getLocalHostName() throws UnknownHostException;
 
-    InetAddress[] lookupAllHostAddr(String hostname)
-            throws UnknownHostException;
+    InetAddress[] lookupAllHostAddr(String hostname) throws UnknownHostException;
 
     String getHostByAddr(byte[] addr) throws UnknownHostException;
 
@@ -28,6 +27,5 @@ interface InetAddressImpl {
 
     InetAddress loopbackAddress();
 
-    boolean isReachable(InetAddress addr, int timeout, NetworkInterface netif,
-            int ttl) throws IOException;
+    boolean isReachable(InetAddress addr, int timeout, NetworkInterface netif, int ttl) throws IOException;
 }

@@ -24,7 +24,6 @@ import java.security.GeneralSecurityException;
  * synchronize.
  *
  * @see CertStore
- *
  * @since 1.4
  * @author Sean Mullan
  */
@@ -46,7 +45,7 @@ public class CertStoreException extends GeneralSecurityException {
      * exception.
      *
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public CertStoreException(String msg) {
         super(msg);
@@ -61,11 +60,11 @@ public class CertStoreException extends GeneralSecurityException {
      * the class and detail message of cause).
      *
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              {@link #getCause getCause()} method). (A {@code null} value
-     *              is
-     *              permitted, and indicates that the cause is nonexistent or
-     *              unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause getCause()} method). (A {@code null} value
+     *        is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      */
     public CertStoreException(Throwable cause) {
         super(cause);
@@ -76,13 +75,13 @@ public class CertStoreException extends GeneralSecurityException {
      * and cause.
      *
      * @param msg
-     *              the detail message
+     *        the detail message
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              {@link #getCause getCause()} method). (A {@code null} value
-     *              is
-     *              permitted, and indicates that the cause is nonexistent or
-     *              unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause getCause()} method). (A {@code null} value
+     *        is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      */
     public CertStoreException(String msg, Throwable cause) {
         super(msg, cause);

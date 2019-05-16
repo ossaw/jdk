@@ -8,7 +8,6 @@ package java.lang.annotation;
 /**
  * Indicates that a field defining a constant value may be referenced from
  * native code.
- *
  * The annotation may be used as a hint by tools that generate native header
  * files to determine whether a header file is required, and if so, what
  * declarations it should contain.
@@ -18,5 +17,4 @@ package java.lang.annotation;
 @Documented
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.SOURCE)
-public @interface Native {
-}
+public @interface Native {}

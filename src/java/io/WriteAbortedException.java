@@ -12,7 +12,6 @@ package java.io;
  * that terminated the write can be found in the detail field. The stream is
  * reset to it's initial state and all references to objects already
  * deserialized are discarded.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "exception causing the
@@ -29,7 +28,6 @@ public class WriteAbortedException extends ObjectStreamException {
 
     /**
      * Exception that was caught while writing the ObjectStream.
-     *
      * <p>
      * This field predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of
@@ -44,9 +42,9 @@ public class WriteAbortedException extends ObjectStreamException {
      * and the exception causing the abort.
      * 
      * @param s
-     *           String describing the exception.
+     *        String describing the exception.
      * @param ex
-     *           Exception causing the abort.
+     *        Exception causing the abort.
      */
     public WriteAbortedException(String s, Exception ex) {
         super(s);

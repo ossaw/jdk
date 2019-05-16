@@ -38,7 +38,6 @@ import java.awt.Point;
  * It is necessary for a WritableRenderedImage to ensure that notifications
  * occur only when the first writer acquires a tile and the last writer releases
  * it.
- *
  */
 
 public interface WritableRenderedImage extends RenderedImage {
@@ -48,7 +47,7 @@ public interface WritableRenderedImage extends RenderedImage {
      * multiple notifications.
      * 
      * @param to
-     *           the specified <code>TileObserver</code>
+     *        the specified <code>TileObserver</code>
      */
     public void addTileObserver(TileObserver to);
 
@@ -58,21 +57,20 @@ public interface WritableRenderedImage extends RenderedImage {
      * registered for one fewer.
      * 
      * @param to
-     *           the specified <code>TileObserver</code>
+     *        the specified <code>TileObserver</code>
      */
     public void removeTileObserver(TileObserver to);
 
     /**
      * Checks out a tile for writing.
-     *
      * The WritableRenderedImage is responsible for notifying all of its
      * TileObservers when a tile goes from having no writers to having one
      * writer.
      *
      * @param tileX
-     *              the X index of the tile.
+     *        the X index of the tile.
      * @param tileY
-     *              the Y index of the tile.
+     *        the Y index of the tile.
      * @return a writable tile.
      */
     public WritableRaster getWritableTile(int tileX, int tileY);
@@ -82,15 +80,14 @@ public interface WritableRenderedImage extends RenderedImage {
      * write to the tile, the results are undefined. Calls to this method should
      * only appear in matching pairs with calls to getWritableTile; any other
      * use will lead to undefined results.
-     *
      * The WritableRenderedImage is responsible for notifying all of its
      * TileObservers when a tile goes from having one writer to having no
      * writers.
      *
      * @param tileX
-     *              the X index of the tile.
+     *        the X index of the tile.
      * @param tileY
-     *              the Y index of the tile.
+     *        the Y index of the tile.
      */
     public void releaseWritableTile(int tileX, int tileY);
 
@@ -98,9 +95,9 @@ public interface WritableRenderedImage extends RenderedImage {
      * Returns whether a tile is currently checked out for writing.
      *
      * @param tileX
-     *              the X index of the tile.
+     *        the X index of the tile.
      * @param tileY
-     *              the Y index of the tile.
+     *        the Y index of the tile.
      * @return <code>true</code> if specified tile is checked out for writing;
      *         <code>false</code> otherwise.
      */
@@ -130,7 +127,7 @@ public interface WritableRenderedImage extends RenderedImage {
      * The operation is clipped to the bounds of the WritableRenderedImage.
      * 
      * @param r
-     *          the specified <code>Raster</code>
+     *        the specified <code>Raster</code>
      */
     public void setData(Raster r);
 

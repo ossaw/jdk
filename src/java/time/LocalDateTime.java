@@ -87,7 +87,6 @@ import java.util.Objects;
  * most applications written today, the ISO-8601 rules are entirely suitable.
  * However, any application that makes use of historical dates, and requires
  * them to be accurate will find the ISO-8601 approach unsuitable.
- *
  * <p>
  * This is a <a href="{@docRoot}/java/lang/doc-files/ValueBased.html"
  * >value-based</a> class; use of identity-sensitive operations (including
@@ -96,11 +95,10 @@ import java.util.Objects;
  * be avoided. The {@code equals} method should be used for comparisons.
  *
  * @implSpec This class is immutable and thread-safe.
- *
  * @since 1.8
  */
-public final class LocalDateTime implements Temporal, TemporalAdjuster,
-        ChronoLocalDateTime<LocalDate>, Serializable {
+public final class LocalDateTime implements Temporal, TemporalAdjuster, ChronoLocalDateTime<LocalDate>,
+        Serializable {
 
     /**
      * The minimum supported {@code LocalDateTime}, '-999999999-01-01T00:00:00'.
@@ -108,8 +106,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This combines {@link LocalDate#MIN} and {@link LocalTime#MIN}. This could
      * be used by an application as a "far past" date-time.
      */
-    public static final LocalDateTime MIN = LocalDateTime.of(LocalDate.MIN,
-            LocalTime.MIN);
+    public static final LocalDateTime MIN = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
     /**
      * The maximum supported {@code LocalDateTime},
      * '+999999999-12-31T23:59:59.999999999'. This is the local date-time just
@@ -117,8 +114,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * {@link LocalDate#MAX} and {@link LocalTime#MAX}. This could be used by an
      * application as a "far future" date-time.
      */
-    public static final LocalDateTime MAX = LocalDateTime.of(LocalDate.MAX,
-            LocalTime.MAX);
+    public static final LocalDateTime MAX = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX);
 
     /**
      * Serialization version.
@@ -164,7 +160,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * testing because the clock is hard-coded.
      *
      * @param zone
-     *             the zone ID to use, not null
+     *        the zone ID to use, not null
      * @return the current date-time using the system clock, not null
      */
     public static LocalDateTime now(ZoneId zone) {
@@ -180,7 +176,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * injection}.
      *
      * @param clock
-     *              the clock to use, not null
+     *        the clock to use, not null
      * @return the current date-time, not null
      */
     public static LocalDateTime now(Clock clock) {
@@ -201,23 +197,22 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * fields will be set to zero.
      *
      * @param year
-     *                   the year to represent, from MIN_YEAR to MAX_YEAR
+     *        the year to represent, from MIN_YEAR to MAX_YEAR
      * @param month
-     *                   the month-of-year to represent, not null
+     *        the month-of-year to represent, not null
      * @param dayOfMonth
-     *                   the day-of-month to represent, from 1 to 31
+     *        the day-of-month to represent, from 1 to 31
      * @param hour
-     *                   the hour-of-day to represent, from 0 to 23
+     *        the hour-of-day to represent, from 0 to 23
      * @param minute
-     *                   the minute-of-hour to represent, from 0 to 59
+     *        the minute-of-hour to represent, from 0 to 59
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if the value of any field is out of range, or
-     *                           if the
-     *                           day-of-month is invalid for the month-year
+     *         if the value of any field is out of range, or
+     *         if the
+     *         day-of-month is invalid for the month-year
      */
-    public static LocalDateTime of(int year, Month month, int dayOfMonth,
-            int hour, int minute) {
+    public static LocalDateTime of(int year, Month month, int dayOfMonth, int hour, int minute) {
         LocalDate date = LocalDate.of(year, month, dayOfMonth);
         LocalTime time = LocalTime.of(hour, minute);
         return new LocalDateTime(date, time);
@@ -233,25 +228,24 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * will be set to zero.
      *
      * @param year
-     *                   the year to represent, from MIN_YEAR to MAX_YEAR
+     *        the year to represent, from MIN_YEAR to MAX_YEAR
      * @param month
-     *                   the month-of-year to represent, not null
+     *        the month-of-year to represent, not null
      * @param dayOfMonth
-     *                   the day-of-month to represent, from 1 to 31
+     *        the day-of-month to represent, from 1 to 31
      * @param hour
-     *                   the hour-of-day to represent, from 0 to 23
+     *        the hour-of-day to represent, from 0 to 23
      * @param minute
-     *                   the minute-of-hour to represent, from 0 to 59
+     *        the minute-of-hour to represent, from 0 to 59
      * @param second
-     *                   the second-of-minute to represent, from 0 to 59
+     *        the second-of-minute to represent, from 0 to 59
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if the value of any field is out of range, or
-     *                           if the
-     *                           day-of-month is invalid for the month-year
+     *         if the value of any field is out of range, or
+     *         if the
+     *         day-of-month is invalid for the month-year
      */
-    public static LocalDateTime of(int year, Month month, int dayOfMonth,
-            int hour, int minute, int second) {
+    public static LocalDateTime of(int year, Month month, int dayOfMonth, int hour, int minute, int second) {
         LocalDate date = LocalDate.of(year, month, dayOfMonth);
         LocalTime time = LocalTime.of(hour, minute, second);
         return new LocalDateTime(date, time);
@@ -266,28 +260,28 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * for the year and month, otherwise an exception will be thrown.
      *
      * @param year
-     *                     the year to represent, from MIN_YEAR to MAX_YEAR
+     *        the year to represent, from MIN_YEAR to MAX_YEAR
      * @param month
-     *                     the month-of-year to represent, not null
+     *        the month-of-year to represent, not null
      * @param dayOfMonth
-     *                     the day-of-month to represent, from 1 to 31
+     *        the day-of-month to represent, from 1 to 31
      * @param hour
-     *                     the hour-of-day to represent, from 0 to 23
+     *        the hour-of-day to represent, from 0 to 23
      * @param minute
-     *                     the minute-of-hour to represent, from 0 to 59
+     *        the minute-of-hour to represent, from 0 to 59
      * @param second
-     *                     the second-of-minute to represent, from 0 to 59
+     *        the second-of-minute to represent, from 0 to 59
      * @param nanoOfSecond
-     *                     the nano-of-second to represent, from 0 to
-     *                     999,999,999
+     *        the nano-of-second to represent, from 0 to
+     *        999,999,999
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if the value of any field is out of range, or
-     *                           if the
-     *                           day-of-month is invalid for the month-year
+     *         if the value of any field is out of range, or
+     *         if the
+     *         day-of-month is invalid for the month-year
      */
-    public static LocalDateTime of(int year, Month month, int dayOfMonth,
-            int hour, int minute, int second, int nanoOfSecond) {
+    public static LocalDateTime of(int year, Month month, int dayOfMonth, int hour, int minute, int second,
+            int nanoOfSecond) {
         LocalDate date = LocalDate.of(year, month, dayOfMonth);
         LocalTime time = LocalTime.of(hour, minute, second, nanoOfSecond);
         return new LocalDateTime(date, time);
@@ -304,24 +298,23 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * fields will be set to zero.
      *
      * @param year
-     *                   the year to represent, from MIN_YEAR to MAX_YEAR
+     *        the year to represent, from MIN_YEAR to MAX_YEAR
      * @param month
-     *                   the month-of-year to represent, from 1 (January) to 12
-     *                   (December)
+     *        the month-of-year to represent, from 1 (January) to 12
+     *        (December)
      * @param dayOfMonth
-     *                   the day-of-month to represent, from 1 to 31
+     *        the day-of-month to represent, from 1 to 31
      * @param hour
-     *                   the hour-of-day to represent, from 0 to 23
+     *        the hour-of-day to represent, from 0 to 23
      * @param minute
-     *                   the minute-of-hour to represent, from 0 to 59
+     *        the minute-of-hour to represent, from 0 to 59
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if the value of any field is out of range, or
-     *                           if the
-     *                           day-of-month is invalid for the month-year
+     *         if the value of any field is out of range, or
+     *         if the
+     *         day-of-month is invalid for the month-year
      */
-    public static LocalDateTime of(int year, int month, int dayOfMonth,
-            int hour, int minute) {
+    public static LocalDateTime of(int year, int month, int dayOfMonth, int hour, int minute) {
         LocalDate date = LocalDate.of(year, month, dayOfMonth);
         LocalTime time = LocalTime.of(hour, minute);
         return new LocalDateTime(date, time);
@@ -337,26 +330,25 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * will be set to zero.
      *
      * @param year
-     *                   the year to represent, from MIN_YEAR to MAX_YEAR
+     *        the year to represent, from MIN_YEAR to MAX_YEAR
      * @param month
-     *                   the month-of-year to represent, from 1 (January) to 12
-     *                   (December)
+     *        the month-of-year to represent, from 1 (January) to 12
+     *        (December)
      * @param dayOfMonth
-     *                   the day-of-month to represent, from 1 to 31
+     *        the day-of-month to represent, from 1 to 31
      * @param hour
-     *                   the hour-of-day to represent, from 0 to 23
+     *        the hour-of-day to represent, from 0 to 23
      * @param minute
-     *                   the minute-of-hour to represent, from 0 to 59
+     *        the minute-of-hour to represent, from 0 to 59
      * @param second
-     *                   the second-of-minute to represent, from 0 to 59
+     *        the second-of-minute to represent, from 0 to 59
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if the value of any field is out of range, or
-     *                           if the
-     *                           day-of-month is invalid for the month-year
+     *         if the value of any field is out of range, or
+     *         if the
+     *         day-of-month is invalid for the month-year
      */
-    public static LocalDateTime of(int year, int month, int dayOfMonth,
-            int hour, int minute, int second) {
+    public static LocalDateTime of(int year, int month, int dayOfMonth, int hour, int minute, int second) {
         LocalDate date = LocalDate.of(year, month, dayOfMonth);
         LocalTime time = LocalTime.of(hour, minute, second);
         return new LocalDateTime(date, time);
@@ -371,30 +363,30 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * for the year and month, otherwise an exception will be thrown.
      *
      * @param year
-     *                     the year to represent, from MIN_YEAR to MAX_YEAR
+     *        the year to represent, from MIN_YEAR to MAX_YEAR
      * @param month
-     *                     the month-of-year to represent, from 1 (January) to
-     *                     12
-     *                     (December)
+     *        the month-of-year to represent, from 1 (January) to
+     *        12
+     *        (December)
      * @param dayOfMonth
-     *                     the day-of-month to represent, from 1 to 31
+     *        the day-of-month to represent, from 1 to 31
      * @param hour
-     *                     the hour-of-day to represent, from 0 to 23
+     *        the hour-of-day to represent, from 0 to 23
      * @param minute
-     *                     the minute-of-hour to represent, from 0 to 59
+     *        the minute-of-hour to represent, from 0 to 59
      * @param second
-     *                     the second-of-minute to represent, from 0 to 59
+     *        the second-of-minute to represent, from 0 to 59
      * @param nanoOfSecond
-     *                     the nano-of-second to represent, from 0 to
-     *                     999,999,999
+     *        the nano-of-second to represent, from 0 to
+     *        999,999,999
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if the value of any field is out of range, or
-     *                           if the
-     *                           day-of-month is invalid for the month-year
+     *         if the value of any field is out of range, or
+     *         if the
+     *         day-of-month is invalid for the month-year
      */
-    public static LocalDateTime of(int year, int month, int dayOfMonth,
-            int hour, int minute, int second, int nanoOfSecond) {
+    public static LocalDateTime of(int year, int month, int dayOfMonth, int hour, int minute, int second,
+            int nanoOfSecond) {
         LocalDate date = LocalDate.of(year, month, dayOfMonth);
         LocalTime time = LocalTime.of(hour, minute, second, nanoOfSecond);
         return new LocalDateTime(date, time);
@@ -404,9 +396,9 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * Obtains an instance of {@code LocalDateTime} from a date and time.
      *
      * @param date
-     *             the local date, not null
+     *        the local date, not null
      * @param time
-     *             the local time, not null
+     *        the local time, not null
      * @return the local date-time, not null
      */
     public static LocalDateTime of(LocalDate date, LocalTime time) {
@@ -426,20 +418,19 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * the instant and offset are used to calculate the local date-time.
      *
      * @param instant
-     *                the instant to create the date-time from, not null
+     *        the instant to create the date-time from, not null
      * @param zone
-     *                the time-zone, which may be an offset, not null
+     *        the time-zone, which may be an offset, not null
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported range
+     *         if the result exceeds the supported range
      */
     public static LocalDateTime ofInstant(Instant instant, ZoneId zone) {
         Objects.requireNonNull(instant, "instant");
         Objects.requireNonNull(zone, "zone");
         ZoneRules rules = zone.getRules();
         ZoneOffset offset = rules.getOffset(instant);
-        return ofEpochSecond(instant.getEpochSecond(), instant.getNano(),
-                offset);
+        return ofEpochSecond(instant.getEpochSecond(), instant.getNano(), offset);
     }
 
     /**
@@ -451,21 +442,20 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * low-level conversions rather than general application usage.
      *
      * @param epochSecond
-     *                     the number of seconds from the epoch of
-     *                     1970-01-01T00:00:00Z
+     *        the number of seconds from the epoch of
+     *        1970-01-01T00:00:00Z
      * @param nanoOfSecond
-     *                     the nanosecond within the second, from 0 to
-     *                     999,999,999
+     *        the nanosecond within the second, from 0 to
+     *        999,999,999
      * @param offset
-     *                     the zone offset, not null
+     *        the zone offset, not null
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported range, or
-     *                           if the
-     *                           nano-of-second is invalid
+     *         if the result exceeds the supported range, or
+     *         if the
+     *         nano-of-second is invalid
      */
-    public static LocalDateTime ofEpochSecond(long epochSecond,
-            int nanoOfSecond, ZoneOffset offset) {
+    public static LocalDateTime ofEpochSecond(long epochSecond, int nanoOfSecond, ZoneOffset offset) {
         Objects.requireNonNull(offset, "offset");
         NANO_OF_SECOND.checkValidValue(nanoOfSecond);
         long localSecond = epochSecond + offset.getTotalSeconds(); // overflow
@@ -474,8 +464,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
         long localEpochDay = Math.floorDiv(localSecond, SECONDS_PER_DAY);
         int secsOfDay = (int) Math.floorMod(localSecond, SECONDS_PER_DAY);
         LocalDate date = LocalDate.ofEpochDay(localEpochDay);
-        LocalTime time = LocalTime.ofNanoOfDay(secsOfDay * NANOS_PER_SECOND
-                + nanoOfSecond);
+        LocalTime time = LocalTime.ofNanoOfDay(secsOfDay * NANOS_PER_SECOND + nanoOfSecond);
         return new LocalDateTime(date, time);
     }
 
@@ -498,10 +487,10 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * reference, {@code LocalDateTime::from}.
      *
      * @param temporal
-     *                 the temporal object to convert, not null
+     *        the temporal object to convert, not null
      * @return the local date-time, not null
      * @throws DateTimeException
-     *                           if unable to convert to a {@code LocalDateTime}
+     *         if unable to convert to a {@code LocalDateTime}
      */
     public static LocalDateTime from(TemporalAccessor temporal) {
         if (temporal instanceof LocalDateTime) {
@@ -516,10 +505,8 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
             LocalTime time = LocalTime.from(temporal);
             return new LocalDateTime(date, time);
         } catch (DateTimeException ex) {
-            throw new DateTimeException(
-                    "Unable to obtain LocalDateTime from TemporalAccessor: "
-                            + temporal + " of type " + temporal.getClass()
-                                    .getName(), ex);
+            throw new DateTimeException("Unable to obtain LocalDateTime from TemporalAccessor: " + temporal
+                    + " of type " + temporal.getClass().getName(), ex);
         }
     }
 
@@ -532,10 +519,10 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * {@link java.time.format.DateTimeFormatter#ISO_LOCAL_DATE_TIME}.
      *
      * @param text
-     *             the text to parse such as "2007-12-03T10:15:30", not null
+     *        the text to parse such as "2007-12-03T10:15:30", not null
      * @return the parsed local date-time, not null
      * @throws DateTimeParseException
-     *                                if the text cannot be parsed
+     *         if the text cannot be parsed
      */
     public static LocalDateTime parse(CharSequence text) {
         return parse(text, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
@@ -548,15 +535,14 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * The text is parsed using the formatter, returning a date-time.
      *
      * @param text
-     *                  the text to parse, not null
+     *        the text to parse, not null
      * @param formatter
-     *                  the formatter to use, not null
+     *        the formatter to use, not null
      * @return the parsed local date-time, not null
      * @throws DateTimeParseException
-     *                                if the text cannot be parsed
+     *         if the text cannot be parsed
      */
-    public static LocalDateTime parse(CharSequence text,
-            DateTimeFormatter formatter) {
+    public static LocalDateTime parse(CharSequence text, DateTimeFormatter formatter) {
         Objects.requireNonNull(formatter, "formatter");
         return formatter.parse(text, LocalDateTime::from);
     }
@@ -566,9 +552,9 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * Constructor.
      *
      * @param date
-     *             the date part of the date-time, validated not null
+     *        the date part of the date-time, validated not null
      * @param time
-     *             the time part of the date-time, validated not null
+     *        the time part of the date-time, validated not null
      */
     private LocalDateTime(LocalDate date, LocalTime time) {
         this.date = date;
@@ -580,9 +566,9 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * see if a new object is in fact required.
      *
      * @param newDate
-     *                the date of the new date-time, not null
+     *        the date of the new date-time, not null
      * @param newTime
-     *                the time of the new date-time, not null
+     *        the time of the new date-time, not null
      * @return the date-time, not null
      */
     private LocalDateTime with(LocalDate newDate, LocalTime newTime) {
@@ -642,7 +628,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * determined by the field.
      *
      * @param field
-     *              the field to check, null returns false
+     *        the field to check, null returns false
      * @return true if the field is supported on this date-time, false if not
      */
     @Override
@@ -689,7 +675,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * determined by the unit.
      *
      * @param unit
-     *             the unit to check, null returns false
+     *        the unit to check, null returns false
      * @return true if the unit can be added/subtracted, false if not
      */
     @Override // override for Javadoc
@@ -718,13 +704,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * determined by the field.
      *
      * @param field
-     *              the field to query the range for, not null
+     *        the field to query the range for, not null
      * @return the range of valid values for the field, not null
      * @throws DateTimeException
-     *                                          if the range for the field
-     *                                          cannot be obtained
+     *         if the range for the field
+     *         cannot be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      */
     @Override
     public ValueRange range(TemporalField field) {
@@ -758,19 +744,19 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained or the value is
-     *                                          outside the range of valid
-     *                                          values for the field
+     *         if a value for the field cannot
+     *         be obtained or the value is
+     *         outside the range of valid
+     *         values for the field
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported or
-     *                                          the range of values exceeds
-     *                                          an {@code int}
+     *         if the field is not supported or
+     *         the range of values exceeds
+     *         an {@code int}
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public int get(TemporalField field) {
@@ -800,22 +786,21 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * and what the value represents, is determined by the field.
      *
      * @param field
-     *              the field to get, not null
+     *        the field to get, not null
      * @return the value for the field
      * @throws DateTimeException
-     *                                          if a value for the field cannot
-     *                                          be obtained
+     *         if a value for the field cannot
+     *         be obtained
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public long getLong(TemporalField field) {
         if (field instanceof ChronoField) {
             ChronoField f = (ChronoField) field;
-            return (f.isTimeBased() ? time.getLong(field)
-                    : date.getLong(field));
+            return (f.isTimeBased() ? time.getLong(field) : date.getLong(field));
         }
         return field.getFrom(this);
     }
@@ -1012,13 +997,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param adjuster
-     *                 the adjuster to use, not null
+     *        the adjuster to use, not null
      * @return a {@code LocalDateTime} based on {@code this} with the adjustment
      *         made, not null
      * @throws DateTimeException
-     *                             if the adjustment cannot be made
+     *         if the adjustment cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public LocalDateTime with(TemporalAdjuster adjuster) {
@@ -1066,17 +1051,17 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param field
-     *                 the field to set in the result, not null
+     *        the field to set in the result, not null
      * @param newValue
-     *                 the new value of the field in the result
+     *        the new value of the field in the result
      * @return a {@code LocalDateTime} based on {@code this} with the specified
      *         field set, not null
      * @throws DateTimeException
-     *                                          if the field cannot be set
+     *         if the field cannot be set
      * @throws UnsupportedTemporalTypeException
-     *                                          if the field is not supported
+     *         if the field is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public LocalDateTime with(TemporalField field, long newValue) {
@@ -1102,11 +1087,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param year
-     *             the year to set in the result, from MIN_YEAR to MAX_YEAR
+     *        the year to set in the result, from MIN_YEAR to MAX_YEAR
      * @return a {@code LocalDateTime} based on this date-time with the
      *         requested year, not null
      * @throws DateTimeException
-     *                           if the year value is invalid
+     *         if the year value is invalid
      */
     public LocalDateTime withYear(int year) {
         return with(date.withYear(year), time);
@@ -1123,13 +1108,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param month
-     *              the month-of-year to set in the result, from 1 (January) to
-     *              12
-     *              (December)
+     *        the month-of-year to set in the result, from 1 (January) to
+     *        12
+     *        (December)
      * @return a {@code LocalDateTime} based on this date-time with the
      *         requested month, not null
      * @throws DateTimeException
-     *                           if the month-of-year value is invalid
+     *         if the month-of-year value is invalid
      */
     public LocalDateTime withMonth(int month) {
         return with(date.withMonth(month), time);
@@ -1145,13 +1130,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param dayOfMonth
-     *                   the day-of-month to set in the result, from 1 to 28-31
+     *        the day-of-month to set in the result, from 1 to 28-31
      * @return a {@code LocalDateTime} based on this date-time with the
      *         requested day, not null
      * @throws DateTimeException
-     *                           if the day-of-month value is invalid, or if the
-     *                           day-of-month
-     *                           is invalid for the month-year
+     *         if the day-of-month value is invalid, or if the
+     *         day-of-month
+     *         is invalid for the month-year
      */
     public LocalDateTime withDayOfMonth(int dayOfMonth) {
         return with(date.withDayOfMonth(dayOfMonth), time);
@@ -1166,13 +1151,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param dayOfYear
-     *                  the day-of-year to set in the result, from 1 to 365-366
+     *        the day-of-year to set in the result, from 1 to 365-366
      * @return a {@code LocalDateTime} based on this date with the requested
      *         day, not null
      * @throws DateTimeException
-     *                           if the day-of-year value is invalid, or if the
-     *                           day-of-year is
-     *                           invalid for the year
+     *         if the day-of-year value is invalid, or if the
+     *         day-of-year is
+     *         invalid for the year
      */
     public LocalDateTime withDayOfYear(int dayOfYear) {
         return with(date.withDayOfYear(dayOfYear), time);
@@ -1186,11 +1171,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param hour
-     *             the hour-of-day to set in the result, from 0 to 23
+     *        the hour-of-day to set in the result, from 0 to 23
      * @return a {@code LocalDateTime} based on this date-time with the
      *         requested hour, not null
      * @throws DateTimeException
-     *                           if the hour value is invalid
+     *         if the hour value is invalid
      */
     public LocalDateTime withHour(int hour) {
         LocalTime newTime = time.withHour(hour);
@@ -1204,11 +1189,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param minute
-     *               the minute-of-hour to set in the result, from 0 to 59
+     *        the minute-of-hour to set in the result, from 0 to 59
      * @return a {@code LocalDateTime} based on this date-time with the
      *         requested minute, not null
      * @throws DateTimeException
-     *                           if the minute value is invalid
+     *         if the minute value is invalid
      */
     public LocalDateTime withMinute(int minute) {
         LocalTime newTime = time.withMinute(minute);
@@ -1222,11 +1207,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param second
-     *               the second-of-minute to set in the result, from 0 to 59
+     *        the second-of-minute to set in the result, from 0 to 59
      * @return a {@code LocalDateTime} based on this date-time with the
      *         requested second, not null
      * @throws DateTimeException
-     *                           if the second value is invalid
+     *         if the second value is invalid
      */
     public LocalDateTime withSecond(int second) {
         LocalTime newTime = time.withSecond(second);
@@ -1240,12 +1225,12 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param nanoOfSecond
-     *                     the nano-of-second to set in the result, from 0 to
-     *                     999,999,999
+     *        the nano-of-second to set in the result, from 0 to
+     *        999,999,999
      * @return a {@code LocalDateTime} based on this date-time with the
      *         requested nanosecond, not null
      * @throws DateTimeException
-     *                           if the nano value is invalid
+     *         if the nano value is invalid
      */
     public LocalDateTime withNano(int nanoOfSecond) {
         LocalTime newTime = time.withNano(nanoOfSecond);
@@ -1269,13 +1254,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param unit
-     *             the unit to truncate to, not null
+     *        the unit to truncate to, not null
      * @return a {@code LocalDateTime} based on this date-time with the time
      *         truncated, not null
      * @throws DateTimeException
-     *                                          if unable to truncate
+     *         if unable to truncate
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      */
     public LocalDateTime truncatedTo(TemporalUnit unit) {
         return with(date, time.truncatedTo(unit));
@@ -1300,13 +1285,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToAdd
-     *                    the amount to add, not null
+     *        the amount to add, not null
      * @return a {@code LocalDateTime} based on this date-time with the addition
      *         made, not null
      * @throws DateTimeException
-     *                             if the addition cannot be made
+     *         if the addition cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public LocalDateTime plus(TemporalAmount amountToAdd) {
@@ -1340,18 +1325,18 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToAdd
-     *                    the amount of the unit to add to the result, may be
-     *                    negative
+     *        the amount of the unit to add to the result, may be
+     *        negative
      * @param unit
-     *                    the unit of the amount to add, not null
+     *        the unit of the amount to add, not null
      * @return a {@code LocalDateTime} based on this date-time with the
      *         specified amount added, not null
      * @throws DateTimeException
-     *                                          if the addition cannot be made
+     *         if the addition cannot be made
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public LocalDateTime plus(long amountToAdd, TemporalUnit unit) {
@@ -1361,11 +1346,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
                 case NANOS:
                     return plusNanos(amountToAdd);
                 case MICROS:
-                    return plusDays(amountToAdd / MICROS_PER_DAY).plusNanos(
-                            (amountToAdd % MICROS_PER_DAY) * 1000);
+                    return plusDays(amountToAdd / MICROS_PER_DAY).plusNanos((amountToAdd % MICROS_PER_DAY)
+                            * 1000);
                 case MILLIS:
-                    return plusDays(amountToAdd / MILLIS_PER_DAY).plusNanos(
-                            (amountToAdd % MILLIS_PER_DAY) * 1000_000);
+                    return plusDays(amountToAdd / MILLIS_PER_DAY).plusNanos((amountToAdd % MILLIS_PER_DAY)
+                            * 1000_000);
                 case SECONDS:
                     return plusSeconds(amountToAdd);
                 case MINUTES:
@@ -1373,14 +1358,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
                 case HOURS:
                     return plusHours(amountToAdd);
                 case HALF_DAYS:
-                    return plusDays(amountToAdd / 256).plusHours((amountToAdd
-                            % 256) * 12); // no
-                                                                                                    // overflow
-                                                                                                    // (256
-                                                                                                    // is
-                                                                                                    // multiple
-                                                                                                    // of
-                                                                                                    // 2)
+                    return plusDays(amountToAdd / 256).plusHours((amountToAdd % 256) * 12); // no
+                                                                                            // overflow
+                                                                                            // (256
+                                                                                            // is
+                                                                                            // multiple
+                                                                                            // of
+                                                                                            // 2)
             }
             return with(date.plus(amountToAdd, unit), time);
         }
@@ -1406,11 +1390,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param years
-     *              the years to add, may be negative
+     *        the years to add, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the years
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime plusYears(long years) {
         LocalDate newDate = date.plusYears(years);
@@ -1435,11 +1419,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param months
-     *               the months to add, may be negative
+     *        the months to add, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the months
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime plusMonths(long months) {
         LocalDate newDate = date.plusMonths(months);
@@ -1460,11 +1444,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param weeks
-     *              the weeks to add, may be negative
+     *        the weeks to add, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the weeks
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime plusWeeks(long weeks) {
         LocalDate newDate = date.plusWeeks(weeks);
@@ -1484,11 +1468,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param days
-     *             the days to add, may be negative
+     *        the days to add, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the days
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime plusDays(long days) {
         LocalDate newDate = date.plusDays(days);
@@ -1503,11 +1487,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param hours
-     *              the hours to add, may be negative
+     *        the hours to add, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the hours
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime plusHours(long hours) {
         return plusWithOverflow(date, hours, 0, 0, 0, 1);
@@ -1520,11 +1504,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param minutes
-     *                the minutes to add, may be negative
+     *        the minutes to add, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the minutes
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime plusMinutes(long minutes) {
         return plusWithOverflow(date, 0, minutes, 0, 0, 1);
@@ -1537,11 +1521,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param seconds
-     *                the seconds to add, may be negative
+     *        the seconds to add, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the seconds
      *         added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime plusSeconds(long seconds) {
         return plusWithOverflow(date, 0, 0, seconds, 0, 1);
@@ -1554,11 +1538,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param nanos
-     *              the nanos to add, may be negative
+     *        the nanos to add, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the
      *         nanoseconds added, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime plusNanos(long nanos) {
         return plusWithOverflow(date, 0, 0, 0, nanos, 1);
@@ -1583,13 +1567,13 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToSubtract
-     *                         the amount to subtract, not null
+     *        the amount to subtract, not null
      * @return a {@code LocalDateTime} based on this date-time with the
      *         subtraction made, not null
      * @throws DateTimeException
-     *                             if the subtraction cannot be made
+     *         if the subtraction cannot be made
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public LocalDateTime minus(TemporalAmount amountToSubtract) {
@@ -1616,25 +1600,25 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param amountToSubtract
-     *                         the amount of the unit to subtract from the
-     *                         result, may be
-     *                         negative
+     *        the amount of the unit to subtract from the
+     *        result, may be
+     *        negative
      * @param unit
-     *                         the unit of the amount to subtract, not null
+     *        the unit of the amount to subtract, not null
      * @return a {@code LocalDateTime} based on this date-time with the
      *         specified amount subtracted, not null
      * @throws DateTimeException
-     *                                          if the subtraction cannot be
-     *                                          made
+     *         if the subtraction cannot be
+     *         made
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public LocalDateTime minus(long amountToSubtract, TemporalUnit unit) {
-        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit)
-                .plus(1, unit) : plus(-amountToSubtract, unit));
+        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit)
+                : plus(-amountToSubtract, unit));
     }
 
     // -----------------------------------------------------------------------
@@ -1657,15 +1641,14 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param years
-     *              the years to subtract, may be negative
+     *        the years to subtract, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the years
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime minusYears(long years) {
-        return (years == Long.MIN_VALUE ? plusYears(Long.MAX_VALUE).plusYears(1)
-                : plusYears(-years));
+        return (years == Long.MIN_VALUE ? plusYears(Long.MAX_VALUE).plusYears(1) : plusYears(-years));
     }
 
     /**
@@ -1687,15 +1670,14 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param months
-     *               the months to subtract, may be negative
+     *        the months to subtract, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the months
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime minusMonths(long months) {
-        return (months == Long.MIN_VALUE ? plusMonths(Long.MAX_VALUE)
-                .plusMonths(1) : plusMonths(-months));
+        return (months == Long.MIN_VALUE ? plusMonths(Long.MAX_VALUE).plusMonths(1) : plusMonths(-months));
     }
 
     /**
@@ -1712,15 +1694,14 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param weeks
-     *              the weeks to subtract, may be negative
+     *        the weeks to subtract, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the weeks
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime minusWeeks(long weeks) {
-        return (weeks == Long.MIN_VALUE ? plusWeeks(Long.MAX_VALUE).plusWeeks(1)
-                : plusWeeks(-weeks));
+        return (weeks == Long.MIN_VALUE ? plusWeeks(Long.MAX_VALUE).plusWeeks(1) : plusWeeks(-weeks));
     }
 
     /**
@@ -1737,15 +1718,14 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param days
-     *             the days to subtract, may be negative
+     *        the days to subtract, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the days
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime minusDays(long days) {
-        return (days == Long.MIN_VALUE ? plusDays(Long.MAX_VALUE).plusDays(1)
-                : plusDays(-days));
+        return (days == Long.MIN_VALUE ? plusDays(Long.MAX_VALUE).plusDays(1) : plusDays(-days));
     }
 
     // -----------------------------------------------------------------------
@@ -1756,11 +1736,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param hours
-     *              the hours to subtract, may be negative
+     *        the hours to subtract, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the hours
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime minusHours(long hours) {
         return plusWithOverflow(date, hours, 0, 0, 0, -1);
@@ -1773,11 +1753,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param minutes
-     *                the minutes to subtract, may be negative
+     *        the minutes to subtract, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the minutes
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime minusMinutes(long minutes) {
         return plusWithOverflow(date, 0, minutes, 0, 0, -1);
@@ -1790,11 +1770,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param seconds
-     *                the seconds to subtract, may be negative
+     *        the seconds to subtract, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the seconds
      *         subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime minusSeconds(long seconds) {
         return plusWithOverflow(date, 0, 0, seconds, 0, -1);
@@ -1807,11 +1787,11 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param nanos
-     *              the nanos to subtract, may be negative
+     *        the nanos to subtract, may be negative
      * @return a {@code LocalDateTime} based on this date-time with the
      *         nanoseconds subtracted, not null
      * @throws DateTimeException
-     *                           if the result exceeds the supported date range
+     *         if the result exceeds the supported date range
      */
     public LocalDateTime minusNanos(long nanos) {
         return plusWithOverflow(date, 0, 0, 0, nanos, -1);
@@ -1825,21 +1805,21 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param newDate
-     *                the new date to base the calculation on, not null
+     *        the new date to base the calculation on, not null
      * @param hours
-     *                the hours to add, may be negative
+     *        the hours to add, may be negative
      * @param minutes
-     *                the minutes to add, may be negative
+     *        the minutes to add, may be negative
      * @param seconds
-     *                the seconds to add, may be negative
+     *        the seconds to add, may be negative
      * @param nanos
-     *                the nanos to add, may be negative
+     *        the nanos to add, may be negative
      * @param sign
-     *                the sign to determine add or subtract
+     *        the sign to determine add or subtract
      * @return the combined result, not null
      */
-    private LocalDateTime plusWithOverflow(LocalDate newDate, long hours,
-            long minutes, long seconds, long nanos, int sign) {
+    private LocalDateTime plusWithOverflow(LocalDate newDate, long hours, long minutes, long seconds,
+            long nanos, int sign) {
         // 9223372036854775808 long, 2147483648 int
         if ((hours | minutes | seconds | nanos) == 0) {
             return with(newDate, time);
@@ -1859,8 +1839,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
         totNanos = totNanos * sign + curNoD; // total 432000000000000
         totDays += Math.floorDiv(totNanos, NANOS_PER_DAY);
         long newNoD = Math.floorMod(totNanos, NANOS_PER_DAY);
-        LocalTime newTime = (newNoD == curNoD ? time
-                : LocalTime.ofNanoOfDay(newNoD));
+        LocalTime newTime = (newNoD == curNoD ? time : LocalTime.ofNanoOfDay(newNoD));
         return with(newDate.plusDays(totDays), newTime);
     }
 
@@ -1877,16 +1856,16 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the specified
      * query passing {@code this} as the argument.
      *
-     * @param       <R>
-     *              the type of the result
+     * @param <R>
+     *        the type of the result
      * @param query
-     *              the query to invoke, not null
+     *        the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException
-     *                             if unable to query (defined by the query)
+     *         if unable to query (defined by the query)
      * @throws ArithmeticException
-     *                             if numeric overflow occurs (defined by the
-     *                             query)
+     *         if numeric overflow occurs (defined by the
+     *         query)
      */
     @SuppressWarnings("unchecked")
     @Override // override for Javadoc
@@ -1921,12 +1900,12 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param temporal
-     *                 the target object to be adjusted, not null
+     *        the target object to be adjusted, not null
      * @return the adjusted object, not null
      * @throws DateTimeException
-     *                             if unable to make the adjustment
+     *         if unable to make the adjustment
      * @throws ArithmeticException
-     *                             if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override // override for Javadoc
     public Temporal adjustInto(Temporal temporal) {
@@ -1978,20 +1957,20 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This instance is immutable and unaffected by this method call.
      *
      * @param endExclusive
-     *                     the end date, exclusive, which is converted to a
-     *                     {@code LocalDateTime}, not null
+     *        the end date, exclusive, which is converted to a
+     *        {@code LocalDateTime}, not null
      * @param unit
-     *                     the unit to measure the amount in, not null
+     *        the unit to measure the amount in, not null
      * @return the amount of time between this date-time and the end date-time
      * @throws DateTimeException
-     *                                          if the amount cannot be
-     *                                          calculated, or the end temporal
-     *                                          cannot be converted to a
-     *                                          {@code LocalDateTime}
+     *         if the amount cannot be
+     *         calculated, or the end temporal
+     *         cannot be converted to a
+     *         {@code LocalDateTime}
      * @throws UnsupportedTemporalTypeException
-     *                                          if the unit is not supported
+     *         if the unit is not supported
      * @throws ArithmeticException
-     *                                          if numeric overflow occurs
+     *         if numeric overflow occurs
      */
     @Override
     public long until(Temporal endExclusive, TemporalUnit unit) {
@@ -2058,10 +2037,10 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * This date-time will be passed to the formatter to produce a string.
      *
      * @param formatter
-     *                  the formatter to use, not null
+     *        the formatter to use, not null
      * @return the formatted date-time string, not null
      * @throws DateTimeException
-     *                           if an error occurs during printing
+     *         if an error occurs during printing
      */
     @Override // override for Javadoc and performance
     public String format(DateTimeFormatter formatter) {
@@ -2079,7 +2058,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * valid.
      *
      * @param offset
-     *               the offset to combine with, not null
+     *        the offset to combine with, not null
      * @return the offset date-time formed from this date-time and the specified
      *         offset, not null
      */
@@ -2118,7 +2097,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * {@link ZonedDateTime#ofStrict(LocalDateTime, ZoneOffset, ZoneId)}.
      *
      * @param zone
-     *             the time-zone to use, not null
+     *        the time-zone to use, not null
      * @return the zoned date-time formed from this date-time, not null
      */
     @Override
@@ -2140,7 +2119,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * {@link ChronoLocalDateTime#compareTo}.
      *
      * @param other
-     *              the other date-time to compare to, not null
+     *        the other date-time to compare to, not null
      * @return the comparator value, negative if less, positive if greater
      */
     @Override // override for Javadoc and performance
@@ -2180,7 +2159,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * {@link ChronoLocalDateTime#timeLineOrder()}.
      *
      * @param other
-     *              the other date-time to compare to, not null
+     *        the other date-time to compare to, not null
      * @return true if this date-time is after the specified date-time
      */
     @Override // override for Javadoc and performance
@@ -2212,7 +2191,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * {@link ChronoLocalDateTime#timeLineOrder()}.
      *
      * @param other
-     *              the other date-time to compare to, not null
+     *        the other date-time to compare to, not null
      * @return true if this date-time is before the specified date-time
      */
     @Override // override for Javadoc and performance
@@ -2244,7 +2223,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * {@link ChronoLocalDateTime#timeLineOrder()}.
      *
      * @param other
-     *              the other date-time to compare to, not null
+     *        the other date-time to compare to, not null
      * @return true if this date-time is equal to the specified date-time
      */
     @Override // override for Javadoc and performance
@@ -2264,7 +2243,7 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * compared, other types return false.
      *
      * @param obj
-     *            the object to check, null returns false
+     *        the object to check, null returns false
      * @return true if this is equal to the other date-time
      */
     @Override
@@ -2338,13 +2317,12 @@ public final class LocalDateTime implements Temporal, TemporalAdjuster,
      * Defend against malicious streams.
      *
      * @param s
-     *          the stream to read
+     *        the stream to read
      * @throws InvalidObjectException
-     *                                always
+     *         always
      */
     private void readObject(ObjectInputStream s) throws InvalidObjectException {
-        throw new InvalidObjectException(
-                "Deserialization via serialization delegate");
+        throw new InvalidObjectException("Deserialization via serialization delegate");
     }
 
     void writeExternal(DataOutput out) throws IOException {

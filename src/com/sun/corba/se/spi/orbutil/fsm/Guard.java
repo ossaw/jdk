@@ -6,7 +6,6 @@
 package com.sun.corba.se.spi.orbutil.fsm;
 
 /**
- *
  * @author Ken Cavanaugh
  */
 public interface Guard {
@@ -66,9 +65,9 @@ public interface Guard {
      * </ul>
      *
      * @param FSM
-     *              fsm is the state machine causing this action.
+     *        fsm is the state machine causing this action.
      * @param Input
-     *              in is the input that caused the transition.
+     *        in is the input that caused the transition.
      */
     public Result evaluate(FSM fsm, Input in);
 }

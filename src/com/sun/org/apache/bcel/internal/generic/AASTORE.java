@@ -74,7 +74,7 @@ public class AASTORE extends ArrayInstruction implements StackConsumer {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackConsumer(this);

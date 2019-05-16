@@ -23,7 +23,6 @@ import java.util.function.LongConsumer;
  * not wish to receive any more data (the {@code cancellationRequested()}
  * method), which a source can poll before sending more data to the {@code Sink}
  * .
- *
  * <p>
  * A sink may be in one of two states: an initial state and an active state. It
  * starts out in the initial state; the {@code begin()} method transitions it to
@@ -44,13 +43,11 @@ import java.util.function.LongConsumer;
  *                  .max();
  * }
  *          </pre>
- *
  *          <p>
  *          Here, we have three stages, filtering, mapping, and reducing. The
  *          filtering stage consumes strings and emits a subset of those
  *          strings; the mapping stage consumes strings and emits ints; the
  *          reduction stage consumes those ints and computes the maximal value.
- *
  *          <p>
  *          A {@code Sink} instance is used to represent each stage of this
  *          pipeline, whether the stage accepts objects, ints, longs, or
@@ -67,14 +64,12 @@ import java.util.function.LongConsumer;
  *          {@code accept} method on its downstream {@code Sink}. Similarly,
  *          each stage must implement the correct {@code accept} method
  *          corresponding to the data type it accepts.
- *
  *          <p>
  *          The specialized subtypes such as {@link Sink.OfInt} override
  *          {@code accept(Object)} to call the appropriate primitive
  *          specialization of {@code accept}, implement the appropriate
  *          primitive specialization of {@code Consumer}, and re-abstract the
  *          appropriate primitive specialization of {@code accept}.
- *
  *          <p>
  *          The chaining subtypes such as {@link ChainedInt} not only implement
  *          {@code Sink.OfInt}, but also maintain a {@code downstream} field
@@ -87,14 +82,13 @@ import java.util.function.LongConsumer;
  *
  *          <pre>
  * {@code
- *          	IntSink is = new Sink.ChainedReference<U>(sink) {
- *          		public void accept(U u) {
- *          			downstream.accept(mapper.applyAsInt(u));
+ *              IntSink is = new Sink.ChainedReference<U>(sink) {
+ *                  public void accept(U u) {
+ *                      downstream.accept(mapper.applyAsInt(u));
  *                  }
  *              };
  *          }
  *          </pre>
- *
  *          <p>
  *          Here, we implement {@code Sink.ChainedReference<U>}, meaning that we
  *          expect to receive elements of type {@code U} as input, and pass the
@@ -103,7 +97,6 @@ import java.util.function.LongConsumer;
  *          when emitting values to the downstream. The {@code accept()} method
  *          applies the mapping function from {@code U} to {@code int} and
  *          passes the resulting value to the downstream {@code Sink}.
- *
  * @param <T>
  *        type of elements for value streams
  * @since 1.8
@@ -115,13 +108,12 @@ interface Sink<T> extends Consumer<T> {
      * may call this method to reset the sink for another calculation.
      * 
      * @param size
-     *             The exact size of the data to be pushed downstream, if known
-     *             or {@code -1} if unknown or infinite.
-     *
-     *             <p>
-     *             Prior to this call, the sink must be in the initial state,
-     *             and
-     *             after this call it is in the active state.
+     *        The exact size of the data to be pushed downstream, if known
+     *        or {@code -1} if unknown or infinite.
+     *        <p>
+     *        Prior to this call, the sink must be in the initial state,
+     *        and
+     *        after this call it is in the active state.
      */
     default void begin(long size) {}
 
@@ -129,7 +121,6 @@ interface Sink<T> extends Consumer<T> {
      * Indicates that all elements have been pushed. If the {@code Sink} is
      * stateful, it should send any stored state downstream at this time, and
      * should clear any accumulated state (and associated resources).
-     *
      * <p>
      * Prior to this call, the sink must be in the active state, and after this
      * call it is returned to the initial state.
@@ -140,7 +131,6 @@ interface Sink<T> extends Consumer<T> {
      * Indicates that this {@code Sink} does not wish to receive any more data.
      *
      * @implSpec The default implementation always returns false.
-     *
      * @return true if cancellation is requested
      */
     default boolean cancellationRequested() {
@@ -151,9 +141,8 @@ interface Sink<T> extends Consumer<T> {
      * Accepts an int value.
      *
      * @implSpec The default implementation throws IllegalStateException.
-     *
      * @throws IllegalStateException
-     *                               if this sink does not accept int values
+     *         if this sink does not accept int values
      */
     default void accept(int value) {
         throw new IllegalStateException("called wrong accept method");
@@ -163,9 +152,8 @@ interface Sink<T> extends Consumer<T> {
      * Accepts a long value.
      *
      * @implSpec The default implementation throws IllegalStateException.
-     *
      * @throws IllegalStateException
-     *                               if this sink does not accept long values
+     *         if this sink does not accept long values
      */
     default void accept(long value) {
         throw new IllegalStateException("called wrong accept method");
@@ -175,9 +163,8 @@ interface Sink<T> extends Consumer<T> {
      * Accepts a double value.
      *
      * @implSpec The default implementation throws IllegalStateException.
-     *
      * @throws IllegalStateException
-     *                               if this sink does not accept double values
+     *         if this sink does not accept double values
      */
     default void accept(double value) {
         throw new IllegalStateException("called wrong accept method");
@@ -195,8 +182,7 @@ interface Sink<T> extends Consumer<T> {
         @Override
         default void accept(Integer i) {
             if (Tripwire.ENABLED)
-                Tripwire.trip(getClass(),
-                        "{0} calling Sink.OfInt.accept(Integer)");
+                Tripwire.trip(getClass(), "{0} calling Sink.OfInt.accept(Integer)");
             accept(i.intValue());
         }
     }
@@ -213,8 +199,7 @@ interface Sink<T> extends Consumer<T> {
         @Override
         default void accept(Long i) {
             if (Tripwire.ENABLED)
-                Tripwire.trip(getClass(),
-                        "{0} calling Sink.OfLong.accept(Long)");
+                Tripwire.trip(getClass(), "{0} calling Sink.OfLong.accept(Long)");
             accept(i.longValue());
         }
     }
@@ -231,8 +216,7 @@ interface Sink<T> extends Consumer<T> {
         @Override
         default void accept(Double i) {
             if (Tripwire.ENABLED)
-                Tripwire.trip(getClass(),
-                        "{0} calling Sink.OfDouble.accept(Double)");
+                Tripwire.trip(getClass(), "{0} calling Sink.OfDouble.accept(Double)");
             accept(i.doubleValue());
         }
     }

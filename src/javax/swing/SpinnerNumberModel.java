@@ -53,12 +53,10 @@ import java.io.Serializable;
  * @see AbstractSpinnerModel
  * @see SpinnerListModel
  * @see SpinnerDateModel
- *
  * @author Hans Muller
  * @since 1.4
  */
-public class SpinnerNumberModel extends AbstractSpinnerModel implements
-        Serializable {
+public class SpinnerNumberModel extends AbstractSpinnerModel implements Serializable {
     private Number stepSize, value;
     private Comparable minimum, maximum;
 
@@ -82,30 +80,26 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      * <code>IllegalArgumentException</code> is thrown.
      *
      * @param value
-     *                 the current (non <code>null</code>) value of the model
+     *        the current (non <code>null</code>) value of the model
      * @param minimum
-     *                 the first number in the sequence or <code>null</code>
+     *        the first number in the sequence or <code>null</code>
      * @param maximum
-     *                 the last number in the sequence or <code>null</code>
+     *        the last number in the sequence or <code>null</code>
      * @param stepSize
-     *                 the difference between elements of the sequence
-     *
+     *        the difference between elements of the sequence
      * @throws IllegalArgumentException
-     *                                  if stepSize or value is
-     *                                  <code>null</code> or if the following
-     *                                  expression is false:
-     *                                  <code>minimum &lt;= value &lt;= maximum</code>
+     *         if stepSize or value is
+     *         <code>null</code> or if the following
+     *         expression is false:
+     *         <code>minimum &lt;= value &lt;= maximum</code>
      */
-    public SpinnerNumberModel(Number value, Comparable minimum,
-            Comparable maximum, Number stepSize) {
+    public SpinnerNumberModel(Number value, Comparable minimum, Comparable maximum, Number stepSize) {
         if ((value == null) || (stepSize == null)) {
-            throw new IllegalArgumentException(
-                    "value and stepSize must be non-null");
+            throw new IllegalArgumentException("value and stepSize must be non-null");
         }
-        if (!(((minimum == null) || (minimum.compareTo(value) <= 0))
-                && ((maximum == null) || (maximum.compareTo(value) >= 0)))) {
-            throw new IllegalArgumentException(
-                    "(minimum <= value <= maximum) is false");
+        if (!(((minimum == null) || (minimum.compareTo(value) <= 0)) && ((maximum == null) || (maximum
+                .compareTo(value) >= 0)))) {
+            throw new IllegalArgumentException("(minimum <= value <= maximum) is false");
         }
         this.value = value;
         this.minimum = minimum;
@@ -119,21 +113,20 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      * <code>stepSize</code>.
      *
      * @param value
-     *                 the current value of the model
+     *        the current value of the model
      * @param minimum
-     *                 the first number in the sequence
+     *        the first number in the sequence
      * @param maximum
-     *                 the last number in the sequence
+     *        the last number in the sequence
      * @param stepSize
-     *                 the difference between elements of the sequence
+     *        the difference between elements of the sequence
      * @throws IllegalArgumentException
-     *                                  if the following expression is false:
-     *                                  <code>minimum &lt;= value &lt;= maximum</code>
+     *         if the following expression is false:
+     *         <code>minimum &lt;= value &lt;= maximum</code>
      */
-    public SpinnerNumberModel(int value, int minimum, int maximum,
-            int stepSize) {
-        this(Integer.valueOf(value), Integer.valueOf(minimum), Integer.valueOf(
-                maximum), Integer.valueOf(stepSize));
+    public SpinnerNumberModel(int value, int minimum, int maximum, int stepSize) {
+        this(Integer.valueOf(value), Integer.valueOf(minimum), Integer.valueOf(maximum), Integer.valueOf(
+                stepSize));
     }
 
     /**
@@ -142,21 +135,19 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      * <code>stepSize</code>.
      *
      * @param value
-     *                 the current value of the model
+     *        the current value of the model
      * @param minimum
-     *                 the first number in the sequence
+     *        the first number in the sequence
      * @param maximum
-     *                 the last number in the sequence
+     *        the last number in the sequence
      * @param stepSize
-     *                 the difference between elements of the sequence
+     *        the difference between elements of the sequence
      * @throws IllegalArgumentException
-     *                                  if the following expression is false:
-     *                                  <code>minimum &lt;= value &lt;= maximum</code>
+     *         if the following expression is false:
+     *         <code>minimum &lt;= value &lt;= maximum</code>
      */
-    public SpinnerNumberModel(double value, double minimum, double maximum,
-            double stepSize) {
-        this(new Double(value), new Double(minimum), new Double(maximum),
-                new Double(stepSize));
+    public SpinnerNumberModel(double value, double minimum, double maximum, double stepSize) {
+        this(new Double(value), new Double(minimum), new Double(maximum), new Double(stepSize));
     }
 
     /**
@@ -198,17 +189,16 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      * has changed.
      *
      * @param minimum
-     *                a <code>Comparable</code> that has a
-     *                <code>compareTo</code>
-     *                method for <code>Number</code>s with the same type as
-     *                <code>value</code>
+     *        a <code>Comparable</code> that has a
+     *        <code>compareTo</code>
+     *        method for <code>Number</code>s with the same type as
+     *        <code>value</code>
      * @see #getMinimum
      * @see #setMaximum
      * @see SpinnerModel#addChangeListener
      */
     public void setMinimum(Comparable minimum) {
-        if ((minimum == null) ? (this.minimum != null)
-                : !minimum.equals(this.minimum)) {
+        if ((minimum == null) ? (this.minimum != null) : !minimum.equals(this.minimum)) {
             this.minimum = minimum;
             fireStateChanged();
         }
@@ -245,17 +235,16 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      * has changed.
      *
      * @param maximum
-     *                a <code>Comparable</code> that has a
-     *                <code>compareTo</code>
-     *                method for <code>Number</code>s with the same type as
-     *                <code>value</code>
+     *        a <code>Comparable</code> that has a
+     *        <code>compareTo</code>
+     *        method for <code>Number</code>s with the same type as
+     *        <code>value</code>
      * @see #getMaximum
      * @see #setMinimum
      * @see SpinnerModel#addChangeListener
      */
     public void setMaximum(Comparable maximum) {
-        if ((maximum == null) ? (this.maximum != null)
-                : !maximum.equals(this.maximum)) {
+        if ((maximum == null) ? (this.maximum != null) : !maximum.equals(this.maximum)) {
             this.maximum = maximum;
             fireStateChanged();
         }
@@ -281,10 +270,10 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      * has changed.
      *
      * @param stepSize
-     *                 the size of the value change computed by the
-     *                 <code>getNextValue</code> and
-     *                 <code>getPreviousValue</code>
-     *                 methods
+     *        the size of the value change computed by the
+     *        <code>getNextValue</code> and
+     *        <code>getPreviousValue</code>
+     *        methods
      * @see #getNextValue
      * @see #getPreviousValue
      * @see #getStepSize
@@ -314,8 +303,7 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
     private Number incrValue(int dir) {
         Number newValue;
         if ((value instanceof Float) || (value instanceof Double)) {
-            double v = value.doubleValue() + (stepSize.doubleValue()
-                    * (double) dir);
+            double v = value.doubleValue() + (stepSize.doubleValue() * (double) dir);
             if (value instanceof Double) {
                 newValue = new Double(v);
             } else {
@@ -350,7 +338,6 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      *
      * @return <code>value + stepSize</code> or <code>null</code> if the sum
      *         exceeds <code>maximum</code>.
-     *
      * @see SpinnerModel#getNextValue
      * @see #getPreviousValue
      * @see #setStepSize
@@ -364,7 +351,6 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      *
      * @return <code>value - stepSize</code>, or <code>null</code> if the sum is
      *         less than <code>minimum</code>.
-     *
      * @see SpinnerModel#getPreviousValue
      * @see #getNextValue
      * @see #setStepSize
@@ -412,12 +398,12 @@ public class SpinnerNumberModel extends AbstractSpinnerModel implements
      * This method fires a <code>ChangeEvent</code> if the value has changed.
      *
      * @param value
-     *              the current (non <code>null</code>) <code>Number</code> for
-     *              this sequence
+     *        the current (non <code>null</code>) <code>Number</code> for
+     *        this sequence
      * @throws IllegalArgumentException
-     *                                  if <code>value</code> is
-     *                                  <code>null</code> or not a
-     *                                  <code>Number</code>
+     *         if <code>value</code> is
+     *         <code>null</code> or not a
+     *         <code>Number</code>
      * @see #getNumber
      * @see #getValue
      * @see SpinnerModel#addChangeListener

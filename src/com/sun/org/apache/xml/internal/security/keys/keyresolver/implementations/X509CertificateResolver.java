@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -43,8 +41,8 @@ import org.w3c.dom.Element;
 public class X509CertificateResolver extends KeyResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(X509CertificateResolver.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(
+            X509CertificateResolver.class.getName());
 
     /**
      * Method engineResolvePublicKey
@@ -53,15 +51,12 @@ public class X509CertificateResolver extends KeyResolverSpi {
      * @param element
      * @param BaseURI
      * @param storage
-     *
      * @throws KeyResolverException
      */
-    public PublicKey engineLookupAndResolvePublicKey(Element element,
-            String BaseURI, StorageResolver storage)
+    public PublicKey engineLookupAndResolvePublicKey(Element element, String BaseURI, StorageResolver storage)
             throws KeyResolverException {
 
-        X509Certificate cert = this.engineLookupResolveX509Certificate(element,
-                BaseURI, storage);
+        X509Certificate cert = this.engineLookupResolveX509Certificate(element, BaseURI, storage);
 
         if (cert != null) {
             return cert.getPublicKey();
@@ -77,30 +72,24 @@ public class X509CertificateResolver extends KeyResolverSpi {
      * @param element
      * @param BaseURI
      * @param storage
-     *
      * @throws KeyResolverException
      */
-    public X509Certificate engineLookupResolveX509Certificate(Element element,
-            String BaseURI, StorageResolver storage)
-            throws KeyResolverException {
+    public X509Certificate engineLookupResolveX509Certificate(Element element, String BaseURI,
+            StorageResolver storage) throws KeyResolverException {
 
         try {
-            Element[] els = XMLUtils.selectDsNodes(element.getFirstChild(),
-                    Constants._TAG_X509CERTIFICATE);
+            Element[] els = XMLUtils.selectDsNodes(element.getFirstChild(), Constants._TAG_X509CERTIFICATE);
             if ((els == null) || (els.length == 0)) {
-                Element el = XMLUtils.selectDsNode(element.getFirstChild(),
-                        Constants._TAG_X509DATA, 0);
+                Element el = XMLUtils.selectDsNode(element.getFirstChild(), Constants._TAG_X509DATA, 0);
                 if (el != null) {
-                    return engineLookupResolveX509Certificate(el, BaseURI,
-                            storage);
+                    return engineLookupResolveX509Certificate(el, BaseURI, storage);
                 }
                 return null;
             }
 
             // populate Object array
             for (int i = 0; i < els.length; i++) {
-                XMLX509Certificate xmlCert = new XMLX509Certificate(els[i],
-                        BaseURI);
+                XMLX509Certificate xmlCert = new XMLX509Certificate(els[i], BaseURI);
                 X509Certificate cert = xmlCert.getX509Certificate();
                 if (cert != null) {
                     return cert;
@@ -109,8 +98,7 @@ public class X509CertificateResolver extends KeyResolverSpi {
             return null;
         } catch (XMLSecurityException ex) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE, "XMLSecurityException",
-                        ex);
+                log.log(java.util.logging.Level.FINE, "XMLSecurityException", ex);
             }
             throw new KeyResolverException("generic.EmptyMessage", ex);
         }
@@ -124,8 +112,8 @@ public class X509CertificateResolver extends KeyResolverSpi {
      * @param BaseURI
      * @param storage
      */
-    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
-            Element element, String BaseURI, StorageResolver storage) {
+    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String BaseURI,
+            StorageResolver storage) {
         return null;
     }
 }

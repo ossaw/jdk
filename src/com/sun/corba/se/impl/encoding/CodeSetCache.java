@@ -11,11 +11,9 @@ import java.util.WeakHashMap;
 
 /**
  * Thread local cache of sun.io code set converters for performance.
- *
  * The thread local class contains a single reference to a Map[] containing two
  * WeakHashMaps. One for CharsetEncoders and one for CharsetDecoders. Constants
  * are defined for indexing.
- *
  * This is used internally by CodeSetConversion.
  */
 class CodeSetCache {

@@ -43,8 +43,7 @@ public class AccessibleRole extends AccessibleBundle {
     /**
      * The header for a column of data.
      */
-    public static final AccessibleRole COLUMN_HEADER = new AccessibleRole(
-            "columnheader");
+    public static final AccessibleRole COLUMN_HEADER = new AccessibleRole("columnheader");
 
     /**
      * Object that can be drawn into and is used to trap events.
@@ -59,8 +58,7 @@ public class AccessibleRole extends AccessibleBundle {
      * A list of choices the user can select from. Also optionally allows the
      * user to enter a choice of their own.
      */
-    public static final AccessibleRole COMBO_BOX = new AccessibleRole(
-            "combobox");
+    public static final AccessibleRole COMBO_BOX = new AccessibleRole("combobox");
 
     /**
      * An iconified internal frame in a DESKTOP_PANE.
@@ -68,8 +66,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #DESKTOP_PANE
      * @see #INTERNAL_FRAME
      */
-    public static final AccessibleRole DESKTOP_ICON = new AccessibleRole(
-            "desktopicon");
+    public static final AccessibleRole DESKTOP_ICON = new AccessibleRole("desktopicon");
 
     /**
      * An object containing a collection of <code>Accessibles</code> that
@@ -85,8 +82,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see AccessibleIcon
      * @since 1.6
      */
-    public static final AccessibleRole HTML_CONTAINER = new AccessibleRole(
-            "htmlcontainer");
+    public static final AccessibleRole HTML_CONTAINER = new AccessibleRole("htmlcontainer");
 
     /**
      * A frame-like object that is clipped by a desktop pane. The desktop pane,
@@ -97,8 +93,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #DESKTOP_PANE
      * @see #FRAME
      */
-    public static final AccessibleRole INTERNAL_FRAME = new AccessibleRole(
-            "internalframe");
+    public static final AccessibleRole INTERNAL_FRAME = new AccessibleRole("internalframe");
 
     /**
      * A pane that supports internal frames and iconified versions of those
@@ -107,16 +102,14 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #DESKTOP_ICON
      * @see #INTERNAL_FRAME
      */
-    public static final AccessibleRole DESKTOP_PANE = new AccessibleRole(
-            "desktoppane");
+    public static final AccessibleRole DESKTOP_PANE = new AccessibleRole("desktoppane");
 
     /**
      * A specialized pane whose primary use is inside a DIALOG
      * 
      * @see #DIALOG
      */
-    public static final AccessibleRole OPTION_PANE = new AccessibleRole(
-            "optionpane");
+    public static final AccessibleRole OPTION_PANE = new AccessibleRole("optionpane");
 
     /**
      * A top level window with no title or border.
@@ -149,8 +142,7 @@ public class AccessibleRole extends AccessibleBundle {
     /**
      * A specialized pane that lets the user choose a color.
      */
-    public static final AccessibleRole COLOR_CHOOSER = new AccessibleRole(
-            "colorchooser");
+    public static final AccessibleRole COLOR_CHOOSER = new AccessibleRole("colorchooser");
 
     /**
      * A pane that allows the user to navigate through and select the contents
@@ -158,8 +150,7 @@ public class AccessibleRole extends AccessibleBundle {
      * 
      * @see #FILE_CHOOSER
      */
-    public static final AccessibleRole DIRECTORY_PANE = new AccessibleRole(
-            "directorypane");
+    public static final AccessibleRole DIRECTORY_PANE = new AccessibleRole("directorypane");
 
     /**
      * A specialized dialog that displays the files in the directory and lets
@@ -168,8 +159,7 @@ public class AccessibleRole extends AccessibleBundle {
      * 
      * @see #DIRECTORY_PANE
      */
-    public static final AccessibleRole FILE_CHOOSER = new AccessibleRole(
-            "filechooser");
+    public static final AccessibleRole FILE_CHOOSER = new AccessibleRole("filechooser");
 
     /**
      * An object that fills up space in a user interface. It is often used in
@@ -181,8 +171,7 @@ public class AccessibleRole extends AccessibleBundle {
     /**
      * A hypertext anchor
      */
-    public static final AccessibleRole HYPERLINK = new AccessibleRole(
-            "hyperlink");
+    public static final AccessibleRole HYPERLINK = new AccessibleRole("hyperlink");
 
     /**
      * A small fixed size picture, typically used to decorate components.
@@ -201,8 +190,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #GLASS_PANE
      * @see #LAYERED_PANE
      */
-    public static final AccessibleRole ROOT_PANE = new AccessibleRole(
-            "rootpane");
+    public static final AccessibleRole ROOT_PANE = new AccessibleRole("rootpane");
 
     /**
      * A pane that is guaranteed to be painted on top of all panes beneath it.
@@ -210,8 +198,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #ROOT_PANE
      * @see #CANVAS
      */
-    public static final AccessibleRole GLASS_PANE = new AccessibleRole(
-            "glasspane");
+    public static final AccessibleRole GLASS_PANE = new AccessibleRole("glasspane");
 
     /**
      * A specialized pane that allows its children to be drawn in layers,
@@ -222,8 +209,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #GLASS_PANE
      * @see #ROOT_PANE
      */
-    public static final AccessibleRole LAYERED_PANE = new AccessibleRole(
-            "layeredpane");
+    public static final AccessibleRole LAYERED_PANE = new AccessibleRole("layeredpane");
 
     /**
      * An object that presents a list of objects to the user and allows the user
@@ -242,8 +228,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #SCROLL_PANE
      * @see #LIST
      */
-    public static final AccessibleRole LIST_ITEM = new AccessibleRole(
-            "listitem");
+    public static final AccessibleRole LIST_ITEM = new AccessibleRole("listitem");
 
     /**
      * An object usually drawn at the top of the primary dialog box of an
@@ -263,8 +248,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #MENU
      * @see #MENU_ITEM
      */
-    public static final AccessibleRole POPUP_MENU = new AccessibleRole(
-            "popupmenu");
+    public static final AccessibleRole POPUP_MENU = new AccessibleRole("popupmenu");
 
     /**
      * An object usually found inside a menu bar that contains a list of actions
@@ -292,8 +276,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #SEPARATOR
      * @see #POPUP_MENU
      */
-    public static final AccessibleRole MENU_ITEM = new AccessibleRole(
-            "menuitem");
+    public static final AccessibleRole MENU_ITEM = new AccessibleRole("menuitem");
 
     /**
      * An object usually contained in a menu to provide a visual and logical
@@ -304,8 +287,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #MENU
      * @see #MENU_ITEM
      */
-    public static final AccessibleRole SEPARATOR = new AccessibleRole(
-            "separator");
+    public static final AccessibleRole SEPARATOR = new AccessibleRole("separator");
 
     /**
      * An object that presents a series of panels (or page tabs), one at a time,
@@ -315,8 +297,7 @@ public class AccessibleRole extends AccessibleBundle {
      * 
      * @see #PAGE_TAB
      */
-    public static final AccessibleRole PAGE_TAB_LIST = new AccessibleRole(
-            "pagetablist");
+    public static final AccessibleRole PAGE_TAB_LIST = new AccessibleRole("pagetablist");
 
     /**
      * An object that is a child of a page tab list. Its sole child is the panel
@@ -335,15 +316,13 @@ public class AccessibleRole extends AccessibleBundle {
     /**
      * An object used to indicate how much of a task has been completed.
      */
-    public static final AccessibleRole PROGRESS_BAR = new AccessibleRole(
-            "progressbar");
+    public static final AccessibleRole PROGRESS_BAR = new AccessibleRole("progressbar");
 
     /**
      * A text object used for passwords, or other places where the text contents
      * is not shown visibly to the user
      */
-    public static final AccessibleRole PASSWORD_TEXT = new AccessibleRole(
-            "passwordtext");
+    public static final AccessibleRole PASSWORD_TEXT = new AccessibleRole("passwordtext");
 
     /**
      * An object the user can manipulate to tell the application to do
@@ -353,8 +332,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #TOGGLE_BUTTON
      * @see #RADIO_BUTTON
      */
-    public static final AccessibleRole PUSH_BUTTON = new AccessibleRole(
-            "pushbutton");
+    public static final AccessibleRole PUSH_BUTTON = new AccessibleRole("pushbutton");
 
     /**
      * A specialized push button that can be checked or unchecked, but does not
@@ -364,8 +342,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #CHECK_BOX
      * @see #RADIO_BUTTON
      */
-    public static final AccessibleRole TOGGLE_BUTTON = new AccessibleRole(
-            "togglebutton");
+    public static final AccessibleRole TOGGLE_BUTTON = new AccessibleRole("togglebutton");
 
     /**
      * A choice that can be checked or unchecked and provides a separate
@@ -375,8 +352,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #TOGGLE_BUTTON
      * @see #RADIO_BUTTON
      */
-    public static final AccessibleRole CHECK_BOX = new AccessibleRole(
-            "checkbox");
+    public static final AccessibleRole CHECK_BOX = new AccessibleRole("checkbox");
 
     /**
      * A specialized check box that will cause other radio buttons in the same
@@ -386,14 +362,12 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #TOGGLE_BUTTON
      * @see #CHECK_BOX
      */
-    public static final AccessibleRole RADIO_BUTTON = new AccessibleRole(
-            "radiobutton");
+    public static final AccessibleRole RADIO_BUTTON = new AccessibleRole("radiobutton");
 
     /**
      * The header for a row of data.
      */
-    public static final AccessibleRole ROW_HEADER = new AccessibleRole(
-            "rowheader");
+    public static final AccessibleRole ROW_HEADER = new AccessibleRole("rowheader");
 
     /**
      * An object that allows a user to incrementally view a large amount of
@@ -402,8 +376,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #SCROLL_BAR
      * @see #VIEWPORT
      */
-    public static final AccessibleRole SCROLL_PANE = new AccessibleRole(
-            "scrollpane");
+    public static final AccessibleRole SCROLL_PANE = new AccessibleRole("scrollpane");
 
     /**
      * An object usually used to allow a user to incrementally view a large
@@ -411,8 +384,7 @@ public class AccessibleRole extends AccessibleBundle {
      * 
      * @see #SCROLL_PANE
      */
-    public static final AccessibleRole SCROLL_BAR = new AccessibleRole(
-            "scrollbar");
+    public static final AccessibleRole SCROLL_BAR = new AccessibleRole("scrollbar");
 
     /**
      * An object usually used in a scroll pane. It represents the portion of the
@@ -421,8 +393,7 @@ public class AccessibleRole extends AccessibleBundle {
      * 
      * @see #SCROLL_PANE
      */
-    public static final AccessibleRole VIEWPORT = new AccessibleRole(
-            "viewport");
+    public static final AccessibleRole VIEWPORT = new AccessibleRole("viewport");
 
     /**
      * An object that allows the user to select from a bounded range. For
@@ -435,8 +406,7 @@ public class AccessibleRole extends AccessibleBundle {
      * Between the two panels is a divider the user can manipulate to make one
      * panel larger and the other panel smaller.
      */
-    public static final AccessibleRole SPLIT_PANE = new AccessibleRole(
-            "splitpane");
+    public static final AccessibleRole SPLIT_PANE = new AccessibleRole("splitpane");
 
     /**
      * An object used to present information in terms of rows and columns. An
@@ -480,8 +450,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #SWING_COMPONENT
      * @see #UNKNOWN
      */
-    public static final AccessibleRole AWT_COMPONENT = new AccessibleRole(
-            "awtcomponent");
+    public static final AccessibleRole AWT_COMPONENT = new AccessibleRole("awtcomponent");
 
     /**
      * A Swing component, but nothing else is known about it.
@@ -489,8 +458,7 @@ public class AccessibleRole extends AccessibleBundle {
      * @see #AWT_COMPONENT
      * @see #UNKNOWN
      */
-    public static final AccessibleRole SWING_COMPONENT = new AccessibleRole(
-            "swingcomponent");
+    public static final AccessibleRole SWING_COMPONENT = new AccessibleRole("swingcomponent");
 
     /**
      * The object contains some Accessible information, but its role is not
@@ -505,15 +473,13 @@ public class AccessibleRole extends AccessibleBundle {
      * A STATUS_BAR is an simple component that can contain multiple labels of
      * status information to the user.
      */
-    public static final AccessibleRole STATUS_BAR = new AccessibleRole(
-            "statusbar");
+    public static final AccessibleRole STATUS_BAR = new AccessibleRole("statusbar");
 
     /**
      * A DATE_EDITOR is a component that allows users to edit java.util.Date and
      * java.util.Time objects
      */
-    public static final AccessibleRole DATE_EDITOR = new AccessibleRole(
-            "dateeditor");
+    public static final AccessibleRole DATE_EDITOR = new AccessibleRole("dateeditor");
 
     /**
      * A SPIN_BOX is a simple spinner component and its main use is for simple
@@ -525,15 +491,13 @@ public class AccessibleRole extends AccessibleBundle {
      * A FONT_CHOOSER is a component that lets the user pick various attributes
      * for fonts.
      */
-    public static final AccessibleRole FONT_CHOOSER = new AccessibleRole(
-            "fontchooser");
+    public static final AccessibleRole FONT_CHOOSER = new AccessibleRole("fontchooser");
 
     /**
      * A GROUP_BOX is a simple container that contains a border around it and
      * contains components inside it.
      */
-    public static final AccessibleRole GROUP_BOX = new AccessibleRole(
-            "groupbox");
+    public static final AccessibleRole GROUP_BOX = new AccessibleRole("groupbox");
 
     /**
      * A text header
@@ -554,8 +518,7 @@ public class AccessibleRole extends AccessibleBundle {
      *
      * @since 1.5
      */
-    public static final AccessibleRole PARAGRAPH = new AccessibleRole(
-            "paragraph");
+    public static final AccessibleRole PARAGRAPH = new AccessibleRole("paragraph");
 
     /**
      * A ruler is an object used to measure distance
@@ -577,8 +540,7 @@ public class AccessibleRole extends AccessibleBundle {
      *
      * @since 1.5
      */
-    static public final AccessibleRole PROGRESS_MONITOR = new AccessibleRole(
-            "progressMonitor");
+    static public final AccessibleRole PROGRESS_MONITOR = new AccessibleRole("progressMonitor");
 
     // The following are all under consideration for potential future use.
 
@@ -632,7 +594,7 @@ public class AccessibleRole extends AccessibleBundle {
      * the localized string, use toDisplayString.
      *
      * @param key
-     *            the locale independent name of the role.
+     *        the locale independent name of the role.
      * @see AccessibleBundle#toDisplayString
      */
     protected AccessibleRole(String key) {

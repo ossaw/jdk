@@ -34,9 +34,8 @@ public class DynAnyUtil {
         // DynFixed is constructed but not a subclass of DynAnyConstructedImpl
         // return (dynAny instanceof DynAnyConstructedImpl);
         int kind = dynAny.type().kind().value();
-        return (kind == TCKind._tk_sequence || kind == TCKind._tk_struct
-                || kind == TCKind._tk_array || kind == TCKind._tk_union
-                || kind == TCKind._tk_enum || kind == TCKind._tk_fixed
+        return (kind == TCKind._tk_sequence || kind == TCKind._tk_struct || kind == TCKind._tk_array
+                || kind == TCKind._tk_union || kind == TCKind._tk_enum || kind == TCKind._tk_fixed
                 || kind == TCKind._tk_value || kind == TCKind._tk_value_box);
     }
 
@@ -110,15 +109,13 @@ public class DynAnyUtil {
     // (at the Anys current internal stream position, consuming the anys stream
     // on the way)
     // and returns it wrapped into a new Any
-    static Any extractAnyFromStream(TypeCode memberType, InputStream input,
-            ORB orb) {
+    static Any extractAnyFromStream(TypeCode memberType, InputStream input, ORB orb) {
         return AnyImpl.extractAnyFromStream(memberType, input, orb);
     }
 
     // Creates a default Any of the given type.
     static Any createDefaultAnyOfType(TypeCode typeCode, ORB orb) {
-        ORBUtilSystemException wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PRESENTATION);
+        ORBUtilSystemException wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PRESENTATION);
 
         Any returnValue = orb.create_any();
         // The spec for DynAny differs from Any on initialization via type code:
@@ -294,8 +291,7 @@ public class DynAnyUtil {
     // This is a convenient method to reset the current component to where it
     // was
     // before we changed it. See DynAnyConstructedImpl.equal for use.
-    static boolean set_current_component(DynAny dynAny,
-            DynAny currentComponent) {
+    static boolean set_current_component(DynAny dynAny, DynAny currentComponent) {
         if (currentComponent != null) {
             try {
                 dynAny.rewind();

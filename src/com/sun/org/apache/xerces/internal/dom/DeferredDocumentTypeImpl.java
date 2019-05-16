@@ -36,11 +36,9 @@ import org.w3c.dom.Node;
  * nailed down solidly.
  *
  * @xerces.internal
- *
  * @since PR-DOM-Level-1-19980818.
  */
-public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements
-        DeferredNode {
+public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements DeferredNode {
 
     //
     // Constants
@@ -64,8 +62,7 @@ public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements
      * This is the deferred constructor. Only the fNodeIndex is given here. All
      * other data, can be requested from the ownerDocument via the index.
      */
-    DeferredDocumentTypeImpl(DeferredDocumentImpl ownerDocument,
-            int nodeIndex) {
+    DeferredDocumentTypeImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
         super(ownerDocument, null);
 
         fNodeIndex = nodeIndex;
@@ -123,9 +120,8 @@ public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements
 
         // fill node maps
         DeferredNode last = null;
-        for (int index = ownerDocument.getLastChild(
-                fNodeIndex); index != -1; index = ownerDocument.getPrevSibling(
-                        index)) {
+        for (int index = ownerDocument.getLastChild(fNodeIndex); index != -1; index = ownerDocument
+                .getPrevSibling(index)) {
 
             DeferredNode node = ownerDocument.getNodeObject(index);
             int type = node.getNodeType();
@@ -160,10 +156,9 @@ public class DeferredDocumentTypeImpl extends DocumentTypeImpl implements
 
                 // NOTE: Should never get here! -Ac
                 default: {
-                    System.out.println("DeferredDocumentTypeImpl"
-                            + "#synchronizeInfo: " + "node.getNodeType() = "
-                            + node.getNodeType() + ", class = " + node
-                                    .getClass().getName());
+                    System.out.println("DeferredDocumentTypeImpl" + "#synchronizeInfo: "
+                            + "node.getNodeType() = " + node.getNodeType() + ", class = " + node.getClass()
+                                    .getName());
                 }
             }
         }

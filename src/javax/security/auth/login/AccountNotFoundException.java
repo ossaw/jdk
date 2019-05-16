@@ -7,7 +7,6 @@ package javax.security.auth.login;
 
 /**
  * Signals that an account was not found.
- *
  * <p>
  * This exception may be thrown by a LoginModule if it is unable to locate an
  * account necessary to perform authentication.
@@ -29,11 +28,10 @@ public class AccountNotFoundException extends AccountException {
     /**
      * Constructs a AccountNotFoundException with the specified detail message.
      * A detail message is a String that describes this particular exception.
-     *
      * <p>
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public AccountNotFoundException(String msg) {
         super(msg);

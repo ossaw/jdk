@@ -28,17 +28,14 @@ public class GIFImageReaderSpi extends ImageReaderSpi {
 
     private static final String readerClassName = "com.sun.imageio.plugins.gif.GIFImageReader";
 
-    private static final String[] writerSpiNames = {
-            "com.sun.imageio.plugins.gif.GIFImageWriterSpi" };
+    private static final String[] writerSpiNames = { "com.sun.imageio.plugins.gif.GIFImageWriterSpi" };
 
     public GIFImageReaderSpi() {
-        super(vendorName, version, names, suffixes, MIMETypes, readerClassName,
-                new Class[] { ImageInputStream.class }, writerSpiNames, true,
-                GIFStreamMetadata.nativeMetadataFormatName,
-                "com.sun.imageio.plugins.gif.GIFStreamMetadataFormat", null,
-                null, true, GIFImageMetadata.nativeMetadataFormatName,
-                "com.sun.imageio.plugins.gif.GIFImageMetadataFormat", null,
-                null);
+        super(vendorName, version, names, suffixes, MIMETypes, readerClassName, new Class[] {
+                ImageInputStream.class }, writerSpiNames, true, GIFStreamMetadata.nativeMetadataFormatName,
+                "com.sun.imageio.plugins.gif.GIFStreamMetadataFormat", null, null, true,
+                GIFImageMetadata.nativeMetadataFormatName,
+                "com.sun.imageio.plugins.gif.GIFImageMetadataFormat", null, null);
     }
 
     public String getDescription(Locale locale) {
@@ -56,8 +53,8 @@ public class GIFImageReaderSpi extends ImageReaderSpi {
         stream.readFully(b);
         stream.reset();
 
-        return b[0] == 'G' && b[1] == 'I' && b[2] == 'F' && b[3] == '8'
-                && (b[4] == '7' || b[4] == '9') && b[5] == 'a';
+        return b[0] == 'G' && b[1] == 'I' && b[2] == 'F' && b[3] == '8' && (b[4] == '7' || b[4] == '9')
+                && b[5] == 'a';
     }
 
     public ImageReader createReaderInstance(Object extension) {

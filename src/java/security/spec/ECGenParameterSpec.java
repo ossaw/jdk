@@ -9,9 +9,7 @@ package java.security.spec;
  * elliptic curve (EC) domain parameters.
  *
  * @see AlgorithmParameterSpec
- *
  * @author Valerie Peng
- *
  * @since 1.5
  */
 public class ECGenParameterSpec implements AlgorithmParameterSpec {
@@ -26,10 +24,10 @@ public class ECGenParameterSpec implements AlgorithmParameterSpec {
      * whose implementation will be used.
      * 
      * @param stdName
-     *                the standard name of the to-be-generated EC domain
-     *                parameters.
+     *        the standard name of the to-be-generated EC domain
+     *        parameters.
      * @exception NullPointerException
-     *                                 if {@code stdName} is null.
+     *            if {@code stdName} is null.
      */
     public ECGenParameterSpec(String stdName) {
         if (stdName == null) {

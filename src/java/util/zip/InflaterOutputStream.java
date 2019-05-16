@@ -15,7 +15,6 @@ import java.io.OutputStream;
  *
  * @since 1.6
  * @author David R Tribble (david@tribble.com)
- *
  * @see InflaterInputStream
  * @see DeflaterInputStream
  * @see DeflaterOutputStream
@@ -50,9 +49,9 @@ public class InflaterOutputStream extends FilterOutputStream {
      * Creates a new output stream with a default decompressor and buffer size.
      *
      * @param out
-     *            output stream to write the uncompressed data to
+     *        output stream to write the uncompressed data to
      * @throws NullPointerException
-     *                              if {@code out} is null
+     *         if {@code out} is null
      */
     public InflaterOutputStream(OutputStream out) {
         this(out, new Inflater());
@@ -64,11 +63,11 @@ public class InflaterOutputStream extends FilterOutputStream {
      * buffer size.
      *
      * @param out
-     *             output stream to write the uncompressed data to
+     *        output stream to write the uncompressed data to
      * @param infl
-     *             decompressor ("inflater") for this stream
+     *        decompressor ("inflater") for this stream
      * @throws NullPointerException
-     *                              if {@code out} or {@code infl} is null
+     *         if {@code out} or {@code infl} is null
      */
     public InflaterOutputStream(OutputStream out, Inflater infl) {
         this(out, infl, 512);
@@ -79,15 +78,15 @@ public class InflaterOutputStream extends FilterOutputStream {
      * size.
      *
      * @param out
-     *               output stream to write the uncompressed data to
+     *        output stream to write the uncompressed data to
      * @param infl
-     *               decompressor ("inflater") for this stream
+     *        decompressor ("inflater") for this stream
      * @param bufLen
-     *               decompression buffer size
+     *        decompression buffer size
      * @throws IllegalArgumentException
-     *                                  if {@code bufLen <= 0}
+     *         if {@code bufLen <= 0}
      * @throws NullPointerException
-     *                                  if {@code out} or {@code infl} is null
+     *         if {@code out} or {@code infl} is null
      */
     public InflaterOutputStream(OutputStream out, Inflater infl, int bufLen) {
         super(out);
@@ -110,7 +109,7 @@ public class InflaterOutputStream extends FilterOutputStream {
      * the underlying output stream.
      *
      * @throws IOException
-     *                     if an I/O error occurs
+     *         if an I/O error occurs
      */
     public void close() throws IOException {
         if (!closed) {
@@ -129,8 +128,8 @@ public class InflaterOutputStream extends FilterOutputStream {
      * be written.
      *
      * @throws IOException
-     *                     if an I/O error occurs or this stream is already
-     *                     closed
+     *         if an I/O error occurs or this stream is already
+     *         closed
      */
     public void flush() throws IOException {
         ensureOpen();
@@ -168,8 +167,8 @@ public class InflaterOutputStream extends FilterOutputStream {
      * succession to the same output stream.
      *
      * @throws IOException
-     *                     if an I/O error occurs or this stream is already
-     *                     closed
+     *         if an I/O error occurs or this stream is already
+     *         closed
      */
     public void finish() throws IOException {
         ensureOpen();
@@ -185,13 +184,13 @@ public class InflaterOutputStream extends FilterOutputStream {
      * Writes a byte to the uncompressed output stream.
      *
      * @param b
-     *          a single byte of compressed data to decompress and write to
-     *          the output stream
+     *        a single byte of compressed data to decompress and write to
+     *        the output stream
      * @throws IOException
-     *                      if an I/O error occurs or this stream is already
-     *                      closed
+     *         if an I/O error occurs or this stream is already
+     *         closed
      * @throws ZipException
-     *                      if a compression (ZIP) format error occurs
+     *         if a compression (ZIP) format error occurs
      */
     public void write(int b) throws IOException {
         // Write a single byte of data
@@ -203,24 +202,24 @@ public class InflaterOutputStream extends FilterOutputStream {
      * Writes an array of bytes to the uncompressed output stream.
      *
      * @param b
-     *            buffer containing compressed data to decompress and write to
-     *            the output stream
+     *        buffer containing compressed data to decompress and write to
+     *        the output stream
      * @param off
-     *            starting offset of the compressed data within {@code b}
+     *        starting offset of the compressed data within {@code b}
      * @param len
-     *            number of bytes to decompress from {@code b}
+     *        number of bytes to decompress from {@code b}
      * @throws IndexOutOfBoundsException
-     *                                   if {@code off < 0}, or if
-     *                                   {@code len < 0}, or if
-     *                                   {@code len > b.length - off}
+     *         if {@code off < 0}, or if
+     *         {@code len < 0}, or if
+     *         {@code len > b.length - off}
      * @throws IOException
-     *                                   if an I/O error occurs or this stream
-     *                                   is already closed
+     *         if an I/O error occurs or this stream
+     *         is already closed
      * @throws NullPointerException
-     *                                   if {@code b} is null
+     *         if {@code b} is null
      * @throws ZipException
-     *                                   if a compression (ZIP) format error
-     *                                   occurs
+     *         if a compression (ZIP) format error
+     *         occurs
      */
     public void write(byte[] b, int off, int len) throws IOException {
         // Sanity checks

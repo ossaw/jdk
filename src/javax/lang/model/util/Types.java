@@ -14,7 +14,6 @@ import javax.lang.model.type.*;
 
 /**
  * Utility methods for operating on types.
- *
  * <p>
  * <b>Compatibility Note:</b> Methods may be added to this interface in future
  * releases of the platform.
@@ -33,14 +32,13 @@ public interface Types {
      * type is not one with a corresponding element.
      *
      * @param t
-     *          the type to map to an element
+     *        the type to map to an element
      * @return the element corresponding to the given type
      */
     Element asElement(TypeMirror t);
 
     /**
      * Tests whether two {@code TypeMirror} objects represent the same type.
-     *
      * <p>
      * Caveat: if either of the arguments to this method represents a wildcard,
      * this method will return false. As a consequence, a wildcard is not the
@@ -52,7 +50,6 @@ public interface Types {
      *   {@code List<?> list = new ArrayList<Object>();}
      *   {@code list.add(list.get(0));}
      * </pre>
-     *
      * <p>
      * Since annotations are only meta-data associated with a type, the set of
      * annotations on either argument is <em>not</em> taken into account when
@@ -62,9 +59,9 @@ public interface Types {
      * considered the same.
      *
      * @param t1
-     *           the first type
+     *        the first type
      * @param t2
-     *           the second type
+     *        the second type
      * @return {@code true} if and only if the two types are the same
      */
     boolean isSameType(TypeMirror t1, TypeMirror t2);
@@ -74,13 +71,13 @@ public interface Types {
      * be a subtype of itself.
      *
      * @param t1
-     *           the first type
+     *        the first type
      * @param t2
-     *           the second type
+     *        the second type
      * @return {@code true} if and only if the first type is a subtype of the
      *         second
      * @throws IllegalArgumentException
-     *                                  if given an executable or package type
+     *         if given an executable or package type
      * @jls 4.10 Subtyping
      */
     boolean isSubtype(TypeMirror t1, TypeMirror t2);
@@ -89,13 +86,13 @@ public interface Types {
      * Tests whether one type is assignable to another.
      *
      * @param t1
-     *           the first type
+     *        the first type
      * @param t2
-     *           the second type
+     *        the second type
      * @return {@code true} if and only if the first type is assignable to the
      *         second
      * @throws IllegalArgumentException
-     *                                  if given an executable or package type
+     *         if given an executable or package type
      * @jls 5.2 Assignment Conversion
      */
     boolean isAssignable(TypeMirror t1, TypeMirror t2);
@@ -104,12 +101,12 @@ public interface Types {
      * Tests whether one type argument <i>contains</i> another.
      *
      * @param t1
-     *           the first type
+     *        the first type
      * @param t2
-     *           the second type
+     *        the second type
      * @return {@code true} if and only if the first type contains the second
      * @throws IllegalArgumentException
-     *                                  if given an executable or package type
+     *         if given an executable or package type
      * @jls 4.5.1.1 Type Argument Containment and Equivalence
      */
     boolean contains(TypeMirror t1, TypeMirror t2);
@@ -119,9 +116,9 @@ public interface Types {
      * another.
      *
      * @param m1
-     *           the first method
+     *        the first method
      * @param m2
-     *           the second method
+     *        the second method
      * @return {@code true} if and only if the first signature is a subsignature
      *         of the second
      * @jls 8.4.2 Method Signature
@@ -133,10 +130,10 @@ public interface Types {
      * will appear last in the list.
      *
      * @param t
-     *          the type being examined
+     *        the type being examined
      * @return the direct supertypes, or an empty list if none
      * @throws IllegalArgumentException
-     *                                  if given an executable or package type
+     *         if given an executable or package type
      */
     List<? extends TypeMirror> directSupertypes(TypeMirror t);
 
@@ -144,10 +141,10 @@ public interface Types {
      * Returns the erasure of a type.
      *
      * @param t
-     *          the type to be erased
+     *        the type to be erased
      * @return the erasure of the given type
      * @throws IllegalArgumentException
-     *                                  if given a package type
+     *         if given a package type
      * @jls 4.6 Type Erasure
      */
     TypeMirror erasure(TypeMirror t);
@@ -157,7 +154,7 @@ public interface Types {
      * <i>boxing conversion</i> is applied.
      *
      * @param p
-     *          the primitive type to be converted
+     *        the primitive type to be converted
      * @return the class of a boxed value of type {@code p}
      * @jls 5.1.7 Boxing Conversion
      */
@@ -168,11 +165,11 @@ public interface Types {
      * That is, <i>unboxing conversion</i> is applied.
      *
      * @param t
-     *          the type to be unboxed
+     *        the type to be unboxed
      * @return the type of an unboxed value of type {@code t}
      * @throws IllegalArgumentException
-     *                                  if the given type has no unboxing
-     *                                  conversion
+     *         if the given type has no unboxing
+     *         conversion
      * @jls 5.1.8 Unboxing Conversion
      */
     PrimitiveType unboxedType(TypeMirror t);
@@ -181,10 +178,10 @@ public interface Types {
      * Applies capture conversion to a type.
      *
      * @param t
-     *          the type to be converted
+     *        the type to be converted
      * @return the result of applying capture conversion
      * @throws IllegalArgumentException
-     *                                  if given an executable or package type
+     *         if given an executable or package type
      * @jls 5.1.10 Capture Conversion
      */
     TypeMirror capture(TypeMirror t);
@@ -193,10 +190,10 @@ public interface Types {
      * Returns a primitive type.
      *
      * @param kind
-     *             the kind of primitive type to return
+     *        the kind of primitive type to return
      * @return a primitive type
      * @throws IllegalArgumentException
-     *                                  if {@code kind} is not a primitive kind
+     *         if {@code kind} is not a primitive kind
      */
     PrimitiveType getPrimitiveType(TypeKind kind);
 
@@ -215,10 +212,10 @@ public interface Types {
      * instead.
      *
      * @param kind
-     *             the kind of type to return
+     *        the kind of type to return
      * @return a pseudo-type of kind {@code VOID} or {@code NONE}
      * @throws IllegalArgumentException
-     *                                  if {@code kind} is not valid
+     *         if {@code kind} is not valid
      */
     NoType getNoType(TypeKind kind);
 
@@ -226,11 +223,11 @@ public interface Types {
      * Returns an array type with the specified component type.
      *
      * @param componentType
-     *                      the component type
+     *        the component type
      * @return an array type with the specified component type.
      * @throws IllegalArgumentException
-     *                                  if the component type is not valid for
-     *                                  an array
+     *         if the component type is not valid for
+     *         an array
      */
     ArrayType getArrayType(TypeMirror componentType);
 
@@ -239,27 +236,24 @@ public interface Types {
      * be specified, or neither, but not both.
      *
      * @param extendsBound
-     *                     the extends (upper) bound, or {@code null} if none
+     *        the extends (upper) bound, or {@code null} if none
      * @param superBound
-     *                     the super (lower) bound, or {@code null} if none
+     *        the super (lower) bound, or {@code null} if none
      * @return a new wildcard
      * @throws IllegalArgumentException
-     *                                  if bounds are not valid
+     *         if bounds are not valid
      */
-    WildcardType getWildcardType(TypeMirror extendsBound,
-            TypeMirror superBound);
+    WildcardType getWildcardType(TypeMirror extendsBound, TypeMirror superBound);
 
     /**
      * Returns the type corresponding to a type element and actual type
      * arguments. Given the type element for {@code Set} and the type mirror for
      * {@code String}, for example, this method may be used to get the
      * parameterized type {@code Set<String>}.
-     *
      * <p>
      * The number of type arguments must either equal the number of the type
      * element's formal type parameters, or must be zero. If zero, and if the
      * type element is generic, then the type element's raw type is returned.
-     *
      * <p>
      * If a parameterized type is being returned, its type element must not be
      * contained within a generic outer class. The parameterized type
@@ -269,16 +263,16 @@ public interface Types {
      * {@link #getDeclaredType(DeclaredType, TypeElement, TypeMirror...)}.
      *
      * @param typeElem
-     *                 the type element
+     *        the type element
      * @param typeArgs
-     *                 the actual type arguments
+     *        the actual type arguments
      * @return the type corresponding to the type element and actual type
      *         arguments
      * @throws IllegalArgumentException
-     *                                  if too many or too few type arguments
-     *                                  are given, or if an
-     *                                  inappropriate type argument or type
-     *                                  element is provided
+     *         if too many or too few type arguments
+     *         are given, or if an
+     *         inappropriate type argument or type
+     *         element is provided
      */
     DeclaredType getDeclaredType(TypeElement typeElem, TypeMirror... typeArgs);
 
@@ -289,7 +283,6 @@ public interface Types {
      * <String>.Inner<Number>}, for example, may be constructed by first using
      * {@link #getDeclaredType(TypeElement, TypeMirror...)} to get the type
      * {@code Outer<String>}, and then invoking this method.
-     *
      * <p>
      * If the containing type is a parameterized type, the number of type
      * arguments must equal the number of {@code typeElem}'s formal type
@@ -297,22 +290,21 @@ public interface Types {
      * method is equivalent to {@code getDeclaredType(typeElem, typeArgs)}.
      *
      * @param containing
-     *                   the containing type, or {@code null} if none
+     *        the containing type, or {@code null} if none
      * @param typeElem
-     *                   the type element
+     *        the type element
      * @param typeArgs
-     *                   the actual type arguments
+     *        the actual type arguments
      * @return the type corresponding to the type element and actual type
      *         arguments, contained within the given type
      * @throws IllegalArgumentException
-     *                                  if too many or too few type arguments
-     *                                  are given, or if an
-     *                                  inappropriate type argument, type
-     *                                  element, or containing type
-     *                                  is provided
+     *         if too many or too few type arguments
+     *         are given, or if an
+     *         inappropriate type argument, type
+     *         element, or containing type
+     *         is provided
      */
-    DeclaredType getDeclaredType(DeclaredType containing, TypeElement typeElem,
-            TypeMirror... typeArgs);
+    DeclaredType getDeclaredType(DeclaredType containing, TypeElement typeElem, TypeMirror... typeArgs);
 
     /**
      * Returns the type of an element when that element is viewed as a member
@@ -322,13 +314,13 @@ public interface Types {
      * type {@code String}.
      *
      * @param containing
-     *                   the containing type
+     *        the containing type
      * @param element
-     *                   the element
+     *        the element
      * @return the type of the element as viewed from the containing type
      * @throws IllegalArgumentException
-     *                                  if the element is not a valid one for
-     *                                  the given type
+     *         if the element is not a valid one for
+     *         the given type
      */
     TypeMirror asMemberOf(DeclaredType containing, Element element);
 }

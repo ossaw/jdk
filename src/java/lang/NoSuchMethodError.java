@@ -31,7 +31,7 @@ public class NoSuchMethodError extends IncompatibleClassChangeError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public NoSuchMethodError(String s) {
         super(s);

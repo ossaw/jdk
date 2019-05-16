@@ -16,8 +16,7 @@ import com.sun.corba.se.spi.orb.ORB;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class LocateRequestMessage_1_2 extends Message_1_2 implements
-        LocateRequestMessage {
+public final class LocateRequestMessage_1_2 extends Message_1_2 implements LocateRequestMessage {
 
     // Instance variables
 
@@ -32,8 +31,7 @@ public final class LocateRequestMessage_1_2 extends Message_1_2 implements
     }
 
     LocateRequestMessage_1_2(ORB orb, int _request_id, TargetAddress _target) {
-        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN,
-                Message.GIOPLocateRequest, 0);
+        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPLocateRequest, 0);
         this.orb = orb;
         request_id = _request_id;
         target = _target;

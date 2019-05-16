@@ -10,7 +10,6 @@ import java.util.stream.Collector;
 /**
  * A state object for collecting statistics such as count, min, max, sum, and
  * average.
- *
  * <p>
  * This class is designed to work with (though does not require)
  * {@linkplain java.util.stream streams}. For example, you can compute summary
@@ -19,11 +18,10 @@ import java.util.stream.Collector;
  * <pre>
  * {
  *     &#64;code
- *     IntSummaryStatistics stats = intStream.collect(IntSummaryStatistics::new,
- *             IntSummaryStatistics::accept, IntSummaryStatistics::combine);
+ *     IntSummaryStatistics stats = intStream.collect(IntSummaryStatistics::new, IntSummaryStatistics::accept,
+ *             IntSummaryStatistics::combine);
  * }
  * </pre>
- *
  * <p>
  * {@code IntSummaryStatistics} can be used as a
  * {@linkplain java.util.stream.Stream#collect(Collector) reduction} target for
@@ -32,8 +30,7 @@ import java.util.stream.Collector;
  * <pre>
  * {
  *     &#64;code
- *     IntSummaryStatistics stats = people.stream().collect(Collectors
- *             .summarizingInt(Person::getDependents));
+ *     IntSummaryStatistics stats = people.stream().collect(Collectors.summarizingInt(Person::getDependents));
  * }
  * </pre>
  *
@@ -46,7 +43,6 @@ import java.util.stream.Collector;
  *           parallel implementation of {@link java.util.stream.Stream#collect
  *           Stream.collect()} provides the necessary partitioning, isolation,
  *           and merging of results for safe and efficient parallel execution.
- *
  *           <p>
  *           This implementation does not check for overflow of the sum.
  * @since 1.8
@@ -68,7 +64,7 @@ public class IntSummaryStatistics implements IntConsumer {
      * Records a new value into the summary information
      *
      * @param value
-     *              the input value
+     *        the input value
      */
     @Override
     public void accept(int value) {
@@ -82,9 +78,9 @@ public class IntSummaryStatistics implements IntConsumer {
      * Combines the state of another {@code IntSummaryStatistics} into this one.
      *
      * @param other
-     *              another {@code IntSummaryStatistics}
+     *        another {@code IntSummaryStatistics}
      * @throws NullPointerException
-     *                              if {@code other} is null
+     *         if {@code other} is null
      */
     public void combine(IntSummaryStatistics other) {
         count += other.count;
@@ -145,14 +141,12 @@ public class IntSummaryStatistics implements IntConsumer {
     @Override
     /**
      * {@inheritDoc}
-     *
      * Returns a non-empty string representation of this object suitable for
      * debugging. The exact presentation format is unspecified and may vary
      * between implementations and versions.
      */
     public String toString() {
-        return String.format("%s{count=%d, sum=%d, min=%d, average=%f, max=%d}",
-                this.getClass().getSimpleName(), getCount(), getSum(), getMin(),
-                getAverage(), getMax());
+        return String.format("%s{count=%d, sum=%d, min=%d, average=%f, max=%d}", this.getClass()
+                .getSimpleName(), getCount(), getSum(), getMin(), getAverage(), getMax());
     }
 }

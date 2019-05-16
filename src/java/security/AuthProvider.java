@@ -11,7 +11,6 @@ import javax.security.auth.callback.CallbackHandler;
 
 /**
  * This class defines login and logout methods for a provider.
- *
  * <p>
  * While callers may invoke {@code login} directly, the provider may also invoke
  * {@code login} on behalf of callers if it determines that a login must be
@@ -28,11 +27,11 @@ public abstract class AuthProvider extends Provider {
      * information.
      *
      * @param name
-     *                the provider name.
+     *        the provider name.
      * @param version
-     *                the provider version number.
+     *        the provider version number.
      * @param info
-     *                a description of the provider and its services.
+     *        a description of the provider and its services.
      */
     protected AuthProvider(String name, double version, String info) {
         super(name, version, info);
@@ -40,7 +39,6 @@ public abstract class AuthProvider extends Provider {
 
     /**
      * Log in to this provider.
-     *
      * <p>
      * The provider relies on a {@code CallbackHandler} to obtain authentication
      * information from the caller (a PIN, for example). If the caller passes a
@@ -53,51 +51,48 @@ public abstract class AuthProvider extends Provider {
      * information.
      *
      * @param subject
-     *                the {@code Subject} which may contain
-     *                principals/credentials
-     *                used for authentication, or may be populated with
-     *                additional
-     *                principals/credentials after successful authentication has
-     *                completed. This parameter may be {@code null}.
+     *        the {@code Subject} which may contain
+     *        principals/credentials
+     *        used for authentication, or may be populated with
+     *        additional
+     *        principals/credentials after successful authentication has
+     *        completed. This parameter may be {@code null}.
      * @param handler
-     *                the {@code CallbackHandler} used by this provider to
-     *                obtain
-     *                authentication information from the caller, which may be
-     *                {@code null}
-     *
+     *        the {@code CallbackHandler} used by this provider to
+     *        obtain
+     *        authentication information from the caller, which may be
+     *        {@code null}
      * @exception LoginException
-     *                              if the login operation fails
+     *            if the login operation fails
      * @exception SecurityException
-     *                              if the caller does not pass a security check
-     *                              for
-     *                              {@code SecurityPermission("authProvider.name")},
-     *                              where
-     *                              {@code name} is the value returned by this
-     *                              provider's
-     *                              {@code getName} method
+     *            if the caller does not pass a security check
+     *            for
+     *            {@code SecurityPermission("authProvider.name")},
+     *            where
+     *            {@code name} is the value returned by this
+     *            provider's
+     *            {@code getName} method
      */
-    public abstract void login(Subject subject, CallbackHandler handler)
-            throws LoginException;
+    public abstract void login(Subject subject, CallbackHandler handler) throws LoginException;
 
     /**
      * Log out from this provider.
      *
      * @exception LoginException
-     *                              if the logout operation fails
+     *            if the logout operation fails
      * @exception SecurityException
-     *                              if the caller does not pass a security check
-     *                              for
-     *                              {@code SecurityPermission("authProvider.name")},
-     *                              where
-     *                              {@code name} is the value returned by this
-     *                              provider's
-     *                              {@code getName} method
+     *            if the caller does not pass a security check
+     *            for
+     *            {@code SecurityPermission("authProvider.name")},
+     *            where
+     *            {@code name} is the value returned by this
+     *            provider's
+     *            {@code getName} method
      */
     public abstract void logout() throws LoginException;
 
     /**
      * Set a {@code CallbackHandler}.
-     *
      * <p>
      * The provider uses this handler if one is not passed to the {@code login}
      * method. The provider also uses this handler if it invokes {@code login}
@@ -109,17 +104,16 @@ public abstract class AuthProvider extends Provider {
      * information.
      *
      * @param handler
-     *                a {@code CallbackHandler} for obtaining authentication
-     *                information, which may be {@code null}
-     *
+     *        a {@code CallbackHandler} for obtaining authentication
+     *        information, which may be {@code null}
      * @exception SecurityException
-     *                              if the caller does not pass a security check
-     *                              for
-     *                              {@code SecurityPermission("authProvider.name")},
-     *                              where
-     *                              {@code name} is the value returned by this
-     *                              provider's
-     *                              {@code getName} method
+     *            if the caller does not pass a security check
+     *            for
+     *            {@code SecurityPermission("authProvider.name")},
+     *            where
+     *            {@code name} is the value returned by this
+     *            provider's
+     *            {@code getName} method
      */
     public abstract void setCallbackHandler(CallbackHandler handler);
 }

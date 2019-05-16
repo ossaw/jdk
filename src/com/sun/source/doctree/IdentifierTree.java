@@ -9,7 +9,6 @@ import javax.lang.model.element.Name;
 
 /**
  * An identifier in a documentation comment.
- *
  * <p>
  * name
  *

@@ -14,25 +14,21 @@ import com.sun.jmx.snmp.SnmpDefinitions;
 /**
  * Is the fully decoded representation of an SNMP V3 packet.
  * <P>
- *
  * Classes are derived from <CODE>SnmpPdu</CODE> to represent the different
  * forms of SNMP pdu ({@link com.sun.jmx.snmp.SnmpScopedPduRequest
  * SnmpScopedPduRequest}, {@link com.sun.jmx.snmp.SnmpScopedPduBulk
  * SnmpScopedPduBulk}). <BR>
  * The <CODE>SnmpScopedPduPacket</CODE> class defines the attributes common to
  * every scoped SNMP packets.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
  * </p>
  * 
  * @see SnmpV3Message
- *
  * @since 1.5
  */
-public abstract class SnmpScopedPduPacket extends SnmpPdu implements
-        Serializable {
+public abstract class SnmpScopedPduPacket extends SnmpPdu implements Serializable {
     /**
      * Message max size the pdu sender can deal with.
      */

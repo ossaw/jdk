@@ -26,7 +26,6 @@ public class OutputKeys {
 
     /**
      * method = "xml" | "html" | "text" | <var>expanded name</var>.
-     *
      * <p>
      * The value of the method property identifies the overall method that
      * should be used for outputting the result tree. Other non-namespaced
@@ -45,7 +44,6 @@ public class OutputKeys {
 
     /**
      * version = <var>nmtoken</var>.
-     *
      * <p>
      * <code>version</code> specifies the version of the output method.
      * </p>
@@ -66,7 +64,6 @@ public class OutputKeys {
 
     /**
      * encoding = <var>string</var>.
-     *
      * <p>
      * <code>encoding</code> specifies the preferred character encoding that the
      * Transformer should use to encode sequences of characters as sequences of
@@ -86,7 +83,6 @@ public class OutputKeys {
 
     /**
      * omit-xml-declaration = "yes" | "no".
-     *
      * <p>
      * <code>omit-xml-declaration</code> specifies whether the XSLT processor
      * should output an XML declaration; the value must be <code>yes</code> or
@@ -100,7 +96,6 @@ public class OutputKeys {
 
     /**
      * standalone = "yes" | "no".
-     *
      * <p>
      * <code>standalone</code> specifies whether the Transformer should output a
      * standalone document declaration; the value must be <code>yes</code> or
@@ -153,7 +148,6 @@ public class OutputKeys {
      * doctype-public property is not specified, then the output method should
      * output SYSTEM followed by the specified system identifier.
      * </p>
-     *
      * <p>
      * <code>doctype-system</code> specifies the system identifier to be used in
      * the document type declaration.
@@ -166,7 +160,6 @@ public class OutputKeys {
 
     /**
      * cdata-section-elements = <var>expanded names</var>.
-     *
      * <p>
      * <code>cdata-section-elements</code> specifies a whitespace delimited list
      * of the names of elements whose text node children should be output using
@@ -181,7 +174,6 @@ public class OutputKeys {
 
     /**
      * indent = "yes" | "no".
-     *
      * <p>
      * <code>indent</code> specifies whether the Transformer may add additional
      * whitespace when outputting the result tree; the value must be
@@ -195,7 +187,6 @@ public class OutputKeys {
 
     /**
      * media-type = <var>string</var>.
-     *
      * <p>
      * <code>media-type</code> specifies the media type (MIME content type) of
      * the data that results from outputting the result tree. The

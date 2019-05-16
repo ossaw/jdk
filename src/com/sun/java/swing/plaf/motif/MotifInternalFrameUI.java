@@ -99,8 +99,7 @@ public class MotifInternalFrameUI extends BasicInternalFrameUI {
         if (isKeyBindingRegistered()) {
             JInternalFrame.JDesktopIcon di = frame.getDesktopIcon();
             SwingUtilities.replaceUIActionMap(di, null);
-            SwingUtilities.replaceUIInputMap(di,
-                    JComponent.WHEN_IN_FOCUSED_WINDOW, null);
+            SwingUtilities.replaceUIInputMap(di, JComponent.WHEN_IN_FOCUSED_WINDOW, null);
         }
     }
 
@@ -144,16 +143,13 @@ public class MotifInternalFrameUI extends BasicInternalFrameUI {
         // Set up the bindings for the DesktopIcon, it is odd that
         // we install them, and not the desktop icon.
         JInternalFrame.JDesktopIcon di = frame.getDesktopIcon();
-        InputMap diInputMap = SwingUtilities.getUIInputMap(di,
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        InputMap diInputMap = SwingUtilities.getUIInputMap(di, JComponent.WHEN_IN_FOCUSED_WINDOW);
         if (diInputMap == null) {
-            Object[] bindings = (Object[]) UIManager.get(
-                    "DesktopIcon.windowBindings");
+            Object[] bindings = (Object[]) UIManager.get("DesktopIcon.windowBindings");
             if (bindings != null) {
                 diInputMap = LookAndFeel.makeComponentInputMap(di, bindings);
 
-                SwingUtilities.replaceUIInputMap(di,
-                        JComponent.WHEN_IN_FOCUSED_WINDOW, diInputMap);
+                SwingUtilities.replaceUIInputMap(di, JComponent.WHEN_IN_FOCUSED_WINDOW, diInputMap);
             }
         }
         ActionMap diActionMap = SwingUtilities.getUIActionMap(di);
@@ -161,10 +157,8 @@ public class MotifInternalFrameUI extends BasicInternalFrameUI {
             diActionMap = new ActionMapUIResource();
             diActionMap.put("hideSystemMenu", new AbstractAction() {
                 public void actionPerformed(ActionEvent e) {
-                    JInternalFrame.JDesktopIcon icon = getFrame()
-                            .getDesktopIcon();
-                    MotifDesktopIconUI micon = (MotifDesktopIconUI) icon
-                            .getUI();
+                    JInternalFrame.JDesktopIcon icon = getFrame().getDesktopIcon();
+                    MotifDesktopIconUI micon = (MotifDesktopIconUI) icon.getUI();
                     micon.hideSystemMenu();
                 }
 

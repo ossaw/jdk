@@ -85,8 +85,7 @@ final class Finalizer extends FinalReference<Object> { /*
                  */
                 finalizee = null;
             }
-        } catch (Throwable x) {
-        }
+        } catch (Throwable x) {}
         super.clear();
     }
 
@@ -105,8 +104,7 @@ final class Finalizer extends FinalReference<Object> { /*
         AccessController.doPrivileged(new PrivilegedAction<Void>() {
             public Void run() {
                 ThreadGroup tg = Thread.currentThread().getThreadGroup();
-                for (ThreadGroup tgn = tg; tgn != null; tg = tgn, tgn = tg
-                        .getParent())
+                for (ThreadGroup tgn = tg; tgn != null; tg = tgn, tgn = tg.getParent())
                     ;
                 Thread sft = new Thread(tg, proc, "Secondary finalizer");
                 sft.start();

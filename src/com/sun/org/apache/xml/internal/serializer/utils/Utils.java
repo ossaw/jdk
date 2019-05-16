@@ -22,7 +22,6 @@ package com.sun.org.apache.xml.internal.serializer.utils;
 
 /**
  * This class contains utilities used by the serializer.
- *
  * This class is not a public API, it is only public because it is used by
  * com.sun.org.apache.xml.internal.serializer.
  *

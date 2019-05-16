@@ -43,24 +43,23 @@ public class SynthGraphicsUtils {
      * Draws a line between the two end points.
      *
      * @param context
-     *                 Identifies hosting region.
+     *        Identifies hosting region.
      * @param paintKey
-     *                 Identifies the portion of the component being asked to
-     *                 paint,
-     *                 may be null.
+     *        Identifies the portion of the component being asked to
+     *        paint,
+     *        may be null.
      * @param g
-     *                 Graphics object to paint to
+     *        Graphics object to paint to
      * @param x1
-     *                 x origin
+     *        x origin
      * @param y1
-     *                 y origin
+     *        y origin
      * @param x2
-     *                 x destination
+     *        x destination
      * @param y2
-     *                 y destination
+     *        y destination
      */
-    public void drawLine(SynthContext context, Object paintKey, Graphics g,
-            int x1, int y1, int x2, int y2) {
+    public void drawLine(SynthContext context, Object paintKey, Graphics g, int x1, int y1, int x2, int y2) {
         g.drawLine(x1, y1, x2, y2);
     }
 
@@ -75,28 +74,28 @@ public class SynthGraphicsUtils {
      * <code>"dashed"</code> will draw solid lines.
      *
      * @param context
-     *                 identifies hosting region
+     *        identifies hosting region
      * @param paintKey
-     *                 identifies the portion of the component being asked to
-     *                 paint,
-     *                 may be null
+     *        identifies the portion of the component being asked to
+     *        paint,
+     *        may be null
      * @param g
-     *                 Graphics object to paint to
+     *        Graphics object to paint to
      * @param x1
-     *                 x origin
+     *        x origin
      * @param y1
-     *                 y origin
+     *        y origin
      * @param x2
-     *                 x destination
+     *        x destination
      * @param y2
-     *                 y destination
+     *        y destination
      * @param styleKey
-     *                 identifies the requested style of the line (e.g.
-     *                 "dashed")
+     *        identifies the requested style of the line (e.g.
+     *        "dashed")
      * @since 1.6
      */
-    public void drawLine(SynthContext context, Object paintKey, Graphics g,
-            int x1, int y1, int x2, int y2, Object styleKey) {
+    public void drawLine(SynthContext context, Object paintKey, Graphics g, int x1, int y1, int x2, int y2,
+            Object styleKey) {
         if ("dashed".equals(styleKey)) {
             // draw vertical line
             if (x1 == x2) {
@@ -124,63 +123,57 @@ public class SynthGraphicsUtils {
      * the icon and text.
      *
      * @param ss
-     *                      SynthContext
+     *        SynthContext
      * @param fm
-     *                      FontMetrics for the Font to use, this may be ignored
+     *        FontMetrics for the Font to use, this may be ignored
      * @param text
-     *                      Text to layout
+     *        Text to layout
      * @param icon
-     *                      Icon to layout
+     *        Icon to layout
      * @param hAlign
-     *                      horizontal alignment
+     *        horizontal alignment
      * @param vAlign
-     *                      vertical alignment
+     *        vertical alignment
      * @param hTextPosition
-     *                      horizontal text position
+     *        horizontal text position
      * @param vTextPosition
-     *                      vertical text position
+     *        vertical text position
      * @param viewR
-     *                      Rectangle to layout text and icon in.
+     *        Rectangle to layout text and icon in.
      * @param iconR
-     *                      Rectangle to place icon bounds in
+     *        Rectangle to place icon bounds in
      * @param textR
-     *                      Rectangle to place text in
+     *        Rectangle to place text in
      * @param iconTextGap
-     *                      gap between icon and text
+     *        gap between icon and text
      */
-    public String layoutText(SynthContext ss, FontMetrics fm, String text,
-            Icon icon, int hAlign, int vAlign, int hTextPosition,
-            int vTextPosition, Rectangle viewR, Rectangle iconR,
-            Rectangle textR, int iconTextGap) {
+    public String layoutText(SynthContext ss, FontMetrics fm, String text, Icon icon, int hAlign, int vAlign,
+            int hTextPosition, int vTextPosition, Rectangle viewR, Rectangle iconR, Rectangle textR,
+            int iconTextGap) {
         if (icon instanceof SynthIcon) {
-            SynthIconWrapper wrapper = SynthIconWrapper.get((SynthIcon) icon,
-                    ss);
-            String formattedText = SwingUtilities.layoutCompoundLabel(ss
-                    .getComponent(), fm, text, wrapper, vAlign, hAlign,
-                    vTextPosition, hTextPosition, viewR, iconR, textR,
-                    iconTextGap);
+            SynthIconWrapper wrapper = SynthIconWrapper.get((SynthIcon) icon, ss);
+            String formattedText = SwingUtilities.layoutCompoundLabel(ss.getComponent(), fm, text, wrapper,
+                    vAlign, hAlign, vTextPosition, hTextPosition, viewR, iconR, textR, iconTextGap);
             SynthIconWrapper.release(wrapper);
             return formattedText;
         }
-        return SwingUtilities.layoutCompoundLabel(ss.getComponent(), fm, text,
-                icon, vAlign, hAlign, vTextPosition, hTextPosition, viewR,
-                iconR, textR, iconTextGap);
+        return SwingUtilities.layoutCompoundLabel(ss.getComponent(), fm, text, icon, vAlign, hAlign,
+                vTextPosition, hTextPosition, viewR, iconR, textR, iconTextGap);
     }
 
     /**
      * Returns the size of the passed in string.
      *
      * @param ss
-     *                SynthContext
+     *        SynthContext
      * @param font
-     *                Font to use
+     *        Font to use
      * @param metrics
-     *                FontMetrics, may be ignored
+     *        FontMetrics, may be ignored
      * @param text
-     *                Text to get size of.
+     *        Text to get size of.
      */
-    public int computeStringWidth(SynthContext ss, Font font,
-            FontMetrics metrics, String text) {
+    public int computeStringWidth(SynthContext ss, Font font, FontMetrics metrics, String text) {
         return SwingUtilities2.stringWidth(ss.getComponent(), metrics, text);
     }
 
@@ -188,39 +181,37 @@ public class SynthGraphicsUtils {
      * Returns the minimum size needed to properly render an icon and text.
      *
      * @param ss
-     *                      SynthContext
+     *        SynthContext
      * @param font
-     *                      Font to use
+     *        Font to use
      * @param text
-     *                      Text to layout
+     *        Text to layout
      * @param icon
-     *                      Icon to layout
+     *        Icon to layout
      * @param hAlign
-     *                      horizontal alignment
+     *        horizontal alignment
      * @param vAlign
-     *                      vertical alignment
+     *        vertical alignment
      * @param hTextPosition
-     *                      horizontal text position
+     *        horizontal text position
      * @param vTextPosition
-     *                      vertical text position
+     *        vertical text position
      * @param iconTextGap
-     *                      gap between icon and text
+     *        gap between icon and text
      * @param mnemonicIndex
-     *                      Index into text to render the mnemonic at, -1
-     *                      indicates no
-     *                      mnemonic.
+     *        Index into text to render the mnemonic at, -1
+     *        indicates no
+     *        mnemonic.
      */
-    public Dimension getMinimumSize(SynthContext ss, Font font, String text,
-            Icon icon, int hAlign, int vAlign, int hTextPosition,
-            int vTextPosition, int iconTextGap, int mnemonicIndex) {
+    public Dimension getMinimumSize(SynthContext ss, Font font, String text, Icon icon, int hAlign,
+            int vAlign, int hTextPosition, int vTextPosition, int iconTextGap, int mnemonicIndex) {
         JComponent c = ss.getComponent();
-        Dimension size = getPreferredSize(ss, font, text, icon, hAlign, vAlign,
-                hTextPosition, vTextPosition, iconTextGap, mnemonicIndex);
+        Dimension size = getPreferredSize(ss, font, text, icon, hAlign, vAlign, hTextPosition, vTextPosition,
+                iconTextGap, mnemonicIndex);
         View v = (View) c.getClientProperty(BasicHTML.propertyKey);
 
         if (v != null) {
-            size.width -= v.getPreferredSpan(View.X_AXIS) - v.getMinimumSpan(
-                    View.X_AXIS);
+            size.width -= v.getPreferredSpan(View.X_AXIS) - v.getMinimumSpan(View.X_AXIS);
         }
         return size;
     }
@@ -229,39 +220,37 @@ public class SynthGraphicsUtils {
      * Returns the maximum size needed to properly render an icon and text.
      *
      * @param ss
-     *                      SynthContext
+     *        SynthContext
      * @param font
-     *                      Font to use
+     *        Font to use
      * @param text
-     *                      Text to layout
+     *        Text to layout
      * @param icon
-     *                      Icon to layout
+     *        Icon to layout
      * @param hAlign
-     *                      horizontal alignment
+     *        horizontal alignment
      * @param vAlign
-     *                      vertical alignment
+     *        vertical alignment
      * @param hTextPosition
-     *                      horizontal text position
+     *        horizontal text position
      * @param vTextPosition
-     *                      vertical text position
+     *        vertical text position
      * @param iconTextGap
-     *                      gap between icon and text
+     *        gap between icon and text
      * @param mnemonicIndex
-     *                      Index into text to render the mnemonic at, -1
-     *                      indicates no
-     *                      mnemonic.
+     *        Index into text to render the mnemonic at, -1
+     *        indicates no
+     *        mnemonic.
      */
-    public Dimension getMaximumSize(SynthContext ss, Font font, String text,
-            Icon icon, int hAlign, int vAlign, int hTextPosition,
-            int vTextPosition, int iconTextGap, int mnemonicIndex) {
+    public Dimension getMaximumSize(SynthContext ss, Font font, String text, Icon icon, int hAlign,
+            int vAlign, int hTextPosition, int vTextPosition, int iconTextGap, int mnemonicIndex) {
         JComponent c = ss.getComponent();
-        Dimension size = getPreferredSize(ss, font, text, icon, hAlign, vAlign,
-                hTextPosition, vTextPosition, iconTextGap, mnemonicIndex);
+        Dimension size = getPreferredSize(ss, font, text, icon, hAlign, vAlign, hTextPosition, vTextPosition,
+                iconTextGap, mnemonicIndex);
         View v = (View) c.getClientProperty(BasicHTML.propertyKey);
 
         if (v != null) {
-            size.width += v.getMaximumSpan(View.X_AXIS) - v.getPreferredSpan(
-                    View.X_AXIS);
+            size.width += v.getMaximumSpan(View.X_AXIS) - v.getPreferredSpan(View.X_AXIS);
         }
         return size;
     }
@@ -271,13 +260,12 @@ public class SynthGraphicsUtils {
      * SynthContext.
      *
      * @param context
-     *                SynthContext used to determine font.
+     *        SynthContext used to determine font.
      * @return maximum height of the characters for the font from the passed in
      *         context.
      */
     public int getMaximumCharHeight(SynthContext context) {
-        FontMetrics fm = context.getComponent().getFontMetrics(context
-                .getStyle().getFont(context));
+        FontMetrics fm = context.getComponent().getFontMetrics(context.getStyle().getFont(context));
         return (fm.getAscent() + fm.getDescent());
     }
 
@@ -285,31 +273,30 @@ public class SynthGraphicsUtils {
      * Returns the preferred size needed to properly render an icon and text.
      *
      * @param ss
-     *                      SynthContext
+     *        SynthContext
      * @param font
-     *                      Font to use
+     *        Font to use
      * @param text
-     *                      Text to layout
+     *        Text to layout
      * @param icon
-     *                      Icon to layout
+     *        Icon to layout
      * @param hAlign
-     *                      horizontal alignment
+     *        horizontal alignment
      * @param vAlign
-     *                      vertical alignment
+     *        vertical alignment
      * @param hTextPosition
-     *                      horizontal text position
+     *        horizontal text position
      * @param vTextPosition
-     *                      vertical text position
+     *        vertical text position
      * @param iconTextGap
-     *                      gap between icon and text
+     *        gap between icon and text
      * @param mnemonicIndex
-     *                      Index into text to render the mnemonic at, -1
-     *                      indicates no
-     *                      mnemonic.
+     *        Index into text to render the mnemonic at, -1
+     *        indicates no
+     *        mnemonic.
      */
-    public Dimension getPreferredSize(SynthContext ss, Font font, String text,
-            Icon icon, int hAlign, int vAlign, int hTextPosition,
-            int vTextPosition, int iconTextGap, int mnemonicIndex) {
+    public Dimension getPreferredSize(SynthContext ss, Font font, String text, Icon icon, int hAlign,
+            int vAlign, int hTextPosition, int vTextPosition, int iconTextGap, int mnemonicIndex) {
         JComponent c = ss.getComponent();
         Insets insets = c.getInsets(viewSizingInsets);
         int dx = insets.left + insets.right;
@@ -318,8 +305,8 @@ public class SynthGraphicsUtils {
         if (icon == null && (text == null || font == null)) {
             return new Dimension(dx, dy);
         } else if ((text == null) || ((icon != null) && (font == null))) {
-            return new Dimension(SynthIcon.getIconWidth(icon, ss) + dx,
-                    SynthIcon.getIconHeight(icon, ss) + dy);
+            return new Dimension(SynthIcon.getIconWidth(icon, ss) + dx, SynthIcon.getIconHeight(icon, ss)
+                    + dy);
         } else {
             FontMetrics fm = c.getFontMetrics(font);
 
@@ -329,8 +316,8 @@ public class SynthGraphicsUtils {
             viewR.y = dy;
             viewR.width = viewR.height = Short.MAX_VALUE;
 
-            layoutText(ss, fm, text, icon, hAlign, vAlign, hTextPosition,
-                    vTextPosition, viewR, iconR, textR, iconTextGap);
+            layoutText(ss, fm, text, icon, hAlign, vAlign, hTextPosition, vTextPosition, viewR, iconR, textR,
+                    iconTextGap);
             int x1 = Math.min(iconR.x, textR.x);
             int x2 = Math.max(iconR.x + iconR.width, textR.x + textR.width);
             int y1 = Math.min(iconR.y, textR.y);
@@ -348,18 +335,17 @@ public class SynthGraphicsUtils {
      * the text as html nor will it offset by the insets of the component.
      *
      * @param ss
-     *                      SynthContext
+     *        SynthContext
      * @param g
-     *                      Graphics used to render string in.
+     *        Graphics used to render string in.
      * @param text
-     *                      Text to render
+     *        Text to render
      * @param bounds
-     *                      Bounds of the text to be drawn.
+     *        Bounds of the text to be drawn.
      * @param mnemonicIndex
-     *                      Index to draw string at.
+     *        Index to draw string at.
      */
-    public void paintText(SynthContext ss, Graphics g, String text,
-            Rectangle bounds, int mnemonicIndex) {
+    public void paintText(SynthContext ss, Graphics g, String text, Rectangle bounds, int mnemonicIndex) {
         paintText(ss, g, text, bounds.x, bounds.y, mnemonicIndex);
     }
 
@@ -368,26 +354,24 @@ public class SynthGraphicsUtils {
      * the text as html nor will it offset by the insets of the component.
      *
      * @param ss
-     *                      SynthContext
+     *        SynthContext
      * @param g
-     *                      Graphics used to render string in.
+     *        Graphics used to render string in.
      * @param text
-     *                      Text to render
+     *        Text to render
      * @param x
-     *                      X location to draw text at.
+     *        X location to draw text at.
      * @param y
-     *                      Upper left corner to draw text at.
+     *        Upper left corner to draw text at.
      * @param mnemonicIndex
-     *                      Index to draw string at.
+     *        Index to draw string at.
      */
-    public void paintText(SynthContext ss, Graphics g, String text, int x,
-            int y, int mnemonicIndex) {
+    public void paintText(SynthContext ss, Graphics g, String text, int x, int y, int mnemonicIndex) {
         if (text != null) {
             JComponent c = ss.getComponent();
             FontMetrics fm = SwingUtilities2.getFontMetrics(c, g);
             y += fm.getAscent();
-            SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex,
-                    x, y);
+            SwingUtilities2.drawStringUnderlineCharAt(c, g, text, mnemonicIndex, x, y);
         }
     }
 
@@ -396,33 +380,32 @@ public class SynthGraphicsUtils {
      * and offset the location by the insets of the component.
      *
      * @param ss
-     *                      SynthContext
+     *        SynthContext
      * @param g
-     *                      Graphics to render string and icon into
+     *        Graphics to render string and icon into
      * @param text
-     *                      Text to layout
+     *        Text to layout
      * @param icon
-     *                      Icon to layout
+     *        Icon to layout
      * @param hAlign
-     *                      horizontal alignment
+     *        horizontal alignment
      * @param vAlign
-     *                      vertical alignment
+     *        vertical alignment
      * @param hTextPosition
-     *                      horizontal text position
+     *        horizontal text position
      * @param vTextPosition
-     *                      vertical text position
+     *        vertical text position
      * @param iconTextGap
-     *                      gap between icon and text
+     *        gap between icon and text
      * @param mnemonicIndex
-     *                      Index into text to render the mnemonic at, -1
-     *                      indicates no
-     *                      mnemonic.
+     *        Index into text to render the mnemonic at, -1
+     *        indicates no
+     *        mnemonic.
      * @param textOffset
-     *                      Amount to offset the text when painting
+     *        Amount to offset the text when painting
      */
-    public void paintText(SynthContext ss, Graphics g, String text, Icon icon,
-            int hAlign, int vAlign, int hTextPosition, int vTextPosition,
-            int iconTextGap, int mnemonicIndex, int textOffset) {
+    public void paintText(SynthContext ss, Graphics g, String text, Icon icon, int hAlign, int vAlign,
+            int hTextPosition, int vTextPosition, int iconTextGap, int mnemonicIndex, int textOffset) {
         if ((icon == null) && (text == null)) {
             return;
         }
@@ -438,22 +421,20 @@ public class SynthGraphicsUtils {
         paintIconR.x = paintIconR.y = paintIconR.width = paintIconR.height = 0;
         paintTextR.x = paintTextR.y = paintTextR.width = paintTextR.height = 0;
 
-        String clippedText = layoutText(ss, fm, text, icon, hAlign, vAlign,
-                hTextPosition, vTextPosition, paintViewR, paintIconR,
-                paintTextR, iconTextGap);
+        String clippedText = layoutText(ss, fm, text, icon, hAlign, vAlign, hTextPosition, vTextPosition,
+                paintViewR, paintIconR, paintTextR, iconTextGap);
 
         if (icon != null) {
             Color color = g.getColor();
 
-            if (ss.getStyle().getBoolean(ss, "TableHeader.alignSorterArrow",
-                    false) && "TableHeader.renderer".equals(c.getName())) {
+            if (ss.getStyle().getBoolean(ss, "TableHeader.alignSorterArrow", false) && "TableHeader.renderer"
+                    .equals(c.getName())) {
                 paintIconR.x = paintViewR.width - paintIconR.width;
             } else {
                 paintIconR.x += textOffset;
             }
             paintIconR.y += textOffset;
-            SynthIcon.paintIcon(icon, ss, g, paintIconR.x, paintIconR.y,
-                    paintIconR.width, paintIconR.height);
+            SynthIcon.paintIcon(icon, ss, g, paintIconR.x, paintIconR.y, paintIconR.width, paintIconR.height);
             g.setColor(color);
         }
 
@@ -482,17 +463,14 @@ public class SynthGraphicsUtils {
      * to paint each menu item, we can use those same accumulated max element
      * sizes in order to layout the item.
      */
-    static Dimension getPreferredMenuItemSize(SynthContext context,
-            SynthContext accContext, JComponent c, Icon checkIcon,
-            Icon arrowIcon, int defaultTextIconGap, String acceleratorDelimiter,
+    static Dimension getPreferredMenuItemSize(SynthContext context, SynthContext accContext, JComponent c,
+            Icon checkIcon, Icon arrowIcon, int defaultTextIconGap, String acceleratorDelimiter,
             boolean useCheckAndArrow, String propertyPrefix) {
 
         JMenuItem mi = (JMenuItem) c;
-        SynthMenuItemLayoutHelper lh = new SynthMenuItemLayoutHelper(context,
-                accContext, mi, checkIcon, arrowIcon, MenuItemLayoutHelper
-                        .createMaxRect(), defaultTextIconGap,
-                acceleratorDelimiter, SynthLookAndFeel.isLeftToRight(mi),
-                useCheckAndArrow, propertyPrefix);
+        SynthMenuItemLayoutHelper lh = new SynthMenuItemLayoutHelper(context, accContext, mi, checkIcon,
+                arrowIcon, MenuItemLayoutHelper.createMaxRect(), defaultTextIconGap, acceleratorDelimiter,
+                SynthLookAndFeel.isLeftToRight(mi), useCheckAndArrow, propertyPrefix);
 
         Dimension result = new Dimension();
 
@@ -501,15 +479,13 @@ public class SynthGraphicsUtils {
         result.width = 0;
         MenuItemLayoutHelper.addMaxWidth(lh.getCheckSize(), gap, result);
         MenuItemLayoutHelper.addMaxWidth(lh.getLabelSize(), gap, result);
-        MenuItemLayoutHelper.addWidth(lh.getMaxAccOrArrowWidth(), 5 * gap,
-                result);
+        MenuItemLayoutHelper.addWidth(lh.getMaxAccOrArrowWidth(), 5 * gap, result);
         // The last gap is unnecessary
         result.width -= gap;
 
         // Calculate the result height
-        result.height = MenuItemLayoutHelper.max(lh.getCheckSize().getHeight(),
-                lh.getLabelSize().getHeight(), lh.getAccSize().getHeight(), lh
-                        .getArrowSize().getHeight());
+        result.height = MenuItemLayoutHelper.max(lh.getCheckSize().getHeight(), lh.getLabelSize().getHeight(),
+                lh.getAccSize().getHeight(), lh.getArrowSize().getHeight());
 
         // Take into account menu item insets
         Insets insets = lh.getMenuItem().getInsets();
@@ -533,8 +509,7 @@ public class SynthGraphicsUtils {
         return result;
     }
 
-    static void applyInsets(Rectangle rect, Insets insets,
-            boolean leftToRight) {
+    static void applyInsets(Rectangle rect, Insets insets, boolean leftToRight) {
         if (insets != null) {
             rect.x += (leftToRight ? insets.left : insets.right);
             rect.y += insets.top;
@@ -543,9 +518,8 @@ public class SynthGraphicsUtils {
         }
     }
 
-    static void paint(SynthContext context, SynthContext accContext, Graphics g,
-            Icon checkIcon, Icon arrowIcon, String acceleratorDelimiter,
-            int defaultTextIconGap, String propertyPrefix) {
+    static void paint(SynthContext context, SynthContext accContext, Graphics g, Icon checkIcon,
+            Icon arrowIcon, String acceleratorDelimiter, int defaultTextIconGap, String propertyPrefix) {
         JMenuItem mi = (JMenuItem) context.getComponent();
         SynthStyle style = context.getStyle();
         g.setFont(style.getFont(context));
@@ -554,9 +528,8 @@ public class SynthGraphicsUtils {
         boolean leftToRight = SynthLookAndFeel.isLeftToRight(mi);
         applyInsets(viewRect, mi.getInsets(), leftToRight);
 
-        SynthMenuItemLayoutHelper lh = new SynthMenuItemLayoutHelper(context,
-                accContext, mi, checkIcon, arrowIcon, viewRect,
-                defaultTextIconGap, acceleratorDelimiter, leftToRight,
+        SynthMenuItemLayoutHelper lh = new SynthMenuItemLayoutHelper(context, accContext, mi, checkIcon,
+                arrowIcon, viewRect, defaultTextIconGap, acceleratorDelimiter, leftToRight,
                 MenuItemLayoutHelper.useCheckAndArrow(mi), propertyPrefix);
         MenuItemLayoutHelper.LayoutResult lr = lh.layoutMenuItem();
 
@@ -584,14 +557,11 @@ public class SynthGraphicsUtils {
         paintBackground(lh.getContext(), g, lh.getMenuItem());
     }
 
-    static void paintBackground(SynthContext context, Graphics g,
-            JComponent c) {
-        context.getPainter().paintMenuItemBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+    static void paintBackground(SynthContext context, Graphics g, JComponent c) {
+        context.getPainter().paintMenuItemBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
     }
 
-    static void paintIcon(Graphics g, SynthMenuItemLayoutHelper lh,
-            MenuItemLayoutHelper.LayoutResult lr) {
+    static void paintIcon(Graphics g, SynthMenuItemLayoutHelper lh, MenuItemLayoutHelper.LayoutResult lr) {
         if (lh.getIcon() != null) {
             Icon icon;
             JMenuItem mi = lh.getMenuItem();
@@ -610,8 +580,8 @@ public class SynthGraphicsUtils {
 
             if (icon != null) {
                 Rectangle iconRect = lr.getIconRect();
-                SynthIcon.paintIcon(icon, lh.getContext(), g, iconRect.x,
-                        iconRect.y, iconRect.width, iconRect.height);
+                SynthIcon.paintIcon(icon, lh.getContext(), g, iconRect.x, iconRect.y, iconRect.width,
+                        iconRect.height);
             }
         }
     }
@@ -620,38 +590,32 @@ public class SynthGraphicsUtils {
             MenuItemLayoutHelper.LayoutResult lr) {
         if (lh.getCheckIcon() != null) {
             Rectangle checkRect = lr.getCheckRect();
-            SynthIcon.paintIcon(lh.getCheckIcon(), lh.getContext(), g,
-                    checkRect.x, checkRect.y, checkRect.width,
-                    checkRect.height);
+            SynthIcon.paintIcon(lh.getCheckIcon(), lh.getContext(), g, checkRect.x, checkRect.y,
+                    checkRect.width, checkRect.height);
         }
     }
 
-    static void paintAccText(Graphics g, SynthMenuItemLayoutHelper lh,
-            MenuItemLayoutHelper.LayoutResult lr) {
+    static void paintAccText(Graphics g, SynthMenuItemLayoutHelper lh, MenuItemLayoutHelper.LayoutResult lr) {
         String accText = lh.getAccText();
         if (accText != null && !accText.equals("")) {
-            g.setColor(lh.getAccStyle().getColor(lh.getAccContext(),
-                    ColorType.TEXT_FOREGROUND));
+            g.setColor(lh.getAccStyle().getColor(lh.getAccContext(), ColorType.TEXT_FOREGROUND));
             g.setFont(lh.getAccStyle().getFont(lh.getAccContext()));
-            lh.getAccGraphicsUtils().paintText(lh.getAccContext(), g, accText,
-                    lr.getAccRect().x, lr.getAccRect().y, -1);
+            lh.getAccGraphicsUtils().paintText(lh.getAccContext(), g, accText, lr.getAccRect().x, lr
+                    .getAccRect().y, -1);
         }
     }
 
-    static void paintText(Graphics g, SynthMenuItemLayoutHelper lh,
-            MenuItemLayoutHelper.LayoutResult lr) {
+    static void paintText(Graphics g, SynthMenuItemLayoutHelper lh, MenuItemLayoutHelper.LayoutResult lr) {
         if (!lh.getText().equals("")) {
             if (lh.getHtmlView() != null) {
                 // Text is HTML
                 lh.getHtmlView().paint(g, lr.getTextRect());
             } else {
                 // Text isn't HTML
-                g.setColor(lh.getStyle().getColor(lh.getContext(),
-                        ColorType.TEXT_FOREGROUND));
+                g.setColor(lh.getStyle().getColor(lh.getContext(), ColorType.TEXT_FOREGROUND));
                 g.setFont(lh.getStyle().getFont(lh.getContext()));
-                lh.getGraphicsUtils().paintText(lh.getContext(), g, lh
-                        .getText(), lr.getTextRect().x, lr.getTextRect().y, lh
-                                .getMenuItem().getDisplayedMnemonicIndex());
+                lh.getGraphicsUtils().paintText(lh.getContext(), g, lh.getText(), lr.getTextRect().x, lr
+                        .getTextRect().y, lh.getMenuItem().getDisplayedMnemonicIndex());
             }
         }
     }
@@ -660,9 +624,8 @@ public class SynthGraphicsUtils {
             MenuItemLayoutHelper.LayoutResult lr) {
         if (lh.getArrowIcon() != null) {
             Rectangle arrowRect = lr.getArrowRect();
-            SynthIcon.paintIcon(lh.getArrowIcon(), lh.getContext(), g,
-                    arrowRect.x, arrowRect.y, arrowRect.width,
-                    arrowRect.height);
+            SynthIcon.paintIcon(lh.getArrowIcon(), lh.getContext(), g, arrowRect.x, arrowRect.y,
+                    arrowRect.width, arrowRect.height);
         }
     }
 

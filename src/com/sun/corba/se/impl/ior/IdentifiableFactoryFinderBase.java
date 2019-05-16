@@ -20,8 +20,7 @@ import com.sun.corba.se.spi.logging.CORBALogDomains;
 
 import com.sun.corba.se.impl.logging.IORSystemException;
 
-public abstract class IdentifiableFactoryFinderBase implements
-        IdentifiableFactoryFinder {
+public abstract class IdentifiableFactoryFinderBase implements IdentifiableFactoryFinder {
     private ORB orb;
     private Map map;
     protected IORSystemException wrapper;

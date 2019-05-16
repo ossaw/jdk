@@ -17,7 +17,7 @@ public interface RowSorterListener extends java.util.EventListener {
      * describes the scope of the change.
      *
      * @param e
-     *          the event, will not be null
+     *        the event, will not be null
      */
     public void sorterChanged(RowSorterEvent e);
 }

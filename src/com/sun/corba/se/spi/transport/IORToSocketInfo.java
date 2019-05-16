@@ -14,9 +14,7 @@ public interface IORToSocketInfo {
      * Used to extract socket address information from an IOR.
      *
      * @param ior.
-     *
      * @return List - a list of SocketInfo.
-     *
      */
     public List getSocketInfo(IOR ior);
 }

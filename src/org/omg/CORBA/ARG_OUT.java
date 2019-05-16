@@ -16,8 +16,8 @@ package org.omg.CORBA;
  * 
  * <PRE>
  * ORB orb = ORB.init(args, null);
- * org.omg.CORBA.NamedValue nv = orb.create_named_value("argumentIdentifier",
- *         myAny, org.omg.CORBA.ARG_OUT.value);
+ * org.omg.CORBA.NamedValue nv = orb.create_named_value("argumentIdentifier", myAny,
+ *         org.omg.CORBA.ARG_OUT.value);
  * </PRE>
  *
  * @see org.omg.CORBA.NamedValue

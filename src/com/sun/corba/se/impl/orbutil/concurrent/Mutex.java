@@ -161,8 +161,7 @@ public class Mutex implements Sync {
                             inuse_ = true;
                             return true;
                         } else {
-                            waitTime = msecs - (System.currentTimeMillis()
-                                    - start);
+                            waitTime = msecs - (System.currentTimeMillis() - start);
                             if (waitTime <= 0)
                                 return false;
                         }

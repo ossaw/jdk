@@ -11,8 +11,7 @@ package com.sun.corba.se.PortableActivationIDL;
 /**
  * Sequence of server Ids, used for queries about servers.
  */
-public final class ServerIdsHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ServerIdsHolder implements org.omg.CORBA.portable.Streamable {
     public String value[] = null;
 
     public ServerIdsHolder() {}

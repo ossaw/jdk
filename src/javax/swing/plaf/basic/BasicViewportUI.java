@@ -40,8 +40,7 @@ public class BasicViewportUI extends ViewportUI {
     }
 
     protected void installDefaults(JComponent c) {
-        LookAndFeel.installColorsAndFont(c, "Viewport.background",
-                "Viewport.foreground", "Viewport.font");
+        LookAndFeel.installColorsAndFont(c, "Viewport.background", "Viewport.foreground", "Viewport.font");
         LookAndFeel.installProperty(c, "opaque", Boolean.TRUE);
     }
 

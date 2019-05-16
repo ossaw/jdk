@@ -36,10 +36,8 @@ import org.xml.sax.InputSource;
 /**
  * This class provides a DOM level 2 "helper", which provides services currently
  * not provided be the DOM standard.
- *
  * This class is a copy of the one in com.sun.org.apache.xml.internal.utils. It
  * exists to cut the serializers dependancy on that package.
- *
  * The differences from the original class are: it doesn't extend DOMHelper, not
  * depricated, dropped method isNodeAfter(Node node1, Node node2) dropped method
  * parse(InputSource) dropped method supportSAX() dropped method
@@ -47,7 +45,6 @@ import org.xml.sax.InputSource;
  * dropped method getElementByID(String id, Document doc) dropped method
  * getParentOfNode(Node node) dropped field Document m_doc; made class
  * non-public
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -67,8 +64,7 @@ public final class DOM2Helper {
      * node name.
      *
      * @param n
-     *          Node to be examined
-     *
+     *        Node to be examined
      * @return String containing the local name, or null if the node was not
      *         assigned a Namespace.
      */
@@ -83,13 +79,11 @@ public final class DOM2Helper {
      * Returns the local name of the given node. If the node's name begins with
      * a namespace prefix, this is the part after the colon; otherwise it's the
      * full node name.
-     *
      * This method is copied from
      * com.sun.org.apache.xml.internal.utils.DOMHelper
      *
      * @param n
-     *          the node to be examined.
-     *
+     *        the node to be examined.
      * @return String containing the Local Name
      */
     private String getLocalNameOfNodeFallback(Node n) {
@@ -110,8 +104,7 @@ public final class DOM2Helper {
      * TODO: Reconcile with getLocalNameOfNode.
      *
      * @param n
-     *          Node to be examined
-     *
+     *        Node to be examined
      * @return String containing the Namespace URI bound to this DOM node at the
      *         time the Node was created.
      */

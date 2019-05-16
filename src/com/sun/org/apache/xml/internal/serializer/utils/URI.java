@@ -47,10 +47,8 @@ import java.util.Objects;
  * functionality (for example, it does not know a default port for a specific
  * scheme). Rather, it only knows the grammar and basic set of operations that
  * can be applied to a URI.
- *
  * This class is a copy of the one in com.sun.org.apache.xml.internal.utils. It
  * exists to cut the serializers dependancy on that package.
- *
  * A minor change from the original is that this class no longer implements
  * Serializable, and the serialVersionUID magic field is dropped, and the class
  * is no longer "public".
@@ -62,7 +60,6 @@ final class URI {
      * MalformedURIExceptions are thrown in the process of building a URI or
      * setting fields on a URI when an operation would result in an invalid URI
      * specification.
-     *
      */
     public static class MalformedURIException extends IOException {
 
@@ -79,7 +76,7 @@ final class URI {
          * detail message.
          *
          * @param p_msg
-         *              the detail message.
+         *        the detail message.
          */
         public MalformedURIException(String p_msg) {
             super(p_msg);
@@ -165,7 +162,7 @@ final class URI {
      * equal to the fields of the URI passed in.
      *
      * @param p_other
-     *                the URI to copy (cannot be null)
+     *        the URI to copy (cannot be null)
      */
     public URI(URI p_other) {
         initialize(p_other);
@@ -181,10 +178,9 @@ final class URI {
      * (stored as the path) only.
      *
      * @param p_uriSpec
-     *                  the URI specification string (cannot be null or empty)
-     *
+     *        the URI specification string (cannot be null or empty)
      * @throws MalformedURIException
-     *                               if p_uriSpec violates any syntax rules
+     *         if p_uriSpec violates any syntax rules
      */
     public URI(String p_uriSpec) throws MalformedURIException {
         this((URI) null, p_uriSpec);
@@ -195,14 +191,13 @@ final class URI {
      * URI specification string may be a relative URI.
      *
      * @param p_base
-     *                  the base URI (cannot be null if p_uriSpec is null or
-     *                  empty)
+     *        the base URI (cannot be null if p_uriSpec is null or
+     *        empty)
      * @param p_uriSpec
-     *                  the URI specification string (cannot be null or empty if
-     *                  p_base is null)
-     *
+     *        the URI specification string (cannot be null or empty if
+     *        p_base is null)
      * @throws MalformedURIException
-     *                               if p_uriSpec violates any syntax rules
+     *         if p_uriSpec violates any syntax rules
      */
     public URI(URI p_base, String p_uriSpec) throws MalformedURIException {
         initialize(p_base, p_uriSpec);
@@ -213,26 +208,21 @@ final class URI {
      * scheme and scheme-specific part (stored as the path) are initialized.
      *
      * @param p_scheme
-     *                             the URI scheme (cannot be null or empty)
+     *        the URI scheme (cannot be null or empty)
      * @param p_schemeSpecificPart
-     *                             the scheme-specific part (cannot be null or
-     *                             empty)
-     *
+     *        the scheme-specific part (cannot be null or
+     *        empty)
      * @throws MalformedURIException
-     *                               if p_scheme violates any syntax rules
+     *         if p_scheme violates any syntax rules
      */
-    public URI(String p_scheme, String p_schemeSpecificPart)
-            throws MalformedURIException {
+    public URI(String p_scheme, String p_schemeSpecificPart) throws MalformedURIException {
 
         if (p_scheme == null || p_scheme.trim().length() == 0) {
-            throw new MalformedURIException(
-                    "Cannot construct URI with null/empty scheme!");
+            throw new MalformedURIException("Cannot construct URI with null/empty scheme!");
         }
 
-        if (p_schemeSpecificPart == null || p_schemeSpecificPart.trim()
-                .length() == 0) {
-            throw new MalformedURIException(
-                    "Cannot construct URI with null/empty scheme-specific part!");
+        if (p_schemeSpecificPart == null || p_schemeSpecificPart.trim().length() == 0) {
+            throw new MalformedURIException("Cannot construct URI with null/empty scheme-specific part!");
         }
 
         setScheme(p_scheme);
@@ -246,31 +236,29 @@ final class URI {
      * for specifics.
      *
      * @param p_scheme
-     *                      the URI scheme (cannot be null or empty)
+     *        the URI scheme (cannot be null or empty)
      * @param p_host
-     *                      the hostname or IPv4 address for the URI
+     *        the hostname or IPv4 address for the URI
      * @param p_path
-     *                      the URI path - if the path contains '?' or '#', then
-     *                      the query
-     *                      string and/or fragment will be set from the path;
-     *                      however, if
-     *                      the query and fragment are specified both in the
-     *                      path and as
-     *                      separate parameters, an exception is thrown
+     *        the URI path - if the path contains '?' or '#', then
+     *        the query
+     *        string and/or fragment will be set from the path;
+     *        however, if
+     *        the query and fragment are specified both in the
+     *        path and as
+     *        separate parameters, an exception is thrown
      * @param p_queryString
-     *                      the URI query string (cannot be specified if path is
-     *                      null)
+     *        the URI query string (cannot be specified if path is
+     *        null)
      * @param p_fragment
-     *                      the URI fragment (cannot be specified if path is
-     *                      null)
-     *
+     *        the URI fragment (cannot be specified if path is
+     *        null)
      * @throws MalformedURIException
-     *                               if any of the parameters violates syntax
-     *                               rules or semantic
-     *                               rules
+     *         if any of the parameters violates syntax
+     *         rules or semantic
+     *         rules
      */
-    public URI(String p_scheme, String p_host, String p_path,
-            String p_queryString, String p_fragment)
+    public URI(String p_scheme, String p_host, String p_path, String p_queryString, String p_fragment)
             throws MalformedURIException {
         this(p_scheme, null, p_host, -1, p_path, p_queryString, p_fragment);
     }
@@ -282,51 +270,48 @@ final class URI {
      * for specifics.
      *
      * @param p_scheme
-     *                      the URI scheme (cannot be null or empty)
+     *        the URI scheme (cannot be null or empty)
      * @param p_userinfo
-     *                      the URI userinfo (cannot be specified if host is
-     *                      null)
+     *        the URI userinfo (cannot be specified if host is
+     *        null)
      * @param p_host
-     *                      the hostname or IPv4 address for the URI
+     *        the hostname or IPv4 address for the URI
      * @param p_port
-     *                      the URI port (may be -1 for "unspecified"; cannot be
-     *                      specified
-     *                      if host is null)
+     *        the URI port (may be -1 for "unspecified"; cannot be
+     *        specified
+     *        if host is null)
      * @param p_path
-     *                      the URI path - if the path contains '?' or '#', then
-     *                      the query
-     *                      string and/or fragment will be set from the path;
-     *                      however, if
-     *                      the query and fragment are specified both in the
-     *                      path and as
-     *                      separate parameters, an exception is thrown
+     *        the URI path - if the path contains '?' or '#', then
+     *        the query
+     *        string and/or fragment will be set from the path;
+     *        however, if
+     *        the query and fragment are specified both in the
+     *        path and as
+     *        separate parameters, an exception is thrown
      * @param p_queryString
-     *                      the URI query string (cannot be specified if path is
-     *                      null)
+     *        the URI query string (cannot be specified if path is
+     *        null)
      * @param p_fragment
-     *                      the URI fragment (cannot be specified if path is
-     *                      null)
-     *
+     *        the URI fragment (cannot be specified if path is
+     *        null)
      * @throws MalformedURIException
-     *                               if any of the parameters violates syntax
-     *                               rules or semantic
-     *                               rules
+     *         if any of the parameters violates syntax
+     *         rules or semantic
+     *         rules
      */
-    public URI(String p_scheme, String p_userinfo, String p_host, int p_port,
-            String p_path, String p_queryString, String p_fragment)
-            throws MalformedURIException {
+    public URI(String p_scheme, String p_userinfo, String p_host, int p_port, String p_path,
+            String p_queryString, String p_fragment) throws MalformedURIException {
 
         if (p_scheme == null || p_scheme.trim().length() == 0) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_SCHEME_REQUIRED, null)); // "Scheme
-                                                                                                                    // is
-                                                                                                                    // required!");
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_SCHEME_REQUIRED, null)); // "Scheme
+                                                                                                            // is
+                                                                                                            // required!");
         }
 
         if (p_host == null) {
             if (p_userinfo != null) {
-                throw new MalformedURIException(Utils.messages.createMessage(
-                        MsgKey.ER_NO_USERINFO_IF_NO_HOST, null)); // "Userinfo
+                throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_NO_USERINFO_IF_NO_HOST,
+                        null)); // "Userinfo
                                                                                                                                // may
                                                                                                                                // not
                                                                                                                                // be
@@ -339,8 +324,8 @@ final class URI {
             }
 
             if (p_port != -1) {
-                throw new MalformedURIException(Utils.messages.createMessage(
-                        MsgKey.ER_NO_PORT_IF_NO_HOST, null)); // "Port
+                throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_NO_PORT_IF_NO_HOST,
+                        null)); // "Port
                                                                                                                            // may
                                                                                                                            // not
                                                                                                                            // be
@@ -396,7 +381,7 @@ final class URI {
      * Initialize all fields of this URI from another URI.
      *
      * @param p_other
-     *                the URI to copy (cannot be null)
+     *        the URI to copy (cannot be null)
      */
     private void initialize(URI p_other) {
 
@@ -416,23 +401,20 @@ final class URI {
      * paths.
      *
      * @param p_base
-     *                  the base URI (may be null if p_uriSpec is an absolute
-     *                  URI)
+     *        the base URI (may be null if p_uriSpec is an absolute
+     *        URI)
      * @param p_uriSpec
-     *                  the URI spec string which may be an absolute or relative
-     *                  URI
-     *                  (can only be null/empty if p_base is not null)
-     *
+     *        the URI spec string which may be an absolute or relative
+     *        URI
+     *        (can only be null/empty if p_base is not null)
      * @throws MalformedURIException
-     *                               if p_base is null and p_uriSpec is not an
-     *                               absolute URI or if
-     *                               p_uriSpec violates syntax rules
+     *         if p_base is null and p_uriSpec is not an
+     *         absolute URI or if
+     *         p_uriSpec violates syntax rules
      */
-    private void initialize(URI p_base, String p_uriSpec)
-            throws MalformedURIException {
+    private void initialize(URI p_base, String p_uriSpec) throws MalformedURIException {
 
-        if (p_base == null && (p_uriSpec == null || p_uriSpec.trim()
-                .length() == 0)) {
+        if (p_base == null && (p_uriSpec == null || p_uriSpec.trim().length() == 0)) {
             throw new MalformedURIException(Utils.messages.createMessage(
                     MsgKey.ER_CANNOT_INIT_URI_EMPTY_PARMS, null)); // "Cannot
                                                                                                                                 // initialize
@@ -457,8 +439,8 @@ final class URI {
         int colonIndex = uriSpec.indexOf(':');
         if (colonIndex < 0) {
             if (p_base == null) {
-                throw new MalformedURIException(Utils.messages.createMessage(
-                        MsgKey.ER_NO_SCHEME_IN_URI, new Object[] { uriSpec })); // "No
+                throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_NO_SCHEME_IN_URI,
+                        new Object[] { uriSpec })); // "No
                                                                                                                                              // scheme
                                                                                                                                              // found
                                                                                                                                              // in
@@ -472,8 +454,7 @@ final class URI {
         }
 
         // two slashes means generic URI syntax, so we get the authority
-        if (((index + 1) < uriSpecLen) && (uriSpec.substring(index).startsWith(
-                "//"))) {
+        if (((index + 1) < uriSpecLen) && (uriSpec.substring(index).startsWith("//"))) {
             index += 2;
 
             int startPos = index;
@@ -572,8 +553,7 @@ final class URI {
             index = -1;
 
             while ((index = path.indexOf("/./")) != -1) {
-                path = path.substring(0, index + 1).concat(path.substring(index
-                        + 3));
+                path = path.substring(0, index + 1).concat(path.substring(index + 3));
             }
 
             // 6d - remove "." if path ends with "." as a complete path segment
@@ -594,8 +574,7 @@ final class URI {
 
                 if (segIndex != -1) {
                     if (!tempString.substring(segIndex++).equals("..")) {
-                        path = path.substring(0, segIndex).concat(path
-                                .substring(index + 4));
+                        path = path.substring(0, segIndex).concat(path.substring(index + 4));
                     }
                 }
             }
@@ -619,13 +598,11 @@ final class URI {
      * Initialize the scheme for this URI from a URI string spec.
      *
      * @param p_uriSpec
-     *                  the URI specification (cannot be null)
-     *
+     *        the URI specification (cannot be null)
      * @throws MalformedURIException
-     *                               if URI does not have a conformant scheme
+     *         if URI does not have a conformant scheme
      */
-    private void initializeScheme(String p_uriSpec)
-            throws MalformedURIException {
+    private void initializeScheme(String p_uriSpec) throws MalformedURIException {
 
         int uriSpecLen = p_uriSpec.length();
         int index = 0;
@@ -635,8 +612,7 @@ final class URI {
         while (index < uriSpecLen) {
             testChar = p_uriSpec.charAt(index);
 
-            if (testChar == ':' || testChar == '/' || testChar == '?'
-                    || testChar == '#') {
+            if (testChar == ':' || testChar == '/' || testChar == '?' || testChar == '#') {
                 break;
             }
 
@@ -646,12 +622,11 @@ final class URI {
         scheme = p_uriSpec.substring(0, index);
 
         if (scheme.length() == 0) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_NO_SCHEME_INURI, null)); // "No
-                                                                                                                    // scheme
-                                                                                                                    // found
-                                                                                                                    // in
-                                                                                                                    // URI.");
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_NO_SCHEME_INURI, null)); // "No
+                                                                                                            // scheme
+                                                                                                            // found
+                                                                                                            // in
+                                                                                                            // URI.");
         } else {
             setScheme(scheme);
         }
@@ -662,13 +637,11 @@ final class URI {
      * URI string spec.
      *
      * @param p_uriSpec
-     *                  the URI specification (cannot be null)
-     *
+     *        the URI specification (cannot be null)
      * @throws MalformedURIException
-     *                               if p_uriSpec violates syntax rules
+     *         if p_uriSpec violates syntax rules
      */
-    private void initializeAuthority(String p_uriSpec)
-            throws MalformedURIException {
+    private void initializeAuthority(String p_uriSpec) throws MalformedURIException {
 
         int index = 0;
         int start = 0;
@@ -753,16 +726,14 @@ final class URI {
      * Initialize the path for this URI from a URI string spec.
      *
      * @param p_uriSpec
-     *                  the URI specification (cannot be null)
-     *
+     *        the URI specification (cannot be null)
      * @throws MalformedURIException
-     *                               if p_uriSpec violates syntax rules
+     *         if p_uriSpec violates syntax rules
      */
     private void initializePath(String p_uriSpec) throws MalformedURIException {
 
         if (p_uriSpec == null) {
-            throw new MalformedURIException(
-                    "Cannot initialize path from null string!");
+            throw new MalformedURIException("Cannot initialize path from null string!");
         }
 
         int index = 0;
@@ -780,28 +751,24 @@ final class URI {
 
             // check for valid escape sequence
             if (testChar == '%') {
-                if (index + 2 >= end || !isHex(p_uriSpec.charAt(index + 1))
-                        || !isHex(p_uriSpec.charAt(index + 2))) {
-                    throw new MalformedURIException(Utils.messages
-                            .createMessage(
-                                    MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
-                                    null)); // "Path
-                                                                                                                                                          // contains
-                                                                                                                                                          // invalid
-                                                                                                                                                          // escape
-                                                                                                                                                          // sequence!");
+                if (index + 2 >= end || !isHex(p_uriSpec.charAt(index + 1)) || !isHex(p_uriSpec.charAt(index
+                        + 2))) {
+                    throw new MalformedURIException(Utils.messages.createMessage(
+                            MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE, null)); // "Path
+                                                                                                                                                  // contains
+                                                                                                                                                  // invalid
+                                                                                                                                                  // escape
+                                                                                                                                                  // sequence!");
                 }
-            } else if (!isReservedCharacter(testChar) && !isUnreservedCharacter(
-                    testChar)) {
+            } else if (!isReservedCharacter(testChar) && !isUnreservedCharacter(testChar)) {
                 if ('\\' != testChar)
-                    throw new MalformedURIException(Utils.messages
-                            .createMessage(MsgKey.ER_PATH_INVALID_CHAR,
-                                    new Object[] { String.valueOf(testChar) })); // "Path
-                                                                                                                                                                           // contains
-                                                                                                                                                                           // invalid
-                                                                                                                                                                           // character:
-                                                                                                                                                                           // "
-                                                                                                                                                                           // + testChar);
+                    throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_PATH_INVALID_CHAR,
+                            new Object[] { String.valueOf(testChar) })); // "Path
+                                                                                                                                                                   // contains
+                                                                                                                                                                   // invalid
+                                                                                                                                                                   // character:
+                                                                                                                                                                   // "
+                                                                                                                                                                   // + testChar);
             }
 
             index++;
@@ -823,16 +790,12 @@ final class URI {
                 }
 
                 if (testChar == '%') {
-                    if (index + 2 >= end || !isHex(p_uriSpec.charAt(index + 1))
-                            || !isHex(p_uriSpec.charAt(index + 2))) {
-                        throw new MalformedURIException(
-                                "Query string contains invalid escape sequence!");
+                    if (index + 2 >= end || !isHex(p_uriSpec.charAt(index + 1)) || !isHex(p_uriSpec.charAt(
+                            index + 2))) {
+                        throw new MalformedURIException("Query string contains invalid escape sequence!");
                     }
-                } else if (!isReservedCharacter(testChar)
-                        && !isUnreservedCharacter(testChar)) {
-                    throw new MalformedURIException(
-                            "Query string contains invalid character:"
-                                    + testChar);
+                } else if (!isReservedCharacter(testChar) && !isUnreservedCharacter(testChar)) {
+                    throw new MalformedURIException("Query string contains invalid character:" + testChar);
                 }
 
                 index++;
@@ -851,15 +814,12 @@ final class URI {
                 testChar = p_uriSpec.charAt(index);
 
                 if (testChar == '%') {
-                    if (index + 2 >= end || !isHex(p_uriSpec.charAt(index + 1))
-                            || !isHex(p_uriSpec.charAt(index + 2))) {
-                        throw new MalformedURIException(
-                                "Fragment contains invalid escape sequence!");
+                    if (index + 2 >= end || !isHex(p_uriSpec.charAt(index + 1)) || !isHex(p_uriSpec.charAt(
+                            index + 2))) {
+                        throw new MalformedURIException("Fragment contains invalid escape sequence!");
                     }
-                } else if (!isReservedCharacter(testChar)
-                        && !isUnreservedCharacter(testChar)) {
-                    throw new MalformedURIException(
-                            "Fragment contains invalid character:" + testChar);
+                } else if (!isReservedCharacter(testChar) && !isUnreservedCharacter(testChar)) {
+                    throw new MalformedURIException("Fragment contains invalid character:" + testChar);
                 }
 
                 index++;
@@ -955,19 +915,17 @@ final class URI {
      * fragment).
      *
      * @param p_includeQueryString
-     *                             if true (and query string is not null), then
-     *                             a "?" followed by
-     *                             the query string will be appended
+     *        if true (and query string is not null), then
+     *        a "?" followed by
+     *        the query string will be appended
      * @param p_includeFragment
-     *                             if true (and fragment is not null), then a
-     *                             "#" followed by the
-     *                             fragment will be appended
-     *
+     *        if true (and fragment is not null), then a
+     *        "#" followed by the
+     *        fragment will be appended
      * @return the path for this URI possibly including the query string and
      *         fragment
      */
-    public String getPath(boolean p_includeQueryString,
-            boolean p_includeFragment) {
+    public String getPath(boolean p_includeQueryString, boolean p_includeFragment) {
 
         final StringBuilder pathString = new StringBuilder(m_path);
 
@@ -1021,16 +979,15 @@ final class URI {
      * it is set.
      *
      * @param p_scheme
-     *                 the scheme for this URI (cannot be null)
-     *
+     *        the scheme for this URI (cannot be null)
      * @throws MalformedURIException
-     *                               if p_scheme is not a conformant scheme name
+     *         if p_scheme is not a conformant scheme name
      */
     public void setScheme(String p_scheme) throws MalformedURIException {
 
         if (p_scheme == null) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_SCHEME_FROM_NULL_STRING, null)); // "Cannot
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_SCHEME_FROM_NULL_STRING,
+                    null)); // "Cannot
                                                                                                                             // set
                                                                                                                             // scheme
                                                                                                                             // from
@@ -1039,8 +996,8 @@ final class URI {
         }
 
         if (!isConformantSchemeName(p_scheme)) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_SCHEME_NOT_CONFORMANT, null)); // "The
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_SCHEME_NOT_CONFORMANT,
+                    null)); // "The
                                                                                                                           // scheme
                                                                                                                           // is
                                                                                                                           // not
@@ -1055,10 +1012,9 @@ final class URI {
      * host value is null, then an exception is thrown.
      *
      * @param p_userinfo
-     *                   the userinfo for this URI
-     *
+     *        the userinfo for this URI
      * @throws MalformedURIException
-     *                               if p_userinfo contains invalid characters
+     *         if p_userinfo contains invalid characters
      */
     public void setUserinfo(String p_userinfo) throws MalformedURIException {
 
@@ -1066,8 +1022,7 @@ final class URI {
             m_userinfo = null;
         } else {
             if (m_host == null) {
-                throw new MalformedURIException(
-                        "Userinfo cannot be set when host is null!");
+                throw new MalformedURIException("Userinfo cannot be set when host is null!");
             }
 
             // userinfo can contain alphanumerics, mark characters, escaped
@@ -1080,15 +1035,12 @@ final class URI {
                 testChar = p_userinfo.charAt(index);
 
                 if (testChar == '%') {
-                    if (index + 2 >= end || !isHex(p_userinfo.charAt(index + 1))
-                            || !isHex(p_userinfo.charAt(index + 2))) {
-                        throw new MalformedURIException(
-                                "Userinfo contains invalid escape sequence!");
+                    if (index + 2 >= end || !isHex(p_userinfo.charAt(index + 1)) || !isHex(p_userinfo.charAt(
+                            index + 2))) {
+                        throw new MalformedURIException("Userinfo contains invalid escape sequence!");
                     }
-                } else if (!isUnreservedCharacter(testChar)
-                        && USERINFO_CHARACTERS.indexOf(testChar) == -1) {
-                    throw new MalformedURIException(
-                            "Userinfo contains invalid character:" + testChar);
+                } else if (!isUnreservedCharacter(testChar) && USERINFO_CHARACTERS.indexOf(testChar) == -1) {
+                    throw new MalformedURIException("Userinfo contains invalid character:" + testChar);
                 }
 
                 index++;
@@ -1103,11 +1055,10 @@ final class URI {
      * also set to null and the port is set to -1.
      *
      * @param p_host
-     *               the host for this URI
-     *
+     *        the host for this URI
      * @throws MalformedURIException
-     *                               if p_host is not a valid IP address or DNS
-     *                               hostname.
+     *         if p_host is not a valid IP address or DNS
+     *         hostname.
      */
     public void setHost(String p_host) throws MalformedURIException {
 
@@ -1136,18 +1087,17 @@ final class URI {
      * is thrown.
      *
      * @param p_port
-     *               the port number for this URI
-     *
+     *        the port number for this URI
      * @throws MalformedURIException
-     *                               if p_port is not -1 and not a valid port
-     *                               number
+     *         if p_port is not -1 and not a valid port
+     *         number
      */
     public void setPort(int p_port) throws MalformedURIException {
 
         if (p_port >= 0 && p_port <= 65535) {
             if (m_host == null) {
-                throw new MalformedURIException(Utils.messages.createMessage(
-                        MsgKey.ER_PORT_WHEN_HOST_NULL, null)); // "Port
+                throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_PORT_WHEN_HOST_NULL,
+                        null)); // "Port
                                                                                                                             // cannot
                                                                                                                             // be
                                                                                                                             // set
@@ -1157,10 +1107,9 @@ final class URI {
                                                                                                                             // null!");
             }
         } else if (p_port != -1) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_INVALID_PORT, null)); // "Invalid
-                                                                                                                 // port
-                                                                                                                 // number!");
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_INVALID_PORT, null)); // "Invalid
+                                                                                                         // port
+                                                                                                         // number!");
         }
 
         m_port = p_port;
@@ -1175,10 +1124,9 @@ final class URI {
      * generic URI syntax, this method sets the scheme-specific part.
      *
      * @param p_path
-     *               the path for this URI (may be null)
-     *
+     *        the path for this URI (may be null)
      * @throws MalformedURIException
-     *                               if p_path contains invalid characters
+     *         if p_path contains invalid characters
      */
     public void setPath(String p_path) throws MalformedURIException {
 
@@ -1200,10 +1148,9 @@ final class URI {
      * segment is appended.
      *
      * @param p_addToPath
-     *                    the new segment to be added to the current path
-     *
+     *        the new segment to be added to the current path
      * @throws MalformedURIException
-     *                               if p_addToPath contains syntax errors
+     *         if p_addToPath contains syntax errors
      */
     public void appendPath(String p_addToPath) throws MalformedURIException {
 
@@ -1212,8 +1159,8 @@ final class URI {
         }
 
         if (!isURIString(p_addToPath)) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_PATH_INVALID_CHAR, new Object[] { p_addToPath })); // "Path
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_PATH_INVALID_CHAR,
+                    new Object[] { p_addToPath })); // "Path
                                                                                                                                               // contains
                                                                                                                                               // invalid
                                                                                                                                               // character!");
@@ -1246,28 +1193,23 @@ final class URI {
      * null.
      *
      * @param p_queryString
-     *                      the query string for this URI
-     *
+     *        the query string for this URI
      * @throws MalformedURIException
-     *                               if p_queryString is not null and this URI
-     *                               does not conform to
-     *                               the generic URI syntax or if the path is
-     *                               null
+     *         if p_queryString is not null and this URI
+     *         does not conform to
+     *         the generic URI syntax or if the path is
+     *         null
      */
-    public void setQueryString(String p_queryString)
-            throws MalformedURIException {
+    public void setQueryString(String p_queryString) throws MalformedURIException {
 
         if (p_queryString == null) {
             m_queryString = null;
         } else if (!isGenericURI()) {
-            throw new MalformedURIException(
-                    "Query string can only be set for a generic URI!");
+            throw new MalformedURIException("Query string can only be set for a generic URI!");
         } else if (getPath() == null) {
-            throw new MalformedURIException(
-                    "Query string cannot be set when path is null!");
+            throw new MalformedURIException("Query string cannot be set when path is null!");
         } else if (!isURIString(p_queryString)) {
-            throw new MalformedURIException(
-                    "Query string contains invalid character!");
+            throw new MalformedURIException("Query string contains invalid character!");
         } else {
             m_queryString = p_queryString;
         }
@@ -1279,21 +1221,20 @@ final class URI {
      * null.
      *
      * @param p_fragment
-     *                   the fragment for this URI
-     *
+     *        the fragment for this URI
      * @throws MalformedURIException
-     *                               if p_fragment is not null and this URI does
-     *                               not conform to
-     *                               the generic URI syntax or if the path is
-     *                               null
+     *         if p_fragment is not null and this URI does
+     *         not conform to
+     *         the generic URI syntax or if the path is
+     *         null
      */
     public void setFragment(String p_fragment) throws MalformedURIException {
 
         if (p_fragment == null) {
             m_fragment = null;
         } else if (!isGenericURI()) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_FRAG_FOR_GENERIC_URI, null)); // "Fragment
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_FRAG_FOR_GENERIC_URI,
+                    null)); // "Fragment
                                                                                                                          // can
                                                                                                                          // only
                                                                                                                          // be
@@ -1303,8 +1244,8 @@ final class URI {
                                                                                                                          // generic
                                                                                                                          // URI!");
         } else if (getPath() == null) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_FRAG_WHEN_PATH_NULL, null)); // "Fragment
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_FRAG_WHEN_PATH_NULL,
+                    null)); // "Fragment
                                                                                                                         // cannot
                                                                                                                         // be
                                                                                                                         // set
@@ -1313,11 +1254,10 @@ final class URI {
                                                                                                                         // is
                                                                                                                         // null!");
         } else if (!isURIString(p_fragment)) {
-            throw new MalformedURIException(Utils.messages.createMessage(
-                    MsgKey.ER_FRAG_INVALID_CHAR, null)); // "Fragment
-                                                                                                                      // contains
-                                                                                                                      // invalid
-                                                                                                                      // character!");
+            throw new MalformedURIException(Utils.messages.createMessage(MsgKey.ER_FRAG_INVALID_CHAR, null)); // "Fragment
+                                                                                                              // contains
+                                                                                                              // invalid
+                                                                                                              // character!");
         } else {
             m_fragment = p_fragment;
         }
@@ -1327,8 +1267,7 @@ final class URI {
      * Determines if the passed-in Object is equivalent to this URI.
      *
      * @param p_test
-     *               the Object to test for equality.
-     *
+     *        the Object to test for equality.
      * @return true if p_test is a URI with all values equal to this URI, false
      *         otherwise
      */
@@ -1338,30 +1277,18 @@ final class URI {
         if (p_test instanceof URI) {
             URI testURI = (URI) p_test;
 
-            if (((m_scheme == null && testURI.m_scheme == null)
-                    || (m_scheme != null && testURI.m_scheme != null && m_scheme
-                            .equals(testURI.m_scheme))) && ((m_userinfo == null
-                                    && testURI.m_userinfo == null)
-                                    || (m_userinfo != null
-                                            && testURI.m_userinfo != null
-                                            && m_userinfo.equals(
-                                                    testURI.m_userinfo)))
-                    && ((m_host == null && testURI.m_host == null)
-                            || (m_host != null && testURI.m_host != null
-                                    && m_host.equals(testURI.m_host)))
-                    && m_port == testURI.m_port && ((m_path == null
-                            && testURI.m_path == null) || (m_path != null
-                                    && testURI.m_path != null && m_path.equals(
-                                            testURI.m_path)))
-                    && ((m_queryString == null && testURI.m_queryString == null)
-                            || (m_queryString != null
-                                    && testURI.m_queryString != null
-                                    && m_queryString.equals(
-                                            testURI.m_queryString)))
-                    && ((m_fragment == null && testURI.m_fragment == null)
-                            || (m_fragment != null && testURI.m_fragment != null
-                                    && m_fragment.equals(
-                                            testURI.m_fragment)))) {
+            if (((m_scheme == null && testURI.m_scheme == null) || (m_scheme != null
+                    && testURI.m_scheme != null && m_scheme.equals(testURI.m_scheme))) && ((m_userinfo == null
+                            && testURI.m_userinfo == null) || (m_userinfo != null
+                                    && testURI.m_userinfo != null && m_userinfo.equals(testURI.m_userinfo)))
+                    && ((m_host == null && testURI.m_host == null) || (m_host != null
+                            && testURI.m_host != null && m_host.equals(testURI.m_host)))
+                    && m_port == testURI.m_port && ((m_path == null && testURI.m_path == null)
+                            || (m_path != null && testURI.m_path != null && m_path.equals(testURI.m_path)))
+                    && ((m_queryString == null && testURI.m_queryString == null) || (m_queryString != null
+                            && testURI.m_queryString != null && m_queryString.equals(testURI.m_queryString)))
+                    && ((m_fragment == null && testURI.m_fragment == null) || (m_fragment != null
+                            && testURI.m_fragment != null && m_fragment.equals(testURI.m_fragment)))) {
                 return true;
             }
         }
@@ -1419,9 +1346,8 @@ final class URI {
      * scheme is conformant if it starts with an alphanumeric, and contains only
      * alphanumerics, '+','-' and '.'.
      *
-     *
      * @param p_scheme
-     *                 The sheme name to check
+     *        The sheme name to check
      * @return true if the scheme is conformant, false otherwise
      */
     public static boolean isConformantSchemeName(String p_scheme) {
@@ -1439,8 +1365,7 @@ final class URI {
         for (int i = 1; i < p_scheme.length(); i++) {
             testChar = p_scheme.charAt(i);
 
-            if (!isAlphanum(testChar) && SCHEME_CHARACTERS.indexOf(
-                    testChar) == -1) {
+            if (!isAlphanum(testChar) && SCHEME_CHARACTERS.indexOf(testChar) == -1) {
                 return false;
             }
         }
@@ -1456,9 +1381,8 @@ final class URI {
      * an alphanumeric but may contain '-') separated & by a '.'. See RFC 2396
      * Section 3.2.2.
      *
-     *
      * @param p_address
-     *                  The address string to check
+     *        The address string to check
      * @return true if the string is a syntactically valid IPv4 address or
      *         hostname
      */
@@ -1499,8 +1423,8 @@ final class URI {
                 testChar = address.charAt(i);
 
                 if (testChar == '.') {
-                    if (!isDigit(address.charAt(i - 1)) || (i + 1 < addrLength
-                            && !isDigit(address.charAt(i + 1)))) {
+                    if (!isDigit(address.charAt(i - 1)) || (i + 1 < addrLength && !isDigit(address.charAt(i
+                            + 1)))) {
                         return false;
                     }
 
@@ -1527,8 +1451,7 @@ final class URI {
                         return false;
                     }
 
-                    if (i + 1 < addrLength && !isAlphanum(address.charAt(i
-                            + 1))) {
+                    if (i + 1 < addrLength && !isAlphanum(address.charAt(i + 1))) {
                         return false;
                     }
                 } else if (!isAlphanum(testChar) && testChar != '-') {
@@ -1543,9 +1466,8 @@ final class URI {
     /**
      * Determine whether a char is a digit.
      *
-     *
      * @param p_char
-     *               the character to check
+     *        the character to check
      * @return true if the char is betweeen '0' and '9', false otherwise
      */
     private static boolean isDigit(char p_char) {
@@ -1555,36 +1477,31 @@ final class URI {
     /**
      * Determine whether a character is a hexadecimal character.
      *
-     *
      * @param p_char
-     *               the character to check
+     *        the character to check
      * @return true if the char is between '0' and '9', 'a' and 'f' or 'A' and
      *         'F', false otherwise
      */
     private static boolean isHex(char p_char) {
-        return (isDigit(p_char) || (p_char >= 'a' && p_char <= 'f')
-                || (p_char >= 'A' && p_char <= 'F'));
+        return (isDigit(p_char) || (p_char >= 'a' && p_char <= 'f') || (p_char >= 'A' && p_char <= 'F'));
     }
 
     /**
      * Determine whether a char is an alphabetic character: a-z or A-Z
      *
-     *
      * @param p_char
-     *               the character to check
+     *        the character to check
      * @return true if the char is alphabetic, false otherwise
      */
     private static boolean isAlpha(char p_char) {
-        return ((p_char >= 'a' && p_char <= 'z') || (p_char >= 'A'
-                && p_char <= 'Z'));
+        return ((p_char >= 'a' && p_char <= 'z') || (p_char >= 'A' && p_char <= 'Z'));
     }
 
     /**
      * Determine whether a char is an alphanumeric: 0-9, a-z or A-Z
      *
-     *
      * @param p_char
-     *               the character to check
+     *        the character to check
      * @return true if the char is alphanumeric, false otherwise
      */
     private static boolean isAlphanum(char p_char) {
@@ -1595,9 +1512,8 @@ final class URI {
      * Determine whether a character is a reserved character: ';', '/', '?',
      * ':', '@', '&', '=', '+', '$' or ','
      *
-     *
      * @param p_char
-     *               the character to check
+     *        the character to check
      * @return true if the string contains any reserved characters
      */
     private static boolean isReservedCharacter(char p_char) {
@@ -1607,9 +1523,8 @@ final class URI {
     /**
      * Determine whether a char is an unreserved character.
      *
-     *
      * @param p_char
-     *               the character to check
+     *        the character to check
      * @return true if the char is unreserved, false otherwise
      */
     private static boolean isUnreservedCharacter(char p_char) {
@@ -1621,9 +1536,8 @@ final class URI {
      * called "uric" in RFC 2396). uric consist of all reserved characters,
      * unreserved characters and escaped characters.
      *
-     *
      * @param p_uric
-     *               URI string
+     *        URI string
      * @return true if the string is comprised of uric, false otherwise
      */
     private static boolean isURIString(String p_uric) {
@@ -1639,8 +1553,7 @@ final class URI {
             testChar = p_uric.charAt(i);
 
             if (testChar == '%') {
-                if (i + 2 >= end || !isHex(p_uric.charAt(i + 1)) || !isHex(
-                        p_uric.charAt(i + 2))) {
+                if (i + 2 >= end || !isHex(p_uric.charAt(i + 1)) || !isHex(p_uric.charAt(i + 2))) {
                     return false;
                 } else {
                     i += 2;
@@ -1649,8 +1562,7 @@ final class URI {
                 }
             }
 
-            if (isReservedCharacter(testChar) || isUnreservedCharacter(
-                    testChar)) {
+            if (isReservedCharacter(testChar) || isUnreservedCharacter(testChar)) {
                 continue;
             } else {
                 return false;

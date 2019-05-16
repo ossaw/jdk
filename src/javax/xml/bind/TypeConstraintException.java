@@ -8,13 +8,11 @@ package javax.xml.bind;
 /**
  * This exception indicates that a violation of a dynamically checked type
  * constraint was detected.
- *
  * <p>
  * This exception can be thrown by the generated setter methods of the schema
  * derived Java content classes. However, since fail-fast validation is an
  * optional feature for JAXB Providers to support, not all setter methods will
  * throw this exception when a type constraint is violated.
- *
  * <p>
  * If this exception is throw while invoking a fail-fast setter, the value of
  * the property is guaranteed to remain unchanged, as if the setter were never
@@ -33,13 +31,11 @@ public class TypeConstraintException extends java.lang.RuntimeException {
 
     /**
      * Vendor specific error code
-     *
      */
     private String errorCode;
 
     /**
      * Exception reference
-     *
      */
     private volatile Throwable linkedException;
 
@@ -50,7 +46,7 @@ public class TypeConstraintException extends java.lang.RuntimeException {
      * The errorCode and linkedException will default to null.
      *
      * @param message
-     *                a description of the exception
+     *        a description of the exception
      */
     public TypeConstraintException(String message) {
         this(message, null, null);
@@ -61,9 +57,9 @@ public class TypeConstraintException extends java.lang.RuntimeException {
      * vendor specific errorCode. The linkedException will default to null.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param errorCode
-     *                  a string specifying the vendor specific error code
+     *        a string specifying the vendor specific error code
      */
     public TypeConstraintException(String message, String errorCode) {
         this(message, errorCode, null);
@@ -74,7 +70,7 @@ public class TypeConstraintException extends java.lang.RuntimeException {
      * message and vendor specific errorCode will default to null.
      *
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
     public TypeConstraintException(Throwable exception) {
         this(null, null, exception);
@@ -85,9 +81,9 @@ public class TypeConstraintException extends java.lang.RuntimeException {
      * linkedException. The errorCode will default to null.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
     public TypeConstraintException(String message, Throwable exception) {
         this(message, null, exception);
@@ -98,14 +94,13 @@ public class TypeConstraintException extends java.lang.RuntimeException {
      * vendor specific errorCode, and linkedException.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param errorCode
-     *                  a string specifying the vendor specific error code
+     *        a string specifying the vendor specific error code
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
-    public TypeConstraintException(String message, String errorCode,
-            Throwable exception) {
+    public TypeConstraintException(String message, String errorCode, Throwable exception) {
         super(message);
         this.errorCode = errorCode;
         this.linkedException = exception;
@@ -133,9 +128,9 @@ public class TypeConstraintException extends java.lang.RuntimeException {
      * Add a linked Exception.
      *
      * @param exception
-     *                  the linked Exception (A null value is permitted and
-     *                  indicates
-     *                  that the linked exception does not exist or is unknown).
+     *        the linked Exception (A null value is permitted and
+     *        indicates
+     *        that the linked exception does not exist or is unknown).
      */
     public void setLinkedException(Throwable exception) {
         this.linkedException = exception;
@@ -143,12 +138,10 @@ public class TypeConstraintException extends java.lang.RuntimeException {
 
     /**
      * Returns a short description of this TypeConstraintException.
-     *
      */
     public String toString() {
         return linkedException == null ? super.toString()
-                : super.toString() + "\n - with linked exception:\n["
-                        + linkedException.toString() + "]";
+                : super.toString() + "\n - with linked exception:\n[" + linkedException.toString() + "]";
     }
 
     /**
@@ -156,7 +149,7 @@ public class TypeConstraintException extends java.lang.RuntimeException {
      * stack trace of the linkedException if it is non-null) to the PrintStream.
      *
      * @param s
-     *          PrintStream to use for output
+     *        PrintStream to use for output
      */
     public void printStackTrace(java.io.PrintStream s) {
         if (linkedException != null) {
@@ -171,7 +164,6 @@ public class TypeConstraintException extends java.lang.RuntimeException {
      * Prints this TypeConstraintException and its stack trace (including the
      * stack trace of the linkedException if it is non-null) to
      * <tt>System.err</tt>.
-     *
      */
     public void printStackTrace() {
         printStackTrace(System.err);

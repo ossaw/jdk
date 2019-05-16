@@ -59,18 +59,18 @@ public class FuncLoader {
      * Construct a function loader
      *
      * @param funcName
-     *                 The class name of the
-     *                 {com.sun.org.apache.xpath.internal.functions.Function}
-     *                 class,
-     *                 which, if it does not have a '.' in it, is assumed to be
-     *                 relative to
-     *                 'com.sun.org.apache.xpath.internal.functions'.
+     *        The class name of the
+     *        {com.sun.org.apache.xpath.internal.functions.Function}
+     *        class,
+     *        which, if it does not have a '.' in it, is assumed to be
+     *        relative to
+     *        'com.sun.org.apache.xpath.internal.functions'.
      * @param funcID
-     *                 The function ID, which may correspond to one of the
-     *                 FUNC_XXX
-     *                 values found in
-     *                 {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable}
-     *                 , but may be a value installed by an external module.
+     *        The function ID, which may correspond to one of the
+     *        FUNC_XXX
+     *        values found in
+     *        {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable}
+     *        , but may be a value installed by an external module.
      */
     public FuncLoader(String funcName, int funcID) {
 
@@ -84,7 +84,6 @@ public class FuncLoader {
      * Get a Function instance that this instance is liaisoning for.
      *
      * @return non-null reference to Function derivative.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if ClassNotFoundException, IllegalAccessException, or
      *         InstantiationException is thrown.
@@ -93,17 +92,13 @@ public class FuncLoader {
         try {
             String className = m_funcName;
             if (className.indexOf(".") < 0) {
-                className = "com.sun.org.apache.xpath.internal.functions."
-                        + className;
+                className = "com.sun.org.apache.xpath.internal.functions." + className;
             }
             // hack for loading only built-in function classes.
-            String subString = className.substring(0, className.lastIndexOf(
-                    '.'));
-            if (!(subString.equals(
-                    "com.sun.org.apache.xalan.internal.templates") || subString
-                            .equals("com.sun.org.apache.xpath.internal.functions"))) {
-                throw new TransformerException(
-                        "Application can't install his own xpath function.");
+            String subString = className.substring(0, className.lastIndexOf('.'));
+            if (!(subString.equals("com.sun.org.apache.xalan.internal.templates") || subString.equals(
+                    "com.sun.org.apache.xpath.internal.functions"))) {
+                throw new TransformerException("Application can't install his own xpath function.");
             }
 
             return (Function) ObjectFactory.newInstance(className, true);

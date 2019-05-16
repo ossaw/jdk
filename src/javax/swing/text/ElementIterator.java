@@ -14,25 +14,20 @@ import java.util.Enumeration;
  * constructor can be invoked with either Document or an Element as an argument.
  * If the constructor is invoked with a Document as an argument then the root of
  * the iteration is the return value of document.getDefaultRootElement().
- *
  * The iteration happens in a depth-first manner. In terms of how boundary
  * conditions are handled: a) if next() is called before first() or current(),
  * the root will be returned. b) next() returns null to indicate the end of the
  * list. c) previous() returns null when the current element is the root or
  * next() has returned null.
- *
  * The ElementIterator does no locking of the Element tree. This means that it
  * does not track any changes. It is the responsibility of the user of this
  * class, to ensure that no changes happen during element iteration.
- *
  * Simple usage example:
- *
  * public void iterate() { ElementIterator it = new ElementIterator(root);
  * Element elem; while (true) { if ((elem = next()) != null) { // process
  * element System.out.println("elem: " + elem.getName()); } else { break; } } }
  *
  * @author Sunita Mani
- *
  */
 
 public class ElementIterator implements Cloneable {
@@ -46,7 +41,6 @@ public class ElementIterator implements Cloneable {
      * itself. Otherwise, the index functions as as index into the vector of
      * children of the element. In this case, the item on the stack represents
      * the "index"th child of the element
-     *
      */
     private class StackItem implements Cloneable {
         Element item;
@@ -83,7 +77,7 @@ public class ElementIterator implements Cloneable {
      * default root element of the document.
      *
      * @param document
-     *                 a Document.
+     *        a Document.
      */
     public ElementIterator(Document document) {
         root = document.getDefaultRootElement();
@@ -93,7 +87,7 @@ public class ElementIterator implements Cloneable {
      * Creates a new ElementIterator.
      *
      * @param root
-     *             the root Element.
+     *        the root Element.
      */
     public ElementIterator(Element root) {
         this.root = root;
@@ -252,7 +246,6 @@ public class ElementIterator implements Cloneable {
      * element, or the current element is null, then null is returned.
      *
      * @return previous <code>Element</code> if available
-     *
      */
     public Element previous() {
 
@@ -292,8 +285,7 @@ public class ElementIterator implements Cloneable {
             elementStack.push(top);
             elem = item.getElement();
             index = item.getIndex();
-            return ((index == -1) ? elem
-                    : getDeepestLeaf(elem.getElement(index)));
+            return ((index == -1) ? elem : getDeepestLeaf(elem.getElement(index)));
         }
         // should never get here.
         return null;

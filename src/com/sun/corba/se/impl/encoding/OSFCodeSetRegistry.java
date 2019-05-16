@@ -5,11 +5,8 @@
 package com.sun.corba.se.impl.encoding;
 
 /**
- *
  * Information from the OSF code set registry version 1.2g.
- *
  * Use the Entry corresponding to the desired code set.
- *
  * Consider rename to CodeSetRegistry since OSF is dead.
  */
 public final class OSFCodeSetRegistry {
@@ -36,8 +33,7 @@ public final class OSFCodeSetRegistry {
         private boolean isFixedWidth;
         private int maxBytesPerChar;
 
-        private Entry(String javaName, int encodingNum, boolean isFixedWidth,
-                int maxBytesPerChar) {
+        private Entry(String javaName, int encodingNum, boolean isFixedWidth, int maxBytesPerChar) {
             this.javaName = javaName;
             this.encodingNum = encodingNum;
             this.isFixedWidth = isFixedWidth;
@@ -85,10 +81,8 @@ public final class OSFCodeSetRegistry {
 
             OSFCodeSetRegistry.Entry other = (OSFCodeSetRegistry.Entry) obj;
 
-            return (javaName.equals(other.javaName)
-                    && encodingNum == other.encodingNum
-                    && isFixedWidth == other.isFixedWidth
-                    && maxBytesPerChar == other.maxBytesPerChar);
+            return (javaName.equals(other.javaName) && encodingNum == other.encodingNum
+                    && isFixedWidth == other.isFixedWidth && maxBytesPerChar == other.maxBytesPerChar);
         }
 
         /**
@@ -103,8 +97,7 @@ public final class OSFCodeSetRegistry {
      * 8-bit encoding required for GIOP 1.0, and used as the char set when
      * nothing else is specified.
      */
-    public static final Entry ISO_8859_1 = new Entry("ISO-8859-1",
-            ISO_8859_1_VALUE, true, 1);
+    public static final Entry ISO_8859_1 = new Entry("ISO-8859-1", ISO_8859_1_VALUE, true, 1);
 
     /**
      * UTF-16 as specified in the OSF registry has an optional byte order
@@ -118,13 +111,11 @@ public final class OSFCodeSetRegistry {
 
     /**
      * Fallback wchar code set.
-     *
      * In the resolution of issue 3405b, UTF-16 defaults to big endian, so
      * doesn't have to have a byte order marker. Unfortunately, this has to be a
      * special case for compatibility.
      */
-    public static final Entry UTF_16 = new Entry("UTF-16", UTF_16_VALUE, true,
-            4);
+    public static final Entry UTF_16 = new Entry("UTF-16", UTF_16_VALUE, true, 4);
 
     /**
      * Fallback char code set. Also the code set for char data in
@@ -149,8 +140,7 @@ public final class OSFCodeSetRegistry {
      * code set. Actually, they took the lower byte of the Java char. This is a
      * 7-bit encoding, so they were really sending ISO8859-1.
      */
-    public static final Entry ISO_646 = new Entry("US-ASCII", ISO_646_VALUE,
-            true, 1);
+    public static final Entry ISO_646 = new Entry("US-ASCII", ISO_646_VALUE, true, 1);
 
     /**
      * Given an OSF registry value, return the corresponding Entry. Returns null

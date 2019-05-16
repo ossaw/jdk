@@ -22,8 +22,7 @@ import com.sun.corba.se.impl.encoding.EncapsOutputStream;
 /**
  * @author
  */
-public class GenericTaggedProfile extends GenericIdentifiable implements
-        TaggedProfile {
+public class GenericTaggedProfile extends GenericIdentifiable implements TaggedProfile {
     private ORB orb;
 
     public GenericTaggedProfile(int id, InputStream is) {
@@ -65,8 +64,7 @@ public class GenericTaggedProfile extends GenericIdentifiable implements
     }
 
     public org.omg.IOP.TaggedProfile getIOPProfile() {
-        EncapsOutputStream os = sun.corba.OutputStreamFactory
-                .newEncapsOutputStream(orb);
+        EncapsOutputStream os = sun.corba.OutputStreamFactory.newEncapsOutputStream(orb);
         write(os);
         InputStream is = (InputStream) (os.create_input_stream());
         return org.omg.IOP.TaggedProfileHelper.read(is);

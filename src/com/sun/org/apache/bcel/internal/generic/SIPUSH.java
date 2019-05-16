@@ -93,8 +93,7 @@ public class SIPUSH extends Instruction implements ConstantPushInstruction {
     /**
      * Read needed data (e.g. index) from file.
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {
         length = 3;
         b = bytes.readShort();
     }
@@ -117,7 +116,7 @@ public class SIPUSH extends Instruction implements ConstantPushInstruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitPushInstruction(this);

@@ -21,7 +21,6 @@ import java.awt.event.*;
  * @see Accessible#getAccessibleContext
  * @see AccessibleContext
  * @see AccessibleContext#getAccessibleComponent
- *
  * @author Peter Korn
  * @author Hans Muller
  * @author Willie Walker
@@ -41,7 +40,7 @@ public interface AccessibleComponent {
      * Sets the background color of this object.
      *
      * @param c
-     *          the new Color for the background
+     *        the new Color for the background
      * @see #setBackground
      */
     public void setBackground(Color c);
@@ -59,7 +58,7 @@ public interface AccessibleComponent {
      * Sets the foreground color of this object.
      *
      * @param c
-     *          the new Color for the foreground
+     *        the new Color for the foreground
      * @see #getForeground
      */
     public void setForeground(Color c);
@@ -76,7 +75,7 @@ public interface AccessibleComponent {
      * Sets the Cursor of this object.
      *
      * @param cursor
-     *               the new Cursor for the object
+     *        the new Cursor for the object
      * @see #getCursor
      */
     public void setCursor(Cursor cursor);
@@ -93,7 +92,7 @@ public interface AccessibleComponent {
      * Sets the Font of this object.
      *
      * @param f
-     *          the new Font for the object
+     *        the new Font for the object
      * @see #getFont
      */
     public void setFont(Font f);
@@ -102,7 +101,7 @@ public interface AccessibleComponent {
      * Gets the FontMetrics of this object.
      *
      * @param f
-     *          the Font
+     *        the Font
      * @return the FontMetrics, if supported, the object; otherwise, null
      * @see #getFont
      */
@@ -124,7 +123,7 @@ public interface AccessibleComponent {
      * Sets the enabled state of the object.
      *
      * @param b
-     *          if true, enables this object; otherwise, disables it
+     *        if true, enables this object; otherwise, disables it
      * @see #isEnabled
      */
     public void setEnabled(boolean b);
@@ -151,7 +150,7 @@ public interface AccessibleComponent {
      * Sets the visible state of the object.
      *
      * @param b
-     *          if true, shows this object; otherwise, hides it
+     *        if true, shows this object; otherwise, hides it
      * @see #isVisible
      */
     public void setVisible(boolean b);
@@ -172,7 +171,7 @@ public interface AccessibleComponent {
      * coordinate system of the object.
      *
      * @param p
-     *          the Point relative to the coordinate system of the object
+     *        the Point relative to the coordinate system of the object
      * @return true if object contains Point; otherwise false
      * @see #getBounds
      */
@@ -205,7 +204,7 @@ public interface AccessibleComponent {
      * Sets the location of the object relative to the parent.
      * 
      * @param p
-     *          the new position for the top-left corner
+     *        the new position for the top-left corner
      * @see #getLocation
      */
     public void setLocation(Point p);
@@ -227,7 +226,7 @@ public interface AccessibleComponent {
      * parent.
      *
      * @param r
-     *          rectangle indicating this component's bounds
+     *        rectangle indicating this component's bounds
      * @see #getBounds
      */
     public void setBounds(Rectangle r);
@@ -247,7 +246,7 @@ public interface AccessibleComponent {
      * Resizes this object so that it has width and height.
      *
      * @param d
-     *          The dimension specifying the new size of the object.
+     *        The dimension specifying the new size of the object.
      * @see #getSize
      */
     public void setSize(Dimension d);
@@ -257,7 +256,7 @@ public interface AccessibleComponent {
      * coordinate Point.
      *
      * @param p
-     *          The point relative to the coordinate system of this object.
+     *        The point relative to the coordinate system of this object.
      * @return the Accessible, if it exists, at the specified location;
      *         otherwise null
      */
@@ -289,7 +288,7 @@ public interface AccessibleComponent {
      * component.
      *
      * @param l
-     *          the focus listener
+     *        the focus listener
      * @see #removeFocusListener
      */
     public void addFocusListener(FocusListener l);
@@ -299,7 +298,7 @@ public interface AccessibleComponent {
      * events from this component.
      *
      * @param l
-     *          the focus listener
+     *        the focus listener
      * @see #addFocusListener
      */
     public void removeFocusListener(FocusListener l);

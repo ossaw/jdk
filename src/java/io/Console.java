@@ -13,7 +13,6 @@ import sun.nio.cs.StreamEncoder;
 /**
  * Methods to access the character-based console device, if any, associated with
  * the current Java virtual machine.
- *
  * <p>
  * Whether a virtual machine has a console is dependent upon the underlying
  * platform and also upon the manner in which the virtual machine is invoked. If
@@ -52,7 +51,6 @@ import sun.nio.cs.StreamEncoder;
  * {@link #readPassword(String, Object...)} and manually zero the returned
  * character array after processing to minimize the lifetime of sensitive data
  * in memory.
- *
  * <blockquote>
  * 
  * <pre>
@@ -129,36 +127,33 @@ public final class Console implements Flushable {
      * specified format string and arguments.
      *
      * @param fmt
-     *             A format string as described in
-     *             <a href="../util/Formatter.html#syntax">Format string
-     *             syntax</a>
-     *
+     *        A format string as described in
+     *        <a href="../util/Formatter.html#syntax">Format string
+     *        syntax</a>
      * @param args
-     *             Arguments referenced by the format specifiers in the format
-     *             string. If there are more arguments than format specifiers,
-     *             the extra arguments are ignored. The number of arguments is
-     *             variable and may be zero. The maximum number of arguments is
-     *             limited by the maximum dimension of a Java array as defined
-     *             by
-     *             <cite>The Java&trade; Virtual Machine Specification</cite>.
-     *             The behaviour on a <tt>null</tt> argument depends on the
-     *             <a href="../util/Formatter.html#syntax">conversion</a>.
-     *
+     *        Arguments referenced by the format specifiers in the format
+     *        string. If there are more arguments than format specifiers,
+     *        the extra arguments are ignored. The number of arguments is
+     *        variable and may be zero. The maximum number of arguments is
+     *        limited by the maximum dimension of a Java array as defined
+     *        by
+     *        <cite>The Java&trade; Virtual Machine Specification</cite>.
+     *        The behaviour on a <tt>null</tt> argument depends on the
+     *        <a href="../util/Formatter.html#syntax">conversion</a>.
      * @throws IllegalFormatException
-     *                                If a format string contains an illegal
-     *                                syntax, a format
-     *                                specifier that is incompatible with the
-     *                                given arguments,
-     *                                insufficient arguments given the format
-     *                                string, or other
-     *                                illegal conditions. For specification of
-     *                                all possible
-     *                                formatting errors, see the
-     *                                <a href=
-     *                                "../util/Formatter.html#detail">Details</a>
-     *                                section
-     *                                of the formatter class specification.
-     *
+     *         If a format string contains an illegal
+     *         syntax, a format
+     *         specifier that is incompatible with the
+     *         given arguments,
+     *         insufficient arguments given the format
+     *         string, or other
+     *         illegal conditions. For specification of
+     *         all possible
+     *         formatting errors, see the
+     *         <a href=
+     *         "../util/Formatter.html#detail">Details</a>
+     *         section
+     *         of the formatter class specification.
      * @return This console
      */
     public Console format(String fmt, Object... args) {
@@ -169,7 +164,6 @@ public final class Console implements Flushable {
     /**
      * A convenience method to write a formatted string to this console's output
      * stream using the specified format string and arguments.
-     *
      * <p>
      * An invocation of this method of the form <tt>con.printf(format,
      * args)</tt> behaves in exactly the same way as the invocation of
@@ -181,37 +175,34 @@ public final class Console implements Flushable {
      * .
      *
      * @param format
-     *               A format string as described in
-     *               <a href="../util/Formatter.html#syntax">Format string
-     *               syntax</a>.
-     *
+     *        A format string as described in
+     *        <a href="../util/Formatter.html#syntax">Format string
+     *        syntax</a>.
      * @param args
-     *               Arguments referenced by the format specifiers in the format
-     *               string. If there are more arguments than format specifiers,
-     *               the extra arguments are ignored. The number of arguments is
-     *               variable and may be zero. The maximum number of arguments
-     *               is
-     *               limited by the maximum dimension of a Java array as defined
-     *               by
-     *               <cite>The Java&trade; Virtual Machine Specification</cite>.
-     *               The behaviour on a <tt>null</tt> argument depends on the
-     *               <a href="../util/Formatter.html#syntax">conversion</a>.
-     *
+     *        Arguments referenced by the format specifiers in the format
+     *        string. If there are more arguments than format specifiers,
+     *        the extra arguments are ignored. The number of arguments is
+     *        variable and may be zero. The maximum number of arguments
+     *        is
+     *        limited by the maximum dimension of a Java array as defined
+     *        by
+     *        <cite>The Java&trade; Virtual Machine Specification</cite>.
+     *        The behaviour on a <tt>null</tt> argument depends on the
+     *        <a href="../util/Formatter.html#syntax">conversion</a>.
      * @throws IllegalFormatException
-     *                                If a format string contains an illegal
-     *                                syntax, a format
-     *                                specifier that is incompatible with the
-     *                                given arguments,
-     *                                insufficient arguments given the format
-     *                                string, or other
-     *                                illegal conditions. For specification of
-     *                                all possible
-     *                                formatting errors, see the
-     *                                <a href=
-     *                                "../util/Formatter.html#detail">Details</a>
-     *                                section
-     *                                of the formatter class specification.
-     *
+     *         If a format string contains an illegal
+     *         syntax, a format
+     *         specifier that is incompatible with the
+     *         given arguments,
+     *         insufficient arguments given the format
+     *         string, or other
+     *         illegal conditions. For specification of
+     *         all possible
+     *         formatting errors, see the
+     *         <a href=
+     *         "../util/Formatter.html#detail">Details</a>
+     *         section
+     *         of the formatter class specification.
      * @return This console
      */
     public Console printf(String format, Object... args) {
@@ -223,36 +214,32 @@ public final class Console implements Flushable {
      * console.
      *
      * @param fmt
-     *             A format string as described in
-     *             <a href="../util/Formatter.html#syntax">Format string
-     *             syntax</a>.
-     *
+     *        A format string as described in
+     *        <a href="../util/Formatter.html#syntax">Format string
+     *        syntax</a>.
      * @param args
-     *             Arguments referenced by the format specifiers in the format
-     *             string. If there are more arguments than format specifiers,
-     *             the extra arguments are ignored. The maximum number of
-     *             arguments is limited by the maximum dimension of a Java array
-     *             as defined by <cite>The Java&trade; Virtual Machine
-     *             Specification</cite>.
-     *
+     *        Arguments referenced by the format specifiers in the format
+     *        string. If there are more arguments than format specifiers,
+     *        the extra arguments are ignored. The maximum number of
+     *        arguments is limited by the maximum dimension of a Java array
+     *        as defined by <cite>The Java&trade; Virtual Machine
+     *        Specification</cite>.
      * @throws IllegalFormatException
-     *                                If a format string contains an illegal
-     *                                syntax, a format
-     *                                specifier that is incompatible with the
-     *                                given arguments,
-     *                                insufficient arguments given the format
-     *                                string, or other
-     *                                illegal conditions. For specification of
-     *                                all possible
-     *                                formatting errors, see the
-     *                                <a href=
-     *                                "../util/Formatter.html#detail">Details</a>
-     *                                section
-     *                                of the formatter class specification.
-     *
+     *         If a format string contains an illegal
+     *         syntax, a format
+     *         specifier that is incompatible with the
+     *         given arguments,
+     *         insufficient arguments given the format
+     *         string, or other
+     *         illegal conditions. For specification of
+     *         all possible
+     *         formatting errors, see the
+     *         <a href=
+     *         "../util/Formatter.html#detail">Details</a>
+     *         section
+     *         of the formatter class specification.
      * @throws IOError
-     *                                If an I/O error occurs.
-     *
+     *         If an I/O error occurs.
      * @return A string containing the line read from the console, not including
      *         any line-termination characters, or <tt>null</tt> if an end of
      *         stream has been reached.
@@ -279,8 +266,7 @@ public final class Console implements Flushable {
      * Reads a single line of text from the console.
      *
      * @throws IOError
-     *                 If an I/O error occurs.
-     *
+     *         If an I/O error occurs.
      * @return A string containing the line read from the console, not including
      *         any line-termination characters, or <tt>null</tt> if an end of
      *         stream has been reached.
@@ -294,36 +280,32 @@ public final class Console implements Flushable {
      * console with echoing disabled.
      *
      * @param fmt
-     *             A format string as described in
-     *             <a href="../util/Formatter.html#syntax">Format string
-     *             syntax</a> for the prompt text.
-     *
+     *        A format string as described in
+     *        <a href="../util/Formatter.html#syntax">Format string
+     *        syntax</a> for the prompt text.
      * @param args
-     *             Arguments referenced by the format specifiers in the format
-     *             string. If there are more arguments than format specifiers,
-     *             the extra arguments are ignored. The maximum number of
-     *             arguments is limited by the maximum dimension of a Java array
-     *             as defined by <cite>The Java&trade; Virtual Machine
-     *             Specification</cite>.
-     *
+     *        Arguments referenced by the format specifiers in the format
+     *        string. If there are more arguments than format specifiers,
+     *        the extra arguments are ignored. The maximum number of
+     *        arguments is limited by the maximum dimension of a Java array
+     *        as defined by <cite>The Java&trade; Virtual Machine
+     *        Specification</cite>.
      * @throws IllegalFormatException
-     *                                If a format string contains an illegal
-     *                                syntax, a format
-     *                                specifier that is incompatible with the
-     *                                given arguments,
-     *                                insufficient arguments given the format
-     *                                string, or other
-     *                                illegal conditions. For specification of
-     *                                all possible
-     *                                formatting errors, see the
-     *                                <a href=
-     *                                "../util/Formatter.html#detail">Details</a>
-     *                                section
-     *                                of the formatter class specification.
-     *
+     *         If a format string contains an illegal
+     *         syntax, a format
+     *         specifier that is incompatible with the
+     *         given arguments,
+     *         insufficient arguments given the format
+     *         string, or other
+     *         illegal conditions. For specification of
+     *         all possible
+     *         formatting errors, see the
+     *         <a href=
+     *         "../util/Formatter.html#detail">Details</a>
+     *         section
+     *         of the formatter class specification.
      * @throws IOError
-     *                                If an I/O error occurs.
-     *
+     *         If an I/O error occurs.
      * @return A character array containing the password or passphrase read from
      *         the console, not including any line-termination characters, or
      *         <tt>null</tt> if an end of stream has been reached.
@@ -366,8 +348,7 @@ public final class Console implements Flushable {
      * Reads a password or passphrase from the console with echoing disabled
      *
      * @throws IOError
-     *                 If an I/O error occurs.
-     *
+     *         If an I/O error occurs.
      * @return A character array containing the password or passphrase read from
      *         the console, not including any line-termination characters, or
      *         <tt>null</tt> if an end of stream has been reached.
@@ -448,12 +429,10 @@ public final class Console implements Flushable {
             return in.ready();
         }
 
-        public int read(char cbuf[], int offset, int length)
-                throws IOException {
+        public int read(char cbuf[], int offset, int length) throws IOException {
             int off = offset;
             int end = offset + length;
-            if (offset < 0 || offset > cbuf.length || length < 0 || end < 0
-                    || end > cbuf.length) {
+            if (offset < 0 || offset > cbuf.length || length < 0 || end < 0 || end > cbuf.length) {
                 throw new IndexOutOfBoundsException();
             }
             synchronized (readLock) {
@@ -468,8 +447,7 @@ public final class Console implements Flushable {
                         if (n > 0) {
                             nChars = n;
                             nextChar = 0;
-                            if (n < cb.length && cb[n - 1] != '\n' && cb[n
-                                    - 1] != '\r') {
+                            if (n < cb.length && cb[n - 1] != '\n' && cb[n - 1] != '\r') {
                                 /*
                                  * we're in canonical mode so each "fill" should
                                  * come back with an eol. if there no lf or nl
@@ -549,25 +527,29 @@ public final class Console implements Flushable {
         try {
             // Add a shutdown hook to restore console's echo state should
             // it be necessary.
-            sun.misc.SharedSecrets.getJavaLangAccess().registerShutdownHook(
-                    0 /* shutdown hook invocation order */, false /*
-                                                                   * only
-                                                                   * register
-                                                                   * if
-                                                                   * shutdown
-                                                                   * is not in
-                                                                   * progress
-                                                                   */,
-                    new Runnable() {
-                        public void run() {
-                            try {
-                                if (echoOff) {
-                                    echo(true);
-                                }
-                            } catch (IOException x) {
-                            }
+            sun.misc.SharedSecrets.getJavaLangAccess().registerShutdownHook(0 /*
+                                                                               * shutdown
+                                                                               * hook
+                                                                               * invocation
+                                                                               * order
+                                                                               */, false /*
+                                                                                         * only
+                                                                                         * register
+                                                                                         * if
+                                                                                         * shutdown
+                                                                                         * is
+                                                                                         * not
+                                                                                         * in
+                                                                                         * progress
+                                                                                         */, new Runnable() {
+                public void run() {
+                    try {
+                        if (echoOff) {
+                            echo(true);
                         }
-                    });
+                    } catch (IOException x) {}
+                }
+            });
         } catch (IllegalStateException e) {
             // shutdown is already in progress and console is first used
             // by a shutdown hook
@@ -601,19 +583,17 @@ public final class Console implements Flushable {
         if (csname != null) {
             try {
                 cs = Charset.forName(csname);
-            } catch (Exception x) {
-            }
+            } catch (Exception x) {}
         }
         if (cs == null)
             cs = Charset.defaultCharset();
-        out = StreamEncoder.forOutputStreamWriter(new FileOutputStream(
-                FileDescriptor.out), writeLock, cs);
+        out = StreamEncoder.forOutputStreamWriter(new FileOutputStream(FileDescriptor.out), writeLock, cs);
         pw = new PrintWriter(out, true) {
             public void close() {}
         };
         formatter = new Formatter(out);
-        reader = new LineReader(StreamDecoder.forInputStreamReader(
-                new FileInputStream(FileDescriptor.in), readLock, cs));
+        reader = new LineReader(StreamDecoder.forInputStreamReader(new FileInputStream(FileDescriptor.in),
+                readLock, cs));
         rcb = new char[1024];
     }
 }

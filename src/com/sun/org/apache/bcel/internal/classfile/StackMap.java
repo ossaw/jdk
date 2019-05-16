@@ -75,8 +75,7 @@ public final class StackMap extends Attribute implements Node {
      * @param map Table of stack map entries
      * @param constant_pool Array of constants
      */
-    public StackMap(int name_index, int length, StackMapEntry[] map,
-            ConstantPool constant_pool) {
+    public StackMap(int name_index, int length, StackMapEntry[] map, ConstantPool constant_pool) {
         super(Constants.ATTR_STACK_MAP, name_index, length, constant_pool);
 
         setStackMap(map);
@@ -86,17 +85,17 @@ public final class StackMap extends Attribute implements Node {
      * Construct object from file stream.
      * 
      * @param name_index
-     *                   Index of name
+     *        Index of name
      * @param length
-     *                   Content length in bytes
+     *        Content length in bytes
      * @param file
-     *                   Input stream
+     *        Input stream
      * @throws IOException
      * @param constant_pool
-     *                      Array of constants
+     *        Array of constants
      */
-    StackMap(int name_index, int length, DataInputStream file,
-            ConstantPool constant_pool) throws IOException {
+    StackMap(int name_index, int length, DataInputStream file, ConstantPool constant_pool)
+            throws IOException {
         this(name_index, length, (StackMapEntry[]) null, constant_pool);
 
         map_length = file.readUnsignedShort();
@@ -110,7 +109,7 @@ public final class StackMap extends Attribute implements Node {
      * Dump line number table attribute to file stream in binary format.
      *
      * @param file
-     *             Output file stream
+     *        Output file stream
      * @throws IOException
      */
     public final void dump(DataOutputStream file) throws IOException {
@@ -129,7 +128,7 @@ public final class StackMap extends Attribute implements Node {
 
     /**
      * @param map
-     *            Array of stack map entries
+     *        Array of stack map entries
      */
     public final void setStackMap(StackMapEntry[] map) {
         this.map = map;
@@ -175,7 +174,7 @@ public final class StackMap extends Attribute implements Node {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackMap(this);

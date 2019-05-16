@@ -90,8 +90,7 @@ final class ValueOf extends Instruction {
     public void translate(ClassGenerator classGen, MethodGenerator methodGen) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
-        final int setEscaping = cpg.addInterfaceMethodref(OUTPUT_HANDLER,
-                "setEscaping", "(Z)Z");
+        final int setEscaping = cpg.addInterfaceMethodref(OUTPUT_HANDLER, "setEscaping", "(Z)Z");
 
         // Turn off character escaping if so is wanted.
         if (!_escaping) {
@@ -106,16 +105,14 @@ final class ValueOf extends Instruction {
         // dom.characters(int node, TransletOutputHandler) method can dispatch
         // the string value of the node to the output handler more efficiently.
         if (_isString) {
-            final int characters = cpg.addMethodref(TRANSLET_CLASS, CHARACTERSW,
-                    CHARACTERSW_SIG);
+            final int characters = cpg.addMethodref(TRANSLET_CLASS, CHARACTERSW, CHARACTERSW_SIG);
 
             il.append(classGen.loadTranslet());
             _select.translate(classGen, methodGen);
             il.append(methodGen.loadHandler());
             il.append(new INVOKEVIRTUAL(characters));
         } else {
-            final int characters = cpg.addInterfaceMethodref(DOM_INTF,
-                    CHARACTERS, CHARACTERS_SIG);
+            final int characters = cpg.addInterfaceMethodref(DOM_INTF, CHARACTERS, CHARACTERS_SIG);
 
             il.append(methodGen.loadDOM());
             _select.translate(classGen, methodGen);

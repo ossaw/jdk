@@ -27,10 +27,8 @@ import org.w3c.dom.Node;
  * attributes. In Level 2 it should enable the ChildRule support.
  *
  * @xerces.internal
- *
  */
-public class DeferredElementDefinitionImpl extends ElementDefinitionImpl
-        implements DeferredNode {
+public class DeferredElementDefinitionImpl extends ElementDefinitionImpl implements DeferredNode {
 
     //
     // Constants
@@ -54,8 +52,7 @@ public class DeferredElementDefinitionImpl extends ElementDefinitionImpl
      * This is the deferred constructor. Only the fNodeIndex is given here. All
      * other data, can be requested from the ownerDocument via the index.
      */
-    DeferredElementDefinitionImpl(DeferredDocumentImpl ownerDocument,
-            int nodeIndex) {
+    DeferredElementDefinitionImpl(DeferredDocumentImpl ownerDocument, int nodeIndex) {
         super(ownerDocument, null);
 
         fNodeIndex = nodeIndex;
@@ -106,8 +103,7 @@ public class DeferredElementDefinitionImpl extends ElementDefinitionImpl
         // Default attributes dangle as children of the element
         // definition "node" in the internal fast table.
         for (int nodeIndex = ownerDocument.getLastChild(
-                fNodeIndex); nodeIndex != -1; nodeIndex = ownerDocument
-                        .getPrevSibling(nodeIndex)) {
+                fNodeIndex); nodeIndex != -1; nodeIndex = ownerDocument.getPrevSibling(nodeIndex)) {
             Node attr = ownerDocument.getNodeObject(nodeIndex);
             attributes.setNamedItem(attr);
         }

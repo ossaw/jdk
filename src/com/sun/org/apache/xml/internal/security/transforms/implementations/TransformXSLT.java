@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -48,7 +46,6 @@ import org.w3c.dom.Element;
 
 /**
  * Class TransformXSLT
- *
  * Implements the <CODE>http://www.w3.org/TR/1999/REC-xslt-19991116</CODE>
  * transform.
  *
@@ -63,8 +60,8 @@ public class TransformXSLT extends TransformSpi {
     static final String defaultXSLTSpecNSprefix = "xslt";
     static final String XSLTSTYLESHEET = "stylesheet";
 
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(TransformXSLT.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(TransformXSLT.class
+            .getName());
 
     /**
      * Method engineGetURI
@@ -75,14 +72,13 @@ public class TransformXSLT extends TransformSpi {
         return implementedTransformURI;
     }
 
-    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input,
-            OutputStream baos, Transform transformObject) throws IOException,
-            TransformationException {
+    protected XMLSignatureInput enginePerformTransform(XMLSignatureInput input, OutputStream baos,
+            Transform transformObject) throws IOException, TransformationException {
         try {
             Element transformElement = transformObject.getElement();
 
-            Element xsltElement = XMLUtils.selectNode(transformElement
-                    .getFirstChild(), XSLTSpecNS, "stylesheet", 0);
+            Element xsltElement = XMLUtils.selectNode(transformElement.getFirstChild(), XSLTSpecNS,
+                    "stylesheet", 0);
 
             if (xsltElement == null) {
                 Object exArgs[] = { "xslt:stylesheet", "Transform" };
@@ -92,8 +88,7 @@ public class TransformXSLT extends TransformSpi {
 
             TransformerFactory tFactory = TransformerFactory.newInstance();
             // Process XSLT stylesheets in a secure manner
-            tFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,
-                    Boolean.TRUE);
+            tFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, Boolean.TRUE);
 
             /*
              * This transform requires an octet stream as input. If the actual
@@ -101,8 +96,7 @@ public class TransformXSLT extends TransformSpi {
              * attempt to convert it to octets (apply Canonical XML]) as
              * described in the Reference Processing Model (section 4.3.3.2).
              */
-            Source xmlSource = new StreamSource(new ByteArrayInputStream(input
-                    .getBytes()));
+            Source xmlSource = new StreamSource(new ByteArrayInputStream(input.getBytes()));
             Source stylesheet;
 
             /*
@@ -121,8 +115,7 @@ public class TransformXSLT extends TransformSpi {
 
                 transformer.transform(source, result);
 
-                stylesheet = new StreamSource(new ByteArrayInputStream(os
-                        .toByteArray()));
+                stylesheet = new StreamSource(new ByteArrayInputStream(os.toByteArray()));
             }
 
             Transformer transformer = tFactory.newTransformer(stylesheet);
@@ -134,12 +127,10 @@ public class TransformXSLT extends TransformSpi {
             // non-Xalan
             // implementations.
             try {
-                transformer.setOutputProperty(
-                        "{http://xml.apache.org/xalan}line-separator", "\n");
+                transformer.setOutputProperty("{http://xml.apache.org/xalan}line-separator", "\n");
             } catch (Exception e) {
-                log.log(java.util.logging.Level.WARNING,
-                        "Unable to set Xalan line-separator property: " + e
-                                .getMessage());
+                log.log(java.util.logging.Level.WARNING, "Unable to set Xalan line-separator property: " + e
+                        .getMessage());
             }
 
             if (baos == null) {
@@ -157,18 +148,15 @@ public class TransformXSLT extends TransformSpi {
         } catch (XMLSecurityException ex) {
             Object exArgs[] = { ex.getMessage() };
 
-            throw new TransformationException("generic.EmptyMessage", exArgs,
-                    ex);
+            throw new TransformationException("generic.EmptyMessage", exArgs, ex);
         } catch (TransformerConfigurationException ex) {
             Object exArgs[] = { ex.getMessage() };
 
-            throw new TransformationException("generic.EmptyMessage", exArgs,
-                    ex);
+            throw new TransformationException("generic.EmptyMessage", exArgs, ex);
         } catch (TransformerException ex) {
             Object exArgs[] = { ex.getMessage() };
 
-            throw new TransformationException("generic.EmptyMessage", exArgs,
-                    ex);
+            throw new TransformationException("generic.EmptyMessage", exArgs, ex);
         }
     }
 }

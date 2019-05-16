@@ -36,7 +36,7 @@ public interface Keymap {
      * Set the default action to fire if a key is typed.
      *
      * @param a
-     *          the action
+     *        the action
      */
     public void setDefaultAction(Action a);
 
@@ -47,7 +47,7 @@ public interface Keymap {
      * resolve through the parent keymap, if one is set.
      *
      * @param key
-     *            the key sequence
+     *        the key sequence
      * @return the action associated with the key sequence if one is defined,
      *         otherwise <code>null</code>
      */
@@ -71,7 +71,7 @@ public interface Keymap {
      * Fetches the keystrokes that will result in the given action.
      *
      * @param a
-     *          the action
+     *        the action
      * @return the list of keystrokes
      */
     public KeyStroke[] getKeyStrokesForAction(Action a);
@@ -80,7 +80,7 @@ public interface Keymap {
      * Determines if the given key sequence is locally defined.
      *
      * @param key
-     *            the key sequence
+     *        the key sequence
      * @return true if the key sequence is locally defined else false
      */
     public boolean isLocallyDefined(KeyStroke key);
@@ -89,9 +89,9 @@ public interface Keymap {
      * Adds a binding to the keymap.
      *
      * @param key
-     *            the key sequence
+     *        the key sequence
      * @param a
-     *            the action
+     *        the action
      */
     public void addActionForKeyStroke(KeyStroke key, Action a);
 
@@ -99,7 +99,7 @@ public interface Keymap {
      * Removes a binding from the keymap.
      *
      * @param keys
-     *             the key sequence
+     *        the key sequence
      */
     public void removeKeyStrokeBinding(KeyStroke keys);
 
@@ -121,7 +121,7 @@ public interface Keymap {
      * resolve parents.
      *
      * @param parent
-     *               the parent keymap
+     *        the parent keymap
      */
     public void setResolveParent(Keymap parent);
 

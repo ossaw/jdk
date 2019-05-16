@@ -195,8 +195,7 @@ public class XMLErrorResources_ko extends ListResourceBundle {
             { ER_COJOINROUTINESET_FAILED,
                     "co_joinCoroutineSet()\uB97C \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4." },
 
-            { ER_COROUTINE_PARAM,
-                    "Coroutine \uB9E4\uAC1C\uBCC0\uC218 \uC624\uB958({0})" },
+            { ER_COROUTINE_PARAM, "Coroutine \uB9E4\uAC1C\uBCC0\uC218 \uC624\uB958({0})" },
 
             { ER_PARSER_DOTERMINATE_ANSWERS,
                     "\n\uC608\uC0C1\uCE58 \uC54A\uC740 \uC624\uB958: \uAD6C\uBB38 \uBD84\uC11D\uAE30 doTerminate\uAC00 {0}\uC5D0 \uC751\uB2F5\uD569\uB2C8\uB2E4." },
@@ -213,8 +212,7 @@ public class XMLErrorResources_ko extends ListResourceBundle {
             { ER_ITERATOR_CLONE_NOT_SUPPORTED,
                     "\uC774\uD130\uB808\uC774\uD130 \uBCF5\uC81C\uB294 \uC9C0\uC6D0\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4." },
 
-            { ER_UNKNOWN_AXIS_TYPE,
-                    "\uC54C \uC218 \uC5C6\uB294 \uCD95 \uC21C\uD68C \uC720\uD615: {0}" },
+            { ER_UNKNOWN_AXIS_TYPE, "\uC54C \uC218 \uC5C6\uB294 \uCD95 \uC21C\uD68C \uC720\uD615: {0}" },
 
             { ER_AXIS_NOT_SUPPORTED,
                     "\uCD95 \uC21C\uD658\uAE30\uAC00 \uC9C0\uC6D0\uB418\uC9C0 \uC54A\uC74C: {0}" },
@@ -245,8 +243,7 @@ public class XMLErrorResources_ko extends ListResourceBundle {
             { ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
                     "\uACBD\uB85C\uC5D0 \uBD80\uC801\uD569\uD55C \uC774\uC2A4\uCF00\uC774\uD504 \uC2DC\uD000\uC2A4\uAC00 \uD3EC\uD568\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4." },
 
-            { ER_SCHEME_REQUIRED,
-                    "\uCCB4\uACC4\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
+            { ER_SCHEME_REQUIRED, "\uCCB4\uACC4\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4!" },
 
             { ER_NO_SCHEME_IN_URI,
                     "URI\uC5D0\uC11C \uCCB4\uACC4\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC74C: {0}" },
@@ -269,8 +266,7 @@ public class XMLErrorResources_ko extends ListResourceBundle {
             { ER_PORT_WHEN_HOST_NULL,
                     "\uD638\uC2A4\uD2B8\uAC00 \uB110\uC77C \uACBD\uC6B0 \uD3EC\uD2B8\uB97C \uC124\uC815\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
-            { ER_INVALID_PORT,
-                    "\uD3EC\uD2B8 \uBC88\uD638\uAC00 \uBD80\uC801\uD569\uD569\uB2C8\uB2E4." },
+            { ER_INVALID_PORT, "\uD3EC\uD2B8 \uBC88\uD638\uAC00 \uBD80\uC801\uD569\uD569\uB2C8\uB2E4." },
 
             { ER_FRAG_FOR_GENERIC_URI,
                     "\uC77C\uBC18 URI\uC5D0 \uB300\uD574\uC11C\uB9CC \uBD80\uBD84\uC744 \uC124\uC815\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." },
@@ -320,8 +316,7 @@ public class XMLErrorResources_ko extends ListResourceBundle {
             { ER_ERRORHANDLER_CREATED_WITH_NULL_PRINTWRITER,
                     "\uB110 PrintWriter\uB85C ListingErrorHandler\uAC00 \uC0DD\uC131\uB418\uC5C8\uC2B5\uB2C8\uB2E4!" },
 
-            { ER_SYSTEMID_UNKNOWN,
-                    "SystemId\uB97C \uC54C \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
+            { ER_SYSTEMID_UNKNOWN, "SystemId\uB97C \uC54C \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
 
             { ER_LOCATION_UNKNOWN,
                     "\uC624\uB958 \uC704\uCE58\uB97C \uC54C \uC218 \uC5C6\uC2B5\uB2C8\uB2E4." },
@@ -344,8 +339,7 @@ public class XMLErrorResources_ko extends ListResourceBundle {
             { ER_CANT_HAVE_MORE_THAN_ONE_ROOT,
                     "DOM\uC5D0\uC11C \uB8E8\uD2B8\uB97C \uB450 \uAC1C \uC774\uC0C1 \uC0AC\uC6A9\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4!" },
 
-            { ER_ARG_LOCALNAME_NULL,
-                    "'localName' \uC778\uC218\uAC00 \uB110\uC785\uB2C8\uB2E4." },
+            { ER_ARG_LOCALNAME_NULL, "'localName' \uC778\uC218\uAC00 \uB110\uC785\uB2C8\uB2E4." },
 
             // Note to translators: A QNAME has the syntactic form
             // [NCName:]NCName
@@ -370,8 +364,7 @@ public class XMLErrorResources_ko extends ListResourceBundle {
                     "createMessage\uC5D0 \uB300\uD55C \uB9E4\uAC1C\uBCC0\uC218\uAC00 \uBC94\uC704\uB97C \uBC97\uC5B4\uB0AC\uC2B5\uB2C8\uB2E4." },
             { "FORMAT_FAILED",
                     "messageFormat \uD638\uCD9C \uC911 \uC608\uC678\uC0AC\uD56D\uC774 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4." },
-            { "line", "\uD589 \uBC88\uD638" }, { "column",
-                    "\uC5F4 \uBC88\uD638" },
+            { "line", "\uD589 \uBC88\uD638" }, { "column", "\uC5F4 \uBC88\uD638" },
 
             { ER_SERIALIZER_NOT_CONTENTHANDLER,
                     "Serializer \uD074\uB798\uC2A4 ''{0}''\uC774(\uAC00) org.xml.sax.ContentHandler\uB97C \uAD6C\uD604\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4." },

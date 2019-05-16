@@ -26,7 +26,6 @@ import java.security.SignatureException;
  * X.509, PGP, and SDSI certificates can all be implemented by subclassing the
  * Certificate class, even though they contain different sets of information,
  * and they store and retrieve the information in different ways.
- *
  * <p>
  * <em>Note: The classes in the package {@code javax.security.cert}
  * exist for compatibility with earlier versions of the
@@ -37,7 +36,6 @@ import java.security.SignatureException;
  *
  * @since 1.4
  * @see X509Certificate
- *
  * @author Hemma Prafullchandra
  */
 public abstract class Certificate {
@@ -49,7 +47,7 @@ public abstract class Certificate {
      * certificate.
      *
      * @param other
-     *              the object to test for equality with this certificate.
+     *        the object to test for equality with this certificate.
      * @return true if the encoded forms of the two certificates match, false
      *         otherwise.
      */
@@ -98,8 +96,8 @@ public abstract class Certificate {
      *
      * @return encoded form of this certificate
      * @exception CertificateEncodingException
-     *                                         on internal certificate encoding
-     *                                         failure
+     *            on internal certificate encoding
+     *            failure
      */
     public abstract byte[] getEncoded() throws CertificateEncodingException;
 
@@ -108,22 +106,20 @@ public abstract class Certificate {
      * corresponds to the specified public key.
      *
      * @param key
-     *            the PublicKey used to carry out the verification.
-     *
+     *        the PublicKey used to carry out the verification.
      * @exception NoSuchAlgorithmException
-     *                                     on unsupported signature algorithms.
+     *            on unsupported signature algorithms.
      * @exception InvalidKeyException
-     *                                     on incorrect key.
+     *            on incorrect key.
      * @exception NoSuchProviderException
-     *                                     if there's no default provider.
+     *            if there's no default provider.
      * @exception SignatureException
-     *                                     on signature errors.
+     *            on signature errors.
      * @exception CertificateException
-     *                                     on encoding errors.
+     *            on encoding errors.
      */
-    public abstract void verify(PublicKey key) throws CertificateException,
-            NoSuchAlgorithmException, InvalidKeyException,
-            NoSuchProviderException, SignatureException;
+    public abstract void verify(PublicKey key) throws CertificateException, NoSuchAlgorithmException,
+            InvalidKeyException, NoSuchProviderException, SignatureException;
 
     /**
      * Verifies that this certificate was signed using the private key that
@@ -131,23 +127,22 @@ public abstract class Certificate {
      * verification engine supplied by the specified provider.
      *
      * @param key
-     *                    the PublicKey used to carry out the verification.
+     *        the PublicKey used to carry out the verification.
      * @param sigProvider
-     *                    the name of the signature provider.
+     *        the name of the signature provider.
      * @exception NoSuchAlgorithmException
-     *                                     on unsupported signature algorithms.
+     *            on unsupported signature algorithms.
      * @exception InvalidKeyException
-     *                                     on incorrect key.
+     *            on incorrect key.
      * @exception NoSuchProviderException
-     *                                     on incorrect provider.
+     *            on incorrect provider.
      * @exception SignatureException
-     *                                     on signature errors.
+     *            on signature errors.
      * @exception CertificateException
-     *                                     on encoding errors.
+     *            on encoding errors.
      */
-    public abstract void verify(PublicKey key, String sigProvider)
-            throws CertificateException, NoSuchAlgorithmException,
-            InvalidKeyException, NoSuchProviderException, SignatureException;
+    public abstract void verify(PublicKey key, String sigProvider) throws CertificateException,
+            NoSuchAlgorithmException, InvalidKeyException, NoSuchProviderException, SignatureException;
 
     /**
      * Returns a string representation of this certificate.

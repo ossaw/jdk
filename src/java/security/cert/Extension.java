@@ -11,13 +11,11 @@ import java.io.Serializable;
 
 /**
  * This interface represents an X.509 extension.
- *
  * <p>
  * Extensions provide a means of associating additional attributes with users or
  * public keys and for managing a certification hierarchy. The extension format
  * also allows communities to define private extensions to carry information
  * unique to those communities.
- *
  * <p>
  * Each extension contains an object identifier, a criticality setting
  * indicating whether it is a critical or a non-critical extension, and and an
@@ -33,9 +31,7 @@ import java.io.Serializable;
  *                 -- of the type registered for use with
  *                 -- the extnId object identifier value
  *     }
- *
  * </pre>
- *
  * <p>
  * This interface is designed to provide access to a single extension, unlike
  * {@link java.security.cert.X509Extension} which is more suitable for accessing
@@ -74,11 +70,11 @@ public interface Extension {
      * stream.
      *
      * @param out
-     *            the output stream
+     *        the output stream
      * @exception IOException
-     *                                 on encoding or output error.
+     *            on encoding or output error.
      * @exception NullPointerException
-     *                                 if {@code out} is {@code null}.
+     *            if {@code out} is {@code null}.
      */
     void encode(OutputStream out) throws IOException;
 }

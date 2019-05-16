@@ -11,9 +11,7 @@ import java.util.Arrays;
  * This immutable class defines an elliptic curve (EC) prime finite field.
  *
  * @see ECField
- *
  * @author Valerie Peng
- *
  * @since 1.5
  */
 public class ECFieldFp implements ECField {
@@ -25,11 +23,11 @@ public class ECFieldFp implements ECField {
      * {@code p}.
      * 
      * @param p
-     *          the prime.
+     *        the prime.
      * @exception NullPointerException
-     *                                     if {@code p} is null.
+     *            if {@code p} is null.
      * @exception IllegalArgumentException
-     *                                     if {@code p} is not positive.
+     *            if {@code p} is not positive.
      */
     public ECFieldFp(BigInteger p) {
         if (p.signum() != 1) {
@@ -61,7 +59,7 @@ public class ECFieldFp implements ECField {
      * Compares this prime finite field for equality with the specified object.
      * 
      * @param obj
-     *            the object to be compared.
+     *        the object to be compared.
      * @return true if {@code obj} is an instance of ECFieldFp and the prime
      *         value match, false otherwise.
      */

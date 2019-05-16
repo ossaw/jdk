@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for an @return block tag.
- *
  * <p>
  * &#064;return description
  *

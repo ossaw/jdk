@@ -98,12 +98,12 @@ public abstract class DataBuffer {
      * Returns the size (in bits) of the data type, given a datatype tag.
      * 
      * @param type
-     *             the value of one of the defined datatype tags
+     *        the value of one of the defined datatype tags
      * @return the size of the data type
      * @throws IllegalArgumentException
-     *                                  if <code>type</code> is less than zero
-     *                                  or greater than
-     *                                  {@link #TYPE_DOUBLE}
+     *         if <code>type</code> is less than zero
+     *         or greater than
+     *         {@link #TYPE_DOUBLE}
      */
     public static int getDataTypeSize(int type) {
         if (type < TYPE_BYTE || type > TYPE_DOUBLE) {
@@ -117,9 +117,9 @@ public abstract class DataBuffer {
      * and size.
      *
      * @param dataType
-     *                 the data type of this <code>DataBuffer</code>
+     *        the data type of this <code>DataBuffer</code>
      * @param size
-     *                 the size of the banks
+     *        the size of the banks
      */
     protected DataBuffer(int dataType, int size) {
         this(UNTRACKABLE, dataType, size);
@@ -130,11 +130,11 @@ public abstract class DataBuffer {
      * and size with the indicated initial {@link State State}.
      *
      * @param initialState
-     *                     the initial {@link State State} state of the data
+     *        the initial {@link State State} state of the data
      * @param dataType
-     *                     the data type of this <code>DataBuffer</code>
+     *        the data type of this <code>DataBuffer</code>
      * @param size
-     *                     the size of the banks
+     *        the size of the banks
      * @since 1.7
      */
     DataBuffer(State initialState, int dataType, int size) {
@@ -151,11 +151,11 @@ public abstract class DataBuffer {
      * bank has the specified size and an offset of 0.
      *
      * @param dataType
-     *                 the data type of this <code>DataBuffer</code>
+     *        the data type of this <code>DataBuffer</code>
      * @param size
-     *                 the size of the banks
+     *        the size of the banks
      * @param numBanks
-     *                 the number of banks in this <code>DataBuffer</code>
+     *        the number of banks in this <code>DataBuffer</code>
      */
     protected DataBuffer(int dataType, int size, int numBanks) {
         this(UNTRACKABLE, dataType, size, numBanks);
@@ -167,13 +167,13 @@ public abstract class DataBuffer {
      * and an offset of 0.
      *
      * @param initialState
-     *                     the initial {@link State State} state of the data
+     *        the initial {@link State State} state of the data
      * @param dataType
-     *                     the data type of this <code>DataBuffer</code>
+     *        the data type of this <code>DataBuffer</code>
      * @param size
-     *                     the size of the banks
+     *        the size of the banks
      * @param numBanks
-     *                     the number of banks in this <code>DataBuffer</code>
+     *        the number of banks in this <code>DataBuffer</code>
      * @since 1.7
      */
     DataBuffer(State initialState, int dataType, int size, int numBanks) {
@@ -190,13 +190,13 @@ public abstract class DataBuffer {
      * bank has the specified datatype, size and offset.
      *
      * @param dataType
-     *                 the data type of this <code>DataBuffer</code>
+     *        the data type of this <code>DataBuffer</code>
      * @param size
-     *                 the size of the banks
+     *        the size of the banks
      * @param numBanks
-     *                 the number of banks in this <code>DataBuffer</code>
+     *        the number of banks in this <code>DataBuffer</code>
      * @param offset
-     *                 the offset for each bank
+     *        the offset for each bank
      */
     protected DataBuffer(int dataType, int size, int numBanks, int offset) {
         this(UNTRACKABLE, dataType, size, numBanks, offset);
@@ -208,19 +208,18 @@ public abstract class DataBuffer {
      * datatype, size and offset.
      *
      * @param initialState
-     *                     the initial {@link State State} state of the data
+     *        the initial {@link State State} state of the data
      * @param dataType
-     *                     the data type of this <code>DataBuffer</code>
+     *        the data type of this <code>DataBuffer</code>
      * @param size
-     *                     the size of the banks
+     *        the size of the banks
      * @param numBanks
-     *                     the number of banks in this <code>DataBuffer</code>
+     *        the number of banks in this <code>DataBuffer</code>
      * @param offset
-     *                     the offset for each bank
+     *        the offset for each bank
      * @since 1.7
      */
-    DataBuffer(State initialState, int dataType, int size, int numBanks,
-            int offset) {
+    DataBuffer(State initialState, int dataType, int size, int numBanks, int offset) {
         this.theTrackable = StateTrackableDelegate.createInstance(initialState);
         this.dataType = dataType;
         this.banks = numBanks;
@@ -238,17 +237,17 @@ public abstract class DataBuffer {
      * is specified by its respective entry in the offsets array.
      *
      * @param dataType
-     *                 the data type of this <code>DataBuffer</code>
+     *        the data type of this <code>DataBuffer</code>
      * @param size
-     *                 the size of the banks
+     *        the size of the banks
      * @param numBanks
-     *                 the number of banks in this <code>DataBuffer</code>
+     *        the number of banks in this <code>DataBuffer</code>
      * @param offsets
-     *                 an array containing an offset for each bank.
+     *        an array containing an offset for each bank.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if <code>numBanks</code> does not
-     *                                        equal the length of
-     *                                        <code>offsets</code>
+     *         if <code>numBanks</code> does not
+     *         equal the length of
+     *         <code>offsets</code>
      */
     protected DataBuffer(int dataType, int size, int numBanks, int offsets[]) {
         this(UNTRACKABLE, dataType, size, numBanks, offsets);
@@ -261,23 +260,22 @@ public abstract class DataBuffer {
      * respective entry in the offsets array.
      *
      * @param initialState
-     *                     the initial {@link State State} state of the data
+     *        the initial {@link State State} state of the data
      * @param dataType
-     *                     the data type of this <code>DataBuffer</code>
+     *        the data type of this <code>DataBuffer</code>
      * @param size
-     *                     the size of the banks
+     *        the size of the banks
      * @param numBanks
-     *                     the number of banks in this <code>DataBuffer</code>
+     *        the number of banks in this <code>DataBuffer</code>
      * @param offsets
-     *                     an array containing an offset for each bank.
+     *        an array containing an offset for each bank.
      * @throws ArrayIndexOutOfBoundsException
-     *                                        if <code>numBanks</code> does not
-     *                                        equal the length of
-     *                                        <code>offsets</code>
+     *         if <code>numBanks</code> does not
+     *         equal the length of
+     *         <code>offsets</code>
      * @since 1.7
      */
-    DataBuffer(State initialState, int dataType, int size, int numBanks,
-            int offsets[]) {
+    DataBuffer(State initialState, int dataType, int size, int numBanks, int offsets[]) {
         if (numBanks != offsets.length) {
             throw new ArrayIndexOutOfBoundsException("Number of banks"
                     + " does not match number of bank offsets");
@@ -340,7 +338,7 @@ public abstract class DataBuffer {
      * an integer.
      * 
      * @param i
-     *          the index of the requested data array element
+     *        the index of the requested data array element
      * @return the data array element at the specified index.
      * @see #setElem(int, int)
      * @see #setElem(int, int, int)
@@ -354,9 +352,9 @@ public abstract class DataBuffer {
      * integer.
      * 
      * @param bank
-     *             the specified bank
+     *        the specified bank
      * @param i
-     *             the index of the requested data array element
+     *        the index of the requested data array element
      * @return the data array element at the specified index from the specified
      *         bank at the specified index.
      * @see #setElem(int, int)
@@ -369,10 +367,10 @@ public abstract class DataBuffer {
      * the given integer.
      * 
      * @param i
-     *            the specified index into the data array
+     *        the specified index into the data array
      * @param val
-     *            the data to set the element at the specified index in the data
-     *            array
+     *        the data to set the element at the specified index in the data
+     *        array
      * @see #getElem(int)
      * @see #getElem(int, int)
      */
@@ -385,12 +383,12 @@ public abstract class DataBuffer {
      * given integer.
      * 
      * @param bank
-     *             the specified bank
+     *        the specified bank
      * @param i
-     *             the specified index into the data array
+     *        the specified index into the data array
      * @param val
-     *             the data to set the element in the specified bank at the
-     *             specified index in the data array
+     *        the data to set the element in the specified bank at the
+     *        specified index in the data array
      * @see #getElem(int)
      * @see #getElem(int, int)
      */
@@ -403,7 +401,7 @@ public abstract class DataBuffer {
      * needed.
      * 
      * @param i
-     *          the index of the requested data array element
+     *        the index of the requested data array element
      * @return a float value representing the data array element at the
      *         specified index.
      * @see #setElemFloat(int, float)
@@ -420,9 +418,9 @@ public abstract class DataBuffer {
      * method if another implementation is needed.
      * 
      * @param bank
-     *             the specified bank
+     *        the specified bank
      * @param i
-     *             the index of the requested data array element
+     *        the index of the requested data array element
      * @return a float value representing the data array element from the
      *         specified bank at the specified index.
      * @see #setElemFloat(int, float)
@@ -439,10 +437,10 @@ public abstract class DataBuffer {
      * method if another implementation is needed.
      * 
      * @param i
-     *            the specified index
+     *        the specified index
      * @param val
-     *            the value to set the element at the specified index in the
-     *            data array
+     *        the value to set the element at the specified index in the
+     *        data array
      * @see #getElemFloat(int)
      * @see #getElemFloat(int, int)
      */
@@ -457,12 +455,12 @@ public abstract class DataBuffer {
      * if another implementation is needed.
      * 
      * @param bank
-     *             the specified bank
+     *        the specified bank
      * @param i
-     *             the specified index
+     *        the specified index
      * @param val
-     *             the value to set the element in the specified bank at the
-     *             specified index in the data array
+     *        the value to set the element in the specified bank at the
+     *        specified index in the data array
      * @see #getElemFloat(int)
      * @see #getElemFloat(int, int)
      */
@@ -477,7 +475,7 @@ public abstract class DataBuffer {
      * another implementation is needed.
      * 
      * @param i
-     *          the specified index
+     *        the specified index
      * @return a double value representing the element at the specified index in
      *         the data array.
      * @see #setElemDouble(int, double)
@@ -494,9 +492,9 @@ public abstract class DataBuffer {
      * needed.
      * 
      * @param bank
-     *             the specified bank
+     *        the specified bank
      * @param i
-     *             the specified index
+     *        the specified index
      * @return a double value representing the element from the specified bank
      *         at the specified index in the data array.
      * @see #setElemDouble(int, double)
@@ -513,10 +511,10 @@ public abstract class DataBuffer {
      * method if another implementation is needed.
      * 
      * @param i
-     *            the specified index
+     *        the specified index
      * @param val
-     *            the value to set the element at the specified index in the
-     *            data array
+     *        the value to set the element at the specified index in the
+     *        data array
      * @see #getElemDouble(int)
      * @see #getElemDouble(int, int)
      */
@@ -531,12 +529,12 @@ public abstract class DataBuffer {
      * if another implementation is needed.
      * 
      * @param bank
-     *             the specified bank
+     *        the specified bank
      * @param i
-     *             the specified index
+     *        the specified index
      * @param val
-     *             the value to set the element in the specified bank at the
-     *             specified index of the data array
+     *        the value to set the element in the specified bank at the
+     *        specified index of the data array
      * @see #getElemDouble(int)
      * @see #getElemDouble(int, int)
      */
@@ -585,8 +583,7 @@ public abstract class DataBuffer {
                 return db.theTrackable;
             }
 
-            public void setTrackable(DataBuffer db,
-                    StateTrackableDelegate trackable) {
+            public void setTrackable(DataBuffer db, StateTrackableDelegate trackable) {
                 db.theTrackable = trackable;
             }
         });

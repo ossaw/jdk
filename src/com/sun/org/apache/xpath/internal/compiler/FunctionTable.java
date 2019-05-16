@@ -213,76 +213,48 @@ public class FunctionTable {
     }
 
     static {
-        m_functionID.put(Keywords.FUNC_CURRENT_STRING, new Integer(
-                FunctionTable.FUNC_CURRENT));
-        m_functionID.put(Keywords.FUNC_LAST_STRING, new Integer(
-                FunctionTable.FUNC_LAST));
-        m_functionID.put(Keywords.FUNC_POSITION_STRING, new Integer(
-                FunctionTable.FUNC_POSITION));
-        m_functionID.put(Keywords.FUNC_COUNT_STRING, new Integer(
-                FunctionTable.FUNC_COUNT));
-        m_functionID.put(Keywords.FUNC_ID_STRING, new Integer(
-                FunctionTable.FUNC_ID));
-        m_functionID.put(Keywords.FUNC_KEY_STRING, new Integer(
-                FunctionTable.FUNC_KEY));
-        m_functionID.put(Keywords.FUNC_LOCAL_PART_STRING, new Integer(
-                FunctionTable.FUNC_LOCAL_PART));
-        m_functionID.put(Keywords.FUNC_NAMESPACE_STRING, new Integer(
-                FunctionTable.FUNC_NAMESPACE));
-        m_functionID.put(Keywords.FUNC_NAME_STRING, new Integer(
-                FunctionTable.FUNC_QNAME));
-        m_functionID.put(Keywords.FUNC_GENERATE_ID_STRING, new Integer(
-                FunctionTable.FUNC_GENERATE_ID));
-        m_functionID.put(Keywords.FUNC_NOT_STRING, new Integer(
-                FunctionTable.FUNC_NOT));
-        m_functionID.put(Keywords.FUNC_TRUE_STRING, new Integer(
-                FunctionTable.FUNC_TRUE));
-        m_functionID.put(Keywords.FUNC_FALSE_STRING, new Integer(
-                FunctionTable.FUNC_FALSE));
-        m_functionID.put(Keywords.FUNC_BOOLEAN_STRING, new Integer(
-                FunctionTable.FUNC_BOOLEAN));
-        m_functionID.put(Keywords.FUNC_LANG_STRING, new Integer(
-                FunctionTable.FUNC_LANG));
-        m_functionID.put(Keywords.FUNC_NUMBER_STRING, new Integer(
-                FunctionTable.FUNC_NUMBER));
-        m_functionID.put(Keywords.FUNC_FLOOR_STRING, new Integer(
-                FunctionTable.FUNC_FLOOR));
-        m_functionID.put(Keywords.FUNC_CEILING_STRING, new Integer(
-                FunctionTable.FUNC_CEILING));
-        m_functionID.put(Keywords.FUNC_ROUND_STRING, new Integer(
-                FunctionTable.FUNC_ROUND));
-        m_functionID.put(Keywords.FUNC_SUM_STRING, new Integer(
-                FunctionTable.FUNC_SUM));
-        m_functionID.put(Keywords.FUNC_STRING_STRING, new Integer(
-                FunctionTable.FUNC_STRING));
-        m_functionID.put(Keywords.FUNC_STARTS_WITH_STRING, new Integer(
-                FunctionTable.FUNC_STARTS_WITH));
-        m_functionID.put(Keywords.FUNC_CONTAINS_STRING, new Integer(
-                FunctionTable.FUNC_CONTAINS));
+        m_functionID.put(Keywords.FUNC_CURRENT_STRING, new Integer(FunctionTable.FUNC_CURRENT));
+        m_functionID.put(Keywords.FUNC_LAST_STRING, new Integer(FunctionTable.FUNC_LAST));
+        m_functionID.put(Keywords.FUNC_POSITION_STRING, new Integer(FunctionTable.FUNC_POSITION));
+        m_functionID.put(Keywords.FUNC_COUNT_STRING, new Integer(FunctionTable.FUNC_COUNT));
+        m_functionID.put(Keywords.FUNC_ID_STRING, new Integer(FunctionTable.FUNC_ID));
+        m_functionID.put(Keywords.FUNC_KEY_STRING, new Integer(FunctionTable.FUNC_KEY));
+        m_functionID.put(Keywords.FUNC_LOCAL_PART_STRING, new Integer(FunctionTable.FUNC_LOCAL_PART));
+        m_functionID.put(Keywords.FUNC_NAMESPACE_STRING, new Integer(FunctionTable.FUNC_NAMESPACE));
+        m_functionID.put(Keywords.FUNC_NAME_STRING, new Integer(FunctionTable.FUNC_QNAME));
+        m_functionID.put(Keywords.FUNC_GENERATE_ID_STRING, new Integer(FunctionTable.FUNC_GENERATE_ID));
+        m_functionID.put(Keywords.FUNC_NOT_STRING, new Integer(FunctionTable.FUNC_NOT));
+        m_functionID.put(Keywords.FUNC_TRUE_STRING, new Integer(FunctionTable.FUNC_TRUE));
+        m_functionID.put(Keywords.FUNC_FALSE_STRING, new Integer(FunctionTable.FUNC_FALSE));
+        m_functionID.put(Keywords.FUNC_BOOLEAN_STRING, new Integer(FunctionTable.FUNC_BOOLEAN));
+        m_functionID.put(Keywords.FUNC_LANG_STRING, new Integer(FunctionTable.FUNC_LANG));
+        m_functionID.put(Keywords.FUNC_NUMBER_STRING, new Integer(FunctionTable.FUNC_NUMBER));
+        m_functionID.put(Keywords.FUNC_FLOOR_STRING, new Integer(FunctionTable.FUNC_FLOOR));
+        m_functionID.put(Keywords.FUNC_CEILING_STRING, new Integer(FunctionTable.FUNC_CEILING));
+        m_functionID.put(Keywords.FUNC_ROUND_STRING, new Integer(FunctionTable.FUNC_ROUND));
+        m_functionID.put(Keywords.FUNC_SUM_STRING, new Integer(FunctionTable.FUNC_SUM));
+        m_functionID.put(Keywords.FUNC_STRING_STRING, new Integer(FunctionTable.FUNC_STRING));
+        m_functionID.put(Keywords.FUNC_STARTS_WITH_STRING, new Integer(FunctionTable.FUNC_STARTS_WITH));
+        m_functionID.put(Keywords.FUNC_CONTAINS_STRING, new Integer(FunctionTable.FUNC_CONTAINS));
         m_functionID.put(Keywords.FUNC_SUBSTRING_BEFORE_STRING, new Integer(
                 FunctionTable.FUNC_SUBSTRING_BEFORE));
         m_functionID.put(Keywords.FUNC_SUBSTRING_AFTER_STRING, new Integer(
                 FunctionTable.FUNC_SUBSTRING_AFTER));
         m_functionID.put(Keywords.FUNC_NORMALIZE_SPACE_STRING, new Integer(
                 FunctionTable.FUNC_NORMALIZE_SPACE));
-        m_functionID.put(Keywords.FUNC_TRANSLATE_STRING, new Integer(
-                FunctionTable.FUNC_TRANSLATE));
-        m_functionID.put(Keywords.FUNC_CONCAT_STRING, new Integer(
-                FunctionTable.FUNC_CONCAT));
+        m_functionID.put(Keywords.FUNC_TRANSLATE_STRING, new Integer(FunctionTable.FUNC_TRANSLATE));
+        m_functionID.put(Keywords.FUNC_CONCAT_STRING, new Integer(FunctionTable.FUNC_CONCAT));
         m_functionID.put(Keywords.FUNC_SYSTEM_PROPERTY_STRING, new Integer(
                 FunctionTable.FUNC_SYSTEM_PROPERTY));
-        m_functionID.put(Keywords.FUNC_EXT_FUNCTION_AVAILABLE_STRING,
-                new Integer(FunctionTable.FUNC_EXT_FUNCTION_AVAILABLE));
+        m_functionID.put(Keywords.FUNC_EXT_FUNCTION_AVAILABLE_STRING, new Integer(
+                FunctionTable.FUNC_EXT_FUNCTION_AVAILABLE));
         m_functionID.put(Keywords.FUNC_EXT_ELEM_AVAILABLE_STRING, new Integer(
                 FunctionTable.FUNC_EXT_ELEM_AVAILABLE));
-        m_functionID.put(Keywords.FUNC_SUBSTRING_STRING, new Integer(
-                FunctionTable.FUNC_SUBSTRING));
-        m_functionID.put(Keywords.FUNC_STRING_LENGTH_STRING, new Integer(
-                FunctionTable.FUNC_STRING_LENGTH));
+        m_functionID.put(Keywords.FUNC_SUBSTRING_STRING, new Integer(FunctionTable.FUNC_SUBSTRING));
+        m_functionID.put(Keywords.FUNC_STRING_LENGTH_STRING, new Integer(FunctionTable.FUNC_STRING_LENGTH));
         m_functionID.put(Keywords.FUNC_UNPARSED_ENTITY_URI_STRING, new Integer(
                 FunctionTable.FUNC_UNPARSED_ENTITY_URI));
-        m_functionID.put(Keywords.FUNC_DOCLOCATION_STRING, new Integer(
-                FunctionTable.FUNC_DOCLOCATION));
+        m_functionID.put(Keywords.FUNC_DOCLOCATION_STRING, new Integer(FunctionTable.FUNC_DOCLOCATION));
     }
 
     public FunctionTable() {}
@@ -302,25 +274,21 @@ public class FunctionTable {
      * Obtain a new Function object from a function ID.
      *
      * @param which
-     *              The function ID, which may correspond to one of the FUNC_XXX
-     *              values found in
-     *              {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable}
-     *              , but may be a value installed by an external module.
-     *
+     *        The function ID, which may correspond to one of the FUNC_XXX
+     *        values found in
+     *        {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable}
+     *        , but may be a value installed by an external module.
      * @return a a new Function instance.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if ClassNotFoundException, IllegalAccessException, or
      *         InstantiationException is thrown.
      */
-    Function getFunction(int which)
-            throws javax.xml.transform.TransformerException {
+    Function getFunction(int which) throws javax.xml.transform.TransformerException {
         try {
             if (which < NUM_BUILT_IN_FUNCS)
                 return (Function) m_functions[which].newInstance();
             else
-                return (Function) m_functions_customer[which
-                        - NUM_BUILT_IN_FUNCS].newInstance();
+                return (Function) m_functions_customer[which - NUM_BUILT_IN_FUNCS].newInstance();
         } catch (IllegalAccessException ex) {
             throw new TransformerException(ex.getMessage());
         } catch (InstantiationException ex) {
@@ -332,7 +300,7 @@ public class FunctionTable {
      * Obtain a function ID from a given function name
      * 
      * @param key
-     *            the function name in a java.lang.String format.
+     *        the function name in a java.lang.String format.
      * @return a function ID, which may correspond to one of the FUNC_XXX values
      *         found in
      *         {@link com.sun.org.apache.xpath.internal.compiler.FunctionTable},
@@ -349,9 +317,9 @@ public class FunctionTable {
      * Install a built-in function.
      * 
      * @param name
-     *             The unqualified name of the function, must not be null
+     *        The unqualified name of the function, must not be null
      * @param func
-     *             A Implementation of an XPath Function object.
+     *        A Implementation of an XPath Function object.
      * @return the position of the function in the internal index.
      */
     public int installFunction(String name, Class func) {
@@ -381,8 +349,7 @@ public class FunctionTable {
      * Tell if a built-in, non-namespaced function is available.
      *
      * @param methName
-     *                 The local name of the function.
-     *
+     *        The local name of the function.
      * @return True if the function can be executed.
      */
     public boolean functionAvailable(String methName) {

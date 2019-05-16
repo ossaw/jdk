@@ -36,7 +36,7 @@ public class EOFException extends IOException {
      * <code>java.lang.Throwable</code>.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public EOFException(String s) {
         super(s);

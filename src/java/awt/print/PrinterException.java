@@ -25,8 +25,8 @@ public class PrinterException extends Exception {
      * detail message.
      * 
      * @param msg
-     *            the message to generate when a <code>PrinterException</code>
-     *            is thrown
+     *        the message to generate when a <code>PrinterException</code>
+     *        is thrown
      */
     public PrinterException(String msg) {
         super(msg);

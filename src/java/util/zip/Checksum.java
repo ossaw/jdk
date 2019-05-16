@@ -15,7 +15,7 @@ public interface Checksum {
      * Updates the current checksum with the specified byte.
      *
      * @param b
-     *          the byte to update the checksum with
+     *        the byte to update the checksum with
      */
     public void update(int b);
 
@@ -23,11 +23,11 @@ public interface Checksum {
      * Updates the current checksum with the specified array of bytes.
      * 
      * @param b
-     *            the byte array to update the checksum with
+     *        the byte array to update the checksum with
      * @param off
-     *            the start offset of the data
+     *        the start offset of the data
      * @param len
-     *            the number of bytes to use for the update
+     *        the number of bytes to use for the update
      */
     public void update(byte[] b, int off, int len);
 

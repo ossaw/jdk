@@ -25,9 +25,9 @@ public interface ConnectionPoolDataSource extends CommonDataSource {
      *         connection to the database that this
      *         <code>ConnectionPoolDataSource</code> object represents
      * @exception SQLException
-     *                         if a database access error occurs
-     * @exception              java.sql.SQLFeatureNotSupportedException
-     *                         if the JDBC driver does not support this method
+     *            if a database access error occurs
+     * @exception java.sql.SQLFeatureNotSupportedException
+     *            if the JDBC driver does not support this method
      * @since 1.4
      */
     PooledConnection getPooledConnection() throws SQLException;
@@ -37,19 +37,18 @@ public interface ConnectionPoolDataSource extends CommonDataSource {
      * a pooled connection.
      *
      * @param user
-     *                 the database user on whose behalf the connection is being
-     *                 made
+     *        the database user on whose behalf the connection is being
+     *        made
      * @param password
-     *                 the user's password
+     *        the user's password
      * @return a <code>PooledConnection</code> object that is a physical
      *         connection to the database that this
      *         <code>ConnectionPoolDataSource</code> object represents
      * @exception SQLException
-     *                         if a database access error occurs
-     * @exception              java.sql.SQLFeatureNotSupportedException
-     *                         if the JDBC driver does not support this method
+     *            if a database access error occurs
+     * @exception java.sql.SQLFeatureNotSupportedException
+     *            if the JDBC driver does not support this method
      * @since 1.4
      */
-    PooledConnection getPooledConnection(String user, String password)
-            throws SQLException;
+    PooledConnection getPooledConnection(String user, String password) throws SQLException;
 }

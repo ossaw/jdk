@@ -76,18 +76,15 @@ import java.util.EventListener;
  * EventListenerList} for similar logic. Refer to it for details.
  *
  * @see javax.swing.event.EventListenerList
- *
  * @author John Rose
  * @author Amy Fowler
  * @since 1.1
  */
 
-public class AWTEventMulticaster implements ComponentListener,
-        ContainerListener, FocusListener, KeyListener, MouseListener,
-        MouseMotionListener, WindowListener, WindowFocusListener,
-        WindowStateListener, ActionListener, ItemListener, AdjustmentListener,
-        TextListener, InputMethodListener, HierarchyListener,
-        HierarchyBoundsListener, MouseWheelListener {
+public class AWTEventMulticaster implements ComponentListener, ContainerListener, FocusListener, KeyListener,
+        MouseListener, MouseMotionListener, WindowListener, WindowFocusListener, WindowStateListener,
+        ActionListener, ItemListener, AdjustmentListener, TextListener, InputMethodListener,
+        HierarchyListener, HierarchyBoundsListener, MouseWheelListener {
 
     protected final EventListener a, b;
 
@@ -98,9 +95,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * or not to throw <code>NullPointerException</code> in that case.
      * 
      * @param a
-     *          listener-a
+     *        listener-a
      * @param b
-     *          listener-b
+     *        listener-b
      */
     protected AWTEventMulticaster(EventListener a, EventListener b) {
         this.a = a;
@@ -119,7 +116,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * No exception is thrown if {@code oldl} is {@code null}.
      *
      * @param oldl
-     *             the listener to be removed
+     *        the listener to be removed
      * @return resulting listener
      */
     protected EventListener remove(EventListener oldl) {
@@ -140,7 +137,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * methods on listener-a and listener-b.
      * 
      * @param e
-     *          the component event
+     *        the component event
      */
     public void componentResized(ComponentEvent e) {
         ((ComponentListener) a).componentResized(e);
@@ -152,7 +149,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the component event
+     *        the component event
      */
     public void componentMoved(ComponentEvent e) {
         ((ComponentListener) a).componentMoved(e);
@@ -164,7 +161,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the component event
+     *        the component event
      */
     public void componentShown(ComponentEvent e) {
         ((ComponentListener) a).componentShown(e);
@@ -176,7 +173,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the component event
+     *        the component event
      */
     public void componentHidden(ComponentEvent e) {
         ((ComponentListener) a).componentHidden(e);
@@ -188,7 +185,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * methods on listener-a and listener-b.
      * 
      * @param e
-     *          the component event
+     *        the component event
      */
     public void componentAdded(ContainerEvent e) {
         ((ContainerListener) a).componentAdded(e);
@@ -200,7 +197,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * componentRemoved methods on listener-a and listener-b.
      * 
      * @param e
-     *          the component event
+     *        the component event
      */
     public void componentRemoved(ContainerEvent e) {
         ((ContainerListener) a).componentRemoved(e);
@@ -212,7 +209,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the focus event
+     *        the focus event
      */
     public void focusGained(FocusEvent e) {
         ((FocusListener) a).focusGained(e);
@@ -224,7 +221,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the focus event
+     *        the focus event
      */
     public void focusLost(FocusEvent e) {
         ((FocusListener) a).focusLost(e);
@@ -236,7 +233,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * and listener-b.
      * 
      * @param e
-     *          the key event
+     *        the key event
      */
     public void keyTyped(KeyEvent e) {
         ((KeyListener) a).keyTyped(e);
@@ -248,7 +245,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the key event
+     *        the key event
      */
     public void keyPressed(KeyEvent e) {
         ((KeyListener) a).keyPressed(e);
@@ -260,7 +257,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the key event
+     *        the key event
      */
     public void keyReleased(KeyEvent e) {
         ((KeyListener) a).keyReleased(e);
@@ -272,7 +269,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the mouse event
+     *        the mouse event
      */
     public void mouseClicked(MouseEvent e) {
         ((MouseListener) a).mouseClicked(e);
@@ -284,7 +281,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the mouse event
+     *        the mouse event
      */
     public void mousePressed(MouseEvent e) {
         ((MouseListener) a).mousePressed(e);
@@ -296,7 +293,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the mouse event
+     *        the mouse event
      */
     public void mouseReleased(MouseEvent e) {
         ((MouseListener) a).mouseReleased(e);
@@ -308,7 +305,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the mouse event
+     *        the mouse event
      */
     public void mouseEntered(MouseEvent e) {
         ((MouseListener) a).mouseEntered(e);
@@ -320,7 +317,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the mouse event
+     *        the mouse event
      */
     public void mouseExited(MouseEvent e) {
         ((MouseListener) a).mouseExited(e);
@@ -332,7 +329,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the mouse event
+     *        the mouse event
      */
     public void mouseDragged(MouseEvent e) {
         ((MouseMotionListener) a).mouseDragged(e);
@@ -344,7 +341,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the mouse event
+     *        the mouse event
      */
     public void mouseMoved(MouseEvent e) {
         ((MouseMotionListener) a).mouseMoved(e);
@@ -356,7 +353,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      */
     public void windowOpened(WindowEvent e) {
         ((WindowListener) a).windowOpened(e);
@@ -368,7 +365,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      */
     public void windowClosing(WindowEvent e) {
         ((WindowListener) a).windowClosing(e);
@@ -380,7 +377,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      */
     public void windowClosed(WindowEvent e) {
         ((WindowListener) a).windowClosed(e);
@@ -392,7 +389,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      */
     public void windowIconified(WindowEvent e) {
         ((WindowListener) a).windowIconified(e);
@@ -404,7 +401,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * methods on listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      */
     public void windowDeiconified(WindowEvent e) {
         ((WindowListener) a).windowDeiconified(e);
@@ -416,7 +413,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      */
     public void windowActivated(WindowEvent e) {
         ((WindowListener) a).windowActivated(e);
@@ -428,7 +425,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * methods on listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      */
     public void windowDeactivated(WindowEvent e) {
         ((WindowListener) a).windowDeactivated(e);
@@ -440,7 +437,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * methods on listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      * @since 1.4
      */
     public void windowStateChanged(WindowEvent e) {
@@ -453,7 +450,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * methods on listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      * @since 1.4
      */
     public void windowGainedFocus(WindowEvent e) {
@@ -466,7 +463,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the window event
+     *        the window event
      * @since 1.4
      */
     public void windowLostFocus(WindowEvent e) {
@@ -479,7 +476,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the action event
+     *        the action event
      */
     public void actionPerformed(ActionEvent e) {
         ((ActionListener) a).actionPerformed(e);
@@ -491,7 +488,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * methods on listener-a and listener-b.
      * 
      * @param e
-     *          the item event
+     *        the item event
      */
     public void itemStateChanged(ItemEvent e) {
         ((ItemListener) a).itemStateChanged(e);
@@ -503,7 +500,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * adjustmentValueChanged methods on listener-a and listener-b.
      * 
      * @param e
-     *          the adjustment event
+     *        the adjustment event
      */
     public void adjustmentValueChanged(AdjustmentEvent e) {
         ((AdjustmentListener) a).adjustmentValueChanged(e);
@@ -520,7 +517,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * inputMethodTextChanged methods on listener-a and listener-b.
      * 
      * @param e
-     *          the item event
+     *        the item event
      */
     public void inputMethodTextChanged(InputMethodEvent e) {
         ((InputMethodListener) a).inputMethodTextChanged(e);
@@ -532,7 +529,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * caretPositionChanged methods on listener-a and listener-b.
      * 
      * @param e
-     *          the item event
+     *        the item event
      */
     public void caretPositionChanged(InputMethodEvent e) {
         ((InputMethodListener) a).caretPositionChanged(e);
@@ -544,7 +541,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * methods on listener-a and listener-b.
      * 
      * @param e
-     *          the item event
+     *        the item event
      * @since 1.3
      */
     public void hierarchyChanged(HierarchyEvent e) {
@@ -557,7 +554,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * listener-a and listener-b.
      * 
      * @param e
-     *          the item event
+     *        the item event
      * @since 1.3
      */
     public void ancestorMoved(HierarchyEvent e) {
@@ -570,7 +567,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the item event
+     *        the item event
      * @since 1.3
      */
     public void ancestorResized(HierarchyEvent e) {
@@ -583,7 +580,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * on listener-a and listener-b.
      * 
      * @param e
-     *          the mouse event
+     *        the mouse event
      * @since 1.4
      */
     public void mouseWheelMoved(MouseWheelEvent e) {
@@ -596,12 +593,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          component-listener-a
+     *        component-listener-a
      * @param b
-     *          component-listener-b
+     *        component-listener-b
      */
-    public static ComponentListener add(ComponentListener a,
-            ComponentListener b) {
+    public static ComponentListener add(ComponentListener a, ComponentListener b) {
         return (ComponentListener) addInternal(a, b);
     }
 
@@ -610,12 +606,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          container-listener-a
+     *        container-listener-a
      * @param b
-     *          container-listener-b
+     *        container-listener-b
      */
-    public static ContainerListener add(ContainerListener a,
-            ContainerListener b) {
+    public static ContainerListener add(ContainerListener a, ContainerListener b) {
         return (ContainerListener) addInternal(a, b);
     }
 
@@ -624,9 +619,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * multicast listener.
      * 
      * @param a
-     *          focus-listener-a
+     *        focus-listener-a
      * @param b
-     *          focus-listener-b
+     *        focus-listener-b
      */
     public static FocusListener add(FocusListener a, FocusListener b) {
         return (FocusListener) addInternal(a, b);
@@ -637,9 +632,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * multicast listener.
      * 
      * @param a
-     *          key-listener-a
+     *        key-listener-a
      * @param b
-     *          key-listener-b
+     *        key-listener-b
      */
     public static KeyListener add(KeyListener a, KeyListener b) {
         return (KeyListener) addInternal(a, b);
@@ -650,9 +645,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * multicast listener.
      * 
      * @param a
-     *          mouse-listener-a
+     *        mouse-listener-a
      * @param b
-     *          mouse-listener-b
+     *        mouse-listener-b
      */
     public static MouseListener add(MouseListener a, MouseListener b) {
         return (MouseListener) addInternal(a, b);
@@ -663,12 +658,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          mouse-motion-listener-a
+     *        mouse-motion-listener-a
      * @param b
-     *          mouse-motion-listener-b
+     *        mouse-motion-listener-b
      */
-    public static MouseMotionListener add(MouseMotionListener a,
-            MouseMotionListener b) {
+    public static MouseMotionListener add(MouseMotionListener a, MouseMotionListener b) {
         return (MouseMotionListener) addInternal(a, b);
     }
 
@@ -677,9 +671,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * multicast listener.
      * 
      * @param a
-     *          window-listener-a
+     *        window-listener-a
      * @param b
-     *          window-listener-b
+     *        window-listener-b
      */
     public static WindowListener add(WindowListener a, WindowListener b) {
         return (WindowListener) addInternal(a, b);
@@ -690,13 +684,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          window-state-listener-a
+     *        window-state-listener-a
      * @param b
-     *          window-state-listener-b
+     *        window-state-listener-b
      * @since 1.4
      */
-    public static WindowStateListener add(WindowStateListener a,
-            WindowStateListener b) {
+    public static WindowStateListener add(WindowStateListener a, WindowStateListener b) {
         return (WindowStateListener) addInternal(a, b);
     }
 
@@ -705,13 +698,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          window-focus-listener-a
+     *        window-focus-listener-a
      * @param b
-     *          window-focus-listener-b
+     *        window-focus-listener-b
      * @since 1.4
      */
-    public static WindowFocusListener add(WindowFocusListener a,
-            WindowFocusListener b) {
+    public static WindowFocusListener add(WindowFocusListener a, WindowFocusListener b) {
         return (WindowFocusListener) addInternal(a, b);
     }
 
@@ -720,9 +712,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * multicast listener.
      * 
      * @param a
-     *          action-listener-a
+     *        action-listener-a
      * @param b
-     *          action-listener-b
+     *        action-listener-b
      */
     public static ActionListener add(ActionListener a, ActionListener b) {
         return (ActionListener) addInternal(a, b);
@@ -733,9 +725,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * multicast listener.
      * 
      * @param a
-     *          item-listener-a
+     *        item-listener-a
      * @param b
-     *          item-listener-b
+     *        item-listener-b
      */
     public static ItemListener add(ItemListener a, ItemListener b) {
         return (ItemListener) addInternal(a, b);
@@ -746,12 +738,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          adjustment-listener-a
+     *        adjustment-listener-a
      * @param b
-     *          adjustment-listener-b
+     *        adjustment-listener-b
      */
-    public static AdjustmentListener add(AdjustmentListener a,
-            AdjustmentListener b) {
+    public static AdjustmentListener add(AdjustmentListener a, AdjustmentListener b) {
         return (AdjustmentListener) addInternal(a, b);
     }
 
@@ -764,12 +755,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          input-method-listener-a
+     *        input-method-listener-a
      * @param b
-     *          input-method-listener-b
+     *        input-method-listener-b
      */
-    public static InputMethodListener add(InputMethodListener a,
-            InputMethodListener b) {
+    public static InputMethodListener add(InputMethodListener a, InputMethodListener b) {
         return (InputMethodListener) addInternal(a, b);
     }
 
@@ -778,13 +768,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          hierarchy-listener-a
+     *        hierarchy-listener-a
      * @param b
-     *          hierarchy-listener-b
+     *        hierarchy-listener-b
      * @since 1.3
      */
-    public static HierarchyListener add(HierarchyListener a,
-            HierarchyListener b) {
+    public static HierarchyListener add(HierarchyListener a, HierarchyListener b) {
         return (HierarchyListener) addInternal(a, b);
     }
 
@@ -793,13 +782,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * returns the resulting multicast listener.
      * 
      * @param a
-     *          hierarchy-bounds-listener-a
+     *        hierarchy-bounds-listener-a
      * @param b
-     *          hierarchy-bounds-listener-b
+     *        hierarchy-bounds-listener-b
      * @since 1.3
      */
-    public static HierarchyBoundsListener add(HierarchyBoundsListener a,
-            HierarchyBoundsListener b) {
+    public static HierarchyBoundsListener add(HierarchyBoundsListener a, HierarchyBoundsListener b) {
         return (HierarchyBoundsListener) addInternal(a, b);
     }
 
@@ -808,13 +796,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param a
-     *          mouse-wheel-listener-a
+     *        mouse-wheel-listener-a
      * @param b
-     *          mouse-wheel-listener-b
+     *        mouse-wheel-listener-b
      * @since 1.4
      */
-    public static MouseWheelListener add(MouseWheelListener a,
-            MouseWheelListener b) {
+    public static MouseWheelListener add(MouseWheelListener a, MouseWheelListener b) {
         return (MouseWheelListener) addInternal(a, b);
     }
 
@@ -823,12 +810,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * the resulting multicast listener.
      * 
      * @param l
-     *             component-listener-l
+     *        component-listener-l
      * @param oldl
-     *             the component-listener being removed
+     *        the component-listener being removed
      */
-    public static ComponentListener remove(ComponentListener l,
-            ComponentListener oldl) {
+    public static ComponentListener remove(ComponentListener l, ComponentListener oldl) {
         return (ComponentListener) removeInternal(l, oldl);
     }
 
@@ -837,12 +823,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * the resulting multicast listener.
      * 
      * @param l
-     *             container-listener-l
+     *        container-listener-l
      * @param oldl
-     *             the container-listener being removed
+     *        the container-listener being removed
      */
-    public static ContainerListener remove(ContainerListener l,
-            ContainerListener oldl) {
+    public static ContainerListener remove(ContainerListener l, ContainerListener oldl) {
         return (ContainerListener) removeInternal(l, oldl);
     }
 
@@ -851,9 +836,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param l
-     *             focus-listener-l
+     *        focus-listener-l
      * @param oldl
-     *             the focus-listener being removed
+     *        the focus-listener being removed
      */
     public static FocusListener remove(FocusListener l, FocusListener oldl) {
         return (FocusListener) removeInternal(l, oldl);
@@ -864,9 +849,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param l
-     *             key-listener-l
+     *        key-listener-l
      * @param oldl
-     *             the key-listener being removed
+     *        the key-listener being removed
      */
     public static KeyListener remove(KeyListener l, KeyListener oldl) {
         return (KeyListener) removeInternal(l, oldl);
@@ -877,9 +862,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param l
-     *             mouse-listener-l
+     *        mouse-listener-l
      * @param oldl
-     *             the mouse-listener being removed
+     *        the mouse-listener being removed
      */
     public static MouseListener remove(MouseListener l, MouseListener oldl) {
         return (MouseListener) removeInternal(l, oldl);
@@ -890,12 +875,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * returns the resulting multicast listener.
      * 
      * @param l
-     *             mouse-motion-listener-l
+     *        mouse-motion-listener-l
      * @param oldl
-     *             the mouse-motion-listener being removed
+     *        the mouse-motion-listener being removed
      */
-    public static MouseMotionListener remove(MouseMotionListener l,
-            MouseMotionListener oldl) {
+    public static MouseMotionListener remove(MouseMotionListener l, MouseMotionListener oldl) {
         return (MouseMotionListener) removeInternal(l, oldl);
     }
 
@@ -904,9 +888,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param l
-     *             window-listener-l
+     *        window-listener-l
      * @param oldl
-     *             the window-listener being removed
+     *        the window-listener being removed
      */
     public static WindowListener remove(WindowListener l, WindowListener oldl) {
         return (WindowListener) removeInternal(l, oldl);
@@ -917,13 +901,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * returns the resulting multicast listener.
      * 
      * @param l
-     *             window-state-listener-l
+     *        window-state-listener-l
      * @param oldl
-     *             the window-state-listener being removed
+     *        the window-state-listener being removed
      * @since 1.4
      */
-    public static WindowStateListener remove(WindowStateListener l,
-            WindowStateListener oldl) {
+    public static WindowStateListener remove(WindowStateListener l, WindowStateListener oldl) {
         return (WindowStateListener) removeInternal(l, oldl);
     }
 
@@ -932,13 +915,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * returns the resulting multicast listener.
      * 
      * @param l
-     *             window-focus-listener-l
+     *        window-focus-listener-l
      * @param oldl
-     *             the window-focus-listener being removed
+     *        the window-focus-listener being removed
      * @since 1.4
      */
-    public static WindowFocusListener remove(WindowFocusListener l,
-            WindowFocusListener oldl) {
+    public static WindowFocusListener remove(WindowFocusListener l, WindowFocusListener oldl) {
         return (WindowFocusListener) removeInternal(l, oldl);
     }
 
@@ -947,9 +929,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param l
-     *             action-listener-l
+     *        action-listener-l
      * @param oldl
-     *             the action-listener being removed
+     *        the action-listener being removed
      */
     public static ActionListener remove(ActionListener l, ActionListener oldl) {
         return (ActionListener) removeInternal(l, oldl);
@@ -960,9 +942,9 @@ public class AWTEventMulticaster implements ComponentListener,
      * resulting multicast listener.
      * 
      * @param l
-     *             item-listener-l
+     *        item-listener-l
      * @param oldl
-     *             the item-listener being removed
+     *        the item-listener being removed
      */
     public static ItemListener remove(ItemListener l, ItemListener oldl) {
         return (ItemListener) removeInternal(l, oldl);
@@ -973,12 +955,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * returns the resulting multicast listener.
      * 
      * @param l
-     *             adjustment-listener-l
+     *        adjustment-listener-l
      * @param oldl
-     *             the adjustment-listener being removed
+     *        the adjustment-listener being removed
      */
-    public static AdjustmentListener remove(AdjustmentListener l,
-            AdjustmentListener oldl) {
+    public static AdjustmentListener remove(AdjustmentListener l, AdjustmentListener oldl) {
         return (AdjustmentListener) removeInternal(l, oldl);
     }
 
@@ -991,12 +972,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * returns the resulting multicast listener.
      * 
      * @param l
-     *             input-method-listener-l
+     *        input-method-listener-l
      * @param oldl
-     *             the input-method-listener being removed
+     *        the input-method-listener being removed
      */
-    public static InputMethodListener remove(InputMethodListener l,
-            InputMethodListener oldl) {
+    public static InputMethodListener remove(InputMethodListener l, InputMethodListener oldl) {
         return (InputMethodListener) removeInternal(l, oldl);
     }
 
@@ -1005,13 +985,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * the resulting multicast listener.
      * 
      * @param l
-     *             hierarchy-listener-l
+     *        hierarchy-listener-l
      * @param oldl
-     *             the hierarchy-listener being removed
+     *        the hierarchy-listener being removed
      * @since 1.3
      */
-    public static HierarchyListener remove(HierarchyListener l,
-            HierarchyListener oldl) {
+    public static HierarchyListener remove(HierarchyListener l, HierarchyListener oldl) {
         return (HierarchyListener) removeInternal(l, oldl);
     }
 
@@ -1020,13 +999,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * hierarchy-bounds-listener-l and returns the resulting multicast listener.
      * 
      * @param l
-     *             hierarchy-bounds-listener-l
+     *        hierarchy-bounds-listener-l
      * @param oldl
-     *             the hierarchy-bounds-listener being removed
+     *        the hierarchy-bounds-listener being removed
      * @since 1.3
      */
-    public static HierarchyBoundsListener remove(HierarchyBoundsListener l,
-            HierarchyBoundsListener oldl) {
+    public static HierarchyBoundsListener remove(HierarchyBoundsListener l, HierarchyBoundsListener oldl) {
         return (HierarchyBoundsListener) removeInternal(l, oldl);
     }
 
@@ -1035,13 +1013,12 @@ public class AWTEventMulticaster implements ComponentListener,
      * returns the resulting multicast listener.
      * 
      * @param l
-     *             mouse-wheel-listener-l
+     *        mouse-wheel-listener-l
      * @param oldl
-     *             the mouse-wheel-listener being removed
+     *        the mouse-wheel-listener being removed
      * @since 1.4
      */
-    public static MouseWheelListener remove(MouseWheelListener l,
-            MouseWheelListener oldl) {
+    public static MouseWheelListener remove(MouseWheelListener l, MouseWheelListener oldl) {
         return (MouseWheelListener) removeInternal(l, oldl);
     }
 
@@ -1053,12 +1030,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * with b.
      * 
      * @param a
-     *          event listener-a
+     *        event listener-a
      * @param b
-     *          event listener-b
+     *        event listener-b
      */
-    protected static EventListener addInternal(EventListener a,
-            EventListener b) {
+    protected static EventListener addInternal(EventListener a, EventListener b) {
         if (a == null)
             return b;
         if (b == null)
@@ -1074,12 +1050,11 @@ public class AWTEventMulticaster implements ComponentListener,
      * returns listener l.
      * 
      * @param l
-     *             the listener being removed from
+     *        the listener being removed from
      * @param oldl
-     *             the listener being removed
+     *        the listener being removed
      */
-    protected static EventListener removeInternal(EventListener l,
-            EventListener oldl) {
+    protected static EventListener removeInternal(EventListener l, EventListener oldl) {
         if (l == oldl || l == null) {
             return null;
         } else if (l instanceof AWTEventMulticaster) {
@@ -1093,8 +1068,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * Serialization support.
      */
 
-    protected void saveInternal(ObjectOutputStream s, String k)
-            throws IOException {
+    protected void saveInternal(ObjectOutputStream s, String k) throws IOException {
         if (a instanceof AWTEventMulticaster) {
             ((AWTEventMulticaster) a).saveInternal(s, k);
         } else if (a instanceof Serializable) {
@@ -1110,8 +1084,7 @@ public class AWTEventMulticaster implements ComponentListener,
         }
     }
 
-    protected static void save(ObjectOutputStream s, String k, EventListener l)
-            throws IOException {
+    protected static void save(ObjectOutputStream s, String k, EventListener l) throws IOException {
         if (l == null) {
             return;
         } else if (l instanceof AWTEventMulticaster) {
@@ -1128,12 +1101,10 @@ public class AWTEventMulticaster implements ComponentListener,
      * AWTEventMulticaster. Additionally, only listeners of type listenerType
      * are counted. Method modified to fix bug 4513402. -bchristi
      */
-    private static int getListenerCount(EventListener l,
-            Class<?> listenerType) {
+    private static int getListenerCount(EventListener l, Class<?> listenerType) {
         if (l instanceof AWTEventMulticaster) {
             AWTEventMulticaster mc = (AWTEventMulticaster) l;
-            return getListenerCount(mc.a, listenerType) + getListenerCount(mc.b,
-                    listenerType);
+            return getListenerCount(mc.a, listenerType) + getListenerCount(mc.b, listenerType);
         } else {
             // Only count listeners of correct type
             return listenerType.isInstance(l) ? 1 : 0;
@@ -1147,8 +1118,7 @@ public class AWTEventMulticaster implements ComponentListener,
      * would occur. Now l is only inserted into a if it's of the appropriate
      * type. -bchristi
      */
-    private static int populateListenerArray(EventListener[] a, EventListener l,
-            int index) {
+    private static int populateListenerArray(EventListener[] a, EventListener l, int index) {
         if (l instanceof AWTEventMulticaster) {
             AWTEventMulticaster mc = (AWTEventMulticaster) l;
             int lhs = populateListenerArray(a, mc.a, index);
@@ -1175,31 +1145,29 @@ public class AWTEventMulticaster implements ComponentListener,
      * are chained, this method returns an empty array.
      *
      * @param l
-     *                     the specified <code>java.util.EventListener</code>
+     *        the specified <code>java.util.EventListener</code>
      * @param listenerType
-     *                     the type of listeners requested; this parameter
-     *                     should specify
-     *                     an interface that descends from
-     *                     <code>java.util.EventListener</code>
+     *        the type of listeners requested; this parameter
+     *        should specify
+     *        an interface that descends from
+     *        <code>java.util.EventListener</code>
      * @return an array of all objects chained as <code><em>Foo</em>
      *         Listener</code>s by the specified multicast listener, or an empty
      *         array if no such listeners have been chained by the specified
      *         multicast listener
      * @exception NullPointerException
-     *                                 if the specified {@code listenertype}
-     *                                 parameter is
-     *                                 {@code null}
+     *            if the specified {@code listenertype}
+     *            parameter is
+     *            {@code null}
      * @exception ClassCastException
-     *                                 if <code>listenerType</code> doesn't
-     *                                 specify a class or
-     *                                 interface that implements
-     *                                 <code>java.util.EventListener</code>
-     *
+     *            if <code>listenerType</code> doesn't
+     *            specify a class or
+     *            interface that implements
+     *            <code>java.util.EventListener</code>
      * @since 1.4
      */
     @SuppressWarnings("unchecked")
-    public static <T extends EventListener> T[] getListeners(EventListener l,
-            Class<T> listenerType) {
+    public static <T extends EventListener> T[] getListeners(EventListener l, Class<T> listenerType) {
         if (listenerType == null) {
             throw new NullPointerException("Listener type should not be null");
         }

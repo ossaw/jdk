@@ -27,10 +27,8 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * Validator for <date> datatype (W3C Schema datatypes)
  *
  * @xerces.internal
- *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystems Inc.
- *
  * @version $Id: DateDV.java,v 1.7 2010-11-01 04:39:46 joehw Exp $
  */
 public class DateDV extends DateTimeDV {
@@ -40,8 +38,8 @@ public class DateDV extends DateTimeDV {
         try {
             return parse(content);
         } catch (Exception ex) {
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "date" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "date" });
         }
     }
 
@@ -49,11 +47,11 @@ public class DateDV extends DateTimeDV {
      * Parses, validates and computes normalized version of dateTime object
      *
      * @param str
-     *            The lexical representation of dateTime object CCYY-MM-DD with
-     *            possible time zone Z or (-),(+)hh:mm
+     *        The lexical representation of dateTime object CCYY-MM-DD with
+     *        possible time zone Z or (-),(+)hh:mm
      * @return normalized dateTime representation
      * @exception SchemaDateTimeException
-     *                                    Invalid lexical representation
+     *            Invalid lexical representation
      */
     protected DateTimeData parse(String str) throws SchemaDateTimeException {
         DateTimeData date = new DateTimeData(str, this);
@@ -87,14 +85,10 @@ public class DateDV extends DateTimeDV {
     }
 
     protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData date) {
-        return datatypeFactory.newXMLGregorianCalendar(date.unNormYear,
-                date.unNormMonth, date.unNormDay,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone()
-                        ? (date.timezoneHr * 60 + date.timezoneMin)
-                        : DatatypeConstants.FIELD_UNDEFINED);
+        return datatypeFactory.newXMLGregorianCalendar(date.unNormYear, date.unNormMonth, date.unNormDay,
+                DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
+                DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone()
+                        ? (date.timezoneHr * 60 + date.timezoneMin) : DatatypeConstants.FIELD_UNDEFINED);
     }
 
 }

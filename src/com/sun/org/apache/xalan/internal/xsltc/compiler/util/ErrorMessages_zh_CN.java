@@ -115,8 +115,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * loaded, but it could not be found. The substitution text is
                  * the name of the class.
                  */
-                { ErrorMsg.CLASS_NOT_FOUND_ERR,
-                        "\u627E\u4E0D\u5230\u7C7B ''{0}''\u3002" },
+                { ErrorMsg.CLASS_NOT_FOUND_ERR, "\u627E\u4E0D\u5230\u7C7B ''{0}''\u3002" },
 
                 /*
                  * Note to translators: The word "method" here refers to a Java
@@ -140,8 +139,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * Note to translators: The file or URI named in the
                  * substitution text is missing.
                  */
-                { ErrorMsg.FILE_NOT_FOUND_ERR,
-                        "\u627E\u4E0D\u5230\u6587\u4EF6\u6216 URI ''{0}''\u3002" },
+                { ErrorMsg.FILE_NOT_FOUND_ERR, "\u627E\u4E0D\u5230\u6587\u4EF6\u6216 URI ''{0}''\u3002" },
 
                 /*
                  * Note to translators: This message is displayed when the URI
@@ -154,8 +152,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * Note to translators: The file or URI named in the
                  * substitution text exists but could not be opened.
                  */
-                { ErrorMsg.FILE_ACCESS_ERR,
-                        "\u65E0\u6CD5\u6253\u5F00\u6587\u4EF6\u6216 URI ''{0}''\u3002" },
+                { ErrorMsg.FILE_ACCESS_ERR, "\u65E0\u6CD5\u6253\u5F00\u6587\u4EF6\u6216 URI ''{0}''\u3002" },
 
                 /*
                  * Note to translators: <xsl:stylesheet> and <xsl:transform> are
@@ -200,8 +197,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * particular attribute named by the substitution text, but that
                  * attribute was not specified in the stylesheet.
                  */
-                { ErrorMsg.REQUIRED_ATTR_ERR,
-                        "\u7F3A\u5C11\u6240\u9700\u5C5E\u6027 ''{0}''\u3002" },
+                { ErrorMsg.REQUIRED_ATTR_ERR, "\u7F3A\u5C11\u6240\u9700\u5C5E\u6027 ''{0}''\u3002" },
 
                 /*
                  * Note to translators: This message indicates that a character
@@ -227,16 +223,14 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { ErrorMsg.STRAY_ATTRIBUTE_ERR,
-                        "\u5C5E\u6027 ''{0}'' \u5728\u5143\u7D20\u5916\u90E8\u3002" },
+                { ErrorMsg.STRAY_ATTRIBUTE_ERR, "\u5C5E\u6027 ''{0}'' \u5728\u5143\u7D20\u5916\u90E8\u3002" },
 
                 /*
                  * Note to translators: An attribute that wasn't recognized was
                  * specified on an element in the stylesheet. The attribute is
                  * named by the substitution text.
                  */
-                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
-                        "\u5C5E\u6027 ''{0}'' \u975E\u6CD5\u3002" },
+                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "\u5C5E\u6027 ''{0}'' \u975E\u6CD5\u3002" },
 
                 /*
                  * Note to translators: "import" and "include" are keywords that
@@ -268,8 +262,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * Note to translators: The stylesheet version named in the
                  * substitution text is not supported.
                  */
-                { ErrorMsg.XSL_VERSION_ERR,
-                        "XSLTC \u4E0D\u652F\u6301 XSL \u7248\u672C ''{0}''\u3002" },
+                { ErrorMsg.XSL_VERSION_ERR, "XSLTC \u4E0D\u652F\u6301 XSL \u7248\u672C ''{0}''\u3002" },
 
                 /*
                  * Note to translators: The definitions of one or more variables
@@ -289,8 +282,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * Note to translators: This message is produced if a reference
                  * to a function has too many or too few arguments.
                  */
-                { ErrorMsg.ILLEGAL_ARG_ERR,
-                        "\u51FD\u6570\u8C03\u7528\u7684\u53C2\u6570\u975E\u6CD5\u3002" },
+                { ErrorMsg.ILLEGAL_ARG_ERR, "\u51FD\u6570\u8C03\u7528\u7684\u53C2\u6570\u975E\u6CD5\u3002" },
 
                 /*
                  * Note to translators: "document()" is the name of function and
@@ -351,24 +343,21 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * Note to translators: An element in the stylesheet contained
                  * an element of a type that it was not permitted to contain.
                  */
-                { ErrorMsg.ILLEGAL_CHILD_ERR,
-                        "\u5B50\u5143\u7D20\u975E\u6CD5\u3002" },
+                { ErrorMsg.ILLEGAL_CHILD_ERR, "\u5B50\u5143\u7D20\u975E\u6CD5\u3002" },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
                  * element with a name that was not a valid XML name. The
                  * substitution text contains the name.
                  */
-                { ErrorMsg.ILLEGAL_ELEM_NAME_ERR,
-                        "\u65E0\u6CD5\u8C03\u7528\u5143\u7D20 ''{0}''" },
+                { ErrorMsg.ILLEGAL_ELEM_NAME_ERR, "\u65E0\u6CD5\u8C03\u7528\u5143\u7D20 ''{0}''" },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
                  * attribute with a name that was not a valid XML name. The
                  * substitution text contains the name.
                  */
-                { ErrorMsg.ILLEGAL_ATTR_NAME_ERR,
-                        "\u65E0\u6CD5\u8C03\u7528\u5C5E\u6027 ''{0}''" },
+                { ErrorMsg.ILLEGAL_ATTR_NAME_ERR, "\u65E0\u6CD5\u8C03\u7528\u5C5E\u6027 ''{0}''" },
 
                 /*
                  * Note to translators: The children of the outermost element of
@@ -387,8 +376,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * provided to XSLTC to process the XML input document had a
                  * configuration problem.
                  */
-                { ErrorMsg.SAX_PARSER_CONFIG_ERR,
-                        "JAXP \u89E3\u6790\u5668\u672A\u6B63\u786E\u914D\u7F6E" },
+                { ErrorMsg.SAX_PARSER_CONFIG_ERR, "JAXP \u89E3\u6790\u5668\u672A\u6B63\u786E\u914D\u7F6E" },
 
                 /*
                  * Note to translators: The substitution text names the internal
@@ -402,8 +390,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { ErrorMsg.UNSUPPORTED_XSL_ERR,
-                        "XSL \u5143\u7D20 ''{0}'' \u4E0D\u53D7\u652F\u6301\u3002" },
+                { ErrorMsg.UNSUPPORTED_XSL_ERR, "XSL \u5143\u7D20 ''{0}'' \u4E0D\u53D7\u652F\u6301\u3002" },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -411,8 +398,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * but XSTLC does not recognized the particular extension named.
                  * The substitution text gives the extension name.
                  */
-                { ErrorMsg.UNSUPPORTED_EXT_ERR,
-                        "XSLTC \u6269\u5C55 ''{0}'' \u65E0\u6CD5\u8BC6\u522B\u3002" },
+                { ErrorMsg.UNSUPPORTED_EXT_ERR, "XSLTC \u6269\u5C55 ''{0}'' \u65E0\u6CD5\u8BC6\u522B\u3002" },
 
                 /*
                  * Note to translators: The XML document given to XSLTC as a
@@ -444,8 +430,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * error in condition in XSLTC. The substitution text is the
                  * class name in XSLTC that is missing some functionality.
                  */
-                { ErrorMsg.NOT_IMPLEMENTED_ERR,
-                        "\u672A\u5B9E\u73B0: ''{0}''\u3002" },
+                { ErrorMsg.NOT_IMPLEMENTED_ERR, "\u672A\u5B9E\u73B0: ''{0}''\u3002" },
 
                 /*
                  * Note to translators: The XML document given to XSLTC as a
@@ -458,8 +443,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * Note to translators: The element named in the substitution
                  * text was encountered in the stylesheet but is not recognized.
                  */
-                { ErrorMsg.ELEMENT_PARSE_ERR,
-                        "\u65E0\u6CD5\u89E3\u6790\u5143\u7D20 ''{0}''" },
+                { ErrorMsg.ELEMENT_PARSE_ERR, "\u65E0\u6CD5\u89E3\u6790\u5143\u7D20 ''{0}''" },
 
                 /*
                  * Note to translators: "use", "<key>", "node", "node-set",
@@ -476,8 +460,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * indicates that the version specified for the output document
                  * was not valid.
                  */
-                { ErrorMsg.OUTPUT_VERSION_ERR,
-                        "\u8F93\u51FA XML \u6587\u6863\u7248\u672C\u5E94\u4E3A 1.0" },
+                { ErrorMsg.OUTPUT_VERSION_ERR, "\u8F93\u51FA XML \u6587\u6863\u7248\u672C\u5E94\u4E3A 1.0" },
 
                 /*
                  * Note to translators: The operator in a comparison operation
@@ -540,8 +523,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * Note to translators: The substitution text is the name of a
                  * class.
                  */
-                { ErrorMsg.TRANSLET_CLASS_ERR,
-                        "\u65E0\u6CD5\u52A0\u8F7D translet \u7C7B ''{0}''\u3002" },
+                { ErrorMsg.TRANSLET_CLASS_ERR, "\u65E0\u6CD5\u52A0\u8F7D translet \u7C7B ''{0}''\u3002" },
 
                 { ErrorMsg.TRANSLET_OBJECT_ERR,
                         "\u5DF2\u52A0\u8F7D Translet \u7C7B, \u4F46\u65E0\u6CD5\u521B\u5EFA translet \u5B9E\u4F8B\u3002" },
@@ -574,8 +556,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * Note to translators: The message indicates that XSLTC failed
                  * to compile the stylesheet into a translet (class file).
                  */
-                { ErrorMsg.JAXP_COMPILE_ERR,
-                        "\u65E0\u6CD5\u7F16\u8BD1\u6837\u5F0F\u8868" },
+                { ErrorMsg.JAXP_COMPILE_ERR, "\u65E0\u6CD5\u7F16\u8BD1\u6837\u5F0F\u8868" },
 
                 /*
                  * Note to translators: "TransformerFactory" is a class name. In
@@ -651,8 +632,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                 { ErrorMsg.XSLTC_SOURCE_ERR,
                         "\u8C03\u7528 XSLTCSource.build() \u65F6\u672A\u8BBE\u7F6E systemId\u3002" },
 
-                { ErrorMsg.ER_RESULT_NULL,
-                        "Result \u4E0D\u80FD\u4E3A\u7A7A\u503C" },
+                { ErrorMsg.ER_RESULT_NULL, "Result \u4E0D\u80FD\u4E3A\u7A7A\u503C" },
 
                 /*
                  * Note to translators: This message indicates that the value
@@ -712,8 +692,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * expression named in the substitution text was not well formed
                  * syntactically.
                  */
-                { ErrorMsg.SYNTAX_ERR,
-                        "''{0}'' \u4E2D\u7684\u8BED\u6CD5\u9519\u8BEF\u3002" },
+                { ErrorMsg.SYNTAX_ERR, "''{0}'' \u4E2D\u7684\u8BED\u6CD5\u9519\u8BEF\u3002" },
 
                 /*
                  * Note to translators: The substitution text is the name of a
@@ -769,8 +748,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
-                        "WARNING:  ''{0}''\n       :{1}" },
+                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "WARNING:  ''{0}''\n       :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -786,8 +764,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG,
-                        "FATAL ERROR:  ''{0}''\n           :{1}" },
+                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG, "FATAL ERROR:  ''{0}''\n           :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -803,8 +780,7 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
-                        "ERROR:  ''{0}''\n     :{1}" },
+                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "ERROR:  ''{0}''\n     :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -852,16 +828,14 @@ public class ErrorMessages_zh_CN extends ListResourceBundle {
                  * header. All the error messages are collected together and
                  * displayed beneath this message.
                  */
-                { ErrorMsg.COMPILER_ERROR_KEY,
-                        "\u7F16\u8BD1\u5668\u9519\u8BEF:" },
+                { ErrorMsg.COMPILER_ERROR_KEY, "\u7F16\u8BD1\u5668\u9519\u8BEF:" },
 
                 /*
                  * Note to translators: The following message is used as a
                  * header. All the warning messages are collected together and
                  * displayed beneath this message.
                  */
-                { ErrorMsg.COMPILER_WARNING_KEY,
-                        "\u7F16\u8BD1\u5668\u8B66\u544A:" },
+                { ErrorMsg.COMPILER_WARNING_KEY, "\u7F16\u8BD1\u5668\u8B66\u544A:" },
 
                 /*
                  * Note to translators: The following message is used as a

@@ -45,16 +45,14 @@ final class SchemaValidatorConfiguration implements XMLComponentManager {
             + Constants.SCHEMA_VALIDATION_FEATURE;
 
     /** Feature identifier: validation. */
-    private static final String VALIDATION = Constants.SAX_FEATURE_PREFIX
-            + Constants.VALIDATION_FEATURE;
+    private static final String VALIDATION = Constants.SAX_FEATURE_PREFIX + Constants.VALIDATION_FEATURE;
 
     /** Feature identifier: use grammar pool only. */
     private static final String USE_GRAMMAR_POOL_ONLY = Constants.XERCES_FEATURE_PREFIX
             + Constants.USE_GRAMMAR_POOL_ONLY_FEATURE;
 
     /** Feature identifier: parser settings. */
-    private static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX
-            + Constants.PARSER_SETTINGS;
+    private static final String PARSER_SETTINGS = Constants.XERCES_FEATURE_PREFIX + Constants.PARSER_SETTINGS;
 
     // property identifiers
 
@@ -90,43 +88,37 @@ final class SchemaValidatorConfiguration implements XMLComponentManager {
     private final ValidationManager fValidationManager;
 
     public SchemaValidatorConfiguration(XMLComponentManager parentManager,
-            XSGrammarPoolContainer grammarContainer,
-            ValidationManager validationManager) {
+            XSGrammarPoolContainer grammarContainer, ValidationManager validationManager) {
         fParentComponentManager = parentManager;
         fGrammarPool = grammarContainer.getGrammarPool();
         fUseGrammarPoolOnly = grammarContainer.isFullyComposed();
         fValidationManager = validationManager;
         // add schema message formatter to error reporter
         try {
-            XMLErrorReporter errorReporter = (XMLErrorReporter) fParentComponentManager
-                    .getProperty(ERROR_REPORTER);
+            XMLErrorReporter errorReporter = (XMLErrorReporter) fParentComponentManager.getProperty(
+                    ERROR_REPORTER);
             if (errorReporter != null) {
-                errorReporter.putMessageFormatter(
-                        XSMessageFormatter.SCHEMA_DOMAIN,
-                        new XSMessageFormatter());
+                errorReporter.putMessageFormatter(XSMessageFormatter.SCHEMA_DOMAIN, new XSMessageFormatter());
             }
         }
         // Ignore exception.
-        catch (XMLConfigurationException exc) {
-        }
+        catch (XMLConfigurationException exc) {}
     }
 
     /**
      * Returns the state of a feature.
      *
      * @param featureId
-     *                  The feature identifier.
+     *        The feature identifier.
      * @return true if the feature is supported
-     *
      * @throws XMLConfigurationException
-     *                                   Thrown for configuration error. In
-     *                                   general, components should
-     *                                   only throw this exception if it is
-     *                                   <strong>really</strong> a
-     *                                   critical error.
+     *         Thrown for configuration error. In
+     *         general, components should
+     *         only throw this exception if it is
+     *         <strong>really</strong> a
+     *         critical error.
      */
-    public boolean getFeature(String featureId)
-            throws XMLConfigurationException {
+    public boolean getFeature(String featureId) throws XMLConfigurationException {
         FeatureState state = getFeatureState(featureId);
         if (state.isExceptional()) {
             throw new XMLConfigurationException(state.status, featureId);
@@ -137,8 +129,7 @@ final class SchemaValidatorConfiguration implements XMLComponentManager {
     public FeatureState getFeatureState(String featureId) {
         if (PARSER_SETTINGS.equals(featureId)) {
             return fParentComponentManager.getFeatureState(featureId);
-        } else if (VALIDATION.equals(featureId) || SCHEMA_VALIDATION.equals(
-                featureId)) {
+        } else if (VALIDATION.equals(featureId) || SCHEMA_VALIDATION.equals(featureId)) {
             return FeatureState.is(true);
         } else if (USE_GRAMMAR_POOL_ONLY.equals(featureId)) {
             return FeatureState.is(fUseGrammarPoolOnly);
@@ -159,18 +150,16 @@ final class SchemaValidatorConfiguration implements XMLComponentManager {
      * Returns the value of a property.
      *
      * @param propertyId
-     *                   The property identifier.
+     *        The property identifier.
      * @return the value of the property
-     *
      * @throws XMLConfigurationException
-     *                                   Thrown for configuration error. In
-     *                                   general, components should
-     *                                   only throw this exception if it is
-     *                                   <strong>really</strong> a
-     *                                   critical error.
+     *         Thrown for configuration error. In
+     *         general, components should
+     *         only throw this exception if it is
+     *         <strong>really</strong> a
+     *         critical error.
      */
-    public Object getProperty(String propertyId)
-            throws XMLConfigurationException {
+    public Object getProperty(String propertyId) throws XMLConfigurationException {
         PropertyState state = getPropertyState(propertyId);
         if (state.isExceptional()) {
             throw new XMLConfigurationException(state.status, propertyId);

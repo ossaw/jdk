@@ -44,8 +44,7 @@ public abstract class ORB extends org.omg.CORBA.ORB {
      */
     // always return a ValueDef or throw BAD_PARAM if
     // <em>repid</em> does not represent a valuetype
-    public org.omg.CORBA.Object get_value_def(String repid)
-            throws org.omg.CORBA.BAD_PARAM {
+    public org.omg.CORBA.Object get_value_def(String repid) throws org.omg.CORBA.BAD_PARAM {
         throw new org.omg.CORBA.NO_IMPLEMENT();
     }
 

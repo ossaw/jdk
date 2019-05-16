@@ -19,7 +19,6 @@ import sun.java2d.DisposerRecord;
  * An implementation of <code>ImageInputStream</code> that gets its input from a
  * regular <code>InputStream</code>. A file is used to cache previously read
  * data.
- *
  */
 public class FileCacheImageInputStream extends ImageInputStreamImpl {
 
@@ -52,7 +51,6 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
     /**
      * Constructs a <code>FileCacheImageInputStream</code> that will read from a
      * given <code>InputStream</code>.
-     *
      * <p>
      * A temporary file is used as a cache. If <code>cacheDir</code>is non-
      * <code>null</code> and is a directory, the file will be created there. If
@@ -61,25 +59,23 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
      * <code>File.createTempFile</code> for details).
      *
      * @param stream
-     *                 an <code>InputStream</code> to read from.
+     *        an <code>InputStream</code> to read from.
      * @param cacheDir
-     *                 a <code>File</code> indicating where the cache file
-     *                 should be
-     *                 created, or <code>null</code> to use the system
-     *                 directory.
-     *
+     *        a <code>File</code> indicating where the cache file
+     *        should be
+     *        created, or <code>null</code> to use the system
+     *        directory.
      * @exception IllegalArgumentException
-     *                                     if <code>stream</code> is
-     *                                     <code>null</code>.
+     *            if <code>stream</code> is
+     *            <code>null</code>.
      * @exception IllegalArgumentException
-     *                                     if <code>cacheDir</code> is
-     *                                     non-<code>null</code> but is
-     *                                     not a directory.
+     *            if <code>cacheDir</code> is
+     *            non-<code>null</code> but is
+     *            not a directory.
      * @exception IOException
-     *                                     if a cache file cannot be created.
+     *            if a cache file cannot be created.
      */
-    public FileCacheImageInputStream(InputStream stream, File cacheDir)
-            throws IOException {
+    public FileCacheImageInputStream(InputStream stream, File cacheDir) throws IOException {
         if (stream == null) {
             throw new IllegalArgumentException("stream == null!");
         }
@@ -90,8 +86,7 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
         if (cacheDir == null)
             this.cacheFile = Files.createTempFile("imageio", ".tmp").toFile();
         else
-            this.cacheFile = Files.createTempFile(cacheDir.toPath(), "imageio",
-                    ".tmp").toFile();
+            this.cacheFile = Files.createTempFile(cacheDir.toPath(), "imageio", ".tmp").toFile();
         this.cache = new RandomAccessFile(cacheFile, "rw");
 
         this.closeAction = StreamCloser.createCloseAction(this);
@@ -126,8 +121,7 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
         while (len > 0) {
             // Copy a buffer's worth of data from the source to the cache
             // BUFFER_LENGTH will always fit into an int so this is safe
-            int nbytes = stream.read(buf, 0, (int) Math.min(len,
-                    (long) BUFFER_LENGTH));
+            int nbytes = stream.read(buf, 0, (int) Math.min(len, (long) BUFFER_LENGTH));
             if (nbytes == -1) {
                 foundEOF = true;
                 return length;
@@ -162,8 +156,7 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
         }
         // Fix 4430357 - if off + len < 0, overflow occurred
         if (off < 0 || len < 0 || off + len > b.length || off + len < 0) {
-            throw new IndexOutOfBoundsException(
-                    "off < 0 || len < 0 || off+len > b.length || off+len < 0!");
+            throw new IndexOutOfBoundsException("off < 0 || len < 0 || off+len > b.length || off+len < 0!");
         }
 
         bitOffset = 0;
@@ -191,7 +184,6 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
      * data in order to allow seeking backwards.
      *
      * @return <code>true</code>.
-     *
      * @see #isCachedMemory
      * @see #isCachedFile
      */
@@ -204,7 +196,6 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
      * maintains a file cache.
      *
      * @return <code>true</code>.
-     *
      * @see #isCached
      * @see #isCachedMemory
      */
@@ -217,7 +208,6 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
      * not maintain a main memory cache.
      *
      * @return <code>false</code>.
-     *
      * @see #isCached
      * @see #isCachedFile
      */
@@ -230,7 +220,7 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
      * the cache file. The source <code>InputStream</code> is not closed.
      *
      * @exception IOException
-     *                        if an error occurs.
+     *            if an error occurs.
      */
     public void close() throws IOException {
         super.close();
@@ -263,8 +253,7 @@ public class FileCacheImageInputStream extends ImageInputStreamImpl {
             if (cache != null) {
                 try {
                     cache.close();
-                } catch (IOException e) {
-                } finally {
+                } catch (IOException e) {} finally {
                     cache = null;
                 }
             }

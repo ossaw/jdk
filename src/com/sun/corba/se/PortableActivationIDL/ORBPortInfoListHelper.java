@@ -22,8 +22,7 @@ abstract public class ORBPortInfoListHelper {
         a.read_value(out.create_input_stream(), type());
     }
 
-    public static com.sun.corba.se.PortableActivationIDL.ORBPortInfo[] extract(
-            org.omg.CORBA.Any a) {
+    public static com.sun.corba.se.PortableActivationIDL.ORBPortInfo[] extract(org.omg.CORBA.Any a) {
         return read(a.create_input_stream());
     }
 
@@ -31,13 +30,11 @@ abstract public class ORBPortInfoListHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper
-                    .type();
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
+            __typeCode = com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper.type();
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
             __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    com.sun.corba.se.PortableActivationIDL.ORBPortInfoListHelper
-                            .id(), "ORBPortInfoList", __typeCode);
+                    com.sun.corba.se.PortableActivationIDL.ORBPortInfoListHelper.id(), "ORBPortInfoList",
+                    __typeCode);
         }
         return __typeCode;
     }
@@ -52,8 +49,7 @@ abstract public class ORBPortInfoListHelper {
         int _len0 = istream.read_long();
         value = new com.sun.corba.se.PortableActivationIDL.ORBPortInfo[_len0];
         for (int _o1 = 0; _o1 < value.length; ++_o1)
-            value[_o1] = com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper
-                    .read(istream);
+            value[_o1] = com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper.read(istream);
         return value;
     }
 
@@ -61,8 +57,7 @@ abstract public class ORBPortInfoListHelper {
             com.sun.corba.se.PortableActivationIDL.ORBPortInfo[] value) {
         ostream.write_long(value.length);
         for (int _i0 = 0; _i0 < value.length; ++_i0)
-            com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper.write(
-                    ostream, value[_i0]);
+            com.sun.corba.se.PortableActivationIDL.ORBPortInfoHelper.write(ostream, value[_i0]);
     }
 
 }

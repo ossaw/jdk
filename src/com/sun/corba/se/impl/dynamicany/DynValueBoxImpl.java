@@ -40,8 +40,7 @@ public class DynValueBoxImpl extends DynValueCommonImpl implements DynValueBox {
     // DynValueBox methods
     //
 
-    public Any get_boxed_value()
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+    public Any get_boxed_value() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (isNull) {
             throw new InvalidValue();
         }
@@ -61,8 +60,7 @@ public class DynValueBoxImpl extends DynValueCommonImpl implements DynValueBox {
         isNull = false;
     }
 
-    public DynAny get_boxed_value_as_dyn_any()
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+    public DynAny get_boxed_value_as_dyn_any() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (isNull) {
             throw new InvalidValue();
         }
@@ -84,8 +82,7 @@ public class DynValueBoxImpl extends DynValueCommonImpl implements DynValueBox {
 
     protected boolean initializeComponentsFromAny() {
         try {
-            components = new DynAny[] { DynAnyUtil.createMostDerivedDynAny(any,
-                    orb, false) };
+            components = new DynAny[] { DynAnyUtil.createMostDerivedDynAny(any, orb, false) };
         } catch (InconsistentTypeCode ictc) {
             return false; // impossible
         }
@@ -95,8 +92,7 @@ public class DynValueBoxImpl extends DynValueCommonImpl implements DynValueBox {
     protected boolean initializeComponentsFromTypeCode() {
         try {
             any = DynAnyUtil.createDefaultAnyOfType(any.type(), orb);
-            components = new DynAny[] { DynAnyUtil.createMostDerivedDynAny(any,
-                    orb, false) };
+            components = new DynAny[] { DynAnyUtil.createMostDerivedDynAny(any, orb, false) };
         } catch (InconsistentTypeCode ictc) {
             return false; // impossible
         }

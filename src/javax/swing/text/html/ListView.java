@@ -19,7 +19,7 @@ public class ListView extends BlockView {
      * Creates a new view that represents a list element.
      *
      * @param elem
-     *             the element to create a view for
+     *        the element to create a view for
      */
     public ListView(Element elem) {
         super(elem, View.Y_AXIS);
@@ -46,9 +46,9 @@ public class ListView extends BlockView {
      * Renders using the given rendering surface and area on that surface.
      *
      * @param g
-     *                   the rendering surface to use
+     *        the rendering surface to use
      * @param allocation
-     *                   the allocated region to render into
+     *        the allocated region to render into
      * @see View#paint
      */
     public void paint(Graphics g, Shape allocation) {
@@ -69,8 +69,8 @@ public class ListView extends BlockView {
                 childAllocation(i, childRect);
                 if (childRect.y < endY) {
                     if ((childRect.y + childRect.height) >= clip.y) {
-                        listPainter.paint(g, childRect.x, childRect.y,
-                                childRect.width, childRect.height, this, i);
+                        listPainter.paint(g, childRect.x, childRect.y, childRect.width, childRect.height,
+                                this, i);
                     }
                 } else {
                     break;
@@ -84,15 +84,14 @@ public class ListView extends BlockView {
      * does, but a subclass can use this to paint things relative to the child.
      *
      * @param g
-     *              the graphics context
+     *        the graphics context
      * @param alloc
-     *              the allocated region to render the child into
+     *        the allocated region to render the child into
      * @param index
-     *              the index of the child
+     *        the index of the child
      */
     protected void paintChild(Graphics g, Rectangle alloc, int index) {
-        listPainter.paint(g, alloc.x, alloc.y, alloc.width, alloc.height, this,
-                index);
+        listPainter.paint(g, alloc.x, alloc.y, alloc.width, alloc.height, this, index);
         super.paintChild(g, alloc, index);
     }
 

@@ -59,8 +59,7 @@ public class InterceptorInvoker {
      * the ORB can create it. The invoker is initially disabled, and must be
      * explicitly enabled using setEnabled().
      */
-    InterceptorInvoker(ORB orb, InterceptorList interceptorList,
-            PICurrent piCurrent) {
+    InterceptorInvoker(ORB orb, InterceptorList interceptorList, PICurrent piCurrent) {
         this.orb = orb;
         this.interceptorList = interceptorList;
         this.enabled = false;
@@ -82,7 +81,7 @@ public class InterceptorInvoker {
      * Called when a new POA is created.
      *
      * @param oa
-     *           The Object Adapter associated with the IOR interceptor.
+     *        The Object Adapter associated with the IOR interceptor.
      */
     void objectAdapterCreated(ObjectAdapter oa) {
         // If invocation is not yet enabled, don't do anything.
@@ -91,8 +90,8 @@ public class InterceptorInvoker {
             IORInfoImpl info = new IORInfoImpl(oa);
 
             // Call each IORInterceptor:
-            IORInterceptor[] iorInterceptors = (IORInterceptor[]) interceptorList
-                    .getInterceptors(InterceptorList.INTERCEPTOR_TYPE_IOR);
+            IORInterceptor[] iorInterceptors = (IORInterceptor[]) interceptorList.getInterceptors(
+                    InterceptorList.INTERCEPTOR_TYPE_IOR);
             int size = iorInterceptors.length;
 
             // Implementation note:
@@ -135,8 +134,8 @@ public class InterceptorInvoker {
 
     void adapterManagerStateChanged(int managerId, short newState) {
         if (enabled) {
-            IORInterceptor[] interceptors = (IORInterceptor[]) interceptorList
-                    .getInterceptors(InterceptorList.INTERCEPTOR_TYPE_IOR);
+            IORInterceptor[] interceptors = (IORInterceptor[]) interceptorList.getInterceptors(
+                    InterceptorList.INTERCEPTOR_TYPE_IOR);
             int size = interceptors.length;
 
             for (int i = (size - 1); i >= 0; i--) {
@@ -144,8 +143,7 @@ public class InterceptorInvoker {
                     IORInterceptor interceptor = interceptors[i];
                     if (interceptor instanceof IORInterceptor_3_0) {
                         IORInterceptor_3_0 interceptor30 = (IORInterceptor_3_0) interceptor;
-                        interceptor30.adapter_manager_state_changed(managerId,
-                                newState);
+                        interceptor30.adapter_manager_state_changed(managerId, newState);
                     }
                 } catch (Exception exc) {
                     // No-op: ignore exception in this case
@@ -154,11 +152,10 @@ public class InterceptorInvoker {
         }
     }
 
-    void adapterStateChanged(ObjectReferenceTemplate[] templates,
-            short newState) {
+    void adapterStateChanged(ObjectReferenceTemplate[] templates, short newState) {
         if (enabled) {
-            IORInterceptor[] interceptors = (IORInterceptor[]) interceptorList
-                    .getInterceptors(InterceptorList.INTERCEPTOR_TYPE_IOR);
+            IORInterceptor[] interceptors = (IORInterceptor[]) interceptorList.getInterceptors(
+                    InterceptorList.INTERCEPTOR_TYPE_IOR);
             int size = interceptors.length;
 
             for (int i = (size - 1); i >= 0; i--) {
@@ -166,8 +163,7 @@ public class InterceptorInvoker {
                     IORInterceptor interceptor = interceptors[i];
                     if (interceptor instanceof IORInterceptor_3_0) {
                         IORInterceptor_3_0 interceptor30 = (IORInterceptor_3_0) interceptor;
-                        interceptor30.adapter_state_changed(templates,
-                                newState);
+                        interceptor30.adapter_state_changed(templates, newState);
                     }
                 } catch (Exception exc) {
                     // No-op: ignore exception in this case
@@ -197,8 +193,7 @@ public class InterceptorInvoker {
 
                 // Get all ClientRequestInterceptors:
                 ClientRequestInterceptor[] clientInterceptors = (ClientRequestInterceptor[]) interceptorList
-                        .getInterceptors(
-                                InterceptorList.INTERCEPTOR_TYPE_CLIENT);
+                        .getInterceptors(InterceptorList.INTERCEPTOR_TYPE_CLIENT);
                 int size = clientInterceptors.length;
 
                 // We will assume that all interceptors returned successfully,
@@ -237,8 +232,7 @@ public class InterceptorInvoker {
                         // called.
                         flowStackIndex = i;
                         info.setForwardRequest(e);
-                        info.setEndingPointCall(
-                                ClientRequestInfoImpl.CALL_RECEIVE_OTHER);
+                        info.setEndingPointCall(ClientRequestInfoImpl.CALL_RECEIVE_OTHER);
                         info.setReplyStatus(LOCATION_FORWARD.value);
 
                         updateClientRequestDispatcherForward(info);
@@ -255,8 +249,7 @@ public class InterceptorInvoker {
                         // no other Interceptors' send_request operations are
                         // called.
                         flowStackIndex = i;
-                        info.setEndingPointCall(
-                                ClientRequestInfoImpl.CALL_RECEIVE_EXCEPTION);
+                        info.setEndingPointCall(ClientRequestInfoImpl.CALL_RECEIVE_EXCEPTION);
                         info.setReplyStatus(SYSTEM_EXCEPTION.value);
                         info.setException(e);
 
@@ -293,8 +286,7 @@ public class InterceptorInvoker {
 
                 // Get all ClientRequestInterceptors:
                 ClientRequestInterceptor[] clientInterceptors = (ClientRequestInterceptor[]) interceptorList
-                        .getInterceptors(
-                                InterceptorList.INTERCEPTOR_TYPE_CLIENT);
+                        .getInterceptors(InterceptorList.INTERCEPTOR_TYPE_CLIENT);
                 int flowStackIndex = info.getFlowStackIndex();
 
                 // Determine whether we are calling receive_reply,
@@ -303,8 +295,7 @@ public class InterceptorInvoker {
 
                 // If we would be calling RECEIVE_REPLY, but this is a
                 // one-way call, override this and call receive_other:
-                if ((endingPointCall == ClientRequestInfoImpl.CALL_RECEIVE_REPLY)
-                        && info.getIsOneWay()) {
+                if ((endingPointCall == ClientRequestInfoImpl.CALL_RECEIVE_REPLY) && info.getIsOneWay()) {
                     endingPointCall = ClientRequestInfoImpl.CALL_RECEIVE_OTHER;
                     info.setEndingPointCall(endingPointCall);
                 }
@@ -384,8 +375,7 @@ public class InterceptorInvoker {
 
                 // Get all ServerRequestInterceptors:
                 ServerRequestInterceptor[] serverInterceptors = (ServerRequestInterceptor[]) interceptorList
-                        .getInterceptors(
-                                InterceptorList.INTERCEPTOR_TYPE_SERVER);
+                        .getInterceptors(InterceptorList.INTERCEPTOR_TYPE_SERVER);
                 int size = serverInterceptors.length;
 
                 // We will assume that all interceptors returned successfully,
@@ -399,8 +389,7 @@ public class InterceptorInvoker {
                 for (int i = 0; continueProcessing && (i < size); i++) {
 
                     try {
-                        serverInterceptors[i].receive_request_service_contexts(
-                                info);
+                        serverInterceptors[i].receive_request_service_contexts(info);
                     } catch (ForwardRequest e) {
                         // as per PI spec (orbos/99-12-02 sec 5.3.1.), if
                         // interception point throws a ForwardRequest,
@@ -408,10 +397,8 @@ public class InterceptorInvoker {
                         // called and send_other is called.
                         flowStackIndex = i;
                         info.setForwardRequest(e);
-                        info.setIntermediatePointCall(
-                                ServerRequestInfoImpl.CALL_INTERMEDIATE_NONE);
-                        info.setEndingPointCall(
-                                ServerRequestInfoImpl.CALL_SEND_OTHER);
+                        info.setIntermediatePointCall(ServerRequestInfoImpl.CALL_INTERMEDIATE_NONE);
+                        info.setEndingPointCall(ServerRequestInfoImpl.CALL_SEND_OTHER);
                         info.setReplyStatus(LOCATION_FORWARD.value);
 
                         // For some reason, using break here causes the VM on
@@ -428,10 +415,8 @@ public class InterceptorInvoker {
                         // called.
                         flowStackIndex = i;
                         info.setException(e);
-                        info.setIntermediatePointCall(
-                                ServerRequestInfoImpl.CALL_INTERMEDIATE_NONE);
-                        info.setEndingPointCall(
-                                ServerRequestInfoImpl.CALL_SEND_EXCEPTION);
+                        info.setIntermediatePointCall(ServerRequestInfoImpl.CALL_INTERMEDIATE_NONE);
+                        info.setEndingPointCall(ServerRequestInfoImpl.CALL_SEND_EXCEPTION);
                         info.setReplyStatus(SYSTEM_EXCEPTION.value);
 
                         // For some reason, using break here causes the VM on
@@ -461,8 +446,7 @@ public class InterceptorInvoker {
     void invokeServerInterceptorIntermediatePoint(ServerRequestInfoImpl info) {
         int intermediatePointCall = info.getIntermediatePointCall();
         // If invocation is not yet enabled, don't do anything.
-        if (enabled
-                && (intermediatePointCall != ServerRequestInfoImpl.CALL_INTERMEDIATE_NONE)) {
+        if (enabled && (intermediatePointCall != ServerRequestInfoImpl.CALL_INTERMEDIATE_NONE)) {
             // NOTE: do not touch the slotStack. The RSC and TSC are
             // equivalent at this point.
 
@@ -486,8 +470,7 @@ public class InterceptorInvoker {
                     // no other Interceptors' intermediate points are
                     // called and send_other is called.
                     info.setForwardRequest(e);
-                    info.setEndingPointCall(
-                            ServerRequestInfoImpl.CALL_SEND_OTHER);
+                    info.setEndingPointCall(ServerRequestInfoImpl.CALL_SEND_OTHER);
                     info.setReplyStatus(LOCATION_FORWARD.value);
                     break;
                 } catch (SystemException e) {
@@ -497,8 +480,7 @@ public class InterceptorInvoker {
                     // no other Interceptors' starting points are
                     // called.
                     info.setException(e);
-                    info.setEndingPointCall(
-                            ServerRequestInfoImpl.CALL_SEND_EXCEPTION);
+                    info.setEndingPointCall(ServerRequestInfoImpl.CALL_SEND_EXCEPTION);
                     info.setReplyStatus(SYSTEM_EXCEPTION.value);
                     break;
                 }
@@ -526,8 +508,7 @@ public class InterceptorInvoker {
 
                 // Get all ServerRequestInterceptors:
                 ServerRequestInterceptor[] serverInterceptors = (ServerRequestInterceptor[]) interceptorList
-                        .getInterceptors(
-                                InterceptorList.INTERCEPTOR_TYPE_SERVER);
+                        .getInterceptors(InterceptorList.INTERCEPTOR_TYPE_SERVER);
                 int flowStackIndex = info.getFlowStackIndex();
 
                 // Determine whether we are calling
@@ -587,8 +568,7 @@ public class InterceptorInvoker {
      * Update the client delegate in the event of a ForwardRequest, given the
      * information in the passed-in info object.
      */
-    private void updateClientRequestDispatcherForward(
-            ClientRequestInfoImpl info) {
+    private void updateClientRequestDispatcherForward(ClientRequestInfoImpl info) {
         ForwardRequest forwardRequest = info.getForwardRequestException();
 
         // ForwardRequest may be null if the forwarded IOR is set internal

@@ -54,8 +54,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * received all data, the printer removes the JOB_DATA_INSUFFICIENT and
      * JOB_INCOMING reasons at the same time.
      */
-    public static final JobStateReason JOB_DATA_INSUFFICIENT = new JobStateReason(
-            1);
+    public static final JobStateReason JOB_DATA_INSUFFICIENT = new JobStateReason(1);
 
     /**
      * The Printer could not access one or more documents passed by reference
@@ -69,8 +68,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * implementation and/or site policy. This value should be supported if the
      * printer supports doc flavors with URL print data representation objects.
      */
-    public static final JobStateReason DOCUMENT_ACCESS_ERROR = new JobStateReason(
-            2);
+    public static final JobStateReason DOCUMENT_ACCESS_ERROR = new JobStateReason(2);
 
     /**
      * The job was not completely submitted for some unforeseen reason.
@@ -80,8 +78,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * was entirely transferred to the printer, (3) the client crashed before
      * the job was fully submitted.
      */
-    public static final JobStateReason SUBMISSION_INTERRUPTED = new JobStateReason(
-            3);
+    public static final JobStateReason SUBMISSION_INTERRUPTED = new JobStateReason(3);
 
     /**
      * The printer is transmitting the job to the output device.
@@ -95,8 +92,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * no other reasons to hold the job. This value should be supported if the
      * {@link JobHoldUntil JobHoldUntil} job template attribute is supported.
      */
-    public static final JobStateReason JOB_HOLD_UNTIL_SPECIFIED = new JobStateReason(
-            5);
+    public static final JobStateReason JOB_HOLD_UNTIL_SPECIFIED = new JobStateReason(5);
 
     /**
      * At least one of the resources needed by the job, such as media, fonts,
@@ -107,16 +103,14 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * be moved to the PENDING_HELD state, depending on implementation and/or
      * job scheduling policy.
      */
-    public static final JobStateReason RESOURCES_ARE_NOT_READY = new JobStateReason(
-            6);
+    public static final JobStateReason RESOURCES_ARE_NOT_READY = new JobStateReason(6);
 
     /**
      * The value of the printer's {@link PrinterStateReasons
      * PrinterStateReasons} attribute contains a {@link PrinterStateReason
      * PrinterStateReason} value of STOPPED_PARTLY.
      */
-    public static final JobStateReason PRINTER_STOPPED_PARTLY = new JobStateReason(
-            7);
+    public static final JobStateReason PRINTER_STOPPED_PARTLY = new JobStateReason(7);
 
     /**
      * The value of the printer's {@link PrinterState PrinterState} attribute ia
@@ -141,8 +135,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * interpreting document data and producing another electronic
      * representation.
      */
-    public static final JobStateReason JOB_TRANSFORMING = new JobStateReason(
-            11);
+    public static final JobStateReason JOB_TRANSFORMING = new JobStateReason(11);
 
     /**
      * The job is in the PENDING_HELD, PENDING, or PROCESSING state, but more
@@ -155,8 +148,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * implementation. All implementations put the job into (or back into) the
      * PROCESSING state when marking does begin.
      */
-    public static final JobStateReason JOB_QUEUED_FOR_MARKER = new JobStateReason(
-            12);
+    public static final JobStateReason JOB_QUEUED_FOR_MARKER = new JobStateReason(12);
 
     /**
      * The output device is marking media. This value is useful for printers
@@ -175,8 +167,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * a member of the job owner's security group. This value should be
      * supported.
      */
-    public static final JobStateReason JOB_CANCELED_BY_USER = new JobStateReason(
-            14);
+    public static final JobStateReason JOB_CANCELED_BY_USER = new JobStateReason(14);
 
     /**
      * The job was canceled by the operator, i.e., by a user who has been
@@ -188,16 +179,14 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * supported if the implementation permits canceling by someone other than
      * the owner of the job.
      */
-    public static final JobStateReason JOB_CANCELED_BY_OPERATOR = new JobStateReason(
-            15);
+    public static final JobStateReason JOB_CANCELED_BY_OPERATOR = new JobStateReason(15);
 
     /**
      * The job was canceled by an unidentified local user, i.e., a user at a
      * console at the device. This value should be supported if the
      * implementation supports canceling jobs at the console.
      */
-    public static final JobStateReason JOB_CANCELED_AT_DEVICE = new JobStateReason(
-            16);
+    public static final JobStateReason JOB_CANCELED_AT_DEVICE = new JobStateReason(16);
 
     /**
      * The job was aborted by the system. Either the job (1) is in the process
@@ -206,8 +195,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * PENDING_HELD state, so that a user or operator can manually try the job
      * again. This value should be supported.
      */
-    public static final JobStateReason ABORTED_BY_SYSTEM = new JobStateReason(
-            17);
+    public static final JobStateReason ABORTED_BY_SYSTEM = new JobStateReason(17);
 
     /**
      * The job was aborted by the system because the printer determined while
@@ -216,8 +204,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * supported, since {@link Compression Compression} is a required doc
      * description attribute.
      */
-    public static final JobStateReason UNSUPPORTED_COMPRESSION = new JobStateReason(
-            18);
+    public static final JobStateReason UNSUPPORTED_COMPRESSION = new JobStateReason(18);
 
     /**
      * The job was aborted by the system because the printer encountered an
@@ -225,8 +212,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * this reason, the document data has already passed any tests that would
      * have led to the UNSUPPORTED_COMPRESSION job state reason.
      */
-    public static final JobStateReason COMPRESSION_ERROR = new JobStateReason(
-            19);
+    public static final JobStateReason COMPRESSION_ERROR = new JobStateReason(19);
 
     /**
      * The job was aborted by the system because the document data's document
@@ -238,8 +224,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * specified explicitly). This value must be supported, since a doc flavor
      * is required to be specified for each doc.
      */
-    public static final JobStateReason UNSUPPORTED_DOCUMENT_FORMAT = new JobStateReason(
-            20);
+    public static final JobStateReason UNSUPPORTED_DOCUMENT_FORMAT = new JobStateReason(20);
 
     /**
      * The job was aborted by the system because the printer encountered an
@@ -247,8 +232,7 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * reason, the document data has already passed any tests that would have
      * led to the UNSUPPORTED_DOCUMENT_FORMAT job state reason.
      */
-    public static final JobStateReason DOCUMENT_FORMAT_ERROR = new JobStateReason(
-            21);
+    public static final JobStateReason DOCUMENT_FORMAT_ERROR = new JobStateReason(21);
 
     /**
      * The requester has canceled the job or the printer has aborted the job,
@@ -263,36 +247,31 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * incrementing, the printer moves the job from the PROCESSING state to the
      * CANCELED or ABORTED job states.
      */
-    public static final JobStateReason PROCESSING_TO_STOP_POINT = new JobStateReason(
-            22);
+    public static final JobStateReason PROCESSING_TO_STOP_POINT = new JobStateReason(22);
 
     /**
      * The printer is off-line and accepting no jobs. All PENDING jobs are put
      * into the PENDING_HELD state. This situation could be true if the
      * service's or document transform's input is impaired or broken.
      */
-    public static final JobStateReason SERVICE_OFF_LINE = new JobStateReason(
-            23);
+    public static final JobStateReason SERVICE_OFF_LINE = new JobStateReason(23);
 
     /**
      * The job completed successfully. This value should be supported.
      */
-    public static final JobStateReason JOB_COMPLETED_SUCCESSFULLY = new JobStateReason(
-            24);
+    public static final JobStateReason JOB_COMPLETED_SUCCESSFULLY = new JobStateReason(24);
 
     /**
      * The job completed with warnings. This value should be supported if the
      * implementation detects warnings.
      */
-    public static final JobStateReason JOB_COMPLETED_WITH_WARNINGS = new JobStateReason(
-            25);
+    public static final JobStateReason JOB_COMPLETED_WITH_WARNINGS = new JobStateReason(25);
 
     /**
      * The job completed with errors (and possibly warnings too). This value
      * should be supported if the implementation detects errors.
      */
-    public static final JobStateReason JOB_COMPLETED_WITH_ERRORS = new JobStateReason(
-            26);
+    public static final JobStateReason JOB_COMPLETED_WITH_ERRORS = new JobStateReason(26);
 
     /**
      * This job is retained and is currently able to be restarted. If
@@ -312,46 +291,36 @@ public class JobStateReason extends EnumSyntax implements Attribute {
      * printer has no additional information about the job and never will have
      * any better information.
      */
-    public static final JobStateReason QUEUED_IN_DEVICE = new JobStateReason(
-            28);
+    public static final JobStateReason QUEUED_IN_DEVICE = new JobStateReason(28);
 
     /**
      * Construct a new job state reason enumeration value with the given integer
      * value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected JobStateReason(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "job-incoming",
-            "job-data-insufficient", "document-access-error",
-            "submission-interrupted", "job-outgoing",
-            "job-hold-until-specified", "resources-are-not-ready",
-            "printer-stopped-partly", "printer-stopped", "job-interpreting",
-            "job-queued", "job-transforming", "job-queued-for-marker",
-            "job-printing", "job-canceled-by-user", "job-canceled-by-operator",
-            "job-canceled-at-device", "aborted-by-system",
-            "unsupported-compression", "compression-error",
-            "unsupported-document-format", "document-format-error",
-            "processing-to-stop-point", "service-off-line",
-            "job-completed-successfully", "job-completed-with-warnings",
-            "job-completed-with-errors", "job-restartable",
-            "queued-in-device" };
+    private static final String[] myStringTable = { "job-incoming", "job-data-insufficient",
+            "document-access-error", "submission-interrupted", "job-outgoing", "job-hold-until-specified",
+            "resources-are-not-ready", "printer-stopped-partly", "printer-stopped", "job-interpreting",
+            "job-queued", "job-transforming", "job-queued-for-marker", "job-printing", "job-canceled-by-user",
+            "job-canceled-by-operator", "job-canceled-at-device", "aborted-by-system",
+            "unsupported-compression", "compression-error", "unsupported-document-format",
+            "document-format-error", "processing-to-stop-point", "service-off-line",
+            "job-completed-successfully", "job-completed-with-warnings", "job-completed-with-errors",
+            "job-restartable", "queued-in-device" };
 
-    private static final JobStateReason[] myEnumValueTable = { JOB_INCOMING,
-            JOB_DATA_INSUFFICIENT, DOCUMENT_ACCESS_ERROR,
-            SUBMISSION_INTERRUPTED, JOB_OUTGOING, JOB_HOLD_UNTIL_SPECIFIED,
-            RESOURCES_ARE_NOT_READY, PRINTER_STOPPED_PARTLY, PRINTER_STOPPED,
-            JOB_INTERPRETING, JOB_QUEUED, JOB_TRANSFORMING,
-            JOB_QUEUED_FOR_MARKER, JOB_PRINTING, JOB_CANCELED_BY_USER,
-            JOB_CANCELED_BY_OPERATOR, JOB_CANCELED_AT_DEVICE, ABORTED_BY_SYSTEM,
-            UNSUPPORTED_COMPRESSION, COMPRESSION_ERROR,
-            UNSUPPORTED_DOCUMENT_FORMAT, DOCUMENT_FORMAT_ERROR,
-            PROCESSING_TO_STOP_POINT, SERVICE_OFF_LINE,
-            JOB_COMPLETED_SUCCESSFULLY, JOB_COMPLETED_WITH_WARNINGS,
+    private static final JobStateReason[] myEnumValueTable = { JOB_INCOMING, JOB_DATA_INSUFFICIENT,
+            DOCUMENT_ACCESS_ERROR, SUBMISSION_INTERRUPTED, JOB_OUTGOING, JOB_HOLD_UNTIL_SPECIFIED,
+            RESOURCES_ARE_NOT_READY, PRINTER_STOPPED_PARTLY, PRINTER_STOPPED, JOB_INTERPRETING, JOB_QUEUED,
+            JOB_TRANSFORMING, JOB_QUEUED_FOR_MARKER, JOB_PRINTING, JOB_CANCELED_BY_USER,
+            JOB_CANCELED_BY_OPERATOR, JOB_CANCELED_AT_DEVICE, ABORTED_BY_SYSTEM, UNSUPPORTED_COMPRESSION,
+            COMPRESSION_ERROR, UNSUPPORTED_DOCUMENT_FORMAT, DOCUMENT_FORMAT_ERROR, PROCESSING_TO_STOP_POINT,
+            SERVICE_OFF_LINE, JOB_COMPLETED_SUCCESSFULLY, JOB_COMPLETED_WITH_WARNINGS,
             JOB_COMPLETED_WITH_ERRORS, JOB_RESTARTABLE, QUEUED_IN_DEVICE };
 
     /**

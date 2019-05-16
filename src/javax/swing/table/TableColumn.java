@@ -50,7 +50,6 @@ import java.beans.PropertyChangeListener;
  * @author Alan Chung
  * @author Philip Milne
  * @see javax.swing.table.TableColumnModel
- *
  * @see javax.swing.table.DefaultTableColumnModel
  * @see javax.swing.table.JTableHeader#getDefaultRenderer()
  * @see JTable#getDefaultRenderer(Class)
@@ -201,7 +200,6 @@ public class TableColumn extends Object implements Serializable {
      * <code>width</code> is negative, they're set to 0. The minimum width is
      * set to 15 unless the initial width is less, in which case the minimum
      * width is set to the initial width.
-     *
      * <p>
      * When the <code>cellRenderer</code> or <code>cellEditor</code> parameter
      * is <code>null</code>, a default value provided by the <code>JTable</code>
@@ -212,25 +210,25 @@ public class TableColumn extends Object implements Serializable {
      * <code>JTable</code>.
      *
      * @param modelIndex
-     *                     the index of the column in the model that supplies
-     *                     the data
-     *                     for this column in the table; the model index remains
-     *                     the same
-     *                     even when columns are reordered in the view
+     *        the index of the column in the model that supplies
+     *        the data
+     *        for this column in the table; the model index remains
+     *        the same
+     *        even when columns are reordered in the view
      * @param width
-     *                     this column's preferred width and initial width
+     *        this column's preferred width and initial width
      * @param cellRenderer
-     *                     the object used to render values in this column
+     *        the object used to render values in this column
      * @param cellEditor
-     *                     the object used to edit values in this column
+     *        the object used to edit values in this column
      * @see #getMinWidth()
      * @see JTable#getDefaultRenderer(Class)
      * @see JTable#getDefaultEditor(Class)
      * @see JTable#getCellRenderer(int, int)
      * @see JTable#getCellEditor(int, int)
      */
-    public TableColumn(int modelIndex, int width,
-            TableCellRenderer cellRenderer, TableCellEditor cellEditor) {
+    public TableColumn(int modelIndex, int width, TableCellRenderer cellRenderer,
+            TableCellEditor cellEditor) {
         super();
         this.modelIndex = modelIndex;
         preferredWidth = this.width = Math.max(width, 0);
@@ -250,26 +248,21 @@ public class TableColumn extends Object implements Serializable {
     // Modifying and Querying attributes
     //
 
-    private void firePropertyChange(String propertyName, Object oldValue,
-            Object newValue) {
+    private void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         if (changeSupport != null) {
             changeSupport.firePropertyChange(propertyName, oldValue, newValue);
         }
     }
 
-    private void firePropertyChange(String propertyName, int oldValue,
-            int newValue) {
+    private void firePropertyChange(String propertyName, int oldValue, int newValue) {
         if (oldValue != newValue) {
-            firePropertyChange(propertyName, Integer.valueOf(oldValue), Integer
-                    .valueOf(newValue));
+            firePropertyChange(propertyName, Integer.valueOf(oldValue), Integer.valueOf(newValue));
         }
     }
 
-    private void firePropertyChange(String propertyName, boolean oldValue,
-            boolean newValue) {
+    private void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
         if (oldValue != newValue) {
-            firePropertyChange(propertyName, Boolean.valueOf(oldValue), Boolean
-                    .valueOf(newValue));
+            firePropertyChange(propertyName, Boolean.valueOf(oldValue), Boolean.valueOf(newValue));
         }
     }
 
@@ -280,7 +273,7 @@ public class TableColumn extends Object implements Serializable {
      * in the view the model index remains constant.
      * 
      * @param modelIndex
-     *                   the new modelIndex
+     *        the new modelIndex
      * @beaninfo bound: true description: The model index.
      */
     public void setModelIndex(int modelIndex) {
@@ -306,7 +299,7 @@ public class TableColumn extends Object implements Serializable {
      * purely a convenience for the external tagging and location of columns.
      *
      * @param identifier
-     *                   an identifier for this column
+     *        an identifier for this column
      * @see #getIdentifier
      * @beaninfo bound: true description: A unique identifier for this column.
      */
@@ -338,7 +331,7 @@ public class TableColumn extends Object implements Serializable {
      * is <code>null</code>.
      * 
      * @param headerValue
-     *                    the new headerValue
+     *        the new headerValue
      * @see #getHeaderValue
      * @beaninfo bound: true description: The text to be used by the header
      *           renderer.
@@ -373,8 +366,7 @@ public class TableColumn extends Object implements Serializable {
      * must render the sorting indication.
      *
      * @param headerRenderer
-     *                       the new headerRenderer
-     *
+     *        the new headerRenderer
      * @see #getHeaderRenderer
      * @beaninfo bound: true description: The header renderer.
      */
@@ -405,7 +397,7 @@ public class TableColumn extends Object implements Serializable {
      * draw individual values for this column.
      *
      * @param cellRenderer
-     *                     the new cellRenderer
+     *        the new cellRenderer
      * @see #getCellRenderer
      * @beaninfo bound: true description: The renderer to use for cell values.
      */
@@ -437,7 +429,7 @@ public class TableColumn extends Object implements Serializable {
      * Sets the editor to used by when a cell in this column is edited.
      *
      * @param cellEditor
-     *                   the new cellEditor
+     *        the new cellEditor
      * @see #getCellEditor
      * @beaninfo bound: true description: The editor to use for cell values.
      */
@@ -475,7 +467,7 @@ public class TableColumn extends Object implements Serializable {
      * to the appropriate limiting value.
      * 
      * @param width
-     *              the new width
+     *        the new width
      * @see #getWidth
      * @see #setMinWidth
      * @see #setMaxWidth
@@ -511,15 +503,14 @@ public class TableColumn extends Object implements Serializable {
      * <code>JTable</code>.
      *
      * @param preferredWidth
-     *                       the new preferred width
+     *        the new preferred width
      * @see #getPreferredWidth
      * @see JTable#doLayout()
      * @beaninfo bound: true description: The preferred width of the column.
      */
     public void setPreferredWidth(int preferredWidth) {
         int old = this.preferredWidth;
-        this.preferredWidth = Math.min(Math.max(preferredWidth, minWidth),
-                maxWidth);
+        this.preferredWidth = Math.min(Math.max(preferredWidth, minWidth), maxWidth);
         firePropertyChange("preferredWidth", old, this.preferredWidth);
     }
 
@@ -540,14 +531,13 @@ public class TableColumn extends Object implements Serializable {
      * ensure that 0 &lt;= <code>minWidth</code> &lt;= <code>maxWidth</code>.
      * For example, if the <code>minWidth</code> argument is negative, this
      * method sets the <code>minWidth</code> property to 0.
-     *
      * <p>
      * If the value of the <code>width</code> or <code>preferredWidth</code>
      * property is less than the new minimum width, this method sets that
      * property to the new minimum width.
      *
      * @param minWidth
-     *                 the new minimum width
+     *        the new minimum width
      * @see #getMinWidth
      * @see #setPreferredWidth
      * @see #setMaxWidth
@@ -582,14 +572,13 @@ public class TableColumn extends Object implements Serializable {
      * Sets the <code>TableColumn</code>'s maximum width to
      * <code>maxWidth</code> or, if <code>maxWidth</code> is less than the
      * minimum width, to the minimum width.
-     *
      * <p>
      * If the value of the <code>width</code> or <code>preferredWidth</code>
      * property is more than the new maximum width, this method sets that
      * property to the new maximum width.
      *
      * @param maxWidth
-     *                 the new maximum width
+     *        the new maximum width
      * @see #getMaxWidth
      * @see #setPreferredWidth
      * @see #setMinWidth
@@ -623,7 +612,7 @@ public class TableColumn extends Object implements Serializable {
      * Sets whether this column can be resized.
      *
      * @param isResizable
-     *                    if true, resizing is allowed; otherwise false
+     *        if true, resizing is allowed; otherwise false
      * @see #getResizable
      * @beaninfo bound: true description: Whether or not this column can be
      *           resized.
@@ -661,8 +650,8 @@ public class TableColumn extends Object implements Serializable {
         if (headerRenderer == null) {
             return;
         }
-        Component c = headerRenderer.getTableCellRendererComponent(null,
-                getHeaderValue(), false, false, 0, 0);
+        Component c = headerRenderer.getTableCellRendererComponent(null, getHeaderValue(), false, false, 0,
+                0);
 
         setMinWidth(c.getMinimumSize().width);
         setMaxWidth(c.getMaximumSize().width);
@@ -709,11 +698,9 @@ public class TableColumn extends Object implements Serializable {
      * inherited property.
      *
      * @param listener
-     *                 the listener to be added
-     *
+     *        the listener to be added
      */
-    public synchronized void addPropertyChangeListener(
-            PropertyChangeListener listener) {
+    public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
         if (changeSupport == null) {
             changeSupport = new SwingPropertyChangeSupport(this);
         }
@@ -726,12 +713,10 @@ public class TableColumn extends Object implements Serializable {
      * properties.
      *
      * @param listener
-     *                 the listener to be removed
-     *
+     *        the listener to be removed
      */
 
-    public synchronized void removePropertyChangeListener(
-            PropertyChangeListener listener) {
+    public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
         if (changeSupport != null) {
             changeSupport.removePropertyChangeListener(listener);
         }
@@ -769,9 +754,8 @@ public class TableColumn extends Object implements Serializable {
      */
     protected TableCellRenderer createDefaultHeaderRenderer() {
         DefaultTableCellRenderer label = new DefaultTableCellRenderer() {
-            public Component getTableCellRendererComponent(JTable table,
-                    Object value, boolean isSelected, boolean hasFocus, int row,
-                    int column) {
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
                 if (table != null) {
                     JTableHeader header = table.getTableHeader();
                     if (header != null) {

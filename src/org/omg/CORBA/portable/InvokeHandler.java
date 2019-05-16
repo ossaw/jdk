@@ -12,19 +12,14 @@ package org.omg.CORBA.portable;
 public interface InvokeHandler {
     /**
      * Invoked by the ORB to dispatch a request to the servant.
-     *
      * ORB passes the method name, an InputStream containing the marshalled
      * arguments, and a ResponseHandler which the servant uses to construct a
      * proper reply.
-     *
      * Only CORBA SystemException may be thrown by this method.
-     *
      * The method must return an OutputStream created by the ResponseHandler
      * which contains the marshalled reply.
-     *
      * A servant must not retain a reference to the ResponseHandler beyond the
      * lifetime of a method invocation.
-     *
      * Servant behaviour is defined as follows:
      * <p>
      * 1. Determine correct method, and unmarshal parameters from InputStream.
@@ -42,21 +37,21 @@ public interface InvokeHandler {
      * <p>
      * 
      * @param method
-     *                The method name.
+     *        The method name.
      * @param input
-     *                The <code>InputStream</code> containing the marshalled
-     *                arguments.
+     *        The <code>InputStream</code> containing the marshalled
+     *        arguments.
      * @param handler
-     *                The <code>ResponseHandler</code> which the servant uses to
-     *                construct a proper reply
+     *        The <code>ResponseHandler</code> which the servant uses to
+     *        construct a proper reply
      * @return The <code>OutputStream</code> created by the ResponseHandler
      *         which contains the marshalled reply
      * @throws SystemException
-     *                         is thrown when invocation fails due to a CORBA
-     *                         system
-     *                         exception.
+     *         is thrown when invocation fails due to a CORBA
+     *         system
+     *         exception.
      */
 
-    OutputStream _invoke(String method, InputStream input,
-            ResponseHandler handler) throws org.omg.CORBA.SystemException;
+    OutputStream _invoke(String method, InputStream input, ResponseHandler handler)
+            throws org.omg.CORBA.SystemException;
 }

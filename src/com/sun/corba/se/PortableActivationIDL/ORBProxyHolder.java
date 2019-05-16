@@ -16,8 +16,7 @@ public final class ORBProxyHolder implements org.omg.CORBA.portable.Streamable {
 
     public ORBProxyHolder() {}
 
-    public ORBProxyHolder(
-            com.sun.corba.se.PortableActivationIDL.ORBProxy initialValue) {
+    public ORBProxyHolder(com.sun.corba.se.PortableActivationIDL.ORBProxy initialValue) {
         value = initialValue;
     }
 

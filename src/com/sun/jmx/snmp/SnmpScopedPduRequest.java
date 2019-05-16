@@ -7,7 +7,6 @@ package com.sun.jmx.snmp;
 /**
  * Is used to represent <CODE>get</CODE>, <CODE>get-next</CODE>,
  * <CODE>set</CODE>, <CODE>response</CODE> SNMP V3 scoped PDUs.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -15,8 +14,7 @@ package com.sun.jmx.snmp;
  * 
  * @since 1.5
  */
-public class SnmpScopedPduRequest extends SnmpScopedPduPacket implements
-        SnmpPduRequestType {
+public class SnmpScopedPduRequest extends SnmpScopedPduPacket implements SnmpPduRequestType {
     private static final long serialVersionUID = 6463060973056773680L;
 
     int errorStatus = 0;
@@ -29,7 +27,7 @@ public class SnmpScopedPduRequest extends SnmpScopedPduPacket implements
      * <CODE>varBindList[errorIndex-1]</CODE>.
      * 
      * @param i
-     *          Error index.
+     *        Error index.
      */
     public void setErrorIndex(int i) {
         errorIndex = i;
@@ -40,7 +38,7 @@ public class SnmpScopedPduRequest extends SnmpScopedPduPacket implements
      * {@link com.sun.jmx.snmp.SnmpDefinitions SnmpDefinitions}.
      * 
      * @param s
-     *          Error status.
+     *        Error status.
      */
     public void setErrorStatus(int s) {
         errorStatus = s;

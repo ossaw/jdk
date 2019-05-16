@@ -34,8 +34,7 @@ import java.util.List;
  *
  * <pre>
  * XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
- * SignatureProperties properties = factory.newSignatureProperties(props,
- *         "signature-properties-1");
+ * SignatureProperties properties = factory.newSignatureProperties(props, "signature-properties-1");
  * </pre>
  *
  * @author Sean Mullan

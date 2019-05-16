@@ -14,7 +14,6 @@ import javax.security.auth.Subject;
  * This interface is used by the RMI Connector Server, and can be used by other
  * connector servers.
  * </p>
- *
  * <p>
  * The user-defined authenticator instance is passed to the connector server in
  * the environment map as the value of the attribute
@@ -24,7 +23,6 @@ import javax.security.auth.Subject;
  * access to the methods exported by the <code>MBeanServerConnection</code>
  * object will be allowed.
  * </p>
- *
  * <p>
  * If authentication is successful then an authenticated {@link Subject subject}
  * filled in with its associated {@link Principal principals} is returned.
@@ -43,20 +41,18 @@ public interface JMXAuthenticator {
      * </p>
      *
      * @param credentials
-     *                    the user-defined credentials to be passed into the
-     *                    server in
-     *                    order to authenticate the user before creating the
-     *                    <code>MBeanServerConnection</code>. The actual type of
-     *                    this
-     *                    parameter, and whether it can be null, depends on the
-     *                    connector.
-     *
+     *        the user-defined credentials to be passed into the
+     *        server in
+     *        order to authenticate the user before creating the
+     *        <code>MBeanServerConnection</code>. The actual type of
+     *        this
+     *        parameter, and whether it can be null, depends on the
+     *        connector.
      * @return the authenticated subject containing its associated principals.
-     *
      * @exception SecurityException
-     *                              if the server cannot authenticate the user
-     *                              with the
-     *                              provided credentials.
+     *            if the server cannot authenticate the user
+     *            with the
+     *            provided credentials.
      */
     public Subject authenticate(Object credentials);
 }

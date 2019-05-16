@@ -6,7 +6,6 @@
 /**
  * Defines interfaces and classes for the Java virtual machine to access files,
  * file attributes, and file systems.
- *
  * <p>
  * The java.nio.file package defines classes to access files and file systems.
  * The API to access file and file system attributes is defined in the
@@ -14,7 +13,6 @@
  * package is used by service provider implementors wishing to extend the
  * platform default provider, or to construct other provider implementations.
  * </p>
- *
  * <h3><a name="links">Symbolic Links</a></h3>
  * <p>
  * Many operating systems and file systems support for <em>symbolic links</em>.
@@ -28,7 +26,6 @@
  * types that are semantically close but support for these other types of links
  * is not included in this package.
  * </p>
- *
  * <h3><a name="interop">Interoperability</a></h3>
  * <p>
  * The {@link java.io.File} class defines the {@link java.io.File#toPath toPath}
@@ -39,7 +36,6 @@
  * <a href="Path.html#interop">interoperability</a> between {@code Path} and
  * {@code java.io.File} objects.
  * </p>
- *
  * <h3>Visibility</h3>
  * <p>
  * The view of the files and file system provided by classes in this package are
@@ -52,7 +48,6 @@
  * are running on the same machine or on some other machine. The exact nature of
  * any such inconsistencies are system-dependent and are therefore unspecified.
  * </p>
- *
  * <h3><a name="integrity">Synchronized I/O File Integrity</a></h3>
  * <p>
  * The {@link java.nio.file.StandardOpenOption#SYNC SYNC} and
@@ -71,7 +66,6 @@
  * {@link java.nio.file.spi.FileSystemProvider provider} implementations is
  * provider specific.
  * </p>
- *
  * <h3>General Exceptions</h3>
  * <p>
  * Unless otherwise noted, passing a {@code null} argument to a constructor or
@@ -81,7 +75,6 @@
  * element will cause a {@code NullPointerException}, unless otherwise
  * specified.
  * </p>
- *
  * <p>
  * Unless otherwise noted, methods that attempt to access the file system will
  * throw {@link java.nio.file.ClosedFileSystemException} when invoked on objects
@@ -92,14 +85,12 @@
  * associated with a {@link java.nio.file.FileSystem} that only provides
  * read-only access.
  * </p>
- *
  * <p>
  * Unless otherwise noted, invoking a method of any class or interface in this
  * package created by one {@link java.nio.file.spi.FileSystemProvider provider}
  * with a parameter that is an object created by another provider, will throw
  * {@link java.nio.file.ProviderMismatchException}.
  * </p>
- *
  * <h3>Optional Specific Exceptions</h3> Most of the methods defined by classes
  * in this package that access the file system specify that
  * {@link java.io.IOException} be thrown when an I/O error occurs. In some

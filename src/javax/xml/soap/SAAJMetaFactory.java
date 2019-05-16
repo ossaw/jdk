@@ -13,7 +13,6 @@ package javax.xml.soap;
  * (in SOAPFactory and MessageFactory) that existed in SAAJ 1.2 have been
  * updated to also delegate to the SAAJMetaFactory when the SAAJ 1.2 defined
  * lookup fails to locate the Factory implementation class name.
- *
  * <p>
  * SAAJMetaFactory is a service provider interface. There are no public methods
  * on this class.
@@ -33,7 +32,6 @@ public abstract class SAAJMetaFactory {
      * has the effect of changing out the entire SAAJ implementation. Service
      * providers provide the name of their <code>SAAJMetaFactory</code>
      * implementation.
-     *
      * This method uses the following ordered lookup procedure to determine the
      * SAAJMetaFactory implementation class to load:
      * <UL>
@@ -52,17 +50,16 @@ public abstract class SAAJMetaFactory {
      *
      * @return a concrete <code>SAAJMetaFactory</code> object
      * @exception SOAPException
-     *                          if there is an error in creating the
-     *                          <code>SAAJMetaFactory</code>
+     *            if there is an error in creating the
+     *            <code>SAAJMetaFactory</code>
      */
     static SAAJMetaFactory getInstance() throws SOAPException {
         try {
-            SAAJMetaFactory instance = (SAAJMetaFactory) FactoryFinder.find(
-                    META_FACTORY_CLASS_PROPERTY, DEFAULT_META_FACTORY_CLASS);
+            SAAJMetaFactory instance = (SAAJMetaFactory) FactoryFinder.find(META_FACTORY_CLASS_PROPERTY,
+                    DEFAULT_META_FACTORY_CLASS);
             return instance;
         } catch (Exception e) {
-            throw new SOAPException("Unable to create SAAJ meta-factory" + e
-                    .getMessage());
+            throw new SOAPException("Unable to create SAAJ meta-factory" + e.getMessage());
         }
     }
 
@@ -73,29 +70,27 @@ public abstract class SAAJMetaFactory {
      * <code>String</code> protocol.
      *
      * @param protocol
-     *                 a <code>String</code> indicating the protocol
+     *        a <code>String</code> indicating the protocol
      * @exception SOAPException
-     *                          if there is an error in creating the
-     *                          MessageFactory
+     *            if there is an error in creating the
+     *            MessageFactory
      * @see SOAPConstants#SOAP_1_1_PROTOCOL
      * @see SOAPConstants#SOAP_1_2_PROTOCOL
      * @see SOAPConstants#DYNAMIC_SOAP_PROTOCOL
      */
-    protected abstract MessageFactory newMessageFactory(String protocol)
-            throws SOAPException;
+    protected abstract MessageFactory newMessageFactory(String protocol) throws SOAPException;
 
     /**
      * Creates a <code>SOAPFactory</code> object for the given
      * <code>String</code> protocol.
      *
      * @param protocol
-     *                 a <code>String</code> indicating the protocol
+     *        a <code>String</code> indicating the protocol
      * @exception SOAPException
-     *                          if there is an error in creating the SOAPFactory
+     *            if there is an error in creating the SOAPFactory
      * @see SOAPConstants#SOAP_1_1_PROTOCOL
      * @see SOAPConstants#SOAP_1_2_PROTOCOL
      * @see SOAPConstants#DYNAMIC_SOAP_PROTOCOL
      */
-    protected abstract SOAPFactory newSOAPFactory(String protocol)
-            throws SOAPException;
+    protected abstract SOAPFactory newSOAPFactory(String protocol) throws SOAPException;
 }

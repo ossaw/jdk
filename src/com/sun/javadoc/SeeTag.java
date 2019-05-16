@@ -18,7 +18,6 @@ package com.sun.javadoc;
  * @author Kaiyang Liu (original)
  * @author Robert Field (rewrite)
  * @author Atul M Dambalkar
- *
  */
 public interface SeeTag extends Tag {
 

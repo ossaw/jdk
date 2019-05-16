@@ -18,10 +18,10 @@ public final class AuthorizationDataEntry {
      * Create an AuthorizationDataEntry object.
      * 
      * @param type
-     *             the ad-type
+     *        the ad-type
      * @param data
-     *             the ad-data, a copy of the data will be saved inside the
-     *             object.
+     *        the ad-data, a copy of the data will be saved inside the
+     *        object.
      */
     public AuthorizationDataEntry(int type, byte[] data) {
         this.type = type;
@@ -47,8 +47,7 @@ public final class AuthorizationDataEntry {
     }
 
     public String toString() {
-        return "AuthorizationDataEntry: type=" + type + ", data=" + data.length
-                + " bytes:\n" + new sun.misc.HexDumpEncoder().encodeBuffer(
-                        data);
+        return "AuthorizationDataEntry: type=" + type + ", data=" + data.length + " bytes:\n"
+                + new sun.misc.HexDumpEncoder().encodeBuffer(data);
     }
 }

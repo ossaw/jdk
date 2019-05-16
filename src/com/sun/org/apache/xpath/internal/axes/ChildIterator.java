@@ -38,14 +38,13 @@ public class ChildIterator extends LocPathIterator {
      * Create a ChildIterator object.
      *
      * @param compiler
-     *                 A reference to the Compiler that contains the op map.
+     *        A reference to the Compiler that contains the op map.
      * @param opPos
-     *                 The position within the op map, which contains the
-     *                 location
-     *                 path expression for this itterator.
+     *        The position within the op map, which contains the
+     *        location
+     *        path expression for this itterator.
      * @param analysis
-     *                 Analysis bits of the entire pattern.
-     *
+     *        Analysis bits of the entire pattern.
      * @throws javax.xml.transform.TransformerException
      */
     ChildIterator(Compiler compiler, int opPos, int analysis)
@@ -64,11 +63,10 @@ public class ChildIterator extends LocPathIterator {
      * </p>
      * 
      * @param xctxt
-     *              The XPath runtime context.
+     *        The XPath runtime context.
      * @return the first node out of the nodeset, or DTM.NULL.
      */
-    public int asNode(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public int asNode(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         int current = xctxt.getCurrentNode();
 
         DTM dtm = xctxt.getDTM(current);
@@ -90,8 +88,7 @@ public class ChildIterator extends LocPathIterator {
 
         int next;
 
-        m_lastFetched = next = (DTM.NULL == m_lastFetched) ? m_cdtm
-                .getFirstChild(m_context)
+        m_lastFetched = next = (DTM.NULL == m_lastFetched) ? m_cdtm.getFirstChild(m_context)
                 : m_cdtm.getNextSibling(m_lastFetched);
 
         // m_lastFetched = next;

@@ -41,8 +41,7 @@ public class BufferManagerWriteGrow extends BufferManagerWrite {
     }
 
     public void sendMessage() {
-        Connection conn = ((OutputObject) outputObject).getMessageMediator()
-                .getConnection();
+        Connection conn = ((OutputObject) outputObject).getMessageMediator().getConnection();
 
         conn.writeLock();
 
@@ -60,7 +59,6 @@ public class BufferManagerWriteGrow extends BufferManagerWrite {
 
     /**
      * Close the BufferManagerWrite and do any outstanding cleanup.
-     *
      * No work to do for a BufferManagerWriteGrow.
      */
     public void close() {}

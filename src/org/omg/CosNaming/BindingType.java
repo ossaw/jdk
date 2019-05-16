@@ -18,11 +18,9 @@ public class BindingType implements org.omg.CORBA.portable.IDLEntity {
     private static org.omg.CosNaming.BindingType[] __array = new org.omg.CosNaming.BindingType[__size];
 
     public static final int _nobject = 0;
-    public static final org.omg.CosNaming.BindingType nobject = new org.omg.CosNaming.BindingType(
-            _nobject);
+    public static final org.omg.CosNaming.BindingType nobject = new org.omg.CosNaming.BindingType(_nobject);
     public static final int _ncontext = 1;
-    public static final org.omg.CosNaming.BindingType ncontext = new org.omg.CosNaming.BindingType(
-            _ncontext);
+    public static final org.omg.CosNaming.BindingType ncontext = new org.omg.CosNaming.BindingType(_ncontext);
 
     public int value() {
         return __value;

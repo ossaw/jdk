@@ -121,8 +121,7 @@ public class BasicIconFactory implements Serializable {
         }
     }
 
-    private static class RadioButtonIcon implements Icon, UIResource,
-            Serializable {
+    private static class RadioButtonIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {}
 
         public int getIconWidth() {
@@ -134,8 +133,7 @@ public class BasicIconFactory implements Serializable {
         }
     } // end class RadioButtonIcon
 
-    private static class CheckBoxMenuItemIcon implements Icon, UIResource,
-            Serializable {
+    private static class CheckBoxMenuItemIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             AbstractButton b = (AbstractButton) c;
             ButtonModel model = b.getModel();
@@ -161,8 +159,7 @@ public class BasicIconFactory implements Serializable {
 
     } // End class CheckBoxMenuItemIcon
 
-    private static class RadioButtonMenuItemIcon implements Icon, UIResource,
-            Serializable {
+    private static class RadioButtonMenuItemIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             AbstractButton b = (AbstractButton) c;
             ButtonModel model = b.getModel();
@@ -181,8 +178,7 @@ public class BasicIconFactory implements Serializable {
 
     } // End class RadioButtonMenuItemIcon
 
-    private static class MenuItemCheckIcon implements Icon, UIResource,
-            Serializable {
+    private static class MenuItemCheckIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {}
 
         public int getIconWidth() {
@@ -195,8 +191,7 @@ public class BasicIconFactory implements Serializable {
 
     } // End class MenuItemCheckIcon
 
-    private static class MenuItemArrowIcon implements Icon, UIResource,
-            Serializable {
+    private static class MenuItemArrowIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {}
 
         public int getIconWidth() {
@@ -209,8 +204,7 @@ public class BasicIconFactory implements Serializable {
 
     } // End class MenuItemArrowIcon
 
-    private static class MenuArrowIcon implements Icon, UIResource,
-            Serializable {
+    private static class MenuArrowIcon implements Icon, UIResource, Serializable {
         public void paintIcon(Component c, Graphics g, int x, int y) {
             Polygon p = new Polygon();
             p.addPoint(x, y);

@@ -12,7 +12,6 @@ import java.io.ObjectStreamException;
 import java.io.ObjectStreamField;
 
 /**
- *
  * This class implements an IP Socket Address (IP address + port number) It can
  * also be a pair (hostname + port number), in which case an attempt will be
  * made to resolve the hostname. If resolution fails then the address is said to
@@ -39,8 +38,7 @@ public class InetSocketAddress extends SocketAddress {
         // The port number of the Socket Address
         private int port;
 
-        private InetSocketAddressHolder(String hostname, InetAddress addr,
-                int port) {
+        private InetSocketAddressHolder(String hostname, InetAddress addr, int port) {
             this.hostname = hostname;
             this.addr = addr;
             this.port = port;
@@ -96,8 +94,7 @@ public class InetSocketAddress extends SocketAddress {
             if (addr != null)
                 sameIP = addr.equals(that.addr);
             else if (hostname != null)
-                sameIP = (that.addr == null) && hostname.equalsIgnoreCase(
-                        that.hostname);
+                sameIP = (that.addr == null) && hostname.equalsIgnoreCase(that.hostname);
             else
                 sameIP = (that.addr == null) && (that.hostname == null);
             return sameIP && (port == that.port);
@@ -139,18 +136,17 @@ public class InetSocketAddress extends SocketAddress {
      * <p>
      * 
      * @param port
-     *             The port number
+     *        The port number
      * @throws IllegalArgumentException
-     *                                  if the port parameter is outside the
-     *                                  specified range of valid
-     *                                  port values.
+     *         if the port parameter is outside the
+     *         specified range of valid
+     *         port values.
      */
     public InetSocketAddress(int port) {
         this(InetAddress.anyLocalAddress(), port);
     }
 
     /**
-     *
      * Creates a socket address from an IP address and a port number.
      * <p>
      * A valid port value is between 0 and 65535. A port number of {@code zero}
@@ -161,21 +157,20 @@ public class InetSocketAddress extends SocketAddress {
      * <p>
      * 
      * @param addr
-     *             The IP address
+     *        The IP address
      * @param port
-     *             The port number
+     *        The port number
      * @throws IllegalArgumentException
-     *                                  if the port parameter is outside the
-     *                                  specified range of valid
-     *                                  port values.
+     *         if the port parameter is outside the
+     *         specified range of valid
+     *         port values.
      */
     public InetSocketAddress(InetAddress addr, int port) {
-        holder = new InetSocketAddressHolder(null, addr == null ? InetAddress
-                .anyLocalAddress() : addr, checkPort(port));
+        holder = new InetSocketAddressHolder(null, addr == null ? InetAddress.anyLocalAddress() : addr,
+                checkPort(port));
     }
 
     /**
-     *
      * Creates a socket address from a hostname and a port number.
      * <p>
      * An attempt will be made to resolve the hostname into an InetAddress. If
@@ -191,18 +186,18 @@ public class InetSocketAddress extends SocketAddress {
      * <P>
      * 
      * @param hostname
-     *                 the Host name
+     *        the Host name
      * @param port
-     *                 The port number
+     *        The port number
      * @throws IllegalArgumentException
-     *                                  if the port parameter is outside the
-     *                                  range of valid port
-     *                                  values, or if the hostname parameter is
-     *                                  <TT>null</TT>.
+     *         if the port parameter is outside the
+     *         range of valid port
+     *         values, or if the hostname parameter is
+     *         <TT>null</TT>.
      * @throws SecurityException
-     *                                  if a security manager is present and
-     *                                  permission to resolve
-     *                                  the host name is denied.
+     *         if a security manager is present and
+     *         permission to resolve
+     *         the host name is denied.
      * @see #isUnresolved()
      */
     public InetSocketAddress(String hostname, int port) {
@@ -223,7 +218,6 @@ public class InetSocketAddress extends SocketAddress {
     }
 
     /**
-     *
      * Creates an unresolved socket address from a hostname and a port number.
      * <p>
      * No attempt will be made to resolve the hostname into an InetAddress. The
@@ -235,14 +229,14 @@ public class InetSocketAddress extends SocketAddress {
      * <P>
      * 
      * @param host
-     *             the Host name
+     *        the Host name
      * @param port
-     *             The port number
+     *        The port number
      * @throws IllegalArgumentException
-     *                                  if the port parameter is outside the
-     *                                  range of valid port
-     *                                  values, or if the hostname parameter is
-     *                                  <TT>null</TT>.
+     *         if the port parameter is outside the
+     *         range of valid port
+     *         values, or if the hostname parameter is
+     *         <TT>null</TT>.
      * @see #isUnresolved()
      * @return a {@code InetSocketAddress} representing the unresolved socket
      *         address
@@ -260,10 +254,9 @@ public class InetSocketAddress extends SocketAddress {
      * @serialField port
      *              int
      */
-    private static final ObjectStreamField[] serialPersistentFields = {
-            new ObjectStreamField("hostname", String.class),
-            new ObjectStreamField("addr", InetAddress.class),
-            new ObjectStreamField("port", int.class) };
+    private static final ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("hostname",
+            String.class), new ObjectStreamField("addr", InetAddress.class), new ObjectStreamField("port",
+                    int.class) };
 
     private void writeObject(ObjectOutputStream out) throws IOException {
         // Don't call defaultWriteObject()
@@ -274,8 +267,7 @@ public class InetSocketAddress extends SocketAddress {
         out.writeFields();
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         // Don't call defaultReadObject()
         ObjectInputStream.GetField oisFields = in.readFields();
         final String oisHostname = (String) oisFields.get("hostname", null);
@@ -285,11 +277,9 @@ public class InetSocketAddress extends SocketAddress {
         // Check that our invariants are satisfied
         checkPort(oisPort);
         if (oisHostname == null && oisAddr == null)
-            throw new InvalidObjectException("hostname and addr "
-                    + "can't both be null");
+            throw new InvalidObjectException("hostname and addr " + "can't both be null");
 
-        InetSocketAddressHolder h = new InetSocketAddressHolder(oisHostname,
-                oisAddr, oisPort);
+        InetSocketAddressHolder h = new InetSocketAddressHolder(oisHostname, oisAddr, oisPort);
         UNSAFE.putObject(this, FIELDS_OFFSET, h);
     }
 
@@ -302,8 +292,7 @@ public class InetSocketAddress extends SocketAddress {
     static {
         try {
             sun.misc.Unsafe unsafe = sun.misc.Unsafe.getUnsafe();
-            FIELDS_OFFSET = unsafe.objectFieldOffset(InetSocketAddress.class
-                    .getDeclaredField("holder"));
+            FIELDS_OFFSET = unsafe.objectFieldOffset(InetSocketAddress.class.getDeclaredField("holder"));
             UNSAFE = unsafe;
         } catch (ReflectiveOperationException e) {
             throw new Error(e);
@@ -320,7 +309,6 @@ public class InetSocketAddress extends SocketAddress {
     }
 
     /**
-     *
      * Gets the {@code InetAddress}.
      *
      * @return the InetAdress or {@code null} if it is unresolved.
@@ -383,12 +371,11 @@ public class InetSocketAddress extends SocketAddress {
      * both the InetAddresses (or hostnames if it is unresolved) and port
      * numbers are equal. If both addresses are unresolved, then the hostname
      * and the port number are compared.
-     *
      * Note: Hostnames are case insensitive. e.g. "FooBar" and "foobar" are
      * considered equal.
      *
      * @param obj
-     *            the object to compare against.
+     *        the object to compare against.
      * @return {@code true} if the objects are the same; {@code false}
      *         otherwise.
      * @see java.net.InetAddress#equals(java.lang.Object)

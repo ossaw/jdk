@@ -8,7 +8,6 @@ package java.io;
 /**
  * Signals that an attempt to open the file denoted by a specified pathname has
  * failed.
- *
  * <p>
  * This exception will be thrown by the {@link FileInputStream},
  * {@link FileOutputStream}, and {@link RandomAccessFile} constructors when a
@@ -39,7 +38,7 @@ public class FileNotFoundException extends IOException {
      * <code>java.lang.Throwable</code>.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public FileNotFoundException(String s) {
         super(s);

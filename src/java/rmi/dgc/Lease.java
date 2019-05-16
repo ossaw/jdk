@@ -29,9 +29,9 @@ public final class Lease implements java.io.Serializable {
      * be null.
      * 
      * @param id
-     *                 VMID associated with this lease
+     *        VMID associated with this lease
      * @param duration
-     *                 lease duration
+     *        lease duration
      */
     public Lease(VMID id, long duration) {
         vmid = id;

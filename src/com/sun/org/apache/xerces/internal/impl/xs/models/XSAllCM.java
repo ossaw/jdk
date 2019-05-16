@@ -30,7 +30,6 @@ import java.util.ArrayList;
  * XSAllCM implements XSCMValidator and handles &lt;all&gt;.
  *
  * @xerces.internal
- *
  * @author Pavani Mukthipudi, Sun Microsystems Inc.
  * @version $Id: XSAllCM.java,v 1.10 2010-11-01 04:39:58 joehw Exp $
  */
@@ -92,12 +91,10 @@ public class XSAllCM implements XSCMValidator {
 
     // convinient method: when error occurs, to find a matching decl
     // from the candidate elements.
-    Object findMatchingDecl(QName elementName,
-            SubstitutionGroupHandler subGroupHandler) {
+    Object findMatchingDecl(QName elementName, SubstitutionGroupHandler subGroupHandler) {
         Object matchingDecl = null;
         for (int i = 0; i < fNumElements; i++) {
-            matchingDecl = subGroupHandler.getMatchingElemDecl(elementName,
-                    fAllElements[i]);
+            matchingDecl = subGroupHandler.getMatchingElemDecl(elementName, fAllElements[i]);
             if (matchingDecl != null)
                 break;
         }
@@ -109,7 +106,7 @@ public class XSAllCM implements XSCMValidator {
      *
      * @param elementName
      * @param currentState
-     *                     Current state
+     *        Current state
      * @return an element decl object
      */
     public Object oneTransition(QName elementName, int[] currentState,
@@ -131,8 +128,7 @@ public class XSAllCM implements XSCMValidator {
             // this element yet.
             if (currentState[i + 1] != STATE_START)
                 continue;
-            matchingDecl = subGroupHandler.getMatchingElemDecl(elementName,
-                    fAllElements[i]);
+            matchingDecl = subGroupHandler.getMatchingElemDecl(elementName, fAllElements[i]);
             if (matchingDecl != null) {
                 // found the decl, mark this element as "seen".
                 currentState[i + 1] = STATE_VALID;
@@ -149,15 +145,14 @@ public class XSAllCM implements XSCMValidator {
      * The method indicates the end of list of children
      *
      * @param currentState
-     *                     Current state of the content model
+     *        Current state of the content model
      * @return true if the last state was a valid final state
      */
     public boolean endContentModel(int[] currentState) {
 
         int state = currentState[0];
 
-        if (state == XSCMValidator.FIRST_ERROR
-                || state == XSCMValidator.SUBSEQUENT_ERROR) {
+        if (state == XSCMValidator.FIRST_ERROR || state == XSCMValidator.SUBSEQUENT_ERROR) {
             return false;
         }
 
@@ -180,21 +175,18 @@ public class XSAllCM implements XSCMValidator {
      * check whether this content violates UPA constraint.
      *
      * @param subGroupHandler
-     *                        the substitution group handler
+     *        the substitution group handler
      * @return true if this content model contains other or list wildcard
      */
-    public boolean checkUniqueParticleAttribution(
-            SubstitutionGroupHandler subGroupHandler)
+    public boolean checkUniqueParticleAttribution(SubstitutionGroupHandler subGroupHandler)
             throws XMLSchemaException {
         // check whether there is conflict between any two leaves
         for (int i = 0; i < fNumElements; i++) {
             for (int j = i + 1; j < fNumElements; j++) {
-                if (XSConstraints.overlapUPA(fAllElements[i], fAllElements[j],
-                        subGroupHandler)) {
+                if (XSConstraints.overlapUPA(fAllElements[i], fAllElements[j], subGroupHandler)) {
                     // REVISIT: do we want to report all errors? or just one?
-                    throw new XMLSchemaException("cos-nonambig", new Object[] {
-                            fAllElements[i].toString(), fAllElements[j]
-                                    .toString() });
+                    throw new XMLSchemaException("cos-nonambig", new Object[] { fAllElements[i].toString(),
+                            fAllElements[j].toString() });
                 }
             }
         }
@@ -208,7 +200,7 @@ public class XSAllCM implements XSCMValidator {
      * been seen.
      *
      * @param state
-     *              the current state
+     *        the current state
      * @return a Vector whose entries are instances of either XSWildcardDecl or
      *         XSElementDecl.
      */

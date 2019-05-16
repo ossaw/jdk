@@ -17,9 +17,7 @@ import javax.swing.*;
  * directories and generic files. Additionally, you may want to provide your own
  * <code>FileView</code> to <code>JFileChooser</code> to return different icons
  * or additional information using {@link javax.swing.JFileChooser#setFileView}.
- *
  * <p>
- *
  * <code>JFileChooser</code> first looks to see if there is a user defined
  * <code>FileView</code>, if there is, it gets type information from there
  * first. If <code>FileView</code> returns <code>null</code> for any method,
@@ -28,9 +26,7 @@ import javax.swing.*;
  * that returns an <code>Icon</code> for JPG files, and returns
  * <code>null</code> icons for all other files, the UI's <code>FileView</code>
  * will provide default icons for all other files.
- *
  * <p>
- *
  * For an example implementation of a simple file view, see
  * <code><i>yourJDK</i>/demo/jfc/FileChooserDemo/ExampleFileView.java</code>.
  * For more information and examples see <a href=
@@ -38,9 +34,7 @@ import javax.swing.*;
  * How to Use File Choosers</a>, a section in <em>The Java Tutorial</em>.
  *
  * @see javax.swing.JFileChooser
- *
  * @author Jeff Dinkins
- *
  */
 public abstract class FileView {
     /**

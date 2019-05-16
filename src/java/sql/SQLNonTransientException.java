@@ -19,7 +19,6 @@ public class SQLNonTransientException extends java.sql.SQLException {
      * Constructs a <code>SQLNonTransientException</code> object. The
      * <code>reason</code>, <code>SQLState</code> are initialized to
      * <code>null</code> and the vendor code is initialized to 0.
-     *
      * The <code>cause</code> is not initialized, and may subsequently be
      * initialized by a call to the
      * {@link Throwable#initCause(java.lang.Throwable)} method.
@@ -35,14 +34,13 @@ public class SQLNonTransientException extends java.sql.SQLException {
      * Constructs a <code>SQLNonTransientException</code> object with a given
      * <code>reason</code>. The <code>SQLState</code> is initialized to
      * <code>null</code> and the vendor code is initialized to 0.
-     *
      * The <code>cause</code> is not initialized, and may subsequently be
      * initialized by a call to the
      * {@link Throwable#initCause(java.lang.Throwable)} method.
      * <p>
      *
      * @param reason
-     *               a description of the exception
+     *        a description of the exception
      * @since 1.6
      */
     public SQLNonTransientException(String reason) {
@@ -52,7 +50,6 @@ public class SQLNonTransientException extends java.sql.SQLException {
     /**
      * Constructs a <code>SQLNonTransientException</code> object with a given
      * <code>reason</code> and <code>SQLState</code>.
-     *
      * The <code>cause</code> is not initialized, and may subsequently be
      * initialized by a call to the
      * {@link Throwable#initCause(java.lang.Throwable)} method. The vendor code
@@ -60,9 +57,9 @@ public class SQLNonTransientException extends java.sql.SQLException {
      * <p>
      * 
      * @param reason
-     *                 a description of the exception
+     *        a description of the exception
      * @param SQLState
-     *                 an XOPEN or SQL:2003 code identifying the exception
+     *        an XOPEN or SQL:2003 code identifying the exception
      * @since 1.6
      */
     public SQLNonTransientException(String reason, String SQLState) {
@@ -72,22 +69,20 @@ public class SQLNonTransientException extends java.sql.SQLException {
     /**
      * Constructs a <code>SQLNonTransientException</code> object with a given
      * <code>reason</code>, <code>SQLState</code> and <code>vendorCode</code>.
-     *
      * The <code>cause</code> is not initialized, and may subsequently be
      * initialized by a call to the
      * {@link Throwable#initCause(java.lang.Throwable)} method.
      * <p>
      * 
      * @param reason
-     *                   a description of the exception
+     *        a description of the exception
      * @param SQLState
-     *                   an XOPEN or SQL:2003 code identifying the exception
+     *        an XOPEN or SQL:2003 code identifying the exception
      * @param vendorCode
-     *                   a database vendor specific exception code
+     *        a database vendor specific exception code
      * @since 1.6
      */
-    public SQLNonTransientException(String reason, String SQLState,
-            int vendorCode) {
+    public SQLNonTransientException(String reason, String SQLState, int vendorCode) {
         super(reason, SQLState, vendorCode);
     }
 
@@ -101,10 +96,10 @@ public class SQLNonTransientException extends java.sql.SQLException {
      * <p>
      * 
      * @param cause
-     *              the underlying reason for this <code>SQLException</code>
-     *              (which is saved for later retrieval by the
-     *              <code>getCause()</code> method); may be null indicating the
-     *              cause is non-existent or unknown.
+     *        the underlying reason for this <code>SQLException</code>
+     *        (which is saved for later retrieval by the
+     *        <code>getCause()</code> method); may be null indicating the
+     *        cause is non-existent or unknown.
      * @since 1.6
      */
     public SQLNonTransientException(Throwable cause) {
@@ -118,12 +113,12 @@ public class SQLNonTransientException extends java.sql.SQLException {
      * <p>
      * 
      * @param reason
-     *               a description of the exception.
+     *        a description of the exception.
      * @param cause
-     *               the underlying reason for this <code>SQLException</code>
-     *               (which is saved for later retrieval by the
-     *               <code>getCause()</code> method); may be null indicating the
-     *               cause is non-existent or unknown.
+     *        the underlying reason for this <code>SQLException</code>
+     *        (which is saved for later retrieval by the
+     *        <code>getCause()</code> method); may be null indicating the
+     *        cause is non-existent or unknown.
      * @since 1.6
      */
     public SQLNonTransientException(String reason, Throwable cause) {
@@ -138,19 +133,18 @@ public class SQLNonTransientException extends java.sql.SQLException {
      * <p>
      * 
      * @param reason
-     *                 a description of the exception.
+     *        a description of the exception.
      * @param SQLState
-     *                 an XOPEN or SQL:2003 code identifying the exception
+     *        an XOPEN or SQL:2003 code identifying the exception
      * @param cause
-     *                 the underlying reason for this <code>SQLException</code>
-     *                 (which is saved for later retrieval by the
-     *                 <code>getCause()</code> method); may be null indicating
-     *                 the
-     *                 cause is non-existent or unknown.
+     *        the underlying reason for this <code>SQLException</code>
+     *        (which is saved for later retrieval by the
+     *        <code>getCause()</code> method); may be null indicating
+     *        the
+     *        cause is non-existent or unknown.
      * @since 1.6
      */
-    public SQLNonTransientException(String reason, String SQLState,
-            Throwable cause) {
+    public SQLNonTransientException(String reason, String SQLState, Throwable cause) {
         super(reason, SQLState, cause);
     }
 
@@ -161,22 +155,21 @@ public class SQLNonTransientException extends java.sql.SQLException {
      * <p>
      * 
      * @param reason
-     *                   a description of the exception
+     *        a description of the exception
      * @param SQLState
-     *                   an XOPEN or SQL:2003 code identifying the exception
+     *        an XOPEN or SQL:2003 code identifying the exception
      * @param vendorCode
-     *                   a database vendor-specific exception code
+     *        a database vendor-specific exception code
      * @param cause
-     *                   the underlying reason for this
-     *                   <code>SQLException</code>
-     *                   (which is saved for later retrieval by the
-     *                   <code>getCause()</code> method); may be null indicating
-     *                   the
-     *                   cause is non-existent or unknown.
+     *        the underlying reason for this
+     *        <code>SQLException</code>
+     *        (which is saved for later retrieval by the
+     *        <code>getCause()</code> method); may be null indicating
+     *        the
+     *        cause is non-existent or unknown.
      * @since 1.6
      */
-    public SQLNonTransientException(String reason, String SQLState,
-            int vendorCode, Throwable cause) {
+    public SQLNonTransientException(String reason, String SQLState, int vendorCode, Throwable cause) {
         super(reason, SQLState, vendorCode, cause);
     }
 

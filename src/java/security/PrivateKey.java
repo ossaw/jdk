@@ -28,7 +28,6 @@ package java.security;
  * @see java.security.interfaces.DSAPrivateKey
  * @see java.security.interfaces.RSAPrivateKey
  * @see java.security.interfaces.RSAPrivateCrtKey
- *
  * @author Benjamin Renaud
  * @author Josh Bloch
  */

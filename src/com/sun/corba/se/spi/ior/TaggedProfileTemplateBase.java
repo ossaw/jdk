@@ -13,8 +13,8 @@ import com.sun.corba.se.spi.orb.ORB;
 
 import com.sun.corba.se.impl.ior.EncapsulationUtility;
 
-public abstract class TaggedProfileTemplateBase extends
-        IdentifiableContainerBase implements TaggedProfileTemplate {
+public abstract class TaggedProfileTemplateBase extends IdentifiableContainerBase implements
+        TaggedProfileTemplate {
     public void write(OutputStream os) {
         EncapsulationUtility.writeEncapsulation(this, os);
     }

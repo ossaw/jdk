@@ -19,8 +19,7 @@ import java.beans.*;
  * @author Joshua Outwater
  * @since 1.7
  */
-public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
-        PropertyChangeListener {
+public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI, PropertyChangeListener {
     private SynthStyle style;
     private Handler handler = new Handler();
 
@@ -28,7 +27,7 @@ public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
      * Creates a new UI object for the given component.
      *
      * @param c
-     *          component to create UI object for
+     *        component to create UI object for
      * @return the UI object
      */
     public static ComponentUI createUI(JComponent c) {
@@ -41,8 +40,7 @@ public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
     @Override
     protected void installComponents() {
         if (UIManager.getBoolean("InternalFrame.useTaskBar")) {
-            iconPane = new JToggleButton(frame.getTitle(), frame
-                    .getFrameIcon()) {
+            iconPane = new JToggleButton(frame.getTitle(), frame.getFrameIcon()) {
                 @Override
                 public String getToolTipText() {
                     return getText();
@@ -137,15 +135,14 @@ public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
      * Notifies this UI delegate to repaint the specified component. This method
      * paints the component background, then calls the
      * {@link #paint(SynthContext,Graphics)} method.
-     *
      * <p>
      * In general, this method does not need to be overridden by subclasses. All
      * Look and Feel rendering code should reside in the {@code paint} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -153,8 +150,7 @@ public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
         SynthContext context = getContext(c);
 
         SynthLookAndFeel.update(context, g);
-        context.getPainter().paintDesktopIconBackground(context, g, 0, 0, c
-                .getWidth(), c.getHeight());
+        context.getPainter().paintDesktopIconBackground(context, g, 0, 0, c.getWidth(), c.getHeight());
         paint(context, g);
         context.dispose();
     }
@@ -166,9 +162,9 @@ public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
      * the {@link #paint(SynthContext,Graphics)} method.
      *
      * @param g
-     *          the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @param c
-     *          the component being painted
+     *        the component being painted
      * @see #paint(SynthContext,Graphics)
      */
     @Override
@@ -183,9 +179,9 @@ public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
      * Paints the specified component. This implementation does nothing.
      *
      * @param context
-     *                context for the component being painted
+     *        context for the component being painted
      * @param g
-     *                the {@code Graphics} object used for painting
+     *        the {@code Graphics} object used for painting
      * @see #update(Graphics,JComponent)
      */
     protected void paint(SynthContext context, Graphics g) {}
@@ -194,8 +190,7 @@ public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         context.getPainter().paintDesktopIconBorder(context, g, x, y, w, h);
     }
 
@@ -236,8 +231,7 @@ public class SynthDesktopIconUI extends BasicDesktopIconUI implements SynthUI,
                             frame.setSelected(true);
                         }
                     }
-                } catch (PropertyVetoException e2) {
-                }
+                } catch (PropertyVetoException e2) {}
             }
         }
     }

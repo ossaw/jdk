@@ -20,8 +20,7 @@ package javax.security.sasl;
  * requested by the client: <blockquote>
  * 
  * <pre>
- * SaslServer ss = Sasl.createSaslServer(mechanism, "ldap", myFQDN, props,
- *         callbackHandler);
+ * SaslServer ss = Sasl.createSaslServer(mechanism, "ldap", myFQDN, props, callbackHandler);
  * </pre>
  * 
  * </blockquote> It can then proceed to use the server for authentication. For
@@ -64,10 +63,8 @@ package javax.security.sasl;
  * </blockquote>
  *
  * @since 1.5
- *
  * @see Sasl
  * @see SaslServerFactory
- *
  * @author Rosanna Lee
  * @author Rob Weltman
  */
@@ -84,7 +81,6 @@ public abstract interface SaslServer {
 
     /**
      * Evaluates the response data and generates a challenge.
-     *
      * If a response is received from the client during the authentication
      * process, this method is called to prepare an appropriate next challenge
      * to submit to the client. The challenge is null if the authentication has
@@ -96,19 +92,17 @@ public abstract interface SaslServer {
      * further response is needed from the client.
      *
      * @param response
-     *                 The non-null (but possibly empty) response sent by the
-     *                 client.
-     *
+     *        The non-null (but possibly empty) response sent by the
+     *        client.
      * @return The possibly null challenge to send to the client. It is null if
      *         the authentication has succeeded and there is no more challenge
      *         data to be sent to the client.
      * @exception SaslException
-     *                          If an error occurred while processing the
-     *                          response or
-     *                          generating a challenge.
+     *            If an error occurred while processing the
+     *            response or
+     *            generating a challenge.
      */
-    public abstract byte[] evaluateResponse(byte[] response)
-            throws SaslException;
+    public abstract byte[] evaluateResponse(byte[] response) throws SaslException;
 
     /**
      * Determines whether the authentication exchange has completed. This method
@@ -127,8 +121,8 @@ public abstract interface SaslServer {
      * 
      * @return The authorization ID of the client.
      * @exception IllegalStateException
-     *                                  if this authentication session has not
-     *                                  completed
+     *            if this authentication session has not
+     *            completed
      */
     public String getAuthorizationID();
 
@@ -145,27 +139,26 @@ public abstract interface SaslServer {
      * use.
      *
      * @param incoming
-     *                 A non-null byte array containing the encoded bytes from
-     *                 the
-     *                 client.
+     *        A non-null byte array containing the encoded bytes from
+     *        the
+     *        client.
      * @param offset
-     *                 The starting position at {@code incoming} of the bytes to
-     *                 use.
+     *        The starting position at {@code incoming} of the bytes to
+     *        use.
      * @param len
-     *                 The number of bytes from {@code incoming} to use.
+     *        The number of bytes from {@code incoming} to use.
      * @return A non-null byte array containing the decoded bytes.
      * @exception SaslException
-     *                                  if {@code incoming} cannot be
-     *                                  successfully unwrapped.
+     *            if {@code incoming} cannot be
+     *            successfully unwrapped.
      * @exception IllegalStateException
-     *                                  if the authentication exchange has not
-     *                                  completed, or if
-     *                                  the negotiated quality of protection has
-     *                                  neither integrity
-     *                                  nor privacy
+     *            if the authentication exchange has not
+     *            completed, or if
+     *            the negotiated quality of protection has
+     *            neither integrity
+     *            nor privacy
      */
-    public abstract byte[] unwrap(byte[] incoming, int offset, int len)
-            throws SaslException;
+    public abstract byte[] unwrap(byte[] incoming, int offset, int len) throws SaslException;
 
     /**
      * Wraps a byte array to be sent to the client. This method can be called
@@ -180,25 +173,24 @@ public abstract interface SaslServer {
      * {@code outgoing} to use.
      *
      * @param outgoing
-     *                 A non-null byte array containing the bytes to encode.
+     *        A non-null byte array containing the bytes to encode.
      * @param offset
-     *                 The starting position at {@code outgoing} of the bytes to
-     *                 use.
+     *        The starting position at {@code outgoing} of the bytes to
+     *        use.
      * @param len
-     *                 The number of bytes from {@code outgoing} to use.
+     *        The number of bytes from {@code outgoing} to use.
      * @return A non-null byte array containing the encoded bytes.
      * @exception SaslException
-     *                                  if {@code outgoing} cannot be
-     *                                  successfully wrapped.
+     *            if {@code outgoing} cannot be
+     *            successfully wrapped.
      * @exception IllegalStateException
-     *                                  if the authentication exchange has not
-     *                                  completed, or if
-     *                                  the negotiated quality of protection has
-     *                                  neither integrity
-     *                                  nor privacy.
+     *            if the authentication exchange has not
+     *            completed, or if
+     *            the negotiated quality of protection has
+     *            neither integrity
+     *            nor privacy.
      */
-    public abstract byte[] wrap(byte[] outgoing, int offset, int len)
-            throws SaslException;
+    public abstract byte[] wrap(byte[] outgoing, int offset, int len) throws SaslException;
 
     /**
      * Retrieves the negotiated property. This method can be called only after
@@ -207,12 +199,12 @@ public abstract interface SaslServer {
      * {@code IllegalStateException} is thrown.
      *
      * @param propName
-     *                 the property
+     *        the property
      * @return The value of the negotiated property. If null, the property was
      *         not negotiated or is not applicable to this mechanism.
      * @exception IllegalStateException
-     *                                  if this authentication exchange has not
-     *                                  completed
+     *            if this authentication exchange has not
+     *            completed
      */
 
     public abstract Object getNegotiatedProperty(String propName);
@@ -223,8 +215,8 @@ public abstract interface SaslServer {
      * SaslServer instance. This method is idempotent.
      * 
      * @throws SaslException
-     *                       If a problem was encountered while disposing the
-     *                       resources.
+     *         If a problem was encountered while disposing the
+     *         resources.
      */
     public abstract void dispose() throws SaslException;
 }

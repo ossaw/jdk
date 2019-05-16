@@ -309,8 +309,7 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
 
             { ER_UNKNOWN_AXIS, "\u4E0D\u660E\u306A\u8EF8\u3067\u3059: {0}" },
 
-            { ER_UNKNOWN_MATCH_OPERATION,
-                    "\u4E0D\u660E\u306A\u4E00\u81F4\u64CD\u4F5C\u3067\u3059\u3002" },
+            { ER_UNKNOWN_MATCH_OPERATION, "\u4E0D\u660E\u306A\u4E00\u81F4\u64CD\u4F5C\u3067\u3059\u3002" },
 
             { ER_INCORRECT_ARG_LENGTH,
                     "processing-instruction()\u30CE\u30FC\u30C9\u30FB\u30C6\u30B9\u30C8\u306E\u5F15\u6570\u306E\u9577\u3055\u304C\u4E0D\u6B63\u3067\u3059\u3002" },
@@ -324,8 +323,7 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
             { ER_CANT_CONVERT_TO_MUTABLENODELIST,
                     "{0}\u3092NodeSetDTM\u306B\u5909\u63DB\u3067\u304D\u307E\u305B\u3093\u3002" },
 
-            { ER_CANT_CONVERT_TO_TYPE,
-                    "{0}\u3092type#{1}\u306B\u5909\u63DB\u3067\u304D\u307E\u305B\u3093" },
+            { ER_CANT_CONVERT_TO_TYPE, "{0}\u3092type#{1}\u306B\u5909\u63DB\u3067\u304D\u307E\u305B\u3093" },
 
             { ER_EXPECTED_MATCH_PATTERN,
                     "getMatchScore\u306B\u4E00\u81F4\u30D1\u30BF\u30FC\u30F3\u304C\u5FC5\u8981\u3067\u3059\u3002" },
@@ -336,8 +334,7 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
             { ER_UNKNOWN_OPCODE,
                     "\u30A8\u30E9\u30FC\u3002\u4E0D\u660E\u306A\u64CD\u4F5C\u30B3\u30FC\u30C9: {0}" },
 
-            { ER_EXTRA_ILLEGAL_TOKENS,
-                    "\u4F59\u5206\u306E\u4E0D\u6B63\u306A\u30C8\u30FC\u30AF\u30F3: {0}" },
+            { ER_EXTRA_ILLEGAL_TOKENS, "\u4F59\u5206\u306E\u4E0D\u6B63\u306A\u30C8\u30FC\u30AF\u30F3: {0}" },
 
             { ER_EXPECTED_DOUBLE_QUOTE,
                     "\u30EA\u30C6\u30E9\u30EB\u306E\u5F15\u7528\u7B26\u304C\u4E0D\u6B63\u3067\u3059... \u4E8C\u91CD\u5F15\u7528\u7B26\u304C\u5FC5\u8981\u3067\u3059\u3002" },
@@ -384,8 +381,7 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
             { ER_COULDNOT_FIND_ENDOP_AFTER_OPLOCATIONPATH,
                     "\u30A8\u30E9\u30FC\u3002OP_LOCATIONPATH\u306E\u5F8C\u306BENDOP\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F" },
 
-            { ER_ERROR_OCCURED,
-                    "\u30A8\u30E9\u30FC\u304C\u767A\u751F\u3057\u307E\u3057\u305F\u3002" },
+            { ER_ERROR_OCCURED, "\u30A8\u30E9\u30FC\u304C\u767A\u751F\u3057\u307E\u3057\u305F\u3002" },
 
             { ER_ILLEGAL_VARIABLE_REFERENCE,
                     "\u5909\u6570\u306B\u6307\u5B9A\u3057\u305FVariableReference\u304C\u30B3\u30F3\u30C6\u30AD\u30B9\u30C8\u7BC4\u56F2\u5916\u304B\u5B9A\u7FA9\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u540D\u524D= {0}" },
@@ -442,8 +438,7 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
 
             { ER_OIERROR, "IO\u30A8\u30E9\u30FC" },
 
-            { ER_CANNOT_CREATE_URL,
-                    "{0}\u306EURL\u3092\u4F5C\u6210\u3067\u304D\u307E\u305B\u3093" },
+            { ER_CANNOT_CREATE_URL, "{0}\u306EURL\u3092\u4F5C\u6210\u3067\u304D\u307E\u305B\u3093" },
 
             { ER_XPATH_READOBJECT, "XPath.readObject\u5185: {0}" },
 
@@ -459,11 +454,9 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
             { ER_NODESETDTM_NOT_MUTABLE,
                     "\u3053\u306ENodeSetDTM\u306F\u53EF\u5909\u3067\u306F\u3042\u308A\u307E\u305B\u3093" },
 
-            { ER_VAR_NOT_RESOLVABLE,
-                    "\u5909\u6570\u3092\u89E3\u6C7A\u3067\u304D\u307E\u305B\u3093: {0}" },
+            { ER_VAR_NOT_RESOLVABLE, "\u5909\u6570\u3092\u89E3\u6C7A\u3067\u304D\u307E\u305B\u3093: {0}" },
 
-            { ER_NULL_ERROR_HANDLER,
-                    "Null\u306E\u30A8\u30E9\u30FC\u30FB\u30CF\u30F3\u30C9\u30E9" },
+            { ER_NULL_ERROR_HANDLER, "Null\u306E\u30A8\u30E9\u30FC\u30FB\u30CF\u30F3\u30C9\u30E9" },
 
             { ER_PROG_ASSERT_UNKNOWN_OPCODE,
                     "\u30D7\u30ED\u30B0\u30E9\u30DE\u306E\u30A2\u30B5\u30FC\u30B7\u30E7\u30F3: \u4E0D\u660E\u306Aopcode: {0}" },
@@ -701,8 +694,7 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
 
             /** Field ER_ARG_CANNOT_BE_NULL */
 
-            { ER_ARG_CANNOT_BE_NULL,
-                    "{0}\u5F15\u6570\u306Fnull\u306B\u3067\u304D\u307E\u305B\u3093" },
+            { ER_ARG_CANNOT_BE_NULL, "{0}\u5F15\u6570\u306Fnull\u306B\u3067\u304D\u307E\u305B\u3093" },
 
             /** Field ER_OBJECT_MODEL_NULL */
 
@@ -776,8 +768,7 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
             { WG_COULDNOT_FIND_FUNCTION,
                     "\u95A2\u6570{0}\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F" },
 
-            { WG_CANNOT_MAKE_URL_FROM,
-                    "{0}\u304B\u3089URL\u3092\u4F5C\u6210\u3067\u304D\u307E\u305B\u3093" },
+            { WG_CANNOT_MAKE_URL_FROM, "{0}\u304B\u3089URL\u3092\u4F5C\u6210\u3067\u304D\u307E\u305B\u3093" },
 
             { WG_EXPAND_ENTITIES_NOT_SUPPORTED,
                     "-E\u30AA\u30D7\u30B7\u30E7\u30F3\u306FDTM\u30D1\u30FC\u30B5\u30FC\u3067\u306F\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u3066\u3044\u307E\u305B\u3093" },
@@ -789,20 +780,17 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
                     "\u30B5\u30DD\u30FC\u30C8\u3055\u308C\u3066\u3044\u306A\u3044\u30A8\u30F3\u30B3\u30FC\u30C7\u30A3\u30F3\u30B0\u3067\u3059: {0}" },
 
             // Other miscellaneous text used inside the code...
-            { "ui_language", "ja" }, { "help_language", "ja" }, { "language",
-                    "ja" }, { "BAD_CODE",
-                            "createMessage\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u304C\u7BC4\u56F2\u5916\u3067\u3059" },
+            { "ui_language", "ja" }, { "help_language", "ja" }, { "language", "ja" }, { "BAD_CODE",
+                    "createMessage\u306E\u30D1\u30E9\u30E1\u30FC\u30BF\u304C\u7BC4\u56F2\u5916\u3067\u3059" },
             { "FORMAT_FAILED",
                     "messageFormat\u306E\u547C\u51FA\u3057\u4E2D\u306B\u4F8B\u5916\u304C\u30B9\u30ED\u30FC\u3055\u308C\u307E\u3057\u305F" },
-            { "version", ">>>>>>> Xalan\u30D0\u30FC\u30B8\u30E7\u30F3 " }, {
-                    "version2", "<<<<<<<" }, { "yes", "yes" }, { "line",
-                            "\u884C\u756A\u53F7" }, { "column",
-                                    "\u5217\u756A\u53F7" }, { "xsldone",
-                                            "XSLProcessor: \u5B8C\u4E86\u3057\u307E\u3057\u305F" },
-            { "xpath_option", "xpath\u30AA\u30D7\u30B7\u30E7\u30F3: " }, {
-                    "optionIN", "   [-in inputXMLURL]" }, { "optionSelect",
-                            "   [-select xpath expression]" }, { "optionMatch",
-                                    "   [-match match pattern (\u4E00\u81F4\u8A3A\u65AD\u7528)]" },
+            { "version", ">>>>>>> Xalan\u30D0\u30FC\u30B8\u30E7\u30F3 " }, { "version2", "<<<<<<<" }, { "yes",
+                    "yes" }, { "line", "\u884C\u756A\u53F7" }, { "column", "\u5217\u756A\u53F7" }, {
+                            "xsldone", "XSLProcessor: \u5B8C\u4E86\u3057\u307E\u3057\u305F" }, {
+                                    "xpath_option", "xpath\u30AA\u30D7\u30B7\u30E7\u30F3: " }, { "optionIN",
+                                            "   [-in inputXMLURL]" }, { "optionSelect",
+                                                    "   [-select xpath expression]" }, { "optionMatch",
+                                                            "   [-match match pattern (\u4E00\u81F4\u8A3A\u65AD\u7528)]" },
             { "optionAnyExpr",
                     "\u307E\u305F\u306F\u3001xpath\u5F0F\u304C\u8A3A\u65AD\u30C0\u30F3\u30D7\u3092\u5B9F\u884C\u3057\u307E\u3059" },
             { "noParsermsg1",
@@ -813,10 +801,8 @@ public class XPATHErrorResources_ja extends ListResourceBundle {
                     "\u30AF\u30E9\u30B9\u30D1\u30B9\u3092\u78BA\u8A8D\u3057\u3066\u304F\u3060\u3055\u3044\u3002" },
             { "noParsermsg4",
                     "IBM\u306EJava\u7528XML\u30D1\u30FC\u30B5\u30FC\u304C\u306A\u3044\u5834\u5408\u3001\u6B21\u306E\u30B5\u30A4\u30C8\u304B\u3089\u30C0\u30A6\u30F3\u30ED\u30FC\u30C9\u3067\u304D\u307E\u3059" },
-            { "noParsermsg5",
-                    "IBM\u306EAlphaWorks: http://www.alphaworks.ibm.com/formula/xml" },
-            { "gtone", ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" },
-            { "three", "3" }
+            { "noParsermsg5", "IBM\u306EAlphaWorks: http://www.alphaworks.ibm.com/formula/xml" }, { "gtone",
+                    ">1" }, { "zero", "0" }, { "one", "1" }, { "two", "2" }, { "three", "3" }
 
     };
 

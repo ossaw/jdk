@@ -208,7 +208,7 @@ public final class XSLTC {
      * Return the value of the specified feature
      * 
      * @param name
-     *             name of the feature
+     *        name of the feature
      * @return true if the feature is enabled, false otherwise
      */
     public boolean getFeature(Feature name) {
@@ -283,8 +283,7 @@ public final class XSLTC {
     }
 
     private void setExternalExtensionFunctions(String name, Class clazz) {
-        if (_isSecureProcessing && clazz != null && !_externalExtensionFunctions
-                .containsKey(name)) {
+        if (_isSecureProcessing && clazz != null && !_externalExtensionFunctions.containsKey(name)) {
             _externalExtensionFunctions.put(name, clazz);
         }
     }
@@ -351,7 +350,7 @@ public final class XSLTC {
      * referenced in xsl:include/import
      * 
      * @param loader
-     *               The SourceLoader to use for include/import
+     *        The SourceLoader to use for include/import
      */
     public void setSourceLoader(SourceLoader loader) {
         _loader = loader;
@@ -380,13 +379,13 @@ public final class XSLTC {
      * compiler (and parser) is an XML document.
      * 
      * @param media
-     *                The media attribute to be matched. May be null, in which
-     *                case
-     *                the prefered templates will be used (i.e. alternate = no).
+     *        The media attribute to be matched. May be null, in which
+     *        case
+     *        the prefered templates will be used (i.e. alternate = no).
      * @param title
-     *                The value of the title attribute to match. May be null.
+     *        The value of the title attribute to match. May be null.
      * @param charset
-     *                The value of the charset attribute to match. May be null.
+     *        The value of the charset attribute to match. May be null.
      */
     public void setPIParameters(String media, String title, String charset) {
         _parser.setPIParameters(media, title, charset);
@@ -396,7 +395,7 @@ public final class XSLTC {
      * Compiles an XSL stylesheet pointed to by a URL
      * 
      * @param url
-     *            An URL containing the input XSL stylesheet
+     *        An URL containing the input XSL stylesheet
      */
     public boolean compile(URL url) {
         try {
@@ -406,8 +405,7 @@ public final class XSLTC {
             input.setSystemId(url.toString());
             return compile(input, _className);
         } catch (IOException e) {
-            _parser.reportError(Constants.FATAL, new ErrorMsg(
-                    ErrorMsg.JAXP_COMPILE_ERR, e));
+            _parser.reportError(Constants.FATAL, new ErrorMsg(ErrorMsg.JAXP_COMPILE_ERR, e));
             return false;
         }
     }
@@ -416,9 +414,9 @@ public final class XSLTC {
      * Compiles an XSL stylesheet pointed to by a URL
      * 
      * @param url
-     *             An URL containing the input XSL stylesheet
+     *        An URL containing the input XSL stylesheet
      * @param name
-     *             The name to assign to the translet class
+     *        The name to assign to the translet class
      */
     public boolean compile(URL url, String name) {
         try {
@@ -428,8 +426,7 @@ public final class XSLTC {
             input.setSystemId(url.toString());
             return compile(input, name);
         } catch (IOException e) {
-            _parser.reportError(Constants.FATAL, new ErrorMsg(
-                    ErrorMsg.JAXP_COMPILE_ERR, e));
+            _parser.reportError(Constants.FATAL, new ErrorMsg(ErrorMsg.JAXP_COMPILE_ERR, e));
             return false;
         }
     }
@@ -438,9 +435,9 @@ public final class XSLTC {
      * Compiles an XSL stylesheet passed in through an InputStream
      * 
      * @param stream
-     *               An InputStream that will pass in the stylesheet contents
+     *        An InputStream that will pass in the stylesheet contents
      * @param name
-     *               The name of the translet class to generate
+     *        The name of the translet class to generate
      * @return 'true' if the compilation was successful
      */
     public boolean compile(InputStream stream, String name) {
@@ -453,9 +450,9 @@ public final class XSLTC {
      * Compiles an XSL stylesheet passed in through an InputStream
      * 
      * @param input
-     *              An InputSource that will pass in the stylesheet contents
+     *        An InputSource that will pass in the stylesheet contents
      * @param name
-     *              The name of the translet class to generate - can be null
+     *        The name of the translet class to generate - can be null
      * @return 'true' if the compilation was successful
      */
     public boolean compile(InputSource input, String name) {
@@ -517,13 +514,11 @@ public final class XSLTC {
             }
         } catch (Exception e) {
             /* if (_debug) */ e.printStackTrace();
-            _parser.reportError(Constants.FATAL, new ErrorMsg(
-                    ErrorMsg.JAXP_COMPILE_ERR, e));
+            _parser.reportError(Constants.FATAL, new ErrorMsg(ErrorMsg.JAXP_COMPILE_ERR, e));
         } catch (Error e) {
             if (_debug)
                 e.printStackTrace();
-            _parser.reportError(Constants.FATAL, new ErrorMsg(
-                    ErrorMsg.JAXP_COMPILE_ERR, e));
+            _parser.reportError(Constants.FATAL, new ErrorMsg(ErrorMsg.JAXP_COMPILE_ERR, e));
         } finally {
             _reader = null; // reset this here to be sure it is not re-used
         }
@@ -534,7 +529,7 @@ public final class XSLTC {
      * Compiles a set of stylesheets pointed to by a Vector of URLs
      * 
      * @param stylesheets
-     *                    A Vector containing URLs pointing to the stylesheets
+     *        A Vector containing URLs pointing to the stylesheets
      * @return 'true' if the compilation was successful
      */
     public boolean compile(Vector stylesheets) {
@@ -586,12 +581,12 @@ public final class XSLTC {
      * byte arrays. One byte array for each generated class.
      * 
      * @param name
-     *                   The name of the translet class to generate
+     *        The name of the translet class to generate
      * @param input
-     *                   An InputSource that will pass in the stylesheet
-     *                   contents
+     *        An InputSource that will pass in the stylesheet
+     *        contents
      * @param outputType
-     *                   The output type
+     *        The output type
      * @return JVM bytecodes that represent translet class definition
      */
     public byte[][] compile(String name, InputSource input, int outputType) {
@@ -607,9 +602,9 @@ public final class XSLTC {
      * byte arrays. One byte array for each generated class.
      * 
      * @param name
-     *              The name of the translet class to generate
+     *        The name of the translet class to generate
      * @param input
-     *              An InputSource that will pass in the stylesheet contents
+     *        An InputSource that will pass in the stylesheet contents
      * @return JVM bytecodes that represent translet class definition
      */
     public byte[][] compile(String name, InputSource input) {
@@ -620,7 +615,7 @@ public final class XSLTC {
      * Set the XMLReader to use for parsing the next input stylesheet
      * 
      * @param reader
-     *               XMLReader (SAX2 parser) to use
+     *        XMLReader (SAX2 parser) to use
      */
     public void setXMLReader(XMLReader reader) {
         _reader = reader;
@@ -705,7 +700,7 @@ public final class XSLTC {
      * compile(Vector urls) method.
      * 
      * @param className
-     *                  The name to assign to the translet class
+     *        The name to assign to the translet class
      */
     public void setClassName(String className) {
         final String base = Util.baseName(className);
@@ -917,8 +912,7 @@ public final class XSLTC {
 
     public void dumpClass(JavaClass clazz) {
 
-        if (_outputType == FILE_OUTPUT
-                || _outputType == BYTEARRAY_AND_FILE_OUTPUT) {
+        if (_outputType == FILE_OUTPUT || _outputType == BYTEARRAY_AND_FILE_OUTPUT) {
             File outFile = getOutputFile(clazz.getClassName());
             String parentDir = outFile.getParent();
             if (parentDir != null) {
@@ -931,8 +925,8 @@ public final class XSLTC {
         try {
             switch (_outputType) {
                 case FILE_OUTPUT:
-                    clazz.dump(new BufferedOutputStream(new FileOutputStream(
-                            getOutputFile(clazz.getClassName()))));
+                    clazz.dump(new BufferedOutputStream(new FileOutputStream(getOutputFile(clazz
+                            .getClassName()))));
                     break;
                 case JAR_OUTPUT:
                     _bcelClasses.addElement(clazz);
@@ -946,9 +940,8 @@ public final class XSLTC {
                     _classes.addElement(out.toByteArray());
 
                     if (_outputType == BYTEARRAY_AND_FILE_OUTPUT)
-                        clazz.dump(new BufferedOutputStream(
-                                new FileOutputStream(getOutputFile(clazz
-                                        .getClassName()))));
+                        clazz.dump(new BufferedOutputStream(new FileOutputStream(getOutputFile(clazz
+                                .getClassName()))));
                     else if (_outputType == BYTEARRAY_AND_JAR_OUTPUT)
                         _bcelClasses.addElement(clazz);
 
@@ -979,8 +972,7 @@ public final class XSLTC {
         // create manifest
         Enumeration classes = _bcelClasses.elements();
         final String now = (new Date()).toString();
-        final java.util.jar.Attributes.Name dateAttr = new java.util.jar.Attributes.Name(
-                "Date");
+        final java.util.jar.Attributes.Name dateAttr = new java.util.jar.Attributes.Name("Date");
         while (classes.hasMoreElements()) {
             final JavaClass clazz = (JavaClass) classes.nextElement();
             final String className = clazz.getClassName().replace('.', '/');
@@ -990,8 +982,7 @@ public final class XSLTC {
         }
 
         final File jarFile = new File(_destDir, _jarFileName);
-        final JarOutputStream jos = new JarOutputStream(new FileOutputStream(
-                jarFile), manifest);
+        final JarOutputStream jos = new JarOutputStream(new FileOutputStream(jarFile), manifest);
         classes = _bcelClasses.elements();
         while (classes.hasMoreElements()) {
             final JavaClass clazz = (JavaClass) classes.nextElement();
@@ -1024,7 +1015,7 @@ public final class XSLTC {
      * array required.
      * 
      * @param index
-     *              The index of the <code>char[]</code>. Zero-based.
+     *        The index of the <code>char[]</code>. Zero-based.
      * @return String The character data to be stored in the corresponding
      *         <code>char[]</code>.
      */
@@ -1045,8 +1036,8 @@ public final class XSLTC {
      * in the stylesheet.
      * 
      * @param newData
-     *                String data to be added to char arrays. Pre-condition:
-     *                <code>newData.length() &le; 21845</code>
+     *        String data to be added to char arrays. Pre-condition:
+     *        <code>newData.length() &le; 21845</code>
      * @return int offset at which character data will be stored
      */
     public int addCharacterData(String newData) {
@@ -1056,8 +1047,7 @@ public final class XSLTC {
             currData = new StringBuffer();
             m_characterData.addElement(currData);
         } else {
-            currData = (StringBuffer) m_characterData.elementAt(m_characterData
-                    .size() - 1);
+            currData = (StringBuffer) m_characterData.elementAt(m_characterData.size() - 1);
         }
 
         // Character data could take up to three-times as much space when

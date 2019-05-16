@@ -28,7 +28,6 @@ import com.sun.org.apache.xerces.internal.xni.XMLDocumentHandler;
  * implementor is able to emit them.
  *
  * @author Andy Clark, IBM
- *
  */
 public interface XMLDocumentSource {
 

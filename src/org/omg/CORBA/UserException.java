@@ -13,8 +13,7 @@ package org.omg.CORBA;
  * @see <A href="../../../../technotes/guides/idl/jidlExceptions.html">
  *      documentation on Java&nbsp;IDL exceptions</A>
  */
-public abstract class UserException extends java.lang.Exception implements
-        org.omg.CORBA.portable.IDLEntity {
+public abstract class UserException extends java.lang.Exception implements org.omg.CORBA.portable.IDLEntity {
 
     /**
      * Constructs a <code>UserException</code> object. This method is called
@@ -29,8 +28,8 @@ public abstract class UserException extends java.lang.Exception implements
      * This method is called only by subclasses.
      *
      * @param reason
-     *               a <code>String</code> object giving the reason for this
-     *               exception
+     *        a <code>String</code> object giving the reason for this
+     *        exception
      */
     protected UserException(String reason) {
         super(reason);

@@ -61,10 +61,10 @@ public class LookupOp implements BufferedImageOp, RasterOp {
      * <code>RenderingHints</code> object, which might be <code>null</code>.
      * 
      * @param lookup
-     *               the specified <code>LookupTable</code>
+     *        the specified <code>LookupTable</code>
      * @param hints
-     *               the specified <code>RenderingHints</code>, or
-     *               <code>null</code>
+     *        the specified <code>RenderingHints</code>, or
+     *        <code>null</code>
      */
     public LookupOp(LookupTable lookup, RenderingHints hints) {
         this.ltable = lookup;
@@ -93,32 +93,30 @@ public class LookupOp implements BufferedImageOp, RasterOp {
      * <code>IndexColorModel</code>.
      * 
      * @param src
-     *            the <code>BufferedImage</code> to be filtered
+     *        the <code>BufferedImage</code> to be filtered
      * @param dst
-     *            the <code>BufferedImage</code> in which to store the results
-     *            of the filter operation
+     *        the <code>BufferedImage</code> in which to store the results
+     *        of the filter operation
      * @return the filtered <code>BufferedImage</code>.
      * @throws IllegalArgumentException
-     *                                  if the number of arrays in the
-     *                                  <code>LookupTable</code> does
-     *                                  not meet the restrictions described in
-     *                                  the class comments, or
-     *                                  if the source image has an
-     *                                  <code>IndexColorModel</code>.
+     *         if the number of arrays in the
+     *         <code>LookupTable</code> does
+     *         not meet the restrictions described in
+     *         the class comments, or
+     *         if the source image has an
+     *         <code>IndexColorModel</code>.
      */
     public final BufferedImage filter(BufferedImage src, BufferedImage dst) {
         ColorModel srcCM = src.getColorModel();
         int numBands = srcCM.getNumColorComponents();
         ColorModel dstCM;
         if (srcCM instanceof IndexColorModel) {
-            throw new IllegalArgumentException("LookupOp cannot be "
-                    + "performed on an indexed image");
+            throw new IllegalArgumentException("LookupOp cannot be " + "performed on an indexed image");
         }
         int numComponents = ltable.getNumComponents();
-        if (numComponents != 1 && numComponents != srcCM.getNumComponents()
-                && numComponents != srcCM.getNumColorComponents()) {
-            throw new IllegalArgumentException("Number of arrays in the "
-                    + " lookup table (" + numComponents
+        if (numComponents != 1 && numComponents != srcCM.getNumComponents() && numComponents != srcCM
+                .getNumColorComponents()) {
+            throw new IllegalArgumentException("Number of arrays in the " + " lookup table (" + numComponents
                     + " is not compatible with the " + " src image: " + src);
         }
 
@@ -132,18 +130,16 @@ public class LookupOp implements BufferedImageOp, RasterOp {
             dstCM = srcCM;
         } else {
             if (width != dst.getWidth()) {
-                throw new IllegalArgumentException("Src width (" + width
-                        + ") not equal to dst width (" + dst.getWidth() + ")");
+                throw new IllegalArgumentException("Src width (" + width + ") not equal to dst width (" + dst
+                        .getWidth() + ")");
             }
             if (height != dst.getHeight()) {
-                throw new IllegalArgumentException("Src height (" + height
-                        + ") not equal to dst height (" + dst.getHeight()
-                        + ")");
+                throw new IllegalArgumentException("Src height (" + height + ") not equal to dst height ("
+                        + dst.getHeight() + ")");
             }
 
             dstCM = dst.getColorModel();
-            if (srcCM.getColorSpace().getType() != dstCM.getColorSpace()
-                    .getType()) {
+            if (srcCM.getColorSpace().getType() != dstCM.getColorSpace().getType()) {
                 needToConvert = true;
                 dst = createCompatibleDestImage(src, null);
             }
@@ -165,9 +161,8 @@ public class LookupOp implements BufferedImageOp, RasterOp {
                     for (int i = 0; i < numBands - 1; i++) {
                         bands[i] = i;
                     }
-                    srcRaster = srcRaster.createWritableChild(minx, miny,
-                            srcRaster.getWidth(), srcRaster.getHeight(), minx,
-                            miny, bands);
+                    srcRaster = srcRaster.createWritableChild(minx, miny, srcRaster.getWidth(), srcRaster
+                            .getHeight(), minx, miny, bands);
                 }
             }
             if (dstCM.hasAlpha()) {
@@ -179,9 +174,8 @@ public class LookupOp implements BufferedImageOp, RasterOp {
                     for (int i = 0; i < numBands - 1; i++) {
                         bands[i] = i;
                     }
-                    dstRaster = dstRaster.createWritableChild(minx, miny,
-                            dstRaster.getWidth(), dstRaster.getHeight(), minx,
-                            miny, bands);
+                    dstRaster = dstRaster.createWritableChild(minx, miny, dstRaster.getWidth(), dstRaster
+                            .getHeight(), minx, miny, bands);
                 }
             }
 
@@ -207,20 +201,19 @@ public class LookupOp implements BufferedImageOp, RasterOp {
      * class comment above.
      * 
      * @param src
-     *            the source <code>Raster</code> to filter
+     *        the source <code>Raster</code> to filter
      * @param dst
-     *            the destination <code>WritableRaster</code> for the filtered
-     *            <code>src</code>
+     *        the destination <code>WritableRaster</code> for the filtered
+     *        <code>src</code>
      * @return the filtered <code>WritableRaster</code>.
      * @throws IllegalArgumentException
-     *                                  if the source and destinations rasters
-     *                                  do not have the same
-     *                                  number of bands, or the number of arrays
-     *                                  in the
-     *                                  <code>LookupTable</code> does not meet
-     *                                  the restrictions
-     *                                  described in the class comments.
-     *
+     *         if the source and destinations rasters
+     *         do not have the same
+     *         number of bands, or the number of arrays
+     *         in the
+     *         <code>LookupTable</code> does not meet
+     *         the restrictions
+     *         described in the class comments.
      */
     public final WritableRaster filter(Raster src, WritableRaster dst) {
         int numBands = src.getNumBands();
@@ -234,20 +227,17 @@ public class LookupOp implements BufferedImageOp, RasterOp {
         if (dst == null) {
             dst = createCompatibleDestRaster(src);
         } else if (height != dst.getHeight() || width != dst.getWidth()) {
-            throw new IllegalArgumentException(
-                    "Width or height of Rasters do not " + "match");
+            throw new IllegalArgumentException("Width or height of Rasters do not " + "match");
         }
         dstLength = dst.getNumBands();
 
         if (numBands != dstLength) {
-            throw new IllegalArgumentException("Number of channels in the src ("
-                    + numBands + ") does not match number of channels"
-                    + " in the destination (" + dstLength + ")");
+            throw new IllegalArgumentException("Number of channels in the src (" + numBands
+                    + ") does not match number of channels" + " in the destination (" + dstLength + ")");
         }
         int numComponents = ltable.getNumComponents();
         if (numComponents != 1 && numComponents != src.getNumBands()) {
-            throw new IllegalArgumentException("Number of arrays in the "
-                    + " lookup table (" + numComponents
+            throw new IllegalArgumentException("Number of arrays in the " + " lookup table (" + numComponents
                     + " is not compatible with the " + " src Raster: " + src);
         }
 
@@ -257,11 +247,9 @@ public class LookupOp implements BufferedImageOp, RasterOp {
 
         // Optimize for cases we know about
         if (ltable instanceof ByteLookupTable) {
-            byteFilter((ByteLookupTable) ltable, src, dst, width, height,
-                    numBands);
+            byteFilter((ByteLookupTable) ltable, src, dst, width, height, numBands);
         } else if (ltable instanceof ShortLookupTable) {
-            shortFilter((ShortLookupTable) ltable, src, dst, width, height,
-                    numBands);
+            shortFilter((ShortLookupTable) ltable, src, dst, width, height, numBands);
         } else {
             // Not one we recognize so do it slowly
             int sminX = src.getMinX();
@@ -292,7 +280,7 @@ public class LookupOp implements BufferedImageOp, RasterOp {
      * not a geometric operation, the bounding box does not change.
      * 
      * @param src
-     *            the <code>BufferedImage</code> to be filtered
+     *        the <code>BufferedImage</code> to be filtered
      * @return the bounds of the filtered definition image.
      */
     public final Rectangle2D getBounds2D(BufferedImage src) {
@@ -304,7 +292,7 @@ public class LookupOp implements BufferedImageOp, RasterOp {
      * is not a geometric operation, the bounding box does not change.
      * 
      * @param src
-     *            the <code>Raster</code> to be filtered
+     *        the <code>Raster</code> to be filtered
      * @return the bounds of the filtered definition <code>Raster</code>.
      */
     public final Rectangle2D getBounds2D(Raster src) {
@@ -318,14 +306,13 @@ public class LookupOp implements BufferedImageOp, RasterOp {
      * <code>ColorModel</code> will be used.
      * 
      * @param src
-     *               Source image for the filter operation.
+     *        Source image for the filter operation.
      * @param destCM
-     *               the destination's <code>ColorModel</code>, which can be
-     *               <code>null</code>.
+     *        the destination's <code>ColorModel</code>, which can be
+     *        <code>null</code>.
      * @return a filtered destination <code>BufferedImage</code>.
      */
-    public BufferedImage createCompatibleDestImage(BufferedImage src,
-            ColorModel destCM) {
+    public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel destCM) {
         BufferedImage image;
         int w = src.getWidth();
         int h = src.getHeight();
@@ -372,16 +359,15 @@ public class LookupOp implements BufferedImageOp, RasterOp {
                     }
                 }
                 if (nbits != null) {
-                    cm = new ComponentColorModel(cm.getColorSpace(), nbits,
-                            hasAlpha, isPre, trans, transferType);
+                    cm = new ComponentColorModel(cm.getColorSpace(), nbits, hasAlpha, isPre, trans,
+                            transferType);
                 }
             }
-            image = new BufferedImage(cm, cm.createCompatibleWritableRaster(w,
-                    h), cm.isAlphaPremultiplied(), null);
+            image = new BufferedImage(cm, cm.createCompatibleWritableRaster(w, h), cm.isAlphaPremultiplied(),
+                    null);
         } else {
-            image = new BufferedImage(destCM, destCM
-                    .createCompatibleWritableRaster(w, h), destCM
-                            .isAlphaPremultiplied(), null);
+            image = new BufferedImage(destCM, destCM.createCompatibleWritableRaster(w, h), destCM
+                    .isAlphaPremultiplied(), null);
         }
 
         return image;
@@ -392,7 +378,7 @@ public class LookupOp implements BufferedImageOp, RasterOp {
      * and number of bands, given this source.
      * 
      * @param src
-     *            the <code>Raster</code> to be transformed
+     *        the <code>Raster</code> to be transformed
      * @return the zeroed-destination <code>Raster</code>.
      */
     public WritableRaster createCompatibleDestRaster(Raster src) {
@@ -406,11 +392,11 @@ public class LookupOp implements BufferedImageOp, RasterOp {
      * <code>srcPt</code> will equal the <code>dstPt</code>.
      * 
      * @param srcPt
-     *              a <code>Point2D</code> that represents a point in the source
-     *              image
+     *        a <code>Point2D</code> that represents a point in the source
+     *        image
      * @param dstPt
-     *              a <code>Point2D</code>that represents the location in the
-     *              destination
+     *        a <code>Point2D</code>that represents the location in the
+     *        destination
      * @return the <code>Point2D</code> in the destination that corresponds to
      *         the specified point in the source.
      */
@@ -432,8 +418,8 @@ public class LookupOp implements BufferedImageOp, RasterOp {
         return hints;
     }
 
-    private final void byteFilter(ByteLookupTable lookup, Raster src,
-            WritableRaster dst, int width, int height, int numBands) {
+    private final void byteFilter(ByteLookupTable lookup, Raster src, WritableRaster dst, int width,
+            int height, int numBands) {
         int[] srcPix = null;
 
         // Find the ref to the table and the offset
@@ -462,9 +448,8 @@ public class LookupOp implements BufferedImageOp, RasterOp {
                 for (x = 0; x < width; x++) {
                     int index = srcPix[x] - offset;
                     if (index < 0 || index > len) {
-                        throw new IllegalArgumentException("index (" + index
-                                + "(out of range: " + " srcPix[" + x + "]="
-                                + srcPix[x] + " offset=" + offset);
+                        throw new IllegalArgumentException("index (" + index + "(out of range: " + " srcPix["
+                                + x + "]=" + srcPix[x] + " offset=" + offset);
                     }
                     // Do the lookup
                     srcPix[x] = table[tidx][index];
@@ -475,8 +460,8 @@ public class LookupOp implements BufferedImageOp, RasterOp {
         }
     }
 
-    private final void shortFilter(ShortLookupTable lookup, Raster src,
-            WritableRaster dst, int width, int height, int numBands) {
+    private final void shortFilter(ShortLookupTable lookup, Raster src, WritableRaster dst, int width,
+            int height, int numBands) {
         int band;
         int[] srcPix = null;
 
@@ -505,9 +490,8 @@ public class LookupOp implements BufferedImageOp, RasterOp {
                 for (x = 0; x < width; x++) {
                     index = srcPix[x] - offset;
                     if (index < 0 || index > maxShort) {
-                        throw new IllegalArgumentException("index out of range "
-                                + index + " x is " + x + "srcPix[x]="
-                                + srcPix[x] + " offset=" + offset);
+                        throw new IllegalArgumentException("index out of range " + index + " x is " + x
+                                + "srcPix[x]=" + srcPix[x] + " offset=" + offset);
                     }
                     // Do the lookup
                     srcPix[x] = table[tidx][index];

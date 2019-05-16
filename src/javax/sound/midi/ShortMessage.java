@@ -26,7 +26,6 @@ package javax.sound.midi;
  *
  * @see SysexMessage
  * @see MetaMessage
- *
  * @author David Rivas
  * @author Kara Kytle
  * @author Florian Bomers
@@ -180,12 +179,12 @@ public class ShortMessage extends MidiMessage {
      * using one of the {@code setMessage} methods.
      *
      * @param status
-     *               the MIDI status byte
+     *        the MIDI status byte
      * @throws InvalidMidiDataException
-     *                                  if {@code status} does not specify a
-     *                                  valid MIDI status byte
-     *                                  for a message that requires no data
-     *                                  bytes
+     *         if {@code status} does not specify a
+     *         valid MIDI status byte
+     *         for a message that requires no data
+     *         bytes
      * @see #setMessage(int)
      * @see #setMessage(int, int, int)
      * @see #setMessage(int, int, int, int)
@@ -205,15 +204,15 @@ public class ShortMessage extends MidiMessage {
      * changed by using one of the {@code setMessage} methods.
      *
      * @param status
-     *               the MIDI status byte
+     *        the MIDI status byte
      * @param data1
-     *               the first data byte
+     *        the first data byte
      * @param data2
-     *               the second data byte
+     *        the second data byte
      * @throws InvalidMidiDataException
-     *                                  if the status byte or all data bytes
-     *                                  belonging to the message
-     *                                  do not specify a valid MIDI message
+     *         if the status byte or all data bytes
+     *         belonging to the message
+     *         do not specify a valid MIDI message
      * @see #setMessage(int)
      * @see #setMessage(int, int, int)
      * @see #setMessage(int, int, int, int)
@@ -222,8 +221,7 @@ public class ShortMessage extends MidiMessage {
      * @see #getData2()
      * @since 1.7
      */
-    public ShortMessage(int status, int data1, int data2)
-            throws InvalidMidiDataException {
+    public ShortMessage(int status, int data1, int data2) throws InvalidMidiDataException {
         super(null);
         setMessage(status, data1, data2); // can throw InvalidMidiDataException
     }
@@ -236,18 +234,18 @@ public class ShortMessage extends MidiMessage {
      * can be changed by using one of the {@code setMessage} methods.
      *
      * @param command
-     *                the MIDI command represented by this message
+     *        the MIDI command represented by this message
      * @param channel
-     *                the channel associated with the message
+     *        the channel associated with the message
      * @param data1
-     *                the first data byte
+     *        the first data byte
      * @param data2
-     *                the second data byte
+     *        the second data byte
      * @throws InvalidMidiDataException
-     *                                  if the command value, channel value or
-     *                                  all data bytes
-     *                                  belonging to the message do not specify
-     *                                  a valid MIDI message
+     *         if the command value, channel value or
+     *         all data bytes
+     *         belonging to the message do not specify
+     *         a valid MIDI message
      * @see #setMessage(int)
      * @see #setMessage(int, int, int)
      * @see #setMessage(int, int, int, int)
@@ -257,8 +255,7 @@ public class ShortMessage extends MidiMessage {
      * @see #getData2()
      * @since 1.7
      */
-    public ShortMessage(int command, int channel, int data1, int data2)
-            throws InvalidMidiDataException {
+    public ShortMessage(int command, int channel, int data1, int data2) throws InvalidMidiDataException {
         super(null);
         setMessage(command, channel, data1, data2);
     }
@@ -267,9 +264,9 @@ public class ShortMessage extends MidiMessage {
      * Constructs a new <code>ShortMessage</code>.
      * 
      * @param data
-     *             an array of bytes containing the complete message. The
-     *             message
-     *             data may be changed using the <code>setMessage</code> method.
+     *        an array of bytes containing the complete message. The
+     *        message
+     *        data may be changed using the <code>setMessage</code> method.
      * @see #setMessage
      */
     // $$fb this should throw an Exception in case of an illegal message!
@@ -283,12 +280,12 @@ public class ShortMessage extends MidiMessage {
      * Sets the parameters for a MIDI message that takes no data bytes.
      * 
      * @param status
-     *               the MIDI status byte
+     *        the MIDI status byte
      * @throws InvalidMidiDataException
-     *                                  if <code>status</code> does not specify
-     *                                  a valid MIDI status
-     *                                  byte for a message that requires no data
-     *                                  bytes.
+     *         if <code>status</code> does not specify
+     *         a valid MIDI status
+     *         byte for a message that requires no data
+     *         bytes.
      * @see #setMessage(int, int, int)
      * @see #setMessage(int, int, int, int)
      */
@@ -297,8 +294,8 @@ public class ShortMessage extends MidiMessage {
         int dataLength = getDataLength(status); // can throw
                                                 // InvalidMidiDataException
         if (dataLength != 0) {
-            throw new InvalidMidiDataException("Status byte; " + status
-                    + " requires " + dataLength + " data bytes");
+            throw new InvalidMidiDataException("Status byte; " + status + " requires " + dataLength
+                    + " data bytes");
         }
         setMessage(status, 0, 0);
     }
@@ -309,33 +306,30 @@ public class ShortMessage extends MidiMessage {
      * if the message does not take any data bytes, both data bytes are ignored.
      *
      * @param status
-     *               the MIDI status byte
+     *        the MIDI status byte
      * @param data1
-     *               the first data byte
+     *        the first data byte
      * @param data2
-     *               the second data byte
+     *        the second data byte
      * @throws InvalidMidiDataException
-     *                                  if the the status byte, or all data
-     *                                  bytes belonging to the
-     *                                  message, do not specify a valid MIDI
-     *                                  message.
+     *         if the the status byte, or all data
+     *         bytes belonging to the
+     *         message, do not specify a valid MIDI
+     *         message.
      * @see #setMessage(int, int, int, int)
      * @see #setMessage(int)
      */
-    public void setMessage(int status, int data1, int data2)
-            throws InvalidMidiDataException {
+    public void setMessage(int status, int data1, int data2) throws InvalidMidiDataException {
         // check for valid values
         int dataLength = getDataLength(status); // can throw
                                                 // InvalidMidiDataException
         if (dataLength > 0) {
             if (data1 < 0 || data1 > 127) {
-                throw new InvalidMidiDataException("data1 out of range: "
-                        + data1);
+                throw new InvalidMidiDataException("data1 out of range: " + data1);
             }
             if (dataLength > 1) {
                 if (data2 < 0 || data2 > 127) {
-                    throw new InvalidMidiDataException("data2 out of range: "
-                            + data2);
+                    throw new InvalidMidiDataException("data2 out of range: " + data2);
                 }
             }
         }
@@ -365,19 +359,18 @@ public class ShortMessage extends MidiMessage {
      * bytes are ignored.
      *
      * @param command
-     *                the MIDI command represented by this message
+     *        the MIDI command represented by this message
      * @param channel
-     *                the channel associated with the message
+     *        the channel associated with the message
      * @param data1
-     *                the first data byte
+     *        the first data byte
      * @param data2
-     *                the second data byte
+     *        the second data byte
      * @throws InvalidMidiDataException
-     *                                  if the status byte or all data bytes
-     *                                  belonging to the
-     *                                  message, do not specify a valid MIDI
-     *                                  message
-     *
+     *         if the status byte or all data bytes
+     *         belonging to the
+     *         message, do not specify a valid MIDI
+     *         message
      * @see #setMessage(int, int, int)
      * @see #setMessage(int)
      * @see #getCommand
@@ -385,16 +378,13 @@ public class ShortMessage extends MidiMessage {
      * @see #getData1
      * @see #getData2
      */
-    public void setMessage(int command, int channel, int data1, int data2)
-            throws InvalidMidiDataException {
+    public void setMessage(int command, int channel, int data1, int data2) throws InvalidMidiDataException {
         // check for valid values
         if (command >= 0xF0 || command < 0x80) {
-            throw new InvalidMidiDataException("command out of range: 0x"
-                    + Integer.toHexString(command));
+            throw new InvalidMidiDataException("command out of range: 0x" + Integer.toHexString(command));
         }
         if ((channel & 0xFFFFFFF0) != 0) { // <=> (channel<0 || channel>15)
-            throw new InvalidMidiDataException("channel out of range: "
-                    + channel);
+            throw new InvalidMidiDataException("channel out of range: " + channel);
         }
         setMessage((command & 0xF0) | (channel & 0x0F), data1, data2);
     }
@@ -470,16 +460,15 @@ public class ShortMessage extends MidiMessage {
      * byte value.
      * 
      * @param status
-     *               status byte value, which must represent a short MIDI
-     *               message
+     *        status byte value, which must represent a short MIDI
+     *        message
      * @return data length in bytes (0, 1, or 2)
      * @throws InvalidMidiDataException
-     *                                  if the <code>status</code> argument does
-     *                                  not represent the
-     *                                  status byte for any short message
+     *         if the <code>status</code> argument does
+     *         not represent the
+     *         status byte for any short message
      */
-    protected final int getDataLength(int status)
-            throws InvalidMidiDataException {
+    protected final int getDataLength(int status) throws InvalidMidiDataException {
         // system common and system real-time messages
         switch (status) {
             case 0xF6: // Tune Request
@@ -514,8 +503,7 @@ public class ShortMessage extends MidiMessage {
             case 0xD0:
                 return 1;
             default:
-                throw new InvalidMidiDataException("Invalid status byte: "
-                        + status);
+                throw new InvalidMidiDataException("Invalid status byte: " + status);
         }
     }
 }

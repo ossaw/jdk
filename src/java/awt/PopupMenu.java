@@ -46,8 +46,8 @@ public class PopupMenu extends Menu {
      * Creates a new popup menu with an empty name.
      * 
      * @exception HeadlessException
-     *                              if GraphicsEnvironment.isHeadless() returns
-     *                              true.
+     *            if GraphicsEnvironment.isHeadless() returns
+     *            true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
     public PopupMenu() throws HeadlessException {
@@ -58,11 +58,11 @@ public class PopupMenu extends Menu {
      * Creates a new popup menu with the specified name.
      *
      * @param label
-     *              a non-<code>null</code> string specifying the popup menu's
-     *              label
+     *        a non-<code>null</code> string specifying the popup menu's
+     *        label
      * @exception HeadlessException
-     *                              if GraphicsEnvironment.isHeadless() returns
-     *                              true.
+     *            if GraphicsEnvironment.isHeadless() returns
+     *            true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
     public PopupMenu(String label) throws HeadlessException {
@@ -124,23 +124,23 @@ public class PopupMenu extends Menu {
      * this method on the <code>PopupMenu</code>.
      *
      * @param origin
-     *               the component which defines the coordinate space
+     *        the component which defines the coordinate space
      * @param x
-     *               the x coordinate position to popup the menu
+     *        the x coordinate position to popup the menu
      * @param y
-     *               the y coordinate position to popup the menu
+     *        the y coordinate position to popup the menu
      * @exception NullPointerException
-     *                                     if the parent is <code>null</code>
+     *            if the parent is <code>null</code>
      * @exception IllegalArgumentException
-     *                                     if this <code>PopupMenu</code> has a
-     *                                     non-
-     *                                     <code>Component</code> parent
+     *            if this <code>PopupMenu</code> has a
+     *            non-
+     *            <code>Component</code> parent
      * @exception IllegalArgumentException
-     *                                     if the origin is not in the parent's
-     *                                     hierarchy
+     *            if the origin is not in the parent's
+     *            hierarchy
      * @exception RuntimeException
-     *                                     if the parent is not showing on
-     *                                     screen
+     *            if the parent is not showing on
+     *            screen
      */
     public void show(Component origin, int x, int y) {
         // Use localParent for thread safety.
@@ -149,8 +149,7 @@ public class PopupMenu extends Menu {
             throw new NullPointerException("parent is null");
         }
         if (!(localParent instanceof Component)) {
-            throw new IllegalArgumentException(
-                    "PopupMenus with non-Component parents cannot be shown");
+            throw new IllegalArgumentException("PopupMenus with non-Component parents cannot be shown");
         }
         Component compParent = (Component) localParent;
         // Fixed 6278745: Incorrect exception throwing in PopupMenu.show()
@@ -160,12 +159,10 @@ public class PopupMenu extends Menu {
         if (compParent != origin) {
             if (compParent instanceof Container) {
                 if (!((Container) compParent).isAncestorOf(origin)) {
-                    throw new IllegalArgumentException(
-                            "origin not in parent's hierarchy");
+                    throw new IllegalArgumentException("origin not in parent's hierarchy");
                 }
             } else {
-                throw new IllegalArgumentException(
-                        "origin not in parent's hierarchy");
+                throw new IllegalArgumentException("origin not in parent's hierarchy");
             }
         }
         if (compParent.getPeer() == null || !compParent.isShowing()) {
@@ -176,8 +173,7 @@ public class PopupMenu extends Menu {
         }
         synchronized (getTreeLock()) {
             if (peer != null) {
-                ((PopupMenuPeer) peer).show(new Event(origin, 0,
-                        Event.MOUSE_DOWN, x, y, 0, 0));
+                ((PopupMenuPeer) peer).show(new Event(origin, 0, Event.MOUSE_DOWN, x, y, 0, 0));
             }
         }
     }

@@ -120,16 +120,16 @@ final class ZipCoder {
 
     private CharsetDecoder decoder() {
         if (dec == null) {
-            dec = cs.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
-                    .onUnmappableCharacter(CodingErrorAction.REPORT);
+            dec = cs.newDecoder().onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(
+                    CodingErrorAction.REPORT);
         }
         return dec;
     }
 
     private CharsetEncoder encoder() {
         if (enc == null) {
-            enc = cs.newEncoder().onMalformedInput(CodingErrorAction.REPORT)
-                    .onUnmappableCharacter(CodingErrorAction.REPORT);
+            enc = cs.newEncoder().onMalformedInput(CodingErrorAction.REPORT).onUnmappableCharacter(
+                    CodingErrorAction.REPORT);
         }
         return enc;
     }

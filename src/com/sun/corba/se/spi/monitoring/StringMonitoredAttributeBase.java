@@ -17,8 +17,7 @@ import java.util.*;
  *         information.
  *         </p>
  */
-public abstract class StringMonitoredAttributeBase extends
-        MonitoredAttributeBase {
+public abstract class StringMonitoredAttributeBase extends MonitoredAttributeBase {
 
     ///////////////////////////////////////
     // operations
@@ -31,22 +30,21 @@ public abstract class StringMonitoredAttributeBase extends
      * <p>
      *
      * @param name
-     *                    of this attribute
-     *                    </p>
-     *                    <p>
+     *        of this attribute
+     *        </p>
+     *        <p>
      * @param description
-     *                    of this attribute
-     *                    </p>
-     *                    <p>
+     *        of this attribute
+     *        </p>
+     *        <p>
      * @return a StringMonitoredAttributeBase
      *         </p>
      */
     public StringMonitoredAttributeBase(String name, String description) {
         super(name);
-        MonitoredAttributeInfoFactory f = MonitoringFactories
-                .getMonitoredAttributeInfoFactory();
-        MonitoredAttributeInfo maInfo = f.createMonitoredAttributeInfo(
-                description, String.class, false, false);
+        MonitoredAttributeInfoFactory f = MonitoringFactories.getMonitoredAttributeInfoFactory();
+        MonitoredAttributeInfo maInfo = f.createMonitoredAttributeInfo(description, String.class, false,
+                false);
         this.setMonitoredAttributeInfo(maInfo);
     } // end StringMonitoredAttributeBase
 

@@ -17,7 +17,6 @@ import sun.java2d.Disposer;
  * An implementation of <code>ImageInputStream</code> that gets its input from a
  * <code>File</code> or <code>RandomAccessFile</code>. The file contents are
  * assumed to be stable during the lifetime of the object.
- *
  */
 public class FileImageInputStream extends ImageInputStreamImpl {
 
@@ -32,47 +31,42 @@ public class FileImageInputStream extends ImageInputStreamImpl {
     /**
      * Constructs a <code>FileImageInputStream</code> that will read from a
      * given <code>File</code>.
-     *
      * <p>
      * The file contents must not change between the time this object is
      * constructed and the time of the last call to a read method.
      *
      * @param f
-     *          a <code>File</code> to read from.
-     *
+     *        a <code>File</code> to read from.
      * @exception IllegalArgumentException
-     *                                     if <code>f</code> is
-     *                                     <code>null</code>.
+     *            if <code>f</code> is
+     *            <code>null</code>.
      * @exception SecurityException
-     *                                     if a security manager exists and does
-     *                                     not allow read
-     *                                     access to the file.
+     *            if a security manager exists and does
+     *            not allow read
+     *            access to the file.
      * @exception FileNotFoundException
-     *                                     if <code>f</code> is a directory or
-     *                                     cannot be opened for
-     *                                     reading for any other reason.
+     *            if <code>f</code> is a directory or
+     *            cannot be opened for
+     *            reading for any other reason.
      * @exception IOException
-     *                                     if an I/O error occurs.
+     *            if an I/O error occurs.
      */
-    public FileImageInputStream(File f) throws FileNotFoundException,
-            IOException {
+    public FileImageInputStream(File f) throws FileNotFoundException, IOException {
         this(f == null ? null : new RandomAccessFile(f, "r"));
     }
 
     /**
      * Constructs a <code>FileImageInputStream</code> that will read from a
      * given <code>RandomAccessFile</code>.
-     *
      * <p>
      * The file contents must not change between the time this object is
      * constructed and the time of the last call to a read method.
      *
      * @param raf
-     *            a <code>RandomAccessFile</code> to read from.
-     *
+     *        a <code>RandomAccessFile</code> to read from.
      * @exception IllegalArgumentException
-     *                                     if <code>raf</code> is
-     *                                     <code>null</code>.
+     *            if <code>raf</code> is
+     *            <code>null</code>.
      */
     public FileImageInputStream(RandomAccessFile raf) {
         if (raf == null) {

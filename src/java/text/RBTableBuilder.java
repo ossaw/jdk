@@ -51,7 +51,7 @@ final class RBTableBuilder {
      * 
      * @see RuleBasedCollator#RuleBasedCollator
      * @exception ParseException
-     *                           If the rules format is incorrect.
+     *            If the rules format is incorrect.
      */
 
     public void build(String pattern, int decmp) throws ParseException {
@@ -113,13 +113,11 @@ final class RBTableBuilder {
                     switch (groupChars.charAt(groupChars.length() - 1)) {
                         case '@':
                             frenchSec = true;
-                            groupChars = groupChars.substring(0, groupChars
-                                    .length() - 1);
+                            groupChars = groupChars.substring(0, groupChars.length() - 1);
                             break;
                         case '!':
                             seAsianSwapping = true;
-                            groupChars = groupChars.substring(0, groupChars
-                                    .length() - 1);
+                            groupChars = groupChars.substring(0, groupChars.length() - 1);
                             break;
                     }
                 }
@@ -131,10 +129,8 @@ final class RBTableBuilder {
                     addExpandOrder(groupChars, expChars, order);
                 } else if (groupChars.length() > 1) {
                     char ch = groupChars.charAt(0);
-                    if (Character.isHighSurrogate(ch) && groupChars
-                            .length() == 2) {
-                        addOrder(Character.toCodePoint(ch, groupChars.charAt(
-                                1)), order);
+                    if (Character.isHighSurrogate(ch) && groupChars.length() == 2) {
+                        addOrder(Character.toCodePoint(ch, groupChars.charAt(1)), order);
                     } else {
                         addContractOrder(groupChars, order);
                     }
@@ -155,8 +151,8 @@ final class RBTableBuilder {
          * Integer.toString(j, 16) + ", value=" + Integer.toString(value, 16));
          * }
          */
-        tables.fillInTables(frenchSec, seAsianSwapping, mapping, contractTable,
-                expandTable, contractFlags, maxSecOrder, maxTerOrder);
+        tables.fillInTables(frenchSec, seAsianSwapping, mapping, contractTable, expandTable, contractFlags,
+                maxSecOrder, maxTerOrder);
     }
 
     /**
@@ -229,8 +225,7 @@ final class RBTableBuilder {
                     //
                     boolean allThere = true;
                     for (int i = 0; i < s.length(); i++) {
-                        if (getCharOrder(s.charAt(
-                                i)) == RBCollationTables.UNMAPPED) {
+                        if (getCharOrder(s.charAt(i)) == RBCollationTables.UNMAPPED) {
                             allThere = false;
                             break;
                         }
@@ -245,7 +240,6 @@ final class RBTableBuilder {
 
     /**
      * Look up for unmapped values in the expanded character table.
-     *
      * When the expanding character tables are built by addExpandOrder, it
      * doesn't know what the final ordering of each character in the expansion
      * will be. Instead, it just puts the raw character code into the table,
@@ -260,8 +254,7 @@ final class RBTableBuilder {
                 int[] valueList = expandTable.elementAt(i);
                 for (int j = 0; j < valueList.length; j++) {
                     int order = valueList[j];
-                    if (order < RBCollationTables.EXPANDCHARINDEX
-                            && order > CHARINDEX) {
+                    if (order < RBCollationTables.EXPANDCHARINDEX && order > CHARINDEX) {
                         // found a expanding character that isn't filled in yet
                         int ch = order - CHARINDEX;
 
@@ -347,8 +340,7 @@ final class RBTableBuilder {
     /**
      * Adds the contracting string into the collation table.
      */
-    private final void addContractOrder(String groupChars, int anOrder,
-            boolean fwd) {
+    private final void addContractOrder(String groupChars, int anOrder, boolean fwd) {
         if (contractTable == null) {
             contractTable = new Vector<>(INITIALTABLESIZE);
         }
@@ -363,21 +355,18 @@ final class RBTableBuilder {
         // See if the initial character of the string already has a contract
         // table.
         int entry = mapping.elementAt(ch);
-        Vector<EntryPair> entryTable = getContractValuesImpl(entry
-                - RBCollationTables.CONTRACTCHARINDEX);
+        Vector<EntryPair> entryTable = getContractValuesImpl(entry - RBCollationTables.CONTRACTCHARINDEX);
 
         if (entryTable == null) {
             // We need to create a new table of contract entries for this base
             // char
-            int tableIndex = RBCollationTables.CONTRACTCHARINDEX + contractTable
-                    .size();
+            int tableIndex = RBCollationTables.CONTRACTCHARINDEX + contractTable.size();
             entryTable = new Vector<>(INITIALTABLESIZE);
             contractTable.addElement(entryTable);
 
             // Add the initial character's current ordering first. then
             // update its mapping to point to this contract table
-            entryTable.addElement(new EntryPair(groupChars.substring(0,
-                    Character.charCount(ch)), entry));
+            entryTable.addElement(new EntryPair(groupChars.substring(0, Character.charCount(ch)), entry));
             mapping.setElementAt(ch, tableIndex);
         }
 
@@ -400,8 +389,7 @@ final class RBTableBuilder {
             if (groupChars.length() > pair.entryName.length()) {
                 entryTable.addElement(new EntryPair(groupChars, anOrder, fwd));
             } else {
-                entryTable.insertElementAt(new EntryPair(groupChars, anOrder,
-                        fwd), entryTable.size() - 1);
+                entryTable.insertElementAt(new EntryPair(groupChars, anOrder, fwd), entryTable.size() - 1);
             }
         }
 
@@ -410,8 +398,7 @@ final class RBTableBuilder {
         // can work right
         if (fwd && groupChars.length() > 1) {
             addContractFlags(groupChars);
-            addContractOrder(new StringBuffer(groupChars).reverse().toString(),
-                    anOrder, false);
+            addContractOrder(new StringBuffer(groupChars).reverse().toString(), anOrder, false);
         }
     }
 
@@ -430,8 +417,7 @@ final class RBTableBuilder {
              */
             Vector<EntryPair> entryTable = getContractValues(ch);
             if (entryTable != null) {
-                int index = RBCollationTables.getEntry(entryTable, groupChars,
-                        true);
+                int index = RBCollationTables.getEntry(entryTable, groupChars, true);
                 if (index != RBCollationTables.UNMAPPED) {
                     EntryPair pair = entryTable.elementAt(index);
                     result = pair.value;
@@ -445,8 +431,7 @@ final class RBTableBuilder {
         int order = mapping.elementAt(ch);
 
         if (order >= RBCollationTables.CONTRACTCHARINDEX) {
-            Vector<EntryPair> groupList = getContractValuesImpl(order
-                    - RBCollationTables.CONTRACTCHARINDEX);
+            Vector<EntryPair> groupList = getContractValuesImpl(order - RBCollationTables.CONTRACTCHARINDEX);
             EntryPair pair = groupList.firstElement();
             order = pair.value;
         }
@@ -458,12 +443,11 @@ final class RBTableBuilder {
      * table.
      * 
      * @param ch
-     *           the starting character of the contracting string
+     *        the starting character of the contracting string
      */
     private Vector<EntryPair> getContractValues(int ch) {
         int index = mapping.elementAt(ch);
-        return getContractValuesImpl(index
-                - RBCollationTables.CONTRACTCHARINDEX);
+        return getContractValuesImpl(index - RBCollationTables.CONTRACTCHARINDEX);
     }
 
     private Vector<EntryPair> getContractValuesImpl(int index) {
@@ -478,8 +462,8 @@ final class RBTableBuilder {
     /**
      * Adds the expanding string into the collation table.
      */
-    private final void addExpandOrder(String contractChars, String expandChars,
-            int anOrder) throws ParseException {
+    private final void addExpandOrder(String contractChars, String expandChars, int anOrder)
+            throws ParseException {
         // Create an expansion table entry
         int tableIndex = addExpansion(anOrder, expandChars);
 
@@ -500,8 +484,7 @@ final class RBTableBuilder {
         }
     }
 
-    private final void addExpandOrder(int ch, String expandChars, int anOrder)
-            throws ParseException {
+    private final void addExpandOrder(int ch, String expandChars, int anOrder) throws ParseException {
         int tableIndex = addExpansion(anOrder, expandChars);
         addOrder(ch, tableIndex);
     }
@@ -530,8 +513,7 @@ final class RBTableBuilder {
             char ch1;
             int ch;
             if (Character.isHighSurrogate(ch0)) {
-                if (++i == expandChars.length() || !Character.isLowSurrogate(
-                        ch1 = expandChars.charAt(i))) {
+                if (++i == expandChars.length() || !Character.isLowSurrogate(ch1 = expandChars.charAt(i))) {
                     // ether we are missing the low surrogate or the next char
                     // is not a legal low surrogate, so stop loop
                     break;
@@ -574,8 +556,7 @@ final class RBTableBuilder {
         int len = chars.length();
         for (int i = 0; i < len; i++) {
             c0 = chars.charAt(i);
-            c = Character.isHighSurrogate(c0) ? Character.toCodePoint(c0, chars
-                    .charAt(++i)) : c0;
+            c = Character.isHighSurrogate(c0) ? Character.toCodePoint(c0, chars.charAt(++i)) : c0;
             contractFlags.put(c, 1);
         }
     }

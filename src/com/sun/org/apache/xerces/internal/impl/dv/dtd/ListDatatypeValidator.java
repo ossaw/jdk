@@ -24,10 +24,8 @@ import java.util.StringTokenizer;
  * For list types: ENTITIES, IDREFS, NMTOKENS.
  *
  * @xerces.internal
- *
  * @author Jeffrey Rodriguez, IBM
  * @author Sandy Gao, IBM
- *
  */
 public class ListDatatypeValidator implements DatatypeValidator {
 
@@ -44,17 +42,16 @@ public class ListDatatypeValidator implements DatatypeValidator {
      * exception is thrown.
      *
      * @param content
-     *                the string value that needs to be validated
+     *        the string value that needs to be validated
      * @param context
-     *                the validation context
+     *        the validation context
      * @throws InvalidDatatypeException
-     *                                  if the content is invalid according to
-     *                                  the rules for the
-     *                                  validators
+     *         if the content is invalid according to
+     *         the rules for the
+     *         validators
      * @see InvalidDatatypeValueException
      */
-    public void validate(String content, ValidationContext context)
-            throws InvalidDatatypeValueException {
+    public void validate(String content, ValidationContext context) throws InvalidDatatypeValueException {
 
         StringTokenizer parsedList = new StringTokenizer(content, " ");
         int numberOfTokens = parsedList.countTokens();

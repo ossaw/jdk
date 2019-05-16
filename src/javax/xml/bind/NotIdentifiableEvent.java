@@ -8,7 +8,6 @@ package javax.xml.bind;
 /**
  * This event indicates that a problem was encountered resolving an ID/IDREF.
  *
- *
  * @author
  *         <ul>
  *         <li>Ryan Shoemaker, Sun Microsystems, Inc.</li>

@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -50,8 +48,8 @@ import com.sun.org.apache.xml.internal.security.utils.Base64;
 public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(CertsInFilesystemDirectoryResolver.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(
+            CertsInFilesystemDirectoryResolver.class.getName());
 
     /** Field merlinsCertificatesDir */
     private String merlinsCertificatesDir = null;
@@ -63,8 +61,7 @@ public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
      * @param directoryName
      * @throws StorageResolverException
      */
-    public CertsInFilesystemDirectoryResolver(String directoryName)
-            throws StorageResolverException {
+    public CertsInFilesystemDirectoryResolver(String directoryName) throws StorageResolverException {
         this.merlinsCertificatesDir = directoryName;
 
         this.readCertsFromHarddrive();
@@ -102,8 +99,7 @@ public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
         }
 
         for (int i = 0; i < al.size(); i++) {
-            String filename = certDir.getAbsolutePath() + File.separator + al
-                    .get(i);
+            String filename = certDir.getAbsolutePath() + File.separator + al.get(i);
             File file = new File(filename);
             boolean added = false;
             String dn = null;
@@ -111,8 +107,7 @@ public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
             FileInputStream fis = null;
             try {
                 fis = new FileInputStream(file);
-                X509Certificate cert = (X509Certificate) cf.generateCertificate(
-                        fis);
+                X509Certificate cert = (X509Certificate) cf.generateCertificate(fis);
 
                 // add to ArrayList
                 cert.checkValidity();
@@ -122,26 +117,22 @@ public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
                 added = true;
             } catch (FileNotFoundException ex) {
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "Could not add certificate from file " + filename,
+                    log.log(java.util.logging.Level.FINE, "Could not add certificate from file " + filename,
                             ex);
                 }
             } catch (CertificateNotYetValidException ex) {
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "Could not add certificate from file " + filename,
+                    log.log(java.util.logging.Level.FINE, "Could not add certificate from file " + filename,
                             ex);
                 }
             } catch (CertificateExpiredException ex) {
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "Could not add certificate from file " + filename,
+                    log.log(java.util.logging.Level.FINE, "Could not add certificate from file " + filename,
                             ex);
                 }
             } catch (CertificateException ex) {
                 if (log.isLoggable(java.util.logging.Level.FINE)) {
-                    log.log(java.util.logging.Level.FINE,
-                            "Could not add certificate from file " + filename,
+                    log.log(java.util.logging.Level.FINE, "Could not add certificate from file " + filename,
                             ex);
                 }
             } finally {
@@ -151,16 +142,14 @@ public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
                     }
                 } catch (IOException ex) {
                     if (log.isLoggable(java.util.logging.Level.FINE)) {
-                        log.log(java.util.logging.Level.FINE,
-                                "Could not add certificate from file "
-                                        + filename, ex);
+                        log.log(java.util.logging.Level.FINE, "Could not add certificate from file "
+                                + filename, ex);
                     }
                 }
             }
 
             if (added && log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE, "Added certificate: "
-                        + dn);
+                log.log(java.util.logging.Level.FINE, "Added certificate: " + dn);
             }
         }
     }
@@ -203,11 +192,9 @@ public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
 
         /**
          * Method remove
-         *
          */
         public void remove() {
-            throw new UnsupportedOperationException(
-                    "Can't remove keys from KeyStore");
+            throw new UnsupportedOperationException("Can't remove keys from KeyStore");
         }
     }
 
@@ -228,14 +215,13 @@ public class CertsInFilesystemDirectoryResolver extends StorageResolverSpi {
                     .getSKIBytesFromCert(cert);
 
             System.out.println();
-            System.out.println("Base64(SKI())=                 \"" + Base64
-                    .encode(ski) + "\"");
-            System.out.println("cert.getSerialNumber()=        \"" + cert
-                    .getSerialNumber().toString() + "\"");
-            System.out.println("cert.getSubjectX500Principal().getName()= \""
-                    + cert.getSubjectX500Principal().getName() + "\"");
-            System.out.println("cert.getIssuerX500Principal().getName()=  \""
-                    + cert.getIssuerX500Principal().getName() + "\"");
+            System.out.println("Base64(SKI())=                 \"" + Base64.encode(ski) + "\"");
+            System.out.println("cert.getSerialNumber()=        \"" + cert.getSerialNumber().toString()
+                    + "\"");
+            System.out.println("cert.getSubjectX500Principal().getName()= \"" + cert.getSubjectX500Principal()
+                    .getName() + "\"");
+            System.out.println("cert.getIssuerX500Principal().getName()=  \"" + cert.getIssuerX500Principal()
+                    .getName() + "\"");
         }
     }
 }

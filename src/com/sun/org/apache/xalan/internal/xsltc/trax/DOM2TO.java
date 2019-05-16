@@ -81,8 +81,7 @@ public class DOM2TO implements XMLReader, Locator2 {
     public void parse() throws IOException, SAXException {
 
         if (_dom != null) {
-            boolean isIncomplete = (_dom
-                    .getNodeType() != org.w3c.dom.Node.DOCUMENT_NODE);
+            boolean isIncomplete = (_dom.getNodeType() != org.w3c.dom.Node.DOCUMENT_NODE);
 
             if (isIncomplete) {
                 _handler.startDocument();
@@ -159,8 +158,7 @@ public class DOM2TO implements XMLReader, Locator2 {
                     if (qnameAttr.startsWith(XMLNS_PREFIX)) {
                         final String uriAttr = attr.getNodeValue();
                         colon = qnameAttr.lastIndexOf(':');
-                        prefix = (colon > 0) ? qnameAttr.substring(colon + 1)
-                                : EMPTYSTRING;
+                        prefix = (colon > 0) ? qnameAttr.substring(colon + 1) : EMPTYSTRING;
                         _handler.namespaceAfterStartElement(prefix, uriAttr);
                     }
                 }
@@ -185,15 +183,11 @@ public class DOM2TO implements XMLReader, Locator2 {
                             String newPrefix = nm.lookupPrefix(uriAttr);
                             if (newPrefix == null)
                                 newPrefix = nm.generateNextPrefix();
-                            prefix = (colon > 0) ? qnameAttr.substring(0, colon)
-                                    : newPrefix;
-                            _handler.namespaceAfterStartElement(prefix,
-                                    uriAttr);
-                            _handler.addAttribute((prefix + ":" + qnameAttr),
-                                    attr.getNodeValue());
+                            prefix = (colon > 0) ? qnameAttr.substring(0, colon) : newPrefix;
+                            _handler.namespaceAfterStartElement(prefix, uriAttr);
+                            _handler.addAttribute((prefix + ":" + qnameAttr), attr.getNodeValue());
                         } else {
-                            _handler.addAttribute(qnameAttr, attr
-                                    .getNodeValue());
+                            _handler.addAttribute(qnameAttr, attr.getNodeValue());
                         }
                     }
                 }
@@ -205,8 +199,7 @@ public class DOM2TO implements XMLReader, Locator2 {
                 // Uri may be implicitly declared
                 if (uri != null) {
                     colon = qname.lastIndexOf(':');
-                    prefix = (colon > 0) ? qname.substring(0, colon)
-                            : EMPTYSTRING;
+                    prefix = (colon > 0) ? qname.substring(0, colon) : EMPTYSTRING;
                     _handler.namespaceAfterStartElement(prefix, uri);
                 } else {
                     // Fix for bug 26319
@@ -216,8 +209,7 @@ public class DOM2TO implements XMLReader, Locator2 {
                     // <foo xmlns=" "/>
                     if (uri == null && localName != null) {
                         prefix = EMPTYSTRING;
-                        _handler.namespaceAfterStartElement(prefix,
-                                EMPTYSTRING);
+                        _handler.namespaceAfterStartElement(prefix, EMPTYSTRING);
                     }
                 }
 
@@ -233,8 +225,7 @@ public class DOM2TO implements XMLReader, Locator2 {
                 break;
 
             case Node.PROCESSING_INSTRUCTION_NODE:
-                _handler.processingInstruction(node.getNodeName(), node
-                        .getNodeValue());
+                _handler.processingInstruction(node.getNodeName(), node.getNodeValue());
                 break;
 
             case Node.TEXT_NODE:
@@ -260,16 +251,15 @@ public class DOM2TO implements XMLReader, Locator2 {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public boolean getFeature(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public boolean getFeature(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         return false;
     }
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setFeature(String name, boolean value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {}
+    public void setFeature(String name, boolean value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {}
 
     /**
      * This class is only used internally so this method should never be called.
@@ -286,8 +276,7 @@ public class DOM2TO implements XMLReader, Locator2 {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setEntityResolver(EntityResolver resolver)
-            throws NullPointerException {}
+    public void setEntityResolver(EntityResolver resolver) throws NullPointerException {}
 
     /**
      * This class is only used internally so this method should never be called.
@@ -299,20 +288,18 @@ public class DOM2TO implements XMLReader, Locator2 {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setErrorHandler(ErrorHandler handler)
-            throws NullPointerException {}
+    public void setErrorHandler(ErrorHandler handler) throws NullPointerException {}
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setProperty(String name, Object value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {}
+    public void setProperty(String name, Object value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {}
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public Object getProperty(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public Object getProperty(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         return null;
     }
 
@@ -346,8 +333,7 @@ public class DOM2TO implements XMLReader, Locator2 {
 
     private void setDocumentInfo(Document document) {
         if (!document.getXmlStandalone())
-            _handler.setStandalone(Boolean.toString(document
-                    .getXmlStandalone()));
+            _handler.setStandalone(Boolean.toString(document.getXmlStandalone()));
         setXMLVersion(document.getXmlVersion());
         setEncoding(document.getXmlEncoding());
     }

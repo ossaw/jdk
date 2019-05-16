@@ -54,15 +54,11 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
     protected boolean initializeComponentsFromAny() {
         try {
             InputStream input = any.create_input_stream();
-            Any discriminatorAny = DynAnyUtil.extractAnyFromStream(
-                    discriminatorType(), input, orb);
-            discriminator = DynAnyUtil.createMostDerivedDynAny(discriminatorAny,
-                    orb, false);
+            Any discriminatorAny = DynAnyUtil.extractAnyFromStream(discriminatorType(), input, orb);
+            discriminator = DynAnyUtil.createMostDerivedDynAny(discriminatorAny, orb, false);
             currentMemberIndex = currentUnionMemberIndex(discriminatorAny);
-            Any memberAny = DynAnyUtil.extractAnyFromStream(memberType(
-                    currentMemberIndex), input, orb);
-            currentMember = DynAnyUtil.createMostDerivedDynAny(memberAny, orb,
-                    false);
+            Any memberAny = DynAnyUtil.extractAnyFromStream(memberType(currentMemberIndex), input, orb);
+            currentMember = DynAnyUtil.createMostDerivedDynAny(memberAny, orb, false);
             components = new DynAny[] { discriminator, currentMember };
         } catch (InconsistentTypeCode ictc) { // impossible
         }
@@ -79,12 +75,10 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
         try {
             // We can be sure that memberCount() > 0 according to the IDL
             // language spec
-            discriminator = DynAnyUtil.createMostDerivedDynAny(memberLabel(0),
-                    orb, false);
+            discriminator = DynAnyUtil.createMostDerivedDynAny(memberLabel(0), orb, false);
             index = 0;
             currentMemberIndex = 0;
-            currentMember = DynAnyUtil.createMostDerivedDynAny(memberType(0),
-                    orb);
+            currentMember = DynAnyUtil.createMostDerivedDynAny(memberType(0), orb);
             components = new DynAny[] { discriminator, currentMember };
         } catch (InconsistentTypeCode ictc) { // impossible
         }
@@ -99,8 +93,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
         TypeCode discriminatorType = null;
         try {
             discriminatorType = any.type().discriminator_type();
-        } catch (BadKind bad) {
-        }
+        } catch (BadKind bad) {}
         return discriminatorType;
     }
 
@@ -108,8 +101,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
         int memberCount = 0;
         try {
             memberCount = any.type().member_count();
-        } catch (BadKind bad) {
-        }
+        } catch (BadKind bad) {}
         return memberCount;
     }
 
@@ -117,9 +109,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
         Any memberLabel = null;
         try {
             memberLabel = any.type().member_label(i);
-        } catch (BadKind bad) {
-        } catch (Bounds bounds) {
-        }
+        } catch (BadKind bad) {} catch (Bounds bounds) {}
         return memberLabel;
     }
 
@@ -127,9 +117,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
         TypeCode memberType = null;
         try {
             memberType = any.type().member_type(i);
-        } catch (BadKind bad) {
-        } catch (Bounds bounds) {
-        }
+        } catch (BadKind bad) {} catch (Bounds bounds) {}
         return memberType;
     }
 
@@ -137,9 +125,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
         String memberName = null;
         try {
             memberName = any.type().member_name(i);
-        } catch (BadKind bad) {
-        } catch (Bounds bounds) {
-        }
+        } catch (BadKind bad) {} catch (Bounds bounds) {}
         return memberName;
     }
 
@@ -147,8 +133,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
         int defaultIndex = -1;
         try {
             defaultIndex = any.type().default_index();
-        } catch (BadKind bad) {
-        }
+        } catch (BadKind bad) {}
         return defaultIndex;
     }
 
@@ -227,8 +212,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
         }
         newDiscriminator = DynAnyUtil.convertToNative(newDiscriminator, orb);
         Any newDiscriminatorAny = getAny(newDiscriminator);
-        int newCurrentMemberIndex = currentUnionMemberIndex(
-                newDiscriminatorAny);
+        int newCurrentMemberIndex = currentUnionMemberIndex(newDiscriminatorAny);
         if (newCurrentMemberIndex == NO_INDEX) {
             clearData();
             index = 0;
@@ -236,16 +220,13 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
             // _REVISIT_ Could possibly optimize here if we don't need to
             // initialize components
             checkInitComponents();
-            if (currentMemberIndex == NO_INDEX
-                    || newCurrentMemberIndex != currentMemberIndex) {
+            if (currentMemberIndex == NO_INDEX || newCurrentMemberIndex != currentMemberIndex) {
                 clearData();
                 index = 1;
                 currentMemberIndex = newCurrentMemberIndex;
                 try {
-                    currentMember = DynAnyUtil.createMostDerivedDynAny(
-                            memberType(currentMemberIndex), orb);
-                } catch (InconsistentTypeCode ictc) {
-                }
+                    currentMember = DynAnyUtil.createMostDerivedDynAny(memberType(currentMemberIndex), orb);
+                } catch (InconsistentTypeCode ictc) {}
                 discriminator = newDiscriminator;
                 components = new DynAny[] { discriminator, currentMember };
                 representations = REPRESENTATION_COMPONENTS;
@@ -258,8 +239,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
     // zero and causes component_count to return 2.
     // Calling set_to_default_member on a union that does not have an explicit
     // default case raises TypeMismatch.
-    public void set_to_default_member()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch {
+    public void set_to_default_member() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch {
         if (status == STATUS_DESTROYED) {
             throw wrapper.dynAnyDestroyed();
         }
@@ -271,16 +251,13 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
             clearData();
             index = 1;
             currentMemberIndex = defaultIndex;
-            currentMember = DynAnyUtil.createMostDerivedDynAny(memberType(
-                    defaultIndex), orb);
+            currentMember = DynAnyUtil.createMostDerivedDynAny(memberType(defaultIndex), orb);
             components = new DynAny[] { discriminator, currentMember };
             Any discriminatorAny = orb.create_any();
             discriminatorAny.insert_octet((byte) 0);
-            discriminator = DynAnyUtil.createMostDerivedDynAny(discriminatorAny,
-                    orb, false);
+            discriminator = DynAnyUtil.createMostDerivedDynAny(discriminatorAny, orb, false);
             representations = REPRESENTATION_COMPONENTS;
-        } catch (InconsistentTypeCode ictc) {
-        }
+        } catch (InconsistentTypeCode ictc) {}
     }
 
     // Sets the discriminator to a value that does not correspond
@@ -291,8 +268,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
     // case
     // or on a union that uses the entire range of discriminator values
     // for explicit case labels raises TypeMismatch.
-    public void set_to_no_active_member()
-            throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch {
+    public void set_to_no_active_member() throws org.omg.DynamicAny.DynAnyPackage.TypeMismatch {
         if (status == STATUS_DESTROYED) {
             throw wrapper.dynAnyDestroyed();
         }
@@ -333,8 +309,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
             return false;
         }
         checkInitComponents();
-        return (checkInitComponents() ? (currentMemberIndex == NO_INDEX)
-                : false);
+        return (checkInitComponents() ? (currentMemberIndex == NO_INDEX) : false);
     }
 
     public org.omg.CORBA.TCKind discriminator_kind() {
@@ -350,8 +325,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
     // as the currently active member does not change.
     // Using the returned reference beyond the life time
     // of the currently active member raises OBJECT_NOT_EXIST.
-    public org.omg.DynamicAny.DynAny member()
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+    public org.omg.DynamicAny.DynAny member() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (status == STATUS_DESTROYED) {
             throw wrapper.dynAnyDestroyed();
         }
@@ -366,8 +340,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
     // the operation returns an empty string.
     // Calling member_name on a union without an active member raises
     // InvalidValue.
-    public String member_name()
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+    public String member_name() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (status == STATUS_DESTROYED) {
             throw wrapper.dynAnyDestroyed();
         }
@@ -379,8 +352,7 @@ public class DynUnionImpl extends DynAnyConstructedImpl implements DynUnion {
 
     // Returns the TCKind value of the TypeCode of the currently active member.
     // If the union has no active member, the operation raises InvalidValue.
-    public org.omg.CORBA.TCKind member_kind()
-            throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
+    public org.omg.CORBA.TCKind member_kind() throws org.omg.DynamicAny.DynAnyPackage.InvalidValue {
         if (status == STATUS_DESTROYED) {
             throw wrapper.dynAnyDestroyed();
         }

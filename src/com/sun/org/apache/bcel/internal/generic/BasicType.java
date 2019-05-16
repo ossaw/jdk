@@ -61,7 +61,7 @@ public final class BasicType extends Type {
      * Constructor for basic types such as int, long, `void'
      *
      * @param type
-     *             one of T_INT, T_BOOLEAN, ..., T_VOID
+     *        one of T_INT, T_BOOLEAN, ..., T_VOID
      * @see com.sun.org.apache.bcel.internal.Constants
      */
     BasicType(byte type) {
@@ -102,9 +102,7 @@ public final class BasicType extends Type {
      */
     @Override
     public boolean equals(Object type) {
-        return (type instanceof BasicType)
-                ? ((BasicType) type).type == this.type
-                : false;
+        return (type instanceof BasicType) ? ((BasicType) type).type == this.type : false;
     }
 
     @Override

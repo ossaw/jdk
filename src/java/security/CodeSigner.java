@@ -41,14 +41,14 @@ public final class CodeSigner implements Serializable {
      * Constructs a CodeSigner object.
      *
      * @param signerCertPath
-     *                       The signer's certificate path. It must not be
-     *                       {@code null}.
+     *        The signer's certificate path. It must not be
+     *        {@code null}.
      * @param timestamp
-     *                       A signature timestamp. If {@code null} then no
-     *                       timestamp was
-     *                       generated for the signature.
+     *        A signature timestamp. If {@code null} then no
+     *        timestamp was
+     *        generated for the signature.
      * @throws NullPointerException
-     *                              if {@code signerCertPath} is {@code null}.
+     *         if {@code signerCertPath} is {@code null}.
      */
     public CodeSigner(CertPath signerCertPath, Timestamp timestamp) {
         if (signerCertPath == null) {
@@ -100,8 +100,7 @@ public final class CodeSigner implements Serializable {
      * equal and if their timestamps are equal, if present in both.
      *
      * @param obj
-     *            the object to test for equality with this object.
-     *
+     *        the object to test for equality with this object.
      * @return true if the objects are considered equal, false otherwise.
      */
     public boolean equals(Object obj) {
@@ -144,8 +143,7 @@ public final class CodeSigner implements Serializable {
     }
 
     // Explicitly reset hash code value to -1
-    private void readObject(ObjectInputStream ois) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         ois.defaultReadObject();
         myhash = -1;
     }

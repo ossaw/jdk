@@ -94,8 +94,8 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class NumberUp extends IntegerSyntax implements DocAttribute,
-        PrintRequestAttribute, PrintJobAttribute {
+public final class NumberUp extends IntegerSyntax implements DocAttribute, PrintRequestAttribute,
+        PrintJobAttribute {
 
     private static final long serialVersionUID = -3040436486786527811L;
 
@@ -103,12 +103,11 @@ public final class NumberUp extends IntegerSyntax implements DocAttribute,
      * Construct a new number up attribute with the given integer value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 1.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 1.
      */
     public NumberUp(int value) {
         super(value, 1, Integer.MAX_VALUE);
@@ -125,8 +124,7 @@ public final class NumberUp extends IntegerSyntax implements DocAttribute,
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this number up
      *         attribute, false otherwise.
      */

@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for a method invocation expression.
- *
  * For example:
  * 
  * <pre>
@@ -19,7 +18,6 @@ import java.util.List;
  * </pre>
  *
  * @jls section 15.12
- *
  * @author Peter von der Ah&eacute;
  * @author Jonathan Gibbons
  * @since 1.6

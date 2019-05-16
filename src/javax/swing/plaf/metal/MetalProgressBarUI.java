@@ -74,11 +74,9 @@ public class MetalProgressBarUI extends BasicProgressBarUI {
                     g2.setColor(MetalLookAndFeel.getPrimaryControlDarkShadow());
 
                     if (isLeftToRight) {
-                        g2.drawLine(startX, startY, startX + amountFull - 1,
-                                startY);
+                        g2.drawLine(startX, startY, startX + amountFull - 1, startY);
                     } else {
-                        g2.drawLine(endX, startY, endX - amountFull + 1,
-                                startY);
+                        g2.drawLine(endX, startY, endX - amountFull + 1, startY);
                         if (progressBar.getPercentComplete() != 1.f) {
                             g2.setColor(MetalLookAndFeel.getControlShadow());
                         }

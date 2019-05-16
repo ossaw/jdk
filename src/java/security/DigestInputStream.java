@@ -15,18 +15,15 @@ import java.io.ByteArrayInputStream;
 /**
  * A transparent stream that updates the associated message digest using the
  * bits going through the stream.
- *
  * <p>
  * To complete the message digest computation, call one of the {@code digest}
  * methods on the associated message digest after your calls to one of this
  * digest input stream's {@link #read() read} methods.
- *
  * <p>
  * It is possible to turn this stream on or off (see {@link #on(boolean) on}).
  * When it is on, a call to one of the {@code read} methods results in an update
  * on the message digest. But when it is off, the message digest is not updated.
  * The default is for the stream to be on.
- *
  * <p>
  * Note that digest objects can compute only one digest (see
  * {@link MessageDigest}), so that in order to compute intermediate digests, a
@@ -34,9 +31,7 @@ import java.io.ByteArrayInputStream;
  * digest to be computed, leaving the orginal digest untouched.
  *
  * @see MessageDigest
- *
  * @see DigestOutputStream
- *
  * @author Benjamin Renaud
  */
 
@@ -57,10 +52,9 @@ public class DigestInputStream extends FilterInputStream {
      * message digest.
      *
      * @param stream
-     *               the input stream.
-     *
+     *        the input stream.
      * @param digest
-     *               the message digest to associate with this stream.
+     *        the message digest to associate with this stream.
      */
     public DigestInputStream(InputStream stream, MessageDigest digest) {
         super(stream);
@@ -81,7 +75,7 @@ public class DigestInputStream extends FilterInputStream {
      * Associates the specified message digest with this stream.
      *
      * @param digest
-     *               the message digest to be associated with this stream.
+     *        the message digest to be associated with this stream.
      * @see #getMessageDigest()
      */
     public void setMessageDigest(MessageDigest digest) {
@@ -96,10 +90,8 @@ public class DigestInputStream extends FilterInputStream {
      * the message digest associated with this stream, passing it the byte read.
      *
      * @return the byte read.
-     *
      * @exception IOException
-     *                        if an I/O error occurs.
-     *
+     *            if an I/O error occurs.
      * @see MessageDigest#update(byte)
      */
     public int read() throws IOException {
@@ -120,24 +112,19 @@ public class DigestInputStream extends FilterInputStream {
      * it the data.
      *
      * @param b
-     *            the array into which the data is read.
-     *
+     *        the array into which the data is read.
      * @param off
-     *            the starting offset into {@code b} of where the data should be
-     *            placed.
-     *
+     *        the starting offset into {@code b} of where the data should be
+     *        placed.
      * @param len
-     *            the maximum number of bytes to be read from the input stream
-     *            into b, starting at offset {@code off}.
-     *
+     *        the maximum number of bytes to be read from the input stream
+     *        into b, starting at offset {@code off}.
      * @return the actual number of bytes read. This is less than {@code len} if
      *         the end of the stream is reached prior to reading {@code len}
      *         bytes. -1 is returned if no bytes were read because the end of
      *         the stream had already been reached when the call was made.
-     *
      * @exception IOException
-     *                        if an I/O error occurs.
-     *
+     *            if an I/O error occurs.
      * @see MessageDigest#update(byte[], int, int)
      */
     public int read(byte[] b, int off, int len) throws IOException {
@@ -154,7 +141,7 @@ public class DigestInputStream extends FilterInputStream {
      * message digest. But when it is off, the message digest is not updated.
      *
      * @param on
-     *           true to turn the digest function on, false to turn it off.
+     *        true to turn the digest function on, false to turn it off.
      */
     public void on(boolean on) {
         this.on = on;

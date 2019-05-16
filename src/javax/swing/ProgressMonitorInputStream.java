@@ -13,9 +13,8 @@ import java.awt.Component;
  * is normally invoked in roughly this form:
  * 
  * <pre>
- * InputStream in = new BufferedInputStream(new ProgressMonitorInputStream(
- *         parentComponent, "Reading " + fileName, new FileInputStream(
- *                 fileName)));
+ * InputStream in = new BufferedInputStream(new ProgressMonitorInputStream(parentComponent, "Reading "
+ *         + fileName, new FileInputStream(fileName)));
  * </pre>
  * <p>
  * This creates a progress monitor to monitor the progress of reading the input
@@ -23,10 +22,7 @@ import java.awt.Component;
  * the user. If the user hits the Cancel button an InterruptedIOException will
  * be thrown on the next read. All the right cleanup is done when the stream is
  * closed.
- *
- *
  * <p>
- *
  * For further documentation and examples see <a href=
  * "https://docs.oracle.com/javase/tutorial/uiswing/components/progress.html">
  * How to Monitor Progress</a>, a section in <em>The Java Tutorial.</em>
@@ -44,17 +40,16 @@ public class ProgressMonitorInputStream extends FilterInputStream {
      * Constructs an object to monitor the progress of an input stream.
      *
      * @param message
-     *                        Descriptive text to be placed in the dialog box if
-     *                        one is
-     *                        popped up.
+     *        Descriptive text to be placed in the dialog box if
+     *        one is
+     *        popped up.
      * @param parentComponent
-     *                        The component triggering the operation being
-     *                        monitored.
+     *        The component triggering the operation being
+     *        monitored.
      * @param in
-     *                        The input stream to be monitored.
+     *        The input stream to be monitored.
      */
-    public ProgressMonitorInputStream(Component parentComponent, Object message,
-            InputStream in) {
+    public ProgressMonitorInputStream(Component parentComponent, Object message, InputStream in) {
         super(in);
         try {
             size = in.available();

@@ -18,7 +18,7 @@ public class SocketTimeoutException extends java.io.InterruptedIOException {
      * Constructs a new SocketTimeoutException with a detail message.
      * 
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public SocketTimeoutException(String msg) {
         super(msg);

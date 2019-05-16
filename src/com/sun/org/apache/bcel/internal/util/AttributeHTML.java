@@ -57,30 +57,27 @@ import java.io.*;
  * Convert found attributes into HTML file.
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
- *
  */
-final class AttributeHTML implements
-        com.sun.org.apache.bcel.internal.Constants {
+final class AttributeHTML implements com.sun.org.apache.bcel.internal.Constants {
     private String class_name; // name of current class
     private PrintWriter file; // file to write to
     private int attr_count = 0;
     private ConstantHTML constant_html;
     private ConstantPool constant_pool;
 
-    AttributeHTML(String dir, String class_name, ConstantPool constant_pool,
-            ConstantHTML constant_html) throws IOException {
+    AttributeHTML(String dir, String class_name, ConstantPool constant_pool, ConstantHTML constant_html)
+            throws IOException {
         this.class_name = class_name;
         this.constant_pool = constant_pool;
         this.constant_html = constant_html;
 
-        file = new PrintWriter(new FileOutputStream(dir + class_name
-                + "_attributes.html"));
+        file = new PrintWriter(new FileOutputStream(dir + class_name + "_attributes.html"));
         file.println("<HTML><BODY BGCOLOR=\"#C0C0C0\"><TABLE BORDER=0>");
     }
 
     private final String codeLink(int link, int method_number) {
-        return "<A HREF=\"" + class_name + "_code.html#code" + method_number
-                + "@" + link + "\" TARGET=Code>" + link + "</A>";
+        return "<A HREF=\"" + class_name + "_code.html#code" + method_number + "@" + link + "\" TARGET=Code>"
+                + link + "</A>";
     }
 
     final void close() {
@@ -88,13 +85,11 @@ final class AttributeHTML implements
         file.close();
     }
 
-    final void writeAttribute(Attribute attribute, String anchor)
-            throws IOException {
+    final void writeAttribute(Attribute attribute, String anchor) throws IOException {
         writeAttribute(attribute, anchor, 0);
     }
 
-    final void writeAttribute(Attribute attribute, String anchor,
-            int method_number) throws IOException {
+    final void writeAttribute(Attribute attribute, String anchor, int method_number) throws IOException {
         byte tag = attribute.getTag();
         int index;
 
@@ -108,8 +103,8 @@ final class AttributeHTML implements
         else
             file.print("<TR BGCOLOR=\"#A0A0A0\"><TD>");
 
-        file.println("<H4><A NAME=\"" + anchor + "\">" + attr_count + " "
-                + ATTRIBUTE_NAMES[tag] + "</A></H4>");
+        file.println("<H4><A NAME=\"" + anchor + "\">" + attr_count + " " + ATTRIBUTE_NAMES[tag]
+                + "</A></H4>");
 
         /*
          * Handle different attributes
@@ -120,9 +115,8 @@ final class AttributeHTML implements
 
                 // Some directly printable values
                 file.print("<UL><LI>Maximum stack size = " + c.getMaxStack()
-                        + "</LI>\n<LI>Number of local variables = " + c
-                                .getMaxLocals() + "</LI>\n<LI><A HREF=\""
-                        + class_name + "_code.html#method" + method_number
+                        + "</LI>\n<LI>Number of local variables = " + c.getMaxLocals()
+                        + "</LI>\n<LI><A HREF=\"" + class_name + "_code.html#method" + method_number
                         + "\" TARGET=Code>Byte code</A></LI></UL>\n");
 
                 // Get handled exceptions and list them
@@ -139,20 +133,16 @@ final class AttributeHTML implements
                         file.print("<LI>");
 
                         if (catch_type != 0)
-                            file.print(constant_html.referenceConstant(
-                                    catch_type)); // Create
-                                                                                             // Link
-                                                                                             // to
-                                                                                             // _cp.html
+                            file.print(constant_html.referenceConstant(catch_type)); // Create
+                                                                                     // Link
+                                                                                     // to
+                                                                                     // _cp.html
                         else
                             file.print("Any Exception");
 
-                        file.print("<BR>(Ranging from lines " + codeLink(ce[i]
-                                .getStartPC(), method_number) + " to "
-                                + codeLink(ce[i].getEndPC(), method_number)
-                                + ", handled at line " + codeLink(ce[i]
-                                        .getHandlerPC(), method_number)
-                                + ")</LI>");
+                        file.print("<BR>(Ranging from lines " + codeLink(ce[i].getStartPC(), method_number)
+                                + " to " + codeLink(ce[i].getEndPC(), method_number) + ", handled at line "
+                                + codeLink(ce[i].getHandlerPC(), method_number) + ")</LI>");
                     }
                     file.print("</UL>");
                 }
@@ -162,48 +152,40 @@ final class AttributeHTML implements
                 index = ((ConstantValue) attribute).getConstantValueIndex();
 
                 // Reference _cp.html
-                file.print("<UL><LI><A HREF=\"" + class_name + "_cp.html#cp"
-                        + index
-                        + "\" TARGET=\"ConstantPool\">Constant value index("
-                        + index + ")</A></UL>\n");
+                file.print("<UL><LI><A HREF=\"" + class_name + "_cp.html#cp" + index
+                        + "\" TARGET=\"ConstantPool\">Constant value index(" + index + ")</A></UL>\n");
                 break;
 
             case ATTR_SOURCE_FILE:
                 index = ((SourceFile) attribute).getSourceFileIndex();
 
                 // Reference _cp.html
-                file.print("<UL><LI><A HREF=\"" + class_name + "_cp.html#cp"
-                        + index
-                        + "\" TARGET=\"ConstantPool\">Source file index("
-                        + index + ")</A></UL>\n");
+                file.print("<UL><LI><A HREF=\"" + class_name + "_cp.html#cp" + index
+                        + "\" TARGET=\"ConstantPool\">Source file index(" + index + ")</A></UL>\n");
                 break;
 
             case ATTR_EXCEPTIONS:
                 // List thrown exceptions
-                int[] indices = ((ExceptionTable) attribute)
-                        .getExceptionIndexTable();
+                int[] indices = ((ExceptionTable) attribute).getExceptionIndexTable();
 
                 file.print("<UL>");
 
                 for (int i = 0; i < indices.length; i++)
-                    file.print("<LI><A HREF=\"" + class_name + "_cp.html#cp"
-                            + indices[i]
-                            + "\" TARGET=\"ConstantPool\">Exception class index("
-                            + indices[i] + ")</A>\n");
+                    file.print("<LI><A HREF=\"" + class_name + "_cp.html#cp" + indices[i]
+                            + "\" TARGET=\"ConstantPool\">Exception class index(" + indices[i] + ")</A>\n");
 
                 file.print("</UL>\n");
                 break;
 
             case ATTR_LINE_NUMBER_TABLE:
-                LineNumber[] line_numbers = ((LineNumberTable) attribute)
-                        .getLineNumberTable();
+                LineNumber[] line_numbers = ((LineNumberTable) attribute).getLineNumberTable();
 
                 // List line number pairs
                 file.print("<P>");
 
                 for (int i = 0; i < line_numbers.length; i++) {
-                    file.print("(" + line_numbers[i].getStartPC() + ",&nbsp;"
-                            + line_numbers[i].getLineNumber() + ")");
+                    file.print("(" + line_numbers[i].getStartPC() + ",&nbsp;" + line_numbers[i]
+                            .getLineNumber() + ")");
 
                     if (i < line_numbers.length - 1)
                         file.print(", "); // breakable
@@ -211,36 +193,32 @@ final class AttributeHTML implements
                 break;
 
             case ATTR_LOCAL_VARIABLE_TABLE:
-                LocalVariable[] vars = ((LocalVariableTable) attribute)
-                        .getLocalVariableTable();
+                LocalVariable[] vars = ((LocalVariableTable) attribute).getLocalVariableTable();
 
                 // List name, range and type
                 file.print("<UL>");
 
                 for (int i = 0; i < vars.length; i++) {
                     index = vars[i].getSignatureIndex();
-                    String signature = ((ConstantUtf8) constant_pool
-                            .getConstant(index, CONSTANT_Utf8)).getBytes();
+                    String signature = ((ConstantUtf8) constant_pool.getConstant(index, CONSTANT_Utf8))
+                            .getBytes();
                     signature = Utility.signatureToString(signature, false);
                     int start = vars[i].getStartPC();
                     int end = (start + vars[i].getLength());
 
-                    file.println("<LI>" + Class2HTML.referenceType(signature)
-                            + "&nbsp;<B>" + vars[i].getName() + "</B> in slot %"
-                            + vars[i].getIndex() + "<BR>Valid from lines "
-                            + "<A HREF=\"" + class_name + "_code.html#code"
-                            + method_number + "@" + start + "\" TARGET=Code>"
-                            + start + "</A> to " + "<A HREF=\"" + class_name
-                            + "_code.html#code" + method_number + "@" + end
-                            + "\" TARGET=Code>" + end + "</A></LI>");
+                    file.println("<LI>" + Class2HTML.referenceType(signature) + "&nbsp;<B>" + vars[i]
+                            .getName() + "</B> in slot %" + vars[i].getIndex() + "<BR>Valid from lines "
+                            + "<A HREF=\"" + class_name + "_code.html#code" + method_number + "@" + start
+                            + "\" TARGET=Code>" + start + "</A> to " + "<A HREF=\"" + class_name
+                            + "_code.html#code" + method_number + "@" + end + "\" TARGET=Code>" + end
+                            + "</A></LI>");
                 }
                 file.print("</UL>\n");
 
                 break;
 
             case ATTR_INNER_CLASSES:
-                InnerClass[] classes = ((InnerClasses) attribute)
-                        .getInnerClasses();
+                InnerClass[] classes = ((InnerClasses) attribute).getInnerClasses();
 
                 // List inner classes
                 file.print("<UL>");
@@ -250,20 +228,15 @@ final class AttributeHTML implements
 
                     index = classes[i].getInnerNameIndex();
                     if (index > 0)
-                        name = ((ConstantUtf8) constant_pool.getConstant(index,
-                                CONSTANT_Utf8)).getBytes();
+                        name = ((ConstantUtf8) constant_pool.getConstant(index, CONSTANT_Utf8)).getBytes();
                     else
                         name = "&lt;anonymous&gt;";
 
-                    access = Utility.accessToString(classes[i]
-                            .getInnerAccessFlags());
+                    access = Utility.accessToString(classes[i].getInnerAccessFlags());
 
-                    file.print("<LI><FONT COLOR=\"#FF0000\">" + access
-                            + "</FONT> " + constant_html.referenceConstant(
-                                    classes[i].getInnerClassIndex())
-                            + " in&nbsp;class " + constant_html
-                                    .referenceConstant(classes[i]
-                                            .getOuterClassIndex()) + " named "
+                    file.print("<LI><FONT COLOR=\"#FF0000\">" + access + "</FONT> " + constant_html
+                            .referenceConstant(classes[i].getInnerClassIndex()) + " in&nbsp;class "
+                            + constant_html.referenceConstant(classes[i].getOuterClassIndex()) + " named "
                             + name + "</LI>\n");
                 }
 

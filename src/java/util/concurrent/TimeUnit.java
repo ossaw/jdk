@@ -19,7 +19,6 @@ package java.util.concurrent;
  * as one thousandth of a microsecond, a microsecond as one thousandth of a
  * millisecond, a millisecond as one thousandth of a second, a minute as sixty
  * seconds, an hour as sixty minutes, and a day as twenty four hours.
- *
  * <p>
  * A {@code TimeUnit} is mainly used to inform time-based methods how a given
  * timing parameter should be interpreted. For example, the following code will
@@ -370,15 +369,14 @@ public enum TimeUnit {
      * results in {@code 0}. Conversions from coarser to finer granularities
      * with arguments that would numerically overflow saturate to
      * {@code Long.MIN_VALUE} if negative or {@code Long.MAX_VALUE} if positive.
-     *
      * <p>
      * For example, to convert 10 minutes to milliseconds, use:
      * {@code TimeUnit.MILLISECONDS.convert(10L, TimeUnit.MINUTES)}
      *
      * @param sourceDuration
-     *                       the time duration in the given {@code sourceUnit}
+     *        the time duration in the given {@code sourceUnit}
      * @param sourceUnit
-     *                       the unit of the {@code sourceDuration} argument
+     *        the unit of the {@code sourceDuration} argument
      * @return the converted duration in this unit, or {@code Long.MIN_VALUE} if
      *         conversion would negatively overflow, or {@code Long.MAX_VALUE}
      *         if it would positively overflow.
@@ -392,7 +390,7 @@ public enum TimeUnit {
      * NANOSECONDS.convert(duration, this)}.
      * 
      * @param duration
-     *                 the duration
+     *        the duration
      * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
      *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
      *         positively overflow.
@@ -406,7 +404,7 @@ public enum TimeUnit {
      * MICROSECONDS.convert(duration, this)}.
      * 
      * @param duration
-     *                 the duration
+     *        the duration
      * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
      *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
      *         positively overflow.
@@ -420,7 +418,7 @@ public enum TimeUnit {
      * MILLISECONDS.convert(duration, this)}.
      * 
      * @param duration
-     *                 the duration
+     *        the duration
      * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
      *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
      *         positively overflow.
@@ -434,7 +432,7 @@ public enum TimeUnit {
      * this)}.
      * 
      * @param duration
-     *                 the duration
+     *        the duration
      * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
      *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
      *         positively overflow.
@@ -448,7 +446,7 @@ public enum TimeUnit {
      * this)}.
      * 
      * @param duration
-     *                 the duration
+     *        the duration
      * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
      *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
      *         positively overflow.
@@ -463,7 +461,7 @@ public enum TimeUnit {
      * this)}.
      * 
      * @param duration
-     *                 the duration
+     *        the duration
      * @return the converted duration, or {@code Long.MIN_VALUE} if conversion
      *         would negatively overflow, or {@code Long.MAX_VALUE} if it would
      *         positively overflow.
@@ -478,7 +476,7 @@ public enum TimeUnit {
      * this)}.
      * 
      * @param duration
-     *                 the duration
+     *        the duration
      * @return the converted duration
      * @since 1.6
      */
@@ -490,9 +488,9 @@ public enum TimeUnit {
      * Utility to compute the excess-nanosecond argument to wait, sleep, join.
      * 
      * @param d
-     *          the duration
+     *        the duration
      * @param m
-     *          the number of milliseconds
+     *        the number of milliseconds
      * @return the number of nanoseconds
      */
     abstract int excessNanos(long d, long m);
@@ -501,7 +499,6 @@ public enum TimeUnit {
      * Performs a timed {@link Object#wait(long, int) Object.wait} using this
      * time unit. This is a convenience method that converts timeout arguments
      * into the form required by the {@code Object.wait} method.
-     *
      * <p>
      * For example, you could implement a blocking {@code poll} method (see
      * {@link BlockingQueue#poll BlockingQueue.poll}) using:
@@ -518,16 +515,15 @@ public enum TimeUnit {
      * </pre>
      *
      * @param obj
-     *                the object to wait on
+     *        the object to wait on
      * @param timeout
-     *                the maximum time to wait. If less than or equal to zero,
-     *                do
-     *                not wait at all.
+     *        the maximum time to wait. If less than or equal to zero,
+     *        do
+     *        not wait at all.
      * @throws InterruptedException
-     *                              if interrupted while waiting
+     *         if interrupted while waiting
      */
-    public void timedWait(Object obj, long timeout)
-            throws InterruptedException {
+    public void timedWait(Object obj, long timeout) throws InterruptedException {
         if (timeout > 0) {
             long ms = toMillis(timeout);
             int ns = excessNanos(timeout, ms);
@@ -541,16 +537,15 @@ public enum TimeUnit {
      * the form required by the {@code Thread.join} method.
      *
      * @param thread
-     *                the thread to wait for
+     *        the thread to wait for
      * @param timeout
-     *                the maximum time to wait. If less than or equal to zero,
-     *                do
-     *                not wait at all.
+     *        the maximum time to wait. If less than or equal to zero,
+     *        do
+     *        not wait at all.
      * @throws InterruptedException
-     *                              if interrupted while waiting
+     *         if interrupted while waiting
      */
-    public void timedJoin(Thread thread, long timeout)
-            throws InterruptedException {
+    public void timedJoin(Thread thread, long timeout) throws InterruptedException {
         if (timeout > 0) {
             long ms = toMillis(timeout);
             int ns = excessNanos(timeout, ms);
@@ -564,11 +559,11 @@ public enum TimeUnit {
      * form required by the {@code Thread.sleep} method.
      *
      * @param timeout
-     *                the minimum time to sleep. If less than or equal to zero,
-     *                do
-     *                not sleep at all.
+     *        the minimum time to sleep. If less than or equal to zero,
+     *        do
+     *        not sleep at all.
      * @throws InterruptedException
-     *                              if interrupted while sleeping
+     *         if interrupted while sleeping
      */
     public void sleep(long timeout) throws InterruptedException {
         if (timeout > 0) {

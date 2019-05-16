@@ -137,8 +137,7 @@ public class DebugMutex implements Sync {
         synchronized (this) {
             Thread thr = Thread.currentThread();
             if (holder_ == thr)
-                throw new INTERNAL(
-                        "Attempt to acquire Mutex by thread holding the Mutex");
+                throw new INTERNAL("Attempt to acquire Mutex by thread holding the Mutex");
 
             try {
                 while (inuse_)
@@ -155,8 +154,7 @@ public class DebugMutex implements Sync {
     public synchronized void release() {
         Thread thr = Thread.currentThread();
         if (thr != holder_)
-            throw new INTERNAL(
-                    "Attempt to release Mutex by thread not holding the Mutex");
+            throw new INTERNAL("Attempt to release Mutex by thread not holding the Mutex");
         holder_ = null;
         inuse_ = false;
         notify();
@@ -185,8 +183,7 @@ public class DebugMutex implements Sync {
                             holder_ = thr;
                             return true;
                         } else {
-                            waitTime = msecs - (System.currentTimeMillis()
-                                    - start);
+                            waitTime = msecs - (System.currentTimeMillis() - start);
                             if (waitTime <= 0)
                                 return false;
                         }

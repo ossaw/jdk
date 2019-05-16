@@ -11,7 +11,6 @@ package java.awt;
  * device.
  *
  * @see Toolkit#getPrintJob
- *
  * @author Amy Fowler
  */
 public abstract class PrintJob {

@@ -12,11 +12,9 @@ import javax.print.event.PrintJobListener;
 import javax.print.PrintException;
 
 /**
- *
  * This interface represents a print job that can print a specified document
  * with a set of job attributes. An object implementing this interface is
  * obtained from a print service.
- *
  */
 
 public interface DocPrintJob {
@@ -26,7 +24,6 @@ public interface DocPrintJob {
      * is bound.
      *
      * @return <code>PrintService</code> object.
-     *
      */
     public PrintService getPrintService();
 
@@ -52,10 +49,8 @@ public interface DocPrintJob {
      * listener is already registered, it will be registered again.
      * 
      * @see #removePrintJobListener
-     *
      * @param listener
-     *                 The object implementing the listener interface
-     *
+     *        The object implementing the listener interface
      */
     public void addPrintJobListener(PrintJobListener listener);
 
@@ -67,9 +62,8 @@ public interface DocPrintJob {
      * registered more than once only one of the registrations will be removed.
      * 
      * @see #addPrintJobListener
-     *
      * @param listener
-     *                 The object implementing the listener interface
+     *        The object implementing the listener interface
      */
     public void removePrintJobListener(PrintJobListener listener);
 
@@ -89,17 +83,15 @@ public interface DocPrintJob {
      * to listen on all dynamic attributes that the job supports. This may
      * result in no update notifications if a job can not report any attribute
      * updates.
-     *
      * If listener is already registered, it will be registered again.
      * 
      * @see #removePrintJobAttributeListener
-     *
      * @param listener
-     *                   The object implementing the listener interface
+     *        The object implementing the listener interface
      * @param attributes
-     *                   The attributes to listen on, or null to mean all
-     *                   attributes
-     *                   that can change, as determined by the job.
+     *        The attributes to listen on, or null to mean all
+     *        attributes
+     *        that can change, as determined by the job.
      */
     public void addPrintJobAttributeListener(PrintJobAttributeListener listener,
             PrintJobAttributeSet attributes);
@@ -113,13 +105,10 @@ public interface DocPrintJob {
      * guarantee is made which listener is removed.
      * 
      * @see #addPrintJobAttributeListener
-     *
      * @param listener
-     *                 The object implementing the listener interface
-     *
+     *        The object implementing the listener interface
      */
-    public void removePrintJobAttributeListener(
-            PrintJobAttributeListener listener);
+    public void removePrintJobAttributeListener(PrintJobAttributeListener listener);
 
     /**
      * Prints a document with the specified job attributes. This method should
@@ -137,29 +126,27 @@ public interface DocPrintJob {
      * generated if a <code>DocFlavor</code> cannot be printed.
      *
      * @param doc
-     *                   The document to be printed. If must be a flavor
-     *                   supported by
-     *                   this PrintJob.
-     *
+     *        The document to be printed. If must be a flavor
+     *        supported by
+     *        this PrintJob.
      * @param attributes
-     *                   The job attributes to be applied to this print job. If
-     *                   this
-     *                   parameter is null then the default attributes are used.
+     *        The job attributes to be applied to this print job. If
+     *        this
+     *        parameter is null then the default attributes are used.
      * @throws PrintException
-     *                        The exception additionally may implement an
-     *                        interface that
-     *                        more precisely describes the cause of the
-     *                        exception
-     *                        <ul>
-     *                        <li>FlavorException. If the document has a flavor
-     *                        not
-     *                        supported by this print job.
-     *                        <li>AttributeException. If one or more of the
-     *                        attributes are
-     *                        not valid for this print job.
-     *                        </ul>
+     *         The exception additionally may implement an
+     *         interface that
+     *         more precisely describes the cause of the
+     *         exception
+     *         <ul>
+     *         <li>FlavorException. If the document has a flavor
+     *         not
+     *         supported by this print job.
+     *         <li>AttributeException. If one or more of the
+     *         attributes are
+     *         not valid for this print job.
+     *         </ul>
      */
-    public void print(Doc doc, PrintRequestAttributeSet attributes)
-            throws PrintException;
+    public void print(Doc doc, PrintRequestAttributeSet attributes) throws PrintException;
 
 }

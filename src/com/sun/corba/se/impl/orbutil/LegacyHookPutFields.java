@@ -61,7 +61,6 @@ class LegacyHookPutFields extends ObjectOutputStream.PutField {
 
     /**
      * Put the value of the named float field into the persistent fields.
-     *
      */
     public void put(String name, float value) {
         fields.put(name, new Float(value));

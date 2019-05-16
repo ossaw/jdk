@@ -22,7 +22,7 @@ public class SnmpTools implements SnmpDefinitions {
      * is an hexadecimal string starting with 0x.
      * 
      * @param data
-     *             Binary to translate.
+     *        Binary to translate.
      * @return Translated binary.
      */
     static public String binary2ascii(byte[] data, int length) {
@@ -54,7 +54,7 @@ public class SnmpTools implements SnmpDefinitions {
      * is an hexadecimal string starting with 0x.
      * 
      * @param data
-     *             Binary to translate.
+     *        Binary to translate.
      * @return Translated binary.
      */
     static public String binary2ascii(byte[] data) {
@@ -66,7 +66,7 @@ public class SnmpTools implements SnmpDefinitions {
      * string is an hexadecimal one starting with 0x.
      * 
      * @param str
-     *            String to translate.
+     *        String to translate.
      * @return Translated string.
      */
     static public byte[] ascii2binary(String str) {

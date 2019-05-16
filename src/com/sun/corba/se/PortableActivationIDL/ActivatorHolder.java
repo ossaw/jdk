@@ -8,14 +8,12 @@ package com.sun.corba.se.PortableActivationIDL;
  * 21, 2017 9:58:51 PM PDT
  */
 
-public final class ActivatorHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class ActivatorHolder implements org.omg.CORBA.portable.Streamable {
     public com.sun.corba.se.PortableActivationIDL.Activator value = null;
 
     public ActivatorHolder() {}
 
-    public ActivatorHolder(
-            com.sun.corba.se.PortableActivationIDL.Activator initialValue) {
+    public ActivatorHolder(com.sun.corba.se.PortableActivationIDL.Activator initialValue) {
         value = initialValue;
     }
 

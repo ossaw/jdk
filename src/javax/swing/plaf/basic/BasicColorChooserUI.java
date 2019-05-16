@@ -52,8 +52,7 @@ public class BasicColorChooserUI extends ColorChooserUI {
     }
 
     protected AbstractColorChooserPanel[] createDefaultChoosers() {
-        AbstractColorChooserPanel[] panels = ColorChooserComponentFactory
-                .getDefaultChooserPanels();
+        AbstractColorChooserPanel[] panels = ColorChooserComponentFactory.getDefaultChooserPanels();
         return panels;
     }
 
@@ -75,8 +74,7 @@ public class BasicColorChooserUI extends ColorChooserUI {
         tabbedPane = new JTabbedPane();
         tabbedPane.setName("ColorChooser.tabPane");
         tabbedPane.setInheritsPopupMenu(true);
-        tabbedPane.getAccessibleContext().setAccessibleDescription(tabbedPane
-                .getName());
+        tabbedPane.getAccessibleContext().setAccessibleDescription(tabbedPane.getName());
         singlePanel = new JPanel(new CenterLayout());
         singlePanel.setName("ColorChooser.panel");
         singlePanel.setInheritsPopupMenu(true);
@@ -89,10 +87,8 @@ public class BasicColorChooserUI extends ColorChooserUI {
         previewPanelHolder = new JPanel(new CenterLayout());
         previewPanelHolder.setName("ColorChooser.previewPanelHolder");
 
-        if (DefaultLookup.getBoolean(chooser, this,
-                "ColorChooser.showPreviewPanelText", true)) {
-            String previewString = UIManager.getString(
-                    "ColorChooser.previewText", chooser.getLocale());
+        if (DefaultLookup.getBoolean(chooser, this, "ColorChooser.showPreviewPanelText", true)) {
+            String previewString = UIManager.getString("ColorChooser.previewText", chooser.getLocale());
             previewPanelHolder.setBorder(new TitledBorder(previewString));
         }
         previewPanelHolder.setInheritsPopupMenu(true);
@@ -124,8 +120,7 @@ public class BasicColorChooserUI extends ColorChooserUI {
         JComponent previewPanel = this.chooser.getPreviewPanel();
         if (previewPanel == null) {
             previewPanel = ColorChooserComponentFactory.getPreviewPanel();
-        } else if (JPanel.class.equals(previewPanel.getClass())
-                && (0 == previewPanel.getComponentCount())) {
+        } else if (JPanel.class.equals(previewPanel.getClass()) && (0 == previewPanel.getComponentCount())) {
             previewPanel = null;
         }
         this.previewPanel = previewPanel;
@@ -152,8 +147,8 @@ public class BasicColorChooserUI extends ColorChooserUI {
     }
 
     protected void installDefaults() {
-        LookAndFeel.installColorsAndFont(chooser, "ColorChooser.background",
-                "ColorChooser.foreground", "ColorChooser.font");
+        LookAndFeel.installColorsAndFont(chooser, "ColorChooser.background", "ColorChooser.foreground",
+                "ColorChooser.font");
         LookAndFeel.installProperty(chooser, "opaque", Boolean.TRUE);
         TransferHandler th = chooser.getTransferHandler();
         if (th == null || th instanceof UIResource) {
@@ -208,8 +203,7 @@ public class BasicColorChooserUI extends ColorChooserUI {
         }
     }
 
-    private class Handler implements ChangeListener, MouseListener,
-            PropertyChangeListener {
+    private class Handler implements ChangeListener, MouseListener, PropertyChangeListener {
         //
         // ChangeListener
         //
@@ -241,10 +235,8 @@ public class BasicColorChooserUI extends ColorChooserUI {
             String prop = evt.getPropertyName();
 
             if (prop == JColorChooser.CHOOSER_PANELS_PROPERTY) {
-                AbstractColorChooserPanel[] oldPanels = (AbstractColorChooserPanel[]) evt
-                        .getOldValue();
-                AbstractColorChooserPanel[] newPanels = (AbstractColorChooserPanel[]) evt
-                        .getNewValue();
+                AbstractColorChooserPanel[] oldPanels = (AbstractColorChooserPanel[]) evt.getOldValue();
+                AbstractColorChooserPanel[] newPanels = (AbstractColorChooserPanel[]) evt.getNewValue();
 
                 for (int i = 0; i < oldPanels.length; i++) { // remove old
                                                              // panels
@@ -283,17 +275,14 @@ public class BasicColorChooserUI extends ColorChooserUI {
                         tabbedPane.addTab(name, centerWrapper);
                         if (mnemonic > 0) {
                             tabbedPane.setMnemonicAt(i, mnemonic);
-                            int index = newPanels[i]
-                                    .getDisplayedMnemonicIndex();
+                            int index = newPanels[i].getDisplayedMnemonicIndex();
                             if (index >= 0) {
-                                tabbedPane.setDisplayedMnemonicIndexAt(i,
-                                        index);
+                                tabbedPane.setDisplayedMnemonicIndexAt(i, index);
                             }
                         }
                     }
                 }
-                chooser.applyComponentOrientation(chooser
-                        .getComponentOrientation());
+                chooser.applyComponentOrientation(chooser.getComponentOrientation());
                 for (int i = 0; i < newPanels.length; i++) {
                     newPanels[i].installChooserPanel(chooser);
                 }
@@ -301,16 +290,13 @@ public class BasicColorChooserUI extends ColorChooserUI {
                 uninstallPreviewPanel();
                 installPreviewPanel();
             } else if (prop == JColorChooser.SELECTION_MODEL_PROPERTY) {
-                ColorSelectionModel oldModel = (ColorSelectionModel) evt
-                        .getOldValue();
+                ColorSelectionModel oldModel = (ColorSelectionModel) evt.getOldValue();
                 oldModel.removeChangeListener(previewListener);
-                ColorSelectionModel newModel = (ColorSelectionModel) evt
-                        .getNewValue();
+                ColorSelectionModel newModel = (ColorSelectionModel) evt.getNewValue();
                 newModel.addChangeListener(previewListener);
                 selectionChanged(newModel);
             } else if (prop == "componentOrientation") {
-                ComponentOrientation o = (ComponentOrientation) evt
-                        .getNewValue();
+                ComponentOrientation o = (ComponentOrientation) evt.getNewValue();
                 JColorChooser cc = (JColorChooser) evt.getSource();
                 if (o != (ComponentOrientation) evt.getOldValue()) {
                     cc.applyComponentOrientation(o);
@@ -330,8 +316,7 @@ public class BasicColorChooserUI extends ColorChooserUI {
         }
     }
 
-    static class ColorTransferHandler extends TransferHandler implements
-            UIResource {
+    static class ColorTransferHandler extends TransferHandler implements UIResource {
 
         ColorTransferHandler() {
             super("color");

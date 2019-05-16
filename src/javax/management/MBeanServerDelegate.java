@@ -16,8 +16,7 @@ import com.sun.jmx.mbeanserver.Util;
  *
  * @since 1.5
  */
-public class MBeanServerDelegate implements MBeanServerDelegateMBean,
-        NotificationEmitter {
+public class MBeanServerDelegate implements MBeanServerDelegateMBean, NotificationEmitter {
 
     /** The MBean server agent identification. */
     private String mbeanServerId;
@@ -34,12 +33,10 @@ public class MBeanServerDelegate implements MBeanServerDelegateMBean,
     private static final MBeanNotificationInfo[] notifsInfo;
 
     static {
-        final String[] types = {
-                MBeanServerNotification.UNREGISTRATION_NOTIFICATION,
+        final String[] types = { MBeanServerNotification.UNREGISTRATION_NOTIFICATION,
                 MBeanServerNotification.REGISTRATION_NOTIFICATION };
         notifsInfo = new MBeanNotificationInfo[1];
-        notifsInfo[0] = new MBeanNotificationInfo(types,
-                "javax.management.MBeanServerNotification",
+        notifsInfo[0] = new MBeanNotificationInfo(types, "javax.management.MBeanServerNotification",
                 "Notifications sent by the MBeanServerDelegate MBean");
     }
 
@@ -141,24 +138,22 @@ public class MBeanServerDelegate implements MBeanServerDelegateMBean,
 
     // From NotificationEmitter extends NotificationBroacaster
     //
-    public synchronized void addNotificationListener(
-            NotificationListener listener, NotificationFilter filter,
+    public synchronized void addNotificationListener(NotificationListener listener, NotificationFilter filter,
             Object handback) throws IllegalArgumentException {
         broadcaster.addNotificationListener(listener, filter, handback);
     }
 
     // From NotificationEmitter extends NotificationBroacaster
     //
-    public synchronized void removeNotificationListener(
-            NotificationListener listener, NotificationFilter filter,
-            Object handback) throws ListenerNotFoundException {
+    public synchronized void removeNotificationListener(NotificationListener listener,
+            NotificationFilter filter, Object handback) throws ListenerNotFoundException {
         broadcaster.removeNotificationListener(listener, filter, handback);
     }
 
     // From NotificationEmitter extends NotificationBroacaster
     //
-    public synchronized void removeNotificationListener(
-            NotificationListener listener) throws ListenerNotFoundException {
+    public synchronized void removeNotificationListener(NotificationListener listener)
+            throws ListenerNotFoundException {
         broadcaster.removeNotificationListener(listener);
     }
 
@@ -168,8 +163,7 @@ public class MBeanServerDelegate implements MBeanServerDelegateMBean,
      * replace it with the delegate's own sequence number.
      * 
      * @param notification
-     *                     The notification to send.
-     *
+     *        The notification to send.
      */
     public void sendNotification(Notification notification) {
         if (notification.getSequenceNumber() < 1) {

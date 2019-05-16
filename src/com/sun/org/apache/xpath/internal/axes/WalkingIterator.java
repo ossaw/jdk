@@ -32,8 +32,7 @@ import com.sun.org.apache.xpath.internal.compiler.OpMap;
  * Location path iterator that uses Walkers.
  */
 
-public class WalkingIterator extends LocPathIterator implements
-        ExpressionOwner {
+public class WalkingIterator extends LocPathIterator implements ExpressionOwner {
     static final long serialVersionUID = 9110225941815665906L;
 
     /**
@@ -42,29 +41,26 @@ public class WalkingIterator extends LocPathIterator implements
      * expressions.
      *
      * @param compiler
-     *                          The Compiler which is creating this expression.
+     *        The Compiler which is creating this expression.
      * @param opPos
-     *                          The position of this iterator in the opcode list
-     *                          from the
-     *                          compiler.
+     *        The position of this iterator in the opcode list
+     *        from the
+     *        compiler.
      * @param shouldLoadWalkers
-     *                          True if walkers should be loaded, or false if
-     *                          this is a
-     *                          derived iterator and it doesn't wish to load
-     *                          child walkers.
-     *
+     *        True if walkers should be loaded, or false if
+     *        this is a
+     *        derived iterator and it doesn't wish to load
+     *        child walkers.
      * @throws javax.xml.transform.TransformerException
      */
-    WalkingIterator(Compiler compiler, int opPos, int analysis,
-            boolean shouldLoadWalkers)
+    WalkingIterator(Compiler compiler, int opPos, int analysis, boolean shouldLoadWalkers)
             throws javax.xml.transform.TransformerException {
         super(compiler, opPos, analysis, shouldLoadWalkers);
 
         int firstStepPos = OpMap.getFirstChildPos(opPos);
 
         if (shouldLoadWalkers) {
-            m_firstWalker = WalkerFactory.loadWalkers(this, compiler,
-                    firstStepPos, 0);
+            m_firstWalker = WalkerFactory.loadWalkers(this, compiler, firstStepPos, 0);
             m_lastUsedWalker = m_firstWalker;
         }
     }
@@ -73,8 +69,8 @@ public class WalkingIterator extends LocPathIterator implements
      * Create a WalkingIterator object.
      *
      * @param nscontext
-     *                  The namespace context for this iterator, should be OK if
-     *                  null.
+     *        The namespace context for this iterator, should be OK if
+     *        null.
      */
     public WalkingIterator(PrefixResolver nscontext) {
 
@@ -105,7 +101,6 @@ public class WalkingIterator extends LocPathIterator implements
      * iterator.
      *
      * @return A clone of this iterator that holds the same node position.
-     *
      * @throws CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException {
@@ -140,7 +135,7 @@ public class WalkingIterator extends LocPathIterator implements
      * Initialize the context values for this expression after it is cloned.
      *
      * @param context
-     *                The XPath runtime context for this transformation.
+     *        The XPath runtime context for this transformation.
      */
     public void setRoot(int context, Object environment) {
 
@@ -206,7 +201,7 @@ public class WalkingIterator extends LocPathIterator implements
      * Set the head of the walker list.
      *
      * @param walker
-     *               Should be a valid AxesWalker.
+     *        Should be a valid AxesWalker.
      * @xsl.usage advanced
      */
     public final void setFirstWalker(AxesWalker walker) {
@@ -217,7 +212,7 @@ public class WalkingIterator extends LocPathIterator implements
      * Set the last used walker.
      *
      * @param walker
-     *               The last used walker, or null.
+     *        The last used walker, or null.
      * @xsl.usage advanced
      */
     public final void setLastUsedWalker(AxesWalker walker) {
@@ -260,13 +255,13 @@ public class WalkingIterator extends LocPathIterator implements
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *             List of QNames that correspond to variables. This list should
-     *             be searched backwards for the first qualified name that
-     *             corresponds to the variable reference qname. The position of
-     *             the QName in the vector from the start of the vector will be
-     *             its position in the stack frame (but variables above the
-     *             globalsTop value will need to be offset to the current stack
-     *             frame).
+     *        List of QNames that correspond to variables. This list should
+     *        be searched backwards for the first qualified name that
+     *        corresponds to the variable reference qname. The position of
+     *        the QName in the vector from the start of the vector will be
+     *        its position in the stack frame (but variables above the
+     *        globalsTop value will need to be offset to the current stack
+     *        frame).
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
         m_predicateIndex = -1;

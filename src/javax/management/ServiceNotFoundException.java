@@ -29,7 +29,7 @@ public class ServiceNotFoundException extends OperationsException {
      * Constructor that allows a specific error message to be specified.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public ServiceNotFoundException(String message) {
         super(message);

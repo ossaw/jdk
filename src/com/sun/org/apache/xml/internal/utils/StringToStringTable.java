@@ -55,7 +55,7 @@ public class StringToStringTable {
      * Construct a StringToStringTable, using the given block size.
      *
      * @param blocksize
-     *                  Size of blocks to allocate
+     *        Size of blocks to allocate
      */
     public StringToStringTable(int blocksize) {
 
@@ -78,9 +78,9 @@ public class StringToStringTable {
      * the array and the values in the odd.
      *
      * @param key
-     *              String to add to the list
+     *        String to add to the list
      * @param value
-     *              Value of the string
+     *        Value of the string
      */
     public final void put(String key, String value) {
 
@@ -107,8 +107,7 @@ public class StringToStringTable {
      * Tell if the table contains the given string.
      *
      * @param key
-     *            String to look up
-     *
+     *        String to look up
      * @return return the value of the string or null if not found.
      */
     public final String get(String key) {
@@ -125,15 +124,14 @@ public class StringToStringTable {
      * Remove the given string and its value from this table.
      *
      * @param key
-     *            String to remove from the table
+     *        String to remove from the table
      */
     public final void remove(String key) {
 
         for (int i = 0; i < m_firstFree; i += 2) {
             if (m_map[i].equals(key)) {
                 if ((i + 2) < m_firstFree)
-                    System.arraycopy(m_map, i + 2, m_map, i, m_firstFree - (i
-                            + 2));
+                    System.arraycopy(m_map, i + 2, m_map, i, m_firstFree - (i + 2));
 
                 m_firstFree -= 2;
                 m_map[m_firstFree] = null;
@@ -148,8 +146,7 @@ public class StringToStringTable {
      * Tell if the table contains the given string. Ignore case
      *
      * @param key
-     *            String to look up
-     *
+     *        String to look up
      * @return The value of the string or null if not found
      */
     public final String getIgnoreCase(String key) {
@@ -169,8 +166,7 @@ public class StringToStringTable {
      * Tell if the table contains the given string in the value.
      *
      * @param val
-     *            Value of the string to look up
-     *
+     *        Value of the string to look up
      * @return the string associated with the given value or null if not found
      */
     public final String getByValue(String val) {
@@ -187,8 +183,7 @@ public class StringToStringTable {
      * Get the nth element.
      *
      * @param i
-     *          index of the string to look up.
-     *
+     *        index of the string to look up.
      * @return The string at the given index.
      */
     public final String elementAt(int i) {
@@ -199,8 +194,7 @@ public class StringToStringTable {
      * Tell if the table contains the given string.
      *
      * @param key
-     *            String to look up
-     *
+     *        String to look up
      * @return True if the given string is in this table
      */
     public final boolean contains(String key) {
@@ -217,8 +211,7 @@ public class StringToStringTable {
      * Tell if the table contains the given string.
      *
      * @param val
-     *            value to look up
-     *
+     *        value to look up
      * @return True if the given value is in the table.
      */
     public final boolean containsValue(String val) {

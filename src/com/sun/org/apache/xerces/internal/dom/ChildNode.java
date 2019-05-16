@@ -24,7 +24,6 @@ import org.w3c.dom.Node;
  * having references to its previous and next siblings.
  *
  * @xerces.internal
- *
  */
 public abstract class ChildNode extends NodeImpl {
 
@@ -78,7 +77,6 @@ public abstract class ChildNode extends NodeImpl {
      * ParentNode overrides this behavior.
      * 
      * @see ParentNode
-     *
      *      <p>
      *      Example: Cloning a Text node will copy both the node and the text it
      *      contains.

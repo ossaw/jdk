@@ -39,7 +39,6 @@ import java.time.DateTimeException;
  * from 1 onwards, is known as the 'Buddhist' era. All previous years, zero or
  * earlier in the proleptic count or one and greater in the year-of-era count,
  * are part of the 'Before Buddhist' era.
- *
  * <table summary=
  * "Buddhist years and eras" cellpadding="2" cellspacing="3" border="0" >
  * <thead>
@@ -81,7 +80,6 @@ import java.time.DateTimeException;
  * {@code ThaiBuddhistEra}. Use {@code getValue()} instead.</b>
  *
  * @implSpec This is an immutable and thread-safe enum.
- *
  * @since 1.8
  */
 public enum ThaiBuddhistEra implements Era {
@@ -106,10 +104,10 @@ public enum ThaiBuddhistEra implements Era {
      * {@code int} value.
      *
      * @param thaiBuddhistEra
-     *                        the era to represent, from 0 to 1
+     *        the era to represent, from 0 to 1
      * @return the BuddhistEra singleton, never null
      * @throws DateTimeException
-     *                           if the era is invalid
+     *         if the era is invalid
      */
     public static ThaiBuddhistEra of(int thaiBuddhistEra) {
         switch (thaiBuddhistEra) {

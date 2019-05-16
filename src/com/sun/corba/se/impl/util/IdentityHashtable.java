@@ -47,14 +47,14 @@ public final class IdentityHashtable extends Dictionary {
      * the specified load factor.
      *
      * @param initialCapacity
-     *                        the initial capacity of the hashtable.
+     *        the initial capacity of the hashtable.
      * @param loadFactor
-     *                        a number between 0.0 and 1.0.
+     *        a number between 0.0 and 1.0.
      * @exception IllegalArgumentException
-     *                                     if the initial capacity is less than
-     *                                     or equal to zero, or
-     *                                     if the load factor is less than or
-     *                                     equal to zero.
+     *            if the initial capacity is less than
+     *            or equal to zero, or
+     *            if the load factor is less than or
+     *            equal to zero.
      * @since JDK1.0
      */
     public IdentityHashtable(int initialCapacity, float loadFactor) {
@@ -71,7 +71,7 @@ public final class IdentityHashtable extends Dictionary {
      * default load factor.
      *
      * @param initialCapacity
-     *                        the initial capacity of the hashtable.
+     *        the initial capacity of the hashtable.
      * @since JDK1.0
      */
     public IdentityHashtable(int initialCapacity) {
@@ -140,11 +140,11 @@ public final class IdentityHashtable extends Dictionary {
      * operation is more expensive than the <code>containsKey</code> method.
      *
      * @param value
-     *              a value to search for.
+     *        a value to search for.
      * @return <code>true</code> if some key maps to the <code>value</code>
      *         argument in this hashtable; <code>false</code> otherwise.
      * @exception NullPointerException
-     *                                 if the value is <code>null</code>.
+     *            if the value is <code>null</code>.
      * @see java.util.Hashtable#containsKey(java.lang.Object)
      * @since JDK1.0
      */
@@ -168,7 +168,7 @@ public final class IdentityHashtable extends Dictionary {
      * Tests if the specified object is a key in this hashtable.
      *
      * @param key
-     *            possible key.
+     *        possible key.
      * @return <code>true</code> if the specified object is a key in this
      *         hashtable; <code>false</code> otherwise.
      * @see java.util.Hashtable#contains(java.lang.Object)
@@ -190,7 +190,7 @@ public final class IdentityHashtable extends Dictionary {
      * Returns the value to which the specified key is mapped in this hashtable.
      *
      * @param key
-     *            a key in the hashtable.
+     *        a key in the hashtable.
      * @return the value to which the key is mapped in this hashtable;
      *         <code>null</code> if the key is not mapped to any value in this
      *         hashtable.
@@ -250,13 +250,13 @@ public final class IdentityHashtable extends Dictionary {
      * key that is equal to the original key.
      *
      * @param key
-     *              the hashtable key.
+     *        the hashtable key.
      * @param value
-     *              the value.
+     *        the value.
      * @return the previous value of the specified key in this hashtable, or
      *         <code>null</code> if it did not have one.
      * @exception NullPointerException
-     *                                 if the key or value is <code>null</code>.
+     *            if the key or value is <code>null</code>.
      * @see java.util.Hashtable#get(java.lang.Object)
      * @since JDK1.0
      */
@@ -300,7 +300,7 @@ public final class IdentityHashtable extends Dictionary {
      * method does nothing if the key is not in the hashtable.
      *
      * @param key
-     *            the key that needs to be removed.
+     *        the key that needs to be removed.
      * @return the value to which the key had been mapped in this hashtable, or
      *         <code>null</code> if the key did not have a mapping.
      * @since JDK1.0

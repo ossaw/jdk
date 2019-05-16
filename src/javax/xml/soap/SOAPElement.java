@@ -32,13 +32,12 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * addChildElement(javax.xml.namespace.QName)
      *
      * @param name
-     *             a <code>Name</code> object with the XML name for the new
-     *             element
-     *
+     *        a <code>Name</code> object with the XML name for the new
+     *        element
      * @return the new <code>SOAPElement</code> object that was created
      * @exception SOAPException
-     *                          if there is an error in creating the
-     *                          <code>SOAPElement</code> object
+     *            if there is an error in creating the
+     *            <code>SOAPElement</code> object
      * @see SOAPElement#addChildElement(javax.xml.namespace.QName)
      */
     public SOAPElement addChildElement(Name name) throws SOAPException;
@@ -51,13 +50,12 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * the <code>qname</code> argument.
      *
      * @param qname
-     *              a <code>QName</code> object with the XML name for the new
-     *              element
-     *
+     *        a <code>QName</code> object with the XML name for the new
+     *        element
      * @return the new <code>SOAPElement</code> object that was created
      * @exception SOAPException
-     *                          if there is an error in creating the
-     *                          <code>SOAPElement</code> object
+     *            if there is an error in creating the
+     *            <code>SOAPElement</code> object
      * @see SOAPElement#addChildElement(Name)
      * @since SAAJ 1.3
      */
@@ -70,12 +68,12 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * inherits any in-scope default namespace.
      *
      * @param localName
-     *                  a <code>String</code> giving the local name for the
-     *                  element
+     *        a <code>String</code> giving the local name for the
+     *        element
      * @return the new <code>SOAPElement</code> object that was created
      * @exception SOAPException
-     *                          if there is an error in creating the
-     *                          <code>SOAPElement</code> object
+     *            if there is an error in creating the
+     *            <code>SOAPElement</code> object
      */
     public SOAPElement addChildElement(String localName) throws SOAPException;
 
@@ -85,23 +83,21 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <code>SOAPElement</code> object.
      *
      * @param localName
-     *                  a <code>String</code> giving the local name for the new
-     *                  element
+     *        a <code>String</code> giving the local name for the new
+     *        element
      * @param prefix
-     *                  a <code>String</code> giving the namespace prefix for
-     *                  the new
-     *                  element
-     *
+     *        a <code>String</code> giving the namespace prefix for
+     *        the new
+     *        element
      * @return the new <code>SOAPElement</code> object that was created
      * @exception SOAPException
-     *                          if the <code>prefix</code> is not valid in the
-     *                          context of
-     *                          this <code>SOAPElement</code> or if there is an
-     *                          error in
-     *                          creating the <code>SOAPElement</code> object
+     *            if the <code>prefix</code> is not valid in the
+     *            context of
+     *            this <code>SOAPElement</code> or if there is an
+     *            error in
+     *            creating the <code>SOAPElement</code> object
      */
-    public SOAPElement addChildElement(String localName, String prefix)
-            throws SOAPException;
+    public SOAPElement addChildElement(String localName, String prefix) throws SOAPException;
 
     /**
      * Creates a new <code>SOAPElement</code> object initialized with the
@@ -109,24 +105,22 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <code>SOAPElement</code> object.
      *
      * @param localName
-     *                  a <code>String</code> giving the local name for the new
-     *                  element
+     *        a <code>String</code> giving the local name for the new
+     *        element
      * @param prefix
-     *                  a <code>String</code> giving the namespace prefix for
-     *                  the new
-     *                  element
+     *        a <code>String</code> giving the namespace prefix for
+     *        the new
+     *        element
      * @param uri
-     *                  a <code>String</code> giving the URI of the namespace to
-     *                  which
-     *                  the new element belongs
-     *
+     *        a <code>String</code> giving the URI of the namespace to
+     *        which
+     *        the new element belongs
      * @return the new <code>SOAPElement</code> object that was created
      * @exception SOAPException
-     *                          if there is an error in creating the
-     *                          <code>SOAPElement</code> object
+     *            if there is an error in creating the
+     *            <code>SOAPElement</code> object
      */
-    public SOAPElement addChildElement(String localName, String prefix,
-            String uri) throws SOAPException;
+    public SOAPElement addChildElement(String localName, String prefix, String uri) throws SOAPException;
 
     /**
      * Add a <code>SOAPElement</code> as a child of this
@@ -139,11 +133,9 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <code>addChildElement()</code> is called on a <code>SOAPHeader</code>,
      * <code>element</code> will be copied into an instance of a
      * <code>SOAPHeaderElement</code>.
-     *
      * <P>
      * The fragment rooted in <code>element</code> is either added as a whole or
      * not at all, if there was an error.
-     *
      * <P>
      * The fragment rooted in <code>element</code> cannot contain elements named
      * "Envelope", "Header" or "Body" and in the SOAP namespace. Any namespace
@@ -151,17 +143,14 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * appropriate namespace declarations within the fragment itself.
      *
      * @param element
-     *                the <code>SOAPElement</code> to be added as a new child
-     *
+     *        the <code>SOAPElement</code> to be added as a new child
      * @exception SOAPException
-     *                          if there was an error in adding this element as
-     *                          a child
-     *
+     *            if there was an error in adding this element as
+     *            a child
      * @return an instance representing the new SOAP element that was actually
      *         added to the tree.
      */
-    public SOAPElement addChildElement(SOAPElement element)
-            throws SOAPException;
+    public SOAPElement addChildElement(SOAPElement element) throws SOAPException;
 
     /**
      * Detaches all children of this <code>SOAPElement</code>.
@@ -181,17 +170,16 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <code>String</code> and adds it to this <code>SOAPElement</code> object.
      *
      * @param text
-     *             a <code>String</code> object with the textual content to be
-     *             added
-     *
+     *        a <code>String</code> object with the textual content to be
+     *        added
      * @return the <code>SOAPElement</code> object into which the new
      *         <code>Text</code> object was inserted
      * @exception SOAPException
-     *                          if there is an error in creating the new
-     *                          <code>Text</code>
-     *                          object or if it is not legal to attach it as a
-     *                          child to
-     *                          this <code>SOAPElement</code>
+     *            if there is an error in creating the new
+     *            <code>Text</code>
+     *            object or if it is not legal to attach it as a
+     *            child to
+     *            this <code>SOAPElement</code>
      */
     public SOAPElement addTextNode(String text) throws SOAPException;
 
@@ -200,68 +188,62 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <code>SOAPElement</code> object.
      *
      * @param name
-     *              a <code>Name</code> object with the name of the attribute
+     *        a <code>Name</code> object with the name of the attribute
      * @param value
-     *              a <code>String</code> giving the value of the attribute
+     *        a <code>String</code> giving the value of the attribute
      * @return the <code>SOAPElement</code> object into which the attribute was
      *         inserted
-     *
      * @exception SOAPException
-     *                          if there is an error in creating the Attribute,
-     *                          or it is
-     *                          invalid to set an attribute with
-     *                          <code>Name</code>
-     *                          <code>name</code> on this SOAPElement.
+     *            if there is an error in creating the Attribute,
+     *            or it is
+     *            invalid to set an attribute with
+     *            <code>Name</code>
+     *            <code>name</code> on this SOAPElement.
      * @see SOAPElement#addAttribute(javax.xml.namespace.QName, String)
      */
-    public SOAPElement addAttribute(Name name, String value)
-            throws SOAPException;
+    public SOAPElement addAttribute(Name name, String value) throws SOAPException;
 
     /**
      * Adds an attribute with the specified name and value to this
      * <code>SOAPElement</code> object.
      *
      * @param qname
-     *              a <code>QName</code> object with the name of the attribute
+     *        a <code>QName</code> object with the name of the attribute
      * @param value
-     *              a <code>String</code> giving the value of the attribute
+     *        a <code>String</code> giving the value of the attribute
      * @return the <code>SOAPElement</code> object into which the attribute was
      *         inserted
-     *
      * @exception SOAPException
-     *                          if there is an error in creating the Attribute,
-     *                          or it is
-     *                          invalid to set an attribute with
-     *                          <code>QName</code>
-     *                          <code>qname</code> on this SOAPElement.
+     *            if there is an error in creating the Attribute,
+     *            or it is
+     *            invalid to set an attribute with
+     *            <code>QName</code>
+     *            <code>qname</code> on this SOAPElement.
      * @see SOAPElement#addAttribute(Name, String)
      * @since SAAJ 1.3
      */
-    public SOAPElement addAttribute(QName qname, String value)
-            throws SOAPException;
+    public SOAPElement addAttribute(QName qname, String value) throws SOAPException;
 
     /**
      * Adds a namespace declaration with the specified prefix and URI to this
      * <code>SOAPElement</code> object.
      *
      * @param prefix
-     *               a <code>String</code> giving the prefix of the namespace
+     *        a <code>String</code> giving the prefix of the namespace
      * @param uri
-     *               a <code>String</code> giving the uri of the namespace
+     *        a <code>String</code> giving the uri of the namespace
      * @return the <code>SOAPElement</code> object into which this namespace
      *         declaration was inserted.
-     *
      * @exception SOAPException
-     *                          if there is an error in creating the namespace
+     *            if there is an error in creating the namespace
      */
-    public SOAPElement addNamespaceDeclaration(String prefix, String uri)
-            throws SOAPException;
+    public SOAPElement addNamespaceDeclaration(String prefix, String uri) throws SOAPException;
 
     /**
      * Returns the value of the attribute with the specified name.
      *
      * @param name
-     *             a <code>Name</code> object with the name of the attribute
+     *        a <code>Name</code> object with the name of the attribute
      * @return a <code>String</code> giving the value of the specified
      *         attribute, Null if there is no such attribute
      * @see SOAPElement#getAttributeValue(javax.xml.namespace.QName)
@@ -272,7 +254,7 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * Returns the value of the attribute with the specified qname.
      *
      * @param qname
-     *              a <code>QName</code> object with the qname of the attribute
+     *        a <code>QName</code> object with the qname of the attribute
      * @return a <code>String</code> giving the value of the specified
      *         attribute, Null if there is no such attribute
      * @see SOAPElement#getAttributeValue(Name)
@@ -309,9 +291,9 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * Returns the URI of the namespace that has the given prefix.
      *
      * @param prefix
-     *               a <code>String</code> giving the prefix of the namespace
-     *               for
-     *               which to search
+     *        a <code>String</code> giving the prefix of the namespace
+     *        for
+     *        which to search
      * @return a <code>String</code> with the uri of the namespace that has the
      *         given prefix
      */
@@ -336,7 +318,6 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      *
      * @return an iterator over the namespace prefixes are within scope of this
      *         <code>SOAPElement</code> object
-     *
      * @since SAAJ 1.2
      */
     public Iterator getVisibleNamespacePrefixes();
@@ -349,12 +330,11 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <code>localName</code> and <code>prefix</code>.
      *
      * @param localName
-     *                  a <code>String</code> containing the local part of the
-     *                  name.
+     *        a <code>String</code> containing the local part of the
+     *        name.
      * @param prefix
-     *                  a <code>String</code> containing the prefix for the
-     *                  name.
-     *
+     *        a <code>String</code> containing the prefix for the
+     *        name.
      * @return a <code>QName</code> with the specified <code>localName</code>
      *         and <code>prefix</code>, and with a namespace that is associated
      *         with the <code>prefix</code> in the context of this
@@ -362,14 +342,11 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      *         one that would be returned by <code>
      *         {@link #getNamespaceURI(String)}</code> if it were given
      *         <code>prefix</code> as it's parameter.
-     *
      * @exception SOAPException
-     *                          if the <code>QName</code> cannot be created.
-     *
+     *            if the <code>QName</code> cannot be created.
      * @since SAAJ 1.3
      */
-    public QName createQName(String localName, String prefix)
-            throws SOAPException;
+    public QName createQName(String localName, String prefix) throws SOAPException;
 
     /**
      * Returns the name of this <code>SOAPElement</code> object.
@@ -400,14 +377,12 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <code>SOAPElement</code> to a renamed instance.
      *
      * @param newName
-     *                the new name for the <code>Element</code>.
-     *
+     *        the new name for the <code>Element</code>.
      * @exception SOAPException
-     *                          if changing the name of this
-     *                          <code>Element</code> is not
-     *                          allowed.
+     *            if changing the name of this
+     *            <code>Element</code> is not
+     *            allowed.
      * @return The renamed Node
-     *
      * @since SAAJ 1.3
      */
     public SOAPElement setElementQName(QName newName) throws SOAPException;
@@ -416,9 +391,9 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * Removes the attribute with the specified name.
      *
      * @param name
-     *             the <code>Name</code> object with the name of the attribute
-     *             to
-     *             be removed
+     *        the <code>Name</code> object with the name of the attribute
+     *        to
+     *        be removed
      * @return <code>true</code> if the attribute was removed successfully;
      *         <code>false</code> if it was not
      * @see SOAPElement#removeAttribute(javax.xml.namespace.QName)
@@ -429,9 +404,9 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * Removes the attribute with the specified qname.
      *
      * @param qname
-     *              the <code>QName</code> object with the qname of the
-     *              attribute
-     *              to be removed
+     *        the <code>QName</code> object with the qname of the
+     *        attribute
+     *        to be removed
      * @return <code>true</code> if the attribute was removed successfully;
      *         <code>false</code> if it was not
      * @see SOAPElement#removeAttribute(Name)
@@ -443,7 +418,7 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * Removes the namespace declaration corresponding to the given prefix.
      *
      * @param prefix
-     *               a <code>String</code> giving the prefix for which to search
+     *        a <code>String</code> giving the prefix for which to search
      * @return <code>true</code> if the namespace declaration was removed
      *         successfully; <code>false</code> if it was not
      */
@@ -490,10 +465,9 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <a>} for more details.
      *
      * @param name
-     *             a <code>Name</code> object with the name of the child
-     *             elements
-     *             to be returned
-     *
+     *        a <code>Name</code> object with the name of the child
+     *        elements
+     *        to be returned
      * @return an <code>Iterator</code> object over all the elements in this
      *         <code>SOAPElement</code> object with the specified name
      * @see SOAPElement#getChildElements(javax.xml.namespace.QName)
@@ -518,9 +492,8 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * <a>} for more details.
      *
      * @param qname
-     *              a <code>QName</code> object with the qname of the child
-     *              elements to be returned
-     *
+     *        a <code>QName</code> object with the qname of the child
+     *        elements to be returned
      * @return an <code>Iterator</code> object over all the elements in this
      *         <code>SOAPElement</code> object with the specified qname
      * @see SOAPElement#getChildElements(Name)
@@ -533,15 +506,14 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * specified.
      *
      * @param encodingStyle
-     *                      a <code>String</code> giving the encoding style
-     *
+     *        a <code>String</code> giving the encoding style
      * @exception IllegalArgumentException
-     *                                     if there was a problem in the
-     *                                     encoding style being set.
+     *            if there was a problem in the
+     *            encoding style being set.
      * @exception SOAPException
-     *                                     if setting the encodingStyle is
-     *                                     invalid for this
-     *                                     SOAPElement.
+     *            if setting the encodingStyle is
+     *            invalid for this
+     *            SOAPElement.
      * @see #getEncodingStyle
      */
     public void setEncodingStyle(String encodingStyle) throws SOAPException;
@@ -550,7 +522,6 @@ public interface SOAPElement extends Node, org.w3c.dom.Element {
      * Returns the encoding style for this <code>SOAPElement</code> object.
      *
      * @return a <code>String</code> giving the encoding style
-     *
      * @see #setEncodingStyle
      */
     public String getEncodingStyle();

@@ -25,7 +25,7 @@ public class NoSuchMethodException extends ReflectiveOperationException {
      * Constructs a <code>NoSuchMethodException</code> with a detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public NoSuchMethodException(String s) {
         super(s);

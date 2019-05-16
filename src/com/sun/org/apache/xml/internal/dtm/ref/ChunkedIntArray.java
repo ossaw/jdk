@@ -26,7 +26,6 @@ import com.sun.org.apache.xml.internal.res.XMLMessages;
  * <code>ChunkedIntArray</code> is an extensible array of blocks of integers.
  * (I'd consider Vector, but it's unable to handle integers except by turning
  * them into Objects.)
- * 
  * <p>
  * Making this a separate class means some call-and-return overhead. But doing
  * it all inline tends to be fragile and expensive in coder time, not to mention
@@ -34,7 +33,6 @@ import com.sun.org.apache.xml.internal.res.XMLMessages;
  * suggest that private and Final methods may be inlined, and one can argue that
  * this beast need not be made subclassable...
  * </p>
- *
  * <p>
  * %REVIEW% This has strong conceptual overlap with the IntVector class. It
  * would probably be a good thing to merge the two, when time permits.
@@ -58,17 +56,15 @@ final class ChunkedIntArray {
      */
     ChunkedIntArray(int slotsize) {
         if (this.slotsize < slotsize)
-            throw new ArrayIndexOutOfBoundsException(XMLMessages
-                    .createXMLMessage(
-                            XMLErrorResources.ER_CHUNKEDINTARRAY_NOT_SUPPORTED,
-                            new Object[] { Integer.toString(slotsize) })); // "ChunkedIntArray("+slotsize+")
+            throw new ArrayIndexOutOfBoundsException(XMLMessages.createXMLMessage(
+                    XMLErrorResources.ER_CHUNKEDINTARRAY_NOT_SUPPORTED, new Object[] { Integer.toString(
+                            slotsize) })); // "ChunkedIntArray("+slotsize+")
                                                                                                                                                                                                      // not
                                                                                                                                                                                                      // currently
                                                                                                                                                                                                      // supported");
         else if (this.slotsize > slotsize)
-            System.out.println("*****WARNING: ChunkedIntArray(" + slotsize
-                    + ") wasting " + (this.slotsize - slotsize)
-                    + " words per slot");
+            System.out.println("*****WARNING: ChunkedIntArray(" + slotsize + ") wasting " + (this.slotsize
+                    - slotsize) + " words per slot");
         chunks.addElement(fastArray);
     }
 
@@ -111,12 +107,11 @@ final class ChunkedIntArray {
      * purposes).
      * 
      * @param position
-     *                 int Record number
+     *        int Record number
      * @param slotpos
-     *                 int Column number
+     *        int Column number
      */
-    int readEntry(int position, int offset)
-            throws ArrayIndexOutOfBoundsException {
+    int readEntry(int position, int offset) throws ArrayIndexOutOfBoundsException {
         /*
          * try { return fastArray[(position*slotsize)+offset]; }
          * catch(ArrayIndexOutOfBoundsException aioobe)
@@ -124,13 +119,11 @@ final class ChunkedIntArray {
         {
             // System.out.println("Using slow read (1)");
             if (offset >= slotsize)
-                throw new ArrayIndexOutOfBoundsException(XMLMessages
-                        .createXMLMessage(
-                                XMLErrorResources.ER_OFFSET_BIGGER_THAN_SLOT,
-                                null)); // "Offset
-                                                                                                                                                            // bigger
-                                                                                                                                                            // than
-                                                                                                                                                            // slot");
+                throw new ArrayIndexOutOfBoundsException(XMLMessages.createXMLMessage(
+                        XMLErrorResources.ER_OFFSET_BIGGER_THAN_SLOT, null)); // "Offset
+                                                                                                                                                    // bigger
+                                                                                                                                                    // than
+                                                                                                                                                    // slot");
             position *= slotsize;
             int chunkpos = position >> lowbits;
             int slotpos = position & lowmask;
@@ -194,27 +187,24 @@ final class ChunkedIntArray {
      * reference from 0 (unknown) to something meaningful
      * 
      * @param position
-     *                 int Record number
+     *        int Record number
      * @param offset
-     *                 int Column number
+     *        int Column number
      * @param value
-     *                 int New contents
+     *        int New contents
      */
-    void writeEntry(int position, int offset, int value)
-            throws ArrayIndexOutOfBoundsException {
+    void writeEntry(int position, int offset, int value) throws ArrayIndexOutOfBoundsException {
         /*
          * try { fastArray[( position*slotsize)+offset] = value; }
          * catch(ArrayIndexOutOfBoundsException aioobe)
          */
         {
             if (offset >= slotsize)
-                throw new ArrayIndexOutOfBoundsException(XMLMessages
-                        .createXMLMessage(
-                                XMLErrorResources.ER_OFFSET_BIGGER_THAN_SLOT,
-                                null)); // "Offset
-                                                                                                                                                            // bigger
-                                                                                                                                                            // than
-                                                                                                                                                            // slot");
+                throw new ArrayIndexOutOfBoundsException(XMLMessages.createXMLMessage(
+                        XMLErrorResources.ER_OFFSET_BIGGER_THAN_SLOT, null)); // "Offset
+                                                                                                                                                    // bigger
+                                                                                                                                                    // than
+                                                                                                                                                    // slot");
             position *= slotsize;
             int chunkpos = position >> lowbits;
             int slotpos = position & lowmask;
@@ -228,15 +218,15 @@ final class ChunkedIntArray {
      * used to create record 0, the Document node.
      * 
      * @param position
-     *                 integer Record number
+     *        integer Record number
      * @param w0
-     *                 int
+     *        int
      * @param w1
-     *                 int
+     *        int
      * @param w2
-     *                 int
+     *        int
      * @param w3
-     *                 int
+     *        int
      */
     void writeSlot(int position, int w0, int w1, int w2, int w3) {
         position *= slotsize;
@@ -259,11 +249,11 @@ final class ChunkedIntArray {
      * the record.
      * 
      * @param position
-     *                 int Record number
+     *        int Record number
      * @param buffer
-     *                 int[] Integer array provided by user, must be large
-     *                 enough to
-     *                 hold a complete record.
+     *        int[] Integer array provided by user, must be large
+     *        enough to
+     *        hold a complete record.
      */
     void readSlot(int position, int[] buffer) {
         /*

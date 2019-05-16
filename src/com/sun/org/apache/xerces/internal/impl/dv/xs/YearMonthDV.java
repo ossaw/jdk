@@ -27,10 +27,8 @@ import com.sun.org.apache.xerces.internal.impl.dv.ValidationContext;
  * Validator for &lt;gYearMonth&gt; datatype (W3C Schema Datatypes)
  *
  * @xerces.internal
- *
  * @author Elena Litani
  * @author Gopal Sharma, SUN Microsystem Inc.
- *
  * @version $Id: YearMonthDV.java,v 1.7 2010-11-01 04:39:47 joehw Exp $
  */
 public class YearMonthDV extends AbstractDateTimeDV {
@@ -39,7 +37,7 @@ public class YearMonthDV extends AbstractDateTimeDV {
      * Convert a string to a compiled form
      *
      * @param content
-     *                The lexical representation of gYearMonth
+     *        The lexical representation of gYearMonth
      * @return a valid and normalized gYearMonth object
      */
     public Object getActualValue(String content, ValidationContext context)
@@ -47,8 +45,8 @@ public class YearMonthDV extends AbstractDateTimeDV {
         try {
             return parse(content);
         } catch (Exception ex) {
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "gYearMonth" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "gYearMonth" });
         }
     }
 
@@ -56,11 +54,11 @@ public class YearMonthDV extends AbstractDateTimeDV {
      * Parses, validates and computes normalized version of gYearMonth object
      *
      * @param str
-     *            The lexical representation of gYearMonth object CCYY-MM with
-     *            possible time zone Z or (-),(+)hh:mm
+     *        The lexical representation of gYearMonth object CCYY-MM with
+     *        possible time zone Z or (-),(+)hh:mm
      * @return normalized date representation
      * @exception SchemaDateTimeException
-     *                                    Invalid lexical representation
+     *            Invalid lexical representation
      */
     protected DateTimeData parse(String str) throws SchemaDateTimeException {
         DateTimeData date = new DateTimeData(str, this);
@@ -95,13 +93,10 @@ public class YearMonthDV extends AbstractDateTimeDV {
     }
 
     protected XMLGregorianCalendar getXMLGregorianCalendar(DateTimeData date) {
-        return datatypeFactory.newXMLGregorianCalendar(date.unNormYear,
-                date.unNormMonth, DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED,
-                DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone()
-                        ? date.timezoneHr * 60 + date.timezoneMin
-                        : DatatypeConstants.FIELD_UNDEFINED);
+        return datatypeFactory.newXMLGregorianCalendar(date.unNormYear, date.unNormMonth,
+                DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
+                DatatypeConstants.FIELD_UNDEFINED, DatatypeConstants.FIELD_UNDEFINED,
+                DatatypeConstants.FIELD_UNDEFINED, date.hasTimeZone() ? date.timezoneHr * 60
+                        + date.timezoneMin : DatatypeConstants.FIELD_UNDEFINED);
     }
 }

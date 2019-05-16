@@ -8,7 +8,6 @@ package java.lang.management;
 /**
  * The management interface for the compilation system of the Java virtual
  * machine.
- *
  * <p>
  * A Java virtual machine has a single instance of the implementation class of
  * this interface. This instance implementing this interface is an
@@ -16,13 +15,11 @@ package java.lang.management;
  * calling the {@link ManagementFactory#getCompilationMXBean} method or from the
  * {@link ManagementFactory#getPlatformMBeanServer platform <tt>MBeanServer</tt>
  * } method.
- *
  * <p>
  * The <tt>ObjectName</tt> for uniquely identifying the MXBean for the
  * compilation system within an MBeanServer is:
  * <blockquote> {@link ManagementFactory#COMPILATION_MXBEAN_NAME
  * <tt>java.lang:type=Compilation</tt>} </blockquote>
- *
  * It can be obtained by calling the {@link PlatformManagedObject#getObjectName}
  * method.
  *
@@ -30,7 +27,6 @@ package java.lang.management;
  * @see <a href="../../../javax/management/package-summary.html"> JMX
  *      Specification.</a>
  * @see <a href="package-summary.html#examples"> Ways to Access MXBeans</a>
- *
  * @author Mandy Chung
  * @since 1.5
  */
@@ -56,13 +52,11 @@ public interface CompilationMXBean extends PlatformManagedObject {
      * in compilation. If multiple threads are used for compilation, this value
      * is summation of the approximate time that each thread spent in
      * compilation.
-     *
      * <p>
      * This method is optionally supported by the platform. A Java virtual
      * machine implementation may not support the compilation time monitoring.
      * The {@link #isCompilationTimeMonitoringSupported} method can be used to
      * determine if the Java virtual machine supports this operation.
-     *
      * <p>
      * This value does not indicate the level of performance of the Java virtual
      * machine and is not intended for performance comparisons of different
@@ -72,7 +66,6 @@ public interface CompilationMXBean extends PlatformManagedObject {
      * @return Compilation time in milliseconds
      * @throws java.lang.UnsupportedOperationException
      *         if the Java virtual machine does not support this operation.
-     *
      */
     public long getTotalCompilationTime();
 }

@@ -63,15 +63,14 @@ public final class ConstantMethodref extends ConstantCP {
      * Initialize from another object.
      */
     public ConstantMethodref(ConstantMethodref c) {
-        super(Constants.CONSTANT_Methodref, c.getClassIndex(), c
-                .getNameAndTypeIndex());
+        super(Constants.CONSTANT_Methodref, c.getClassIndex(), c.getNameAndTypeIndex());
     }
 
     /**
      * Initialize instance from file data.
      *
      * @param file
-     *             input stream
+     *        input stream
      * @throws IOException
      */
     ConstantMethodref(DataInputStream file) throws IOException {
@@ -80,9 +79,9 @@ public final class ConstantMethodref extends ConstantCP {
 
     /**
      * @param class_index
-     *                            Reference to the class containing the method
+     *        Reference to the class containing the method
      * @param name_and_type_index
-     *                            and the method signature
+     *        and the method signature
      */
     public ConstantMethodref(int class_index, int name_and_type_index) {
         super(Constants.CONSTANT_Methodref, class_index, name_and_type_index);
@@ -94,7 +93,7 @@ public final class ConstantMethodref extends ConstantCP {
      * fields, attributes, etc. spawns a tree of objects.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitConstantMethodref(this);

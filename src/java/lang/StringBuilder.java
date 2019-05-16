@@ -13,7 +13,6 @@ package java.lang;
  * the case). Where possible, it is recommended that this class be used in
  * preference to {@code StringBuffer} as it will be faster under most
  * implementations.
- *
  * <p>
  * The principal operations on a {@code StringBuilder} are the {@code append}
  * and {@code insert} methods, which are overloaded so as to accept data of any
@@ -36,12 +35,10 @@ package java.lang;
  * sequence contained in the string builder does not exceed the capacity, it is
  * not necessary to allocate a new internal buffer. If the internal buffer
  * overflows, it is automatically made larger.
- *
  * <p>
  * Instances of {@code StringBuilder} are not safe for use by multiple threads.
  * If such synchronization is required then it is recommended that
  * {@link java.lang.StringBuffer} be used.
- *
  * <p>
  * Unless otherwise noted, passing a {@code null} argument to a constructor or
  * method in this class will cause a {@link NullPointerException} to be thrown.
@@ -51,8 +48,7 @@ package java.lang;
  * @see java.lang.String
  * @since 1.5
  */
-public final class StringBuilder extends AbstractStringBuilder implements
-        java.io.Serializable, CharSequence {
+public final class StringBuilder extends AbstractStringBuilder implements java.io.Serializable, CharSequence {
 
     /** use serialVersionUID for interoperability */
     static final long serialVersionUID = 4383685877147921099L;
@@ -70,10 +66,10 @@ public final class StringBuilder extends AbstractStringBuilder implements
      * capacity specified by the {@code capacity} argument.
      *
      * @param capacity
-     *                 the initial capacity.
+     *        the initial capacity.
      * @throws NegativeArraySizeException
-     *                                    if the {@code capacity} argument is
-     *                                    less than {@code 0}.
+     *         if the {@code capacity} argument is
+     *         less than {@code 0}.
      */
     public StringBuilder(int capacity) {
         super(capacity);
@@ -85,7 +81,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
      * length of the string argument.
      *
      * @param str
-     *            the initial contents of the buffer.
+     *        the initial contents of the buffer.
      */
     public StringBuilder(String str) {
         super(str.length() + 16);
@@ -99,7 +95,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
      * argument.
      *
      * @param seq
-     *            the sequence to copy.
+     *        the sequence to copy.
      */
     public StringBuilder(CharSequence seq) {
         this(seq.length() + 16);
@@ -133,7 +129,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
      * argument {@code sb}.
      *
      * @param sb
-     *           the {@code StringBuffer} to append.
+     *        the {@code StringBuffer} to append.
      * @return a reference to this object.
      */
     public StringBuilder append(StringBuffer sb) {
@@ -149,7 +145,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder append(CharSequence s, int start, int end) {
@@ -165,7 +161,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder append(char[] str, int offset, int len) {
@@ -220,7 +216,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder delete(int start, int end) {
@@ -230,7 +226,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder deleteCharAt(int index) {
@@ -240,7 +236,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder replace(int start, int end, String str) {
@@ -250,7 +246,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int index, char[] str, int offset, int len) {
@@ -260,7 +256,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, Object obj) {
@@ -270,7 +266,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, String str) {
@@ -280,7 +276,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, char[] str) {
@@ -290,7 +286,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int dstOffset, CharSequence s) {
@@ -300,18 +296,17 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
-    public StringBuilder insert(int dstOffset, CharSequence s, int start,
-            int end) {
+    public StringBuilder insert(int dstOffset, CharSequence s, int start, int end) {
         super.insert(dstOffset, s, start, end);
         return this;
     }
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, boolean b) {
@@ -321,7 +316,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, char c) {
@@ -331,7 +326,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, int i) {
@@ -341,7 +336,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, long l) {
@@ -351,7 +346,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, float f) {
@@ -361,7 +356,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuilder insert(int offset, double d) {
@@ -412,8 +407,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
      *             characters currently stored in the string builder, in which
      *             case extra characters are ignored.
      */
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         s.defaultWriteObject();
         s.writeInt(count);
         s.writeObject(value);
@@ -423,8 +417,7 @@ public final class StringBuilder extends AbstractStringBuilder implements
      * readObject is called to restore the state of the StringBuffer from a
      * stream.
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         s.defaultReadObject();
         count = s.readInt();
         value = (char[]) s.readObject();

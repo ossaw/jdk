@@ -34,13 +34,10 @@ public class MetalBorders {
      * Client property indicating the button shouldn't provide a rollover
      * indicator. Only used with the Ocean theme.
      */
-    static Object NO_BUTTON_ROLLOVER = new StringUIClientPropertyKey(
-            "NoButtonRollover");
+    static Object NO_BUTTON_ROLLOVER = new StringUIClientPropertyKey("NoButtonRollover");
 
-    public static class Flush3DBorder extends AbstractBorder implements
-            UIResource {
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+    public static class Flush3DBorder extends AbstractBorder implements UIResource {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             if (c.isEnabled()) {
                 MetalUtils.drawFlush3DBorder(g, x, y, w, h);
             } else {
@@ -54,13 +51,11 @@ public class MetalBorders {
         }
     }
 
-    public static class ButtonBorder extends AbstractBorder implements
-            UIResource {
+    public static class ButtonBorder extends AbstractBorder implements UIResource {
 
         protected static Insets borderInsets = new Insets(3, 3, 3, 3);
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             if (!(c instanceof AbstractButton)) {
                 return;
             }
@@ -73,8 +68,7 @@ public class MetalBorders {
 
             if (model.isEnabled()) {
                 boolean isPressed = model.isPressed() && model.isArmed();
-                boolean isDefault = (button instanceof JButton
-                        && ((JButton) button).isDefaultButton());
+                boolean isDefault = (button instanceof JButton && ((JButton) button).isDefaultButton());
 
                 if (isPressed && isDefault) {
                     MetalUtils.drawDefaultButtonPressedBorder(g, x, y, w, h);
@@ -90,8 +84,7 @@ public class MetalBorders {
             }
         }
 
-        private void paintOceanBorder(Component c, Graphics g, int x, int y,
-                int w, int h) {
+        private void paintOceanBorder(Component c, Graphics g, int x, int y, int w, int h) {
             AbstractButton button = (AbstractButton) c;
             ButtonModel model = ((AbstractButton) c).getModel();
 
@@ -114,13 +107,11 @@ public class MetalBorders {
                     } else {
                         g.setColor(MetalLookAndFeel.getWhite());
                         g.drawRect(1, 1, w - 2, h - 2);
-                        g.setColor(UIManager.getColor(
-                                "Button.toolBarBorderBackground"));
+                        g.setColor(UIManager.getColor("Button.toolBarBorderBackground"));
                         g.drawRect(0, 0, w - 2, h - 2);
                     }
                 } else {
-                    g.setColor(UIManager.getColor(
-                            "Button.disabledToolBarBorderBackground"));
+                    g.setColor(UIManager.getColor("Button.disabledToolBarBorderBackground"));
                     g.drawRect(0, 0, w - 2, h - 2);
                 }
             } else if (model.isEnabled()) {
@@ -137,8 +128,7 @@ public class MetalBorders {
                     g.fillRect(0, 2, 2, h - 2);
                     g.fillRect(w - 1, 1, 1, h - 1);
                     g.fillRect(1, h - 1, w - 2, 1);
-                } else if (model.isRollover() && button.getClientProperty(
-                        NO_BUTTON_ROLLOVER) == null) {
+                } else if (model.isRollover() && button.getClientProperty(NO_BUTTON_ROLLOVER) == null) {
                     g.setColor(MetalLookAndFeel.getPrimaryControl());
                     g.drawRect(0, 0, w - 1, h - 1);
                     g.drawRect(2, 2, w - 5, h - 5);
@@ -163,19 +153,16 @@ public class MetalBorders {
         }
     }
 
-    public static class InternalFrameBorder extends AbstractBorder implements
-            UIResource {
+    public static class InternalFrameBorder extends AbstractBorder implements UIResource {
         private static final int corner = 14;
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
 
             Color background;
             Color highlight;
             Color shadow;
 
-            if (c instanceof JInternalFrame && ((JInternalFrame) c)
-                    .isSelected()) {
+            if (c instanceof JInternalFrame && ((JInternalFrame) c).isSelected()) {
                 background = MetalLookAndFeel.getPrimaryControlDarkShadow();
                 highlight = MetalLookAndFeel.getPrimaryControlShadow();
                 shadow = MetalLookAndFeel.getPrimaryControlInfo();
@@ -197,8 +184,7 @@ public class MetalBorders {
                 g.drawRect(x + i, y + i, w - (i * 2) - 1, h - (i * 2) - 1);
             }
 
-            if (c instanceof JInternalFrame && ((JInternalFrame) c)
-                    .isResizable()) {
+            if (c instanceof JInternalFrame && ((JInternalFrame) c).isResizable()) {
                 g.setColor(highlight);
                 // Draw the Long highlight lines
                 g.drawLine(corner + 1, 3, w - corner, 3);
@@ -230,8 +216,7 @@ public class MetalBorders {
     static class FrameBorder extends AbstractBorder implements UIResource {
         private static final int corner = 14;
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
 
             Color background;
             Color highlight;
@@ -316,8 +301,7 @@ public class MetalBorders {
             return MetalLookAndFeel.getControlInfo();
         }
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             Color background;
             Color highlight;
             Color shadow;
@@ -376,8 +360,7 @@ public class MetalBorders {
      */
     static class ErrorDialogBorder extends DialogBorder implements UIResource {
         protected Color getActiveBackground() {
-            return UIManager.getColor(
-                    "OptionPane.errorDialog.border.background");
+            return UIManager.getColor("OptionPane.errorDialog.border.background");
         }
     }
 
@@ -387,11 +370,9 @@ public class MetalBorders {
      * 
      * @since 1.4
      */
-    static class QuestionDialogBorder extends DialogBorder implements
-            UIResource {
+    static class QuestionDialogBorder extends DialogBorder implements UIResource {
         protected Color getActiveBackground() {
-            return UIManager.getColor(
-                    "OptionPane.questionDialog.border.background");
+            return UIManager.getColor("OptionPane.questionDialog.border.background");
         }
     }
 
@@ -400,11 +381,9 @@ public class MetalBorders {
      * 
      * @since 1.4
      */
-    static class WarningDialogBorder extends DialogBorder implements
-            UIResource {
+    static class WarningDialogBorder extends DialogBorder implements UIResource {
         protected Color getActiveBackground() {
-            return UIManager.getColor(
-                    "OptionPane.warningDialog.border.background");
+            return UIManager.getColor("OptionPane.warningDialog.border.background");
         }
     }
 
@@ -413,12 +392,10 @@ public class MetalBorders {
      * 
      * @since 1.3
      */
-    public static class PaletteBorder extends AbstractBorder implements
-            UIResource {
+    public static class PaletteBorder extends AbstractBorder implements UIResource {
         int titleHeight = 0;
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
 
             g.translate(x, y);
             g.setColor(MetalLookAndFeel.getPrimaryControlDarkShadow());
@@ -437,19 +414,16 @@ public class MetalBorders {
         }
     }
 
-    public static class OptionDialogBorder extends AbstractBorder implements
-            UIResource {
+    public static class OptionDialogBorder extends AbstractBorder implements UIResource {
         int titleHeight = 0;
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
 
             g.translate(x, y);
 
             int messageType = JOptionPane.PLAIN_MESSAGE;
             if (c instanceof JInternalFrame) {
-                Object obj = ((JInternalFrame) c).getClientProperty(
-                        "JInternalFrame.messageType");
+                Object obj = ((JInternalFrame) c).getClientProperty("JInternalFrame.messageType");
                 if (obj instanceof Integer) {
                     messageType = (Integer) obj;
                 }
@@ -459,22 +433,18 @@ public class MetalBorders {
 
             switch (messageType) {
                 case (JOptionPane.ERROR_MESSAGE):
-                    borderColor = UIManager.getColor(
-                            "OptionPane.errorDialog.border.background");
+                    borderColor = UIManager.getColor("OptionPane.errorDialog.border.background");
                     break;
                 case (JOptionPane.QUESTION_MESSAGE):
-                    borderColor = UIManager.getColor(
-                            "OptionPane.questionDialog.border.background");
+                    borderColor = UIManager.getColor("OptionPane.questionDialog.border.background");
                     break;
                 case (JOptionPane.WARNING_MESSAGE):
-                    borderColor = UIManager.getColor(
-                            "OptionPane.warningDialog.border.background");
+                    borderColor = UIManager.getColor("OptionPane.warningDialog.border.background");
                     break;
                 case (JOptionPane.INFORMATION_MESSAGE):
                 case (JOptionPane.PLAIN_MESSAGE):
                 default:
-                    borderColor = MetalLookAndFeel
-                            .getPrimaryControlDarkShadow();
+                    borderColor = MetalLookAndFeel.getPrimaryControlDarkShadow();
                     break;
             }
 
@@ -501,18 +471,15 @@ public class MetalBorders {
         }
     }
 
-    public static class MenuBarBorder extends AbstractBorder implements
-            UIResource {
+    public static class MenuBarBorder extends AbstractBorder implements UIResource {
         protected static Insets borderInsets = new Insets(1, 0, 1, 0);
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             g.translate(x, y);
 
             if (MetalLookAndFeel.usingOcean()) {
                 // Only paint a border if we're not next to a horizontal toolbar
-                if (c instanceof JMenuBar && !MetalToolBarUI
-                        .doesMenuBarBorderToolBar((JMenuBar) c)) {
+                if (c instanceof JMenuBar && !MetalToolBarUI.doesMenuBarBorderToolBar((JMenuBar) c)) {
                     g.setColor(MetalLookAndFeel.getControl());
                     SwingUtilities2.drawHLine(g, 0, w - 1, h - 2);
                     g.setColor(UIManager.getColor("MenuBar.borderColor"));
@@ -535,12 +502,10 @@ public class MetalBorders {
         }
     }
 
-    public static class MenuItemBorder extends AbstractBorder implements
-            UIResource {
+    public static class MenuItemBorder extends AbstractBorder implements UIResource {
         protected static Insets borderInsets = new Insets(2, 2, 2, 2);
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             if (!(c instanceof JMenuItem)) {
                 return;
             }
@@ -563,8 +528,7 @@ public class MetalBorders {
                     g.drawLine(w - 1, 0, w - 1, 0);
                 }
             } else {
-                if (model.isArmed() || (c instanceof JMenu && model
-                        .isSelected())) {
+                if (model.isArmed() || (c instanceof JMenu && model.isSelected())) {
                     g.setColor(MetalLookAndFeel.getPrimaryControlDarkShadow());
                     g.drawLine(0, 0, w - 1, 0);
 
@@ -585,12 +549,10 @@ public class MetalBorders {
         }
     }
 
-    public static class PopupMenuBorder extends AbstractBorder implements
-            UIResource {
+    public static class PopupMenuBorder extends AbstractBorder implements UIResource {
         protected static Insets borderInsets = new Insets(3, 1, 2, 1);
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             g.translate(x, y);
 
             g.setColor(MetalLookAndFeel.getPrimaryControlDarkShadow());
@@ -613,13 +575,11 @@ public class MetalBorders {
 
     public static class RolloverButtonBorder extends ButtonBorder {
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             AbstractButton b = (AbstractButton) c;
             ButtonModel model = b.getModel();
 
-            if (model.isRollover() && !(model.isPressed() && !model
-                    .isArmed())) {
+            if (model.isRollover() && !(model.isPressed() && !model.isArmed())) {
                 super.paintBorder(c, g, x, y, w, h);
             }
         }
@@ -629,7 +589,6 @@ public class MetalBorders {
     /**
      * A border which is like a Margin border but it will only honor the margin
      * if the margin has been explicitly set by the developer.
-     *
      * Note: This is identical to the package private class
      * BasicBorders.RolloverMarginBorder and should probably be consolidated.
      */
@@ -662,14 +621,11 @@ public class MetalBorders {
         }
     }
 
-    public static class ToolBarBorder extends AbstractBorder implements
-            UIResource, SwingConstants {
-        protected MetalBumps bumps = new MetalBumps(10, 10, MetalLookAndFeel
-                .getControlHighlight(), MetalLookAndFeel.getControlDarkShadow(),
-                UIManager.getColor("ToolBar.background"));
+    public static class ToolBarBorder extends AbstractBorder implements UIResource, SwingConstants {
+        protected MetalBumps bumps = new MetalBumps(10, 10, MetalLookAndFeel.getControlHighlight(),
+                MetalLookAndFeel.getControlDarkShadow(), UIManager.getColor("ToolBar.background"));
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             if (!(c instanceof JToolBar)) {
                 return;
             }
@@ -692,8 +648,7 @@ public class MetalBorders {
 
             }
 
-            if (((JToolBar) c).getOrientation() == HORIZONTAL
-                    && MetalLookAndFeel.usingOcean()) {
+            if (((JToolBar) c).getOrientation() == HORIZONTAL && MetalLookAndFeel.usingOcean()) {
                 g.setColor(MetalLookAndFeel.getControl());
                 g.drawLine(0, h - 2, w, h - 2);
                 g.setColor(UIManager.getColor("ToolBar.borderColor"));
@@ -747,8 +702,7 @@ public class MetalBorders {
      */
     public static Border getButtonBorder() {
         if (buttonBorder == null) {
-            buttonBorder = new BorderUIResource.CompoundBorderUIResource(
-                    new MetalBorders.ButtonBorder(),
+            buttonBorder = new BorderUIResource.CompoundBorderUIResource(new MetalBorders.ButtonBorder(),
                     new BasicBorders.MarginBorder());
         }
         return buttonBorder;
@@ -763,8 +717,7 @@ public class MetalBorders {
      */
     public static Border getTextBorder() {
         if (textBorder == null) {
-            textBorder = new BorderUIResource.CompoundBorderUIResource(
-                    new MetalBorders.Flush3DBorder(),
+            textBorder = new BorderUIResource.CompoundBorderUIResource(new MetalBorders.Flush3DBorder(),
                     new BasicBorders.MarginBorder());
         }
         return textBorder;
@@ -780,16 +733,14 @@ public class MetalBorders {
     public static Border getTextFieldBorder() {
         if (textFieldBorder == null) {
             textFieldBorder = new BorderUIResource.CompoundBorderUIResource(
-                    new MetalBorders.TextFieldBorder(),
-                    new BasicBorders.MarginBorder());
+                    new MetalBorders.TextFieldBorder(), new BasicBorders.MarginBorder());
         }
         return textFieldBorder;
     }
 
     public static class TextFieldBorder extends Flush3DBorder {
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
 
             if (!(c instanceof JTextComponent)) {
                 // special case for non-text components (bug ID 4144840)
@@ -810,10 +761,8 @@ public class MetalBorders {
         }
     }
 
-    public static class ScrollPaneBorder extends AbstractBorder implements
-            UIResource {
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+    public static class ScrollPaneBorder extends AbstractBorder implements UIResource {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
 
             if (!(c instanceof JScrollPane)) {
                 return;
@@ -862,8 +811,7 @@ public class MetalBorders {
     public static Border getToggleButtonBorder() {
         if (toggleButtonBorder == null) {
             toggleButtonBorder = new BorderUIResource.CompoundBorderUIResource(
-                    new MetalBorders.ToggleButtonBorder(),
-                    new BasicBorders.MarginBorder());
+                    new MetalBorders.ToggleButtonBorder(), new BasicBorders.MarginBorder());
         }
         return toggleButtonBorder;
     }
@@ -872,8 +820,7 @@ public class MetalBorders {
      * @since 1.3
      */
     public static class ToggleButtonBorder extends ButtonBorder {
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             AbstractButton button = (AbstractButton) c;
             ButtonModel model = button.getModel();
             if (MetalLookAndFeel.usingOcean()) {
@@ -904,12 +851,10 @@ public class MetalBorders {
      * 
      * @since 1.3
      */
-    public static class TableHeaderBorder extends
-            javax.swing.border.AbstractBorder {
+    public static class TableHeaderBorder extends javax.swing.border.AbstractBorder {
         protected Insets editorBorderInsets = new Insets(2, 2, 2, 0);
 
-        public void paintBorder(Component c, Graphics g, int x, int y, int w,
-                int h) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
             g.translate(x, y);
 
             g.setColor(MetalLookAndFeel.getControlDarkShadow());
@@ -934,9 +879,8 @@ public class MetalBorders {
      * @since 1.3
      */
     public static Border getDesktopIconBorder() {
-        return new BorderUIResource.CompoundBorderUIResource(new LineBorder(
-                MetalLookAndFeel.getControlDarkShadow(), 1), new MatteBorder(2,
-                        2, 1, 2, MetalLookAndFeel.getControl()));
+        return new BorderUIResource.CompoundBorderUIResource(new LineBorder(MetalLookAndFeel
+                .getControlDarkShadow(), 1), new MatteBorder(2, 2, 1, 2, MetalLookAndFeel.getControl()));
     }
 
     static Border getToolBarRolloverBorder() {
@@ -950,10 +894,8 @@ public class MetalBorders {
 
     static Border getToolBarNonrolloverBorder() {
         if (MetalLookAndFeel.usingOcean()) {
-            new CompoundBorder(new MetalBorders.ButtonBorder(),
-                    new MetalBorders.RolloverMarginBorder());
+            new CompoundBorder(new MetalBorders.ButtonBorder(), new MetalBorders.RolloverMarginBorder());
         }
-        return new CompoundBorder(new MetalBorders.ButtonBorder(),
-                new MetalBorders.RolloverMarginBorder());
+        return new CompoundBorder(new MetalBorders.ButtonBorder(), new MetalBorders.RolloverMarginBorder());
     }
 }

@@ -13,8 +13,7 @@ public final class NotFoundHolder implements org.omg.CORBA.portable.Streamable {
 
     public NotFoundHolder() {}
 
-    public NotFoundHolder(
-            org.omg.CosNaming.NamingContextPackage.NotFound initialValue) {
+    public NotFoundHolder(org.omg.CosNaming.NamingContextPackage.NotFound initialValue) {
         value = initialValue;
     }
 

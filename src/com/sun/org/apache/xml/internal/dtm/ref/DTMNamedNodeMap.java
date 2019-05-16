@@ -56,9 +56,9 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      * Create a getAttributes NamedNodeMap for a given DTM element node
      *
      * @param dtm
-     *                The DTM Reference, must be non-null.
+     *        The DTM Reference, must be non-null.
      * @param element
-     *                The DTM element handle.
+     *        The DTM element handle.
      */
     public DTMNamedNodeMap(DTM dtm, int element) {
         this.dtm = dtm;
@@ -75,8 +75,7 @@ public class DTMNamedNodeMap implements NamedNodeMap {
         if (m_count == -1) {
             short count = 0;
 
-            for (int n = dtm.getFirstAttribute(element); n != -1; n = dtm
-                    .getNextAttribute(n)) {
+            for (int n = dtm.getFirstAttribute(element); n != -1; n = dtm.getNextAttribute(n)) {
                 ++count;
             }
 
@@ -90,15 +89,14 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      * Retrieves a node specified by name.
      * 
      * @param name
-     *             The <code>nodeName</code> of a node to retrieve.
+     *        The <code>nodeName</code> of a node to retrieve.
      * @return A <code>Node</code> (of any type) with the specified
      *         <code>nodeName</code>, or <code>null</code> if it does not
      *         identify any node in this map.
      */
     public Node getNamedItem(String name) {
 
-        for (int n = dtm.getFirstAttribute(element); n != DTM.NULL; n = dtm
-                .getNextAttribute(n)) {
+        for (int n = dtm.getFirstAttribute(element); n != DTM.NULL; n = dtm.getNextAttribute(n)) {
             if (dtm.getNodeName(n).equals(name))
                 return dtm.getNode(n);
         }
@@ -112,7 +110,7 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      * <code>null</code>.
      * 
      * @param i
-     *          The index of the requested item.
+     *        The index of the requested item.
      * @return The node at the <code>index</code>th position in the map, or
      *         <code>null</code> if that is not a valid index.
      */
@@ -120,8 +118,7 @@ public class DTMNamedNodeMap implements NamedNodeMap {
 
         int count = 0;
 
-        for (int n = dtm.getFirstAttribute(element); n != -1; n = dtm
-                .getNextAttribute(n)) {
+        for (int n = dtm.getFirstAttribute(element); n != -1; n = dtm.getNextAttribute(n)) {
             if (count == i)
                 return dtm.getNode(n);
             else
@@ -141,31 +138,30 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      * clash. This is seen as preferable to allowing nodes to be aliased.
      * 
      * @param newNode
-     *                node to store in this map. The node will later be
-     *                accessible
-     *                using the value of its <code>nodeName</code> attribute.
-     *
+     *        node to store in this map. The node will later be
+     *        accessible
+     *        using the value of its <code>nodeName</code> attribute.
      * @return If the new <code>Node</code> replaces an existing node the
      *         replaced <code>Node</code> is returned, otherwise
      *         <code>null</code> is returned.
      * @exception DOMException
-     *                         WRONG_DOCUMENT_ERR: Raised if <code>arg</code>
-     *                         was created
-     *                         from a different document than the one that
-     *                         created this
-     *                         map. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this map
-     *                         is
-     *                         readonly. <br>
-     *                         INUSE_ATTRIBUTE_ERR: Raised if <code>arg</code>
-     *                         is an
-     *                         <code>Attr</code> that is already an attribute of
-     *                         another
-     *                         <code>Element</code> object. The DOM user must
-     *                         explicitly
-     *                         clone <code>Attr</code> nodes to re-use them in
-     *                         other
-     *                         elements.
+     *            WRONG_DOCUMENT_ERR: Raised if <code>arg</code>
+     *            was created
+     *            from a different document than the one that
+     *            created this
+     *            map. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this map
+     *            is
+     *            readonly. <br>
+     *            INUSE_ATTRIBUTE_ERR: Raised if <code>arg</code>
+     *            is an
+     *            <code>Attr</code> that is already an attribute of
+     *            another
+     *            <code>Element</code> object. The DOM user must
+     *            explicitly
+     *            clone <code>Attr</code> nodes to re-use them in
+     *            other
+     *            elements.
      */
     public Node setNamedItem(Node newNode) {
         throw new DTMException(DTMException.NO_MODIFICATION_ALLOWED_ERR);
@@ -179,15 +175,14 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      * when applicable.
      * 
      * @param name
-     *             The <code>nodeName</code> of the node to remove.
-     *
+     *        The <code>nodeName</code> of the node to remove.
      * @return The node removed from this map if a node with such a name exists.
      * @exception DOMException
-     *                         NOT_FOUND_ERR: Raised if there is no node named
-     *                         <code>name</code> in this map. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this map
-     *                         is
-     *                         readonly.
+     *            NOT_FOUND_ERR: Raised if there is no node named
+     *            <code>name</code> in this map. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this map
+     *            is
+     *            readonly.
      */
     public Node removeNamedItem(String name) {
         throw new DTMException(DTMException.NO_MODIFICATION_ALLOWED_ERR);
@@ -198,10 +193,9 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      * implementations do not need to implement this method.
      * 
      * @param namespaceURI
-     *                     The namespace URI of the node to retrieve.
+     *        The namespace URI of the node to retrieve.
      * @param localName
-     *                     The local name of the node to retrieve.
-     *
+     *        The local name of the node to retrieve.
      * @return A <code>Node</code> (of any type) with the specified local name
      *         and namespace URI, or <code>null</code> if they do not identify
      *         any node in this map.
@@ -209,13 +203,11 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      */
     public Node getNamedItemNS(String namespaceURI, String localName) {
         Node retNode = null;
-        for (int n = dtm.getFirstAttribute(element); n != DTM.NULL; n = dtm
-                .getNextAttribute(n)) {
+        for (int n = dtm.getFirstAttribute(element); n != DTM.NULL; n = dtm.getNextAttribute(n)) {
             if (localName.equals(dtm.getLocalName(n))) {
                 String nsURI = dtm.getNamespaceURI(n);
-                if ((namespaceURI == null && nsURI == null)
-                        || (namespaceURI != null && namespaceURI.equals(
-                                nsURI))) {
+                if ((namespaceURI == null && nsURI == null) || (namespaceURI != null && namespaceURI.equals(
+                        nsURI))) {
                     retNode = dtm.getNode(n);
                     break;
                 }
@@ -231,31 +223,30 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      * HTML-only DOM implementations do not need to implement this method.
      * 
      * @param arg
-     *            A node to store in this map. The node will later be accessible
-     *            using the value of its <code>namespaceURI</code> and
-     *            <code>localName</code> attributes.
-     *
+     *        A node to store in this map. The node will later be accessible
+     *        using the value of its <code>namespaceURI</code> and
+     *        <code>localName</code> attributes.
      * @return If the new <code>Node</code> replaces an existing node the
      *         replaced <code>Node</code> is returned, otherwise
      *         <code>null</code> is returned.
      * @exception DOMException
-     *                         WRONG_DOCUMENT_ERR: Raised if <code>arg</code>
-     *                         was created
-     *                         from a different document than the one that
-     *                         created this
-     *                         map. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this map
-     *                         is
-     *                         readonly. <br>
-     *                         INUSE_ATTRIBUTE_ERR: Raised if <code>arg</code>
-     *                         is an
-     *                         <code>Attr</code> that is already an attribute of
-     *                         another
-     *                         <code>Element</code> object. The DOM user must
-     *                         explicitly
-     *                         clone <code>Attr</code> nodes to re-use them in
-     *                         other
-     *                         elements.
+     *            WRONG_DOCUMENT_ERR: Raised if <code>arg</code>
+     *            was created
+     *            from a different document than the one that
+     *            created this
+     *            map. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this map
+     *            is
+     *            readonly. <br>
+     *            INUSE_ATTRIBUTE_ERR: Raised if <code>arg</code>
+     *            is an
+     *            <code>Attr</code> that is already an attribute of
+     *            another
+     *            <code>Element</code> object. The DOM user must
+     *            explicitly
+     *            clone <code>Attr</code> nodes to re-use them in
+     *            other
+     *            elements.
      * @since DOM Level 2
      */
     public Node setNamedItemNS(Node arg) throws DOMException {
@@ -272,24 +263,22 @@ public class DTMNamedNodeMap implements NamedNodeMap {
      * HTML-only DOM implementations do not need to implement this method.
      *
      * @param namespaceURI
-     *                     The namespace URI of the node to remove.
+     *        The namespace URI of the node to remove.
      * @param localName
-     *                     The local name of the node to remove.
-     *
+     *        The local name of the node to remove.
      * @return The node removed from this map if a node with such a local name
      *         and namespace URI exists.
      * @exception DOMException
-     *                         NOT_FOUND_ERR: Raised if there is no node with
-     *                         the
-     *                         specified <code>namespaceURI</code> and
-     *                         <code>localName</code> in this map. <br>
-     *                         NO_MODIFICATION_ALLOWED_ERR: Raised if this map
-     *                         is
-     *                         readonly.
+     *            NOT_FOUND_ERR: Raised if there is no node with
+     *            the
+     *            specified <code>namespaceURI</code> and
+     *            <code>localName</code> in this map. <br>
+     *            NO_MODIFICATION_ALLOWED_ERR: Raised if this map
+     *            is
+     *            readonly.
      * @since DOM Level 2
      */
-    public Node removeNamedItemNS(String namespaceURI, String localName)
-            throws DOMException {
+    public Node removeNamedItemNS(String namespaceURI, String localName) throws DOMException {
         throw new DTMException(DTMException.NO_MODIFICATION_ALLOWED_ERR);
     }
 
@@ -313,7 +302,6 @@ public class DTMNamedNodeMap implements NamedNodeMap {
 
         /**
          * Constructor DTMException
-         *
          *
          * @param code
          */

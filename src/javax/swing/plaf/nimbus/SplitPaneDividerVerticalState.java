@@ -15,7 +15,6 @@ class SplitPaneDividerVerticalState extends State {
     @Override
     protected boolean isInState(JComponent c) {
 
-        return c instanceof JSplitPane && (((JSplitPane) c)
-                .getOrientation() == 1);
+        return c instanceof JSplitPane && (((JSplitPane) c).getOrientation() == 1);
     }
 }

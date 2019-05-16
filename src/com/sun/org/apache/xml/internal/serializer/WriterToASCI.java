@@ -28,7 +28,6 @@ import java.io.Writer;
  * moment it does not do buffering, though I reserve the right to do some
  * buffering down the line if I can prove that it will be faster even if the
  * output stream is buffered.
- *
  * This class is only used internally within Xalan.
  *
  * @xsl.usage internal
@@ -41,9 +40,8 @@ class WriterToASCI extends Writer implements WriterChain {
     /**
      * Create an unbuffered ASCII writer.
      *
-     *
      * @param os
-     *           The byte stream to write to.
+     *        The byte stream to write to.
      */
     public WriterToASCI(OutputStream os) {
         m_os = os;
@@ -53,19 +51,16 @@ class WriterToASCI extends Writer implements WriterChain {
      * Write a portion of an array of characters.
      *
      * @param chars
-     *               Array of characters
+     *        Array of characters
      * @param start
-     *               Offset from which to start writing characters
+     *        Offset from which to start writing characters
      * @param length
-     *               Number of characters to write
-     *
+     *        Number of characters to write
      * @exception IOException
-     *                        If an I/O error occurs
-     *
+     *            If an I/O error occurs
      * @throws java.io.IOException
      */
-    public void write(char chars[], int start, int length)
-            throws java.io.IOException {
+    public void write(char chars[], int start, int length) throws java.io.IOException {
 
         int n = length + start;
 
@@ -78,15 +73,14 @@ class WriterToASCI extends Writer implements WriterChain {
      * Write a single character. The character to be written is contained in the
      * 16 low-order bits of the given integer value; the 16 high-order bits are
      * ignored.
-     *
      * <p>
      * Subclasses that intend to support efficient single-character output
      * should override this method.
      *
      * @param c
-     *          int specifying a character to be written.
+     *        int specifying a character to be written.
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(int c) throws IOException {
         m_os.write(c);
@@ -96,10 +90,9 @@ class WriterToASCI extends Writer implements WriterChain {
      * Write a string.
      *
      * @param s
-     *          String to be written
-     *
+     *        String to be written
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void write(String s) throws IOException {
         int n = s.length();
@@ -116,7 +109,7 @@ class WriterToASCI extends Writer implements WriterChain {
      * in a chain of Writers and OutputStreams.
      *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void flush() throws java.io.IOException {
         m_os.flush();
@@ -128,7 +121,7 @@ class WriterToASCI extends Writer implements WriterChain {
      * thrown. Closing a previously-closed stream, however, has no effect.
      *
      * @exception IOException
-     *                        If an I/O error occurs
+     *            If an I/O error occurs
      */
     public void close() throws java.io.IOException {
         m_os.close();

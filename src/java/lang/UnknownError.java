@@ -27,7 +27,7 @@ public class UnknownError extends VirtualMachineError {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public UnknownError(String s) {
         super(s);

@@ -14,8 +14,7 @@ package org.omg.CORBA;
  * GMT+00:00
  */
 
-public final class DoubleSeqHolder implements
-        org.omg.CORBA.portable.Streamable {
+public final class DoubleSeqHolder implements org.omg.CORBA.portable.Streamable {
     public double value[] = null;
 
     public DoubleSeqHolder() {}

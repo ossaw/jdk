@@ -13,8 +13,7 @@ import org.omg.CORBA.INTERNAL;
 import org.omg.CORBA.CompletionStatus;
 
 public class PropertyOnlyDataCollector extends DataCollectorBase {
-    public PropertyOnlyDataCollector(Properties props, String localHostName,
-            String configurationHostName) {
+    public PropertyOnlyDataCollector(Properties props, String localHostName, String configurationHostName) {
         super(props, localHostName, configurationHostName);
     }
 

@@ -46,20 +46,19 @@ public interface Scrollable {
      * the user requests a unit scroll.
      *
      * @param visibleRect
-     *                    The view area visible within the viewport
+     *        The view area visible within the viewport
      * @param orientation
-     *                    Either SwingConstants.VERTICAL or
-     *                    SwingConstants.HORIZONTAL.
+     *        Either SwingConstants.VERTICAL or
+     *        SwingConstants.HORIZONTAL.
      * @param direction
-     *                    Less than zero to scroll up/left, greater than zero
-     *                    for
-     *                    down/right.
+     *        Less than zero to scroll up/left, greater than zero
+     *        for
+     *        down/right.
      * @return The "unit" increment for scrolling in the specified direction.
      *         This value should always be positive.
      * @see JScrollBar#setUnitIncrement
      */
-    int getScrollableUnitIncrement(Rectangle visibleRect, int orientation,
-            int direction);
+    int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction);
 
     /**
      * Components that display logical rows or columns should compute the scroll
@@ -70,20 +69,19 @@ public interface Scrollable {
      * the user requests a block scroll.
      *
      * @param visibleRect
-     *                    The view area visible within the viewport
+     *        The view area visible within the viewport
      * @param orientation
-     *                    Either SwingConstants.VERTICAL or
-     *                    SwingConstants.HORIZONTAL.
+     *        Either SwingConstants.VERTICAL or
+     *        SwingConstants.HORIZONTAL.
      * @param direction
-     *                    Less than zero to scroll up/left, greater than zero
-     *                    for
-     *                    down/right.
+     *        Less than zero to scroll up/left, greater than zero
+     *        for
+     *        down/right.
      * @return The "block" increment for scrolling in the specified direction.
      *         This value should always be positive.
      * @see JScrollBar#setBlockIncrement
      */
-    int getScrollableBlockIncrement(Rectangle visibleRect, int orientation,
-            int direction);
+    int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction);
 
     /**
      * Return true if a viewport should always force the width of this

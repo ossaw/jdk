@@ -29,8 +29,7 @@ final class ToolBarButtonPainter extends AbstractRegionPainter {
     // layers
     private Path2D path = new Path2D.Float();
     private Rectangle2D rect = new Rectangle2D.Float(0, 0, 0, 0);
-    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0,
-            0, 0);
+    private RoundRectangle2D roundRect = new RoundRectangle2D.Float(0, 0, 0, 0, 0, 0);
     private Ellipse2D ellipse = new Ellipse2D.Float(0, 0, 0, 0);
 
     // All Colors used for painting are stored here. Ideally, only those colors
@@ -39,30 +38,18 @@ final class ToolBarButtonPainter extends AbstractRegionPainter {
     // the moment at least,
     // however, all are created for each instance.
     private Color color1 = decodeColor("nimbusFocus", 0.0f, 0.0f, 0.0f, 0);
-    private Color color2 = decodeColor("nimbusBlueGrey", -0.027777791f,
-            -0.06885965f, -0.36862746f, -153);
-    private Color color3 = decodeColor("nimbusBlueGrey", 0.0f, -0.020974077f,
-            -0.21960783f, 0);
-    private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, 0.11169591f,
-            -0.53333336f, 0);
-    private Color color5 = decodeColor("nimbusBlueGrey", 0.055555582f,
-            -0.10658931f, 0.25098038f, 0);
-    private Color color6 = decodeColor("nimbusBlueGrey", 0.0f, -0.098526314f,
-            0.2352941f, 0);
-    private Color color7 = decodeColor("nimbusBlueGrey", 0.0f, -0.07333623f,
-            0.20392156f, 0);
-    private Color color8 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f,
-            0.25490195f, 0);
-    private Color color9 = decodeColor("nimbusBlueGrey", -0.00505054f,
-            -0.05960039f, 0.10196078f, 0);
-    private Color color10 = decodeColor("nimbusBlueGrey", -0.008547008f,
-            -0.04772438f, 0.06666666f, 0);
-    private Color color11 = decodeColor("nimbusBlueGrey", -0.0027777553f,
-            -0.0018306673f, -0.02352941f, 0);
-    private Color color12 = decodeColor("nimbusBlueGrey", -0.0027777553f,
-            -0.0212406f, 0.13333333f, 0);
-    private Color color13 = decodeColor("nimbusBlueGrey", 0.0055555105f,
-            -0.030845039f, 0.23921567f, 0);
+    private Color color2 = decodeColor("nimbusBlueGrey", -0.027777791f, -0.06885965f, -0.36862746f, -153);
+    private Color color3 = decodeColor("nimbusBlueGrey", 0.0f, -0.020974077f, -0.21960783f, 0);
+    private Color color4 = decodeColor("nimbusBlueGrey", 0.0f, 0.11169591f, -0.53333336f, 0);
+    private Color color5 = decodeColor("nimbusBlueGrey", 0.055555582f, -0.10658931f, 0.25098038f, 0);
+    private Color color6 = decodeColor("nimbusBlueGrey", 0.0f, -0.098526314f, 0.2352941f, 0);
+    private Color color7 = decodeColor("nimbusBlueGrey", 0.0f, -0.07333623f, 0.20392156f, 0);
+    private Color color8 = decodeColor("nimbusBlueGrey", 0.0f, -0.110526316f, 0.25490195f, 0);
+    private Color color9 = decodeColor("nimbusBlueGrey", -0.00505054f, -0.05960039f, 0.10196078f, 0);
+    private Color color10 = decodeColor("nimbusBlueGrey", -0.008547008f, -0.04772438f, 0.06666666f, 0);
+    private Color color11 = decodeColor("nimbusBlueGrey", -0.0027777553f, -0.0018306673f, -0.02352941f, 0);
+    private Color color12 = decodeColor("nimbusBlueGrey", -0.0027777553f, -0.0212406f, 0.13333333f, 0);
+    private Color color13 = decodeColor("nimbusBlueGrey", 0.0055555105f, -0.030845039f, 0.23921567f, 0);
 
     // Array of current component colors, updated in each paint call
     private Object[] componentColors;
@@ -74,8 +61,7 @@ final class ToolBarButtonPainter extends AbstractRegionPainter {
     }
 
     @Override
-    protected void doPaint(Graphics2D g, JComponent c, int width, int height,
-            Object[] extendedCacheKeys) {
+    protected void doPaint(Graphics2D g, JComponent c, int width, int height, Object[] extendedCacheKeys) {
         // populate componentColors array with colors calculated in
         // getExtendedCacheKeys call
         componentColors = extendedCacheKeys;
@@ -169,52 +155,40 @@ final class ToolBarButtonPainter extends AbstractRegionPainter {
         path.reset();
         path.moveTo(decodeX(1.4133738f), decodeY(0.120000005f));
         path.lineTo(decodeX(1.9893618f), decodeY(0.120000005f));
-        path.curveTo(decodeAnchorX(1.9893617630004883f, 3.0f), decodeAnchorY(
-                0.12000000476837158f, 0.0f), decodeAnchorX(2.8857147693634033f,
-                        0.0f), decodeAnchorY(1.04347825050354f, -3.0f), decodeX(
-                                2.8857148f), decodeY(1.0434783f));
+        path.curveTo(decodeAnchorX(1.9893617630004883f, 3.0f), decodeAnchorY(0.12000000476837158f, 0.0f),
+                decodeAnchorX(2.8857147693634033f, 0.0f), decodeAnchorY(1.04347825050354f, -3.0f), decodeX(
+                        2.8857148f), decodeY(1.0434783f));
         path.lineTo(decodeX(2.9f), decodeY(1.9565217f));
-        path.curveTo(decodeAnchorX(2.9000000953674316f, 0.0f), decodeAnchorY(
-                1.95652174949646f, 3.0f), decodeAnchorX(1.9893617630004883f,
-                        3.0f), decodeAnchorY(2.8714287281036377f, 0.0f),
-                decodeX(1.9893618f), decodeY(2.8714287f));
+        path.curveTo(decodeAnchorX(2.9000000953674316f, 0.0f), decodeAnchorY(1.95652174949646f, 3.0f),
+                decodeAnchorX(1.9893617630004883f, 3.0f), decodeAnchorY(2.8714287281036377f, 0.0f), decodeX(
+                        1.9893618f), decodeY(2.8714287f));
         path.lineTo(decodeX(1.0106384f), decodeY(2.8714287f));
-        path.curveTo(decodeAnchorX(1.0106383562088013f, -3.0f), decodeAnchorY(
-                2.8714287281036377f, 0.0f), decodeAnchorX(0.12000000476837158f,
-                        0.0f), decodeAnchorY(1.95652174949646f, 3.0f), decodeX(
-                                0.120000005f), decodeY(1.9565217f));
+        path.curveTo(decodeAnchorX(1.0106383562088013f, -3.0f), decodeAnchorY(2.8714287281036377f, 0.0f),
+                decodeAnchorX(0.12000000476837158f, 0.0f), decodeAnchorY(1.95652174949646f, 3.0f), decodeX(
+                        0.120000005f), decodeY(1.9565217f));
         path.lineTo(decodeX(0.120000005f), decodeY(1.0465839f));
-        path.curveTo(decodeAnchorX(0.12000000476837158f, 0.0f), decodeAnchorY(
-                1.046583890914917f, -3.000000000000001f), decodeAnchorX(
-                        1.0106383562088013f, -3.0f), decodeAnchorY(
-                                0.12000000476837158f, 0.0f), decodeX(
-                                        1.0106384f), decodeY(0.120000005f));
+        path.curveTo(decodeAnchorX(0.12000000476837158f, 0.0f), decodeAnchorY(1.046583890914917f,
+                -3.000000000000001f), decodeAnchorX(1.0106383562088013f, -3.0f), decodeAnchorY(
+                        0.12000000476837158f, 0.0f), decodeX(1.0106384f), decodeY(0.120000005f));
         path.lineTo(decodeX(1.4148936f), decodeY(0.120000005f));
         path.lineTo(decodeX(1.4148936f), decodeY(0.4857143f));
         path.lineTo(decodeX(1.0106384f), decodeY(0.4857143f));
-        path.curveTo(decodeAnchorX(1.0106383562088013f, -1.928571428571427f),
-                decodeAnchorY(0.48571428656578064f, 0.0f), decodeAnchorX(
-                        0.4714285731315613f, -0.04427948362011014f),
-                decodeAnchorY(1.040372610092163f, -2.429218094741624f), decodeX(
-                        0.47142857f), decodeY(1.0403726f));
+        path.curveTo(decodeAnchorX(1.0106383562088013f, -1.928571428571427f), decodeAnchorY(
+                0.48571428656578064f, 0.0f), decodeAnchorX(0.4714285731315613f, -0.04427948362011014f),
+                decodeAnchorY(1.040372610092163f, -2.429218094741624f), decodeX(0.47142857f), decodeY(
+                        1.0403726f));
         path.lineTo(decodeX(0.47142857f), decodeY(1.9565217f));
-        path.curveTo(decodeAnchorX(0.4714285731315613f, 0.0f), decodeAnchorY(
-                1.95652174949646f, 2.2142857142856975f), decodeAnchorX(
-                        1.0106383562088013f, -1.7857142857142847f),
-                decodeAnchorY(2.5142855644226074f, 0.0f), decodeX(1.0106384f),
-                decodeY(2.5142856f));
+        path.curveTo(decodeAnchorX(0.4714285731315613f, 0.0f), decodeAnchorY(1.95652174949646f,
+                2.2142857142856975f), decodeAnchorX(1.0106383562088013f, -1.7857142857142847f), decodeAnchorY(
+                        2.5142855644226074f, 0.0f), decodeX(1.0106384f), decodeY(2.5142856f));
         path.lineTo(decodeX(1.9893618f), decodeY(2.5142856f));
-        path.curveTo(decodeAnchorX(1.9893617630004883f, 2.071428571428598f),
-                decodeAnchorY(2.5142855644226074f, 0.0f), decodeAnchorX(2.5f,
-                        0.0f), decodeAnchorY(1.95652174949646f,
-                                2.2142857142857046f), decodeX(2.5f), decodeY(
-                                        1.9565217f));
+        path.curveTo(decodeAnchorX(1.9893617630004883f, 2.071428571428598f), decodeAnchorY(
+                2.5142855644226074f, 0.0f), decodeAnchorX(2.5f, 0.0f), decodeAnchorY(1.95652174949646f,
+                        2.2142857142857046f), decodeX(2.5f), decodeY(1.9565217f));
         path.lineTo(decodeX(2.5142853f), decodeY(1.0434783f));
-        path.curveTo(decodeAnchorX(2.5142853260040283f, 0.0f), decodeAnchorY(
-                1.04347825050354f, -2.1428571428571406f), decodeAnchorX(
-                        1.990121603012085f, 2.142857142857167f), decodeAnchorY(
-                                0.4714285731315613f, 0.0f), decodeX(1.9901216f),
-                decodeY(0.47142857f));
+        path.curveTo(decodeAnchorX(2.5142853260040283f, 0.0f), decodeAnchorY(1.04347825050354f,
+                -2.1428571428571406f), decodeAnchorX(1.990121603012085f, 2.142857142857167f), decodeAnchorY(
+                        0.4714285731315613f, 0.0f), decodeX(1.9901216f), decodeY(0.47142857f));
         path.lineTo(decodeX(1.4148936f), decodeY(0.4857143f));
         path.lineTo(decodeX(1.4133738f), decodeY(0.120000005f));
         path.closePath();
@@ -263,10 +237,8 @@ final class ToolBarButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.09f, 0.52f, 0.95f },
-                new Color[] { color3, decodeColor(color3, color4, 0.5f),
-                        color4 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.09f, 0.52f, 0.95f }, new Color[] { color3, decodeColor(color3, color4, 0.5f), color4 });
     }
 
     private Paint decodeGradient2(Shape s) {
@@ -275,14 +247,11 @@ final class ToolBarButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.03f, 0.06f, 0.33f, 0.6f,
-                        0.65f, 0.7f, 0.825f, 0.95f, 0.975f, 1.0f },
-                new Color[] { color5, decodeColor(color5, color6, 0.5f), color6,
-                        decodeColor(color6, color7, 0.5f), color7, decodeColor(
-                                color7, color7, 0.5f), color7, decodeColor(
-                                        color7, color8, 0.5f), color8,
-                        decodeColor(color8, color8, 0.5f), color8 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.03f, 0.06f, 0.33f, 0.6f, 0.65f, 0.7f, 0.825f, 0.95f, 0.975f, 1.0f }, new Color[] {
+                        color5, decodeColor(color5, color6, 0.5f), color6, decodeColor(color6, color7, 0.5f),
+                        color7, decodeColor(color7, color7, 0.5f), color7, decodeColor(color7, color8, 0.5f),
+                        color8, decodeColor(color8, color8, 0.5f), color8 });
     }
 
     private Paint decodeGradient3(Shape s) {
@@ -291,14 +260,12 @@ final class ToolBarButtonPainter extends AbstractRegionPainter {
         float y = (float) bounds.getY();
         float w = (float) bounds.getWidth();
         float h = (float) bounds.getHeight();
-        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x,
-                (1.0f * h) + y, new float[] { 0.0f, 0.03f, 0.06f, 0.33f, 0.6f,
-                        0.65f, 0.7f, 0.825f, 0.95f, 0.975f, 1.0f },
-                new Color[] { color9, decodeColor(color9, color10, 0.5f),
-                        color10, decodeColor(color10, color11, 0.5f), color11,
-                        decodeColor(color11, color11, 0.5f), color11,
-                        decodeColor(color11, color12, 0.5f), color12,
-                        decodeColor(color12, color13, 0.5f), color13 });
+        return decodeGradient((0.5f * w) + x, (0.0f * h) + y, (0.5f * w) + x, (1.0f * h) + y, new float[] {
+                0.0f, 0.03f, 0.06f, 0.33f, 0.6f, 0.65f, 0.7f, 0.825f, 0.95f, 0.975f, 1.0f }, new Color[] {
+                        color9, decodeColor(color9, color10, 0.5f), color10, decodeColor(color10, color11,
+                                0.5f), color11, decodeColor(color11, color11, 0.5f), color11, decodeColor(
+                                        color11, color12, 0.5f), color12, decodeColor(color12, color13, 0.5f),
+                        color13 });
     }
 
 }

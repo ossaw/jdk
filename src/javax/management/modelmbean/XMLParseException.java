@@ -21,9 +21,7 @@ import java.security.AccessController;
  * This exception is thrown when an XML formatted string is being parsed into
  * ModelMBean objects or when XML formatted strings are being created from
  * ModelMBean objects.
- *
  * It is also used to wrapper exceptions from XML parsers that may be used.
- *
  * <p>
  * The <b>serialVersionUID</b> of this class is
  * <code>3176664577895105181L</code>.
@@ -45,8 +43,8 @@ public class XMLParseException extends Exception {
     private static final long newSerialVersionUID = 3176664577895105181L;
     //
     // Serializable fields in old serial form
-    private static final ObjectStreamField[] oldSerialPersistentFields = {
-            new ObjectStreamField("msgStr", String.class) };
+    private static final ObjectStreamField[] oldSerialPersistentFields = { new ObjectStreamField("msgStr",
+            String.class) };
     //
     // Serializable fields in new serial form
     private static final ObjectStreamField[] newSerialPersistentFields = {};
@@ -85,7 +83,7 @@ public class XMLParseException extends Exception {
      * Constructor taking a string.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public XMLParseException(String s) {
         super("XML Parse Exception: " + s);
@@ -95,9 +93,9 @@ public class XMLParseException extends Exception {
      * Constructor taking a string and an exception.
      *
      * @param e
-     *          the nested exception.
+     *        the nested exception.
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public XMLParseException(Exception e, String s) {
         super("XML Parse Exception: " + s + ":" + e.toString());
@@ -107,8 +105,7 @@ public class XMLParseException extends Exception {
      * Deserializes an {@link XMLParseException} from an
      * {@link ObjectInputStream}.
      */
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         // New serial form ignores extra field "msgStr"
         in.defaultReadObject();
     }

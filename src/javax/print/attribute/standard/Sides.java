@@ -89,8 +89,8 @@ import javax.print.attribute.PrintJobAttribute;
  * @author Alan Kaminsky
  */
 
-public final class Sides extends EnumSyntax implements DocAttribute,
-        PrintRequestAttribute, PrintJobAttribute {
+public final class Sides extends EnumSyntax implements DocAttribute, PrintRequestAttribute,
+        PrintJobAttribute {
 
     private static final long serialVersionUID = -6890309414893262822L;
 
@@ -134,17 +134,16 @@ public final class Sides extends EnumSyntax implements DocAttribute,
      * Construct a new sides enumeration value with the given integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected Sides(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "one-sided",
-            "two-sided-long-edge", "two-sided-short-edge" };
+    private static final String[] myStringTable = { "one-sided", "two-sided-long-edge",
+            "two-sided-short-edge" };
 
-    private static final Sides[] myEnumValueTable = { ONE_SIDED,
-            TWO_SIDED_LONG_EDGE, TWO_SIDED_SHORT_EDGE };
+    private static final Sides[] myEnumValueTable = { ONE_SIDED, TWO_SIDED_LONG_EDGE, TWO_SIDED_SHORT_EDGE };
 
     /**
      * Returns the string table for class Sides.

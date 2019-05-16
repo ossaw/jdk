@@ -50,21 +50,21 @@ public class JDKBridge {
      * Returns a class instance for the specified class.
      * 
      * @param className
-     *                       the name of the class
+     *        the name of the class
      * @param remoteCodebase
-     *                       a space-separated array of urls at which the class
-     *                       might be
-     *                       found. May be null.
+     *        a space-separated array of urls at which the class
+     *        might be
+     *        found. May be null.
      * @param loader
-     *                       a ClassLoader who may be used to load the class if
-     *                       all other
-     *                       methods fail.
+     *        a ClassLoader who may be used to load the class if
+     *        all other
+     *        methods fail.
      * @return the <code>Class</code> object representing the loaded class.
      * @exception throws
      *            ClassNotFoundException if class cannot be loaded.
      */
-    public static Class loadClass(String className, String remoteCodebase,
-            ClassLoader loader) throws ClassNotFoundException {
+    public static Class loadClass(String className, String remoteCodebase, ClassLoader loader)
+            throws ClassNotFoundException {
 
         if (loader == null) {
             return loadClassM(className, remoteCodebase, useCodebaseOnly);
@@ -81,17 +81,16 @@ public class JDKBridge {
      * Returns a class instance for the specified class.
      * 
      * @param className
-     *                       the name of the class
+     *        the name of the class
      * @param remoteCodebase
-     *                       a space-separated array of urls at which the class
-     *                       might be
-     *                       found. May be null.
+     *        a space-separated array of urls at which the class
+     *        might be
+     *        found. May be null.
      * @return the <code>Class</code> object representing the loaded class.
      * @exception throws
      *            ClassNotFoundException if class cannot be loaded.
      */
-    public static Class loadClass(String className, String remoteCodebase)
-            throws ClassNotFoundException {
+    public static Class loadClass(String className, String remoteCodebase) throws ClassNotFoundException {
         return loadClass(className, remoteCodebase, null);
     }
 
@@ -99,13 +98,12 @@ public class JDKBridge {
      * Returns a class instance for the specified class.
      * 
      * @param className
-     *                  the name of the class
+     *        the name of the class
      * @return the <code>Class</code> object representing the loaded class.
      * @exception throws
      *            ClassNotFoundException if class cannot be loaded.
      */
-    public static Class loadClass(String className)
-            throws ClassNotFoundException {
+    public static Class loadClass(String className) throws ClassNotFoundException {
         return loadClass(className, null, null);
     }
 
@@ -138,14 +136,12 @@ public class JDKBridge {
      * test code.
      */
     public static synchronized void setCodebaseProperties() {
-        String prop = (String) AccessController.doPrivileged(
-                new GetPropertyAction(LOCAL_CODEBASE_KEY));
+        String prop = (String) AccessController.doPrivileged(new GetPropertyAction(LOCAL_CODEBASE_KEY));
         if (prop != null && prop.trim().length() > 0) {
             localCodebase = prop;
         }
 
-        prop = (String) AccessController.doPrivileged(new GetPropertyAction(
-                USE_CODEBASE_ONLY_KEY));
+        prop = (String) AccessController.doPrivileged(new GetPropertyAction(USE_CODEBASE_ONLY_KEY));
         if (prop != null && prop.trim().length() > 0) {
             useCodebaseOnly = Boolean.valueOf(prop).booleanValue();
         }
@@ -158,13 +154,12 @@ public class JDKBridge {
         localCodebase = codebase;
     }
 
-    private static Class loadClassM(String className, String remoteCodebase,
-            boolean useCodebaseOnly) throws ClassNotFoundException {
+    private static Class loadClassM(String className, String remoteCodebase, boolean useCodebaseOnly)
+            throws ClassNotFoundException {
 
         try {
             return JDKClassLoader.loadClass(null, className);
-        } catch (ClassNotFoundException e) {
-        }
+        } catch (ClassNotFoundException e) {}
         try {
             if (!useCodebaseOnly && remoteCodebase != null) {
                 return RMIClassLoader.loadClass(remoteCodebase, className);

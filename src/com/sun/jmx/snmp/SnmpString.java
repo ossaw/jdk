@@ -10,7 +10,6 @@ import java.net.UnknownHostException;
 
 /**
  * Represents an SNMP string.
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -33,7 +32,7 @@ public class SnmpString extends SnmpValue {
      * Constructs a new <CODE>SnmpString</CODE> from the specified bytes array.
      * 
      * @param v
-     *          The bytes composing the string value.
+     *        The bytes composing the string value.
      */
     public SnmpString(byte[] v) {
         value = v.clone();
@@ -44,7 +43,7 @@ public class SnmpString extends SnmpValue {
      * <CODE>Bytes</CODE> array.
      * 
      * @param v
-     *          The <CODE>Bytes</CODE> composing the string value.
+     *        The <CODE>Bytes</CODE> composing the string value.
      */
     public SnmpString(Byte[] v) {
         value = new byte[v.length];
@@ -58,7 +57,7 @@ public class SnmpString extends SnmpValue {
      * <CODE>String</CODE> value.
      * 
      * @param v
-     *          The initialization value.
+     *        The initialization value.
      */
     public SnmpString(String v) {
         value = v.getBytes();
@@ -69,8 +68,7 @@ public class SnmpString extends SnmpValue {
      * <CODE> InetAddress </Code>.
      * 
      * @param address
-     *                The <CODE>InetAddress </CODE>.
-     *
+     *        The <CODE>InetAddress </CODE>.
      * @since 1.5
      */
     public SnmpString(InetAddress address) {
@@ -85,9 +83,8 @@ public class SnmpString extends SnmpValue {
      * 
      * @return an {@link InetAddress} defined by the string value.
      * @exception UnknownHostException
-     *                                 If string value is not a legal address
-     *                                 format.
-     *
+     *            If string value is not a legal address
+     *            format.
      * @since 1.5
      */
     public InetAddress inetAddressValue() throws UnknownHostException {
@@ -98,15 +95,14 @@ public class SnmpString extends SnmpValue {
      * Converts the specified binary string into a character string.
      * 
      * @param bin
-     *            The binary string value to convert.
+     *        The binary string value to convert.
      * @return The character string representation.
      */
     public static String BinToChar(String bin) {
         char value[] = new char[bin.length() / 8];
         int binLength = value.length;
         for (int i = 0; i < binLength; i++)
-            value[i] = (char) Integer.parseInt(bin.substring(8 * i, 8 * i + 8),
-                    2);
+            value[i] = (char) Integer.parseInt(bin.substring(8 * i, 8 * i + 8), 2);
         return new String(value);
     }
 
@@ -114,15 +110,14 @@ public class SnmpString extends SnmpValue {
      * Converts the specified hexadecimal string into a character string.
      * 
      * @param hex
-     *            The hexadecimal string value to convert.
+     *        The hexadecimal string value to convert.
      * @return The character string representation.
      */
     public static String HexToChar(String hex) {
         char value[] = new char[hex.length() / 2];
         int hexLength = value.length;
         for (int i = 0; i < hexLength; i++)
-            value[i] = (char) Integer.parseInt(hex.substring(2 * i, 2 * i + 2),
-                    16);
+            value[i] = (char) Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);
         return new String(value);
     }
 
@@ -175,16 +170,15 @@ public class SnmpString extends SnmpValue {
      * an <CODE>SnmpOid</CODE>.
      * 
      * @param index
-     *              The index array.
+     *        The index array.
      * @param start
-     *              The position in the index array.
+     *        The position in the index array.
      * @return The OID representing the string value.
      * @exception SnmpStatusException
-     *                                There is no string value available at the
-     *                                start position.
+     *            There is no string value available at the
+     *            start position.
      */
-    public static SnmpOid toOid(long[] index, int start)
-            throws SnmpStatusException {
+    public static SnmpOid toOid(long[] index, int start) throws SnmpStatusException {
         try {
             if (index[start] > Integer.MAX_VALUE) {
                 throw new SnmpStatusException(SnmpStatusException.noSuchName);
@@ -205,16 +199,15 @@ public class SnmpString extends SnmpValue {
      * the next value.
      * 
      * @param index
-     *              The index array.
+     *        The index array.
      * @param start
-     *              The position in the index array.
+     *        The position in the index array.
      * @return The position of the next value.
      * @exception SnmpStatusException
-     *                                There is no string value available at the
-     *                                start position.
+     *            There is no string value available at the
+     *            start position.
      */
-    public static int nextOid(long[] index, int start)
-            throws SnmpStatusException {
+    public static int nextOid(long[] index, int start) throws SnmpStatusException {
         try {
             if (index[start] > Integer.MAX_VALUE) {
                 throw new SnmpStatusException(SnmpStatusException.noSuchName);
@@ -236,9 +229,9 @@ public class SnmpString extends SnmpValue {
      * to another OID.
      * 
      * @param source
-     *               An OID representing an <CODE>SnmpString</CODE> value.
+     *        An OID representing an <CODE>SnmpString</CODE> value.
      * @param dest
-     *               Where source should be appended.
+     *        Where source should be appended.
      */
     public static void appendToOid(SnmpOid source, SnmpOid dest) {
         dest.append(source.getLength());

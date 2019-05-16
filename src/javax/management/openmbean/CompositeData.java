@@ -17,7 +17,6 @@ import java.util.Collection;
  * type of complex <i>open data</i> objects which represent <i>composite
  * data</i> structures.
  *
- *
  * @since 1.5
  */
 public interface CompositeData {
@@ -34,18 +33,15 @@ public interface CompositeData {
      * Returns the value of the item whose name is <tt>key</tt>.
      *
      * @param key
-     *            the name of the item.
-     *
+     *        the name of the item.
      * @return the value associated with this key.
-     *
      * @throws IllegalArgumentException
-     *                                  if <tt>key</tt> is a null or empty
-     *                                  String.
-     *
+     *         if <tt>key</tt> is a null or empty
+     *         String.
      * @throws InvalidKeyException
-     *                                  if <tt>key</tt> is not an existing item
-     *                                  name for this
-     *                                  <tt>CompositeData</tt> instance.
+     *         if <tt>key</tt> is not an existing item
+     *         name for this
+     *         <tt>CompositeData</tt> instance.
      */
     public Object get(String key);
 
@@ -54,19 +50,16 @@ public interface CompositeData {
      * <tt>keys</tt>, in the same order as <tt>keys</tt>.
      *
      * @param keys
-     *             the names of the items.
-     *
+     *        the names of the items.
      * @return the values corresponding to the keys.
-     *
      * @throws IllegalArgumentException
-     *                                  if an element in <tt>keys</tt> is a null
-     *                                  or empty String.
-     *
+     *         if an element in <tt>keys</tt> is a null
+     *         or empty String.
      * @throws InvalidKeyException
-     *                                  if an element in <tt>keys</tt> is not an
-     *                                  existing item name
-     *                                  for this <tt>CompositeData</tt>
-     *                                  instance.
+     *         if an element in <tt>keys</tt> is not an
+     *         existing item name
+     *         for this <tt>CompositeData</tt>
+     *         instance.
      */
     public Object[] getAll(String[] keys);
 
@@ -76,8 +69,7 @@ public interface CompositeData {
      * empty String, this method simply returns false.
      *
      * @param key
-     *            the key to be tested.
-     *
+     *        the key to be tested.
      * @return true if this <tt>CompositeData</tt> contains the key.
      */
     public boolean containsKey(String key);
@@ -87,8 +79,7 @@ public interface CompositeData {
      * contains an item whose value is <tt>value</tt>.
      *
      * @param value
-     *              the value to be tested.
-     *
+     *        the value to be tested.
      * @return true if this <tt>CompositeData</tt> contains the value.
      */
     public boolean containsValue(Object value);
@@ -129,8 +120,8 @@ public interface CompositeData {
      * <tt>java.util.Collection</tt> interface.
      *
      * @param obj
-     *            the object to be compared for equality with this
-     *            <code>CompositeData</code> instance.
+     *        the object to be compared for equality with this
+     *        <code>CompositeData</code> instance.
      * @return <code>true</code> if the specified object is equal to this
      *         <code>CompositeData</code> instance.
      */

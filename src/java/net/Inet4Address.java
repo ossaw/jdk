@@ -15,12 +15,9 @@ import java.io.ObjectStreamException;
  * Allocation for Private Internets</i></a>, and
  * <a href="http://www.ietf.org/rfc/rfc2365.txt"><i>RFC&nbsp;2365:
  * Administratively Scoped IP Multicast</i></a>
- *
  * <h3><A NAME="format">Textual representation of IP addresses</a></h3>
- *
  * Textual representation of IPv4 address used as input to methods takes one of
  * the following forms:
- *
  * <blockquote>
  * <table cellpadding=0 cellspacing=0 summary="layout">
  * <tr>
@@ -37,33 +34,26 @@ import java.io.ObjectStreamException;
  * </tr>
  * </table>
  * </blockquote>
- *
  * <p>
  * When four parts are specified, each is interpreted as a byte of data and
  * assigned, from left to right, to the four bytes of an IPv4 address.
- * 
  * <p>
  * When a three part address is specified, the last part is interpreted as a
  * 16-bit quantity and placed in the right most two bytes of the network
  * address. This makes the three part address format convenient for specifying
  * Class B net- work addresses as 128.net.host.
- *
  * <p>
  * When a two part address is supplied, the last part is interpreted as a 24-bit
  * quantity and placed in the right most three bytes of the network address.
  * This makes the two part address format convenient for specifying Class A
  * network addresses as net.host.
- *
  * <p>
  * When only one part is given, the value is stored directly in the network
  * address without any byte rearrangement.
- *
  * <p>
  * For methods that return a textual representation as output value, the first
  * form, i.e. a dotted-quad string, is used.
- *
  * <h4>The Scope of a Multicast Address</h4>
- *
  * Historically the IPv4 TTL field in the IP header has doubled as a multicast
  * scope field: a TTL of 0 means node-local, 1 means link-local, up through 32
  * means site-local, up through 64 means region-local, up through 128 means
@@ -124,10 +114,9 @@ public final class Inet4Address extends InetAddress {
      * Replaces the object to be serialized with an InetAddress object.
      *
      * @return the alternate object to be serialized.
-     *
      * @throws ObjectStreamException
-     *                               if a new object replacing this object could
-     *                               not be created
+     *         if a new object replacing this object could
+     *         not be created
      */
     private Object writeReplace() throws ObjectStreamException {
         // will replace the to be serialized 'this' object
@@ -195,8 +184,7 @@ public final class Inet4Address extends InetAddress {
         // that have been Registered with IANA" by Bill Manning
         // draft-manning-dsua-06.txt
         int address = holder().getAddress();
-        return (((address >>> 24) & 0xFF) == 169) && (((address >>> 16)
-                & 0xFF) == 254);
+        return (((address >>> 24) & 0xFF) == 169) && (((address >>> 16) & 0xFF) == 254);
     }
 
     /**
@@ -212,10 +200,8 @@ public final class Inet4Address extends InetAddress {
         // 172.16/12 prefix
         // 192.168/16 prefix
         int address = holder().getAddress();
-        return (((address >>> 24) & 0xFF) == 10) || ((((address >>> 24)
-                & 0xFF) == 172) && (((address >>> 16) & 0xF0) == 16))
-                || ((((address >>> 24) & 0xFF) == 192) && (((address >>> 16)
-                        & 0xFF) == 168));
+        return (((address >>> 24) & 0xFF) == 10) || ((((address >>> 24) & 0xFF) == 172) && (((address >>> 16)
+                & 0xF0) == 16)) || ((((address >>> 24) & 0xFF) == 192) && (((address >>> 16) & 0xFF) == 168));
     }
 
     /**
@@ -229,9 +215,8 @@ public final class Inet4Address extends InetAddress {
     public boolean isMCGlobal() {
         // 224.0.1.0 to 238.255.255.255
         byte[] byteAddr = getAddress();
-        return ((byteAddr[0] & 0xff) >= 224 && (byteAddr[0] & 0xff) <= 238)
-                && !((byteAddr[0] & 0xff) == 224 && byteAddr[1] == 0
-                        && byteAddr[2] == 0);
+        return ((byteAddr[0] & 0xff) >= 224 && (byteAddr[0] & 0xff) <= 238) && !((byteAddr[0] & 0xff) == 224
+                && byteAddr[1] == 0 && byteAddr[2] == 0);
     }
 
     /**
@@ -258,8 +243,8 @@ public final class Inet4Address extends InetAddress {
     public boolean isMCLinkLocal() {
         // 224.0.0/24 prefix and ttl == 1
         int address = holder().getAddress();
-        return (((address >>> 24) & 0xFF) == 224) && (((address >>> 16)
-                & 0xFF) == 0) && (((address >>> 8) & 0xFF) == 0);
+        return (((address >>> 24) & 0xFF) == 224) && (((address >>> 16) & 0xFF) == 0) && (((address >>> 8)
+                & 0xFF) == 0);
     }
 
     /**
@@ -273,8 +258,7 @@ public final class Inet4Address extends InetAddress {
     public boolean isMCSiteLocal() {
         // 239.255/16 prefix or ttl < 32
         int address = holder().getAddress();
-        return (((address >>> 24) & 0xFF) == 239) && (((address >>> 16)
-                & 0xFF) == 255);
+        return (((address >>> 24) & 0xFF) == 239) && (((address >>> 16) & 0xFF) == 255);
     }
 
     /**
@@ -288,8 +272,8 @@ public final class Inet4Address extends InetAddress {
     public boolean isMCOrgLocal() {
         // 239.192 - 239.195
         int address = holder().getAddress();
-        return (((address >>> 24) & 0xFF) == 239) && (((address >>> 16)
-                & 0xFF) >= 192) && (((address >>> 16) & 0xFF) <= 195);
+        return (((address >>> 24) & 0xFF) == 239) && (((address >>> 16) & 0xFF) >= 192) && (((address >>> 16)
+                & 0xFF) <= 195);
     }
 
     /**
@@ -339,15 +323,14 @@ public final class Inet4Address extends InetAddress {
      * both, and each of the array components is the same for the byte arrays.
      *
      * @param obj
-     *            the object to compare against.
+     *        the object to compare against.
      * @return {@code true} if the objects are the same; {@code false}
      *         otherwise.
      * @see java.net.InetAddress#getAddress()
      */
     public boolean equals(Object obj) {
-        return (obj != null) && (obj instanceof Inet4Address)
-                && (((InetAddress) obj).holder().getAddress() == holder()
-                        .getAddress());
+        return (obj != null) && (obj instanceof Inet4Address) && (((InetAddress) obj).holder()
+                .getAddress() == holder().getAddress());
     }
 
     // Utilities
@@ -360,8 +343,7 @@ public final class Inet4Address extends InetAddress {
      */
 
     static String numericToTextFormat(byte[] src) {
-        return (src[0] & 0xff) + "." + (src[1] & 0xff) + "." + (src[2] & 0xff)
-                + "." + (src[3] & 0xff);
+        return (src[0] & 0xff) + "." + (src[1] & 0xff) + "." + (src[2] & 0xff) + "." + (src[3] & 0xff);
     }
 
     /**

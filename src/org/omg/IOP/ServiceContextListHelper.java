@@ -12,8 +12,7 @@ package org.omg.IOP;
 abstract public class ServiceContextListHelper {
     private static String _id = "IDL:omg.org/IOP/ServiceContextList:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.IOP.ServiceContext[] that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.IOP.ServiceContext[] that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -29,10 +28,8 @@ abstract public class ServiceContextListHelper {
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
             __typeCode = org.omg.IOP.ServiceContextHelper.type();
-            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0,
-                    __typeCode);
-            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(
-                    org.omg.IOP.ServiceContextListHelper.id(),
+            __typeCode = org.omg.CORBA.ORB.init().create_sequence_tc(0, __typeCode);
+            __typeCode = org.omg.CORBA.ORB.init().create_alias_tc(org.omg.IOP.ServiceContextListHelper.id(),
                     "ServiceContextList", __typeCode);
         }
         return __typeCode;
@@ -42,8 +39,7 @@ abstract public class ServiceContextListHelper {
         return _id;
     }
 
-    public static org.omg.IOP.ServiceContext[] read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.IOP.ServiceContext[] read(org.omg.CORBA.portable.InputStream istream) {
         org.omg.IOP.ServiceContext value[] = null;
         int _len0 = istream.read_long();
         value = new org.omg.IOP.ServiceContext[_len0];

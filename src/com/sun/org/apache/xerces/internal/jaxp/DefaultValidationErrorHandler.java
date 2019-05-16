@@ -42,16 +42,15 @@ class DefaultValidationErrorHandler extends DefaultHandler {
             return;
         } else if (errorCount == 0) {
             // Print a warning before the first error
-            System.err.println(SAXMessageFormatter.formatMessage(locale,
-                    "errorHandlerNotSet", new Object[] { errorCount }));
+            System.err.println(SAXMessageFormatter.formatMessage(locale, "errorHandlerNotSet", new Object[] {
+                    errorCount }));
         }
 
         String systemId = e.getSystemId();
         if (systemId == null) {
             systemId = "null";
         }
-        String message = "Error: URI=" + systemId + " Line=" + e.getLineNumber()
-                + ": " + e.getMessage();
+        String message = "Error: URI=" + systemId + " Line=" + e.getLineNumber() + ": " + e.getMessage();
         System.err.println(message);
         errorCount++;
     }

@@ -148,8 +148,7 @@ public class ErrorMessages_ja extends ListResourceBundle {
                  * mentioned in the substitution text is not well-formed
                  * syntactically.
                  */
-                { ErrorMsg.INVALID_URI_ERR,
-                        "URI ''{0}''\u304C\u7121\u52B9\u3067\u3059\u3002" },
+                { ErrorMsg.INVALID_URI_ERR, "URI ''{0}''\u304C\u7121\u52B9\u3067\u3059\u3002" },
 
                 /*
                  * Note to translators: The file or URI named in the
@@ -236,8 +235,7 @@ public class ErrorMessages_ja extends ListResourceBundle {
                  * specified on an element in the stylesheet. The attribute is
                  * named by the substitution text.
                  */
-                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
-                        "\u4E0D\u6B63\u306A\u5C5E\u6027''{0}''\u3067\u3059\u3002" },
+                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "\u4E0D\u6B63\u306A\u5C5E\u6027''{0}''\u3067\u3059\u3002" },
 
                 /*
                  * Note to translators: "import" and "include" are keywords that
@@ -352,8 +350,7 @@ public class ErrorMessages_ja extends ListResourceBundle {
                  * Note to translators: An element in the stylesheet contained
                  * an element of a type that it was not permitted to contain.
                  */
-                { ErrorMsg.ILLEGAL_CHILD_ERR,
-                        "\u5B50\u8981\u7D20\u304C\u4E0D\u6B63\u3067\u3059\u3002" },
+                { ErrorMsg.ILLEGAL_CHILD_ERR, "\u5B50\u8981\u7D20\u304C\u4E0D\u6B63\u3067\u3059\u3002" },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
@@ -652,8 +649,7 @@ public class ErrorMessages_ja extends ListResourceBundle {
                 { ErrorMsg.XSLTC_SOURCE_ERR,
                         "systemId\u3092\u8A2D\u5B9A\u305B\u305A\u306BXSLTCSource.build()\u304C\u547C\u3073\u51FA\u3055\u308C\u307E\u3057\u305F\u3002" },
 
-                { ErrorMsg.ER_RESULT_NULL,
-                        "\u7D50\u679C\u306Fnull\u306B\u3067\u304D\u307E\u305B\u3093" },
+                { ErrorMsg.ER_RESULT_NULL, "\u7D50\u679C\u306Fnull\u306B\u3067\u304D\u307E\u305B\u3093" },
 
                 /*
                  * Note to translators: This message indicates that the value
@@ -770,8 +766,7 @@ public class ErrorMessages_ja extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
-                        "WARNING:  ''{0}''\n       :{1}" },
+                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "WARNING:  ''{0}''\n       :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -787,8 +782,7 @@ public class ErrorMessages_ja extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG,
-                        "FATAL ERROR:  ''{0}''\n           :{1}" },
+                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG, "FATAL ERROR:  ''{0}''\n           :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -804,8 +798,7 @@ public class ErrorMessages_ja extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
-                        "ERROR:  ''{0}''\n     :{1}" },
+                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "ERROR:  ''{0}''\n     :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -853,16 +846,14 @@ public class ErrorMessages_ja extends ListResourceBundle {
                  * header. All the error messages are collected together and
                  * displayed beneath this message.
                  */
-                { ErrorMsg.COMPILER_ERROR_KEY,
-                        "\u30B3\u30F3\u30D1\u30A4\u30E9\u30FB\u30A8\u30E9\u30FC:" },
+                { ErrorMsg.COMPILER_ERROR_KEY, "\u30B3\u30F3\u30D1\u30A4\u30E9\u30FB\u30A8\u30E9\u30FC:" },
 
                 /*
                  * Note to translators: The following message is used as a
                  * header. All the warning messages are collected together and
                  * displayed beneath this message.
                  */
-                { ErrorMsg.COMPILER_WARNING_KEY,
-                        "\u30B3\u30F3\u30D1\u30A4\u30E9\u306E\u8B66\u544A:" },
+                { ErrorMsg.COMPILER_WARNING_KEY, "\u30B3\u30F3\u30D1\u30A4\u30E9\u306E\u8B66\u544A:" },
 
                 /*
                  * Note to translators: The following message is used as a

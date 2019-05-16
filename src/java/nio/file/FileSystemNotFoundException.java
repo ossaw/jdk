@@ -21,7 +21,7 @@ public class FileSystemNotFoundException extends RuntimeException {
      * Constructs an instance of this class.
      *
      * @param msg
-     *            the detail message
+     *        the detail message
      */
     public FileSystemNotFoundException(String msg) {
         super(msg);

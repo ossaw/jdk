@@ -23,9 +23,9 @@ public class DriverPropertyInfo {
      * to <code>false</code>.
      *
      * @param name
-     *              the name of the property
+     *        the name of the property
      * @param value
-     *              the current value, which may be null
+     *        the current value, which may be null
      */
     public DriverPropertyInfo(String name, String value) {
         this.name = name;

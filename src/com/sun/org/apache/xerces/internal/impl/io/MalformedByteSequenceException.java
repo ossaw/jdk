@@ -29,9 +29,7 @@ import com.sun.org.apache.xerces.internal.util.MessageFormatter;
  * </p>
  *
  * @xerces.internal
- *
  * @author Michael Glavassevich, IBM
- *
  */
 public class MalformedByteSequenceException extends CharConversionException {
 
@@ -70,21 +68,21 @@ public class MalformedByteSequenceException extends CharConversionException {
      * for this exception.
      *
      * @param formatter
-     *                  The MessageFormatter used for building the message text
-     *                  for
-     *                  this exception.
+     *        The MessageFormatter used for building the message text
+     *        for
+     *        this exception.
      * @param locale
-     *                  The Locale for which messages are to be reported.
+     *        The Locale for which messages are to be reported.
      * @param domain
-     *                  The error domain.
+     *        The error domain.
      * @param key
-     *                  The key of the error message.
+     *        The key of the error message.
      * @param arguments
-     *                  The replacement arguments for the error message, if
-     *                  needed.
+     *        The replacement arguments for the error message, if
+     *        needed.
      */
-    public MalformedByteSequenceException(MessageFormatter formatter,
-            Locale locale, String domain, String key, Object[] arguments) {
+    public MalformedByteSequenceException(MessageFormatter formatter, Locale locale, String domain,
+            String key, Object[] arguments) {
         fFormatter = formatter;
         fLocale = locale;
         fDomain = domain;

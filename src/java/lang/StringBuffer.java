@@ -66,8 +66,7 @@ import java.util.Arrays;
  * @see java.lang.String
  * @since JDK1.0
  */
-public final class StringBuffer extends AbstractStringBuilder implements
-        java.io.Serializable, CharSequence {
+public final class StringBuffer extends AbstractStringBuilder implements java.io.Serializable, CharSequence {
 
     /**
      * A cache of the last value returned by toString. Cleared whenever the
@@ -91,10 +90,10 @@ public final class StringBuffer extends AbstractStringBuilder implements
      * initial capacity.
      *
      * @param capacity
-     *                 the initial capacity.
+     *        the initial capacity.
      * @exception NegativeArraySizeException
-     *                                       if the {@code capacity} argument is
-     *                                       less than {@code 0}.
+     *            if the {@code capacity} argument is
+     *            less than {@code 0}.
      */
     public StringBuffer(int capacity) {
         super(capacity);
@@ -106,7 +105,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
      * length of the string argument.
      *
      * @param str
-     *            the initial contents of the buffer.
+     *        the initial contents of the buffer.
      */
     public StringBuffer(String str) {
         super(str.length() + 16);
@@ -122,7 +121,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
      * to zero, then an empty buffer of capacity {@code 16} is returned.
      *
      * @param seq
-     *            the sequence to copy.
+     *        the sequence to copy.
      * @since 1.5
      */
     public StringBuffer(CharSequence seq) {
@@ -155,7 +154,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @see #length()
      */
     @Override
@@ -166,7 +165,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @see #length()
      */
     @Override
@@ -210,17 +209,16 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
-    public synchronized void getChars(int srcBegin, int srcEnd, char[] dst,
-            int dstBegin) {
+    public synchronized void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) {
         super.getChars(srcBegin, srcEnd, dst, dstBegin);
     }
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @see #length()
      */
     @Override
@@ -265,7 +263,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
      * does not synchronize on the source ({@code sb}).
      *
      * @param sb
-     *           the {@code StringBuffer} to append.
+     *        the {@code StringBuffer} to append.
      * @return a reference to this object.
      * @since 1.4
      */
@@ -291,21 +289,18 @@ public final class StringBuffer extends AbstractStringBuilder implements
      * The characters of the {@code CharSequence} argument are appended, in
      * order, increasing the length of this sequence by the length of the
      * argument.
-     *
      * <p>
      * The result of this method is exactly the same as if it were an invocation
      * of this.append(s, 0, s.length());
-     *
      * <p>
      * This method synchronizes on {@code this}, the destination object, but
      * does not synchronize on the source ({@code s}).
-     *
      * <p>
      * If {@code s} is {@code null}, then the four characters {@code "null"} are
      * appended.
      *
      * @param s
-     *          the {@code CharSequence} to append.
+     *        the {@code CharSequence} to append.
      * @return a reference to this object.
      * @since 1.5
      */
@@ -318,12 +313,11 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
-    public synchronized StringBuffer append(CharSequence s, int start,
-            int end) {
+    public synchronized StringBuffer append(CharSequence s, int start, int end) {
         toStringCache = null;
         super.append(s, start, end);
         return this;
@@ -338,7 +332,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public synchronized StringBuffer append(char[] str, int offset, int len) {
@@ -401,7 +395,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.2
      */
     @Override
@@ -413,7 +407,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.2
      */
     @Override
@@ -425,7 +419,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.2
      */
     @Override
@@ -437,7 +431,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.2
      */
     @Override
@@ -447,7 +441,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.4
      */
     @Override
@@ -457,7 +451,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.2
      */
     @Override
@@ -467,12 +461,11 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.2
      */
     @Override
-    public synchronized StringBuffer insert(int index, char[] str, int offset,
-            int len) {
+    public synchronized StringBuffer insert(int index, char[] str, int offset, int len) {
         toStringCache = null;
         super.insert(index, str, offset, len);
         return this;
@@ -480,7 +473,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public synchronized StringBuffer insert(int offset, Object obj) {
@@ -491,7 +484,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public synchronized StringBuffer insert(int offset, String str) {
@@ -502,7 +495,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public synchronized StringBuffer insert(int offset, char[] str) {
@@ -513,7 +506,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
@@ -528,12 +521,11 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @since 1.5
      */
     @Override
-    public synchronized StringBuffer insert(int dstOffset, CharSequence s,
-            int start, int end) {
+    public synchronized StringBuffer insert(int dstOffset, CharSequence s, int start, int end) {
         toStringCache = null;
         super.insert(dstOffset, s, start, end);
         return this;
@@ -541,7 +533,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuffer insert(int offset, boolean b) {
@@ -555,7 +547,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public synchronized StringBuffer insert(int offset, char c) {
@@ -566,7 +558,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuffer insert(int offset, int i) {
@@ -580,7 +572,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuffer insert(int offset, long l) {
@@ -594,7 +586,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuffer insert(int offset, float f) {
@@ -608,7 +600,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
 
     /**
      * @throws StringIndexOutOfBoundsException
-     *                                         {@inheritDoc}
+     *         {@inheritDoc}
      */
     @Override
     public StringBuffer insert(int offset, double d) {
@@ -685,17 +677,15 @@ public final class StringBuffer extends AbstractStringBuilder implements
      *              boolean A flag indicating whether the backing array is
      *              shared. The value is ignored upon deserialization.
      */
-    private static final java.io.ObjectStreamField[] serialPersistentFields = {
-            new java.io.ObjectStreamField("value", char[].class),
-            new java.io.ObjectStreamField("count", Integer.TYPE),
+    private static final java.io.ObjectStreamField[] serialPersistentFields = { new java.io.ObjectStreamField(
+            "value", char[].class), new java.io.ObjectStreamField("count", Integer.TYPE),
             new java.io.ObjectStreamField("shared", Boolean.TYPE), };
 
     /**
      * readObject is called to restore the state of the StringBuffer from a
      * stream.
      */
-    private synchronized void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private synchronized void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         java.io.ObjectOutputStream.PutField fields = s.putFields();
         fields.put("value", value);
         fields.put("count", count);
@@ -707,8 +697,7 @@ public final class StringBuffer extends AbstractStringBuilder implements
      * readObject is called to restore the state of the StringBuffer from a
      * stream.
      */
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         java.io.ObjectInputStream.GetField fields = s.readFields();
         value = (char[]) fields.get("value", null);
         count = fields.get("count", 0);

@@ -11,7 +11,6 @@ package java.lang;
  * be found. This exception differs from {@link ClassNotFoundException} in that
  * <tt>ClassNotFoundException</tt> is a checked exception, whereas this
  * exception is unchecked.
- *
  * <p>
  * Note that this exception may be used when undefined type variables are
  * accessed as well as when types (e.g., classes, interfaces or annotation
@@ -33,12 +32,12 @@ public class TypeNotPresentException extends RuntimeException {
      * specified cause.
      *
      * @param typeName
-     *                 the fully qualified name of the unavailable type
+     *        the fully qualified name of the unavailable type
      * @param cause
-     *                 the exception that was thrown when the system attempted
-     *                 to
-     *                 load the named type, or <tt>null</tt> if unavailable or
-     *                 inapplicable
+     *        the exception that was thrown when the system attempted
+     *        to
+     *        load the named type, or <tt>null</tt> if unavailable or
+     *        inapplicable
      */
     public TypeNotPresentException(String typeName, Throwable cause) {
         super("Type " + typeName + " not present", cause);

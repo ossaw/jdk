@@ -29,21 +29,18 @@ import sun.util.locale.provider.LocaleServiceProviderPool;
  * The <code>Collator</code> class performs locale-sensitive <code>String</code>
  * comparison. You use this class to build searching and sorting routines for
  * natural language text.
- *
  * <p>
  * <code>Collator</code> is an abstract base class. Subclasses implement
  * specific collation strategies. One subclass, <code>RuleBasedCollator</code>,
  * is currently provided with the Java Platform and is applicable to a wide set
  * of languages. Other subclasses may be created to handle more specialized
  * needs.
- *
  * <p>
  * Like other locale-sensitive classes, you can use the static factory method,
  * <code>getInstance</code>, to obtain the appropriate <code>Collator</code>
  * object for a given locale. You will only need to look at the subclasses of
  * <code>Collator</code> if you need to understand the details of a particular
  * collation strategy or if you need to modify that strategy.
- *
  * <p>
  * The following example shows how to compare two strings using the
  * <code>Collator</code> for the default locale. <blockquote>
@@ -61,7 +58,6 @@ import sun.util.locale.provider.LocaleServiceProviderPool;
  * </pre>
  * 
  * </blockquote>
- *
  * <p>
  * You can set a <code>Collator</code>'s <em>strength</em> property to determine
  * the level of difference considered significant in comparisons. Four strengths
@@ -103,8 +99,7 @@ import sun.util.locale.provider.LocaleServiceProviderPool;
  * @author Helena Shih, Laura Werner, Richard Gillam
  */
 
-public abstract class Collator implements java.util.Comparator<Object>,
-        Cloneable {
+public abstract class Collator implements java.util.Comparator<Object>, Cloneable {
     /**
      * Collator strength value. When set, only PRIMARY differences are
      * considered significant during comparison. The assignment of strengths to
@@ -209,7 +204,7 @@ public abstract class Collator implements java.util.Comparator<Object>,
      * Gets the Collator for the desired locale.
      * 
      * @param desiredLocale
-     *                      the desired locale.
+     *        the desired locale.
      * @return the Collator for the desired locale.
      * @see java.util.Locale
      * @see java.util.ResourceBundle
@@ -219,21 +214,18 @@ public abstract class Collator implements java.util.Comparator<Object>,
         Collator result = (ref != null) ? ref.get() : null;
         if (result == null) {
             LocaleProviderAdapter adapter;
-            adapter = LocaleProviderAdapter.getAdapter(CollatorProvider.class,
-                    desiredLocale);
+            adapter = LocaleProviderAdapter.getAdapter(CollatorProvider.class, desiredLocale);
             CollatorProvider provider = adapter.getCollatorProvider();
             result = provider.getInstance(desiredLocale);
             if (result == null) {
-                result = LocaleProviderAdapter.forJRE().getCollatorProvider()
-                        .getInstance(desiredLocale);
+                result = LocaleProviderAdapter.forJRE().getCollatorProvider().getInstance(desiredLocale);
             }
             while (true) {
                 if (ref != null) {
                     // Remove the empty SoftReference if any
                     cache.remove(desiredLocale, ref);
                 }
-                ref = cache.putIfAbsent(desiredLocale, new SoftReference<>(
-                        result));
+                ref = cache.putIfAbsent(desiredLocale, new SoftReference<>(result));
                 if (ref == null) {
                     break;
                 }
@@ -260,9 +252,9 @@ public abstract class Collator implements java.util.Comparator<Object>,
      * description for an example using CollationKeys.
      * 
      * @param source
-     *               the source string.
+     *        the source string.
      * @param target
-     *               the target string.
+     *        the target string.
      * @return Returns an integer value. Value is less than zero if source is
      *         less than target, value is zero if source and target are equal,
      *         value is greater than zero if source is greater than target.
@@ -282,7 +274,7 @@ public abstract class Collator implements java.util.Comparator<Object>,
      * @return a negative integer, zero, or a positive integer as the first
      *         argument is less than, equal to, or greater than the second.
      * @exception ClassCastException
-     *                               the arguments cannot be cast to Strings.
+     *            the arguments cannot be cast to Strings.
      * @see java.util.Comparator
      * @since 1.2
      */
@@ -298,7 +290,7 @@ public abstract class Collator implements java.util.Comparator<Object>,
      * the Collator class description for an example using CollationKeys.
      * 
      * @param source
-     *               the string to be transformed into a collation key.
+     *        the string to be transformed into a collation key.
      * @return the CollationKey for the given String based on this Collator's
      *         collation rules. If the source String is null, a null
      *         CollationKey is returned.
@@ -312,9 +304,9 @@ public abstract class Collator implements java.util.Comparator<Object>,
      * this Collator's collation rules.
      * 
      * @param source
-     *               the source string to be compared with.
+     *        the source string to be compared with.
      * @param target
-     *               the target string to be compared with.
+     *        the target string to be compared with.
      * @return true if the strings are equal according to the collation rules.
      *         false, otherwise.
      * @see java.text.Collator#compare
@@ -345,20 +337,20 @@ public abstract class Collator implements java.util.Comparator<Object>,
      * See the Collator class description for an example of use.
      * 
      * @param newStrength
-     *                    the new strength value.
+     *        the new strength value.
      * @see java.text.Collator#getStrength
      * @see java.text.Collator#PRIMARY
      * @see java.text.Collator#SECONDARY
      * @see java.text.Collator#TERTIARY
      * @see java.text.Collator#IDENTICAL
      * @exception IllegalArgumentException
-     *                                     If the new strength value is not one
-     *                                     of PRIMARY,
-     *                                     SECONDARY, TERTIARY or IDENTICAL.
+     *            If the new strength value is not one
+     *            of PRIMARY,
+     *            SECONDARY, TERTIARY or IDENTICAL.
      */
     public synchronized void setStrength(int newStrength) {
-        if ((newStrength != PRIMARY) && (newStrength != SECONDARY)
-                && (newStrength != TERTIARY) && (newStrength != IDENTICAL)) {
+        if ((newStrength != PRIMARY) && (newStrength != SECONDARY) && (newStrength != TERTIARY)
+                && (newStrength != IDENTICAL)) {
             throw new IllegalArgumentException("Incorrect comparison level.");
         }
         strength = newStrength;
@@ -394,18 +386,17 @@ public abstract class Collator implements java.util.Comparator<Object>,
      * description of decomposition mode.
      * 
      * @param decompositionMode
-     *                          the new decomposition mode.
+     *        the new decomposition mode.
      * @see java.text.Collator#getDecomposition
      * @see java.text.Collator#NO_DECOMPOSITION
      * @see java.text.Collator#CANONICAL_DECOMPOSITION
      * @see java.text.Collator#FULL_DECOMPOSITION
      * @exception IllegalArgumentException
-     *                                     If the given value is not a valid
-     *                                     decomposition mode.
+     *            If the given value is not a valid
+     *            decomposition mode.
      */
     public synchronized void setDecomposition(int decompositionMode) {
-        if ((decompositionMode != NO_DECOMPOSITION)
-                && (decompositionMode != CANONICAL_DECOMPOSITION)
+        if ((decompositionMode != NO_DECOMPOSITION) && (decompositionMode != CANONICAL_DECOMPOSITION)
                 && (decompositionMode != FULL_DECOMPOSITION)) {
             throw new IllegalArgumentException("Wrong decomposition mode.");
         }
@@ -424,8 +415,7 @@ public abstract class Collator implements java.util.Comparator<Object>,
      *         instances are available.
      */
     public static synchronized Locale[] getAvailableLocales() {
-        LocaleServiceProviderPool pool = LocaleServiceProviderPool.getPool(
-                CollatorProvider.class);
+        LocaleServiceProviderPool pool = LocaleServiceProviderPool.getPool(CollatorProvider.class);
         return pool.getAvailableLocales();
     }
 
@@ -445,7 +435,7 @@ public abstract class Collator implements java.util.Comparator<Object>,
      * Compares the equality of two Collators.
      * 
      * @param that
-     *             the Collator to be compared with this.
+     *        the Collator to be compared with this.
      * @return true if this Collator is the same as that Collator; false
      *         otherwise.
      */

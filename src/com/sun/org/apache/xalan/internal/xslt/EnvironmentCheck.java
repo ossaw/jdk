@@ -41,20 +41,17 @@ import org.w3c.dom.Node;
  * Utility class to report simple information about the environment. Simplistic
  * reporting about certain classes found in your JVM may help answer some FAQs
  * for simple problems.
- *
  * <p>
  * Usage-command line: <code>
  * java com.sun.org.apache.xalan.internal.xslt.EnvironmentCheck [-out outFile]
  * </code>
  * </p>
- *
  * <p>
  * Usage-from program: <code>
  * boolean environmentOK =
  * (new EnvironmentCheck()).checkEnvironment(yourPrintWriter);
  * </code>
  * </p>
- *
  * <p>
  * Usage-from stylesheet: <code><pre>
  *    &lt;?xml version="1.0"?&gt;
@@ -68,7 +65,6 @@ import org.w3c.dom.Node;
  *    &lt;/xsl:stylesheet&gt;
  * </pre></code>
  * </p>
- *
  * <p>
  * Xalan users reporting problems are encouraged to use this class to see if
  * there are potential problems with their actual Java environment <b>before</b>
@@ -76,24 +72,20 @@ import org.w3c.dom.Node;
  * line as well as temporarily calling checkEnvironment() directly from your
  * code, since the classpath may differ (especially for servlets, etc).
  * </p>
- *
  * <p>
  * Also see http://xml.apache.org/xalan-j/faq.html
  * </p>
- *
  * <p>
  * Note: This class is pretty simplistic: results are not necessarily definitive
  * nor will it find all problems related to environment setup. Also, you should
  * avoid calling this in deployed production code, both because it is quite slow
  * and because it forces classes to get loaded.
  * </p>
- *
  * <p>
  * Note: This class explicitly has very limited compile-time dependencies to
  * enable easy compilation and usage even when Xalan, DOM/SAX/JAXP, etc. are not
  * present.
  * </p>
- *
  * <p>
  * Note: for an improved version of this utility, please see the xml-commons'
  * project Which utility which does the same kind of thing but in a much simpler
@@ -113,7 +105,7 @@ public class EnvironmentCheck {
      * </p>
      * 
      * @param args
-     *             command line args
+     *        command line args
      */
     public static void main(String[] args) {
         // Default to System.out, autoflushing
@@ -126,11 +118,9 @@ public class EnvironmentCheck {
 
                 if (i < args.length) {
                     try {
-                        sendOutputTo = new PrintWriter(new FileWriter(args[i],
-                                true));
+                        sendOutputTo = new PrintWriter(new FileWriter(args[i], true));
                     } catch (Exception e) {
-                        System.err.println("# WARNING: -out " + args[i]
-                                + " threw " + e.toString());
+                        System.err.println("# WARNING: -out " + args[i] + " threw " + e.toString());
                     }
                 } else {
                     System.err.println(
@@ -146,7 +136,6 @@ public class EnvironmentCheck {
     /**
      * Programmatic entrypoint: Report on basic Java environment and CLASSPATH
      * settings that affect Xalan.
-     *
      * <p>
      * Note that this class is not advanced enough to tell you everything about
      * the environment that affects Xalan, and sometimes reports errors that
@@ -155,7 +144,6 @@ public class EnvironmentCheck {
      * logs them out; it will report a problem if it finds a setting or .jar
      * file that is <i>likely</i> to cause problems.
      * </p>
-     *
      * <p>
      * Advanced users can peruse the code herein to help them investigate
      * potential environment problems found; other users may simply send the
@@ -164,9 +152,9 @@ public class EnvironmentCheck {
      * </p>
      *
      * @param pw
-     *           PrintWriter to send output to; can be sent to a file that will
-     *           look similar to a Properties file; defaults to System.out if
-     *           null
+     *        PrintWriter to send output to; can be sent to a file that will
+     *        look similar to a Properties file; defaults to System.out if
+     *        null
      * @return true if your environment appears to have no major problems; false
      *         if potential environment problems found
      * @see #getEnvironmentHash()
@@ -203,7 +191,6 @@ public class EnvironmentCheck {
 
     /**
      * Fill a hash with basic environment settings that affect Xalan.
-     *
      * <p>
      * Worker method called from various places.
      * </p>
@@ -247,7 +234,6 @@ public class EnvironmentCheck {
 
     /**
      * Dump a basic Xalan environment report to outWriter.
-     *
      * <p>
      * This dumps a simple header and then each of the entries in the Map to our
      * PrintWriter; it does special processing for entries that are .jars found
@@ -255,8 +241,8 @@ public class EnvironmentCheck {
      * </p>
      *
      * @param h
-     *          Map of items to report on; presumably filled in by our various
-     *          check*() methods
+     *        Map of items to report on; presumably filled in by our various
+     *        check*() methods
      * @return true if your environment appears to have no major problems; false
      *         if potential environment problems found
      * @see #appendEnvironmentReport(Node, Document, Map) for an equivalent that
@@ -325,26 +311,23 @@ public class EnvironmentCheck {
     public static final String CLASS_NOTPRESENT = "not-present";
 
     /** Listing of common .jar files that include Xalan-related classes. */
-    public String[] jarNames = { "xalan.jar", "xalansamples.jar",
-            "xalanj1compat.jar", "xalanservlet.jar", "serializer.jar", // Serializer (shared between
+    public String[] jarNames = { "xalan.jar", "xalansamples.jar", "xalanj1compat.jar", "xalanservlet.jar",
+            "serializer.jar", // Serializer (shared between
             // Xalan & Xerces)
             "xerces.jar", // Xerces-J 1.x
             "xercesImpl.jar", // Xerces-J 2.x
-            "testxsl.jar", "crimson.jar", "lotusxsl.jar", "jaxp.jar",
-            "parser.jar", "dom.jar", "sax.jar", "xml.jar", "xml-apis.jar",
-            "xsltc.jar" };
+            "testxsl.jar", "crimson.jar", "lotusxsl.jar", "jaxp.jar", "parser.jar", "dom.jar", "sax.jar",
+            "xml.jar", "xml-apis.jar", "xsltc.jar" };
 
     /**
      * Print out report of .jars found in a classpath.
-     *
      * Takes the information encoded from a checkPathForJars() call and dumps it
      * out to our PrintWriter.
      *
      * @param v
-     *             List of Maps of .jar file info
+     *        List of Maps of .jar file info
      * @param desc
-     *             description to print out in header
-     *
+     *        description to print out in header
      * @return false if OK, true if any .jars were reported as having errors
      * @see #checkPathForJars(String, String[])
      */
@@ -381,23 +364,21 @@ public class EnvironmentCheck {
     /**
      * Stylesheet extension entrypoint: Dump a basic Xalan environment report
      * from getEnvironmentHash() to a Node.
-     *
      * <p>
      * Copy of writeEnvironmentReport that creates a Node suitable for other
      * processing instead of a properties-like text output.
      * </p>
      * 
      * @param container
-     *                  Node to append our report to
+     *        Node to append our report to
      * @param factory
-     *                  Document providing createElement, etc. services
+     *        Document providing createElement, etc. services
      * @param h
-     *                  Hash presumably from {@link #getEnvironmentHash()}
+     *        Hash presumably from {@link #getEnvironmentHash()}
      * @see #writeEnvironmentReport(Map) for an equivalent that writes to a
      *      PrintWriter instead
      */
-    public void appendEnvironmentReport(Node container, Document factory,
-            Map<String, Object> h) {
+    public void appendEnvironmentReport(Node container, Document factory, Map<String, Object> h) {
         if ((null == container) || (null == factory)) {
             return;
         }
@@ -441,16 +422,15 @@ public class EnvironmentCheck {
                         }
                         Element node = factory.createElement("item");
                         node.setAttribute("key", keyStr);
-                        node.appendChild(factory.createTextNode((String) h.get(
-                                keyStr)));
+                        node.appendChild(factory.createTextNode((String) h.get(keyStr)));
                         hashNode.appendChild(node);
                     }
                 } catch (Exception e) {
                     errors = true;
                     Element node = factory.createElement("item");
                     node.setAttribute("key", keyStr);
-                    node.appendChild(factory.createTextNode(ERROR + " Reading "
-                            + keyStr + " threw: " + e.toString()));
+                    node.appendChild(factory.createTextNode(ERROR + " Reading " + keyStr + " threw: " + e
+                            .toString()));
                     hashNode.appendChild(node);
                 }
             } // end of for...
@@ -459,32 +439,28 @@ public class EnvironmentCheck {
             statusNode.setAttribute("result", (errors ? "ERROR" : "OK"));
             envCheckNode.appendChild(statusNode);
         } catch (Exception e2) {
-            System.err.println("appendEnvironmentReport threw: " + e2
-                    .toString());
+            System.err.println("appendEnvironmentReport threw: " + e2.toString());
             e2.printStackTrace();
         }
     }
 
     /**
      * Print out report of .jars found in a classpath.
-     *
      * Takes the information encoded from a checkPathForJars() call and dumps it
      * out to our PrintWriter.
      *
      * @param container
-     *                  Node to append our report to
+     *        Node to append our report to
      * @param factory
-     *                  Document providing createElement, etc. services
+     *        Document providing createElement, etc. services
      * @param v
-     *                  Map of Maps of .jar file info
+     *        Map of Maps of .jar file info
      * @param desc
-     *                  description to print out in header
-     *
+     *        description to print out in header
      * @return false if OK, true if any .jars were reported as having errors
      * @see #checkPathForJars(String, String[])
      */
-    protected boolean appendFoundJars(Node container, Document factory,
-            List<Map> v, String desc) {
+    protected boolean appendFoundJars(Node container, Document factory, List<Map> v, String desc) {
 
         if ((null == v) || (v.size() < 1))
             return false;
@@ -499,17 +475,15 @@ public class EnvironmentCheck {
                         errors = true;
                     }
                     Element node = factory.createElement("foundJar");
-                    node.setAttribute("name", keyStr.substring(0, keyStr
-                            .indexOf("-")));
-                    node.setAttribute("desc", keyStr.substring(keyStr.indexOf(
-                            "-") + 1));
+                    node.setAttribute("name", keyStr.substring(0, keyStr.indexOf("-")));
+                    node.setAttribute("desc", keyStr.substring(keyStr.indexOf("-") + 1));
                     node.appendChild(factory.createTextNode(entry.getValue()));
                     container.appendChild(node);
                 } catch (Exception e) {
                     errors = true;
                     Element node = factory.createElement("foundJar");
-                    node.appendChild(factory.createTextNode(ERROR + " Reading "
-                            + keyStr + " threw: " + e.toString()));
+                    node.appendChild(factory.createTextNode(ERROR + " Reading " + keyStr + " threw: " + e
+                            .toString()));
                     container.appendChild(node);
                 }
             }
@@ -519,15 +493,13 @@ public class EnvironmentCheck {
 
     /**
      * Fillin hash with info about SystemProperties.
-     *
      * Logs java.class.path and other likely paths; then attempts to search
      * those paths for .jar files with Xalan-related classes.
-     *
      * //@todo NOTE: We don't actually search java.ext.dirs for // *.jar files
      * therein! This should be updated
      *
      * @param h
-     *          Map to put information in
+     *        Map to put information in
      * @see #jarNames
      * @see #checkPathForJars(String, String[])
      */
@@ -538,15 +510,13 @@ public class EnvironmentCheck {
 
         // Grab java version for later use
         try {
-            String javaVersion = SecuritySupport.getSystemProperty(
-                    "java.version");
+            String javaVersion = SecuritySupport.getSystemProperty("java.version");
 
             h.put("java.version", javaVersion);
         } catch (SecurityException se) {
 
             // For applet context, etc.
-            h.put("java.version",
-                    "WARNING: SecurityException thrown accessing system version properties");
+            h.put("java.version", "WARNING: SecurityException thrown accessing system version properties");
         }
 
         // Printout jar files on classpath(s) that may affect operation
@@ -565,8 +535,7 @@ public class EnvironmentCheck {
             }
 
             // Also check for JDK 1.2+ type classpaths
-            String othercp = SecuritySupport.getSystemProperty(
-                    "sun.boot.class.path");
+            String othercp = SecuritySupport.getSystemProperty("sun.boot.class.path");
 
             if (null != othercp) {
                 h.put("sun.boot.class.path", othercp);
@@ -605,16 +574,14 @@ public class EnvironmentCheck {
 
     /**
      * Cheap-o listing of specified .jars found in the classpath.
-     *
      * cp should be separated by the usual File.pathSeparator. We then do a
      * simplistic search of the path for any requested .jar filenames, and
      * return a listing of their names and where (apparently) they came from.
      *
      * @param cp
-     *             classpath to search
+     *        classpath to search
      * @param jars
-     *             array of .jar base filenames to look for
-     *
+     *        array of .jar base filenames to look for
      * @return List of Maps filled with info about found .jars
      * @see #jarNames
      * @see #logFoundJars(Map, String)
@@ -623,8 +590,7 @@ public class EnvironmentCheck {
      */
     protected List<Map> checkPathForJars(String cp, String[] jars) {
 
-        if ((null == cp) || (null == jars) || (0 == cp.length())
-                || (0 == jars.length))
+        if ((null == cp) || (null == jars) || (0 == cp.length()) || (0 == jars.length))
             return null;
 
         List<Map> v = new ArrayList<>();
@@ -658,9 +624,7 @@ public class EnvironmentCheck {
                             // report the apparent version of the file we've
                             // found
                             if (!("xalan.jar".equalsIgnoreCase(jars[i]))) {
-                                h.put(jars[i] + "-apparent.version",
-                                        getApparentVersion(jars[i], f
-                                                .length()));
+                                h.put(jars[i] + "-apparent.version", getApparentVersion(jars[i], f.length()));
                             }
                             v.add(h);
                         } catch (Exception e) {
@@ -670,8 +634,8 @@ public class EnvironmentCheck {
                     } else {
                         Map<String, String> h = new HashMap<>(2);
                         // Note "-" char is looked for in appendFoundJars
-                        h.put(jars[i] + "-path", WARNING + " Classpath entry: "
-                                + filename + " does not exist");
+                        h.put(jars[i] + "-path", WARNING + " Classpath entry: " + filename
+                                + " does not exist");
                         h.put(jars[i] + "-apparent.version", CLASS_NOTPRESENT);
                         v.add(h);
                     }
@@ -684,20 +648,17 @@ public class EnvironmentCheck {
 
     /**
      * Cheap-o method to determine the product version of a .jar.
-     *
      * Currently does a lookup into a local table of some recent shipped Xalan
      * builds to determine where the .jar probably came from. Note that if you
      * recompile Xalan or Xerces yourself this will likely report a potential
      * error, since we can't certify builds other than the ones we ship. Only
      * reports against selected posted Xalan-J builds.
-     *
      * //@todo actually look up version info in manifests
      *
      * @param jarName
-     *                base filename of the .jarfile
+     *        base filename of the .jarfile
      * @param jarSize
-     *                size of the .jarfile
-     *
+     *        size of the .jarfile
      * @return String describing where the .jar file probably came from
      */
     protected String getApparentVersion(String jarName, long jarSize) {
@@ -709,8 +670,7 @@ public class EnvironmentCheck {
         if ((null != foundSize) && (foundSize.startsWith(jarName))) {
             return foundSize;
         } else {
-            if ("xerces.jar".equalsIgnoreCase(jarName) || "xercesImpl.jar"
-                    .equalsIgnoreCase(jarName))
+            if ("xerces.jar".equalsIgnoreCase(jarName) || "xercesImpl.jar".equalsIgnoreCase(jarName))
             // || "xalan.jar".equalsIgnoreCase(jarName))
             {
 
@@ -730,13 +690,12 @@ public class EnvironmentCheck {
 
     /**
      * Report version information about JAXP interfaces.
-     *
      * Currently distinguishes between JAXP 1.0.1 and JAXP 1.1, and not found;
      * only tests the interfaces, and does not check for reference
      * implementation versions.
      *
      * @param h
-     *          Map to put information in
+     *        Map to put information in
      */
     protected void checkJAXPVersion(Map<String, Object> h) {
 
@@ -760,11 +719,10 @@ public class EnvironmentCheck {
 
     /**
      * Report product version information from Xalan-J.
-     *
      * Looks for version info in xalan.jar from Xalan-J products.
      *
      * @param h
-     *          Map to put information in
+     *        Map to put information in
      */
     protected void checkProcessorVersion(Map<String, Object> h) {
 
@@ -774,8 +732,7 @@ public class EnvironmentCheck {
         try {
             final String XALAN1_VERSION_CLASS = "com.sun.org.apache.xalan.internal.xslt.XSLProcessorVersion";
 
-            Class clazz = ObjectFactory.findProviderClass(XALAN1_VERSION_CLASS,
-                    true);
+            Class clazz = ObjectFactory.findProviderClass(XALAN1_VERSION_CLASS, true);
 
             // Found Xalan-J 1.x, grab it's version fields
             StringBuffer buf = new StringBuffer();
@@ -803,8 +760,7 @@ public class EnvironmentCheck {
             // is being replaced by class below
             final String XALAN2_VERSION_CLASS = "com.sun.org.apache.xalan.internal.processor.XSLProcessorVersion";
 
-            Class clazz = ObjectFactory.findProviderClass(XALAN2_VERSION_CLASS,
-                    true);
+            Class clazz = ObjectFactory.findProviderClass(XALAN2_VERSION_CLASS, true);
 
             // Found Xalan-J 2.x, grab it's version fields
             StringBuffer buf = new StringBuffer();
@@ -821,8 +777,7 @@ public class EnvironmentCheck {
             final String XALAN2_2_VERSION_METHOD = "getVersion";
             final Class noArgs[] = new Class[0];
 
-            Class clazz = ObjectFactory.findProviderClass(
-                    XALAN2_2_VERSION_CLASS, true);
+            Class clazz = ObjectFactory.findProviderClass(XALAN2_2_VERSION_CLASS, true);
 
             Method method = clazz.getMethod(XALAN2_2_VERSION_METHOD, noArgs);
             Object returnValue = method.invoke(null, new Object[0]);
@@ -835,13 +790,11 @@ public class EnvironmentCheck {
 
     /**
      * Report product version information from common parsers.
-     *
      * Looks for version info in xerces.jar/xercesImpl.jar/crimson.jar.
-     *
      * //@todo actually look up version info in crimson manifest
      *
      * @param h
-     *          Map to put information in
+     *        Map to put information in
      */
     protected void checkParserVersion(Map<String, Object> h) {
 
@@ -851,8 +804,7 @@ public class EnvironmentCheck {
         try {
             final String XERCES1_VERSION_CLASS = "com.sun.org.apache.xerces.internal.framework.Version";
 
-            Class clazz = ObjectFactory.findProviderClass(XERCES1_VERSION_CLASS,
-                    true);
+            Class clazz = ObjectFactory.findProviderClass(XERCES1_VERSION_CLASS, true);
 
             // Found Xerces-J 1.x, grab it's version fields
             Field f = clazz.getField("fVersion");
@@ -867,8 +819,7 @@ public class EnvironmentCheck {
         try {
             final String XERCES2_VERSION_CLASS = "com.sun.org.apache.xerces.internal.impl.Version";
 
-            Class clazz = ObjectFactory.findProviderClass(XERCES2_VERSION_CLASS,
-                    true);
+            Class clazz = ObjectFactory.findProviderClass(XERCES2_VERSION_CLASS, true);
 
             // Found Xerces-J 2.x, grab it's version fields
             Field f = clazz.getField("fVersion");
@@ -895,7 +846,7 @@ public class EnvironmentCheck {
      * Report product version information from Ant.
      *
      * @param h
-     *          Map to put information in
+     *        Map to put information in
      */
     protected void checkAntVersion(Map<String, Object> h) {
 
@@ -907,8 +858,7 @@ public class EnvironmentCheck {
             final String ANT_VERSION_METHOD = "getAntVersion"; // noArgs
             final Class noArgs[] = new Class[0];
 
-            Class clazz = ObjectFactory.findProviderClass(ANT_VERSION_CLASS,
-                    true);
+            Class clazz = ObjectFactory.findProviderClass(ANT_VERSION_CLASS, true);
 
             Method method = clazz.getMethod(ANT_VERSION_METHOD, noArgs);
             Object returnValue = method.invoke(null, new Object[0]);
@@ -923,7 +873,7 @@ public class EnvironmentCheck {
      * Report version info from DOM interfaces.
      *
      * @param h
-     *          Map to put information in
+     *        Map to put information in
      */
     protected boolean checkDOML3(Map<String, Object> h) {
 
@@ -936,8 +886,7 @@ public class EnvironmentCheck {
         try {
             Class clazz = ObjectFactory.findProviderClass(DOM_CLASS, true);
 
-            Method method = clazz.getMethod(DOM_LEVEL3_METHOD,
-                    (Class<?>[]) null);
+            Method method = clazz.getMethod(DOM_LEVEL3_METHOD, (Class<?>[]) null);
 
             // If we succeeded, we have loaded interfaces from a
             // level 3 DOM somewhere
@@ -950,12 +899,11 @@ public class EnvironmentCheck {
 
     /**
      * Report version info from DOM interfaces.
-     *
      * Currently distinguishes between pre-DOM level 2, the DOM level 2 working
      * draft, the DOM level 2 final draft, and not found.
      *
      * @param h
-     *          Map to put information in
+     *        Map to put information in
      */
     protected void checkDOMVersion(Map<String, Object> h) {
 
@@ -969,12 +917,10 @@ public class EnvironmentCheck {
         final String DOM_LEVEL2WD_METHOD = "supported"; // String, String
         final String DOM_LEVEL2FD_CLASS = "org.w3c.dom.Node";
         final String DOM_LEVEL2FD_METHOD = "isSupported"; // String, String
-        final Class twoStringArgs[] = { java.lang.String.class,
-                java.lang.String.class };
+        final Class twoStringArgs[] = { java.lang.String.class, java.lang.String.class };
 
         try {
-            Class clazz = ObjectFactory.findProviderClass(DOM_LEVEL2_CLASS,
-                    true);
+            Class clazz = ObjectFactory.findProviderClass(DOM_LEVEL2_CLASS, true);
 
             Method method = clazz.getMethod(DOM_LEVEL2_METHOD, twoStringArgs);
 
@@ -985,8 +931,7 @@ public class EnvironmentCheck {
             try {
                 // Check for the working draft version, which is
                 // commonly found, but won't work anymore
-                clazz = ObjectFactory.findProviderClass(DOM_LEVEL2WD_CLASS,
-                        true);
+                clazz = ObjectFactory.findProviderClass(DOM_LEVEL2WD_CLASS, true);
 
                 method = clazz.getMethod(DOM_LEVEL2WD_METHOD, twoStringArgs);
 
@@ -995,11 +940,9 @@ public class EnvironmentCheck {
             } catch (Exception e2) {
                 try {
                     // Check for the final draft version as well
-                    clazz = ObjectFactory.findProviderClass(DOM_LEVEL2FD_CLASS,
-                            true);
+                    clazz = ObjectFactory.findProviderClass(DOM_LEVEL2FD_CLASS, true);
 
-                    method = clazz.getMethod(DOM_LEVEL2FD_METHOD,
-                            twoStringArgs);
+                    method = clazz.getMethod(DOM_LEVEL2FD_METHOD, twoStringArgs);
 
                     h.put(VERSION + "DOM.draftlevel", "2.0fd");
                 } catch (Exception e3) {
@@ -1008,9 +951,7 @@ public class EnvironmentCheck {
                 }
             }
         } catch (Exception e) {
-            h.put(ERROR + VERSION + "DOM",
-                    "ERROR attempting to load DOM level 2 class: " + e
-                            .toString());
+            h.put(ERROR + VERSION + "DOM", "ERROR attempting to load DOM level 2 class: " + e.toString());
             h.put(ERROR, ERROR_FOUND);
         }
 
@@ -1022,11 +963,10 @@ public class EnvironmentCheck {
 
     /**
      * Report version info from SAX interfaces.
-     *
      * Currently distinguishes between SAX 2, SAX 2.0beta2, SAX1, and not found.
      *
      * @param h
-     *          Map to put information in
+     *        Map to put information in
      */
     protected void checkSAXVersion(Map<String, Object> h) {
 
@@ -1046,28 +986,22 @@ public class EnvironmentCheck {
         try {
             // This method was only added in the final SAX 2.0 release;
             // see changes.html "Changes from SAX 2.0beta2 to SAX 2.0prerelease"
-            Class clazz = ObjectFactory.findProviderClass(
-                    SAX_VERSION2BETA_CLASSNF, true);
+            Class clazz = ObjectFactory.findProviderClass(SAX_VERSION2BETA_CLASSNF, true);
 
-            Method method = clazz.getMethod(SAX_VERSION2BETA_METHODNF,
-                    attributesArg);
+            Method method = clazz.getMethod(SAX_VERSION2BETA_METHODNF, attributesArg);
 
             // If we succeeded, we have loaded interfaces from a
             // real, final SAX version 2.0 somewhere
             h.put(VERSION + "SAX", "2.0");
         } catch (Exception e) {
             // If we didn't find the SAX 2.0 class, look for a 2.0beta2
-            h.put(ERROR + VERSION + "SAX",
-                    "ERROR attempting to load SAX version 2 class: " + e
-                            .toString());
+            h.put(ERROR + VERSION + "SAX", "ERROR attempting to load SAX version 2 class: " + e.toString());
             h.put(ERROR, ERROR_FOUND);
 
             try {
-                Class clazz = ObjectFactory.findProviderClass(
-                        SAX_VERSION2_CLASS, true);
+                Class clazz = ObjectFactory.findProviderClass(SAX_VERSION2_CLASS, true);
 
-                Method method = clazz.getMethod(SAX_VERSION2_METHOD,
-                        oneStringArg);
+                Method method = clazz.getMethod(SAX_VERSION2_METHOD, oneStringArg);
 
                 // If we succeeded, we have loaded interfaces from a
                 // SAX version 2.0beta2 or earlier; these might work but
@@ -1075,17 +1009,14 @@ public class EnvironmentCheck {
                 h.put(VERSION + "SAX-backlevel", "2.0beta2-or-earlier");
             } catch (Exception e2) {
                 // If we didn't find the SAX 2.0beta2 class, look for a 1.0 one
-                h.put(ERROR + VERSION + "SAX",
-                        "ERROR attempting to load SAX version 2 class: " + e
-                                .toString());
+                h.put(ERROR + VERSION + "SAX", "ERROR attempting to load SAX version 2 class: " + e
+                        .toString());
                 h.put(ERROR, ERROR_FOUND);
 
                 try {
-                    Class clazz = ObjectFactory.findProviderClass(
-                            SAX_VERSION1_CLASS, true);
+                    Class clazz = ObjectFactory.findProviderClass(SAX_VERSION1_CLASS, true);
 
-                    Method method = clazz.getMethod(SAX_VERSION1_METHOD,
-                            oneStringArg);
+                    Method method = clazz.getMethod(SAX_VERSION1_METHOD, oneStringArg);
 
                     // If we succeeded, we have loaded interfaces from a
                     // SAX version 1.0 somewhere; which won't work very
@@ -1094,9 +1025,8 @@ public class EnvironmentCheck {
                 } catch (Exception e3) {
                     // If we didn't find the SAX 2.0 class, look for a 1.0 one
                     // Note that either 1.0 or no SAX are both errors
-                    h.put(ERROR + VERSION + "SAX-backlevel",
-                            "ERROR attempting to load SAX version 1 class: "
-                                    + e3.toString());
+                    h.put(ERROR + VERSION + "SAX-backlevel", "ERROR attempting to load SAX version 1 class: "
+                            + e3.toString());
 
                 }
             }
@@ -1148,19 +1078,16 @@ public class EnvironmentCheck {
         jarVersions.put(new Long(1348361), "xsltc.jar from xalan-j_2_5_D1");
         // Stop recording xsltc.jar sizes as of Xalan Java 2.5.0
 
-        jarVersions.put(new Long(1268634),
-                "xsltc.jar-bundled from xalan-j_2_3_0");
+        jarVersions.put(new Long(1268634), "xsltc.jar-bundled from xalan-j_2_3_0");
 
-        jarVersions.put(new Long(100196),
-                "xml-apis.jar from xalan-j_2_2_0 or xalan-j_2_3_D1");
+        jarVersions.put(new Long(100196), "xml-apis.jar from xalan-j_2_2_0 or xalan-j_2_3_D1");
         jarVersions.put(new Long(108484),
                 "xml-apis.jar from xalan-j_2_3_0, or xalan-j_2_3_1 from xml-commons-1.0.b2");
         jarVersions.put(new Long(109049),
                 "xml-apis.jar from xalan-j_2_4_0 from xml-commons RIVERCOURT1 branch");
         jarVersions.put(new Long(113749),
                 "xml-apis.jar from xalan-j_2_4_1 from factoryfinder-build of xml-commons RIVERCOURT1");
-        jarVersions.put(new Long(124704),
-                "xml-apis.jar from tck-jaxp-1_2_0 branch of xml-commons");
+        jarVersions.put(new Long(124704), "xml-apis.jar from tck-jaxp-1_2_0 branch of xml-commons");
         jarVersions.put(new Long(124724),
                 "xml-apis.jar from tck-jaxp-1_2_0 branch of xml-commons, tag: xml-commons-external_1_2_01");
         jarVersions.put(new Long(194205),
@@ -1168,57 +1095,37 @@ public class EnvironmentCheck {
 
         // If the below were more common I would update it to report
         // errors better; but this is so old hardly anyone has it
-        jarVersions.put(new Long(424490),
-                "xalan.jar from Xerces Tools releases - ERROR:DO NOT USE!");
+        jarVersions.put(new Long(424490), "xalan.jar from Xerces Tools releases - ERROR:DO NOT USE!");
 
-        jarVersions.put(new Long(1591855),
-                "xerces.jar from xalan-j_1_1 from xerces-1...");
-        jarVersions.put(new Long(1498679),
-                "xerces.jar from xalan-j_1_2 from xerces-1_2_0.bin");
-        jarVersions.put(new Long(1484896),
-                "xerces.jar from xalan-j_1_2_1 from xerces-1_2_1.bin");
-        jarVersions.put(new Long(804460),
-                "xerces.jar from xalan-j_1_2_2 from xerces-1_2_2.bin");
-        jarVersions.put(new Long(1499244),
-                "xerces.jar from xalan-j_2_0_0 from xerces-1_2_3.bin");
-        jarVersions.put(new Long(1605266),
-                "xerces.jar from xalan-j_2_0_1 from xerces-1_3_0.bin");
-        jarVersions.put(new Long(904030),
-                "xerces.jar from xalan-j_2_1_0 from xerces-1_4.bin");
+        jarVersions.put(new Long(1591855), "xerces.jar from xalan-j_1_1 from xerces-1...");
+        jarVersions.put(new Long(1498679), "xerces.jar from xalan-j_1_2 from xerces-1_2_0.bin");
+        jarVersions.put(new Long(1484896), "xerces.jar from xalan-j_1_2_1 from xerces-1_2_1.bin");
+        jarVersions.put(new Long(804460), "xerces.jar from xalan-j_1_2_2 from xerces-1_2_2.bin");
+        jarVersions.put(new Long(1499244), "xerces.jar from xalan-j_2_0_0 from xerces-1_2_3.bin");
+        jarVersions.put(new Long(1605266), "xerces.jar from xalan-j_2_0_1 from xerces-1_3_0.bin");
+        jarVersions.put(new Long(904030), "xerces.jar from xalan-j_2_1_0 from xerces-1_4.bin");
         jarVersions.put(new Long(904030), "xerces.jar from xerces-1_4_0.bin");
         jarVersions.put(new Long(1802885), "xerces.jar from xerces-1_4_2.bin");
-        jarVersions.put(new Long(1734594),
-                "xerces.jar from Xerces-J-bin.2.0.0.beta3");
-        jarVersions.put(new Long(1808883),
-                "xerces.jar from xalan-j_2_2_D10,D11,D12 or xerces-1_4_3.bin");
+        jarVersions.put(new Long(1734594), "xerces.jar from Xerces-J-bin.2.0.0.beta3");
+        jarVersions.put(new Long(1808883), "xerces.jar from xalan-j_2_2_D10,D11,D12 or xerces-1_4_3.bin");
         jarVersions.put(new Long(1812019), "xerces.jar from xalan-j_2_2_0");
-        jarVersions.put(new Long(1720292),
-                "xercesImpl.jar from xalan-j_2_3_D1");
+        jarVersions.put(new Long(1720292), "xercesImpl.jar from xalan-j_2_3_D1");
         jarVersions.put(new Long(1730053),
                 "xercesImpl.jar from xalan-j_2_3_0 or xalan-j_2_3_1 from xerces-2_0_0");
-        jarVersions.put(new Long(1728861),
-                "xercesImpl.jar from xalan-j_2_4_D1 from xerces-2_0_1");
-        jarVersions.put(new Long(972027),
-                "xercesImpl.jar from xalan-j_2_4_0 from xerces-2_1");
-        jarVersions.put(new Long(831587),
-                "xercesImpl.jar from xalan-j_2_4_1 from xerces-2_2");
-        jarVersions.put(new Long(891817),
-                "xercesImpl.jar from xalan-j_2_5_D1 from xerces-2_3");
+        jarVersions.put(new Long(1728861), "xercesImpl.jar from xalan-j_2_4_D1 from xerces-2_0_1");
+        jarVersions.put(new Long(972027), "xercesImpl.jar from xalan-j_2_4_0 from xerces-2_1");
+        jarVersions.put(new Long(831587), "xercesImpl.jar from xalan-j_2_4_1 from xerces-2_2");
+        jarVersions.put(new Long(891817), "xercesImpl.jar from xalan-j_2_5_D1 from xerces-2_3");
         jarVersions.put(new Long(895924), "xercesImpl.jar from xerces-2_4");
-        jarVersions.put(new Long(1010806),
-                "xercesImpl.jar from Xerces-J-bin.2.6.2");
-        jarVersions.put(new Long(1203860),
-                "xercesImpl.jar from Xerces-J-bin.2.7.1");
+        jarVersions.put(new Long(1010806), "xercesImpl.jar from Xerces-J-bin.2.6.2");
+        jarVersions.put(new Long(1203860), "xercesImpl.jar from Xerces-J-bin.2.7.1");
 
-        jarVersions.put(new Long(37485),
-                "xalanj1compat.jar from xalan-j_2_0_0");
-        jarVersions.put(new Long(38100),
-                "xalanj1compat.jar from xalan-j_2_0_1");
+        jarVersions.put(new Long(37485), "xalanj1compat.jar from xalan-j_2_0_0");
+        jarVersions.put(new Long(38100), "xalanj1compat.jar from xalan-j_2_0_1");
 
         jarVersions.put(new Long(18779), "xalanservlet.jar from xalan-j_2_0_0");
         jarVersions.put(new Long(21453), "xalanservlet.jar from xalan-j_2_0_1");
-        jarVersions.put(new Long(24826),
-                "xalanservlet.jar from xalan-j_2_3_1 or xalan-j_2_4_1");
+        jarVersions.put(new Long(24826), "xalanservlet.jar from xalan-j_2_3_1 or xalan-j_2_4_1");
         jarVersions.put(new Long(24831), "xalanservlet.jar from xalan-j_2_4_1");
         // Stop recording xalanservlet.jar sizes as of Xalan Java 2.5.0; now a
         // .war file
@@ -1230,18 +1137,13 @@ public class EnvironmentCheck {
         jarVersions.put(new Long(187162), "crimson.jar from jaxp-1.1");
         jarVersions.put(new Long(801714), "xalan.jar from jaxp-1.1");
         jarVersions.put(new Long(196399), "crimson.jar from crimson-1.1.1");
-        jarVersions.put(new Long(33323),
-                "jaxp.jar from crimson-1.1.1 or jakarta-ant-1.4.1b1");
-        jarVersions.put(new Long(152717),
-                "crimson.jar from crimson-1.1.2beta2");
-        jarVersions.put(new Long(88143),
-                "xml-apis.jar from crimson-1.1.2beta2");
-        jarVersions.put(new Long(206384),
-                "crimson.jar from crimson-1.1.3 or jakarta-ant-1.4.1b1");
+        jarVersions.put(new Long(33323), "jaxp.jar from crimson-1.1.1 or jakarta-ant-1.4.1b1");
+        jarVersions.put(new Long(152717), "crimson.jar from crimson-1.1.2beta2");
+        jarVersions.put(new Long(88143), "xml-apis.jar from crimson-1.1.2beta2");
+        jarVersions.put(new Long(206384), "crimson.jar from crimson-1.1.3 or jakarta-ant-1.4.1b1");
 
         // jakarta-ant: since many people use ant these days
-        jarVersions.put(new Long(136198),
-                "parser.jar from jakarta-ant-1.3 or 1.2");
+        jarVersions.put(new Long(136198), "parser.jar from jakarta-ant-1.3 or 1.2");
         jarVersions.put(new Long(5537), "jaxp.jar from jakarta-ant-1.3 or 1.2");
 
         JARVERSIONS = Collections.unmodifiableMap(jarVersions);
@@ -1254,7 +1156,7 @@ public class EnvironmentCheck {
      * Bottleneck output: calls outWriter.println(s).
      * 
      * @param s
-     *          String to print
+     *        String to print
      */
     protected void logMsg(String s) {
         outWriter.println(s);

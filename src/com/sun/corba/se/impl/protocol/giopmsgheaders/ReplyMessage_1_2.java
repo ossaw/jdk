@@ -34,8 +34,7 @@ import com.sun.corba.se.impl.logging.ORBUtilSystemException;
  * @author Ram Jeyaraman 05/14/2000
  */
 
-public final class ReplyMessage_1_2 extends Message_1_2 implements
-        ReplyMessage {
+public final class ReplyMessage_1_2 extends Message_1_2 implements ReplyMessage {
 
     // Instance variables
 
@@ -53,17 +52,14 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements
 
     ReplyMessage_1_2(ORB orb) {
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
     }
 
-    ReplyMessage_1_2(ORB orb, int _request_id, int _reply_status,
-            ServiceContexts _service_contexts, IOR _ior) {
-        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN,
-                Message.GIOPReply, 0);
+    ReplyMessage_1_2(ORB orb, int _request_id, int _reply_status, ServiceContexts _service_contexts,
+            IOR _ior) {
+        super(Message.GIOPBigMagic, GIOPVersion.V1_2, FLAG_NO_FRAG_BIG_ENDIAN, Message.GIOPReply, 0);
         this.orb = orb;
-        this.wrapper = ORBUtilSystemException.get(orb,
-                CORBALogDomains.RPC_PROTOCOL);
+        this.wrapper = ORBUtilSystemException.get(orb, CORBALogDomains.RPC_PROTOCOL);
         request_id = _request_id;
         reply_status = _reply_status;
         service_contexts = _service_contexts;
@@ -93,8 +89,7 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements
     }
 
     public SystemException getSystemException(String message) {
-        return MessageBase.getSystemException(exClassName, minorCode,
-                completionStatus, message, wrapper);
+        return MessageBase.getSystemException(exClassName, minorCode, completionStatus, message, wrapper);
     }
 
     public IOR getIOR() {
@@ -112,8 +107,7 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements
         this.request_id = istream.read_ulong();
         this.reply_status = istream.read_long();
         isValidReplyStatus(this.reply_status); // raises exception on error
-        this.service_contexts = new ServiceContexts(
-                (org.omg.CORBA_2_3.portable.InputStream) istream);
+        this.service_contexts = new ServiceContexts((org.omg.CORBA_2_3.portable.InputStream) istream);
 
         // CORBA formal 00-11-0 15.4.2.2 GIOP 1.2 body must be
         // aligned on an 8 octet boundary.
@@ -143,15 +137,13 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements
                     this.completionStatus = CompletionStatus.COMPLETED_MAYBE;
                     break;
                 default:
-                    throw wrapper.badCompletionStatusInReply(
-                            CompletionStatus.COMPLETED_MAYBE, new Integer(
-                                    status));
+                    throw wrapper.badCompletionStatusInReply(CompletionStatus.COMPLETED_MAYBE, new Integer(
+                            status));
             }
 
         } else if (this.reply_status == USER_EXCEPTION) {
             // do nothing. The client stub will read the exception from body.
-        } else if ((this.reply_status == LOCATION_FORWARD)
-                || (this.reply_status == LOCATION_FORWARD_PERM)) {
+        } else if ((this.reply_status == LOCATION_FORWARD) || (this.reply_status == LOCATION_FORWARD_PERM)) {
             CDRInputStream cdr = (CDRInputStream) istream;
             this.ior = IORFactories.makeIOR(cdr);
         } else if (this.reply_status == NEEDS_ADDRESSING_MODE) {
@@ -170,12 +162,9 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements
         ostream.write_ulong(this.request_id);
         ostream.write_long(this.reply_status);
         if (this.service_contexts != null) {
-            service_contexts.write(
-                    (org.omg.CORBA_2_3.portable.OutputStream) ostream,
-                    GIOPVersion.V1_2);
+            service_contexts.write((org.omg.CORBA_2_3.portable.OutputStream) ostream, GIOPVersion.V1_2);
         } else {
-            ServiceContexts.writeNullServiceContext(
-                    (org.omg.CORBA_2_3.portable.OutputStream) ostream);
+            ServiceContexts.writeNullServiceContext((org.omg.CORBA_2_3.portable.OutputStream) ostream);
         }
 
         // CORBA formal 00-11-0 15.4.2.2 GIOP 1.2 body must be
@@ -199,10 +188,9 @@ public final class ReplyMessage_1_2 extends Message_1_2 implements
             case NEEDS_ADDRESSING_MODE:
                 break;
             default:
-                ORBUtilSystemException localWrapper = ORBUtilSystemException
-                        .get(CORBALogDomains.RPC_PROTOCOL);
-                throw localWrapper.illegalReplyStatus(
-                        CompletionStatus.COMPLETED_MAYBE);
+                ORBUtilSystemException localWrapper = ORBUtilSystemException.get(
+                        CORBALogDomains.RPC_PROTOCOL);
+                throw localWrapper.illegalReplyStatus(CompletionStatus.COMPLETED_MAYBE);
         }
     }
 

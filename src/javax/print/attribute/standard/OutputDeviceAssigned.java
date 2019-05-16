@@ -27,8 +27,7 @@ import javax.print.attribute.PrintJobAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class OutputDeviceAssigned extends TextSyntax implements
-        PrintJobAttribute {
+public final class OutputDeviceAssigned extends TextSyntax implements PrintJobAttribute {
 
     private static final long serialVersionUID = 5486733778854271081L;
 
@@ -37,17 +36,16 @@ public final class OutputDeviceAssigned extends TextSyntax implements
      * name and locale.
      *
      * @param deviceName
-     *                   Device name.
+     *        Device name.
      * @param locale
-     *                   Natural language of the text string. null is
-     *                   interpreted to
-     *                   mean the default locale as returned by
-     *                   <code>Locale.getDefault()</code>
-     *
+     *        Natural language of the text string. null is
+     *        interpreted to
+     *        mean the default locale as returned by
+     *        <code>Locale.getDefault()</code>
      * @exception NullPointerException
-     *                                 (unchecked exception) Thrown if
-     *                                 <CODE>deviceName</CODE> is
-     *                                 null.
+     *            (unchecked exception) Thrown if
+     *            <CODE>deviceName</CODE> is
+     *            null.
      */
     public OutputDeviceAssigned(String deviceName, Locale locale) {
 
@@ -70,8 +68,7 @@ public final class OutputDeviceAssigned extends TextSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this output device
      *         assigned attribute, false otherwise.
      */

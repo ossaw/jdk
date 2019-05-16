@@ -59,8 +59,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class ATHROW extends Instruction implements UnconditionalBranch,
-        ExceptionThrower {
+public class ATHROW extends Instruction implements UnconditionalBranch, ExceptionThrower {
     /**
      * Throw exception
      */
@@ -72,8 +71,7 @@ public class ATHROW extends Instruction implements UnconditionalBranch,
      * @return exceptions this instruction may cause
      */
     public Class[] getExceptions() {
-        return new Class[] {
-                com.sun.org.apache.bcel.internal.ExceptionConstants.THROWABLE };
+        return new Class[] { com.sun.org.apache.bcel.internal.ExceptionConstants.THROWABLE };
     }
 
     /**
@@ -83,7 +81,7 @@ public class ATHROW extends Instruction implements UnconditionalBranch,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitUnconditionalBranch(this);

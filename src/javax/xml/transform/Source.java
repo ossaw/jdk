@@ -13,7 +13,6 @@ public interface Source {
 
     /**
      * Set the system identifier for this Source.
-     *
      * <p>
      * The system identifier is optional if the source does not get its data
      * from a URL, but it may still be useful to provide one. The application
@@ -22,7 +21,7 @@ public interface Source {
      * </p>
      *
      * @param systemId
-     *                 The system identifier as a URL string.
+     *        The system identifier as a URL string.
      */
     public void setSystemId(String systemId);
 

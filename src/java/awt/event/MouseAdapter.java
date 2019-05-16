@@ -35,7 +35,6 @@ package java.awt.event;
  *
  * @author Carl Quinn
  * @author Andrei Dmitriev
- *
  * @see MouseEvent
  * @see MouseWheelEvent
  * @see MouseListener
@@ -44,11 +43,9 @@ package java.awt.event;
  * @see <a href=
  *      "https://docs.oracle.com/javase/tutorial/uiswing/events/mouselistener.html">
  *      Tutorial: Writing a Mouse Listener</a>
- *
  * @since 1.1
  */
-public abstract class MouseAdapter implements MouseListener, MouseWheelListener,
-        MouseMotionListener {
+public abstract class MouseAdapter implements MouseListener, MouseWheelListener, MouseMotionListener {
     /**
      * {@inheritDoc}
      */

@@ -13,7 +13,6 @@ import java.util.EmptyStackException;
  * <b>Warning: The interface of this class is subject to change. Use at your own
  * risk.</b>
  * </p>
- *
  * <p>
  * This class associates a context with each thread that references it. The
  * context is a set of mappings between Strings and Objects. It is managed as a
@@ -29,23 +28,19 @@ import java.util.EmptyStackException;
  *     ThreadContext.restore(oldContext);
  * }
  * </pre>
- *
  * <p>
  * The <code>try</code>...<code>finally</code> block ensures that the
  * <code>restore</code> is done even if <code>doSomeOperation</code> terminates
  * abnormally (with an exception).
  * </p>
- *
  * <p>
  * A thread can consult its own context using
  * <code>ThreadContext.get(myKey)</code>. The result is the value that was most
  * recently pushed with the given key.
  * </p>
- *
  * <p>
  * A thread cannot read or modify the context of another thread.
  * </p>
- *
  * <p>
  * <b>This API is a Sun Microsystems internal API and is subject to change
  * without notice.</b>
@@ -97,17 +92,15 @@ public class ThreadContext implements Cloneable {
      * </p>
      *
      * @param key
-     *            the key of interest.
-     *
+     *        the key of interest.
      * @return the last Object that was pushed (using <code>push</code>) with
      *         that key and not subsequently canceled by a <code>restore</code>;
      *         or null if there is no such object. A null return value may also
      *         indicate that the last Object pushed was the value
      *         <code>null</code>. Use the <code>contains</code> method to
      *         distinguish this case from the case where there is no Object.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>key</code> is null.
+     *            if <code>key</code> is null.
      */
     public static Object get(String key) throws IllegalArgumentException {
         ThreadContext context = contextContaining(key);
@@ -128,9 +121,8 @@ public class ThreadContext implements Cloneable {
      * </p>
      *
      * @return true if the key exists in the stack.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>key</code> is null.
+     *            if <code>key</code> is null.
      */
     public static boolean contains(String key) throws IllegalArgumentException {
         return (contextContaining(key) != null);
@@ -143,10 +135,9 @@ public class ThreadContext implements Cloneable {
      * </p>
      *
      * @exception IllegalArgumentException
-     *                                     if <code>key</code> is null.
+     *            if <code>key</code> is null.
      */
-    private static ThreadContext contextContaining(String key)
-            throws IllegalArgumentException {
+    private static ThreadContext contextContaining(String key) throws IllegalArgumentException {
         if (key == null)
             throw new IllegalArgumentException("null key");
         for (ThreadContext context = getContext(); context != null; context = context.previous) {
@@ -192,19 +183,16 @@ public class ThreadContext implements Cloneable {
      * </p>
      *
      * @param key
-     *              the key that will be used to find the object while it is on
-     *              the stack.
+     *        the key that will be used to find the object while it is on
+     *        the stack.
      * @param value
-     *              the value to be associated with that key. It may be null.
-     *
+     *        the value to be associated with that key. It may be null.
      * @return a ThreadContext that can be given to <code>restore</code> to
      *         restore the stack to its state before the <code>push</code>.
-     *
      * @exception IllegalArgumentException
-     *                                     if <code>key</code> is null.
+     *            if <code>key</code> is null.
      */
-    public static ThreadContext push(String key, Object value)
-            throws IllegalArgumentException {
+    public static ThreadContext push(String key, Object value) throws IllegalArgumentException {
         if (key == null)
             throw new IllegalArgumentException("null key");
 
@@ -236,21 +224,20 @@ public class ThreadContext implements Cloneable {
      * </p>
      *
      * @param oldContext
-     *                   the state to return. This is usually the return value
-     *                   of an
-     *                   earlier <code>push</code> operation.
-     *
+     *        the state to return. This is usually the return value
+     *        of an
+     *        earlier <code>push</code> operation.
      * @exception NullPointerException
-     *                                     if <code>oldContext</code> is null.
+     *            if <code>oldContext</code> is null.
      * @exception IllegalArgumentException
-     *                                     if <code>oldContext</code> does not
-     *                                     represent a context
-     *                                     from this thread, or if that context
-     *                                     was undone by an
-     *                                     earlier <code>restore</code>.
+     *            if <code>oldContext</code> does not
+     *            represent a context
+     *            from this thread, or if that context
+     *            was undone by an
+     *            earlier <code>restore</code>.
      */
-    public static void restore(ThreadContext oldContext)
-            throws NullPointerException, IllegalArgumentException {
+    public static void restore(ThreadContext oldContext) throws NullPointerException,
+            IllegalArgumentException {
         /*
          * The following test is not strictly necessary in the code as it stands
          * today, since the reference to "oldContext.key" would generate a
@@ -264,8 +251,8 @@ public class ThreadContext implements Cloneable {
         /* Check that the restored context is in the stack. */
         for (ThreadContext context = getContext(); context != oldContext; context = context.previous) {
             if (context == null) {
-                throw new IllegalArgumentException("Restored context is not "
-                        + "contained in current " + "context");
+                throw new IllegalArgumentException("Restored context is not " + "contained in current "
+                        + "context");
             }
         }
 
@@ -288,14 +275,12 @@ public class ThreadContext implements Cloneable {
      * results from the <code>get</code> method as the thread from which the
      * <code>context</code> argument was obtained, at the time it was obtained.
      * </p>
-     *
      * <p>
      * The <code>context</code> argument must be the result of an earlier
      * <code>push</code> or <code>getThreadContext</code> call. It is an error
      * (which may or may not be detected) if this context has been undone by a
      * <code>restore</code>.
      * </p>
-     *
      * <p>
      * The context stack of the calling thread must be empty before this call,
      * i.e., there must not have been a <code>push</code> not undone by a
@@ -303,13 +288,13 @@ public class ThreadContext implements Cloneable {
      * </p>
      *
      * @exception IllegalArgumentException
-     *                                     if the context stack was not empty
-     *                                     before the call. An
-     *                                     implementation may also throw this
-     *                                     exception if
-     *                                     <code>context</code> is no longer
-     *                                     current in the thread
-     *                                     from which it was obtained.
+     *            if the context stack was not empty
+     *            before the call. An
+     *            implementation may also throw this
+     *            exception if
+     *            <code>context</code> is no longer
+     *            current in the thread
+     *            from which it was obtained.
      */
     /*
      * We rely on the fact that ThreadContext objects are immutable. This means
@@ -318,8 +303,7 @@ public class ThreadContext implements Cloneable {
      * objects, even if the thread from which it was obtained has subsequently
      * been set to a point later in that chain using "restore".
      */
-    public void setInitialContext(ThreadContext context)
-            throws IllegalArgumentException {
+    public void setInitialContext(ThreadContext context) throws IllegalArgumentException {
         /*
          * The following test assumes that we discard sentinels when the stack
          * is empty.

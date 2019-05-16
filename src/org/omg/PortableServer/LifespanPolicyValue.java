@@ -30,8 +30,7 @@ public class LifespanPolicyValue implements org.omg.CORBA.portable.IDLEntity {
         return __value;
     }
 
-    public static org.omg.PortableServer.LifespanPolicyValue from_int(
-            int value) {
+    public static org.omg.PortableServer.LifespanPolicyValue from_int(int value) {
         if (value >= 0 && value < __size)
             return __array[value];
         else

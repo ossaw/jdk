@@ -61,8 +61,7 @@ import java.security.PrivilegedAction;
  *             public void installUI(JComponent c) {
  *                 super.installUI(c);
  *                 // enable mouse motion events for the layer's subcomponents
- *                 ((JLayer) c).setLayerEventMask(
- *                         AWTEvent.MOUSE_MOTION_EVENT_MASK);
+ *                 ((JLayer) c).setLayerEventMask(AWTEvent.MOUSE_MOTION_EVENT_MASK);
  *             }
  *
  *             public void uninstallUI(JComponent c) {
@@ -72,8 +71,7 @@ import java.security.PrivilegedAction;
  *             }
  *
  *             // overridden method which catches MouseMotion events
- *             public void eventDispatched(AWTEvent e,
- *                     JLayer&lt;? extends JComponent&gt; l) {
+ *             public void eventDispatched(AWTEvent e, JLayer&lt;? extends JComponent&gt; l) {
  *                 System.out.println("AWTEvent detected: " + e);
  *             }
  *         };
@@ -121,7 +119,6 @@ import java.security.PrivilegedAction;
  *
  * @param <V>
  *        the type of {@code JLayer}'s view component
- *
  * @see #JLayer(Component)
  * @see #setView(Component)
  * @see #getView()
@@ -130,11 +127,10 @@ import java.security.PrivilegedAction;
  * @see #setUI(javax.swing.plaf.LayerUI)
  * @see #getUI()
  * @since 1.7
- *
  * @author Alexander Potochkin
  */
-public final class JLayer<V extends Component> extends JComponent implements
-        Scrollable, PropertyChangeListener, Accessible {
+public final class JLayer<V extends Component> extends JComponent implements Scrollable,
+        PropertyChangeListener, Accessible {
     private V view;
     // this field is necessary because JComponent.ui is transient
     // when layerUI is serializable
@@ -162,8 +158,7 @@ public final class JLayer<V extends Component> extends JComponent implements
      * {@link javax.swing.plaf.LayerUI}.
      *
      * @param view
-     *             the component to be decorated by this {@code JLayer}
-     *
+     *        the component to be decorated by this {@code JLayer}
      * @see #setUI
      */
     public JLayer(V view) {
@@ -175,10 +170,10 @@ public final class JLayer<V extends Component> extends JComponent implements
      * {@link javax.swing.plaf.LayerUI} object.
      *
      * @param view
-     *             the component to be decorated
+     *        the component to be decorated
      * @param ui
-     *             the {@link javax.swing.plaf.LayerUI} delegate to be used by
-     *             this {@code JLayer}
+     *        the {@link javax.swing.plaf.LayerUI} delegate to be used by
+     *        this {@code JLayer}
      */
     public JLayer(V view, LayerUI<V> ui) {
         setGlassPane(createGlassPane());
@@ -192,7 +187,6 @@ public final class JLayer<V extends Component> extends JComponent implements
      *
      * @return the {@code JLayer}'s view component or {@code null} if none
      *         exists
-     *
      * @see #setView(Component)
      */
     public V getView() {
@@ -204,8 +198,7 @@ public final class JLayer<V extends Component> extends JComponent implements
      * This is a bound property.
      *
      * @param view
-     *             the view component for this {@code JLayer}
-     *
+     *        the view component for this {@code JLayer}
      * @see #getView()
      */
     public void setView(V view) {
@@ -227,7 +220,7 @@ public final class JLayer<V extends Component> extends JComponent implements
      * receive input events for this {@code JLayer}.
      *
      * @param ui
-     *           the {@link javax.swing.plaf.LayerUI} for this {@code JLayer}
+     *        the {@link javax.swing.plaf.LayerUI} for this {@code JLayer}
      */
     public void setUI(LayerUI<? super V> ui) {
         this.layerUI = ui;
@@ -249,7 +242,6 @@ public final class JLayer<V extends Component> extends JComponent implements
      *
      * @return the {@code JLayer}'s glassPane component or {@code null} if none
      *         exists
-     *
      * @see #setGlassPane(JPanel)
      */
     public JPanel getGlassPane() {
@@ -262,8 +254,7 @@ public final class JLayer<V extends Component> extends JComponent implements
      * This is a bound property.
      *
      * @param glassPane
-     *                  the glassPane component of this {@code JLayer}
-     *
+     *        the glassPane component of this {@code JLayer}
      * @see #getGlassPane()
      */
     public void setGlassPane(JPanel glassPane) {
@@ -274,8 +265,7 @@ public final class JLayer<V extends Component> extends JComponent implements
             super.remove(oldGlassPane);
         }
         if (glassPane != null) {
-            AWTAccessor.getComponentAccessor().setMixingCutoutShape(glassPane,
-                    new Rectangle());
+            AWTAccessor.getComponentAccessor().setMixingCutoutShape(glassPane, new Rectangle());
             glassPane.setVisible(isGlassPaneVisible);
             super.addImpl(glassPane, null, 0);
         }
@@ -304,14 +294,13 @@ public final class JLayer<V extends Component> extends JComponent implements
      * exception as layout managers are not supported on a {@code JLayer}.
      *
      * @param mgr
-     *            the specified layout manager
+     *        the specified layout manager
      * @exception IllegalArgumentException
-     *                                     this method is not supported
+     *            this method is not supported
      */
     public void setLayout(LayoutManager mgr) {
         if (mgr != null) {
-            throw new IllegalArgumentException(
-                    "JLayer.setLayout() not supported");
+            throw new IllegalArgumentException("JLayer.setLayout() not supported");
         }
     }
 
@@ -325,14 +314,13 @@ public final class JLayer<V extends Component> extends JComponent implements
      * exception as borders are not supported on a {@code JLayer}.
      *
      * @param border
-     *               the {@code Border} to set
+     *        the {@code Border} to set
      * @exception IllegalArgumentException
-     *                                     this method is not supported
+     *            this method is not supported
      */
     public void setBorder(Border border) {
         if (border != null) {
-            throw new IllegalArgumentException(
-                    "JLayer.setBorder() not supported");
+            throw new IllegalArgumentException("JLayer.setBorder() not supported");
         }
     }
 
@@ -341,15 +329,13 @@ public final class JLayer<V extends Component> extends JComponent implements
      * {@code UnsupportedOperationException}
      *
      * @throws UnsupportedOperationException
-     *                                       this method is not supported
-     *
+     *         this method is not supported
      * @see #setView(Component)
      * @see #setGlassPane(JPanel)
      */
     protected void addImpl(Component comp, Object constraints, int index) {
-        throw new UnsupportedOperationException(
-                "Adding components to JLayer is not supported, "
-                        + "use setView() or setGlassPane() instead");
+        throw new UnsupportedOperationException("Adding components to JLayer is not supported, "
+                + "use setView() or setGlassPane() instead");
     }
 
     /**
@@ -396,13 +382,13 @@ public final class JLayer<V extends Component> extends JComponent implements
      * method, if {@code LayerUI} is set.
      *
      * @param x
-     *          the x value of the region to be painted
+     *        the x value of the region to be painted
      * @param y
-     *          the y value of the region to be painted
+     *        the y value of the region to be painted
      * @param w
-     *          the width of the region to be painted
+     *        the width of the region to be painted
      * @param h
-     *          the height of the region to be painted
+     *        the height of the region to be painted
      */
     public void paintImmediately(int x, int y, int w, int h) {
         if (!isPaintingImmediately && getUI() != null) {
@@ -421,7 +407,7 @@ public final class JLayer<V extends Component> extends JComponent implements
      * Delegates all painting to the {@link javax.swing.plaf.LayerUI} object.
      *
      * @param g
-     *          the {@code Graphics} to render to
+     *        the {@code Graphics} to render to
      */
     public void paint(Graphics g) {
         if (!isPainting) {
@@ -496,8 +482,7 @@ public final class JLayer<V extends Component> extends JComponent implements
      * {@code 0}.
      *
      * @param layerEventMask
-     *                       the bitmask of event types to receive
-     *
+     *        the bitmask of event types to receive
      * @see #getLayerEventMask()
      * @see LayerUI#eventDispatched(AWTEvent, JLayer)
      * @see Component#isDisplayable()
@@ -510,8 +495,7 @@ public final class JLayer<V extends Component> extends JComponent implements
             disableEvents(oldEventMask);
             enableEvents(eventMask);
             if (isDisplayable()) {
-                eventController.updateAWTEventListener(oldEventMask,
-                        layerEventMask);
+                eventController.updateAWTEventListener(oldEventMask, layerEventMask);
             }
         }
     }
@@ -550,13 +534,11 @@ public final class JLayer<V extends Component> extends JComponent implements
      * method delegates its implementation to the view component.
      *
      * @return the preferred size of the viewport for a view component
-     *
      * @see Scrollable
      */
     public Dimension getPreferredScrollableViewportSize() {
         if (getView() instanceof Scrollable) {
-            return ((Scrollable) getView())
-                    .getPreferredScrollableViewportSize();
+            return ((Scrollable) getView()).getPreferredScrollableViewportSize();
         }
         return getPreferredSize();
     }
@@ -570,17 +552,13 @@ public final class JLayer<V extends Component> extends JComponent implements
      * method delegates its implementation to the view component.
      *
      * @return the "block" increment for scrolling in the specified direction
-     *
      * @see Scrollable
      */
-    public int getScrollableBlockIncrement(Rectangle visibleRect,
-            int orientation, int direction) {
+    public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
         if (getView() instanceof Scrollable) {
-            return ((Scrollable) getView()).getScrollableBlockIncrement(
-                    visibleRect, orientation, direction);
+            return ((Scrollable) getView()).getScrollableBlockIncrement(visibleRect, orientation, direction);
         }
-        return (orientation == SwingConstants.VERTICAL) ? visibleRect.height
-                : visibleRect.width;
+        return (orientation == SwingConstants.VERTICAL) ? visibleRect.height : visibleRect.width;
     }
 
     /**
@@ -592,7 +570,6 @@ public final class JLayer<V extends Component> extends JComponent implements
      * method delegates its implementation to the view component.
      *
      * @return whether the layer should track the height of the viewport
-     *
      * @see Scrollable
      */
     public boolean getScrollableTracksViewportHeight() {
@@ -611,7 +588,6 @@ public final class JLayer<V extends Component> extends JComponent implements
      * method delegates its implementation to the view component.
      *
      * @return whether the layer should track the width of the viewport
-     *
      * @see Scrollable
      */
     public boolean getScrollableTracksViewportWidth() {
@@ -636,20 +612,16 @@ public final class JLayer<V extends Component> extends JComponent implements
      *
      * @return The "unit" increment for scrolling in the specified direction.
      *         This value should always be positive.
-     *
      * @see Scrollable
      */
-    public int getScrollableUnitIncrement(Rectangle visibleRect,
-            int orientation, int direction) {
+    public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
         if (getView() instanceof Scrollable) {
-            return ((Scrollable) getView()).getScrollableUnitIncrement(
-                    visibleRect, orientation, direction);
+            return ((Scrollable) getView()).getScrollableUnitIncrement(visibleRect, orientation, direction);
         }
         return 1;
     }
 
-    private void readObject(ObjectInputStream s) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException {
         s.defaultReadObject();
         if (layerUI != null) {
             setUI(layerUI);
@@ -711,11 +683,9 @@ public final class JLayer<V extends Component> extends JComponent implements
         private long currentEventMask;
 
         private static final long ACCEPTED_EVENTS = AWTEvent.COMPONENT_EVENT_MASK
-                | AWTEvent.CONTAINER_EVENT_MASK | AWTEvent.FOCUS_EVENT_MASK
-                | AWTEvent.KEY_EVENT_MASK | AWTEvent.MOUSE_WHEEL_EVENT_MASK
-                | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK
-                | AWTEvent.INPUT_METHOD_EVENT_MASK
-                | AWTEvent.HIERARCHY_EVENT_MASK
+                | AWTEvent.CONTAINER_EVENT_MASK | AWTEvent.FOCUS_EVENT_MASK | AWTEvent.KEY_EVENT_MASK
+                | AWTEvent.MOUSE_WHEEL_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK
+                | AWTEvent.MOUSE_EVENT_MASK | AWTEvent.INPUT_METHOD_EVENT_MASK | AWTEvent.HIERARCHY_EVENT_MASK
                 | AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK;
 
         @SuppressWarnings("unchecked")
@@ -727,11 +697,8 @@ public final class JLayer<V extends Component> extends JComponent implements
                     if (component instanceof JLayer) {
                         JLayer l = (JLayer) component;
                         LayerUI ui = l.getUI();
-                        if (ui != null && isEventEnabled(l.getLayerEventMask(),
-                                event.getID())
-                                && (!(event instanceof InputEvent)
-                                        || !((InputEvent) event)
-                                                .isConsumed())) {
+                        if (ui != null && isEventEnabled(l.getLayerEventMask(), event.getID())
+                                && (!(event instanceof InputEvent) || !((InputEvent) event).isConsumed())) {
                             ui.eventDispatched(event, l);
                         }
                     }
@@ -740,8 +707,7 @@ public final class JLayer<V extends Component> extends JComponent implements
             }
         }
 
-        private void updateAWTEventListener(long oldEventMask,
-                long newEventMask) {
+        private void updateAWTEventListener(long oldEventMask, long newEventMask) {
             if (oldEventMask != 0) {
                 layerMaskList.remove(oldEventMask);
             }
@@ -770,8 +736,7 @@ public final class JLayer<V extends Component> extends JComponent implements
         private void addAWTEventListener(final long eventMask) {
             AccessController.doPrivileged(new PrivilegedAction<Void>() {
                 public Void run() {
-                    Toolkit.getDefaultToolkit().addAWTEventListener(
-                            LayerEventController.this, eventMask);
+                    Toolkit.getDefaultToolkit().addAWTEventListener(LayerEventController.this, eventMask);
                     return null;
                 }
             });
@@ -781,45 +746,37 @@ public final class JLayer<V extends Component> extends JComponent implements
         private void removeAWTEventListener() {
             AccessController.doPrivileged(new PrivilegedAction<Void>() {
                 public Void run() {
-                    Toolkit.getDefaultToolkit().removeAWTEventListener(
-                            LayerEventController.this);
+                    Toolkit.getDefaultToolkit().removeAWTEventListener(LayerEventController.this);
                     return null;
                 }
             });
         }
 
         private boolean isEventEnabled(long eventMask, int id) {
-            return (((eventMask & AWTEvent.COMPONENT_EVENT_MASK) != 0
-                    && id >= ComponentEvent.COMPONENT_FIRST
+            return (((eventMask & AWTEvent.COMPONENT_EVENT_MASK) != 0 && id >= ComponentEvent.COMPONENT_FIRST
                     && id <= ComponentEvent.COMPONENT_LAST) || ((eventMask
-                            & AWTEvent.CONTAINER_EVENT_MASK) != 0
-                            && id >= ContainerEvent.CONTAINER_FIRST
-                            && id <= ContainerEvent.CONTAINER_LAST)
-                    || ((eventMask & AWTEvent.FOCUS_EVENT_MASK) != 0
-                            && id >= FocusEvent.FOCUS_FIRST
-                            && id <= FocusEvent.FOCUS_LAST) || ((eventMask
-                                    & AWTEvent.KEY_EVENT_MASK) != 0
-                                    && id >= KeyEvent.KEY_FIRST
-                                    && id <= KeyEvent.KEY_LAST) || ((eventMask
-                                            & AWTEvent.MOUSE_WHEEL_EVENT_MASK) != 0
-                                            && id == MouseEvent.MOUSE_WHEEL)
-                    || ((eventMask & AWTEvent.MOUSE_MOTION_EVENT_MASK) != 0
-                            && (id == MouseEvent.MOUSE_MOVED
-                                    || id == MouseEvent.MOUSE_DRAGGED))
-                    || ((eventMask & AWTEvent.MOUSE_EVENT_MASK) != 0
-                            && id != MouseEvent.MOUSE_MOVED
-                            && id != MouseEvent.MOUSE_DRAGGED
-                            && id != MouseEvent.MOUSE_WHEEL
-                            && id >= MouseEvent.MOUSE_FIRST
-                            && id <= MouseEvent.MOUSE_LAST) || ((eventMask
+                            & AWTEvent.CONTAINER_EVENT_MASK) != 0 && id >= ContainerEvent.CONTAINER_FIRST
+                            && id <= ContainerEvent.CONTAINER_LAST) || ((eventMask
+                                    & AWTEvent.FOCUS_EVENT_MASK) != 0 && id >= FocusEvent.FOCUS_FIRST
+                                    && id <= FocusEvent.FOCUS_LAST) || ((eventMask
+                                            & AWTEvent.KEY_EVENT_MASK) != 0 && id >= KeyEvent.KEY_FIRST
+                                            && id <= KeyEvent.KEY_LAST) || ((eventMask
+                                                    & AWTEvent.MOUSE_WHEEL_EVENT_MASK) != 0
+                                                    && id == MouseEvent.MOUSE_WHEEL) || ((eventMask
+                                                            & AWTEvent.MOUSE_MOTION_EVENT_MASK) != 0
+                                                            && (id == MouseEvent.MOUSE_MOVED
+                                                                    || id == MouseEvent.MOUSE_DRAGGED))
+                    || ((eventMask & AWTEvent.MOUSE_EVENT_MASK) != 0 && id != MouseEvent.MOUSE_MOVED
+                            && id != MouseEvent.MOUSE_DRAGGED && id != MouseEvent.MOUSE_WHEEL
+                            && id >= MouseEvent.MOUSE_FIRST && id <= MouseEvent.MOUSE_LAST) || ((eventMask
                                     & AWTEvent.INPUT_METHOD_EVENT_MASK) != 0
                                     && id >= InputMethodEvent.INPUT_METHOD_FIRST
-                                    && id <= InputMethodEvent.INPUT_METHOD_LAST)
-                    || ((eventMask & AWTEvent.HIERARCHY_EVENT_MASK) != 0
-                            && id == HierarchyEvent.HIERARCHY_CHANGED)
-                    || ((eventMask & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0
-                            && (id == HierarchyEvent.ANCESTOR_MOVED
-                                    || id == HierarchyEvent.ANCESTOR_RESIZED)));
+                                    && id <= InputMethodEvent.INPUT_METHOD_LAST) || ((eventMask
+                                            & AWTEvent.HIERARCHY_EVENT_MASK) != 0
+                                            && id == HierarchyEvent.HIERARCHY_CHANGED) || ((eventMask
+                                                    & AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK) != 0
+                                                    && (id == HierarchyEvent.ANCESTOR_MOVED
+                                                            || id == HierarchyEvent.ANCESTOR_RESIZED)));
         }
     }
 
@@ -844,22 +801,20 @@ public final class JLayer<V extends Component> extends JComponent implements
          * implementation of this method.
          *
          * @param x
-         *          the <i>x</i> coordinate of the point
+         *        the <i>x</i> coordinate of the point
          * @param y
-         *          the <i>y</i> coordinate of the point
+         *        the <i>y</i> coordinate of the point
          * @return true if this component logically contains x,y
          */
         public boolean contains(int x, int y) {
             for (int i = 0; i < getComponentCount(); i++) {
                 Component c = getComponent(i);
-                Point point = SwingUtilities.convertPoint(this, new Point(x, y),
-                        c);
+                Point point = SwingUtilities.convertPoint(this, new Point(x, y), c);
                 if (c.isVisible() && c.contains(point)) {
                     return true;
                 }
             }
-            if (getMouseListeners().length == 0
-                    && getMouseMotionListeners().length == 0
+            if (getMouseListeners().length == 0 && getMouseMotionListeners().length == 0
                     && getMouseWheelListeners().length == 0 && !isCursorSet()) {
                 return false;
             }

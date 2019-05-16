@@ -36,7 +36,7 @@ public class NotBoundException extends java.lang.Exception {
      * message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since JDK1.1
      */
     public NotBoundException(String s) {

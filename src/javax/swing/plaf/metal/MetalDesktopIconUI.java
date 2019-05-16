@@ -35,8 +35,8 @@ public class MetalDesktopIconUI extends BasicDesktopIconUI {
 
     protected void installDefaults() {
         super.installDefaults();
-        LookAndFeel.installColorsAndFont(desktopIcon, "DesktopIcon.background",
-                "DesktopIcon.foreground", "DesktopIcon.font");
+        LookAndFeel.installColorsAndFont(desktopIcon, "DesktopIcon.background", "DesktopIcon.foreground",
+                "DesktopIcon.font");
         width = UIManager.getInt("DesktopIcon.width");
     }
 
@@ -57,13 +57,11 @@ public class MetalDesktopIconUI extends BasicDesktopIconUI {
 
         int buttonH = button.getPreferredSize().height;
 
-        Icon drag = new MetalBumps((buttonH / 3), buttonH, MetalLookAndFeel
-                .getControlHighlight(), MetalLookAndFeel.getControlDarkShadow(),
-                MetalLookAndFeel.getControl());
+        Icon drag = new MetalBumps((buttonH / 3), buttonH, MetalLookAndFeel.getControlHighlight(),
+                MetalLookAndFeel.getControlDarkShadow(), MetalLookAndFeel.getControl());
         label = new JLabel(drag);
 
-        label.setBorder(new MatteBorder(0, 2, 0, 1, desktopIcon
-                .getBackground()));
+        label.setBorder(new MatteBorder(0, 2, 0, 1, desktopIcon.getBackground()));
         desktopIcon.setLayout(new BorderLayout(2, 0));
         desktopIcon.add(button, BorderLayout.CENTER);
         desktopIcon.add(label, BorderLayout.WEST);
@@ -79,13 +77,11 @@ public class MetalDesktopIconUI extends BasicDesktopIconUI {
 
     protected void installListeners() {
         super.installListeners();
-        desktopIcon.getInternalFrame().addPropertyChangeListener(
-                titleListener = new TitleListener());
+        desktopIcon.getInternalFrame().addPropertyChangeListener(titleListener = new TitleListener());
     }
 
     protected void uninstallListeners() {
-        desktopIcon.getInternalFrame().removePropertyChangeListener(
-                titleListener);
+        desktopIcon.getInternalFrame().removePropertyChangeListener(titleListener);
         titleListener = null;
         super.uninstallListeners();
     }
@@ -100,8 +96,7 @@ public class MetalDesktopIconUI extends BasicDesktopIconUI {
         // For the metal desktop icon we will use the layout maanger to
         // determine the correct height of the component, but we want to keep
         // the width consistent according to the jlf spec.
-        return new Dimension(width, desktopIcon.getLayout().minimumLayoutSize(
-                desktopIcon).height);
+        return new Dimension(width, desktopIcon.getLayout().minimumLayoutSize(desktopIcon).height);
     }
 
     public Dimension getMaximumSize(JComponent c) {

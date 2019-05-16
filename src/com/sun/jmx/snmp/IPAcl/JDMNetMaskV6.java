@@ -20,8 +20,7 @@ class JDMNetMaskV6 extends JDMNetMask {
         super(p, id);
     }
 
-    protected PrincipalImpl createAssociatedPrincipal()
-            throws UnknownHostException {
+    protected PrincipalImpl createAssociatedPrincipal() throws UnknownHostException {
         return new NetMaskImpl(address.toString(), Integer.parseInt(mask));
     }
 }

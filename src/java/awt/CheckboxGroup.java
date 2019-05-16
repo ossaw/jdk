@@ -14,7 +14,6 @@ package java.awt;
  * <p>
  * The following code example produces a new check box group, with three check
  * boxes:
- *
  * <hr>
  * <blockquote>
  * 
@@ -95,7 +94,7 @@ public class CheckboxGroup implements java.io.Serializable {
      * different check box group, this method does nothing.
      * 
      * @param box
-     *            the <code>Checkbox</code> to set as the current selection.
+     *        the <code>Checkbox</code> to set as the current selection.
      * @see java.awt.Checkbox
      * @see java.awt.CheckboxGroup#getSelectedCheckbox
      * @since JDK1.1
@@ -130,8 +129,7 @@ public class CheckboxGroup implements java.io.Serializable {
      * @return a string representation of this check box group.
      */
     public String toString() {
-        return getClass().getName() + "[selectedCheckbox=" + selectedCheckbox
-                + "]";
+        return getClass().getName() + "[selectedCheckbox=" + selectedCheckbox + "]";
     }
 
 }

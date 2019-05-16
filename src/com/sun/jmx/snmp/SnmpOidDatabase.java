@@ -40,7 +40,7 @@ public interface SnmpOidDatabase extends SnmpOidTable {
      * <CODE>SnmpOidDatabase</CODE>.
      * 
      * @param table
-     *              The table to add.
+     *        The table to add.
      */
     public void add(SnmpOidTable table);
 
@@ -49,7 +49,7 @@ public interface SnmpOidDatabase extends SnmpOidTable {
      * <CODE>SnmpOidDatabase</CODE>.
      * 
      * @param table
-     *              The table to be removed.
+     *        The table to be removed.
      */
     public void remove(SnmpOidTable table) throws SnmpStatusException;
 
@@ -64,7 +64,7 @@ public interface SnmpOidDatabase extends SnmpOidTable {
      * <CODE>SnmpOidRecord</CODE> object containing information on the variable.
      * 
      * @param name
-     *             The name of the MIB variable.
+     *        The name of the MIB variable.
      * @return The <CODE>SnmpOidRecord</CODE> object containing information on
      *         the variable.
      */
@@ -75,7 +75,7 @@ public interface SnmpOidDatabase extends SnmpOidTable {
      * <CODE>SnmpOidRecord</CODE> object containing information on the variable.
      * 
      * @param oid
-     *            The OID of the MIB variable.
+     *        The OID of the MIB variable.
      * @return The <CODE>SnmpOidRecord</CODE> object containing information on
      *         the variable.
      */

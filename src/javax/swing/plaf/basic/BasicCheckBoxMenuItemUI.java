@@ -29,11 +29,10 @@ public class BasicCheckBoxMenuItemUI extends BasicMenuItemUI {
         return "CheckBoxMenuItem";
     }
 
-    public void processMouseEvent(JMenuItem item, MouseEvent e,
-            MenuElement path[], MenuSelectionManager manager) {
+    public void processMouseEvent(JMenuItem item, MouseEvent e, MenuElement path[],
+            MenuSelectionManager manager) {
         Point p = e.getPoint();
-        if (p.x >= 0 && p.x < item.getWidth() && p.y >= 0 && p.y < item
-                .getHeight()) {
+        if (p.x >= 0 && p.x < item.getWidth() && p.y >= 0 && p.y < item.getHeight()) {
             if (e.getID() == MouseEvent.MOUSE_RELEASED) {
                 manager.clearSelectedPath();
                 item.doClick(0);

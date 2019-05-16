@@ -33,10 +33,8 @@ import org.w3c.dom.Node;
 
 /**
  * @xerces.internal
- *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  * @author Sandy Gao, IBM
- *
  * @version $Id: SchemaDOM.java,v 1.7 2010-11-01 04:40:01 joehw Exp $
  */
 public class SchemaDOM extends DefaultDocument {
@@ -59,8 +57,8 @@ public class SchemaDOM extends DefaultDocument {
         reset();
     }
 
-    public ElementImpl startElement(QName element, XMLAttributes attributes,
-            int line, int column, int offset) {
+    public ElementImpl startElement(QName element, XMLAttributes attributes, int line, int column,
+            int offset) {
         ElementImpl node = new ElementImpl(line, column, offset);
         processElement(element, attributes, node);
         // now the current node added, becomes the parent
@@ -68,25 +66,22 @@ public class SchemaDOM extends DefaultDocument {
         return node;
     }
 
-    public ElementImpl emptyElement(QName element, XMLAttributes attributes,
-            int line, int column, int offset) {
+    public ElementImpl emptyElement(QName element, XMLAttributes attributes, int line, int column,
+            int offset) {
         ElementImpl node = new ElementImpl(line, column, offset);
         processElement(element, attributes, node);
         return node;
     }
 
-    public ElementImpl startElement(QName element, XMLAttributes attributes,
-            int line, int column) {
+    public ElementImpl startElement(QName element, XMLAttributes attributes, int line, int column) {
         return startElement(element, attributes, line, column, -1);
     }
 
-    public ElementImpl emptyElement(QName element, XMLAttributes attributes,
-            int line, int column) {
+    public ElementImpl emptyElement(QName element, XMLAttributes attributes, int line, int column) {
         return emptyElement(element, attributes, line, column, -1);
     }
 
-    private void processElement(QName element, XMLAttributes attributes,
-            ElementImpl node) {
+    private void processElement(QName element, XMLAttributes attributes, ElementImpl node) {
 
         // populate node
         node.prefix = element.prefix;
@@ -98,9 +93,8 @@ public class SchemaDOM extends DefaultDocument {
         // set the attributes
         Attr[] attrs = new Attr[attributes.getLength()];
         for (int i = 0; i < attributes.getLength(); i++) {
-            attrs[i] = new AttrImpl(node, attributes.getPrefix(i), attributes
-                    .getLocalName(i), attributes.getQName(i), attributes.getURI(
-                            i), attributes.getValue(i));
+            attrs[i] = new AttrImpl(node, attributes.getPrefix(i), attributes.getLocalName(i), attributes
+                    .getQName(i), attributes.getURI(i), attributes.getValue(i));
         }
         node.attrs = attrs;
 
@@ -157,8 +151,7 @@ public class SchemaDOM extends DefaultDocument {
     void processingInstruction(String target, XMLString data) {
         fAnnotationBuffer.append("<?").append(target);
         if (data.length > 0) {
-            fAnnotationBuffer.append(' ').append(data.ch, data.offset,
-                    data.length);
+            fAnnotationBuffer.append(' ').append(data.ch, data.offset, data.length);
         }
         fAnnotationBuffer.append("?>");
     }
@@ -248,8 +241,7 @@ public class SchemaDOM extends DefaultDocument {
     }
 
     private void resizeRelations() {
-        NodeImpl[][] temp = new NodeImpl[relations.length
-                + relationsRowResizeFactor][];
+        NodeImpl[][] temp = new NodeImpl[relations.length + relationsRowResizeFactor][];
         System.arraycopy(relations, 0, temp, 0, relations.length);
         for (int i = relations.length; i < temp.length; i++) {
             temp[i] = new NodeImpl[relationsColResizeFactor];
@@ -258,8 +250,7 @@ public class SchemaDOM extends DefaultDocument {
     }
 
     private void resizeRelations(int i) {
-        NodeImpl[] temp = new NodeImpl[relations[i].length
-                + relationsColResizeFactor];
+        NodeImpl[] temp = new NodeImpl[relations[i].length + relationsColResizeFactor];
         System.arraycopy(relations[i], 0, temp, 0, relations[i].length);
         relations[i] = temp;
     }
@@ -303,16 +294,15 @@ public class SchemaDOM extends DefaultDocument {
         if (node.hasAttributes()) {
             NamedNodeMap attrs = node.getAttributes();
             for (int i = 0; i < attrs.getLength(); i++) {
-                System.out.print("  " + ((Attr) attrs.item(i)).getName() + "=\""
-                        + ((Attr) attrs.item(i)).getValue() + "\"");
+                System.out.print("  " + ((Attr) attrs.item(i)).getName() + "=\"" + ((Attr) attrs.item(i))
+                        .getValue() + "\"");
             }
         }
 
         if (node.hasChildNodes()) {
             System.out.println(">");
             depth += 4;
-            for (Node child = node.getFirstChild(); child != null; child = child
-                    .getNextSibling()) {
+            for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
                 traverse(child, depth);
             }
             depth -= 4;
@@ -340,13 +330,11 @@ public class SchemaDOM extends DefaultDocument {
     }
 
     // commence the serialization of an annotation
-    void startAnnotation(QName elemName, XMLAttributes attributes,
-            NamespaceContext namespaceContext) {
+    void startAnnotation(QName elemName, XMLAttributes attributes, NamespaceContext namespaceContext) {
         startAnnotation(elemName.rawname, attributes, namespaceContext);
     }
 
-    void startAnnotation(String elemRawName, XMLAttributes attributes,
-            NamespaceContext namespaceContext) {
+    void startAnnotation(String elemRawName, XMLAttributes attributes, NamespaceContext namespaceContext) {
         if (fAnnotationBuffer == null)
             fAnnotationBuffer = new StringBuffer(256);
         fAnnotationBuffer.append("<").append(elemRawName).append(" ");
@@ -364,13 +352,11 @@ public class SchemaDOM extends DefaultDocument {
             String aPrefix = attributes.getPrefix(i);
             String aQName = attributes.getQName(i);
             // if it's xmlns:* or xmlns, must be a namespace decl
-            if (aPrefix == XMLSymbols.PREFIX_XMLNS
-                    || aQName == XMLSymbols.PREFIX_XMLNS) {
-                namespaces.add(aPrefix == XMLSymbols.PREFIX_XMLNS ? attributes
-                        .getLocalName(i) : XMLSymbols.EMPTY_STRING);
+            if (aPrefix == XMLSymbols.PREFIX_XMLNS || aQName == XMLSymbols.PREFIX_XMLNS) {
+                namespaces.add(aPrefix == XMLSymbols.PREFIX_XMLNS ? attributes.getLocalName(i)
+                        : XMLSymbols.EMPTY_STRING);
             }
-            fAnnotationBuffer.append(aQName).append("=\"").append(
-                    processAttValue(aValue)).append("\" ");
+            fAnnotationBuffer.append(aQName).append("=\"").append(processAttValue(aValue)).append("\" ");
         }
         // now we have to look through currently in-scope namespaces to see what
         // wasn't declared here
@@ -384,11 +370,11 @@ public class SchemaDOM extends DefaultDocument {
             if (!namespaces.contains(prefix)) {
                 // have to declare this one
                 if (prefix == XMLSymbols.EMPTY_STRING) {
-                    fAnnotationBuffer.append("xmlns").append("=\"").append(
-                            processAttValue(uri)).append("\" ");
+                    fAnnotationBuffer.append("xmlns").append("=\"").append(processAttValue(uri)).append(
+                            "\" ");
                 } else {
-                    fAnnotationBuffer.append("xmlns:").append(prefix).append(
-                            "=\"").append(processAttValue(uri)).append("\" ");
+                    fAnnotationBuffer.append("xmlns:").append(prefix).append("=\"").append(processAttValue(
+                            uri)).append("\" ");
                 }
             }
         }
@@ -403,8 +389,8 @@ public class SchemaDOM extends DefaultDocument {
         fAnnotationBuffer.append("<").append(elemRawName);
         for (int i = 0; i < attributes.getLength(); i++) {
             String aValue = attributes.getValue(i);
-            fAnnotationBuffer.append(" ").append(attributes.getQName(i)).append(
-                    "=\"").append(processAttValue(aValue)).append("\"");
+            fAnnotationBuffer.append(" ").append(attributes.getQName(i)).append("=\"").append(processAttValue(
+                    aValue)).append("\"");
         }
         fAnnotationBuffer.append(">");
     }
@@ -414,8 +400,7 @@ public class SchemaDOM extends DefaultDocument {
         // normally, nothing will happen
         for (int i = 0; i < length; ++i) {
             char currChar = original.charAt(i);
-            if (currChar == '"' || currChar == '<' || currChar == '&'
-                    || currChar == 0x09 || currChar == 0x0A
+            if (currChar == '"' || currChar == '<' || currChar == '&' || currChar == 0x09 || currChar == 0x0A
                     || currChar == 0x0D) {
                 return escapeAttValue(original, i);
             }

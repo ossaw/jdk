@@ -64,7 +64,7 @@ public final class XSLTCSource implements Source {
      * it can receive it through ContentHandler/LexicalHandler interfaces.
      * 
      * @param systemId
-     *                 The system Id for this Source
+     *        The system Id for this Source
      */
     public void setSystemId(String systemId) {
         _systemId = systemId;
@@ -92,8 +92,7 @@ public final class XSLTCSource implements Source {
      * Internal interface which returns a DOM for a given DTMManager and
      * translet.
      */
-    protected DOM getDOM(XSLTCDTMManager dtmManager, AbstractTranslet translet)
-            throws SAXException {
+    protected DOM getDOM(XSLTCDTMManager dtmManager, AbstractTranslet translet) throws SAXException {
         SAXImpl idom = (SAXImpl) _dom.get();
 
         if (idom != null) {
@@ -116,15 +115,13 @@ public final class XSLTCSource implements Source {
                 wsfilter = new DOMWSFilter(translet);
             }
 
-            boolean hasIdCall = (translet != null) ? translet.hasIdCall()
-                    : false;
+            boolean hasIdCall = (translet != null) ? translet.hasIdCall() : false;
 
             if (dtmManager == null) {
                 dtmManager = XSLTCDTMManager.newInstance();
             }
 
-            idom = (SAXImpl) dtmManager.getDTM(source, true, wsfilter, false,
-                    false, hasIdCall);
+            idom = (SAXImpl) dtmManager.getDTM(source, true, wsfilter, false, false, hasIdCall);
 
             String systemId = getSystemId();
             if (systemId != null) {

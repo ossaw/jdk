@@ -22,21 +22,19 @@ public class InvalidPathException extends IllegalArgumentException {
      * index.
      *
      * @param input
-     *               the input string
+     *        the input string
      * @param reason
-     *               a string explaining why the input was rejected
+     *        a string explaining why the input was rejected
      * @param index
-     *               the index at which the error occurred, or <tt>-1</tt> if
-     *               the
-     *               index is not known
-     *
+     *        the index at which the error occurred, or <tt>-1</tt> if
+     *        the
+     *        index is not known
      * @throws NullPointerException
-     *                                  if either the input or reason strings
-     *                                  are <tt>null</tt>
-     *
+     *         if either the input or reason strings
+     *         are <tt>null</tt>
      * @throws IllegalArgumentException
-     *                                  if the error index is less than
-     *                                  <tt>-1</tt>
+     *         if the error index is less than
+     *         <tt>-1</tt>
      */
     public InvalidPathException(String input, String reason, int index) {
         super(reason);
@@ -53,13 +51,12 @@ public class InvalidPathException extends IllegalArgumentException {
      * resulting object will have an error index of <tt>-1</tt>.
      *
      * @param input
-     *               the input string
+     *        the input string
      * @param reason
-     *               a string explaining why the input was rejected
-     *
+     *        a string explaining why the input was rejected
      * @throws NullPointerException
-     *                              if either the input or reason strings are
-     *                              <tt>null</tt>
+     *         if either the input or reason strings are
+     *         <tt>null</tt>
      */
     public InvalidPathException(String input, String reason) {
         this(input, reason, -1);

@@ -38,8 +38,8 @@ public class InputStreamImageInputStreamSpi extends ImageInputStreamSpi {
         return false;
     }
 
-    public ImageInputStream createInputStreamInstance(Object input,
-            boolean useCache, File cacheDir) throws IOException {
+    public ImageInputStream createInputStreamInstance(Object input, boolean useCache, File cacheDir)
+            throws IOException {
         if (input instanceof InputStream) {
             InputStream is = (InputStream) input;
 

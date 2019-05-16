@@ -49,13 +49,11 @@ import org.w3c.dom.ls.LSSerializer;
  * DOMImplementation class along with DocumentImpl.
  *
  * @xerces.internal
- *
  * @version $Id: CoreDOMImplementationImpl.java,v 1.6 2010-11-01 04:39:37 joehw
  *          Exp $
  * @since PR-DOM-Level-1-19980818.
  */
-public class CoreDOMImplementationImpl implements DOMImplementation,
-        DOMImplementationLS {
+public class CoreDOMImplementationImpl implements DOMImplementation, DOMImplementationLS {
     //
     // Data
     //
@@ -94,18 +92,16 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
      * meaning language and level thereof.
      *
      * @param feature
-     *                The package name of the feature to test. In Level 1,
-     *                supported
-     *                values are "HTML" and "XML" (case-insensitive). At this
-     *                writing, com.sun.org.apache.xerces.internal.dom supports
-     *                only
-     *                XML.
-     *
+     *        The package name of the feature to test. In Level 1,
+     *        supported
+     *        values are "HTML" and "XML" (case-insensitive). At this
+     *        writing, com.sun.org.apache.xerces.internal.dom supports
+     *        only
+     *        XML.
      * @param version
-     *                The version number of the feature being tested. This is
-     *                interpreted as "Version of the DOM API supported for the
-     *                specified Feature", and in Level 1 should be "1.0"
-     *
+     *        The version number of the feature being tested. This is
+     *        interpreted as "Version of the DOM API supported for the
+     *        specified Feature", and in Level 1 should be "1.0"
      * @return true iff this implementation is compatable with the specified
      *         feature and version.
      */
@@ -121,19 +117,16 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
         // castable DOMImplementation.getFeature(feature, version). Without a
         // plus, only features whose interfaces are directly castable are
         // considered.
-        if ((feature.equalsIgnoreCase("+XPath")) && (anyVersion || version
-                .equals("3.0"))) {
+        if ((feature.equalsIgnoreCase("+XPath")) && (anyVersion || version.equals("3.0"))) {
             try {
                 Class xpathClass = ObjectFactory.findProviderClass(
-                        "com.sun.org.apache.xpath.internal.domapi.XPathEvaluatorImpl",
-                        true);
+                        "com.sun.org.apache.xpath.internal.domapi.XPathEvaluatorImpl", true);
 
                 // Check if the DOM XPath implementation implements
                 // the interface org.w3c.dom.XPathEvaluator
                 Class interfaces[] = xpathClass.getInterfaces();
                 for (int i = 0; i < interfaces.length; i++) {
-                    if (interfaces[i].getName().equals(
-                            "org.w3c.dom.xpath.XPathEvaluator")) {
+                    if (interfaces[i].getName().equals("org.w3c.dom.xpath.XPathEvaluator")) {
                         return true;
                     }
                 }
@@ -145,35 +138,27 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
         if (feature.startsWith("+")) {
             feature = feature.substring(1);
         }
-        return (feature.equalsIgnoreCase("Core") && (anyVersion || version
-                .equals("1.0") || version.equals("2.0") || version.equals(
-                        "3.0"))) || (feature.equalsIgnoreCase("XML")
-                                && (anyVersion || version.equals("1.0")
-                                        || version.equals("2.0") || version
-                                                .equals("3.0"))) || (feature
-                                                        .equalsIgnoreCase("LS")
-                                                        && (anyVersion
-                                                                || version
-                                                                        .equals("3.0")));
+        return (feature.equalsIgnoreCase("Core") && (anyVersion || version.equals("1.0") || version.equals(
+                "2.0") || version.equals("3.0"))) || (feature.equalsIgnoreCase("XML") && (anyVersion
+                        || version.equals("1.0") || version.equals("2.0") || version.equals("3.0")))
+                || (feature.equalsIgnoreCase("LS") && (anyVersion || version.equals("3.0")));
     } // hasFeature(String,String):boolean
 
     /**
      * Introduced in DOM Level 2.
      * <p>
-     *
      * Creates an empty DocumentType node.
      *
      * @param qualifiedName
-     *                      The qualified name of the document type to be
-     *                      created.
+     *        The qualified name of the document type to be
+     *        created.
      * @param publicID
-     *                      The document type public identifier.
+     *        The document type public identifier.
      * @param systemID
-     *                      The document type system identifier.
+     *        The document type system identifier.
      * @since WD-DOM-Level-2-19990923
      */
-    public DocumentType createDocumentType(String qualifiedName,
-            String publicID, String systemID) {
+    public DocumentType createDocumentType(String qualifiedName, String publicID, String systemID) {
         // REVISIT: this might allow creation of invalid name for DOCTYPE
         // xmlns prefix.
         // also there is no way for a user to turn off error checking.
@@ -189,8 +174,8 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
         // it is an error for NCName to have more than one ':'
         // check if it is valid QName [Namespace in XML production 6]
         if (index == 0 || index == length - 1 || lastIndex != index) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN, "NAMESPACE_ERR",
+                    null);
             throw new DOMException(DOMException.NAMESPACE_ERR, msg);
         }
         int start = 0;
@@ -198,18 +183,15 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
         if (index > 0) {
             // check that prefix is NCName
             if (!XMLChar.isNCNameStart(qname.charAt(start))) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "INVALID_CHARACTER_ERR", null);
                 throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
             }
             for (int i = 1; i < index; i++) {
                 if (!XMLChar.isNCName(qname.charAt(i))) {
-                    String msg = DOMMessageFormatter.formatMessage(
-                            DOMMessageFormatter.DOM_DOMAIN,
+                    String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
                             "INVALID_CHARACTER_ERR", null);
-                    throw new DOMException(DOMException.INVALID_CHARACTER_ERR,
-                            msg);
+                    throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
                 }
             }
             start = index + 1;
@@ -218,16 +200,14 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
         // check local part
         if (!XMLChar.isNCNameStart(qname.charAt(start))) {
             // REVISIT: add qname parameter to the message
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                    null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "INVALID_CHARACTER_ERR", null);
             throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
         }
         for (int i = start + 1; i < length; i++) {
             if (!XMLChar.isNCName(qname.charAt(i))) {
-                String msg = DOMMessageFormatter.formatMessage(
-                        DOMMessageFormatter.DOM_DOMAIN, "INVALID_CHARACTER_ERR",
-                        null);
+                String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                        "INVALID_CHARACTER_ERR", null);
                 throw new DOMException(DOMException.INVALID_CHARACTER_ERR, msg);
             }
         }
@@ -236,35 +216,33 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
     /**
      * Introduced in DOM Level 2.
      * <p>
-     *
      * Creates an XML Document object of the specified type with its document
      * element.
      *
      * @param namespaceURI
-     *                      The namespace URI of the document element to create,
-     *                      or null.
+     *        The namespace URI of the document element to create,
+     *        or null.
      * @param qualifiedName
-     *                      The qualified name of the document element to
-     *                      create.
+     *        The qualified name of the document element to
+     *        create.
      * @param doctype
-     *                      The type of document to be created or null.
-     *                      <p>
-     *
-     *                      When doctype is not null, its Node.ownerDocument
-     *                      attribute is
-     *                      set to the document being created.
+     *        The type of document to be created or null.
+     *        <p>
+     *        When doctype is not null, its Node.ownerDocument
+     *        attribute is
+     *        set to the document being created.
      * @return Document A new Document object.
      * @throws DOMException
-     *                      WRONG_DOCUMENT_ERR: Raised if doctype has already
-     *                      been used
-     *                      with a different document.
+     *         WRONG_DOCUMENT_ERR: Raised if doctype has already
+     *         been used
+     *         with a different document.
      * @since WD-DOM-Level-2-19990923
      */
-    public Document createDocument(String namespaceURI, String qualifiedName,
-            DocumentType doctype) throws DOMException {
+    public Document createDocument(String namespaceURI, String qualifiedName, DocumentType doctype)
+            throws DOMException {
         if (doctype != null && doctype.getOwnerDocument() != null) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "WRONG_DOCUMENT_ERR", null);
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "WRONG_DOCUMENT_ERR", null);
             throw new DOMException(DOMException.WRONG_DOCUMENT_ERR, msg);
         }
         CoreDocumentImpl doc = new CoreDocumentImpl(doctype);
@@ -281,14 +259,12 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
             if ((feature.equalsIgnoreCase("+XPath"))) {
                 try {
                     Class xpathClass = ObjectFactory.findProviderClass(
-                            "com.sun.org.apache.xpath.internal.domapi.XPathEvaluatorImpl",
-                            true);
+                            "com.sun.org.apache.xpath.internal.domapi.XPathEvaluatorImpl", true);
                     // Check if the DOM XPath implementation implements
                     // the interface org.w3c.dom.XPathEvaluator
                     Class interfaces[] = xpathClass.getInterfaces();
                     for (int i = 0; i < interfaces.length; i++) {
-                        if (interfaces[i].getName().equals(
-                                "org.w3c.dom.xpath.XPathEvaluator")) {
+                        if (interfaces[i].getName().equals("org.w3c.dom.xpath.XPathEvaluator")) {
                             return xpathClass.newInstance();
                         }
                     }
@@ -311,47 +287,47 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
      * means of its <code>parse</code> method.
      * 
      * @param mode
-     *                   The <code>mode</code> argument is either
-     *                   <code>MODE_SYNCHRONOUS</code> or
-     *                   <code>MODE_ASYNCHRONOUS</code>, if <code>mode</code> is
-     *                   <code>MODE_SYNCHRONOUS</code> then the
-     *                   <code>LSParser</code>
-     *                   that is created will operate in synchronous mode, if
-     *                   it's
-     *                   <code>MODE_ASYNCHRONOUS</code> then the
-     *                   <code>LSParser</code>
-     *                   that is created will operate in asynchronous mode.
+     *        The <code>mode</code> argument is either
+     *        <code>MODE_SYNCHRONOUS</code> or
+     *        <code>MODE_ASYNCHRONOUS</code>, if <code>mode</code> is
+     *        <code>MODE_SYNCHRONOUS</code> then the
+     *        <code>LSParser</code>
+     *        that is created will operate in synchronous mode, if
+     *        it's
+     *        <code>MODE_ASYNCHRONOUS</code> then the
+     *        <code>LSParser</code>
+     *        that is created will operate in asynchronous mode.
      * @param schemaType
-     *                   An absolute URI representing the type of the schema
-     *                   language
-     *                   used during the load of a <code>Document</code> using
-     *                   the
-     *                   newly created <code>LSParser</code>. Note that no
-     *                   lexical
-     *                   checking is done on the absolute URI. In order to
-     *                   create a
-     *                   <code>LSParser</code> for any kind of schema types
-     *                   (i.e. the
-     *                   LSParser will be free to use any schema found), use the
-     *                   value
-     *                   <code>null</code>.
-     *                   <p >
-     *                   <b>Note:</b> For W3C XML Schema [
-     *                   <a href=
-     *                   'http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/'>
-     *                   XML Schema Part 1</a>] , applications must use the
-     *                   value
-     *                   <code>"http://www.w3.org/2001/XMLSchema"</code>. For
-     *                   XML DTD [
-     *                   <a href=
-     *                   'http://www.w3.org/TR/2000/REC-xml-20001006'>XML
-     *                   1.0</a>], applications must use the value
-     *                   <code>"http://www.w3.org/TR/REC-xml"</code>. Other
-     *                   Schema
-     *                   languages are outside the scope of the W3C and
-     *                   therefore
-     *                   should recommend an absolute URI in order to use this
-     *                   method.
+     *        An absolute URI representing the type of the schema
+     *        language
+     *        used during the load of a <code>Document</code> using
+     *        the
+     *        newly created <code>LSParser</code>. Note that no
+     *        lexical
+     *        checking is done on the absolute URI. In order to
+     *        create a
+     *        <code>LSParser</code> for any kind of schema types
+     *        (i.e. the
+     *        LSParser will be free to use any schema found), use the
+     *        value
+     *        <code>null</code>.
+     *        <p >
+     *        <b>Note:</b> For W3C XML Schema [
+     *        <a href=
+     *        'http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/'>
+     *        XML Schema Part 1</a>] , applications must use the
+     *        value
+     *        <code>"http://www.w3.org/2001/XMLSchema"</code>. For
+     *        XML DTD [
+     *        <a href=
+     *        'http://www.w3.org/TR/2000/REC-xml-20001006'>XML
+     *        1.0</a>], applications must use the value
+     *        <code>"http://www.w3.org/TR/REC-xml"</code>. Other
+     *        Schema
+     *        languages are outside the scope of the W3C and
+     *        therefore
+     *        should recommend an absolute URI in order to use this
+     *        method.
      * @return The newly created <code>LSParser</code> object. This
      *         <code>LSParser</code> is either synchronous or asynchronous
      *         depending on the value of the <code>mode</code> argument.
@@ -367,26 +343,23 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
      *         created <code>LSParser</code> contains a reference to the default
      *         error handler.
      * @exception DOMException
-     *                         NOT_SUPPORTED_ERR: Raised if the requested mode
-     *                         or schema
-     *                         type is not supported.
+     *            NOT_SUPPORTED_ERR: Raised if the requested mode
+     *            or schema
+     *            type is not supported.
      */
-    public LSParser createLSParser(short mode, String schemaType)
-            throws DOMException {
+    public LSParser createLSParser(short mode, String schemaType) throws DOMException {
         if (mode != DOMImplementationLS.MODE_SYNCHRONOUS || (schemaType != null
-                && !"http://www.w3.org/2001/XMLSchema".equals(schemaType)
-                && !"http://www.w3.org/TR/REC-xml".equals(schemaType))) {
-            String msg = DOMMessageFormatter.formatMessage(
-                    DOMMessageFormatter.DOM_DOMAIN, "NOT_SUPPORTED_ERR", null);
+                && !"http://www.w3.org/2001/XMLSchema".equals(schemaType) && !"http://www.w3.org/TR/REC-xml"
+                        .equals(schemaType))) {
+            String msg = DOMMessageFormatter.formatMessage(DOMMessageFormatter.DOM_DOMAIN,
+                    "NOT_SUPPORTED_ERR", null);
             throw new DOMException(DOMException.NOT_SUPPORTED_ERR, msg);
         }
-        if (schemaType != null && schemaType.equals(
-                "http://www.w3.org/TR/REC-xml")) {
+        if (schemaType != null && schemaType.equals("http://www.w3.org/TR/REC-xml")) {
             return new DOMParserImpl(new DTDConfiguration(), schemaType);
         } else {
             // create default parser configuration validating against XMLSchemas
-            return new DOMParserImpl(new XIncludeAwareParserConfiguration(),
-                    schemaType);
+            return new DOMParserImpl(new XIncludeAwareParserConfiguration(), schemaType);
         }
     }
 
@@ -431,8 +404,8 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
             // requested
             if (freeValidatorIndex < 0) {
                 return (RevalidationHandler) (ObjectFactory.newInstance(
-                        "com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator",
-                        ObjectFactory.findClassLoader(), true));
+                        "com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator", ObjectFactory
+                                .findClassLoader(), true));
             }
             // return first available validator
             RevalidationHandler val = validators[freeValidatorIndex];
@@ -441,8 +414,8 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
         } else if (schemaType == XMLGrammarDescription.XML_DTD) {
             if (freeDTDValidatorIndex < 0) {
                 return (RevalidationHandler) (ObjectFactory.newInstance(
-                        "com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator",
-                        ObjectFactory.findClassLoader(), true));
+                        "com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator", ObjectFactory
+                                .findClassLoader(), true));
             }
             // return first available validator
             RevalidationHandler val = dtdValidators[freeDTDValidatorIndex];
@@ -453,8 +426,7 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
     }
 
     /** NON-DOM: release validator */
-    synchronized void releaseValidator(String schemaType,
-            RevalidationHandler validator) {
+    synchronized void releaseValidator(String schemaType, RevalidationHandler validator) {
         // REVISIT: implement support for DTD validators as well
         if (schemaType == XMLGrammarDescription.XML_SCHEMA) {
             ++freeValidatorIndex;
@@ -472,8 +444,7 @@ public class CoreDOMImplementationImpl implements DOMImplementation,
                 // resize size of the validators
                 currentSize += SIZE;
                 RevalidationHandler newarray[] = new RevalidationHandler[currentSize];
-                System.arraycopy(dtdValidators, 0, newarray, 0,
-                        dtdValidators.length);
+                System.arraycopy(dtdValidators, 0, newarray, 0, dtdValidators.length);
                 dtdValidators = newarray;
             }
             dtdValidators[freeDTDValidatorIndex] = validator;

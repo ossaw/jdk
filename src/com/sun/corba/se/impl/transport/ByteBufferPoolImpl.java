@@ -51,8 +51,7 @@ public class ByteBufferPoolImpl implements ByteBufferPool {
     public ByteBuffer getByteBuffer(int theAskSize) {
         ByteBuffer abb = null;
 
-        if ((theAskSize <= itsByteBufferSize) && !itsOrb.getORBData()
-                .disableDirectByteBufferUse()) {
+        if ((theAskSize <= itsByteBufferSize) && !itsOrb.getORBData().disableDirectByteBufferUse()) {
             // check if there's one in the pool, if not allocate one.
             int poolSize;
             synchronized (itsPool) {
@@ -114,8 +113,7 @@ public class ByteBufferPoolImpl implements ByteBufferPool {
                     // Check to make sure we don't have 'thebb' reference
                     // already in the pool before adding it.
 
-                    for (int i = 0; i < itsPool.size()
-                            && refInPool == false; i++) {
+                    for (int i = 0; i < itsPool.size() && refInPool == false; i++) {
                         ByteBuffer tmpbb = (ByteBuffer) itsPool.get(i);
                         if (thebb == tmpbb) {
                             refInPool = true;
@@ -133,8 +131,7 @@ public class ByteBufferPoolImpl implements ByteBufferPool {
                 } else // otherwise, log a stack trace with duplicate message
                 {
                     String threadName = Thread.currentThread().getName();
-                    Throwable t = new Throwable(threadName
-                            + ": Duplicate ByteBuffer reference (" + bbAddr
+                    Throwable t = new Throwable(threadName + ": Duplicate ByteBuffer reference (" + bbAddr
                             + ")");
                     t.printStackTrace(System.out);
                 }

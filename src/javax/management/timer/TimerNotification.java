@@ -41,22 +41,21 @@ public class TimerNotification extends javax.management.Notification {
      * Creates a timer notification object.
      *
      * @param type
-     *                       The notification type.
+     *        The notification type.
      * @param source
-     *                       The notification producer.
+     *        The notification producer.
      * @param sequenceNumber
-     *                       The notification sequence number within the source
-     *                       object.
+     *        The notification sequence number within the source
+     *        object.
      * @param timeStamp
-     *                       The notification emission date.
+     *        The notification emission date.
      * @param msg
-     *                       The notification message.
+     *        The notification message.
      * @param id
-     *                       The notification identifier.
-     *
+     *        The notification identifier.
      */
-    public TimerNotification(String type, Object source, long sequenceNumber,
-            long timeStamp, String msg, Integer id) {
+    public TimerNotification(String type, Object source, long sequenceNumber, long timeStamp, String msg,
+            Integer id) {
 
         super(type, source, sequenceNumber, timeStamp, msg);
         this.notificationID = id;
@@ -86,13 +85,11 @@ public class TimerNotification extends javax.management.Notification {
 
     /**
      * Creates and returns a copy of this object.
-     *
      */
     Object cloneTimerNotification() {
 
-        TimerNotification clone = new TimerNotification(this.getType(), this
-                .getSource(), this.getSequenceNumber(), this.getTimeStamp(),
-                this.getMessage(), notificationID);
+        TimerNotification clone = new TimerNotification(this.getType(), this.getSource(), this
+                .getSequenceNumber(), this.getTimeStamp(), this.getMessage(), notificationID);
         clone.setUserData(this.getUserData());
         return clone;
     }

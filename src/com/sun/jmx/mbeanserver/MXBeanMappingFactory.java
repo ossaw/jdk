@@ -19,14 +19,12 @@ import java.lang.reflect.Type;
  * {@link javax.management.StandardMBean StandardMBean} constructor or MXBean
  * proxy.
  * </p>
- *
  * <p>
  * An {@code MXBeanMappingFactory} must return an {@code MXBeanMapping} for any
  * Java type that appears in the MXBeans that the factory is being used for.
  * Usually it does that by handling any custom types, and forwarding everything
  * else to the {@linkplain #DEFAULT default mapping factory}.
  * </p>
- *
  * <p>
  * Consider the {@code MyLinkedList} example from the {@link MXBeanMapping}
  * documentation. If we are unable to change the {@code MyLinkedList} class to
@@ -38,8 +36,7 @@ import java.lang.reflect.Type;
  * public class MyLinkedListMappingFactory extends MXBeanMappingFactory {
  *     public MyLinkedListMappingFactory() {}
  *
- *     public MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f)
- *             throws OpenDataException {
+ *     public MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f) throws OpenDataException {
  *         if (t == MyLinkedList.class)
  *             return new MyLinkedListMapping(t);
  *         else
@@ -47,7 +44,6 @@ import java.lang.reflect.Type;
  *     }
  * }
  * </pre>
- *
  * <p>
  * The mapping factory handles only the {@code MyLinkedList} class. Every other
  * type is forwarded to the default mapping factory. This includes types such as
@@ -55,7 +51,6 @@ import java.lang.reflect.Type;
  * factory will recursively invoke {@code MyLinkedListMappingFactory} to map the
  * contained {@code MyLinkedList} type.
  * </p>
- *
  * <p>
  * Once we have defined {@code MyLinkedListMappingFactory}, we can use it in an
  * MXBean interface like this:
@@ -67,7 +62,6 @@ import java.lang.reflect.Type;
  *     public MyLinkedList getSomething();
  * }
  * </pre>
- *
  * <p>
  * Alternatively we can annotate the package that {@code SomethingMXBean}
  * appears in, or we can supply the factory to a
@@ -104,24 +98,23 @@ public abstract class MXBeanMappingFactory {
      * </p>
      * 
      * @param t
-     *          the Java type to be mapped.
+     *        the Java type to be mapped.
      * @param f
-     *          the original mapping factory that was consulted to do the
-     *          mapping. A mapping factory should pass this parameter intact
-     *          if it forwards a type to another mapping factory. In the
-     *          example, this is how {@code MyLinkedListMappingFactory} works
-     *          for types like {@code MyLinkedList[]} and
-     *          {@code List<MyLinkedList>}.
+     *        the original mapping factory that was consulted to do the
+     *        mapping. A mapping factory should pass this parameter intact
+     *        if it forwards a type to another mapping factory. In the
+     *        example, this is how {@code MyLinkedListMappingFactory} works
+     *        for types like {@code MyLinkedList[]} and
+     *        {@code List<MyLinkedList>}.
      * @return the mapping for the given type.
      * @throws OpenDataException
-     *                           if this type cannot be mapped. This exception
-     *                           is appropriate
-     *                           if the factory is supposed to handle all types
-     *                           of this sort
-     *                           (for example, all linked lists), but cannot
-     *                           handle this
-     *                           particular type.
+     *         if this type cannot be mapped. This exception
+     *         is appropriate
+     *         if the factory is supposed to handle all types
+     *         of this sort
+     *         (for example, all linked lists), but cannot
+     *         handle this
+     *         particular type.
      */
-    public abstract MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f)
-            throws OpenDataException;
+    public abstract MXBeanMapping mappingForType(Type t, MXBeanMappingFactory f) throws OpenDataException;
 }

@@ -61,8 +61,7 @@ import java.util.ArrayList;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public abstract class FieldGenOrMethodGen extends AccessFlags implements
-        NamedAndTyped, Cloneable {
+public abstract class FieldGenOrMethodGen extends AccessFlags implements NamedAndTyped, Cloneable {
     protected String name;
     protected Type type;
     protected ConstantPoolGen cp;
@@ -106,7 +105,7 @@ public abstract class FieldGenOrMethodGen extends AccessFlags implements
      * attributes will be ignored by the JVM but do no harm.
      *
      * @param a
-     *          attribute to be added
+     *        attribute to be added
      */
     public void addAttribute(Attribute a) {
         attribute_vec.add(a);

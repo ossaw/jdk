@@ -132,22 +132,22 @@ class TablePrintable implements Printable {
      * String, each format is given the current page number.
      *
      * @param table
-     *                     the table to print
+     *        the table to print
      * @param printMode
-     *                     the printing mode for this printable
+     *        the printing mode for this printable
      * @param headerFormat
-     *                     a <code>MessageFormat</code> specifying the text to
-     *                     be used in
-     *                     printing a header, or null for none
+     *        a <code>MessageFormat</code> specifying the text to
+     *        be used in
+     *        printing a header, or null for none
      * @param footerFormat
-     *                     a <code>MessageFormat</code> specifying the text to
-     *                     be used in
-     *                     printing a footer, or null for none
+     *        a <code>MessageFormat</code> specifying the text to
+     *        be used in
+     *        printing a footer, or null for none
      * @throws IllegalArgumentException
-     *                                  if passed an invalid print mode
+     *         if passed an invalid print mode
      */
-    public TablePrintable(JTable table, JTable.PrintMode printMode,
-            MessageFormat headerFormat, MessageFormat footerFormat) {
+    public TablePrintable(JTable table, JTable.PrintMode printMode, MessageFormat headerFormat,
+            MessageFormat footerFormat) {
 
         this.table = table;
 
@@ -175,18 +175,17 @@ class TablePrintable implements Printable {
      * context, in the specified format.
      *
      * @param graphics
-     *                   the context into which the page is drawn
+     *        the context into which the page is drawn
      * @param pageFormat
-     *                   the size and orientation of the page being drawn
+     *        the size and orientation of the page being drawn
      * @param pageIndex
-     *                   the zero based index of the page to be drawn
+     *        the zero based index of the page to be drawn
      * @return PAGE_EXISTS if the page is rendered successfully, or NO_SUCH_PAGE
      *         if a non-existent page index is specified
      * @throws PrinterException
-     *                          if an error causes printing to be aborted
+     *         if an error causes printing to be aborted
      */
-    public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
-            throws PrinterException {
+    public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
 
         // for easy access to these values
         final int imgWidth = (int) pageFormat.getImageableWidth();
@@ -226,8 +225,7 @@ class TablePrintable implements Printable {
         // and subtract that from the available space
         if (headerText != null) {
             graphics.setFont(headerFont);
-            hRect = graphics.getFontMetrics().getStringBounds(headerText,
-                    graphics);
+            hRect = graphics.getFontMetrics().getStringBounds(headerText, graphics);
 
             headerTextSpace = (int) Math.ceil(hRect.getHeight());
             availableSpace -= headerTextSpace + H_F_SPACE;
@@ -237,23 +235,20 @@ class TablePrintable implements Printable {
         // and subtract that from the available space
         if (footerText != null) {
             graphics.setFont(footerFont);
-            fRect = graphics.getFontMetrics().getStringBounds(footerText,
-                    graphics);
+            fRect = graphics.getFontMetrics().getStringBounds(footerText, graphics);
 
             footerTextSpace = (int) Math.ceil(fRect.getHeight());
             availableSpace -= footerTextSpace + H_F_SPACE;
         }
 
         if (availableSpace <= 0) {
-            throw new PrinterException(
-                    "Height of printable area is too small.");
+            throw new PrinterException("Height of printable area is too small.");
         }
 
         // depending on the print mode, we may need a scale factor to
         // fit the table's entire width on the page
         double sf = 1.0D;
-        if (printMode == JTable.PrintMode.FIT_WIDTH
-                && totalColWidth > imgWidth) {
+        if (printMode == JTable.PrintMode.FIT_WIDTH && totalColWidth > imgWidth) {
 
             // if not, we would have thrown an acception previously
             assert imgWidth > 0;
@@ -385,20 +380,19 @@ class TablePrintable implements Printable {
      * and footer text.
      *
      * @param g2d
-     *                 the graphics to draw into
+     *        the graphics to draw into
      * @param text
-     *                 the text to draw, non null
+     *        the text to draw, non null
      * @param rect
-     *                 the bounding rectangle for this text, as calculated at
-     *                 the
-     *                 given font, non null
+     *        the bounding rectangle for this text, as calculated at
+     *        the
+     *        given font, non null
      * @param font
-     *                 the font to draw the text in, non null
+     *        the font to draw the text in, non null
      * @param imgWidth
-     *                 the width of the area to draw into
+     *        the width of the area to draw into
      */
-    private void printText(Graphics2D g2d, String text, Rectangle2D rect,
-            Font font, int imgWidth) {
+    private void printText(Graphics2D g2d, String text, Rectangle2D rect, Font font, int imgWidth) {
 
         int tx;
 
@@ -425,14 +419,13 @@ class TablePrintable implements Printable {
     /**
      * Calculate the area of the table to be printed for the next page. This
      * should only be called if there are rows and columns left to print.
-     *
      * To avoid an infinite loop in printing, this will always put at least one
      * cell on each page.
      *
      * @param pw
-     *           the width of the area to print in
+     *        the width of the area to print in
      * @param ph
-     *           the height of the area to print in
+     *        the height of the area to print in
      */
     private void findNextClip(int pw, int ph) {
         final boolean ltr = table.getComponentOrientation().isLeftToRight();

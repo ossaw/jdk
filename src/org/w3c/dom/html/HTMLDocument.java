@@ -139,8 +139,8 @@ public interface HTMLDocument extends Document {
      * . The text is parsed into the document's structure model.
      * 
      * @param text
-     *             The string to be parsed into some structure in the document
-     *             structure model.
+     *        The string to be parsed into some structure in the document
+     *        structure model.
      */
     public void write(String text);
 
@@ -150,8 +150,8 @@ public interface HTMLDocument extends Document {
      * document's structure model.
      * 
      * @param text
-     *             The string to be parsed into some structure in the document
-     *             structure model.
+     *        The string to be parsed into some structure in the document
+     *        structure model.
      */
     public void writeln(String text);
 
@@ -160,7 +160,7 @@ public interface HTMLDocument extends Document {
      * <code>name</code> value is given by <code>elementName</code> .
      * 
      * @param elementName
-     *                    The <code>name</code> attribute value for an element.
+     *        The <code>name</code> attribute value for an element.
      * @return The matching elements.
      */
     public NodeList getElementsByName(String elementName);

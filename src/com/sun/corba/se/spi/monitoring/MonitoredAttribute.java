@@ -30,8 +30,8 @@ public interface MonitoredAttribute {
      * <p>
      *
      * @param monitoredAttributeInfo
-     *                               for this Monitored Attribute.
-     *                               </p>
+     *        for this Monitored Attribute.
+     *        </p>
      */
     public MonitoredAttributeInfo getAttributeInfo();
 
@@ -39,17 +39,16 @@ public interface MonitoredAttribute {
      * <p>
      * Sets the value for the Monitored Attribute if isWritable() is false, the
      * method will throw ILLEGAL Operation exception.
-     *
      * Also, the type of 'value' should be same as specified in the
      * MonitoredAttributeInfo for a particular instance.
      * </p>
      * <p>
      *
      * @param value
-     *              should be any one of the Basic Java Type Objects which are
-     *              Long, Double, Float, String, Integer, Short, Character,
-     *              Byte.
-     *              </p>
+     *        should be any one of the Basic Java Type Objects which are
+     *        Long, Double, Float, String, Integer, Short, Character,
+     *        Byte.
+     *        </p>
      */
     public void setValue(Object value);
 
@@ -58,19 +57,17 @@ public interface MonitoredAttribute {
      * Gets the value of the Monitored Attribute. The value can be obtained from
      * different parts of the module. User may choose to delegate the call to
      * getValue() to other variables.
-     *
      * NOTE: It is important to make sure that the type of Object returned in
      * getvalue is same as the one specified in MonitoredAttributeInfo for this
      * attribute.
      * </p>
      * <p>
-     *
      * </p>
      * <p>
      *
      * @param value
-     *              is the current value for this MonitoredAttribute
-     *              </p>
+     *        is the current value for this MonitoredAttribute
+     *        </p>
      */
     public Object getValue();
 
@@ -81,8 +78,8 @@ public interface MonitoredAttribute {
      * <p>
      *
      * @param name
-     *             of this Attribute
-     *             </p>
+     *        of this Attribute
+     *        </p>
      */
     public String getName();
 
@@ -93,7 +90,6 @@ public interface MonitoredAttribute {
      * doesn't change like for example (ConnectionManager High Water Mark), then
      * clearState() is a No Op.
      * </p>
-     *
      */
     public void clearState();
 

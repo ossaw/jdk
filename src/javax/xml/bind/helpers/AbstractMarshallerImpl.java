@@ -29,11 +29,9 @@ import java.io.IOException;
 
 /**
  * Partial default <tt>Marshaller</tt> implementation.
- *
  * <p>
  * This class provides a partial default implementation for the
  * {@link javax.xml.bind.Marshaller} interface.
- *
  * <p>
  * The only methods that a JAXB Provider has to implement are
  * {@link Marshaller#marshal(Object, javax.xml.transform.Result) marshal(Object,
@@ -74,8 +72,7 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
     /** store the value of the fragment property. */
     private boolean fragment = false;
 
-    public final void marshal(Object obj, java.io.OutputStream os)
-            throws JAXBException {
+    public final void marshal(Object obj, java.io.OutputStream os) throws JAXBException {
 
         checkNotNull(obj, "obj", os, "os");
         marshal(obj, new StreamResult(os));
@@ -84,8 +81,7 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
     public void marshal(Object jaxbElement, File output) throws JAXBException {
         checkNotNull(jaxbElement, "jaxbElement", output, "output");
         try {
-            OutputStream os = new BufferedOutputStream(new FileOutputStream(
-                    output));
+            OutputStream os = new BufferedOutputStream(new FileOutputStream(output));
             try {
                 marshal(jaxbElement, new StreamResult(os));
             } finally {
@@ -96,22 +92,19 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
         }
     }
 
-    public final void marshal(Object obj, java.io.Writer w)
-            throws JAXBException {
+    public final void marshal(Object obj, java.io.Writer w) throws JAXBException {
 
         checkNotNull(obj, "obj", w, "writer");
         marshal(obj, new StreamResult(w));
     }
 
-    public final void marshal(Object obj, org.xml.sax.ContentHandler handler)
-            throws JAXBException {
+    public final void marshal(Object obj, org.xml.sax.ContentHandler handler) throws JAXBException {
 
         checkNotNull(obj, "obj", handler, "handler");
         marshal(obj, new SAXResult(handler));
     }
 
-    public final void marshal(Object obj, org.w3c.dom.Node node)
-            throws JAXBException {
+    public final void marshal(Object obj, org.w3c.dom.Node node) throws JAXBException {
 
         checkNotNull(obj, "obj", node, "node");
         marshal(obj, new DOMResult(node));
@@ -120,7 +113,6 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
     /**
      * By default, the getNode method is unsupported and throw an
      * {@link java.lang.UnsupportedOperationException}.
-     *
      * Implementations that choose to support this method must override this
      * method.
      */
@@ -144,8 +136,8 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
      * Convenience method for setting the output encoding.
      *
      * @param encoding
-     *                 a valid encoding as specified in the Marshaller class
-     *                 documentation
+     *        a valid encoding as specified in the Marshaller class
+     *        documentation
      */
     protected void setEncoding(String encoding) {
         this.encoding = encoding;
@@ -164,7 +156,7 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
      * Convenience method for setting the schemaLocation.
      *
      * @param location
-     *                 the schemaLocation value
+     *        the schemaLocation value
      */
     protected void setSchemaLocation(String location) {
         schemaLocation = location;
@@ -184,7 +176,7 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
      * Convenience method for setting the noNamespaceSchemaLocation.
      *
      * @param location
-     *                 the noNamespaceSchemaLocation value
+     *        the noNamespaceSchemaLocation value
      */
     protected void setNoNSSchemaLocation(String location) {
         noNSSchemaLocation = location;
@@ -204,7 +196,7 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
      * Convenience method for setting the formatted output flag.
      *
      * @param v
-     *          value of the formatted output flag.
+     *        value of the formatted output flag.
      */
     protected void setFormattedOutput(boolean v) {
         formattedOutput = v;
@@ -224,33 +216,32 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
      * Convenience method for setting the fragment flag.
      *
      * @param v
-     *          value of the fragment flag.
+     *        value of the fragment flag.
      */
     protected void setFragment(boolean v) {
         fragment = v;
     }
 
-    static String[] aliases = { "UTF-8", "UTF8", "UTF-16", "Unicode",
-            "UTF-16BE", "UnicodeBigUnmarked", "UTF-16LE",
-            "UnicodeLittleUnmarked", "US-ASCII", "ASCII", "TIS-620", "TIS620",
+    static String[] aliases = { "UTF-8", "UTF8", "UTF-16", "Unicode", "UTF-16BE", "UnicodeBigUnmarked",
+            "UTF-16LE", "UnicodeLittleUnmarked", "US-ASCII", "ASCII", "TIS-620", "TIS620",
 
             // taken from the project-X parser
             "ISO-10646-UCS-2", "Unicode",
 
-            "EBCDIC-CP-US", "cp037", "EBCDIC-CP-CA", "cp037", "EBCDIC-CP-NL",
-            "cp037", "EBCDIC-CP-WT", "cp037",
+            "EBCDIC-CP-US", "cp037", "EBCDIC-CP-CA", "cp037", "EBCDIC-CP-NL", "cp037", "EBCDIC-CP-WT",
+            "cp037",
 
-            "EBCDIC-CP-DK", "cp277", "EBCDIC-CP-NO", "cp277", "EBCDIC-CP-FI",
-            "cp278", "EBCDIC-CP-SE", "cp278",
+            "EBCDIC-CP-DK", "cp277", "EBCDIC-CP-NO", "cp277", "EBCDIC-CP-FI", "cp278", "EBCDIC-CP-SE",
+            "cp278",
 
-            "EBCDIC-CP-IT", "cp280", "EBCDIC-CP-ES", "cp284", "EBCDIC-CP-GB",
-            "cp285", "EBCDIC-CP-FR", "cp297",
+            "EBCDIC-CP-IT", "cp280", "EBCDIC-CP-ES", "cp284", "EBCDIC-CP-GB", "cp285", "EBCDIC-CP-FR",
+            "cp297",
 
-            "EBCDIC-CP-AR1", "cp420", "EBCDIC-CP-HE", "cp424", "EBCDIC-CP-BE",
-            "cp500", "EBCDIC-CP-CH", "cp500",
+            "EBCDIC-CP-AR1", "cp420", "EBCDIC-CP-HE", "cp424", "EBCDIC-CP-BE", "cp500", "EBCDIC-CP-CH",
+            "cp500",
 
-            "EBCDIC-CP-ROECE", "cp870", "EBCDIC-CP-YU", "cp870", "EBCDIC-CP-IS",
-            "cp871", "EBCDIC-CP-AR2", "cp918",
+            "EBCDIC-CP-ROECE", "cp870", "EBCDIC-CP-YU", "cp870", "EBCDIC-CP-IS", "cp871", "EBCDIC-CP-AR2",
+            "cp918",
 
             // IANA also defines two that JDK 1.2 doesn't handle:
             // EBCDIC-CP-GR --> CP423
@@ -259,17 +250,15 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
 
     /**
      * Gets the corresponding Java encoding name from an IANA name.
-     *
      * This method is a helper method for the derived class to convert encoding
      * names.
      *
      * @exception UnsupportedEncodingException
-     *                                         If this implementation couldn't
-     *                                         find the Java encoding
-     *                                         name.
+     *            If this implementation couldn't
+     *            find the Java encoding
+     *            name.
      */
-    protected String getJavaEncoding(String encoding)
-            throws UnsupportedEncodingException {
+    protected String getJavaEncoding(String encoding) throws UnsupportedEncodingException {
         try {
             "1".getBytes(encoding);
             return encoding;
@@ -296,12 +285,10 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
      * properties in Marshaller. If a provider needs to handle additional
      * properties, it should override this method in a derived class.
      */
-    public void setProperty(String name, Object value)
-            throws PropertyException {
+    public void setProperty(String name, Object value) throws PropertyException {
 
         if (name == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "name"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "name"));
         }
 
         // recognize and handle four pre-defined properties.
@@ -343,8 +330,7 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
     public Object getProperty(String name) throws PropertyException {
 
         if (name == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, "name"));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, "name"));
         }
 
         // recognize and handle four pre-defined properties.
@@ -372,8 +358,7 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
     /**
      * @see javax.xml.bind.Marshaller#setEventHandler(ValidationEventHandler)
      */
-    public void setEventHandler(ValidationEventHandler handler)
-            throws JAXBException {
+    public void setEventHandler(ValidationEventHandler handler) throws JAXBException {
 
         if (handler == null) {
             eventHandler = new DefaultValidationEventHandler();
@@ -385,47 +370,38 @@ public abstract class AbstractMarshallerImpl implements Marshaller {
     /*
      * assert that the given object is a Boolean
      */
-    private void checkBoolean(String name, Object value)
-            throws PropertyException {
+    private void checkBoolean(String name, Object value) throws PropertyException {
         if (!(value instanceof Boolean))
-            throw new PropertyException(Messages.format(
-                    Messages.MUST_BE_BOOLEAN, name));
+            throw new PropertyException(Messages.format(Messages.MUST_BE_BOOLEAN, name));
     }
 
     /*
      * assert that the given object is a String
      */
-    private void checkString(String name, Object value)
-            throws PropertyException {
+    private void checkString(String name, Object value) throws PropertyException {
         if (!(value instanceof String))
-            throw new PropertyException(Messages.format(Messages.MUST_BE_STRING,
-                    name));
+            throw new PropertyException(Messages.format(Messages.MUST_BE_STRING, name));
     }
 
     /*
      * assert that the parameters are not null
      */
-    private void checkNotNull(Object o1, String o1Name, Object o2,
-            String o2Name) {
+    private void checkNotNull(Object o1, String o1Name, Object o2, String o2Name) {
 
         if (o1 == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, o1Name));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, o1Name));
         }
         if (o2 == null) {
-            throw new IllegalArgumentException(Messages.format(
-                    Messages.MUST_NOT_BE_NULL, o2Name));
+            throw new IllegalArgumentException(Messages.format(Messages.MUST_NOT_BE_NULL, o2Name));
         }
     }
 
-    public void marshal(Object obj, XMLEventWriter writer)
-            throws JAXBException {
+    public void marshal(Object obj, XMLEventWriter writer) throws JAXBException {
 
         throw new UnsupportedOperationException();
     }
 
-    public void marshal(Object obj, XMLStreamWriter writer)
-            throws JAXBException {
+    public void marshal(Object obj, XMLStreamWriter writer) throws JAXBException {
 
         throw new UnsupportedOperationException();
     }

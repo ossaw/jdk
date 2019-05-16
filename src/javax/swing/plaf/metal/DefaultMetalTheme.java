@@ -20,9 +20,7 @@ import sun.swing.SwingUtilities2;
  * theme.
  * <p>
  * All colors returned by {@code DefaultMetalTheme} are completely opaque.
- *
  * <h3><a name="fontStyle"></a>Font Style</h3>
- *
  * {@code DefaultMetalTheme} uses bold fonts for many controls. To make all
  * controls (with the exception of the internal frame title bars and client
  * decorated frame title bars) use plain fonts you can do either of the
@@ -62,7 +60,6 @@ import sun.swing.SwingUtilities2;
  *
  * @see MetalLookAndFeel
  * @see MetalLookAndFeel#setCurrentTheme
- *
  * @author Steve Wilson
  */
 public class DefaultMetalTheme extends MetalTheme {
@@ -75,14 +72,14 @@ public class DefaultMetalTheme extends MetalTheme {
     /**
      * Names of the fonts to use.
      */
-    private static final String[] fontNames = { Font.DIALOG, Font.DIALOG,
-            Font.DIALOG, Font.DIALOG, Font.DIALOG, Font.DIALOG };
+    private static final String[] fontNames = { Font.DIALOG, Font.DIALOG, Font.DIALOG, Font.DIALOG,
+            Font.DIALOG, Font.DIALOG };
     /**
      * Styles for the fonts. This is ignored if the defaults property
      * <code>swing.boldMetal</code> is false, or PLAIN_FONTS is true.
      */
-    private static final int[] fontStyles = { Font.BOLD, Font.PLAIN, Font.PLAIN,
-            Font.BOLD, Font.BOLD, Font.PLAIN };
+    private static final int[] fontStyles = { Font.BOLD, Font.PLAIN, Font.PLAIN, Font.BOLD, Font.BOLD,
+            Font.PLAIN };
     /**
      * Sizes for the fonts.
      */
@@ -98,9 +95,8 @@ public class DefaultMetalTheme extends MetalTheme {
     /**
      * System property names used to look up fonts.
      */
-    private static final String[] defaultNames = {
-            "swing.plaf.metal.controlFont", "swing.plaf.metal.systemFont",
-            "swing.plaf.metal.userFont", "swing.plaf.metal.controlFont",
+    private static final String[] defaultNames = { "swing.plaf.metal.controlFont",
+            "swing.plaf.metal.systemFont", "swing.plaf.metal.userFont", "swing.plaf.metal.controlFont",
             "swing.plaf.metal.controlFont", "swing.plaf.metal.smallFont" };
 
     /**
@@ -123,8 +119,7 @@ public class DefaultMetalTheme extends MetalTheme {
     static int getDefaultFontStyle(int key) {
         if (key != WINDOW_TITLE_FONT) {
             Object boldMetal = null;
-            if (AppContext.getAppContext().get(
-                    SwingUtilities2.LAF_STATE_KEY) != null) {
+            if (AppContext.getAppContext().get(SwingUtilities2.LAF_STATE_KEY) != null) {
                 // Only access the boldMetal key if a look and feel has
                 // been loaded, otherwise we'll trigger loading the look
                 // and feel.
@@ -149,8 +144,8 @@ public class DefaultMetalTheme extends MetalTheme {
     }
 
     static {
-        Object boldProperty = java.security.AccessController.doPrivileged(
-                new GetPropertyAction("swing.boldMetal"));
+        Object boldProperty = java.security.AccessController.doPrivileged(new GetPropertyAction(
+                "swing.boldMetal"));
         if (boldProperty == null || !"false".equals(boldProperty)) {
             PLAIN_FONTS = false;
         } else {
@@ -158,18 +153,12 @@ public class DefaultMetalTheme extends MetalTheme {
         }
     }
 
-    private static final ColorUIResource primary1 = new ColorUIResource(102,
-            102, 153);
-    private static final ColorUIResource primary2 = new ColorUIResource(153,
-            153, 204);
-    private static final ColorUIResource primary3 = new ColorUIResource(204,
-            204, 255);
-    private static final ColorUIResource secondary1 = new ColorUIResource(102,
-            102, 102);
-    private static final ColorUIResource secondary2 = new ColorUIResource(153,
-            153, 153);
-    private static final ColorUIResource secondary3 = new ColorUIResource(204,
-            204, 204);
+    private static final ColorUIResource primary1 = new ColorUIResource(102, 102, 153);
+    private static final ColorUIResource primary2 = new ColorUIResource(153, 153, 204);
+    private static final ColorUIResource primary3 = new ColorUIResource(204, 204, 255);
+    private static final ColorUIResource secondary1 = new ColorUIResource(102, 102, 102);
+    private static final ColorUIResource secondary2 = new ColorUIResource(153, 153, 153);
+    private static final ColorUIResource secondary3 = new ColorUIResource(204, 204, 204);
 
     private FontDelegate fontDelegate;
 
@@ -330,9 +319,8 @@ public class DefaultMetalTheme extends MetalTheme {
      * FontDelegates add an extra level of indirection to obtaining fonts.
      */
     private static class FontDelegate {
-        private static int[] defaultMapping = { CONTROL_TEXT_FONT,
-                SYSTEM_TEXT_FONT, USER_TEXT_FONT, CONTROL_TEXT_FONT,
-                CONTROL_TEXT_FONT, SUB_TEXT_FONT };
+        private static int[] defaultMapping = { CONTROL_TEXT_FONT, SYSTEM_TEXT_FONT, USER_TEXT_FONT,
+                CONTROL_TEXT_FONT, CONTROL_TEXT_FONT, SUB_TEXT_FONT };
         FontUIResource fonts[];
 
         // menu and window are mapped to controlFont
@@ -346,8 +334,8 @@ public class DefaultMetalTheme extends MetalTheme {
                 Font f = getPrivilegedFont(mappedType);
 
                 if (f == null) {
-                    f = new Font(getDefaultFontName(type), getDefaultFontStyle(
-                            type), getDefaultFontSize(type));
+                    f = new Font(getDefaultFontName(type), getDefaultFontStyle(type), getDefaultFontSize(
+                            type));
                 }
                 fonts[type] = new FontUIResource(f);
             }
@@ -359,12 +347,11 @@ public class DefaultMetalTheme extends MetalTheme {
          * exception that it is wrapped inside a <code>doPrivileged</code> call.
          */
         protected Font getPrivilegedFont(final int key) {
-            return java.security.AccessController.doPrivileged(
-                    new java.security.PrivilegedAction<Font>() {
-                        public Font run() {
-                            return Font.getFont(getDefaultPropertyName(key));
-                        }
-                    });
+            return java.security.AccessController.doPrivileged(new java.security.PrivilegedAction<Font>() {
+                public Font run() {
+                    return Font.getFont(getDefaultPropertyName(key));
+                }
+            });
         }
     }
 

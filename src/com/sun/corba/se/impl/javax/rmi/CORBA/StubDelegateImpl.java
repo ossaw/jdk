@@ -40,8 +40,7 @@ import com.sun.corba.se.impl.logging.UtilSystemException;
  * Base class from which all static RMI-IIOP stubs must inherit.
  */
 public class StubDelegateImpl implements javax.rmi.CORBA.StubDelegate {
-    static UtilSystemException wrapper = UtilSystemException.get(
-            CORBALogDomains.RMIIIOP);
+    static UtilSystemException wrapper = UtilSystemException.get(CORBALogDomains.RMIIIOP);
 
     private StubIORImpl ior;
 
@@ -80,7 +79,7 @@ public class StubDelegateImpl implements javax.rmi.CORBA.StubDelegate {
      * <code>false</code> otherwise.
      * 
      * @param obj
-     *            the reference object with which to compare.
+     *        the reference object with which to compare.
      * @return <code>true</code> if this object is the same as the
      *         <code>obj</code> argument; <code>false</code> otherwise.
      */
@@ -153,24 +152,22 @@ public class StubDelegateImpl implements javax.rmi.CORBA.StubDelegate {
      * {@link javax.rmi.PortableRemoteObject#connect}.
      * 
      * @param orb
-     *            the ORB to connect to.
+     *        the ORB to connect to.
      * @exception RemoteException
-     *                            if the stub is already connected to a
-     *                            different ORB, or if
-     *                            the stub does not represent an exported remote
-     *                            or local
-     *                            object.
+     *            if the stub is already connected to a
+     *            different ORB, or if
+     *            the stub does not represent an exported remote
+     *            or local
+     *            object.
      */
-    public void connect(javax.rmi.CORBA.Stub self, ORB orb)
-            throws RemoteException {
+    public void connect(javax.rmi.CORBA.Stub self, ORB orb) throws RemoteException {
         ior = StubConnectImpl.connect(ior, self, self, orb);
     }
 
     /**
      * Serialization method to restore the IOR state.
      */
-    public void readObject(javax.rmi.CORBA.Stub self,
-            java.io.ObjectInputStream stream) throws IOException,
+    public void readObject(javax.rmi.CORBA.Stub self, java.io.ObjectInputStream stream) throws IOException,
             ClassNotFoundException {
         if (ior == null)
             ior = new StubIORImpl();
@@ -188,8 +185,7 @@ public class StubDelegateImpl implements javax.rmi.CORBA.StubDelegate {
      *             by the length of the profile data (int), followed by the
      *             profile data (byte array).
      */
-    public void writeObject(javax.rmi.CORBA.Stub self,
-            java.io.ObjectOutputStream stream) throws IOException {
+    public void writeObject(javax.rmi.CORBA.Stub self, java.io.ObjectOutputStream stream) throws IOException {
         init(self);
         ior.doWrite(stream);
     }

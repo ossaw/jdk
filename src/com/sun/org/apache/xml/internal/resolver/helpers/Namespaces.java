@@ -24,7 +24,6 @@ import org.w3c.dom.*;
 
 /**
  * Static Namespace query methods.
- *
  * <p>
  * This class defines a set of static methods that can be called to analyze the
  * namespace properties of DOM nodes.
@@ -32,7 +31,6 @@ import org.w3c.dom.*;
  *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  */
 public class Namespaces {
     /**
@@ -40,7 +38,7 @@ public class Namespaces {
      * the name has no prefix.
      *
      * @param element
-     *                The QName of an element.
+     *        The QName of an element.
      * @return The prefix part of the element name.
      */
     public static String getPrefix(Element element) {
@@ -59,7 +57,7 @@ public class Namespaces {
      * has no prefix.
      *
      * @param element
-     *                The QName of an element.
+     *        The QName of an element.
      * @return The local part of a QName.
      */
     public static String getLocalName(Element element) {
@@ -77,9 +75,9 @@ public class Namespaces {
      * context node.
      *
      * @param node
-     *               The context node.
+     *        The context node.
      * @param prefix
-     *               The prefix.
+     *        The prefix.
      * @return The namespace URI associated with the prefix, or null if no
      *         namespace declaration exists for the prefix.
      */
@@ -106,7 +104,7 @@ public class Namespaces {
      * Returns the namespace URI for the namespace to which the element belongs.
      *
      * @param element
-     *                The element.
+     *        The element.
      * @return The namespace URI associated with the namespace of the element,
      *         or null if no namespace declaration exists for it.
      */

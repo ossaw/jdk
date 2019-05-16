@@ -82,7 +82,7 @@ public abstract class Instruction implements Cloneable, Serializable {
      * Dump instruction as byte code to stream out.
      * 
      * @param out
-     *            Output stream
+     *        Output stream
      */
     public void dump(DataOutputStream out) throws IOException {
         out.writeByte(opcode); // Common for all instructions
@@ -97,12 +97,11 @@ public abstract class Instruction implements Cloneable, Serializable {
 
     /**
      * Long output format:
-     *
      * &lt;name of opcode&gt; "["&lt;opcode number&gt;"]" "("&lt;length of
      * instruction&gt;")"
      *
      * @param verbose
-     *                long/short format switch
+     *        long/short format switch
      * @return mnemonic for instruction
      */
     public String toString(boolean verbose) {
@@ -155,23 +154,21 @@ public abstract class Instruction implements Cloneable, Serializable {
      * Read needed data (e.g. index) from file.
      *
      * @param bytes
-     *              byte sequence to read from
+     *        byte sequence to read from
      * @param wide
-     *              "wide" instruction flag
+     *        "wide" instruction flag
      */
-    protected void initFromFile(ByteSequence bytes, boolean wide)
-            throws IOException {}
+    protected void initFromFile(ByteSequence bytes, boolean wide) throws IOException {}
 
     /**
      * Read an instruction from (byte code) input stream and return the
      * appropiate object.
      *
      * @param file
-     *             file to read from
+     *        file to read from
      * @return instruction object being read
      */
-    public static final Instruction readInstruction(ByteSequence bytes)
-            throws IOException {
+    public static final Instruction readInstruction(ByteSequence bytes) throws IOException {
         boolean wide = false;
         short opcode = (short) bytes.readUnsignedByte();
         Instruction obj = null;
@@ -205,8 +202,8 @@ public abstract class Instruction implements Cloneable, Serializable {
         try {
             obj = (Instruction) clazz.newInstance();
 
-            if (wide && !((obj instanceof LocalVariableInstruction)
-                    || (obj instanceof IINC) || (obj instanceof RET)))
+            if (wide && !((obj instanceof LocalVariableInstruction) || (obj instanceof IINC)
+                    || (obj instanceof RET)))
                 throw new Exception("Illegal opcode after wide: " + opcode);
 
             obj.setOpcode(opcode);
@@ -297,7 +294,7 @@ public abstract class Instruction implements Cloneable, Serializable {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public abstract void accept(Visitor v);
 
@@ -324,7 +321,6 @@ public abstract class Instruction implements Cloneable, Serializable {
      * @return true if that is an Instruction and has the same opcode
      */
     public boolean equals(Object that) {
-        return (that instanceof Instruction) ? cmp.equals(this,
-                (Instruction) that) : false;
+        return (that instanceof Instruction) ? cmp.equals(this, (Instruction) that) : false;
     }
 }

@@ -28,7 +28,6 @@ import org.w3c.dom.Node;
  * attributes. In Level 2 it should enable the ChildRule support.
  *
  * @xerces.internal
- *
  */
 public class ElementDefinitionImpl extends ParentNode {
 
@@ -87,8 +86,7 @@ public class ElementDefinitionImpl extends ParentNode {
      */
     public Node cloneNode(boolean deep) {
 
-        ElementDefinitionImpl newnode = (ElementDefinitionImpl) super.cloneNode(
-                deep);
+        ElementDefinitionImpl newnode = (ElementDefinitionImpl) super.cloneNode(deep);
         // NamedNodeMap must be explicitly replicated to avoid sharing
         newnode.attributes = attributes.cloneMap(newnode);
         return newnode;

@@ -10,7 +10,6 @@ package java.lang;
  * <code>ExceptionInInitializerError</code> is thrown to indicate that an
  * exception occurred during evaluation of a static initializer or the
  * initializer for a static variable.
- *
  * <p>
  * As of release 1.4, this exception has been retrofitted to conform to the
  * general purpose exception-chaining mechanism. The "saved throwable object"
@@ -34,7 +33,6 @@ public class ExceptionInInitializerError extends LinkageError {
      * instantiate the object
      *
      * @serial
-     *
      */
     private Throwable exception;
 
@@ -55,7 +53,7 @@ public class ExceptionInInitializerError extends LinkageError {
      * string is set to <code>null</code>.
      *
      * @param thrown
-     *               The exception thrown
+     *        The exception thrown
      */
     public ExceptionInInitializerError(Throwable thrown) {
         initCause(null); // Disallow subsequent initCause
@@ -69,9 +67,8 @@ public class ExceptionInInitializerError extends LinkageError {
      * retrieval by the {@link Throwable#getMessage()} method. There is no saved
      * throwable object.
      *
-     *
      * @param s
-     *          the detail message
+     *        the detail message
      */
     public ExceptionInInitializerError(String s) {
         super(s);
@@ -81,7 +78,6 @@ public class ExceptionInInitializerError extends LinkageError {
     /**
      * Returns the exception that occurred during a static initialization that
      * caused this error to be created.
-     *
      * <p>
      * This method predates the general-purpose exception chaining facility. The
      * {@link Throwable#getCause()} method is now the preferred means of

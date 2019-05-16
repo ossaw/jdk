@@ -12,8 +12,7 @@ package org.omg.DynamicAny;
  * DynValueCommon provides operations supported by both the DynValue and
  * DynValueBox interfaces.
  */
-public interface DynValueCommonOperations extends
-        org.omg.DynamicAny.DynAnyOperations {
+public interface DynValueCommonOperations extends org.omg.DynamicAny.DynAnyOperations {
 
     /**
      * Returns true if the DynValueCommon represents a null value type.

@@ -27,7 +27,6 @@ import static java.lang.annotation.ElementType.METHOD;
  * XML element name is statically derived from the JavaBean property name.
  * However, when this annotation is used, the XML element name is derived from
  * the instance of the type of the JavaBean property at runtime.
- *
  * <h3>XML Schema substitution group support</h3> XML Schema allows a XML
  * document author to use XML element names that were not statically specified
  * in the content model of a schema using substitution groups. Schema derived
@@ -45,7 +44,6 @@ import static java.lang.annotation.ElementType.METHOD;
  * presence of &#64;XmlElementRef annotation on an element property indicates
  * that the element name from <tt>JAXBElement</tt> instance be used instead of
  * deriving an XML element name from the JavaBean property name.
- *
  * <p>
  * The usage is subject to the following constraints:
  * <ul>
@@ -67,12 +65,10 @@ import static java.lang.annotation.ElementType.METHOD;
  * <li>This annotation can be used with the following annotations:
  * {@link XmlElementWrapper}, {@link XmlJavaTypeAdapter}.
  * </ul>
- *
  * <p>
  * See "Package Specification" in javax.xml.bind.package javadoc for additional
  * common information.
  * </p>
- *
  * <p>
  * <b>Example 1: Ant Task Example</b>
  * </p>
@@ -114,7 +110,6 @@ import static java.lang.annotation.ElementType.METHOD;
  *         &lt;/xs:choice>
  *       &lt;/xs:sequence>
  *     &lt;/xs:complexType>
- *
  * </pre>
  * <p>
  * Thus the following code fragment:
@@ -142,7 +137,6 @@ import static java.lang.annotation.ElementType.METHOD;
  * It is not an error to have a class that extends <tt>Task</tt> that doesn't
  * have {@link XmlRootElement}. But they can't show up in an XML instance
  * (because they don't have XML element names).
- *
  * <p>
  * <b>Example 2: XML Schema Susbstitution group support</b>
  * <p>
@@ -202,7 +196,6 @@ import static java.lang.annotation.ElementType.METHOD;
  *     &lt;/math>
  * </pre>
  *
- *
  * @author
  *         <ul>
  *         <li>Kohsuke Kawaguchi, Sun Microsystems,Inc.</li>
@@ -225,7 +218,6 @@ public @interface XmlElementRef {
     /**
      * This parameter and {@link #name()} are used to determine the XML element
      * for the JavaBean property.
-     *
      * <p>
      * If <tt>type()</tt> is <tt>JAXBElement.class</tt> , then
      * <tt>namespace()</tt> and <tt>name()</tt> point to a factory method with
@@ -234,22 +226,18 @@ public @interface XmlElementRef {
      * its substitution group (of which it is a head element) has been
      * substituted in the XML document, then the element name is from the
      * {@link XmlElementDecl} on the substituted element.
-     *
      * <p>
      * If {@link #type()} is not <tt>JAXBElement.class</tt>, then the XML
      * element name is the XML element name statically associated with the type
      * using the annotation {@link XmlRootElement} on the type. If the type is
      * not annotated with an {@link XmlElementDecl}, then it is an error.
-     *
      * <p>
      * If <tt>type()</tt> is not <tt>JAXBElement.class</tt>, then this value
      * must be "".
-     *
      */
     String namespace() default "";
 
     /**
-     *
      * @see #namespace()
      */
     String name() default "##default";
@@ -266,12 +254,10 @@ public @interface XmlElementRef {
      * If required() is true, then Javabean property is mapped to an XML schema
      * element declaration with minOccurs="1". maxOccurs is "1" for a single
      * valued property and "unbounded" for a multivalued property.
-     *
      * <p>
      * If required() is false, then the Javabean property is mapped to XML
      * Schema element declaration with minOccurs="0". maxOccurs is "1" for a
      * single valued property and "unbounded" for a multivalued property.
-     *
      * <p>
      * For compatibility with JAXB 2.1, this property defaults to <tt>true</tt>,
      * despite the fact that {@link XmlElement#required()} defaults to false.

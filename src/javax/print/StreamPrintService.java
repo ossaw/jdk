@@ -39,7 +39,7 @@ public abstract class StreamPrintService implements PrintService {
      * Constructs a StreamPrintService object.
      *
      * @param out
-     *            stream to which to send formatted print data.
+     *        stream to which to send formatted print data.
      */
     protected StreamPrintService(OutputStream out) {
         this.outStream = out;

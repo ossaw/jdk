@@ -118,8 +118,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * loaded, but it could not be found. The substitution text is
                  * the name of the class.
                  */
-                { ErrorMsg.CLASS_NOT_FOUND_ERR,
-                        "Nie je mo\u017en\u00e9 n\u00e1js\u0165 triedu ''{0}''." },
+                { ErrorMsg.CLASS_NOT_FOUND_ERR, "Nie je mo\u017en\u00e9 n\u00e1js\u0165 triedu ''{0}''." },
 
                 /*
                  * Note to translators: The word "method" here refers to a Java
@@ -143,8 +142,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: The file or URI named in the
                  * substitution text is missing.
                  */
-                { ErrorMsg.FILE_NOT_FOUND_ERR,
-                        "S\u00fabor alebo URI ''{0}'' sa nena\u0161li." },
+                { ErrorMsg.FILE_NOT_FOUND_ERR, "S\u00fabor alebo URI ''{0}'' sa nena\u0161li." },
 
                 /*
                  * Note to translators: This message is displayed when the URI
@@ -195,24 +193,21 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * syntactic error in the form of an XPath expression. The
                  * substitution text is the expression.
                  */
-                { ErrorMsg.XPATH_PARSER_ERR,
-                        "Chyba pri anal\u00fdze v\u00fdrazu XPath ''{0}''." },
+                { ErrorMsg.XPATH_PARSER_ERR, "Chyba pri anal\u00fdze v\u00fdrazu XPath ''{0}''." },
 
                 /*
                  * Note to translators: An element in the stylesheet requires a
                  * particular attribute named by the substitution text, but that
                  * attribute was not specified in the stylesheet.
                  */
-                { ErrorMsg.REQUIRED_ATTR_ERR,
-                        "Ch\u00fdba po\u017eadovan\u00fd atrib\u00fat ''{0}''." },
+                { ErrorMsg.REQUIRED_ATTR_ERR, "Ch\u00fdba po\u017eadovan\u00fd atrib\u00fat ''{0}''." },
 
                 /*
                  * Note to translators: This message indicates that a character
                  * not permitted in an XPath expression was encountered. The
                  * substitution text is the offending character.
                  */
-                { ErrorMsg.ILLEGAL_CHAR_ERR,
-                        "Neplatn\u00fd znak ''{0}'' vo v\u00fdraze XPath." },
+                { ErrorMsg.ILLEGAL_CHAR_ERR, "Neplatn\u00fd znak ''{0}'' vo v\u00fdraze XPath." },
 
                 /*
                  * Note to translators: A processing instruction is a mark-up
@@ -230,16 +225,14 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { ErrorMsg.STRAY_ATTRIBUTE_ERR,
-                        "Atrib\u00fat ''{0}'' mimo elementu." },
+                { ErrorMsg.STRAY_ATTRIBUTE_ERR, "Atrib\u00fat ''{0}'' mimo elementu." },
 
                 /*
                  * Note to translators: An attribute that wasn't recognized was
                  * specified on an element in the stylesheet. The attribute is
                  * named by the substitution text.
                  */
-                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR,
-                        "Neleg\u00e1lny atrib\u00fat ''{0}''." },
+                { ErrorMsg.ILLEGAL_ATTRIBUTE_ERR, "Neleg\u00e1lny atrib\u00fat ''{0}''." },
 
                 /*
                  * Note to translators: "import" and "include" are keywords that
@@ -271,8 +264,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: The stylesheet version named in the
                  * substitution text is not supported.
                  */
-                { ErrorMsg.XSL_VERSION_ERR,
-                        "Verzia XSL ''{0}'' nie je podporovan\u00e1 XSLTC." },
+                { ErrorMsg.XSL_VERSION_ERR, "Verzia XSL ''{0}'' nie je podporovan\u00e1 XSLTC." },
 
                 /*
                  * Note to translators: The definitions of one or more variables
@@ -285,15 +277,13 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: The operator in an expresion with two
                  * operands was not recognized.
                  */
-                { ErrorMsg.ILLEGAL_BINARY_OP_ERR,
-                        "Nezn\u00e1my oper\u00e1tor pre bin\u00e1rny v\u00fdraz." },
+                { ErrorMsg.ILLEGAL_BINARY_OP_ERR, "Nezn\u00e1my oper\u00e1tor pre bin\u00e1rny v\u00fdraz." },
 
                 /*
                  * Note to translators: This message is produced if a reference
                  * to a function has too many or too few arguments.
                  */
-                { ErrorMsg.ILLEGAL_ARG_ERR,
-                        "Neplatn\u00fd argument(y) pre volanie funkcie." },
+                { ErrorMsg.ILLEGAL_ARG_ERR, "Neplatn\u00fd argument(y) pre volanie funkcie." },
 
                 /*
                  * Note to translators: "document()" is the name of function and
@@ -332,8 +322,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * keywords and should not be translated. This message describes
                  * a syntax error in the stylesheet.
                  */
-                { ErrorMsg.STRAY_WHEN_ERR,
-                        "<xsl:when> mo\u017eno pou\u017ei\u0165 len v <xsl:choose>." },
+                { ErrorMsg.STRAY_WHEN_ERR, "<xsl:when> mo\u017eno pou\u017ei\u0165 len v <xsl:choose>." },
 
                 /*
                  * Note to translators: "<xsl:when>", "<xsl:otherwise>" and
@@ -347,31 +336,27 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: "<xsl:attribute-set>" and "name" are
                  * keywords that should not be translated.
                  */
-                { ErrorMsg.UNNAMED_ATTRIBSET_ERR,
-                        "<xsl:attribute-set> ch\u00fdba atrib\u00fat 'name'." },
+                { ErrorMsg.UNNAMED_ATTRIBSET_ERR, "<xsl:attribute-set> ch\u00fdba atrib\u00fat 'name'." },
 
                 /*
                  * Note to translators: An element in the stylesheet contained
                  * an element of a type that it was not permitted to contain.
                  */
-                { ErrorMsg.ILLEGAL_CHILD_ERR,
-                        "Neplatn\u00fd element potomka." },
+                { ErrorMsg.ILLEGAL_CHILD_ERR, "Neplatn\u00fd element potomka." },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
                  * element with a name that was not a valid XML name. The
                  * substitution text contains the name.
                  */
-                { ErrorMsg.ILLEGAL_ELEM_NAME_ERR,
-                        "Nem\u00f4\u017eete vola\u0165 element ''{0}''" },
+                { ErrorMsg.ILLEGAL_ELEM_NAME_ERR, "Nem\u00f4\u017eete vola\u0165 element ''{0}''" },
 
                 /*
                  * Note to translators: The stylesheet tried to create an
                  * attribute with a name that was not a valid XML name. The
                  * substitution text contains the name.
                  */
-                { ErrorMsg.ILLEGAL_ATTR_NAME_ERR,
-                        "Nem\u00f4\u017eete vola\u0165 atrib\u00fat ''{0}''" },
+                { ErrorMsg.ILLEGAL_ATTR_NAME_ERR, "Nem\u00f4\u017eete vola\u0165 atrib\u00fat ''{0}''" },
 
                 /*
                  * Note to translators: The children of the outermost element of
@@ -397,16 +382,14 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: The substitution text names the internal
                  * error encountered.
                  */
-                { ErrorMsg.INTERNAL_ERR,
-                        "Neodstr\u00e1nite\u013en\u00e1 intern\u00e1 chyba XSLTC: ''{0}''" },
+                { ErrorMsg.INTERNAL_ERR, "Neodstr\u00e1nite\u013en\u00e1 intern\u00e1 chyba XSLTC: ''{0}''" },
 
                 /*
                  * Note to translators: The stylesheet contained an element that
                  * was not recognized as part of the XSL syntax. The
                  * substitution text gives the element name.
                  */
-                { ErrorMsg.UNSUPPORTED_XSL_ERR,
-                        "Nepodporovan\u00fd element XSL ''{0}''." },
+                { ErrorMsg.UNSUPPORTED_XSL_ERR, "Nepodporovan\u00fd element XSL ''{0}''." },
 
                 /*
                  * Note to translators: The stylesheet referred to an extension
@@ -447,8 +430,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * error in condition in XSLTC. The substitution text is the
                  * class name in XSLTC that is missing some functionality.
                  */
-                { ErrorMsg.NOT_IMPLEMENTED_ERR,
-                        "Nie je implementovan\u00e9: ''{0}''." },
+                { ErrorMsg.NOT_IMPLEMENTED_ERR, "Nie je implementovan\u00e9: ''{0}''." },
 
                 /*
                  * Note to translators: The XML document given to XSLTC as a
@@ -461,8 +443,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: The element named in the substitution
                  * text was encountered in the stylesheet but is not recognized.
                  */
-                { ErrorMsg.ELEMENT_PARSE_ERR,
-                        "Nebolo mo\u017en\u00e9 analyzova\u0165 element ''{0}''" },
+                { ErrorMsg.ELEMENT_PARSE_ERR, "Nebolo mo\u017en\u00e9 analyzova\u0165 element ''{0}''" },
 
                 /*
                  * Note to translators: "use", "<key>", "node", "node-set",
@@ -536,8 +517,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: "Templates" is a Java class name that
                  * should not be translated.
                  */
-                { ErrorMsg.NO_MAIN_TRANSLET_ERR,
-                        "Tento vzor neobsahuje triedu s n\u00e1zvom ''{0}''." },
+                { ErrorMsg.NO_MAIN_TRANSLET_ERR, "Tento vzor neobsahuje triedu s n\u00e1zvom ''{0}''." },
 
                 /*
                  * Note to translators: The substitution text is the name of a
@@ -555,8 +535,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * user tried to set an ErrorListener object on object of the
                  * class named in the substitution text with "null" Java value.
                  */
-                { ErrorMsg.ERROR_LISTENER_NULL_ERR,
-                        "Pokus o nastavenie ErrorListener pre ''{0}'' na null" },
+                { ErrorMsg.ERROR_LISTENER_NULL_ERR, "Pokus o nastavenie ErrorListener pre ''{0}'' na null" },
 
                 /*
                  * Note to translators: StreamSource, SAXSource and DOMSource
@@ -595,8 +574,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: "setResult()" and "startDocument()" are
                  * Java method names that should not be translated.
                  */
-                { ErrorMsg.JAXP_SET_RESULT_ERR,
-                        "setResult() sa mus\u00ed vola\u0165 pred startDocument()." },
+                { ErrorMsg.JAXP_SET_RESULT_ERR, "setResult() sa mus\u00ed vola\u0165 pred startDocument()." },
 
                 /*
                  * Note to translators: "Transformer" is a Java interface name
@@ -726,8 +704,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * required in a particular context. The substitution text is
                  * the expression that was in error.
                  */
-                { ErrorMsg.TYPE_CHECK_ERR,
-                        "Chyba pri kontrole typu v\u00fdrazu ''{0}''." },
+                { ErrorMsg.TYPE_CHECK_ERR, "Chyba pri kontrole typu v\u00fdrazu ''{0}''." },
 
                 /*
                  * Note to translators: An XPath expression was not of the type
@@ -758,8 +735,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG,
-                        "UPOZORNENIE:  ''{0}''\n       :{1}" },
+                { ErrorMsg.WARNING_PLUS_WRAPPED_MSG, "UPOZORNENIE:  ''{0}''\n       :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -775,8 +751,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG,
-                        "KRITICK\u00c1 CHYBA:  ''{0}''\n           :{1}" },
+                { ErrorMsg.FATAL_ERR_PLUS_WRAPPED_MSG, "KRITICK\u00c1 CHYBA:  ''{0}''\n           :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -792,8 +767,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * substitution text indents it the same amount as the first in
                  * English.
                  */
-                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG,
-                        "CHYBA:  ''{0}''\n     :{1}" },
+                { ErrorMsg.ERROR_PLUS_WRAPPED_MSG, "CHYBA:  ''{0}''\n     :{1}" },
 
                 /*
                  * Note to translators: This message is used to indicate the
@@ -806,8 +780,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * Note to translators: The substitution text is the name of a
                  * class.
                  */
-                { ErrorMsg.TRANSFORM_WITH_TRANSLET_STR,
-                        "Transform\u00e1cia pomocou transletu ''{0}'' " },
+                { ErrorMsg.TRANSFORM_WITH_TRANSLET_STR, "Transform\u00e1cia pomocou transletu ''{0}'' " },
 
                 /*
                  * Note to translators: The first substitution is the name of a
@@ -837,8 +810,7 @@ public class ErrorMessages_sk extends ListResourceBundle {
                  * header. All the warning messages are collected together and
                  * displayed beneath this message.
                  */
-                { ErrorMsg.COMPILER_WARNING_KEY,
-                        "Upozornenia preklada\u010da:" },
+                { ErrorMsg.COMPILER_WARNING_KEY, "Upozornenia preklada\u010da:" },
 
                 /*
                  * Note to translators: The following message is used as a

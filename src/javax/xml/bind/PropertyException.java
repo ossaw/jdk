@@ -27,7 +27,7 @@ public class PropertyException extends JAXBException {
      * errorCode and linkedException will default to null.
      *
      * @param message
-     *                a description of the exception
+     *        a description of the exception
      */
     public PropertyException(String message) {
         super(message);
@@ -38,9 +38,9 @@ public class PropertyException extends JAXBException {
      * vendor specific errorCode. The linkedException will default to null.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param errorCode
-     *                  a string specifying the vendor specific error code
+     *        a string specifying the vendor specific error code
      */
     public PropertyException(String message, String errorCode) {
         super(message, errorCode);
@@ -51,7 +51,7 @@ public class PropertyException extends JAXBException {
      * and vendor specific errorCode will default to null.
      *
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
     public PropertyException(Throwable exception) {
         super(exception);
@@ -62,9 +62,9 @@ public class PropertyException extends JAXBException {
      * linkedException. The errorCode will default to null.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
     public PropertyException(String message, Throwable exception) {
         super(message, exception);
@@ -75,14 +75,13 @@ public class PropertyException extends JAXBException {
      * specific errorCode, and linkedException.
      *
      * @param message
-     *                  a description of the exception
+     *        a description of the exception
      * @param errorCode
-     *                  a string specifying the vendor specific error code
+     *        a string specifying the vendor specific error code
      * @param exception
-     *                  the linked exception
+     *        the linked exception
      */
-    public PropertyException(String message, String errorCode,
-            Throwable exception) {
+    public PropertyException(String message, String errorCode, Throwable exception) {
         super(message, errorCode, exception);
     }
 
@@ -91,9 +90,9 @@ public class PropertyException extends JAXBException {
      * name of the property and value.toString().
      *
      * @param name
-     *              the name of the property related to this exception
+     *        the name of the property related to this exception
      * @param value
-     *              the value of the property related to this exception
+     *        the value of the property related to this exception
      */
     public PropertyException(String name, Object value) {
         super(Messages.format(Messages.NAME_VALUE, name, value.toString()));

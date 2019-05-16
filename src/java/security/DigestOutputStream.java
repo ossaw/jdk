@@ -15,12 +15,10 @@ import java.io.ByteArrayOutputStream;
 /**
  * A transparent stream that updates the associated message digest using the
  * bits going through the stream.
- *
  * <p>
  * To complete the message digest computation, call one of the {@code digest}
  * methods on the associated message digest after your calls to one of this
  * digest output stream's {@link #write(int) write} methods.
- *
  * <p>
  * It is possible to turn this stream on or off (see {@link #on(boolean) on}).
  * When it is on, a call to one of the {@code write} methods results in an
@@ -29,7 +27,6 @@ import java.io.ByteArrayOutputStream;
  *
  * @see MessageDigest
  * @see DigestInputStream
- *
  * @author Benjamin Renaud
  */
 public class DigestOutputStream extends FilterOutputStream {
@@ -46,10 +43,9 @@ public class DigestOutputStream extends FilterOutputStream {
      * message digest.
      *
      * @param stream
-     *               the output stream.
-     *
+     *        the output stream.
      * @param digest
-     *               the message digest to associate with this stream.
+     *        the message digest to associate with this stream.
      */
     public DigestOutputStream(OutputStream stream, MessageDigest digest) {
         super(stream);
@@ -70,7 +66,7 @@ public class DigestOutputStream extends FilterOutputStream {
      * Associates the specified message digest with this stream.
      *
      * @param digest
-     *               the message digest to be associated with this stream.
+     *        the message digest to be associated with this stream.
      * @see #getMessageDigest()
      */
     public void setMessageDigest(MessageDigest digest) {
@@ -86,12 +82,10 @@ public class DigestOutputStream extends FilterOutputStream {
      * to the output stream, blocking until the byte is actually written.
      *
      * @param b
-     *          the byte to be used for updating and writing to the output
-     *          stream.
-     *
+     *        the byte to be used for updating and writing to the output
+     *        stream.
      * @exception IOException
-     *                        if an I/O error occurs.
-     *
+     *            if an I/O error occurs.
      * @see MessageDigest#update(byte)
      */
     public void write(int b) throws IOException {
@@ -111,20 +105,16 @@ public class DigestOutputStream extends FilterOutputStream {
      * bytes are actually written.
      *
      * @param b
-     *            the array containing the subarray to be used for updating and
-     *            writing to the output stream.
-     *
+     *        the array containing the subarray to be used for updating and
+     *        writing to the output stream.
      * @param off
-     *            the offset into {@code b} of the first byte to be updated and
-     *            written.
-     *
+     *        the offset into {@code b} of the first byte to be updated and
+     *        written.
      * @param len
-     *            the number of bytes of data to be updated and written from
-     *            {@code b}, starting at offset {@code off}.
-     *
+     *        the number of bytes of data to be updated and written from
+     *        {@code b}, starting at offset {@code off}.
      * @exception IOException
-     *                        if an I/O error occurs.
-     *
+     *            if an I/O error occurs.
      * @see MessageDigest#update(byte[], int, int)
      */
     public void write(byte[] b, int off, int len) throws IOException {
@@ -140,7 +130,7 @@ public class DigestOutputStream extends FilterOutputStream {
      * message digest. But when it is off, the message digest is not updated.
      *
      * @param on
-     *           true to turn the digest function on, false to turn it off.
+     *        true to turn the digest function on, false to turn it off.
      */
     public void on(boolean on) {
         this.on = on;

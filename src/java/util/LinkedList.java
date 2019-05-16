@@ -11,12 +11,10 @@ import java.util.function.Consumer;
  * Doubly-linked list implementation of the {@code List} and {@code Deque}
  * interfaces. Implements all optional list operations, and permits all elements
  * (including {@code null}).
- *
  * <p>
  * All of the operations perform as could be expected for a doubly-linked list.
  * Operations that index into the list will traverse the list from the beginning
  * or the end, whichever is closer to the specified index.
- *
  * <p>
  * <strong>Note that this implementation is not synchronized.</strong> If
  * multiple threads access a linked list concurrently, and at least one of the
@@ -25,7 +23,6 @@ import java.util.function.Consumer;
  * one or more elements; merely setting the value of an element is not a
  * structural modification.) This is typically accomplished by synchronizing on
  * some object that naturally encapsulates the list.
- *
  * If no such object exists, the list should be "wrapped" using the
  * {@link Collections#synchronizedList Collections.synchronizedList} method.
  * This is best done at creation time, to prevent accidental unsynchronized
@@ -34,7 +31,6 @@ import java.util.function.Consumer;
  * <pre>
  *   List list = Collections.synchronizedList(new LinkedList(...));
  * </pre>
- *
  * <p>
  * The iterators returned by this class's {@code iterator} and
  * {@code listIterator} methods are <i>fail-fast</i>: if the list is
@@ -44,7 +40,6 @@ import java.util.function.Consumer;
  * face of concurrent modification, the iterator fails quickly and cleanly,
  * rather than risking arbitrary, non-deterministic behavior at an undetermined
  * time in the future.
- *
  * <p>
  * Note that the fail-fast behavior of an iterator cannot be guaranteed as it
  * is, generally speaking, impossible to make any hard guarantees in the
@@ -53,7 +48,6 @@ import java.util.function.Consumer;
  * would be wrong to write a program that depended on this exception for its
  * correctness: <i>the fail-fast behavior of iterators should be used only to
  * detect bugs.</i>
- *
  * <p>
  * This class is a member of the <a href=
  * "{@docRoot}/../technotes/guides/collections/index.html"> Java Collections
@@ -67,8 +61,8 @@ import java.util.function.Consumer;
  *        the type of elements held in this collection
  */
 
-public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
-        Deque<E>, Cloneable, java.io.Serializable {
+public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable,
+        java.io.Serializable {
     transient int size = 0;
 
     /**
@@ -93,9 +87,9 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * the order they are returned by the collection's iterator.
      *
      * @param c
-     *          the collection whose elements are to be placed into this list
+     *        the collection whose elements are to be placed into this list
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public LinkedList(Collection<? extends E> c) {
         this();
@@ -220,7 +214,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      *
      * @return the first element in this list
      * @throws NoSuchElementException
-     *                                if this list is empty
+     *         if this list is empty
      */
     public E getFirst() {
         final Node<E> f = first;
@@ -234,7 +228,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      *
      * @return the last element in this list
      * @throws NoSuchElementException
-     *                                if this list is empty
+     *         if this list is empty
      */
     public E getLast() {
         final Node<E> l = last;
@@ -248,7 +242,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      *
      * @return the first element from this list
      * @throws NoSuchElementException
-     *                                if this list is empty
+     *         if this list is empty
      */
     public E removeFirst() {
         final Node<E> f = first;
@@ -262,7 +256,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      *
      * @return the last element from this list
      * @throws NoSuchElementException
-     *                                if this list is empty
+     *         if this list is empty
      */
     public E removeLast() {
         final Node<E> l = last;
@@ -275,7 +269,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * Inserts the specified element at the beginning of this list.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      */
     public void addFirst(E e) {
         linkFirst(e);
@@ -283,12 +277,11 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 
     /**
      * Appends the specified element to the end of this list.
-     *
      * <p>
      * This method is equivalent to {@link #add}.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      */
     public void addLast(E e) {
         linkLast(e);
@@ -301,7 +294,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
      *
      * @param o
-     *          element whose presence in this list is to be tested
+     *        element whose presence in this list is to be tested
      * @return {@code true} if this list contains the specified element
      */
     public boolean contains(Object o) {
@@ -319,12 +312,11 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 
     /**
      * Appends the specified element to the end of this list.
-     *
      * <p>
      * This method is equivalent to {@link #addLast}.
      *
      * @param e
-     *          element to be appended to this list
+     *        element to be appended to this list
      * @return {@code true} (as specified by {@link Collection#add})
      */
     public boolean add(E e) {
@@ -343,7 +335,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * of the call).
      *
      * @param o
-     *          element to be removed from this list, if present
+     *        element to be removed from this list, if present
      * @return {@code true} if this list contained the specified element
      */
     public boolean remove(Object o) {
@@ -374,10 +366,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * it's nonempty.)
      *
      * @param c
-     *          collection containing elements to be added to this list
+     *        collection containing elements to be added to this list
      * @return {@code true} if this list changed as a result of the call
      * @throws NullPointerException
-     *                              if the specified collection is null
+     *         if the specified collection is null
      */
     public boolean addAll(Collection<? extends E> c) {
         return addAll(size, c);
@@ -391,16 +383,16 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * that they are returned by the specified collection's iterator.
      *
      * @param index
-     *              index at which to insert the first element from the
-     *              specified
-     *              collection
+     *        index at which to insert the first element from the
+     *        specified
+     *        collection
      * @param c
-     *              collection containing elements to be added to this list
+     *        collection containing elements to be added to this list
      * @return {@code true} if this list changed as a result of the call
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @throws NullPointerException
-     *                                   if the specified collection is null
+     *         if the specified collection is null
      */
     public boolean addAll(int index, Collection<? extends E> c) {
         checkPositionIndex(index);
@@ -469,10 +461,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * Returns the element at the specified position in this list.
      *
      * @param index
-     *              index of the element to return
+     *        index of the element to return
      * @return the element at the specified position in this list
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E get(int index) {
         checkElementIndex(index);
@@ -484,12 +476,12 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * specified element.
      *
      * @param index
-     *                index of the element to replace
+     *        index of the element to replace
      * @param element
-     *                element to be stored at the specified position
+     *        element to be stored at the specified position
      * @return the element previously at the specified position
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E set(int index, E element) {
         checkElementIndex(index);
@@ -505,11 +497,11 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * elements to the right (adds one to their indices).
      *
      * @param index
-     *                index at which the specified element is to be inserted
+     *        index at which the specified element is to be inserted
      * @param element
-     *                element to be inserted
+     *        element to be inserted
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     public void add(int index, E element) {
         checkPositionIndex(index);
@@ -526,10 +518,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * Returns the element that was removed from the list.
      *
      * @param index
-     *              the index of the element to be removed
+     *        the index of the element to be removed
      * @return the element previously at the specified position
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      */
     public E remove(int index) {
         checkElementIndex(index);
@@ -599,7 +591,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * or -1 if there is no such index.
      *
      * @param o
-     *          element to search for
+     *        element to search for
      * @return the index of the first occurrence of the specified element in
      *         this list, or -1 if this list does not contain the element
      */
@@ -629,7 +621,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * or -1 if there is no such index.
      *
      * @param o
-     *          element to search for
+     *        element to search for
      * @return the index of the last occurrence of the specified element in this
      *         list, or -1 if this list does not contain the element
      */
@@ -669,7 +661,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      *
      * @return the head of this list
      * @throws NoSuchElementException
-     *                                if this list is empty
+     *         if this list is empty
      * @since 1.5
      */
     public E element() {
@@ -692,7 +684,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      *
      * @return the head of this list
      * @throws NoSuchElementException
-     *                                if this list is empty
+     *         if this list is empty
      * @since 1.5
      */
     public E remove() {
@@ -703,7 +695,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * Adds the specified element as the tail (last element) of this list.
      *
      * @param e
-     *          the element to add
+     *        the element to add
      * @return {@code true} (as specified by {@link Queue#offer})
      * @since 1.5
      */
@@ -716,7 +708,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * Inserts the specified element at the front of this list.
      *
      * @param e
-     *          the element to insert
+     *        the element to insert
      * @return {@code true} (as specified by {@link Deque#offerFirst})
      * @since 1.6
      */
@@ -729,7 +721,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * Inserts the specified element at the end of this list.
      *
      * @param e
-     *          the element to insert
+     *        the element to insert
      * @return {@code true} (as specified by {@link Deque#offerLast})
      * @since 1.6
      */
@@ -793,12 +785,11 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
     /**
      * Pushes an element onto the stack represented by this list. In other
      * words, inserts the element at the front of this list.
-     *
      * <p>
      * This method is equivalent to {@link #addFirst}.
      *
      * @param e
-     *          the element to push
+     *        the element to push
      * @since 1.6
      */
     public void push(E e) {
@@ -808,14 +799,13 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
     /**
      * Pops an element from the stack represented by this list. In other words,
      * removes and returns the first element of this list.
-     *
      * <p>
      * This method is equivalent to {@link #removeFirst()}.
      *
      * @return the element at the front of this list (which is the top of the
      *         stack represented by this list)
      * @throws NoSuchElementException
-     *                                if this list is empty
+     *         if this list is empty
      * @since 1.6
      */
     public E pop() {
@@ -828,7 +818,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * element, it is unchanged.
      *
      * @param o
-     *          element to be removed from this list, if present
+     *        element to be removed from this list, if present
      * @return {@code true} if the list contained the specified element
      * @since 1.6
      */
@@ -842,7 +832,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * element, it is unchanged.
      *
      * @param o
-     *          element to be removed from this list, if present
+     *        element to be removed from this list, if present
      * @return {@code true} if the list contained the specified element
      * @since 1.6
      */
@@ -870,7 +860,6 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * sequence), starting at the specified position in the list. Obeys the
      * general contract of {@code List.listIterator(int)}.
      * <p>
-     *
      * The list-iterator is <i>fail-fast</i>: if the list is structurally
      * modified at any time after the Iterator is created, in any way except
      * through the list-iterator's own {@code remove} or {@code add} methods,
@@ -880,12 +869,12 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * an undetermined time in the future.
      *
      * @param index
-     *              index of the first element to be returned from the
-     *              list-iterator (by a call to {@code next})
+     *        index of the first element to be returned from the
+     *        list-iterator (by a call to {@code next})
      * @return a ListIterator of the elements in this list (in proper sequence),
      *         starting at the specified position in the list
      * @throws IndexOutOfBoundsException
-     *                                   {@inheritDoc}
+     *         {@inheritDoc}
      * @see List#listIterator(int)
      */
     public ListIterator<E> listIterator(int index) {
@@ -1063,12 +1052,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
     /**
      * Returns an array containing all of the elements in this list in proper
      * sequence (from first to last element).
-     *
      * <p>
      * The returned array will be "safe" in that no references to it are
      * maintained by this list. (In other words, this method must allocate a new
      * array). The caller is thus free to modify the returned array.
-     *
      * <p>
      * This method acts as bridge between array-based and collection-based APIs.
      *
@@ -1089,20 +1076,17 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * array is that of the specified array. If the list fits in the specified
      * array, it is returned therein. Otherwise, a new array is allocated with
      * the runtime type of the specified array and the size of this list.
-     *
      * <p>
      * If the list fits in the specified array with room to spare (i.e., the
      * array has more elements than the list), the element in the array
      * immediately following the end of the list is set to {@code null}. (This
      * is useful in determining the length of the list <i>only</i> if the caller
      * knows that the list does not contain any null elements.)
-     *
      * <p>
      * Like the {@link #toArray()} method, this method acts as bridge between
      * array-based and collection-based APIs. Further, this method allows
      * precise control over the runtime type of the output array, and may, under
      * certain circumstances, be used to save allocation costs.
-     *
      * <p>
      * Suppose {@code x} is a list known to contain only strings. The following
      * code can be used to dump the list into a newly allocated array of
@@ -1116,23 +1100,22 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * {@code toArray()}.
      *
      * @param a
-     *          the array into which the elements of the list are to be
-     *          stored, if it is big enough; otherwise, a new array of the
-     *          same runtime type is allocated for this purpose.
+     *        the array into which the elements of the list are to be
+     *        stored, if it is big enough; otherwise, a new array of the
+     *        same runtime type is allocated for this purpose.
      * @return an array containing the elements of the list
      * @throws ArrayStoreException
-     *                              if the runtime type of the specified array
-     *                              is not a supertype
-     *                              of the runtime type of every element in this
-     *                              list
+     *         if the runtime type of the specified array
+     *         is not a supertype
+     *         of the runtime type of every element in this
+     *         list
      * @throws NullPointerException
-     *                              if the specified array is null
+     *         if the specified array is null
      */
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] a) {
         if (a.length < size)
-            a = (T[]) java.lang.reflect.Array.newInstance(a.getClass()
-                    .getComponentType(), size);
+            a = (T[]) java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), size);
         int i = 0;
         Object[] result = a;
         for (Node<E> x = first; x != null; x = x.next)
@@ -1154,8 +1137,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      *             emitted (int), followed by all of its elements (each an
      *             Object) in the proper order.
      */
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException {
+    private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
         // Write out any hidden serialization magic
         s.defaultWriteObject();
 
@@ -1172,8 +1154,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * deserializes it).
      */
     @SuppressWarnings("unchecked")
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
+    private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
         // Read in any hidden serialization magic
         s.defaultReadObject();
 
@@ -1189,7 +1170,6 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * Creates a <em><a href="Spliterator.html#binding">late-binding</a></em>
      * and <em>fail-fast</em> {@link Spliterator} over the elements in this
      * list.
-     *
      * <p>
      * The {@code Spliterator} reports {@link Spliterator#SIZED} and
      * {@link Spliterator#ORDERED}. Overriding implementations should document
@@ -1198,7 +1178,6 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
      * @implNote The {@code Spliterator} additionally reports
      *           {@link Spliterator#SUBSIZED} and implements {@code trySplit} to
      *           permit limited parallelism..
-     *
      * @return a {@code Spliterator} over the elements in this list
      * @since 1.8
      */
@@ -1299,8 +1278,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
         }
 
         public int characteristics() {
-            return Spliterator.ORDERED | Spliterator.SIZED
-                    | Spliterator.SUBSIZED;
+            return Spliterator.ORDERED | Spliterator.SIZED | Spliterator.SUBSIZED;
         }
     }
 

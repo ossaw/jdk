@@ -13,7 +13,6 @@ package java.util.concurrent.atomic;
 /**
  * An {@code AtomicStampedReference} maintains an object reference along with an
  * integer "stamp", that can be updated atomically.
- *
  * <p>
  * Implementation note: This implementation maintains stamped references by
  * creating internal objects representing "boxed" [reference, integer] pairs.
@@ -46,9 +45,9 @@ public class AtomicStampedReference<V> {
      * values.
      *
      * @param initialRef
-     *                     the initial reference
+     *        the initial reference
      * @param initialStamp
-     *                     the initial stamp
+     *        the initial stamp
      */
     public AtomicStampedReference(V initialRef, int initialStamp) {
         pair = Pair.of(initialRef, initialStamp);
@@ -77,9 +76,9 @@ public class AtomicStampedReference<V> {
      * usage is {@code int[1] holder; ref = v.get(holder); }.
      *
      * @param stampHolder
-     *                    an array of size of at least one. On return,
-     *                    {@code stampholder[0]} will hold the value of the
-     *                    stamp.
+     *        an array of size of at least one. On return,
+     *        {@code stampholder[0]} will hold the value of the
+     *        stamp.
      * @return the current value of the reference
      */
     public V get(int[] stampHolder) {
@@ -92,26 +91,23 @@ public class AtomicStampedReference<V> {
      * Atomically sets the value of both the reference and stamp to the given
      * update values if the current reference is {@code ==} to the expected
      * reference and the current stamp is equal to the expected stamp.
-     *
      * <p>
      * <a href="package-summary.html#weakCompareAndSet">May fail spuriously and
      * does not provide ordering guarantees</a>, so is only rarely an
      * appropriate alternative to {@code compareAndSet}.
      *
      * @param expectedReference
-     *                          the expected value of the reference
+     *        the expected value of the reference
      * @param newReference
-     *                          the new value for the reference
+     *        the new value for the reference
      * @param expectedStamp
-     *                          the expected value of the stamp
+     *        the expected value of the stamp
      * @param newStamp
-     *                          the new value for the stamp
+     *        the new value for the stamp
      * @return {@code true} if successful
      */
-    public boolean weakCompareAndSet(V expectedReference, V newReference,
-            int expectedStamp, int newStamp) {
-        return compareAndSet(expectedReference, newReference, expectedStamp,
-                newStamp);
+    public boolean weakCompareAndSet(V expectedReference, V newReference, int expectedStamp, int newStamp) {
+        return compareAndSet(expectedReference, newReference, expectedStamp, newStamp);
     }
 
     /**
@@ -120,32 +116,29 @@ public class AtomicStampedReference<V> {
      * reference and the current stamp is equal to the expected stamp.
      *
      * @param expectedReference
-     *                          the expected value of the reference
+     *        the expected value of the reference
      * @param newReference
-     *                          the new value for the reference
+     *        the new value for the reference
      * @param expectedStamp
-     *                          the expected value of the stamp
+     *        the expected value of the stamp
      * @param newStamp
-     *                          the new value for the stamp
+     *        the new value for the stamp
      * @return {@code true} if successful
      */
-    public boolean compareAndSet(V expectedReference, V newReference,
-            int expectedStamp, int newStamp) {
+    public boolean compareAndSet(V expectedReference, V newReference, int expectedStamp, int newStamp) {
         Pair<V> current = pair;
-        return expectedReference == current.reference
-                && expectedStamp == current.stamp
-                && ((newReference == current.reference
-                        && newStamp == current.stamp) || casPair(current, Pair
-                                .of(newReference, newStamp)));
+        return expectedReference == current.reference && expectedStamp == current.stamp
+                && ((newReference == current.reference && newStamp == current.stamp) || casPair(current, Pair
+                        .of(newReference, newStamp)));
     }
 
     /**
      * Unconditionally sets the value of both the reference and stamp.
      *
      * @param newReference
-     *                     the new value for the reference
+     *        the new value for the reference
      * @param newStamp
-     *                     the new value for the stamp
+     *        the new value for the stamp
      */
     public void set(V newReference, int newStamp) {
         Pair<V> current = pair;
@@ -162,30 +155,27 @@ public class AtomicStampedReference<V> {
      * succeed.
      *
      * @param expectedReference
-     *                          the expected value of the reference
+     *        the expected value of the reference
      * @param newStamp
-     *                          the new value for the stamp
+     *        the new value for the stamp
      * @return {@code true} if successful
      */
     public boolean attemptStamp(V expectedReference, int newStamp) {
         Pair<V> current = pair;
-        return expectedReference == current.reference
-                && (newStamp == current.stamp || casPair(current, Pair.of(
-                        expectedReference, newStamp)));
+        return expectedReference == current.reference && (newStamp == current.stamp || casPair(current, Pair
+                .of(expectedReference, newStamp)));
     }
 
     // Unsafe mechanics
 
     private static final sun.misc.Unsafe UNSAFE = sun.misc.Unsafe.getUnsafe();
-    private static final long pairOffset = objectFieldOffset(UNSAFE, "pair",
-            AtomicStampedReference.class);
+    private static final long pairOffset = objectFieldOffset(UNSAFE, "pair", AtomicStampedReference.class);
 
     private boolean casPair(Pair<V> cmp, Pair<V> val) {
         return UNSAFE.compareAndSwapObject(this, pairOffset, cmp, val);
     }
 
-    static long objectFieldOffset(sun.misc.Unsafe UNSAFE, String field,
-            Class<?> klazz) {
+    static long objectFieldOffset(sun.misc.Unsafe UNSAFE, String field, Class<?> klazz) {
         try {
             return UNSAFE.objectFieldOffset(klazz.getDeclaredField(field));
         } catch (NoSuchFieldException e) {

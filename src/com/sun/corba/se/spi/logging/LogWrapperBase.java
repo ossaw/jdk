@@ -19,8 +19,7 @@ public abstract class LogWrapperBase {
         this.loggerName = logger.getName();
     }
 
-    protected void doLog(Level level, String key, Object[] params,
-            Class wrapperClass, Throwable thr) {
+    protected void doLog(Level level, String key, Object[] params, Class wrapperClass, Throwable thr) {
         LogRecord lrec = new LogRecord(level, key);
         if (params != null)
             lrec.setParameters(params);
@@ -63,8 +62,7 @@ public abstract class LogWrapperBase {
         }
     }
 
-    protected void doLog(Level level, String key, Class wrapperClass,
-            Throwable thr) {
+    protected void doLog(Level level, String key, Class wrapperClass, Throwable thr) {
         doLog(level, key, null, wrapperClass, thr);
     }
 }

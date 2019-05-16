@@ -18,8 +18,7 @@ import sun.security.util.*;
  * @since 1.4
  */
 
-public final class KerberosPrincipal implements java.security.Principal,
-        java.io.Serializable {
+public final class KerberosPrincipal implements java.security.Principal, java.io.Serializable {
 
     private static final long serialVersionUID = -7374788026156829911L;
 
@@ -74,7 +73,6 @@ public final class KerberosPrincipal implements java.security.Principal,
      * href=http://www.ietf.org/rfc/rfc1964.txt> RFC 1964 </a> (for example,
      * <i>duke@FOO.COM</i>, where <i>duke</i> represents a principal, and
      * <i>FOO.COM</i> represents a realm).
-     *
      * <p>
      * If the input name does not contain a realm, the default realm is used.
      * The default realm can be specified either in a Kerberos configuration
@@ -84,16 +82,16 @@ public final class KerberosPrincipal implements java.security.Principal,
      * Kerberos Requirements </a>
      *
      * @param name
-     *             the principal name
+     *        the principal name
      * @throws IllegalArgumentException
-     *                                  if name is improperly formatted, if name
-     *                                  is null, or if name
-     *                                  does not contain the realm to use and
-     *                                  the default realm is
-     *                                  not specified in either a Kerberos
-     *                                  configuration file or via
-     *                                  the java.security.krb5.realm system
-     *                                  property.
+     *         if name is improperly formatted, if name
+     *         is null, or if name
+     *         does not contain the realm to use and
+     *         the default realm is
+     *         not specified in either a Kerberos
+     *         configuration file or via
+     *         the java.security.krb5.realm system
+     *         property.
      */
     public KerberosPrincipal(String name) {
         this(name, KRB_NT_PRINCIPAL);
@@ -110,7 +108,6 @@ public final class KerberosPrincipal implements java.security.Principal,
      * <i>duke@FOO.COM</i>, is a valid input string for the name type,
      * KRB_NT_PRINCIPAL where <i>duke</i> represents a principal, and
      * <i>FOO.COM</i> represents a realm).
-     * 
      * <p>
      * If the input name does not contain a realm, the default realm is used.
      * The default realm can be specified either in a Kerberos configuration
@@ -120,19 +117,19 @@ public final class KerberosPrincipal implements java.security.Principal,
      * Kerberos Requirements</a>.
      *
      * @param name
-     *                 the principal name
+     *        the principal name
      * @param nameType
-     *                 the name type of the principal
+     *        the name type of the principal
      * @throws IllegalArgumentException
-     *                                  if name is improperly formatted, if name
-     *                                  is null, if the
-     *                                  nameType is not supported, or if name
-     *                                  does not contain the
-     *                                  realm to use and the default realm is
-     *                                  not specified in either
-     *                                  a Kerberos configuration file or via the
-     *                                  java.security.krb5.realm system
-     *                                  property.
+     *         if name is improperly formatted, if name
+     *         is null, if the
+     *         nameType is not supported, or if name
+     *         does not contain the
+     *         realm to use and the default realm is
+     *         not specified in either
+     *         a Kerberos configuration file or via the
+     *         java.security.krb5.realm system
+     *         property.
      */
 
     public KerberosPrincipal(String name, int nameType) {
@@ -152,8 +149,7 @@ public final class KerberosPrincipal implements java.security.Principal,
             SecurityManager sm = System.getSecurityManager();
             if (sm != null) {
                 try {
-                    sm.checkPermission(new ServicePermission("@" + krb5Principal
-                            .getRealmAsString(), "-"));
+                    sm.checkPermission(new ServicePermission("@" + krb5Principal.getRealmAsString(), "-"));
                 } catch (SecurityException se) {
                     // Swallow the actual exception to hide info
                     throw new SecurityException("Cannot read realm info");
@@ -198,7 +194,7 @@ public final class KerberosPrincipal implements java.security.Principal,
      * {@code getName()} are equal.
      *
      * @param other
-     *              the Object to compare to
+     *        the Object to compare to
      * @return true if the Object passed in represents the same principal as
      *         this one, false otherwise.
      */
@@ -238,14 +234,12 @@ public final class KerberosPrincipal implements java.security.Principal,
     /**
      * Reads this object from a stream (i.e., deserializes it)
      */
-    private void readObject(ObjectInputStream ois) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         byte[] asn1EncPrincipal = (byte[]) ois.readObject();
         byte[] encRealm = (byte[]) ois.readObject();
         try {
             Realm realmObject = new Realm(new DerValue(encRealm));
-            PrincipalName krb5Principal = new PrincipalName(new DerValue(
-                    asn1EncPrincipal), realmObject);
+            PrincipalName krb5Principal = new PrincipalName(new DerValue(asn1EncPrincipal), realmObject);
             realm = realmObject.toString();
             fullName = krb5Principal.toString();
             nameType = krb5Principal.getNameType();

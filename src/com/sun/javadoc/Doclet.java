@@ -12,7 +12,6 @@ package com.sun.javadoc;
  * <a href="package-summary.html#package_description">package description</a>.
  * If the doclet takes command line options, it must also implement
  * <code>optionLength</code> and <code>validOptions</code>.
- *
  * <p>
  * A doclet supporting the language features added since 1.1 (such as generics
  * and annotations) should indicate this by implementing
@@ -20,7 +19,6 @@ package com.sun.javadoc;
  * invoke any of the Doclet API methods added since 1.5, and the results of
  * several other methods are modified so as to conceal the new constructs (such
  * as type parameters) from the doclet.
- *
  * <p>
  * To start the doclet, pass <code>-doclet</code> followed by the
  * fully-qualified name of the starting class on the javadoc tool command line.
@@ -65,8 +63,7 @@ public abstract class Doclet {
      *
      * @return true if the options are valid.
      */
-    public static boolean validOptions(String options[][],
-            DocErrorReporter reporter) {
+    public static boolean validOptions(String options[][], DocErrorReporter reporter) {
         return true; // default is options are valid
     }
 

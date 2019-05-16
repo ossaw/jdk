@@ -71,17 +71,15 @@ public final class Severity extends EnumSyntax implements Attribute {
      * Construct a new severity enumeration value with the given integer value.
      *
      * @param value
-     *              Integer value.
+     *        Integer value.
      */
     protected Severity(int value) {
         super(value);
     }
 
-    private static final String[] myStringTable = { "report", "warning",
-            "error" };
+    private static final String[] myStringTable = { "report", "warning", "error" };
 
-    private static final Severity[] myEnumValueTable = { REPORT, WARNING,
-            ERROR };
+    private static final Severity[] myEnumValueTable = { REPORT, WARNING, ERROR };
 
     /**
      * Returns the string table for class Severity.

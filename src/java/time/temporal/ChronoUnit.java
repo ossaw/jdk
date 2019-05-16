@@ -45,7 +45,6 @@ import java.time.Duration;
  * explains how it operates.
  *
  * @implSpec This is a final, immutable and thread-safe enum.
- *
  * @since 1.8
  */
 public enum ChronoUnit implements TemporalUnit {
@@ -246,8 +245,7 @@ public enum ChronoUnit implements TemporalUnit {
 
     // -----------------------------------------------------------------------
     @Override
-    public long between(Temporal temporal1Inclusive,
-            Temporal temporal2Exclusive) {
+    public long between(Temporal temporal1Inclusive, Temporal temporal2Exclusive) {
         return temporal1Inclusive.until(temporal2Exclusive, this);
     }
 

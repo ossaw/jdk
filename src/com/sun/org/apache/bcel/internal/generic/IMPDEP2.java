@@ -67,7 +67,7 @@ public class IMPDEP2 extends Instruction {
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitIMPDEP2(this);

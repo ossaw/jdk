@@ -17,7 +17,6 @@ import javax.xml.stream.XMLStreamException;
 
 /**
  * This is the base class for deriving an XMLEventReader filter.
- *
  * This class is designed to sit between an XMLEventReader and an application's
  * XMLEventReader. By default each method does nothing but call the
  * corresponding method on the parent interface.
@@ -41,7 +40,7 @@ public class EventReaderDelegate implements XMLEventReader {
      * Construct an filter with the specified parent.
      * 
      * @param reader
-     *               the parent
+     *        the parent
      */
     public EventReaderDelegate(XMLEventReader reader) {
         this.reader = reader;
@@ -51,7 +50,7 @@ public class EventReaderDelegate implements XMLEventReader {
      * Set the parent of this instance.
      * 
      * @param reader
-     *               the new parent
+     *        the new parent
      */
     public void setParent(XMLEventReader reader) {
         this.reader = reader;
@@ -94,8 +93,7 @@ public class EventReaderDelegate implements XMLEventReader {
         return reader.nextTag();
     }
 
-    public Object getProperty(java.lang.String name)
-            throws java.lang.IllegalArgumentException {
+    public Object getProperty(java.lang.String name) throws java.lang.IllegalArgumentException {
         return reader.getProperty(name);
     }
 

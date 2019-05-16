@@ -27,7 +27,6 @@ package javax.naming.event;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see NamingEvent
  * @see NamingExceptionEvent
  * @see EventContext
@@ -40,7 +39,7 @@ public interface NamingListener extends java.util.EventListener {
      * <tt>NamingEvent</tt>.
      *
      * @param evt
-     *            The nonnull event.
+     *        The nonnull event.
      */
     void namingExceptionThrown(NamingExceptionEvent evt);
 }

@@ -40,8 +40,7 @@ public class CopierManagerImpl implements CopierManager {
         return (ObjectCopierFactory) (map.get(defaultId));
     }
 
-    public void registerObjectCopierFactory(ObjectCopierFactory factory,
-            int id) {
+    public void registerObjectCopierFactory(ObjectCopierFactory factory, int id) {
         map.set(id, factory);
     }
 }

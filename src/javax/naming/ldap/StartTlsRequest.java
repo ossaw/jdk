@@ -18,7 +18,6 @@ import java.util.ServiceConfigurationError;
  * This class implements the LDAPv3 Extended Request for StartTLS as defined in
  * <a href="http://www.ietf.org/rfc/rfc2830.txt">Lightweight Directory Access
  * Protocol (v3): Extension for Transport Layer Security</a>
- *
  * The object identifier for StartTLS is 1.3.6.1.4.1.1466.20037 and no extended
  * request value is defined.
  * <p>
@@ -127,50 +126,49 @@ public class StartTlsRequest implements ExtendedRequest {
      * found, a NamingException is thrown.
      *
      * @param id
-     *                 The object identifier of the extended response. Its value
-     *                 must
-     *                 be "1.3.6.1.4.1.1466.20037" or null. Both values are
-     *                 equivalent.
+     *        The object identifier of the extended response. Its value
+     *        must
+     *        be "1.3.6.1.4.1.1466.20037" or null. Both values are
+     *        equivalent.
      * @param berValue
-     *                 The possibly null ASN.1 BER encoded value of the extended
-     *                 response. This is the raw BER bytes including the tag and
-     *                 length of the response value. It does not include the
-     *                 response
-     *                 OID. Its value is ignored because a Start TLS response is
-     *                 not
-     *                 expected to contain any response value.
+     *        The possibly null ASN.1 BER encoded value of the extended
+     *        response. This is the raw BER bytes including the tag and
+     *        length of the response value. It does not include the
+     *        response
+     *        OID. Its value is ignored because a Start TLS response is
+     *        not
+     *        expected to contain any response value.
      * @param offset
-     *                 The starting position in berValue of the bytes to use.
-     *                 Its
-     *                 value is ignored because a Start TLS response is not
-     *                 expected
-     *                 to contain any response value.
+     *        The starting position in berValue of the bytes to use.
+     *        Its
+     *        value is ignored because a Start TLS response is not
+     *        expected
+     *        to contain any response value.
      * @param length
-     *                 The number of bytes in berValue to use. Its value is
-     *                 ignored
-     *                 because a Start TLS response is not expected to contain
-     *                 any
-     *                 response value.
+     *        The number of bytes in berValue to use. Its value is
+     *        ignored
+     *        because a Start TLS response is not expected to contain
+     *        any
+     *        response value.
      * @return The StartTLS extended response object.
      * @exception NamingException
-     *                            If a naming exception was encountered while
-     *                            creating the
-     *                            StartTLS extended response object.
+     *            If a naming exception was encountered while
+     *            creating the
+     *            StartTLS extended response object.
      */
-    public ExtendedResponse createExtendedResponse(String id, byte[] berValue,
-            int offset, int length) throws NamingException {
+    public ExtendedResponse createExtendedResponse(String id, byte[] berValue, int offset, int length)
+            throws NamingException {
 
         // Confirm that the object identifier is correct
         if ((id != null) && (!id.equals(OID))) {
-            throw new ConfigurationException(
-                    "Start TLS received the following response instead of "
-                            + OID + ": " + id);
+            throw new ConfigurationException("Start TLS received the following response instead of " + OID
+                    + ": " + id);
         }
 
         StartTlsResponse resp = null;
 
-        ServiceLoader<StartTlsResponse> sl = ServiceLoader.load(
-                StartTlsResponse.class, getContextClassLoader());
+        ServiceLoader<StartTlsResponse> sl = ServiceLoader.load(StartTlsResponse.class,
+                getContextClassLoader());
         Iterator<StartTlsResponse> iter = sl.iterator();
 
         while (resp == null && privilegedHasNext(iter)) {
@@ -181,8 +179,7 @@ public class StartTlsRequest implements ExtendedRequest {
         }
         try {
             VersionHelper helper = VersionHelper.getVersionHelper();
-            Class<?> clas = helper.loadClass(
-                    "com.sun.jndi.ldap.ext.StartTlsResponseImpl");
+            Class<?> clas = helper.loadClass("com.sun.jndi.ldap.ext.StartTlsResponseImpl");
 
             resp = (StartTlsResponse) clas.newInstance();
 
@@ -215,22 +212,19 @@ public class StartTlsRequest implements ExtendedRequest {
      * Acquire the class loader associated with this thread.
      */
     private final ClassLoader getContextClassLoader() {
-        return AccessController.doPrivileged(
-                new PrivilegedAction<ClassLoader>() {
-                    public ClassLoader run() {
-                        return Thread.currentThread().getContextClassLoader();
-                    }
-                });
+        return AccessController.doPrivileged(new PrivilegedAction<ClassLoader>() {
+            public ClassLoader run() {
+                return Thread.currentThread().getContextClassLoader();
+            }
+        });
     }
 
-    private final static boolean privilegedHasNext(
-            final Iterator<StartTlsResponse> iter) {
-        Boolean answer = AccessController.doPrivileged(
-                new PrivilegedAction<Boolean>() {
-                    public Boolean run() {
-                        return Boolean.valueOf(iter.hasNext());
-                    }
-                });
+    private final static boolean privilegedHasNext(final Iterator<StartTlsResponse> iter) {
+        Boolean answer = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
+            public Boolean run() {
+                return Boolean.valueOf(iter.hasNext());
+            }
+        });
         return answer.booleanValue();
     }
 

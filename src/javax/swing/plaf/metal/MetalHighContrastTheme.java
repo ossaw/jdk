@@ -19,20 +19,13 @@ import java.awt.*;
  * @author Michael C. Albers
  */
 class MetalHighContrastTheme extends DefaultMetalTheme {
-    private static final ColorUIResource primary1 = new ColorUIResource(0, 0,
-            0);
-    private static final ColorUIResource primary2 = new ColorUIResource(204,
-            204, 204);
-    private static final ColorUIResource primary3 = new ColorUIResource(255,
-            255, 255);
-    private static final ColorUIResource primaryHighlight = new ColorUIResource(
-            102, 102, 102);
-    private static final ColorUIResource secondary2 = new ColorUIResource(204,
-            204, 204);
-    private static final ColorUIResource secondary3 = new ColorUIResource(255,
-            255, 255);
-    private static final ColorUIResource controlHighlight = new ColorUIResource(
-            102, 102, 102);
+    private static final ColorUIResource primary1 = new ColorUIResource(0, 0, 0);
+    private static final ColorUIResource primary2 = new ColorUIResource(204, 204, 204);
+    private static final ColorUIResource primary3 = new ColorUIResource(255, 255, 255);
+    private static final ColorUIResource primaryHighlight = new ColorUIResource(102, 102, 102);
+    private static final ColorUIResource secondary2 = new ColorUIResource(204, 204, 204);
+    private static final ColorUIResource secondary3 = new ColorUIResource(255, 255, 255);
+    private static final ColorUIResource controlHighlight = new ColorUIResource(102, 102, 102);
 
     // This does not override getSecondary1 (102,102,102)
 
@@ -98,12 +91,10 @@ class MetalHighContrastTheme extends DefaultMetalTheme {
     }
 
     public void addCustomEntriesToTable(UIDefaults table) {
-        Border blackLineBorder = new BorderUIResource(new LineBorder(
-                getBlack()));
-        Border whiteLineBorder = new BorderUIResource(new LineBorder(
-                getWhite()));
-        Object textBorder = new BorderUIResource(new CompoundBorder(
-                blackLineBorder, new BasicBorders.MarginBorder()));
+        Border blackLineBorder = new BorderUIResource(new LineBorder(getBlack()));
+        Border whiteLineBorder = new BorderUIResource(new LineBorder(getWhite()));
+        Object textBorder = new BorderUIResource(new CompoundBorder(blackLineBorder,
+                new BasicBorders.MarginBorder()));
 
         Object[] defaults = new Object[] { "ToolTip.border", blackLineBorder,
 
@@ -119,15 +110,13 @@ class MetalHighContrastTheme extends DefaultMetalTheme {
 
                 "EditorPane.border", textBorder,
 
-                "ComboBox.background", getWindowBackground(),
-                "ComboBox.foreground", getUserTextColor(),
-                "ComboBox.selectionBackground", getTextHighlightColor(),
-                "ComboBox.selectionForeground", getHighlightedTextColor(),
+                "ComboBox.background", getWindowBackground(), "ComboBox.foreground", getUserTextColor(),
+                "ComboBox.selectionBackground", getTextHighlightColor(), "ComboBox.selectionForeground",
+                getHighlightedTextColor(),
 
-                "ProgressBar.foreground", getUserTextColor(),
-                "ProgressBar.background", getWindowBackground(),
-                "ProgressBar.selectionForeground", getWindowBackground(),
-                "ProgressBar.selectionBackground", getUserTextColor(),
+                "ProgressBar.foreground", getUserTextColor(), "ProgressBar.background", getWindowBackground(),
+                "ProgressBar.selectionForeground", getWindowBackground(), "ProgressBar.selectionBackground",
+                getUserTextColor(),
 
                 "OptionPane.errorDialog.border.background", getPrimary1(),
                 "OptionPane.errorDialog.titlePane.foreground", getPrimary3(),

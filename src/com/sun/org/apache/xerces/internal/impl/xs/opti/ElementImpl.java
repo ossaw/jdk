@@ -24,10 +24,8 @@ import org.w3c.dom.Node;
 
 /**
  * @xerces.internal
- *
  * @author Rahul Srivastava, Sun Microsystems Inc.
  * @author Sandy Gao, IBM
- *
  * @version $Id: ElementImpl.java,v 1.7 2010-11-01 04:40:01 joehw Exp $
  */
 public class ElementImpl extends DefaultElement {
@@ -59,8 +57,8 @@ public class ElementImpl extends DefaultElement {
         this(line, column, -1);
     }
 
-    public ElementImpl(String prefix, String localpart, String rawname,
-            String uri, int line, int column, int offset) {
+    public ElementImpl(String prefix, String localpart, String rawname, String uri, int line, int column,
+            int offset) {
         super(prefix, localpart, rawname, uri, Node.ELEMENT_NODE);
         row = -1;
         col = -1;
@@ -71,8 +69,7 @@ public class ElementImpl extends DefaultElement {
         charOffset = offset;
     }
 
-    public ElementImpl(String prefix, String localpart, String rawname,
-            String uri, int line, int column) {
+    public ElementImpl(String prefix, String localpart, String rawname, String uri, int line, int column) {
         this(prefix, localpart, rawname, uri, line, column, -1);
     }
 
@@ -170,8 +167,8 @@ public class ElementImpl extends DefaultElement {
 
     public String getAttributeNS(String namespaceURI, String localName) {
         for (int i = 0; i < attrs.length; i++) {
-            if (attrs[i].getLocalName().equals(localName) && nsEquals(attrs[i]
-                    .getNamespaceURI(), namespaceURI)) {
+            if (attrs[i].getLocalName().equals(localName) && nsEquals(attrs[i].getNamespaceURI(),
+                    namespaceURI)) {
                 return attrs[i].getValue();
             }
         }
@@ -180,8 +177,7 @@ public class ElementImpl extends DefaultElement {
 
     public Attr getAttributeNodeNS(String namespaceURI, String localName) {
         for (int i = 0; i < attrs.length; i++) {
-            if (attrs[i].getName().equals(localName) && nsEquals(attrs[i]
-                    .getNamespaceURI(), namespaceURI)) {
+            if (attrs[i].getName().equals(localName) && nsEquals(attrs[i].getNamespaceURI(), namespaceURI)) {
                 return attrs[i];
             }
         }
@@ -199,8 +195,7 @@ public class ElementImpl extends DefaultElement {
 
     public boolean hasAttributeNS(String namespaceURI, String localName) {
         for (int i = 0; i < attrs.length; i++) {
-            if (attrs[i].getName().equals(localName) && nsEquals(attrs[i]
-                    .getNamespaceURI(), namespaceURI)) {
+            if (attrs[i].getName().equals(localName) && nsEquals(attrs[i].getNamespaceURI(), namespaceURI)) {
                 return true;
             }
         }

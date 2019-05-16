@@ -65,7 +65,6 @@ public class ORBVersionFactory {
          * version is. Then, if that IOR is sent back to the server and compared
          * with the original the equality check will fail because the versions
          * will be different.
-         *
          * Instead, just capture the version bytes.
          */
 

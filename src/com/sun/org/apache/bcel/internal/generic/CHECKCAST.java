@@ -60,8 +60,8 @@ import com.sun.org.apache.bcel.internal.ExceptionConstants;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class CHECKCAST extends CPInstruction implements LoadClass,
-        ExceptionThrower, StackProducer, StackConsumer {
+public class CHECKCAST extends CPInstruction implements LoadClass, ExceptionThrower, StackProducer,
+        StackConsumer {
     /**
      * Empty constructor needed for the Class.newInstance() statement in
      * Instruction.readInstruction(). Not to be used otherwise.
@@ -72,7 +72,7 @@ public class CHECKCAST extends CPInstruction implements LoadClass,
      * Check whether object is of given type
      * 
      * @param n
-     *          index to class in constant pool
+     *        index to class in constant pool
      */
     public CHECKCAST(int index) {
         super(com.sun.org.apache.bcel.internal.Constants.CHECKCAST, index);
@@ -82,11 +82,9 @@ public class CHECKCAST extends CPInstruction implements LoadClass,
      * @return exceptions this instruction may cause
      */
     public Class[] getExceptions() {
-        Class[] cs = new Class[1
-                + ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length];
+        Class[] cs = new Class[1 + ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length];
 
-        System.arraycopy(ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION,
-                0, cs, 0,
+        System.arraycopy(ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION, 0, cs, 0,
                 ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length);
         cs[ExceptionConstants.EXCS_CLASS_AND_INTERFACE_RESOLUTION.length] = ExceptionConstants.CLASS_CAST_EXCEPTION;
         return cs;
@@ -108,7 +106,7 @@ public class CHECKCAST extends CPInstruction implements LoadClass,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitLoadClass(this);

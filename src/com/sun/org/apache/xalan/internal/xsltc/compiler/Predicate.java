@@ -270,7 +270,6 @@ final class Predicate extends Expression implements Closure {
      * that if the expression is a parameter, we cannot distinguish at compile
      * time if its type is number or not. Hence, expressions of reference type
      * are always converted to booleans.
-     *
      * This method may be called twice, before and after calling
      * <code>dontOptimize()</code>. If so, the second time it should honor the
      * new value of <code>_canOptimize</code>.
@@ -302,8 +301,7 @@ final class Predicate extends Expression implements Closure {
             if (_canOptimize) {
                 // Nth position optimization. Expression must not depend on
                 // context
-                _nthPositionFilter = !_exp.hasLastCall() && !_exp
-                        .hasPositionCall();
+                _nthPositionFilter = !_exp.hasLastCall() && !_exp.hasPositionCall();
 
                 // _nthDescendant optimization - only if _nthPositionFilter is
                 // on
@@ -319,8 +317,7 @@ final class Predicate extends Expression implements Closure {
             _nthPositionFilter = _nthDescendant = false;
 
             // Otherwise, expand [e] to [position() = e]
-            final QName position = getParser().getQNameIgnoreDefaultNs(
-                    "position");
+            final QName position = getParser().getQNameIgnoreDefaultNs("position");
             final PositionCall positionCall = new PositionCall(position);
             positionCall.setParser(getParser());
             positionCall.setParent(this);
@@ -345,28 +342,24 @@ final class Predicate extends Expression implements Closure {
      * variables and local parameters passed in the closure to test(). Notice
      * that local variables need to be "unboxed".
      */
-    private void compileFilter(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    private void compileFilter(ClassGenerator classGen, MethodGenerator methodGen) {
         TestGenerator testGen;
         LocalVariableGen local;
         FilterGenerator filterGen;
 
         _className = getXSLTC().getHelperClassName();
-        filterGen = new FilterGenerator(_className, "java.lang.Object",
-                toString(), ACC_PUBLIC | ACC_SUPER, new String[] {
-                        CURRENT_NODE_LIST_FILTER }, classGen.getStylesheet());
+        filterGen = new FilterGenerator(_className, "java.lang.Object", toString(), ACC_PUBLIC | ACC_SUPER,
+                new String[] { CURRENT_NODE_LIST_FILTER }, classGen.getStylesheet());
 
         final ConstantPoolGen cpg = filterGen.getConstantPool();
         final int length = (_closureVars == null) ? 0 : _closureVars.size();
 
         // Add a new instance variable for each var in closure
         for (int i = 0; i < length; i++) {
-            VariableBase var = ((VariableRefBase) _closureVars.get(i))
-                    .getVariable();
+            VariableBase var = ((VariableRefBase) _closureVars.get(i)).getVariable();
 
-            filterGen.addField(new Field(ACC_PUBLIC, cpg.addUtf8(var
-                    .getEscapedName()), cpg.addUtf8(var.getType()
-                            .toSignature()), null, cpg.getConstantPool()));
+            filterGen.addField(new Field(ACC_PUBLIC, cpg.addUtf8(var.getEscapedName()), cpg.addUtf8(var
+                    .getType().toSignature()), null, cpg.getConstantPool()));
         }
 
         final InstructionList il = new InstructionList();
@@ -376,22 +369,16 @@ final class Predicate extends Expression implements Closure {
                         com.sun.org.apache.bcel.internal.generic.Type.INT,
                         com.sun.org.apache.bcel.internal.generic.Type.INT,
                         com.sun.org.apache.bcel.internal.generic.Type.INT,
-                        com.sun.org.apache.bcel.internal.generic.Type.INT, Util
-                                .getJCRefType(TRANSLET_SIG), Util.getJCRefType(
-                                        NODE_ITERATOR_SIG) }, new String[] {
-                                                "node", "position", "last",
-                                                "current", "translet",
-                                                "iterator" }, "test",
-                _className, il, cpg);
+                        com.sun.org.apache.bcel.internal.generic.Type.INT, Util.getJCRefType(TRANSLET_SIG),
+                        Util.getJCRefType(NODE_ITERATOR_SIG) }, new String[] { "node", "position", "last",
+                                "current", "translet", "iterator" }, "test", _className, il, cpg);
 
         // Store the dom in a local variable
-        local = testGen.addLocalVariable("document", Util.getJCRefType(
-                DOM_INTF_SIG), null, null);
+        local = testGen.addLocalVariable("document", Util.getJCRefType(DOM_INTF_SIG), null, null);
         final String className = classGen.getClassName();
         il.append(filterGen.loadTranslet());
         il.append(new CHECKCAST(cpg.addClass(className)));
-        il.append(new GETFIELD(cpg.addFieldref(className, DOM_FIELD,
-                DOM_INTF_SIG)));
+        il.append(new GETFIELD(cpg.addFieldref(className, DOM_FIELD, DOM_INTF_SIG)));
         local.setStart(il.append(new ASTORE(local.getIndex())));
 
         // Store the dom index in the test generator
@@ -495,8 +482,7 @@ final class Predicate extends Expression implements Closure {
                 return _value;
             }
             // Return if left is a variable reference of type string
-            if (left instanceof VariableRefBase && left
-                    .getType() == Type.String) {
+            if (left instanceof VariableRefBase && left.getType() == Type.String) {
                 _value = left;
                 return _value;
             }
@@ -507,8 +493,7 @@ final class Predicate extends Expression implements Closure {
                 return _value;
             }
             // Return if left is a variable reference whose type is string
-            if (right instanceof VariableRefBase && right
-                    .getType() == Type.String) {
+            if (right instanceof VariableRefBase && right.getType() == Type.String) {
                 _value = right;
                 return _value;
             }
@@ -521,8 +506,7 @@ final class Predicate extends Expression implements Closure {
      * on the stack: a reference to a newly created filter object and a
      * reference to the predicate's closure.
      */
-    public void translateFilter(ClassGenerator classGen,
-            MethodGenerator methodGen) {
+    public void translateFilter(ClassGenerator classGen, MethodGenerator methodGen) {
         final ConstantPoolGen cpg = classGen.getConstantPool();
         final InstructionList il = methodGen.getInstructionList();
 
@@ -532,8 +516,7 @@ final class Predicate extends Expression implements Closure {
         // Create new instance of filter
         il.append(new NEW(cpg.addClass(_className)));
         il.append(DUP);
-        il.append(new INVOKESPECIAL(cpg.addMethodref(_className, "<init>",
-                "()V")));
+        il.append(new INVOKESPECIAL(cpg.addMethodref(_className, "<init>", "()V")));
 
         // Initialize closure variables
         final int length = (_closureVars == null) ? 0 : _closureVars.size();
@@ -556,17 +539,15 @@ final class Predicate extends Expression implements Closure {
             // Use getfield if in an inner class
             if (variableClosure != null) {
                 il.append(ALOAD_0);
-                il.append(new GETFIELD(cpg.addFieldref(variableClosure
-                        .getInnerClassName(), var.getEscapedName(), varType
-                                .toSignature())));
+                il.append(new GETFIELD(cpg.addFieldref(variableClosure.getInnerClassName(), var
+                        .getEscapedName(), varType.toSignature())));
             } else {
                 // Use a load of instruction if in translet class
                 il.append(var.loadInstruction());
             }
 
             // Store variable in new closure
-            il.append(new PUTFIELD(cpg.addFieldref(_className, var
-                    .getEscapedName(), varType.toSignature())));
+            il.append(new PUTFIELD(cpg.addFieldref(_className, var.getEscapedName(), varType.toSignature())));
         }
     }
 

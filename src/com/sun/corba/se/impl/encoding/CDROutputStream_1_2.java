@@ -272,8 +272,7 @@ public class CDROutputStream_1_2 extends CDROutputStream_1_1 {
 
         // Remember that every wchar starts with an octet telling
         // its length. The buffer size is an upper bound estimate.
-        int maxLength = (int) Math.ceil(converter.getMaxBytesPerChar()
-                * length);
+        int maxLength = (int) Math.ceil(converter.getMaxBytesPerChar() * length);
         byte[] buffer = new byte[maxLength + length];
 
         for (int i = 0; i < length; i++) {
@@ -284,8 +283,7 @@ public class CDROutputStream_1_2 extends CDROutputStream_1_1 {
             buffer[totalNumBytes++] = (byte) converter.getNumBytes();
 
             // Copy it into our buffer
-            System.arraycopy(converter.getBytes(), 0, buffer, totalNumBytes,
-                    converter.getNumBytes());
+            System.arraycopy(converter.getBytes(), 0, buffer, totalNumBytes, converter.getNumBytes());
 
             totalNumBytes += converter.getNumBytes();
         }
@@ -320,14 +318,12 @@ public class CDROutputStream_1_2 extends CDROutputStream_1_1 {
 
         converter.convert(value);
 
-        handleSpecialChunkBegin(computeAlignment(4) + 4 + converter
-                .getNumBytes());
+        handleSpecialChunkBegin(computeAlignment(4) + 4 + converter.getNumBytes());
 
         write_long(converter.getNumBytes());
 
         // Write the octet array without tampering with chunking
-        internalWriteOctetArray(converter.getBytes(), 0, converter
-                .getNumBytes());
+        internalWriteOctetArray(converter.getBytes(), 0, converter.getNumBytes());
 
         handleSpecialChunkEnd();
     }

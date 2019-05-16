@@ -11,7 +11,6 @@ package javax.imageio.spi;
  * present, notification of registration and deregistration will be performed.
  *
  * @see ServiceRegistry
- *
  */
 public interface RegisterableService {
 
@@ -21,12 +20,12 @@ public interface RegisterableService {
      * already be registered under another category or categories.
      *
      * @param registry
-     *                 a <code>ServiceRegistry</code> where this object has been
-     *                 registered.
+     *        a <code>ServiceRegistry</code> where this object has been
+     *        registered.
      * @param category
-     *                 a <code>Class</code> object indicating the registry
-     *                 category
-     *                 under which this object has been registered.
+     *        a <code>Class</code> object indicating the registry
+     *        category
+     *        under which this object has been registered.
      */
     void onRegistration(ServiceRegistry registry, Class<?> category);
 
@@ -36,13 +35,13 @@ public interface RegisterableService {
      * object may still be registered under another category or categories.
      *
      * @param registry
-     *                 a <code>ServiceRegistry</code> from which this object is
-     *                 being
-     *                 (wholly or partially) deregistered.
+     *        a <code>ServiceRegistry</code> from which this object is
+     *        being
+     *        (wholly or partially) deregistered.
      * @param category
-     *                 a <code>Class</code> object indicating the registry
-     *                 category
-     *                 from which this object is being deregistered.
+     *        a <code>Class</code> object indicating the registry
+     *        category
+     *        from which this object is being deregistered.
      */
     void onDeregistration(ServiceRegistry registry, Class<?> category);
 }

@@ -34,8 +34,7 @@ import javax.print.attribute.PrintServiceAttribute;
  *
  * @author Alan Kaminsky
  */
-public final class PagesPerMinuteColor extends IntegerSyntax implements
-        PrintServiceAttribute {
+public final class PagesPerMinuteColor extends IntegerSyntax implements PrintServiceAttribute {
 
     static final long serialVersionUID = 1684993151687470944L;
 
@@ -44,12 +43,11 @@ public final class PagesPerMinuteColor extends IntegerSyntax implements
      * value.
      *
      * @param value
-     *              Integer value.
-     *
+     *        Integer value.
      * @exception IllegalArgumentException
-     *                                     (Unchecked exception) Thrown if
-     *                                     <CODE>value</CODE> is less
-     *                                     than 0.
+     *            (Unchecked exception) Thrown if
+     *            <CODE>value</CODE> is less
+     *            than 0.
      */
     public PagesPerMinuteColor(int value) {
         super(value, 0, Integer.MAX_VALUE);
@@ -67,8 +65,7 @@ public final class PagesPerMinuteColor extends IntegerSyntax implements
      * </OL>
      *
      * @param object
-     *               Object to compare to.
-     *
+     *        Object to compare to.
      * @return True if <CODE>object</CODE> is equivalent to this pages per
      *         minute color attribute, false otherwise.
      */

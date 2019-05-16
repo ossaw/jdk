@@ -85,7 +85,6 @@ public class CompoundEdit extends AbstractUndoableEdit {
     /**
      * If this edit is <code>inProgress</code>, accepts <code>anEdit</code> and
      * returns true.
-     *
      * <p>
      * The last edit added to this <code>CompoundEdit</code> is given a chance
      * to <code>addEdit(anEdit)</code>. If it refuses (returns false),
@@ -94,7 +93,7 @@ public class CompoundEdit extends AbstractUndoableEdit {
      * <code>edits</code>.
      *
      * @param anEdit
-     *               the edit to be added
+     *        the edit to be added
      * @return true if the edit is <code>inProgress</code>; otherwise returns
      *         false
      */
@@ -222,7 +221,6 @@ public class CompoundEdit extends AbstractUndoableEdit {
      * @return a String representation of this object
      */
     public String toString() {
-        return super.toString() + " inProgress: " + inProgress + " edits: "
-                + edits;
+        return super.toString() + " inProgress: " + inProgress + " edits: " + edits;
     }
 }

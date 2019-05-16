@@ -41,7 +41,7 @@ public class InterruptedException extends Exception {
      * message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public InterruptedException(String s) {
         super(s);

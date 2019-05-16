@@ -17,7 +17,6 @@ public interface ExceptionDetailMessage {
      * reply_status of SYSTEM_EXCEPTION or USER_EXCEPTION. The usage of this
      * service context is defined by language mappings. <br/>
      * <br/>
-     *
      * IDL/Java: ptc/02-01-22: 1.15.2: When a System Exception is marshaled, its
      * GIOP Reply message shall include an associated ExceptionDetailMessage
      * service context. The callee's stack trace is often very valuable

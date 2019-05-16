@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * A tree node for an @param block tag.
- *
  * <p>
  * &#064;param parameter-name description
  *

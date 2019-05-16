@@ -8,7 +8,6 @@ package java.lang.management;
 /**
  * The management interface for the class loading system of the Java virtual
  * machine.
- *
  * <p>
  * A Java virtual machine has a single instance of the implementation class of
  * this interface. This instance implementing this interface is an
@@ -16,13 +15,11 @@ package java.lang.management;
  * calling the {@link ManagementFactory#getClassLoadingMXBean} method or from
  * the {@link ManagementFactory#getPlatformMBeanServer platform
  * <tt>MBeanServer</tt>}.
- *
  * <p>
  * The <tt>ObjectName</tt> for uniquely identifying the MXBean for the class
  * loading system within an <tt>MBeanServer</tt> is:
  * <blockquote> {@link ManagementFactory#CLASS_LOADING_MXBEAN_NAME
  * <tt>java.lang:type=ClassLoading</tt>} </blockquote>
- *
  * It can be obtained by calling the {@link PlatformManagedObject#getObjectName}
  * method.
  *
@@ -30,7 +27,6 @@ package java.lang.management;
  * @see <a href="../../../javax/management/package-summary.html"> JMX
  *      Specification.</a>
  * @see <a href="package-summary.html#examples"> Ways to Access MXBeans</a>
- *
  * @author Mandy Chung
  * @since 1.5
  */
@@ -41,7 +37,6 @@ public interface ClassLoadingMXBean extends PlatformManagedObject {
      * virtual machine has started execution.
      *
      * @return the total number of classes loaded.
-     *
      */
     public long getTotalLoadedClassCount();
 
@@ -75,17 +70,15 @@ public interface ClassLoadingMXBean extends PlatformManagedObject {
      * information is emitted are implementation dependent. Typically, a Java
      * virtual machine implementation prints a message each time a class file is
      * loaded.
-     *
      * <p>
      * This method can be called by multiple threads concurrently. Each
      * invocation of this method enables or disables the verbose output
      * globally.
      *
      * @param value
-     *              <tt>true</tt> to enable the verbose output; <tt>false</tt>
-     *              to
-     *              disable.
-     *
+     *        <tt>true</tt> to enable the verbose output; <tt>false</tt>
+     *        to
+     *        disable.
      * @exception java.lang.SecurityException
      *            if a security manager exists and the caller does not have
      *            ManagementPermission("control").

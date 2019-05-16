@@ -25,9 +25,7 @@ import com.sun.org.apache.xerces.internal.xni.XNIException;
  * this interface with the parser configuration.
  *
  * @see XMLParserConfiguration
- *
  * @author Andy Clark, IBM
- *
  */
 public interface XMLErrorHandler {
 
@@ -40,48 +38,44 @@ public interface XMLErrorHandler {
      * most applications.
      *
      * @param domain
-     *                  The domain of the warning. The domain can be any string
-     *                  but is
-     *                  suggested to be a valid URI. The domain can be used to
-     *                  conveniently specify a web site location of the relevent
-     *                  specification or document pertaining to this warning.
+     *        The domain of the warning. The domain can be any string
+     *        but is
+     *        suggested to be a valid URI. The domain can be used to
+     *        conveniently specify a web site location of the relevent
+     *        specification or document pertaining to this warning.
      * @param key
-     *                  The warning key. This key can be any string and is
-     *                  implementation dependent.
+     *        The warning key. This key can be any string and is
+     *        implementation dependent.
      * @param exception
-     *                  Exception.
-     *
+     *        Exception.
      * @throws XNIException
-     *                      Thrown to signal that the parser should stop parsing
-     *                      the
-     *                      document.
+     *         Thrown to signal that the parser should stop parsing
+     *         the
+     *         document.
      */
-    public void warning(String domain, String key, XMLParseException exception)
-            throws XNIException;
+    public void warning(String domain, String key, XMLParseException exception) throws XNIException;
 
     /**
      * Reports an error. Errors are non-fatal and usually signify that the
      * document is invalid with respect to its grammar(s).
      *
      * @param domain
-     *                  The domain of the error. The domain can be any string
-     *                  but is
-     *                  suggested to be a valid URI. The domain can be used to
-     *                  conveniently specify a web site location of the relevent
-     *                  specification or document pertaining to this error.
+     *        The domain of the error. The domain can be any string
+     *        but is
+     *        suggested to be a valid URI. The domain can be used to
+     *        conveniently specify a web site location of the relevent
+     *        specification or document pertaining to this error.
      * @param key
-     *                  The error key. This key can be any string and is
-     *                  implementation dependent.
+     *        The error key. This key can be any string and is
+     *        implementation dependent.
      * @param exception
-     *                  Exception.
-     *
+     *        Exception.
      * @throws XNIException
-     *                      Thrown to signal that the parser should stop parsing
-     *                      the
-     *                      document.
+     *         Thrown to signal that the parser should stop parsing
+     *         the
+     *         document.
      */
-    public void error(String domain, String key, XMLParseException exception)
-            throws XNIException;
+    public void error(String domain, String key, XMLParseException exception) throws XNIException;
 
     /**
      * Report a fatal error. Fatal errors usually occur when the document is not
@@ -95,25 +89,23 @@ public interface XMLErrorHandler {
      * exception, the continuing operation of the parser is undetermined.
      *
      * @param domain
-     *                  The domain of the fatal error. The domain can be any
-     *                  string
-     *                  but is suggested to be a valid URI. The domain can be
-     *                  used to
-     *                  conveniently specify a web site location of the relevent
-     *                  specification or document pertaining to this fatal
-     *                  error.
+     *        The domain of the fatal error. The domain can be any
+     *        string
+     *        but is suggested to be a valid URI. The domain can be
+     *        used to
+     *        conveniently specify a web site location of the relevent
+     *        specification or document pertaining to this fatal
+     *        error.
      * @param key
-     *                  The fatal error key. This key can be any string and is
-     *                  implementation dependent.
+     *        The fatal error key. This key can be any string and is
+     *        implementation dependent.
      * @param exception
-     *                  Exception.
-     *
+     *        Exception.
      * @throws XNIException
-     *                      Thrown to signal that the parser should stop parsing
-     *                      the
-     *                      document.
+     *         Thrown to signal that the parser should stop parsing
+     *         the
+     *         document.
      */
-    public void fatalError(String domain, String key,
-            XMLParseException exception) throws XNIException;
+    public void fatalError(String domain, String key, XMLParseException exception) throws XNIException;
 
 } // interface XMLErrorHandler

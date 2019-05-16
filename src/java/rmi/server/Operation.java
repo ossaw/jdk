@@ -23,7 +23,7 @@ public class Operation {
      * Creates a new Operation object.
      * 
      * @param op
-     *           method name
+     *        method name
      * @deprecated no replacement
      * @since JDK1.1
      */

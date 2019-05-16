@@ -46,14 +46,13 @@ final class LiteralAttribute extends Instruction {
      * Creates a new literal attribute (but does not insert it into the AST).
      * 
      * @param name
-     *               the attribute name (incl. prefix) as a String.
+     *        the attribute name (incl. prefix) as a String.
      * @param value
-     *               the attribute value.
+     *        the attribute value.
      * @param parser
-     *               the XSLT parser (wraps XPath parser).
+     *        the XSLT parser (wraps XPath parser).
      */
-    public LiteralAttribute(String name, String value, Parser parser,
-            SyntaxTreeNode parent) {
+    public LiteralAttribute(String name, String value, Parser parser, SyntaxTreeNode parent) {
         _name = name;
         setParent(parent);
         _value = AttributeValue.create(this, value, parser);
@@ -88,8 +87,7 @@ final class LiteralAttribute extends Instruction {
         // Generate code that calls SerializationHandler.addUniqueAttribute()
         // if all attributes are unique.
         SyntaxTreeNode parent = getParent();
-        if (parent instanceof LiteralElement && ((LiteralElement) parent)
-                .allAttributesUnique()) {
+        if (parent instanceof LiteralElement && ((LiteralElement) parent).allAttributesUnique()) {
 
             int flags = 0;
             boolean isHTMLAttrEmpty = false;
@@ -132,8 +130,7 @@ final class LiteralAttribute extends Instruction {
         int size = chars.length;
         for (int i = 0; i < size; i++) {
             char ch = chars[i];
-            if (ch < 32 || 126 < ch || ch == '<' || ch == '>' || ch == '&'
-                    || ch == '\"')
+            if (ch < 32 || 126 < ch || ch == '<' || ch == '>' || ch == '&' || ch == '\"')
                 return true;
         }
         return false;

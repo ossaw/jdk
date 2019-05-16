@@ -30,9 +30,7 @@ import com.sun.org.apache.xerces.internal.util.PropertyState;
  * properties that affect the operation of the component.
  *
  * @see XMLComponent
- *
  * @author Andy Clark, IBM
- *
  * @version $Id: XMLComponentManager.java,v 1.6 2010-11-01 04:40:22 joehw Exp $
  */
 public interface XMLComponentManager {
@@ -45,21 +43,19 @@ public interface XMLComponentManager {
      * Returns the state of a feature.
      *
      * @param featureId
-     *                  The feature identifier.
-     *
+     *        The feature identifier.
      * @throws XMLConfigurationException
-     *                                   Thrown on configuration error.
+     *         Thrown on configuration error.
      */
-    public boolean getFeature(String featureId)
-            throws XMLConfigurationException;
+    public boolean getFeature(String featureId) throws XMLConfigurationException;
 
     /**
      * Returns the state of a feature. Does not throw exceptions.
      *
      * @param featureId
-     *                     The feature identifier.
+     *        The feature identifier.
      * @param defaultValue
-     *                     Default value if future is not available.
+     *        Default value if future is not available.
      */
     public boolean getFeature(String featureId, boolean defaultValue);
 
@@ -67,22 +63,19 @@ public interface XMLComponentManager {
      * Returns the value of a property.
      *
      * @param propertyId
-     *                   The property identifier.
-     *
+     *        The property identifier.
      * @throws XMLConfigurationException
-     *                                   Thrown on configuration error.
+     *         Thrown on configuration error.
      */
-    public Object getProperty(String propertyId)
-            throws XMLConfigurationException;
+    public Object getProperty(String propertyId) throws XMLConfigurationException;
 
     /**
      * Returns the value of a property. Does not throw exceptions.
      *
      * @param propertyId
-     *                      The property identifier.
+     *        The property identifier.
      * @param defaultObject
-     *                      Return value if property is not available.
-     *
+     *        Return value if property is not available.
      */
     public Object getProperty(String propertyId, Object defaultObject);
 

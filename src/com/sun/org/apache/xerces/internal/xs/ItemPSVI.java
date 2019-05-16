@@ -97,9 +97,9 @@ public interface ItemPSVI {
      * <code>null</code> if the value is in error.
      * 
      * @exception XSException
-     *                        NOT_SUPPORTED_ERR: Raised if the implementation
-     *                        does not
-     *                        support this method.
+     *            NOT_SUPPORTED_ERR: Raised if the implementation
+     *            does not
+     *            support this method.
      */
     public Object getActualNormalizedValue() throws XSException;
 
@@ -114,9 +114,9 @@ public interface ItemPSVI {
      * <code>null</code>, this method returns <code>UNAVAILABLE_DT</code> .
      * 
      * @exception XSException
-     *                        NOT_SUPPORTED_ERR: Raised if the implementation
-     *                        does not
-     *                        support this method.
+     *            NOT_SUPPORTED_ERR: Raised if the implementation
+     *            does not
+     *            support this method.
      */
     public short getActualNormalizedValueType() throws XSException;
 
@@ -155,9 +155,9 @@ public interface ItemPSVI {
      * following values: <code>INTEGER_DT, INTEGER_DT, STRING_DT</code>.
      * 
      * @exception XSException
-     *                        NOT_SUPPORTED_ERR: Raised if the implementation
-     *                        does not
-     *                        support this method.
+     *            NOT_SUPPORTED_ERR: Raised if the implementation
+     *            does not
+     *            support this method.
      */
     public ShortList getItemValueTypes() throws XSException;
 

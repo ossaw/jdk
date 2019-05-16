@@ -39,7 +39,7 @@ public interface LSInputList extends List {
      * number of objects in the list. The index starts at 0.
      * 
      * @param index
-     *              index into the collection.
+     *        index into the collection.
      * @return The <code>LSInput</code> at the <code>index</code>th position in
      *         the <code>LSInputList</code>, or <code>null</code> if the index
      *         specified is not valid.

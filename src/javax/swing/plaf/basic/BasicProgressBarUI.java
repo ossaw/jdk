@@ -127,16 +127,14 @@ public class BasicProgressBarUI extends ProgressBarUI {
     protected void installDefaults() {
         LookAndFeel.installProperty(progressBar, "opaque", Boolean.TRUE);
         LookAndFeel.installBorder(progressBar, "ProgressBar.border");
-        LookAndFeel.installColorsAndFont(progressBar, "ProgressBar.background",
-                "ProgressBar.foreground", "ProgressBar.font");
+        LookAndFeel.installColorsAndFont(progressBar, "ProgressBar.background", "ProgressBar.foreground",
+                "ProgressBar.font");
         cellLength = UIManager.getInt("ProgressBar.cellLength");
         if (cellLength == 0)
             cellLength = 1;
         cellSpacing = UIManager.getInt("ProgressBar.cellSpacing");
-        selectionForeground = UIManager.getColor(
-                "ProgressBar.selectionForeground");
-        selectionBackground = UIManager.getColor(
-                "ProgressBar.selectionBackground");
+        selectionForeground = UIManager.getColor("ProgressBar.selectionForeground");
+        selectionBackground = UIManager.getColor("ProgressBar.selectionBackground");
     }
 
     protected void uninstallDefaults() {
@@ -216,23 +214,20 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * Returns the baseline.
      *
      * @throws NullPointerException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                  {@inheritDoc}
+     *         {@inheritDoc}
      * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
     public int getBaseline(JComponent c, int width, int height) {
         super.getBaseline(c, width, height);
-        if (progressBar.isStringPainted() && progressBar
-                .getOrientation() == JProgressBar.HORIZONTAL) {
-            FontMetrics metrics = progressBar.getFontMetrics(progressBar
-                    .getFont());
+        if (progressBar.isStringPainted() && progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
+            FontMetrics metrics = progressBar.getFontMetrics(progressBar.getFont());
             Insets insets = progressBar.getInsets();
             int y = insets.top;
             height = height - insets.top - insets.bottom;
-            return y + (height + metrics.getAscent() - metrics.getLeading()
-                    - metrics.getDescent()) / 2;
+            return y + (height + metrics.getAscent() - metrics.getLeading() - metrics.getDescent()) / 2;
         }
         return -1;
     }
@@ -242,15 +237,13 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * the size changes.
      *
      * @throws NullPointerException
-     *                              {@inheritDoc}
+     *         {@inheritDoc}
      * @see javax.swing.JComponent#getBaseline(int, int)
      * @since 1.6
      */
-    public Component.BaselineResizeBehavior getBaselineResizeBehavior(
-            JComponent c) {
+    public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
         super.getBaselineResizeBehavior(c);
-        if (progressBar.isStringPainted() && progressBar
-                .getOrientation() == JProgressBar.HORIZONTAL) {
+        if (progressBar.isStringPainted() && progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
             return Component.BaselineResizeBehavior.CENTER_OFFSET;
         }
         return Component.BaselineResizeBehavior.OTHER;
@@ -266,8 +259,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
     // protected void uninstallKeyboardActions()
 
     protected Dimension getPreferredInnerHorizontal() {
-        Dimension horizDim = (Dimension) DefaultLookup.get(progressBar, this,
-                "ProgressBar.horizontalSize");
+        Dimension horizDim = (Dimension) DefaultLookup.get(progressBar, this, "ProgressBar.horizontalSize");
         if (horizDim == null) {
             horizDim = new Dimension(146, 12);
         }
@@ -275,8 +267,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
     }
 
     protected Dimension getPreferredInnerVertical() {
-        Dimension vertDim = (Dimension) DefaultLookup.get(progressBar, this,
-                "ProgressBar.verticalSize");
+        Dimension vertDim = (Dimension) DefaultLookup.get(progressBar, this, "ProgressBar.verticalSize");
         if (vertDim == null) {
             vertDim = new Dimension(12, 146);
         }
@@ -363,11 +354,9 @@ public class BasicProgressBarUI extends ProgressBarUI {
 
         if ((model.getMaximum() - model.getMinimum()) != 0) {
             if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
-                amountFull = (int) Math.round(width * progressBar
-                        .getPercentComplete());
+                amountFull = (int) Math.round(width * progressBar.getPercentComplete());
             } else {
-                amountFull = (int) Math.round(height * progressBar
-                        .getPercentComplete());
+                amountFull = (int) Math.round(height * progressBar.getPercentComplete());
             }
         }
         return amountFull;
@@ -397,11 +386,10 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * <code>paintIndeterminate</code>.
      *
      * @param r
-     *          the Rectangle instance to be modified; may be
-     *          <code>null</code>
+     *        the Rectangle instance to be modified; may be
+     *        <code>null</code>
      * @return <code>null</code> if no box should be drawn; otherwise, returns
      *         the passed-in rectangle (if non-null) or a new rectangle
-     *
      * @see #setAnimationIndex
      * @since 1.4
      */
@@ -425,19 +413,15 @@ public class BasicProgressBarUI extends ProgressBarUI {
         // assert currentFrame >= 0 && currentFrame < numFrames
         if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
             if (currentFrame < middleFrame) {
-                r.x = componentInnards.x + (int) Math.round(delta
-                        * (double) currentFrame);
+                r.x = componentInnards.x + (int) Math.round(delta * (double) currentFrame);
             } else {
-                r.x = maxPosition - (int) Math.round(delta * (currentFrame
-                        - middleFrame));
+                r.x = maxPosition - (int) Math.round(delta * (currentFrame - middleFrame));
             }
         } else { // VERTICAL indeterminate progress bar
             if (currentFrame < middleFrame) {
-                r.y = componentInnards.y + (int) Math.round(delta
-                        * currentFrame);
+                r.y = componentInnards.y + (int) Math.round(delta * currentFrame);
             } else {
-                r.y = maxPosition - (int) Math.round(delta * (currentFrame
-                        - middleFrame));
+                r.y = maxPosition - (int) Math.round(delta * (currentFrame - middleFrame));
             }
         }
         return r;
@@ -451,13 +435,11 @@ public class BasicProgressBarUI extends ProgressBarUI {
         int length = 0;
 
         if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
-            length = getBoxLength(componentInnards.width,
-                    componentInnards.height);
+            length = getBoxLength(componentInnards.width, componentInnards.height);
             maxPosition = componentInnards.x + componentInnards.width - length;
 
         } else { // VERTICAL progress bar
-            length = getBoxLength(componentInnards.height,
-                    componentInnards.width);
+            length = getBoxLength(componentInnards.height, componentInnards.width);
             maxPosition = componentInnards.y + componentInnards.height - length;
         }
 
@@ -474,8 +456,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
         }
 
         if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
-            r.width = getBoxLength(componentInnards.width,
-                    componentInnards.height);
+            r.width = getBoxLength(componentInnards.width, componentInnards.height);
             if (r.width < 0) {
                 r = null;
             } else {
@@ -485,8 +466,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
             // end of HORIZONTAL
 
         } else { // VERTICAL progress bar
-            r.height = getBoxLength(componentInnards.height,
-                    componentInnards.width);
+            r.height = getBoxLength(componentInnards.height, componentInnards.width);
             if (r.height < 0) {
                 r = null;
             } else {
@@ -505,30 +485,27 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * vertical) of the box. For example: <blockquote>
      * 
      * <pre>
-     * boxRect.width = getBoxLength(componentInnards.width,
-     *         componentInnards.height);
+     * boxRect.width = getBoxLength(componentInnards.width, componentInnards.height);
      * </pre>
      * 
      * </blockquote>
      *
      * @param availableLength
-     *                        the amount of space available for the bouncing box
-     *                        to move in;
-     *                        for a horizontal progress bar, for example, this
-     *                        should be the
-     *                        inside width of the progress bar (the component
-     *                        width minus
-     *                        borders)
+     *        the amount of space available for the bouncing box
+     *        to move in;
+     *        for a horizontal progress bar, for example, this
+     *        should be the
+     *        inside width of the progress bar (the component
+     *        width minus
+     *        borders)
      * @param otherDimension
-     *                        for a horizontal progress bar, this should be the
-     *                        inside
-     *                        height of the progress bar; this value might be
-     *                        used to
-     *                        constrain or determine the return value
-     *
+     *        for a horizontal progress bar, this should be the
+     *        inside
+     *        height of the progress bar; this value might be
+     *        used to
+     *        constrain or determine the return value
      * @return the size of the box dimension being determined; must be no larger
      *         than <code>availableLength</code>
-     *
      * @see javax.swing.SwingUtilities#calculateInnerArea
      * @since 1.5
      */
@@ -542,7 +519,6 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * of progress bar.
      *
      * @see #paintDeterminate
-     *
      * @since 1.4
      */
     protected void paintIndeterminate(Graphics g, JComponent c) {
@@ -570,11 +546,9 @@ public class BasicProgressBarUI extends ProgressBarUI {
         // Deal with possible text painting
         if (progressBar.isStringPainted()) {
             if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
-                paintString(g2, b.left, b.top, barRectWidth, barRectHeight,
-                        boxRect.x, boxRect.width, b);
+                paintString(g2, b.left, b.top, barRectWidth, barRectHeight, boxRect.x, boxRect.width, b);
             } else {
-                paintString(g2, b.left, b.top, barRectWidth, barRectHeight,
-                        boxRect.y, boxRect.height, b);
+                paintString(g2, b.left, b.top, barRectWidth, barRectHeight, boxRect.y, boxRect.height, b);
             }
         }
     }
@@ -587,7 +561,6 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * progress bar.
      *
      * @see #paintIndeterminate
-     *
      * @since 1.4
      */
     protected void paintDeterminate(Graphics g, JComponent c) {
@@ -615,72 +588,62 @@ public class BasicProgressBarUI extends ProgressBarUI {
             // draw the cells
             if (cellSpacing == 0 && amountFull > 0) {
                 // draw one big Rect because there is no space between cells
-                g2.setStroke(new BasicStroke((float) barRectHeight,
-                        BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
+                g2.setStroke(new BasicStroke((float) barRectHeight, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_BEVEL));
             } else {
                 // draw each individual cell
-                g2.setStroke(new BasicStroke((float) barRectHeight,
-                        BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0.f,
-                        new float[] { cellLength, cellSpacing }, 0.f));
+                g2.setStroke(new BasicStroke((float) barRectHeight, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_BEVEL, 0.f, new float[] { cellLength, cellSpacing }, 0.f));
             }
 
             if (BasicGraphicsUtils.isLeftToRight(c)) {
-                g2.drawLine(b.left, (barRectHeight / 2) + b.top, amountFull
-                        + b.left, (barRectHeight / 2) + b.top);
+                g2.drawLine(b.left, (barRectHeight / 2) + b.top, amountFull + b.left, (barRectHeight / 2)
+                        + b.top);
             } else {
-                g2.drawLine((barRectWidth + b.left), (barRectHeight / 2)
-                        + b.top, barRectWidth + b.left - amountFull,
-                        (barRectHeight / 2) + b.top);
+                g2.drawLine((barRectWidth + b.left), (barRectHeight / 2) + b.top, barRectWidth + b.left
+                        - amountFull, (barRectHeight / 2) + b.top);
             }
 
         } else { // VERTICAL
             // draw the cells
             if (cellSpacing == 0 && amountFull > 0) {
                 // draw one big Rect because there is no space between cells
-                g2.setStroke(new BasicStroke((float) barRectWidth,
-                        BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
+                g2.setStroke(new BasicStroke((float) barRectWidth, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_BEVEL));
             } else {
                 // draw each individual cell
-                g2.setStroke(new BasicStroke((float) barRectWidth,
-                        BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0f,
-                        new float[] { cellLength, cellSpacing }, 0f));
+                g2.setStroke(new BasicStroke((float) barRectWidth, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_BEVEL, 0f, new float[] { cellLength, cellSpacing }, 0f));
             }
 
-            g2.drawLine(barRectWidth / 2 + b.left, b.top + barRectHeight,
-                    barRectWidth / 2 + b.left, b.top + barRectHeight
-                            - amountFull);
+            g2.drawLine(barRectWidth / 2 + b.left, b.top + barRectHeight, barRectWidth / 2 + b.left, b.top
+                    + barRectHeight - amountFull);
         }
 
         // Deal with possible text painting
         if (progressBar.isStringPainted()) {
-            paintString(g, b.left, b.top, barRectWidth, barRectHeight,
-                    amountFull, b);
+            paintString(g, b.left, b.top, barRectWidth, barRectHeight, amountFull, b);
         }
     }
 
-    protected void paintString(Graphics g, int x, int y, int width, int height,
-            int amountFull, Insets b) {
+    protected void paintString(Graphics g, int x, int y, int width, int height, int amountFull, Insets b) {
         if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
             if (BasicGraphicsUtils.isLeftToRight(progressBar)) {
                 if (progressBar.isIndeterminate()) {
                     boxRect = getBox(boxRect);
-                    paintString(g, x, y, width, height, boxRect.x,
-                            boxRect.width, b);
+                    paintString(g, x, y, width, height, boxRect.x, boxRect.width, b);
                 } else {
                     paintString(g, x, y, width, height, x, amountFull, b);
                 }
             } else {
-                paintString(g, x, y, width, height, x + width - amountFull,
-                        amountFull, b);
+                paintString(g, x, y, width, height, x + width - amountFull, amountFull, b);
             }
         } else {
             if (progressBar.isIndeterminate()) {
                 boxRect = getBox(boxRect);
-                paintString(g, x, y, width, height, boxRect.y, boxRect.height,
-                        b);
+                paintString(g, x, y, width, height, boxRect.y, boxRect.height, b);
             } else {
-                paintString(g, x, y, width, height, y + height - amountFull,
-                        amountFull, b);
+                paintString(g, x, y, width, height, y + height - amountFull, amountFull, b);
             }
         }
     }
@@ -689,28 +652,28 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * Paints the progress string.
      *
      * @param g
-     *                   Graphics used for drawing.
+     *        Graphics used for drawing.
      * @param x
-     *                   x location of bounding box
+     *        x location of bounding box
      * @param y
-     *                   y location of bounding box
+     *        y location of bounding box
      * @param width
-     *                   width of bounding box
+     *        width of bounding box
      * @param height
-     *                   height of bounding box
+     *        height of bounding box
      * @param fillStart
-     *                   start location, in x or y depending on orientation, of
-     *                   the
-     *                   filled portion of the progress bar.
+     *        start location, in x or y depending on orientation, of
+     *        the
+     *        filled portion of the progress bar.
      * @param amountFull
-     *                   size of the fill region, either width or height
-     *                   depending upon
-     *                   orientation.
+     *        size of the fill region, either width or height
+     *        depending upon
+     *        orientation.
      * @param b
-     *                   Insets of the progress bar.
+     *        Insets of the progress bar.
      */
-    private void paintString(Graphics g, int x, int y, int width, int height,
-            int fillStart, int amountFull, Insets b) {
+    private void paintString(Graphics g, int x, int y, int width, int height, int fillStart, int amountFull,
+            Insets b) {
         if (!(g instanceof Graphics2D)) {
             return;
         }
@@ -718,31 +681,24 @@ public class BasicProgressBarUI extends ProgressBarUI {
         Graphics2D g2 = (Graphics2D) g;
         String progressString = progressBar.getString();
         g2.setFont(progressBar.getFont());
-        Point renderLocation = getStringPlacement(g2, progressString, x, y,
-                width, height);
+        Point renderLocation = getStringPlacement(g2, progressString, x, y, width, height);
         Rectangle oldClip = g2.getClipBounds();
 
         if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
             g2.setColor(getSelectionBackground());
-            SwingUtilities2.drawString(progressBar, g2, progressString,
-                    renderLocation.x, renderLocation.y);
+            SwingUtilities2.drawString(progressBar, g2, progressString, renderLocation.x, renderLocation.y);
             g2.setColor(getSelectionForeground());
             g2.clipRect(fillStart, y, amountFull, height);
-            SwingUtilities2.drawString(progressBar, g2, progressString,
-                    renderLocation.x, renderLocation.y);
+            SwingUtilities2.drawString(progressBar, g2, progressString, renderLocation.x, renderLocation.y);
         } else { // VERTICAL
             g2.setColor(getSelectionBackground());
-            AffineTransform rotate = AffineTransform.getRotateInstance(Math.PI
-                    / 2);
+            AffineTransform rotate = AffineTransform.getRotateInstance(Math.PI / 2);
             g2.setFont(progressBar.getFont().deriveFont(rotate));
-            renderLocation = getStringPlacement(g2, progressString, x, y, width,
-                    height);
-            SwingUtilities2.drawString(progressBar, g2, progressString,
-                    renderLocation.x, renderLocation.y);
+            renderLocation = getStringPlacement(g2, progressString, x, y, width, height);
+            SwingUtilities2.drawString(progressBar, g2, progressString, renderLocation.x, renderLocation.y);
             g2.setColor(getSelectionForeground());
             g2.clipRect(x, fillStart, width, amountFull);
-            SwingUtilities2.drawString(progressBar, g2, progressString,
-                    renderLocation.x, renderLocation.y);
+            SwingUtilities2.drawString(progressBar, g2, progressString, renderLocation.x, renderLocation.y);
         }
         g2.setClip(oldClip);
     }
@@ -753,29 +709,24 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * y). Override this if you want to right, left, top, or bottom align the
      * progress string or if you need to nudge it around for any reason.
      */
-    protected Point getStringPlacement(Graphics g, String progressString, int x,
-            int y, int width, int height) {
-        FontMetrics fontSizer = SwingUtilities2.getFontMetrics(progressBar, g,
-                progressBar.getFont());
-        int stringWidth = SwingUtilities2.stringWidth(progressBar, fontSizer,
-                progressString);
+    protected Point getStringPlacement(Graphics g, String progressString, int x, int y, int width,
+            int height) {
+        FontMetrics fontSizer = SwingUtilities2.getFontMetrics(progressBar, g, progressBar.getFont());
+        int stringWidth = SwingUtilities2.stringWidth(progressBar, fontSizer, progressString);
 
         if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
-            return new Point(x + Math.round(width / 2 - stringWidth / 2), y
-                    + ((height + fontSizer.getAscent() - fontSizer.getLeading()
-                            - fontSizer.getDescent()) / 2));
+            return new Point(x + Math.round(width / 2 - stringWidth / 2), y + ((height + fontSizer.getAscent()
+                    - fontSizer.getLeading() - fontSizer.getDescent()) / 2));
         } else { // VERTICAL
-            return new Point(x + ((width - fontSizer.getAscent() + fontSizer
-                    .getLeading() + fontSizer.getDescent()) / 2), y + Math
-                            .round(height / 2 - stringWidth / 2));
+            return new Point(x + ((width - fontSizer.getAscent() + fontSizer.getLeading() + fontSizer
+                    .getDescent()) / 2), y + Math.round(height / 2 - stringWidth / 2));
         }
     }
 
     public Dimension getPreferredSize(JComponent c) {
         Dimension size;
         Insets border = progressBar.getInsets();
-        FontMetrics fontSizer = progressBar.getFontMetrics(progressBar
-                .getFont());
+        FontMetrics fontSizer = progressBar.getFontMetrics(progressBar.getFont());
 
         if (progressBar.getOrientation() == JProgressBar.HORIZONTAL) {
             size = new Dimension(getPreferredInnerHorizontal());
@@ -783,8 +734,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
             if (progressBar.isStringPainted()) {
                 // I'm doing this for completeness.
                 String progString = progressBar.getString();
-                int stringWidth = SwingUtilities2.stringWidth(progressBar,
-                        fontSizer, progString);
+                int stringWidth = SwingUtilities2.stringWidth(progressBar, fontSizer, progString);
                 if (stringWidth > size.width) {
                     size.width = stringWidth;
                 }
@@ -793,8 +743,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
                 // for everything.
                 // This does have a strange dependency on
                 // getStringPlacememnt() in a funny way.
-                int stringHeight = fontSizer.getHeight() + fontSizer
-                        .getDescent();
+                int stringHeight = fontSizer.getHeight() + fontSizer.getDescent();
                 if (stringHeight > size.height) {
                     size.height = stringHeight;
                 }
@@ -804,14 +753,12 @@ public class BasicProgressBarUI extends ProgressBarUI {
             // Ensure that the progress string will fit.
             if (progressBar.isStringPainted()) {
                 String progString = progressBar.getString();
-                int stringHeight = fontSizer.getHeight() + fontSizer
-                        .getDescent();
+                int stringHeight = fontSizer.getHeight() + fontSizer.getDescent();
                 if (stringHeight > size.width) {
                     size.width = stringHeight;
                 }
                 // This is also for completeness.
-                int stringWidth = SwingUtilities2.stringWidth(progressBar,
-                        fontSizer, progString);
+                int stringWidth = SwingUtilities2.stringWidth(progressBar, fontSizer, progString);
                 if (stringWidth > size.height) {
                     size.height = stringWidth;
                 }
@@ -876,10 +823,9 @@ public class BasicProgressBarUI extends ProgressBarUI {
      * the way that the <code>repaint</code> method is invoked.
      *
      * @param newValue
-     *                 the new animation index; no checking is performed on its
-     *                 value
+     *        the new animation index; no checking is performed on its
+     *        value
      * @see #incrementAnimationIndex
-     *
      * @since 1.4
      */
     protected void setAnimationIndex(int newValue) {
@@ -922,8 +868,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
         }
 
         oldComponentInnards.setRect(componentInnards);
-        componentInnards = SwingUtilities.calculateInnerArea(progressBar,
-                componentInnards);
+        componentInnards = SwingUtilities.calculateInnerArea(progressBar, componentInnards);
         return !oldComponentInnards.equals(componentInnards);
     }
 
@@ -967,8 +912,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
     }
 
     private int initRepaintInterval() {
-        repaintInterval = DefaultLookup.getInt(progressBar, this,
-                "ProgressBar.repaintInterval", 50);
+        repaintInterval = DefaultLookup.getInt(progressBar, this, "ProgressBar.repaintInterval", 50);
         return repaintInterval;
     }
 
@@ -987,8 +931,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
     }
 
     private int initCycleTime() {
-        cycleTime = DefaultLookup.getInt(progressBar, this,
-                "ProgressBar.cycleTime", 3000);
+        cycleTime = DefaultLookup.getInt(progressBar, this, "ProgressBar.cycleTime", 3000);
         return cycleTime;
     }
 
@@ -1007,15 +950,13 @@ public class BasicProgressBarUI extends ProgressBarUI {
             cycleTime = repaintInterval * 20;
         } else {
             // Force cycleTime to be a even multiple of repaintInterval.
-            int factor = (int) Math.ceil(((double) cycleTime)
-                    / ((double) repaintInterval * 2));
+            int factor = (int) Math.ceil(((double) cycleTime) / ((double) repaintInterval * 2));
             cycleTime = repaintInterval * factor * 2;
         }
     }
 
     /**
      * Invoked by PropertyChangeHandler.
-     *
      * NOTE: This might not be invoked until after the first paintIndeterminate
      * call.
      */
@@ -1061,8 +1002,8 @@ public class BasicProgressBarUI extends ProgressBarUI {
     // Called from initIndeterminateValues to initialize the animation index.
     // This assumes that numFrames is set to a correct value.
     private void initAnimationIndex() {
-        if ((progressBar.getOrientation() == JProgressBar.HORIZONTAL)
-                && (BasicGraphicsUtils.isLeftToRight(progressBar))) {
+        if ((progressBar.getOrientation() == JProgressBar.HORIZONTAL) && (BasicGraphicsUtils.isLeftToRight(
+                progressBar))) {
             // If this is a left-to-right progress bar,
             // start at the first frame.
             setAnimationIndex(0);
@@ -1130,8 +1071,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
                     // difference = actual - interval
                     // nextDelay = previousDelay - difference
                     // = previousDelay - (time - lastCall - interval)
-                    int nextDelay = (int) (previousDelay - time + lastCall
-                            + getRepaintInterval());
+                    int nextDelay = (int) (previousDelay - time + lastCall + getRepaintInterval());
                     if (nextDelay < MINIMUM_DELAY) {
                         nextDelay = MINIMUM_DELAY;
                     }
@@ -1160,8 +1100,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
         }
     }
 
-    private class Handler implements ChangeListener, PropertyChangeListener,
-            HierarchyListener {
+    private class Handler implements ChangeListener, PropertyChangeListener, HierarchyListener {
         // ChangeListener
         public void stateChanged(ChangeEvent e) {
             BoundedRangeModel model = progressBar.getModel();
@@ -1197,8 +1136,7 @@ public class BasicProgressBarUI extends ProgressBarUI {
 
         // we don't want the animation to keep running if we're not displayable
         public void hierarchyChanged(HierarchyEvent he) {
-            if ((he.getChangeFlags()
-                    & HierarchyEvent.DISPLAYABILITY_CHANGED) != 0) {
+            if ((he.getChangeFlags() & HierarchyEvent.DISPLAYABILITY_CHANGED) != 0) {
                 if (progressBar.isIndeterminate()) {
                     if (progressBar.isDisplayable()) {
                         startAnimationTimer();

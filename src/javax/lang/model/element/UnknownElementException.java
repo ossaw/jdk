@@ -35,9 +35,9 @@ public class UnknownElementException extends UnknownEntityException {
      * parameter.
      *
      * @param e
-     *          the unknown element, may be {@code null}
+     *        the unknown element, may be {@code null}
      * @param p
-     *          an additional parameter, may be {@code null}
+     *        an additional parameter, may be {@code null}
      */
     public UnknownElementException(Element e, Object p) {
         super("Unknown element: " + e);

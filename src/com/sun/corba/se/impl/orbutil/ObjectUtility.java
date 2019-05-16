@@ -47,8 +47,7 @@ public final class ObjectUtility {
         if ((comp1 == null) || (comp2 == null))
             throw new IllegalStateException("Arguments must be arrays");
         if (!comp1.equals(comp2))
-            throw new IllegalStateException(
-                    "Arguments must be arrays with the same component type");
+            throw new IllegalStateException("Arguments must be arrays with the same component type");
 
         Object result = Array.newInstance(comp1, len1 + len2);
 

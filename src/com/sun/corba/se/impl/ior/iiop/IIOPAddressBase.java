@@ -46,8 +46,7 @@ abstract class IIOPAddressBase implements IIOPAddress {
 
         IIOPAddress other = (IIOPAddress) obj;
 
-        return getHost().equals(other.getHost()) && (getPort() == other
-                .getPort());
+        return getHost().equals(other.getHost()) && (getPort() == other.getPort());
     }
 
     public int hashCode() {

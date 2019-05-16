@@ -19,8 +19,8 @@ public class DirectoryNotEmptyException extends FileSystemException {
      * Constructs an instance of this class.
      *
      * @param dir
-     *            a string identifying the directory or {@code null} if not
-     *            known
+     *        a string identifying the directory or {@code null} if not
+     *        known
      */
     public DirectoryNotEmptyException(String dir) {
         super(dir);

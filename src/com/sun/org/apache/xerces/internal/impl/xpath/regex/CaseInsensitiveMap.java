@@ -118,8 +118,8 @@ public class CaseInsensitiveMap {
         caseInsensitiveMap[chunk][offset] = map;
     }
 
-    private static int[] updateMap(int codePoint, int[] codePointMap,
-            int ciCodePoint, int[] ciCodePointMap, int matchType) {
+    private static int[] updateMap(int codePoint, int[] codePointMap, int ciCodePoint, int[] ciCodePointMap,
+            int matchType) {
         for (int i = 0; i < ciCodePointMap.length; i += 2) {
             int c = ciCodePointMap[i];
             int[] cMap = getMapping(c);
@@ -162,8 +162,7 @@ public class CaseInsensitiveMap {
         return false;
     }
 
-    private static int[] expandAndAdd(int[] srcMap, int codePoint,
-            int matchType) {
+    private static int[] expandAndAdd(int[] srcMap, int codePoint, int matchType) {
         final int oldLen = srcMap.length;
         int[] newMap = new int[oldLen + 2];
 

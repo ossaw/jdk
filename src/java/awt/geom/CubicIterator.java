@@ -69,8 +69,7 @@ class CubicIterator implements PathIterator {
      */
     public int currentSegment(float[] coords) {
         if (isDone()) {
-            throw new NoSuchElementException(
-                    "cubic iterator iterator out of bounds");
+            throw new NoSuchElementException("cubic iterator iterator out of bounds");
         }
         int type;
         if (index == 0) {
@@ -110,8 +109,7 @@ class CubicIterator implements PathIterator {
      */
     public int currentSegment(double[] coords) {
         if (isDone()) {
-            throw new NoSuchElementException(
-                    "cubic iterator iterator out of bounds");
+            throw new NoSuchElementException("cubic iterator iterator out of bounds");
         }
         int type;
         if (index == 0) {

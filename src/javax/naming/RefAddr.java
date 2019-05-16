@@ -22,7 +22,6 @@ package javax.naming;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see Reference
  * @see LinkRef
  * @see StringRefAddr
@@ -47,7 +46,7 @@ public abstract class RefAddr implements java.io.Serializable {
      * Constructs a new instance of RefAddr using its address type.
      *
      * @param addrType
-     *                 A non-null string describing the type of the address.
+     *        A non-null string describing the type of the address.
      */
     protected RefAddr(String addrType) {
         this.addrType = addrType;
@@ -83,7 +82,7 @@ public abstract class RefAddr implements java.io.Serializable {
      * </ul>
      * 
      * @param obj
-     *            possibly null obj to check.
+     *        possibly null obj to check.
      * @return true if obj is equal to this refaddr; false otherwise.
      * @see #getContent
      * @see #getType
@@ -112,8 +111,7 @@ public abstract class RefAddr implements java.io.Serializable {
      * @see java.lang.Object#hashCode
      */
     public int hashCode() {
-        return (getContent() == null) ? addrType.hashCode()
-                : addrType.hashCode() + getContent().hashCode();
+        return (getContent() == null) ? addrType.hashCode() : addrType.hashCode() + getContent().hashCode();
     }
 
     /**

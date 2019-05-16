@@ -35,7 +35,7 @@ public interface DOMImplementationList {
      * <code>null</code>.
      * 
      * @param index
-     *              Index into the collection.
+     *        Index into the collection.
      * @return The <code>DOMImplementation</code> at the <code>index</code> th
      *         position in the <code>DOMImplementationList</code>, or
      *         <code>null</code> if that is not a valid index.

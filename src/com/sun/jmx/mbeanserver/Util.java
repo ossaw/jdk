@@ -93,9 +93,9 @@ public class Util {
      * Computes a descriptor hashcode from its names and values.
      * 
      * @param names
-     *               the sorted array of descriptor names.
+     *        the sorted array of descriptor names.
      * @param values
-     *               the array of descriptor values.
+     *        the array of descriptor values.
      * @return a hash code value, as described in {@link #hashCode(Descriptor)}
      */
     public static int hashCode(String[] names, Object[] values) {
@@ -128,19 +128,18 @@ public class Util {
      * against {@code "a?d"}.
      * 
      * @param str
-     *               the string containing the sequence to match.
+     *        the string containing the sequence to match.
      * @param pat
-     *               a string containing a pattern to match the sub string
-     *               against.
+     *        a string containing a pattern to match the sub string
+     *        against.
      * @param stri
-     *               the index in the string at which matching should begin.
+     *        the index in the string at which matching should begin.
      * @param strend
-     *               the index in the string at which the matching should end.
+     *        the index in the string at which the matching should end.
      * @param pati
-     *               the index in the pattern at which matching should begin.
+     *        the index in the pattern at which matching should begin.
      * @param patend
-     *               the index in the pattern at which the matching should end.
-     * 
+     *        the index in the pattern at which the matching should end.
      * @return true if and only if the string matches the pattern.
      */
     /*
@@ -158,8 +157,8 @@ public class Util {
      * remainder of the string, which will match if that remainder looks like
      * YC, so the whole string looks like AXBYC.
      */
-    private static boolean wildmatch(final String str, final String pat,
-            int stri, final int strend, int pati, final int patend) {
+    private static boolean wildmatch(final String str, final String pat, int stri, final int strend, int pati,
+            final int patend) {
 
         // System.out.println("matching "+pat.substring(pati,patend)+
         // " against "+str.substring(stri, strend));
@@ -217,10 +216,9 @@ public class Util {
      * empty string.
      * 
      * @param str
-     *            the string to match.
+     *        the string to match.
      * @param pat
-     *            the pattern to match the string against.
-     * 
+     *        the pattern to match the string against.
      * @return true if and only if the string matches the pattern.
      */
     public static boolean wildmatch(String str, String pat) {

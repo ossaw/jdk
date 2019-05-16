@@ -27,7 +27,7 @@ public class DigestException extends GeneralSecurityException {
      * message is a String that describes this particular exception.)
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public DigestException(String msg) {
         super(msg);
@@ -38,14 +38,14 @@ public class DigestException extends GeneralSecurityException {
      * cause.
      *
      * @param message
-     *                the detail message (which is saved for later retrieval by
-     *                the
-     *                {@link #getMessage()} method).
+     *        the detail message (which is saved for later retrieval by
+     *        the
+     *        {@link #getMessage()} method).
      * @param cause
-     *                the cause (which is saved for later retrieval by the
-     *                {@link #getCause()} method). (A {@code null} value is
-     *                permitted, and indicates that the cause is nonexistent or
-     *                unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause()} method). (A {@code null} value is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      * @since 1.5
      */
     public DigestException(String message, Throwable cause) {
@@ -58,10 +58,10 @@ public class DigestException extends GeneralSecurityException {
      * typically contains the class and detail message of {@code cause}).
      *
      * @param cause
-     *              the cause (which is saved for later retrieval by the
-     *              {@link #getCause()} method). (A {@code null} value is
-     *              permitted, and indicates that the cause is nonexistent or
-     *              unknown.)
+     *        the cause (which is saved for later retrieval by the
+     *        {@link #getCause()} method). (A {@code null} value is
+     *        permitted, and indicates that the cause is nonexistent or
+     *        unknown.)
      * @since 1.5
      */
     public DigestException(Throwable cause) {

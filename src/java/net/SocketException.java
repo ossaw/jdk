@@ -21,7 +21,7 @@ public class SocketException extends IOException {
      * message.
      *
      * @param msg
-     *            the detail message.
+     *        the detail message.
      */
     public SocketException(String msg) {
         super(msg);

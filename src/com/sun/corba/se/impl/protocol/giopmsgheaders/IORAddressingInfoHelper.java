@@ -36,22 +36,19 @@ abstract public class IORAddressingInfoHelper {
             synchronized (org.omg.CORBA.TypeCode.class) {
                 if (__typeCode == null) {
                     if (__active) {
-                        return org.omg.CORBA.ORB.init().create_recursive_tc(
-                                _id);
+                        return org.omg.CORBA.ORB.init().create_recursive_tc(_id);
                     }
                     __active = true;
                     org.omg.CORBA.StructMember[] _members0 = new org.omg.CORBA.StructMember[2];
                     org.omg.CORBA.TypeCode _tcOf_members0 = null;
-                    _tcOf_members0 = org.omg.CORBA.ORB.init().get_primitive_tc(
-                            org.omg.CORBA.TCKind.tk_ulong);
-                    _members0[0] = new org.omg.CORBA.StructMember(
-                            "selected_profile_index", _tcOf_members0, null);
+                    _tcOf_members0 = org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_ulong);
+                    _members0[0] = new org.omg.CORBA.StructMember("selected_profile_index", _tcOf_members0,
+                            null);
                     _tcOf_members0 = org.omg.IOP.IORHelper.type();
-                    _members0[1] = new org.omg.CORBA.StructMember("ior",
-                            _tcOf_members0, null);
+                    _members0[1] = new org.omg.CORBA.StructMember("ior", _tcOf_members0, null);
                     __typeCode = org.omg.CORBA.ORB.init().create_struct_tc(
-                            com.sun.corba.se.impl.protocol.giopmsgheaders.IORAddressingInfoHelper
-                                    .id(), "IORAddressingInfo", _members0);
+                            com.sun.corba.se.impl.protocol.giopmsgheaders.IORAddressingInfoHelper.id(),
+                            "IORAddressingInfo", _members0);
                     __active = false;
                 }
             }

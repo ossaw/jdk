@@ -47,12 +47,11 @@ public class OneStepIterator extends ChildTestIterator {
      * Create a OneStepIterator object.
      *
      * @param compiler
-     *                 A reference to the Compiler that contains the op map.
+     *        A reference to the Compiler that contains the op map.
      * @param opPos
-     *                 The position within the op map, which contains the
-     *                 location
-     *                 path expression for this itterator.
-     *
+     *        The position within the op map, which contains the
+     *        location
+     *        path expression for this itterator.
      * @throws javax.xml.transform.TransformerException
      */
     OneStepIterator(Compiler compiler, int opPos, int analysis)
@@ -68,10 +67,9 @@ public class OneStepIterator extends ChildTestIterator {
      * Create a OneStepIterator object.
      *
      * @param iterator
-     *                 The DTM iterator which this iterator will use.
+     *        The DTM iterator which this iterator will use.
      * @param axis
-     *                 One of Axis.Child, etc., or -1 if the axis is unknown.
-     *
+     *        One of Axis.Child, etc., or -1 if the axis is unknown.
      * @throws javax.xml.transform.TransformerException
      */
     public OneStepIterator(DTMAxisIterator iterator, int axis)
@@ -88,7 +86,7 @@ public class OneStepIterator extends ChildTestIterator {
      * Initialize the context values for this expression after it is cloned.
      *
      * @param context
-     *                The XPath runtime context for this transformation.
+     *        The XPath runtime context for this transformation.
      */
     public void setRoot(int context, Object environment) {
         super.setRoot(context, environment);
@@ -124,7 +122,6 @@ public class OneStepIterator extends ChildTestIterator {
      * Get a cloned iterator.
      *
      * @return A new iterator that can be used without mutating this one.
-     *
      * @throws CloneNotSupportedException
      */
     public Object clone() throws CloneNotSupportedException {
@@ -142,7 +139,6 @@ public class OneStepIterator extends ChildTestIterator {
      * Get a cloned Iterator that is reset to the beginning of the query.
      *
      * @return A cloned NodeIterator set of the start of the query.
-     *
      * @throws CloneNotSupportedException
      */
     public DTMIterator cloneWithReset() throws CloneNotSupportedException {
@@ -170,8 +166,7 @@ public class OneStepIterator extends ChildTestIterator {
      * it.
      *
      * @param predicateIndex
-     *                       The predicate index of the proximity position.
-     *
+     *        The predicate index of the proximity position.
      * @return The pridicate index, or -1.
      */
     protected int getProximityPosition(int predicateIndex) {
@@ -270,7 +265,7 @@ public class OneStepIterator extends ChildTestIterator {
      * Count backwards one proximity position.
      *
      * @param i
-     *          The predicate index.
+     *        The predicate index.
      */
     protected void countProximityPosition(int i) {
         if (!isReverseAxes())

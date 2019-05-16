@@ -24,8 +24,7 @@ import sun.swing.UIAction;
  * @author Scott Violet
  * @since 1.3
  */
-public class BasicRootPaneUI extends RootPaneUI implements
-        PropertyChangeListener {
+public class BasicRootPaneUI extends RootPaneUI implements PropertyChangeListener {
     private static RootPaneUI rootPaneUI = new BasicRootPaneUI();
 
     public static ComponentUI createUI(JComponent c) {
@@ -58,14 +57,11 @@ public class BasicRootPaneUI extends RootPaneUI implements
 
     protected void installKeyboardActions(JRootPane root) {
         InputMap km = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW, root);
-        SwingUtilities.replaceUIInputMap(root,
-                JComponent.WHEN_IN_FOCUSED_WINDOW, km);
+        SwingUtilities.replaceUIInputMap(root, JComponent.WHEN_IN_FOCUSED_WINDOW, km);
         km = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, root);
-        SwingUtilities.replaceUIInputMap(root,
-                JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, km);
+        SwingUtilities.replaceUIInputMap(root, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT, km);
 
-        LazyActionMap.installLazyActionMap(root, BasicRootPaneUI.class,
-                "RootPane.actionMap");
+        LazyActionMap.installLazyActionMap(root, BasicRootPaneUI.class, "RootPane.actionMap");
         updateDefaultButtonBindings(root);
     }
 
@@ -78,15 +74,13 @@ public class BasicRootPaneUI extends RootPaneUI implements
     }
 
     protected void uninstallKeyboardActions(JRootPane root) {
-        SwingUtilities.replaceUIInputMap(root,
-                JComponent.WHEN_IN_FOCUSED_WINDOW, null);
+        SwingUtilities.replaceUIInputMap(root, JComponent.WHEN_IN_FOCUSED_WINDOW, null);
         SwingUtilities.replaceUIActionMap(root, null);
     }
 
     InputMap getInputMap(int condition, JComponent c) {
         if (condition == JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT) {
-            return (InputMap) DefaultLookup.get(c, this,
-                    "RootPane.ancestorInputMap");
+            return (InputMap) DefaultLookup.get(c, this, "RootPane.ancestorInputMap");
         }
 
         if (condition == JComponent.WHEN_IN_FOCUSED_WINDOW) {
@@ -111,8 +105,7 @@ public class BasicRootPaneUI extends RootPaneUI implements
      * <code>RootPane.defaultButtonWindowKeyBindings</code>.
      */
     void updateDefaultButtonBindings(JRootPane root) {
-        InputMap km = SwingUtilities.getUIInputMap(root,
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        InputMap km = SwingUtilities.getUIInputMap(root, JComponent.WHEN_IN_FOCUSED_WINDOW);
         while (km != null && !(km instanceof RootPaneInputMap)) {
             km = km.getParent();
         }
@@ -138,8 +131,7 @@ public class BasicRootPaneUI extends RootPaneUI implements
             JRootPane rootpane = (JRootPane) e.getSource();
             updateDefaultButtonBindings(rootpane);
             if (rootpane.getClientProperty("temporaryDefaultButton") == null) {
-                rootpane.putClientProperty("initialDefaultButton", e
-                        .getNewValue());
+                rootpane.putClientProperty("initialDefaultButton", e.getNewValue());
             }
         }
     }
@@ -159,8 +151,7 @@ public class BasicRootPaneUI extends RootPaneUI implements
             String key = getName();
 
             if (key == POST_POPUP) { // Action to post popup
-                Component c = KeyboardFocusManager
-                        .getCurrentKeyboardFocusManager().getFocusOwner();
+                Component c = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
 
                 if (c instanceof JComponent) {
                     JComponent src = (JComponent) c;
@@ -169,14 +160,12 @@ public class BasicRootPaneUI extends RootPaneUI implements
                         Point pt = src.getPopupLocation(null);
                         if (pt == null) {
                             Rectangle vis = src.getVisibleRect();
-                            pt = new Point(vis.x + vis.width / 2, vis.y
-                                    + vis.height / 2);
+                            pt = new Point(vis.x + vis.width / 2, vis.y + vis.height / 2);
                         }
                         jpm.show(c, pt.x, pt.y);
                     }
                 }
-            } else if (owner != null && SwingUtilities.getRootPane(
-                    owner) == root) {
+            } else if (owner != null && SwingUtilities.getRootPane(owner) == root) {
                 if (key == PRESS) {
                     owner.doClick(20);
                 }
@@ -186,15 +175,13 @@ public class BasicRootPaneUI extends RootPaneUI implements
         public boolean isEnabled(Object sender) {
             String key = getName();
             if (key == POST_POPUP) {
-                MenuElement[] elems = MenuSelectionManager.defaultManager()
-                        .getSelectedPath();
+                MenuElement[] elems = MenuSelectionManager.defaultManager().getSelectedPath();
                 if (elems != null && elems.length != 0) {
                     return false;
                     // We shall not interfere with already opened menu
                 }
 
-                Component c = KeyboardFocusManager
-                        .getCurrentKeyboardFocusManager().getFocusOwner();
+                Component c = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
                 if (c instanceof JComponent) {
                     JComponent src = (JComponent) c;
                     return src.getComponentPopupMenu() != null;

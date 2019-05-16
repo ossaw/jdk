@@ -39,8 +39,7 @@ package javax.xml.soap;
  * all three.
  * 
  * <PRE>
- * Name name = se.createName("GetLastTradePrice", "WOMBAT",
- *         "http://www.wombat.org/trader");
+ * Name name = se.createName("GetLastTradePrice", "WOMBAT", "http://www.wombat.org/trader");
  * </PRE>
  * 
  * The following line of code gives an example of how a <code>Name</code> object

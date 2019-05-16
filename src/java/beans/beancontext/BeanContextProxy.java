@@ -43,7 +43,6 @@ package java.beans.beancontext;
  * 
  * @author Laurence P. G. Cable
  * @since 1.2
- *
  * @see java.beans.beancontext.BeanContextChild
  * @see java.beans.beancontext.BeanContextChildSupport
  */

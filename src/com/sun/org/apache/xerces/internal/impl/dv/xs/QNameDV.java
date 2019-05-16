@@ -27,10 +27,8 @@ import com.sun.org.apache.xerces.internal.xs.datatypes.XSQName;
  * Represent the schema type "QName" and "NOTATION"
  *
  * @xerces.internal
- *
  * @author Neeraj Bajaj, Sun Microsystems, inc.
  * @author Sandy Gao, IBM
- *
  */
 public class QNameDV extends TypeValidator {
 
@@ -38,10 +36,8 @@ public class QNameDV extends TypeValidator {
 
     public short getAllowedFacets() {
         return (XSSimpleTypeDecl.FACET_LENGTH | XSSimpleTypeDecl.FACET_MINLENGTH
-                | XSSimpleTypeDecl.FACET_MAXLENGTH
-                | XSSimpleTypeDecl.FACET_PATTERN
-                | XSSimpleTypeDecl.FACET_ENUMERATION
-                | XSSimpleTypeDecl.FACET_WHITESPACE);
+                | XSSimpleTypeDecl.FACET_MAXLENGTH | XSSimpleTypeDecl.FACET_PATTERN
+                | XSSimpleTypeDecl.FACET_ENUMERATION | XSSimpleTypeDecl.FACET_WHITESPACE);
     }
 
     public Object getActualValue(String content, ValidationContext context)
@@ -61,21 +57,19 @@ public class QNameDV extends TypeValidator {
 
         // both prefix (if any) a nd localpart must be valid NCName
         if (prefix.length() > 0 && !XMLChar.isValidNCName(prefix))
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "QName" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "QName" });
 
         if (!XMLChar.isValidNCName(localpart))
-            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1",
-                    new Object[] { content, "QName" });
+            throw new InvalidDatatypeValueException("cvc-datatype-valid.1.2.1", new Object[] { content,
+                    "QName" });
 
         // resove prefix to a uri, report an error if failed
         String uri = context.getURI(prefix);
         if (prefix.length() > 0 && uri == null)
-            throw new InvalidDatatypeValueException("UndeclaredPrefix",
-                    new Object[] { content, prefix });
+            throw new InvalidDatatypeValueException("UndeclaredPrefix", new Object[] { content, prefix });
 
-        return new XQName(prefix, context.getSymbol(localpart), context
-                .getSymbol(content), uri);
+        return new XQName(prefix, context.getSymbol(localpart), context.getSymbol(content), uri);
 
     }
 
@@ -90,8 +84,7 @@ public class QNameDV extends TypeValidator {
      */
     private static final class XQName extends QName implements XSQName {
         /** Constructs a QName with the specified values. */
-        public XQName(String prefix, String localpart, String rawname,
-                String uri) {
+        public XQName(String prefix, String localpart, String rawname, String uri) {
             setValues(prefix, localpart, rawname, uri);
         } // <init>(String,String,String,String)
 

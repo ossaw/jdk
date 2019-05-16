@@ -35,25 +35,24 @@ public abstract class LookupTable extends Object {
      * into the lookup table.
      * 
      * @param offset
-     *                      the offset to subtract from input values before
-     *                      indexing into
-     *                      the data arrays for this <code>LookupTable</code>
+     *        the offset to subtract from input values before
+     *        indexing into
+     *        the data arrays for this <code>LookupTable</code>
      * @param numComponents
-     *                      the number of data arrays in this
-     *                      <code>LookupTable</code>
+     *        the number of data arrays in this
+     *        <code>LookupTable</code>
      * @throws IllegalArgumentException
-     *                                  if <code>offset</code> is less than 0 or
-     *                                  if
-     *                                  <code>numComponents</code> is less than
-     *                                  1
+     *         if <code>offset</code> is less than 0 or
+     *         if
+     *         <code>numComponents</code> is less than
+     *         1
      */
     protected LookupTable(int offset, int numComponents) {
         if (offset < 0) {
             throw new IllegalArgumentException("Offset must be greater than 0");
         }
         if (numComponents < 1) {
-            throw new IllegalArgumentException("Number of components must "
-                    + " be at least 1");
+            throw new IllegalArgumentException("Number of components must " + " be at least 1");
         }
         this.numComponents = numComponents;
         this.offset = offset;
@@ -84,10 +83,10 @@ public abstract class LookupTable extends Object {
      * source and destination can be equal.
      * 
      * @param src
-     *             the source array of components of one pixel
+     *        the source array of components of one pixel
      * @param dest
-     *             the destination array of components for one pixel, translated
-     *             with this <code>LookupTable</code>
+     *        the destination array of components for one pixel, translated
+     *        with this <code>LookupTable</code>
      * @return an <code>int</code> array of components for one pixel.
      */
     public abstract int[] lookupPixel(int[] src, int[] dest);

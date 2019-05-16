@@ -65,8 +65,7 @@ final class Variable extends VariableBase {
                 // It is an error if the two have the same import precedence
                 if (us == them) {
                     final String name = _name.toString();
-                    reportError(this, parser, ErrorMsg.VARIABLE_REDEF_ERR,
-                            name);
+                    reportError(this, parser, ErrorMsg.VARIABLE_REDEF_ERR, name);
                 }
                 // Ignore this if previous definition has higher precedence
                 else if (them > us) {
@@ -122,12 +121,10 @@ final class Variable extends VariableBase {
         if (isLocal() && !_refs.isEmpty()) {
             // Create a variable slot if none is allocated
             if (_local == null) {
-                _local = methodGen.addLocalVariable2(getEscapedName(), _type
-                        .toJCType(), null);
+                _local = methodGen.addLocalVariable2(getEscapedName(), _type.toJCType(), null);
             }
             // Push the default value on the JVM's stack
-            if ((_type instanceof IntType) || (_type instanceof NodeType)
-                    || (_type instanceof BooleanType))
+            if ((_type instanceof IntType) || (_type instanceof NodeType) || (_type instanceof BooleanType))
                 il.append(new ICONST(0)); // 0 for node-id, integer and boolean
             else if (_type instanceof RealType)
                 il.append(new DCONST(0)); // 0.0 for floating point numbers
@@ -165,8 +162,7 @@ final class Variable extends VariableBase {
             if (createLocal) {
                 mapRegister(methodGen);
             }
-            InstructionHandle storeInst = il.append(_type.STORE(_local
-                    .getIndex()));
+            InstructionHandle storeInst = il.append(_type.STORE(_local.getIndex()));
 
             // If the local is just being created, mark the store as the start
             // of its live range. Note that it might have been created by
@@ -180,16 +176,15 @@ final class Variable extends VariableBase {
 
             // Global variables are store in class fields
             if (classGen.containsField(name) == null) {
-                classGen.addField(new Field(ACC_PUBLIC, cpg.addUtf8(name), cpg
-                        .addUtf8(signature), null, cpg.getConstantPool()));
+                classGen.addField(new Field(ACC_PUBLIC, cpg.addUtf8(name), cpg.addUtf8(signature), null, cpg
+                        .getConstantPool()));
 
                 // Push a reference to "this" for putfield
                 il.append(classGen.loadTranslet());
                 // Compile variable value computation
                 translateValue(classGen, methodGen);
                 // Store the variable in the allocated field
-                il.append(new PUTFIELD(cpg.addFieldref(classGen.getClassName(),
-                        name, signature)));
+                il.append(new PUTFIELD(cpg.addFieldref(classGen.getClassName(), name, signature)));
             }
         }
     }

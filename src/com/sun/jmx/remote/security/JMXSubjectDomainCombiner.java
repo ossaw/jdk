@@ -20,7 +20,6 @@ import javax.security.auth.SubjectDomainCombiner;
  * codesource/signers and an empty permission set, to the access control context
  * with which this combiner is combined.
  * </p>
- *
  * <p>
  * When the {@link #combine} method is called the {@link ProtectionDomain} is
  * augmented with the permissions granted to the set of principals present in
@@ -33,8 +32,7 @@ public class JMXSubjectDomainCombiner extends SubjectDomainCombiner {
         super(s);
     }
 
-    public ProtectionDomain[] combine(ProtectionDomain[] current,
-            ProtectionDomain[] assigned) {
+    public ProtectionDomain[] combine(ProtectionDomain[] current, ProtectionDomain[] assigned) {
         // Add a new ProtectionDomain with the null codesource/signers, and
         // the empty permission set, to the end of the array containing the
         // 'current' protections domains, i.e. the ones that will be augmented
@@ -64,15 +62,14 @@ public class JMXSubjectDomainCombiner extends SubjectDomainCombiner {
     /**
      * A ProtectionDomain with a null CodeSource and an empty permission set.
      */
-    private static final ProtectionDomain pdNoPerms = new ProtectionDomain(
-            nullCodeSource, new Permissions(), null, null);
+    private static final ProtectionDomain pdNoPerms = new ProtectionDomain(nullCodeSource, new Permissions(),
+            null, null);
 
     /**
      * Get the current AccessControlContext combined with the supplied subject.
      */
     public static AccessControlContext getContext(Subject subject) {
-        return new AccessControlContext(AccessController.getContext(),
-                new JMXSubjectDomainCombiner(subject));
+        return new AccessControlContext(AccessController.getContext(), new JMXSubjectDomainCombiner(subject));
     }
 
     /**
@@ -81,10 +78,8 @@ public class JMXSubjectDomainCombiner extends SubjectDomainCombiner {
      * created with the supplied subject and where the caller's context has been
      * removed.
      */
-    public static AccessControlContext getDomainCombinerContext(
-            Subject subject) {
-        return new AccessControlContext(new AccessControlContext(
-                new ProtectionDomain[0]), new JMXSubjectDomainCombiner(
-                        subject));
+    public static AccessControlContext getDomainCombinerContext(Subject subject) {
+        return new AccessControlContext(new AccessControlContext(new ProtectionDomain[0]),
+                new JMXSubjectDomainCombiner(subject));
     }
 }

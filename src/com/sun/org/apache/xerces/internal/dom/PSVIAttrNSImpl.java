@@ -29,9 +29,7 @@ import com.sun.org.apache.xerces.internal.xs.*;
  * Attribute namespace implementation; stores PSVI attribute items.
  *
  * @xerces.internal
- *
  * @author Sandy Gao, IBM
- *
  */
 public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 
@@ -41,16 +39,15 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
     /**
      * Construct an attribute node.
      */
-    public PSVIAttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI,
-            String qualifiedName, String localName) {
+    public PSVIAttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName,
+            String localName) {
         super(ownerDocument, namespaceURI, qualifiedName, localName);
     }
 
     /**
      * Construct an attribute node.
      */
-    public PSVIAttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI,
-            String qualifiedName) {
+    public PSVIAttrNSImpl(CoreDocumentImpl ownerDocument, String namespaceURI, String qualifiedName) {
         super(ownerDocument, namespaceURI, qualifiedName);
     }
 
@@ -111,7 +108,6 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
 
     /**
      * [schema normalized value]
-     *
      *
      * @see <a
      *      href="http://www.w3.org/TR/xmlschema-1/#e-schema_normalized_value>
@@ -206,7 +202,7 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
      * Copy PSVI properties from another psvi item.
      *
      * @param attr
-     *             the source of attribute PSVI items
+     *        the source of attribute PSVI items
      */
     public void setPSVI(AttributePSVI attr) {
         this.fDeclaration = attr.getAttributeDeclaration();
@@ -256,8 +252,7 @@ public class PSVIAttrNSImpl extends AttrNSImpl implements AttributePSVI {
         throw new NotSerializableException(getClass().getName());
     }
 
-    private void readObject(ObjectInputStream in) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         throw new NotSerializableException(getClass().getName());
     }
 }

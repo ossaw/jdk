@@ -16,7 +16,6 @@ import javax.naming.NamingException;
  *
  * @author Rosanna Lee
  * @author Scott Seligman
- *
  * @see NamingListener#namingExceptionThrown
  * @see EventContext
  * @since 1.3
@@ -36,10 +35,9 @@ public class NamingExceptionEvent extends java.util.EventObject {
      * was thrown.
      *
      * @param source
-     *               The non-null context in which the exception was thrown.
+     *        The non-null context in which the exception was thrown.
      * @param exc
-     *               The non-null <tt>NamingException</tt> that was thrown.
-     *
+     *        The non-null <tt>NamingException</tt> that was thrown.
      */
     public NamingExceptionEvent(EventContext source, NamingException exc) {
         super(source);
@@ -70,8 +68,8 @@ public class NamingExceptionEvent extends java.util.EventObject {
      * this event.
      * 
      * @param listener
-     *                 The non-null naming listener on which to invoke the
-     *                 method.
+     *        The non-null naming listener on which to invoke the
+     *        method.
      */
     public void dispatch(NamingListener listener) {
         listener.namingExceptionThrown(this);

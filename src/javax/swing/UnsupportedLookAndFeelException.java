@@ -22,7 +22,7 @@ public class UnsupportedLookAndFeelException extends Exception {
      * Constructs an UnsupportedLookAndFeelException object.
      * 
      * @param s
-     *          a message String
+     *        a message String
      */
     public UnsupportedLookAndFeelException(String s) {
         super(s);

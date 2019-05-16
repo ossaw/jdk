@@ -21,7 +21,6 @@ import javax.swing.plaf.UIResource;
  *
  * @see javax.swing.plaf.UIResource
  * @author Hans Muller
- *
  */
 public class FontUIResource extends Font implements UIResource {
     public FontUIResource(String name, int style, int size) {

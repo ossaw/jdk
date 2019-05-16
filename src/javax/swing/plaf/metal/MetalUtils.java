@@ -97,8 +97,7 @@ class MetalUtils {
         g.translate(-x, -y);
     }
 
-    static void drawButtonBorder(Graphics g, int x, int y, int w, int h,
-            boolean active) {
+    static void drawButtonBorder(Graphics g, int x, int y, int w, int h, boolean active) {
         if (active) {
             drawActiveButtonBorder(g, x, y, w, h);
         } else {
@@ -116,8 +115,7 @@ class MetalUtils {
         g.drawLine(w - 2, y + 2, w - 2, h - 2);
     }
 
-    static void drawDefaultButtonBorder(Graphics g, int x, int y, int w, int h,
-            boolean active) {
+    static void drawDefaultButtonBorder(Graphics g, int x, int y, int w, int h, boolean active) {
         drawButtonBorder(g, x + 1, y + 1, w - 1, h - 1, active);
         g.translate(x, y);
         g.setColor(MetalLookAndFeel.getControlDarkShadow());
@@ -127,8 +125,7 @@ class MetalUtils {
         g.translate(-x, -y);
     }
 
-    static void drawDefaultButtonPressedBorder(Graphics g, int x, int y, int w,
-            int h) {
+    static void drawDefaultButtonPressedBorder(Graphics g, int x, int y, int w, int h) {
         drawPressed3DBorder(g, x + 1, y + 1, w - 1, h - 1);
         g.translate(x, y);
         g.setColor(MetalLookAndFeel.getControlDarkShadow());
@@ -158,8 +155,7 @@ class MetalUtils {
         if (value instanceof String) {
             try {
                 return Integer.parseInt((String) value);
-            } catch (NumberFormatException nfe) {
-            }
+            } catch (NumberFormatException nfe) {}
         }
         return defaultValue;
     }
@@ -180,25 +176,25 @@ class MetalUtils {
      * </ol>
      *
      * @param c
-     *                 Component rendering to
+     *        Component rendering to
      * @param g
-     *                 Graphics to draw to.
+     *        Graphics to draw to.
      * @param key
-     *                 UIManager key used to look up gradient values.
+     *        UIManager key used to look up gradient values.
      * @param x
-     *                 X coordinate to draw from
+     *        X coordinate to draw from
      * @param y
-     *                 Y coordinate to draw from
+     *        Y coordinate to draw from
      * @param w
-     *                 Width to draw to
+     *        Width to draw to
      * @param h
-     *                 Height to draw to
+     *        Height to draw to
      * @param vertical
-     *                 Direction of the gradient
+     *        Direction of the gradient
      * @return true if <code>key</code> exists, otherwise false.
      */
-    static boolean drawGradient(Component c, Graphics g, String key, int x,
-            int y, int w, int h, boolean vertical) {
+    static boolean drawGradient(Component c, Graphics g, String key, int x, int y, int w, int h,
+            boolean vertical) {
         java.util.List gradient = (java.util.List) UIManager.get(key);
         if (gradient == null || !(g instanceof Graphics2D)) {
             return false;
@@ -208,8 +204,7 @@ class MetalUtils {
             return true;
         }
 
-        GradientPainter.INSTANCE.paint(c, (Graphics2D) g, gradient, x, y, w, h,
-                vertical);
+        GradientPainter.INSTANCE.paint(c, (Graphics2D) g, gradient, x, y, w, h, vertical);
         return true;
     }
 
@@ -237,8 +232,8 @@ class MetalUtils {
             super(count);
         }
 
-        public void paint(Component c, Graphics2D g, java.util.List gradient,
-                int x, int y, int w, int h, boolean isVertical) {
+        public void paint(Component c, Graphics2D g, java.util.List gradient, int x, int y, int w, int h,
+                boolean isVertical) {
             int imageWidth;
             int imageHeight;
             if (isVertical) {
@@ -251,58 +246,51 @@ class MetalUtils {
             synchronized (c.getTreeLock()) {
                 this.w = w;
                 this.h = h;
-                paint(c, g, x, y, imageWidth, imageHeight, gradient,
-                        isVertical);
+                paint(c, g, x, y, imageWidth, imageHeight, gradient, isVertical);
             }
         }
 
-        protected void paintToImage(Component c, Image image, Graphics g, int w,
-                int h, Object[] args) {
+        protected void paintToImage(Component c, Image image, Graphics g, int w, int h, Object[] args) {
             Graphics2D g2 = (Graphics2D) g;
             java.util.List gradient = (java.util.List) args[0];
             boolean isVertical = ((Boolean) args[1]).booleanValue();
             // Render to the VolatileImage
             if (isVertical) {
-                drawVerticalGradient(g2, ((Number) gradient.get(0))
-                        .floatValue(), ((Number) gradient.get(1)).floatValue(),
-                        (Color) gradient.get(2), (Color) gradient.get(3),
-                        (Color) gradient.get(4), w, h);
+                drawVerticalGradient(g2, ((Number) gradient.get(0)).floatValue(), ((Number) gradient.get(1))
+                        .floatValue(), (Color) gradient.get(2), (Color) gradient.get(3), (Color) gradient.get(
+                                4), w, h);
             } else {
-                drawHorizontalGradient(g2, ((Number) gradient.get(0))
-                        .floatValue(), ((Number) gradient.get(1)).floatValue(),
-                        (Color) gradient.get(2), (Color) gradient.get(3),
-                        (Color) gradient.get(4), w, h);
+                drawHorizontalGradient(g2, ((Number) gradient.get(0)).floatValue(), ((Number) gradient.get(1))
+                        .floatValue(), (Color) gradient.get(2), (Color) gradient.get(3), (Color) gradient.get(
+                                4), w, h);
             }
         }
 
-        protected void paintImage(Component c, Graphics g, int x, int y,
-                int imageW, int imageH, Image image, Object[] args) {
+        protected void paintImage(Component c, Graphics g, int x, int y, int imageW, int imageH, Image image,
+                Object[] args) {
             boolean isVertical = ((Boolean) args[1]).booleanValue();
             // Render to the screen
             g.translate(x, y);
             if (isVertical) {
                 for (int counter = 0; counter < w; counter += IMAGE_SIZE) {
                     int tileSize = Math.min(IMAGE_SIZE, w - counter);
-                    g.drawImage(image, counter, 0, counter + tileSize, h, 0, 0,
-                            tileSize, h, null);
+                    g.drawImage(image, counter, 0, counter + tileSize, h, 0, 0, tileSize, h, null);
                 }
             } else {
                 for (int counter = 0; counter < h; counter += IMAGE_SIZE) {
                     int tileSize = Math.min(IMAGE_SIZE, h - counter);
-                    g.drawImage(image, 0, counter, w, counter + tileSize, 0, 0,
-                            w, tileSize, null);
+                    g.drawImage(image, 0, counter, w, counter + tileSize, 0, 0, w, tileSize, null);
                 }
             }
             g.translate(-x, -y);
         }
 
-        private void drawVerticalGradient(Graphics2D g, float ratio1,
-                float ratio2, Color c1, Color c2, Color c3, int w, int h) {
+        private void drawVerticalGradient(Graphics2D g, float ratio1, float ratio2, Color c1, Color c2,
+                Color c3, int w, int h) {
             int mid = (int) (ratio1 * h);
             int mid2 = (int) (ratio2 * h);
             if (mid > 0) {
-                g.setPaint(getGradient((float) 0, (float) 0, c1, (float) 0,
-                        (float) mid, c2));
+                g.setPaint(getGradient((float) 0, (float) 0, c1, (float) 0, (float) mid, c2));
                 g.fillRect(0, 0, w, mid);
             }
             if (mid2 > 0) {
@@ -310,24 +298,22 @@ class MetalUtils {
                 g.fillRect(0, mid, w, mid2);
             }
             if (mid > 0) {
-                g.setPaint(getGradient((float) 0, (float) mid + mid2, c2,
-                        (float) 0, (float) mid * 2 + mid2, c1));
+                g.setPaint(getGradient((float) 0, (float) mid + mid2, c2, (float) 0, (float) mid * 2 + mid2,
+                        c1));
                 g.fillRect(0, mid + mid2, w, mid);
             }
             if (h - mid * 2 - mid2 > 0) {
-                g.setPaint(getGradient((float) 0, (float) mid * 2 + mid2, c1,
-                        (float) 0, (float) h, c3));
+                g.setPaint(getGradient((float) 0, (float) mid * 2 + mid2, c1, (float) 0, (float) h, c3));
                 g.fillRect(0, mid * 2 + mid2, w, h - mid * 2 - mid2);
             }
         }
 
-        private void drawHorizontalGradient(Graphics2D g, float ratio1,
-                float ratio2, Color c1, Color c2, Color c3, int w, int h) {
+        private void drawHorizontalGradient(Graphics2D g, float ratio1, float ratio2, Color c1, Color c2,
+                Color c3, int w, int h) {
             int mid = (int) (ratio1 * w);
             int mid2 = (int) (ratio2 * w);
             if (mid > 0) {
-                g.setPaint(getGradient((float) 0, (float) 0, c1, (float) mid,
-                        (float) 0, c2));
+                g.setPaint(getGradient((float) 0, (float) 0, c1, (float) mid, (float) 0, c2));
                 g.fillRect(0, 0, mid, h);
             }
             if (mid2 > 0) {
@@ -335,19 +321,17 @@ class MetalUtils {
                 g.fillRect(mid, 0, mid2, h);
             }
             if (mid > 0) {
-                g.setPaint(getGradient((float) mid + mid2, (float) 0, c2,
-                        (float) mid * 2 + mid2, (float) 0, c1));
+                g.setPaint(getGradient((float) mid + mid2, (float) 0, c2, (float) mid * 2 + mid2, (float) 0,
+                        c1));
                 g.fillRect(mid + mid2, 0, mid, h);
             }
             if (w - mid * 2 - mid2 > 0) {
-                g.setPaint(getGradient((float) mid * 2 + mid2, (float) 0, c1, w,
-                        (float) 0, c3));
+                g.setPaint(getGradient((float) mid * 2 + mid2, (float) 0, c1, w, (float) 0, c3));
                 g.fillRect(mid * 2 + mid2, 0, w - mid * 2 - mid2, h);
             }
         }
 
-        private GradientPaint getGradient(float x1, float y1, Color c1,
-                float x2, float y2, Color c2) {
+        private GradientPaint getGradient(float x1, float y1, Color c1, float x2, float y2, Color c2) {
             return new GradientPaint(x1, y1, c1, x2, y2, c2, true);
         }
     }
@@ -360,10 +344,8 @@ class MetalUtils {
     }
 
     static Icon getOceanToolBarIcon(Image i) {
-        ImageProducer prod = new FilteredImageSource(i.getSource(),
-                new OceanToolBarImageFilter());
-        return new ImageIconUIResource(Toolkit.getDefaultToolkit().createImage(
-                prod));
+        ImageProducer prod = new FilteredImageSource(i.getSource(), new OceanToolBarImageFilter());
+        return new ImageIconUIResource(Toolkit.getDefaultToolkit().createImage(prod));
     }
 
     static Icon getOceanDisabledButtonIcon(Image image) {
@@ -374,10 +356,9 @@ class MetalUtils {
             min = ((Integer) range[0]).intValue();
             max = ((Integer) range[1]).intValue();
         }
-        ImageProducer prod = new FilteredImageSource(image.getSource(),
-                new OceanDisabledButtonImageFilter(min, max));
-        return new ImageIconUIResource(Toolkit.getDefaultToolkit().createImage(
-                prod));
+        ImageProducer prod = new FilteredImageSource(image.getSource(), new OceanDisabledButtonImageFilter(
+                min, max));
+        return new ImageIconUIResource(Toolkit.getDefaultToolkit().createImage(prod));
     }
 
     /**
@@ -395,12 +376,10 @@ class MetalUtils {
 
         public int filterRGB(int x, int y, int rgb) {
             // Coefficients are from the sRGB color space:
-            int gray = Math.min(255, (int) (((0.2125f * ((rgb >> 16) & 0xFF))
-                    + (0.7154f * ((rgb >> 8) & 0xFF)) + (0.0721f * (rgb & 0xFF))
-                    + .5f) * factor + min));
+            int gray = Math.min(255, (int) (((0.2125f * ((rgb >> 16) & 0xFF)) + (0.7154f * ((rgb >> 8)
+                    & 0xFF)) + (0.0721f * (rgb & 0xFF)) + .5f) * factor + min));
 
-            return (rgb & 0xff000000) | (gray << 16) | (gray << 8)
-                    | (gray << 0);
+            return (rgb & 0xff000000) | (gray << 16) | (gray << 8) | (gray << 0);
         }
     }
 
@@ -417,8 +396,7 @@ class MetalUtils {
             int g = ((rgb >> 8) & 0xff);
             int b = (rgb & 0xff);
             int gray = Math.max(Math.max(r, g), b);
-            return (rgb & 0xff000000) | (gray << 16) | (gray << 8)
-                    | (gray << 0);
+            return (rgb & 0xff000000) | (gray << 16) | (gray << 8) | (gray << 0);
         }
     }
 }

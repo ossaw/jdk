@@ -27,7 +27,7 @@ public class NegativeArraySizeException extends RuntimeException {
      * detail message.
      *
      * @param s
-     *          the detail message.
+     *        the detail message.
      */
     public NegativeArraySizeException(String s) {
         super(s);

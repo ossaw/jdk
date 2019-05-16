@@ -35,8 +35,7 @@ public class WindowsSplitPaneDivider extends BasicSplitPaneDivider {
      * Paints the divider.
      */
     public void paint(Graphics g) {
-        Color bgColor = (splitPane.hasFocus()) ? UIManager.getColor(
-                "SplitPane.shadow") : getBackground();
+        Color bgColor = (splitPane.hasFocus()) ? UIManager.getColor("SplitPane.shadow") : getBackground();
         Dimension size = getSize();
 
         if (bgColor != null) {

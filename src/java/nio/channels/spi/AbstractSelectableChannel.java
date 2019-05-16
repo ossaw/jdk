@@ -10,7 +10,6 @@ import java.nio.channels.*;
 
 /**
  * Base implementation class for selectable channels.
- *
  * <p>
  * This class defines methods that handle the mechanics of channel registration,
  * deregistration, and closing. It maintains the current blocking mode of this
@@ -20,7 +19,6 @@ import java.nio.channels.*;
  * the abstract protected methods defined in this class need not synchronize
  * against other threads that might be engaged in the same operations.
  * </p>
- *
  *
  * @author Mark Reinhold
  * @author Mike McCloskey
@@ -53,7 +51,7 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
      * Initializes a new instance of this class.
      *
      * @param provider
-     *                 The provider that created this channel
+     *        The provider that created this channel
      */
     protected AbstractSelectableChannel(SelectorProvider provider) {
         this.provider = provider;
@@ -142,16 +140,13 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
     /**
      * Registers this channel with the given selector, returning a selection
      * key.
-     *
      * <p>
      * This method first verifies that this channel is open and that the given
      * initial interest set is valid.
-     *
      * <p>
      * If this channel is already registered with the given selector then the
      * selection key representing that registration is returned after setting
      * its interest set to the given value.
-     *
      * <p>
      * Otherwise this channel has not yet been registered with the given
      * selector, so the {@link AbstractSelector#register register} method of the
@@ -160,22 +155,17 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
      * </p>
      *
      * @throws ClosedSelectorException
-     *                                      {@inheritDoc}
-     *
+     *         {@inheritDoc}
      * @throws IllegalBlockingModeException
-     *                                      {@inheritDoc}
-     *
+     *         {@inheritDoc}
      * @throws IllegalSelectorException
-     *                                      {@inheritDoc}
-     *
+     *         {@inheritDoc}
      * @throws CancelledKeyException
-     *                                      {@inheritDoc}
-     *
+     *         {@inheritDoc}
      * @throws IllegalArgumentException
-     *                                      {@inheritDoc}
+     *         {@inheritDoc}
      */
-    public final SelectionKey register(Selector sel, int ops, Object att)
-            throws ClosedChannelException {
+    public final SelectionKey register(Selector sel, int ops, Object att) throws ClosedChannelException {
         synchronized (regLock) {
             if (!isOpen())
                 throw new ClosedChannelException();
@@ -205,7 +195,6 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 
     /**
      * Closes this channel.
-     *
      * <p>
      * This method, which is specified in the
      * {@link AbstractInterruptibleChannel} class and is invoked by the
@@ -229,13 +218,11 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 
     /**
      * Closes this selectable channel.
-     *
      * <p>
      * This method is invoked by the {@link java.nio.channels.Channel#close
      * close} method in order to perform the actual work of closing the channel.
      * This method is only invoked if the channel has not yet been closed, and
      * it is never invoked more than once.
-     *
      * <p>
      * An implementation of this method must arrange for any other thread that
      * is blocked in an I/O operation upon this channel to return immediately,
@@ -243,7 +230,7 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
      * </p>
      *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     protected abstract void implCloseSelectableChannel() throws IOException;
 
@@ -261,7 +248,6 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 
     /**
      * Adjusts this channel's blocking mode.
-     *
      * <p>
      * If the given blocking mode is different from the current blocking mode
      * then this method invokes the {@link #implConfigureBlocking
@@ -269,8 +255,7 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
      * order to change the mode.
      * </p>
      */
-    public final SelectableChannel configureBlocking(boolean block)
-            throws IOException {
+    public final SelectableChannel configureBlocking(boolean block) throws IOException {
         synchronized (regLock) {
             if (!isOpen())
                 throw new ClosedChannelException();
@@ -286,7 +271,6 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
 
     /**
      * Adjusts this channel's blocking mode.
-     *
      * <p>
      * This method is invoked by the {@link #configureBlocking
      * configureBlocking} method in order to perform the actual work of changing
@@ -295,15 +279,13 @@ public abstract class AbstractSelectableChannel extends SelectableChannel {
      * </p>
      *
      * @param block
-     *              If <tt>true</tt> then this channel will be placed in
-     *              blocking
-     *              mode; if <tt>false</tt> then it will be placed non-blocking
-     *              mode
-     *
+     *        If <tt>true</tt> then this channel will be placed in
+     *        blocking
+     *        mode; if <tt>false</tt> then it will be placed non-blocking
+     *        mode
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
-    protected abstract void implConfigureBlocking(boolean block)
-            throws IOException;
+    protected abstract void implConfigureBlocking(boolean block) throws IOException;
 
 }

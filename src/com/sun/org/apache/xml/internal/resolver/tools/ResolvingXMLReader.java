@@ -29,7 +29,6 @@ import com.sun.org.apache.xml.internal.resolver.*;
 
 /**
  * A SAX XMLReader that performs catalog-based entity resolution.
- *
  * <p>
  * This class implements a SAX XMLReader that performs entity resolution using
  * the CatalogResolver. The actual, underlying parser is obtained from a
@@ -39,10 +38,8 @@ import com.sun.org.apache.xml.internal.resolver.*;
  *
  * @see CatalogResolver
  * @see org.xml.sax.XMLReader
- *
  * @author Norman Walsh
  *         <a href="mailto:Norman.Walsh@Sun.COM">Norman.Walsh@Sun.COM</a>
- *
  * @version 1.0
  */
 public class ResolvingXMLReader extends ResolvingXMLFilter {
@@ -54,7 +51,6 @@ public class ResolvingXMLReader extends ResolvingXMLFilter {
 
     /**
      * Construct a new reader from the JAXP factory.
-     *
      * <p>
      * In order to do its job, a ResolvingXMLReader must in fact be a filter. So
      * the only difference between this code and the filter code is that the
@@ -63,8 +59,7 @@ public class ResolvingXMLReader extends ResolvingXMLFilter {
      */
     public ResolvingXMLReader() {
         super();
-        SAXParserFactory spf = catalogManager.useServicesMechanism()
-                ? SAXParserFactory.newInstance()
+        SAXParserFactory spf = catalogManager.useServicesMechanism() ? SAXParserFactory.newInstance()
                 : new SAXParserFactoryImpl();
         spf.setNamespaceAware(namespaceAware);
         spf.setValidating(validating);
@@ -78,7 +73,6 @@ public class ResolvingXMLReader extends ResolvingXMLFilter {
 
     /**
      * Construct a new reader from the JAXP factory.
-     *
      * <p>
      * In order to do its job, a ResolvingXMLReader must in fact be a filter. So
      * the only difference between this code and the filter code is that the
@@ -87,8 +81,7 @@ public class ResolvingXMLReader extends ResolvingXMLFilter {
      */
     public ResolvingXMLReader(CatalogManager manager) {
         super(manager);
-        SAXParserFactory spf = catalogManager.useServicesMechanism()
-                ? SAXParserFactory.newInstance()
+        SAXParserFactory spf = catalogManager.useServicesMechanism() ? SAXParserFactory.newInstance()
                 : new SAXParserFactoryImpl();
         spf.setNamespaceAware(namespaceAware);
         spf.setValidating(validating);

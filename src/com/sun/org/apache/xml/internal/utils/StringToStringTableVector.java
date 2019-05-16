@@ -55,7 +55,7 @@ public class StringToStringTableVector {
      * Construct a StringToStringTableVector, using the given block size.
      *
      * @param blocksize
-     *                  Size of blocks to allocate
+     *        Size of blocks to allocate
      */
     public StringToStringTableVector(int blocksize) {
 
@@ -86,7 +86,7 @@ public class StringToStringTableVector {
      * Append a StringToStringTable object onto the vector.
      *
      * @param value
-     *              StringToStringTable object to add
+     *        StringToStringTable object to add
      */
     public final void addElement(StringToStringTable value) {
 
@@ -109,8 +109,7 @@ public class StringToStringTableVector {
      * Given a string, find the last added occurance value that matches the key.
      *
      * @param key
-     *            String to look up
-     *
+     *        String to look up
      * @return the last added occurance value that matches the key or null if
      *         not found.
      */
@@ -131,8 +130,7 @@ public class StringToStringTableVector {
      * the key.
      *
      * @param key
-     *            String to look for
-     *
+     *        String to look for
      * @return True if the string was found in table, null if not
      */
     public final boolean containsKey(String key) {
@@ -161,8 +159,7 @@ public class StringToStringTableVector {
      * Get the nth element.
      *
      * @param i
-     *          Index of element to find
-     *
+     *        Index of element to find
      * @return The StringToStringTable object at the given index
      */
     public final StringToStringTable elementAt(int i) {
@@ -173,8 +170,7 @@ public class StringToStringTableVector {
      * Tell if the table contains the given StringToStringTable.
      *
      * @param s
-     *          The StringToStringTable to find
-     *
+     *        The StringToStringTable to find
      * @return True if the StringToStringTable is found
      */
     public final boolean contains(StringToStringTable s) {

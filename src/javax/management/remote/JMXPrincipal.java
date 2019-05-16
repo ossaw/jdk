@@ -15,7 +15,6 @@ import java.security.Principal;
  * <p>
  * The identity of a remote client of the JMX Remote API.
  * </p>
- *
  * <p>
  * Principals such as this <code>JMXPrincipal</code> may be associated with a
  * particular <code>Subject</code> to augment that <code>Subject</code> with an
@@ -44,11 +43,10 @@ public class JMXPrincipal implements Principal, Serializable {
      * </p>
      *
      * @param name
-     *             the JMX Remote API name for this identity.
-     *
+     *        the JMX Remote API name for this identity.
      * @exception NullPointerException
-     *                                 if the <code>name</code> is
-     *                                 <code>null</code>.
+     *            if the <code>name</code> is
+     *            <code>null</code>.
      */
     public JMXPrincipal(String name) {
         validate(name);
@@ -57,7 +55,6 @@ public class JMXPrincipal implements Principal, Serializable {
 
     /**
      * Returns the name of this principal.
-     *
      * <p>
      *
      * @return the name of this <code>JMXPrincipal</code>.
@@ -68,7 +65,6 @@ public class JMXPrincipal implements Principal, Serializable {
 
     /**
      * Returns a string representation of this <code>JMXPrincipal</code>.
-     *
      * <p>
      *
      * @return a string representation of this <code>JMXPrincipal</code>.
@@ -81,13 +77,11 @@ public class JMXPrincipal implements Principal, Serializable {
      * Compares the specified Object with this <code>JMXPrincipal</code> for
      * equality. Returns true if the given object is also a
      * <code>JMXPrincipal</code> and the two JMXPrincipals have the same name.
-     *
      * <p>
      *
      * @param o
-     *          Object to be compared for equality with this
-     *          <code>JMXPrincipal</code>.
-     *
+     *        Object to be compared for equality with this
+     *        <code>JMXPrincipal</code>.
      * @return true if the specified Object is equal to this
      *         <code>JMXPrincipal</code>.
      */
@@ -107,7 +101,6 @@ public class JMXPrincipal implements Principal, Serializable {
 
     /**
      * Returns a hash code for this <code>JMXPrincipal</code>.
-     *
      * <p>
      *
      * @return a hash code for this <code>JMXPrincipal</code>.
@@ -116,8 +109,7 @@ public class JMXPrincipal implements Principal, Serializable {
         return name.hashCode();
     }
 
-    private void readObject(ObjectInputStream ois) throws IOException,
-            ClassNotFoundException {
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         ObjectInputStream.GetField gf = ois.readFields();
         String principalName = (String) gf.get("name", null);
         try {

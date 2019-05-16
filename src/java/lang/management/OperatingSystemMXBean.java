@@ -8,7 +8,6 @@ package java.lang.management;
 /**
  * The management interface for the operating system on which the Java virtual
  * machine is running.
- *
  * <p>
  * A Java virtual machine has a single instance of the implementation class of
  * this interface. This instance implementing this interface is an
@@ -16,16 +15,13 @@ package java.lang.management;
  * calling the {@link ManagementFactory#getOperatingSystemMXBean} method or from
  * the {@link ManagementFactory#getPlatformMBeanServer platform
  * <tt>MBeanServer</tt>} method.
- *
  * <p>
  * The <tt>ObjectName</tt> for uniquely identifying the MXBean for the operating
  * system within an MBeanServer is:
  * <blockquote> {@link ManagementFactory#OPERATING_SYSTEM_MXBEAN_NAME
  * <tt>java.lang:type=OperatingSystem</tt>} </blockquote>
- *
  * It can be obtained by calling the {@link PlatformManagedObject#getObjectName}
  * method.
- *
  * <p>
  * This interface defines several convenient methods for accessing system
  * properties about the operating system on which the Java virtual machine is
@@ -35,7 +31,6 @@ package java.lang.management;
  * @see <a href="../../../javax/management/package-summary.html"> JMX
  *      Specification.</a>
  * @see <a href="package-summary.html#examples"> Ways to Access MXBeans</a>
- *
  * @author Mandy Chung
  * @since 1.5
  */
@@ -45,7 +40,6 @@ public interface OperatingSystemMXBean extends PlatformManagedObject {
      * <tt>System.getProperty("os.name")</tt>.
      *
      * @return the operating system name.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -60,7 +54,6 @@ public interface OperatingSystemMXBean extends PlatformManagedObject {
      * <tt>System.getProperty("os.arch")</tt>.
      *
      * @return the operating system architecture.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -75,7 +68,6 @@ public interface OperatingSystemMXBean extends PlatformManagedObject {
      * <tt>System.getProperty("os.version")</tt>.
      *
      * @return the operating system version.
-     *
      * @throws java.lang.SecurityException
      *         if a security manager exists and its
      *         <code>checkPropertiesAccess</code> method doesn't allow
@@ -114,7 +106,6 @@ public interface OperatingSystemMXBean extends PlatformManagedObject {
      * platform where it is expensive to implement this method.
      *
      * @return the system load average; or a negative value if not available.
-     *
      * @since 1.6
      */
     public double getSystemLoadAverage();

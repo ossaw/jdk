@@ -9,7 +9,6 @@ package javax.security.cert;
  * Certificate is not yet valid exception. This is thrown whenever the current
  * {@code Date} or the specified {@code Date} is before the {@code notBefore}
  * date/time in the Certificate validity period.
- *
  * <p>
  * <em>Note: The classes in the package {@code javax.security.cert}
  * exist for compatibility with earlier versions of the
@@ -39,7 +38,7 @@ public class CertificateNotYetValidException extends CertificateException {
      * exception.
      *
      * @param message
-     *                the detail message.
+     *        the detail message.
      */
     public CertificateNotYetValidException(String message) {
         super(message);

@@ -59,14 +59,12 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class ACONST_NULL extends Instruction implements PushInstruction,
-        TypedInstruction {
+public class ACONST_NULL extends Instruction implements PushInstruction, TypedInstruction {
     /**
      * Push null reference
      */
     public ACONST_NULL() {
-        super(com.sun.org.apache.bcel.internal.Constants.ACONST_NULL,
-                (short) 1);
+        super(com.sun.org.apache.bcel.internal.Constants.ACONST_NULL, (short) 1);
     }
 
     /**
@@ -83,7 +81,7 @@ public class ACONST_NULL extends Instruction implements PushInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitStackProducer(this);

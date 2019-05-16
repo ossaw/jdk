@@ -34,7 +34,7 @@ public class SequenceInputStream extends InputStream {
      * method.
      *
      * @param e
-     *          an enumeration of input streams.
+     *        an enumeration of input streams.
      * @see java.util.Enumeration
      */
     public SequenceInputStream(Enumeration<? extends InputStream> e) {
@@ -54,9 +54,9 @@ public class SequenceInputStream extends InputStream {
      * from this <code>SequenceInputStream</code>.
      *
      * @param s1
-     *           the first input stream to read.
+     *        the first input stream to read.
      * @param s2
-     *           the second input stream to read.
+     *        the second input stream to read.
      */
     public SequenceInputStream(InputStream s1, InputStream s2) {
         Vector<InputStream> v = new Vector<>(2);
@@ -105,8 +105,7 @@ public class SequenceInputStream extends InputStream {
      *         or {@code 0} if this input stream has been closed by invoking its
      *         {@link #close()} method
      * @exception IOException
-     *                        if an I/O error occurs.
-     *
+     *            if an I/O error occurs.
      * @since JDK1.1
      */
     public int available() throws IOException {
@@ -131,7 +130,7 @@ public class SequenceInputStream extends InputStream {
      * @return the next byte of data, or <code>-1</code> if the end of the
      *         stream is reached.
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public int read() throws IOException {
         while (in != null) {
@@ -157,24 +156,24 @@ public class SequenceInputStream extends InputStream {
      * reading from the next substream.
      *
      * @param b
-     *            the buffer into which the data is read.
+     *        the buffer into which the data is read.
      * @param off
-     *            the start offset in array <code>b</code> at which the data is
-     *            written.
+     *        the start offset in array <code>b</code> at which the data is
+     *        written.
      * @param len
-     *            the maximum number of bytes read.
+     *        the maximum number of bytes read.
      * @return int the number of bytes read.
      * @exception NullPointerException
-     *                                      If <code>b</code> is
-     *                                      <code>null</code>.
+     *            If <code>b</code> is
+     *            <code>null</code>.
      * @exception IndexOutOfBoundsException
-     *                                      If <code>off</code> is negative,
-     *                                      <code>len</code> is
-     *                                      negative, or <code>len</code> is
-     *                                      greater than
-     *                                      <code>b.length - off</code>
+     *            If <code>off</code> is negative,
+     *            <code>len</code> is
+     *            negative, or <code>len</code> is
+     *            greater than
+     *            <code>b.length - off</code>
      * @exception IOException
-     *                                      if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public int read(byte b[], int off, int len) throws IOException {
         if (in == null) {
@@ -206,7 +205,7 @@ public class SequenceInputStream extends InputStream {
      * <code>close</code> method returns.
      *
      * @exception IOException
-     *                        if an I/O error occurs.
+     *            if an I/O error occurs.
      */
     public void close() throws IOException {
         do {

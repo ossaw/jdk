@@ -41,14 +41,13 @@ public class RenderableImageOp implements RenderableImage {
      * will be ignored.
      *
      * @param CRIF
-     *                   a ContextualRenderedImageFactory object
+     *        a ContextualRenderedImageFactory object
      * @param paramBlock
-     *                   a ParameterBlock containing this operation's source
-     *                   images and
-     *                   other parameters necessary for the operation to run.
+     *        a ParameterBlock containing this operation's source
+     *        images and
+     *        other parameters necessary for the operation to run.
      */
-    public RenderableImageOp(ContextualRenderedImageFactory CRIF,
-            ParameterBlock paramBlock) {
+    public RenderableImageOp(ContextualRenderedImageFactory CRIF, ParameterBlock paramBlock) {
         this.myCRIF = CRIF;
         this.paramBlock = (ParameterBlock) paramBlock.clone();
     }
@@ -89,7 +88,7 @@ public class RenderableImageOp implements RenderableImage {
      * is not recognized, java.awt.Image.UndefinedProperty will be returned.
      *
      * @param name
-     *             the name of the property to get, as a String.
+     *        the name of the property to get, as a String.
      * @return a reference to the property Object, or the value
      *         java.awt.Image.UndefinedProperty.
      */
@@ -175,7 +174,7 @@ public class RenderableImageOp implements RenderableImage {
      * RenderableImageOp.
      *
      * @param paramBlock
-     *                   the new ParameterBlock.
+     *        the new ParameterBlock.
      * @return the old ParameterBlock.
      * @see #getParameterBlock
      */
@@ -201,13 +200,11 @@ public class RenderableImageOp implements RenderableImage {
      * in pixels. The RenderContext is built automatically with an appropriate
      * usr2dev transform and an area of interest of the full image. All the
      * rendering hints come from hints passed in.
-     *
      * <p>
      * If w == 0, it will be taken to equal
      * Math.round(h*(getWidth()/getHeight())). Similarly, if h == 0, it will be
      * taken to equal Math.round(w*(getHeight()/getWidth())). One of w or h must
      * be non-zero or else an IllegalArgumentException will be thrown.
-     *
      * <p>
      * The created RenderedImage may have a property identified by the String
      * HINTS_OBSERVED to indicate which RenderingHints were used to create the
@@ -216,15 +213,14 @@ public class RenderableImageOp implements RenderableImage {
      * property.
      *
      * @param w
-     *              the width of rendered image in pixels, or 0.
+     *        the width of rendered image in pixels, or 0.
      * @param h
-     *              the height of rendered image in pixels, or 0.
+     *        the height of rendered image in pixels, or 0.
      * @param hints
-     *              a RenderingHints object containing hints.
+     *        a RenderingHints object containing hints.
      * @return a RenderedImage containing the rendered data.
      */
-    public RenderedImage createScaledRendering(int w, int h,
-            RenderingHints hints) {
+    public RenderedImage createScaledRendering(int w, int h, RenderingHints hints) {
         // DSR -- code to try to get a unit scale
         double sx = (double) w / getWidth();
         double sy = (double) h / getHeight();
@@ -255,13 +251,11 @@ public class RenderableImageOp implements RenderableImage {
      * Creates a RenderedImage which represents this RenderableImageOp
      * (including its Renderable sources) rendered according to the given
      * RenderContext.
-     *
      * <p>
      * This method supports chaining of either Renderable or RenderedImage
      * operations. If sources in the ParameterBlock used to construct the
      * RenderableImageOp are RenderableImages, then a three step process is
      * followed:
-     *
      * <ol>
      * <li>mapRenderContext() is called on the associated CRIF for each
      * RenderableImage source;
@@ -272,13 +266,11 @@ public class RenderableImageOp implements RenderableImage {
      * ParameterBlock containing the parameters of the RenderableImageOp and the
      * RenderedImages that were created by the createRendering() calls.
      * </ol>
-     *
      * <p>
      * If the elements of the source Vector of the ParameterBlock used to
      * construct the RenderableImageOp are instances of RenderedImage, then the
      * CRIF.create() method is called immediately using the original
      * ParameterBlock. This provides a basis case for the recursion.
-     *
      * <p>
      * The created RenderedImage may have a property identified by the String
      * HINTS_OBSERVED to indicate which RenderingHints (from the RenderContext)
@@ -287,7 +279,7 @@ public class RenderableImageOp implements RenderableImage {
      * have such a property.
      *
      * @param renderContext
-     *                      The RenderContext to use to perform the rendering.
+     *        The RenderContext to use to perform the rendering.
      * @return a RenderedImage containing the desired output image.
      */
     public RenderedImage createRendering(RenderContext renderContext) {
@@ -307,10 +299,8 @@ public class RenderableImageOp implements RenderableImage {
             if (sources != null) {
                 Vector renderedSources = new Vector();
                 for (int i = 0; i < sources.size(); i++) {
-                    rcOut = myCRIF.mapRenderContext(i, renderContext,
-                            paramBlock, this);
-                    RenderedImage rdrdImage = ((RenderableImage) sources
-                            .elementAt(i)).createRendering(rcOut);
+                    rcOut = myCRIF.mapRenderContext(i, renderContext, paramBlock, this);
+                    RenderedImage rdrdImage = ((RenderableImage) sources.elementAt(i)).createRendering(rcOut);
                     if (rdrdImage == null) {
                         return null;
                     }

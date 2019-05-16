@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.awt.datatransfer.DataFlavor;
 
 /**
- *
  * The <code>AccessibleStreamable</code> interface should be implemented by the
  * <code>AccessibleContext</code> of any component that presents the raw stream
  * behind a component on the display screen. Examples of such components are
@@ -20,7 +19,6 @@ import java.awt.datatransfer.DataFlavor;
  *
  * @author Lynn Monsanto
  * @author Peter Korn
- *
  * @see javax.accessibility.AccessibleContext
  * @since 1.5
  */
@@ -38,7 +36,7 @@ public interface AccessibleStreamable {
      * Returns an InputStream for a DataFlavor
      *
      * @param flavor
-     *               the DataFlavor
+     *        the DataFlavor
      * @return an ImputStream if an ImputStream for this DataFlavor exists.
      *         Otherwise, null is returned.
      */

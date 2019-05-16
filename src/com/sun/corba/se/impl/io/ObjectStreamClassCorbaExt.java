@@ -32,7 +32,6 @@ class ObjectStreamClassCorbaExt {
 
     /**
      * Return true, iff,
-     *
      * 1. 'cl' is an interface, and 2. 'cl' and all its ancestors do not
      * implement java.rmi.Remote, and 3. if 'cl' has no methods (including those
      * of its ancestors), or, if all the methods (including those of its
@@ -70,9 +69,8 @@ class ObjectStreamClassCorbaExt {
 
         int isAny = 0;
 
-        if ((typeString != null) && (typeString.equals("Ljava/lang/Object;")
-                || typeString.equals("Ljava/io/Serializable;") || typeString
-                        .equals("Ljava/io/Externalizable;")))
+        if ((typeString != null) && (typeString.equals("Ljava/lang/Object;") || typeString.equals(
+                "Ljava/io/Serializable;") || typeString.equals("Ljava/io/Externalizable;")))
             isAny = 1;
 
         return (isAny == 1);

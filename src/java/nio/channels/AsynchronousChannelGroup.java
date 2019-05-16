@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * A grouping of asynchronous channels for the purpose of resource sharing.
- *
  * <p>
  * An asynchronous channel group encapsulates the mechanics required to handle
  * the completion of I/O operations initiated by {@link AsynchronousChannel
@@ -23,7 +22,6 @@ import java.util.concurrent.TimeUnit;
  * asynchronous operations performed on channels in the group. In addition to
  * handling I/O events, the pooled threads may also execute other tasks required
  * to support the execution of asynchronous I/O operations.
- *
  * <p>
  * An asynchronous channel group is created by invoking the
  * {@link #withFixedThreadPool withFixedThreadPool} or
@@ -32,7 +30,6 @@ import java.util.concurrent.TimeUnit;
  * channel. The associated thread pool is <em>owned</em> by the group;
  * termination of the group results in the shutdown of the associated thread
  * pool.
- *
  * <p>
  * In addition to groups created explicitly, the Java virtual machine maintains
  * a system-wide <em>default group</em> that is constructed automatically.
@@ -43,7 +40,6 @@ import java.util.concurrent.TimeUnit;
  * {@link java.util.concurrent.ThreadFactory ThreadFactory} for the default
  * group is not configured then the pooled threads of the default group are
  * {@link Thread#isDaemon daemon} threads.
- *
  * <table border summary="System properties">
  * <tr>
  * <th>System property</th>
@@ -70,16 +66,13 @@ import java.util.concurrent.TimeUnit;
  * during the construction of the default group.</td>
  * </tr>
  * </table>
- *
  * <a name="threading"></a>
  * <h2>Threading</h2>
- *
  * <p>
  * The completion handler for an I/O operation initiated on a channel bound to a
  * group is guaranteed to be invoked by one of the pooled threads in the group.
  * This ensures that the completion handler is run by a thread with the expected
  * <em>identity</em>.
- *
  * <p>
  * Where an I/O operation completes immediately, and the initiating thread is
  * one of the pooled threads in the group then the completion handler may be
@@ -89,10 +82,8 @@ import java.util.concurrent.TimeUnit;
  * handler directly by the initiating thread (see
  * {@link AsynchronousServerSocketChannel#accept(Object,CompletionHandler)
  * accept}).
- *
  * <a name="shutdown"></a>
  * <h2>Shutdown and Termination</h2>
- *
  * <p>
  * The {@link #shutdown() shutdown} method is used to initiate an <em>orderly
  * shutdown</em> of a group. An orderly shutdown marks the group as shutdown;
@@ -106,7 +97,6 @@ import java.util.concurrent.TimeUnit;
  * {@link #isTerminated() isTerminated} method is used to test if the group has
  * terminated, and the {@link #awaitTermination awaitTermination} method can be
  * used to block until the group has terminated.
- *
  * <p>
  * The {@link #shutdownNow() shutdownNow} method can be used to initiate a
  * <em>forceful shutdown</em> of the group. In addition to the actions performed
@@ -115,7 +105,6 @@ import java.util.concurrent.TimeUnit;
  * close} method.
  *
  * @since 1.7
- *
  * @see AsynchronousSocketChannel#open(AsynchronousChannelGroup)
  * @see AsynchronousServerSocketChannel#open(AsynchronousChannelGroup)
  */
@@ -127,7 +116,7 @@ public abstract class AsynchronousChannelGroup {
      * Initialize a new instance of this class.
      *
      * @param provider
-     *                 The asynchronous channel provider for this group
+     *        The asynchronous channel provider for this group
      */
     protected AsynchronousChannelGroup(AsynchronousChannelProvider provider) {
         this.provider = provider;
@@ -144,14 +133,12 @@ public abstract class AsynchronousChannelGroup {
 
     /**
      * Creates an asynchronous channel group with a fixed thread pool.
-     *
      * <p>
      * The resulting asynchronous channel group reuses a fixed number of
      * threads. At any point, at most {@code nThreads} threads will be active
      * processing tasks that are submitted to handle I/O events and dispatch
      * completion results for operations initiated on asynchronous channels in
      * the group.
-     *
      * <p>
      * The group is created by invoking the
      * {@link AsynchronousChannelProvider#openAsynchronousChannelGroup(int,ThreadFactory)
@@ -159,47 +146,40 @@ public abstract class AsynchronousChannelGroup {
      * system-wide default {@link AsynchronousChannelProvider} object.
      *
      * @param nThreads
-     *                      The number of threads in the pool
+     *        The number of threads in the pool
      * @param threadFactory
-     *                      The factory to use when creating new threads
-     *
+     *        The factory to use when creating new threads
      * @return A new asynchronous channel group
-     *
      * @throws IllegalArgumentException
-     *                                  If {@code nThreads <= 0}
+     *         If {@code nThreads <= 0}
      * @throws IOException
-     *                                  If an I/O error occurs
+     *         If an I/O error occurs
      */
-    public static AsynchronousChannelGroup withFixedThreadPool(int nThreads,
-            ThreadFactory threadFactory) throws IOException {
-        return AsynchronousChannelProvider.provider()
-                .openAsynchronousChannelGroup(nThreads, threadFactory);
+    public static AsynchronousChannelGroup withFixedThreadPool(int nThreads, ThreadFactory threadFactory)
+            throws IOException {
+        return AsynchronousChannelProvider.provider().openAsynchronousChannelGroup(nThreads, threadFactory);
     }
 
     /**
      * Creates an asynchronous channel group with a given thread pool that
      * creates new threads as needed.
-     *
      * <p>
      * The {@code executor} parameter is an {@code ExecutorService} that creates
      * new threads as needed to execute tasks that are submitted to handle I/O
      * events and dispatch completion results for operations initiated on
      * asynchronous channels in the group. It may reuse previously constructed
      * threads when they are available.
-     *
      * <p>
      * The {@code initialSize} parameter may be used by the implementation as a
      * <em>hint</em> as to the initial number of tasks it may submit. For
      * example, it may be used to indicate the initial number of threads that
      * wait on I/O events.
-     *
      * <p>
      * The executor is intended to be used exclusively by the resulting
      * asynchronous channel group. Termination of the group results in the
      * orderly {@link ExecutorService#shutdown shutdown} of the executor
      * service. Shutting down the executor service by other means results in
      * unspecified behavior.
-     *
      * <p>
      * The group is created by invoking the
      * {@link AsynchronousChannelProvider#openAsynchronousChannelGroup(ExecutorService,int)
@@ -207,47 +187,39 @@ public abstract class AsynchronousChannelGroup {
      * system-wide default {@link AsynchronousChannelProvider} object.
      *
      * @param executor
-     *                    The thread pool for the resulting group
+     *        The thread pool for the resulting group
      * @param initialSize
-     *                    A value {@code >=0} or a negative value for
-     *                    implementation
-     *                    specific default
-     *
+     *        A value {@code >=0} or a negative value for
+     *        implementation
+     *        specific default
      * @return A new asynchronous channel group
-     *
      * @throws IOException
-     *                     If an I/O error occurs
-     *
+     *         If an I/O error occurs
      * @see java.util.concurrent.Executors#newCachedThreadPool
      */
-    public static AsynchronousChannelGroup withCachedThreadPool(
-            ExecutorService executor, int initialSize) throws IOException {
-        return AsynchronousChannelProvider.provider()
-                .openAsynchronousChannelGroup(executor, initialSize);
+    public static AsynchronousChannelGroup withCachedThreadPool(ExecutorService executor, int initialSize)
+            throws IOException {
+        return AsynchronousChannelProvider.provider().openAsynchronousChannelGroup(executor, initialSize);
     }
 
     /**
      * Creates an asynchronous channel group with a given thread pool.
-     *
      * <p>
      * The {@code executor} parameter is an {@code ExecutorService} that
      * executes tasks submitted to dispatch completion results for operations
      * initiated on asynchronous channels in the group.
-     *
      * <p>
      * Care should be taken when configuring the executor service. It should
      * support <em>direct handoff</em> or <em>unbounded queuing</em> of
      * submitted tasks, and the thread that invokes the
      * {@link ExecutorService#execute execute} method should never invoke the
      * task directly. An implementation may mandate additional constraints.
-     *
      * <p>
      * The executor is intended to be used exclusively by the resulting
      * asynchronous channel group. Termination of the group results in the
      * orderly {@link ExecutorService#shutdown shutdown} of the executor
      * service. Shutting down the executor service by other means results in
      * unspecified behavior.
-     *
      * <p>
      * The group is created by invoking the
      * {@link AsynchronousChannelProvider#openAsynchronousChannelGroup(ExecutorService,int)
@@ -257,17 +229,13 @@ public abstract class AsynchronousChannelGroup {
      * initialSize} of {@code 0}.
      *
      * @param executor
-     *                 The thread pool for the resulting group
-     *
+     *        The thread pool for the resulting group
      * @return A new asynchronous channel group
-     *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
-    public static AsynchronousChannelGroup withThreadPool(
-            ExecutorService executor) throws IOException {
-        return AsynchronousChannelProvider.provider()
-                .openAsynchronousChannelGroup(executor, 0);
+    public static AsynchronousChannelGroup withThreadPool(ExecutorService executor) throws IOException {
+        return AsynchronousChannelProvider.provider().openAsynchronousChannelGroup(executor, 0);
     }
 
     /**
@@ -280,7 +248,6 @@ public abstract class AsynchronousChannelGroup {
 
     /**
      * Tells whether or not this group has terminated.
-     *
      * <p>
      * Where this method returns {@code true}, then the associated thread pool
      * has also {@link ExecutorService#isTerminated terminated}.
@@ -291,7 +258,6 @@ public abstract class AsynchronousChannelGroup {
 
     /**
      * Initiates an orderly shutdown of the group.
-     *
      * <p>
      * This method marks the group as shutdown. Further attempts to construct
      * channel that binds to this group will throw
@@ -304,7 +270,6 @@ public abstract class AsynchronousChannelGroup {
 
     /**
      * Shuts down the group and closes all open channels in the group.
-     *
      * <p>
      * In addition to the actions performed by the {@link #shutdown() shutdown}
      * method, this method invokes the {@link AsynchronousChannel#close close}
@@ -317,28 +282,24 @@ public abstract class AsynchronousChannelGroup {
      * after which it will return without effect.
      *
      * @throws IOException
-     *                     If an I/O error occurs
+     *         If an I/O error occurs
      */
     public abstract void shutdownNow() throws IOException;
 
     /**
      * Awaits termination of the group.
-     * 
      * <p>
      * This method blocks until the group has terminated, or the timeout occurs,
      * or the current thread is interrupted, whichever happens first.
      *
      * @param timeout
-     *                The maximum time to wait, or zero or less to not wait
+     *        The maximum time to wait, or zero or less to not wait
      * @param unit
-     *                The time unit of the timeout argument
-     *
+     *        The time unit of the timeout argument
      * @return {@code true} if the group has terminated; {@code false} if the
      *         timeout elapsed before termination
-     *
      * @throws InterruptedException
-     *                              If interrupted while waiting
+     *         If interrupted while waiting
      */
-    public abstract boolean awaitTermination(long timeout, TimeUnit unit)
-            throws InterruptedException;
+    public abstract boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException;
 }

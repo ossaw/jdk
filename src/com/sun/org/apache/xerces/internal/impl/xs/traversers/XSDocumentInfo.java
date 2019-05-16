@@ -37,7 +37,6 @@ import org.w3c.dom.NamedNodeMap;
  * <schema/> element affect the contents of that schema document alone.
  *
  * @xerces.internal
- *
  * @author Neil Graham, IBM
  * @version $Id: XSDocumentInfo.java,v 1.5 2007/10/15 22:27:48 spericas Exp $
  */
@@ -89,8 +88,8 @@ class XSDocumentInfo {
 
     // note that the caller must ensure to call returnSchemaAttrs()
     // to avoid memory leaks!
-    XSDocumentInfo(Element schemaRoot, XSAttributeChecker attrChecker,
-            SymbolTable symbolTable) throws XMLSchemaException {
+    XSDocumentInfo(Element schemaRoot, XSAttributeChecker attrChecker, SymbolTable symbolTable)
+            throws XMLSchemaException {
         fSchemaElement = schemaRoot;
         initNamespaceSupport(schemaRoot);
         fIsChameleonSchema = false;
@@ -111,16 +110,13 @@ class XSDocumentInfo {
                     .intValue() == SchemaSymbols.FORM_QUALIFIED;
             fAreLocalElementsQualified = ((XInt) fSchemaAttrs[XSAttributeChecker.ATTIDX_EFORMDEFAULT])
                     .intValue() == SchemaSymbols.FORM_QUALIFIED;
-            fBlockDefault = ((XInt) fSchemaAttrs[XSAttributeChecker.ATTIDX_BLOCKDEFAULT])
-                    .shortValue();
-            fFinalDefault = ((XInt) fSchemaAttrs[XSAttributeChecker.ATTIDX_FINALDEFAULT])
-                    .shortValue();
+            fBlockDefault = ((XInt) fSchemaAttrs[XSAttributeChecker.ATTIDX_BLOCKDEFAULT]).shortValue();
+            fFinalDefault = ((XInt) fSchemaAttrs[XSAttributeChecker.ATTIDX_FINALDEFAULT]).shortValue();
             fTargetNamespace = (String) fSchemaAttrs[XSAttributeChecker.ATTIDX_TARGETNAMESPACE];
             if (fTargetNamespace != null)
                 fTargetNamespace = symbolTable.addSymbol(fTargetNamespace);
 
-            fNamespaceSupportRoot = new SchemaNamespaceSupport(
-                    fNamespaceSupport);
+            fNamespaceSupportRoot = new SchemaNamespaceSupport(fNamespaceSupport);
 
             // set namespace support
             fValidationContext.setNamespaceSupport(fNamespaceSupport);
@@ -137,9 +133,7 @@ class XSDocumentInfo {
      * Initialize namespace support by collecting all of the namespace
      * declarations in the root's ancestors. This is necessary to support
      * schemas fragments, i.e. schemas embedded in other documents. See,
-     *
      * https://jaxp.dev.java.net/issues/show_bug.cgi?id=43
-     *
      * Requires the DOM to be created with namespace support enabled.
      */
     private void initNamespaceSupport(Element schemaRoot) {
@@ -147,8 +141,8 @@ class XSDocumentInfo {
         fNamespaceSupport.reset();
 
         Node parent = schemaRoot.getParentNode();
-        while (parent != null && parent.getNodeType() == Node.ELEMENT_NODE
-                && !parent.getNodeName().equals("DOCUMENT_NODE")) {
+        while (parent != null && parent.getNodeType() == Node.ELEMENT_NODE && !parent.getNodeName().equals(
+                "DOCUMENT_NODE")) {
             Element eparent = (Element) parent;
             NamedNodeMap map = eparent.getAttributes();
             int length = (map != null) ? map.getLength() : 0;
@@ -157,15 +151,13 @@ class XSDocumentInfo {
                 String uri = attr.getNamespaceURI();
 
                 // Check if attribute is an ns decl -- requires ns support
-                if (uri != null && uri.equals(
-                        "http://www.w3.org/2000/xmlns/")) {
+                if (uri != null && uri.equals("http://www.w3.org/2000/xmlns/")) {
                     String prefix = attr.getLocalName().intern();
                     if (prefix == "xmlns")
                         prefix = "";
                     // Declare prefix if not set -- moving upwards
                     if (fNamespaceSupport.getURI(prefix) == null) {
-                        fNamespaceSupport.declarePrefix(prefix, attr.getValue()
-                                .intern());
+                        fNamespaceSupport.declarePrefix(prefix, attr.getValue().intern());
                     }
                 }
             }
@@ -185,15 +177,13 @@ class XSDocumentInfo {
     }
 
     void restoreNSSupport() {
-        fNamespaceSupport = (SchemaNamespaceSupport) SchemaNamespaceSupportStack
-                .pop();
+        fNamespaceSupport = (SchemaNamespaceSupport) SchemaNamespaceSupportStack.pop();
         fValidationContext.setNamespaceSupport(fNamespaceSupport);
     }
 
     // some Object methods
     public String toString() {
-        return fTargetNamespace == null ? "no targetNamspace"
-                : "targetNamespace is " + fTargetNamespace;
+        return fTargetNamespace == null ? "no targetNamspace" : "targetNamespace is " + fTargetNamespace;
     }
 
     public void addAllowedNS(String namespace) {

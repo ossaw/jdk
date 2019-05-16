@@ -36,8 +36,7 @@ import com.sun.org.apache.xpath.internal.objects.XObject;
  * 
  * @xsl.usage advanced
  */
-public class StepPattern extends NodeTest implements SubContextList,
-        ExpressionOwner {
+public class StepPattern extends NodeTest implements SubContextList, ExpressionOwner {
     static final long serialVersionUID = 9071668960168152644L;
 
     /** The axis for this test. */
@@ -46,22 +45,20 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Construct a StepPattern that tests for namespaces and node names.
      *
-     *
      * @param whatToShow
-     *                         Bit set defined mainly by
-     *                         {@link org.w3c.dom.traversal.NodeFilter}.
+     *        Bit set defined mainly by
+     *        {@link org.w3c.dom.traversal.NodeFilter}.
      * @param namespace
-     *                         The namespace to be tested.
+     *        The namespace to be tested.
      * @param name
-     *                         The local name to be tested.
+     *        The local name to be tested.
      * @param axis
-     *                         The Axis for this test, one of of
-     *                         Axes.ANCESTORORSELF, etc.
+     *        The Axis for this test, one of of
+     *        Axes.ANCESTORORSELF, etc.
      * @param axisForPredicate
-     *                         No longer used.
+     *        No longer used.
      */
-    public StepPattern(int whatToShow, String namespace, String name, int axis,
-            int axisForPredicate) {
+    public StepPattern(int whatToShow, String namespace, String name, int axis, int axisForPredicate) {
 
         super(whatToShow, namespace, name);
 
@@ -71,15 +68,14 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Construct a StepPattern that doesn't test for node names.
      *
-     *
      * @param whatToShow
-     *                         Bit set defined mainly by
-     *                         {@link org.w3c.dom.traversal.NodeFilter}.
+     *        Bit set defined mainly by
+     *        {@link org.w3c.dom.traversal.NodeFilter}.
      * @param axis
-     *                         The Axis for this test, one of of
-     *                         Axes.ANCESTORORSELF, etc.
+     *        The Axis for this test, one of of
+     *        Axes.ANCESTORORSELF, etc.
      * @param axisForPredicate
-     *                         No longer used.
+     *        No longer used.
      */
     public StepPattern(int whatToShow, int axis, int axisForPredicate) {
 
@@ -137,7 +133,6 @@ public class StepPattern extends NodeTest implements SubContextList,
      * Get the local name or psuedo name of the node that this pattern will
      * test, for hash table lookup optimization.
      *
-     *
      * @return local name or psuedo name of the node.
      * @see com.sun.org.apache.xpath.internal.compiler.PsuedoNames
      */
@@ -157,21 +152,21 @@ public class StepPattern extends NodeTest implements SubContextList,
      * indexes at stylesheet build time.
      * 
      * @param vars
-     *                    List of QNames that correspond to variables. This list
-     *                    should
-     *                    be searched backwards for the first qualified name
-     *                    that
-     *                    corresponds to the variable reference qname. The
-     *                    position of
-     *                    the QName in the vector from the start of the vector
-     *                    will be
-     *                    its position in the stack frame (but variables above
-     *                    the
-     *                    globalsTop value will need to be offset to the current
-     *                    stack
-     *                    frame).
+     *        List of QNames that correspond to variables. This list
+     *        should
+     *        be searched backwards for the first qualified name
+     *        that
+     *        corresponds to the variable reference qname. The
+     *        position of
+     *        the QName in the vector from the start of the vector
+     *        will be
+     *        its position in the stack frame (but variables above
+     *        the
+     *        globalsTop value will need to be offset to the current
+     *        stack
+     *        frame).
      * @param globalsSize
-     *                    The number of variables in the global variable area.
+     *        The number of variables in the global variable area.
      */
     public void fixupVariables(java.util.Vector vars, int globalsSize) {
 
@@ -191,9 +186,8 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Set the reference to nodetest and predicate for parent or ancestor.
      *
-     *
      * @param expr
-     *             The relative pattern expression.
+     *        The relative pattern expression.
      */
     public void setRelativePathPattern(StepPattern expr) {
 
@@ -205,7 +199,6 @@ public class StepPattern extends NodeTest implements SubContextList,
 
     /**
      * Get the reference to nodetest and predicate for parent or ancestor.
-     *
      *
      * @return The relative pattern expression.
      */
@@ -241,7 +234,6 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Tell if this expression or it's subexpressions can traverse outside the
      * current subtree.
-     *
      * NOTE: Ancestors tests with predicates are problematic, and will require
      * special treatment.
      *
@@ -262,10 +254,8 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Get a predicate expression.
      *
-     *
      * @param i
-     *          The index of the predicate.
-     *
+     *        The index of the predicate.
      * @return A predicate expression.
      */
     public Expression getPredicate(int i) {
@@ -274,7 +264,6 @@ public class StepPattern extends NodeTest implements SubContextList,
 
     /**
      * Get the number of predicates for this match pattern step.
-     *
      *
      * @return the number of predicates for this match pattern step.
      */
@@ -285,10 +274,9 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Set the predicates for this match pattern step.
      *
-     *
      * @param predicates
-     *                   An array of expressions that define predicates for this
-     *                   step.
+     *        An array of expressions that define predicates for this
+     *        step.
      */
     public void setPredicates(Expression[] predicates) {
 
@@ -319,12 +307,10 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Execute this pattern step, including predicates.
      *
-     *
      * @param xctxt
-     *                    XPath runtime context.
+     *        XPath runtime context.
      * @param currentNode
-     *                    The current node context.
-     *
+     *        The current node context.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -335,7 +321,6 @@ public class StepPattern extends NodeTest implements SubContextList,
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public XObject execute(XPathContext xctxt, int currentNode)
@@ -355,10 +340,8 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Execute this pattern step, including predicates.
      *
-     *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -369,11 +352,9 @@ public class StepPattern extends NodeTest implements SubContextList,
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
         return execute(xctxt, xctxt.getCurrentNode());
     }
 
@@ -381,24 +362,21 @@ public class StepPattern extends NodeTest implements SubContextList,
      * Execute an expression in the XPath runtime context, and return the result
      * of the expression.
      *
-     *
      * @param xctxt
-     *                    The XPath runtime context.
+     *        The XPath runtime context.
      * @param currentNode
-     *                    The currentNode.
+     *        The currentNode.
      * @param dtm
-     *                    The DTM of the current node.
+     *        The DTM of the current node.
      * @param expType
-     *                    The expanded type ID of the current node.
-     *
+     *        The expanded type ID of the current node.
      * @return The result of the expression in the form of a
      *         <code>XObject</code>.
-     *
      * @throws javax.xml.transform.TransformerException
      *         if a runtime exception occurs.
      */
-    public XObject execute(XPathContext xctxt, int currentNode, DTM dtm,
-            int expType) throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt, int currentNode, DTM dtm, int expType)
+            throws javax.xml.transform.TransformerException {
 
         if (m_whatToShow == NodeTest.SHOW_BYFUNCTION) {
             if (null != m_relativePathPattern) {
@@ -420,8 +398,7 @@ public class StepPattern extends NodeTest implements SubContextList,
         }
 
         if (null != m_relativePathPattern)
-            return m_relativePathPattern.executeRelativePathPattern(xctxt, dtm,
-                    currentNode);
+            return m_relativePathPattern.executeRelativePathPattern(xctxt, dtm, currentNode);
 
         return score;
     }
@@ -431,29 +408,26 @@ public class StepPattern extends NodeTest implements SubContextList,
      * predicate
      *
      * @param xctxt
-     *                The XPath runtime context.
+     *        The XPath runtime context.
      * @param predPos
-     *                Which predicate we're evaluating of foo[1][2][3].
+     *        Which predicate we're evaluating of foo[1][2][3].
      * @param dtm
-     *                The DTM of the current node.
+     *        The DTM of the current node.
      * @param context
-     *                The currentNode.
+     *        The currentNode.
      * @param pos
-     *                The position being requested, i.e. the value returned by
-     *                m_predicates[predPos].execute(xctxt).
-     *
+     *        The position being requested, i.e. the value returned by
+     *        m_predicates[predPos].execute(xctxt).
      * @return true of the position of the context matches pos, false otherwise.
      */
-    private final boolean checkProximityPosition(XPathContext xctxt,
-            int predPos, DTM dtm, int context, int pos) {
+    private final boolean checkProximityPosition(XPathContext xctxt, int predPos, DTM dtm, int context,
+            int pos) {
 
         try {
-            DTMAxisTraverser traverser = dtm.getAxisTraverser(
-                    Axis.PRECEDINGSIBLING);
+            DTMAxisTraverser traverser = dtm.getAxisTraverser(Axis.PRECEDINGSIBLING);
 
-            for (int child = traverser.first(
-                    context); DTM.NULL != child; child = traverser.next(context,
-                            child)) {
+            for (int child = traverser.first(context); DTM.NULL != child; child = traverser.next(context,
+                    child)) {
                 try {
                     xctxt.pushCurrentNode(child);
 
@@ -466,16 +440,12 @@ public class StepPattern extends NodeTest implements SubContextList,
                             for (int i = 0; i < predPos; i++) {
                                 xctxt.pushPredicatePos(i);
                                 try {
-                                    XObject pred = m_predicates[i].execute(
-                                            xctxt);
+                                    XObject pred = m_predicates[i].execute(xctxt);
 
                                     try {
-                                        if (XObject.CLASS_NUMBER == pred
-                                                .getType()) {
-                                            throw new Error(
-                                                    "Why: Should never have been called");
-                                        } else if (!pred
-                                                .boolWithSideEffects()) {
+                                        if (XObject.CLASS_NUMBER == pred.getType()) {
+                                            throw new Error("Why: Should never have been called");
+                                        } else if (!pred.boolWithSideEffects()) {
                                             pass = false;
 
                                             break;
@@ -514,19 +484,16 @@ public class StepPattern extends NodeTest implements SubContextList,
      * Get the proximity position index of the current node based on this node
      * test.
      *
-     *
      * @param xctxt
-     *                 XPath runtime context.
+     *        XPath runtime context.
      * @param predPos
-     *                 Which predicate we're evaluating of foo[1][2][3].
+     *        Which predicate we're evaluating of foo[1][2][3].
      * @param findLast
-     *                 If true, don't terminate when the context node is found.
-     *
+     *        If true, don't terminate when the context node is found.
      * @return the proximity position index of the current node based on the
      *         node test.
      */
-    private final int getProximityPosition(XPathContext xctxt, int predPos,
-            boolean findLast) {
+    private final int getProximityPosition(XPathContext xctxt, int predPos, boolean findLast) {
 
         int pos = 0;
         int context = xctxt.getCurrentNode();
@@ -536,9 +503,8 @@ public class StepPattern extends NodeTest implements SubContextList,
         try {
             DTMAxisTraverser traverser = dtm.getAxisTraverser(Axis.CHILD);
 
-            for (int child = traverser.first(
-                    parent); DTM.NULL != child; child = traverser.next(parent,
-                            child)) {
+            for (int child = traverser.first(parent); DTM.NULL != child; child = traverser.next(parent,
+                    child)) {
                 try {
                     xctxt.pushCurrentNode(child);
 
@@ -551,20 +517,16 @@ public class StepPattern extends NodeTest implements SubContextList,
                             for (int i = 0; i < predPos; i++) {
                                 xctxt.pushPredicatePos(i);
                                 try {
-                                    XObject pred = m_predicates[i].execute(
-                                            xctxt);
+                                    XObject pred = m_predicates[i].execute(xctxt);
 
                                     try {
-                                        if (XObject.CLASS_NUMBER == pred
-                                                .getType()) {
-                                            if ((pos + 1) != (int) pred
-                                                    .numWithSideEffects()) {
+                                        if (XObject.CLASS_NUMBER == pred.getType()) {
+                                            if ((pos + 1) != (int) pred.numWithSideEffects()) {
                                                 pass = false;
 
                                                 break;
                                             }
-                                        } else if (!pred
-                                                .boolWithSideEffects()) {
+                                        } else if (!pred.boolWithSideEffects()) {
                                             pass = false;
 
                                             break;
@@ -604,10 +566,8 @@ public class StepPattern extends NodeTest implements SubContextList,
      * Get the proximity position index of the current node based on this node
      * test.
      *
-     *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return the proximity position index of the current node based on the
      *         node test.
      */
@@ -621,10 +581,8 @@ public class StepPattern extends NodeTest implements SubContextList,
      * selection. In XSLT 1-based indexing, this count is the index of the last
      * node.
      *
-     *
      * @param xctxt
-     *              XPath runtime context.
-     *
+     *        XPath runtime context.
      * @return the count of the nodes that match the test.
      */
     public int getLastPos(XPathContext xctxt) {
@@ -634,14 +592,12 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Execute the match pattern step relative to another step.
      *
-     *
      * @param xctxt
-     *                    The XPath runtime context.
+     *        The XPath runtime context.
      * @param dtm
-     *                    The DTM of the current node.
+     *        The DTM of the current node.
      * @param currentNode
-     *                    The current node context.
-     *
+     *        The current node context.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -652,11 +608,9 @@ public class StepPattern extends NodeTest implements SubContextList,
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected final XObject executeRelativePathPattern(XPathContext xctxt,
-            DTM dtm, int currentNode)
+    protected final XObject executeRelativePathPattern(XPathContext xctxt, DTM dtm, int currentNode)
             throws javax.xml.transform.TransformerException {
 
         XObject score = NodeTest.SCORE_NONE;
@@ -665,9 +619,8 @@ public class StepPattern extends NodeTest implements SubContextList,
 
         traverser = dtm.getAxisTraverser(m_axis);
 
-        for (int relative = traverser.first(
-                context); DTM.NULL != relative; relative = traverser.next(
-                        context, relative)) {
+        for (int relative = traverser.first(context); DTM.NULL != relative; relative = traverser.next(context,
+                relative)) {
             try {
                 xctxt.pushCurrentNode(relative);
 
@@ -688,18 +641,16 @@ public class StepPattern extends NodeTest implements SubContextList,
      * should be filtered or accepted.
      *
      * @param xctxt
-     *                    The XPath runtime context.
+     *        The XPath runtime context.
      * @param dtm
-     *                    The DTM of the current node.
+     *        The DTM of the current node.
      * @param currentNode
-     *                    The current node context.
-     *
+     *        The current node context.
      * @return true if the node should be accepted, false otherwise.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    protected final boolean executePredicates(XPathContext xctxt, DTM dtm,
-            int currentNode) throws javax.xml.transform.TransformerException {
+    protected final boolean executePredicates(XPathContext xctxt, DTM dtm, int currentNode)
+            throws javax.xml.transform.TransformerException {
 
         boolean result = true;
         boolean positionAlreadySeen = false;
@@ -725,8 +676,7 @@ public class StepPattern extends NodeTest implements SubContextList,
                             } else {
                                 positionAlreadySeen = true;
 
-                                if (!checkProximityPosition(xctxt, i, dtm,
-                                        currentNode, pos)) {
+                                if (!checkProximityPosition(xctxt, i, dtm, currentNode, pos)) {
                                     result = false;
 
                                     break;
@@ -754,7 +704,6 @@ public class StepPattern extends NodeTest implements SubContextList,
 
     /**
      * Get the string represenentation of this step for diagnostic purposes.
-     *
      *
      * @return A string representation of this step, built by
      *         reverse-engineering the contained info.
@@ -802,8 +751,7 @@ public class StepPattern extends NodeTest implements SubContextList,
                 buf.append(pat.m_name);
             } else if (DTMFilter.SHOW_ATTRIBUTE == pat.m_whatToShow) {
                 buf.append("@");
-            } else if ((DTMFilter.SHOW_DOCUMENT
-                    | DTMFilter.SHOW_DOCUMENT_FRAGMENT) == pat.m_whatToShow) {
+            } else if ((DTMFilter.SHOW_DOCUMENT | DTMFilter.SHOW_DOCUMENT_FRAGMENT) == pat.m_whatToShow) {
                 buf.append("doc-root()");
             } else {
                 buf.append('?').append(Integer.toHexString(pat.m_whatToShow));
@@ -828,10 +776,9 @@ public class StepPattern extends NodeTest implements SubContextList,
      * Get the match score of the given node.
      *
      * @param xctxt
-     *                The XPath runtime context.
+     *        The XPath runtime context.
      * @param context
-     *                The node to be tested.
-     *
+     *        The node to be tested.
      * @return {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NODETEST}
      *         ,
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_NONE}
@@ -842,7 +789,6 @@ public class StepPattern extends NodeTest implements SubContextList,
      *         , or
      *         {@link com.sun.org.apache.xpath.internal.patterns.NodeTest#SCORE_OTHER}
      *         .
-     *
      * @throws javax.xml.transform.TransformerException
      */
     public double getMatchScore(XPathContext xctxt, int context)
@@ -866,9 +812,8 @@ public class StepPattern extends NodeTest implements SubContextList,
     /**
      * Set the axis that this step should follow.
      *
-     *
      * @param axis
-     *             The Axis for this test, one of of Axes.ANCESTORORSELF, etc.
+     *        The Axis for this test, one of of Axes.ANCESTORORSELF, etc.
      */
     public void setAxis(int axis) {
         m_axis = axis;
@@ -876,7 +821,6 @@ public class StepPattern extends NodeTest implements SubContextList,
 
     /**
      * Get the axis that this step follows.
-     *
      *
      * @return The Axis for this test, one of of Axes.ANCESTORORSELF, etc.
      */

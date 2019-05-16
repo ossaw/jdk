@@ -59,8 +59,7 @@ package com.sun.org.apache.bcel.internal.generic;
  *
  * @author <A HREF="mailto:markus.dahm@berlin.de">M. Dahm</A>
  */
-public class DCONST extends Instruction implements ConstantPushInstruction,
-        TypedInstruction {
+public class DCONST extends Instruction implements ConstantPushInstruction, TypedInstruction {
     private double value;
 
     /**
@@ -77,8 +76,7 @@ public class DCONST extends Instruction implements ConstantPushInstruction,
         else if (f == 1.0)
             opcode = com.sun.org.apache.bcel.internal.Constants.DCONST_1;
         else
-            throw new ClassGenException(
-                    "DCONST can be used only for 0.0 and 1.0: " + f);
+            throw new ClassGenException("DCONST can be used only for 0.0 and 1.0: " + f);
 
         value = f;
     }
@@ -101,7 +99,7 @@ public class DCONST extends Instruction implements ConstantPushInstruction,
      * comes last.
      *
      * @param v
-     *          Visitor object
+     *        Visitor object
      */
     public void accept(Visitor v) {
         v.visitPushInstruction(this);

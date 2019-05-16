@@ -11,7 +11,6 @@ package java.rmi;
  * header, arguments or return value for a remote method call. A
  * <code>MarshalException</code> is also thrown if the receiver does not support
  * the protocol version of the sender.
- *
  * <p>
  * If a <code>MarshalException</code> occurs during a remote method call, the
  * call may or may not have reached the server. If the call did reach the
@@ -32,7 +31,7 @@ public class MarshalException extends RemoteException {
      * message.
      *
      * @param s
-     *          the detail message
+     *        the detail message
      * @since JDK1.1
      */
     public MarshalException(String s) {
@@ -44,9 +43,9 @@ public class MarshalException extends RemoteException {
      * message and nested exception.
      *
      * @param s
-     *           the detail message
+     *        the detail message
      * @param ex
-     *           the nested exception
+     *        the nested exception
      * @since JDK1.1
      */
     public MarshalException(String s, Exception ex) {

@@ -65,7 +65,6 @@ import java.util.Map;
  * approximately 72 user space coordinates per square inch for high resolution
  * devices, such as printers. For image buffers, the default transform is the
  * <code>Identity</code> transform.
- *
  * <h2>Rendering Process</h2> The Rendering Process can be broken down into four
  * phases that are controlled by the <code>Graphics2D</code> rendering
  * attributes. The renderer can optimize many of these steps, either by caching
@@ -167,7 +166,6 @@ import java.util.Map;
  * current <code>Transform</code> and the optional image transform.
  * </ol>
  * </ol>
- *
  * <h2>Default Rendering Attributes</h2> The default values for the
  * <code>Graphics2D</code> rendering attributes are: <dl compact>
  * <dt><i><code>Paint</code></i>
@@ -187,7 +185,6 @@ import java.util.Map;
  * <dd>No rendering <code>Clip</code>, the output is clipped to the
  * <code>Component</code>.
  * </dl>
- *
  * <h2>Rendering Compatibility Issues</h2> The JDK(tm) 1.1 rendering model is
  * based on a pixelization model that specifies that coordinates are infinitely
  * thin, lying between the pixels. Drawing operations are performed using a
@@ -353,21 +350,20 @@ public abstract class Graphics2D extends Graphics {
      * <code>Paint</code>.
      * 
      * @param x
-     *               the x coordinate of the rectangle to be drawn.
+     *        the x coordinate of the rectangle to be drawn.
      * @param y
-     *               the y coordinate of the rectangle to be drawn.
+     *        the y coordinate of the rectangle to be drawn.
      * @param width
-     *               the width of the rectangle to be drawn.
+     *        the width of the rectangle to be drawn.
      * @param height
-     *               the height of the rectangle to be drawn.
+     *        the height of the rectangle to be drawn.
      * @param raised
-     *               a boolean that determines whether the rectangle appears to
-     *               be
-     *               raised above the surface or sunk into the surface.
+     *        a boolean that determines whether the rectangle appears to
+     *        be
+     *        raised above the surface or sunk into the surface.
      * @see java.awt.Graphics#fill3DRect
      */
-    public void draw3DRect(int x, int y, int width, int height,
-            boolean raised) {
+    public void draw3DRect(int x, int y, int width, int height, boolean raised) {
         Paint p = getPaint();
         Color c = getColor();
         Color brighter = c.brighter();
@@ -395,21 +391,20 @@ public abstract class Graphics2D extends Graphics {
      * exclusively and ignores the current <code>Paint</code>.
      * 
      * @param x
-     *               the x coordinate of the rectangle to be filled.
+     *        the x coordinate of the rectangle to be filled.
      * @param y
-     *               the y coordinate of the rectangle to be filled.
+     *        the y coordinate of the rectangle to be filled.
      * @param width
-     *               the width of the rectangle to be filled.
+     *        the width of the rectangle to be filled.
      * @param height
-     *               the height of the rectangle to be filled.
+     *        the height of the rectangle to be filled.
      * @param raised
-     *               a boolean value that determines whether the rectangle
-     *               appears
-     *               to be raised above the surface or etched into the surface.
+     *        a boolean value that determines whether the rectangle
+     *        appears
+     *        to be raised above the surface or etched into the surface.
      * @see java.awt.Graphics#draw3DRect
      */
-    public void fill3DRect(int x, int y, int width, int height,
-            boolean raised) {
+    public void fill3DRect(int x, int y, int width, int height, boolean raised) {
         Paint p = getPaint();
         Color c = getColor();
         Color brighter = c.brighter();
@@ -441,7 +436,7 @@ public abstract class Graphics2D extends Graphics {
      * , <code>Composite</code> and <code>Stroke</code> attributes.
      * 
      * @param s
-     *          the <code>Shape</code> to be rendered
+     *        the <code>Shape</code> to be rendered
      * @see #setStroke
      * @see #setPaint
      * @see java.awt.Graphics#setColor
@@ -465,13 +460,13 @@ public abstract class Graphics2D extends Graphics {
      * noninvertible.
      * 
      * @param img
-     *              the specified image to be rendered. This method does nothing
-     *              if <code>img</code> is null.
+     *        the specified image to be rendered. This method does nothing
+     *        if <code>img</code> is null.
      * @param xform
-     *              the transformation from image space into user space
+     *        the transformation from image space into user space
      * @param obs
-     *              the {@link ImageObserver} to be notified as more of the
-     *              <code>Image</code> is converted
+     *        the {@link ImageObserver} to be notified as more of the
+     *        <code>Image</code> is converted
      * @return <code>true</code> if the <code>Image</code> is fully loaded and
      *         completely rendered, or if it's null; <code>false</code> if the
      *         <code>Image</code> is still being loaded.
@@ -481,8 +476,7 @@ public abstract class Graphics2D extends Graphics {
      * @see #clip
      * @see #setClip
      */
-    public abstract boolean drawImage(Image img, AffineTransform xform,
-            ImageObserver obs);
+    public abstract boolean drawImage(Image img, AffineTransform xform, ImageObserver obs);
 
     /**
      * Renders a <code>BufferedImage</code> that is filtered with a
@@ -496,25 +490,23 @@ public abstract class Graphics2D extends Graphics {
      * </pre>
      * 
      * @param op
-     *            the filter to be applied to the image before rendering
+     *        the filter to be applied to the image before rendering
      * @param img
-     *            the specified <code>BufferedImage</code> to be rendered. This
-     *            method does nothing if <code>img</code> is null.
+     *        the specified <code>BufferedImage</code> to be rendered. This
+     *        method does nothing if <code>img</code> is null.
      * @param x
-     *            the x coordinate of the location in user space where the upper
-     *            left corner of the image is rendered
+     *        the x coordinate of the location in user space where the upper
+     *        left corner of the image is rendered
      * @param y
-     *            the y coordinate of the location in user space where the upper
-     *            left corner of the image is rendered
-     *
+     *        the y coordinate of the location in user space where the upper
+     *        left corner of the image is rendered
      * @see #transform
      * @see #setTransform
      * @see #setComposite
      * @see #clip
      * @see #setClip
      */
-    public abstract void drawImage(BufferedImage img, BufferedImageOp op, int x,
-            int y);
+    public abstract void drawImage(BufferedImage img, BufferedImageOp op, int x, int y);
 
     /**
      * Renders a {@link RenderedImage}, applying a transform from image space
@@ -528,18 +520,17 @@ public abstract class Graphics2D extends Graphics {
      * noninvertible.
      * 
      * @param img
-     *              the image to be rendered. This method does nothing if
-     *              <code>img</code> is null.
+     *        the image to be rendered. This method does nothing if
+     *        <code>img</code> is null.
      * @param xform
-     *              the transformation from image space into user space
+     *        the transformation from image space into user space
      * @see #transform
      * @see #setTransform
      * @see #setComposite
      * @see #clip
      * @see #setClip
      */
-    public abstract void drawRenderedImage(RenderedImage img,
-            AffineTransform xform);
+    public abstract void drawRenderedImage(RenderedImage img, AffineTransform xform);
 
     /**
      * Renders a {@link RenderableImage}, applying a transform from image space
@@ -562,10 +553,10 @@ public abstract class Graphics2D extends Graphics {
      * drawRenderedImage}.
      * 
      * @param img
-     *              the image to be rendered. This method does nothing if
-     *              <code>img</code> is null.
+     *        the image to be rendered. This method does nothing if
+     *        <code>img</code> is null.
      * @param xform
-     *              the transformation from image space into user space
+     *        the transformation from image space into user space
      * @see #transform
      * @see #setTransform
      * @see #setComposite
@@ -573,8 +564,7 @@ public abstract class Graphics2D extends Graphics {
      * @see #setClip
      * @see #drawRenderedImage
      */
-    public abstract void drawRenderableImage(RenderableImage img,
-            AffineTransform xform);
+    public abstract void drawRenderableImage(RenderableImage img, AffineTransform xform);
 
     /**
      * Renders the text of the specified <code>String</code>, using the current
@@ -588,15 +578,15 @@ public abstract class Graphics2D extends Graphics {
      * of the leftmost character on the baseline.
      * 
      * @param str
-     *            the string to be rendered
+     *        the string to be rendered
      * @param x
-     *            the x coordinate of the location where the <code>String</code>
-     *            should be rendered
+     *        the x coordinate of the location where the <code>String</code>
+     *        should be rendered
      * @param y
-     *            the y coordinate of the location where the <code>String</code>
-     *            should be rendered
+     *        the y coordinate of the location where the <code>String</code>
+     *        should be rendered
      * @throws NullPointerException
-     *                              if <code>str</code> is <code>null</code>
+     *         if <code>str</code> is <code>null</code>
      * @see java.awt.Graphics#drawBytes
      * @see java.awt.Graphics#drawChars
      * @since JDK1.0
@@ -615,15 +605,15 @@ public abstract class Graphics2D extends Graphics {
      * of the leftmost character on the baseline.
      * 
      * @param str
-     *            the <code>String</code> to be rendered
+     *        the <code>String</code> to be rendered
      * @param x
-     *            the x coordinate of the location where the <code>String</code>
-     *            should be rendered
+     *        the x coordinate of the location where the <code>String</code>
+     *        should be rendered
      * @param y
-     *            the y coordinate of the location where the <code>String</code>
-     *            should be rendered
+     *        the y coordinate of the location where the <code>String</code>
+     *        should be rendered
      * @throws NullPointerException
-     *                              if <code>str</code> is <code>null</code>
+     *         if <code>str</code> is <code>null</code>
      * @see #setPaint
      * @see java.awt.Graphics#setColor
      * @see java.awt.Graphics#setFont
@@ -644,24 +634,23 @@ public abstract class Graphics2D extends Graphics {
      * baseline.
      * 
      * @param iterator
-     *                 the iterator whose text is to be rendered
+     *        the iterator whose text is to be rendered
      * @param x
-     *                 the x coordinate where the iterator's text is to be
-     *                 rendered
+     *        the x coordinate where the iterator's text is to be
+     *        rendered
      * @param y
-     *                 the y coordinate where the iterator's text is to be
-     *                 rendered
+     *        the y coordinate where the iterator's text is to be
+     *        rendered
      * @throws NullPointerException
-     *                              if <code>iterator</code> is
-     *                              <code>null</code>
+     *         if <code>iterator</code> is
+     *         <code>null</code>
      * @see #setPaint
      * @see java.awt.Graphics#setColor
      * @see #setTransform
      * @see #setComposite
      * @see #setClip
      */
-    public abstract void drawString(AttributedCharacterIterator iterator, int x,
-            int y);
+    public abstract void drawString(AttributedCharacterIterator iterator, int x, int y);
 
     /**
      * Renders the text of the specified iterator applying its attributes in
@@ -674,24 +663,23 @@ public abstract class Graphics2D extends Graphics {
      * baseline.
      * 
      * @param iterator
-     *                 the iterator whose text is to be rendered
+     *        the iterator whose text is to be rendered
      * @param x
-     *                 the x coordinate where the iterator's text is to be
-     *                 rendered
+     *        the x coordinate where the iterator's text is to be
+     *        rendered
      * @param y
-     *                 the y coordinate where the iterator's text is to be
-     *                 rendered
+     *        the y coordinate where the iterator's text is to be
+     *        rendered
      * @throws NullPointerException
-     *                              if <code>iterator</code> is
-     *                              <code>null</code>
+     *         if <code>iterator</code> is
+     *         <code>null</code>
      * @see #setPaint
      * @see java.awt.Graphics#setColor
      * @see #setTransform
      * @see #setComposite
      * @see #setClip
      */
-    public abstract void drawString(AttributedCharacterIterator iterator,
-            float x, float y);
+    public abstract void drawString(AttributedCharacterIterator iterator, float x, float y);
 
     /**
      * Renders the text of the specified {@link GlyphVector} using the
@@ -703,16 +691,15 @@ public abstract class Graphics2D extends Graphics {
      * is the fastest way to render a set of characters to the screen.
      * 
      * @param g
-     *          the <code>GlyphVector</code> to be rendered
+     *        the <code>GlyphVector</code> to be rendered
      * @param x
-     *          the x position in User Space where the glyphs should be
-     *          rendered
+     *        the x position in User Space where the glyphs should be
+     *        rendered
      * @param y
-     *          the y position in User Space where the glyphs should be
-     *          rendered
+     *        the y position in User Space where the glyphs should be
+     *        rendered
      * @throws NullPointerException
-     *                              if <code>g</code> is <code>null</code>.
-     *
+     *         if <code>g</code> is <code>null</code>.
      * @see java.awt.Font#createGlyphVector
      * @see java.awt.font.GlyphVector
      * @see #setPaint
@@ -730,7 +717,7 @@ public abstract class Graphics2D extends Graphics {
      * <code>Composite</code>.
      * 
      * @param s
-     *          the <code>Shape</code> to be filled
+     *        the <code>Shape</code> to be filled
      * @see #setPaint
      * @see java.awt.Graphics#setColor
      * @see #transform
@@ -754,16 +741,16 @@ public abstract class Graphics2D extends Graphics {
      * <code>Stroke</code> attributes.
      * 
      * @param rect
-     *                 the area in device space to check for a hit
+     *        the area in device space to check for a hit
      * @param s
-     *                 the <code>Shape</code> to check for a hit
+     *        the <code>Shape</code> to check for a hit
      * @param onStroke
-     *                 flag used to choose between testing the stroked or the
-     *                 filled
-     *                 shape. If the flag is <code>true</code>, the
-     *                 <code>Stroke</code> outline is tested. If the flag is
-     *                 <code>false</code>, the filled <code>Shape</code> is
-     *                 tested.
+     *        flag used to choose between testing the stroked or the
+     *        filled
+     *        shape. If the flag is <code>true</code>, the
+     *        <code>Stroke</code> outline is tested. If the flag is
+     *        <code>false</code>, the filled <code>Shape</code> is
+     *        tested.
      * @return <code>true</code> if there is a hit; <code>false</code>
      *         otherwise.
      * @see #setStroke
@@ -799,15 +786,15 @@ public abstract class Graphics2D extends Graphics {
      * <code>AWTPermission("readDisplayPixels")</code> permission.
      * 
      * @throws SecurityException
-     *                           if a custom <code>Composite</code> object is
-     *                           being used to
-     *                           render to the screen and a security manager is
-     *                           set and its
-     *                           <code>checkPermission</code> method does not
-     *                           allow the
-     *                           operation.
+     *         if a custom <code>Composite</code> object is
+     *         being used to
+     *         render to the screen and a security manager is
+     *         set and its
+     *         <code>checkPermission</code> method does not
+     *         allow the
+     *         operation.
      * @param comp
-     *             the <code>Composite</code> object to be used for rendering
+     *        the <code>Composite</code> object to be used for rendering
      * @see java.awt.Graphics#setXORMode
      * @see java.awt.Graphics#setPaintMode
      * @see #getComposite
@@ -824,8 +811,8 @@ public abstract class Graphics2D extends Graphics {
      * attribute of this <code>Graphics2D</code>.
      * 
      * @param paint
-     *              the <code>Paint</code> object to be used to generate color
-     *              during the rendering process, or <code>null</code>
+     *        the <code>Paint</code> object to be used to generate color
+     *        during the rendering process, or <code>null</code>
      * @see java.awt.Graphics#setColor
      * @see #getPaint
      * @see GradientPaint
@@ -837,8 +824,8 @@ public abstract class Graphics2D extends Graphics {
      * Sets the <code>Stroke</code> for the <code>Graphics2D</code> context.
      * 
      * @param s
-     *          the <code>Stroke</code> object to be used to stroke a
-     *          <code>Shape</code> during the rendering process
+     *        the <code>Stroke</code> object to be used to stroke a
+     *        <code>Shape</code> during the rendering process
      * @see BasicStroke
      * @see #getStroke
      */
@@ -852,10 +839,10 @@ public abstract class Graphics2D extends Graphics {
      * values.
      * 
      * @param hintKey
-     *                  the key of the hint to be set.
+     *        the key of the hint to be set.
      * @param hintValue
-     *                  the value indicating preferences for the specified hint
-     *                  category.
+     *        the value indicating preferences for the specified hint
+     *        category.
      * @see #getRenderingHint(RenderingHints.Key)
      * @see RenderingHints
      */
@@ -869,7 +856,7 @@ public abstract class Graphics2D extends Graphics {
      * values.
      * 
      * @param hintKey
-     *                the key corresponding to the hint to get.
+     *        the key corresponding to the hint to get.
      * @return an object representing the value for the specified hint key. Some
      *         of the keys and their associated values are defined in the
      *         <code>RenderingHints</code> class.
@@ -888,7 +875,7 @@ public abstract class Graphics2D extends Graphics {
      * for definitions of some common keys and values.
      * 
      * @param hints
-     *              the rendering hints to be set
+     *        the rendering hints to be set
      * @see #getRenderingHints
      * @see RenderingHints
      */
@@ -904,7 +891,7 @@ public abstract class Graphics2D extends Graphics {
      * for definitions of some common keys and values.
      * 
      * @param hints
-     *              the rendering hints to be set
+     *        the rendering hints to be set
      * @see RenderingHints
      */
     public abstract void addRenderingHints(Map<?, ?> hints);
@@ -933,9 +920,9 @@ public abstract class Graphics2D extends Graphics {
      * operations on this graphics context are relative to this new origin.
      * 
      * @param x
-     *          the specified x coordinate
+     *        the specified x coordinate
      * @param y
-     *          the specified y coordinate
+     *        the specified y coordinate
      * @since JDK1.0
      */
     public abstract void translate(int x, int y);
@@ -954,9 +941,9 @@ public abstract class Graphics2D extends Graphics {
      * </pre>
      * 
      * @param tx
-     *           the distance to translate along the x-axis
+     *        the distance to translate along the x-axis
      * @param ty
-     *           the distance to translate along the y-axis
+     *        the distance to translate along the y-axis
      */
     public abstract void translate(double tx, double ty);
 
@@ -977,7 +964,7 @@ public abstract class Graphics2D extends Graphics {
      * axis toward the positive y axis.
      * 
      * @param theta
-     *              the angle of rotation in radians
+     *        the angle of rotation in radians
      */
     public abstract void rotate(double theta);
 
@@ -999,11 +986,11 @@ public abstract class Graphics2D extends Graphics {
      * axis toward the positive y axis.
      * 
      * @param theta
-     *              the angle of rotation in radians
+     *        the angle of rotation in radians
      * @param x
-     *              the x coordinate of the origin of the rotation
+     *        the x coordinate of the origin of the rotation
      * @param y
-     *              the y coordinate of the origin of the rotation
+     *        the y coordinate of the origin of the rotation
      */
     public abstract void rotate(double theta, double x, double y);
 
@@ -1021,13 +1008,13 @@ public abstract class Graphics2D extends Graphics {
      * </pre>
      * 
      * @param sx
-     *           the amount by which X coordinates in subsequent rendering
-     *           operations are multiplied relative to previous rendering
-     *           operations.
+     *        the amount by which X coordinates in subsequent rendering
+     *        operations are multiplied relative to previous rendering
+     *        operations.
      * @param sy
-     *           the amount by which Y coordinates in subsequent rendering
-     *           operations are multiplied relative to previous rendering
-     *           operations.
+     *        the amount by which Y coordinates in subsequent rendering
+     *        operations are multiplied relative to previous rendering
+     *        operations.
      */
     public abstract void scale(double sx, double sy);
 
@@ -1045,11 +1032,11 @@ public abstract class Graphics2D extends Graphics {
      * </pre>
      * 
      * @param shx
-     *            the multiplier by which coordinates are shifted in the
-     *            positive X axis direction as a function of their Y coordinate
+     *        the multiplier by which coordinates are shifted in the
+     *        positive X axis direction as a function of their Y coordinate
      * @param shy
-     *            the multiplier by which coordinates are shifted in the
-     *            positive Y axis direction as a function of their X coordinate
+     *        the multiplier by which coordinates are shifted in the
+     *        positive Y axis direction as a function of their X coordinate
      */
     public abstract void shear(double shx, double shy);
 
@@ -1066,8 +1053,8 @@ public abstract class Graphics2D extends Graphics {
      * necessary, so further modifications to Tx do not affect rendering.
      * 
      * @param Tx
-     *           the <code>AffineTransform</code> object to be composed with
-     *           the current <code>Transform</code>
+     *        the <code>AffineTransform</code> object to be composed with
+     *        the current <code>Transform</code>
      * @see #setTransform
      * @see AffineTransform
      */
@@ -1099,8 +1086,8 @@ public abstract class Graphics2D extends Graphics {
      * </pre>
      *
      * @param Tx
-     *           the <code>AffineTransform</code> that was retrieved from the
-     *           <code>getTransform</code> method
+     *        the <code>AffineTransform</code> that was retrieved from the
+     *        <code>getTransform</code> method
      * @see #transform
      * @see #getTransform
      * @see AffineTransform
@@ -1151,8 +1138,8 @@ public abstract class Graphics2D extends Graphics {
      * <code>Component</code>.
      * 
      * @param color
-     *              the background color that is used in subsequent calls to
-     *              <code>clearRect</code>
+     *        the background color that is used in subsequent calls to
+     *        <code>clearRect</code>
      * @see #getBackground
      * @see java.awt.Graphics#clearRect
      */
@@ -1192,9 +1179,9 @@ public abstract class Graphics2D extends Graphics {
      * becomes the new user clip.
      * 
      * @param s
-     *          the <code>Shape</code> to be intersected with the current
-     *          <code>Clip</code>. If <code>s</code> is <code>null</code>,
-     *          this method clears the current <code>Clip</code>.
+     *        the <code>Shape</code> to be intersected with the current
+     *        <code>Clip</code>. If <code>s</code> is <code>null</code>,
+     *        this method clears the current <code>Clip</code>.
      */
     public abstract void clip(Shape s);
 

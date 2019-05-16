@@ -77,24 +77,20 @@ class ArrayPrefixHelpers {
         final int lo, hi, origin, fence, threshold;
 
         /** Root task constructor */
-        public CumulateTask(CumulateTask<T> parent, BinaryOperator<T> function,
-                T[] array, int lo, int hi) {
+        public CumulateTask(CumulateTask<T> parent, BinaryOperator<T> function, T[] array, int lo, int hi) {
             super(parent);
             this.function = function;
             this.array = array;
             this.lo = this.origin = lo;
             this.hi = this.fence = hi;
             int p;
-            this.threshold = (p = (hi - lo) / (ForkJoinPool
-                    .getCommonPoolParallelism() << 3)) <= MIN_PARTITION
-                            ? MIN_PARTITION
-                            : p;
+            this.threshold = (p = (hi - lo) / (ForkJoinPool.getCommonPoolParallelism() << 3)) <= MIN_PARTITION
+                    ? MIN_PARTITION : p;
         }
 
         /** Subtask constructor */
-        CumulateTask(CumulateTask<T> parent, BinaryOperator<T> function,
-                T[] array, int origin, int fence, int threshold, int lo,
-                int hi) {
+        CumulateTask(CumulateTask<T> parent, BinaryOperator<T> function, T[] array, int origin, int fence,
+                int threshold, int lo, int hi) {
             super(parent);
             this.function = function;
             this.array = array;
@@ -113,15 +109,14 @@ class ArrayPrefixHelpers {
                 throw new NullPointerException(); // hoist checks
             int th = threshold, org = origin, fnc = fence, l, h;
             CumulateTask<T> t = this;
-            outer: while ((l = t.lo) >= 0 && (h = t.hi) <= a.length) {
+            outer:
+            while ((l = t.lo) >= 0 && (h = t.hi) <= a.length) {
                 if (h - l > th) {
                     CumulateTask<T> lt = t.left, rt = t.right, f;
                     if (lt == null) { // first pass
                         int mid = (l + h) >>> 1;
-                        f = rt = t.right = new CumulateTask<T>(t, fn, a, org,
-                                fnc, th, mid, h);
-                        t = lt = t.left = new CumulateTask<T>(t, fn, a, org,
-                                fnc, th, l, mid);
+                        f = rt = t.right = new CumulateTask<T>(t, fn, a, org, fnc, th, mid, h);
+                        t = lt = t.left = new CumulateTask<T>(t, fn, a, org, fnc, th, l, mid);
                     } else { // possibly refork
                         T pin = t.in;
                         lt.in = pin;
@@ -130,11 +125,9 @@ class ArrayPrefixHelpers {
                             T lout = lt.out;
                             rt.in = (l == org ? lout : fn.apply(pin, lout));
                             for (int c;;) {
-                                if (((c = rt.getPendingCount())
-                                        & CUMULATE) != 0)
+                                if (((c = rt.getPendingCount()) & CUMULATE) != 0)
                                     break;
-                                if (rt.compareAndSetPendingCount(c, c
-                                        | CUMULATE)) {
+                                if (rt.compareAndSetPendingCount(c, c | CUMULATE)) {
                                     t = rt;
                                     break;
                                 }
@@ -160,8 +153,7 @@ class ArrayPrefixHelpers {
                     for (int b;;) {
                         if (((b = t.getPendingCount()) & FINISHED) != 0)
                             break outer; // already done
-                        state = ((b & CUMULATE) != 0 ? FINISHED
-                                : (l > org) ? SUMMED : (SUMMED | FINISHED));
+                        state = ((b & CUMULATE) != 0 ? FINISHED : (l > org) ? SUMMED : (SUMMED | FINISHED));
                         if (t.compareAndSetPendingCount(b, b | state))
                             break;
                     }
@@ -186,8 +178,7 @@ class ArrayPrefixHelpers {
                         sum = t.in;
                     t.out = sum;
                     for (CumulateTask<T> par;;) { // propagate
-                        if ((par = (CumulateTask<T>) t
-                                .getCompleter()) == null) {
+                        if ((par = (CumulateTask<T>) t.getCompleter()) == null) {
                             if ((state & FINISHED) != 0) // enable join
                                 t.quietlyComplete();
                             break outer;
@@ -198,17 +189,13 @@ class ArrayPrefixHelpers {
                         else if ((b & state & SUMMED) != 0) { // both summed
                             int nextState;
                             CumulateTask<T> lt, rt;
-                            if ((lt = par.left) != null
-                                    && (rt = par.right) != null) {
+                            if ((lt = par.left) != null && (rt = par.right) != null) {
                                 T lout = lt.out;
-                                par.out = (rt.hi == fnc ? lout
-                                        : fn.apply(lout, rt.out));
+                                par.out = (rt.hi == fnc ? lout : fn.apply(lout, rt.out));
                             }
-                            int refork = (((b & CUMULATE) == 0 && par.lo == org)
-                                    ? CUMULATE
-                                    : 0);
-                            if ((nextState = b | state | refork) == b || par
-                                    .compareAndSetPendingCount(b, nextState)) {
+                            int refork = (((b & CUMULATE) == 0 && par.lo == org) ? CUMULATE : 0);
+                            if ((nextState = b | state | refork) == b || par.compareAndSetPendingCount(b,
+                                    nextState)) {
                                 state = SUMMED; // drop finished
                                 t = par;
                                 if (refork != 0)
@@ -230,24 +217,21 @@ class ArrayPrefixHelpers {
         final int lo, hi, origin, fence, threshold;
 
         /** Root task constructor */
-        public LongCumulateTask(LongCumulateTask parent,
-                LongBinaryOperator function, long[] array, int lo, int hi) {
+        public LongCumulateTask(LongCumulateTask parent, LongBinaryOperator function, long[] array, int lo,
+                int hi) {
             super(parent);
             this.function = function;
             this.array = array;
             this.lo = this.origin = lo;
             this.hi = this.fence = hi;
             int p;
-            this.threshold = (p = (hi - lo) / (ForkJoinPool
-                    .getCommonPoolParallelism() << 3)) <= MIN_PARTITION
-                            ? MIN_PARTITION
-                            : p;
+            this.threshold = (p = (hi - lo) / (ForkJoinPool.getCommonPoolParallelism() << 3)) <= MIN_PARTITION
+                    ? MIN_PARTITION : p;
         }
 
         /** Subtask constructor */
-        LongCumulateTask(LongCumulateTask parent, LongBinaryOperator function,
-                long[] array, int origin, int fence, int threshold, int lo,
-                int hi) {
+        LongCumulateTask(LongCumulateTask parent, LongBinaryOperator function, long[] array, int origin,
+                int fence, int threshold, int lo, int hi) {
             super(parent);
             this.function = function;
             this.array = array;
@@ -265,29 +249,25 @@ class ArrayPrefixHelpers {
                 throw new NullPointerException(); // hoist checks
             int th = threshold, org = origin, fnc = fence, l, h;
             LongCumulateTask t = this;
-            outer: while ((l = t.lo) >= 0 && (h = t.hi) <= a.length) {
+            outer:
+            while ((l = t.lo) >= 0 && (h = t.hi) <= a.length) {
                 if (h - l > th) {
                     LongCumulateTask lt = t.left, rt = t.right, f;
                     if (lt == null) { // first pass
                         int mid = (l + h) >>> 1;
-                        f = rt = t.right = new LongCumulateTask(t, fn, a, org,
-                                fnc, th, mid, h);
-                        t = lt = t.left = new LongCumulateTask(t, fn, a, org,
-                                fnc, th, l, mid);
+                        f = rt = t.right = new LongCumulateTask(t, fn, a, org, fnc, th, mid, h);
+                        t = lt = t.left = new LongCumulateTask(t, fn, a, org, fnc, th, l, mid);
                     } else { // possibly refork
                         long pin = t.in;
                         lt.in = pin;
                         f = t = null;
                         if (rt != null) {
                             long lout = lt.out;
-                            rt.in = (l == org ? lout
-                                    : fn.applyAsLong(pin, lout));
+                            rt.in = (l == org ? lout : fn.applyAsLong(pin, lout));
                             for (int c;;) {
-                                if (((c = rt.getPendingCount())
-                                        & CUMULATE) != 0)
+                                if (((c = rt.getPendingCount()) & CUMULATE) != 0)
                                     break;
-                                if (rt.compareAndSetPendingCount(c, c
-                                        | CUMULATE)) {
+                                if (rt.compareAndSetPendingCount(c, c | CUMULATE)) {
                                     t = rt;
                                     break;
                                 }
@@ -313,8 +293,7 @@ class ArrayPrefixHelpers {
                     for (int b;;) {
                         if (((b = t.getPendingCount()) & FINISHED) != 0)
                             break outer; // already done
-                        state = ((b & CUMULATE) != 0 ? FINISHED
-                                : (l > org) ? SUMMED : (SUMMED | FINISHED));
+                        state = ((b & CUMULATE) != 0 ? FINISHED : (l > org) ? SUMMED : (SUMMED | FINISHED));
                         if (t.compareAndSetPendingCount(b, b | state))
                             break;
                     }
@@ -339,8 +318,7 @@ class ArrayPrefixHelpers {
                         sum = t.in;
                     t.out = sum;
                     for (LongCumulateTask par;;) { // propagate
-                        if ((par = (LongCumulateTask) t
-                                .getCompleter()) == null) {
+                        if ((par = (LongCumulateTask) t.getCompleter()) == null) {
                             if ((state & FINISHED) != 0) // enable join
                                 t.quietlyComplete();
                             break outer;
@@ -351,17 +329,13 @@ class ArrayPrefixHelpers {
                         else if ((b & state & SUMMED) != 0) { // both summed
                             int nextState;
                             LongCumulateTask lt, rt;
-                            if ((lt = par.left) != null
-                                    && (rt = par.right) != null) {
+                            if ((lt = par.left) != null && (rt = par.right) != null) {
                                 long lout = lt.out;
-                                par.out = (rt.hi == fnc ? lout
-                                        : fn.applyAsLong(lout, rt.out));
+                                par.out = (rt.hi == fnc ? lout : fn.applyAsLong(lout, rt.out));
                             }
-                            int refork = (((b & CUMULATE) == 0 && par.lo == org)
-                                    ? CUMULATE
-                                    : 0);
-                            if ((nextState = b | state | refork) == b || par
-                                    .compareAndSetPendingCount(b, nextState)) {
+                            int refork = (((b & CUMULATE) == 0 && par.lo == org) ? CUMULATE : 0);
+                            if ((nextState = b | state | refork) == b || par.compareAndSetPendingCount(b,
+                                    nextState)) {
                                 state = SUMMED; // drop finished
                                 t = par;
                                 if (refork != 0)
@@ -383,24 +357,21 @@ class ArrayPrefixHelpers {
         final int lo, hi, origin, fence, threshold;
 
         /** Root task constructor */
-        public DoubleCumulateTask(DoubleCumulateTask parent,
-                DoubleBinaryOperator function, double[] array, int lo, int hi) {
+        public DoubleCumulateTask(DoubleCumulateTask parent, DoubleBinaryOperator function, double[] array,
+                int lo, int hi) {
             super(parent);
             this.function = function;
             this.array = array;
             this.lo = this.origin = lo;
             this.hi = this.fence = hi;
             int p;
-            this.threshold = (p = (hi - lo) / (ForkJoinPool
-                    .getCommonPoolParallelism() << 3)) <= MIN_PARTITION
-                            ? MIN_PARTITION
-                            : p;
+            this.threshold = (p = (hi - lo) / (ForkJoinPool.getCommonPoolParallelism() << 3)) <= MIN_PARTITION
+                    ? MIN_PARTITION : p;
         }
 
         /** Subtask constructor */
-        DoubleCumulateTask(DoubleCumulateTask parent,
-                DoubleBinaryOperator function, double[] array, int origin,
-                int fence, int threshold, int lo, int hi) {
+        DoubleCumulateTask(DoubleCumulateTask parent, DoubleBinaryOperator function, double[] array,
+                int origin, int fence, int threshold, int lo, int hi) {
             super(parent);
             this.function = function;
             this.array = array;
@@ -418,29 +389,25 @@ class ArrayPrefixHelpers {
                 throw new NullPointerException(); // hoist checks
             int th = threshold, org = origin, fnc = fence, l, h;
             DoubleCumulateTask t = this;
-            outer: while ((l = t.lo) >= 0 && (h = t.hi) <= a.length) {
+            outer:
+            while ((l = t.lo) >= 0 && (h = t.hi) <= a.length) {
                 if (h - l > th) {
                     DoubleCumulateTask lt = t.left, rt = t.right, f;
                     if (lt == null) { // first pass
                         int mid = (l + h) >>> 1;
-                        f = rt = t.right = new DoubleCumulateTask(t, fn, a, org,
-                                fnc, th, mid, h);
-                        t = lt = t.left = new DoubleCumulateTask(t, fn, a, org,
-                                fnc, th, l, mid);
+                        f = rt = t.right = new DoubleCumulateTask(t, fn, a, org, fnc, th, mid, h);
+                        t = lt = t.left = new DoubleCumulateTask(t, fn, a, org, fnc, th, l, mid);
                     } else { // possibly refork
                         double pin = t.in;
                         lt.in = pin;
                         f = t = null;
                         if (rt != null) {
                             double lout = lt.out;
-                            rt.in = (l == org ? lout
-                                    : fn.applyAsDouble(pin, lout));
+                            rt.in = (l == org ? lout : fn.applyAsDouble(pin, lout));
                             for (int c;;) {
-                                if (((c = rt.getPendingCount())
-                                        & CUMULATE) != 0)
+                                if (((c = rt.getPendingCount()) & CUMULATE) != 0)
                                     break;
-                                if (rt.compareAndSetPendingCount(c, c
-                                        | CUMULATE)) {
+                                if (rt.compareAndSetPendingCount(c, c | CUMULATE)) {
                                     t = rt;
                                     break;
                                 }
@@ -466,8 +433,7 @@ class ArrayPrefixHelpers {
                     for (int b;;) {
                         if (((b = t.getPendingCount()) & FINISHED) != 0)
                             break outer; // already done
-                        state = ((b & CUMULATE) != 0 ? FINISHED
-                                : (l > org) ? SUMMED : (SUMMED | FINISHED));
+                        state = ((b & CUMULATE) != 0 ? FINISHED : (l > org) ? SUMMED : (SUMMED | FINISHED));
                         if (t.compareAndSetPendingCount(b, b | state))
                             break;
                     }
@@ -492,8 +458,7 @@ class ArrayPrefixHelpers {
                         sum = t.in;
                     t.out = sum;
                     for (DoubleCumulateTask par;;) { // propagate
-                        if ((par = (DoubleCumulateTask) t
-                                .getCompleter()) == null) {
+                        if ((par = (DoubleCumulateTask) t.getCompleter()) == null) {
                             if ((state & FINISHED) != 0) // enable join
                                 t.quietlyComplete();
                             break outer;
@@ -504,17 +469,13 @@ class ArrayPrefixHelpers {
                         else if ((b & state & SUMMED) != 0) { // both summed
                             int nextState;
                             DoubleCumulateTask lt, rt;
-                            if ((lt = par.left) != null
-                                    && (rt = par.right) != null) {
+                            if ((lt = par.left) != null && (rt = par.right) != null) {
                                 double lout = lt.out;
-                                par.out = (rt.hi == fnc ? lout
-                                        : fn.applyAsDouble(lout, rt.out));
+                                par.out = (rt.hi == fnc ? lout : fn.applyAsDouble(lout, rt.out));
                             }
-                            int refork = (((b & CUMULATE) == 0 && par.lo == org)
-                                    ? CUMULATE
-                                    : 0);
-                            if ((nextState = b | state | refork) == b || par
-                                    .compareAndSetPendingCount(b, nextState)) {
+                            int refork = (((b & CUMULATE) == 0 && par.lo == org) ? CUMULATE : 0);
+                            if ((nextState = b | state | refork) == b || par.compareAndSetPendingCount(b,
+                                    nextState)) {
                                 state = SUMMED; // drop finished
                                 t = par;
                                 if (refork != 0)
@@ -536,24 +497,21 @@ class ArrayPrefixHelpers {
         final int lo, hi, origin, fence, threshold;
 
         /** Root task constructor */
-        public IntCumulateTask(IntCumulateTask parent,
-                IntBinaryOperator function, int[] array, int lo, int hi) {
+        public IntCumulateTask(IntCumulateTask parent, IntBinaryOperator function, int[] array, int lo,
+                int hi) {
             super(parent);
             this.function = function;
             this.array = array;
             this.lo = this.origin = lo;
             this.hi = this.fence = hi;
             int p;
-            this.threshold = (p = (hi - lo) / (ForkJoinPool
-                    .getCommonPoolParallelism() << 3)) <= MIN_PARTITION
-                            ? MIN_PARTITION
-                            : p;
+            this.threshold = (p = (hi - lo) / (ForkJoinPool.getCommonPoolParallelism() << 3)) <= MIN_PARTITION
+                    ? MIN_PARTITION : p;
         }
 
         /** Subtask constructor */
-        IntCumulateTask(IntCumulateTask parent, IntBinaryOperator function,
-                int[] array, int origin, int fence, int threshold, int lo,
-                int hi) {
+        IntCumulateTask(IntCumulateTask parent, IntBinaryOperator function, int[] array, int origin,
+                int fence, int threshold, int lo, int hi) {
             super(parent);
             this.function = function;
             this.array = array;
@@ -571,29 +529,25 @@ class ArrayPrefixHelpers {
                 throw new NullPointerException(); // hoist checks
             int th = threshold, org = origin, fnc = fence, l, h;
             IntCumulateTask t = this;
-            outer: while ((l = t.lo) >= 0 && (h = t.hi) <= a.length) {
+            outer:
+            while ((l = t.lo) >= 0 && (h = t.hi) <= a.length) {
                 if (h - l > th) {
                     IntCumulateTask lt = t.left, rt = t.right, f;
                     if (lt == null) { // first pass
                         int mid = (l + h) >>> 1;
-                        f = rt = t.right = new IntCumulateTask(t, fn, a, org,
-                                fnc, th, mid, h);
-                        t = lt = t.left = new IntCumulateTask(t, fn, a, org,
-                                fnc, th, l, mid);
+                        f = rt = t.right = new IntCumulateTask(t, fn, a, org, fnc, th, mid, h);
+                        t = lt = t.left = new IntCumulateTask(t, fn, a, org, fnc, th, l, mid);
                     } else { // possibly refork
                         int pin = t.in;
                         lt.in = pin;
                         f = t = null;
                         if (rt != null) {
                             int lout = lt.out;
-                            rt.in = (l == org ? lout
-                                    : fn.applyAsInt(pin, lout));
+                            rt.in = (l == org ? lout : fn.applyAsInt(pin, lout));
                             for (int c;;) {
-                                if (((c = rt.getPendingCount())
-                                        & CUMULATE) != 0)
+                                if (((c = rt.getPendingCount()) & CUMULATE) != 0)
                                     break;
-                                if (rt.compareAndSetPendingCount(c, c
-                                        | CUMULATE)) {
+                                if (rt.compareAndSetPendingCount(c, c | CUMULATE)) {
                                     t = rt;
                                     break;
                                 }
@@ -619,8 +573,7 @@ class ArrayPrefixHelpers {
                     for (int b;;) {
                         if (((b = t.getPendingCount()) & FINISHED) != 0)
                             break outer; // already done
-                        state = ((b & CUMULATE) != 0 ? FINISHED
-                                : (l > org) ? SUMMED : (SUMMED | FINISHED));
+                        state = ((b & CUMULATE) != 0 ? FINISHED : (l > org) ? SUMMED : (SUMMED | FINISHED));
                         if (t.compareAndSetPendingCount(b, b | state))
                             break;
                     }
@@ -645,8 +598,7 @@ class ArrayPrefixHelpers {
                         sum = t.in;
                     t.out = sum;
                     for (IntCumulateTask par;;) { // propagate
-                        if ((par = (IntCumulateTask) t
-                                .getCompleter()) == null) {
+                        if ((par = (IntCumulateTask) t.getCompleter()) == null) {
                             if ((state & FINISHED) != 0) // enable join
                                 t.quietlyComplete();
                             break outer;
@@ -657,17 +609,13 @@ class ArrayPrefixHelpers {
                         else if ((b & state & SUMMED) != 0) { // both summed
                             int nextState;
                             IntCumulateTask lt, rt;
-                            if ((lt = par.left) != null
-                                    && (rt = par.right) != null) {
+                            if ((lt = par.left) != null && (rt = par.right) != null) {
                                 int lout = lt.out;
-                                par.out = (rt.hi == fnc ? lout
-                                        : fn.applyAsInt(lout, rt.out));
+                                par.out = (rt.hi == fnc ? lout : fn.applyAsInt(lout, rt.out));
                             }
-                            int refork = (((b & CUMULATE) == 0 && par.lo == org)
-                                    ? CUMULATE
-                                    : 0);
-                            if ((nextState = b | state | refork) == b || par
-                                    .compareAndSetPendingCount(b, nextState)) {
+                            int refork = (((b & CUMULATE) == 0 && par.lo == org) ? CUMULATE : 0);
+                            if ((nextState = b | state | refork) == b || par.compareAndSetPendingCount(b,
+                                    nextState)) {
                                 state = SUMMED; // drop finished
                                 t = par;
                                 if (refork != 0)

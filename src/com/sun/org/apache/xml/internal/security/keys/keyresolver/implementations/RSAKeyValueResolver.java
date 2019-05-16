@@ -10,9 +10,7 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -36,28 +34,24 @@ import org.w3c.dom.Element;
 public class RSAKeyValueResolver extends KeyResolverSpi {
 
     /** {@link org.apache.commons.logging} logging facility */
-    private static java.util.logging.Logger log = java.util.logging.Logger
-            .getLogger(RSAKeyValueResolver.class.getName());
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(RSAKeyValueResolver.class
+            .getName());
 
     /** @inheritDoc */
-    public PublicKey engineLookupAndResolvePublicKey(Element element,
-            String BaseURI, StorageResolver storage) {
+    public PublicKey engineLookupAndResolvePublicKey(Element element, String BaseURI,
+            StorageResolver storage) {
         if (log.isLoggable(java.util.logging.Level.FINE)) {
-            log.log(java.util.logging.Level.FINE, "Can I resolve " + element
-                    .getTagName());
+            log.log(java.util.logging.Level.FINE, "Can I resolve " + element.getTagName());
         }
         if (element == null) {
             return null;
         }
 
-        boolean isKeyValue = XMLUtils.elementIsInSignatureSpace(element,
-                Constants._TAG_KEYVALUE);
+        boolean isKeyValue = XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_KEYVALUE);
         Element rsaKeyElement = null;
         if (isKeyValue) {
-            rsaKeyElement = XMLUtils.selectDsNode(element.getFirstChild(),
-                    Constants._TAG_RSAKEYVALUE, 0);
-        } else if (XMLUtils.elementIsInSignatureSpace(element,
-                Constants._TAG_RSAKEYVALUE)) {
+            rsaKeyElement = XMLUtils.selectDsNode(element.getFirstChild(), Constants._TAG_RSAKEYVALUE, 0);
+        } else if (XMLUtils.elementIsInSignatureSpace(element, Constants._TAG_RSAKEYVALUE)) {
             // this trick is needed to allow the RetrievalMethodResolver to eat
             // a
             // ds:RSAKeyValue directly (without KeyValue)
@@ -74,8 +68,7 @@ public class RSAKeyValueResolver extends KeyResolverSpi {
             return rsaKeyValue.getPublicKey();
         } catch (XMLSecurityException ex) {
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                log.log(java.util.logging.Level.FINE, "XMLSecurityException",
-                        ex);
+                log.log(java.util.logging.Level.FINE, "XMLSecurityException", ex);
             }
         }
 
@@ -83,14 +76,14 @@ public class RSAKeyValueResolver extends KeyResolverSpi {
     }
 
     /** @inheritDoc */
-    public X509Certificate engineLookupResolveX509Certificate(Element element,
-            String BaseURI, StorageResolver storage) {
+    public X509Certificate engineLookupResolveX509Certificate(Element element, String BaseURI,
+            StorageResolver storage) {
         return null;
     }
 
     /** @inheritDoc */
-    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(
-            Element element, String BaseURI, StorageResolver storage) {
+    public javax.crypto.SecretKey engineLookupAndResolveSecretKey(Element element, String BaseURI,
+            StorageResolver storage) {
         return null;
     }
 }

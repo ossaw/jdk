@@ -12,8 +12,7 @@
 
 package org.omg.CosNaming;
 
-public abstract class _NamingContextImplBase extends
-        org.omg.CORBA.DynamicImplementation implements
+public abstract class _NamingContextImplBase extends org.omg.CORBA.DynamicImplementation implements
         org.omg.CosNaming.NamingContext {
     // Constructor
     public _NamingContextImplBase() {
@@ -21,8 +20,7 @@ public abstract class _NamingContextImplBase extends
     }
 
     // Type strings for this class and its superclases
-    private static final String _type_ids[] = {
-            "IDL:omg.org/CosNaming/NamingContext:1.0" };
+    private static final String _type_ids[] = { "IDL:omg.org/CosNaming/NamingContext:1.0" };
 
     public String[] _ids() {
         return (String[]) _type_ids.clone();
@@ -52,8 +50,7 @@ public abstract class _NamingContextImplBase extends
                 _n.type(org.omg.CosNaming.NameHelper.type());
                 _list.add_value("n", _n, org.omg.CORBA.ARG_IN.value);
                 org.omg.CORBA.Any _obj = _orb().create_any();
-                _obj.type(org.omg.CORBA.ORB.init().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_objref));
+                _obj.type(org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_objref));
                 _list.add_value("obj", _obj, org.omg.CORBA.ARG_IN.value);
                 r.params(_list);
                 org.omg.CosNaming.NameComponent[] n;
@@ -64,32 +61,27 @@ public abstract class _NamingContextImplBase extends
                     this.bind(n, obj);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound e0) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                            .insert(_except, e0);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.insert(_except, e0);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed e1) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .insert(_except, e1);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.insert(_except, e1);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e2) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .insert(_except, e2);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.insert(_except, e2);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.AlreadyBound e3) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                            .insert(_except, e3);
+                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.insert(_except, e3);
                     r.except(_except);
                     return;
                 }
                 org.omg.CORBA.Any __return = _orb().create_any();
-                __return.type(_orb().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_void));
+                __return.type(_orb().get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
                 r.result(__return);
             }
                 break;
@@ -111,32 +103,27 @@ public abstract class _NamingContextImplBase extends
                     this.bind_context(n, nc);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound e0) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                            .insert(_except, e0);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.insert(_except, e0);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed e1) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .insert(_except, e1);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.insert(_except, e1);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e2) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .insert(_except, e2);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.insert(_except, e2);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.AlreadyBound e3) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                            .insert(_except, e3);
+                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.insert(_except, e3);
                     r.except(_except);
                     return;
                 }
                 org.omg.CORBA.Any __return = _orb().create_any();
-                __return.type(_orb().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_void));
+                __return.type(_orb().get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
                 r.result(__return);
             }
                 break;
@@ -147,8 +134,7 @@ public abstract class _NamingContextImplBase extends
                 _n.type(org.omg.CosNaming.NameHelper.type());
                 _list.add_value("n", _n, org.omg.CORBA.ARG_IN.value);
                 org.omg.CORBA.Any _obj = _orb().create_any();
-                _obj.type(org.omg.CORBA.ORB.init().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_objref));
+                _obj.type(org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_objref));
                 _list.add_value("obj", _obj, org.omg.CORBA.ARG_IN.value);
                 r.params(_list);
                 org.omg.CosNaming.NameComponent[] n;
@@ -159,26 +145,22 @@ public abstract class _NamingContextImplBase extends
                     this.rebind(n, obj);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound e0) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                            .insert(_except, e0);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.insert(_except, e0);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed e1) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .insert(_except, e1);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.insert(_except, e1);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e2) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .insert(_except, e2);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.insert(_except, e2);
                     r.except(_except);
                     return;
                 }
                 org.omg.CORBA.Any __return = _orb().create_any();
-                __return.type(_orb().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_void));
+                __return.type(_orb().get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
                 r.result(__return);
             }
                 break;
@@ -200,26 +182,22 @@ public abstract class _NamingContextImplBase extends
                     this.rebind_context(n, nc);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound e0) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                            .insert(_except, e0);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.insert(_except, e0);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed e1) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .insert(_except, e1);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.insert(_except, e1);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e2) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .insert(_except, e2);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.insert(_except, e2);
                     r.except(_except);
                     return;
                 }
                 org.omg.CORBA.Any __return = _orb().create_any();
-                __return.type(_orb().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_void));
+                __return.type(_orb().get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
                 r.result(__return);
             }
                 break;
@@ -237,20 +215,17 @@ public abstract class _NamingContextImplBase extends
                     ___result = this.resolve(n);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound e0) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                            .insert(_except, e0);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.insert(_except, e0);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed e1) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .insert(_except, e1);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.insert(_except, e1);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e2) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .insert(_except, e2);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.insert(_except, e2);
                     r.except(_except);
                     return;
                 }
@@ -272,26 +247,22 @@ public abstract class _NamingContextImplBase extends
                     this.unbind(n);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound e0) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                            .insert(_except, e0);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.insert(_except, e0);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed e1) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .insert(_except, e1);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.insert(_except, e1);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e2) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .insert(_except, e2);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.insert(_except, e2);
                     r.except(_except);
                     return;
                 }
                 org.omg.CORBA.Any __return = _orb().create_any();
-                __return.type(_orb().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_void));
+                __return.type(_orb().get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
                 r.result(__return);
             }
                 break;
@@ -299,10 +270,8 @@ public abstract class _NamingContextImplBase extends
             {
                 org.omg.CORBA.NVList _list = _orb().create_list(0);
                 org.omg.CORBA.Any _how_many = _orb().create_any();
-                _how_many.type(org.omg.CORBA.ORB.init().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_ulong));
-                _list.add_value("how_many", _how_many,
-                        org.omg.CORBA.ARG_IN.value);
+                _how_many.type(org.omg.CORBA.ORB.init().get_primitive_tc(org.omg.CORBA.TCKind.tk_ulong));
+                _list.add_value("how_many", _how_many, org.omg.CORBA.ARG_IN.value);
                 org.omg.CORBA.Any _bl = _orb().create_any();
                 _bl.type(org.omg.CosNaming.BindingListHelper.type());
                 _list.add_value("bl", _bl, org.omg.CORBA.ARG_OUT.value);
@@ -320,8 +289,7 @@ public abstract class _NamingContextImplBase extends
                 org.omg.CosNaming.BindingListHelper.insert(_bl, bl.value);
                 org.omg.CosNaming.BindingIteratorHelper.insert(_bi, bi.value);
                 org.omg.CORBA.Any __return = _orb().create_any();
-                __return.type(_orb().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_void));
+                __return.type(_orb().get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
                 r.result(__return);
             }
                 break;
@@ -332,8 +300,7 @@ public abstract class _NamingContextImplBase extends
                 org.omg.CosNaming.NamingContext ___result;
                 ___result = this.new_context();
                 org.omg.CORBA.Any __result = _orb().create_any();
-                org.omg.CosNaming.NamingContextHelper.insert(__result,
-                        ___result);
+                org.omg.CosNaming.NamingContextHelper.insert(__result, ___result);
                 r.result(__result);
             }
                 break;
@@ -351,32 +318,27 @@ public abstract class _NamingContextImplBase extends
                     ___result = this.bind_new_context(n);
                 } catch (org.omg.CosNaming.NamingContextPackage.NotFound e0) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper
-                            .insert(_except, e0);
+                    org.omg.CosNaming.NamingContextPackage.NotFoundHelper.insert(_except, e0);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.AlreadyBound e1) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper
-                            .insert(_except, e1);
+                    org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper.insert(_except, e1);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.CannotProceed e2) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper
-                            .insert(_except, e2);
+                    org.omg.CosNaming.NamingContextPackage.CannotProceedHelper.insert(_except, e2);
                     r.except(_except);
                     return;
                 } catch (org.omg.CosNaming.NamingContextPackage.InvalidName e3) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper
-                            .insert(_except, e3);
+                    org.omg.CosNaming.NamingContextPackage.InvalidNameHelper.insert(_except, e3);
                     r.except(_except);
                     return;
                 }
                 org.omg.CORBA.Any __result = _orb().create_any();
-                org.omg.CosNaming.NamingContextHelper.insert(__result,
-                        ___result);
+                org.omg.CosNaming.NamingContextHelper.insert(__result, ___result);
                 r.result(__result);
             }
                 break;
@@ -388,20 +350,17 @@ public abstract class _NamingContextImplBase extends
                     this.destroy();
                 } catch (org.omg.CosNaming.NamingContextPackage.NotEmpty e0) {
                     org.omg.CORBA.Any _except = _orb().create_any();
-                    org.omg.CosNaming.NamingContextPackage.NotEmptyHelper
-                            .insert(_except, e0);
+                    org.omg.CosNaming.NamingContextPackage.NotEmptyHelper.insert(_except, e0);
                     r.except(_except);
                     return;
                 }
                 org.omg.CORBA.Any __return = _orb().create_any();
-                __return.type(_orb().get_primitive_tc(
-                        org.omg.CORBA.TCKind.tk_void));
+                __return.type(_orb().get_primitive_tc(org.omg.CORBA.TCKind.tk_void));
                 r.result(__return);
             }
                 break;
             default:
-                throw new org.omg.CORBA.BAD_OPERATION(0,
-                        org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
+                throw new org.omg.CORBA.BAD_OPERATION(0, org.omg.CORBA.CompletionStatus.COMPLETED_MAYBE);
         }
     }
 }

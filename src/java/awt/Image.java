@@ -29,8 +29,7 @@ public abstract class Image {
      * that do not create their own image caps; it holds the default
      * (unaccelerated) properties.
      */
-    private static ImageCapabilities defaultImageCaps = new ImageCapabilities(
-            false);
+    private static ImageCapabilities defaultImageCaps = new ImageCapabilities(false);
 
     /**
      * Priority for accelerating this image. Subclasses are free to set
@@ -48,7 +47,7 @@ public abstract class Image {
      * <code>ImageObserver</code> object is notified later.
      * 
      * @param observer
-     *                 an object waiting for the image to be loaded.
+     *        an object waiting for the image to be loaded.
      * @return the width of this image, or <code>-1</code> if the width is not
      *         yet known.
      * @see java.awt.Image#getHeight
@@ -62,7 +61,7 @@ public abstract class Image {
      * <code>ImageObserver</code> object is notified later.
      * 
      * @param observer
-     *                 an object waiting for the image to be loaded.
+     *        an object waiting for the image to be loaded.
      * @return the height of this image, or <code>-1</code> if the height is not
      *         yet known.
      * @see java.awt.Image#getWidth
@@ -86,8 +85,8 @@ public abstract class Image {
      * 
      * @return a graphics context to draw to the off-screen image.
      * @exception UnsupportedOperationException
-     *                                          if called for a non-off-screen
-     *                                          image.
+     *            if called for a non-off-screen
+     *            image.
      * @see java.awt.Graphics
      * @see java.awt.Component#createImage(int, int)
      */
@@ -109,12 +108,12 @@ public abstract class Image {
      * description of the image, its source, or its author.
      * 
      * @param name
-     *                 a property name.
+     *        a property name.
      * @param observer
-     *                 an object waiting for this image to be loaded.
+     *        an object waiting for this image to be loaded.
      * @return the value of the named property.
      * @throws NullPointerException
-     *                              if the property name is null.
+     *         if the property name is null.
      * @see java.awt.image.ImageObserver
      * @see java.awt.Image#UndefinedProperty
      */
@@ -132,25 +131,23 @@ public abstract class Image {
      * <code>width</code> and <code>height</code> by default. The new
      * <code>Image</code> object may be loaded asynchronously even if the
      * original source image has already been loaded completely.
-     *
      * <p>
-     *
      * If either <code>width</code> or <code>height</code> is a negative number
      * then a value is substituted to maintain the aspect ratio of the original
      * image dimensions. If both <code>width</code> and <code>height</code> are
      * negative, then the original image dimensions are used.
      *
      * @param width
-     *               the width to which to scale the image.
+     *        the width to which to scale the image.
      * @param height
-     *               the height to which to scale the image.
+     *        the height to which to scale the image.
      * @param hints
-     *               flags to indicate the type of algorithm to use for image
-     *               resampling.
+     *        flags to indicate the type of algorithm to use for image
+     *        resampling.
      * @return a scaled version of the image.
      * @exception IllegalArgumentException
-     *                                     if <code>width</code> or
-     *                                     <code>height</code> is zero.
+     *            if <code>width</code> or
+     *            <code>height</code> is zero.
      * @see java.awt.Image#SCALE_DEFAULT
      * @see java.awt.Image#SCALE_FAST
      * @see java.awt.Image#SCALE_SMOOTH
@@ -261,10 +258,10 @@ public abstract class Image {
      * on this GraphicsConfiguration.
      * 
      * @param gc
-     *           a <code>GraphicsConfiguration</code> object. A value of null
-     *           for this parameter will result in getting the image
-     *           capabilities for the default
-     *           <code>GraphicsConfiguration</code>.
+     *        a <code>GraphicsConfiguration</code> object. A value of null
+     *        for this parameter will result in getting the image
+     *        capabilities for the default
+     *        <code>GraphicsConfiguration</code>.
      * @return an <code>ImageCapabilities</code> object that contains the
      *         capabilities of this <code>Image</code> on the specified
      *         GraphicsConfiguration.
@@ -297,23 +294,22 @@ public abstract class Image {
      * first-served basis.
      * 
      * @param priority
-     *                 a value between 0 and 1, inclusive, where higher values
-     *                 indicate more importance for acceleration. A value of 0
-     *                 means
-     *                 that this Image should never be accelerated. Other values
-     *                 are
-     *                 used simply to determine acceleration priority relative
-     *                 to
-     *                 other Images.
+     *        a value between 0 and 1, inclusive, where higher values
+     *        indicate more importance for acceleration. A value of 0
+     *        means
+     *        that this Image should never be accelerated. Other values
+     *        are
+     *        used simply to determine acceleration priority relative
+     *        to
+     *        other Images.
      * @throws IllegalArgumentException
-     *                                  if <code>priority</code> is less than
-     *                                  zero or greater than 1.
+     *         if <code>priority</code> is less than
+     *         zero or greater than 1.
      * @since 1.5
      */
     public void setAccelerationPriority(float priority) {
         if (priority < 0 || priority > 1) {
-            throw new IllegalArgumentException("Priority must be a value "
-                    + "between 0 and 1, inclusive");
+            throw new IllegalArgumentException("Priority must be a value " + "between 0 and 1, inclusive");
         }
         accelerationPriority = priority;
         if (surfaceManager != null) {

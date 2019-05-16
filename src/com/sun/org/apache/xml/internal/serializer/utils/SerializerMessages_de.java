@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * map to are defined here.
  * <p>
  * The messages in the English version are intended to be translated.
- *
  * This class is not a public API, it is only public because it is used in
  * com.sun.org.apache.xml.internal.serializer.
  *
@@ -72,11 +71,9 @@ public class SerializerMessages_de extends ListResourceBundle {
                 { MsgKey.ER_RESOURCE_COULD_NOT_LOAD,
                         "Ressource [ {0} ] konnte nicht geladen werden: {1} \n {2} \t {3}" },
 
-                { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO,
-                        "Puffergr\u00F6\u00DFe <=0" },
+                { MsgKey.ER_BUFFER_SIZE_LESSTHAN_ZERO, "Puffergr\u00F6\u00DFe <=0" },
 
-                { MsgKey.ER_INVALID_UTF16_SURROGATE,
-                        "Ung\u00FCltige UTF-16-Ersetzung festgestellt: {0}?" },
+                { MsgKey.ER_INVALID_UTF16_SURROGATE, "Ung\u00FCltige UTF-16-Ersetzung festgestellt: {0}?" },
 
                 { MsgKey.ER_OIERROR, "I/O-Fehler" },
 
@@ -98,8 +95,7 @@ public class SerializerMessages_de extends ListResourceBundle {
                  * element. The substitution text specifies the name of the
                  * attribute.
                  */
-                { MsgKey.ER_STRAY_ATTRIBUTE,
-                        "Attribut \"{0}\" au\u00DFerhalb des Elements." },
+                { MsgKey.ER_STRAY_ATTRIBUTE, "Attribut \"{0}\" au\u00DFerhalb des Elements." },
 
                 /*
                  * Note to translators: As with the preceding message, a
@@ -108,8 +104,7 @@ public class SerializerMessages_de extends ListResourceBundle {
                  * {0} is the namespace prefix and {1} is the URI that was being
                  * used in the erroneous namespace declaration.
                  */
-                { MsgKey.ER_STRAY_NAMESPACE,
-                        "Namespace-Deklaration {0}={1} au\u00DFerhalb des Elements." },
+                { MsgKey.ER_STRAY_NAMESPACE, "Namespace-Deklaration {0}={1} au\u00DFerhalb des Elements." },
 
                 { MsgKey.ER_COULD_NOT_LOAD_RESOURCE,
                         "\"{0}\" konnte nicht geladen werden (CLASSPATH pr\u00FCfen). Die Standardwerte werden verwendet" },
@@ -125,11 +120,9 @@ public class SerializerMessages_de extends ListResourceBundle {
                 { MsgKey.ER_PORT_WHEN_HOST_NULL,
                         "Port kann nicht festgelegt werden, wenn der Host null ist" },
 
-                { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED,
-                        "Host ist keine wohlgeformte Adresse" },
+                { MsgKey.ER_HOST_ADDRESS_NOT_WELLFORMED, "Host ist keine wohlgeformte Adresse" },
 
-                { MsgKey.ER_SCHEME_NOT_CONFORMANT,
-                        "Schema ist nicht konform." },
+                { MsgKey.ER_SCHEME_NOT_CONFORMANT, "Schema ist nicht konform." },
 
                 { MsgKey.ER_SCHEME_FROM_NULL_STRING,
                         "Schema kann nicht von Nullzeichenfolge festgelegt werden" },
@@ -137,11 +130,9 @@ public class SerializerMessages_de extends ListResourceBundle {
                 { MsgKey.ER_PATH_CONTAINS_INVALID_ESCAPE_SEQUENCE,
                         "Pfad enth\u00E4lt eine ung\u00FCltige Escapesequenz" },
 
-                { MsgKey.ER_PATH_INVALID_CHAR,
-                        "Pfad enth\u00E4lt ung\u00FCltiges Zeichen: {0}" },
+                { MsgKey.ER_PATH_INVALID_CHAR, "Pfad enth\u00E4lt ung\u00FCltiges Zeichen: {0}" },
 
-                { MsgKey.ER_FRAG_INVALID_CHAR,
-                        "Fragment enth\u00E4lt ein ung\u00FCltiges Zeichen" },
+                { MsgKey.ER_FRAG_INVALID_CHAR, "Fragment enth\u00E4lt ein ung\u00FCltiges Zeichen" },
 
                 { MsgKey.ER_FRAG_WHEN_PATH_NULL,
                         "Fragment kann nicht festgelegt werden, wenn der Pfad null ist" },

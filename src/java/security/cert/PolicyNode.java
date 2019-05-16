@@ -11,28 +11,24 @@ import java.util.Set;
 /**
  * An immutable valid policy tree node as defined by the PKIX certification path
  * validation algorithm.
- *
  * <p>
  * One of the outputs of the PKIX certification path validation algorithm is a
  * valid policy tree, which includes the policies that were determined to be
  * valid, how this determination was reached, and any policy qualifiers
  * encountered. This tree is of depth <i>n</i>, where <i>n</i> is the length of
  * the certification path that has been validated.
- *
  * <p>
  * Most applications will not need to examine the valid policy tree. They can
  * achieve their policy processing goals by setting the policy-related
  * parameters in {@code PKIXParameters}. However, the valid policy tree is
  * available for more sophisticated applications, especially those that process
  * policy qualifiers.
- *
  * <p>
  * {@link PKIXCertPathValidatorResult#getPolicyTree()
  * PKIXCertPathValidatorResult.getPolicyTree} returns the root node of the valid
  * policy tree. The tree can be traversed using the {@link #getChildren
  * getChildren} and {@link #getParent getParent} methods. Data about a
  * particular node can be retrieved using other methods of {@code PolicyNode}.
- *
  * <p>
  * <b>Concurrent Access</b>
  * <p>

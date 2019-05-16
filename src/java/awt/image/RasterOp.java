@@ -38,9 +38,9 @@ public interface RasterOp {
      * allowed by the class implementing this filter.
      * 
      * @param src
-     *             the source <code>Raster</code>
+     *        the source <code>Raster</code>
      * @param dest
-     *             the destination <code>WritableRaster</code>
+     *        the destination <code>WritableRaster</code>
      * @return a <code>WritableRaster</code> that represents the result of the
      *         filtering operation.
      */
@@ -53,7 +53,7 @@ public interface RasterOp {
      * this filter.
      * 
      * @param src
-     *            the source <code>Raster</code>
+     *        the source <code>Raster</code>
      * @return a <code>Rectangle2D</code> that is the bounding box of the
      *         <code>Raster</code> resulting from the filtering operation.
      */
@@ -66,7 +66,7 @@ public interface RasterOp {
      * this filter.
      * 
      * @param src
-     *            the source <code>Raster</code>
+     *        the source <code>Raster</code>
      * @return a <code>WritableRaster</code> that is compatible with
      *         <code>src</code>
      */
@@ -77,9 +77,9 @@ public interface RasterOp {
      * Raster. If dstPt is non-null, it will be used to hold the return value.
      * 
      * @param srcPt
-     *              the source <code>Point2D</code>
+     *        the source <code>Point2D</code>
      * @param dstPt
-     *              the destination <code>Point2D</code>
+     *        the destination <code>Point2D</code>
      * @return the location of the destination point.
      */
     public Point2D getPoint2D(Point2D srcPt, Point2D dstPt);

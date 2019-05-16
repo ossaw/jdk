@@ -19,8 +19,7 @@ package org.omg.CORBA;
 abstract public class ParameterModeHelper {
     private static String _id = "IDL:omg.org/CORBA/ParameterMode:1.0";
 
-    public static void insert(org.omg.CORBA.Any a,
-            org.omg.CORBA.ParameterMode that) {
+    public static void insert(org.omg.CORBA.Any a, org.omg.CORBA.ParameterMode that) {
         org.omg.CORBA.portable.OutputStream out = a.create_output_stream();
         a.type(type());
         write(out, that);
@@ -35,9 +34,8 @@ abstract public class ParameterModeHelper {
 
     synchronized public static org.omg.CORBA.TypeCode type() {
         if (__typeCode == null) {
-            __typeCode = org.omg.CORBA.ORB.init().create_enum_tc(
-                    org.omg.CORBA.ParameterModeHelper.id(), "ParameterMode",
-                    new String[] { "PARAM_IN", "PARAM_OUT", "PARAM_INOUT" });
+            __typeCode = org.omg.CORBA.ORB.init().create_enum_tc(org.omg.CORBA.ParameterModeHelper.id(),
+                    "ParameterMode", new String[] { "PARAM_IN", "PARAM_OUT", "PARAM_INOUT" });
         }
         return __typeCode;
     }
@@ -46,13 +44,11 @@ abstract public class ParameterModeHelper {
         return _id;
     }
 
-    public static org.omg.CORBA.ParameterMode read(
-            org.omg.CORBA.portable.InputStream istream) {
+    public static org.omg.CORBA.ParameterMode read(org.omg.CORBA.portable.InputStream istream) {
         return org.omg.CORBA.ParameterMode.from_int(istream.read_long());
     }
 
-    public static void write(org.omg.CORBA.portable.OutputStream ostream,
-            org.omg.CORBA.ParameterMode value) {
+    public static void write(org.omg.CORBA.portable.OutputStream ostream, org.omg.CORBA.ParameterMode value) {
         ostream.write_long(value.value());
     }
 

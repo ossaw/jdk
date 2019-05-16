@@ -12,19 +12,16 @@ import javax.security.auth.Subject;
 /**
  * This class represents a default implementation for
  * <code>javax.security.auth.Policy</code>.
- *
  * <p>
  * This object stores the policy for entire Java runtime, and is the
  * amalgamation of multiple static policy configurations that resides in files.
  * The algorithm for locating the policy file(s) and reading their information
  * into this <code>Policy</code> object is:
- *
  * <ol>
  * <li>Loop through the security properties, <i>auth.policy.url.1</i>,
  * <i>auth.policy.url.2</i>, ..., <i>auth.policy.url.X</i>". Each property value
  * specifies a <code>URL</code> pointing to a policy file to be loaded. Read in
  * and load each policy.
- *
  * <li>The <code>java.lang.System</code> property
  * <i>java.security.auth.policy</i> may also be set to a <code>URL</code>
  * pointing to another policy file (which is the case when a user uses the -D
@@ -32,12 +29,10 @@ import javax.security.auth.Subject;
  * the security property file (the Security property,
  * <i>policy.allowSystemProperty</i> is set to <i>true</i>), also load that
  * policy.
- *
  * <li>If the <i>java.security.auth.policy</i> property is defined using "=="
  * (rather than "="), then ignore all other specified policies and only load
  * this policy.
  * </ol>
- *
  * Each policy file consists of one or more grant entries, each of which
  * consists of a number of permission entries.
  *
@@ -58,7 +53,6 @@ import javax.security.auth.Subject;
  * All non-bold items above must appear as is (although case doesn't matter and
  * some are optional, as noted below). Italicized items represent variable
  * values.
- *
  * <p>
  * A grant entry must begin with the word <code>grant</code>. The
  * <code>signedBy</code> and <code>codeBase</code> name/value pairs are
@@ -71,13 +65,11 @@ import javax.security.auth.Subject;
  * be set to the wildcard value, *, allowing it to match any
  * <code>Principal</code> name. When setting the <i>principalName</i> to the *,
  * do not surround the * with quotes.
- *
  * <p>
  * A permission entry must begin with the word <code>permission</code>. The word
  * <code><i>Type</i></code> in the template above is a specific permission type,
  * such as <code>java.io.FilePermission</code> or
  * <code>java.lang.RuntimePermission</code>.
- *
  * <p>
  * The "<i>action</i>" is required for many permission types, such as
  * <code>java.io.FilePermission</code> (where it specifies what type of file
@@ -85,7 +77,6 @@ import javax.security.auth.Subject;
  * <code>java.lang.RuntimePermission</code> where it is not necessary - you
  * either have the permission specified by the <code>"<i>name</i>"</code> value
  * following the type name or you don't.
- *
  * <p>
  * The <code>signedBy</code> name/value pair for a permission entry is optional.
  * If present, it indicates a signed permission. That is, the permission class
@@ -97,24 +88,20 @@ import javax.security.auth.Subject;
  *     permission Foo "foobar", signedBy "FooSoft";
  *   }
  * </pre>
- *
  * <p>
  * Then this permission of type <i>Foo</i> is granted if the
  * <code>Foo.class</code> permission has been signed by the "FooSoft" alias, or
  * if <code>Foo.class</code> is a system class (i.e., is found on the
  * CLASSPATH).
- *
  * <p>
  * Items that appear in an entry must appear in the specified order (
  * <code>permission</code>, <i>Type</i>, "<i>name</i>", and "<i>action</i>"). An
  * entry is terminated with a semicolon.
- *
  * <p>
  * Case is unimportant for the identifiers (<code>permission</code>,
  * <code>signedBy</code>, <code>codeBase</code>, etc.) but is significant for
  * the <i>Type</i> or for any string that is passed in as a value.
  * <p>
- *
  * <p>
  * An example of two entries in a policy configuration file is
  * 
@@ -132,7 +119,6 @@ import javax.security.auth.Subject;
  *   grant principal foo.com.Principal "Duke" {
  *         permission java.util.PropertyPermission "java.vendor";
  * </pre>
- *
  * <p>
  * This <code>Policy</code> implementation supports special handling for
  * PrivateCredentialPermissions. If a grant entry is configured with a
@@ -188,7 +174,6 @@ import javax.security.auth.Subject;
  * @deprecated As of JDK&nbsp;1.4, replaced by
  *             <code>sun.security.provider.PolicyFile</code>. This class is
  *             entirely deprecated.
- *
  * @see java.security.CodeSource
  * @see java.security.Permissions
  * @see java.security.ProtectionDomain
@@ -210,13 +195,12 @@ public class PolicyFile extends javax.security.auth.Policy {
 
     /**
      * Refreshes the policy object by re-reading all the policy files.
-     *
      * <p>
      *
      * @exception SecurityException
-     *                              if the caller doesn't have permission to
-     *                              refresh the
-     *                              <code>Policy</code>.
+     *            if the caller doesn't have permission to
+     *            refresh the
+     *            <code>Policy</code>.
      */
     @Override
     public void refresh() {
@@ -226,7 +210,6 @@ public class PolicyFile extends javax.security.auth.Policy {
     /**
      * Examines this <code>Policy</code> and returns the Permissions granted to
      * the specified <code>Subject</code> and <code>CodeSource</code>.
-     *
      * <p>
      * Permissions for a particular <i>grant</i> entry are returned if the
      * <code>CodeSource</code> constructed using the codebase and signedby
@@ -234,23 +217,19 @@ public class PolicyFile extends javax.security.auth.Policy {
      * <code>CodeSource</code> provided to this method, and if the
      * <code>Subject</code> provided to this method contains all of the
      * Principals specified in the entry.
-     *
      * <p>
      * The <code>Subject</code> provided to this method contains all of the
      * Principals specified in the entry if, for each <code>Principal</code>,
      * "P1", specified in the <i>grant</i> entry one of the following two
      * conditions is met:
-     *
      * <p>
      * <ol>
      * <li>the <code>Subject</code> has a <code>Principal</code>, "P2", where
      * <code>P2.getClass().getName()</code> equals the P1's class name, and
      * where <code>P2.getName()</code> equals the P1's name.
-     *
      * <li>P1 implements <code>com.sun.security.auth.PrincipalComparator</code>,
      * and <code>P1.implies</code> the provided <code>Subject</code>.
      * </ol>
-     *
      * <p>
      * Note that this <code>Policy</code> implementation has special handling
      * for PrivateCredentialPermissions. When this method encounters a
@@ -263,28 +242,24 @@ public class PolicyFile extends javax.security.auth.Policy {
      * contains the same Credential class as specified in the originally granted
      * permission, as well as the Class and name for the respective
      * <code>Principal</code>.
-     *
      * <p>
      *
      * @param subject
-     *                   the Permissions granted to this <code>Subject</code>
-     *                   and the
-     *                   additionally provided <code>CodeSource</code> are
-     *                   returned.
-     *                   <p>
-     *
+     *        the Permissions granted to this <code>Subject</code>
+     *        and the
+     *        additionally provided <code>CodeSource</code> are
+     *        returned.
+     *        <p>
      * @param codesource
-     *                   the Permissions granted to this <code>CodeSource</code>
-     *                   and
-     *                   the additionally provided <code>Subject</code> are
-     *                   returned.
-     *
+     *        the Permissions granted to this <code>CodeSource</code>
+     *        and
+     *        the additionally provided <code>Subject</code> are
+     *        returned.
      * @return the Permissions granted to the provided <code>Subject</code>
      *         <code>CodeSource</code>.
      */
     @Override
-    public PermissionCollection getPermissions(final Subject subject,
-            final CodeSource codesource) {
+    public PermissionCollection getPermissions(final Subject subject, final CodeSource codesource) {
         return apf.getPermissions(subject, codesource);
     }
 }

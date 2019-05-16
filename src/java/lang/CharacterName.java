@@ -24,11 +24,10 @@ class CharacterName {
             return strPool;
         DataInputStream dis = null;
         try {
-            dis = new DataInputStream(new InflaterInputStream(AccessController
-                    .doPrivileged(new PrivilegedAction<InputStream>() {
+            dis = new DataInputStream(new InflaterInputStream(AccessController.doPrivileged(
+                    new PrivilegedAction<InputStream>() {
                         public InputStream run() {
-                            return getClass().getResourceAsStream(
-                                    "uniName.dat");
+                            return getClass().getResourceAsStream("uniName.dat");
                         }
                     })));
 
@@ -46,8 +45,7 @@ class CharacterName {
                 if (len == 0) {
                     len = ba[cpOff++] & 0xff;
                     // always big-endian
-                    cp = ((ba[cpOff++] & 0xff) << 16) | ((ba[cpOff++]
-                            & 0xff) << 8) | ((ba[cpOff++] & 0xff));
+                    cp = ((ba[cpOff++] & 0xff) << 16) | ((ba[cpOff++] & 0xff) << 8) | ((ba[cpOff++] & 0xff));
                 } else {
                     cp++;
                 }
@@ -67,8 +65,7 @@ class CharacterName {
             try {
                 if (dis != null)
                     dis.close();
-            } catch (Exception xx) {
-            }
+            } catch (Exception xx) {}
         }
         return strPool;
     }

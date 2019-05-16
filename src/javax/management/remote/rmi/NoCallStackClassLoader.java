@@ -22,14 +22,12 @@ import java.security.ProtectionDomain;
  * javax.management.remote, if the class you're looking for is known to the
  * loader of jmxremote.jar (typically the system class loader) then that loader
  * will load it. This contradicts the class-loading semantics required.
- * 
  * <p>
  * We get around the problem by ensuring that the search up the call stack will
  * find a non-null class loader that doesn't load any classes of interest,
  * namely this one. So even though this loader is indeed consulted during
  * deserialization, it never finds the class being deserialized. RMI then
  * proceeds to use the context class loader, as we require.
- * 
  * <p>
  * This loader is constructed with the name and byte-code of one or more classes
  * that it defines, and a class-loader to which it will delegate certain other
@@ -39,7 +37,6 @@ import java.security.ProtectionDomain;
  * stringToBytes method to convert it into the byte array. We compile with
  * -g:none because there's not much point in having line-number information and
  * the like in these directly-encoded classes.
- * 
  * <p>
  * The referencedClassNames should contain the names of all classes that are
  * referenced by the classes defined by this loader. It is not necessary to
@@ -54,22 +51,20 @@ import java.security.ProtectionDomain;
 
 class NoCallStackClassLoader extends ClassLoader {
     /** Simplified constructor when this loader only defines one class. */
-    public NoCallStackClassLoader(String className, byte[] byteCode,
-            String[] referencedClassNames, ClassLoader referencedClassLoader,
-            ProtectionDomain protectionDomain) {
-        this(new String[] { className }, new byte[][] { byteCode },
-                referencedClassNames, referencedClassLoader, protectionDomain);
+    public NoCallStackClassLoader(String className, byte[] byteCode, String[] referencedClassNames,
+            ClassLoader referencedClassLoader, ProtectionDomain protectionDomain) {
+        this(new String[] { className }, new byte[][] { byteCode }, referencedClassNames,
+                referencedClassLoader, protectionDomain);
     }
 
-    public NoCallStackClassLoader(String[] classNames, byte[][] byteCodes,
-            String[] referencedClassNames, ClassLoader referencedClassLoader,
-            ProtectionDomain protectionDomain) {
+    public NoCallStackClassLoader(String[] classNames, byte[][] byteCodes, String[] referencedClassNames,
+            ClassLoader referencedClassLoader, ProtectionDomain protectionDomain) {
         super(null);
 
         /* Validation. */
         if (classNames == null || classNames.length == 0 || byteCodes == null
-                || classNames.length != byteCodes.length
-                || referencedClassNames == null || protectionDomain == null)
+                || classNames.length != byteCodes.length || referencedClassNames == null
+                || protectionDomain == null)
             throw new IllegalArgumentException();
         for (int i = 0; i < classNames.length; i++) {
             if (classNames[i] == null || byteCodes[i] == null)
@@ -97,8 +92,7 @@ class NoCallStackClassLoader extends ClassLoader {
         // Note: classNames is guaranteed by the constructor to be non-null.
         for (int i = 0; i < classNames.length; i++) {
             if (name.equals(classNames[i])) {
-                return defineClass(classNames[i], byteCodes[i], 0,
-                        byteCodes[i].length, protectionDomain);
+                return defineClass(classNames[i], byteCodes[i], 0, byteCodes[i].length, protectionDomain);
             }
         }
 
@@ -132,7 +126,6 @@ class NoCallStackClassLoader extends ClassLoader {
      * up much less space in a class file than the byte code to initialize a
      * <code>byte[]</code> with the same number of bytes.
      * </p>
-     *
      * <p>
      * We use just one byte per character even though characters contain two
      * bytes. The resultant output length is much the same: using one byte per
@@ -143,7 +136,6 @@ class NoCallStackClassLoader extends ClassLoader {
      * reassuring, (2) you don't need to know whether the class file length is
      * odd.
      * </p>
-     *
      * <p>
      * This method differs from {@link String#getBytes()} in that it does not
      * use any encoding. So it is guaranteed that each byte of the result is

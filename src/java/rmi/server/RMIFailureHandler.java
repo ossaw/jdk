@@ -27,8 +27,8 @@ public interface RMIFailureHandler {
      * re-create the ServerSocket.
      *
      * @param ex
-     *           the exception that occurred during <code>ServerSocket</code>
-     *           creation
+     *        the exception that occurred during <code>ServerSocket</code>
+     *        creation
      * @return if true, the RMI runtime attempts to retry
      *         <code>ServerSocket</code> creation
      * @see java.rmi.server.RMISocketFactory#setFailureHandler(RMIFailureHandler)

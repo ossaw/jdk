@@ -26,24 +26,23 @@ public interface SnmpAccessControlModel extends SnmpModel {
      * the <CODE>checkPduAccess</CODE> pdu based method.
      * 
      * @param version
-     *                      The SNMP protocol version number.
+     *        The SNMP protocol version number.
      * @param principal
-     *                      The request principal.
+     *        The request principal.
      * @param securityLevel
-     *                      The request security level as defined in
-     *                      <CODE>SnmpEngine</CODE>.
+     *        The request security level as defined in
+     *        <CODE>SnmpEngine</CODE>.
      * @param pduType
-     *                      The pdu type (get, set, ...).
+     *        The pdu type (get, set, ...).
      * @param securityModel
-     *                      The security model ID.
+     *        The security model ID.
      * @param contextName
-     *                      The access control context name.
+     *        The access control context name.
      * @param oid
-     *                      The OID to check.
+     *        The OID to check.
      */
-    public void checkAccess(int version, String principal, int securityLevel,
-            int pduType, int securityModel, byte[] contextName, SnmpOid oid)
-            throws SnmpStatusException;
+    public void checkAccess(int version, String principal, int securityLevel, int pduType, int securityModel,
+            byte[] contextName, SnmpOid oid) throws SnmpStatusException;
 
     /**
      * Method called by the dispatcher in order to control the access at an SNMP
@@ -53,24 +52,23 @@ public interface SnmpAccessControlModel extends SnmpModel {
      * <CODE>checkAccess</CODE> OID based method.
      * 
      * @param version
-     *                      The SNMP protocol version number.
+     *        The SNMP protocol version number.
      * @param principal
-     *                      The request principal.
+     *        The request principal.
      * @param securityLevel
-     *                      The request security level as defined in
-     *                      <CODE>SnmpEngine</CODE>.
+     *        The request security level as defined in
+     *        <CODE>SnmpEngine</CODE>.
      * @param pduType
-     *                      The pdu type (get, set, ...).
+     *        The pdu type (get, set, ...).
      * @param securityModel
-     *                      The security model ID.
+     *        The security model ID.
      * @param contextName
-     *                      The access control context name.
+     *        The access control context name.
      * @param pdu
-     *                      The pdu to check.
+     *        The pdu to check.
      */
-    public void checkPduAccess(int version, String principal, int securityLevel,
-            int pduType, int securityModel, byte[] contextName, SnmpPdu pdu)
-            throws SnmpStatusException;
+    public void checkPduAccess(int version, String principal, int securityLevel, int pduType,
+            int securityModel, byte[] contextName, SnmpPdu pdu) throws SnmpStatusException;
 
     /**
      * Enable SNMP V1 and V2 set requests. Be aware that can lead to a security

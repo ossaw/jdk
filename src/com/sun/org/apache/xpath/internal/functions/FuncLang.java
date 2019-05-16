@@ -36,13 +36,11 @@ public class FuncLang extends FunctionOneArg {
      * Execute the function. The function must return a valid object.
      * 
      * @param xctxt
-     *              The current execution context.
+     *        The current execution context.
      * @return A valid XObject.
-     *
      * @throws javax.xml.transform.TransformerException
      */
-    public XObject execute(XPathContext xctxt)
-            throws javax.xml.transform.TransformerException {
+    public XObject execute(XPathContext xctxt) throws javax.xml.transform.TransformerException {
 
         String lang = m_arg0.execute(xctxt).str();
         int parent = xctxt.getCurrentNode();
@@ -51,8 +49,7 @@ public class FuncLang extends FunctionOneArg {
 
         while (DTM.NULL != parent) {
             if (DTM.ELEMENT_NODE == dtm.getNodeType(parent)) {
-                int langAttr = dtm.getAttributeNode(parent,
-                        "http://www.w3.org/XML/1998/namespace", "lang");
+                int langAttr = dtm.getAttributeNode(parent, "http://www.w3.org/XML/1998/namespace", "lang");
 
                 if (DTM.NULL != langAttr) {
                     String langVal = dtm.getNodeValue(langAttr);
@@ -60,8 +57,7 @@ public class FuncLang extends FunctionOneArg {
                     if (langVal.toLowerCase().startsWith(lang.toLowerCase())) {
                         int valLen = lang.length();
 
-                        if ((langVal.length() == valLen) || (langVal.charAt(
-                                valLen) == '-')) {
+                        if ((langVal.length() == valLen) || (langVal.charAt(valLen) == '-')) {
                             isLang = true;
                         }
                     }

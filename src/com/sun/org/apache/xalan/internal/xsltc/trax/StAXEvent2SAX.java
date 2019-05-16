@@ -65,8 +65,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
         return _sax;
     }
 
-    public void setContentHandler(ContentHandler handler)
-            throws NullPointerException {
+    public void setContentHandler(ContentHandler handler) throws NullPointerException {
         _sax = handler;
         if (handler instanceof LexicalHandler) {
             _lex = (LexicalHandler) handler;
@@ -118,8 +117,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
                 startedAtDocument = true;
                 version = ((StartDocument) event).getVersion();
                 if (((StartDocument) event).encodingSet())
-                    encoding = ((StartDocument) event)
-                            .getCharacterEncodingScheme();
+                    encoding = ((StartDocument) event).getCharacterEncodingScheme();
                 event = staxEventReader.nextEvent(); // that gets the one we
                                                      // peeked at
                 event = staxEventReader.nextEvent(); // that really gets the
@@ -147,8 +145,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
                         handleSpace();
                         break;
                     default:
-                        throw new InternalError("processing prolog event: "
-                                + event);
+                        throw new InternalError("processing prolog event: " + event);
                 }
                 event = staxEventReader.nextEvent();
             }
@@ -210,8 +207,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
             if (startedAtDocument) {
                 // Handle the Misc (http://www.w3.org/TR/REC-xml/#NT-Misc) that
                 // can follow the document element
-                while (event
-                        .getEventType() != XMLStreamConstants.END_DOCUMENT) {
+                while (event.getEventType() != XMLStreamConstants.END_DOCUMENT) {
                     switch (event.getEventType()) {
                         case XMLStreamConstants.CHARACTERS:
                             handleCharacters(event.asCharacters());
@@ -226,9 +222,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
                             handleSpace();
                             break;
                         default:
-                            throw new InternalError(
-                                    "processing misc event after document element: "
-                                            + event);
+                            throw new InternalError("processing misc event after document element: " + event);
                     }
                     event = staxEventReader.nextEvent();
                 }
@@ -274,8 +268,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
         _sax.startDocument();
     }
 
-    private void handlePI(ProcessingInstruction event)
-            throws XMLStreamException {
+    private void handlePI(ProcessingInstruction event) throws XMLStreamException {
         try {
             _sax.processingInstruction(event.getTarget(), event.getData());
         } catch (SAXException e) {
@@ -285,8 +278,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
 
     private void handleCharacters(Characters event) throws XMLStreamException {
         try {
-            _sax.characters(event.getData().toCharArray(), 0, event.getData()
-                    .length());
+            _sax.characters(event.getData().toCharArray(), 0, event.getData().length());
         } catch (SAXException e) {
             throw new XMLStreamException(e);
         }
@@ -297,16 +289,14 @@ public class StAXEvent2SAX implements XMLReader, Locator {
 
         // construct prefix:localName from qName
         String qname = "";
-        if (qName.getPrefix() != null && qName.getPrefix().trim()
-                .length() != 0) {
+        if (qName.getPrefix() != null && qName.getPrefix().trim().length() != 0) {
             qname = qName.getPrefix() + ":";
         }
         qname += qName.getLocalPart();
 
         try {
             // fire endElement
-            _sax.endElement(qName.getNamespaceURI(), qName.getLocalPart(),
-                    qname);
+            _sax.endElement(qName.getNamespaceURI(), qName.getLocalPart(), qname);
 
             // end namespace bindings
             for (Iterator i = event.getNamespaces(); i.hasNext();) {
@@ -321,8 +311,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
         }
     }
 
-    private void handleStartElement(StartElement event)
-            throws XMLStreamException {
+    private void handleStartElement(StartElement event) throws XMLStreamException {
         try {
             // start namespace bindings
             for (Iterator i = event.getNamespaces(); i.hasNext();) {
@@ -344,8 +333,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
             }
 
             Attributes saxAttrs = getAttributes(event);
-            _sax.startElement(qName.getNamespaceURI(), qName.getLocalPart(),
-                    rawname, saxAttrs);
+            _sax.startElement(qName.getNamespaceURI(), qName.getLocalPart(), rawname, saxAttrs);
         } catch (SAXException e) {
             throw new XMLStreamException(e);
         }
@@ -360,8 +348,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
         AttributesImpl attrs = new AttributesImpl();
 
         if (!event.isStartElement()) {
-            throw new InternalError("getAttributes() attempting to process: "
-                    + event);
+            throw new InternalError("getAttributes() attempting to process: " + event);
         }
 
         // in SAX, namespace declarations are not part of attributes by default.
@@ -455,16 +442,15 @@ public class StAXEvent2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public boolean getFeature(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public boolean getFeature(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         return false;
     }
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setFeature(String name, boolean value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {}
+    public void setFeature(String name, boolean value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {}
 
     /**
      * This class is only used internally so this method should never be called.
@@ -481,8 +467,7 @@ public class StAXEvent2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setEntityResolver(EntityResolver resolver)
-            throws NullPointerException {}
+    public void setEntityResolver(EntityResolver resolver) throws NullPointerException {}
 
     /**
      * This class is only used internally so this method should never be called.
@@ -494,20 +479,18 @@ public class StAXEvent2SAX implements XMLReader, Locator {
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setErrorHandler(ErrorHandler handler)
-            throws NullPointerException {}
+    public void setErrorHandler(ErrorHandler handler) throws NullPointerException {}
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public void setProperty(String name, Object value)
-            throws SAXNotRecognizedException, SAXNotSupportedException {}
+    public void setProperty(String name, Object value) throws SAXNotRecognizedException,
+            SAXNotSupportedException {}
 
     /**
      * This class is only used internally so this method should never be called.
      */
-    public Object getProperty(String name) throws SAXNotRecognizedException,
-            SAXNotSupportedException {
+    public Object getProperty(String name) throws SAXNotRecognizedException, SAXNotSupportedException {
         return null;
     }
 

@@ -50,8 +50,7 @@ public class MetalToolTipUI extends BasicToolTipUI {
         tip = (JToolTip) c;
         Font f = c.getFont();
         smallFont = new Font(f.getName(), f.getStyle(), f.getSize() - 2);
-        acceleratorDelimiter = UIManager.getString(
-                "MenuItem.acceleratorDelimiter");
+        acceleratorDelimiter = UIManager.getString("MenuItem.acceleratorDelimiter");
         if (acceleratorDelimiter == null) {
             acceleratorDelimiter = "-";
         }
@@ -77,39 +76,32 @@ public class MetalToolTipUI extends BasicToolTipUI {
         }
 
         String accelString = getAcceleratorString(tip);
-        FontMetrics accelMetrics = SwingUtilities2.getFontMetrics(c, g,
-                smallFont);
+        FontMetrics accelMetrics = SwingUtilities2.getFontMetrics(c, g, smallFont);
         int accelSpacing = calcAccelSpacing(c, accelMetrics, accelString);
 
         Insets insets = tip.getInsets();
-        Rectangle paintTextR = new Rectangle(insets.left + 3, insets.top,
-                size.width - (insets.left + insets.right) - 6 - accelSpacing,
-                size.height - (insets.top + insets.bottom));
+        Rectangle paintTextR = new Rectangle(insets.left + 3, insets.top, size.width - (insets.left
+                + insets.right) - 6 - accelSpacing, size.height - (insets.top + insets.bottom));
         View v = (View) c.getClientProperty(BasicHTML.propertyKey);
         if (v != null) {
             v.paint(g, paintTextR);
-            accelBL = BasicHTML.getHTMLBaseline(v, paintTextR.width,
-                    paintTextR.height);
+            accelBL = BasicHTML.getHTMLBaseline(v, paintTextR.width, paintTextR.height);
         } else {
             g.setFont(font);
-            SwingUtilities2.drawString(tip, g, tipText, paintTextR.x,
-                    paintTextR.y + metrics.getAscent());
+            SwingUtilities2.drawString(tip, g, tipText, paintTextR.x, paintTextR.y + metrics.getAscent());
             accelBL = metrics.getAscent();
         }
 
         if (!accelString.equals("")) {
             g.setFont(smallFont);
             g.setColor(MetalLookAndFeel.getPrimaryControlDarkShadow());
-            SwingUtilities2.drawString(tip, g, accelString, tip.getWidth() - 1
-                    - insets.right - accelSpacing + padSpaceBetweenStrings - 3,
-                    paintTextR.y + accelBL);
+            SwingUtilities2.drawString(tip, g, accelString, tip.getWidth() - 1 - insets.right - accelSpacing
+                    + padSpaceBetweenStrings - 3, paintTextR.y + accelBL);
         }
     }
 
     private int calcAccelSpacing(JComponent c, FontMetrics fm, String accel) {
-        return accel.equals("") ? 0
-                : padSpaceBetweenStrings + SwingUtilities2.stringWidth(c, fm,
-                        accel);
+        return accel.equals("") ? 0 : padSpaceBetweenStrings + SwingUtilities2.stringWidth(c, fm, accel);
     }
 
     public Dimension getPreferredSize(JComponent c) {
@@ -151,8 +143,7 @@ public class MetalToolTipUI extends BasicToolTipUI {
             return "";
         }
 
-        KeyStroke[] keys = comp.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-                .keys();
+        KeyStroke[] keys = comp.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).keys();
         if (keys == null) {
             return "";
         }
@@ -161,9 +152,8 @@ public class MetalToolTipUI extends BasicToolTipUI {
 
         for (int i = 0; i < keys.length; i++) {
             int mod = keys[i].getModifiers();
-            controlKeyStr = KeyEvent.getKeyModifiersText(mod)
-                    + acceleratorDelimiter + KeyEvent.getKeyText(keys[i]
-                            .getKeyCode());
+            controlKeyStr = KeyEvent.getKeyModifiersText(mod) + acceleratorDelimiter + KeyEvent.getKeyText(
+                    keys[i].getKeyCode());
             break;
         }
 

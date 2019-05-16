@@ -16,30 +16,24 @@ import sun.awt.EmbeddedFrame;
  * The KeyboardManager class is used to help dispatch keyboard actions for the
  * WHEN_IN_FOCUSED_WINDOW style actions. Actions with other conditions are
  * handled directly in JComponent.
- *
  * Here's a description of the symantics of how keyboard dispatching should work
  * atleast as I understand it.
- *
  * KeyEvents are dispatched to the focused component. The focus manager gets
  * first crack at processing this event. If the focus manager doesn't want it,
  * then the JComponent calls super.processKeyEvent() this allows listeners a
  * chance to process the event.
- *
  * If none of the listeners "consumes" the event then the keybindings get a
  * shot. This is where things start to get interesting. First, KeyStokes defined
  * with the WHEN_FOCUSED condition get a chance. If none of these want the
  * event, then the component walks though it's parents looked for actions of
  * type WHEN_ANCESTOR_OF_FOCUSED_COMPONENT.
- *
  * If no one has taken it yet, then it winds up here. We then look for
  * components registered for WHEN_IN_FOCUSED_WINDOW events and fire to them.
  * Note that if none of those are found then we pass the event to the menubars
  * and let them have a crack at it. They're handled differently.
- *
  * Lastly, we check if we're looking at an internal frame. If we are and no one
  * wanted the event then we move up to the InternalFrame's creator and see if
  * anyone wants the event (and so on and so on).
- *
  *
  * @see InputMap
  */
@@ -109,8 +103,7 @@ class KeyboardManager {
             Thread.dumpStack();
         }
 
-        componentKeyStrokeMap.put(new ComponentKeyStrokePair(c, k),
-                topContainer);
+        componentKeyStrokeMap.put(new ComponentKeyStrokePair(c, k), topContainer);
 
         // Check for EmbeddedFrame case, they know how to process accelerators
         // even
@@ -125,8 +118,8 @@ class KeyboardManager {
      */
     private static Container getTopAncestor(JComponent c) {
         for (Container p = c.getParent(); p != null; p = p.getParent()) {
-            if (p instanceof Window && ((Window) p).isFocusableWindow()
-                    || p instanceof Applet || p instanceof JInternalFrame) {
+            if (p instanceof Window && ((Window) p).isFocusableWindow() || p instanceof Applet
+                    || p instanceof JInternalFrame) {
 
                 return p;
             }
@@ -193,8 +186,7 @@ class KeyboardManager {
      * any chidren (or subchildren) of the specified container want a crack at
      * the event. If one of them wants it, then it will "DO-THE-RIGHT-THING"
      */
-    public boolean fireKeyboardAction(KeyEvent e, boolean pressed,
-            Container topAncestor) {
+    public boolean fireKeyboardAction(KeyEvent e, boolean pressed, Container topAncestor) {
 
         if (e.isConsumed()) {
             System.out.println("Acquired pre-used event!");
@@ -210,11 +202,9 @@ class KeyboardManager {
             ks = KeyStroke.getKeyStroke(e.getKeyChar());
         } else {
             if (e.getKeyCode() != e.getExtendedKeyCode()) {
-                ksE = KeyStroke.getKeyStroke(e.getExtendedKeyCode(), e
-                        .getModifiers(), !pressed);
+                ksE = KeyStroke.getKeyStroke(e.getExtendedKeyCode(), e.getModifiers(), !pressed);
             }
-            ks = KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers(),
-                    !pressed);
+            ks = KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers(), !pressed);
         }
 
         Hashtable keyMap = containerMap.get(topAncestor);
@@ -260,8 +250,7 @@ class KeyboardManager {
                     }
                 }
             } else {
-                System.out.println("Unexpected condition in fireKeyboardAction "
-                        + tmp);
+                System.out.println("Unexpected condition in fireKeyboardAction " + tmp);
                 // This means that tmp wasn't null, a JComponent, or a Vector.
                 // What is it?
                 Thread.dumpStack();
@@ -301,8 +290,7 @@ class KeyboardManager {
     }
 
     void fireBinding(JComponent c, KeyStroke ks, KeyEvent e, boolean pressed) {
-        if (c.processKeyBinding(ks, e, JComponent.WHEN_IN_FOCUSED_WINDOW,
-                pressed)) {
+        if (c.processKeyBinding(ks, e, JComponent.WHEN_IN_FOCUSED_WINDOW, pressed)) {
             e.consume();
         }
     }
@@ -377,8 +365,7 @@ class KeyboardManager {
                 return false;
             }
             ComponentKeyStrokePair ckp = (ComponentKeyStrokePair) o;
-            return ((component.equals(ckp.component)) && (keyStroke.equals(
-                    ckp.keyStroke)));
+            return ((component.equals(ckp.component)) && (keyStroke.equals(ckp.keyStroke)));
         }
 
         public int hashCode() {
